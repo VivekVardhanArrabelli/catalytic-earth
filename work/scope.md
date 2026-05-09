@@ -23,6 +23,15 @@ Track:
 - tests passing
 - blockers found
 
+Automation cadence:
+
+- run once per hour
+- work for 55 focused minutes
+- reserve 5 minutes for break/overhead
+- log the hour
+- run checks
+- commit and push every run
+
 If a milestone is completed much faster than expected, increase scope or reduce
 timeline. If a milestone stalls because the data are messier than expected,
 reduce claims before adding complexity.

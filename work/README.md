@@ -14,12 +14,15 @@ work session should leave enough state here for a fresh context to continue.
 
 ## Operating Rule
 
-After each material work chunk:
+Each automation run is a 55-minute focused work block. The remaining time in
+the hour is break/overhead.
+
+After each hourly work block:
 
 1. Log elapsed time and evidence.
 2. Update `status.md`.
 3. Run relevant checks.
-4. Commit and push if the chunk materially advances the project.
+4. Commit and push to `origin/main`.
 5. Recalibrate the scope or timeline if observed speed contradicts estimates.
 
 ## Context Rule

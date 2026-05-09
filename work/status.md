@@ -4,12 +4,12 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 7
-- Total logged time: 315 minutes (5.25 hours)
+- Entries: 8
+- Total logged time: 325 minutes (5.42 hours)
 
 ## Time By Stage
 
-- ops: 25 minutes (0.42 hours)
+- ops: 35 minutes (0.58 hours)
 - post-v2: 110 minutes (1.83 hours)
 - v0: 55 minutes (0.92 hours)
 - v1: 55 minutes (0.92 hours)
@@ -17,8 +17,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 33
-- Evidence references logged: 37
+- Artifact references logged: 36
+- Evidence references logged: 39
 
 ## Recent Entries
 
@@ -73,6 +73,13 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: data/registries/curated_mechanism_labels.json, src/catalytic_earth/labels.py, artifacts/v3_label_summary.json, artifacts/v3_geometry_label_eval.json, tests/test_labels.py
 - Evidence: 20 curated labels, 4 in-scope seed-fingerprint labels, 16 out-of-scope labels, 28 tests passed, top3 in-scope accuracy 1.0, top1 in-scope accuracy 0.0
 
+### 2026-05-09T14:13:21.398170+00:00 - ops
+
+- Task: Update automation cadence to 55-minute hourly work blocks with mandatory push
+- Minutes: 10
+- Artifacts: work/README.md, work/handoff.md, work/scope.md
+- Evidence: automation updated to hourly RRULE, mandatory push rule recorded
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -82,6 +89,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:01:49.012481+00:00: Geometry extraction was implementable quickly for PDB-linked M-CSA entries; the harder next step is label quality and retrieval evaluation.
 - 2026-05-09T14:03:45.516905+00:00: Next quality bottleneck is curated mechanism labels and evaluation, not baseline implementation.
 - 2026-05-09T14:10:40.717863+00:00: The next bottleneck is improving ranking and abstention, not adding labels machinery.
+- 2026-05-09T14:13:21.398170+00:00: Progress will now be measured per hourly block rather than per ad hoc milestone.
 
 ## Scope Adjustments
 
@@ -91,3 +99,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:01:49.012481+00:00: Post-V2 quality work now targets geometry-aware retrieval rather than more text-only scaffolding.
 - 2026-05-09T14:03:45.516905+00:00: Geometry now affects retrieval scores through residue signature matching and catalytic-cluster compactness.
 - 2026-05-09T14:10:40.717863+00:00: Curated labels are now explicit for the 20-entry geometry slice; retrieval quality is measurable and currently weak at top1.
+- 2026-05-09T14:13:21.398170+00:00: Each automation run is now an hourly carry-forward block: 55 minutes work, 5 minutes break/overhead, commit and push every run.

@@ -45,6 +45,7 @@ PYTHONPATH=src python -m unittest discover -s tests
 
 ## During Work
 
+- Treat each automation run as one 55-minute focused block.
 - Prefer durable code and data schemas over prose.
 - Keep outputs reproducible.
 - Add tests for new normalization logic.
@@ -58,7 +59,8 @@ PYTHONPATH=src python -m catalytic_earth.cli progress-report --out work/status.m
 
 ## Push Rule
 
-Commit and push after considerable progress, meaning at least one of:
+Automation runs must commit and push every hour, even if progress is
+incremental. Prefer meaningful progress such as:
 
 - new source adapter
 - graph schema or graph builder improvement
