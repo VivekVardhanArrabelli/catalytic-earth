@@ -126,6 +126,47 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(context["ligand_codes"], ["B12"])
         self.assertIn("cobalamin", context["cofactor_families"])
 
+    def test_ligand_context_does_not_treat_alkali_ions_as_metal_cofactors(self) -> None:
+        active_site = [{"ca": {"x": 0.0, "y": 0.0, "z": 0.0}}]
+        alkali_atoms = [
+            {
+                "group_PDB": "HETATM",
+                "auth_comp_id": code,
+                "label_comp_id": code,
+                "auth_asym_id": "A",
+                "label_asym_id": "A",
+                "auth_seq_id": str(index),
+                "label_seq_id": str(index),
+                "Cartn_x": float(index),
+                "Cartn_y": 0.0,
+                "Cartn_z": 0.0,
+            }
+            for index, code in enumerate(["K", "NA"], start=1)
+        ]
+        alkali_context = ligand_context_from_atoms(alkali_atoms, active_site)
+        self.assertEqual(alkali_context["ligand_codes"], ["K", "NA"])
+        self.assertEqual(alkali_context["cofactor_families"], [])
+
+        magnesium_context = ligand_context_from_atoms(
+            [
+                *alkali_atoms,
+                {
+                    "group_PDB": "HETATM",
+                    "auth_comp_id": "MG",
+                    "label_comp_id": "MG",
+                    "auth_asym_id": "A",
+                    "label_asym_id": "A",
+                    "auth_seq_id": "3",
+                    "label_seq_id": "3",
+                    "Cartn_x": 3.0,
+                    "Cartn_y": 0.0,
+                    "Cartn_z": 0.0,
+                },
+            ],
+            active_site,
+        )
+        self.assertEqual(magnesium_context["cofactor_families"], ["metal_ion"])
+
     def test_pocket_context_summarizes_nearby_residue_classes(self) -> None:
         atoms = parse_atom_site_loop(SAMPLE_CIF)
         context = pocket_context_from_atoms(

@@ -7,9 +7,11 @@ from typing import Any, Callable
 
 from .geometry_retrieval import load_json, run_geometry_retrieval
 from .labels import (
+    analyze_cofactor_abstention_policy,
     analyze_cofactor_coverage,
     analyze_geometry_score_margins,
     analyze_in_scope_failures,
+    analyze_seed_family_performance,
     analyze_structure_mapping_issues,
     build_hard_negative_controls,
     evaluate_geometry_retrieval,
@@ -75,6 +77,24 @@ def run_local_performance_suite(
         _measure(
             "analyze_cofactor_coverage",
             lambda: analyze_cofactor_coverage(
+                retrieval,
+                labels,
+                abstain_threshold=float(selected_threshold),
+            ),
+            iterations,
+        ),
+        _measure(
+            "analyze_cofactor_abstention_policy",
+            lambda: analyze_cofactor_abstention_policy(
+                retrieval,
+                labels,
+                abstain_threshold=float(selected_threshold),
+            ),
+            iterations,
+        ),
+        _measure(
+            "analyze_seed_family_performance",
+            lambda: analyze_seed_family_performance(
                 retrieval,
                 labels,
                 abstain_threshold=float(selected_threshold),
@@ -179,6 +199,9 @@ def _result_summary(result: Any) -> dict[str, Any]:
                 "expected_absent_count",
                 "structure_only_count",
                 "local_supported_count",
+                "recommendation",
+                "in_scope_family_count",
+                "out_of_scope_top1_family_count",
             }
         }
     return {"keys": sorted(result.keys())}

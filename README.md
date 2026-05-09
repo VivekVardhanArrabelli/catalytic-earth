@@ -53,7 +53,7 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 150 entries, including all 150 entries in the
+8. Curated mechanism labels for 175 entries, including all 175 entries in the
    current expanded geometry slice.
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
@@ -61,26 +61,27 @@ The repository currently contains:
     label-expansion candidate ranking, geometry slice summaries, and a local
     performance suite.
 
-The 20- through 125-entry evaluation slices are now clean regression slices:
-each has 0 out-of-scope false non-abstentions, 0 hard negatives, 0 near misses,
-and full retained in-scope accuracy under calibrated abstention. The 125-entry
-slice now has 38 in-scope positives, 87 out-of-scope controls, 124/125
-evaluable active-site structures, threshold `0.4704`, and a positive score
-separation gap of `0.0562`.
+The 20- through 150-entry evaluation slices are clean out-of-scope regression
+slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
+under calibrated abstention. The 125-entry slice has 38 in-scope positives, 87
+out-of-scope controls, 124/125 evaluable active-site structures, threshold
+`0.4236`, and a positive score separation gap of `0.103`.
 
-The new 150-entry slice is fully labeled and intentionally harder: 150 entries,
-148 evaluable active-site structures, 44 local active-site in-scope positives,
-106 out-of-scope controls, 0 ready label-expansion candidates, 2 labeled
-structure-mapping issues, 0 hard negatives, and 0 near misses. Its calibrated
-threshold is `0.5144`; it retains 43/44 in-scope positives, abstains on all
-evaluable out-of-scope controls, and leaves 1 evidence-limited in-scope
+The current 175-entry slice is fully labeled and intentionally harder: 175
+entries, 173 evaluable active-site structures, 59 local active-site in-scope
+positives, 116 out-of-scope controls, 0 ready label-expansion candidates, 2
+labeled structure-mapping issues, 0 hard negatives, and 17 near misses. Its
+calibrated threshold is `0.4236`; it retains 58/59 in-scope positives, abstains
+on all evaluable out-of-scope controls, and leaves 1 evidence-limited in-scope
 abstention (`m_csa:132`). That selected `1LUC` structure lacks the expected
 flavin/NAD cofactor evidence, so the current actionable in-scope failure count
-is 0. The bottleneck has shifted from hard-negative separation to cofactor
-coverage, evidence-limited positives, and seed-family audits. Cofactor coverage
-artifacts now explicitly identify retained evidence-limited positives:
-`m_csa:41` lacks expected structure-wide metal evidence, and `m_csa:108` has
-expected cofactor evidence only outside the local active-site neighborhood.
+is 0. The closest out-of-scope near miss is `m_csa:65`, a ligand-supported
+metal-dependent hydrolase hit just `0.001` below the correct-positive floor.
+Cofactor policy sweeps recommend audit-only handling rather than a score
+penalty because no tested penalty reduces retained evidence-limited positives
+without losing retained positives. Cofactor coverage artifacts now explicitly
+identify retained evidence-limited positives: `m_csa:41`, `m_csa:108`, and
+`m_csa:160`.
 
 ## Quickstart
 
@@ -109,22 +110,24 @@ python -m catalytic_earth.cli write-v2-report --out docs/v2_report.md
 
 python -m catalytic_earth.cli label-summary --out artifacts/v3_label_summary.json
 
-python -m catalytic_earth.cli build-v1-graph --max-mcsa 150 --page-size 100 --out artifacts/v1_graph_150.json
-python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_150.json --out artifacts/v1_graph_summary_150.json
-python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_150.json --out artifacts/v2_benchmark_150.json
-python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_150.json --max-entries 150 --out artifacts/v3_geometry_features_150.json
-python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_150.json --out artifacts/v3_geometry_retrieval_150.json
-python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_150.json --out artifacts/v3_abstention_calibration_150.json
-python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_geometry_label_eval_150.json
-python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_geometry_failure_analysis_150.json
-python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_in_scope_failure_analysis_150.json
-python -m catalytic_earth.cli analyze-cofactor-coverage --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_cofactor_coverage_150.json
-python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_150.json --out artifacts/v3_geometry_score_margins_150.json
-python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_150.json --out artifacts/v3_hard_negative_controls_150.json
-python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_150.json --retrieval artifacts/v3_geometry_retrieval_150.json --out artifacts/v3_label_expansion_candidates_150.json
-python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_150.json --out artifacts/v3_structure_mapping_issues_150.json
+python -m catalytic_earth.cli build-v1-graph --max-mcsa 175 --page-size 100 --out artifacts/v1_graph_175.json
+python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_175.json --out artifacts/v1_graph_summary_175.json
+python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_175.json --out artifacts/v2_benchmark_175.json
+python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_175.json --max-entries 175 --out artifacts/v3_geometry_features_175.json
+python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_175.json --out artifacts/v3_geometry_retrieval_175.json
+python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_175.json --out artifacts/v3_abstention_calibration_175.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_175.json --abstain-threshold 0.4236 --out artifacts/v3_geometry_label_eval_175.json
+python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_175.json --abstain-threshold 0.4236 --out artifacts/v3_geometry_failure_analysis_175.json
+python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_175.json --abstain-threshold 0.4236 --out artifacts/v3_in_scope_failure_analysis_175.json
+python -m catalytic_earth.cli analyze-cofactor-coverage --retrieval artifacts/v3_geometry_retrieval_175.json --abstain-threshold 0.4236 --out artifacts/v3_cofactor_coverage_175.json
+python -m catalytic_earth.cli analyze-cofactor-policy --retrieval artifacts/v3_geometry_retrieval_175.json --abstain-threshold 0.4236 --out artifacts/v3_cofactor_policy_175.json
+python -m catalytic_earth.cli analyze-seed-family-performance --retrieval artifacts/v3_geometry_retrieval_175.json --abstain-threshold 0.4236 --out artifacts/v3_seed_family_performance_175.json
+python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_175.json --out artifacts/v3_geometry_score_margins_175.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_175.json --out artifacts/v3_hard_negative_controls_175.json
+python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_175.json --retrieval artifacts/v3_geometry_retrieval_175.json --out artifacts/v3_label_expansion_candidates_175.json
+python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_175.json --out artifacts/v3_structure_mapping_issues_175.json
 python -m catalytic_earth.cli summarize-geometry-slices --artifact-dir artifacts --out artifacts/v3_geometry_slice_summary.json
-python -m catalytic_earth.cli perf-suite --graph artifacts/v1_graph_150.json --geometry artifacts/v3_geometry_features_150.json --retrieval artifacts/v3_geometry_retrieval_150.json --iterations 3 --out artifacts/perf_report.json
+python -m catalytic_earth.cli perf-suite --graph artifacts/v1_graph_175.json --geometry artifacts/v3_geometry_features_175.json --retrieval artifacts/v3_geometry_retrieval_175.json --iterations 5 --out artifacts/perf_report.json
 
 python -m catalytic_earth.cli log-work --stage post-v2 --task "example work entry" --minutes 1
 python -m catalytic_earth.cli progress-report --out work/status.md
@@ -164,12 +167,13 @@ Current timeline judgment:
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
 2. Next automation blocks: decide whether evidence-limited retained positives
-   (`m_csa:41`, `m_csa:108`) need a scoring penalty or remain audit-only flags
+   (`m_csa:41`, `m_csa:108`, `m_csa:160`) need a scoring penalty or remain
+   audit-only flags
    while preserving 0 hard negatives and 0 out-of-scope false non-abstentions
-   across the 20- through 150-entry slices.
-3. Next serious milestone: make the 150-entry geometry slice pass a stricter
-   audited benchmark where success cannot be explained by tiny-label effects or
-   seed-family overfitting.
+   across the 20- through 175-entry slices.
+3. Next serious milestone: reduce the 175-entry near-miss boundary while
+   preserving 0 hard negatives, 0 out-of-scope false non-abstentions, and the
+   fragile retained `m_csa:160` evidence-limited positive.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that
    are credible enough for external labs to prioritize.

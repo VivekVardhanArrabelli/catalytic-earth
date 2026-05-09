@@ -22,6 +22,10 @@ RETAINED_TOP3_REFERENCE_RULE = (
     "maximize top3 retained in-scope accuracy, then minimize out-of-scope "
     "false non-abstentions, then coverage"
 )
+COFACTOR_EVIDENCE_LIMITED_STATUSES = {
+    "expected_absent_from_structure",
+    "expected_structure_only",
+}
 
 
 @dataclass(frozen=True)
@@ -639,6 +643,385 @@ def analyze_cofactor_coverage(
     }
 
 
+def analyze_cofactor_abstention_policy(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    abstain_threshold: float = 0.7,
+    absent_penalties: list[float] | None = None,
+    structure_only_penalties: list[float] | None = None,
+) -> dict[str, Any]:
+    absent_penalties = _normalize_penalty_grid(absent_penalties or [0.0, 0.01, 0.02, 0.05, 0.08, 0.10])
+    structure_only_penalties = _normalize_penalty_grid(
+        structure_only_penalties or [0.0, 0.005, 0.01, 0.02, 0.05]
+    )
+    base_adjusted = apply_cofactor_score_policy(
+        retrieval,
+        absent_penalty=0.0,
+        structure_only_penalty=0.0,
+    )
+    base_rows = _cofactor_policy_detail_rows(base_adjusted, labels, abstain_threshold)
+    sensitivity_rows = _cofactor_policy_sensitivity_rows(base_rows, abstain_threshold)
+    base_retained_positive_ids = _retained_positive_ids(base_rows)
+    base_evidence_limited_retained_ids = _evidence_limited_retained_positive_ids(base_rows)
+    base_rows_by_entry = {row["entry_id"]: row for row in base_rows}
+
+    policies: list[dict[str, Any]] = []
+    policy_detail_rows: dict[tuple[float, float], list[dict[str, Any]]] = {}
+    for absent_penalty in absent_penalties:
+        for structure_only_penalty in structure_only_penalties:
+            adjusted = apply_cofactor_score_policy(
+                retrieval,
+                absent_penalty=absent_penalty,
+                structure_only_penalty=structure_only_penalty,
+            )
+            rows = _cofactor_policy_detail_rows(adjusted, labels, abstain_threshold)
+            policy_detail_rows[(absent_penalty, structure_only_penalty)] = rows
+            evaluation = evaluate_geometry_retrieval(
+                adjusted,
+                labels,
+                abstain_threshold=abstain_threshold,
+            )
+            margins = analyze_geometry_score_margins(adjusted, labels)
+            hard_negatives = build_hard_negative_controls(adjusted, labels)
+            retained_positive_ids = _retained_positive_ids(rows)
+            evidence_limited_retained_ids = _evidence_limited_retained_positive_ids(rows)
+            evidence_limited_abstained_ids = _evidence_limited_abstained_positive_ids(rows)
+            lost_retained_positive_ids = sorted(
+                base_retained_positive_ids - retained_positive_ids,
+                key=_entry_id_sort_key,
+            )
+            newly_retained_positive_ids = sorted(
+                retained_positive_ids - base_retained_positive_ids,
+                key=_entry_id_sort_key,
+            )
+            changed_top1_ids = []
+            changed_abstention_ids = []
+            for row in rows:
+                base_row = base_rows_by_entry.get(row["entry_id"])
+                if not base_row:
+                    continue
+                if row["top1_fingerprint_id"] != base_row["top1_fingerprint_id"]:
+                    changed_top1_ids.append(row["entry_id"])
+                if row["abstained"] != base_row["abstained"]:
+                    changed_abstention_ids.append(row["entry_id"])
+
+            eval_meta = evaluation["metadata"]
+            margin_meta = margins["metadata"]
+            hard_meta = hard_negatives["metadata"]
+            policies.append(
+                {
+                    "absent_penalty": absent_penalty,
+                    "structure_only_penalty": structure_only_penalty,
+                    "top3_retained_accuracy_in_scope_evaluable": eval_meta.get(
+                        "top3_retained_accuracy_in_scope_evaluable"
+                    ),
+                    "in_scope_retention_rate_evaluable": eval_meta.get(
+                        "in_scope_retention_rate_evaluable"
+                    ),
+                    "out_of_scope_false_non_abstentions_evaluable": eval_meta.get(
+                        "out_of_scope_false_non_abstentions_evaluable"
+                    ),
+                    "hard_negative_count": hard_meta.get("hard_negative_count"),
+                    "near_miss_count": hard_meta.get("near_miss_count"),
+                    "correct_positive_score_separation_gap": margin_meta.get(
+                        "correct_positive_score_separation_gap"
+                    ),
+                    "strict_threshold_exists_for_correct_positives": margin_meta.get(
+                        "strict_threshold_exists_to_retain_all_correct_top1_in_scope_and_abstain_all_out_of_scope"
+                    ),
+                    "retained_positive_count": len(retained_positive_ids),
+                    "lost_retained_positive_count": len(lost_retained_positive_ids),
+                    "lost_retained_positive_entry_ids": lost_retained_positive_ids,
+                    "newly_retained_positive_count": len(newly_retained_positive_ids),
+                    "newly_retained_positive_entry_ids": newly_retained_positive_ids,
+                    "evidence_limited_retained_positive_count": len(
+                        evidence_limited_retained_ids
+                    ),
+                    "evidence_limited_retained_positive_entry_ids": sorted(
+                        evidence_limited_retained_ids,
+                        key=_entry_id_sort_key,
+                    ),
+                    "evidence_limited_abstained_positive_count": len(
+                        evidence_limited_abstained_ids
+                    ),
+                    "evidence_limited_abstained_positive_entry_ids": sorted(
+                        evidence_limited_abstained_ids,
+                        key=_entry_id_sort_key,
+                    ),
+                    "changed_top1_count": len(changed_top1_ids),
+                    "changed_top1_entry_ids": sorted(changed_top1_ids, key=_entry_id_sort_key),
+                    "changed_abstention_count": len(changed_abstention_ids),
+                    "changed_abstention_entry_ids": sorted(
+                        changed_abstention_ids,
+                        key=_entry_id_sort_key,
+                    ),
+                }
+            )
+
+    audit_policy = _find_policy(policies, absent_penalty=0.0, structure_only_penalty=0.0)
+    guardrail_passing_policies = [
+        row
+        for row in policies
+        if row["out_of_scope_false_non_abstentions_evaluable"] == 0
+        and row["hard_negative_count"] == 0
+        and row["lost_retained_positive_count"] == 0
+    ]
+    lossless_decision_changing_policies = [
+        row
+        for row in guardrail_passing_policies
+        if row["evidence_limited_retained_positive_count"]
+        < len(base_evidence_limited_retained_ids)
+    ]
+    if (
+        audit_policy
+        and (
+            audit_policy["hard_negative_count"] > 0
+            or audit_policy["out_of_scope_false_non_abstentions_evaluable"] > 0
+        )
+    ):
+        recommendation = "cofactor_penalty_not_primary_blocker"
+    elif lossless_decision_changing_policies:
+        recommendation = "candidate_penalty_available"
+    else:
+        recommendation = "audit_only_or_separate_stratum"
+    recommended_policy = (
+        min(
+            lossless_decision_changing_policies,
+            key=lambda row: (
+                row["evidence_limited_retained_positive_count"],
+                row["absent_penalty"] + row["structure_only_penalty"],
+            ),
+        )
+        if lossless_decision_changing_policies
+        else audit_policy
+    )
+    return {
+        "metadata": {
+            "method": "cofactor_abstention_policy_sweep",
+            "abstain_threshold": abstain_threshold,
+            "policy_count": len(policies),
+            "absent_penalties": absent_penalties,
+            "structure_only_penalties": structure_only_penalties,
+            "penalty_scope": (
+                "post-hoc score subtraction for top-k fingerprint hits whose expected "
+                "cofactor families are absent from the selected structure or only "
+                "outside the local active-site neighborhood"
+            ),
+            "top_k_boundary": (
+                "policy analysis reranks only the fingerprint hits already present in the retrieval artifact"
+            ),
+            "audit_evidence_limited_retained_positive_count": len(
+                base_evidence_limited_retained_ids
+            ),
+            "audit_evidence_limited_retained_positive_entry_ids": sorted(
+                base_evidence_limited_retained_ids,
+                key=_entry_id_sort_key,
+            ),
+            "minimum_evidence_limited_retained_margin": min(
+                (
+                    row["score_margin_to_abstain_threshold"]
+                    for row in sensitivity_rows
+                    if row["retained_positive"]
+                    and row["score_margin_to_abstain_threshold"] is not None
+                ),
+                default=None,
+            ),
+            "guardrail_passing_policy_count": len(guardrail_passing_policies),
+            "lossless_decision_changing_policy_count": len(
+                lossless_decision_changing_policies
+            ),
+            "recommendation": recommendation,
+            "recommended_policy": recommended_policy,
+        },
+        "policies": sorted(
+            policies,
+            key=lambda row: (row["absent_penalty"], row["structure_only_penalty"]),
+        ),
+        "limiting_rows": _cofactor_policy_limiting_rows(
+            policy_detail_rows,
+            base_rows_by_entry,
+        ),
+        "sensitivity_rows": sensitivity_rows,
+        "rows": sorted(base_rows, key=lambda row: _entry_id_sort_key(row["entry_id"])),
+    }
+
+
+def apply_cofactor_score_policy(
+    retrieval: dict[str, Any],
+    absent_penalty: float = 0.0,
+    structure_only_penalty: float = 0.0,
+) -> dict[str, Any]:
+    if absent_penalty < 0 or structure_only_penalty < 0:
+        raise ValueError("cofactor policy penalties must be non-negative")
+    fingerprints_by_id = {
+        fingerprint.id: fingerprint.to_dict() for fingerprint in load_fingerprints()
+    }
+    adjusted_results: list[dict[str, Any]] = []
+    for result in retrieval.get("results", []):
+        top_fingerprints = result.get("top_fingerprints", [])
+        adjusted_top: list[dict[str, Any]] = []
+        for fingerprint_hit in top_fingerprints:
+            if not isinstance(fingerprint_hit, dict):
+                continue
+            fingerprint_id = fingerprint_hit.get("fingerprint_id")
+            fingerprint = fingerprints_by_id.get(str(fingerprint_id), {})
+            coverage = _cofactor_coverage_row_parts(result, fingerprint)
+            penalty = _cofactor_policy_penalty(
+                coverage["coverage_status"],
+                absent_penalty=absent_penalty,
+                structure_only_penalty=structure_only_penalty,
+            )
+            base_score = float(
+                fingerprint_hit.get("base_score", fingerprint_hit.get("score", 0.0)) or 0.0
+            )
+            adjusted_hit = dict(fingerprint_hit)
+            adjusted_hit["base_score"] = round(base_score, 4)
+            adjusted_hit["score"] = round(max(0.0, base_score - penalty), 4)
+            adjusted_hit["cofactor_policy_penalty"] = round(penalty, 4)
+            adjusted_hit["cofactor_policy_coverage_status"] = coverage["coverage_status"]
+            adjusted_hit["cofactor_policy_expected_families"] = coverage[
+                "expected_cofactor_families"
+            ]
+            adjusted_hit["cofactor_policy_missing_expected_families"] = coverage[
+                "missing_expected_families"
+            ]
+            adjusted_hit["cofactor_policy_nearest_expected_ligand_distance_angstrom"] = (
+                coverage["nearest_expected_ligand_distance_angstrom"]
+            )
+            adjusted_top.append(adjusted_hit)
+        adjusted_result = dict(result)
+        adjusted_result["top_fingerprints"] = sorted(
+            adjusted_top,
+            key=lambda item: (-float(item.get("score", 0.0) or 0.0), str(item.get("fingerprint_id"))),
+        )
+        adjusted_results.append(adjusted_result)
+
+    metadata = dict(retrieval.get("metadata", {}))
+    metadata["cofactor_policy"] = {
+        "absent_penalty": round(absent_penalty, 4),
+        "structure_only_penalty": round(structure_only_penalty, 4),
+        "score_field": "score",
+        "base_score_field": "base_score",
+    }
+    return {**retrieval, "metadata": metadata, "results": adjusted_results}
+
+
+def analyze_seed_family_performance(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    abstain_threshold: float = 0.7,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    fingerprints_by_id = {
+        fingerprint.id: fingerprint.to_dict() for fingerprint in load_fingerprints()
+    }
+    in_scope_groups: dict[str, list[dict[str, Any]]] = {}
+    out_scope_groups: dict[str, list[dict[str, Any]]] = {}
+
+    for result in retrieval.get("results", []):
+        entry_id = result.get("entry_id")
+        label = labels_by_entry.get(entry_id)
+        if not label:
+            continue
+        top = result.get("top_fingerprints", [])
+        top1 = top[0] if top else {}
+        top1_id = str(top1.get("fingerprint_id") or "none")
+        top1_score = round(float(top1.get("score", 0.0) or 0.0), 4)
+        top3_ids = [item.get("fingerprint_id") for item in top[:3]]
+        abstained = top1_score < abstain_threshold
+        evaluable = _is_geometry_evaluable(result)
+        if label.label_type == "seed_fingerprint" and label.fingerprint_id:
+            target_coverage = _cofactor_coverage_row_parts(
+                result,
+                fingerprints_by_id.get(label.fingerprint_id, {}),
+            )
+            in_scope_groups.setdefault(label.fingerprint_id, []).append(
+                {
+                    "entry_id": label.entry_id,
+                    "evaluable": evaluable,
+                    "top1_fingerprint_id": top1_id,
+                    "top1_score": top1_score,
+                    "top1_correct": top1_id == label.fingerprint_id,
+                    "top3_correct": label.fingerprint_id in top3_ids,
+                    "abstained": abstained,
+                    "cofactor_coverage_status": target_coverage["coverage_status"],
+                }
+            )
+        elif label.label_type == "out_of_scope":
+            out_scope_groups.setdefault(top1_id, []).append(
+                {
+                    "entry_id": label.entry_id,
+                    "evaluable": evaluable,
+                    "top1_fingerprint_id": top1_id,
+                    "top1_score": top1_score,
+                    "abstained": abstained,
+                    "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
+                }
+            )
+
+    in_scope_rows = [
+        _seed_family_in_scope_row(fingerprint_id, rows)
+        for fingerprint_id, rows in in_scope_groups.items()
+    ]
+    out_scope_rows = [
+        _seed_family_out_scope_row(fingerprint_id, rows)
+        for fingerprint_id, rows in out_scope_groups.items()
+    ]
+    weakest_retained_rows = [
+        row for row in in_scope_rows if row["evaluable_count"] > 0
+    ]
+    weakest_retained = min(
+        weakest_retained_rows,
+        key=lambda row: (
+            row["top3_retained_accuracy_evaluable"] or 0.0,
+            row["evaluable_count"],
+            row["fingerprint_id"],
+        ),
+        default=None,
+    )
+    largest_family = max(
+        in_scope_rows,
+        key=lambda row: (row["labeled_count"], row["fingerprint_id"]),
+        default=None,
+    )
+    return {
+        "metadata": {
+            "method": "seed_family_performance_audit",
+            "abstain_threshold": abstain_threshold,
+            "in_scope_family_count": len(in_scope_rows),
+            "out_of_scope_top1_family_count": len(out_scope_rows),
+            "largest_in_scope_family": (
+                largest_family["fingerprint_id"] if largest_family else None
+            ),
+            "largest_in_scope_family_count": (
+                largest_family["labeled_count"] if largest_family else 0
+            ),
+            "weakest_retained_in_scope_family": (
+                weakest_retained["fingerprint_id"] if weakest_retained else None
+            ),
+            "weakest_retained_in_scope_family_accuracy": (
+                weakest_retained["top3_retained_accuracy_evaluable"]
+                if weakest_retained
+                else None
+            ),
+            "out_of_scope_retained_family_count": sum(
+                1 for row in out_scope_rows if row["false_non_abstention_count"] > 0
+            ),
+            "validation_boundary": (
+                "small curated seed-family audit; not a learned family split benchmark"
+            ),
+        },
+        "in_scope_families": sorted(
+            in_scope_rows,
+            key=lambda row: (-row["labeled_count"], row["fingerprint_id"]),
+        ),
+        "out_of_scope_top1_families": sorted(
+            out_scope_rows,
+            key=lambda row: (-row["count"], row["fingerprint_id"]),
+        ),
+    }
+
+
 def analyze_geometry_score_margins(
     retrieval: dict[str, Any],
     labels: list[MechanismLabel],
@@ -872,6 +1255,11 @@ def build_hard_negative_controls(
                 ),
                 "top1_fingerprint_counts": {},
                 "cofactor_evidence_counts": {},
+                "near_miss_top1_fingerprint_counts": {},
+                "near_miss_cofactor_evidence_counts": {},
+                "closest_near_miss_entry_id": None,
+                "closest_near_miss_top1_fingerprint_id": None,
+                "minimum_near_miss_score_gap_to_floor": None,
             },
             "rows": [],
             "near_miss_rows": [],
@@ -924,8 +1312,22 @@ def build_hard_negative_controls(
     cofactor_evidence_counts = Counter(
         row.get("cofactor_evidence_level") or "unknown" for row in rows
     )
+    near_miss_fingerprint_counts = Counter(
+        row["top1_fingerprint_id"] for row in near_miss_rows
+    )
+    near_miss_cofactor_evidence_counts = Counter(
+        row.get("cofactor_evidence_level") or "unknown" for row in near_miss_rows
+    )
     groups = group_hard_negative_controls(rows)
     near_miss_groups = group_hard_negative_controls(near_miss_rows)
+    closest_near_miss = min(
+        near_miss_rows,
+        key=lambda row: (
+            float(row.get("score_gap_to_floor", float("inf"))),
+            str(row.get("entry_id", "")),
+        ),
+        default={},
+    )
     return {
         "metadata": {
             "method": "geometry_hard_negative_control_selection",
@@ -943,6 +1345,19 @@ def build_hard_negative_controls(
             ),
             "top1_fingerprint_counts": dict(sorted(fingerprint_counts.items())),
             "cofactor_evidence_counts": dict(sorted(cofactor_evidence_counts.items())),
+            "near_miss_top1_fingerprint_counts": dict(
+                sorted(near_miss_fingerprint_counts.items())
+            ),
+            "near_miss_cofactor_evidence_counts": dict(
+                sorted(near_miss_cofactor_evidence_counts.items())
+            ),
+            "closest_near_miss_entry_id": closest_near_miss.get("entry_id"),
+            "closest_near_miss_top1_fingerprint_id": closest_near_miss.get(
+                "top1_fingerprint_id"
+            ),
+            "minimum_near_miss_score_gap_to_floor": closest_near_miss.get(
+                "score_gap_to_floor"
+            ),
         },
         "rows": sorted(rows, key=lambda row: (-row["top1_score"], row["entry_id"])),
         "near_miss_rows": sorted(
@@ -966,7 +1381,18 @@ def group_hard_negative_controls(rows: list[dict[str, Any]]) -> list[dict[str, A
     result: list[dict[str, Any]] = []
     for (fingerprint_id, evidence_level), group_rows in grouped.items():
         scores = [float(row.get("top1_score", 0.0) or 0.0) for row in group_rows]
+        gap_values = [
+            float(row["score_gap_to_floor"])
+            for row in group_rows
+            if row.get("score_gap_to_floor") is not None
+        ]
         reasons = Counter(str(row.get("hard_negative_reason") or "unknown") for row in group_rows)
+        counterevidence_reasons = Counter(
+            str(reason)
+            for row in group_rows
+            for reason in _counterevidence_reasons_from_row(row)
+            if reason
+        )
         result.append(
             {
                 "top1_fingerprint_id": fingerprint_id,
@@ -975,7 +1401,19 @@ def group_hard_negative_controls(rows: list[dict[str, Any]]) -> list[dict[str, A
                 "min_top1_score": round(min(scores), 4),
                 "mean_top1_score": round(sum(scores) / len(scores), 4),
                 "max_top1_score": round(max(scores), 4),
+                "min_score_gap_to_floor": (
+                    round(min(gap_values), 4) if gap_values else None
+                ),
+                "mean_score_gap_to_floor": (
+                    round(sum(gap_values) / len(gap_values), 4) if gap_values else None
+                ),
+                "max_score_gap_to_floor": (
+                    round(max(gap_values), 4) if gap_values else None
+                ),
                 "hard_negative_reason_counts": dict(sorted(reasons.items())),
+                "counterevidence_reason_counts": dict(
+                    sorted(counterevidence_reasons.items())
+                ),
                 "entry_ids": sorted(str(row.get("entry_id")) for row in group_rows),
             }
         )
@@ -987,6 +1425,16 @@ def group_hard_negative_controls(rows: list[dict[str, Any]]) -> list[dict[str, A
             str(row["cofactor_evidence_level"]),
         ),
     )
+
+
+def _counterevidence_reasons_from_row(row: dict[str, Any]) -> list[str]:
+    component_scores = row.get("component_scores", {})
+    if not isinstance(component_scores, dict):
+        return []
+    reasons = component_scores.get("counterevidence_reasons", [])
+    if not isinstance(reasons, list):
+        return []
+    return [str(reason) for reason in reasons if reason]
 
 
 def _hard_negative_row(
@@ -1213,6 +1661,376 @@ def _cofactor_coverage_status(
     return "expected_absent_from_structure"
 
 
+def _normalize_penalty_grid(values: list[float]) -> list[float]:
+    penalties = []
+    for value in values:
+        penalty = round(float(value), 4)
+        if penalty < 0:
+            raise ValueError("cofactor policy penalties must be non-negative")
+        penalties.append(penalty)
+    return sorted(set(penalties))
+
+
+def _cofactor_policy_penalty(
+    coverage_status: str,
+    absent_penalty: float,
+    structure_only_penalty: float,
+) -> float:
+    if coverage_status == "expected_absent_from_structure":
+        return absent_penalty
+    if coverage_status == "expected_structure_only":
+        return structure_only_penalty
+    return 0.0
+
+
+def _cofactor_policy_detail_rows(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    abstain_threshold: float,
+) -> list[dict[str, Any]]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    fingerprints_by_id = {
+        fingerprint.id: fingerprint.to_dict() for fingerprint in load_fingerprints()
+    }
+    rows: list[dict[str, Any]] = []
+    for result in retrieval.get("results", []):
+        entry_id = result.get("entry_id")
+        label = labels_by_entry.get(entry_id)
+        if not label:
+            continue
+        top = result.get("top_fingerprints", [])
+        top1 = top[0] if top else {}
+        top1_id = top1.get("fingerprint_id")
+        top1_score = round(float(top1.get("score", 0.0) or 0.0), 4)
+        top1_base_score = round(
+            float(top1.get("base_score", top1.get("score", 0.0)) or 0.0),
+            4,
+        )
+        top3_ids = [item.get("fingerprint_id") for item in top[:3]]
+        abstained = top1_score < abstain_threshold
+        target_hit = None
+        target_rank = None
+        if label.fingerprint_id:
+            for index, fingerprint_hit in enumerate(top, start=1):
+                if fingerprint_hit.get("fingerprint_id") == label.fingerprint_id:
+                    target_hit = fingerprint_hit
+                    target_rank = index
+                    break
+        target_fingerprint = fingerprints_by_id.get(str(label.fingerprint_id), {})
+        target_coverage = (
+            _cofactor_coverage_row_parts(result, target_fingerprint)
+            if label.fingerprint_id
+            else {}
+        )
+        top1_coverage_status = top1.get("cofactor_policy_coverage_status")
+        if top1_id and not top1_coverage_status:
+            top1_coverage_status = _cofactor_coverage_row_parts(
+                result,
+                fingerprints_by_id.get(str(top1_id), {}),
+            )["coverage_status"]
+        target_coverage_status = target_coverage.get("coverage_status")
+        top1_correct = bool(label.fingerprint_id and top1_id == label.fingerprint_id)
+        top3_correct = bool(label.fingerprint_id and label.fingerprint_id in top3_ids)
+        target_score = (
+            round(float(target_hit.get("score", 0.0) or 0.0), 4)
+            if target_hit is not None
+            else None
+        )
+        target_base_score = (
+            round(
+                float(target_hit.get("base_score", target_hit.get("score", 0.0)) or 0.0),
+                4,
+            )
+            if target_hit is not None
+            else None
+        )
+        target_policy_penalty = (
+            round(float(target_hit.get("cofactor_policy_penalty", 0.0) or 0.0), 4)
+            if target_hit is not None
+            else None
+        )
+        rows.append(
+            {
+                "entry_id": str(entry_id),
+                "label_type": label.label_type,
+                "target_fingerprint_id": label.fingerprint_id,
+                "confidence": label.confidence,
+                "top1_fingerprint_id": top1_id,
+                "top1_base_score": top1_base_score,
+                "top1_adjusted_score": top1_score,
+                "top1_policy_penalty": round(
+                    float(top1.get("cofactor_policy_penalty", 0.0) or 0.0),
+                    4,
+                ),
+                "top1_cofactor_coverage_status": top1_coverage_status,
+                "target_rank": target_rank,
+                "target_base_score": target_base_score,
+                "target_adjusted_score": target_score,
+                "target_policy_penalty": target_policy_penalty,
+                "target_cofactor_coverage_status": target_coverage_status,
+                "target_expected_cofactor_families": target_coverage.get(
+                    "expected_cofactor_families",
+                    [],
+                ),
+                "target_missing_expected_families": target_coverage.get(
+                    "missing_expected_families",
+                    [],
+                ),
+                "target_nearest_expected_ligand_distance_angstrom": target_coverage.get(
+                    "nearest_expected_ligand_distance_angstrom"
+                ),
+                "target_evidence_limited": (
+                    target_coverage_status in COFACTOR_EVIDENCE_LIMITED_STATUSES
+                ),
+                "abstain_threshold": abstain_threshold,
+                "abstained": abstained,
+                "top1_correct": top1_correct,
+                "top3_correct": top3_correct,
+                "retained_positive": top1_correct and not abstained,
+                "status": result.get("status"),
+                "resolved_residue_count": result.get("resolved_residue_count", 0),
+                "evaluable": _is_geometry_evaluable(result),
+                "label_rationale": label.rationale,
+            }
+        )
+    return sorted(rows, key=lambda row: _entry_id_sort_key(row["entry_id"]))
+
+
+def _retained_positive_ids(rows: list[dict[str, Any]]) -> set[str]:
+    return {
+        row["entry_id"]
+        for row in rows
+        if row["label_type"] == "seed_fingerprint" and row["retained_positive"]
+    }
+
+
+def _evidence_limited_retained_positive_ids(rows: list[dict[str, Any]]) -> set[str]:
+    return {
+        row["entry_id"]
+        for row in rows
+        if row["label_type"] == "seed_fingerprint"
+        and row["target_evidence_limited"]
+        and row["retained_positive"]
+    }
+
+
+def _evidence_limited_abstained_positive_ids(rows: list[dict[str, Any]]) -> set[str]:
+    return {
+        row["entry_id"]
+        for row in rows
+        if row["label_type"] == "seed_fingerprint"
+        and row["target_evidence_limited"]
+        and row["abstained"]
+    }
+
+
+def _find_policy(
+    policies: list[dict[str, Any]],
+    absent_penalty: float,
+    structure_only_penalty: float,
+) -> dict[str, Any] | None:
+    for policy in policies:
+        if _same_float(policy["absent_penalty"], absent_penalty) and _same_float(
+            policy["structure_only_penalty"],
+            structure_only_penalty,
+        ):
+            return policy
+    return None
+
+
+def _cofactor_policy_limiting_rows(
+    policy_detail_rows: dict[tuple[float, float], list[dict[str, Any]]],
+    base_rows_by_entry: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for (absent_penalty, structure_only_penalty), detail_rows in policy_detail_rows.items():
+        for row in detail_rows:
+            base_row = base_rows_by_entry.get(row["entry_id"], {})
+            changed_top1 = row["top1_fingerprint_id"] != base_row.get("top1_fingerprint_id")
+            changed_abstention = row["abstained"] != base_row.get("abstained")
+            lost_retained_positive = bool(base_row.get("retained_positive")) and not bool(
+                row["retained_positive"]
+            )
+            if not (
+                row["target_evidence_limited"]
+                or changed_top1
+                or changed_abstention
+                or lost_retained_positive
+            ):
+                continue
+            rows.append(
+                {
+                    "absent_penalty": absent_penalty,
+                    "structure_only_penalty": structure_only_penalty,
+                    "entry_id": row["entry_id"],
+                    "label_type": row["label_type"],
+                    "target_fingerprint_id": row["target_fingerprint_id"],
+                    "target_cofactor_coverage_status": row[
+                        "target_cofactor_coverage_status"
+                    ],
+                    "target_expected_cofactor_families": row[
+                        "target_expected_cofactor_families"
+                    ],
+                    "top1_fingerprint_id": row["top1_fingerprint_id"],
+                    "top1_base_score": row["top1_base_score"],
+                    "top1_adjusted_score": row["top1_adjusted_score"],
+                    "target_base_score": row["target_base_score"],
+                    "target_adjusted_score": row["target_adjusted_score"],
+                    "target_policy_penalty": row["target_policy_penalty"],
+                    "abstained": row["abstained"],
+                    "retained_positive": row["retained_positive"],
+                    "changed_top1": changed_top1,
+                    "changed_abstention": changed_abstention,
+                    "lost_retained_positive": lost_retained_positive,
+                }
+            )
+    return sorted(
+        rows,
+        key=lambda row: (
+            _entry_id_sort_key(row["entry_id"]),
+            row["absent_penalty"],
+            row["structure_only_penalty"],
+        ),
+    )
+
+
+def _cofactor_policy_sensitivity_rows(
+    base_rows: list[dict[str, Any]],
+    abstain_threshold: float,
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for row in base_rows:
+        if not row["target_evidence_limited"]:
+            continue
+        target_score = row["target_base_score"]
+        margin = (
+            round(float(target_score) - abstain_threshold, 4)
+            if target_score is not None
+            else None
+        )
+        if row["target_cofactor_coverage_status"] == "expected_absent_from_structure":
+            affected_penalty = "absent_penalty"
+        elif row["target_cofactor_coverage_status"] == "expected_structure_only":
+            affected_penalty = "structure_only_penalty"
+        else:
+            affected_penalty = None
+        rows.append(
+            {
+                "entry_id": row["entry_id"],
+                "target_fingerprint_id": row["target_fingerprint_id"],
+                "target_cofactor_coverage_status": row["target_cofactor_coverage_status"],
+                "target_expected_cofactor_families": row[
+                    "target_expected_cofactor_families"
+                ],
+                "target_base_score": target_score,
+                "top1_fingerprint_id": row["top1_fingerprint_id"],
+                "top1_correct": row["top1_correct"],
+                "retained_positive": row["retained_positive"],
+                "abstained": row["abstained"],
+                "affected_penalty": affected_penalty,
+                "score_margin_to_abstain_threshold": margin,
+                "penalty_must_exceed_margin_to_abstain": (
+                    margin if margin is not None and margin > 0 else None
+                ),
+                "already_below_threshold": bool(margin is not None and margin < 0),
+                "nearest_expected_ligand_distance_angstrom": row[
+                    "target_nearest_expected_ligand_distance_angstrom"
+                ],
+            }
+        )
+    return sorted(rows, key=lambda row: _entry_id_sort_key(row["entry_id"]))
+
+
+def _seed_family_in_scope_row(
+    fingerprint_id: str,
+    rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    evaluable_rows = [row for row in rows if row["evaluable"]]
+    retained_rows = [row for row in evaluable_rows if not row["abstained"]]
+    top1_correct_rows = [row for row in evaluable_rows if row["top1_correct"]]
+    top3_correct_rows = [row for row in evaluable_rows if row["top3_correct"]]
+    retained_top3_correct_rows = [
+        row for row in evaluable_rows if row["top3_correct"] and not row["abstained"]
+    ]
+    evidence_limited_rows = [
+        row
+        for row in rows
+        if row["cofactor_coverage_status"] in COFACTOR_EVIDENCE_LIMITED_STATUSES
+    ]
+    scores = [row["top1_score"] for row in evaluable_rows]
+    return {
+        "fingerprint_id": fingerprint_id,
+        "labeled_count": len(rows),
+        "evaluable_count": len(evaluable_rows),
+        "top1_correct_count": len(top1_correct_rows),
+        "top3_correct_count": len(top3_correct_rows),
+        "retained_count": len(retained_rows),
+        "retained_top3_correct_count": len(retained_top3_correct_rows),
+        "abstained_count": len(evaluable_rows) - len(retained_rows),
+        "top1_accuracy_evaluable": _ratio(len(top1_correct_rows), len(evaluable_rows)),
+        "top3_accuracy_evaluable": _ratio(len(top3_correct_rows), len(evaluable_rows)),
+        "top3_retained_accuracy_evaluable": _ratio(
+            len(retained_top3_correct_rows),
+            len(evaluable_rows),
+        ),
+        "retention_rate_evaluable": _ratio(len(retained_rows), len(evaluable_rows)),
+        "min_top1_score": min(scores) if scores else None,
+        "mean_top1_score": round(sum(scores) / len(scores), 4) if scores else None,
+        "max_top1_score": max(scores) if scores else None,
+        "cofactor_coverage_status_counts": dict(
+            sorted(Counter(row["cofactor_coverage_status"] for row in rows).items())
+        ),
+        "evidence_limited_count": len(evidence_limited_rows),
+        "evidence_limited_entry_ids": sorted(
+            (row["entry_id"] for row in evidence_limited_rows),
+            key=_entry_id_sort_key,
+        ),
+        "abstained_entry_ids": sorted(
+            (row["entry_id"] for row in evaluable_rows if row["abstained"]),
+            key=_entry_id_sort_key,
+        ),
+        "entry_ids": sorted((row["entry_id"] for row in rows), key=_entry_id_sort_key),
+    }
+
+
+def _seed_family_out_scope_row(
+    fingerprint_id: str,
+    rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    evaluable_rows = [row for row in rows if row["evaluable"]]
+    false_non_abstention_rows = [
+        row for row in evaluable_rows if not row["abstained"]
+    ]
+    scores = [row["top1_score"] for row in evaluable_rows]
+    return {
+        "fingerprint_id": fingerprint_id,
+        "count": len(rows),
+        "evaluable_count": len(evaluable_rows),
+        "abstained_count": len(evaluable_rows) - len(false_non_abstention_rows),
+        "false_non_abstention_count": len(false_non_abstention_rows),
+        "abstention_rate_evaluable": _ratio(
+            len(evaluable_rows) - len(false_non_abstention_rows),
+            len(evaluable_rows),
+        ),
+        "min_top1_score": min(scores) if scores else None,
+        "mean_top1_score": round(sum(scores) / len(scores), 4) if scores else None,
+        "max_top1_score": max(scores) if scores else None,
+        "cofactor_evidence_counts": dict(
+            sorted(
+                Counter(
+                    str(row.get("cofactor_evidence_level") or "unknown")
+                    for row in rows
+                ).items()
+            )
+        ),
+        "false_non_abstention_entry_ids": sorted(
+            (row["entry_id"] for row in false_non_abstention_rows),
+            key=_entry_id_sort_key,
+        ),
+        "entry_ids": sorted((row["entry_id"] for row in rows), key=_entry_id_sort_key),
+    }
+
+
 def _entry_id_sort_key(entry_id: str) -> tuple[str, int, str]:
     prefix, _, suffix = entry_id.partition(":")
     try:
@@ -1299,9 +2117,55 @@ def build_label_expansion_candidates(
             "ready_for_label_review_count": len(ready_rows),
             "labeled_entry_count": len(labeled_entry_ids),
             "geometry_entry_count": len(geometry.get("entries", [])),
+            "candidate_group_count": len(group_label_expansion_candidates(rows)),
         },
         "rows": sorted(rows, key=lambda row: (-row["readiness_score"], row["entry_id"])),
+        "groups": group_label_expansion_candidates(rows),
     }
+
+
+def group_label_expansion_candidates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for row in rows:
+        key = (
+            str(row.get("top1_fingerprint_id") or "unknown"),
+            str(row.get("cofactor_evidence_level") or "unknown"),
+        )
+        grouped.setdefault(key, []).append(row)
+
+    result: list[dict[str, Any]] = []
+    for (fingerprint_id, evidence_level), group_rows in grouped.items():
+        scores = [float(row.get("top1_score", 0.0) or 0.0) for row in group_rows]
+        ready_rows = [row for row in group_rows if int(row.get("readiness_score", 0) or 0) >= 4]
+        blockers = Counter(
+            blocker
+            for row in group_rows
+            for blocker in row.get("readiness_blockers", [])
+            if isinstance(blocker, str)
+        )
+        result.append(
+            {
+                "top1_fingerprint_id": fingerprint_id,
+                "cofactor_evidence_level": evidence_level,
+                "count": len(group_rows),
+                "ready_for_label_review_count": len(ready_rows),
+                "min_top1_score": round(min(scores), 4) if scores else None,
+                "mean_top1_score": round(sum(scores) / len(scores), 4) if scores else None,
+                "max_top1_score": round(max(scores), 4) if scores else None,
+                "readiness_blocker_counts": dict(sorted(blockers.items())),
+                "entry_ids": sorted(str(row.get("entry_id")) for row in group_rows),
+                "ready_entry_ids": sorted(str(row.get("entry_id")) for row in ready_rows),
+            }
+        )
+    return sorted(
+        result,
+        key=lambda row: (
+            -int(row["ready_for_label_review_count"]),
+            -int(row["count"]),
+            str(row["top1_fingerprint_id"]),
+            str(row["cofactor_evidence_level"]),
+        ),
+    )
 
 
 def analyze_structure_mapping_issues(

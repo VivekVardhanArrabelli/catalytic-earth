@@ -15,6 +15,7 @@ GEOMETRY_SLICES = [
     ("100", "_100"),
     ("125", "_125"),
     ("150", "_150"),
+    ("175", "_175"),
 ]
 
 
@@ -39,6 +40,12 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
         cofactor_coverage = _read_optional_json(
             artifact_dir / f"v3_cofactor_coverage{suffix}.json"
         )
+        cofactor_policy = _read_optional_json(
+            artifact_dir / f"v3_cofactor_policy{suffix}.json"
+        )
+        seed_family_performance = _read_optional_json(
+            artifact_dir / f"v3_seed_family_performance{suffix}.json"
+        )
         if not evaluation:
             continue
         geometry_meta = geometry.get("metadata", {}) if geometry else {}
@@ -49,6 +56,13 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
         mapping_meta = mapping_issues.get("metadata", {}) if mapping_issues else {}
         label_candidate_meta = label_candidates.get("metadata", {}) if label_candidates else {}
         cofactor_meta = cofactor_coverage.get("metadata", {}) if cofactor_coverage else {}
+        cofactor_policy_meta = cofactor_policy.get("metadata", {}) if cofactor_policy else {}
+        family_meta = (
+            seed_family_performance.get("metadata", {})
+            if seed_family_performance
+            else {}
+        )
+        closest_near_miss = _closest_near_miss(hard_negatives)
         rows.append(
             {
                 "slice": slice_label,
@@ -83,6 +97,20 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
                 ),
                 "hard_negative_count": hard_meta.get("hard_negative_count"),
                 "near_miss_count": hard_meta.get("near_miss_count"),
+                "near_miss_top1_fingerprint_counts": hard_meta.get(
+                    "near_miss_top1_fingerprint_counts"
+                ),
+                "near_miss_cofactor_evidence_counts": hard_meta.get(
+                    "near_miss_cofactor_evidence_counts"
+                ),
+                "closest_near_miss_entry_id": closest_near_miss.get("entry_id"),
+                "closest_near_miss_top1_fingerprint_id": closest_near_miss.get(
+                    "top1_fingerprint_id"
+                ),
+                "closest_near_miss_score": closest_near_miss.get("top1_score"),
+                "closest_near_miss_score_gap_to_floor": closest_near_miss.get(
+                    "score_gap_to_floor"
+                ),
                 "score_separation_gap": margin_meta.get("score_separation_gap"),
                 "correct_positive_score_separation_gap": margin_meta.get(
                     "correct_positive_score_separation_gap"
@@ -125,6 +153,37 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
                 "cofactor_local_supported_count": cofactor_meta.get(
                     "local_supported_count"
                 ),
+                "cofactor_policy_recommendation": cofactor_policy_meta.get(
+                    "recommendation"
+                ),
+                "cofactor_policy_guardrail_passing_policy_count": cofactor_policy_meta.get(
+                    "guardrail_passing_policy_count"
+                ),
+                "cofactor_policy_lossless_decision_changing_policy_count": (
+                    cofactor_policy_meta.get("lossless_decision_changing_policy_count")
+                ),
+                "cofactor_policy_audit_evidence_limited_retained_positive_count": (
+                    cofactor_policy_meta.get(
+                        "audit_evidence_limited_retained_positive_count"
+                    )
+                ),
+                "cofactor_policy_minimum_evidence_limited_retained_margin": (
+                    cofactor_policy_meta.get("minimum_evidence_limited_retained_margin")
+                ),
+                "seed_family_count": family_meta.get("in_scope_family_count"),
+                "largest_seed_family": family_meta.get("largest_in_scope_family"),
+                "largest_seed_family_count": family_meta.get(
+                    "largest_in_scope_family_count"
+                ),
+                "weakest_retained_seed_family": family_meta.get(
+                    "weakest_retained_in_scope_family"
+                ),
+                "weakest_retained_seed_family_accuracy": family_meta.get(
+                    "weakest_retained_in_scope_family_accuracy"
+                ),
+                "out_of_scope_retained_seed_family_count": family_meta.get(
+                    "out_of_scope_retained_family_count"
+                ),
             }
         )
 
@@ -163,6 +222,36 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
         for row in rows
         if int(row.get("cofactor_evidence_limited_retained_count") or 0) > 0
     ]
+    slices_with_lossless_cofactor_penalty = [
+        row["slice"]
+        for row in rows
+        if int(row.get("cofactor_policy_lossless_decision_changing_policy_count") or 0) > 0
+    ]
+    slices_recommending_audit_only_cofactor_policy = [
+        row["slice"]
+        for row in rows
+        if row.get("cofactor_policy_recommendation") == "audit_only_or_separate_stratum"
+    ]
+    limited_retained_margins = [
+        float(row["cofactor_policy_minimum_evidence_limited_retained_margin"])
+        for row in rows
+        if row.get("cofactor_policy_minimum_evidence_limited_retained_margin") is not None
+    ]
+    out_scope_retained_family_counts = [
+        int(row["out_of_scope_retained_seed_family_count"])
+        for row in rows
+        if row.get("out_of_scope_retained_seed_family_count") is not None
+    ]
+    near_miss_gaps = [
+        float(row["closest_near_miss_score_gap_to_floor"])
+        for row in rows
+        if row.get("closest_near_miss_score_gap_to_floor") is not None
+    ]
+    slices_with_near_misses = [
+        row["slice"]
+        for row in rows
+        if int(row.get("near_miss_count") or 0) > 0
+    ]
 
     return {
         "metadata": {
@@ -200,6 +289,23 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
             "slices_with_limited_retained_cofactor_evidence": (
                 slices_with_limited_retained_cofactor_evidence
             ),
+            "slices_with_lossless_cofactor_penalty": slices_with_lossless_cofactor_penalty,
+            "slices_recommending_audit_only_cofactor_policy": (
+                slices_recommending_audit_only_cofactor_policy
+            ),
+            "minimum_evidence_limited_retained_margin": min(
+                limited_retained_margins,
+                default=None,
+            ),
+            "max_out_of_scope_retained_seed_family_count": max(
+                out_scope_retained_family_counts,
+                default=0,
+            ),
+            "slices_with_near_misses": slices_with_near_misses,
+            "minimum_near_miss_score_gap_to_floor": min(
+                near_miss_gaps,
+                default=None,
+            ),
             "validation_boundary": "artifact summary only; depends on curated labels and generated JSON inputs",
         },
         "rows": rows,
@@ -219,3 +325,20 @@ def _read_optional_json(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as handle:
         data = json.load(handle)
     return data if isinstance(data, dict) else {}
+
+
+def _closest_near_miss(hard_negatives: dict[str, Any]) -> dict[str, Any]:
+    if not isinstance(hard_negatives, dict):
+        return {}
+    rows = hard_negatives.get("near_miss_rows", [])
+    if not isinstance(rows, list):
+        return {}
+    candidates = [row for row in rows if isinstance(row, dict)]
+    return min(
+        candidates,
+        key=lambda row: (
+            float(row.get("score_gap_to_floor", float("inf"))),
+            str(row.get("entry_id", "")),
+        ),
+        default={},
+    )

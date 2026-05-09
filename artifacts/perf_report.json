@@ -2,169 +2,196 @@
   "benchmarks": [
     {
       "iterations": 5,
-      "max_ms": 3.592,
-      "mean_ms": 3.443,
-      "min_ms": 3.328,
+      "max_ms": 28.887,
+      "mean_ms": 17.795,
+      "min_ms": 14.043,
       "name": "load_v1_graph",
       "result_summary": {
-        "edge_count": 1475,
-        "node_count": 1513,
-        "rhea_query_count": 48
+        "edge_count": 6310,
+        "node_count": 6160,
+        "rhea_query_count": 172
       }
     },
     {
       "iterations": 5,
-      "max_ms": 1.238,
-      "mean_ms": 0.653,
-      "min_ms": 0.42,
+      "max_ms": 2.551,
+      "mean_ms": 1.974,
+      "min_ms": 1.772,
       "name": "build_v2_benchmark",
       "result_summary": {
-        "record_count": 50
+        "record_count": 175
       }
     },
     {
       "iterations": 5,
-      "max_ms": 6.32,
-      "mean_ms": 6.165,
-      "min_ms": 5.918,
+      "max_ms": 50.699,
+      "mean_ms": 50.458,
+      "min_ms": 50.283,
       "name": "run_geometry_retrieval",
       "result_summary": {
-        "entry_count": 20,
+        "entry_count": 175,
         "fingerprint_count": 8
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.071,
-      "mean_ms": 0.052,
-      "min_ms": 0.045,
+      "max_ms": 0.278,
+      "mean_ms": 0.217,
+      "min_ms": 0.195,
       "name": "evaluate_geometry_labels",
       "result_summary": {
-        "evaluable_count": 20,
-        "evaluated_count": 20,
-        "in_scope_count": 7,
-        "in_scope_evaluable_count": 7,
+        "evaluable_count": 173,
+        "evaluated_count": 175,
+        "in_scope_count": 59,
+        "in_scope_evaluable_count": 59,
         "in_scope_not_evaluable_count": 0,
-        "in_scope_retention_rate": 1.0,
-        "in_scope_retention_rate_evaluable": 1.0,
+        "in_scope_retention_rate": 0.9831,
+        "in_scope_retention_rate_evaluable": 0.9831,
         "out_of_scope_abstention_rate": 1.0,
         "out_of_scope_abstention_rate_evaluable": 1.0,
-        "out_of_scope_count": 13,
-        "out_of_scope_evaluable_count": 13,
+        "out_of_scope_count": 116,
+        "out_of_scope_evaluable_count": 114,
         "out_of_scope_false_non_abstentions": 0,
         "out_of_scope_false_non_abstentions_evaluable": 0,
-        "out_of_scope_not_evaluable_count": 0,
-        "top1_accuracy_in_scope": 1.0,
-        "top3_accuracy_in_scope": 1.0,
-        "top3_accuracy_in_scope_evaluable": 1.0,
-        "top3_retained_accuracy_in_scope": 1.0,
-        "top3_retained_accuracy_in_scope_evaluable": 1.0
+        "out_of_scope_not_evaluable_count": 2,
+        "top1_accuracy_in_scope": 0.9831,
+        "top3_accuracy_in_scope": 0.9831,
+        "top3_accuracy_in_scope_evaluable": 0.9831,
+        "top3_retained_accuracy_in_scope": 0.9831,
+        "top3_retained_accuracy_in_scope_evaluable": 0.9831
       }
     },
     {
       "iterations": 5,
-      "max_ms": 2.935,
-      "mean_ms": 2.845,
-      "min_ms": 2.765,
+      "max_ms": 64.715,
+      "mean_ms": 64.375,
+      "min_ms": 64.093,
       "name": "sweep_abstention_thresholds",
       "result_summary": {
-        "legacy_selected_threshold": 0.4681,
-        "selected_threshold": 0.4681,
-        "threshold_count": 61
+        "legacy_selected_threshold": 0.4236,
+        "selected_threshold": 0.4236,
+        "threshold_count": 327
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.052,
-      "mean_ms": 0.041,
-      "min_ms": 0.036,
+      "max_ms": 0.319,
+      "mean_ms": 0.299,
+      "min_ms": 0.285,
       "name": "analyze_geometry_score_margins",
       "result_summary": {
-        "correct_in_scope_evaluable_count": 7,
-        "correct_positive_score_separation_gap": 0.1097,
-        "evaluated_count": 20,
-        "in_scope_count": 7,
-        "in_scope_evaluable_count": 7,
-        "out_of_scope_count": 13,
-        "out_of_scope_evaluable_count": 13,
-        "score_margin_boundary_count": 5,
-        "score_separation_gap": 0.1097
+        "correct_in_scope_evaluable_count": 58,
+        "correct_positive_score_separation_gap": 0.001,
+        "evaluated_count": 175,
+        "in_scope_count": 59,
+        "in_scope_evaluable_count": 59,
+        "out_of_scope_count": 116,
+        "out_of_scope_evaluable_count": 114,
+        "score_margin_boundary_count": 99,
+        "score_separation_gap": -0.0314
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.054,
-      "mean_ms": 0.049,
-      "min_ms": 0.047,
+      "max_ms": 0.497,
+      "mean_ms": 0.436,
+      "min_ms": 0.414,
       "name": "build_hard_negative_controls",
       "result_summary": {
-        "evaluable_out_of_scope_count": 13,
-        "evaluated_out_of_scope_count": 13,
+        "evaluable_out_of_scope_count": 114,
+        "evaluated_out_of_scope_count": 116,
         "hard_negative_count": 0,
-        "near_miss_count": 0
+        "near_miss_count": 17
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.254,
-      "mean_ms": 0.187,
-      "min_ms": 0.161,
+      "max_ms": 0.552,
+      "mean_ms": 0.455,
+      "min_ms": 0.423,
       "name": "analyze_in_scope_failures",
       "result_summary": {
-        "abstained_positive_count": 0,
+        "abstained_positive_count": 1,
         "actionable_failure_count": 0,
-        "evaluated_in_scope_count": 7,
-        "evidence_limited_abstention_count": 0,
-        "failure_count": 0,
-        "retained_in_scope_count": 7,
+        "evaluated_in_scope_count": 59,
+        "evidence_limited_abstention_count": 1,
+        "failure_count": 1,
+        "retained_in_scope_count": 58,
         "target_absent_from_top_k_count": 0,
-        "top1_correct_count": 7,
-        "top1_mismatch_count": 0
+        "top1_correct_count": 58,
+        "top1_mismatch_count": 1
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.185,
-      "mean_ms": 0.175,
-      "min_ms": 0.168,
+      "max_ms": 0.508,
+      "mean_ms": 0.485,
+      "min_ms": 0.474,
       "name": "analyze_cofactor_coverage",
       "result_summary": {
-        "evaluated_in_scope_count": 7,
-        "evidence_limited_abstained_count": 0,
-        "evidence_limited_retained_count": 0,
-        "expected_absent_abstained_count": 0,
-        "expected_absent_count": 0,
-        "expected_absent_retained_count": 0,
-        "local_supported_count": 6,
+        "evaluated_in_scope_count": 59,
+        "evidence_limited_abstained_count": 1,
+        "evidence_limited_retained_count": 3,
+        "expected_absent_abstained_count": 1,
+        "expected_absent_count": 3,
+        "expected_absent_retained_count": 2,
+        "local_supported_count": 51,
         "structure_only_abstained_count": 0,
-        "structure_only_count": 0,
-        "structure_only_retained_count": 0
+        "structure_only_count": 1,
+        "structure_only_retained_count": 1
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.011,
-      "mean_ms": 0.008,
-      "min_ms": 0.006,
+      "max_ms": 219.695,
+      "mean_ms": 206.252,
+      "min_ms": 200.759,
+      "name": "analyze_cofactor_abstention_policy",
+      "result_summary": {
+        "audit_evidence_limited_retained_positive_count": 3,
+        "guardrail_passing_policy_count": 5,
+        "lossless_decision_changing_policy_count": 0,
+        "policy_count": 30,
+        "recommendation": "audit_only_or_separate_stratum"
+      }
+    },
+    {
+      "iterations": 5,
+      "max_ms": 0.751,
+      "mean_ms": 0.681,
+      "min_ms": 0.645,
+      "name": "analyze_seed_family_performance",
+      "result_summary": {
+        "in_scope_family_count": 7,
+        "largest_in_scope_family_count": 28,
+        "out_of_scope_retained_family_count": 0,
+        "out_of_scope_top1_family_count": 6
+      }
+    },
+    {
+      "iterations": 5,
+      "max_ms": 0.043,
+      "mean_ms": 0.021,
+      "min_ms": 0.015,
       "name": "analyze_structure_mapping_issues",
       "result_summary": {
-        "geometry_entry_count": 20,
-        "issue_count": 0,
-        "labeled_issue_count": 0
+        "geometry_entry_count": 175,
+        "issue_count": 2,
+        "labeled_issue_count": 2
       }
     }
   ],
   "metadata": {
     "inputs": {
-      "geometry_bytes": 450377,
-      "geometry_path": "artifacts/v3_geometry_features.json",
-      "graph_bytes": 1102498,
-      "graph_path": "artifacts/v1_graph.json",
-      "retrieval_bytes": 443943,
-      "retrieval_path": "artifacts/v3_geometry_retrieval.json"
+      "geometry_bytes": 3555833,
+      "geometry_path": "artifacts/v3_geometry_features_175.json",
+      "graph_bytes": 4454404,
+      "graph_path": "artifacts/v1_graph_175.json",
+      "retrieval_bytes": 3704904,
+      "retrieval_path": "artifacts/v3_geometry_retrieval_175.json"
     },
     "iterations": 5,
-    "selected_abstain_threshold": 0.4681,
+    "selected_abstain_threshold": 0.4236,
     "suite": "local_artifact_performance",
     "validation_boundary": "local wall-clock timing for existing artifacts; not a scalability benchmark"
   }

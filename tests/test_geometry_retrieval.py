@@ -464,6 +464,15 @@ class GeometryRetrievalTests(unittest.TestCase):
             ),
             0.75,
         )
+        apc_assessment = counterevidence_assessment(
+            fingerprint=fingerprint,
+            residues=residues,
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["APC", "MG"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+        )
+        self.assertEqual(apc_assessment["penalty"], 0.70)
+        self.assertIn("nucleotide_transfer_ligand_context", apc_assessment["reasons"])
         self.assertLess(
             counterevidence_penalty(
                 fingerprint=fingerprint,
@@ -669,7 +678,7 @@ class GeometryRetrievalTests(unittest.TestCase):
                 },
                 substrate_pocket_score_value=0.3,
             ),
-            1.0,
+            0.64,
         )
 
     def test_heme_fingerprint_penalizes_absent_heme_context(self) -> None:
@@ -684,7 +693,7 @@ class GeometryRetrievalTests(unittest.TestCase):
                 ligand_context={"ligand_codes": [], "cofactor_families": []},
                 substrate_pocket_score_value=0.4,
             ),
-            1.0,
+            0.66,
         )
 
     def test_flavin_monooxygenase_penalizes_missing_reductant_context(self) -> None:

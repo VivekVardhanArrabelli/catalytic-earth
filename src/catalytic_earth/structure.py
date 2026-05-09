@@ -80,8 +80,6 @@ METAL_ION_CODES = {
     "CO",
     "NI",
     "CA",
-    "NA",
-    "K",
     "CD",
 }
 

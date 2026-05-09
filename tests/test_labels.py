@@ -9,9 +9,11 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from catalytic_earth.labels import (
     MechanismLabel,
+    analyze_cofactor_abstention_policy,
     analyze_cofactor_coverage,
     analyze_geometry_score_margins,
     analyze_in_scope_failures,
+    analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
     build_hard_negative_controls,
@@ -30,7 +32,7 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 150)
+        self.assertEqual(len(labels), 175)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
@@ -153,6 +155,19 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(near_miss["metadata"]["hard_negative_count"], 0)
         self.assertEqual(near_miss["metadata"]["near_miss_count"], 1)
         self.assertEqual(
+            near_miss["metadata"]["near_miss_top1_fingerprint_counts"],
+            {"ser_his_acid_hydrolase": 1},
+        )
+        self.assertEqual(
+            near_miss["metadata"]["near_miss_cofactor_evidence_counts"],
+            {"unknown": 1},
+        )
+        self.assertEqual(near_miss["metadata"]["closest_near_miss_entry_id"], "m_csa:2")
+        self.assertEqual(
+            near_miss["metadata"]["minimum_near_miss_score_gap_to_floor"],
+            0.005,
+        )
+        self.assertEqual(
             near_miss["near_miss_rows"][0]["negative_control_type"],
             "near_miss_below_in_scope_floor",
         )
@@ -194,8 +209,10 @@ class LabelTests(unittest.TestCase):
         )
         self.assertEqual(expansion["metadata"]["candidate_count"], 1)
         self.assertEqual(expansion["metadata"]["ready_for_label_review_count"], 1)
+        self.assertEqual(expansion["metadata"]["candidate_group_count"], 1)
         self.assertEqual(expansion["rows"][0]["entry_id"], "m_csa:3")
         self.assertEqual(expansion["rows"][0]["readiness_blockers"], [])
+        self.assertEqual(expansion["groups"][0]["ready_entry_ids"], ["m_csa:3"])
 
         mapping_issues = analyze_structure_mapping_issues(
             {
@@ -238,6 +255,82 @@ class LabelTests(unittest.TestCase):
         )
         self.assertEqual(mapping_issues["rows"][0]["entry_id"], "m_csa:2")
 
+    def test_analyze_seed_family_performance(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id="metal_dependent_hydrolase",
+                label_type="seed_fingerprint",
+                confidence="high",
+                rationale="example rationale long enough for metal family",
+            ),
+            MechanismLabel(
+                entry_id="m_csa:2",
+                fingerprint_id="flavin_dehydrogenase_reductase",
+                label_type="seed_fingerprint",
+                confidence="medium",
+                rationale="example rationale long enough for flavin family",
+            ),
+            MechanismLabel(
+                entry_id="m_csa:3",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="example rationale long enough for out of scope",
+            ),
+        ]
+        retrieval = {
+            "results": [
+                {
+                    "entry_id": "m_csa:1",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "ligand_context": {"cofactor_families": ["metal_ion"]},
+                    "top_fingerprints": [
+                        {"fingerprint_id": "metal_dependent_hydrolase", "score": 0.8}
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:2",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "ligand_context": {},
+                    "top_fingerprints": [
+                        {"fingerprint_id": "flavin_dehydrogenase_reductase", "score": 0.4}
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:3",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "metal_dependent_hydrolase",
+                            "score": 0.55,
+                            "cofactor_evidence_level": "role_inferred",
+                        }
+                    ],
+                },
+            ]
+        }
+        analysis = analyze_seed_family_performance(retrieval, labels, abstain_threshold=0.5)
+        self.assertEqual(analysis["metadata"]["in_scope_family_count"], 2)
+        self.assertEqual(analysis["metadata"]["out_of_scope_retained_family_count"], 1)
+        metal_row = next(
+            row
+            for row in analysis["in_scope_families"]
+            if row["fingerprint_id"] == "metal_dependent_hydrolase"
+        )
+        self.assertEqual(metal_row["top3_retained_accuracy_evaluable"], 1.0)
+        flavin_row = next(
+            row
+            for row in analysis["in_scope_families"]
+            if row["fingerprint_id"] == "flavin_dehydrogenase_reductase"
+        )
+        self.assertEqual(flavin_row["abstained_entry_ids"], ["m_csa:2"])
+        out_scope_row = analysis["out_of_scope_top1_families"][0]
+        self.assertEqual(out_scope_row["false_non_abstention_entry_ids"], ["m_csa:3"])
+
     def test_group_hard_negative_controls(self) -> None:
         groups = group_hard_negative_controls(
             [
@@ -247,6 +340,11 @@ class LabelTests(unittest.TestCase):
                     "top1_score": 0.6,
                     "cofactor_evidence_level": "role_inferred",
                     "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+                    "component_scores": {
+                        "counterevidence_reasons": [
+                            "role_inferred_metal_missing_water_activation_role"
+                        ]
+                    },
                 },
                 {
                     "entry_id": "m_csa:3",
@@ -254,6 +352,12 @@ class LabelTests(unittest.TestCase):
                     "top1_score": 0.5,
                     "cofactor_evidence_level": "role_inferred",
                     "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+                    "component_scores": {
+                        "counterevidence_reasons": [
+                            "role_inferred_metal_missing_water_activation_role",
+                            "role_inferred_metal_low_pocket_support",
+                        ]
+                    },
                 },
                 {
                     "entry_id": "m_csa:4",
@@ -271,6 +375,14 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(groups[0]["min_top1_score"], 0.5)
         self.assertEqual(groups[0]["mean_top1_score"], 0.55)
         self.assertEqual(groups[0]["max_top1_score"], 0.6)
+        self.assertIsNone(groups[0]["min_score_gap_to_floor"])
+        self.assertEqual(
+            groups[0]["counterevidence_reason_counts"],
+            {
+                "role_inferred_metal_low_pocket_support": 1,
+                "role_inferred_metal_missing_water_activation_role": 2,
+            },
+        )
         self.assertEqual(groups[0]["entry_ids"], ["m_csa:2", "m_csa:3"])
 
     def test_threshold_policy_prefers_zero_false_non_abstentions(self) -> None:
@@ -588,6 +700,113 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(flavin_row["nearest_expected_ligand_distance_angstrom"], 14.5)
         self.assertEqual(flavin_row["matching_structure_ligands"][0]["code"], "FAD")
         self.assertTrue(flavin_row["abstained"])
+
+    def test_analyze_cofactor_abstention_policy(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id="metal_dependent_hydrolase",
+                label_type="seed_fingerprint",
+                confidence="medium",
+                rationale="example rationale long enough for retained absent cofactor",
+            ),
+            MechanismLabel(
+                entry_id="m_csa:2",
+                fingerprint_id="flavin_dehydrogenase_reductase",
+                label_type="seed_fingerprint",
+                confidence="medium",
+                rationale="example rationale long enough for structure-only cofactor",
+            ),
+            MechanismLabel(
+                entry_id="m_csa:3",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="example rationale long enough for out-of-scope row",
+            ),
+        ]
+        retrieval = {
+            "results": [
+                {
+                    "entry_id": "m_csa:1",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "ligand_context": {},
+                    "top_fingerprints": [
+                        {"fingerprint_id": "metal_dependent_hydrolase", "score": 0.56}
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:2",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "ligand_context": {
+                        "structure_cofactor_families": ["flavin"],
+                        "structure_ligand_codes": ["FAD"],
+                    },
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "flavin_dehydrogenase_reductase",
+                            "score": 0.53,
+                        }
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:3",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "top_fingerprints": [
+                        {"fingerprint_id": "ser_his_acid_hydrolase", "score": 0.2}
+                    ],
+                },
+            ]
+        }
+
+        analysis = analyze_cofactor_abstention_policy(
+            retrieval,
+            labels,
+            abstain_threshold=0.5,
+            absent_penalties=[0.0, 0.1],
+            structure_only_penalties=[0.0, 0.04],
+        )
+
+        self.assertEqual(analysis["metadata"]["recommendation"], "audit_only_or_separate_stratum")
+        self.assertEqual(
+            analysis["metadata"]["audit_evidence_limited_retained_positive_entry_ids"],
+            ["m_csa:1", "m_csa:2"],
+        )
+        self.assertEqual(
+            analysis["metadata"]["lossless_decision_changing_policy_count"],
+            0,
+        )
+        self.assertEqual(analysis["metadata"]["minimum_evidence_limited_retained_margin"], 0.03)
+        self.assertEqual(
+            [row["entry_id"] for row in analysis["sensitivity_rows"]],
+            ["m_csa:1", "m_csa:2"],
+        )
+        self.assertEqual(
+            analysis["sensitivity_rows"][1]["affected_penalty"],
+            "structure_only_penalty",
+        )
+        absent_policy = next(
+            row
+            for row in analysis["policies"]
+            if row["absent_penalty"] == 0.1 and row["structure_only_penalty"] == 0.0
+        )
+        self.assertEqual(absent_policy["lost_retained_positive_entry_ids"], ["m_csa:1"])
+        structure_only_policy = next(
+            row
+            for row in analysis["policies"]
+            if row["absent_penalty"] == 0.0 and row["structure_only_penalty"] == 0.04
+        )
+        self.assertEqual(structure_only_policy["lost_retained_positive_entry_ids"], ["m_csa:2"])
+        limiting = [
+            row
+            for row in analysis["limiting_rows"]
+            if row["entry_id"] == "m_csa:2" and row["structure_only_penalty"] == 0.04
+        ][0]
+        self.assertEqual(limiting["target_cofactor_coverage_status"], "expected_structure_only")
+        self.assertTrue(limiting["lost_retained_positive"])
 
     def test_classify_out_of_scope_failure_near_threshold(self) -> None:
         category = classify_out_of_scope_failure(

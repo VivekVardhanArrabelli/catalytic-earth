@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 24
-- Measured elapsed time: 310.3 minutes (5.17 hours)
+- Entries: 25
+- Measured elapsed time: 366.0 minutes (6.10 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 296.9 measured minutes (4.95 hours)
+- post-v2: 352.6 measured minutes (5.88 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,20 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 172
-- Evidence references logged: 136
+- Artifact references logged: 194
+- Evidence references logged: 149
 
 ## Recent Entries
-
-### 2026-05-09T16:14:49.435851+00:00 - ops
-
-- Task: Require full 50-minute productive automation work
-- Time mode: measured
-- Measured minutes: 8.517
-- Started: 2026-05-09T16:06:10Z
-- Ended: 2026-05-09T16:14:41Z
-- Artifacts: automation:catalytic-earth-work-loop, work/README.md, work/handoff.md, work/scope.md
-- Evidence: automation requires productive project work until 50 elapsed wall-clock minutes, automation forbids early handoff idle time or reporting-only time before wrap, 37 tests passed, validate passed
 
 ### 2026-05-09T17:07:37.625326+00:00 - post-v2
 
@@ -106,6 +96,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 75 unit tests passed, validate passed, 150 labels, 44 in-scope positives, 106 out-of-scope controls, 0 hard negatives across slices, 0 out-of-scope false non-abstentions, 1 evidence-limited in-scope abstention, 0 actionable in-scope failures, cofactor coverage artifacts generated, evidence-limited retained positives flagged
 - Notes: documentation reviewed and updated; final diff check, validate, and 75-test suite passed
 
+### 2026-05-09T23:20:32.069816+00:00 - post-v2
+
+- Task: Expand geometry benchmark to 175 labels and near-miss audits
+- Time mode: measured
+- Measured minutes: 55.7
+- Started: 2026-05-09T22:24:24Z
+- Ended: 2026-05-09T23:20:06Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/structure.py, src/catalytic_earth/geometry_reports.py, src/catalytic_earth/cli.py, src/catalytic_earth/performance.py, data/registries/curated_mechanism_labels.json, artifacts/v1_graph_175.json, artifacts/v3_geometry_retrieval_175.json, artifacts/v3_geometry_label_eval_175.json, artifacts/v3_hard_negative_controls_175.json, artifacts/v3_cofactor_policy_175.json, artifacts/v3_seed_family_performance_175.json, artifacts/v3_geometry_slice_summary.json, artifacts/perf_report.json, README.md, docs/geometry_features.md, docs/performance.md, docs/v2_strengthening_report.md, docs/v2_report.md, work/handoff.md, work/scope.md
+- Evidence: 79 unit tests passed, validate passed, 175 curated labels, 175 geometry entries, 173 evaluable structures, 59 in-scope positives, 116 out-of-scope controls, 0 hard negatives, 0 out-of-scope false non-abstentions, 17 near misses, 1 evidence-limited in-scope abstention, 0 actionable in-scope failures, cofactor policy recommends audit-only handling
+- Notes: documentation reviewed and updated; final diff check, validate, and 79-test suite passed
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -132,6 +133,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T20:12:10.878697+00:00: End-of-run quality now includes documentation freshness, not only code artifacts and git cleanliness.
 - 2026-05-09T21:11:49.565784+00:00: Hard-negative separation is clean through the 150-entry slice; next quality bottleneck is evidence-limited in-scope positives with missing local cofactor context.
 - 2026-05-09T22:17:13.285127+00:00: The main 150-entry bottleneck is retained positives without selected-structure cofactor evidence, not hard-negative separation
+- 2026-05-09T23:20:32.069816+00:00: The 175-entry bottleneck is now near-miss metal-hydrolase controls and fragile evidence-limited retained positives, not hard-negative separation.
 
 ## Scope Adjustments
 
@@ -158,3 +160,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T20:12:10.878697+00:00: Every automation wrap-up must update stale README/docs/work files or explicitly record that documentation was checked and unchanged.
 - 2026-05-09T21:11:49.565784+00:00: Post-V2 geometry scope now tracks 150 labeled entries with cross-slice summary artifacts and in-scope failure analysis.
 - 2026-05-09T22:17:13.285127+00:00: 150-entry geometry scope now separates local active-site positives from enzyme-level labels and tracks cofactor coverage explicitly
+- 2026-05-09T23:20:32.069816+00:00: Post-V2 geometry scope now tracks 175 fully labeled entries with cofactor policy and seed-family audits.

@@ -16036,8 +16036,7 @@
         ],
         "structure_cofactor_families": [
           "flavin",
-          "heme",
-          "metal_ion"
+          "heme"
         ],
         "structure_ligand_codes": [
           "TEO",
@@ -23718,9 +23717,7 @@
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
         "proximal_ligands": [],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
+        "structure_cofactor_families": [],
         "structure_ligand_codes": [
           "NA",
           "CL"
@@ -39536,7 +39533,7 @@
     "entries_with_pairwise_geometry": 50,
     "entries_with_pocket_context": 50,
     "entries_with_proximal_ligands": 40,
-    "entries_with_structure_inferred_cofactors": 29,
+    "entries_with_structure_inferred_cofactors": 28,
     "entries_with_structure_ligands": 46,
     "entry_count": 50,
     "input_graph": {

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "abstain_threshold": 0.5144,
+    "abstain_threshold": 0.4236,
     "abstained_positive_count": 1,
     "actionable_failure_count": 0,
     "evaluated_in_scope_count": 44,
@@ -30,7 +30,7 @@
   },
   "rows": [
     {
-      "abstain_threshold": 0.5144,
+      "abstain_threshold": 0.4236,
       "abstained": true,
       "context": {
         "cofactor_families": [],

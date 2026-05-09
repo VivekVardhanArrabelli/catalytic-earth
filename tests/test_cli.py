@@ -30,6 +30,8 @@ class CliTests(unittest.TestCase):
             hard_negatives = Path(tmpdir) / "hard_negatives.json"
             in_scope_failures = Path(tmpdir) / "in_scope_failures.json"
             cofactor_coverage = Path(tmpdir) / "cofactor_coverage.json"
+            cofactor_policy = Path(tmpdir) / "cofactor_policy.json"
+            seed_family_performance = Path(tmpdir) / "seed_family_performance.json"
             label_candidates = Path(tmpdir) / "label_candidates.json"
             mapping_issues = Path(tmpdir) / "mapping_issues.json"
             calibration = Path(tmpdir) / "calibration.json"
@@ -58,6 +60,36 @@ class CliTests(unittest.TestCase):
                     "analyze-geometry-score-margins",
                     "--out",
                     str(score_margins),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "analyze-seed-family-performance",
+                    "--out",
+                    str(seed_family_performance),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "analyze-cofactor-policy",
+                    "--out",
+                    str(cofactor_policy),
                 ],
                 cwd=ROOT,
                 env={"PYTHONPATH": str(ROOT / "src")},
@@ -185,11 +217,19 @@ class CliTests(unittest.TestCase):
                 json.loads(cofactor_coverage.read_text())["metadata"],
             )
             self.assertIn(
+                "recommendation",
+                json.loads(cofactor_policy.read_text())["metadata"],
+            )
+            self.assertIn(
+                "in_scope_family_count",
+                json.loads(seed_family_performance.read_text())["metadata"],
+            )
+            self.assertIn(
                 "ready_for_label_review_count",
                 json.loads(label_candidates.read_text())["metadata"],
             )
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "150")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "175")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

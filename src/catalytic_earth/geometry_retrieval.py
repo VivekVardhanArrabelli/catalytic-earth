@@ -47,6 +47,7 @@ METAL_HYDROLASE_REDOX_LIGAND_CODES = {
 MOLYBDENUM_CENTER_LIGAND_CODES = {"MGD", "MO", "MTE", "MOS", "MOO", "MOM"}
 NUCLEOTIDE_TRANSFER_LIGAND_CODES = {
     "ACP",
+    "APC",
     "AP2",
     "ADP",
     "AMP",
@@ -509,21 +510,21 @@ def counterevidence_assessment(
             cofactor_evidence == "role_inferred"
             and {"nucleophile", "nucleofuge"}.issubset(residue_roles)
         ):
-            apply(0.72, "role_inferred_metal_covalent_cleavage_roles")
+            apply(0.70, "role_inferred_metal_covalent_cleavage_roles")
         if "heme" in ligand_families and "metal_ion" not in ligand_families:
             apply(0.75, "heme_only_context_for_metal_hydrolase")
         if "cobalamin" in ligand_families and "metal_ion" not in ligand_families:
             apply(0.80, "cobalamin_only_context_for_metal_hydrolase")
         if ligand_codes & NUCLEOTIDE_TRANSFER_LIGAND_CODES:
-            apply(0.72, "nucleotide_transfer_ligand_context")
+            apply(0.70, "nucleotide_transfer_ligand_context")
         if "sam" in ligand_families:
             apply(0.72, "sam_ligand_context")
         if "fe_s_cluster" in ligand_families and "metal_ion" not in ligand_families:
             apply(0.70, "fe_s_cluster_context_for_metal_hydrolase")
         if ligand_codes & METAL_HYDROLASE_TRANSFER_LIGAND_CODES:
-            apply(0.72, "nonhydrolytic_metal_transfer_ligand_context")
+            apply(0.70, "nonhydrolytic_metal_transfer_ligand_context")
         if ligand_codes & METAL_HYDROLASE_REDOX_LIGAND_CODES:
-            apply(0.72, "metal_redox_ligand_context")
+            apply(0.70, "metal_redox_ligand_context")
         if (
             cofactor_evidence == "ligand_supported"
             and substrate_pocket_score_value < 0.18
@@ -531,9 +532,9 @@ def counterevidence_assessment(
             and "FE" in ligand_codes
             and _has_aromatic_oxygenase_pocket(pocket_context)
         ):
-            apply(0.72, "nonheme_iron_aromatic_low_pocket_without_water_activation")
+            apply(0.70, "nonheme_iron_aromatic_low_pocket_without_water_activation")
         if any("single electron" in role for role in residue_roles):
-            apply(0.72, "single_electron_role_context")
+            apply(0.70, "single_electron_role_context")
         return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
     if fingerprint_id == "ser_his_acid_hydrolase":
@@ -552,9 +553,9 @@ def counterevidence_assessment(
 
     if fingerprint_id == "heme_peroxidase_oxidase":
         if cofactor_evidence == "absent":
-            apply(0.75, "absent_heme_context")
+            apply(0.65, "absent_heme_context")
         if "heme" in ligand_families and ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES:
-            apply(0.65, "molybdenum_center_heme_context")
+            apply(0.63, "molybdenum_center_heme_context")
         return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
     if fingerprint_id == "plp_dependent_enzyme":

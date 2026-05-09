@@ -10,9 +10,11 @@ from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
 from .labels import (
+    analyze_cofactor_abstention_policy,
     analyze_cofactor_coverage,
     analyze_geometry_score_margins,
     analyze_in_scope_failures,
+    analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
     build_hard_negative_controls,
@@ -299,6 +301,40 @@ def cmd_analyze_cofactor_coverage(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_analyze_cofactor_policy(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    analysis = analyze_cofactor_abstention_policy(
+        retrieval,
+        load_labels(Path(args.labels)),
+        abstain_threshold=args.abstain_threshold,
+        absent_penalties=_parse_float_list(args.absent_penalties),
+        structure_only_penalties=_parse_float_list(args.structure_only_penalties),
+    )
+    write_json(Path(args.out), analysis)
+    print(
+        "Wrote cofactor policy analysis to "
+        f"{args.out} ({analysis['metadata']['recommendation']})"
+    )
+    return 0
+
+
+def cmd_analyze_seed_family_performance(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    analysis = analyze_seed_family_performance(
+        retrieval,
+        load_labels(Path(args.labels)),
+        abstain_threshold=args.abstain_threshold,
+    )
+    write_json(Path(args.out), analysis)
+    print(
+        "Wrote seed-family performance audit to "
+        f"{args.out} ({analysis['metadata']['in_scope_family_count']} families)"
+    )
+    return 0
+
+
 def cmd_analyze_geometry_score_margins(args: argparse.Namespace) -> int:
     with Path(args.retrieval).open("r", encoding="utf-8") as handle:
         retrieval = json.load(handle)
@@ -327,7 +363,8 @@ def cmd_build_hard_negative_controls(args: argparse.Namespace) -> int:
     write_json(Path(args.out), controls)
     print(
         "Wrote hard negative controls to "
-        f"{args.out} ({controls['metadata']['hard_negative_count']} controls)"
+        f"{args.out} ({controls['metadata']['hard_negative_count']} controls, "
+        f"{controls['metadata']['near_miss_count']} near misses)"
     )
     return 0
 
@@ -396,6 +433,12 @@ def _split_csv(value: str | None) -> list[str]:
     if not value:
         return []
     return [item.strip() for item in value.split(",") if item.strip()]
+
+
+def _parse_float_list(value: str) -> list[float] | None:
+    if value == "default":
+        return None
+    return [float(item) for item in value.split(",") if item.strip()]
 
 
 def cmd_log_work(args: argparse.Namespace) -> int:
@@ -605,6 +648,43 @@ def build_parser() -> argparse.ArgumentParser:
     cofactor_coverage.add_argument("--abstain-threshold", type=float, default=0.7)
     cofactor_coverage.add_argument("--out", default="artifacts/v3_cofactor_coverage.json")
     cofactor_coverage.set_defaults(func=cmd_analyze_cofactor_coverage)
+
+    cofactor_policy = subparsers.add_parser(
+        "analyze-cofactor-policy",
+        help="sweep cofactor-evidence score penalties against abstention guardrails",
+    )
+    cofactor_policy.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    cofactor_policy.add_argument(
+        "--labels", default="data/registries/curated_mechanism_labels.json"
+    )
+    cofactor_policy.add_argument("--abstain-threshold", type=float, default=0.7)
+    cofactor_policy.add_argument(
+        "--absent-penalties",
+        default="default",
+        help="comma-separated penalties for missing expected structure-wide cofactors",
+    )
+    cofactor_policy.add_argument(
+        "--structure-only-penalties",
+        default="default",
+        help="comma-separated penalties for expected cofactors outside the local site",
+    )
+    cofactor_policy.add_argument("--out", default="artifacts/v3_cofactor_policy.json")
+    cofactor_policy.set_defaults(func=cmd_analyze_cofactor_policy)
+
+    family_performance = subparsers.add_parser(
+        "analyze-seed-family-performance",
+        help="summarize retrieval quality by curated seed fingerprint family",
+    )
+    family_performance.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    family_performance.add_argument(
+        "--labels", default="data/registries/curated_mechanism_labels.json"
+    )
+    family_performance.add_argument("--abstain-threshold", type=float, default=0.7)
+    family_performance.add_argument(
+        "--out",
+        default="artifacts/v3_seed_family_performance.json",
+    )
+    family_performance.set_defaults(func=cmd_analyze_seed_family_performance)
 
     score_margins = subparsers.add_parser(
         "analyze-geometry-score-margins",

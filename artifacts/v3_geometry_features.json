@@ -16036,8 +16036,7 @@
         ],
         "structure_cofactor_families": [
           "flavin",
-          "heme",
-          "metal_ion"
+          "heme"
         ],
         "structure_ligand_codes": [
           "TEO",

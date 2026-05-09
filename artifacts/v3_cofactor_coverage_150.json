@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "abstain_threshold": 0.5144,
+    "abstain_threshold": 0.4236,
     "coverage_status_counts": {
       "all_expected_local": 38,
       "expected_absent_from_structure": 2,
@@ -240,12 +240,6 @@
           "family": "metal_ion",
           "instance_count": 4,
           "min_distance_to_active_site": 4.611
-        },
-        {
-          "code": "NA",
-          "family": "metal_ion",
-          "instance_count": 2,
-          "min_distance_to_active_site": 7.239
         }
       ],
       "missing_expected_families": [],
@@ -344,8 +338,7 @@
       "status": "ok",
       "structure_cofactor_families": [
         "flavin",
-        "heme",
-        "metal_ion"
+        "heme"
       ],
       "structure_ligand_codes": [
         "TEO",
@@ -946,12 +939,6 @@
           "family": "metal_ion",
           "instance_count": 2,
           "min_distance_to_active_site": 3.419
-        },
-        {
-          "code": "NA",
-          "family": "metal_ion",
-          "instance_count": 1,
-          "min_distance_to_active_site": 11.095
         }
       ],
       "missing_expected_families": [],
@@ -1869,8 +1856,7 @@
       "resolved_residue_count": 6,
       "status": "ok",
       "structure_cofactor_families": [
-        "heme",
-        "metal_ion"
+        "heme"
       ],
       "structure_ligand_codes": [
         "HEM",

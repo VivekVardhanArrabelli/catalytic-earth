@@ -94,9 +94,9 @@ Post-V2 quality work has started:
 - pairwise catalytic-residue distance features
 - nearby ligand/cofactor context from mmCIF non-polymer atoms
 - geometry artifacts for 20-entry regression, 30-entry, 40-entry, 50-entry,
-  60-entry, 75-entry, 100-entry, 125-entry, and 150-entry slices
+  60-entry, 75-entry, 100-entry, 125-entry, 150-entry, and 175-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for all 150 entries in the current expanded
+- curated seed mechanism labels for all 175 entries in the current expanded
   geometry slice
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
@@ -150,13 +150,12 @@ Current expectation:
   active-site retrieval and curated mechanism labels
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
-  100-, 125-, and 150-entry slices; all 100 regression geometry entries are
-  evaluable, and the 150-entry slice has 148/150 evaluable entries
-- curated labels now cover 150 entries, with 44 local active-site
-  seed-fingerprint positives and 106 out-of-scope labels after auditing two
-  enzyme-level labels that were not local geometry positives
-- the current 150-entry label queue is empty after adding provisional labels
-  for entries 126-150
+  100-, 125-, 150-, and 175-entry slices; all 100 regression geometry entries
+  are evaluable, and the 175-entry slice has 173/175 evaluable entries
+- curated labels now cover 175 entries, with 59 local active-site
+  seed-fingerprint positives and 116 out-of-scope labels
+- the current 175-entry label queue is empty after adding provisional labels
+  for entries 151-175
 - strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
   the 38 in-scope positives in the 125-entry slice at the current zero-false
   threshold
@@ -168,10 +167,12 @@ Current expectation:
 - adaptive abstention thresholds now use observed score boundaries; the
   20-entry regression slice has a zero-false threshold that retains all 7
   in-scope positives
-- all slices from 20 through 150 currently have 0 hard negatives, 0 near misses,
-  and 0 out-of-scope false non-abstentions at the current calibrated thresholds
-- the 150-entry expansion slice retains 43/44 in-scope positives, has 1
-  evidence-limited in-scope abstention, and has a 0.0122 correct-positive
+- all slices from 20 through 175 currently have 0 hard negatives and 0
+  out-of-scope false non-abstentions at the current calibrated thresholds; only
+  the 175-entry slice has near misses, with 17 out-of-scope controls within
+  0.01 of the correct-positive floor
+- the 175-entry expansion slice retains 58/59 in-scope positives, has 1
+  evidence-limited in-scope abstention, and has a 0.001 correct-positive
   separation gap; the actionable in-scope failure count is 0 after separating
   selected-structure cofactor absence from scorer failures, but the broad top1
   score gap remains negative because the evidence-limited positive scores below
@@ -179,11 +180,11 @@ Current expectation:
 - the 20-, 30-, 40-, 50-, 60-, 75-, and 100-entry structure-mapping issue
   reports currently have 0 non-OK mappings after auth/label residue-number
   fallback; the 125-entry report has 1 labeled out-of-scope
-  insufficient-residue issue and the 150-entry report has 2
-- next bottleneck is abstention/scoring policy for evidence-limited retained
-  positives (`m_csa:41` with absent selected-structure metal evidence and
-  `m_csa:108` with structure-only cofactor evidence), while keeping `m_csa:132`
-  as an evidence-limited abstention
+  insufficient-residue issue, and the 150- and 175-entry reports each have 2
+- next bottleneck is reducing the 175-entry near-miss boundary and deciding
+  whether evidence-limited retained positives (`m_csa:41`, `m_csa:108`, and
+  `m_csa:160`) remain audit-only flags, while keeping `m_csa:132` as an
+  evidence-limited abstention unless better structure evidence supports it
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

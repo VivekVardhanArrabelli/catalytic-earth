@@ -1,13 +1,18 @@
 {
   "groups": [],
   "metadata": {
+    "closest_near_miss_entry_id": null,
+    "closest_near_miss_top1_fingerprint_id": null,
     "cofactor_evidence_counts": {},
     "evaluable_out_of_scope_count": 13,
     "evaluated_out_of_scope_count": 13,
     "hard_negative_count": 0,
     "method": "geometry_hard_negative_control_selection",
+    "minimum_near_miss_score_gap_to_floor": null,
+    "near_miss_cofactor_evidence_counts": {},
     "near_miss_count": 0,
     "near_miss_margin": 0.01,
+    "near_miss_top1_fingerprint_counts": {},
     "score_floor": 0.5777,
     "score_floor_source": "min_correct_in_scope_top1_score",
     "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": true,

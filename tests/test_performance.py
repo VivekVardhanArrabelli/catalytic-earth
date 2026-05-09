@@ -28,6 +28,14 @@ class PerformanceTests(unittest.TestCase):
             "analyze_cofactor_coverage",
             {benchmark["name"] for benchmark in report["benchmarks"]},
         )
+        self.assertIn(
+            "analyze_cofactor_abstention_policy",
+            {benchmark["name"] for benchmark in report["benchmarks"]},
+        )
+        self.assertIn(
+            "analyze_seed_family_performance",
+            {benchmark["name"] for benchmark in report["benchmarks"]},
+        )
         self.assertIn("mean_ms", report["benchmarks"][0])
 
 
