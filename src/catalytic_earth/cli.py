@@ -270,6 +270,7 @@ def cmd_analyze_geometry_score_margins(args: argparse.Namespace) -> int:
     analysis = analyze_geometry_score_margins(
         retrieval,
         load_labels(Path(args.labels)),
+        near_margin=args.near_margin,
     )
     write_json(Path(args.out), analysis)
     print(
@@ -540,6 +541,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     score_margins.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
     score_margins.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    score_margins.add_argument("--near-margin", type=float, default=0.02)
     score_margins.add_argument("--out", default="artifacts/v3_geometry_score_margins.json")
     score_margins.set_defaults(func=cmd_analyze_geometry_score_margins)
 

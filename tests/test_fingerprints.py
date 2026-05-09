@@ -27,7 +27,9 @@ class FingerprintRegistryTests(unittest.TestCase):
     def test_demo_indexes_operations(self) -> None:
         demo = build_mechanism_demo(load_fingerprints())
         self.assertIn("nucleophilic acyl substitution", demo["chemical_operation_index"])
+        self.assertIn("flavin-mediated redox transfer", demo["chemical_operation_index"])
         self.assertIn("FAD", demo["cofactor_index"])
+        self.assertIn("adenosylcobalamin", demo["cofactor_index"])
 
 
 if __name__ == "__main__":

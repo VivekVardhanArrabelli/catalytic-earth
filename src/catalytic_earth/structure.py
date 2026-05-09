@@ -148,7 +148,7 @@ def build_geometry_features(
     cif_cache: dict[str, list[dict[str, Any]]] = {}
     entry_features: list[dict[str, Any]] = []
 
-    for entry_id in sorted(residues_by_entry)[:max_entries]:
+    for entry_id in sorted(residues_by_entry, key=_entry_sort_key)[:max_entries]:
         residues = residues_by_entry[entry_id]
         positions_by_pdb = _positions_by_pdb(residues)
         if not positions_by_pdb:
@@ -647,6 +647,15 @@ def _entry_id_from_residue_node(node_id: str) -> str | None:
     if ":residue:" not in node_id:
         return None
     return node_id.split(":residue:", 1)[0]
+
+
+def _entry_sort_key(entry_id: str) -> tuple[str, int, str]:
+    prefix, _, suffix = entry_id.partition(":")
+    try:
+        numeric_id = int(suffix)
+    except ValueError:
+        numeric_id = 0
+    return (prefix, numeric_id, entry_id)
 
 
 def _positions_by_pdb(residue_nodes: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:

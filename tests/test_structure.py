@@ -168,6 +168,47 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(features["entries"][0]["ligand_context"]["ligand_codes"], ["HEM"])
         self.assertEqual(features["entries"][0]["pocket_context"]["nearby_residue_count"], 2)
 
+    def test_build_geometry_features_uses_numeric_mcsa_order(self) -> None:
+        graph = {"nodes": [], "edges": []}
+        for entry_id in ["m_csa:1", "m_csa:10", "m_csa:2"]:
+            graph["nodes"].extend(
+                [
+                    {
+                        "id": f"{entry_id}:residue:1",
+                        "type": "catalytic_residue",
+                        "roles": ["acid"],
+                        "structure_positions": [
+                            {
+                                "pdb_id": "1ABC",
+                                "chain_name": "A",
+                                "code": "ASP",
+                                "resid": 7,
+                            }
+                        ],
+                    },
+                    {
+                        "id": f"{entry_id}:residue:2",
+                        "type": "catalytic_residue",
+                        "roles": ["nucleophile"],
+                        "structure_positions": [
+                            {
+                                "pdb_id": "1ABC",
+                                "chain_name": "A",
+                                "code": "CYS",
+                                "resid": 70,
+                            }
+                        ],
+                    },
+                ]
+            )
+
+        features = build_geometry_features(graph, max_entries=3, cif_fetcher=lambda _: SAMPLE_CIF)
+
+        self.assertEqual(
+            [entry["entry_id"] for entry in features["entries"]],
+            ["m_csa:1", "m_csa:2", "m_csa:10"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,1237 @@
+{
+  "metadata": {
+    "cofactor_evidence_counts": {
+      "absent": 36,
+      "ligand_supported": 15,
+      "not_required": 7,
+      "role_inferred": 7
+    },
+    "evaluable_out_of_scope_count": 86,
+    "evaluated_out_of_scope_count": 87,
+    "hard_negative_count": 65,
+    "method": "geometry_hard_negative_control_selection",
+    "near_miss_count": 2,
+    "near_miss_margin": 0.01,
+    "score_floor": 0.5178,
+    "score_floor_source": "min_in_scope_top1_score",
+    "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": false,
+    "top1_fingerprint_counts": {
+      "heme_peroxidase_oxidase": 36,
+      "metal_dependent_hydrolase": 21,
+      "plp_dependent_enzyme": 1,
+      "ser_his_acid_hydrolase": 7
+    }
+  },
+  "near_miss_rows": [
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.7064,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1554
+      },
+      "entry_id": "m_csa:75",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Aspartate-ammonia ligase performs ATP-dependent ligation chemistry outside the current hydrolase and PLP seed fingerprints.",
+      "negative_control_type": "near_miss_below_in_scope_floor",
+      "score_floor": 0.5178,
+      "score_gap_to_floor": 0.002,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5158
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6136,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1832
+      },
+      "entry_id": "m_csa:9",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Methionine adenosyltransferase performs ATP-dependent adenosyl transfer and triphosphate processing outside the current seed fingerprints.",
+      "negative_control_type": "near_miss_below_in_scope_floor",
+      "score_floor": 0.5178,
+      "score_gap_to_floor": 0.0049,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5129
+    }
+  ],
+  "rows": [
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.0,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2811
+      },
+      "entry_id": "m_csa:121",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Sulfite oxidase uses molybdenum-centered sulfite oxidation with heme electron transfer, outside the current heme peroxidase or oxidase seed.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.6522
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.8843,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1568
+      },
+      "entry_id": "m_csa:107",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Aerobic carbon monoxide dehydrogenase uses molybdenum-copper CO oxidation chemistry outside the current hydrolase, flavin, and heme seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5876
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.7963,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1638
+      },
+      "entry_id": "m_csa:125",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Catechol oxidase is a copper-dependent oxidase and does not match the current metal-dependent hydrolase or heme/flavin redox seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5816
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6192,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.149
+      },
+      "entry_id": "m_csa:58",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Adenylate cyclase performs metal-assisted cyclic phosphate formation from ATP, not metal-activated hydrolysis in the current seed set.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5652
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6871,
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.9472
+      },
+      "entry_id": "m_csa:17",
+      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
+      "label_rationale": "Purine nucleoside phosphorylase performs phosphorolysis rather than the current hydrolase seed mechanisms.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5649
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.8311,
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.8623
+      },
+      "entry_id": "m_csa:91",
+      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
+      "label_rationale": "Pyrimidine-nucleoside phosphorylase performs phosphorolysis rather than the current hydrolysis seed mechanisms.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5641
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.8486,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2151
+      },
+      "entry_id": "m_csa:95",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "L-fucose isomerase uses metal-associated sugar isomerization rather than metal-activated hydrolysis in the current seed set.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5638
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.8746,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1981
+      },
+      "entry_id": "m_csa:52",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Class II fructose-bisphosphate aldolase uses metal-assisted aldol carbon-carbon bond chemistry rather than metal-activated hydrolysis.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5634
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.5363,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1801
+      },
+      "entry_id": "m_csa:89",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Pentalenene synthase performs terpene cyclization chemistry outside the current hydrolase and redox seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5633
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.953,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1511
+      },
+      "entry_id": "m_csa:99",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Methanol dehydrogenase uses PQQ/cytochrome-linked redox chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5626
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.9012,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1543
+      },
+      "entry_id": "m_csa:88",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "UDP-glucose-hexose-1-phosphate uridylyltransferase performs nucleotide-sugar transfer chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5592
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6713,
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.8995
+      },
+      "entry_id": "m_csa:1",
+      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
+      "label_rationale": "Glutamate racemase uses cysteine acid-base racemization chemistry, which is not represented by the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.559
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.7486,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.234
+      },
+      "entry_id": "m_csa:84",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "6-pyruvoyltetrahydropterin synthase performs rearrangement/elimination chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5589
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6573,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2493
+      },
+      "entry_id": "m_csa:104",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Quinoprotein glucose dehydrogenase uses PQQ-dependent glucose oxidation outside the current flavin, heme, cobalamin, and hydrolase seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5541
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.7703,
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.7775
+      },
+      "entry_id": "m_csa:78",
+      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
+      "label_rationale": "Citrate synthase performs CoA thioester condensation chemistry rather than the current hydrolase or redox seed mechanisms.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5518
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 1.0,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2741
+      },
+      "entry_id": "m_csa:18",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Glycine amidinotransferase performs group transfer chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5511
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.7356,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1821
+      },
+      "entry_id": "m_csa:53",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Malate synthase combines metal-assisted carbon-carbon bond formation with thioester processing, outside the current coarse hydrolase seed.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5505
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.9094,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2149
+      },
+      "entry_id": "m_csa:64",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "DNA topoisomerase type III uses DNA strand-cleavage and religation chemistry rather than the current metal-dependent hydrolase seed.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5505
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.9655,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.283
+      },
+      "entry_id": "m_csa:32",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Lactoylglutathione lyase uses metal-assisted lyase/isomerization chemistry rather than metal-activated hydrolysis.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5497
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.9081,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.313
+      },
+      "entry_id": "m_csa:33",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Methylmalonyl-CoA epimerase uses metal-associated acid-base epimerization rather than the current hydrolase seed mechanisms.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5496
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 1.0,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.263
+      },
+      "entry_id": "m_csa:26",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Phosphatidylinositol-specific phospholipase C chemistry is not represented by the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5494
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.9836,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1667
+      },
+      "entry_id": "m_csa:101",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Bis(5'-adenosyl)-triphosphatase uses HIT-superfamily histidine nucleotidyl hydrolase chemistry not represented by the current metal or Ser-His-Asp/Glu hydrolase seeds.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5493
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.9864,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2654
+      },
+      "entry_id": "m_csa:25",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "N-carbamoylsarcosine amidase is not confidently mapped to a current seed fingerprint without a more specific amidase fingerprint.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5487
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 1.0,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2515
+      },
+      "entry_id": "m_csa:69",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Acyl-carrier-protein UDP-N-acetylglucosamine O-acyltransferase performs acyl transfer chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5477
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.9732,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2614
+      },
+      "entry_id": "m_csa:54",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Type I 3-dehydroquinate dehydratase uses Schiff-base-assisted dehydration chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5471
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8899,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.3054
+      },
+      "entry_id": "m_csa:76",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "NAD+ ADP-ribosyltransferase performs ADP-ribosyl transfer chemistry outside the current hydrolase and redox seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.547
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.945,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2755
+      },
+      "entry_id": "m_csa:47",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Protein-tyrosine phosphatase uses cysteine phosphatase chemistry rather than the current metal-dependent or Ser-His-Asp hydrolase seeds.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5469
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8966,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.29
+      },
+      "entry_id": "m_csa:10",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "3-hydroxydecanoyl-ACP dehydratase performs dehydration chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5452
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 1.0,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.211
+      },
+      "entry_id": "m_csa:65",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Adenylosuccinate synthase performs nucleotide-dependent ligation/addition chemistry outside the current hydrolase and PLP seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5445
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6646,
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.7623
+      },
+      "entry_id": "m_csa:90",
+      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
+      "label_rationale": "Adenosylhomocysteinase uses NAD-linked chemistry outside the current flavin, cobalamin, and hydrolase seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5443
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.9131,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.273
+      },
+      "entry_id": "m_csa:13",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Amine dehydrogenase redox chemistry is not represented by the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.544
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.9639,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2462
+      },
+      "entry_id": "m_csa:92",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "UDP-glucose 6-dehydrogenase performs NAD-dependent oxidation outside the current flavin and cobalamin redox seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.544
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8537,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.3009
+      },
+      "entry_id": "m_csa:71",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Uridine nucleosidase is a ribosyl hydrolase but lacks the current Ser-His-Asp/Glu hydrolase-triad seed mechanism.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5434
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.626,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1886
+      },
+      "entry_id": "m_csa:7",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Isocitrate dehydrogenase performs NADP-linked oxidation and decarboxylation, not metal-activated hydrolysis in the current seed set.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5431
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "component_scores": {
+        "cofactor_context_score": 0.25,
+        "compactness_score": 0.9995,
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.6667,
+        "substrate_pocket_score": 0.9397
+      },
+      "entry_id": "m_csa:77",
+      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
+      "label_rationale": "Acetyl-CoA C-acyltransferase performs carbon-carbon acyl transfer chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5431
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.914,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2662
+      },
+      "entry_id": "m_csa:24",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "4-chlorobenzoyl-CoA dehalogenase has covalent dehalogenase chemistry not represented by the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.543
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.867,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2719
+      },
+      "entry_id": "m_csa:60",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Glucosamine-6-phosphate deaminase performs deamination and tautomerization chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5401
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8645,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2676
+      },
+      "entry_id": "m_csa:57",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Nitrile hydratase performs metal-assisted nitrile hydration rather than the ester, amide, or phosphate hydrolysis covered by the current metal hydrolase seed.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5393
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8936,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2488
+      },
+      "entry_id": "m_csa:73",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "4a-hydroxytetrahydrobiopterin dehydratase performs dehydration chemistry outside the current hydrolase and heme seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5388
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 1.0,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1671
+      },
+      "entry_id": "m_csa:35",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Phosphorylase kinase performs ATP-dependent phosphoryl transfer outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5386
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6291,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1506
+      },
+      "entry_id": "m_csa:21",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Malate dehydrogenase and decarboxylating chemistry is outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5379
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8185,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.281
+      },
+      "entry_id": "m_csa:45",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Cyclomaltodextrin glucanotransferase uses glycosyl transfer and glycoside chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5376
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8421,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2677
+      },
+      "entry_id": "m_csa:85",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Methylglyoxal synthase performs phosphate elimination chemistry outside the current hydrolase and redox seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5375
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.7412,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.313
+      },
+      "entry_id": "m_csa:22",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Aralkylamine N-acetyltransferase performs acetyl transfer chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5362
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.7905,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2837
+      },
+      "entry_id": "m_csa:96",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Creatinase hydrolysis is not confidently mapped to the current metal-dependent or Ser-His-Asp/Glu hydrolase seeds from available geometry context.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5358
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8513,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2412
+      },
+      "entry_id": "m_csa:49",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Histidine decarboxylase uses pyruvoyl-dependent decarboxylation chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5343
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.15,
+        "compactness_score": 0.4814,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2469
+      },
+      "entry_id": "m_csa:82",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Glutamine-fructose-6-phosphate transaminase isomerizing performs amidotransfer/isomerization chemistry outside the current PLP seed.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_score": 0.5325
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.7444,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2817
+      },
+      "entry_id": "m_csa:34",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Catechol 2,3-dioxygenase is a non-heme iron dioxygenase and does not match the current flavin or heme oxygenase seeds.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5318
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8248,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2387
+      },
+      "entry_id": "m_csa:56",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "tRNA-pseudouridine synthase performs base rearrangement/isomerization chemistry not represented by the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5318
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.7631,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2635
+      },
+      "entry_id": "m_csa:12",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Ornithine carbamoyltransferase performs carbamoyl transfer chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5306
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.761,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2592
+      },
+      "entry_id": "m_csa:4",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Copper nitrite reductase performs metal-centered electron-transfer reduction chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5298
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8047,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2282
+      },
+      "entry_id": "m_csa:100",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Betaine-aldehyde dehydrogenase performs NAD-dependent aldehyde oxidation outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5286
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.7466,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.25
+      },
+      "entry_id": "m_csa:67",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Alanine dehydrogenase performs NAD-linked amino acid redox chemistry outside the current PLP and hydrolase seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5272
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.2368,
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.8202
+      },
+      "entry_id": "m_csa:80",
+      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
+      "label_rationale": "Adenylosuccinate lyase performs elimination/lyase chemistry outside the current hydrolase and redox seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5264
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.7616,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2037
+      },
+      "entry_id": "m_csa:51",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Phosphoenolpyruvate carboxykinase couples decarboxylation to ATP phosphoryl transfer rather than the current hydrolase or redox seed mechanisms.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5263
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.8125,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2081
+      },
+      "entry_id": "m_csa:29",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Glutaminase-asparaginase uses N-terminal threonine amidohydrolase chemistry not represented by the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5262
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.631,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.3026
+      },
+      "entry_id": "m_csa:31",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Thymidylate synthase uses folate-dependent methyl transfer and reductive chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5259
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.8532,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.15
+      },
+      "entry_id": "m_csa:74",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Dethiobiotin synthase uses ATP-dependent ring-forming ligase chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5257
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.7765,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2235
+      },
+      "entry_id": "m_csa:93",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Hydroxymethylglutaryl-CoA reductase performs NADPH-dependent reductive chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5256
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.0504,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1821
+      },
+      "entry_id": "m_csa:72",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "L-fuculose-phosphate aldolase uses aldol carbon-carbon bond chemistry rather than the current metal-dependent hydrolase seed.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5247
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.7055,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2468
+      },
+      "entry_id": "m_csa:55",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Type II 3-dehydroquinate dehydratase performs acid-base dehydration rather than the current heme, hydrolase, or PLP seed mechanisms.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5235
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.6989,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.244
+      },
+      "entry_id": "m_csa:122",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Protein-methionine-S-oxide reductase uses cysteine sulfenic-acid redox chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5225
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.8861,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1021
+      },
+      "entry_id": "m_csa:14",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Vanadate-dependent chloride peroxidase is peroxidase chemistry but not the heme-dependent peroxidase or oxidase seed fingerprint.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5216
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.7056,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2341
+      },
+      "entry_id": "m_csa:59",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "3-dehydroquinate synthase uses NAD-linked redox, elimination, and ring-forming chemistry outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5216
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.6529,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2612
+      },
+      "entry_id": "m_csa:86",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Arginine kinase performs ATP-dependent phosphoryl transfer outside the current seed fingerprints.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.5178,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5214
+    }
+  ]
+}

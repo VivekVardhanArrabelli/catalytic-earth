@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "geometry_entry_count": 125,
+    "issue_count": 1,
+    "label_type_counts": {
+      "out_of_scope": 1
+    },
+    "labeled_issue_count": 1,
+    "method": "structure_mapping_issue_analysis",
+    "missing_expected_code_counts": {},
+    "observed_code_at_missing_position_counts": {},
+    "status_counts": {
+      "insufficient_resolved_residues": 1
+    }
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:105",
+      "label_type": "out_of_scope",
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1VLB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    }
+  ]
+}

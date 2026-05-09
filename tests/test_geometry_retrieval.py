@@ -149,6 +149,84 @@ class GeometryRetrievalTests(unittest.TestCase):
             "ligand_supported",
         )
 
+    def test_cobalamin_fingerprint_matches_role_aliases_and_motif_residues(self) -> None:
+        entry = {
+            "residues": [
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "TYR", "roles": ["radical stabiliser"]},
+                {"code": "ARG", "roles": ["electrostatic stabiliser"]},
+            ],
+            "ligand_context": {"cofactor_families": ["cobalamin"], "ligand_codes": ["B12"]},
+            "pairwise_distances_angstrom": [{"distance": 7}, {"distance": 8}, {"distance": 9}],
+        }
+        fingerprint = {
+            "id": "cobalamin_radical_rearrangement",
+            "name": "Adenosylcobalamin radical rearrangement",
+            "cofactors": ["adenosylcobalamin"],
+            "active_site_signature": [
+                {"role": "cobalamin_ligand", "residue": "His"},
+                {"role": "radical_stabilizer", "residue": "Tyr/Asp/Glu/Arg"},
+                {"role": "substrate_orienter", "residue": "polar_or_charged_residue"},
+            ],
+        }
+        score = score_entry_against_fingerprint(entry, fingerprint)
+        self.assertEqual(score["cofactor_evidence_level"], "ligand_supported")
+        self.assertEqual(score["residue_match_fraction"], 1.0)
+        self.assertGreater(score["role_match_fraction"], 0.6)
+        self.assertGreater(score["score"], 0.8)
+
+    def test_cobalamin_fingerprint_penalizes_absent_cofactor_context(self) -> None:
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint={"id": "cobalamin_radical_rearrangement"},
+                residues=[
+                    {"code": "HIS", "roles": ["metal ligand"]},
+                    {"code": "TYR", "roles": ["radical stabiliser"]},
+                ],
+                cofactor_evidence="absent",
+                ligand_context={"cofactor_families": []},
+                substrate_pocket_score_value=0.5,
+            ),
+            0.5,
+        )
+
+    def test_plp_absent_context_requires_covalent_lysine_anchor(self) -> None:
+        fingerprint = {"id": "plp_dependent_enzyme"}
+        loose_lysine = [{"code": "LYS", "roles": ["hydrogen bond donor"]}]
+        anchored_lysine = [{"code": "LYS", "roles": ["covalently attached"]}]
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint=fingerprint,
+                residues=loose_lysine,
+                cofactor_evidence="absent",
+                ligand_context={"cofactor_families": []},
+                substrate_pocket_score_value=0.2,
+            ),
+            1.0,
+        )
+        self.assertEqual(
+            counterevidence_penalty(
+                fingerprint=fingerprint,
+                residues=anchored_lysine,
+                cofactor_evidence="absent",
+                ligand_context={"cofactor_families": []},
+                substrate_pocket_score_value=0.2,
+            ),
+            1.0,
+        )
+
+    def test_flavin_fingerprints_penalize_absent_flavin_context(self) -> None:
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint={"id": "flavin_dehydrogenase_reductase"},
+                residues=[{"code": "TYR", "roles": ["electron transfer"]}],
+                cofactor_evidence="absent",
+                ligand_context={"cofactor_families": []},
+                substrate_pocket_score_value=0.5,
+            ),
+            1.0,
+        )
+
     def test_substrate_pocket_score_prefers_polar_for_metal_hydrolase(self) -> None:
         polar_pocket = {
             "nearby_residue_count": 4,
@@ -208,6 +286,42 @@ class GeometryRetrievalTests(unittest.TestCase):
             1.0,
         )
 
+    def test_role_inferred_metal_hydrolase_penalizes_aromatic_positive_pocket(self) -> None:
+        fingerprint = {"id": "metal_dependent_hydrolase"}
+        residues = [
+            {"code": "HIS", "roles": ["metal ligand"]},
+            {"code": "GLU", "roles": ["metal ligand", "proton acceptor"]},
+        ]
+        pocket_context = {
+            "nearby_residue_count": 5,
+            "descriptors": {
+                "aromatic_fraction": 0.24,
+                "positive_fraction": 0.15,
+            },
+        }
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint=fingerprint,
+                residues=residues,
+                cofactor_evidence="role_inferred",
+                ligand_context={"cofactor_families": []},
+                substrate_pocket_score_value=0.18,
+                pocket_context=pocket_context,
+            ),
+            1.0,
+        )
+        self.assertEqual(
+            counterevidence_penalty(
+                fingerprint=fingerprint,
+                residues=residues,
+                cofactor_evidence="ligand_supported",
+                ligand_context={"cofactor_families": ["metal_ion"]},
+                substrate_pocket_score_value=0.18,
+                pocket_context=pocket_context,
+            ),
+            1.0,
+        )
+
     def test_metal_hydrolase_penalizes_transfer_or_redox_context(self) -> None:
         fingerprint = {"id": "metal_dependent_hydrolase"}
         residues = [
@@ -229,7 +343,82 @@ class GeometryRetrievalTests(unittest.TestCase):
                 fingerprint=fingerprint,
                 residues=residues,
                 cofactor_evidence="ligand_supported",
+                ligand_context={"ligand_codes": ["SAM"], "cofactor_families": ["metal_ion", "sam"]},
+                substrate_pocket_score_value=0.2,
+            ),
+            1.0,
+        )
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint=fingerprint,
+                residues=residues,
+                cofactor_evidence="ligand_supported",
+                ligand_context={"ligand_codes": ["GDP"], "cofactor_families": ["metal_ion"]},
+                substrate_pocket_score_value=0.2,
+            ),
+            1.0,
+        )
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint=fingerprint,
+                residues=residues,
+                cofactor_evidence="ligand_supported",
                 ligand_context={"ligand_codes": ["CU"], "cofactor_families": ["metal_ion"]},
+                substrate_pocket_score_value=0.2,
+            ),
+            1.0,
+        )
+
+    def test_metal_hydrolase_penalizes_carbon_transfer_ligand_context(self) -> None:
+        base_args = {
+            "fingerprint": {"id": "metal_dependent_hydrolase"},
+            "residues": [
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "ASP", "roles": ["metal ligand"]},
+            ],
+            "cofactor_evidence": "ligand_supported",
+            "substrate_pocket_score_value": 0.2,
+        }
+        self.assertLess(
+            counterevidence_penalty(
+                **base_args,
+                ligand_context={"ligand_codes": ["PGH", "ZN"], "cofactor_families": ["metal_ion"]},
+            ),
+            1.0,
+        )
+        self.assertLess(
+            counterevidence_penalty(
+                **base_args,
+                ligand_context={"ligand_codes": ["ICT", "MG"], "cofactor_families": ["metal_ion"]},
+            ),
+            1.0,
+        )
+        self.assertLess(
+            counterevidence_penalty(
+                **base_args,
+                ligand_context={"ligand_codes": ["U5P", "ZN"], "cofactor_families": ["metal_ion"]},
+            ),
+            1.0,
+        )
+        self.assertEqual(
+            counterevidence_penalty(
+                **base_args,
+                ligand_context={"ligand_codes": ["PO4", "ZN"], "cofactor_families": ["metal_ion"]},
+            ),
+            1.0,
+        )
+
+    def test_role_inferred_metal_hydrolase_penalizes_covalent_cleavage_roles(self) -> None:
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint={"id": "metal_dependent_hydrolase"},
+                residues=[
+                    {"code": "TYR", "roles": ["nucleophile"]},
+                    {"code": "ASP", "roles": ["metal ligand", "nucleofuge"]},
+                    {"code": "GLU", "roles": ["metal ligand"]},
+                ],
+                cofactor_evidence="role_inferred",
+                ligand_context={"ligand_codes": [], "cofactor_families": []},
                 substrate_pocket_score_value=0.2,
             ),
             1.0,

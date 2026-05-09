@@ -30,6 +30,8 @@ def run_local_performance_suite(
     geometry = load_json(geometry_path)
     retrieval = load_json(retrieval_path)
     labels = load_labels()
+    calibration = sweep_abstention_thresholds(retrieval, labels)
+    selected_threshold = calibration["metadata"].get("selected_threshold") or 0.7
 
     benchmarks = [
         _measure("load_v1_graph", lambda: load_json(graph_path), iterations),
@@ -37,7 +39,11 @@ def run_local_performance_suite(
         _measure("run_geometry_retrieval", lambda: run_geometry_retrieval(geometry), iterations),
         _measure(
             "evaluate_geometry_labels",
-            lambda: evaluate_geometry_retrieval(retrieval, labels),
+            lambda: evaluate_geometry_retrieval(
+                retrieval,
+                labels,
+                abstain_threshold=float(selected_threshold),
+            ),
             iterations,
         ),
         _measure(
@@ -66,6 +72,7 @@ def run_local_performance_suite(
             "suite": "local_artifact_performance",
             "iterations": iterations,
             "validation_boundary": "local wall-clock timing for existing artifacts; not a scalability benchmark",
+            "selected_abstain_threshold": selected_threshold,
             "inputs": {
                 "graph_path": str(graph_path),
                 "graph_bytes": graph_path.stat().st_size,

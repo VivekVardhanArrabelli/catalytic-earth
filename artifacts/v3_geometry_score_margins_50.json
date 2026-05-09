@@ -39,6 +39,18 @@
     },
     {
       "cofactor_evidence_level": "ligand_supported",
+      "entry_id": "m_csa:20",
+      "evaluable": true,
+      "label_type": "seed_fingerprint",
+      "resolved_residue_count": 7,
+      "status": "ok",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.6727
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
       "entry_id": "m_csa:27",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -63,6 +75,18 @@
     },
     {
       "cofactor_evidence_level": "ligand_supported",
+      "entry_id": "m_csa:3",
+      "evaluable": true,
+      "label_type": "seed_fingerprint",
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.6706
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
       "entry_id": "m_csa:37",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -71,7 +95,7 @@
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "top1_correct": true,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.6071
+      "top1_score": 0.7237
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -156,6 +180,18 @@
       "top1_correct": true,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_score": 0.8877
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "entry_id": "m_csa:6",
+      "evaluable": true,
+      "label_type": "seed_fingerprint",
+      "resolved_residue_count": 7,
+      "status": "ok",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.6653
     }
   ],
   "limiting_in_scope_rows": [
@@ -174,22 +210,22 @@
   ],
   "metadata": {
     "cofactor_evidence_counts": {
-      "absent": 14,
-      "ligand_supported": 17,
-      "not_required": 14,
-      "role_inferred": 5
+      "absent": 24,
+      "ligand_supported": 19,
+      "not_required": 5,
+      "role_inferred": 2
     },
     "evaluated_count": 50,
-    "in_scope_count": 13,
+    "in_scope_count": 16,
     "in_scope_entries_at_or_below_max_out_of_scope": 0,
-    "in_scope_evaluable_count": 13,
-    "max_out_of_scope_top1_score": 0.5776,
+    "in_scope_evaluable_count": 16,
+    "max_out_of_scope_top1_score": 0.5649,
     "method": "geometry_score_margin_analysis",
     "min_in_scope_top1_score": 0.5777,
-    "out_of_scope_count": 37,
+    "out_of_scope_count": 34,
     "out_of_scope_entries_at_or_above_min_in_scope": 0,
-    "out_of_scope_evaluable_count": 37,
-    "score_separation_gap": 0.0001,
+    "out_of_scope_evaluable_count": 34,
+    "score_separation_gap": 0.0128,
     "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": true
   },
   "rows": [
@@ -215,7 +251,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.4286
+      "top1_score": 0.5452
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -239,7 +275,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.4139
+      "top1_score": 0.5306
     },
     {
       "cofactor_evidence_level": "absent",
@@ -251,7 +287,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.4273
+      "top1_score": 0.544
     },
     {
       "cofactor_evidence_level": "role_inferred",
@@ -302,7 +338,7 @@
       "top1_score": 0.5649
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:18",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -310,8 +346,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5421
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5511
     },
     {
       "cofactor_evidence_level": "absent",
@@ -335,19 +371,19 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.5681
+      "top1_score": 0.4829
     },
     {
-      "cofactor_evidence_level": "absent",
+      "cofactor_evidence_level": "ligand_supported",
       "entry_id": "m_csa:20",
       "evaluable": true,
-      "label_type": "out_of_scope",
+      "label_type": "seed_fingerprint",
       "resolved_residue_count": 7,
       "status": "ok",
-      "target_fingerprint_id": null,
-      "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.416
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.6727
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -359,10 +395,10 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5662
+      "top1_score": 0.5379
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:22",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -370,11 +406,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.4688
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5362
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:23",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -382,11 +418,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3618
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4278
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:24",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -394,8 +430,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5334
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.543
     },
     {
       "cofactor_evidence_level": "absent",
@@ -406,8 +442,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.4574
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5487
     },
     {
       "cofactor_evidence_level": "absent",
@@ -419,7 +455,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.4328
+      "top1_score": 0.5494
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -454,23 +490,23 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.4448
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5262
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "entry_id": "m_csa:3",
+      "evaluable": true,
+      "label_type": "seed_fingerprint",
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.6706
     },
     {
       "cofactor_evidence_level": "absent",
-      "entry_id": "m_csa:3",
-      "evaluable": true,
-      "label_type": "out_of_scope",
-      "resolved_residue_count": 3,
-      "status": "ok",
-      "target_fingerprint_id": null,
-      "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.419
-    },
-    {
-      "cofactor_evidence_level": "not_required",
       "entry_id": "m_csa:30",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -478,11 +514,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3255
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3516
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:31",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -490,11 +526,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.4334
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5259
     },
     {
-      "cofactor_evidence_level": "role_inferred",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:32",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -502,11 +538,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5282
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5497
     },
     {
-      "cofactor_evidence_level": "role_inferred",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:33",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -514,11 +550,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5267
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5496
     },
     {
-      "cofactor_evidence_level": "role_inferred",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:34",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -526,8 +562,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5776
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5318
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -551,7 +587,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.5522
+      "top1_score": 0.4694
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -563,7 +599,7 @@
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "top1_correct": true,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.6071
+      "top1_score": 0.7237
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -590,7 +626,7 @@
       "top1_score": 0.5821
     },
     {
-      "cofactor_evidence_level": "ligand_supported",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:4",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -598,11 +634,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5201
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5298
     },
     {
-      "cofactor_evidence_level": "absent",
+      "cofactor_evidence_level": "not_required",
       "entry_id": "m_csa:40",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -610,8 +646,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.3548
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3017
     },
     {
       "cofactor_evidence_level": "role_inferred",
@@ -662,7 +698,7 @@
       "top1_score": 0.5944
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:45",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -670,11 +706,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5155
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5376
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:46",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -682,11 +718,11 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3087
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.342
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "absent",
       "entry_id": "m_csa:47",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -694,8 +730,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5271
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5469
     },
     {
       "cofactor_evidence_level": "absent",
@@ -706,8 +742,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.3494
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.409
     },
     {
       "cofactor_evidence_level": "absent",
@@ -718,8 +754,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.4189
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.5343
     },
     {
       "cofactor_evidence_level": "not_required",
@@ -746,16 +782,16 @@
       "top1_score": 0.4342
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "ligand_supported",
       "entry_id": "m_csa:6",
       "evaluable": true,
-      "label_type": "out_of_scope",
+      "label_type": "seed_fingerprint",
       "resolved_residue_count": 7,
       "status": "ok",
-      "target_fingerprint_id": null,
-      "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.524
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.6653
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -767,7 +803,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5717
+      "top1_score": 0.5431
     },
     {
       "cofactor_evidence_level": "ligand_supported",
@@ -791,7 +827,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5699
+      "top1_score": 0.5129
     }
   ]
 }

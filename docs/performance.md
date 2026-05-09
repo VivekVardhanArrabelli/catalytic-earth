@@ -23,22 +23,24 @@ The suite currently measures:
 - loading the V1 graph artifact
 - building the V2 benchmark from the graph
 - running geometry-aware retrieval
-- evaluating retrieval against curated labels
+- evaluating retrieval against curated labels at the artifact's calibrated
+  abstention threshold
 - sweeping abstention thresholds
 - analyzing positive/out-of-scope score margins
 - selecting hard negative controls
 - summarizing non-OK structure mappings and missing-residue diagnostics
 
-Latest 5-iteration mean timings on the current local artifacts:
+Latest 5-iteration mean timings on the current local artifacts, using calibrated
+threshold `0.565` for label evaluation:
 
-- load V1 graph: 3.655 ms
-- build V2 benchmark: 0.560 ms
-- run geometry retrieval: 4.554 ms
-- evaluate geometry labels: 0.046 ms
-- sweep abstention thresholds: 2.152 ms
-- analyze geometry score margins: 0.025 ms
-- build hard negative controls: 0.036 ms
-- analyze structure mapping issues: 0.007 ms
+- load V1 graph: 3.888 ms
+- build V2 benchmark: 0.731 ms
+- run geometry retrieval: 7.092 ms
+- evaluate geometry labels: 0.050 ms
+- sweep abstention thresholds: 2.614 ms
+- analyze geometry score margins: 0.042 ms
+- build hard negative controls: 0.050 ms
+- analyze structure mapping issues: 0.008 ms
 
 ## Boundary
 

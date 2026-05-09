@@ -80,6 +80,26 @@
     "seed_examples": ["radical SAM methylases", "sulfur insertion enzymes", "complex rearrangement enzymes"]
   },
   {
+    "id": "cobalamin_radical_rearrangement",
+    "name": "Adenosylcobalamin radical rearrangement",
+    "enzyme_space": ["cobalamin mutases", "B12-dependent rearrangement enzymes", "radical isomerases"],
+    "active_site_signature": [
+      {"role": "cobalamin_ligand", "residue": "His", "constraints": ["coordinates or positions cobalamin cobalt"]},
+      {"role": "radical_stabilizer", "residue": "Tyr/Asp/Glu/Arg", "constraints": ["stabilizes radical or polar rearrangement intermediates"]},
+      {"role": "substrate_orienter", "residue": "polar_or_charged_residue", "constraints": ["positions substrate near adenosylcobalamin"]}
+    ],
+    "cofactors": ["adenosylcobalamin"],
+    "reaction_center": {
+      "bond_changes": ["radical-mediated carbon skeleton rearrangement or ammonia elimination"],
+      "chemical_operation": "cobalamin radical rearrangement"
+    },
+    "substrate_constraints": ["substrate positioned near adenosyl radical", "B12-compatible active-site pocket"],
+    "evidence_features": ["cobalamin ligand context", "radical-stabilizing residues", "B12-proximal substrate pocket"],
+    "counterevidence_features": ["no cobalamin ligand", "heme/flavin-only redox context", "missing radical-stabilizing pocket"],
+    "uncertainty_axes": ["substrate rearrangement subtype", "cobalamin occupancy", "radical timing", "oligomeric state"],
+    "seed_examples": ["methylmalonyl-CoA mutase", "methylaspartate mutase", "diol dehydratase"]
+  },
+  {
     "id": "flavin_monooxygenase",
     "name": "Flavin-dependent monooxygenase",
     "enzyme_space": ["monooxygenases", "Baeyer-Villiger monooxygenases", "hydroxylases"],
@@ -98,6 +118,26 @@
     "counterevidence_features": ["flavin pocket absent", "substrate channel sealed", "redox residues missing", "cofactor annotation conflict"],
     "uncertainty_axes": ["substrate class", "regioselectivity", "oxygen coupling", "cofactor preference"],
     "seed_examples": ["Baeyer-Villiger monooxygenases", "aromatic hydroxylases", "flavin-containing monooxygenases"]
+  },
+  {
+    "id": "flavin_dehydrogenase_reductase",
+    "name": "Flavin-dependent dehydrogenase or reductase",
+    "enzyme_space": ["flavin dehydrogenases", "quinone reductases", "disulfide reductases"],
+    "active_site_signature": [
+      {"role": "flavin_binder", "residue": "basic_or_polar_motif", "constraints": ["binds FAD or FMN near the redox center"]},
+      {"role": "redox_acid_base", "residue": "His/Glu/Cys/Tyr/Arg", "constraints": ["supports hydride, proton, or electron transfer"]},
+      {"role": "electron_transfer_path", "residue": "aromatic_or_redox_residue", "constraints": ["connects substrate or redox partner to flavin"]}
+    ],
+    "cofactors": ["FAD", "FMN"],
+    "reaction_center": {
+      "bond_changes": ["hydride or electron transfer without oxygen insertion"],
+      "chemical_operation": "flavin-mediated redox transfer"
+    },
+    "substrate_constraints": ["redox-active substrate near flavin", "compatible electron acceptor or donor path"],
+    "evidence_features": ["flavin ligand context", "redox acid-base residues", "electron-transfer residue path"],
+    "counterevidence_features": ["no flavin evidence", "oxygen-insertion substrate context", "missing redox relay"],
+    "uncertainty_axes": ["electron acceptor identity", "redox partner", "substrate class", "cofactor occupancy"],
+    "seed_examples": ["fumarate reductases", "glutathione-disulfide reductases", "acyl-CoA dehydrogenases"]
   },
   {
     "id": "heme_peroxidase_oxidase",

@@ -27,7 +27,7 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 63)
+        self.assertEqual(len(labels), 125)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
@@ -109,6 +109,8 @@ class LabelTests(unittest.TestCase):
         margins = analyze_geometry_score_margins(retrieval, labels)
         self.assertEqual(margins["metadata"]["min_in_scope_top1_score"], 0.8)
         self.assertEqual(margins["metadata"]["max_out_of_scope_top1_score"], 0.2)
+        self.assertEqual(margins["metadata"]["near_margin"], 0.02)
+        self.assertEqual(margins["metadata"]["score_margin_boundary_count"], 2)
         self.assertTrue(
             margins["metadata"][
                 "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope"
@@ -116,6 +118,7 @@ class LabelTests(unittest.TestCase):
         )
         self.assertEqual(margins["metadata"]["out_of_scope_entries_at_or_above_min_in_scope"], 0)
         self.assertEqual(margins["limiting_in_scope_rows"][0]["entry_id"], "m_csa:1")
+        self.assertEqual(margins["limiting_out_of_scope_rows"][0]["entry_id"], "m_csa:2")
 
         controls = build_hard_negative_controls(retrieval, labels)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 0)

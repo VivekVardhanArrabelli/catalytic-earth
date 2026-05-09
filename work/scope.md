@@ -91,10 +91,10 @@ Post-V2 quality work has started:
 - active-site residue coordinate extraction
 - pairwise catalytic-residue distance features
 - nearby ligand/cofactor context from mmCIF non-polymer atoms
-- geometry artifacts for 20-entry regression, 30-entry, 40-entry, 50-entry, and
-  60-entry slices
+- geometry artifacts for 20-entry regression, 30-entry, 40-entry, 50-entry,
+  60-entry, 75-entry, 100-entry, and 125-entry staging slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for all 60 entries in the current expanded
+- curated seed mechanism labels for all 100 entries in the current expanded
   geometry slice
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
@@ -146,29 +146,29 @@ Current expectation:
 - next serious step: replace weak token/motif baselines with geometry-aware
   active-site retrieval and curated mechanism labels
 - higher-impact work now depends on quality, not more scaffolding
-- geometry-aware features are now available for 20-, 30-, 40-, 50-, and
-  60-entry slices; all 60 current geometry entries are now evaluable
-- curated labels now cover 63 entries, with 13 in-scope seed-fingerprint
-  positives and 50 out-of-scope labels
-- the current 60-entry label queue is empty; the next label work requires a
-  larger graph/geometry slice or new fingerprints
+- geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
+  100-, and 125-entry slices; all 100 audited geometry entries are evaluable,
+  and the 125-entry staging slice has 124/125 entries with pairwise geometry
+- curated labels now cover 100 entries, with 25 in-scope seed-fingerprint
+  positives and 75 out-of-scope labels
+- the current 100-entry label queue is empty; the 125-entry staging slice adds
+  25 unlabeled entries, including 24 ready label-review candidates
 - strengthened geometry scoring reaches top1/top3/retained top3 accuracy of
-  1.0 on the 13 in-scope positives in the 60-entry slice before abstention; at
-  the zero-false threshold, retention drops to 5/13 positives
+  1.0 on the 25 in-scope positives in the 100-entry slice at the current
+  zero-false threshold
 - ligand/cofactor context is now parsed from nearby mmCIF non-polymer atoms and
   used in retrieval scoring
 - substrate-pocket descriptors are now included in retrieval scoring; next
-  bottleneck is failure analysis plus larger and cleaner curated labels
+  bottleneck is margin robustness plus larger and cleaner curated labels
 - adaptive abstention thresholds now use observed score boundaries; the
-  20-entry regression slice has a zero-false threshold that retains all 4
+  20-entry regression slice has a zero-false threshold that retains all 5
   in-scope positives
-- the 60-entry expansion slice currently has 2 hard negatives at the positive
-  score floor and 2 near misses within 0.01 below the floor
-- the 40-, 50-, and 60-entry structure-mapping issue reports currently have 0 non-OK
-  mappings after auth/label residue-number fallback
-- next bottleneck is separating `m_csa:52` and `m_csa:53` from true
-  metal-dependent hydrolase positives, then adding fingerprints for
-  chemistry now labeled out of scope
+- the 100-entry expansion slice currently has 0 hard negatives at the positive
+  score floor and 0 near misses within 0.01 below the floor
+- the 40-, 50-, 60-, 75-, and 100-entry structure-mapping issue reports
+  currently have 0 non-OK mappings after auth/label residue-number fallback
+- next bottleneck is labeling the 125-entry staging slice and resolving its one
+  unlabeled structure-mapping issue
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

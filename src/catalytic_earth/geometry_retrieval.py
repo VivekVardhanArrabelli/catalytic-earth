@@ -8,6 +8,30 @@ from typing import Any
 from .fingerprints import load_fingerprints
 
 
+METAL_HYDROLASE_TRANSFER_LIGAND_CODES = {
+    "BIO",  # pterin/biopterin synthase rearrangement context
+    "FOC",  # fucose-like sugar isomerization context
+    "GLV",  # glyoxylate-like ligand in malate synthase hard-negative context
+    "ICT",  # isocitrate redox/decarboxylation context
+    "OXL",  # oxalate-like carbonyl/decarboxylation context
+    "PGH",  # phosphoglycolate/hydroxamate-like aldolase inhibitor context
+    "PQQ",  # quinone redox cofactor context
+    "U5P",  # nucleotide-sugar transfer context
+}
+NUCLEOTIDE_TRANSFER_LIGAND_CODES = {
+    "ACP",
+    "ADP",
+    "AMP",
+    "ANP",
+    "ATP",
+    "GDP",
+    "GMP",
+    "GTP",
+    "IDP",
+    "IMP",
+}
+
+
 def load_json(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
@@ -97,6 +121,7 @@ def score_entry_against_fingerprint(
         cofactor_evidence=cofactor_evidence,
         ligand_context=entry.get("ligand_context"),
         substrate_pocket_score_value=substrate_pocket,
+        pocket_context=entry.get("pocket_context"),
     )
     raw_score = (
         0.35 * residue_match_fraction
@@ -378,6 +403,7 @@ def counterevidence_penalty(
     cofactor_evidence: str,
     ligand_context: dict[str, Any] | None,
     substrate_pocket_score_value: float,
+    pocket_context: dict[str, Any] | None = None,
 ) -> float:
     fingerprint_id = str(fingerprint.get("id", ""))
     residue_roles = {
@@ -393,12 +419,23 @@ def counterevidence_penalty(
         penalty = 1.0
         if cofactor_evidence == "role_inferred" and substrate_pocket_score_value < 0.15:
             penalty = min(penalty, 0.90)
+        if cofactor_evidence == "role_inferred" and _has_aromatic_positive_pocket(pocket_context):
+            penalty = min(penalty, 0.92)
+        if (
+            cofactor_evidence == "role_inferred"
+            and {"nucleophile", "nucleofuge"}.issubset(residue_roles)
+        ):
+            penalty = min(penalty, 0.92)
         if "heme" in ligand_families and "metal_ion" not in ligand_families:
             penalty = min(penalty, 0.75)
         if "cobalamin" in ligand_families and "metal_ion" not in ligand_families:
             penalty = min(penalty, 0.80)
-        if ligand_codes & {"ATP", "ADP", "AMP", "ANP", "ACP"}:
+        if ligand_codes & NUCLEOTIDE_TRANSFER_LIGAND_CODES:
             penalty = min(penalty, 0.90)
+        if "sam" in ligand_families:
+            penalty = min(penalty, 0.90)
+        if ligand_codes & METAL_HYDROLASE_TRANSFER_LIGAND_CODES:
+            penalty = min(penalty, 0.95)
         if any("single electron" in role for role in residue_roles):
             penalty = min(penalty, 0.90)
         return penalty
@@ -413,6 +450,21 @@ def counterevidence_penalty(
             return 0.70
         if "metal ligand" in residue_roles and metal_ligand_roles >= 4:
             return 0.85
+        return 1.0
+
+    if fingerprint_id == "plp_dependent_enzyme":
+        if cofactor_evidence == "absent" and not _has_plp_lysine_anchor(residues):
+            return 0.85
+        return 1.0
+
+    if fingerprint_id == "cobalamin_radical_rearrangement":
+        if cofactor_evidence == "absent":
+            return 0.25
+        return 1.0
+
+    if fingerprint_id in {"flavin_monooxygenase", "flavin_dehydrogenase_reductase"}:
+        if cofactor_evidence == "absent":
+            return 0.60
         return 1.0
 
     return 1.0
@@ -430,6 +482,26 @@ def write_geometry_retrieval(
 
 
 def _allowed_residue_codes(spec: str) -> set[str]:
+    normalized = _normalize_phrase(spec)
+    aliases = {
+        "polar or charged residue": {
+            "ARG",
+            "ASN",
+            "ASP",
+            "CYS",
+            "GLN",
+            "GLU",
+            "HIS",
+            "LYS",
+            "SER",
+            "THR",
+            "TYR",
+        },
+        "basic or polar motif": {"ARG", "ASN", "GLN", "HIS", "LYS", "SER", "THR"},
+        "aromatic or redox residue": {"CYS", "HIS", "MET", "PHE", "TRP", "TYR"},
+    }
+    if normalized in aliases:
+        return aliases[normalized]
     allowed = {_canonical_code(part) for part in spec.replace(",", "/").split("/")}
     return {item for item in allowed if item}
 
@@ -472,6 +544,18 @@ def _role_hint_match(required_role: str, residue_roles: set[str]) -> bool:
         return any("proton acceptor" in role or "proton donor" in role for role in residue_roles)
     if required_role == "acid or orienter":
         return any("proton" in role or "hydrogen bond" in role for role in residue_roles)
+    if required_role == "cobalamin ligand":
+        return any("cobalamin" in role or "metal ligand" in role for role in residue_roles)
+    if required_role == "radical stabilizer":
+        return any("radical stabiliser" in role or "radical stabilizer" in role for role in residue_roles)
+    if required_role == "substrate orienter":
+        return any(
+            "hydrogen bond" in role
+            or "electrostatic stabiliser" in role
+            or "electrostatic stabilizer" in role
+            or "steric role" in role
+            for role in residue_roles
+        )
     return False
 
 
@@ -572,6 +656,28 @@ def _normalize_cofactor_family(value: str) -> str:
     if normalized in {"b12", "cobalamin", "vitamin b12"}:
         return "cobalamin"
     return normalized
+
+
+def _has_aromatic_positive_pocket(pocket_context: dict[str, Any] | None) -> bool:
+    if not isinstance(pocket_context, dict):
+        return False
+    descriptors = pocket_context.get("descriptors", {})
+    if not isinstance(descriptors, dict):
+        return False
+    aromatic = float(descriptors.get("aromatic_fraction", 0.0) or 0.0)
+    positive = float(descriptors.get("positive_fraction", 0.0) or 0.0)
+    return aromatic >= 0.20 and positive >= 0.12
+
+
+def _has_plp_lysine_anchor(residues: list[dict[str, Any]]) -> bool:
+    return any(
+        _canonical_code(residue.get("code")) == "LYS"
+        and _residue_has_any_role(
+            residue,
+            {"covalently attached", "electron pair donor", "electron pair acceptor"},
+        )
+        for residue in residues
+    )
 
 
 def _clamp(value: float) -> float:

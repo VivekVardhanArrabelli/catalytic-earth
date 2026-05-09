@@ -387,7 +387,10 @@ def analyze_out_of_scope_failures(
 def analyze_geometry_score_margins(
     retrieval: dict[str, Any],
     labels: list[MechanismLabel],
+    near_margin: float = 0.02,
 ) -> dict[str, Any]:
+    if near_margin < 0:
+        raise ValueError("near_margin must be non-negative")
     labels_by_entry = {label.entry_id: label for label in labels}
     rows: list[dict[str, Any]] = []
 
@@ -439,11 +442,23 @@ def analyze_geometry_score_margins(
         for row in in_scope_score_rows
         if min_in_scope_score is not None and _same_float(row["top1_score"], min_in_scope_score)
     ]
+    limiting_out_scope = [
+        row
+        for row in out_scope_score_rows
+        if max_out_scope_score is not None and _same_float(row["top1_score"], max_out_scope_score)
+    ]
     in_scope_below_max_out_scope = [
         row
         for row in in_scope_score_rows
         if max_out_scope_score is not None and row["top1_score"] <= max_out_scope_score
     ]
+    boundary_rows = _score_margin_boundary_rows(
+        in_scope_score_rows=in_scope_score_rows,
+        out_scope_score_rows=out_scope_score_rows,
+        min_in_scope_score=min_in_scope_score,
+        max_out_scope_score=max_out_scope_score,
+        near_margin=near_margin,
+    )
     return {
         "metadata": {
             "method": "geometry_score_margin_analysis",
@@ -462,6 +477,8 @@ def analyze_geometry_score_margins(
             "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": (
                 strict_threshold_exists
             ),
+            "near_margin": near_margin,
+            "score_margin_boundary_count": len(boundary_rows),
             "out_of_scope_entries_at_or_above_min_in_scope": len(conflicting_out_scope),
             "in_scope_entries_at_or_below_max_out_of_scope": len(in_scope_below_max_out_scope),
             "cofactor_evidence_counts": dict(sorted(cofactor_evidence_counts.items())),
@@ -471,9 +488,60 @@ def analyze_geometry_score_margins(
             key=lambda row: (-row["top1_score"], row["entry_id"]),
         ),
         "limiting_in_scope_rows": sorted(limiting_in_scope, key=lambda row: row["entry_id"]),
+        "limiting_out_of_scope_rows": sorted(
+            limiting_out_scope,
+            key=lambda row: (-row["top1_score"], row["entry_id"]),
+        ),
+        "score_margin_boundary_rows": sorted(
+            boundary_rows,
+            key=lambda row: (row["boundary_side"], row["score_gap_to_boundary"], row["entry_id"]),
+        ),
         "in_scope_rows": sorted(in_scope_rows, key=lambda row: row["entry_id"]),
         "rows": sorted(rows, key=lambda row: row["entry_id"]),
     }
+
+
+def _score_margin_boundary_rows(
+    in_scope_score_rows: list[dict[str, Any]],
+    out_scope_score_rows: list[dict[str, Any]],
+    min_in_scope_score: float | None,
+    max_out_scope_score: float | None,
+    near_margin: float,
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    if min_in_scope_score is not None:
+        for row in in_scope_score_rows:
+            score_gap = round(row["top1_score"] - min_in_scope_score, 4)
+            if score_gap <= near_margin:
+                rows.append(
+                    {
+                        **row,
+                        "boundary_side": "in_scope_floor",
+                        "score_gap_to_boundary": score_gap,
+                    }
+                )
+        for row in out_scope_score_rows:
+            score_gap = round(min_in_scope_score - row["top1_score"], 4)
+            if score_gap <= near_margin:
+                rows.append(
+                    {
+                        **row,
+                        "boundary_side": "out_of_scope_near_positive_floor",
+                        "score_gap_to_boundary": score_gap,
+                    }
+                )
+    if max_out_scope_score is not None:
+        for row in out_scope_score_rows:
+            score_gap = round(max_out_scope_score - row["top1_score"], 4)
+            if score_gap <= near_margin:
+                rows.append(
+                    {
+                        **row,
+                        "boundary_side": "out_of_scope_ceiling",
+                        "score_gap_to_boundary": score_gap,
+                    }
+                )
+    return rows
 
 
 def build_hard_negative_controls(

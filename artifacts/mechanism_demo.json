@@ -10,10 +10,15 @@
     "cluster_ligand": [
       "radical_sam_enzyme"
     ],
+    "cobalamin_ligand": [
+      "cobalamin_radical_rearrangement"
+    ],
     "electron_transfer_path": [
+      "flavin_dehydrogenase_reductase",
       "heme_peroxidase_oxidase"
     ],
     "flavin_binder": [
+      "flavin_dehydrogenase_reductase",
       "flavin_monooxygenase"
     ],
     "general_base": [
@@ -40,10 +45,17 @@
     "plp_anchor": [
       "plp_dependent_enzyme"
     ],
+    "radical_stabilizer": [
+      "cobalamin_radical_rearrangement"
+    ],
+    "redox_acid_base": [
+      "flavin_dehydrogenase_reductase"
+    ],
     "sam_binding": [
       "radical_sam_enzyme"
     ],
     "substrate_orienter": [
+      "cobalamin_radical_rearrangement",
       "flavin_monooxygenase"
     ],
     "substrate_positioning": [
@@ -60,8 +72,14 @@
     "SAM-derived radical chemistry": [
       "radical_sam_enzyme"
     ],
+    "cobalamin radical rearrangement": [
+      "cobalamin_radical_rearrangement"
+    ],
     "flavin peroxide oxygen transfer": [
       "flavin_monooxygenase"
+    ],
+    "flavin-mediated redox transfer": [
+      "flavin_dehydrogenase_reductase"
     ],
     "heme-mediated redox catalysis": [
       "heme_peroxidase_oxidase"
@@ -75,9 +93,11 @@
   },
   "cofactor_index": {
     "FAD": [
+      "flavin_dehydrogenase_reductase",
       "flavin_monooxygenase"
     ],
     "FMN": [
+      "flavin_dehydrogenase_reductase",
       "flavin_monooxygenase"
     ],
     "Fe2+/Fe3+": [
@@ -104,6 +124,9 @@
     "[4Fe-4S]": [
       "radical_sam_enzyme"
     ],
+    "adenosylcobalamin": [
+      "cobalamin_radical_rearrangement"
+    ],
     "heme": [
       "heme_peroxidase_oxidase"
     ],
@@ -114,8 +137,61 @@
       "plp_dependent_enzyme"
     ]
   },
-  "fingerprint_count": 6,
+  "fingerprint_count": 8,
   "fingerprints": [
+    {
+      "active_site_roles": [
+        {
+          "residue": "His",
+          "role": "cobalamin_ligand"
+        },
+        {
+          "residue": "Tyr/Asp/Glu/Arg",
+          "role": "radical_stabilizer"
+        },
+        {
+          "residue": "polar_or_charged_residue",
+          "role": "substrate_orienter"
+        }
+      ],
+      "bond_changes": [
+        "radical-mediated carbon skeleton rearrangement or ammonia elimination"
+      ],
+      "chemical_operation": "cobalamin radical rearrangement",
+      "cofactors": [
+        "adenosylcobalamin"
+      ],
+      "completeness": 1.0,
+      "id": "cobalamin_radical_rearrangement",
+      "name": "Adenosylcobalamin radical rearrangement"
+    },
+    {
+      "active_site_roles": [
+        {
+          "residue": "basic_or_polar_motif",
+          "role": "flavin_binder"
+        },
+        {
+          "residue": "His/Glu/Cys/Tyr/Arg",
+          "role": "redox_acid_base"
+        },
+        {
+          "residue": "aromatic_or_redox_residue",
+          "role": "electron_transfer_path"
+        }
+      ],
+      "bond_changes": [
+        "hydride or electron transfer without oxygen insertion"
+      ],
+      "chemical_operation": "flavin-mediated redox transfer",
+      "cofactors": [
+        "FAD",
+        "FMN"
+      ],
+      "completeness": 1.0,
+      "id": "flavin_dehydrogenase_reductase",
+      "name": "Flavin-dependent dehydrogenase or reductase"
+    },
     {
       "active_site_roles": [
         {

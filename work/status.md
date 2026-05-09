@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 19
-- Measured elapsed time: 128.2 minutes (2.14 hours)
+- Entries: 20
+- Measured elapsed time: 196.5 minutes (3.28 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.1 measured minutes (0.22 hours)
-- post-v2: 115.1 measured minutes (1.92 hours)
+- post-v2: 183.4 measured minutes (3.06 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,20 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 106
-- Evidence references logged: 93
+- Artifact references logged: 120
+- Evidence references logged: 105
 
 ## Recent Entries
-
-### 2026-05-09T15:22:39.241656+00:00 - ops
-
-- Task: Update README timeline and final handoff before next automation
-- Time mode: measured
-- Measured minutes: 1.583
-- Started: 2026-05-09T15:20:55Z
-- Ended: 2026-05-09T15:22:30Z
-- Artifacts: README.md, work/handoff.md, work/scope.md
-- Evidence: 33 tests passed, validate passed, README timeline recalibrated, current state and next automation task clarified
 
 ### 2026-05-09T15:30:17.008476+00:00 - post-v2
 
@@ -106,6 +96,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v1_graph_75.json, artifacts/v3_geometry_features_60.json, artifacts/v3_geometry_retrieval_60.json, artifacts/v3_hard_negative_controls_60.json
 - Evidence: PYTHONPATH=src python -m unittest discover -s tests; PYTHONPATH=src python -m catalytic_earth.cli validate
 
+### 2026-05-09T19:26:19.500414+00:00 - post-v2
+
+- Task: Expand geometry benchmark to 100 labels and add cobalamin/flavin seed families
+- Time mode: measured
+- Measured minutes: 68.3
+- Started: 2026-05-09T18:17:48Z
+- Ended: 2026-05-09T19:26:06Z
+- Artifacts: src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/performance.py, data/registries/mechanism_fingerprints.json, data/registries/curated_mechanism_labels.json, artifacts/v3_geometry_retrieval_100.json, artifacts/v3_geometry_label_eval_100.json, artifacts/v3_hard_negative_controls_100.json, artifacts/v3_abstention_calibration_100.json, artifacts/perf_report.json, artifacts/v3_geometry_features_125.json, artifacts/v3_label_expansion_candidates_125.json, artifacts/v3_structure_mapping_issues_125.json, docs/geometry_features.md, work/handoff.md
+- Evidence: 58 unit tests passed, validate passed, 100 curated labels, 100 geometry entries, 25 in-scope positives, 75 out-of-scope controls, zero false non-abstentions at threshold 0.5653, 0 hard negatives, 0 near misses, 125-entry staging slice built, 24 ready label-review candidates, 1 unlabeled structure mapping issue
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -127,6 +127,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T16:14:49.435851+00:00: Automation runs now distinguish productive work time from wrap-up time; normal runs should spend at least 50 measured minutes advancing the project.
 - 2026-05-09T17:07:37.625326+00:00: Next priority is hard-negative scorer separation and structure mapping repair, not more scaffold work
 - 2026-05-09T18:08:06.495922+00:00: remaining bottleneck is separating two ligand-supported metal-like controls without losing retained positives
+- 2026-05-09T19:26:19.500414+00:00: The immediate hard-negative bottleneck is cleared for the current slice; robustness now depends on labeling the 125-entry staging slice and adding more diverse seed families.
 
 ## Scope Adjustments
 
@@ -148,3 +149,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T16:14:49.435851+00:00: If assigned work finishes or blocks early, agents must switch to the highest-value bounded unblocked task until the 50-minute work boundary.
 - 2026-05-09T17:07:37.625326+00:00: 40-entry slice now has 36 labels, 26 evaluable structures, and explicit hard-negative plus structure-mapping blockers
 - 2026-05-09T18:08:06.495922+00:00: expanded geometry slice to 60 fully labeled entries with 63 labels
+- 2026-05-09T19:26:19.500414+00:00: Expanded the audited geometry slice to 100 fully labeled and evaluable entries and staged a 125-entry slice; next scope is labeling the new candidates and resolving one mapping issue.
