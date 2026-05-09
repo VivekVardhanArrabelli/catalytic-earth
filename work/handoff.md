@@ -45,7 +45,11 @@ PYTHONPATH=src python -m unittest discover -s tests
 
 ## During Work
 
-- Treat each automation run as one 55-minute focused block.
+- Treat each automation run as one 55-minute focused block measured from the
+  real wall-clock start timestamp.
+- At 50 minutes elapsed, stop starting new implementation work and begin
+  wrap-up: finish tests/artifacts/docs, update this handoff, log measured time,
+  regenerate status, commit, and push.
 - Prefer durable code and data schemas over prose.
 - Keep outputs reproducible.
 - Add tests for new normalization logic.

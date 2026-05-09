@@ -17,6 +17,10 @@ work session should leave enough state here for a fresh context to continue.
 Each automation run is a 55-minute focused work block. The remaining time in
 the hour is break/overhead.
 
+At the start of each block, record the real wall-clock start timestamp. At
+50 minutes elapsed from that timestamp, stop starting new implementation work
+and begin wrap-up: tests, artifacts, handoff, progress log, commit, and push.
+
 After each hourly work block:
 
 1. Log measured elapsed time and evidence. Use `--time-mode measured` with

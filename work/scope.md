@@ -27,7 +27,9 @@ Track:
 Automation cadence:
 
 - run once per hour
-- work for 55 focused minutes
+- record the real wall-clock start timestamp
+- work for 55 focused minutes measured from that timestamp
+- begin wrap-up at 50 elapsed wall-clock minutes
 - reserve 5 minutes for break/overhead
 - log the hour
 - update `work/handoff.md` for the next automation run
