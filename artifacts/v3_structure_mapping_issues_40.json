@@ -1,0 +1,933 @@
+{
+  "metadata": {
+    "geometry_entry_count": 40,
+    "issue_count": 14,
+    "label_type_counts": {
+      "out_of_scope": 8,
+      "seed_fingerprint": 2,
+      "unlabeled": 4
+    },
+    "labeled_issue_count": 10,
+    "method": "structure_mapping_issue_analysis",
+    "missing_expected_code_counts": {
+      "Ala": 1,
+      "Arg": 6,
+      "Asn": 7,
+      "Asp": 12,
+      "Cys": 2,
+      "Gln": 2,
+      "Glu": 8,
+      "Gly": 3,
+      "His": 12,
+      "Leu": 3,
+      "Lys": 7,
+      "Phe": 2,
+      "Ser": 5,
+      "Thr": 5,
+      "Trp": 2,
+      "Tyr": 5
+    },
+    "observed_code_at_missing_position_counts": {
+      "ALA": 3,
+      "ARG": 2,
+      "ASN": 5,
+      "ASP": 3,
+      "CYS": 2,
+      "GLN": 2,
+      "GLU": 5,
+      "GLY": 6,
+      "HIS": 2,
+      "ILE": 5,
+      "LEU": 1,
+      "LYS": 2,
+      "PHE": 3,
+      "PRO": 4,
+      "SER": 7,
+      "THR": 7,
+      "TRP": 4,
+      "TYR": 4,
+      "VAL": 7
+    },
+    "status_counts": {
+      "insufficient_resolved_residues": 14
+    }
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:12",
+      "label_type": "out_of_scope",
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "ALA"
+          ],
+          "resid": 135,
+          "residue_node_id": "m_csa:12:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Gln",
+          "observed_codes_at_position": [
+            "VAL"
+          ],
+          "resid": 138,
+          "residue_node_id": "m_csa:12:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Arg",
+          "observed_codes_at_position": [
+            "PRO"
+          ],
+          "resid": 108,
+          "residue_node_id": "m_csa:12:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "THR"
+          ],
+          "resid": 230,
+          "residue_node_id": "m_csa:12:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Cys",
+          "observed_codes_at_position": [
+            "ARG"
+          ],
+          "resid": 270,
+          "residue_node_id": "m_csa:12:residue:5"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Arg",
+          "observed_codes_at_position": [
+            "ASP"
+          ],
+          "resid": 297,
+          "residue_node_id": "m_csa:12:residue:6"
+        }
+      ],
+      "missing_positions": 6,
+      "pdb_id": "1OTH",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:13",
+      "label_type": "out_of_scope",
+      "missing_position_details": [
+        {
+          "chain_name": "L",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "TYR"
+          ],
+          "resid": 70,
+          "residue_node_id": "m_csa:13:residue:1"
+        },
+        {
+          "chain_name": "L",
+          "expected_code": "Trp",
+          "observed_codes_at_position": [
+            "LYS"
+          ],
+          "resid": 51,
+          "residue_node_id": "m_csa:13:residue:2"
+        },
+        {
+          "chain_name": "L",
+          "expected_code": "Tyr",
+          "observed_codes_at_position": [
+            "GLU"
+          ],
+          "resid": 113,
+          "residue_node_id": "m_csa:13:residue:3"
+        },
+        {
+          "chain_name": "L",
+          "expected_code": "Thr",
+          "observed_codes_at_position": [
+            "ALA"
+          ],
+          "resid": 116,
+          "residue_node_id": "m_csa:13:residue:4"
+        },
+        {
+          "chain_name": "L",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "TRP"
+          ],
+          "resid": 26,
+          "residue_node_id": "m_csa:13:residue:5"
+        },
+        {
+          "chain_name": "L",
+          "expected_code": "Trp",
+          "observed_codes_at_position": [
+            "PHE"
+          ],
+          "resid": 102,
+          "residue_node_id": "m_csa:13:residue:6"
+        },
+        {
+          "chain_name": "H",
+          "expected_code": "Phe",
+          "observed_codes_at_position": [
+            "GLN"
+          ],
+          "resid": 48,
+          "residue_node_id": "m_csa:13:residue:7"
+        }
+      ],
+      "missing_positions": 7,
+      "pdb_id": "2BBK",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:15",
+      "label_type": "seed_fingerprint",
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Cys",
+          "observed_codes_at_position": [
+            "THR"
+          ],
+          "resid": 164,
+          "residue_node_id": "m_csa:15:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asn",
+          "observed_codes_at_position": [
+            "ILE"
+          ],
+          "resid": 176,
+          "residue_node_id": "m_csa:15:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "ASN"
+          ],
+          "resid": 82,
+          "residue_node_id": "m_csa:15:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "VAL"
+          ],
+          "resid": 84,
+          "residue_node_id": "m_csa:15:residue:5"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "LEU"
+          ],
+          "resid": 206,
+          "residue_node_id": "m_csa:15:residue:6"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "THR"
+          ],
+          "resid": 145,
+          "residue_node_id": "m_csa:15:residue:7"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Lys",
+          "observed_codes_at_position": [
+            "ILE"
+          ],
+          "resid": 167,
+          "residue_node_id": "m_csa:15:residue:8"
+        }
+      ],
+      "missing_positions": 7,
+      "pdb_id": "1ZNB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:19",
+      "label_type": "out_of_scope",
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Glu",
+          "observed_codes_at_position": [
+            "THR"
+          ],
+          "resid": 99,
+          "residue_node_id": "m_csa:19:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "ASN"
+          ],
+          "resid": 242,
+          "residue_node_id": "m_csa:19:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Arg",
+          "observed_codes_at_position": [
+            "SER"
+          ],
+          "resid": 103,
+          "residue_node_id": "m_csa:19:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Glu",
+          "observed_codes_at_position": [
+            "ALA"
+          ],
+          "resid": 397,
+          "residue_node_id": "m_csa:19:residue:8"
+        }
+      ],
+      "missing_positions": 4,
+      "pdb_id": "1DL2",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:2",
+      "label_type": "out_of_scope",
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Ser",
+          "observed_codes_at_position": [
+            "GLY"
+          ],
+          "resid": 45,
+          "residue_node_id": "m_csa:2:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Lys",
+          "observed_codes_at_position": [
+            "GLU"
+          ],
+          "resid": 48,
+          "residue_node_id": "m_csa:2:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Ser",
+          "observed_codes_at_position": [
+            "TYR"
+          ],
+          "resid": 105,
+          "residue_node_id": "m_csa:2:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Glu",
+          "observed_codes_at_position": [
+            "THR"
+          ],
+          "resid": 141,
+          "residue_node_id": "m_csa:2:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Lys",
+          "observed_codes_at_position": [
+            "ASP"
+          ],
+          "resid": 209,
+          "residue_node_id": "m_csa:2:residue:5"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Ala",
+          "observed_codes_at_position": [
+            "GLU"
+          ],
+          "resid": 212,
+          "residue_node_id": "m_csa:2:residue:6"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Ser",
+          "observed_codes_at_position": [
+            "GLY"
+          ],
+          "resid": 45,
+          "residue_node_id": "m_csa:2:residue:7"
+        }
+      ],
+      "missing_positions": 7,
+      "pdb_id": "1BTL",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:21",
+      "label_type": "out_of_scope",
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Arg",
+          "observed_codes_at_position": [
+            "SER"
+          ],
+          "resid": 145,
+          "residue_node_id": "m_csa:21:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Lys",
+          "observed_codes_at_position": [
+            "GLY"
+          ],
+          "resid": 163,
+          "residue_node_id": "m_csa:21:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asn",
+          "observed_codes_at_position": [
+            "PRO"
+          ],
+          "resid": 401,
+          "residue_node_id": "m_csa:21:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Tyr",
+          "observed_codes_at_position": [
+            "ASN"
+          ],
+          "resid": 92,
+          "residue_node_id": "m_csa:21:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "GLY"
+          ],
+          "resid": 258,
+          "residue_node_id": "m_csa:21:residue:5"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "ASN"
+          ],
+          "resid": 259,
+          "residue_node_id": "m_csa:21:residue:6"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Glu",
+          "observed_codes_at_position": [
+            "ILE"
+          ],
+          "resid": 235,
+          "residue_node_id": "m_csa:21:residue:8"
+        }
+      ],
+      "missing_positions": 7,
+      "pdb_id": "1DO8",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:22",
+      "label_type": "out_of_scope",
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Ser",
+          "observed_codes_at_position": [
+            "VAL"
+          ],
+          "resid": 70,
+          "residue_node_id": "m_csa:22:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Tyr",
+          "observed_codes_at_position": [
+            "TRP"
+          ],
+          "resid": 141,
+          "residue_node_id": "m_csa:22:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Leu",
+          "observed_codes_at_position": [
+            "TRP"
+          ],
+          "resid": 84,
+          "residue_node_id": "m_csa:22:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "ILE"
+          ],
+          "resid": 95,
+          "residue_node_id": "m_csa:22:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Leu",
+          "observed_codes_at_position": [
+            "SER"
+          ],
+          "resid": 97,
+          "residue_node_id": "m_csa:22:residue:5"
+        }
+      ],
+      "missing_positions": 5,
+      "pdb_id": "1B6B",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:28",
+      "label_type": "seed_fingerprint",
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Glu",
+          "observed_codes_at_position": [
+            "TYR"
+          ],
+          "resid": 258,
+          "residue_node_id": "m_csa:28:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "SER"
+          ],
+          "resid": 224,
+          "residue_node_id": "m_csa:28:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Glu",
+          "observed_codes_at_position": [
+            "THR"
+          ],
+          "resid": 209,
+          "residue_node_id": "m_csa:28:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [],
+          "resid": 179,
+          "residue_node_id": "m_csa:28:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asn",
+          "observed_codes_at_position": [],
+          "resid": 180,
+          "residue_node_id": "m_csa:28:residue:5"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "ARG"
+          ],
+          "resid": 211,
+          "residue_node_id": "m_csa:28:residue:6"
+        }
+      ],
+      "missing_positions": 6,
+      "pdb_id": "1DJX",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "entry_id": "m_csa:29",
+      "label_type": "out_of_scope",
+      "missing_position_details": [
+        {
+          "chain_name": "B",
+          "expected_code": "Glu",
+          "observed_codes_at_position": [],
+          "resid": 287,
+          "residue_node_id": "m_csa:29:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Thr",
+          "observed_codes_at_position": [],
+          "resid": 13,
+          "residue_node_id": "m_csa:29:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Tyr",
+          "observed_codes_at_position": [],
+          "resid": 27,
+          "residue_node_id": "m_csa:29:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Thr",
+          "observed_codes_at_position": [],
+          "resid": 93,
+          "residue_node_id": "m_csa:29:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [],
+          "resid": 94,
+          "residue_node_id": "m_csa:29:residue:5"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Lys",
+          "observed_codes_at_position": [],
+          "resid": 166,
+          "residue_node_id": "m_csa:29:residue:6"
+        }
+      ],
+      "missing_positions": 6,
+      "pdb_id": "1DJO",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:35",
+      "label_type": "out_of_scope",
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Asn",
+          "observed_codes_at_position": [
+            "HIS"
+          ],
+          "resid": 141,
+          "residue_node_id": "m_csa:35:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Lys",
+          "observed_codes_at_position": [
+            "CYS"
+          ],
+          "resid": 138,
+          "residue_node_id": "m_csa:35:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Thr",
+          "observed_codes_at_position": [
+            "GLN"
+          ],
+          "resid": 173,
+          "residue_node_id": "m_csa:35:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "VAL"
+          ],
+          "resid": 136,
+          "residue_node_id": "m_csa:35:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "ASN"
+          ],
+          "resid": 154,
+          "residue_node_id": "m_csa:35:residue:5"
+        }
+      ],
+      "missing_positions": 5,
+      "pdb_id": "2PHK",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:37",
+      "label_type": null,
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Leu",
+          "observed_codes_at_position": [
+            "SER"
+          ],
+          "resid": 353,
+          "residue_node_id": "m_csa:37:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "PHE"
+          ],
+          "resid": 357,
+          "residue_node_id": "m_csa:37:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Ser",
+          "observed_codes_at_position": [
+            "ASP"
+          ],
+          "resid": 499,
+          "residue_node_id": "m_csa:37:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Tyr",
+          "observed_codes_at_position": [
+            "GLY"
+          ],
+          "resid": 354,
+          "residue_node_id": "m_csa:37:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Gln",
+          "observed_codes_at_position": [
+            "PRO"
+          ],
+          "resid": 172,
+          "residue_node_id": "m_csa:37:residue:5"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "GLU"
+          ],
+          "resid": 176,
+          "residue_node_id": "m_csa:37:residue:6"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Gly",
+          "observed_codes_at_position": [
+            "TYR"
+          ],
+          "resid": 495,
+          "residue_node_id": "m_csa:37:residue:7"
+        }
+      ],
+      "missing_positions": 7,
+      "pdb_id": "5COX",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:39",
+      "label_type": null,
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "CYS"
+          ],
+          "resid": 9,
+          "residue_node_id": "m_csa:39:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asn",
+          "observed_codes_at_position": [
+            "PHE"
+          ],
+          "resid": 167,
+          "residue_node_id": "m_csa:39:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "VAL"
+          ],
+          "resid": 240,
+          "residue_node_id": "m_csa:39:residue:4"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Phe",
+          "observed_codes_at_position": [
+            "GLU"
+          ],
+          "resid": 166,
+          "residue_node_id": "m_csa:39:residue:5"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Thr",
+          "observed_codes_at_position": [
+            "PRO"
+          ],
+          "resid": 125,
+          "residue_node_id": "m_csa:39:residue:6"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asn",
+          "observed_codes_at_position": [
+            "GLY"
+          ],
+          "resid": 38,
+          "residue_node_id": "m_csa:39:residue:7"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asp",
+          "observed_codes_at_position": [
+            "HIS"
+          ],
+          "resid": 241,
+          "residue_node_id": "m_csa:39:residue:8"
+        }
+      ],
+      "missing_positions": 7,
+      "pdb_id": "2MAS",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:40",
+      "label_type": null,
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "Gly",
+          "observed_codes_at_position": [
+            "SER"
+          ],
+          "resid": 395,
+          "residue_node_id": "m_csa:40:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Gly",
+          "observed_codes_at_position": [
+            "ILE"
+          ],
+          "resid": 372,
+          "residue_node_id": "m_csa:40:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Lys",
+          "observed_codes_at_position": [
+            "VAL"
+          ],
+          "resid": 215,
+          "residue_node_id": "m_csa:40:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Arg",
+          "observed_codes_at_position": [
+            "THR"
+          ],
+          "resid": 35,
+          "residue_node_id": "m_csa:40:residue:4"
+        }
+      ],
+      "missing_positions": 4,
+      "pdb_id": "13PK",
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:42",
+      "label_type": null,
+      "missing_position_details": [
+        {
+          "chain_name": "A",
+          "expected_code": "His",
+          "observed_codes_at_position": [
+            "VAL"
+          ],
+          "resid": 85,
+          "residue_node_id": "m_csa:42:residue:1"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Asn",
+          "observed_codes_at_position": [
+            "LYS"
+          ],
+          "resid": 115,
+          "residue_node_id": "m_csa:42:residue:2"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Glu",
+          "observed_codes_at_position": [
+            "TRP"
+          ],
+          "resid": 123,
+          "residue_node_id": "m_csa:42:residue:3"
+        },
+        {
+          "chain_name": "A",
+          "expected_code": "Arg",
+          "observed_codes_at_position": [
+            "SER"
+          ],
+          "resid": 53,
+          "residue_node_id": "m_csa:42:residue:4"
+        }
+      ],
+      "missing_positions": 4,
+      "pdb_id": "1QL0",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    }
+  ]
+}

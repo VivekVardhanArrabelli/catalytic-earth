@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "cofactor_evidence_counts": {
+      "role_inferred": 2
+    },
+    "evaluable_out_of_scope_count": 17,
+    "evaluated_out_of_scope_count": 25,
+    "hard_negative_count": 2,
+    "method": "geometry_hard_negative_control_selection",
+    "score_floor": 0.58,
+    "score_floor_source": "min_in_scope_top1_score",
+    "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": false,
+    "top1_fingerprint_counts": {
+      "metal_dependent_hydrolase": 2
+    }
+  },
+  "rows": [
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.9655,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1091
+      },
+      "entry_id": "m_csa:32",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Lactoylglutathione lyase uses metal-assisted lyase/isomerization chemistry rather than metal-activated hydrolysis.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.58,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5869
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.9081,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.128
+      },
+      "entry_id": "m_csa:33",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Methylmalonyl-CoA epimerase uses metal-associated acid-base epimerization rather than the current hydrolase seed mechanisms.",
+      "negative_control_type": "score_overlap_with_in_scope_positive",
+      "score_floor": 0.58,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5852
+    }
+  ]
+}

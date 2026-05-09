@@ -91,10 +91,13 @@ Post-V2 quality work has started:
 - active-site residue coordinate extraction
 - pairwise catalytic-residue distance features
 - nearby ligand/cofactor context from mmCIF non-polymer atoms
-- geometry artifact for a 20-entry graph slice
-- curated seed mechanism labels for the 20-entry geometry slice
+- geometry artifacts for 20-entry regression, 30-entry, and 40-entry expansion
+  slices
+- curated seed mechanism labels for 36 entries in the 40-entry geometry
+  expansion slice
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
+- hard-negative controls and label-expansion candidate ranking
 - local artifact performance suite
 
 ## V1 Target
@@ -142,21 +145,31 @@ Current expectation:
 - next serious step: replace weak token/motif baselines with geometry-aware
   active-site retrieval and curated mechanism labels
 - higher-impact work now depends on quality, not more scaffolding
-- geometry-aware features are now available for 20 entries; the next bottleneck
-  is using them for retrieval and benchmark labels, not just exporting distances
-- strengthened geometry scoring now reaches top1 in-scope accuracy of 1.0 on
-  the tiny curated seed set, but this should not be overinterpreted because only
-  4 entries are in-scope positives
+- geometry-aware features are now available for a 40-entry expansion slice; 26
+  labeled entries are currently geometry-evaluable
+- curated labels now cover 36 entries, with 9 in-scope seed-fingerprint
+  positives and 27 out-of-scope labels
+- 4 entries remain unlabeled in the 40-entry queue, but none are ready for
+  review by current evidence heuristics
+- strengthened geometry scoring reaches top3 in-scope accuracy of 1.0 on the
+  7 evaluable positives in the 40-entry slice; top1 is 0.857, and retained
+  top3 at the zero-false threshold is 0.571
 - ligand/cofactor context is now parsed from nearby mmCIF non-polymer atoms and
   used in retrieval scoring
 - substrate-pocket descriptors are now included in retrieval scoring; next
   bottleneck is failure analysis plus larger and cleaner curated labels
-- failure analysis now shows all current out-of-scope false non-abstentions at
-  threshold 0.7 are near-threshold cases; next bottleneck is robust threshold
-  policy and harder negatives, not additional feature plumbing
-- abstention calibration can still reach perfect out-of-scope abstention on the
-  tiny provisional set (current selected threshold 0.75), but robustness is
-  unproven
+- adaptive abstention thresholds now use observed score boundaries; the
+  20-entry regression slice has a zero-false threshold that retains all 3
+  evaluable positives
+- the 40-entry expansion slice still has 2 hard metal-like out-of-scope controls
+  above the evaluable positive score floor; both are role-inferred metal
+  overlaps without confirmed hydrolysis labels
+- the 40-entry structure-mapping issue report has 14 non-evaluable entries,
+  including 10 labeled entries and 2 in-scope positives, all currently failing
+  from insufficient resolved residues
+- next bottleneck is scorer separation against those hard negatives and better
+  structure selection for non-evaluable positives, not additional feature
+  plumbing
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

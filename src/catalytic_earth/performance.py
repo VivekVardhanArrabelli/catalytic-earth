@@ -6,7 +6,14 @@ from pathlib import Path
 from typing import Any, Callable
 
 from .geometry_retrieval import load_json, run_geometry_retrieval
-from .labels import evaluate_geometry_retrieval, load_labels, sweep_abstention_thresholds
+from .labels import (
+    analyze_geometry_score_margins,
+    analyze_structure_mapping_issues,
+    build_hard_negative_controls,
+    evaluate_geometry_retrieval,
+    load_labels,
+    sweep_abstention_thresholds,
+)
 from .v2 import build_mechanism_benchmark
 
 
@@ -36,6 +43,21 @@ def run_local_performance_suite(
         _measure(
             "sweep_abstention_thresholds",
             lambda: sweep_abstention_thresholds(retrieval, labels),
+            iterations,
+        ),
+        _measure(
+            "analyze_geometry_score_margins",
+            lambda: analyze_geometry_score_margins(retrieval, labels),
+            iterations,
+        ),
+        _measure(
+            "build_hard_negative_controls",
+            lambda: build_hard_negative_controls(retrieval, labels),
+            iterations,
+        ),
+        _measure(
+            "analyze_structure_mapping_issues",
+            lambda: analyze_structure_mapping_issues(geometry, labels),
             iterations,
         ),
     ]
@@ -105,10 +127,24 @@ def _result_summary(result: Any) -> dict[str, Any]:
                 "entry_count",
                 "record_count",
                 "evaluated_count",
+                "evaluable_count",
                 "top1_accuracy_in_scope",
                 "top3_accuracy_in_scope",
+                "top3_accuracy_in_scope_evaluable",
+                "top3_retained_accuracy_in_scope",
+                "top3_retained_accuracy_in_scope_evaluable",
+                "in_scope_retention_rate",
+                "in_scope_retention_rate_evaluable",
                 "out_of_scope_abstention_rate",
+                "out_of_scope_abstention_rate_evaluable",
+                "out_of_scope_false_non_abstentions",
+                "out_of_scope_false_non_abstentions_evaluable",
                 "selected_threshold",
+                "legacy_selected_threshold",
+                "hard_negative_count",
+                "score_separation_gap",
+                "issue_count",
+                "labeled_issue_count",
             }
         }
     return {"keys": sorted(result.keys())}

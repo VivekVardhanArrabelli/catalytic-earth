@@ -2,9 +2,9 @@
   "benchmarks": [
     {
       "iterations": 5,
-      "max_ms": 5.419,
-      "mean_ms": 4.336,
-      "min_ms": 3.733,
+      "max_ms": 4.641,
+      "mean_ms": 3.916,
+      "min_ms": 3.615,
       "name": "load_v1_graph",
       "result_summary": {
         "edge_count": 1475,
@@ -14,9 +14,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 1.107,
-      "mean_ms": 0.679,
-      "min_ms": 0.515,
+      "max_ms": 2.173,
+      "mean_ms": 0.945,
+      "min_ms": 0.48,
       "name": "build_v2_benchmark",
       "result_summary": {
         "record_count": 50
@@ -24,9 +24,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 3.709,
-      "mean_ms": 2.906,
-      "min_ms": 2.451,
+      "max_ms": 3.2,
+      "mean_ms": 3.031,
+      "min_ms": 2.811,
       "name": "run_geometry_retrieval",
       "result_summary": {
         "entry_count": 20,
@@ -35,38 +35,91 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.083,
-      "mean_ms": 0.045,
-      "min_ms": 0.019,
+      "max_ms": 0.06,
+      "mean_ms": 0.037,
+      "min_ms": 0.028,
       "name": "evaluate_geometry_labels",
       "result_summary": {
+        "evaluable_count": 13,
         "evaluated_count": 20,
         "in_scope_count": 4,
-        "out_of_scope_abstention_rate": 0.75,
+        "in_scope_evaluable_count": 3,
+        "in_scope_not_evaluable_count": 1,
+        "in_scope_retention_rate": 0.0,
+        "in_scope_retention_rate_evaluable": 0.0,
+        "out_of_scope_abstention_rate": 1.0,
+        "out_of_scope_abstention_rate_evaluable": 1.0,
         "out_of_scope_count": 16,
+        "out_of_scope_evaluable_count": 10,
+        "out_of_scope_false_non_abstentions": 0,
+        "out_of_scope_false_non_abstentions_evaluable": 0,
+        "out_of_scope_not_evaluable_count": 6,
         "top1_accuracy_in_scope": 1.0,
-        "top3_accuracy_in_scope": 1.0
+        "top3_accuracy_in_scope": 1.0,
+        "top3_accuracy_in_scope_evaluable": 1.0,
+        "top3_retained_accuracy_in_scope": 0.0,
+        "top3_retained_accuracy_in_scope_evaluable": 0.0
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.424,
-      "mean_ms": 0.383,
-      "min_ms": 0.365,
+      "max_ms": 1.932,
+      "mean_ms": 1.674,
+      "min_ms": 1.543,
       "name": "sweep_abstention_thresholds",
       "result_summary": {
-        "selected_threshold": 0.75,
-        "threshold_count": 21
+        "legacy_selected_threshold": 0.5796,
+        "selected_threshold": 0.5796,
+        "threshold_count": 53
+      }
+    },
+    {
+      "iterations": 5,
+      "max_ms": 0.033,
+      "mean_ms": 0.024,
+      "min_ms": 0.02,
+      "name": "analyze_geometry_score_margins",
+      "result_summary": {
+        "evaluated_count": 20,
+        "in_scope_count": 4,
+        "in_scope_evaluable_count": 3,
+        "out_of_scope_count": 16,
+        "out_of_scope_evaluable_count": 10,
+        "score_separation_gap": 0.0005
+      }
+    },
+    {
+      "iterations": 5,
+      "max_ms": 0.034,
+      "mean_ms": 0.03,
+      "min_ms": 0.028,
+      "name": "build_hard_negative_controls",
+      "result_summary": {
+        "evaluable_out_of_scope_count": 10,
+        "evaluated_out_of_scope_count": 16,
+        "hard_negative_count": 0
+      }
+    },
+    {
+      "iterations": 5,
+      "max_ms": 0.049,
+      "mean_ms": 0.03,
+      "min_ms": 0.024,
+      "name": "analyze_structure_mapping_issues",
+      "result_summary": {
+        "geometry_entry_count": 20,
+        "issue_count": 7,
+        "labeled_issue_count": 7
       }
     }
   ],
   "metadata": {
     "inputs": {
-      "geometry_bytes": 104746,
+      "geometry_bytes": 292461,
       "geometry_path": "artifacts/v3_geometry_features.json",
       "graph_bytes": 1102498,
       "graph_path": "artifacts/v1_graph.json",
-      "retrieval_bytes": 89700,
+      "retrieval_bytes": 99396,
       "retrieval_path": "artifacts/v3_geometry_retrieval.json"
     },
     "iterations": 5,

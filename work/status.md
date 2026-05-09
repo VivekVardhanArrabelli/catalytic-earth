@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 17
-- Measured elapsed time: 25.6 minutes (0.43 hours)
+- Entries: 18
+- Measured elapsed time: 76.8 minutes (1.28 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.1 measured minutes (0.22 hours)
-- post-v2: 12.4 measured minutes (0.21 hours)
+- post-v2: 63.7 measured minutes (1.06 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,19 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 95
-- Evidence references logged: 85
+- Artifact references logged: 102
+- Evidence references logged: 92
 
 ## Recent Entries
-
-### 2026-05-09T14:25:33.013901+00:00 - post-v2
-
-- Task: Strengthen V2 retrieval calibration and performance checks
-- Time mode: estimate
-- Estimated/planned minutes: 55
-- Artifacts: src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/labels.py, src/catalytic_earth/performance.py, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, docs/v2_strengthening_report.md
-- Evidence: 30 tests passed, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, out-of-scope abstention 0.75, selected abstention threshold 0.8, 5 local performance benchmarks
-- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T15:20:27.676203+00:00 - post-v2
 
@@ -105,6 +96,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: automation:catalytic-earth-work-loop, work/README.md, work/handoff.md, work/scope.md
 - Evidence: automation requires productive project work until 50 elapsed wall-clock minutes, automation forbids early handoff idle time or reporting-only time before wrap, 37 tests passed, validate passed
 
+### 2026-05-09T17:07:37.625326+00:00 - post-v2
+
+- Task: Calibrate geometry abstention and expand labels
+- Time mode: measured
+- Measured minutes: 51.233
+- Started: 2026-05-09T16:16:10Z
+- Ended: 2026-05-09T17:07:24Z
+- Artifacts: artifacts/v3_geometry_features_40.json, artifacts/v3_geometry_retrieval_40.json, artifacts/v3_abstention_calibration_40.json, artifacts/v3_hard_negative_controls_40.json, artifacts/v3_structure_mapping_issues_40.json, artifacts/v3_label_expansion_candidates.json, artifacts/perf_report.json
+- Evidence: 39 unit tests passed, validate passed, 36 curated labels, 40-entry geometry slice, selected thresholds 0.5796 and 0.587, 2 hard negatives, 14 mapping issues
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -124,6 +125,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T16:02:34.920556+00:00: Current out-of-scope errors are threshold-margin cases; next gain likely comes from abstention policy refinement and harder negatives.
 - 2026-05-09T16:03:37.698226+00:00: Automation model selection is now treated as an operating invariant, not an implicit app default.
 - 2026-05-09T16:14:49.435851+00:00: Automation runs now distinguish productive work time from wrap-up time; normal runs should spend at least 50 measured minutes advancing the project.
+- 2026-05-09T17:07:37.625326+00:00: Next priority is hard-negative scorer separation and structure mapping repair, not more scaffold work
 
 ## Scope Adjustments
 
@@ -143,3 +145,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T16:02:34.920556+00:00: Failure analysis is now explicit and reproducible; next bounded step is threshold-policy tuning with guardrails.
 - 2026-05-09T16:03:37.698226+00:00: Catalytic Earth automation documentation now forbids downgrading below gpt-5.5 with xhigh reasoning.
 - 2026-05-09T16:14:49.435851+00:00: If assigned work finishes or blocks early, agents must switch to the highest-value bounded unblocked task until the 50-minute work boundary.
+- 2026-05-09T17:07:37.625326+00:00: 40-entry slice now has 36 labels, 26 evaluable structures, and explicit hard-negative plus structure-mapping blockers

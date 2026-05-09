@@ -197,6 +197,7 @@ def build_geometry_features(
             continue
 
         resolved: list[dict[str, Any]] = []
+        missing_details: list[dict[str, Any]] = []
         missing = 0
         for item in positions_by_pdb[pdb_id]:
             residue_atoms = select_residue_atoms(
@@ -207,6 +208,7 @@ def build_geometry_features(
             )
             if not residue_atoms:
                 missing += 1
+                missing_details.append(missing_position_detail(atoms, item))
                 continue
             centroid = residue_centroid(residue_atoms)
             ca = atom_position(residue_atoms, "CA")
@@ -231,6 +233,7 @@ def build_geometry_features(
                 "residue_count": len(residues),
                 "resolved_residue_count": len(resolved),
                 "missing_positions": missing,
+                "missing_position_details": missing_details,
                 "residues": resolved,
                 "pairwise_distances_angstrom": pairwise_distances(resolved),
                 "ligand_context": ligand_context_from_atoms(atoms, resolved),
@@ -303,6 +306,30 @@ def select_residue_atoms(
             continue
         selected.append(atom)
     return selected
+
+
+def missing_position_detail(atoms: list[dict[str, Any]], item: dict[str, Any]) -> dict[str, Any]:
+    chain = str(item.get("chain_name")) if item.get("chain_name") is not None else None
+    residue_id = str(item.get("resid")) if item.get("resid") is not None else None
+    observed_codes = sorted(
+        {
+            (atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+            for atom in atoms
+            if atom.get("group_PDB") == "ATOM"
+            and (not chain or (atom.get("auth_asym_id") or atom.get("label_asym_id")) == chain)
+            and (
+                not residue_id
+                or (atom.get("auth_seq_id") or atom.get("label_seq_id")) == residue_id
+            )
+        }
+    )
+    return {
+        "residue_node_id": item.get("residue_node_id"),
+        "chain_name": item.get("chain_name"),
+        "resid": item.get("resid"),
+        "expected_code": item.get("code"),
+        "observed_codes_at_position": observed_codes,
+    }
 
 
 def residue_centroid(atoms: list[dict[str, Any]]) -> dict[str, float]:

@@ -52,16 +52,21 @@ The repository currently contains:
 4. PDB mmCIF active-site geometry extraction for catalytic residues.
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Substrate-pocket descriptor extraction from nearby protein residues.
-7. Curated mechanism labels for the first 20-entry geometry slice.
-8. Retrieval evaluation, abstention threshold calibration, and a local
+7. Curated mechanism labels for 36 entries in the 40-entry geometry expansion
+   slice.
+8. Retrieval evaluation, abstention threshold calibration, hard-negative
+   selection, label-expansion candidate ranking, and a local
    performance suite.
 
-The latest small-slice evaluation is intentionally modest: 20 geometry entries,
-4 in-scope seed-fingerprint positives, and 16 out-of-scope labels. Current
-geometry/cofactor scoring reaches perfect in-scope top1/top3 on those 4
-positives and perfect out-of-scope abstention at the selected threshold, but
-that is not robust scientific validation. It is a sign that the next bottleneck
-is larger, better labels and harder negative controls, not more dashboard work.
+The latest small-slice evaluation is intentionally modest: 40 geometry entries,
+36 curated labels, 26 evaluable active-site structures, and 9 in-scope
+seed-fingerprint positives. On the original 20-entry regression slice, adaptive
+abstention finds a zero-false threshold that retains all 3 evaluable positives.
+On the 40-entry slice, 2 out-of-scope metal-like controls still overlap the
+positive score range, 14 entries need structure-mapping repair before they can
+be evaluated cleanly, and 4 entries remain queued for future label review. The
+next bottleneck is scorer separation, larger labels, and harder negative
+controls, not more dashboard work.
 
 ## Quickstart
 
@@ -88,9 +93,24 @@ python -m catalytic_earth.cli write-v2-report --out docs/v2_report.md
 python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 20 --out artifacts/v3_geometry_features.json
 python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features.json --out artifacts/v3_geometry_retrieval.json
 python -m catalytic_earth.cli label-summary --out artifacts/v3_label_summary.json
-python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_geometry_label_eval.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.5796 --out artifacts/v3_geometry_label_eval.json
 python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_abstention_calibration.json
-python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.7 --out artifacts/v3_geometry_failure_analysis.json
+python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.5796 --out artifacts/v3_geometry_failure_analysis.json
+python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_geometry_score_margins.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_hard_negative_controls.json
+python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 30 --out artifacts/v3_geometry_features_30.json
+python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_30.json --out artifacts/v3_geometry_retrieval_30.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_30.json --abstain-threshold 0.587 --out artifacts/v3_geometry_label_eval_30.json
+python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_30.json --out artifacts/v3_abstention_calibration_30.json
+python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_30.json --out artifacts/v3_geometry_score_margins_30.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_30.json --out artifacts/v3_hard_negative_controls_30.json
+python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 40 --out artifacts/v3_geometry_features_40.json
+python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_40.json --out artifacts/v3_geometry_retrieval_40.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_40.json --abstain-threshold 0.587 --out artifacts/v3_geometry_label_eval_40.json
+python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_abstention_calibration_40.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_hard_negative_controls_40.json
+python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_40.json --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_label_expansion_candidates.json
+python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_40.json --out artifacts/v3_structure_mapping_issues_40.json
 python -m catalytic_earth.cli perf-suite --iterations 5 --out artifacts/perf_report.json
 python -m catalytic_earth.cli log-work --stage v0 --task "example work entry" --minutes 1
 python -m catalytic_earth.cli progress-report --out work/status.md
@@ -129,9 +149,10 @@ Current timeline judgment:
    retrieval baseline, inconsistency detection, dark-enzyme candidate dossiers,
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
-2. Next automation blocks: stronger negative controls, expanded curated labels,
-   and retrieval failure analysis for the substrate-pocket/cofactor scorer.
-3. Next serious milestone: scale from the 20-entry geometry slice to a larger
+2. Next automation blocks: separate metal-hydrolase positives from metal-like
+   lyase/isomerase hard negatives, resolve the 14 non-evaluable structure
+   mappings in the 40-entry slice, and continue curated label expansion.
+3. Next serious milestone: scale from the 40-entry geometry slice to a larger
    audited benchmark where success cannot be explained by tiny-label effects.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that

@@ -9,14 +9,13 @@ benchmark suite, and enzyme discovery pipeline that maps protein evidence to
 catalytic hypotheses.
 
 Current post-V2 direction: improve scientific quality by moving from text/motif
-baselines to geometry-aware active-site retrieval. The first geometry artifact
-is `artifacts/v3_geometry_features.json`.
+baselines to geometry-aware active-site retrieval. Geometry artifacts now cover
+the 20-entry regression slice plus 30-entry and 40-entry expansion slices.
 
-Curated seed labels now live in
-`data/registries/curated_mechanism_labels.json`. The latest evaluation artifact
-is `artifacts/v3_geometry_label_eval.json`; the current 20-entry slice keeps
-top1/top3 in-scope accuracy at 1.0, and abstention remains calibration-sensitive
-because labels are still small and provisional.
+Curated seed labels live in
+`data/registries/curated_mechanism_labels.json`. The registry currently covers
+36 of the first 40 geometry entries: 9 in-scope metal-dependent hydrolase seed
+positives and 27 out-of-scope controls.
 
 ## Repository
 
@@ -64,7 +63,8 @@ PYTHONPATH=src python -m unittest discover -s tests
 - End every automation block by updating `Next Agent Start Here` below with:
   what changed, where to continue, known blockers, the next concrete task, and
   first commands to run.
-- Log time and progress with:
+
+Log time and progress with:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli log-work --help
@@ -119,46 +119,41 @@ surface.
 
 ## Next Agent Start Here
 
+Run started: `2026-05-09T16:16:10Z`.
+
 What changed in this run:
 
-- Automation and scope rules were tightened: if the assigned handoff task
-  finishes early, continue with a written remaining-time plan and implement
-  bounded high-value work until the 50-minute wrap-up boundary; before handoff,
-  verify `origin/main` sync, clean git status, and no pending merge.
-- Added out-of-scope failure analysis tooling in `src/catalytic_earth/labels.py`
-  and `src/catalytic_earth/cli.py`:
-  - new CLI command: `analyze-geometry-failures`
-  - categorizes false non-abstentions by evidence pattern
-  - emits calibration hint:
-    `recommended_threshold_for_zero_current_false_non_abstentions`
-- Added tests in `tests/test_labels.py` for failure classification and
-  recommended-threshold metadata.
-- Generated `artifacts/v3_geometry_failure_analysis.json` at threshold 0.7.
-- Added substrate-pocket descriptors in `src/catalytic_earth/structure.py`:
-  - finds nearby non-catalytic protein residues in an 8A shell around resolved
-    catalytic residues
-  - records per-entry `pocket_context` with nearby residue sites, residue-code
-    counts, and descriptor fractions (hydrophobic, polar, positive, negative,
-    aromatic, sulfur) plus charge balance and mean active-site distance
-  - adds geometry metadata counter `entries_with_pocket_context`
-- Updated retrieval scoring in `src/catalytic_earth/geometry_retrieval.py`:
-  - new `substrate_pocket_score` term added to final score
-  - weighted scoring now combines residue/role overlap, cofactor context, pocket
-    descriptors, and compactness
-  - retrieval metadata string updated to reflect pocket-aware scoring
-- Extended tests:
-  - `tests/test_structure.py` now validates pocket-context extraction and
-    metadata counts
-  - `tests/test_geometry_retrieval.py` now validates pocket-scoring preference
-    behavior and pocket-context ingestion in retrieval
-- Regenerated artifacts:
-  - `artifacts/v3_geometry_features.json`
-  - `artifacts/v3_geometry_retrieval.json`
-  - `artifacts/v3_geometry_label_eval.json`
-  - `artifacts/v3_abstention_calibration.json`
-  - `artifacts/perf_report.json`
-- Updated docs: `README.md`, `docs/geometry_features.md`,
-  `docs/v2_strengthening_report.md`, `work/scope.md`.
+- Expanded curated labels to 36 entries in the 40-entry geometry slice.
+- Added auto abstention thresholds from observed top1 score boundaries and
+  evaluable-aware metrics for retrieval evaluation and threshold selection.
+- Added score-margin, hard-negative-control, label-expansion-candidate, and
+  structure-mapping-issue analyses with CLI commands and tests.
+- Strengthened retrieval scoring with mechanistic coherence for Ser-His-Asp/Glu
+  fingerprints and clearer cofactor-evidence levels.
+- Added missing-position diagnostics for unresolved catalytic residue mappings.
+- Regenerated 20-, 30-, and 40-entry geometry/retrieval/evaluation/calibration
+  artifacts plus hard-negative, score-margin, label-candidate, mapping-issue,
+  and performance artifacts.
+- Updated README, geometry docs, V2 report, performance docs, scope, tests, and
+  reproducibility commands.
+
+Current metrics:
+
+- 20-entry regression slice: 20 evaluated labels, 13 evaluable entries, 3
+  evaluable in-scope positives, selected zero-false threshold `0.5796`.
+- 40-entry expansion slice: 36 evaluated labels, 26 evaluable entries, 7
+  evaluable in-scope positives, selected zero-false threshold `0.587`.
+- 40-entry top1/top3 in-scope accuracy on evaluable positives: `0.857` / `1.0`.
+- 40-entry retained top3 accuracy on evaluable positives at `0.587`: `0.571`.
+- 40-entry out-of-scope abstention at `0.587`: `1.0` on evaluable controls,
+  with 0 false non-abstentions.
+- Hard negatives: 2 role-inferred metal-like out-of-scope controls in the
+  40-entry slice overlap the evaluable positive score floor.
+- Label expansion queue: 4 unlabeled entries, 0 ready for label review by the
+  current readiness checks.
+- Structure mapping issues: 14 non-OK entries in the 40-entry slice, including
+  10 labeled entries and 2 in-scope positives (`m_csa:15` on `1ZNB`, `m_csa:28`
+  on `1DJX`).
 
 Start commands:
 
@@ -168,48 +163,29 @@ git pull --ff-only origin main
 git status -sb
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
-PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 20 --out artifacts/v3_geometry_features.json
-PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features.json --out artifacts/v3_geometry_retrieval.json
-PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.7 --out artifacts/v3_geometry_failure_analysis.json
+PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_abstention_calibration_40.json
+PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_hard_negative_controls_40.json
+PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_40.json --out artifacts/v3_structure_mapping_issues_40.json
 ```
-
-Current state:
-
-- V2 scaffold is complete.
-- Geometry-aware active-site retrieval exists.
-- Curated seed labels exist for the 20-entry geometry slice.
-- Ligand/cofactor context is now parsed from proximal mmCIF non-polymer atoms
-  for the geometry slice (11/20 entries with proximal ligands; 5/20 with mapped
-  cofactor families).
-- Substrate-pocket context is now parsed from nearby protein residues for the
-  geometry slice (15/20 entries with non-empty pocket context).
-- Current label evaluation at threshold 0.7:
-  - top1 in-scope accuracy: 1.0
-  - top3 in-scope accuracy: 1.0
-  - out-of-scope abstention: 0.75
-- Failure analysis at threshold 0.7:
-  - false non-abstentions: 4
-  - evidence categories: all `near_threshold`
-  - max false-non-abstention score: 0.74
-  - recommended threshold for zero current false non-abstentions: 0.75
-- Current selected abstention threshold is 0.75 with out-of-scope abstention
-  1.0 on this small provisional set.
-- Local performance report exists at `artifacts/perf_report.json`.
 
 Next concrete task:
 
-Implement one bounded abstention-policy fix using the new failure artifact.
-Concrete path:
-1) codify threshold selection to prefer the smallest threshold that achieves
-zero current out-of-scope false non-abstentions when top3 in-scope is preserved,
-2) compare against the current selection rule on this 20-entry slice,
-3) regenerate calibration + failure artifacts and record the tradeoff.
+Separate the two 40-slice metal-like hard negatives from real
+metal-dependent-hydrolase positives without losing retained positives. Start by
+opening `artifacts/v3_hard_negative_controls_40.json` and comparing those rows
+against the retained positives in `artifacts/v3_geometry_label_eval_40.json`;
+then add one bounded scoring feature or penalty with a unit test and regenerate
+the 40-entry artifacts.
 
 Known blockers:
 
-- Current curated labels are provisional and small.
-- Geometry retrieval still uses simple heuristics, not learned geometry.
-- Ligand/cofactor evidence is currently nearest-ligand heuristic only; it does
-  not model occupancy, alternate conformers, or biological assembly context.
-- Substrate-pocket evidence is currently a residue-shell heuristic, not a
-  physics-based or learned pocket model.
+- Labels are still provisional and small; do not claim validated enzyme
+  function.
+- Geometry retrieval is still heuristic, not learned.
+- Ligand/cofactor evidence uses nearby mmCIF ligand atoms and inferred roles;
+  it does not model occupancy, alternate conformers, biological assembly, or
+  substrate state.
+- Four unlabeled 40-slice entries are not ready for review until structure
+  mapping or evidence quality improves.
+- Non-evaluable positives need alternate structure selection or residue
+  numbering/chain repair before they can fairly influence scoring.

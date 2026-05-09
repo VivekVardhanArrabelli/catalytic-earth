@@ -9,7 +9,11 @@ from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .labels import (
+    analyze_geometry_score_margins,
     analyze_out_of_scope_failures,
+    analyze_structure_mapping_issues,
+    build_hard_negative_controls,
+    build_label_expansion_candidates,
     evaluate_geometry_retrieval,
     label_summary,
     load_labels,
@@ -226,7 +230,11 @@ def cmd_evaluate_geometry_labels(args: argparse.Namespace) -> int:
 def cmd_calibrate_abstention(args: argparse.Namespace) -> int:
     with Path(args.retrieval).open("r", encoding="utf-8") as handle:
         retrieval = json.load(handle)
-    thresholds = [float(item) for item in args.thresholds.split(",") if item.strip()]
+    thresholds = (
+        None
+        if args.thresholds == "auto"
+        else [float(item) for item in args.thresholds.split(",") if item.strip()]
+    )
     calibration = sweep_abstention_thresholds(
         retrieval,
         load_labels(Path(args.labels)),
@@ -252,6 +260,70 @@ def cmd_analyze_geometry_failures(args: argparse.Namespace) -> int:
     print(
         "Wrote geometry failure analysis to "
         f"{args.out} ({analysis['metadata']['false_non_abstentions']} false non-abstentions)"
+    )
+    return 0
+
+
+def cmd_analyze_geometry_score_margins(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    analysis = analyze_geometry_score_margins(
+        retrieval,
+        load_labels(Path(args.labels)),
+    )
+    write_json(Path(args.out), analysis)
+    print(
+        "Wrote geometry score margin analysis to "
+        f"{args.out} (gap={analysis['metadata']['score_separation_gap']})"
+    )
+    return 0
+
+
+def cmd_build_hard_negative_controls(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    controls = build_hard_negative_controls(
+        retrieval,
+        load_labels(Path(args.labels)),
+        score_floor=args.score_floor,
+    )
+    write_json(Path(args.out), controls)
+    print(
+        "Wrote hard negative controls to "
+        f"{args.out} ({controls['metadata']['hard_negative_count']} controls)"
+    )
+    return 0
+
+
+def cmd_build_label_expansion_candidates(args: argparse.Namespace) -> int:
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    candidates = build_label_expansion_candidates(
+        geometry,
+        retrieval,
+        load_labels(Path(args.labels)),
+    )
+    write_json(Path(args.out), candidates)
+    print(
+        "Wrote label expansion candidates to "
+        f"{args.out} ({candidates['metadata']['ready_for_label_review_count']} ready)"
+    )
+    return 0
+
+
+def cmd_analyze_structure_mapping_issues(args: argparse.Namespace) -> int:
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    analysis = analyze_structure_mapping_issues(
+        geometry,
+        load_labels(Path(args.labels)),
+    )
+    write_json(Path(args.out), analysis)
+    print(
+        "Wrote structure mapping issues to "
+        f"{args.out} ({analysis['metadata']['issue_count']} issues)"
     )
     return 0
 
@@ -445,7 +517,8 @@ def build_parser() -> argparse.ArgumentParser:
     calibration.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
     calibration.add_argument(
         "--thresholds",
-        default="0.0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0",
+        default="auto",
+        help="comma-separated thresholds or 'auto' for score-boundary candidates",
     )
     calibration.add_argument("--out", default="artifacts/v3_abstention_calibration.json")
     calibration.set_defaults(func=cmd_calibrate_abstention)
@@ -459,6 +532,44 @@ def build_parser() -> argparse.ArgumentParser:
     failures.add_argument("--abstain-threshold", type=float, default=0.75)
     failures.add_argument("--out", default="artifacts/v3_geometry_failure_analysis.json")
     failures.set_defaults(func=cmd_analyze_geometry_failures)
+
+    score_margins = subparsers.add_parser(
+        "analyze-geometry-score-margins",
+        help="analyze score overlap between in-scope positives and out-of-scope labels",
+    )
+    score_margins.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    score_margins.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    score_margins.add_argument("--out", default="artifacts/v3_geometry_score_margins.json")
+    score_margins.set_defaults(func=cmd_analyze_geometry_score_margins)
+
+    hard_negatives = subparsers.add_parser(
+        "build-hard-negative-controls",
+        help="select out-of-scope labels that overlap positive score ranges",
+    )
+    hard_negatives.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    hard_negatives.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    hard_negatives.add_argument("--score-floor", type=float, default=None)
+    hard_negatives.add_argument("--out", default="artifacts/v3_hard_negative_controls.json")
+    hard_negatives.set_defaults(func=cmd_build_hard_negative_controls)
+
+    label_candidates = subparsers.add_parser(
+        "build-label-expansion-candidates",
+        help="rank unlabeled geometry entries for the next curated label pass",
+    )
+    label_candidates.add_argument("--geometry", default="artifacts/v3_geometry_features_40.json")
+    label_candidates.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval_40.json")
+    label_candidates.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    label_candidates.add_argument("--out", default="artifacts/v3_label_expansion_candidates.json")
+    label_candidates.set_defaults(func=cmd_build_label_expansion_candidates)
+
+    mapping_issues = subparsers.add_parser(
+        "analyze-structure-mapping-issues",
+        help="summarize non-OK geometry entries and missing residue mappings",
+    )
+    mapping_issues.add_argument("--geometry", default="artifacts/v3_geometry_features_40.json")
+    mapping_issues.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    mapping_issues.add_argument("--out", default="artifacts/v3_structure_mapping_issues_40.json")
+    mapping_issues.set_defaults(func=cmd_analyze_structure_mapping_issues)
 
     perf = subparsers.add_parser(
         "perf-suite",

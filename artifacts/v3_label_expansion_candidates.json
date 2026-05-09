@@ -1,0 +1,120 @@
+{
+  "metadata": {
+    "candidate_count": 4,
+    "geometry_entry_count": 40,
+    "labeled_entry_count": 36,
+    "method": "geometry_label_expansion_candidate_selection",
+    "ready_for_label_review_count": 0
+  },
+  "rows": [
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "cofactor_families": [],
+      "entry_id": "m_csa:39",
+      "has_pairwise_geometry": false,
+      "has_pocket_context": true,
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "2MAS",
+      "readiness_blockers": [
+        "status_ok",
+        "resolved_at_least_three_residues",
+        "has_pairwise_geometry"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": false,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": false,
+        "top1_score_at_least_0_4": true
+      },
+      "readiness_score": 2,
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.518
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "cofactor_families": [],
+      "entry_id": "m_csa:42",
+      "has_pairwise_geometry": false,
+      "has_pocket_context": true,
+      "mechanistic_coherence_score": 0.0,
+      "pdb_id": "1QL0",
+      "readiness_blockers": [
+        "status_ok",
+        "resolved_at_least_three_residues",
+        "has_pairwise_geometry",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": false,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": false,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 1,
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.1007
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "cofactor_families": [],
+      "entry_id": "m_csa:37",
+      "has_pairwise_geometry": false,
+      "has_pocket_context": false,
+      "mechanistic_coherence_score": 0.0,
+      "pdb_id": "5COX",
+      "readiness_blockers": [
+        "status_ok",
+        "resolved_at_least_three_residues",
+        "has_pairwise_geometry",
+        "has_pocket_context",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": false,
+        "has_pocket_context": false,
+        "resolved_at_least_three_residues": false,
+        "status_ok": false,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 0,
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.084
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "cofactor_families": [],
+      "entry_id": "m_csa:40",
+      "has_pairwise_geometry": false,
+      "has_pocket_context": false,
+      "mechanistic_coherence_score": 0.0,
+      "pdb_id": "13PK",
+      "readiness_blockers": [
+        "status_ok",
+        "resolved_at_least_three_residues",
+        "has_pairwise_geometry",
+        "has_pocket_context",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": false,
+        "has_pocket_context": false,
+        "resolved_at_least_three_residues": false,
+        "status_ok": false,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 0,
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.084
+    }
+  ]
+}

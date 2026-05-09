@@ -18,7 +18,11 @@ class PerformanceTests(unittest.TestCase):
         retrieval = ROOT / "artifacts" / "v3_geometry_retrieval.json"
         report = run_local_performance_suite(graph, geometry, retrieval, iterations=1)
         self.assertEqual(report["metadata"]["iterations"], 1)
-        self.assertGreaterEqual(len(report["benchmarks"]), 5)
+        self.assertGreaterEqual(len(report["benchmarks"]), 8)
+        self.assertIn(
+            "analyze_structure_mapping_issues",
+            {benchmark["name"] for benchmark in report["benchmarks"]},
+        )
         self.assertIn("mean_ms", report["benchmarks"][0])
 
 

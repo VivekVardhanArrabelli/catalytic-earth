@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from catalytic_earth.structure import (
     build_geometry_features,
     ligand_context_from_atoms,
+    missing_position_detail,
     pairwise_distances,
     pocket_context_from_atoms,
     parse_atom_site_loop,
@@ -58,6 +59,11 @@ class StructureTests(unittest.TestCase):
         asp_atoms = select_residue_atoms(atoms, chain_name="A", resid=7, code="Asp")
         self.assertEqual(len(asp_atoms), 3)
         self.assertEqual(residue_centroid(asp_atoms), {"x": 0.667, "y": 0.333, "z": 0.0})
+        detail = missing_position_detail(
+            atoms,
+            {"residue_node_id": "x", "chain_name": "A", "resid": 7, "code": "GLU"},
+        )
+        self.assertEqual(detail["observed_codes_at_position"], ["ASP"])
 
     def test_pairwise_distances(self) -> None:
         distances = pairwise_distances(
@@ -122,6 +128,7 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(features["metadata"]["entries_with_inferred_cofactors"], 1)
         self.assertEqual(features["metadata"]["entries_with_pocket_context"], 1)
         self.assertEqual(features["entries"][0]["resolved_residue_count"], 2)
+        self.assertEqual(features["entries"][0]["missing_position_details"], [])
         self.assertEqual(features["entries"][0]["ligand_context"]["ligand_codes"], ["HEM"])
         self.assertEqual(features["entries"][0]["pocket_context"]["nearby_residue_count"], 2)
 

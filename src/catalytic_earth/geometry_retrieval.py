@@ -87,16 +87,20 @@ def score_entry_against_fingerprint(
         residue_roles,
         entry.get("ligand_context"),
     )
+    cofactor_evidence = cofactor_evidence_level(fingerprint, residue_roles, entry.get("ligand_context"))
     compactness = compactness_score(distances)
     substrate_pocket = substrate_pocket_score(fingerprint, entry.get("pocket_context"))
-    score = round(
+    coherence = mechanistic_coherence_score(fingerprint, residues)
+    raw_score = (
         0.35 * residue_match_fraction
         + 0.24 * role_match_fraction
         + 0.18 * cofactor_context
         + 0.08 * compactness
-        + 0.15 * substrate_pocket,
-        4,
+        + 0.15 * substrate_pocket
     )
+    if fingerprint.get("id") == "ser_his_acid_hydrolase":
+        raw_score *= 0.70 + 0.30 * coherence
+    score = round(raw_score, 4)
     return {
         "fingerprint_id": fingerprint.get("id"),
         "fingerprint_name": fingerprint.get("name"),
@@ -104,8 +108,10 @@ def score_entry_against_fingerprint(
         "residue_match_fraction": round(residue_match_fraction, 4),
         "role_match_fraction": round(role_match_fraction, 4),
         "cofactor_context_score": round(cofactor_context, 4),
+        "cofactor_evidence_level": cofactor_evidence,
         "compactness_score": round(compactness, 4),
         "substrate_pocket_score": round(substrate_pocket, 4),
+        "mechanistic_coherence_score": round(coherence, 4),
         "matched_signature_roles": matched_signature_roles,
         "distance_summary": distance_summary(distances),
     }
@@ -219,6 +225,27 @@ def cofactor_context_score(
     return sum(requirement_scores) / len(requirement_scores) if requirement_scores else 0.0
 
 
+def cofactor_evidence_level(
+    fingerprint: dict[str, Any],
+    residue_roles: set[str],
+    ligand_context: dict[str, Any] | None = None,
+) -> str:
+    cofactors = {_normalize_phrase(cofactor) for cofactor in fingerprint.get("cofactors", [])}
+    if not cofactors:
+        return "not_required"
+
+    ligand_families = _ligand_cofactor_families(ligand_context)
+    role_families = _role_implied_cofactor_families(residue_roles)
+    expected_families = {_cofactor_family(cofactor) for cofactor in cofactors}
+    expected_families.discard("")
+
+    if expected_families & ligand_families:
+        return "ligand_supported"
+    if expected_families & role_families:
+        return "role_inferred"
+    return "absent"
+
+
 def distance_summary(distances: list[dict[str, Any]]) -> dict[str, Any]:
     values = [
         float(item["distance"])
@@ -278,6 +305,48 @@ def substrate_pocket_score(
         return _clamp(0.45 * aromatic + 0.35 * hydrophobic + 0.20 * polar)
 
     return 0.5
+
+
+def mechanistic_coherence_score(
+    fingerprint: dict[str, Any],
+    residues: list[dict[str, Any]],
+) -> float:
+    fingerprint_id = fingerprint.get("id")
+    if fingerprint_id != "ser_his_acid_hydrolase":
+        return 1.0
+
+    ser_nucleophile = any(
+        _canonical_code(residue.get("code")) == "SER"
+        and _residue_has_any_role(residue, {"nucleophile", "covalently attached"})
+        for residue in residues
+    )
+    if not ser_nucleophile:
+        return 0.0
+
+    his_base = any(
+        _canonical_code(residue.get("code")) == "HIS"
+        and _residue_has_any_role(
+            residue,
+            {"general base", "proton acceptor", "proton donor", "acid base"},
+        )
+        for residue in residues
+    )
+    acid_orienter = any(
+        _canonical_code(residue.get("code")) in {"ASP", "GLU"}
+        and _residue_has_any_role(
+            residue,
+            {
+                "acid",
+                "electrostatic stabiliser",
+                "hydrogen bond acceptor",
+                "hydrogen bond donor",
+                "proton acceptor",
+                "proton donor",
+            },
+        )
+        for residue in residues
+    )
+    return (1.0 + float(his_base) + float(acid_orienter)) / 3.0
 
 
 def write_geometry_retrieval(
@@ -347,6 +416,11 @@ def _role_match_fraction(signature: list[dict[str, Any]], residue_roles: set[str
     return matched / len(signature)
 
 
+def _residue_has_any_role(residue: dict[str, Any], required_roles: set[str]) -> bool:
+    roles = {_normalize_phrase(role) for role in residue.get("roles", []) if isinstance(role, str)}
+    return any(required in roles for required in required_roles)
+
+
 def _is_metal_cofactor(cofactor: str) -> bool:
     metals = {"zn2+", "mg2+", "mn2+", "fe2+/fe3+", "fe2+", "fe3+", "metal"}
     return cofactor in metals or any(metal in cofactor for metal in metals)
@@ -356,12 +430,21 @@ def _observed_cofactor_families(
     ligand_context: dict[str, Any] | None,
     residue_roles: set[str],
 ) -> set[str]:
+    return _ligand_cofactor_families(ligand_context) | _role_implied_cofactor_families(residue_roles)
+
+
+def _ligand_cofactor_families(ligand_context: dict[str, Any] | None) -> set[str]:
     families: set[str] = set()
     if isinstance(ligand_context, dict):
         for value in ligand_context.get("cofactor_families", []):
-            normalized = _normalize_phrase(str(value))
+            normalized = _normalize_cofactor_family(str(value))
             if normalized:
                 families.add(normalized)
+    return families
+
+
+def _role_implied_cofactor_families(residue_roles: set[str]) -> set[str]:
+    families: set[str] = set()
     role_text = " ".join(residue_roles)
     if "heme" in role_text:
         families.add("heme")
@@ -372,6 +455,35 @@ def _observed_cofactor_families(
     if "metal ligand" in role_text:
         families.add("metal_ion")
     return families
+
+
+def _cofactor_family(cofactor: str) -> str:
+    if _is_metal_cofactor(cofactor):
+        return "metal_ion"
+    if "heme" in cofactor:
+        return "heme"
+    if "pyridoxal phosphate" in cofactor:
+        return "plp"
+    if cofactor in {"fad", "fmn"}:
+        return "flavin"
+    if cofactor in {"nadph", "nadp", "nad", "nadh"}:
+        return "nad"
+    if "sam" in cofactor or "adenosylmethionine" in cofactor:
+        return "sam"
+    if "4fe-4s" in cofactor:
+        return "fe_s_cluster"
+    return ""
+
+
+def _normalize_cofactor_family(value: str) -> str:
+    normalized = _normalize_phrase(value)
+    if normalized in {"metal ion", "metal"}:
+        return "metal_ion"
+    if normalized in {"fe s cluster", "fes cluster", "iron sulfur"}:
+        return "fe_s_cluster"
+    if normalized in {"pyridoxal phosphate", "pyridoxal 5 phosphate"}:
+        return "plp"
+    return normalized
 
 
 def _clamp(value: float) -> float:

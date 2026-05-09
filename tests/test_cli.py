@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import subprocess
 import sys
 import tempfile
@@ -25,6 +26,11 @@ class CliTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             ledger = Path(tmpdir) / "source_ledger.json"
             demo = Path(tmpdir) / "mechanism_demo.json"
+            score_margins = Path(tmpdir) / "score_margins.json"
+            hard_negatives = Path(tmpdir) / "hard_negatives.json"
+            label_candidates = Path(tmpdir) / "label_candidates.json"
+            mapping_issues = Path(tmpdir) / "mapping_issues.json"
+            calibration = Path(tmpdir) / "calibration.json"
             subprocess.run(
                 [sys.executable, "-m", "catalytic_earth.cli", "build-ledger", "--out", str(ledger)],
                 cwd=ROOT,
@@ -41,8 +47,91 @@ class CliTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
             )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "analyze-geometry-score-margins",
+                    "--out",
+                    str(score_margins),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-hard-negative-controls",
+                    "--out",
+                    str(hard_negatives),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-label-expansion-candidates",
+                    "--out",
+                    str(label_candidates),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "analyze-structure-mapping-issues",
+                    "--out",
+                    str(mapping_issues),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "calibrate-abstention",
+                    "--out",
+                    str(calibration),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
             self.assertTrue(ledger.exists())
             self.assertTrue(demo.exists())
+            self.assertIn("score_separation_gap", json.loads(score_margins.read_text())["metadata"])
+            self.assertIn("hard_negative_count", json.loads(hard_negatives.read_text())["metadata"])
+            self.assertIn(
+                "ready_for_label_review_count",
+                json.loads(label_candidates.read_text())["metadata"],
+            )
+            self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
+            self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 
 if __name__ == "__main__":

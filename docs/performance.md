@@ -25,6 +25,9 @@ The suite currently measures:
 - running geometry-aware retrieval
 - evaluating retrieval against curated labels
 - sweeping abstention thresholds
+- analyzing positive/out-of-scope score margins
+- selecting hard negative controls
+- summarizing non-OK structure mappings and missing-residue diagnostics
 
 ## Boundary
 

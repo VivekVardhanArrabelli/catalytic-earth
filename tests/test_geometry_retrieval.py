@@ -10,7 +10,9 @@ sys.path.insert(0, str(ROOT / "src"))
 from catalytic_earth.geometry_retrieval import (
     compactness_score,
     cofactor_context_score,
+    cofactor_evidence_level,
     distance_summary,
+    mechanistic_coherence_score,
     run_geometry_retrieval,
     score_entry_against_fingerprint,
     substrate_pocket_score,
@@ -48,7 +50,30 @@ class GeometryRetrievalTests(unittest.TestCase):
         }
         score = score_entry_against_fingerprint(entry, fingerprint)
         self.assertEqual(score["residue_match_fraction"], 1.0)
+        self.assertEqual(score["mechanistic_coherence_score"], 1.0)
         self.assertGreater(score["score"], 0.7)
+
+    def test_ser_his_score_penalizes_missing_serine_nucleophile(self) -> None:
+        entry = {
+            "residues": [
+                {"code": "SER", "roles": ["hydrogen bond donor"]},
+                {"code": "HIS", "roles": ["proton acceptor"]},
+                {"code": "ASP", "roles": ["electrostatic stabiliser"]},
+            ],
+            "pairwise_distances_angstrom": [{"distance": 6}],
+        }
+        fingerprint = {
+            "id": "ser_his_acid_hydrolase",
+            "name": "Ser-His-Asp/Glu hydrolase triad",
+            "active_site_signature": [
+                {"role": "nucleophile", "residue": "Ser"},
+                {"role": "general_base", "residue": "His"},
+                {"role": "acid_or_orienter", "residue": "Asp/Glu"},
+            ],
+        }
+        self.assertEqual(mechanistic_coherence_score(fingerprint, entry["residues"]), 0.0)
+        score = score_entry_against_fingerprint(entry, fingerprint)
+        self.assertLess(score["score"], 0.7)
 
     def test_metal_context_outscores_heme_without_heme_evidence(self) -> None:
         residue_codes = ["ASP", "HIS", "HIS"]
@@ -58,6 +83,11 @@ class GeometryRetrievalTests(unittest.TestCase):
         self.assertGreater(
             cofactor_context_score(metal, residue_codes, residue_roles),
             cofactor_context_score(heme, residue_codes, residue_roles),
+        )
+        self.assertEqual(cofactor_evidence_level(metal, residue_roles), "role_inferred")
+        self.assertEqual(
+            cofactor_evidence_level(metal, set(), {"cofactor_families": ["metal_ion"]}),
+            "ligand_supported",
         )
 
     def test_heme_ligand_context_outscores_metal_when_heme_is_observed(self) -> None:
@@ -69,6 +99,10 @@ class GeometryRetrievalTests(unittest.TestCase):
         self.assertGreater(
             cofactor_context_score(heme, residue_codes, residue_roles, ligand_context),
             cofactor_context_score(metal, residue_codes, residue_roles, ligand_context),
+        )
+        self.assertEqual(
+            cofactor_evidence_level(heme, residue_roles, ligand_context),
+            "ligand_supported",
         )
 
     def test_substrate_pocket_score_prefers_polar_for_metal_hydrolase(self) -> None:
