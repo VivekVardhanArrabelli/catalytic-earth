@@ -15,7 +15,7 @@ expansion slices.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-100 entries, including all 100 entries in the expanded geometry slice.
+125 entries, including all 125 entries in the expanded geometry slice.
 
 ## Repository
 
@@ -120,22 +120,23 @@ surface.
 ## Next Agent Start Here
 
 Run started: `2026-05-09T18:17:48Z`.
-Run ended: `2026-05-09T19:26:06Z` (`68.3` measured minutes).
+Run ended: `2026-05-09T19:35:11Z` (`77.383` measured minutes).
 
 What changed in this run:
 
-- Expanded curated labels from 63 to 100 entries, covering every entry in the
-  current 100-entry geometry expansion slice.
+- Expanded curated labels from 63 to 125 entries, covering every entry in the
+  current 125-entry geometry expansion slice.
 - Added `cobalamin_radical_rearrangement` and
   `flavin_dehydrogenase_reductase` seed fingerprints, with curated positives
   and demo coverage.
 - Added scoring counterevidence for carbon-transfer/SAM-like ligands,
   nucleotide-transfer ligands, aromatic/positive role-inferred pockets,
-  heme-only and cobalamin-only metal-like contexts, absent PLP anchors, absent
-  B12 context, and absent flavin context.
+  heme-only and cobalamin-only metal-like contexts, histidine-only metal sites,
+  molybdenum-center heme-like contexts, absent PLP anchors, absent B12 context,
+  and flavin context without reductant support.
 - Expanded graph, benchmark, geometry, retrieval, evaluation, calibration,
   hard-negative, margin, label-candidate, and mapping-issue artifacts through
-  the 100-entry slice.
+  the 125-entry slice.
 - Updated the performance suite so label-evaluation timing uses the calibrated
   abstention threshold instead of the stale default.
 - Updated README, geometry docs, V2 strengthening report, performance docs,
@@ -143,7 +144,7 @@ What changed in this run:
 
 Current metrics:
 
-- Curated label registry: 100 labels; 25 seed-fingerprint positives and 75
+- Curated label registry: 125 labels; 38 seed-fingerprint positives and 87
   out-of-scope controls.
 - 20-entry regression slice: threshold `0.565`, 20/20 evaluable, 5/5 in-scope
   positives retained, 0 out-of-scope false non-abstentions, 0 hard negatives,
@@ -162,14 +163,15 @@ Current metrics:
   out-of-scope top1 `0.5652`, gap `0.0125`.
 - 100-entry hard negatives: 0 score-overlap controls and 0 near misses within
   0.01 below the positive floor.
+- 125-entry expanded slice: threshold `0.5877`, 124/125 evaluable, 29/38
+  in-scope positives retained, 0 out-of-scope false non-abstentions, 74 hard
+  negatives, 0 near misses, and score gap `-0.1404`.
 - Label expansion queue: 0 unlabeled entries and 0 ready review candidates in
-  the current 100-entry slice.
-- 125-entry staging slice: 125 geometry entries, 124/125 with pairwise
-  geometry, 25 unlabeled entries, 24 ready label-review candidates, and 1
-  unlabeled structure-mapping issue (`m_csa:105`).
+  the current 125-entry slice.
 - Structure mapping issues: 0 non-OK entries in the 40-, 50-, 60-, 75-, and
-  100-entry slices after auth/label residue fallback.
-- Verification this run: 58 unit tests passed, registry validation passed, and
+  100-entry slices after auth/label residue fallback; 1 labeled out-of-scope
+  insufficient-residue issue remains in the 125-entry slice (`m_csa:105`).
+- Verification this run: 61 unit tests passed, registry validation passed, and
   local performance report regenerated.
 
 Start commands:
@@ -180,27 +182,23 @@ git pull --ff-only origin main
 git status -sb
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
-python - <<'PY'
-import json
-from pathlib import Path
-rows = json.loads(Path("artifacts/v3_label_expansion_candidates_125.json").read_text())["rows"]
-for row in rows:
-    print(row["entry_id"], row["top1_fingerprint_id"], row["top1_score"], row["readiness_blockers"])
-PY
+PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_125.json --out artifacts/v3_hard_negative_controls_125.json
+PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_125.json --out artifacts/v3_geometry_score_margins_125.json
+PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_125.json --abstain-threshold 0.5877 --out artifacts/v3_geometry_failure_analysis_125.json
 PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_125.json --out artifacts/v3_structure_mapping_issues_125.json
 ```
 
 Next concrete task:
 
-Label the 125-entry staging slice. Start with the 24 ready candidates in
-`artifacts/v3_label_expansion_candidates_125.json`, add conservative
-`seed_fingerprint` or `out_of_scope` labels in
-`data/registries/curated_mechanism_labels.json`, then rerun 125-entry label
-evaluation, calibration, score-margin, hard-negative, label-candidate, and
-mapping-issue artifacts. Separately inspect `m_csa:105` in
-`artifacts/v3_structure_mapping_issues_125.json`; it has only one resolved
-residue in PDB `1VLB`, so decide whether a better structure position can be
-selected before labeling it.
+Analyze and reduce the 125-entry hard-negative set without breaking the clean
+20- through 100-entry regression slices. Start with
+`artifacts/v3_hard_negative_controls_125.json` and
+`artifacts/v3_geometry_score_margins_125.json`; group the 74 controls by top1
+fingerprint and cofactor evidence, then add one bounded fingerprint split or
+counterevidence rule with tests. The likely first target is separating generic
+heme/flavin redox or metal-like oxidoreductase controls from true heme
+peroxidase/oxidase, flavin dehydrogenase/reductase, and metal-dependent
+hydrolase positives.
 
 Known blockers:
 
@@ -210,7 +208,7 @@ Known blockers:
 - Ligand/cofactor evidence uses nearby mmCIF ligand atoms and inferred roles;
   it does not model occupancy, alternate conformers, biological assembly, or
   substrate state.
-- The current label queue is empty for the 100-entry slice, so label expansion
-  requires enlarging the geometry slice or adding a new seed fingerprint family.
+- The current label queue is empty for the 125-entry slice; quality work should
+  focus on hard-negative separation before more label expansion.
 - Full-database scalability has not been measured; `perf-suite` is local
   artifact timing only.

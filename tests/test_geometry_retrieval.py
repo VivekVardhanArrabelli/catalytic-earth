@@ -448,6 +448,61 @@ class GeometryRetrievalTests(unittest.TestCase):
             1.0,
         )
 
+    def test_metal_hydrolase_penalizes_histidine_only_metal_site(self) -> None:
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint={"id": "metal_dependent_hydrolase"},
+                residues=[
+                    {"code": "HIS", "roles": ["metal ligand"]},
+                    {"code": "HIS", "roles": ["metal ligand"]},
+                    {"code": "HIS", "roles": ["metal ligand"]},
+                    {"code": "HIS", "roles": ["metal ligand"]},
+                    {"code": "PHE", "roles": ["steric role"]},
+                ],
+                cofactor_evidence="role_inferred",
+                ligand_context={"ligand_codes": [], "cofactor_families": []},
+                substrate_pocket_score_value=0.2,
+            ),
+            0.9,
+        )
+
+    def test_heme_fingerprint_penalizes_molybdenum_center_context(self) -> None:
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint={"id": "heme_peroxidase_oxidase"},
+                residues=[
+                    {"code": "CYS", "roles": ["metal ligand"]},
+                    {"code": "HIS", "roles": ["metal ligand"]},
+                    {"code": "TYR", "roles": ["proton relay"]},
+                ],
+                cofactor_evidence="ligand_supported",
+                ligand_context={
+                    "ligand_codes": ["HEM", "MO", "MTE"],
+                    "cofactor_families": ["heme"],
+                },
+                substrate_pocket_score_value=0.3,
+            ),
+            1.0,
+        )
+
+    def test_flavin_monooxygenase_penalizes_missing_reductant_context(self) -> None:
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint={"id": "flavin_monooxygenase"},
+                residues=[{"code": "SER", "roles": ["proton relay"]}],
+                cofactor_evidence="ligand_supported",
+                ligand_context={"ligand_codes": ["FAD"], "cofactor_families": ["flavin"]},
+                substrate_pocket_score_value=0.5,
+            ),
+            counterevidence_penalty(
+                fingerprint={"id": "flavin_dehydrogenase_reductase"},
+                residues=[{"code": "SER", "roles": ["proton relay"]}],
+                cofactor_evidence="ligand_supported",
+                ligand_context={"ligand_codes": ["FAD"], "cofactor_families": ["flavin"]},
+                substrate_pocket_score_value=0.5,
+            ),
+        )
+
     def test_metal_supported_site_penalizes_ser_his_assignment(self) -> None:
         entry = {
             "residues": [

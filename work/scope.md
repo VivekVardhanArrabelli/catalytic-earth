@@ -92,9 +92,9 @@ Post-V2 quality work has started:
 - pairwise catalytic-residue distance features
 - nearby ligand/cofactor context from mmCIF non-polymer atoms
 - geometry artifacts for 20-entry regression, 30-entry, 40-entry, 50-entry,
-  60-entry, 75-entry, 100-entry, and 125-entry staging slices
+  60-entry, 75-entry, 100-entry, and 125-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for all 100 entries in the current expanded
+- curated seed mechanism labels for all 125 entries in the current expanded
   geometry slice
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
@@ -147,12 +147,12 @@ Current expectation:
   active-site retrieval and curated mechanism labels
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
-  100-, and 125-entry slices; all 100 audited geometry entries are evaluable,
-  and the 125-entry staging slice has 124/125 entries with pairwise geometry
-- curated labels now cover 100 entries, with 25 in-scope seed-fingerprint
-  positives and 75 out-of-scope labels
-- the current 100-entry label queue is empty; the 125-entry staging slice adds
-  25 unlabeled entries, including 24 ready label-review candidates
+  100-, and 125-entry slices; all 100 regression geometry entries are
+  evaluable, and the 125-entry slice has 124/125 evaluable entries
+- curated labels now cover 125 entries, with 38 in-scope seed-fingerprint
+  positives and 87 out-of-scope labels
+- the current 125-entry label queue is empty after adding provisional labels
+  for entries 101-125
 - strengthened geometry scoring reaches top1/top3/retained top3 accuracy of
   1.0 on the 25 in-scope positives in the 100-entry slice at the current
   zero-false threshold
@@ -165,10 +165,13 @@ Current expectation:
   in-scope positives
 - the 100-entry expansion slice currently has 0 hard negatives at the positive
   score floor and 0 near misses within 0.01 below the floor
+- the 125-entry expansion slice currently has 74 hard negatives and a -0.1404
+  score gap; the zero-false threshold retains only 29/38 in-scope positives
 - the 40-, 50-, 60-, 75-, and 100-entry structure-mapping issue reports
-  currently have 0 non-OK mappings after auth/label residue-number fallback
-- next bottleneck is labeling the 125-entry staging slice and resolving its one
-  unlabeled structure-mapping issue
+  currently have 0 non-OK mappings after auth/label residue-number fallback;
+  the 125-entry report has 1 labeled out-of-scope insufficient-residue issue
+- next bottleneck is hard-negative separation in the 125-entry slice, especially
+  coarse heme/flavin redox and generic metal-like controls
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

@@ -126,6 +126,7 @@ class LabelTests(unittest.TestCase):
         controls = build_hard_negative_controls(retrieval, labels, score_floor=0.1)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 1)
         self.assertEqual(controls["rows"][0]["negative_control_type"], "score_overlap_with_in_scope_positive")
+        self.assertIn("context", controls["rows"][0])
 
         near_miss = build_hard_negative_controls(retrieval, labels, score_floor=0.205)
         self.assertEqual(near_miss["metadata"]["hard_negative_count"], 0)

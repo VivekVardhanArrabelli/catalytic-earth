@@ -250,6 +250,28 @@ PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
   --geometry artifacts/v3_geometry_features_125.json \
   --out artifacts/v3_geometry_retrieval_125.json
 
+PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
+  --retrieval artifacts/v3_geometry_retrieval_125.json \
+  --abstain-threshold 0.5877 \
+  --out artifacts/v3_geometry_label_eval_125.json
+
+PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
+  --retrieval artifacts/v3_geometry_retrieval_125.json \
+  --out artifacts/v3_abstention_calibration_125.json
+
+PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures \
+  --retrieval artifacts/v3_geometry_retrieval_125.json \
+  --abstain-threshold 0.5877 \
+  --out artifacts/v3_geometry_failure_analysis_125.json
+
+PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins \
+  --retrieval artifacts/v3_geometry_retrieval_125.json \
+  --out artifacts/v3_geometry_score_margins_125.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
+  --retrieval artifacts/v3_geometry_retrieval_125.json \
+  --out artifacts/v3_hard_negative_controls_125.json
+
 PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
   --geometry artifacts/v3_geometry_features_125.json \
   --retrieval artifacts/v3_geometry_retrieval_125.json \
@@ -295,7 +317,9 @@ For each M-CSA entry with structure positions:
 - flavin dehydrogenase/reductase scoring separated from flavin monooxygenases
 - counterevidence penalties for heme-only metal-role overlap, ATP/ADP transfer
   context, carbon-transfer ligand context, redox electron-transfer roles,
-  PLP-like lysine motifs without PLP, and absent B12 context
+  histidine-only metal-role sites, molybdenum-center heme-like contexts,
+  PLP-like lysine motifs without PLP, absent B12 context, and flavin contexts
+  missing reductant support
 - catalytic-cluster compactness from pairwise distances
 
 This is still a weak baseline, but it is materially better than pure text
@@ -322,6 +346,9 @@ Current slices:
   positives retained, 0 out-of-scope false non-abstentions.
 - 100-entry expanded slice: threshold 0.5653, 100/100 evaluable, 25/25
   in-scope positives retained, 0 out-of-scope false non-abstentions.
+- 125-entry expanded slice: threshold 0.5877, 124/125 evaluable, 29/38
+  in-scope positives retained, 0 out-of-scope false non-abstentions, 74 hard
+  negatives, and a negative score gap of -0.1404.
 
 The current 100-entry score-margin artifact shows a 0.0125 gap after explicit
 carbon-transfer ligand, aromatic-pocket, PLP-anchor, nucleotide-transfer, and
@@ -329,29 +356,32 @@ cobalamin-context counterevidence plus a separate flavin dehydrogenase/reductase
 seed. The current 100-entry hard-negative artifact has 0 score-overlap controls
 and 0 near misses within 0.01 below the positive floor.
 
+The 125-entry slice is fully labeled but no longer clean: it exposes many
+coarse redox and metal-like hard negatives, especially against heme, flavin,
+and generic metal-dependent seeds. The zero-false policy requires threshold
+0.5877 and sacrifices positive retention, so the next work should split or
+tighten seed families rather than tune a single global threshold.
+
 ## Label Expansion Queue
 
-The 100-entry geometry artifact is now fully labeled in the provisional registry:
+The 125-entry geometry artifact is now fully labeled in the provisional registry:
 
-- geometry entries in expansion artifact: 100
-- curated labels: 100
-- evaluable active-site structures: 100
+- geometry entries in expansion artifact: 125
+- curated labels: 125
+- evaluable active-site structures: 124
 - unlabeled entries remaining: 0
 - ready label-expansion candidates remaining: 0
 
 The structure-mapping issue artifacts currently list 0 non-OK entries for the
 40-, 50-, 60-, 75-, and 100-entry slices after matching catalytic residue
-positions against both mmCIF `auth_*` and `label_*` numbering.
-
-The 125-entry staging slice has 25 unlabeled entries, 24 ready label-review
-candidates, and 1 unlabeled structure-mapping issue (`m_csa:105`, insufficient
-resolved residues). It should be treated as the next work queue rather than a
-fully audited benchmark until those entries are labeled.
+positions against both mmCIF `auth_*` and `label_*` numbering. The 125-entry
+slice has 1 labeled out-of-scope mapping issue: `m_csa:105` has insufficient
+resolved residues in PDB `1VLB`.
 
 ## Curated Seed Labels
 
-`data/registries/curated_mechanism_labels.json` provides 100 provisional labels,
-covering all entries in the 100-entry geometry expansion slice. Labels are
+`data/registries/curated_mechanism_labels.json` provides 125 provisional labels,
+covering all entries in the 125-entry geometry expansion slice. Labels are
 intentionally conservative:
 
 - `seed_fingerprint` means the entry maps to one of the current seed mechanism

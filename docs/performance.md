@@ -33,14 +33,14 @@ The suite currently measures:
 Latest 5-iteration mean timings on the current local artifacts, using calibrated
 threshold `0.565` for label evaluation:
 
-- load V1 graph: 3.888 ms
-- build V2 benchmark: 0.731 ms
-- run geometry retrieval: 7.092 ms
-- evaluate geometry labels: 0.050 ms
-- sweep abstention thresholds: 2.614 ms
-- analyze geometry score margins: 0.042 ms
-- build hard negative controls: 0.050 ms
-- analyze structure mapping issues: 0.008 ms
+- load V1 graph: 3.632 ms
+- build V2 benchmark: 0.710 ms
+- run geometry retrieval: 6.050 ms
+- evaluate geometry labels: 0.056 ms
+- sweep abstention thresholds: 2.660 ms
+- analyze geometry score margins: 0.040 ms
+- build hard negative controls: 0.053 ms
+- analyze structure mapping issues: 0.007 ms
 
 ## Boundary
 

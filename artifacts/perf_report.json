@@ -2,9 +2,9 @@
   "benchmarks": [
     {
       "iterations": 5,
-      "max_ms": 4.044,
-      "mean_ms": 3.888,
-      "min_ms": 3.767,
+      "max_ms": 3.774,
+      "mean_ms": 3.632,
+      "min_ms": 3.523,
       "name": "load_v1_graph",
       "result_summary": {
         "edge_count": 1475,
@@ -14,9 +14,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 1.309,
-      "mean_ms": 0.731,
-      "min_ms": 0.503,
+      "max_ms": 1.166,
+      "mean_ms": 0.71,
+      "min_ms": 0.447,
       "name": "build_v2_benchmark",
       "result_summary": {
         "record_count": 50
@@ -24,9 +24,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 10.236,
-      "mean_ms": 7.092,
-      "min_ms": 6.112,
+      "max_ms": 6.7,
+      "mean_ms": 6.05,
+      "min_ms": 5.668,
       "name": "run_geometry_retrieval",
       "result_summary": {
         "entry_count": 20,
@@ -35,9 +35,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.08,
-      "mean_ms": 0.05,
-      "min_ms": 0.041,
+      "max_ms": 0.102,
+      "mean_ms": 0.056,
+      "min_ms": 0.042,
       "name": "evaluate_geometry_labels",
       "result_summary": {
         "evaluable_count": 20,
@@ -63,8 +63,8 @@
     },
     {
       "iterations": 5,
-      "max_ms": 2.673,
-      "mean_ms": 2.614,
+      "max_ms": 2.881,
+      "mean_ms": 2.66,
       "min_ms": 2.542,
       "name": "sweep_abstention_thresholds",
       "result_summary": {
@@ -76,8 +76,8 @@
     {
       "iterations": 5,
       "max_ms": 0.053,
-      "mean_ms": 0.042,
-      "min_ms": 0.037,
+      "mean_ms": 0.04,
+      "min_ms": 0.036,
       "name": "analyze_geometry_score_margins",
       "result_summary": {
         "evaluated_count": 20,
@@ -91,8 +91,8 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.054,
-      "mean_ms": 0.05,
+      "max_ms": 0.06,
+      "mean_ms": 0.053,
       "min_ms": 0.049,
       "name": "build_hard_negative_controls",
       "result_summary": {
@@ -104,8 +104,8 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.012,
-      "mean_ms": 0.008,
+      "max_ms": 0.011,
+      "mean_ms": 0.007,
       "min_ms": 0.006,
       "name": "analyze_structure_mapping_issues",
       "result_summary": {
@@ -121,7 +121,7 @@
       "geometry_path": "artifacts/v3_geometry_features.json",
       "graph_bytes": 1102498,
       "graph_path": "artifacts/v1_graph.json",
-      "retrieval_bytes": 141833,
+      "retrieval_bytes": 417081,
       "retrieval_path": "artifacts/v3_geometry_retrieval.json"
     },
     "iterations": 5,

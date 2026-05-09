@@ -18,6 +18,7 @@ METAL_HYDROLASE_TRANSFER_LIGAND_CODES = {
     "PQQ",  # quinone redox cofactor context
     "U5P",  # nucleotide-sugar transfer context
 }
+MOLYBDENUM_CENTER_LIGAND_CODES = {"MO", "MTE", "MOS", "MOO", "MOM"}
 NUCLEOTIDE_TRANSFER_LIGAND_CODES = {
     "ACP",
     "ADP",
@@ -54,6 +55,13 @@ def run_geometry_retrieval(
                 "pdb_id": entry.get("pdb_id"),
                 "status": entry.get("status"),
                 "resolved_residue_count": entry.get("resolved_residue_count", 0),
+                "residue_codes": [
+                    _canonical_code(residue.get("code"))
+                    for residue in entry.get("residues", [])
+                    if _canonical_code(residue.get("code"))
+                ],
+                "ligand_context": entry.get("ligand_context", {}),
+                "pocket_context": entry.get("pocket_context", {}),
                 "top_fingerprints": sorted(
                     scored, key=lambda item: (-item["score"], item["fingerprint_id"])
                 )[:top_k],
@@ -421,6 +429,8 @@ def counterevidence_penalty(
             penalty = min(penalty, 0.90)
         if cofactor_evidence == "role_inferred" and _has_aromatic_positive_pocket(pocket_context):
             penalty = min(penalty, 0.92)
+        if cofactor_evidence == "role_inferred" and _has_histidine_only_metal_site(residues):
+            penalty = min(penalty, 0.82)
         if (
             cofactor_evidence == "role_inferred"
             and {"nucleophile", "nucleofuge"}.issubset(residue_roles)
@@ -452,6 +462,11 @@ def counterevidence_penalty(
             return 0.85
         return 1.0
 
+    if fingerprint_id == "heme_peroxidase_oxidase":
+        if "heme" in ligand_families and ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES:
+            return 0.78
+        return 1.0
+
     if fingerprint_id == "plp_dependent_enzyme":
         if cofactor_evidence == "absent" and not _has_plp_lysine_anchor(residues):
             return 0.85
@@ -462,7 +477,14 @@ def counterevidence_penalty(
             return 0.25
         return 1.0
 
-    if fingerprint_id in {"flavin_monooxygenase", "flavin_dehydrogenase_reductase"}:
+    if fingerprint_id == "flavin_monooxygenase":
+        if cofactor_evidence == "absent":
+            return 0.60
+        if cofactor_evidence == "ligand_supported" and "nad" not in ligand_families:
+            return 0.75
+        return 1.0
+
+    if fingerprint_id == "flavin_dehydrogenase_reductase":
         if cofactor_evidence == "absent":
             return 0.60
         return 1.0
@@ -667,6 +689,20 @@ def _has_aromatic_positive_pocket(pocket_context: dict[str, Any] | None) -> bool
     aromatic = float(descriptors.get("aromatic_fraction", 0.0) or 0.0)
     positive = float(descriptors.get("positive_fraction", 0.0) or 0.0)
     return aromatic >= 0.20 and positive >= 0.12
+
+
+def _has_histidine_only_metal_site(residues: list[dict[str, Any]]) -> bool:
+    metal_ligand_codes = [
+        _canonical_code(residue.get("code"))
+        for residue in residues
+        if _residue_has_any_role(residue, {"metal ligand"})
+    ]
+    if len(metal_ligand_codes) < 4:
+        return False
+    if set(metal_ligand_codes) != {"HIS"}:
+        return False
+    all_codes = {_canonical_code(residue.get("code")) for residue in residues}
+    return not (all_codes & {"ASP", "GLU", "CYS"})
 
 
 def _has_plp_lysine_anchor(residues: list[dict[str, Any]]) -> bool:

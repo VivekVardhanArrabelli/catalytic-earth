@@ -52,27 +52,29 @@ The repository currently contains:
 4. PDB mmCIF active-site geometry extraction for catalytic residues.
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Substrate-pocket descriptor extraction from nearby protein residues.
-7. Curated mechanism labels for 100 entries, including all 100 entries in the
+7. Curated mechanism labels for 125 entries, including all 125 entries in the
    current expanded geometry slice.
 8. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 9. Retrieval evaluation, abstention threshold calibration, hard-negative
    selection, label-expansion candidate ranking, and a local
    performance suite.
 
-The latest small-slice evaluation is intentionally modest: 100 geometry entries,
-100 curated labels, 100 evaluable active-site structures, and 25 in-scope
-seed-fingerprint positives. On the original 20-entry regression slice, adaptive
+The 100-entry evaluation remains the clean regression slice: 100 geometry
+entries, 100 evaluable active-site structures, 25 in-scope seed-fingerprint
+positives, 75 out-of-scope controls, 0 hard negatives, and 0 near misses at the
+current score floor. On the original 20-entry regression slice, adaptive
 abstention finds a zero-false threshold that retains all 5 in-scope positives.
 On the 100-entry slice, ligand/cofactor counterevidence plus the cobalamin seed
 and a flavin-redox seed find a zero-false threshold that abstains on all 75
-out-of-scope controls while retaining all 25 in-scope positives. There are
-currently 0 hard negatives and 0 near misses in the 100-entry slice; the next
-bottleneck is scale and label diversity, not more dashboard work.
+out-of-scope controls while retaining all 25 in-scope positives.
 
-A 125-entry staging slice has also been generated. It has 125 geometry entries,
-25 currently unlabeled entries, 24 ready label-review candidates, and 1
-unlabeled structure-mapping issue. Treat it as the next label-expansion work
-queue, not as a fully audited benchmark yet.
+The new 125-entry slice is now fully labeled, and it deliberately exposes the
+next failure mode: 125 entries, 124 evaluable active-site structures, 38
+in-scope positives, 87 out-of-scope controls, 0 ready label-expansion
+candidates, 1 labeled structure-mapping issue, and 74 hard negatives by
+positive-score overlap. The zero-false threshold for that slice rises to
+`0.5877` and retains only 0.7632 of in-scope positives. The next bottleneck is
+hard-negative separation and seed-family diversity, not more dashboard work.
 
 ## Quickstart
 
@@ -156,6 +158,11 @@ python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_125.json 
 python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_125.json --out artifacts/v2_benchmark_125.json
 python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_125.json --max-entries 125 --out artifacts/v3_geometry_features_125.json
 python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_125.json --out artifacts/v3_geometry_retrieval_125.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_125.json --abstain-threshold 0.5877 --out artifacts/v3_geometry_label_eval_125.json
+python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_125.json --out artifacts/v3_abstention_calibration_125.json
+python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_125.json --abstain-threshold 0.5877 --out artifacts/v3_geometry_failure_analysis_125.json
+python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_125.json --out artifacts/v3_geometry_score_margins_125.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_125.json --out artifacts/v3_hard_negative_controls_125.json
 python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_125.json --retrieval artifacts/v3_geometry_retrieval_125.json --out artifacts/v3_label_expansion_candidates_125.json
 python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_125.json --out artifacts/v3_structure_mapping_issues_125.json
 python -m catalytic_earth.cli perf-suite --iterations 5 --out artifacts/perf_report.json
@@ -196,9 +203,10 @@ Current timeline judgment:
    retrieval baseline, inconsistency detection, dark-enzyme candidate dossiers,
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
-2. Next automation blocks: label the 125-entry staging slice and resolve its
-   one unlabeled structure-mapping issue.
-3. Next serious milestone: scale from the 100-entry geometry slice to a larger
+2. Next automation blocks: analyze the 125-entry hard negatives and split
+   coarse redox/metal seed families without overfitting the 100-entry
+   regression slice.
+3. Next serious milestone: make the 125-entry geometry slice pass a stricter
    audited benchmark where success cannot be explained by tiny-label effects.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that

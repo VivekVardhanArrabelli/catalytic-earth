@@ -1,8 +1,8 @@
 {
   "metadata": {
     "candidate_count": 0,
-    "geometry_entry_count": 40,
-    "labeled_entry_count": 75,
+    "geometry_entry_count": 20,
+    "labeled_entry_count": 125,
     "method": "geometry_label_expansion_candidate_selection",
     "ready_for_label_review_count": 0
   },

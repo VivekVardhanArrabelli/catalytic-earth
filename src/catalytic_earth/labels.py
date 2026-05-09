@@ -595,6 +595,7 @@ def build_hard_negative_controls(
                     {
                         **_hard_negative_row(
                             label=label,
+                            result=result,
                             top1=top1,
                             top1_score=top1_score,
                             score_floor=floor,
@@ -607,6 +608,7 @@ def build_hard_negative_controls(
         rows.append(
             _hard_negative_row(
                 label=label,
+                result=result,
                 top1=top1,
                 top1_score=top1_score,
                 score_floor=floor,
@@ -646,6 +648,7 @@ def build_hard_negative_controls(
 
 def _hard_negative_row(
     label: MechanismLabel,
+    result: dict[str, Any],
     top1: dict[str, Any],
     top1_score: float,
     score_floor: float,
@@ -659,6 +662,7 @@ def _hard_negative_row(
         "top1_fingerprint_id": top1.get("fingerprint_id"),
         "top1_score": top1_score,
         "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
+        "context": _retrieval_result_context(result),
         "component_scores": {
             "residue_match_fraction": float(top1.get("residue_match_fraction", 0.0) or 0.0),
             "role_match_fraction": float(top1.get("role_match_fraction", 0.0) or 0.0),
@@ -670,6 +674,26 @@ def _hard_negative_row(
             ),
         },
         "label_rationale": label.rationale,
+    }
+
+
+def _retrieval_result_context(result: dict[str, Any]) -> dict[str, Any]:
+    ligand_context = result.get("ligand_context", {})
+    if not isinstance(ligand_context, dict):
+        ligand_context = {}
+    pocket_context = result.get("pocket_context", {})
+    if not isinstance(pocket_context, dict):
+        pocket_context = {}
+    descriptors = pocket_context.get("descriptors", {})
+    if not isinstance(descriptors, dict):
+        descriptors = {}
+    return {
+        "pdb_id": result.get("pdb_id"),
+        "residue_codes": result.get("residue_codes", []),
+        "ligand_codes": ligand_context.get("ligand_codes", []),
+        "cofactor_families": ligand_context.get("cofactor_families", []),
+        "nearby_residue_count": pocket_context.get("nearby_residue_count", 0),
+        "pocket_descriptors": descriptors,
     }
 
 
