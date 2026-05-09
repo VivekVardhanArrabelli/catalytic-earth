@@ -54,8 +54,11 @@ PYTHONPATH=src python -m unittest discover -s tests
   50-minute wrap-up boundary and execute the highest-value bounded unblocked
   item toward project completion.
 - At 50 minutes elapsed, stop starting new implementation work and begin
-  wrap-up: finish tests/artifacts/docs, update this handoff, log measured time,
+  wrap-up: finish tests/artifacts, review and update README/docs/work files so
+  they reflect the actual end state, update this handoff, log measured time,
   regenerate status, commit, and push.
+- Documentation review is mandatory. If no docs changes are needed, record
+  `documentation checked; no changes needed` in handoff or progress evidence.
 - Prefer durable code and data schemas over prose.
 - Keep outputs reproducible.
 - Add tests for new normalization logic.

@@ -24,7 +24,8 @@ advance completion of the whole project.
 
 At the start of each block, record the real wall-clock start timestamp. At
 50 minutes elapsed from that timestamp, stop starting new implementation work
-and begin wrap-up: tests, artifacts, handoff, progress log, commit, and push.
+and begin wrap-up: tests, artifacts, documentation review, handoff, progress
+log, commit, and push.
 
 Before 50 elapsed minutes, the agent must not hand off early, idle, or spend the
 remaining time only reporting. If the handoff-assigned task is completed or
@@ -40,14 +41,18 @@ After each hourly work block:
 
 1. Log measured elapsed time and evidence. Use `--time-mode measured` with
    `--started-at` and `--ended-at`, or `--measured-minutes`, whenever possible.
-2. Update `status.md`.
-3. Update `handoff.md` with exact next-agent instructions.
-4. Run relevant checks.
-5. Commit and push to `origin/main`.
-6. Verify remote sync before handoff:
+2. Review `README.md`, `docs/*.md`, `work/scope.md`, `work/handoff.md`, and
+   `work/status.md`; update anything stale so docs reflect the actual end state.
+3. If no documentation changes are needed, record `documentation checked; no
+   changes needed` in handoff or progress evidence.
+4. Update `status.md`.
+5. Update `handoff.md` with exact next-agent instructions.
+6. Run relevant checks.
+7. Commit and push to `origin/main`.
+8. Verify remote sync before handoff:
    `git fetch origin` then confirm `git rev-parse HEAD` equals
    `git rev-parse origin/main` and confirm no merge is pending.
-7. Recalibrate the scope or timeline if observed speed contradicts estimates.
+9. Recalibrate the scope or timeline if observed speed contradicts estimates.
 
 ## Context Rule
 

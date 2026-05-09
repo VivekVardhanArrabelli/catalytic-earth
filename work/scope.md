@@ -38,6 +38,8 @@ Automation cadence:
   item instead of handing off early
 - begin wrap-up at 50 elapsed wall-clock minutes
 - reserve 5 minutes for break/overhead
+- review and update README/docs/work files so they reflect the actual end state;
+  if no changes are needed, record that docs were checked
 - log the hour
 - update `work/handoff.md` for the next automation run
 - run checks

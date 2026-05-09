@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 21
-- Measured elapsed time: 205.6 minutes (3.43 hours)
+- Entries: 22
+- Measured elapsed time: 205.8 minutes (3.43 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- ops: 13.1 measured minutes (0.22 hours)
+- ops: 13.4 measured minutes (0.22 hours)
 - post-v2: 192.5 measured minutes (3.21 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -21,20 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 136
-- Evidence references logged: 109
+- Artifact references logged: 140
+- Evidence references logged: 114
 
 ## Recent Entries
-
-### 2026-05-09T15:42:05.002091+00:00 - ops
-
-- Task: Tighten automation early-completion and git sync rules
-- Time mode: measured
-- Measured minutes: 1.033
-- Started: 2026-05-09T15:40:56Z
-- Ended: 2026-05-09T15:41:58Z
-- Artifacts: automation:catalytic-earth-work-loop, work/handoff.md, work/scope.md
-- Evidence: automation requires remaining-time plan after early task completion, automation requires final git sync verification, 35 tests passed, validate passed
 
 ### 2026-05-09T16:02:34.920556+00:00 - post-v2
 
@@ -105,6 +95,16 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: fresh reset to origin/main before work, 63 unit tests passed, validate passed, 125-entry hard negatives reduced from 74 to 53 against correct-positive floor, 20-100 slices still have zero hard negatives
 - Notes: Manual continuation after user-requested fresh checkout; precise start timestamp was not captured.
 
+### 2026-05-09T20:12:10.878697+00:00 - ops
+
+- Task: Require documentation review during automation wrap-up
+- Time mode: measured
+- Measured minutes: 0.217
+- Started: 2026-05-09T20:11:49Z
+- Ended: 2026-05-09T20:12:02Z
+- Artifacts: automation:catalytic-earth-work-loop, work/README.md, work/handoff.md, work/scope.md
+- Evidence: automation requires README/docs/work review during wrap-up, automation requires docs to reflect actual end state, documentation checked and updated, 63 tests passed, validate passed
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -128,6 +128,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T18:08:06.495922+00:00: remaining bottleneck is separating two ligand-supported metal-like controls without losing retained positives
 - 2026-05-09T19:35:11+00:00: The 100-entry slice is clean, but full 125-entry labeling exposes hard redox and metal-like controls; robustness now depends on hard-negative separation and seed-family splits.
 - 2026-05-09T19:52:34.146667+00:00: The main 125-entry bottleneck is no longer hidden heme-absent overlap; remaining controls concentrate in metal-like and Ser-His-like groups.
+- 2026-05-09T20:12:10.878697+00:00: End-of-run quality now includes documentation freshness, not only code artifacts and git cleanliness.
 
 ## Scope Adjustments
 
@@ -151,3 +152,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T18:08:06.495922+00:00: expanded geometry slice to 60 fully labeled entries with 63 labels
 - 2026-05-09T19:35:11+00:00: Expanded the audited geometry slice to 125 fully labeled entries; next scope is reducing 125-entry hard negatives without regressing the clean 20-100 slices.
 - 2026-05-09T19:52:34.146667+00:00: 125-entry hard-negative controls are now grouped and anchored to correctly ranked positives; next scorer work should target the largest grouped control clusters.
+- 2026-05-09T20:12:10.878697+00:00: Every automation wrap-up must update stale README/docs/work files or explicitly record that documentation was checked and unchanged.
