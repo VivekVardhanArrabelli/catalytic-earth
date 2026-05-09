@@ -480,6 +480,7 @@ def build_hard_negative_controls(
     retrieval: dict[str, Any],
     labels: list[MechanismLabel],
     score_floor: float | None = None,
+    near_margin: float = 0.01,
 ) -> dict[str, Any]:
     margins = analyze_geometry_score_margins(retrieval, labels)
     inferred_floor = margins["metadata"]["min_in_scope_top1_score"]
@@ -490,6 +491,8 @@ def build_hard_negative_controls(
                 "score_floor": None,
                 "score_floor_source": "min_in_scope_top1_score",
                 "hard_negative_count": 0,
+                "near_miss_margin": near_margin,
+                "near_miss_count": 0,
                 "evaluated_out_of_scope_count": margins["metadata"]["out_of_scope_count"],
                 "evaluable_out_of_scope_count": margins["metadata"]["out_of_scope_evaluable_count"],
                 "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": (
@@ -501,10 +504,12 @@ def build_hard_negative_controls(
                 "cofactor_evidence_counts": {},
             },
             "rows": [],
+            "near_miss_rows": [],
         }
     floor = float(score_floor if score_floor is not None else inferred_floor)
     labels_by_entry = {label.entry_id: label for label in labels}
     rows: list[dict[str, Any]] = []
+    near_miss_rows: list[dict[str, Any]] = []
 
     for result in retrieval.get("results", []):
         entry_id = result.get("entry_id")
@@ -517,28 +522,28 @@ def build_hard_negative_controls(
         top1 = top[0] if top else {}
         top1_score = round(float(top1.get("score", 0.0) or 0.0), 4)
         if top1_score < floor:
+            if floor - top1_score <= near_margin:
+                near_miss_rows.append(
+                    {
+                        **_hard_negative_row(
+                            label=label,
+                            top1=top1,
+                            top1_score=top1_score,
+                            score_floor=floor,
+                            negative_control_type="near_miss_below_in_scope_floor",
+                        ),
+                        "score_gap_to_floor": round(floor - top1_score, 4),
+                    }
+                )
             continue
         rows.append(
-            {
-                "entry_id": entry_id,
-                "negative_control_type": "score_overlap_with_in_scope_positive",
-                "hard_negative_reason": classify_hard_negative_control(top1),
-                "score_floor": round(floor, 4),
-                "top1_fingerprint_id": top1.get("fingerprint_id"),
-                "top1_score": top1_score,
-                "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
-                "component_scores": {
-                    "residue_match_fraction": float(top1.get("residue_match_fraction", 0.0) or 0.0),
-                    "role_match_fraction": float(top1.get("role_match_fraction", 0.0) or 0.0),
-                    "cofactor_context_score": float(top1.get("cofactor_context_score", 0.0) or 0.0),
-                    "substrate_pocket_score": float(top1.get("substrate_pocket_score", 0.0) or 0.0),
-                    "compactness_score": float(top1.get("compactness_score", 0.0) or 0.0),
-                    "mechanistic_coherence_score": float(
-                        top1.get("mechanistic_coherence_score", 0.0) or 0.0
-                    ),
-                },
-                "label_rationale": label.rationale,
-            }
+            _hard_negative_row(
+                label=label,
+                top1=top1,
+                top1_score=top1_score,
+                score_floor=floor,
+                negative_control_type="score_overlap_with_in_scope_positive",
+            )
         )
 
     fingerprint_counts = Counter(row["top1_fingerprint_id"] for row in rows)
@@ -551,6 +556,8 @@ def build_hard_negative_controls(
             "score_floor": round(floor, 4),
             "score_floor_source": "min_in_scope_top1_score" if score_floor is None else "explicit",
             "hard_negative_count": len(rows),
+            "near_miss_margin": near_margin,
+            "near_miss_count": len(near_miss_rows),
             "evaluated_out_of_scope_count": margins["metadata"]["out_of_scope_count"],
             "evaluable_out_of_scope_count": margins["metadata"]["out_of_scope_evaluable_count"],
             "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": (
@@ -562,6 +569,39 @@ def build_hard_negative_controls(
             "cofactor_evidence_counts": dict(sorted(cofactor_evidence_counts.items())),
         },
         "rows": sorted(rows, key=lambda row: (-row["top1_score"], row["entry_id"])),
+        "near_miss_rows": sorted(
+            near_miss_rows,
+            key=lambda row: (row["score_gap_to_floor"], row["entry_id"]),
+        ),
+    }
+
+
+def _hard_negative_row(
+    label: MechanismLabel,
+    top1: dict[str, Any],
+    top1_score: float,
+    score_floor: float,
+    negative_control_type: str,
+) -> dict[str, Any]:
+    return {
+        "entry_id": label.entry_id,
+        "negative_control_type": negative_control_type,
+        "hard_negative_reason": classify_hard_negative_control(top1),
+        "score_floor": round(score_floor, 4),
+        "top1_fingerprint_id": top1.get("fingerprint_id"),
+        "top1_score": top1_score,
+        "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
+        "component_scores": {
+            "residue_match_fraction": float(top1.get("residue_match_fraction", 0.0) or 0.0),
+            "role_match_fraction": float(top1.get("role_match_fraction", 0.0) or 0.0),
+            "cofactor_context_score": float(top1.get("cofactor_context_score", 0.0) or 0.0),
+            "substrate_pocket_score": float(top1.get("substrate_pocket_score", 0.0) or 0.0),
+            "compactness_score": float(top1.get("compactness_score", 0.0) or 0.0),
+            "mechanistic_coherence_score": float(
+                top1.get("mechanistic_coherence_score", 0.0) or 0.0
+            ),
+        },
+        "label_rationale": label.rationale,
     }
 
 

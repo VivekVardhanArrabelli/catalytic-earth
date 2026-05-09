@@ -27,7 +27,7 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 36)
+        self.assertEqual(len(labels), 63)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
@@ -119,9 +119,18 @@ class LabelTests(unittest.TestCase):
 
         controls = build_hard_negative_controls(retrieval, labels)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(controls["metadata"]["near_miss_count"], 0)
         controls = build_hard_negative_controls(retrieval, labels, score_floor=0.1)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 1)
         self.assertEqual(controls["rows"][0]["negative_control_type"], "score_overlap_with_in_scope_positive")
+
+        near_miss = build_hard_negative_controls(retrieval, labels, score_floor=0.205)
+        self.assertEqual(near_miss["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(near_miss["metadata"]["near_miss_count"], 1)
+        self.assertEqual(
+            near_miss["near_miss_rows"][0]["negative_control_type"],
+            "near_miss_below_in_scope_floor",
+        )
 
         expansion = build_label_expansion_candidates(
             {

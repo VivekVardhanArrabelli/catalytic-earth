@@ -1,15 +1,17 @@
 {
   "by_confidence": {
-    "high": 2,
+    "high": 3,
     "low": 3,
-    "medium": 31
+    "medium": 57
   },
   "by_fingerprint": {
-    "metal_dependent_hydrolase": 9
+    "heme_peroxidase_oxidase": 1,
+    "metal_dependent_hydrolase": 11,
+    "ser_his_acid_hydrolase": 1
   },
   "by_type": {
-    "out_of_scope": 27,
-    "seed_fingerprint": 9
+    "out_of_scope": 50,
+    "seed_fingerprint": 13
   },
-  "label_count": 36
+  "label_count": 63
 }

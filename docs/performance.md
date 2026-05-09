@@ -29,6 +29,17 @@ The suite currently measures:
 - selecting hard negative controls
 - summarizing non-OK structure mappings and missing-residue diagnostics
 
+Latest 5-iteration mean timings on the current local artifacts:
+
+- load V1 graph: 3.655 ms
+- build V2 benchmark: 0.560 ms
+- run geometry retrieval: 4.554 ms
+- evaluate geometry labels: 0.046 ms
+- sweep abstention thresholds: 2.152 ms
+- analyze geometry score margins: 0.025 ms
+- build hard negative controls: 0.036 ms
+- analyze structure mapping issues: 0.007 ms
+
 ## Boundary
 
 This is local wall-clock timing for current artifacts. It is not a scalability

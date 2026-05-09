@@ -10,12 +10,11 @@ catalytic hypotheses.
 
 Current post-V2 direction: improve scientific quality by moving from text/motif
 baselines to geometry-aware active-site retrieval. Geometry artifacts now cover
-the 20-entry regression slice plus 30-entry and 40-entry expansion slices.
+the 20-entry regression slice plus 30-, 40-, 50-, and 60-entry expansion slices.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-36 of the first 40 geometry entries: 9 in-scope metal-dependent hydrolase seed
-positives and 27 out-of-scope controls.
+63 entries, including all 60 entries in the expanded geometry slice.
 
 ## Repository
 
@@ -119,41 +118,46 @@ surface.
 
 ## Next Agent Start Here
 
-Run started: `2026-05-09T16:16:10Z`.
+Run started: `2026-05-09T17:16:40Z`.
 
 What changed in this run:
 
-- Expanded curated labels to 36 entries in the 40-entry geometry slice.
-- Added auto abstention thresholds from observed top1 score boundaries and
-  evaluable-aware metrics for retrieval evaluation and threshold selection.
-- Added score-margin, hard-negative-control, label-expansion-candidate, and
-  structure-mapping-issue analyses with CLI commands and tests.
-- Strengthened retrieval scoring with mechanistic coherence for Ser-His-Asp/Glu
-  fingerprints and clearer cofactor-evidence levels.
-- Added missing-position diagnostics for unresolved catalytic residue mappings.
-- Regenerated 20-, 30-, and 40-entry geometry/retrieval/evaluation/calibration
-  artifacts plus hard-negative, score-margin, label-candidate, mapping-issue,
-  and performance artifacts.
+- Expanded curated labels from 36 to 63 entries, covering all 60 entries in the
+  current geometry expansion slice.
+- Expanded source/benchmark artifacts to a 75-entry graph slice and geometry
+  artifacts to a 60-entry slice.
+- Fixed mmCIF structure mapping by matching catalytic residue positions against
+  both `auth_*` and `label_*` chain/residue identifiers.
+- Added geometry scoring counterevidence for metal-like false positives:
+  transfer/redox context, heme-only context, cobalamin-only context, weak
+  role-inferred pocket support, and metal-heavy Ser-His assignments.
+- Added cobalamin ligand-family inference for B12/CNC/COB proximal ligands.
+- Added hard-negative near-miss rows and CLI `--near-margin` support.
+- Regenerated 20-, 30-, 40-, 50-, and 60-entry retrieval/evaluation/calibration
+  artifacts, plus 60-entry hard-negative, score-margin, label-candidate,
+  mapping-issue, and performance artifacts.
 - Updated README, geometry docs, V2 report, performance docs, scope, tests, and
   reproducibility commands.
 
 Current metrics:
 
-- 20-entry regression slice: 20 evaluated labels, 13 evaluable entries, 3
-  evaluable in-scope positives, selected zero-false threshold `0.5796`.
-- 40-entry expansion slice: 36 evaluated labels, 26 evaluable entries, 7
-  evaluable in-scope positives, selected zero-false threshold `0.587`.
-- 40-entry top1/top3 in-scope accuracy on evaluable positives: `0.857` / `1.0`.
-- 40-entry retained top3 accuracy on evaluable positives at `0.587`: `0.571`.
-- 40-entry out-of-scope abstention at `0.587`: `1.0` on evaluable controls,
-  with 0 false non-abstentions.
-- Hard negatives: 2 role-inferred metal-like out-of-scope controls in the
-  40-entry slice overlap the evaluable positive score floor.
-- Label expansion queue: 4 unlabeled entries, 0 ready for label review by the
-  current readiness checks.
-- Structure mapping issues: 14 non-OK entries in the 40-entry slice, including
-  10 labeled entries and 2 in-scope positives (`m_csa:15` on `1ZNB`, `m_csa:28`
-  on `1DJX`).
+- 20-entry regression slice: threshold `0.5682`, 20/20 evaluable, 4/4 in-scope
+  positives retained, 0 out-of-scope false non-abstentions.
+- 40-entry expansion slice: threshold `0.5777`, 40/40 evaluable, 12/12
+  in-scope positives retained, 0 out-of-scope false non-abstentions.
+- 50-entry graph slice: threshold `0.5777`, 50/50 evaluable, 13/13 in-scope
+  positives retained, 0 out-of-scope false non-abstentions.
+- 60-entry expanded slice: threshold `0.5931`, 60/60 evaluable, 5/13 in-scope
+  positives retained, 0 out-of-scope false non-abstentions.
+- 60-entry pre-abstention top1/top3 in-scope accuracy: `1.0` / `1.0`.
+- 60-entry hard negatives: `m_csa:52` and `m_csa:53`; cobalamin-only context
+  moved `m_csa:62` and `m_csa:63` below the positive score floor.
+- 60-entry near misses within 0.01 below the positive floor: `m_csa:34` and
+  `m_csa:2`.
+- Label expansion queue: all 60 geometry entries are provisionally labeled; 0
+  unlabeled entries remain in the current 60-entry slice.
+- Structure mapping issues: 0 non-OK entries in the 40-, 50-, and 60-entry
+  slices after auth/label residue fallback.
 
 Start commands:
 
@@ -163,19 +167,20 @@ git pull --ff-only origin main
 git status -sb
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
-PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_abstention_calibration_40.json
-PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_hard_negative_controls_40.json
-PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_40.json --out artifacts/v3_structure_mapping_issues_40.json
+PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_60.json --out artifacts/v3_abstention_calibration_60.json
+PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_60.json --out artifacts/v3_hard_negative_controls_60.json
+PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_60.json --out artifacts/v3_geometry_score_margins_60.json
 ```
 
 Next concrete task:
 
-Separate the two 40-slice metal-like hard negatives from real
-metal-dependent-hydrolase positives without losing retained positives. Start by
-opening `artifacts/v3_hard_negative_controls_40.json` and comparing those rows
-against the retained positives in `artifacts/v3_geometry_label_eval_40.json`;
-then add one bounded scoring feature or penalty with a unit test and regenerate
-the 40-entry artifacts.
+Separate the two remaining 60-slice ligand-supported metal-like hard negatives
+(`m_csa:52` class II fructose-bisphosphate aldolase and `m_csa:53` malate
+synthase) from real metal-dependent-hydrolase positives without lowering the
+retained positive count. Start by comparing
+`artifacts/v3_hard_negative_controls_60.json` against retained positives in
+`artifacts/v3_geometry_label_eval_60.json`; add one bounded scoring feature or
+fingerprint split with unit tests, then regenerate the 60-entry artifacts.
 
 Known blockers:
 
@@ -185,7 +190,8 @@ Known blockers:
 - Ligand/cofactor evidence uses nearby mmCIF ligand atoms and inferred roles;
   it does not model occupancy, alternate conformers, biological assembly, or
   substrate state.
-- Four unlabeled 40-slice entries are not ready for review until structure
-  mapping or evidence quality improves.
-- Non-evaluable positives need alternate structure selection or residue
-  numbering/chain repair before they can fairly influence scoring.
+- The current label queue is empty for the 60-entry slice, so label expansion
+  now requires enlarging the geometry slice or adding a new seed fingerprint
+  family.
+- Full-database scalability has not been measured; `perf-suite` is local
+  artifact timing only.

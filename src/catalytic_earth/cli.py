@@ -286,6 +286,7 @@ def cmd_build_hard_negative_controls(args: argparse.Namespace) -> int:
         retrieval,
         load_labels(Path(args.labels)),
         score_floor=args.score_floor,
+        near_margin=args.near_margin,
     )
     write_json(Path(args.out), controls)
     print(
@@ -549,6 +550,7 @@ def build_parser() -> argparse.ArgumentParser:
     hard_negatives.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
     hard_negatives.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
     hard_negatives.add_argument("--score-floor", type=float, default=None)
+    hard_negatives.add_argument("--near-margin", type=float, default=0.01)
     hard_negatives.add_argument("--out", default="artifacts/v3_hard_negative_controls.json")
     hard_negatives.set_defaults(func=cmd_build_hard_negative_controls)
 

@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 18
-- Measured elapsed time: 76.8 minutes (1.28 hours)
+- Entries: 19
+- Measured elapsed time: 128.2 minutes (2.14 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.1 measured minutes (0.22 hours)
-- post-v2: 63.7 measured minutes (1.06 hours)
+- post-v2: 115.1 measured minutes (1.92 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,20 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 102
-- Evidence references logged: 92
+- Artifact references logged: 106
+- Evidence references logged: 93
 
 ## Recent Entries
-
-### 2026-05-09T15:20:27.676203+00:00 - post-v2
-
-- Task: Add mmCIF ligand/cofactor context to geometry features and retrieval scoring
-- Time mode: measured
-- Measured minutes: 5.217
-- Started: 2026-05-09T15:15:06Z
-- Ended: 2026-05-09T15:20:19Z
-- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/geometry_retrieval.py, tests/test_structure.py, tests/test_geometry_retrieval.py, artifacts/v3_geometry_features.json, artifacts/v3_geometry_retrieval.json, artifacts/v3_geometry_label_eval.json, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, docs/geometry_features.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
-- Evidence: 33 tests passed, 11/20 entries with proximal ligands, 5/20 entries with inferred cofactors, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, selected abstention threshold 0.8, out-of-scope abstention 1.0 at selected threshold
 
 ### 2026-05-09T15:22:39.241656+00:00 - ops
 
@@ -106,6 +96,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: artifacts/v3_geometry_features_40.json, artifacts/v3_geometry_retrieval_40.json, artifacts/v3_abstention_calibration_40.json, artifacts/v3_hard_negative_controls_40.json, artifacts/v3_structure_mapping_issues_40.json, artifacts/v3_label_expansion_candidates.json, artifacts/perf_report.json
 - Evidence: 39 unit tests passed, validate passed, 36 curated labels, 40-entry geometry slice, selected thresholds 0.5796 and 0.587, 2 hard negatives, 14 mapping issues
 
+### 2026-05-09T18:08:06.495922+00:00 - post-v2
+
+- Task: Expand geometry labels, hard-negative controls, and cobalamin counterevidence
+- Time mode: measured
+- Measured minutes: 51.433
+- Started: 2026-05-09T17:16:40Z
+- Ended: 2026-05-09T18:08:06Z
+- Artifacts: artifacts/v1_graph_75.json, artifacts/v3_geometry_features_60.json, artifacts/v3_geometry_retrieval_60.json, artifacts/v3_hard_negative_controls_60.json
+- Evidence: PYTHONPATH=src python -m unittest discover -s tests; PYTHONPATH=src python -m catalytic_earth.cli validate
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -126,6 +126,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T16:03:37.698226+00:00: Automation model selection is now treated as an operating invariant, not an implicit app default.
 - 2026-05-09T16:14:49.435851+00:00: Automation runs now distinguish productive work time from wrap-up time; normal runs should spend at least 50 measured minutes advancing the project.
 - 2026-05-09T17:07:37.625326+00:00: Next priority is hard-negative scorer separation and structure mapping repair, not more scaffold work
+- 2026-05-09T18:08:06.495922+00:00: remaining bottleneck is separating two ligand-supported metal-like controls without losing retained positives
 
 ## Scope Adjustments
 
@@ -146,3 +147,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T16:03:37.698226+00:00: Catalytic Earth automation documentation now forbids downgrading below gpt-5.5 with xhigh reasoning.
 - 2026-05-09T16:14:49.435851+00:00: If assigned work finishes or blocks early, agents must switch to the highest-value bounded unblocked task until the 50-minute work boundary.
 - 2026-05-09T17:07:37.625326+00:00: 40-entry slice now has 36 labels, 26 evaluable structures, and explicit hard-negative plus structure-mapping blockers
+- 2026-05-09T18:08:06.495922+00:00: expanded geometry slice to 60 fully labeled entries with 63 labels

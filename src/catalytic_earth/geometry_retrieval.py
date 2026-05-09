@@ -91,6 +91,13 @@ def score_entry_against_fingerprint(
     compactness = compactness_score(distances)
     substrate_pocket = substrate_pocket_score(fingerprint, entry.get("pocket_context"))
     coherence = mechanistic_coherence_score(fingerprint, residues)
+    counterevidence = counterevidence_penalty(
+        fingerprint=fingerprint,
+        residues=residues,
+        cofactor_evidence=cofactor_evidence,
+        ligand_context=entry.get("ligand_context"),
+        substrate_pocket_score_value=substrate_pocket,
+    )
     raw_score = (
         0.35 * residue_match_fraction
         + 0.24 * role_match_fraction
@@ -100,6 +107,7 @@ def score_entry_against_fingerprint(
     )
     if fingerprint.get("id") == "ser_his_acid_hydrolase":
         raw_score *= 0.70 + 0.30 * coherence
+    raw_score *= counterevidence
     score = round(raw_score, 4)
     return {
         "fingerprint_id": fingerprint.get("id"),
@@ -112,6 +120,7 @@ def score_entry_against_fingerprint(
         "compactness_score": round(compactness, 4),
         "substrate_pocket_score": round(substrate_pocket, 4),
         "mechanistic_coherence_score": round(coherence, 4),
+        "counterevidence_penalty": round(counterevidence, 4),
         "matched_signature_roles": matched_signature_roles,
         "distance_summary": distance_summary(distances),
     }
@@ -155,6 +164,9 @@ def cofactor_context_score(
 
     requirement_scores: list[float] = []
     for cofactor in sorted(cofactors):
+        if _is_reactant_placeholder(cofactor):
+            continue
+
         if _is_metal_cofactor(cofactor):
             if "metal_ion" in observed_families:
                 requirement_scores.append(1.0)
@@ -179,7 +191,16 @@ def cofactor_context_score(
             if "plp" in observed_families:
                 requirement_scores.append(1.0)
             elif "LYS" in residue_code_set:
-                requirement_scores.append(0.3)
+                requirement_scores.append(0.15)
+            else:
+                requirement_scores.append(0.0)
+            continue
+
+        if "cobalamin" in cofactor or "vitamin b12" in cofactor:
+            if "cobalamin" in observed_families:
+                requirement_scores.append(1.0)
+            elif any(term in role_text for term in ["cobalamin", "radical stabiliser", "radical stabilizer"]):
+                requirement_scores.append(0.25)
             else:
                 requirement_scores.append(0.0)
             continue
@@ -331,6 +352,8 @@ def mechanistic_coherence_score(
         )
         for residue in residues
     )
+    if not his_base:
+        return 0.0
     acid_orienter = any(
         _canonical_code(residue.get("code")) in {"ASP", "GLU"}
         and _residue_has_any_role(
@@ -347,6 +370,52 @@ def mechanistic_coherence_score(
         for residue in residues
     )
     return (1.0 + float(his_base) + float(acid_orienter)) / 3.0
+
+
+def counterevidence_penalty(
+    fingerprint: dict[str, Any],
+    residues: list[dict[str, Any]],
+    cofactor_evidence: str,
+    ligand_context: dict[str, Any] | None,
+    substrate_pocket_score_value: float,
+) -> float:
+    fingerprint_id = str(fingerprint.get("id", ""))
+    residue_roles = {
+        _normalize_phrase(role)
+        for residue in residues
+        for role in residue.get("roles", [])
+        if isinstance(role, str)
+    }
+    ligand_families = _ligand_cofactor_families(ligand_context)
+    ligand_codes = _ligand_codes(ligand_context)
+
+    if fingerprint_id == "metal_dependent_hydrolase":
+        penalty = 1.0
+        if cofactor_evidence == "role_inferred" and substrate_pocket_score_value < 0.15:
+            penalty = min(penalty, 0.90)
+        if "heme" in ligand_families and "metal_ion" not in ligand_families:
+            penalty = min(penalty, 0.75)
+        if "cobalamin" in ligand_families and "metal_ion" not in ligand_families:
+            penalty = min(penalty, 0.80)
+        if ligand_codes & {"ATP", "ADP", "AMP", "ANP", "ACP"}:
+            penalty = min(penalty, 0.90)
+        if any("single electron" in role for role in residue_roles):
+            penalty = min(penalty, 0.90)
+        return penalty
+
+    if fingerprint_id == "ser_his_acid_hydrolase":
+        metal_ligand_roles = sum(
+            1
+            for residue in residues
+            if _residue_has_any_role(residue, {"metal ligand"})
+        )
+        if "metal_ion" in ligand_families and metal_ligand_roles >= 3:
+            return 0.70
+        if "metal ligand" in residue_roles and metal_ligand_roles >= 4:
+            return 0.85
+        return 1.0
+
+    return 1.0
 
 
 def write_geometry_retrieval(
@@ -426,6 +495,11 @@ def _is_metal_cofactor(cofactor: str) -> bool:
     return cofactor in metals or any(metal in cofactor for metal in metals)
 
 
+def _is_reactant_placeholder(cofactor: str) -> bool:
+    normalized = _normalize_phrase(cofactor)
+    return "h2o2" in normalized or " or o2 " in f" {normalized} " or normalized == "o2"
+
+
 def _observed_cofactor_families(
     ligand_context: dict[str, Any] | None,
     residue_roles: set[str],
@@ -441,6 +515,16 @@ def _ligand_cofactor_families(ligand_context: dict[str, Any] | None) -> set[str]
             if normalized:
                 families.add(normalized)
     return families
+
+
+def _ligand_codes(ligand_context: dict[str, Any] | None) -> set[str]:
+    if not isinstance(ligand_context, dict):
+        return set()
+    return {
+        str(value).strip().upper()
+        for value in ligand_context.get("ligand_codes", [])
+        if isinstance(value, str) and value.strip()
+    }
 
 
 def _role_implied_cofactor_families(residue_roles: set[str]) -> set[str]:
@@ -464,6 +548,8 @@ def _cofactor_family(cofactor: str) -> str:
         return "heme"
     if "pyridoxal phosphate" in cofactor:
         return "plp"
+    if "cobalamin" in cofactor or "vitamin b12" in cofactor:
+        return "cobalamin"
     if cofactor in {"fad", "fmn"}:
         return "flavin"
     if cofactor in {"nadph", "nadp", "nad", "nadh"}:
@@ -483,6 +569,8 @@ def _normalize_cofactor_family(value: str) -> str:
         return "fe_s_cluster"
     if normalized in {"pyridoxal phosphate", "pyridoxal 5 phosphate"}:
         return "plp"
+    if normalized in {"b12", "cobalamin", "vitamin b12"}:
+        return "cobalamin"
     return normalized
 
 

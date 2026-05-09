@@ -52,21 +52,21 @@ The repository currently contains:
 4. PDB mmCIF active-site geometry extraction for catalytic residues.
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Substrate-pocket descriptor extraction from nearby protein residues.
-7. Curated mechanism labels for 36 entries in the 40-entry geometry expansion
-   slice.
-8. Retrieval evaluation, abstention threshold calibration, hard-negative
+7. Curated mechanism labels for 63 entries, including all 60 entries in the
+   current expanded geometry slice.
+8. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
+9. Retrieval evaluation, abstention threshold calibration, hard-negative
    selection, label-expansion candidate ranking, and a local
    performance suite.
 
-The latest small-slice evaluation is intentionally modest: 40 geometry entries,
-36 curated labels, 26 evaluable active-site structures, and 9 in-scope
+The latest small-slice evaluation is intentionally modest: 60 geometry entries,
+63 curated labels, 60 evaluable active-site structures, and 13 in-scope
 seed-fingerprint positives. On the original 20-entry regression slice, adaptive
-abstention finds a zero-false threshold that retains all 3 evaluable positives.
-On the 40-entry slice, 2 out-of-scope metal-like controls still overlap the
-positive score range, 14 entries need structure-mapping repair before they can
-be evaluated cleanly, and 4 entries remain queued for future label review. The
-next bottleneck is scorer separation, larger labels, and harder negative
-controls, not more dashboard work.
+abstention finds a zero-false threshold that retains all 4 in-scope positives.
+On the 60-entry slice, the zero-false threshold abstains on all 47 out-of-scope
+controls but retains only 5 of 13 in-scope positives; retaining all positives
+would admit 2 out-of-scope metal-like hard negatives. The next bottleneck is
+scorer separation against those harder negatives, not more dashboard work.
 
 ## Quickstart
 
@@ -93,24 +93,41 @@ python -m catalytic_earth.cli write-v2-report --out docs/v2_report.md
 python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 20 --out artifacts/v3_geometry_features.json
 python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features.json --out artifacts/v3_geometry_retrieval.json
 python -m catalytic_earth.cli label-summary --out artifacts/v3_label_summary.json
-python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.5796 --out artifacts/v3_geometry_label_eval.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.5682 --out artifacts/v3_geometry_label_eval.json
 python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_abstention_calibration.json
-python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.5796 --out artifacts/v3_geometry_failure_analysis.json
+python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.5682 --out artifacts/v3_geometry_failure_analysis.json
 python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_geometry_score_margins.json
 python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_hard_negative_controls.json
 python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 30 --out artifacts/v3_geometry_features_30.json
 python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_30.json --out artifacts/v3_geometry_retrieval_30.json
-python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_30.json --abstain-threshold 0.587 --out artifacts/v3_geometry_label_eval_30.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_30.json --abstain-threshold 0.5777 --out artifacts/v3_geometry_label_eval_30.json
 python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_30.json --out artifacts/v3_abstention_calibration_30.json
 python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_30.json --out artifacts/v3_geometry_score_margins_30.json
 python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_30.json --out artifacts/v3_hard_negative_controls_30.json
 python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 40 --out artifacts/v3_geometry_features_40.json
 python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_40.json --out artifacts/v3_geometry_retrieval_40.json
-python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_40.json --abstain-threshold 0.587 --out artifacts/v3_geometry_label_eval_40.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_40.json --abstain-threshold 0.5777 --out artifacts/v3_geometry_label_eval_40.json
 python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_abstention_calibration_40.json
 python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_hard_negative_controls_40.json
 python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_40.json --retrieval artifacts/v3_geometry_retrieval_40.json --out artifacts/v3_label_expansion_candidates.json
 python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_40.json --out artifacts/v3_structure_mapping_issues_40.json
+python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 50 --out artifacts/v3_geometry_features_50.json
+python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_50.json --out artifacts/v3_geometry_retrieval_50.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_50.json --abstain-threshold 0.5777 --out artifacts/v3_geometry_label_eval_50.json
+python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_50.json --out artifacts/v3_abstention_calibration_50.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_50.json --out artifacts/v3_hard_negative_controls_50.json
+python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_50.json --retrieval artifacts/v3_geometry_retrieval_50.json --out artifacts/v3_label_expansion_candidates_50.json
+python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_50.json --out artifacts/v3_structure_mapping_issues_50.json
+python -m catalytic_earth.cli build-v1-graph --max-mcsa 75 --page-size 75 --out artifacts/v1_graph_75.json
+python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_75.json --out artifacts/v1_graph_summary_75.json
+python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_75.json --out artifacts/v2_benchmark_75.json
+python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_75.json --max-entries 60 --out artifacts/v3_geometry_features_60.json
+python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_60.json --out artifacts/v3_geometry_retrieval_60.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_60.json --abstain-threshold 0.5931 --out artifacts/v3_geometry_label_eval_60.json
+python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_60.json --out artifacts/v3_abstention_calibration_60.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_60.json --out artifacts/v3_hard_negative_controls_60.json
+python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_60.json --retrieval artifacts/v3_geometry_retrieval_60.json --out artifacts/v3_label_expansion_candidates_60.json
+python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_60.json --out artifacts/v3_structure_mapping_issues_60.json
 python -m catalytic_earth.cli perf-suite --iterations 5 --out artifacts/perf_report.json
 python -m catalytic_earth.cli log-work --stage v0 --task "example work entry" --minutes 1
 python -m catalytic_earth.cli progress-report --out work/status.md
@@ -149,10 +166,11 @@ Current timeline judgment:
    retrieval baseline, inconsistency detection, dark-enzyme candidate dossiers,
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
-2. Next automation blocks: separate metal-hydrolase positives from metal-like
-   lyase/isomerase hard negatives, resolve the 14 non-evaluable structure
-   mappings in the 40-entry slice, and continue curated label expansion.
-3. Next serious milestone: scale from the 40-entry geometry slice to a larger
+2. Next automation blocks: separate the 60-slice hard negatives
+   (`m_csa:52`, `m_csa:53`) from metal-dependent hydrolase positives,
+   investigate the 2 near misses, and broaden seed fingerprints
+   beyond the current hydrolase/heme positives.
+3. Next serious milestone: scale from the 60-entry geometry slice to a larger
    audited benchmark where success cannot be explained by tiny-label effects.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that

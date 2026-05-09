@@ -45,6 +45,10 @@ ATOM 6 N N LYS A 8 2.0 0.0 0.0 N LYS A 8
 ATOM 7 C CA LYS A 8 2.5 0.2 0.0 CA LYS A 8
 ATOM 8 N N PHE A 9 2.0 1.5 0.0 N PHE A 9
 ATOM 9 C CA PHE A 9 2.8 1.8 0.0 CA PHE A 9
+ATOM 10 N N THR A 147 30.0 0.0 0.0 N THR A 164
+ATOM 11 C CA THR A 147 30.5 0.0 0.0 CA THR A 164
+ATOM 12 N N CYS A 164 34.0 0.0 0.0 N CYS A 181
+ATOM 13 C CA CYS A 164 34.5 0.0 0.0 CA CYS A 181
 HETATM 6 FE FE HEM A 501 1.8 2.2 0.0 FE HEM A 501
 HETATM 7 C C1 HEM A 501 2.2 2.4 0.2 C1 HEM A 501
 HETATM 8 O O HOH A 700 0.5 0.5 0.5 O HOH A 700
@@ -55,7 +59,7 @@ HETATM 8 O O HOH A 700 0.5 0.5 0.5 O HOH A 700
 class StructureTests(unittest.TestCase):
     def test_parse_and_select_residue_atoms(self) -> None:
         atoms = parse_atom_site_loop(SAMPLE_CIF)
-        self.assertEqual(len(atoms), 12)
+        self.assertEqual(len(atoms), 16)
         asp_atoms = select_residue_atoms(atoms, chain_name="A", resid=7, code="Asp")
         self.assertEqual(len(asp_atoms), 3)
         self.assertEqual(residue_centroid(asp_atoms), {"x": 0.667, "y": 0.333, "z": 0.0})
@@ -64,6 +68,17 @@ class StructureTests(unittest.TestCase):
             {"residue_node_id": "x", "chain_name": "A", "resid": 7, "code": "GLU"},
         )
         self.assertEqual(detail["observed_codes_at_position"], ["ASP"])
+
+    def test_select_residue_atoms_matches_label_or_auth_numbering(self) -> None:
+        atoms = parse_atom_site_loop(SAMPLE_CIF)
+        cys_atoms = select_residue_atoms(atoms, chain_name="A", resid=164, code="Cys")
+        self.assertEqual(len(cys_atoms), 2)
+        self.assertEqual({atom["auth_seq_id"] for atom in cys_atoms}, {"181"})
+        detail = missing_position_detail(
+            atoms,
+            {"residue_node_id": "x", "chain_name": "A", "resid": 164, "code": "GLU"},
+        )
+        self.assertEqual(detail["observed_codes_at_position"], ["CYS", "THR"])
 
     def test_pairwise_distances(self) -> None:
         distances = pairwise_distances(
@@ -86,6 +101,27 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(context["ligand_codes"], ["HEM"])
         self.assertIn("heme", context["cofactor_families"])
         self.assertGreaterEqual(context["proximal_ligands"][0]["instance_count"], 1)
+
+    def test_ligand_context_infers_cobalamin_codes(self) -> None:
+        context = ligand_context_from_atoms(
+            [
+                {
+                    "group_PDB": "HETATM",
+                    "auth_comp_id": "B12",
+                    "label_comp_id": "B12",
+                    "auth_asym_id": "A",
+                    "label_asym_id": "A",
+                    "auth_seq_id": "500",
+                    "label_seq_id": "500",
+                    "Cartn_x": 1.0,
+                    "Cartn_y": 0.0,
+                    "Cartn_z": 0.0,
+                }
+            ],
+            [{"ca": {"x": 0.0, "y": 0.0, "z": 0.0}}],
+        )
+        self.assertEqual(context["ligand_codes"], ["B12"])
+        self.assertIn("cobalamin", context["cofactor_families"])
 
     def test_pocket_context_summarizes_nearby_residue_classes(self) -> None:
         atoms = parse_atom_site_loop(SAMPLE_CIF)

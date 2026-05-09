@@ -17,6 +17,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.6713,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 25.255,
@@ -62,6 +63,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 25.255,
@@ -101,6 +103,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 25.255,
@@ -139,6 +142,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 25.255,
@@ -181,6 +185,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 25.255,
@@ -218,6 +223,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 13.789,
@@ -256,6 +262,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 13.789,
@@ -293,6 +300,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8966,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 13.789,
@@ -329,6 +337,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 13.789,
@@ -368,6 +377,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 13.789,
@@ -404,6 +414,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.7478,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 20.478,
@@ -453,52 +464,10 @@
           "substrate_pocket_score": 0.1787
         },
         {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.7478,
-          "distance_summary": {
-            "count": 55,
-            "max": 20.478,
-            "median": 12.036,
-            "min": 4.336
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His",
-              "required_role": "general_base",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ASP",
-                "ASP",
-                "GLU",
-                "GLU"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.0,
-          "score": 0.3342,
-          "substrate_pocket_score": 0.9284
-        },
-        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7478,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 20.478,
@@ -544,9 +513,54 @@
           "substrate_pocket_score": 0.2616
         },
         {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.7478,
+          "counterevidence_penalty": 0.7,
+          "distance_summary": {
+            "count": 55,
+            "max": 20.478,
+            "median": 12.036,
+            "min": 4.336
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.2339,
+          "substrate_pocket_score": 0.9284
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7478,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 20.478,
@@ -584,6 +598,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7478,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 20.478,
@@ -604,119 +619,342 @@
     {
       "entry_id": "m_csa:12",
       "pdb_id": "1OTH",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 6,
+      "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
-        },
-        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.7631,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "flavin_monooxygenase",
-          "fingerprint_name": "Flavin-dependent monooxygenase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 17.526,
+            "median": 11.79,
+            "min": 5.863
           },
           "fingerprint_id": "heme_peroxidase_oxidase",
           "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "CYS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG",
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4139,
+          "substrate_pocket_score": 0.2635
         },
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.7631,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 17.526,
+            "median": 11.79,
+            "min": 5.863
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.3947,
+          "substrate_pocket_score": 0.963
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7631,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 17.526,
+            "median": 11.79,
+            "min": 5.863
           },
           "fingerprint_id": "metal_dependent_hydrolase",
           "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "CYS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
           "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
+          "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.3582,
+          "substrate_pocket_score": 0.1852
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.7631,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 17.526,
+            "median": 11.79,
+            "min": 5.863
           },
           "fingerprint_id": "plp_dependent_enzyme",
           "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2948,
+          "substrate_pocket_score": 0.2473
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7631,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 17.526,
+            "median": 11.79,
+            "min": 5.863
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "CYS"
+              ],
+              "required_residue": "Cys",
+              "required_role": "cluster_ligand",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1964,
+          "substrate_pocket_score": 0.1243
         }
       ]
     },
     {
       "entry_id": "m_csa:13",
       "pdb_id": "2BBK",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 6,
+      "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9131,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 17.277,
+            "median": 9.391,
+            "min": 4.362
           },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "TYR"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4273,
+          "substrate_pocket_score": 0.273
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9131,
+          "counterevidence_penalty": 0.9,
+          "distance_summary": {
+            "count": 15,
+            "max": 17.277,
+            "median": 9.391,
+            "min": 4.362
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "score": 0.3368,
+          "substrate_pocket_score": 0.2122
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.9131,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 17.277,
+            "median": 9.391,
+            "min": 4.362
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "TYR"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3125,
+          "substrate_pocket_score": 0.2852
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.9131,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 17.277,
+            "median": 9.391,
+            "min": 4.362
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.312,
+          "substrate_pocket_score": 0.8729
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9131,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 17.277,
+            "median": 9.391,
+            "min": 4.362
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -724,56 +962,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1573,
+          "substrate_pocket_score": 0.5615
         }
       ]
     },
@@ -787,6 +977,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.8861,
+          "counterevidence_penalty": 0.9,
           "distance_summary": {
             "count": 21,
             "max": 15.457,
@@ -818,59 +1009,14 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.5795,
+          "score": 0.5216,
           "substrate_pocket_score": 0.1021
-        },
-        {
-          "cofactor_context_score": 0.3,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8861,
-          "distance_summary": {
-            "count": 21,
-            "max": 15.457,
-            "median": 9.822,
-            "min": 3.822
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "LYS"
-              ],
-              "required_residue": "Lys",
-              "required_role": "plp_anchor",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "Asp/Glu/His/Tyr",
-              "required_role": "acid_base",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "GLY",
-                "SER"
-              ],
-              "required_residue": "Gly/Ser/Thr-rich motif",
-              "required_role": "phosphate_binder",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.0,
-          "score": 0.4964,
-          "substrate_pocket_score": 0.1435
         },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8861,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 15.457,
@@ -911,9 +1057,57 @@
           "substrate_pocket_score": 0.8445
         },
         {
+          "cofactor_context_score": 0.15,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8861,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 21,
+            "max": 15.457,
+            "median": 9.822,
+            "min": 3.822
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "GLY",
+                "SER"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.4694,
+          "substrate_pocket_score": 0.1435
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8861,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 15.457,
@@ -954,6 +1148,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8861,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 15.457,
@@ -974,22 +1169,31 @@
     {
       "entry_id": "m_csa:15",
       "pdb_id": "1ZNB",
-      "resolved_residue_count": 1,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 8,
+      "status": "ok",
       "top_fingerprints": [
         {
           "cofactor_context_score": 1.0,
-          "cofactor_evidence_level": "role_inferred",
-          "compactness_score": 0.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.756,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 35.493,
+            "median": 11.903,
+            "min": 5.82
           },
           "fingerprint_id": "metal_dependent_hydrolase",
           "fingerprint_name": "Metal-dependent hydrolase",
           "matched_signature_roles": [
             {
               "matched_codes": [
-                "ASP"
+                "ASP",
+                "CYS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
               ],
               "required_residue": "His/Asp/Glu/Cys",
               "required_role": "metal_ligand",
@@ -997,7 +1201,11 @@
             },
             {
               "matched_codes": [
-                "ASP"
+                "ASP",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
               ],
               "required_residue": "His/Asp/Glu",
               "required_role": "water_activator",
@@ -1007,72 +1215,38 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.5196,
-          "substrate_pocket_score": 0.175
+          "score": 0.5777,
+          "substrate_pocket_score": 0.1592
         },
         {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.0,
-          "score": 0.1867,
-          "substrate_pocket_score": 0.7
-        },
-        {
-          "cofactor_context_score": 0.0,
+          "cofactor_context_score": 0.15,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.756,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.0,
-          "score": 0.1707,
-          "substrate_pocket_score": 0.36
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 35.493,
+            "median": 11.903,
+            "min": 5.82
           },
           "fingerprint_id": "plp_dependent_enzyme",
           "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
           "matched_signature_roles": [
             {
               "matched_codes": [
-                "ASP"
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
               ],
               "required_residue": "Asp/Glu/His/Tyr",
               "required_role": "acid_base",
@@ -1080,26 +1254,124 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
+          "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.1617,
-          "substrate_pocket_score": 0.3
+          "score": 0.3529,
+          "substrate_pocket_score": 0.2141
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.756,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 35.493,
+            "median": 11.903,
+            "min": 5.82
           },
-          "fingerprint_id": "flavin_monooxygenase",
-          "fingerprint_name": "Flavin-dependent monooxygenase",
-          "matched_signature_roles": [],
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "CYS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            }
+          ],
           "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
+          "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.0533,
-          "substrate_pocket_score": 0.355
+          "score": 0.3304,
+          "substrate_pocket_score": 0.2437
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.756,
+          "counterevidence_penalty": 0.7,
+          "distance_summary": {
+            "count": 28,
+            "max": 35.493,
+            "median": 11.903,
+            "min": 5.82
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.274,
+          "substrate_pocket_score": 0.9351
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.756,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 28,
+            "max": 35.493,
+            "median": 11.903,
+            "min": 5.82
+          },
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "CYS"
+              ],
+              "required_residue": "Cys",
+              "required_role": "cluster_ligand",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.1965,
+          "substrate_pocket_score": 0.1289
         }
       ]
     },
@@ -1113,6 +1385,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8893,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 13.229,
@@ -1155,6 +1428,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8893,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 13.229,
@@ -1193,9 +1467,42 @@
           "substrate_pocket_score": 0.2138
         },
         {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8893,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 13.229,
+            "median": 9.77,
+            "min": 5.655
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3007,
+          "substrate_pocket_score": 0.219
+        },
+        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8893,
+          "counterevidence_penalty": 0.7,
           "distance_summary": {
             "count": 10,
             "max": 13.229,
@@ -1227,44 +1534,14 @@
           "mechanistic_coherence_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.3879,
+          "score": 0.2715,
           "substrate_pocket_score": 0.8311
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8893,
-          "distance_summary": {
-            "count": 10,
-            "max": 13.229,
-            "median": 9.77,
-            "min": 5.655
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "Asp/Glu/His/Tyr",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.3007,
-          "substrate_pocket_score": 0.219
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8893,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 13.229,
@@ -1292,6 +1569,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.6871,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 25.734,
@@ -1340,6 +1618,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 25.734,
@@ -1381,6 +1660,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 25.734,
@@ -1423,6 +1703,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 25.734,
@@ -1465,6 +1746,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 25.734,
@@ -1492,6 +1774,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 11.68,
@@ -1536,6 +1819,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 11.68,
@@ -1576,6 +1860,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 11.68,
@@ -1619,6 +1904,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 11.68,
@@ -1650,6 +1936,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 11.68,
@@ -1679,31 +1966,152 @@
     {
       "entry_id": "m_csa:19",
       "pdb_id": "1DL2",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 4,
+      "status": "ok",
       "top_fingerprints": [
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5734,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 6,
+            "max": 16.528,
+            "median": 14.825,
+            "min": 5.844
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.345,
+          "substrate_pocket_score": 0.1984
+        },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "compactness_score": 0.5734,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 6,
+            "max": 16.528,
+            "median": 14.825,
+            "min": 5.844
           },
           "fingerprint_id": "ser_his_acid_hydrolase",
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2873,
+          "substrate_pocket_score": 0.8193
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.5734,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 6,
+            "max": 16.528,
+            "median": 14.825,
+            "min": 5.844
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2805,
+          "substrate_pocket_score": 0.2532
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5734,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 6,
+            "max": 16.528,
+            "median": 14.825,
+            "min": 5.844
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2769,
+          "substrate_pocket_score": 0.229
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5734,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 6,
+            "max": 16.528,
+            "median": 14.825,
+            "min": 5.844
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -1711,87 +2119,178 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1206,
+          "substrate_pocket_score": 0.498
         }
       ]
     },
     {
       "entry_id": "m_csa:2",
       "pdb_id": "1BTL",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 7,
+      "status": "ok",
       "top_fingerprints": [
+        {
+          "cofactor_context_score": 0.15,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9759,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 21,
+            "max": 16.754,
+            "median": 8.385,
+            "min": 0.0
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "LYS",
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "SER",
+                "SER",
+                "SER"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.5681,
+          "substrate_pocket_score": 0.2203
+        },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "compactness_score": 0.9759,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 21,
+            "max": 16.754,
+            "median": 8.385,
+            "min": 0.0
           },
           "fingerprint_id": "ser_his_acid_hydrolase",
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "SER",
+                "SER",
+                "SER"
+              ],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.6667,
+          "score": 0.4571,
+          "substrate_pocket_score": 0.9108
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9759,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 21,
+            "max": 16.754,
+            "median": 8.385,
+            "min": 0.0
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "GLU"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "GLU"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "score": 0.3705,
+          "substrate_pocket_score": 0.1542
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.9759,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 21,
+            "max": 16.754,
+            "median": 8.385,
+            "min": 0.0
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3101,
+          "substrate_pocket_score": 0.2356
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9759,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 21,
+            "max": 16.754,
+            "median": 8.385,
+            "min": 0.0
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -1799,56 +2298,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1389,
+          "substrate_pocket_score": 0.4055
         }
       ]
     },
@@ -1862,6 +2313,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8458,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 19.123,
@@ -1905,6 +2357,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8458,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 19.123,
@@ -1943,6 +2396,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8458,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 19.123,
@@ -1985,6 +2439,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8458,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 19.123,
@@ -2016,6 +2471,7 @@
           "cofactor_context_score": 0.6667,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8458,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 19.123,
@@ -2036,22 +2492,29 @@
     {
       "entry_id": "m_csa:21",
       "pdb_id": "1DO8",
-      "resolved_residue_count": 1,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 8,
+      "status": "ok",
       "top_fingerprints": [
         {
           "cofactor_context_score": 1.0,
-          "cofactor_evidence_level": "role_inferred",
-          "compactness_score": 0.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.6291,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 29.766,
+            "median": 13.934,
+            "min": 3.798
           },
           "fingerprint_id": "metal_dependent_hydrolase",
           "fingerprint_name": "Metal-dependent hydrolase",
           "matched_signature_roles": [
             {
               "matched_codes": [
-                "ASP"
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU"
               ],
               "required_residue": "His/Asp/Glu/Cys",
               "required_role": "metal_ligand",
@@ -2059,7 +2522,10 @@
             },
             {
               "matched_codes": [
-                "ASP"
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU"
               ],
               "required_residue": "His/Asp/Glu",
               "required_role": "water_activator",
@@ -2069,90 +2535,132 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.5078,
-          "substrate_pocket_score": 0.0967
+          "score": 0.5662,
+          "substrate_pocket_score": 0.1506
         },
         {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.0,
-          "score": 0.1762,
-          "substrate_pocket_score": 0.6
-        },
-        {
-          "cofactor_context_score": 0.0,
+          "cofactor_context_score": 0.15,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.6291,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.0,
-          "score": 0.1497,
-          "substrate_pocket_score": 0.22
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 29.766,
+            "median": 13.934,
+            "min": 3.798
           },
           "fingerprint_id": "plp_dependent_enzyme",
           "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
           "matched_signature_roles": [
             {
               "matched_codes": [
-                "ASP"
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU",
+                "TYR"
               ],
               "required_residue": "Asp/Glu/His/Tyr",
               "required_role": "acid_base",
-              "role_hint_match": false
+              "role_hint_match": true
             }
           ],
           "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.0,
-          "score": 0.1347,
-          "substrate_pocket_score": 0.12
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4203,
+          "substrate_pocket_score": 0.1976
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.6291,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 29.766,
+            "median": 13.934,
+            "min": 3.798
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "TYR"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ASP",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4,
+          "substrate_pocket_score": 0.2423
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.6291,
+          "counterevidence_penalty": 0.7,
+          "distance_summary": {
+            "count": 28,
+            "max": 29.766,
+            "median": 13.934,
+            "min": 3.798
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2084,
+          "substrate_pocket_score": 0.8882
+        },
+        {
+          "cofactor_context_score": 0.3333,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.6291,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 28,
+            "max": 29.766,
+            "median": 13.934,
+            "min": 3.798
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -2160,39 +2668,183 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.0512,
-          "substrate_pocket_score": 0.3417
+          "score": 0.1902,
+          "substrate_pocket_score": 0.5325
         }
       ]
     },
     {
       "entry_id": "m_csa:22",
       "pdb_id": "1B6B",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 5,
+      "status": "ok",
       "top_fingerprints": [
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "compactness_score": 0.7412,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 10,
+            "max": 21.961,
+            "median": 12.142,
+            "min": 7.157
           },
           "fingerprint_id": "ser_his_acid_hydrolase",
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "SER"
+              ],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4688,
+          "substrate_pocket_score": 0.9025
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.7412,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 10,
+            "max": 21.961,
+            "median": 12.142,
+            "min": 7.157
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4196,
+          "substrate_pocket_score": 0.313
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7412,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 21.961,
+            "median": 12.142,
+            "min": 7.157
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "SER"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4087,
+          "substrate_pocket_score": 0.2407
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7412,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 21.961,
+            "median": 12.142,
+            "min": 7.157
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3515,
+          "substrate_pocket_score": 0.1528
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7412,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 21.961,
+            "median": 12.142,
+            "min": 7.157
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -2200,56 +2852,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1314,
+          "substrate_pocket_score": 0.4805
         }
       ]
     },
@@ -2263,6 +2867,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.4832,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 28.394,
@@ -2297,6 +2902,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.4832,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 28.394,
@@ -2333,6 +2939,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.4832,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 28.394,
@@ -2372,6 +2979,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.4832,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 28.394,
@@ -2410,6 +3018,7 @@
           "cofactor_context_score": 0.5,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.4832,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 28.394,
@@ -2437,6 +3046,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.914,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 15.573,
@@ -2479,6 +3089,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.914,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 15.573,
@@ -2516,6 +3127,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.914,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 15.573,
@@ -2553,6 +3165,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.914,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 15.573,
@@ -2591,6 +3204,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.914,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 15.573,
@@ -2615,9 +3229,10 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.3,
+          "cofactor_context_score": 0.15,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.527,
@@ -2647,13 +3262,14 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.4844,
+          "score": 0.4574,
           "substrate_pocket_score": 0.2545
         },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9864,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.527,
@@ -2688,6 +3304,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.527,
@@ -2724,6 +3341,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.527,
@@ -2761,6 +3379,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.527,
@@ -2797,6 +3416,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.839,
@@ -2838,6 +3458,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.839,
@@ -2876,6 +3497,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.839,
@@ -2918,6 +3540,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.839,
@@ -2949,6 +3572,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.839,
@@ -2976,6 +3600,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8197,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 28,
             "max": 17.255,
@@ -3026,6 +3651,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8197,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 28,
             "max": 17.255,
@@ -3069,9 +3695,46 @@
           "substrate_pocket_score": 0.2706
         },
         {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8197,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 28,
+            "max": 17.255,
+            "median": 10.886,
+            "min": 6.131
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.293,
+          "substrate_pocket_score": 0.205
+        },
+        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8197,
+          "counterevidence_penalty": 0.7,
           "distance_summary": {
             "count": 28,
             "max": 17.255,
@@ -3107,48 +3770,14 @@
           "mechanistic_coherence_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.3816,
+          "score": 0.2671,
           "substrate_pocket_score": 0.8083
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8197,
-          "distance_summary": {
-            "count": 28,
-            "max": 17.255,
-            "median": 10.886,
-            "min": 6.131
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP",
-                "ASP",
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "Asp/Glu/His/Tyr",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.293,
-          "substrate_pocket_score": 0.205
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8197,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 28,
             "max": 17.255,
@@ -3169,31 +3798,177 @@
     {
       "entry_id": "m_csa:28",
       "pdb_id": "1DJX",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 6,
+      "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 11.117,
+            "median": 7.458,
+            "min": 3.855
           },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.6053,
+          "substrate_pocket_score": 0.2132
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 11.117,
+            "median": 7.458,
+            "min": 3.855
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4339,
+          "substrate_pocket_score": 0.2707
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 11.117,
+            "median": 7.458,
+            "min": 3.855
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3169,
+          "substrate_pocket_score": 0.2679
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 0.7,
+          "distance_summary": {
+            "count": 15,
+            "max": 11.117,
+            "median": 7.458,
+            "min": 3.855
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.2682,
+          "substrate_pocket_score": 0.7271
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 11.117,
+            "median": 7.458,
+            "min": 3.855
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -3201,87 +3976,178 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1526,
+          "substrate_pocket_score": 0.484
         }
       ]
     },
     {
       "entry_id": "m_csa:29",
       "pdb_id": "1DJO",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 6,
+      "status": "ok",
       "top_fingerprints": [
+        {
+          "cofactor_context_score": 0.15,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8125,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 18.427,
+            "median": 11.0,
+            "min": 3.818
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "TYR"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4448,
+          "substrate_pocket_score": 0.2632
+        },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "compactness_score": 0.8125,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 18.427,
+            "median": 11.0,
+            "min": 3.818
           },
           "fingerprint_id": "ser_his_acid_hydrolase",
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.6667,
+          "score": 0.4422,
+          "substrate_pocket_score": 0.8558
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.8125,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 15,
+            "max": 18.427,
+            "median": 11.0,
+            "min": 3.818
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "TYR"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4095,
+          "substrate_pocket_score": 0.2081
+        },
+        {
+          "cofactor_context_score": 0.2,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8125,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 18.427,
+            "median": 11.0,
+            "min": 3.818
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3672,
+          "substrate_pocket_score": 0.2191
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8125,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 18.427,
+            "median": 11.0,
+            "min": 3.818
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -3289,56 +4155,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1366,
+          "substrate_pocket_score": 0.4771
         }
       ]
     },
@@ -3352,6 +4170,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8206,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 3,
             "max": 11.852,
@@ -3389,6 +4208,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8206,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 3,
             "max": 11.852,
@@ -3426,6 +4246,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8206,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 3,
             "max": 11.852,
@@ -3460,6 +4281,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8206,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 3,
             "max": 11.852,
@@ -3496,6 +4318,7 @@
           "cofactor_context_score": 0.6667,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8206,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 3,
             "max": 11.852,
@@ -3523,6 +4346,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 6,
             "max": 9.251,
@@ -3549,6 +4373,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 6,
             "max": 9.251,
@@ -3578,6 +4403,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 6,
             "max": 9.251,
@@ -3607,6 +4433,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 6,
             "max": 9.251,
@@ -3635,6 +4462,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 6,
             "max": 9.251,
@@ -3672,6 +4500,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.631,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 20.038,
@@ -3707,6 +4536,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 20.038,
@@ -3745,6 +4575,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 20.038,
@@ -3784,6 +4615,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 20.038,
@@ -3814,6 +4646,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 20.038,
@@ -3850,6 +4683,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.9655,
+          "counterevidence_penalty": 0.9,
           "distance_summary": {
             "count": 6,
             "max": 12.066,
@@ -3883,13 +4717,14 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.5869,
+          "score": 0.5282,
           "substrate_pocket_score": 0.1091
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9655,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 6,
             "max": 12.066,
@@ -3926,6 +4761,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9655,
+          "counterevidence_penalty": 0.85,
           "distance_summary": {
             "count": 6,
             "max": 12.066,
@@ -3956,13 +4792,14 @@
           "mechanistic_coherence_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.3934,
+          "score": 0.3344,
           "substrate_pocket_score": 0.8424
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9655,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 6,
             "max": 12.066,
@@ -3993,6 +4830,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9655,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 6,
             "max": 12.066,
@@ -4020,6 +4858,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.9081,
+          "counterevidence_penalty": 0.9,
           "distance_summary": {
             "count": 10,
             "max": 15.24,
@@ -4055,13 +4894,14 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.5852,
+          "score": 0.5267,
           "substrate_pocket_score": 0.128
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9081,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 15.24,
@@ -4100,6 +4940,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9081,
+          "counterevidence_penalty": 0.85,
           "distance_summary": {
             "count": 10,
             "max": 15.24,
@@ -4131,13 +4972,14 @@
           "mechanistic_coherence_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.3892,
+          "score": 0.3308,
           "substrate_pocket_score": 0.8333
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9081,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 15.24,
@@ -4169,6 +5011,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9081,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 15.24,
@@ -4196,6 +5039,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.7444,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 17.044,
@@ -4240,6 +5084,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7444,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 17.044,
@@ -4283,6 +5128,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7444,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 17.044,
@@ -4322,6 +5168,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7444,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 17.044,
@@ -4355,6 +5202,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7444,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 15,
             "max": 17.044,
@@ -4375,31 +5223,156 @@
     {
       "entry_id": "m_csa:35",
       "pdb_id": "2PHK",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 5,
+      "status": "ok",
       "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 0.9,
+          "distance_summary": {
+            "count": 10,
+            "max": 12.476,
+            "median": 7.849,
+            "min": 5.56
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.5386,
+          "substrate_pocket_score": 0.1671
+        },
+        {
+          "cofactor_context_score": 0.15,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 12.476,
+            "median": 7.849,
+            "min": 5.56
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.454,
+          "substrate_pocket_score": 0.2244
+        },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 10,
+            "max": 12.476,
+            "median": 7.849,
+            "min": 5.56
           },
           "fingerprint_id": "ser_his_acid_hydrolase",
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3192,
+          "substrate_pocket_score": 0.8959
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 10,
+            "max": 12.476,
+            "median": 7.849,
+            "min": 5.56
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3153,
+          "substrate_pocket_score": 0.2573
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 12.476,
+            "median": 7.849,
+            "min": 5.56
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -4407,56 +5380,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1614,
+          "substrate_pocket_score": 0.5426
         }
       ]
     },
@@ -4467,9 +5392,10 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.3,
+          "cofactor_context_score": 0.15,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 45,
             "max": 15.855,
@@ -4509,13 +5435,14 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5792,
+          "score": 0.5522,
           "substrate_pocket_score": 0.1817
         },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8498,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 45,
             "max": 15.855,
@@ -4554,6 +5481,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 45,
             "max": 15.855,
@@ -4592,6 +5520,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 45,
             "max": 15.855,
@@ -4622,6 +5551,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 45,
             "max": 15.855,
@@ -4642,31 +5572,182 @@
     {
       "entry_id": "m_csa:37",
       "pdb_id": "5COX",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 7,
+      "status": "ok",
       "top_fingerprints": [
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.8326,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 21,
+            "max": 18.581,
+            "median": 10.678,
+            "min": 3.762
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.6071,
+          "substrate_pocket_score": 0.3142
+        },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "compactness_score": 0.8326,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 21,
+            "max": 18.581,
+            "median": 10.678,
+            "min": 3.762
           },
           "fingerprint_id": "ser_his_acid_hydrolase",
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "SER"
+              ],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4697,
+          "substrate_pocket_score": 0.8627
+        },
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.8326,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 21,
+            "max": 18.581,
+            "median": 10.678,
+            "min": 3.762
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4351,
+          "substrate_pocket_score": 0.1343
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.8326,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 21,
+            "max": 18.581,
+            "median": 10.678,
+            "min": 3.762
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "GLY",
+                "SER"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.412,
+          "substrate_pocket_score": 0.2134
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8326,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 21,
+            "max": 18.581,
+            "median": 10.678,
+            "min": 3.762
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -4674,56 +5755,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1551,
+          "substrate_pocket_score": 0.5899
         }
       ]
     },
@@ -4737,6 +5770,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.9944,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 13.689,
@@ -4781,6 +5815,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9944,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 13.689,
@@ -4820,9 +5855,42 @@
           "substrate_pocket_score": 0.2223
         },
         {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9944,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 21,
+            "max": 13.689,
+            "median": 8.089,
+            "min": 3.767
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3149,
+          "substrate_pocket_score": 0.2579
+        },
+        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9944,
+          "counterevidence_penalty": 0.7,
           "distance_summary": {
             "count": 21,
             "max": 13.689,
@@ -4854,44 +5922,14 @@
           "mechanistic_coherence_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.3946,
+          "score": 0.2762,
           "substrate_pocket_score": 0.8385
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9944,
-          "distance_summary": {
-            "count": 21,
-            "max": 13.689,
-            "median": 8.089,
-            "min": 3.767
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "Asp/Glu/His/Tyr",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.3149,
-          "substrate_pocket_score": 0.2579
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.9944,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 13.689,
@@ -4922,22 +5960,29 @@
     {
       "entry_id": "m_csa:39",
       "pdb_id": "2MAS",
-      "resolved_residue_count": 1,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 8,
+      "status": "ok",
       "top_fingerprints": [
         {
           "cofactor_context_score": 1.0,
-          "cofactor_evidence_level": "role_inferred",
-          "compactness_score": 0.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.8706,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 13.557,
+            "median": 10.07,
+            "min": 3.767
           },
           "fingerprint_id": "metal_dependent_hydrolase",
           "fingerprint_name": "Metal-dependent hydrolase",
           "matched_signature_roles": [
             {
               "matched_codes": [
-                "ASP"
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS"
               ],
               "required_residue": "His/Asp/Glu/Cys",
               "required_role": "metal_ligand",
@@ -4945,7 +5990,10 @@
             },
             {
               "matched_codes": [
-                "ASP"
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS"
               ],
               "required_residue": "His/Asp/Glu",
               "required_role": "water_activator",
@@ -4955,90 +6003,130 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.518,
-          "substrate_pocket_score": 0.1643
-        },
-        {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.0,
-          "score": 0.1962,
-          "substrate_pocket_score": 0.7904
+          "score": 0.5821,
+          "substrate_pocket_score": 0.1272
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.8706,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 13.557,
+            "median": 10.07,
+            "min": 3.767
           },
           "fingerprint_id": "heme_peroxidase_oxidase",
           "fingerprint_name": "Heme-dependent peroxidase or oxidase",
           "matched_signature_roles": [
             {
               "matched_codes": [
-                "ASP"
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS"
               ],
               "required_residue": "His/Arg/Asp",
               "required_role": "acid_base",
-              "role_hint_match": false
+              "role_hint_match": true
             }
           ],
           "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.0,
-          "score": 0.162,
-          "substrate_pocket_score": 0.3024
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4233,
+          "substrate_pocket_score": 0.2686
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.8706,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 13.557,
+            "median": 10.07,
+            "min": 3.767
           },
           "fingerprint_id": "plp_dependent_enzyme",
           "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
           "matched_signature_roles": [
             {
               "matched_codes": [
-                "ASP"
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS"
               ],
               "required_residue": "Asp/Glu/His/Tyr",
               "required_role": "acid_base",
-              "role_hint_match": false
+              "role_hint_match": true
             }
           ],
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.0,
-          "score": 0.1524,
-          "substrate_pocket_score": 0.2381
+          "role_match_fraction": 0.3333,
+          "score": 0.3008,
+          "substrate_pocket_score": 0.23
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.8706,
+          "counterevidence_penalty": 0.7,
+          "distance_summary": {
+            "count": 28,
+            "max": 13.557,
+            "median": 10.07,
+            "min": 3.767
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.271,
+          "substrate_pocket_score": 0.8333
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.8706,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 28,
+            "max": 13.557,
+            "median": 10.07,
+            "min": 3.767
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -5046,8 +6134,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.0518,
-          "substrate_pocket_score": 0.3453
+          "score": 0.1235,
+          "substrate_pocket_score": 0.3592
         }
       ]
     },
@@ -5061,6 +6149,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.761,
+          "counterevidence_penalty": 0.9,
           "distance_summary": {
             "count": 55,
             "max": 22.632,
@@ -5105,13 +6194,14 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.5779,
+          "score": 0.5201,
           "substrate_pocket_score": 0.1576
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.761,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 22.632,
@@ -5157,9 +6247,46 @@
           "substrate_pocket_score": 0.2592
         },
         {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.761,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 55,
+            "max": 22.632,
+            "median": 11.824,
+            "min": 3.776
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2918,
+          "substrate_pocket_score": 0.2286
+        },
+        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.761,
+          "counterevidence_penalty": 0.7,
           "distance_summary": {
             "count": 55,
             "max": 22.632,
@@ -5195,48 +6322,14 @@
           "mechanistic_coherence_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.3972,
+          "score": 0.2781,
           "substrate_pocket_score": 0.9885
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.761,
-          "distance_summary": {
-            "count": 55,
-            "max": 22.632,
-            "median": 11.824,
-            "min": 3.776
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP",
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "Asp/Glu/His/Tyr",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.2918,
-          "substrate_pocket_score": 0.2286
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.761,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 55,
             "max": 22.632,
@@ -5266,63 +6359,84 @@
     {
       "entry_id": "m_csa:40",
       "pdb_id": "13PK",
-      "resolved_residue_count": 0,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 4,
+      "status": "ok",
       "top_fingerprints": [
+        {
+          "cofactor_context_score": 0.15,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7874,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 6,
+            "max": 18.587,
+            "median": 11.402,
+            "min": 7.108
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "GLY",
+                "GLY"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.3548,
+          "substrate_pocket_score": 0.2096
+        },
         {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "compactness_score": 0.7874,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 6,
+            "max": 18.587,
+            "median": 11.402,
+            "min": 7.108
           },
           "fingerprint_id": "ser_his_acid_hydrolase",
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
+          "matched_signature_roles": [
+            {
+              "matched_codes": [],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
           "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.084,
-          "substrate_pocket_score": 0.5
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3017,
+          "substrate_pocket_score": 0.8424
         },
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.7874,
+          "counterevidence_penalty": 0.9,
           "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "flavin_monooxygenase",
-          "fingerprint_name": "Flavin-dependent monooxygenase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
+            "count": 6,
+            "max": 18.587,
+            "median": 11.402,
+            "min": 7.108
           },
           "fingerprint_id": "metal_dependent_hydrolase",
           "fingerprint_name": "Metal-dependent hydrolase",
@@ -5330,24 +6444,57 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.2423,
+          "substrate_pocket_score": 0.175
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.7874,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 6,
+            "max": 18.587,
+            "median": 11.402,
+            "min": 7.108
           },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.0,
+          "score": 0.2107,
+          "substrate_pocket_score": 0.2068
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7874,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 6,
+            "max": 18.587,
+            "median": 11.402,
+            "min": 7.108
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
           "matched_signature_roles": [],
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.075,
-          "substrate_pocket_score": 0.5
+          "score": 0.1328,
+          "substrate_pocket_score": 0.4654
         }
       ]
     },
@@ -5361,6 +6508,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.839,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 20.982,
@@ -5407,6 +6555,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.839,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 20.982,
@@ -5448,6 +6597,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.839,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 20.982,
@@ -5488,6 +6638,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.839,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 20.982,
@@ -5522,6 +6673,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.839,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 21,
             "max": 20.982,
@@ -5542,31 +6694,163 @@
     {
       "entry_id": "m_csa:42",
       "pdb_id": "1QL0",
-      "resolved_residue_count": 1,
-      "status": "insufficient_resolved_residues",
+      "resolved_residue_count": 5,
+      "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.0,
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.8488,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 10,
+            "max": 17.015,
+            "median": 10.42,
+            "min": 6.047
           },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.1007,
-          "substrate_pocket_score": 0.6593
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "GLU",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "GLU",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.5915,
+          "substrate_pocket_score": 0.2021
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
+          "compactness_score": 0.8488,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
-            "count": 0
+            "count": 10,
+            "max": 17.015,
+            "median": 10.42,
+            "min": 6.047
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4134,
+          "substrate_pocket_score": 0.2145
+        },
+        {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.8488,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 17.015,
+            "median": 10.42,
+            "min": 6.047
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.3717,
+          "substrate_pocket_score": 0.6986
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8488,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 17.015,
+            "median": 10.42,
+            "min": 6.047
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "GLU",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3005,
+          "substrate_pocket_score": 0.2396
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8488,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 17.015,
+            "median": 10.42,
+            "min": 6.047
           },
           "fingerprint_id": "flavin_monooxygenase",
           "fingerprint_name": "Flavin-dependent monooxygenase",
@@ -5574,56 +6858,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.0715,
-          "substrate_pocket_score": 0.4764
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.0433,
-          "substrate_pocket_score": 0.2889
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.0408,
-          "substrate_pocket_score": 0.2722
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.0,
-          "distance_summary": {
-            "count": 0
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.0,
-          "role_match_fraction": 0.0,
-          "score": 0.0329,
-          "substrate_pocket_score": 0.2194
+          "score": 0.1294,
+          "substrate_pocket_score": 0.4098
         }
       ]
     },
@@ -5637,6 +6873,7 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8954,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 45,
             "max": 17.488,
@@ -5687,6 +6924,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8954,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 45,
             "max": 17.488,
@@ -5733,9 +6971,47 @@
           "substrate_pocket_score": 0.25
         },
         {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8954,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 45,
+            "max": 17.488,
+            "median": 9.674,
+            "min": 3.764
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2965,
+          "substrate_pocket_score": 0.1882
+        },
+        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8954,
+          "counterevidence_penalty": 0.7,
           "distance_summary": {
             "count": 45,
             "max": 17.488,
@@ -5771,49 +7047,14 @@
           "mechanistic_coherence_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.3805,
+          "score": 0.2664,
           "substrate_pocket_score": 0.7578
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8954,
-          "distance_summary": {
-            "count": 45,
-            "max": 17.488,
-            "median": 9.674,
-            "min": 3.764
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP",
-                "ASP",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "TYR"
-              ],
-              "required_residue": "Asp/Glu/His/Tyr",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.2965,
-          "substrate_pocket_score": 0.1882
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8954,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 45,
             "max": 17.488,
@@ -5839,58 +7080,9 @@
       "top_fingerprints": [
         {
           "cofactor_context_score": 1.0,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.825,
-          "distance_summary": {
-            "count": 66,
-            "max": 17.661,
-            "median": 10.8,
-            "min": 3.823
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "SER"
-              ],
-              "required_residue": "Ser",
-              "required_role": "nucleophile",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His",
-              "required_role": "general_base",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ASP",
-                "ASP",
-                "ASP",
-                "ASP",
-                "GLU"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 0.3333,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.6667,
-          "score": 0.7135,
-          "substrate_pocket_score": 0.9057
-        },
-        {
-          "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.825,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 66,
             "max": 17.661,
@@ -5938,9 +7130,10 @@
           "substrate_pocket_score": 0.2339
         },
         {
-          "cofactor_context_score": 0.3,
+          "cofactor_context_score": 0.15,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.825,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 66,
             "max": 17.661,
@@ -5985,13 +7178,65 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5916,
+          "score": 0.5646,
           "substrate_pocket_score": 0.277
+        },
+        {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.825,
+          "counterevidence_penalty": 0.7,
+          "distance_summary": {
+            "count": 66,
+            "max": 17.661,
+            "median": 10.8,
+            "min": 3.823
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "SER"
+              ],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.6667,
+          "score": 0.437,
+          "substrate_pocket_score": 0.9057
         },
         {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.825,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 66,
             "max": 17.661,
@@ -6037,6 +7282,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.825,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 66,
             "max": 17.661,
@@ -6064,6 +7310,7 @@
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8185,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.415,
@@ -6108,6 +7355,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8185,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.415,
@@ -6147,6 +7395,7 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8185,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.415,
@@ -6189,6 +7438,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8185,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.415,
@@ -6220,6 +7470,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8185,
+          "counterevidence_penalty": 1.0,
           "distance_summary": {
             "count": 10,
             "max": 14.415,

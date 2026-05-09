@@ -12,9 +12,11 @@ The V2 scaffold was strengthened in several ways:
    before giving full triad evidence.
 4. Abstention calibration now reports the tradeoff between zero out-of-scope
    false non-abstentions and retained in-scope positives.
-5. Curated labels now cover 36 entries in the 40-entry geometry expansion
-   artifact, with evaluability tracked separately from label availability.
-6. The repo now has local performance checks for artifact-only workflows.
+5. Curated labels now cover all 60 entries in the current expanded geometry
+   slice, with evaluability tracked separately from label availability.
+6. mmCIF structure parsing now resolves catalytic residue positions through
+   both `auth_*` and `label_*` numbering namespaces.
+7. The repo now has local performance checks for artifact-only workflows.
 
 ## Retrieval Quality
 
@@ -29,24 +31,23 @@ Current measured result on the 20-entry regression slice:
 - evaluated entries: 20
 - in-scope seed-fingerprint labels: 4
 - out-of-scope labels: 16
-- evaluable entries: 13
+- evaluable entries: 20
 - top1/top3 in-scope accuracy on evaluable positives: 1.0
-- retained top3 in-scope accuracy at selected threshold 0.5796: 1.0
-- out-of-scope abstention rate at selected threshold 0.5796: 1.0
-- out-of-scope false non-abstentions at selected threshold 0.5796: 0
+- retained top3 in-scope accuracy at selected threshold 0.5682: 1.0
+- out-of-scope abstention rate at selected threshold 0.5682: 1.0
+- out-of-scope false non-abstentions at selected threshold 0.5682: 0
 
-The abstention sweep selected threshold 0.5796 under the zero-false policy with
+The abstention sweep selected threshold 0.5682 under the zero-false policy with
 automatic score-boundary threshold candidates:
 
 ```text
 artifacts/v3_abstention_calibration.json
 ```
 
-At threshold 0.5796, all 3 evaluable in-scope positives are retained and all 10
-evaluable out-of-scope labels abstain on the 20-entry regression slice. On the
-40-entry expansion slice, the zero-false threshold is 0.587 and retains 4/7
-evaluable positives; 2 metal-like out-of-scope controls remain above the
-evaluable positive score floor:
+At threshold 0.5682, all 4 in-scope positives are retained and all 16
+out-of-scope labels abstain on the 20-entry regression slice. On the 60-entry
+geometry slice, the zero-false threshold is 0.5931 and abstains on all 47
+out-of-scope controls, but retains only 5/13 in-scope positives:
 
 ```text
 artifacts/v3_geometry_score_margins.json
@@ -54,10 +55,11 @@ artifacts/v3_hard_negative_controls.json
 artifacts/v3_label_expansion_candidates.json
 ```
 
-The 40-entry geometry expansion artifact has 36 provisional labels. Four
-entries remain unlabeled, and none are ready for review under current evidence
-heuristics. Ten labeled entries are not geometry-evaluable yet because their
-selected PDB structure did not resolve enough catalytic residues.
+The 60-entry geometry expansion artifact is fully labeled and has 60
+geometry-evaluable active-site structures. No entries remain in the current
+label-expansion queue. The 60-entry hard-negative artifact has 2 score-overlap
+controls and 2 near misses within 0.01 below the in-scope score floor after
+cobalamin-only ligand context is separated from metal-ion context.
 
 ## Performance
 
@@ -73,14 +75,14 @@ and hard-negative selection on existing artifacts.
 
 Latest 5-iteration mean timings:
 
-- load V1 graph: 3.826 ms
-- build V2 benchmark: 0.705 ms
-- run geometry retrieval: 3.401 ms
-- evaluate geometry labels: 0.042 ms
-- sweep abstention thresholds: 1.581 ms
+- load V1 graph: 3.655 ms
+- build V2 benchmark: 0.560 ms
+- run geometry retrieval: 4.554 ms
+- evaluate geometry labels: 0.046 ms
+- sweep abstention thresholds: 2.152 ms
 - analyze geometry score margins: 0.025 ms
-- build hard negative controls: 0.029 ms
-- analyze structure mapping issues: 0.030 ms
+- build hard negative controls: 0.036 ms
+- analyze structure mapping issues: 0.007 ms
 
 ## Interpretation
 
@@ -97,21 +99,20 @@ What is now better:
   tradeoffs
 - substrate-pocket context now contributes to ranking
 - hard negative controls are explicit instead of hidden in aggregate metrics
-- curated labels cover 36 entries in the first 40 geometry entries
-- structure-mapping blockers are now summarized as a first-class artifact
-- the remaining label queue is explicit and currently blocked on evidence
-  quality
+- near-miss controls now expose out-of-scope rows just below the positive score
+  floor
+- curated labels cover all 60 entries in the current geometry artifact
+- structure-mapping blockers are now summarized as a first-class artifact and
+  currently report 0 non-OK mappings on the 60-entry slice
+- the current label queue is explicit and empty
 - local performance is measured and reproducible
 
 What remains weak:
 
-- the curated label set is still small and provisional
-- the 40-entry expansion slice still has two hard metal-like out-of-scope
-  controls above the evaluable positive score floor; both are role-inferred
-  metal overlaps without confirmed hydrolysis labels
-- several labeled positives are not geometry-evaluable with the current
-  selected PDB structures; the 40-entry issue artifact lists 14 non-evaluable
-  mappings, including 2 in-scope positives
+- the curated label set is still small and provisional despite covering the
+  current 60-entry geometry slice
+- the 60-entry slice has 2 metal-like hard negatives above the positive score
+  floor and 2 near misses within 0.01 below it
 - ligand/cofactor context is only a simple nearby-ligand heuristic
 - substrate-pocket context is currently a heuristic residue-shell summary
 - local performance does not measure full-database scalability

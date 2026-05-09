@@ -64,6 +64,9 @@ COFACTOR_LIGAND_MAP = {
     "SAM": "sam",
     "SAH": "sam",
     "MTA": "sam",
+    "B12": "cobalamin",
+    "CNC": "cobalamin",
+    "COB": "cobalamin",
     "FES": "fe_s_cluster",
     "SF4": "fe_s_cluster",
     "FS4": "fe_s_cluster",
@@ -293,12 +296,8 @@ def select_residue_atoms(
     residue_code = str(code).upper() if code is not None else None
     selected: list[dict[str, Any]] = []
     for atom in atoms:
-        atom_chain = atom.get("auth_asym_id") or atom.get("label_asym_id")
-        atom_resid = atom.get("auth_seq_id") or atom.get("label_seq_id")
         atom_code = (atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
-        if chain and atom_chain != chain:
-            continue
-        if residue_id and atom_resid != residue_id:
+        if not _atom_matches_position(atom, chain, residue_id):
             continue
         if residue_code and atom_code and atom_code != residue_code:
             continue
@@ -316,11 +315,7 @@ def missing_position_detail(atoms: list[dict[str, Any]], item: dict[str, Any]) -
             (atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
             for atom in atoms
             if atom.get("group_PDB") == "ATOM"
-            and (not chain or (atom.get("auth_asym_id") or atom.get("label_asym_id")) == chain)
-            and (
-                not residue_id
-                or (atom.get("auth_seq_id") or atom.get("label_seq_id")) == residue_id
-            )
+            and _atom_matches_position(atom, chain, residue_id)
         }
     )
     return {
@@ -474,7 +469,7 @@ def pocket_context_from_atoms(
             continue
         chain = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
         resid = str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
-        if (chain, resid) in active_site_keys:
+        if any(_atom_matches_position(atom, active_chain, active_resid) for active_chain, active_resid in active_site_keys):
             continue
         by_site[(code, chain, resid)].append(atom)
 
@@ -522,6 +517,34 @@ def _atom_row(headers: list[str], values: list[str]) -> dict[str, Any]:
         if row.get(axis) is not None:
             row[axis] = float(row[axis])
     return row
+
+
+def _atom_matches_position(
+    atom: dict[str, Any],
+    chain_name: str | None,
+    residue_id: str | None,
+) -> bool:
+    if chain_name is not None and chain_name not in _atom_chain_ids(atom):
+        return False
+    if residue_id is not None and residue_id not in _atom_residue_ids(atom):
+        return False
+    return True
+
+
+def _atom_chain_ids(atom: dict[str, Any]) -> set[str]:
+    return {
+        str(value)
+        for value in [atom.get("auth_asym_id"), atom.get("label_asym_id")]
+        if value not in {None, "", ".", "?"}
+    }
+
+
+def _atom_residue_ids(atom: dict[str, Any]) -> set[str]:
+    return {
+        str(value)
+        for value in [atom.get("auth_seq_id"), atom.get("label_seq_id")]
+        if value not in {None, "", ".", "?"}
+    }
 
 
 def _coords(atom: dict[str, Any]) -> tuple[float, float, float]:

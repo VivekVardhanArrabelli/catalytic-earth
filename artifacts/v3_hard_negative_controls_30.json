@@ -1,55 +1,56 @@
 {
   "metadata": {
-    "cofactor_evidence_counts": {
-      "role_inferred": 2
-    },
-    "evaluable_out_of_scope_count": 17,
+    "cofactor_evidence_counts": {},
+    "evaluable_out_of_scope_count": 25,
     "evaluated_out_of_scope_count": 25,
-    "hard_negative_count": 2,
+    "hard_negative_count": 0,
     "method": "geometry_hard_negative_control_selection",
-    "score_floor": 0.58,
+    "near_miss_count": 2,
+    "near_miss_margin": 0.01,
+    "score_floor": 0.5777,
     "score_floor_source": "min_in_scope_top1_score",
-    "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": false,
-    "top1_fingerprint_counts": {
-      "metal_dependent_hydrolase": 2
-    }
+    "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": true,
+    "top1_fingerprint_counts": {}
   },
-  "rows": [
+  "near_miss_rows": [
     {
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
-        "compactness_score": 0.9655,
+        "compactness_score": 0.7444,
         "mechanistic_coherence_score": 1.0,
         "residue_match_fraction": 0.6667,
         "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1091
+        "substrate_pocket_score": 0.1649
       },
-      "entry_id": "m_csa:32",
+      "entry_id": "m_csa:34",
       "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
-      "label_rationale": "Lactoylglutathione lyase uses metal-assisted lyase/isomerization chemistry rather than metal-activated hydrolysis.",
-      "negative_control_type": "score_overlap_with_in_scope_positive",
-      "score_floor": 0.58,
+      "label_rationale": "Catechol 2,3-dioxygenase is a non-heme iron dioxygenase and does not match the current flavin or heme oxygenase seeds.",
+      "negative_control_type": "near_miss_below_in_scope_floor",
+      "score_floor": 0.5777,
+      "score_gap_to_floor": 0.0001,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5869
+      "top1_score": 0.5776
     },
     {
-      "cofactor_evidence_level": "role_inferred",
+      "cofactor_evidence_level": "absent",
       "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.9081,
+        "cofactor_context_score": 0.15,
+        "compactness_score": 0.9759,
         "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
+        "residue_match_fraction": 1.0,
         "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.128
+        "substrate_pocket_score": 0.2203
       },
-      "entry_id": "m_csa:33",
-      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
-      "label_rationale": "Methylmalonyl-CoA epimerase uses metal-associated acid-base epimerization rather than the current hydrolase seed mechanisms.",
-      "negative_control_type": "score_overlap_with_in_scope_positive",
-      "score_floor": 0.58,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5852
+      "entry_id": "m_csa:2",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Class A beta-lactamase is a serine beta-lactamase but not the Ser-His-Asp/Glu triad hydrolase fingerprint currently defined.",
+      "negative_control_type": "near_miss_below_in_scope_floor",
+      "score_floor": 0.5777,
+      "score_gap_to_floor": 0.0096,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_score": 0.5681
     }
-  ]
+  ],
+  "rows": []
 }
