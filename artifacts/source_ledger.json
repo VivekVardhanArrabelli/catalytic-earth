@@ -1,0 +1,501 @@
+{
+  "by_category": {
+    "chemical_ontology": [
+      "chebi"
+    ],
+    "domain_specific_enzyme_family": [
+      "cazy",
+      "pazy",
+      "plasticdb"
+    ],
+    "enzyme_knowledgebase": [
+      "brenda"
+    ],
+    "experimental_structure": [
+      "pdb"
+    ],
+    "kinetics": [
+      "sabio_rk"
+    ],
+    "mechanism_active_site": [
+      "m_csa"
+    ],
+    "metagenomic_sequence_space": [
+      "mgnify"
+    ],
+    "predicted_structure": [
+      "alphafold_db"
+    ],
+    "reaction_knowledgebase": [
+      "rhea"
+    ],
+    "sequence_annotation": [
+      "uniprot"
+    ]
+  },
+  "by_priority": {
+    "1": [
+      "alphafold_db",
+      "chebi",
+      "m_csa",
+      "pdb",
+      "rhea",
+      "uniprot"
+    ],
+    "2": [
+      "brenda",
+      "cazy",
+      "mgnify",
+      "sabio_rk"
+    ],
+    "3": [
+      "pazy",
+      "plasticdb"
+    ]
+  },
+  "by_role": {
+    "balanced_reactions": [
+      "rhea"
+    ],
+    "carbohydrate_active_enzyme_families": [
+      "cazy"
+    ],
+    "catalytic_residues": [
+      "m_csa"
+    ],
+    "chebi_linkage": [
+      "rhea"
+    ],
+    "chemical_identifiers": [
+      "chebi"
+    ],
+    "cofactor_context": [
+      "pdb"
+    ],
+    "cross_references": [
+      "uniprot"
+    ],
+    "curated_literature": [
+      "pazy"
+    ],
+    "environment_context": [
+      "mgnify"
+    ],
+    "enzyme_properties": [
+      "brenda"
+    ],
+    "enzyme_variant_context": [
+      "sabio_rk"
+    ],
+    "experimental_structures": [
+      "pdb"
+    ],
+    "family_classification": [
+      "cazy"
+    ],
+    "functional_annotations": [
+      "uniprot"
+    ],
+    "kinetic_parameters": [
+      "sabio_rk"
+    ],
+    "kinetics": [
+      "brenda"
+    ],
+    "ligand_complexes": [
+      "pdb"
+    ],
+    "literature": [
+      "plasticdb"
+    ],
+    "mechanism_steps": [
+      "m_csa"
+    ],
+    "metagenomic_proteins": [
+      "mgnify"
+    ],
+    "microorganisms": [
+      "plasticdb"
+    ],
+    "msa_depth": [
+      "alphafold_db"
+    ],
+    "ontology": [
+      "chebi"
+    ],
+    "organism_context": [
+      "brenda"
+    ],
+    "pdb_examples": [
+      "m_csa"
+    ],
+    "plastic_biodegradation_reports": [
+      "plasticdb"
+    ],
+    "plastics_active_enzymes": [
+      "pazy"
+    ],
+    "polyesterase_context": [
+      "pazy"
+    ],
+    "predicted_structures": [
+      "alphafold_db"
+    ],
+    "products": [
+      "brenda"
+    ],
+    "protein_links": [
+      "plasticdb"
+    ],
+    "protein_sequences": [
+      "uniprot"
+    ],
+    "reaction_conditions": [
+      "sabio_rk"
+    ],
+    "reaction_identifiers": [
+      "rhea"
+    ],
+    "reaction_participant_normalization": [
+      "chebi"
+    ],
+    "residue_roles": [
+      "m_csa"
+    ],
+    "structure_coverage": [
+      "alphafold_db"
+    ],
+    "substrate_context": [
+      "cazy"
+    ],
+    "substrates": [
+      "brenda"
+    ],
+    "uncharacterized_families": [
+      "mgnify"
+    ],
+    "uniprot_reaction_mapping": [
+      "rhea"
+    ]
+  },
+  "category_count": 10,
+  "source_count": 12,
+  "sources": [
+    {
+      "access": "ftp_api_web",
+      "category": "predicted_structure",
+      "caveats": [
+        "static monomeric structures can miss complexes, ligands, dynamics, and induced fit"
+      ],
+      "id": "alphafold_db",
+      "license": "cc_by_4_0",
+      "name": "AlphaFold Protein Structure Database",
+      "primary_fields": [
+        "uniprot_accession",
+        "model",
+        "plddt",
+        "pae",
+        "msa_depth"
+      ],
+      "priority": 1,
+      "roles": [
+        "predicted_structures",
+        "structure_coverage",
+        "msa_depth"
+      ],
+      "url": "https://alphafold.ebi.ac.uk/"
+    },
+    {
+      "access": "ftp_api_web",
+      "category": "chemical_ontology",
+      "caveats": [
+        "tautomer and protonation state handling can affect mechanistic interpretation"
+      ],
+      "id": "chebi",
+      "license": "cc_by_4_0",
+      "name": "ChEBI",
+      "primary_fields": [
+        "chebi_id",
+        "name",
+        "formula",
+        "charge",
+        "ontology_parents",
+        "structure"
+      ],
+      "priority": 1,
+      "roles": [
+        "chemical_identifiers",
+        "ontology",
+        "reaction_participant_normalization"
+      ],
+      "url": "https://www.ebi.ac.uk/chebi/"
+    },
+    {
+      "access": "web_api",
+      "category": "mechanism_active_site",
+      "caveats": [
+        "curated coverage is small relative to enzyme space",
+        "bias toward structurally characterized enzymes"
+      ],
+      "id": "m_csa",
+      "license": "open_with_terms",
+      "name": "Mechanism and Catalytic Site Atlas",
+      "primary_fields": [
+        "m_csa_id",
+        "pdb_id",
+        "residue_roles",
+        "mechanism",
+        "ec",
+        "reaction"
+      ],
+      "priority": 1,
+      "roles": [
+        "catalytic_residues",
+        "residue_roles",
+        "mechanism_steps",
+        "pdb_examples"
+      ],
+      "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/"
+    },
+    {
+      "access": "ftp_api_web",
+      "category": "experimental_structure",
+      "caveats": [
+        "crystal structures can miss catalytic conformations",
+        "ligands may be crystallization artifacts"
+      ],
+      "id": "pdb",
+      "license": "public_archive_terms",
+      "name": "Protein Data Bank",
+      "primary_fields": [
+        "pdb_id",
+        "entity",
+        "sequence",
+        "structure",
+        "ligands",
+        "method",
+        "resolution"
+      ],
+      "priority": 1,
+      "roles": [
+        "experimental_structures",
+        "ligand_complexes",
+        "cofactor_context"
+      ],
+      "url": "https://www.rcsb.org/"
+    },
+    {
+      "access": "ftp_web",
+      "category": "reaction_knowledgebase",
+      "caveats": [
+        "reaction annotation does not imply kinetic competence for every mapped protein"
+      ],
+      "id": "rhea",
+      "license": "cc_by_4_0",
+      "name": "Rhea",
+      "primary_fields": [
+        "rhea_id",
+        "equation",
+        "chebi_participants",
+        "direction",
+        "ec_mapping",
+        "uniprot_mapping"
+      ],
+      "priority": 1,
+      "roles": [
+        "balanced_reactions",
+        "reaction_identifiers",
+        "chebi_linkage",
+        "uniprot_reaction_mapping"
+      ],
+      "url": "https://www.rhea-db.org/"
+    },
+    {
+      "access": "ftp_api_web",
+      "category": "sequence_annotation",
+      "caveats": [
+        "automatic annotations may propagate errors",
+        "coverage and record status change by release"
+      ],
+      "id": "uniprot",
+      "license": "custom_open_reuse_with_attribution",
+      "name": "UniProt",
+      "primary_fields": [
+        "accession",
+        "sequence",
+        "protein_name",
+        "organism",
+        "ec",
+        "rhea",
+        "go",
+        "xref"
+      ],
+      "priority": 1,
+      "roles": [
+        "protein_sequences",
+        "functional_annotations",
+        "cross_references"
+      ],
+      "url": "https://www.uniprot.org/"
+    },
+    {
+      "access": "web_download_terms",
+      "category": "enzyme_knowledgebase",
+      "caveats": [
+        "licensing and access terms must be checked before redistribution",
+        "records are heterogeneous"
+      ],
+      "id": "brenda",
+      "license": "custom_terms",
+      "name": "BRENDA",
+      "primary_fields": [
+        "ec",
+        "organism",
+        "substrate",
+        "product",
+        "km",
+        "kcat",
+        "ph",
+        "temperature",
+        "literature"
+      ],
+      "priority": 2,
+      "roles": [
+        "enzyme_properties",
+        "substrates",
+        "products",
+        "kinetics",
+        "organism_context"
+      ],
+      "url": "https://www.brenda-enzymes.org/"
+    },
+    {
+      "access": "web_download_terms",
+      "category": "domain_specific_enzyme_family",
+      "caveats": [
+        "redistribution terms must be checked",
+        "family membership does not guarantee substrate specificity"
+      ],
+      "id": "cazy",
+      "license": "custom_terms",
+      "name": "CAZy",
+      "primary_fields": [
+        "family",
+        "activity",
+        "organism",
+        "sequence_links",
+        "structure_links"
+      ],
+      "priority": 2,
+      "roles": [
+        "carbohydrate_active_enzyme_families",
+        "family_classification",
+        "substrate_context"
+      ],
+      "url": "https://www.cazy.org/"
+    },
+    {
+      "access": "ftp_api_web",
+      "category": "metagenomic_sequence_space",
+      "caveats": [
+        "assemblies may contain fragments or errors",
+        "environment metadata can be sparse"
+      ],
+      "id": "mgnify",
+      "license": "open_with_dataset_terms",
+      "name": "MGnify",
+      "primary_fields": [
+        "protein_id",
+        "sequence",
+        "sample",
+        "biome",
+        "assembly",
+        "annotation"
+      ],
+      "priority": 2,
+      "roles": [
+        "metagenomic_proteins",
+        "environment_context",
+        "uncharacterized_families"
+      ],
+      "url": "https://www.ebi.ac.uk/metagenomics/"
+    },
+    {
+      "access": "web_services",
+      "category": "kinetics",
+      "caveats": [
+        "condition-specific values are not directly comparable without normalization"
+      ],
+      "id": "sabio_rk",
+      "license": "custom_terms",
+      "name": "SABIO-RK",
+      "primary_fields": [
+        "reaction",
+        "enzyme",
+        "organism",
+        "km",
+        "kcat",
+        "temperature",
+        "ph",
+        "publication"
+      ],
+      "priority": 2,
+      "roles": [
+        "kinetic_parameters",
+        "reaction_conditions",
+        "enzyme_variant_context"
+      ],
+      "url": "https://sabiork.h-its.org/"
+    },
+    {
+      "access": "web",
+      "category": "domain_specific_enzyme_family",
+      "caveats": [
+        "plastic activity evidence varies by substrate form and assay"
+      ],
+      "id": "pazy",
+      "license": "site_terms",
+      "name": "PAZy",
+      "primary_fields": [
+        "enzyme_family",
+        "plastic_type",
+        "protein",
+        "structure",
+        "literature"
+      ],
+      "priority": 3,
+      "roles": [
+        "plastics_active_enzymes",
+        "polyesterase_context",
+        "curated_literature"
+      ],
+      "url": "https://www.pazy.eu/"
+    },
+    {
+      "access": "web",
+      "category": "domain_specific_enzyme_family",
+      "caveats": [
+        "organism-level degradation reports may not identify the causal enzyme"
+      ],
+      "id": "plasticdb",
+      "license": "site_terms",
+      "name": "PlasticDB",
+      "primary_fields": [
+        "taxon",
+        "plastic_type",
+        "protein",
+        "evidence",
+        "publication",
+        "environment"
+      ],
+      "priority": 3,
+      "roles": [
+        "plastic_biodegradation_reports",
+        "microorganisms",
+        "protein_links",
+        "literature"
+      ],
+      "url": "https://plasticdb.org/"
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "active_site_role_index": {
+    "acid_base": [
+      "heme_peroxidase_oxidase",
+      "plp_dependent_enzyme"
+    ],
+    "acid_or_orienter": [
+      "ser_his_acid_hydrolase"
+    ],
+    "cluster_ligand": [
+      "radical_sam_enzyme"
+    ],
+    "electron_transfer_path": [
+      "heme_peroxidase_oxidase"
+    ],
+    "flavin_binder": [
+      "flavin_monooxygenase"
+    ],
+    "general_base": [
+      "ser_his_acid_hydrolase"
+    ],
+    "heme_ligand": [
+      "heme_peroxidase_oxidase"
+    ],
+    "leaving_group_stabilizer": [
+      "metal_dependent_hydrolase"
+    ],
+    "metal_ligand": [
+      "metal_dependent_hydrolase"
+    ],
+    "nadph_binding": [
+      "flavin_monooxygenase"
+    ],
+    "nucleophile": [
+      "ser_his_acid_hydrolase"
+    ],
+    "phosphate_binder": [
+      "plp_dependent_enzyme"
+    ],
+    "plp_anchor": [
+      "plp_dependent_enzyme"
+    ],
+    "sam_binding": [
+      "radical_sam_enzyme"
+    ],
+    "substrate_orienter": [
+      "flavin_monooxygenase"
+    ],
+    "substrate_positioning": [
+      "radical_sam_enzyme"
+    ],
+    "water_activator": [
+      "metal_dependent_hydrolase"
+    ]
+  },
+  "chemical_operation_index": {
+    "PLP-stabilized carbanion chemistry": [
+      "plp_dependent_enzyme"
+    ],
+    "SAM-derived radical chemistry": [
+      "radical_sam_enzyme"
+    ],
+    "flavin peroxide oxygen transfer": [
+      "flavin_monooxygenase"
+    ],
+    "heme-mediated redox catalysis": [
+      "heme_peroxidase_oxidase"
+    ],
+    "metal-activated water attack": [
+      "metal_dependent_hydrolase"
+    ],
+    "nucleophilic acyl substitution": [
+      "ser_his_acid_hydrolase"
+    ]
+  },
+  "cofactor_index": {
+    "FAD": [
+      "flavin_monooxygenase"
+    ],
+    "FMN": [
+      "flavin_monooxygenase"
+    ],
+    "Fe2+/Fe3+": [
+      "metal_dependent_hydrolase"
+    ],
+    "H2O2 or O2 depending on family": [
+      "heme_peroxidase_oxidase"
+    ],
+    "Mg2+": [
+      "metal_dependent_hydrolase"
+    ],
+    "Mn2+": [
+      "metal_dependent_hydrolase"
+    ],
+    "NADPH": [
+      "flavin_monooxygenase"
+    ],
+    "S-adenosylmethionine": [
+      "radical_sam_enzyme"
+    ],
+    "Zn2+": [
+      "metal_dependent_hydrolase"
+    ],
+    "[4Fe-4S]": [
+      "radical_sam_enzyme"
+    ],
+    "heme": [
+      "heme_peroxidase_oxidase"
+    ],
+    "no_explicit_cofactor": [
+      "ser_his_acid_hydrolase"
+    ],
+    "pyridoxal phosphate": [
+      "plp_dependent_enzyme"
+    ]
+  },
+  "fingerprint_count": 6,
+  "fingerprints": [
+    {
+      "active_site_roles": [
+        {
+          "residue": "Rossmann-like motif",
+          "role": "flavin_binder"
+        },
+        {
+          "residue": "basic_or_polar_motif",
+          "role": "nadph_binding"
+        },
+        {
+          "residue": "variable",
+          "role": "substrate_orienter"
+        }
+      ],
+      "bond_changes": [
+        "oxygen insertion or hydroxylation"
+      ],
+      "chemical_operation": "flavin peroxide oxygen transfer",
+      "cofactors": [
+        "FAD",
+        "FMN",
+        "NADPH"
+      ],
+      "completeness": 1.0,
+      "id": "flavin_monooxygenase",
+      "name": "Flavin-dependent monooxygenase"
+    },
+    {
+      "active_site_roles": [
+        {
+          "residue": "His/Cys/Tyr",
+          "role": "heme_ligand"
+        },
+        {
+          "residue": "His/Arg/Asp",
+          "role": "acid_base"
+        },
+        {
+          "residue": "aromatic_or_redox_residue",
+          "role": "electron_transfer_path"
+        }
+      ],
+      "bond_changes": [
+        "one-electron oxidation",
+        "peroxide reduction",
+        "aromatic bond oxidation"
+      ],
+      "chemical_operation": "heme-mediated redox catalysis",
+      "cofactors": [
+        "heme",
+        "H2O2 or O2 depending on family"
+      ],
+      "completeness": 1.0,
+      "id": "heme_peroxidase_oxidase",
+      "name": "Heme-dependent peroxidase or oxidase"
+    },
+    {
+      "active_site_roles": [
+        {
+          "residue": "His/Asp/Glu/Cys",
+          "role": "metal_ligand"
+        },
+        {
+          "residue": "His/Asp/Glu",
+          "role": "water_activator"
+        },
+        {
+          "residue": "variable",
+          "role": "leaving_group_stabilizer"
+        }
+      ],
+      "bond_changes": [
+        "hydrolysis of ester, amide, phosphate, or related bond"
+      ],
+      "chemical_operation": "metal-activated water attack",
+      "cofactors": [
+        "Zn2+",
+        "Mg2+",
+        "Mn2+",
+        "Fe2+/Fe3+"
+      ],
+      "completeness": 1.0,
+      "id": "metal_dependent_hydrolase",
+      "name": "Metal-dependent hydrolase"
+    },
+    {
+      "active_site_roles": [
+        {
+          "residue": "Lys",
+          "role": "plp_anchor"
+        },
+        {
+          "residue": "Asp/Glu/His/Tyr",
+          "role": "acid_base"
+        },
+        {
+          "residue": "Gly/Ser/Thr-rich motif",
+          "role": "phosphate_binder"
+        }
+      ],
+      "bond_changes": [
+        "C-N, C-C, or C-S bond transformation adjacent to amino group"
+      ],
+      "chemical_operation": "PLP-stabilized carbanion chemistry",
+      "cofactors": [
+        "pyridoxal phosphate"
+      ],
+      "completeness": 1.0,
+      "id": "plp_dependent_enzyme",
+      "name": "Pyridoxal phosphate dependent enzyme"
+    },
+    {
+      "active_site_roles": [
+        {
+          "residue": "Cys",
+          "role": "cluster_ligand"
+        },
+        {
+          "residue": "motif_context",
+          "role": "sam_binding"
+        },
+        {
+          "residue": "variable",
+          "role": "substrate_positioning"
+        }
+      ],
+      "bond_changes": [
+        "radical-mediated C-H activation or rearrangement"
+      ],
+      "chemical_operation": "SAM-derived radical chemistry",
+      "cofactors": [
+        "[4Fe-4S]",
+        "S-adenosylmethionine"
+      ],
+      "completeness": 1.0,
+      "id": "radical_sam_enzyme",
+      "name": "Radical SAM enzyme"
+    },
+    {
+      "active_site_roles": [
+        {
+          "residue": "Ser",
+          "role": "nucleophile"
+        },
+        {
+          "residue": "His",
+          "role": "general_base"
+        },
+        {
+          "residue": "Asp/Glu",
+          "role": "acid_or_orienter"
+        }
+      ],
+      "bond_changes": [
+        "acyl heteroatom bond hydrolysis"
+      ],
+      "chemical_operation": "nucleophilic acyl substitution",
+      "cofactors": [],
+      "completeness": 1.0,
+      "id": "ser_his_acid_hydrolase",
+      "name": "Ser-His-Asp/Glu hydrolase triad"
+    }
+  ],
+  "mean_completeness": 1.0
+}

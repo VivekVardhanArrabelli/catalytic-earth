@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "record_count": 10,
+    "source": "rhea",
+    "url": "https://www.rhea-db.org/rhea?query=&columns=rhea-id%2Cequation%2Cuniprot&format=tsv&limit=10"
+  },
+  "records": [
+    {
+      "equation": "pentanamide + H2O = pentanoate + NH4(+)",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 0,
+      "rhea_id": "RHEA:10000",
+      "source": "rhea"
+    },
+    {
+      "equation": "benzyl isothiocyanate = benzyl thiocyanate",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 0,
+      "rhea_id": "RHEA:10004",
+      "source": "rhea"
+    },
+    {
+      "equation": "a hydroperoxide + [protein]-dithiol = [protein]-disulfide + an alcohol + H2O",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 1182,
+      "rhea_id": "RHEA:10008",
+      "source": "rhea"
+    },
+    {
+      "equation": "(R)-6-hydroxynicotine + O2 + H2O = 6-hydroxypseudooxynicotine + H2O2",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 1,
+      "rhea_id": "RHEA:10012",
+      "source": "rhea"
+    },
+    {
+      "equation": "O-sinapoylcholine + H2O = (E)-sinapate + choline + H(+)",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 1,
+      "rhea_id": "RHEA:10016",
+      "source": "rhea"
+    },
+    {
+      "equation": "L-saccharopine + NADP(+) + H2O = (S)-2-amino-6-oxohexanoate + L-glutamate + NADPH + H(+)",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 1170,
+      "rhea_id": "RHEA:10020",
+      "source": "rhea"
+    },
+    {
+      "equation": "L-lysyl-[histone] + S-adenosyl-L-methionine = N(6)-methyl-L-lysyl-[histone] + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 3262,
+      "rhea_id": "RHEA:10024",
+      "source": "rhea"
+    },
+    {
+      "equation": "D-glutamate + O2 + H2O = 2-oxoglutarate + H2O2 + NH4(+)",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 1105,
+      "rhea_id": "RHEA:10028",
+      "source": "rhea"
+    },
+    {
+      "equation": "[protein]-C-terminal-L-glutamine + H2O = [protein]-C-terminal-L-glutamate + NH4(+)",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 0,
+      "rhea_id": "RHEA:10032",
+      "source": "rhea"
+    },
+    {
+      "equation": "4-hydroxy-3-methoxy-benzenemethanol + O2 = vanillin + H2O2",
+      "evidence_level": "reaction_record",
+      "mapped_enzyme_count": 1,
+      "rhea_id": "RHEA:10036",
+      "source": "rhea"
+    }
+  ]
+}

@@ -1,0 +1,578 @@
+{
+  "degree": {
+    "ec:1.6.5.2": 3,
+    "ec:3.5.2.6": 2,
+    "ec:5.1.1.3": 2,
+    "m_csa:1": 7,
+    "m_csa:1:residue:1": 1,
+    "m_csa:1:residue:2": 1,
+    "m_csa:1:residue:3": 1,
+    "m_csa:1:residue:4": 1,
+    "m_csa:1:residue:5": 1,
+    "m_csa:1:residue:6": 1,
+    "m_csa:2": 8,
+    "m_csa:2:residue:1": 1,
+    "m_csa:2:residue:2": 1,
+    "m_csa:2:residue:3": 1,
+    "m_csa:2:residue:4": 1,
+    "m_csa:2:residue:5": 1,
+    "m_csa:2:residue:6": 1,
+    "m_csa:2:residue:7": 1,
+    "m_csa:3": 4,
+    "m_csa:3:residue:1": 1,
+    "m_csa:3:residue:2": 1,
+    "m_csa:3:residue:3": 1,
+    "rhea:RHEA:12813": 1,
+    "rhea:RHEA:20401": 1,
+    "rhea:RHEA:46160": 1,
+    "rhea:RHEA:46164": 1
+  },
+  "edges": [
+    {
+      "evidence_source": "rhea",
+      "predicate": "maps_to_reaction",
+      "source": "ec:1.6.5.2",
+      "target": "rhea:RHEA:46160"
+    },
+    {
+      "evidence_source": "rhea",
+      "predicate": "maps_to_reaction",
+      "source": "ec:1.6.5.2",
+      "target": "rhea:RHEA:46164"
+    },
+    {
+      "evidence_source": "rhea",
+      "predicate": "maps_to_reaction",
+      "source": "ec:3.5.2.6",
+      "target": "rhea:RHEA:20401"
+    },
+    {
+      "evidence_source": "rhea",
+      "predicate": "maps_to_reaction",
+      "source": "ec:5.1.1.3",
+      "target": "rhea:RHEA:12813"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:1",
+      "target": "m_csa:1:residue:1"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:1",
+      "target": "m_csa:1:residue:2"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:1",
+      "target": "m_csa:1:residue:3"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:1",
+      "target": "m_csa:1:residue:4"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:1",
+      "target": "m_csa:1:residue:5"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:1",
+      "target": "m_csa:1:residue:6"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_ec",
+      "source": "m_csa:1",
+      "target": "ec:5.1.1.3"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:2",
+      "target": "m_csa:2:residue:1"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:2",
+      "target": "m_csa:2:residue:2"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:2",
+      "target": "m_csa:2:residue:3"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:2",
+      "target": "m_csa:2:residue:4"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:2",
+      "target": "m_csa:2:residue:5"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:2",
+      "target": "m_csa:2:residue:6"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:2",
+      "target": "m_csa:2:residue:7"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_ec",
+      "source": "m_csa:2",
+      "target": "ec:3.5.2.6"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:3",
+      "target": "m_csa:3:residue:1"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:3",
+      "target": "m_csa:3:residue:2"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_catalytic_residue",
+      "source": "m_csa:3",
+      "target": "m_csa:3:residue:3"
+    },
+    {
+      "evidence_source": "m_csa",
+      "predicate": "has_ec",
+      "source": "m_csa:3",
+      "target": "ec:1.6.5.2"
+    }
+  ],
+  "metadata": {
+    "builder": "seed_graph",
+    "edge_count": 23,
+    "mcsa_ids": [
+      1,
+      2,
+      3
+    ],
+    "mcsa_query": {
+      "record_count": 3,
+      "source": "m_csa",
+      "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=1%2C2%2C3"
+    },
+    "node_count": 26,
+    "rhea_queries": {
+      "1.6.5.2": {
+        "record_count": 2,
+        "source": "rhea",
+        "url": "https://www.rhea-db.org/rhea?query=ec%3A1.6.5.2&columns=rhea-id%2Cequation%2Cec&format=tsv&limit=100"
+      },
+      "3.5.2.6": {
+        "record_count": 1,
+        "source": "rhea",
+        "url": "https://www.rhea-db.org/rhea?query=ec%3A3.5.2.6&columns=rhea-id%2Cequation%2Cec&format=tsv&limit=100"
+      },
+      "5.1.1.3": {
+        "record_count": 1,
+        "source": "rhea",
+        "url": "https://www.rhea-db.org/rhea?query=ec%3A5.1.1.3&columns=rhea-id%2Cequation%2Cec&format=tsv&limit=100"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "ec_number": "1.6.5.2",
+      "id": "ec:1.6.5.2",
+      "type": "ec_number"
+    },
+    {
+      "ec_number": "3.5.2.6",
+      "id": "ec:3.5.2.6",
+      "type": "ec_number"
+    },
+    {
+      "ec_number": "5.1.1.3",
+      "id": "ec:5.1.1.3",
+      "type": "ec_number"
+    },
+    {
+      "id": "m_csa:1",
+      "mechanism_count": 1,
+      "name": "glutamate racemase",
+      "reference_uniprot_id": "P56868",
+      "residue_count": 6,
+      "type": "m_csa_entry"
+    },
+    {
+      "id": "m_csa:1:residue:1",
+      "roles": [
+        "activator",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor"
+      ],
+      "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor",
+      "sequence_positions": [
+        {
+          "code": "Asp",
+          "is_reference": true,
+          "resid": 7,
+          "uniprot_id": "P56868"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:1:residue:2",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor",
+        "increase basicity"
+      ],
+      "roles_summary": "electrostatic stabiliser, hydrogen bond donor, increase basicity",
+      "sequence_positions": [
+        {
+          "code": "Ser",
+          "is_reference": true,
+          "resid": 8,
+          "uniprot_id": "P56868"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:1:residue:3",
+      "roles": [
+        "activator",
+        "hydrogen bond acceptor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "roles_summary": "activator, hydrogen bond acceptor, proton acceptor, proton donor",
+      "sequence_positions": [
+        {
+          "code": "Cys",
+          "is_reference": true,
+          "resid": 178,
+          "uniprot_id": "P56868"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:1:residue:4",
+      "roles": [
+        "activator",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor",
+      "sequence_positions": [
+        {
+          "code": "Cys",
+          "is_reference": true,
+          "resid": 70,
+          "uniprot_id": "P56868"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:1:residue:5",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor"
+      ],
+      "roles_summary": "electrostatic stabiliser, hydrogen bond donor",
+      "sequence_positions": [
+        {
+          "code": "His",
+          "is_reference": true,
+          "resid": 180,
+          "uniprot_id": "P56868"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:1:residue:6",
+      "roles": [
+        "activator",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "increase basicity",
+        "proton donor"
+      ],
+      "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, increase basicity, proton donor",
+      "sequence_positions": [
+        {
+          "code": "Glu",
+          "is_reference": true,
+          "resid": 147,
+          "uniprot_id": "P56868"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:2",
+      "mechanism_count": 2,
+      "name": "beta-lactamase (Class A)",
+      "reference_uniprot_id": "P62593",
+      "residue_count": 7,
+      "type": "m_csa_entry"
+    },
+    {
+      "id": "m_csa:2:residue:1",
+      "roles": [
+        "covalently attached",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "nucleofuge",
+        "nucleophile",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "roles_summary": "covalently attached, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, nucleofuge, nucleophile, proton acceptor, proton donor",
+      "sequence_positions": [
+        {
+          "code": "Ser",
+          "is_reference": true,
+          "resid": 68,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:2:residue:2",
+      "roles": [
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "roles_summary": "hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor",
+      "sequence_positions": [
+        {
+          "code": "Lys",
+          "is_reference": true,
+          "resid": 71,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:2:residue:3",
+      "roles": [
+        "activator",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor",
+      "sequence_positions": [
+        {
+          "code": "Ser",
+          "is_reference": true,
+          "resid": 128,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:2:residue:4",
+      "roles": [
+        "activator",
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor"
+      ],
+      "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor",
+      "sequence_positions": [
+        {
+          "code": "Glu",
+          "is_reference": true,
+          "resid": 164,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:2:residue:5",
+      "roles": [
+        "electrostatic stabiliser"
+      ],
+      "roles_summary": "electrostatic stabiliser",
+      "sequence_positions": [
+        {
+          "code": "Lys",
+          "is_reference": true,
+          "resid": 232,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:2:residue:6",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor"
+      ],
+      "roles_summary": "electrostatic stabiliser, hydrogen bond donor",
+      "sequence_positions": [
+        {
+          "code": "Ala",
+          "is_reference": true,
+          "resid": 235,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:2:residue:7",
+      "roles": [
+        "electrostatic stabiliser"
+      ],
+      "roles_summary": "electrostatic stabiliser",
+      "sequence_positions": [
+        {
+          "code": "Ser",
+          "is_reference": true,
+          "resid": 68,
+          "uniprot_id": "P62593"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:3",
+      "mechanism_count": 1,
+      "name": "NAD(P)H dehydrogenase (quinone)",
+      "reference_uniprot_id": "P15559",
+      "residue_count": 3,
+      "type": "m_csa_entry"
+    },
+    {
+      "id": "m_csa:3:residue:1",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond donor"
+      ],
+      "roles_summary": "electrostatic stabiliser, hydrogen bond donor",
+      "sequence_positions": [
+        {
+          "code": "Gly",
+          "is_reference": true,
+          "resid": 150,
+          "uniprot_id": "P15559"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:3:residue:2",
+      "roles": [
+        "electrostatic stabiliser",
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor",
+        "proton relay"
+      ],
+      "roles_summary": "electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor, proton relay",
+      "sequence_positions": [
+        {
+          "code": "Tyr",
+          "is_reference": true,
+          "resid": 156,
+          "uniprot_id": "P15559"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "id": "m_csa:3:residue:3",
+      "roles": [
+        "hydrogen bond acceptor",
+        "hydrogen bond donor",
+        "proton acceptor",
+        "proton donor",
+        "proton relay"
+      ],
+      "roles_summary": "hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor, proton relay",
+      "sequence_positions": [
+        {
+          "code": "His",
+          "is_reference": true,
+          "resid": 162,
+          "uniprot_id": "P15559"
+        }
+      ],
+      "type": "catalytic_residue"
+    },
+    {
+      "ec_number": "5.1.1.3",
+      "equation": "L-glutamate = D-glutamate",
+      "id": "rhea:RHEA:12813",
+      "rhea_id": "RHEA:12813",
+      "type": "rhea_reaction"
+    },
+    {
+      "ec_number": "3.5.2.6",
+      "equation": "a beta-lactam + H2O = a substituted beta-amino acid",
+      "id": "rhea:RHEA:20401",
+      "rhea_id": "RHEA:20401",
+      "type": "rhea_reaction"
+    },
+    {
+      "ec_number": "1.6.5.2;EC:1.6.5.9",
+      "equation": "a quinone + NADH + H(+) = a quinol + NAD(+)",
+      "id": "rhea:RHEA:46160",
+      "rhea_id": "RHEA:46160",
+      "type": "rhea_reaction"
+    },
+    {
+      "ec_number": "1.6.5.2;EC:1.6.5.10",
+      "equation": "a quinone + NADPH + H(+) = a quinol + NADP(+)",
+      "id": "rhea:RHEA:46164",
+      "rhea_id": "RHEA:46164",
+      "type": "rhea_reaction"
+    }
+  ]
+}

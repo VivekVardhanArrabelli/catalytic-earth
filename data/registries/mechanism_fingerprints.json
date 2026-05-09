@@ -1,0 +1,122 @@
+[
+  {
+    "id": "ser_his_acid_hydrolase",
+    "name": "Ser-His-Asp/Glu hydrolase triad",
+    "enzyme_space": ["esterases", "lipases", "cutinases", "serine proteases", "polyesterases"],
+    "active_site_signature": [
+      {"role": "nucleophile", "residue": "Ser", "constraints": ["positioned for carbonyl attack", "often in nucleophile elbow"]},
+      {"role": "general_base", "residue": "His", "constraints": ["hydrogen-bonded to nucleophile and acid"]},
+      {"role": "acid_or_orienter", "residue": "Asp/Glu", "constraints": ["stabilizes protonated histidine"]}
+    ],
+    "cofactors": [],
+    "reaction_center": {
+      "bond_changes": ["acyl heteroatom bond hydrolysis"],
+      "chemical_operation": "nucleophilic acyl substitution"
+    },
+    "substrate_constraints": ["accessible carbonyl", "oxyanion stabilization", "pocket compatible with leaving group"],
+    "evidence_features": ["conserved catalytic triad", "oxyanion hole motif", "alpha/beta hydrolase or related fold", "nearby substrate channel"],
+    "counterevidence_features": ["missing nucleophile", "histidine not geometrically coupled", "blocked substrate pocket", "low-confidence active-site region"],
+    "uncertainty_axes": ["substrate scope", "surface accessibility", "polymer binding", "temperature stability"],
+    "seed_examples": ["PETase-like polyesterases", "cutinases", "lipases"]
+  },
+  {
+    "id": "metal_dependent_hydrolase",
+    "name": "Metal-dependent hydrolase",
+    "enzyme_space": ["metallohydrolases", "phosphatases", "amide hydrolases", "lactamases"],
+    "active_site_signature": [
+      {"role": "metal_ligand", "residue": "His/Asp/Glu/Cys", "constraints": ["coordinates catalytic metal"]},
+      {"role": "water_activator", "residue": "His/Asp/Glu", "constraints": ["positions or deprotonates water"]},
+      {"role": "leaving_group_stabilizer", "residue": "variable", "constraints": ["near scissile bond"]}
+    ],
+    "cofactors": ["Zn2+", "Mg2+", "Mn2+", "Fe2+/Fe3+"],
+    "reaction_center": {
+      "bond_changes": ["hydrolysis of ester, amide, phosphate, or related bond"],
+      "chemical_operation": "metal-activated water attack"
+    },
+    "substrate_constraints": ["metal-compatible scissile bond geometry", "pocket polarity matching substrate headgroup"],
+    "evidence_features": ["conserved metal-binding motif", "metal density or modeled coordination", "nearby water channel", "family-specific fold"],
+    "counterevidence_features": ["metal ligands absent", "coordination geometry impossible", "active-site loop missing", "conflicting cofactor annotation"],
+    "uncertainty_axes": ["metal identity", "physiological substrate", "promiscuity", "pH dependence"],
+    "seed_examples": ["metallo-beta-lactamases", "phosphatases", "amidohydrolases"]
+  },
+  {
+    "id": "plp_dependent_enzyme",
+    "name": "Pyridoxal phosphate dependent enzyme",
+    "enzyme_space": ["aminotransferases", "decarboxylases", "racemases", "eliminases"],
+    "active_site_signature": [
+      {"role": "plp_anchor", "residue": "Lys", "constraints": ["forms internal aldimine with PLP"]},
+      {"role": "acid_base", "residue": "Asp/Glu/His/Tyr", "constraints": ["controls proton transfer"]},
+      {"role": "phosphate_binder", "residue": "Gly/Ser/Thr-rich motif", "constraints": ["stabilizes PLP phosphate"]}
+    ],
+    "cofactors": ["pyridoxal phosphate"],
+    "reaction_center": {
+      "bond_changes": ["C-N, C-C, or C-S bond transformation adjacent to amino group"],
+      "chemical_operation": "PLP-stabilized carbanion chemistry"
+    },
+    "substrate_constraints": ["amino acid or amine substrate", "orientation relative to PLP ring", "Dunathan-like alignment"],
+    "evidence_features": ["conserved PLP lysine", "PLP-binding fold", "phosphate-binding motif", "known family neighborhood"],
+    "counterevidence_features": ["missing lysine", "PLP pocket disrupted", "no phosphate-binding residues", "incompatible substrate channel"],
+    "uncertainty_axes": ["reaction subtype", "substrate specificity", "oligomeric state", "cofactor occupancy"],
+    "seed_examples": ["aminotransferases", "amino acid decarboxylases", "racemases"]
+  },
+  {
+    "id": "radical_sam_enzyme",
+    "name": "Radical SAM enzyme",
+    "enzyme_space": ["radical methylases", "anaerobic oxidases", "complex rearrangement enzymes"],
+    "active_site_signature": [
+      {"role": "cluster_ligand", "residue": "Cys", "constraints": ["CxxxCxxC or related Fe-S motif"]},
+      {"role": "sam_binding", "residue": "motif_context", "constraints": ["binds S-adenosylmethionine near Fe-S cluster"]},
+      {"role": "substrate_positioning", "residue": "variable", "constraints": ["places target atom near 5'-deoxyadenosyl radical"]}
+    ],
+    "cofactors": ["[4Fe-4S]", "S-adenosylmethionine"],
+    "reaction_center": {
+      "bond_changes": ["radical-mediated C-H activation or rearrangement"],
+      "chemical_operation": "SAM-derived radical chemistry"
+    },
+    "substrate_constraints": ["target atom within radical transfer distance", "anaerobic cofactor compatibility"],
+    "evidence_features": ["radical SAM cysteine motif", "Fe-S cluster context", "SAM-binding fold", "gene-neighborhood support"],
+    "counterevidence_features": ["broken Cys motif", "missing cluster pocket", "aerobic-only context", "fragmentary sequence"],
+    "uncertainty_axes": ["substrate identity", "auxiliary clusters", "reaction outcome", "oxygen sensitivity"],
+    "seed_examples": ["radical SAM methylases", "sulfur insertion enzymes", "complex rearrangement enzymes"]
+  },
+  {
+    "id": "flavin_monooxygenase",
+    "name": "Flavin-dependent monooxygenase",
+    "enzyme_space": ["monooxygenases", "Baeyer-Villiger monooxygenases", "hydroxylases"],
+    "active_site_signature": [
+      {"role": "flavin_binder", "residue": "Rossmann-like motif", "constraints": ["binds FAD or FMN"]},
+      {"role": "nadph_binding", "residue": "basic_or_polar_motif", "constraints": ["supports reductive half-reaction"]},
+      {"role": "substrate_orienter", "residue": "variable", "constraints": ["positions substrate near flavin peroxide"]}
+    ],
+    "cofactors": ["FAD", "FMN", "NADPH"],
+    "reaction_center": {
+      "bond_changes": ["oxygen insertion or hydroxylation"],
+      "chemical_operation": "flavin peroxide oxygen transfer"
+    },
+    "substrate_constraints": ["oxidizable substrate near flavin C4a", "oxygen access", "redox-compatible pocket"],
+    "evidence_features": ["flavin-binding motif", "flavin-proximal substrate pocket", "NADPH-binding context", "oxygenase family fold"],
+    "counterevidence_features": ["flavin pocket absent", "substrate channel sealed", "redox residues missing", "cofactor annotation conflict"],
+    "uncertainty_axes": ["substrate class", "regioselectivity", "oxygen coupling", "cofactor preference"],
+    "seed_examples": ["Baeyer-Villiger monooxygenases", "aromatic hydroxylases", "flavin-containing monooxygenases"]
+  },
+  {
+    "id": "heme_peroxidase_oxidase",
+    "name": "Heme-dependent peroxidase or oxidase",
+    "enzyme_space": ["peroxidases", "laccase-like oxidases", "dye-decolorizing peroxidases"],
+    "active_site_signature": [
+      {"role": "heme_ligand", "residue": "His/Cys/Tyr", "constraints": ["coordinates heme iron"]},
+      {"role": "acid_base", "residue": "His/Arg/Asp", "constraints": ["supports peroxide activation"]},
+      {"role": "electron_transfer_path", "residue": "aromatic_or_redox_residue", "constraints": ["connects substrate to heme"]}
+    ],
+    "cofactors": ["heme", "H2O2 or O2 depending on family"],
+    "reaction_center": {
+      "bond_changes": ["one-electron oxidation", "peroxide reduction", "aromatic bond oxidation"],
+      "chemical_operation": "heme-mediated redox catalysis"
+    },
+    "substrate_constraints": ["electron-rich substrate", "access to redox center or surface radical pathway"],
+    "evidence_features": ["heme-binding motif", "proximal ligand geometry", "distal peroxide activation residues", "redox-active surface"],
+    "counterevidence_features": ["heme ligand absent", "heme pocket inaccessible", "missing distal residues", "incorrect compartment context"],
+    "uncertainty_axes": ["substrate range", "electron transfer route", "peroxide tolerance", "physiological redox partner"],
+    "seed_examples": ["DyP-type peroxidases", "lignin-associated peroxidases", "cytochrome P450-like oxidases"]
+  }
+]

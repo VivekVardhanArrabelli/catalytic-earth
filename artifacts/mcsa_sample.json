@@ -1,0 +1,1727 @@
+{
+  "metadata": {
+    "record_count": 3,
+    "source": "m_csa",
+    "url": "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/?format=json&entries.mcsa_ids=1%2C2%2C3"
+  },
+  "records": [
+    {
+      "catalytic_residues": [
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor",
+          "sequence_positions": [
+            {
+              "code": "Asp",
+              "is_reference": true,
+              "resid": 7,
+              "uniprot_id": "P56868"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Asp",
+              "is_reference": true,
+              "pdb_id": "1b73",
+              "resid": 7
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00042",
+              "function": "increase basicity",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            }
+          ],
+          "roles_summary": "electrostatic stabiliser, hydrogen bond donor, increase basicity",
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 8,
+              "uniprot_id": "P56868"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1b73",
+              "resid": 8
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "activator, hydrogen bond acceptor, proton acceptor, proton donor",
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 178,
+              "uniprot_id": "P56868"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "1b73",
+              "resid": 178
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor",
+          "sequence_positions": [
+            {
+              "code": "Cys",
+              "is_reference": true,
+              "resid": 70,
+              "uniprot_id": "P56868"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Cys",
+              "is_reference": true,
+              "pdb_id": "1b73",
+              "resid": 70
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            }
+          ],
+          "roles_summary": "electrostatic stabiliser, hydrogen bond donor",
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 180,
+              "uniprot_id": "P56868"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1b73",
+              "resid": 180
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00042",
+              "function": "increase basicity",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, increase basicity, proton donor",
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 147,
+              "uniprot_id": "P56868"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1b73",
+              "resid": 147
+            }
+          ]
+        }
+      ],
+      "compound_count": 2,
+      "ec_numbers": [
+        "5.1.1.3"
+      ],
+      "enzyme_name": "glutamate racemase",
+      "evidence_level": "curated_active_site_and_mechanism",
+      "mcsa_id": 1,
+      "mechanism_count": 1,
+      "mechanism_summaries": [
+        {
+          "is_detailed": true,
+          "mechanism_id": 1,
+          "text": "A two base mechanism is proposed where Cys70 and Cys178 are responsible for the deprotonation and protonation of the C-alpha atom of D-Glutamate, respectively. Cys70 deprotonates the C-alpha to form an enolate intermediate before Cys178 reprotonates on the opposite face to produce L-Glutamate. The carboxylates of Asp7 and Glu147 are also important in catalysis by assisting activation of the acid/base thiols."
+        }
+      ],
+      "reaction_ec": "5.1.1.3",
+      "reference_uniprot_id": "P56868",
+      "residue_count": 6,
+      "source": "m_csa"
+    },
+    {
+      "catalytic_residues": [
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00115",
+              "function": "covalently attached",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00115",
+              "function": "covalently attached",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00115",
+              "function": "covalently attached",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00115",
+              "function": "covalently attached",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00115",
+              "function": "covalently attached",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00115",
+              "function": "covalently attached",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00054",
+              "function": "nucleophile",
+              "function_type": "reactant",
+              "group_function": "covalent catalysis"
+            },
+            {
+              "emo": "EMO_00054",
+              "function": "nucleophile",
+              "function_type": "reactant",
+              "group_function": "covalent catalysis"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00058",
+              "function": "nucleofuge",
+              "function_type": "reactant",
+              "group_function": "covalent catalysis"
+            },
+            {
+              "emo": "EMO_00058",
+              "function": "nucleofuge",
+              "function_type": "reactant",
+              "group_function": "covalent catalysis"
+            }
+          ],
+          "roles_summary": "covalently attached, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, nucleofuge, nucleophile, proton acceptor, proton donor",
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 68,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 45
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor",
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 71,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 48
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor",
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 128,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 105
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00038",
+              "function": "activator",
+              "function_type": "spectator",
+              "group_function": "activator"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "activator, electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor",
+          "sequence_positions": [
+            {
+              "code": "Glu",
+              "is_reference": true,
+              "resid": 164,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Glu",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 141
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            }
+          ],
+          "roles_summary": "electrostatic stabiliser",
+          "sequence_positions": [
+            {
+              "code": "Lys",
+              "is_reference": true,
+              "resid": 232,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Lys",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 209
+            }
+          ]
+        },
+        {
+          "function_location_abv": "main-N",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            }
+          ],
+          "roles_summary": "electrostatic stabiliser, hydrogen bond donor",
+          "sequence_positions": [
+            {
+              "code": "Ala",
+              "is_reference": true,
+              "resid": 235,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ala",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 212
+            }
+          ]
+        },
+        {
+          "function_location_abv": "main-N",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            }
+          ],
+          "roles_summary": "electrostatic stabiliser",
+          "sequence_positions": [
+            {
+              "code": "Ser",
+              "is_reference": true,
+              "resid": 68,
+              "uniprot_id": "P62593"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Ser",
+              "is_reference": true,
+              "pdb_id": "1btl",
+              "resid": 45
+            }
+          ]
+        }
+      ],
+      "compound_count": 3,
+      "ec_numbers": [
+        "3.5.2.6"
+      ],
+      "enzyme_name": "beta-lactamase (Class A)",
+      "evidence_level": "curated_active_site_and_mechanism",
+      "mcsa_id": 2,
+      "mechanism_count": 2,
+      "mechanism_summaries": [
+        {
+          "is_detailed": true,
+          "mechanism_id": 2,
+          "text": "The beta-lactamase mechanism consists of two steps: acylation (covalent attachment of the beta-lactam to an active site serine, Ser70), followed by deacylation. The first step, base catalysed nucleophilic attack from Ser70 at the carbonyl carbon of the lactam occurs where activation of Ser70 by Glu166 and nucleophilic attack happen simultaneously. The protonation at lactam N(1) is catalysed within a hydrogen bonded cluster involving the 2-carboxylate group in the substrate, side chains Ser130, Lys234 and a exogenous solvent molecule. The nucleophilic Ser70 has been shown to approach the butterfly cadge beta-lactam structure from the exo face, its activity directed by interactions with the surrounding ion pairs."
+        },
+        {
+          "is_detailed": true,
+          "mechanism_id": 1,
+          "text": "The beta-lactamase mechanism consists of two steps: acylation (covalent attachment of the beta-lactam to an active site serine, Ser70), followed by deacylation. In the first step, a base catalysed nucleophilic attack from Ser70 at the carbonyl carbon of the beta-lactam occurs, where activation of Ser70 by Lys73 and nucleophilic attack happen simultaneously. The protonation at lactam N(1) is catalysed within a hydrogen bonded cluster involving the 2-carboxylate group in the substrate, side chains Ser130, Lys234 and a exogenous solvent molecule. The nucleophilic Ser70 has been shown to approach the butterfly cadge beta-lactam structure from the exo face, its activity directed by interactions with the surrounding ion pairs."
+        }
+      ],
+      "reaction_ec": "3.5.2.6",
+      "reference_uniprot_id": "P62593",
+      "residue_count": 7,
+      "source": "m_csa"
+    },
+    {
+      "catalytic_residues": [
+        {
+          "function_location_abv": "main-N",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            }
+          ],
+          "roles_summary": "electrostatic stabiliser, hydrogen bond donor",
+          "sequence_positions": [
+            {
+              "code": "Gly",
+              "is_reference": true,
+              "resid": 150,
+              "uniprot_id": "P15559"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Gly",
+              "is_reference": true,
+              "pdb_id": "1d4a",
+              "resid": 149
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00070",
+              "function": "proton relay",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00070",
+              "function": "proton relay",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00033",
+              "function": "electrostatic stabiliser",
+              "function_type": "spectator",
+              "group_function": "electrostatic interaction"
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "electrostatic stabiliser, hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor, proton relay",
+          "sequence_positions": [
+            {
+              "code": "Tyr",
+              "is_reference": true,
+              "resid": 156,
+              "uniprot_id": "P15559"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "Tyr",
+              "is_reference": true,
+              "pdb_id": "1d4a",
+              "resid": 155
+            }
+          ]
+        },
+        {
+          "function_location_abv": "",
+          "main_annotation": "",
+          "roles": [
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00113",
+              "function": "hydrogen bond acceptor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00114",
+              "function": "hydrogen bond donor",
+              "function_type": "interaction",
+              "group_function": ""
+            },
+            {
+              "emo": "EMO_00070",
+              "function": "proton relay",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00066",
+              "function": "proton acceptor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            },
+            {
+              "emo": "EMO_00068",
+              "function": "proton donor",
+              "function_type": "reactant",
+              "group_function": "proton shuttle (general acid/base)"
+            }
+          ],
+          "roles_summary": "hydrogen bond acceptor, hydrogen bond donor, proton acceptor, proton donor, proton relay",
+          "sequence_positions": [
+            {
+              "code": "His",
+              "is_reference": true,
+              "resid": 162,
+              "uniprot_id": "P15559"
+            }
+          ],
+          "structure_positions": [
+            {
+              "chain_name": "A",
+              "code": "His",
+              "is_reference": true,
+              "pdb_id": "1d4a",
+              "resid": 161
+            }
+          ]
+        }
+      ],
+      "compound_count": 5,
+      "ec_numbers": [
+        "1.6.5.2"
+      ],
+      "enzyme_name": "NAD(P)H dehydrogenase (quinone)",
+      "evidence_level": "curated_active_site_and_mechanism",
+      "mcsa_id": 3,
+      "mechanism_count": 1,
+      "mechanism_summaries": [
+        {
+          "is_detailed": true,
+          "mechanism_id": 1,
+          "text": "The obligatory two-electron reduction is shown here to proceed via two direct hydride transfers.\r\n<br/><br/>\r\nThe mechanism has two distinct steps. Firstly, hydride transfer occurs from NAD(P)H to the enzyme-bound flavin followed by the release of NAD(P)+. Secondly, a hydride transfer takes place from the flavin to the quionone followed by the releases of hydroquinone. The mechanism follows a 'ping-pong' kinetic scheme. The binding of the quinone substrate cannot occur until NAD(P)+ is released because the nictotinamide and quninone share the same binding site. \r\n<br/><br/>\r\nThis enzyme features two independent, equivalent active sites which are located at opposite ends of the dimer interface. Residues from both monomers line the large active sites which extend from the protein surface to the isoalloxazine rings of the FAD cofactors [PMID:11035252]."
+        }
+      ],
+      "reaction_ec": "1.6.5.2",
+      "reference_uniprot_id": "P15559",
+      "residue_count": 3,
+      "source": "m_csa"
+    }
+  ]
+}

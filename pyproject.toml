@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "catalytic-earth"
+version = "0.0.1"
+description = "Mechanism-first enzyme function atlas scaffold"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+catalytic-earth = "catalytic_earth.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
