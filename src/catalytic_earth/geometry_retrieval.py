@@ -41,7 +41,7 @@ def run_geometry_retrieval(
             "method": "geometry_aware_seed_fingerprint_retrieval",
             "entry_count": len(results),
             "fingerprint_count": len(fingerprints),
-            "scoring": "residue and role overlap plus ligand-supported cofactor context and compactness",
+            "scoring": "residue and role overlap plus ligand/cofactor context, substrate-pocket descriptors, and compactness",
             "validation_boundary": "retrieval evidence only; not mechanism validation",
         },
         "results": results,
@@ -88,11 +88,13 @@ def score_entry_against_fingerprint(
         entry.get("ligand_context"),
     )
     compactness = compactness_score(distances)
+    substrate_pocket = substrate_pocket_score(fingerprint, entry.get("pocket_context"))
     score = round(
-        0.42 * residue_match_fraction
-        + 0.28 * role_match_fraction
-        + 0.20 * cofactor_context
-        + 0.10 * compactness,
+        0.35 * residue_match_fraction
+        + 0.24 * role_match_fraction
+        + 0.18 * cofactor_context
+        + 0.08 * compactness
+        + 0.15 * substrate_pocket,
         4,
     )
     return {
@@ -103,6 +105,7 @@ def score_entry_against_fingerprint(
         "role_match_fraction": round(role_match_fraction, 4),
         "cofactor_context_score": round(cofactor_context, 4),
         "compactness_score": round(compactness, 4),
+        "substrate_pocket_score": round(substrate_pocket, 4),
         "matched_signature_roles": matched_signature_roles,
         "distance_summary": distance_summary(distances),
     }
@@ -232,6 +235,51 @@ def distance_summary(distances: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def substrate_pocket_score(
+    fingerprint: dict[str, Any],
+    pocket_context: dict[str, Any] | None = None,
+) -> float:
+    if not isinstance(pocket_context, dict):
+        return 0.5
+    if int(pocket_context.get("nearby_residue_count", 0)) < 1:
+        return 0.5
+    descriptors = pocket_context.get("descriptors", {})
+    if not isinstance(descriptors, dict):
+        return 0.5
+
+    hydrophobic = float(descriptors.get("hydrophobic_fraction", 0.0))
+    polar = float(descriptors.get("polar_fraction", 0.0))
+    positive = float(descriptors.get("positive_fraction", 0.0))
+    negative = float(descriptors.get("negative_fraction", 0.0))
+    aromatic = float(descriptors.get("aromatic_fraction", 0.0))
+    sulfur = float(descriptors.get("sulfur_fraction", 0.0))
+    charge_balance = float(descriptors.get("charge_balance", 0.0))
+
+    fingerprint_id = str(fingerprint.get("id", ""))
+    if fingerprint_id == "ser_his_acid_hydrolase":
+        hydrophobic_match = 1.0 - min(1.0, abs(hydrophobic - 0.45) / 0.45)
+        charge_match = 1.0 - min(1.0, abs(charge_balance) / 0.4)
+        return _clamp(0.6 * hydrophobic_match + 0.4 * charge_match)
+
+    if fingerprint_id == "metal_dependent_hydrolase":
+        return _clamp(0.55 * polar + 0.35 * negative + 0.10 * positive)
+
+    if fingerprint_id == "plp_dependent_enzyme":
+        return _clamp(0.50 * polar + 0.30 * positive + 0.20 * hydrophobic)
+
+    if fingerprint_id == "radical_sam_enzyme":
+        return _clamp(0.65 * sulfur + 0.20 * hydrophobic + 0.15 * aromatic)
+
+    if fingerprint_id == "flavin_monooxygenase":
+        hydrophobic_match = 1.0 - min(1.0, abs(hydrophobic - 0.4) / 0.4)
+        return _clamp(0.45 * hydrophobic_match + 0.35 * aromatic + 0.20 * polar)
+
+    if fingerprint_id == "heme_peroxidase_oxidase":
+        return _clamp(0.45 * aromatic + 0.35 * hydrophobic + 0.20 * polar)
+
+    return 0.5
+
+
 def write_geometry_retrieval(
     geometry_path: Path,
     out_path: Path,
@@ -324,3 +372,7 @@ def _observed_cofactor_families(
     if "metal ligand" in role_text:
         families.add("metal_ion")
     return families
+
+
+def _clamp(value: float) -> float:
+    return max(0.0, min(1.0, value))

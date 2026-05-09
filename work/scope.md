@@ -139,10 +139,12 @@ Current expectation:
   the tiny curated seed set, but this should not be overinterpreted because only
   4 entries are in-scope positives
 - ligand/cofactor context is now parsed from nearby mmCIF non-polymer atoms and
-  used in retrieval scoring; next bottleneck is substrate-pocket descriptor
-  quality plus larger and cleaner curated labels
-- abstention calibration can reach perfect out-of-scope abstention at threshold
-  0.8 on the tiny provisional set, but robustness is unproven
+  used in retrieval scoring
+- substrate-pocket descriptors are now included in retrieval scoring; next
+  bottleneck is failure analysis plus larger and cleaner curated labels
+- abstention calibration can still reach perfect out-of-scope abstention on the
+  tiny provisional set (current selected threshold 0.75), but robustness is
+  unproven
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

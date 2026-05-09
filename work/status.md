@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 12
-- Measured elapsed time: 6.8 minutes (0.11 hours)
+- Entries: 13
+- Measured elapsed time: 11.1 minutes (0.19 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 1.6 measured minutes (0.03 hours)
-- post-v2: 5.2 measured minutes (0.09 hours)
+- post-v2: 9.6 measured minutes (0.16 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,19 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 61
-- Evidence references logged: 59
+- Artifact references logged: 75
+- Evidence references logged: 67
 
 ## Recent Entries
-
-### 2026-05-09T14:01:49.012481+00:00 - post-v2
-
-- Task: Add geometry-aware active-site feature extraction from PDB mmCIF files
-- Time mode: estimate
-- Estimated/planned minutes: 45
-- Artifacts: src/catalytic_earth/structure.py, docs/geometry_features.md, artifacts/v3_geometry_features.json, tests/test_structure.py
-- Evidence: 20 graph entries processed, 13 entries with pairwise active-site geometry, 21 tests passed
-- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:03:45.516905+00:00 - post-v2
 
@@ -100,6 +91,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: README.md, work/handoff.md, work/scope.md
 - Evidence: 33 tests passed, validate passed, README timeline recalibrated, current state and next automation task clarified
 
+### 2026-05-09T15:30:17.008476+00:00 - post-v2
+
+- Task: Add substrate-pocket descriptors and pocket-aware retrieval scoring
+- Time mode: measured
+- Measured minutes: 4.333
+- Started: 2026-05-09T15:25:48Z
+- Ended: 2026-05-09T15:30:08Z
+- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/geometry_retrieval.py, tests/test_structure.py, tests/test_geometry_retrieval.py, artifacts/v3_geometry_features.json, artifacts/v3_geometry_retrieval.json, artifacts/v3_geometry_label_eval.json, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, README.md, docs/geometry_features.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
+- Evidence: 35 tests passed, 15/20 entries with substrate-pocket context, 11/20 entries with proximal ligands, 5/20 entries with inferred cofactors, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, selected abstention threshold 0.75, out-of-scope abstention 1.0 at selected threshold
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -114,6 +115,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:25:33.013901+00:00: The time overestimate came from confusing scaffold implementation with scientifically robust validation; current progress is fast but still small-label and artifact-scale.
 - 2026-05-09T15:20:27.676203+00:00: Ligand/cofactor context integration from mmCIF was quick; next quality bottleneck shifts to substrate-pocket descriptors and larger curated labels.
 - 2026-05-09T15:22:39.241656+00:00: README now states that scaffold work moved faster than first estimated; impact depends on scaling labels, harder benchmarks, expert review, and validation.
+- 2026-05-09T15:30:17.008476+00:00: Substrate-pocket descriptors integrated quickly; next bottleneck is targeted failure analysis and label expansion rather than more feature plumbing.
 
 ## Scope Adjustments
 
@@ -128,3 +130,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:25:33.013901+00:00: V2 is stronger: retrieval has cofactor-aware scoring, calibrated abstention, and local performance measurement; full scalability and ligand parsing remain future work.
 - 2026-05-09T15:20:27.676203+00:00: Post-V2 quality scope now includes ligand-supported cofactor evidence in retrieval; substrate-pocket descriptors become the next bounded upgrade.
 - 2026-05-09T15:22:39.241656+00:00: Next automation should continue from substrate-pocket descriptors and harder negative controls, not from v0-v2 scaffold planning.
+- 2026-05-09T15:30:17.008476+00:00: Post-V2 retrieval now includes pocket-aware scoring; next bounded iteration should tune abstention and false-positive control using failure categories.

@@ -1,12 +1,12 @@
 {
   "metadata": {
     "method": "abstention_threshold_sweep",
-    "selected_threshold": 0.8,
+    "selected_threshold": 0.75,
     "selection_rule": "maximize top3 in-scope accuracy, then out-of-scope abstention, then coverage",
     "threshold_count": 21
   },
   "selected": {
-    "abstain_threshold": 0.8,
+    "abstain_threshold": 0.75,
     "evaluated_count": 20,
     "in_scope_count": 4,
     "label_summary": {
@@ -101,7 +101,7 @@
         "label_count": 20
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_abstention_rate": 0.0,
       "out_of_scope_count": 16,
       "top1_accuracy_in_scope": 1.0,
       "top3_accuracy_in_scope": 1.0
@@ -351,7 +351,7 @@
         "label_count": 20
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.625,
+      "out_of_scope_abstention_rate": 0.6875,
       "out_of_scope_count": 16,
       "top1_accuracy_in_scope": 1.0,
       "top3_accuracy_in_scope": 1.0
@@ -376,7 +376,7 @@
         "label_count": 20
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.6875,
+      "out_of_scope_abstention_rate": 0.75,
       "out_of_scope_count": 16,
       "top1_accuracy_in_scope": 1.0,
       "top3_accuracy_in_scope": 1.0
@@ -426,7 +426,7 @@
         "label_count": 20
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.8125,
+      "out_of_scope_abstention_rate": 1.0,
       "out_of_scope_count": 16,
       "top1_accuracy_in_scope": 1.0,
       "top3_accuracy_in_scope": 1.0

@@ -14,7 +14,36 @@ from .v2 import load_graph
 PDB_CIF_URL = "https://files.rcsb.org/download/{pdb_id}.cif"
 USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
 LIGAND_DISTANCE_CUTOFF_ANGSTROM = 6.0
+POCKET_DISTANCE_CUTOFF_ANGSTROM = 8.0
 IGNORED_LIGAND_CODES = {"HOH", "WAT", "DOD", "SOL"}
+STANDARD_AMINO_ACIDS = {
+    "ALA",
+    "ARG",
+    "ASN",
+    "ASP",
+    "CYS",
+    "GLN",
+    "GLU",
+    "GLY",
+    "HIS",
+    "ILE",
+    "LEU",
+    "LYS",
+    "MET",
+    "PHE",
+    "PRO",
+    "SER",
+    "THR",
+    "TRP",
+    "TYR",
+    "VAL",
+}
+HYDROPHOBIC_RESIDUES = {"ALA", "VAL", "ILE", "LEU", "MET", "PRO"}
+POLAR_RESIDUES = {"SER", "THR", "ASN", "GLN", "CYS", "HIS"}
+POSITIVE_RESIDUES = {"LYS", "ARG", "HIS"}
+NEGATIVE_RESIDUES = {"ASP", "GLU"}
+AROMATIC_RESIDUES = {"PHE", "TYR", "TRP", "HIS"}
+SULFUR_RESIDUES = {"CYS", "MET"}
 COFACTOR_LIGAND_MAP = {
     "HEM": "heme",
     "HEA": "heme",
@@ -135,6 +164,7 @@ def build_geometry_features(
                         "ligand_codes": [],
                         "cofactor_families": [],
                     },
+                    "pocket_context": _empty_pocket_context(),
                 }
             )
             continue
@@ -161,6 +191,7 @@ def build_geometry_features(
                         "ligand_codes": [],
                         "cofactor_families": [],
                     },
+                    "pocket_context": _empty_pocket_context(),
                 }
             )
             continue
@@ -203,6 +234,7 @@ def build_geometry_features(
                 "residues": resolved,
                 "pairwise_distances_angstrom": pairwise_distances(resolved),
                 "ligand_context": ligand_context_from_atoms(atoms, resolved),
+                "pocket_context": pocket_context_from_atoms(atoms, resolved),
             }
         )
 
@@ -224,6 +256,11 @@ def build_geometry_features(
                 1
                 for entry in entry_features
                 if entry.get("ligand_context", {}).get("cofactor_families")
+            ),
+            "entries_with_pocket_context": sum(
+                1
+                for entry in entry_features
+                if entry.get("pocket_context", {}).get("nearby_residue_count", 0) > 0
             ),
             "source": "RCSB PDB mmCIF files via catalytic residue positions from M-CSA",
         },
@@ -386,6 +423,69 @@ def ligand_context_from_atoms(
     }
 
 
+def pocket_context_from_atoms(
+    atoms: list[dict[str, Any]],
+    resolved_residues: list[dict[str, Any]],
+    cutoff_angstrom: float = POCKET_DISTANCE_CUTOFF_ANGSTROM,
+) -> dict[str, Any]:
+    active_points = [item.get("ca") or item.get("centroid") for item in resolved_residues]
+    active_points = [point for point in active_points if point]
+    if not active_points:
+        return _empty_pocket_context(cutoff_angstrom)
+
+    active_site_keys = {
+        (str(item.get("chain_name") or ""), str(item.get("resid") or ""))
+        for item in resolved_residues
+    }
+
+    by_site: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for atom in atoms:
+        if atom.get("group_PDB") != "ATOM":
+            continue
+        code = (atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        if code not in STANDARD_AMINO_ACIDS:
+            continue
+        chain = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+        resid = str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
+        if (chain, resid) in active_site_keys:
+            continue
+        by_site[(code, chain, resid)].append(atom)
+
+    nearby_sites: list[dict[str, Any]] = []
+    nearby_codes: list[str] = []
+    for (code, chain, resid), site_atoms in by_site.items():
+        min_distance = _min_atom_group_distance_to_points(site_atoms, active_points)
+        if min_distance is None or min_distance > cutoff_angstrom:
+            continue
+        nearby_sites.append(
+            {
+                "code": code,
+                "chain_name": chain or None,
+                "resid": resid or None,
+                "atom_count": len(site_atoms),
+                "min_distance_to_active_site": round(min_distance, 3),
+            }
+        )
+        nearby_codes.append(code)
+
+    if not nearby_sites:
+        return _empty_pocket_context(cutoff_angstrom)
+
+    nearby_sites.sort(key=lambda item: (float(item["min_distance_to_active_site"]), str(item["code"])))
+    residue_code_counts = {
+        code: nearby_codes.count(code)
+        for code in sorted(set(nearby_codes))
+    }
+    descriptors = _pocket_descriptors(nearby_codes, nearby_sites)
+    return {
+        "distance_cutoff_angstrom": cutoff_angstrom,
+        "nearby_residue_count": len(nearby_sites),
+        "nearby_residue_sites": nearby_sites,
+        "residue_code_counts": residue_code_counts,
+        "descriptors": descriptors,
+    }
+
+
 def _atom_row(headers: list[str], values: list[str]) -> dict[str, Any]:
     row: dict[str, Any] = {}
     for header, value in zip(headers, values):
@@ -413,11 +513,18 @@ def _min_ligand_distance_to_active_site(
     ligand_atoms: list[dict[str, Any]],
     active_points: list[dict[str, float]],
 ) -> float | None:
+    return _min_atom_group_distance_to_points(ligand_atoms, active_points)
+
+
+def _min_atom_group_distance_to_points(
+    atoms: list[dict[str, Any]],
+    points: list[dict[str, float]],
+) -> float | None:
     min_distance: float | None = None
-    for atom in ligand_atoms:
+    for atom in atoms:
         atom_point = {"x": float(atom["Cartn_x"]), "y": float(atom["Cartn_y"]), "z": float(atom["Cartn_z"])}
-        for active in active_points:
-            distance = _distance(atom_point, active)
+        for point in points:
+            distance = _distance(atom_point, point)
             if min_distance is None or distance < min_distance:
                 min_distance = distance
     return min_distance
@@ -433,6 +540,57 @@ def _infer_cofactor_families(ligand_codes: list[str]) -> set[str]:
         if upper in METAL_ION_CODES:
             families.add("metal_ion")
     return families
+
+
+def _pocket_descriptors(
+    residue_codes: list[str],
+    nearby_sites: list[dict[str, Any]],
+) -> dict[str, float]:
+    count = len(residue_codes)
+    if count < 1:
+        return {
+            "hydrophobic_fraction": 0.0,
+            "polar_fraction": 0.0,
+            "positive_fraction": 0.0,
+            "negative_fraction": 0.0,
+            "aromatic_fraction": 0.0,
+            "sulfur_fraction": 0.0,
+            "charge_balance": 0.0,
+            "mean_min_distance_to_active_site": 0.0,
+        }
+    hydrophobic_fraction = _fraction(residue_codes, HYDROPHOBIC_RESIDUES)
+    polar_fraction = _fraction(residue_codes, POLAR_RESIDUES)
+    positive_fraction = _fraction(residue_codes, POSITIVE_RESIDUES)
+    negative_fraction = _fraction(residue_codes, NEGATIVE_RESIDUES)
+    aromatic_fraction = _fraction(residue_codes, AROMATIC_RESIDUES)
+    sulfur_fraction = _fraction(residue_codes, SULFUR_RESIDUES)
+    mean_distance = sum(float(item["min_distance_to_active_site"]) for item in nearby_sites) / len(nearby_sites)
+    return {
+        "hydrophobic_fraction": hydrophobic_fraction,
+        "polar_fraction": polar_fraction,
+        "positive_fraction": positive_fraction,
+        "negative_fraction": negative_fraction,
+        "aromatic_fraction": aromatic_fraction,
+        "sulfur_fraction": sulfur_fraction,
+        "charge_balance": round(positive_fraction - negative_fraction, 4),
+        "mean_min_distance_to_active_site": round(mean_distance, 4),
+    }
+
+
+def _fraction(items: list[str], reference: set[str]) -> float:
+    if not items:
+        return 0.0
+    return round(sum(1 for item in items if item in reference) / len(items), 4)
+
+
+def _empty_pocket_context(cutoff_angstrom: float = POCKET_DISTANCE_CUTOFF_ANGSTROM) -> dict[str, Any]:
+    return {
+        "distance_cutoff_angstrom": cutoff_angstrom,
+        "nearby_residue_count": 0,
+        "nearby_residue_sites": [],
+        "residue_code_counts": {},
+        "descriptors": _pocket_descriptors([], []),
+    }
 
 
 def _entry_id_from_residue_node(node_id: str) -> str | None:

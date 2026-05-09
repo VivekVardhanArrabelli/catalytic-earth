@@ -2,11 +2,13 @@
 
 ## What Changed
 
-The V2 scaffold was strengthened in two ways:
+The V2 scaffold was strengthened in three ways:
 
 1. Geometry-aware retrieval now uses residue role phrases and cofactor context,
    not just residue overlap and compactness.
-2. The repo now has local performance checks for artifact-only workflows.
+2. Geometry features now include substrate-pocket descriptors from nearby
+   protein residues.
+3. The repo now has local performance checks for artifact-only workflows.
 
 ## Retrieval Quality
 
@@ -25,7 +27,7 @@ Current measured result on the 20-entry curated geometry slice:
 - top3 in-scope accuracy: 1.0
 - out-of-scope abstention rate at threshold 0.7: 0.75
 
-The abstention sweep selected threshold 0.8 under the current rule:
+The abstention sweep selected threshold 0.75 under the current rule:
 
 ```text
 artifacts/v3_abstention_calibration.json
@@ -45,11 +47,11 @@ artifacts.
 
 Latest 5-iteration mean timings:
 
-- load V1 graph: 3.630 ms
-- build V2 benchmark: 0.558 ms
-- run geometry retrieval: 2.205 ms
-- evaluate geometry labels: 0.024 ms
-- sweep abstention thresholds: 0.363 ms
+- load V1 graph: 4.336 ms
+- build V2 benchmark: 0.679 ms
+- run geometry retrieval: 2.906 ms
+- evaluate geometry labels: 0.045 ms
+- sweep abstention thresholds: 0.383 ms
 
 ## Interpretation
 
@@ -62,6 +64,7 @@ What is now better:
   residue overlap when metal-ligand roles are present
 - retrieval quality is explicitly measured against curated labels
 - abstention has a calibrated threshold artifact
+- substrate-pocket context now contributes to ranking
 - local performance is measured and reproducible
 
 What remains weak:
@@ -69,5 +72,5 @@ What remains weak:
 - the curated label set is small and provisional
 - out-of-scope abstention is still imperfect
 - ligand/cofactor context is only a simple nearby-ligand heuristic
-- no substrate-pocket descriptors exist yet
+- substrate-pocket context is currently a heuristic residue-shell summary
 - local performance does not measure full-database scalability

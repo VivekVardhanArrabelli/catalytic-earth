@@ -22,8 +22,8 @@ protein sequence
 
 This repository has moved past the initial v0 scaffold. The current public state
 is a scaffold-level V2 research artifact plus post-V2 active-site geometry,
-ligand/cofactor context, curated seed labels, abstention calibration, and local
-performance checks.
+ligand/cofactor context, substrate-pocket descriptors, curated seed labels,
+abstention calibration, and local performance checks.
 
 ## What This Is
 
@@ -51,8 +51,9 @@ The repository currently contains:
    campaign, and candidate dossier writer.
 4. PDB mmCIF active-site geometry extraction for catalytic residues.
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
-6. Curated mechanism labels for the first 20-entry geometry slice.
-7. Retrieval evaluation, abstention threshold calibration, and a local
+6. Substrate-pocket descriptor extraction from nearby protein residues.
+7. Curated mechanism labels for the first 20-entry geometry slice.
+8. Retrieval evaluation, abstention threshold calibration, and a local
    performance suite.
 
 The latest small-slice evaluation is intentionally modest: 20 geometry entries,
@@ -127,8 +128,8 @@ Current timeline judgment:
    retrieval baseline, inconsistency detection, dark-enzyme candidate dossiers,
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
-2. Next automation blocks: substrate-pocket descriptors, stronger negative
-   controls, expanded curated labels, and retrieval failure analysis.
+2. Next automation blocks: stronger negative controls, expanded curated labels,
+   and retrieval failure analysis for the substrate-pocket/cofactor scorer.
 3. Next serious milestone: scale from the 20-entry geometry slice to a larger
    audited benchmark where success cannot be explained by tiny-label effects.
 4. Long-term impact path: expert-reviewed mechanism labels, learned

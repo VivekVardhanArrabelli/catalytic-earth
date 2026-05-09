@@ -105,30 +105,31 @@ surface.
 
 What changed in this run:
 
-- Updated `README.md` so the public entry point no longer describes the project
-  as a v0 foundation or an overlong first-year plan. It now states the current
-  V2/post-V2 state, the tiny-label caveat, and the revised timeline: scaffold
-  work moved fast; impact now depends on harder benchmarks, labels, and
-  validation.
-- Added mmCIF ligand/cofactor context extraction in
-  `src/catalytic_earth/structure.py`:
-  - parses nearby `HETATM` ligands around resolved catalytic residues
-  - records `ligand_context` per geometry entry
-  - infers cofactor families (heme, flavin, PLP, SAM, Fe-S, metal ions)
-  - adds geometry metadata counters for proximal ligands and inferred cofactors
-- Updated retrieval scoring in `src/catalytic_earth/geometry_retrieval.py` to
-  use ligand-supported cofactor evidence and penalize unsupported cofactor-heavy
-  fingerprints.
-- Added tests in `tests/test_structure.py` and
-  `tests/test_geometry_retrieval.py` for ligand parsing and cofactor-aware
-  ranking behavior.
+- Added substrate-pocket descriptors in `src/catalytic_earth/structure.py`:
+  - finds nearby non-catalytic protein residues in an 8A shell around resolved
+    catalytic residues
+  - records per-entry `pocket_context` with nearby residue sites, residue-code
+    counts, and descriptor fractions (hydrophobic, polar, positive, negative,
+    aromatic, sulfur) plus charge balance and mean active-site distance
+  - adds geometry metadata counter `entries_with_pocket_context`
+- Updated retrieval scoring in `src/catalytic_earth/geometry_retrieval.py`:
+  - new `substrate_pocket_score` term added to final score
+  - weighted scoring now combines residue/role overlap, cofactor context, pocket
+    descriptors, and compactness
+  - retrieval metadata string updated to reflect pocket-aware scoring
+- Extended tests:
+  - `tests/test_structure.py` now validates pocket-context extraction and
+    metadata counts
+  - `tests/test_geometry_retrieval.py` now validates pocket-scoring preference
+    behavior and pocket-context ingestion in retrieval
 - Regenerated artifacts:
   - `artifacts/v3_geometry_features.json`
   - `artifacts/v3_geometry_retrieval.json`
   - `artifacts/v3_geometry_label_eval.json`
   - `artifacts/v3_abstention_calibration.json`
   - `artifacts/perf_report.json`
-- Updated docs: `docs/geometry_features.md`, `docs/v2_strengthening_report.md`.
+- Updated docs: `README.md`, `docs/geometry_features.md`,
+  `docs/v2_strengthening_report.md`, `work/scope.md`.
 
 Start commands:
 
@@ -136,6 +137,7 @@ Start commands:
 git status -sb
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 20 --out artifacts/v3_geometry_features.json
 PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features.json --out artifacts/v3_geometry_retrieval.json
 ```
 
@@ -147,21 +149,24 @@ Current state:
 - Ligand/cofactor context is now parsed from proximal mmCIF non-polymer atoms
   for the geometry slice (11/20 entries with proximal ligands; 5/20 with mapped
   cofactor families).
+- Substrate-pocket context is now parsed from nearby protein residues for the
+  geometry slice (15/20 entries with non-empty pocket context).
 - Current label evaluation at threshold 0.7:
   - top1 in-scope accuracy: 1.0
   - top3 in-scope accuracy: 1.0
   - out-of-scope abstention: 0.75
-- Current selected abstention threshold is 0.8 with out-of-scope abstention 1.0
-  on this small provisional set.
+- Current selected abstention threshold is 0.75 with out-of-scope abstention
+  1.0 on this small provisional set.
 - Local performance report exists at `artifacts/perf_report.json`.
 
 Next concrete task:
 
-Add substrate-pocket descriptors tied to the same resolved active-site geometry.
-Concrete path:
-1) collect nearby protein residues within a distance shell around catalytic
-   residues, 2) summarize pocket polarity/charge/size proxies, 3) feed those
-   descriptors into retrieval scoring and abstention calibration.
+Run targeted failure analysis on out-of-scope handling and pocket/cofactor
+signals. Concrete path:
+1) inspect per-entry top predictions vs labels for all out-of-scope entries,
+2) categorize false non-abstentions by evidence pattern (residue overlap,
+cofactor-only hits, pocket-only hits), 3) implement one bounded calibration or
+scoring fix and re-evaluate threshold selection.
 
 Known blockers:
 
@@ -169,4 +174,5 @@ Known blockers:
 - Geometry retrieval still uses simple heuristics, not learned geometry.
 - Ligand/cofactor evidence is currently nearest-ligand heuristic only; it does
   not model occupancy, alternate conformers, or biological assembly context.
-- Substrate-pocket descriptors are not implemented yet.
+- Substrate-pocket evidence is currently a residue-shell heuristic, not a
+  physics-based or learned pocket model.

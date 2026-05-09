@@ -46,6 +46,9 @@ For each M-CSA entry with structure positions:
 - proximal non-polymer ligands from mmCIF `HETATM` records
 - inferred cofactor families from nearby ligands (for example heme, flavin, PLP,
   metal ions, SAM, Fe-S clusters)
+- substrate-pocket residue context from nearby protein `ATOM` records
+- pocket descriptors (hydrophobic/polar/charge/aromatic/sulfur fractions and
+  mean residue distance to active site)
 
 ## Geometry-Aware Retrieval
 
@@ -54,6 +57,7 @@ For each M-CSA entry with structure positions:
 - residue signature overlap
 - role hint overlap
 - ligand-supported cofactor context
+- substrate-pocket descriptor compatibility
 - catalytic-cluster compactness from pairwise distances
 
 This is still a weak baseline, but it is materially better than pure text

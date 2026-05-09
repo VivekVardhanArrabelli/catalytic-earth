@@ -13,6 +13,7 @@ from catalytic_earth.geometry_retrieval import (
     distance_summary,
     run_geometry_retrieval,
     score_entry_against_fingerprint,
+    substrate_pocket_score,
 )
 
 
@@ -70,6 +71,37 @@ class GeometryRetrievalTests(unittest.TestCase):
             cofactor_context_score(metal, residue_codes, residue_roles, ligand_context),
         )
 
+    def test_substrate_pocket_score_prefers_polar_for_metal_hydrolase(self) -> None:
+        polar_pocket = {
+            "nearby_residue_count": 4,
+            "descriptors": {
+                "hydrophobic_fraction": 0.1,
+                "polar_fraction": 0.5,
+                "positive_fraction": 0.1,
+                "negative_fraction": 0.3,
+                "aromatic_fraction": 0.0,
+                "sulfur_fraction": 0.0,
+                "charge_balance": -0.2,
+            },
+        }
+        hydrophobic_pocket = {
+            "nearby_residue_count": 4,
+            "descriptors": {
+                "hydrophobic_fraction": 0.8,
+                "polar_fraction": 0.1,
+                "positive_fraction": 0.0,
+                "negative_fraction": 0.0,
+                "aromatic_fraction": 0.1,
+                "sulfur_fraction": 0.0,
+                "charge_balance": 0.0,
+            },
+        }
+        metal = {"id": "metal_dependent_hydrolase"}
+        self.assertGreater(
+            substrate_pocket_score(metal, polar_pocket),
+            substrate_pocket_score(metal, hydrophobic_pocket),
+        )
+
     def test_run_geometry_retrieval(self) -> None:
         artifact = run_geometry_retrieval(
             {
@@ -85,6 +117,18 @@ class GeometryRetrievalTests(unittest.TestCase):
                             {"code": "ASP", "roles": ["acid"]},
                         ],
                         "ligand_context": {"cofactor_families": ["metal_ion"]},
+                        "pocket_context": {
+                            "nearby_residue_count": 3,
+                            "descriptors": {
+                                "hydrophobic_fraction": 0.3333,
+                                "polar_fraction": 0.6667,
+                                "positive_fraction": 0.3333,
+                                "negative_fraction": 0.3333,
+                                "aromatic_fraction": 0.0,
+                                "sulfur_fraction": 0.0,
+                                "charge_balance": 0.0,
+                            },
+                        },
                         "pairwise_distances_angstrom": [{"distance": 6}],
                     }
                 ]
