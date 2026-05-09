@@ -81,6 +81,7 @@ Post-V2 quality work has started:
 - PDB mmCIF structure parsing
 - active-site residue coordinate extraction
 - pairwise catalytic-residue distance features
+- nearby ligand/cofactor context from mmCIF non-polymer atoms
 - geometry artifact for a 20-entry graph slice
 - curated seed mechanism labels for the 20-entry geometry slice
 - geometry retrieval evaluation against curated labels

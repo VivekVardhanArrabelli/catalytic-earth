@@ -4,13 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 11
-- Measured elapsed time: 5.2 minutes (0.09 hours)
+- Entries: 12
+- Measured elapsed time: 6.8 minutes (0.11 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
+- ops: 1.6 measured minutes (0.03 hours)
 - post-v2: 5.2 measured minutes (0.09 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
@@ -20,19 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 58
-- Evidence references logged: 55
+- Artifact references logged: 61
+- Evidence references logged: 59
 
 ## Recent Entries
-
-### 2026-05-09T13:54:31.022704+00:00 - v2
-
-- Task: Build first V2 benchmark, baseline retrieval, inconsistency detector, dark hydrolase mining campaign, dossiers, and report
-- Time mode: estimate
-- Estimated/planned minutes: 70
-- Artifacts: src/catalytic_earth/v2.py, artifacts/v2_benchmark.json, artifacts/v2_baseline.json, artifacts/v2_inconsistencies.json, artifacts/v2_dark_hydrolase_candidates.json, artifacts/v2_dossiers, docs/v2_report.md
-- Evidence: 50 benchmark records, 6 seed fingerprints, 10 inconsistency issues, 100 dark hydrolase candidates, 10 candidate dossiers, 18 tests passed
-- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:01:49.012481+00:00 - post-v2
 
@@ -98,6 +90,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/geometry_retrieval.py, tests/test_structure.py, tests/test_geometry_retrieval.py, artifacts/v3_geometry_features.json, artifacts/v3_geometry_retrieval.json, artifacts/v3_geometry_label_eval.json, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, docs/geometry_features.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
 - Evidence: 33 tests passed, 11/20 entries with proximal ligands, 5/20 entries with inferred cofactors, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, selected abstention threshold 0.8, out-of-scope abstention 1.0 at selected threshold
 
+### 2026-05-09T15:22:39.241656+00:00 - ops
+
+- Task: Update README timeline and final handoff before next automation
+- Time mode: measured
+- Measured minutes: 1.583
+- Started: 2026-05-09T15:20:55Z
+- Ended: 2026-05-09T15:22:30Z
+- Artifacts: README.md, work/handoff.md, work/scope.md
+- Evidence: 33 tests passed, validate passed, README timeline recalibrated, current state and next automation task clarified
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -111,6 +113,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:18:10.779278+00:00: Continuity is now treated as a required output of each 55-minute work block.
 - 2026-05-09T14:25:33.013901+00:00: The time overestimate came from confusing scaffold implementation with scientifically robust validation; current progress is fast but still small-label and artifact-scale.
 - 2026-05-09T15:20:27.676203+00:00: Ligand/cofactor context integration from mmCIF was quick; next quality bottleneck shifts to substrate-pocket descriptors and larger curated labels.
+- 2026-05-09T15:22:39.241656+00:00: README now states that scaffold work moved faster than first estimated; impact depends on scaling labels, harder benchmarks, expert review, and validation.
 
 ## Scope Adjustments
 
@@ -124,3 +127,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:18:10.779278+00:00: Every automation run must now leave explicit next-agent start instructions before committing and pushing.
 - 2026-05-09T14:25:33.013901+00:00: V2 is stronger: retrieval has cofactor-aware scoring, calibrated abstention, and local performance measurement; full scalability and ligand parsing remain future work.
 - 2026-05-09T15:20:27.676203+00:00: Post-V2 quality scope now includes ligand-supported cofactor evidence in retrieval; substrate-pocket descriptors become the next bounded upgrade.
+- 2026-05-09T15:22:39.241656+00:00: Next automation should continue from substrate-pocket descriptors and harder negative controls, not from v0-v2 scaffold planning.

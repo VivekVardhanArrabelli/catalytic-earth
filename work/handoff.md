@@ -105,6 +105,11 @@ surface.
 
 What changed in this run:
 
+- Updated `README.md` so the public entry point no longer describes the project
+  as a v0 foundation or an overlong first-year plan. It now states the current
+  V2/post-V2 state, the tiny-label caveat, and the revised timeline: scaffold
+  work moved fast; impact now depends on harder benchmarks, labels, and
+  validation.
 - Added mmCIF ligand/cofactor context extraction in
   `src/catalytic_earth/structure.py`:
   - parses nearby `HETATM` ligands around resolved catalytic residues
