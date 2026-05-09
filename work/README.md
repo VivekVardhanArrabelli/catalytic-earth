@@ -21,9 +21,10 @@ After each hourly work block:
 
 1. Log elapsed time and evidence.
 2. Update `status.md`.
-3. Run relevant checks.
-4. Commit and push to `origin/main`.
-5. Recalibrate the scope or timeline if observed speed contradicts estimates.
+3. Update `handoff.md` with exact next-agent instructions.
+4. Run relevant checks.
+5. Commit and push to `origin/main`.
+6. Recalibrate the scope or timeline if observed speed contradicts estimates.
 
 ## Context Rule
 

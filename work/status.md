@@ -4,12 +4,12 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 8
-- Total logged time: 325 minutes (5.42 hours)
+- Entries: 9
+- Total logged time: 335 minutes (5.58 hours)
 
 ## Time By Stage
 
-- ops: 35 minutes (0.58 hours)
+- ops: 45 minutes (0.75 hours)
 - post-v2: 110 minutes (1.83 hours)
 - v0: 55 minutes (0.92 hours)
 - v1: 55 minutes (0.92 hours)
@@ -17,19 +17,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 36
-- Evidence references logged: 39
+- Artifact references logged: 39
+- Evidence references logged: 42
 
 ## Recent Entries
-
-### 2026-05-09T13:40:20.355854+00:00 - v0
-
-- Task: Initial scaffold, live source samples, seed graph, public GitHub publish
-- Minutes: 55
-- Artifacts: README.md, docs/research_program.md, data/registries/source_registry.json, data/registries/mechanism_fingerprints.json, artifacts/seed_graph.json
-- Evidence: 12 source records, 6 mechanism fingerprints, 10 Rhea records, 3 M-CSA records, 26 graph nodes, 23 graph edges, 10 tests passed, public GitHub repo
-- Commit: `9380641`
-- Notes: Minutes are active-work estimate reconstructed from the session; future entries should be logged at session end.
 
 ### 2026-05-09T13:40:25.768544+00:00 - ops
 
@@ -80,6 +71,13 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/README.md, work/handoff.md, work/scope.md
 - Evidence: automation updated to hourly RRULE, mandatory push rule recorded
 
+### 2026-05-09T14:18:10.779278+00:00 - ops
+
+- Task: Require next-agent handoff update after every hourly block
+- Minutes: 10
+- Artifacts: work/handoff.md, work/README.md, work/scope.md
+- Evidence: automation prompt updated, next-agent handoff section added, operating rule updated
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -90,6 +88,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:03:45.516905+00:00: Next quality bottleneck is curated mechanism labels and evaluation, not baseline implementation.
 - 2026-05-09T14:10:40.717863+00:00: The next bottleneck is improving ranking and abstention, not adding labels machinery.
 - 2026-05-09T14:13:21.398170+00:00: Progress will now be measured per hourly block rather than per ad hoc milestone.
+- 2026-05-09T14:18:10.779278+00:00: Continuity is now treated as a required output of each 55-minute work block.
 
 ## Scope Adjustments
 
@@ -100,3 +99,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:03:45.516905+00:00: Geometry now affects retrieval scores through residue signature matching and catalytic-cluster compactness.
 - 2026-05-09T14:10:40.717863+00:00: Curated labels are now explicit for the 20-entry geometry slice; retrieval quality is measurable and currently weak at top1.
 - 2026-05-09T14:13:21.398170+00:00: Each automation run is now an hourly carry-forward block: 55 minutes work, 5 minutes break/overhead, commit and push every run.
+- 2026-05-09T14:18:10.779278+00:00: Every automation run must now leave explicit next-agent start instructions before committing and pushing.

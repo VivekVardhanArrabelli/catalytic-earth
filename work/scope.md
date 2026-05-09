@@ -29,6 +29,7 @@ Automation cadence:
 - work for 55 focused minutes
 - reserve 5 minutes for break/overhead
 - log the hour
+- update `work/handoff.md` for the next automation run
 - run checks
 - commit and push every run
 

@@ -50,6 +50,9 @@ PYTHONPATH=src python -m unittest discover -s tests
 - Keep outputs reproducible.
 - Add tests for new normalization logic.
 - Do not make wet-lab or deployment claims.
+- End every automation block by updating `Next Agent Start Here` below with:
+  what changed, where to continue, known blockers, the next concrete task, and
+  first commands to run.
 - Log time and progress with:
 
 ```bash
@@ -81,3 +84,38 @@ Computer Use was attempted against the Codex app for context inspection, but the
 tool reported that it is not allowed to operate on `com.openai.codex` for safety
 reasons. Treat repository state and this handoff file as the reliable recovery
 surface.
+
+## Next Agent Start Here
+
+Latest pushed state before this handoff rule: `1be523e`; later work added
+geometry features, geometry retrieval, and curated labels. Run `git log -1` for
+the exact latest commit.
+
+Start commands:
+
+```bash
+git status -sb
+PYTHONPATH=src python -m unittest discover -s tests
+PYTHONPATH=src python -m catalytic_earth.cli validate
+```
+
+Current state:
+
+- V2 scaffold is complete.
+- Geometry-aware active-site retrieval exists.
+- Curated seed labels exist for the 20-entry geometry slice.
+- Latest label evaluation shows top3 retrieval can recover the small in-scope
+  label set, while top1 ranking and out-of-scope abstention are still weak.
+
+Next concrete task:
+
+Improve retrieval ranking/abstention using curated labels. A good next step is
+to add a calibrated abstention report that sweeps thresholds and reports top1,
+top3, coverage, and out-of-scope abstention tradeoffs, then use that to choose a
+default threshold.
+
+Known blockers:
+
+- Current curated labels are provisional and small.
+- Geometry retrieval uses simple residue/compactness heuristics, not learned
+  geometry or ligand/cofactor context.
