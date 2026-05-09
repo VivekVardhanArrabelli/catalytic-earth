@@ -4,21 +4,21 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 5
-- Total logged time: 250 minutes (4.17 hours)
+- Entries: 6
+- Total logged time: 280 minutes (4.67 hours)
 
 ## Time By Stage
 
 - ops: 25 minutes (0.42 hours)
-- post-v2: 45 minutes (0.75 hours)
+- post-v2: 75 minutes (1.25 hours)
 - v0: 55 minutes (0.92 hours)
 - v1: 55 minutes (0.92 hours)
 - v2: 70 minutes (1.17 hours)
 
 ## Progress Counters
 
-- Artifact references logged: 25
-- Evidence references logged: 28
+- Artifact references logged: 28
+- Evidence references logged: 31
 
 ## Recent Entries
 
@@ -59,6 +59,13 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/structure.py, docs/geometry_features.md, artifacts/v3_geometry_features.json, tests/test_structure.py
 - Evidence: 20 graph entries processed, 13 entries with pairwise active-site geometry, 21 tests passed
 
+### 2026-05-09T14:03:45.516905+00:00 - post-v2
+
+- Task: Add geometry-aware seed fingerprint retrieval baseline
+- Minutes: 30
+- Artifacts: src/catalytic_earth/geometry_retrieval.py, artifacts/v3_geometry_retrieval.json, tests/test_geometry_retrieval.py
+- Evidence: 20 geometry entries ranked, 6 seed fingerprints scored, 25 tests passed
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -66,6 +73,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T13:54:30.954964+00:00: V1 completed much faster than the earlier days-to-weeks estimate because paginated M-CSA and UniProt TSV APIs were straightforward.
 - 2026-05-09T13:54:31.022704+00:00: The completed V2 is a scaffold-level research artifact, not the final high-impact enzyme atlas; time estimates must distinguish scaffold completion from scientific validation.
 - 2026-05-09T14:01:49.012481+00:00: Geometry extraction was implementable quickly for PDB-linked M-CSA entries; the harder next step is label quality and retrieval evaluation.
+- 2026-05-09T14:03:45.516905+00:00: Next quality bottleneck is curated mechanism labels and evaluation, not baseline implementation.
 
 ## Scope Adjustments
 
@@ -73,3 +81,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T13:54:30.954964+00:00: V1 criteria are satisfied by a bounded 50-entry graph slice; broader scale is now an expansion problem, not a schema blocker.
 - 2026-05-09T13:54:31.022704+00:00: V2 scaffold criteria are satisfied; next work should increase scientific quality rather than add more dashboard-like surface area.
 - 2026-05-09T14:01:49.012481+00:00: Post-V2 quality work now targets geometry-aware retrieval rather than more text-only scaffolding.
+- 2026-05-09T14:03:45.516905+00:00: Geometry now affects retrieval scores through residue signature matching and catalytic-cluster compactness.

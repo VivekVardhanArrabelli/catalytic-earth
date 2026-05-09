@@ -7,6 +7,7 @@ from pathlib import Path
 from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_v1_graph, summarize_graph
+from .geometry_retrieval import write_geometry_retrieval
 from .models import RegistryError
 from .progress import WorkEntry, append_work_entry, write_progress_report
 from .sources import build_source_ledger, load_sources
@@ -176,6 +177,19 @@ def cmd_build_geometry_features(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_run_geometry_retrieval(args: argparse.Namespace) -> int:
+    artifact = write_geometry_retrieval(
+        geometry_path=Path(args.geometry),
+        out_path=Path(args.out),
+        top_k=args.top_k,
+    )
+    print(
+        "Wrote geometry retrieval to "
+        f"{args.out} ({artifact['metadata']['entry_count']} entries)"
+    )
+    return 0
+
+
 def _split_csv(value: str | None) -> list[str]:
     if not value:
         return []
@@ -313,6 +327,15 @@ def build_parser() -> argparse.ArgumentParser:
     geometry.add_argument("--max-entries", type=int, default=20)
     geometry.add_argument("--out", default="artifacts/v3_geometry_features.json")
     geometry.set_defaults(func=cmd_build_geometry_features)
+
+    geom_retrieval = subparsers.add_parser(
+        "run-geometry-retrieval",
+        help="rank seed mechanism fingerprints using active-site geometry features",
+    )
+    geom_retrieval.add_argument("--geometry", default="artifacts/v3_geometry_features.json")
+    geom_retrieval.add_argument("--top-k", type=int, default=5)
+    geom_retrieval.add_argument("--out", default="artifacts/v3_geometry_retrieval.json")
+    geom_retrieval.set_defaults(func=cmd_run_geometry_retrieval)
 
     log_work = subparsers.add_parser("log-work", help="append a timed work entry")
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")

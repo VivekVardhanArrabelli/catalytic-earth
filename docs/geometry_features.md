@@ -16,6 +16,11 @@ PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
   --graph artifacts/v1_graph.json \
   --max-entries 20 \
   --out artifacts/v3_geometry_features.json
+
+PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
+  --geometry artifacts/v3_geometry_features.json \
+  --top-k 5 \
+  --out artifacts/v3_geometry_retrieval.json
 ```
 
 ## Current Feature Set
@@ -29,6 +34,18 @@ For each M-CSA entry with structure positions:
 - CA coordinates when present
 - pairwise catalytic-residue distances
 - missing-position counts
+
+## Geometry-Aware Retrieval
+
+`run-geometry-retrieval` ranks seed mechanism fingerprints with:
+
+- residue signature overlap
+- role hint overlap
+- catalytic-cluster compactness from pairwise distances
+
+This is still a weak baseline, but it is materially better than pure text
+overlap because it makes catalytic residue identity and spatial arrangement part
+of the retrieval score.
 
 ## Why This Matters
 
@@ -44,3 +61,5 @@ label retrieval toward active-site geometry retrieval.
   assemblies are not modeled yet.
 - Static PDB structures can miss catalytically relevant conformations.
 - Geometry features are evidence, not validation.
+- The current retrieval baseline uses simple compactness heuristics, not a
+  learned geometry model.
