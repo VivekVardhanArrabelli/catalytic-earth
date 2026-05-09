@@ -4,20 +4,21 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 4
-- Total logged time: 205 minutes (3.42 hours)
+- Entries: 5
+- Total logged time: 250 minutes (4.17 hours)
 
 ## Time By Stage
 
 - ops: 25 minutes (0.42 hours)
+- post-v2: 45 minutes (0.75 hours)
 - v0: 55 minutes (0.92 hours)
 - v1: 55 minutes (0.92 hours)
 - v2: 70 minutes (1.17 hours)
 
 ## Progress Counters
 
-- Artifact references logged: 21
-- Evidence references logged: 25
+- Artifact references logged: 25
+- Evidence references logged: 28
 
 ## Recent Entries
 
@@ -51,15 +52,24 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/v2.py, artifacts/v2_benchmark.json, artifacts/v2_baseline.json, artifacts/v2_inconsistencies.json, artifacts/v2_dark_hydrolase_candidates.json, artifacts/v2_dossiers, docs/v2_report.md
 - Evidence: 50 benchmark records, 6 seed fingerprints, 10 inconsistency issues, 100 dark hydrolase candidates, 10 candidate dossiers, 18 tests passed
 
+### 2026-05-09T14:01:49.012481+00:00 - post-v2
+
+- Task: Add geometry-aware active-site feature extraction from PDB mmCIF files
+- Minutes: 45
+- Artifacts: src/catalytic_earth/structure.py, docs/geometry_features.md, artifacts/v3_geometry_features.json, tests/test_structure.py
+- Evidence: 20 graph entries processed, 13 entries with pairwise active-site geometry, 21 tests passed
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
 - 2026-05-09T13:40:25.768544+00:00: Use observed artifact-per-hour rate to revise v1 and v2 estimates after each material chunk.
 - 2026-05-09T13:54:30.954964+00:00: V1 completed much faster than the earlier days-to-weeks estimate because paginated M-CSA and UniProt TSV APIs were straightforward.
 - 2026-05-09T13:54:31.022704+00:00: The completed V2 is a scaffold-level research artifact, not the final high-impact enzyme atlas; time estimates must distinguish scaffold completion from scientific validation.
+- 2026-05-09T14:01:49.012481+00:00: Geometry extraction was implementable quickly for PDB-linked M-CSA entries; the harder next step is label quality and retrieval evaluation.
 
 ## Scope Adjustments
 
 - 2026-05-09T13:40:25.768544+00:00: Project management is now repository state, not chat state; future scope changes must be recorded in the ledger.
 - 2026-05-09T13:54:30.954964+00:00: V1 criteria are satisfied by a bounded 50-entry graph slice; broader scale is now an expansion problem, not a schema blocker.
 - 2026-05-09T13:54:31.022704+00:00: V2 scaffold criteria are satisfied; next work should increase scientific quality rather than add more dashboard-like surface area.
+- 2026-05-09T14:01:49.012481+00:00: Post-V2 quality work now targets geometry-aware retrieval rather than more text-only scaffolding.

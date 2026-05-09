@@ -8,6 +8,10 @@ The central artifact is not a dashboard. It is a mechanism-first knowledge graph
 benchmark suite, and enzyme discovery pipeline that maps protein evidence to
 catalytic hypotheses.
 
+Current post-V2 direction: improve scientific quality by moving from text/motif
+baselines to geometry-aware active-site retrieval. The first geometry artifact
+is `artifacts/v3_geometry_features.json`.
+
 ## Repository
 
 Local path:

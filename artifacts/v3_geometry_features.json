@@ -1,0 +1,3763 @@
+{
+  "entries": [
+    {
+      "entry_id": "m_csa:1",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.792,
+          "left": "m_csa:1:residue:1",
+          "right": "m_csa:1:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.259,
+          "left": "m_csa:1:residue:1",
+          "right": "m_csa:1:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.419,
+          "left": "m_csa:1:residue:1",
+          "right": "m_csa:1:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.937,
+          "left": "m_csa:1:residue:1",
+          "right": "m_csa:1:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.255,
+          "left": "m_csa:1:residue:1",
+          "right": "m_csa:1:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.968,
+          "left": "m_csa:1:residue:2",
+          "right": "m_csa:1:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.889,
+          "left": "m_csa:1:residue:2",
+          "right": "m_csa:1:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.471,
+          "left": "m_csa:1:residue:2",
+          "right": "m_csa:1:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 22.439,
+          "left": "m_csa:1:residue:2",
+          "right": "m_csa:1:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.359,
+          "left": "m_csa:1:residue:3",
+          "right": "m_csa:1:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.647,
+          "left": "m_csa:1:residue:3",
+          "right": "m_csa:1:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.758,
+          "left": "m_csa:1:residue:3",
+          "right": "m_csa:1:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.546,
+          "left": "m_csa:1:residue:4",
+          "right": "m_csa:1:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.653,
+          "left": "m_csa:1:residue:4",
+          "right": "m_csa:1:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.407,
+          "left": "m_csa:1:residue:5",
+          "right": "m_csa:1:residue:6"
+        }
+      ],
+      "pdb_id": "1B73",
+      "residue_count": 6,
+      "residues": [
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 29.403,
+            "y": 37.186,
+            "z": 28.47
+          },
+          "centroid": {
+            "x": 28.647,
+            "y": 37.273,
+            "z": 27.793
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 7,
+          "residue_node_id": "m_csa:1:residue:1",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 29.615,
+            "y": 34.714,
+            "z": 25.602
+          },
+          "centroid": {
+            "x": 29.125,
+            "y": 34.657,
+            "z": 25.239
+          },
+          "chain_name": "A",
+          "code": "Ser",
+          "resid": 8,
+          "residue_node_id": "m_csa:1:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor",
+            "increase basicity"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 16.984,
+            "y": 32.613,
+            "z": 27.657
+          },
+          "centroid": {
+            "x": 17.11,
+            "y": 32.095,
+            "z": 27.627
+          },
+          "chain_name": "A",
+          "code": "Cys",
+          "resid": 178,
+          "residue_node_id": "m_csa:1:residue:3",
+          "roles": [
+            "activator",
+            "hydrogen bond acceptor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 25.469,
+            "y": 34.546,
+            "z": 31.101
+          },
+          "centroid": {
+            "x": 25.856,
+            "y": 33.935,
+            "z": 31.35
+          },
+          "chain_name": "A",
+          "code": "Cys",
+          "resid": 70,
+          "residue_node_id": "m_csa:1:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 15.047,
+            "y": 31.68,
+            "z": 21.367
+          },
+          "centroid": {
+            "x": 16.432,
+            "y": 30.922,
+            "z": 21.464
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 180,
+          "residue_node_id": "m_csa:1:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 15.493,
+            "y": 27.832,
+            "z": 9.58
+          },
+          "centroid": {
+            "x": 15.787,
+            "y": 28.136,
+            "z": 8.055
+          },
+          "chain_name": "A",
+          "code": "Glu",
+          "resid": 147,
+          "residue_node_id": "m_csa:1:residue:6",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "increase basicity",
+            "proton donor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 6,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:10",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.402,
+          "left": "m_csa:10:residue:1",
+          "right": "m_csa:10:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.615,
+          "left": "m_csa:10:residue:1",
+          "right": "m_csa:10:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.695,
+          "left": "m_csa:10:residue:1",
+          "right": "m_csa:10:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.815,
+          "left": "m_csa:10:residue:1",
+          "right": "m_csa:10:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.55,
+          "left": "m_csa:10:residue:2",
+          "right": "m_csa:10:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.789,
+          "left": "m_csa:10:residue:2",
+          "right": "m_csa:10:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.93,
+          "left": "m_csa:10:residue:2",
+          "right": "m_csa:10:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.101,
+          "left": "m_csa:10:residue:3",
+          "right": "m_csa:10:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.521,
+          "left": "m_csa:10:residue:3",
+          "right": "m_csa:10:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.411,
+          "left": "m_csa:10:residue:4",
+          "right": "m_csa:10:residue:5"
+        }
+      ],
+      "pdb_id": "1MKB",
+      "residue_count": 5,
+      "residues": [
+        {
+          "atom_count": 4,
+          "ca": {
+            "x": -3.339,
+            "y": 12.473,
+            "z": 16.068
+          },
+          "centroid": {
+            "x": -4.042,
+            "y": 12.121,
+            "z": 15.901
+          },
+          "chain_name": "A",
+          "code": "Gly",
+          "resid": 79,
+          "residue_node_id": "m_csa:10:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": -3.395,
+            "y": 4.77,
+            "z": 12.713
+          },
+          "centroid": {
+            "x": -2.892,
+            "y": 4.782,
+            "z": 13.75
+          },
+          "chain_name": "B",
+          "code": "Asp",
+          "resid": 84,
+          "residue_node_id": "m_csa:10:residue:2",
+          "roles": [
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 0.441,
+            "y": 5.953,
+            "z": 23.543
+          },
+          "centroid": {
+            "x": 0.16,
+            "y": 6.996,
+            "z": 22.008
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 70,
+          "residue_node_id": "m_csa:10:residue:3",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 7,
+          "ca": {
+            "x": 1.033,
+            "y": 12.025,
+            "z": 23.571
+          },
+          "centroid": {
+            "x": 1.139,
+            "y": 11.649,
+            "z": 22.781
+          },
+          "chain_name": "A",
+          "code": "Val",
+          "resid": 76,
+          "residue_node_id": "m_csa:10:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": -5.732,
+            "y": 9.869,
+            "z": 14.638
+          },
+          "centroid": {
+            "x": -6.11,
+            "y": 9.406,
+            "z": 15.113
+          },
+          "chain_name": "A",
+          "code": "Cys",
+          "resid": 80,
+          "residue_node_id": "m_csa:10:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 5,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:11",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.19,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:10"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.036,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:11"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.977,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.924,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.927,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.478,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.025,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.023,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.692,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 20.356,
+          "left": "m_csa:11:residue:1",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.572,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:11"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.581,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.706,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.824,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.315,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.748,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.794,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.609,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.212,
+          "left": "m_csa:11:residue:10",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.962,
+          "left": "m_csa:11:residue:11",
+          "right": "m_csa:11:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.904,
+          "left": "m_csa:11:residue:11",
+          "right": "m_csa:11:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.719,
+          "left": "m_csa:11:residue:11",
+          "right": "m_csa:11:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.898,
+          "left": "m_csa:11:residue:11",
+          "right": "m_csa:11:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.317,
+          "left": "m_csa:11:residue:11",
+          "right": "m_csa:11:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.651,
+          "left": "m_csa:11:residue:11",
+          "right": "m_csa:11:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.61,
+          "left": "m_csa:11:residue:11",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.75,
+          "left": "m_csa:11:residue:11",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.016,
+          "left": "m_csa:11:residue:2",
+          "right": "m_csa:11:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.375,
+          "left": "m_csa:11:residue:2",
+          "right": "m_csa:11:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.814,
+          "left": "m_csa:11:residue:2",
+          "right": "m_csa:11:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.165,
+          "left": "m_csa:11:residue:2",
+          "right": "m_csa:11:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.897,
+          "left": "m_csa:11:residue:2",
+          "right": "m_csa:11:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.234,
+          "left": "m_csa:11:residue:2",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.628,
+          "left": "m_csa:11:residue:2",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.331,
+          "left": "m_csa:11:residue:3",
+          "right": "m_csa:11:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.045,
+          "left": "m_csa:11:residue:3",
+          "right": "m_csa:11:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.681,
+          "left": "m_csa:11:residue:3",
+          "right": "m_csa:11:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.833,
+          "left": "m_csa:11:residue:3",
+          "right": "m_csa:11:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.09,
+          "left": "m_csa:11:residue:3",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.478,
+          "left": "m_csa:11:residue:3",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.951,
+          "left": "m_csa:11:residue:4",
+          "right": "m_csa:11:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.86,
+          "left": "m_csa:11:residue:4",
+          "right": "m_csa:11:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.099,
+          "left": "m_csa:11:residue:4",
+          "right": "m_csa:11:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.914,
+          "left": "m_csa:11:residue:4",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.15,
+          "left": "m_csa:11:residue:4",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 4.336,
+          "left": "m_csa:11:residue:5",
+          "right": "m_csa:11:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.18,
+          "left": "m_csa:11:residue:5",
+          "right": "m_csa:11:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.036,
+          "left": "m_csa:11:residue:5",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.331,
+          "left": "m_csa:11:residue:5",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.528,
+          "left": "m_csa:11:residue:6",
+          "right": "m_csa:11:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.45,
+          "left": "m_csa:11:residue:6",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.134,
+          "left": "m_csa:11:residue:6",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.361,
+          "left": "m_csa:11:residue:7",
+          "right": "m_csa:11:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.48,
+          "left": "m_csa:11:residue:7",
+          "right": "m_csa:11:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.582,
+          "left": "m_csa:11:residue:8",
+          "right": "m_csa:11:residue:9"
+        }
+      ],
+      "pdb_id": "1QUM",
+      "residue_count": 11,
+      "residues": [
+        {
+          "atom_count": 16,
+          "ca": {
+            "x": 122.106,
+            "y": 8.619,
+            "z": 18.018
+          },
+          "centroid": {
+            "x": 121.881,
+            "y": 11.275,
+            "z": 15.82
+          },
+          "chain_name": "A",
+          "code": "Arg",
+          "resid": 37,
+          "residue_node_id": "m_csa:11:residue:1",
+          "roles": [
+            "transition state stabiliser"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 115.242,
+            "y": 6.625,
+            "z": 2.384
+          },
+          "centroid": {
+            "x": 115.253,
+            "y": 6.617,
+            "z": 3.601
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 229,
+          "residue_node_id": "m_csa:11:residue:10",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 112.107,
+            "y": 1.919,
+            "z": 17.961
+          },
+          "centroid": {
+            "x": 112.867,
+            "y": 2.492,
+            "z": 16.535
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 69,
+          "residue_node_id": "m_csa:11:residue:11",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 12,
+          "ca": {
+            "x": 120.212,
+            "y": 3.99,
+            "z": 14.745
+          },
+          "centroid": {
+            "x": 118.853,
+            "y": 5.705,
+            "z": 13.965
+          },
+          "chain_name": "A",
+          "code": "Tyr",
+          "resid": 72,
+          "residue_node_id": "m_csa:11:residue:2",
+          "roles": [
+            "transition state stabiliser"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 116.45,
+            "y": -2.247,
+            "z": 11.399
+          },
+          "centroid": {
+            "x": 116.424,
+            "y": -0.629,
+            "z": 11.427
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 109,
+          "residue_node_id": "m_csa:11:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 111.48,
+            "y": -3.197,
+            "z": 9.721
+          },
+          "centroid": {
+            "x": 111.815,
+            "y": -1.539,
+            "z": 9.615
+          },
+          "chain_name": "A",
+          "code": "Glu",
+          "resid": 145,
+          "residue_node_id": "m_csa:11:residue:4",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 107.383,
+            "y": 1.003,
+            "z": 5.994
+          },
+          "centroid": {
+            "x": 108.17,
+            "y": 1.775,
+            "z": 5.658
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 179,
+          "residue_node_id": "m_csa:11:residue:5",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 105.089,
+            "y": 2.912,
+            "z": 9.139
+          },
+          "centroid": {
+            "x": 106.534,
+            "y": 2.581,
+            "z": 9.796
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 216,
+          "residue_node_id": "m_csa:11:residue:6",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 106.907,
+            "y": 9.061,
+            "z": 10.365
+          },
+          "centroid": {
+            "x": 107.899,
+            "y": 7.695,
+            "z": 10.279
+          },
+          "chain_name": "A",
+          "code": "Glu",
+          "resid": 261,
+          "residue_node_id": "m_csa:11:residue:7",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 110.048,
+            "y": 10.439,
+            "z": 3.852
+          },
+          "centroid": {
+            "x": 110.478,
+            "y": 9.673,
+            "z": 5.262
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 231,
+          "residue_node_id": "m_csa:11:residue:8",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 111.026,
+            "y": 2.065,
+            "z": 2.249
+          },
+          "centroid": {
+            "x": 111.62,
+            "y": 2.232,
+            "z": 3.752
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 182,
+          "residue_node_id": "m_csa:11:residue:9",
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      ],
+      "resolved_residue_count": 11,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:12",
+      "missing_positions": 6,
+      "pairwise_distances_angstrom": [],
+      "pdb_id": "1OTH",
+      "residue_count": 6,
+      "residues": [],
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues"
+    },
+    {
+      "entry_id": "m_csa:13",
+      "missing_positions": 7,
+      "pairwise_distances_angstrom": [],
+      "pdb_id": "2BBK",
+      "residue_count": 7,
+      "residues": [],
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues"
+    },
+    {
+      "entry_id": "m_csa:14",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.389,
+          "left": "m_csa:14:residue:1",
+          "right": "m_csa:14:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.299,
+          "left": "m_csa:14:residue:1",
+          "right": "m_csa:14:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.258,
+          "left": "m_csa:14:residue:1",
+          "right": "m_csa:14:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.431,
+          "left": "m_csa:14:residue:1",
+          "right": "m_csa:14:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.823,
+          "left": "m_csa:14:residue:1",
+          "right": "m_csa:14:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.045,
+          "left": "m_csa:14:residue:1",
+          "right": "m_csa:14:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.451,
+          "left": "m_csa:14:residue:2",
+          "right": "m_csa:14:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.105,
+          "left": "m_csa:14:residue:2",
+          "right": "m_csa:14:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.787,
+          "left": "m_csa:14:residue:2",
+          "right": "m_csa:14:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.822,
+          "left": "m_csa:14:residue:2",
+          "right": "m_csa:14:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.124,
+          "left": "m_csa:14:residue:2",
+          "right": "m_csa:14:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.745,
+          "left": "m_csa:14:residue:3",
+          "right": "m_csa:14:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.86,
+          "left": "m_csa:14:residue:3",
+          "right": "m_csa:14:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.857,
+          "left": "m_csa:14:residue:3",
+          "right": "m_csa:14:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.349,
+          "left": "m_csa:14:residue:3",
+          "right": "m_csa:14:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.44,
+          "left": "m_csa:14:residue:4",
+          "right": "m_csa:14:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.822,
+          "left": "m_csa:14:residue:4",
+          "right": "m_csa:14:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.457,
+          "left": "m_csa:14:residue:4",
+          "right": "m_csa:14:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.845,
+          "left": "m_csa:14:residue:5",
+          "right": "m_csa:14:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.083,
+          "left": "m_csa:14:residue:5",
+          "right": "m_csa:14:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.668,
+          "left": "m_csa:14:residue:6",
+          "right": "m_csa:14:residue:7"
+        }
+      ],
+      "pdb_id": "1VNC",
+      "residue_count": 7,
+      "residues": [
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": -10.419,
+            "y": 20.269,
+            "z": 2.291
+          },
+          "centroid": {
+            "x": -12.08,
+            "y": 19.443,
+            "z": 0.972
+          },
+          "chain_name": "A",
+          "code": "Arg",
+          "resid": 360,
+          "residue_node_id": "m_csa:14:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": -20.724,
+            "y": 19.579,
+            "z": 3.416
+          },
+          "centroid": {
+            "x": -21.357,
+            "y": 19.21,
+            "z": 3.534
+          },
+          "chain_name": "A",
+          "code": "Ser",
+          "resid": 402,
+          "residue_node_id": "m_csa:14:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -23.879,
+            "y": 15.481,
+            "z": 1.695
+          },
+          "centroid": {
+            "x": -23.142,
+            "y": 14.187,
+            "z": 1.07
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 404,
+          "residue_node_id": "m_csa:14:residue:3",
+          "roles": [
+            "activator",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": -17.766,
+            "y": 12.242,
+            "z": 5.178
+          },
+          "centroid": {
+            "x": -18.222,
+            "y": 12.647,
+            "z": 3.302
+          },
+          "chain_name": "A",
+          "code": "Arg",
+          "resid": 490,
+          "residue_node_id": "m_csa:14:residue:4",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -14.855,
+            "y": 16.831,
+            "z": 5.432
+          },
+          "centroid": {
+            "x": -16.085,
+            "y": 17.02,
+            "z": 4.531
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 496,
+          "residue_node_id": "m_csa:14:residue:5",
+          "roles": [
+            "covalently attached",
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 4,
+          "ca": {
+            "x": -23.046,
+            "y": 19.028,
+            "z": 0.431
+          },
+          "centroid": {
+            "x": -23.478,
+            "y": 18.487,
+            "z": 0.888
+          },
+          "chain_name": "A",
+          "code": "Gly",
+          "resid": 403,
+          "residue_node_id": "m_csa:14:residue:6",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": -19.066,
+            "y": 26.71,
+            "z": -0.106
+          },
+          "centroid": {
+            "x": -19.109,
+            "y": 25.037,
+            "z": -0.455
+          },
+          "chain_name": "A",
+          "code": "Lys",
+          "resid": 353,
+          "residue_node_id": "m_csa:14:residue:7",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 7,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:15",
+      "missing_positions": 7,
+      "pairwise_distances_angstrom": [],
+      "pdb_id": "1ZNB",
+      "residue_count": 8,
+      "residues": [
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 39.038,
+            "y": 15.445,
+            "z": 42.658
+          },
+          "centroid": {
+            "x": 39.797,
+            "y": 15.796,
+            "z": 43.005
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 86,
+          "residue_node_id": "m_csa:15:residue:1",
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      ],
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues"
+    },
+    {
+      "entry_id": "m_csa:16",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.393,
+          "left": "m_csa:16:residue:1",
+          "right": "m_csa:16:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.149,
+          "left": "m_csa:16:residue:1",
+          "right": "m_csa:16:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.229,
+          "left": "m_csa:16:residue:1",
+          "right": "m_csa:16:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.655,
+          "left": "m_csa:16:residue:1",
+          "right": "m_csa:16:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.207,
+          "left": "m_csa:16:residue:2",
+          "right": "m_csa:16:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.742,
+          "left": "m_csa:16:residue:2",
+          "right": "m_csa:16:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.392,
+          "left": "m_csa:16:residue:2",
+          "right": "m_csa:16:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.128,
+          "left": "m_csa:16:residue:3",
+          "right": "m_csa:16:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.993,
+          "left": "m_csa:16:residue:3",
+          "right": "m_csa:16:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.434,
+          "left": "m_csa:16:residue:4",
+          "right": "m_csa:16:residue:5"
+        }
+      ],
+      "pdb_id": "1BC2",
+      "residue_count": 5,
+      "residues": [
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 28.702,
+            "y": 24.818,
+            "z": 18.564
+          },
+          "centroid": {
+            "x": 29.605,
+            "y": 24.302,
+            "z": 19.217
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 90,
+          "residue_node_id": "m_csa:16:residue:1",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 40.609,
+            "y": 22.838,
+            "z": 15.754
+          },
+          "centroid": {
+            "x": 40.427,
+            "y": 24.019,
+            "z": 16.074
+          },
+          "chain_name": "A",
+          "code": "Asn",
+          "resid": 180,
+          "residue_node_id": "m_csa:16:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 33.572,
+            "y": 28.781,
+            "z": 25.219
+          },
+          "centroid": {
+            "x": 33.768,
+            "y": 27.337,
+            "z": 23.949
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 86,
+          "residue_node_id": "m_csa:16:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 40.95,
+            "y": 23.71,
+            "z": 23.439
+          },
+          "centroid": {
+            "x": 39.452,
+            "y": 23.899,
+            "z": 22.31
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 149,
+          "residue_node_id": "m_csa:16:residue:4",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 32.771,
+            "y": 28.679,
+            "z": 19.281
+          },
+          "centroid": {
+            "x": 34.208,
+            "y": 28.038,
+            "z": 19.212
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 88,
+          "residue_node_id": "m_csa:16:residue:5",
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      ],
+      "resolved_residue_count": 5,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:17",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.482,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:10"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 25.734,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:11"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.192,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.662,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.657,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.762,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.545,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.192,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.625,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.238,
+          "left": "m_csa:17:residue:1",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 21.899,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:11"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.615,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.244,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.824,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.346,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.676,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.615,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.749,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.586,
+          "left": "m_csa:17:residue:10",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.007,
+          "left": "m_csa:17:residue:11",
+          "right": "m_csa:17:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.239,
+          "left": "m_csa:17:residue:11",
+          "right": "m_csa:17:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.844,
+          "left": "m_csa:17:residue:11",
+          "right": "m_csa:17:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.143,
+          "left": "m_csa:17:residue:11",
+          "right": "m_csa:17:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.873,
+          "left": "m_csa:17:residue:11",
+          "right": "m_csa:17:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.007,
+          "left": "m_csa:17:residue:11",
+          "right": "m_csa:17:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.099,
+          "left": "m_csa:17:residue:11",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.77,
+          "left": "m_csa:17:residue:11",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.294,
+          "left": "m_csa:17:residue:2",
+          "right": "m_csa:17:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.546,
+          "left": "m_csa:17:residue:2",
+          "right": "m_csa:17:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.173,
+          "left": "m_csa:17:residue:2",
+          "right": "m_csa:17:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.679,
+          "left": "m_csa:17:residue:2",
+          "right": "m_csa:17:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 0.0,
+          "left": "m_csa:17:residue:2",
+          "right": "m_csa:17:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.865,
+          "left": "m_csa:17:residue:2",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.491,
+          "left": "m_csa:17:residue:2",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.326,
+          "left": "m_csa:17:residue:3",
+          "right": "m_csa:17:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.338,
+          "left": "m_csa:17:residue:3",
+          "right": "m_csa:17:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.204,
+          "left": "m_csa:17:residue:3",
+          "right": "m_csa:17:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.294,
+          "left": "m_csa:17:residue:3",
+          "right": "m_csa:17:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.808,
+          "left": "m_csa:17:residue:3",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.229,
+          "left": "m_csa:17:residue:3",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.657,
+          "left": "m_csa:17:residue:4",
+          "right": "m_csa:17:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.255,
+          "left": "m_csa:17:residue:4",
+          "right": "m_csa:17:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.546,
+          "left": "m_csa:17:residue:4",
+          "right": "m_csa:17:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.97,
+          "left": "m_csa:17:residue:4",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.463,
+          "left": "m_csa:17:residue:4",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.633,
+          "left": "m_csa:17:residue:5",
+          "right": "m_csa:17:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.173,
+          "left": "m_csa:17:residue:5",
+          "right": "m_csa:17:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.095,
+          "left": "m_csa:17:residue:5",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.378,
+          "left": "m_csa:17:residue:5",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.679,
+          "left": "m_csa:17:residue:6",
+          "right": "m_csa:17:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.936,
+          "left": "m_csa:17:residue:6",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.023,
+          "left": "m_csa:17:residue:6",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.865,
+          "left": "m_csa:17:residue:7",
+          "right": "m_csa:17:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.491,
+          "left": "m_csa:17:residue:7",
+          "right": "m_csa:17:residue:9"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.279,
+          "left": "m_csa:17:residue:8",
+          "right": "m_csa:17:residue:9"
+        }
+      ],
+      "pdb_id": "1RR6",
+      "residue_count": 11,
+      "residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 6.747,
+            "y": 25.19,
+            "z": 8.093
+          },
+          "centroid": {
+            "x": 5.342,
+            "y": 25.892,
+            "z": 7.422
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 64,
+          "residue_node_id": "m_csa:17:residue:1",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 1.299,
+            "y": 13.938,
+            "z": 13.14
+          },
+          "centroid": {
+            "x": 2.577,
+            "y": 15.023,
+            "z": 12.997
+          },
+          "chain_name": "A",
+          "code": "Glu",
+          "resid": 89,
+          "residue_node_id": "m_csa:17:residue:10",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 1.766,
+            "y": 22.676,
+            "z": 33.215
+          },
+          "centroid": {
+            "x": 1.483,
+            "y": 21.62,
+            "z": 32.387
+          },
+          "chain_name": "A",
+          "code": "Asn",
+          "resid": 243,
+          "residue_node_id": "m_csa:17:residue:11",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor",
+            "polar interaction"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 8.398,
+            "y": 23.108,
+            "z": 22.034
+          },
+          "centroid": {
+            "x": 8.119,
+            "y": 23.375,
+            "z": 22.636
+          },
+          "chain_name": "A",
+          "code": "Ser",
+          "resid": 33,
+          "residue_node_id": "m_csa:17:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 8.138,
+            "y": 12.817,
+            "z": 21.994
+          },
+          "centroid": {
+            "x": 8.474,
+            "y": 13.139,
+            "z": 22.579
+          },
+          "chain_name": "A",
+          "code": "Ser",
+          "resid": 220,
+          "residue_node_id": "m_csa:17:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 12,
+          "ca": {
+            "x": 0.674,
+            "y": 12.121,
+            "z": 16.446
+          },
+          "centroid": {
+            "x": 1.404,
+            "y": 14.421,
+            "z": 17.25
+          },
+          "chain_name": "A",
+          "code": "Tyr",
+          "resid": 88,
+          "residue_node_id": "m_csa:17:residue:4",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": -1.506,
+            "y": 24.605,
+            "z": 23.81
+          },
+          "centroid": {
+            "x": -0.411,
+            "y": 24.736,
+            "z": 22.359
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 257,
+          "residue_node_id": "m_csa:17:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 5,
+          "ca": {
+            "x": 7.758,
+            "y": 20.505,
+            "z": 27.041
+          },
+          "centroid": {
+            "x": 7.392,
+            "y": 19.92,
+            "z": 26.763
+          },
+          "chain_name": "A",
+          "code": "Ala",
+          "resid": 116,
+          "residue_node_id": "m_csa:17:residue:6",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 8.398,
+            "y": 23.108,
+            "z": 22.034
+          },
+          "centroid": {
+            "x": 8.119,
+            "y": 23.375,
+            "z": 22.636
+          },
+          "chain_name": "A",
+          "code": "Ser",
+          "resid": 33,
+          "residue_node_id": "m_csa:17:residue:7",
+          "roles": [
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 4.58,
+            "y": 13.02,
+            "z": 23.335
+          },
+          "centroid": {
+            "x": 3.536,
+            "y": 13.837,
+            "z": 22.805
+          },
+          "chain_name": "A",
+          "code": "Met",
+          "resid": 219,
+          "residue_node_id": "m_csa:17:residue:8",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 5.951,
+            "y": 13.514,
+            "z": 16.203
+          },
+          "centroid": {
+            "x": 5.802,
+            "y": 15.03,
+            "z": 16.81
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 86,
+          "residue_node_id": "m_csa:17:residue:9",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 11,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:18",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.191,
+          "left": "m_csa:18:residue:1",
+          "right": "m_csa:18:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.983,
+          "left": "m_csa:18:residue:1",
+          "right": "m_csa:18:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.771,
+          "left": "m_csa:18:residue:1",
+          "right": "m_csa:18:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.336,
+          "left": "m_csa:18:residue:1",
+          "right": "m_csa:18:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.415,
+          "left": "m_csa:18:residue:2",
+          "right": "m_csa:18:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.208,
+          "left": "m_csa:18:residue:2",
+          "right": "m_csa:18:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.68,
+          "left": "m_csa:18:residue:2",
+          "right": "m_csa:18:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.082,
+          "left": "m_csa:18:residue:3",
+          "right": "m_csa:18:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.695,
+          "left": "m_csa:18:residue:3",
+          "right": "m_csa:18:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.978,
+          "left": "m_csa:18:residue:4",
+          "right": "m_csa:18:residue:5"
+        }
+      ],
+      "pdb_id": "1JDW",
+      "residue_count": 5,
+      "residues": [
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 51.187,
+            "y": 64.405,
+            "z": 12.895
+          },
+          "centroid": {
+            "x": 51.458,
+            "y": 65.1,
+            "z": 13.298
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 170,
+          "residue_node_id": "m_csa:18:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 49.157,
+            "y": 65.332,
+            "z": 8.208
+          },
+          "centroid": {
+            "x": 49.048,
+            "y": 66.149,
+            "z": 8.358
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 254,
+          "residue_node_id": "m_csa:18:residue:2",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 7,
+          "ca": {
+            "x": 49.323,
+            "y": 64.839,
+            "z": 19.611
+          },
+          "centroid": {
+            "x": 49.301,
+            "y": 65.14,
+            "z": 19.814
+          },
+          "chain_name": "A",
+          "code": "Cys",
+          "resid": 407,
+          "residue_node_id": "m_csa:18:residue:3",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 13,
+          "ca": {
+            "x": 44.608,
+            "y": 68.539,
+            "z": 12.788
+          },
+          "centroid": {
+            "x": 46.492,
+            "y": 68.871,
+            "z": 12.772
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 303,
+          "residue_node_id": "m_csa:18:residue:4",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 42.008,
+            "y": 65.817,
+            "z": 17.432
+          },
+          "centroid": {
+            "x": 43.152,
+            "y": 65.884,
+            "z": 17.48
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 305,
+          "residue_node_id": "m_csa:18:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 5,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:19",
+      "missing_positions": 4,
+      "pairwise_distances_angstrom": [],
+      "pdb_id": "1DL2",
+      "residue_count": 8,
+      "residues": [],
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues"
+    },
+    {
+      "entry_id": "m_csa:2",
+      "missing_positions": 7,
+      "pairwise_distances_angstrom": [],
+      "pdb_id": "1BTL",
+      "residue_count": 7,
+      "residues": [],
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues"
+    },
+    {
+      "entry_id": "m_csa:20",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.804,
+          "left": "m_csa:20:residue:1",
+          "right": "m_csa:20:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.467,
+          "left": "m_csa:20:residue:1",
+          "right": "m_csa:20:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.322,
+          "left": "m_csa:20:residue:1",
+          "right": "m_csa:20:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.475,
+          "left": "m_csa:20:residue:1",
+          "right": "m_csa:20:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.411,
+          "left": "m_csa:20:residue:1",
+          "right": "m_csa:20:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.551,
+          "left": "m_csa:20:residue:1",
+          "right": "m_csa:20:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.318,
+          "left": "m_csa:20:residue:2",
+          "right": "m_csa:20:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.123,
+          "left": "m_csa:20:residue:2",
+          "right": "m_csa:20:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.973,
+          "left": "m_csa:20:residue:2",
+          "right": "m_csa:20:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.091,
+          "left": "m_csa:20:residue:2",
+          "right": "m_csa:20:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.135,
+          "left": "m_csa:20:residue:2",
+          "right": "m_csa:20:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 16.803,
+          "left": "m_csa:20:residue:3",
+          "right": "m_csa:20:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.125,
+          "left": "m_csa:20:residue:3",
+          "right": "m_csa:20:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.868,
+          "left": "m_csa:20:residue:3",
+          "right": "m_csa:20:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.891,
+          "left": "m_csa:20:residue:3",
+          "right": "m_csa:20:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.687,
+          "left": "m_csa:20:residue:4",
+          "right": "m_csa:20:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.343,
+          "left": "m_csa:20:residue:4",
+          "right": "m_csa:20:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.993,
+          "left": "m_csa:20:residue:4",
+          "right": "m_csa:20:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.524,
+          "left": "m_csa:20:residue:5",
+          "right": "m_csa:20:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.376,
+          "left": "m_csa:20:residue:5",
+          "right": "m_csa:20:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.419,
+          "left": "m_csa:20:residue:6",
+          "right": "m_csa:20:residue:7"
+        }
+      ],
+      "pdb_id": "1QJD",
+      "residue_count": 7,
+      "residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 21.1,
+            "y": 33.739,
+            "z": 71.222
+          },
+          "centroid": {
+            "x": 22.864,
+            "y": 33.24,
+            "z": 71.649
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 504,
+          "residue_node_id": "m_csa:20:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 21.169,
+            "y": 30.645,
+            "z": 69.01
+          },
+          "centroid": {
+            "x": 22.036,
+            "y": 29.108,
+            "z": 68.67
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 505,
+          "residue_node_id": "m_csa:20:residue:2",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        },
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": 23.2,
+            "y": 23.642,
+            "z": 73.013
+          },
+          "centroid": {
+            "x": 24.574,
+            "y": 25.612,
+            "z": 72.158
+          },
+          "chain_name": "A",
+          "code": "Arg",
+          "resid": 544,
+          "residue_node_id": "m_csa:20:residue:3",
+          "roles": [
+            "steric role"
+          ]
+        },
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": 30.659,
+            "y": 31.967,
+            "z": 85.559
+          },
+          "centroid": {
+            "x": 28.51,
+            "y": 31.68,
+            "z": 84.514
+          },
+          "chain_name": "A",
+          "code": "Arg",
+          "resid": 381,
+          "residue_node_id": "m_csa:20:residue:4",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 21.724,
+            "y": 32.991,
+            "z": 76.61
+          },
+          "centroid": {
+            "x": 23.237,
+            "y": 33.676,
+            "z": 77.024
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 365,
+          "residue_node_id": "m_csa:20:residue:5",
+          "roles": [
+            "increase acidity"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 29.324,
+            "y": 32.223,
+            "z": 80.392
+          },
+          "centroid": {
+            "x": 28.722,
+            "y": 30.646,
+            "z": 80.249
+          },
+          "chain_name": "A",
+          "code": "Glu",
+          "resid": 378,
+          "residue_node_id": "m_csa:20:residue:6",
+          "roles": [
+            "proton acceptor",
+            "proton donor",
+            "proton relay"
+          ]
+        },
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": 21.258,
+            "y": 27.414,
+            "z": 79.666
+          },
+          "centroid": {
+            "x": 23.094,
+            "y": 28.431,
+            "z": 77.949
+          },
+          "chain_name": "A",
+          "code": "Arg",
+          "resid": 402,
+          "residue_node_id": "m_csa:20:residue:7",
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 7,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:21",
+      "missing_positions": 7,
+      "pairwise_distances_angstrom": [],
+      "pdb_id": "1DO8",
+      "residue_count": 8,
+      "residues": [
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 24.165,
+            "y": 21.272,
+            "z": 13.939
+          },
+          "centroid": {
+            "x": 23.777,
+            "y": 21.457,
+            "z": 13.144
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 236,
+          "residue_node_id": "m_csa:21:residue:7",
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      ],
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues"
+    },
+    {
+      "entry_id": "m_csa:22",
+      "missing_positions": 5,
+      "pairwise_distances_angstrom": [],
+      "pdb_id": "1B6B",
+      "residue_count": 5,
+      "residues": [],
+      "resolved_residue_count": 0,
+      "status": "insufficient_resolved_residues"
+    },
+    {
+      "entry_id": "m_csa:23",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 19.785,
+          "left": "m_csa:23:residue:1",
+          "right": "m_csa:23:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 18.385,
+          "left": "m_csa:23:residue:1",
+          "right": "m_csa:23:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.463,
+          "left": "m_csa:23:residue:1",
+          "right": "m_csa:23:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.18,
+          "left": "m_csa:23:residue:1",
+          "right": "m_csa:23:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 27.197,
+          "left": "m_csa:23:residue:2",
+          "right": "m_csa:23:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 24.865,
+          "left": "m_csa:23:residue:2",
+          "right": "m_csa:23:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 28.394,
+          "left": "m_csa:23:residue:2",
+          "right": "m_csa:23:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.246,
+          "left": "m_csa:23:residue:3",
+          "right": "m_csa:23:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.152,
+          "left": "m_csa:23:residue:3",
+          "right": "m_csa:23:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.534,
+          "left": "m_csa:23:residue:4",
+          "right": "m_csa:23:residue:5"
+        }
+      ],
+      "pdb_id": "1XVA",
+      "residue_count": 5,
+      "residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 65.157,
+            "y": 78.364,
+            "z": 1.326
+          },
+          "centroid": {
+            "x": 65.15,
+            "y": 77.115,
+            "z": 2.373
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 142,
+          "residue_node_id": "m_csa:23:residue:1",
+          "roles": [
+            "activator"
+          ]
+        },
+        {
+          "atom_count": 12,
+          "ca": {
+            "x": 82.842,
+            "y": 75.249,
+            "z": 9.631
+          },
+          "centroid": {
+            "x": 83.367,
+            "y": 77.149,
+            "z": 8.58
+          },
+          "chain_name": "A",
+          "code": "Tyr",
+          "resid": 21,
+          "residue_node_id": "m_csa:23:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 12,
+          "ca": {
+            "x": 56.875,
+            "y": 69.084,
+            "z": 14.865
+          },
+          "centroid": {
+            "x": 57.833,
+            "y": 68.183,
+            "z": 13.229
+          },
+          "chain_name": "A",
+          "code": "Tyr",
+          "resid": 194,
+          "residue_node_id": "m_csa:23:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 4,
+          "ca": {
+            "x": 58.417,
+            "y": 72.052,
+            "z": 6.245
+          },
+          "centroid": {
+            "x": 58.643,
+            "y": 72.719,
+            "z": 6.031
+          },
+          "chain_name": "A",
+          "code": "Gly",
+          "resid": 137,
+          "residue_node_id": "m_csa:23:residue:4",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": 55.079,
+            "y": 79.899,
+            "z": 5.915
+          },
+          "centroid": {
+            "x": 55.586,
+            "y": 80.375,
+            "z": 8.06
+          },
+          "chain_name": "A",
+          "code": "Arg",
+          "resid": 175,
+          "residue_node_id": "m_csa:23:residue:5",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      ],
+      "resolved_residue_count": 5,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:24",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.434,
+          "left": "m_csa:24:residue:1",
+          "right": "m_csa:24:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.751,
+          "left": "m_csa:24:residue:1",
+          "right": "m_csa:24:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.074,
+          "left": "m_csa:24:residue:1",
+          "right": "m_csa:24:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.754,
+          "left": "m_csa:24:residue:1",
+          "right": "m_csa:24:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.557,
+          "left": "m_csa:24:residue:1",
+          "right": "m_csa:24:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.201,
+          "left": "m_csa:24:residue:2",
+          "right": "m_csa:24:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.441,
+          "left": "m_csa:24:residue:2",
+          "right": "m_csa:24:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.625,
+          "left": "m_csa:24:residue:2",
+          "right": "m_csa:24:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.809,
+          "left": "m_csa:24:residue:2",
+          "right": "m_csa:24:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.936,
+          "left": "m_csa:24:residue:3",
+          "right": "m_csa:24:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.573,
+          "left": "m_csa:24:residue:3",
+          "right": "m_csa:24:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.576,
+          "left": "m_csa:24:residue:3",
+          "right": "m_csa:24:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.376,
+          "left": "m_csa:24:residue:4",
+          "right": "m_csa:24:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.669,
+          "left": "m_csa:24:residue:4",
+          "right": "m_csa:24:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.391,
+          "left": "m_csa:24:residue:5",
+          "right": "m_csa:24:residue:6"
+        }
+      ],
+      "pdb_id": "1NZY",
+      "residue_count": 6,
+      "residues": [
+        {
+          "atom_count": 4,
+          "ca": {
+            "x": 15.472,
+            "y": 108.432,
+            "z": 43.817
+          },
+          "centroid": {
+            "x": 16.05,
+            "y": 107.904,
+            "z": 43.968
+          },
+          "chain_name": "A",
+          "code": "Gly",
+          "resid": 114,
+          "residue_node_id": "m_csa:24:residue:1",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 5,
+          "ca": {
+            "x": 5.546,
+            "y": 109.368,
+            "z": 40.74
+          },
+          "centroid": {
+            "x": 5.236,
+            "y": 108.981,
+            "z": 40.915
+          },
+          "chain_name": "A",
+          "code": "Ala",
+          "resid": 86,
+          "residue_node_id": "m_csa:24:residue:2",
+          "roles": [
+            "activator",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 6.646,
+            "y": 104.298,
+            "z": 44.136
+          },
+          "centroid": {
+            "x": 6.761,
+            "y": 105.704,
+            "z": 44.741
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 90,
+          "residue_node_id": "m_csa:24:residue:3",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": 14.521,
+            "y": 111.326,
+            "z": 38.562
+          },
+          "centroid": {
+            "x": 12.921,
+            "y": 112.351,
+            "z": 38.011
+          },
+          "chain_name": "A",
+          "code": "Phe",
+          "resid": 64,
+          "residue_node_id": "m_csa:24:residue:4",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 14,
+          "ca": {
+            "x": 15.594,
+            "y": 116.903,
+            "z": 46.022
+          },
+          "centroid": {
+            "x": 14.771,
+            "y": 114.614,
+            "z": 46.634
+          },
+          "chain_name": "A",
+          "code": "Trp",
+          "resid": 137,
+          "residue_node_id": "m_csa:24:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 9.919,
+            "y": 111.113,
+            "z": 48.185
+          },
+          "centroid": {
+            "x": 10.138,
+            "y": 111.031,
+            "z": 47.027
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 145,
+          "residue_node_id": "m_csa:24:residue:6",
+          "roles": [
+            "covalently attached",
+            "electrofuge",
+            "electrophile",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 6,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:25",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.861,
+          "left": "m_csa:25:residue:1",
+          "right": "m_csa:25:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.225,
+          "left": "m_csa:25:residue:1",
+          "right": "m_csa:25:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.449,
+          "left": "m_csa:25:residue:1",
+          "right": "m_csa:25:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.21,
+          "left": "m_csa:25:residue:1",
+          "right": "m_csa:25:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.043,
+          "left": "m_csa:25:residue:2",
+          "right": "m_csa:25:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.668,
+          "left": "m_csa:25:residue:2",
+          "right": "m_csa:25:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.534,
+          "left": "m_csa:25:residue:2",
+          "right": "m_csa:25:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.527,
+          "left": "m_csa:25:residue:3",
+          "right": "m_csa:25:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.586,
+          "left": "m_csa:25:residue:3",
+          "right": "m_csa:25:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.547,
+          "left": "m_csa:25:residue:4",
+          "right": "m_csa:25:residue:5"
+        }
+      ],
+      "pdb_id": "1NBA",
+      "residue_count": 5,
+      "residues": [
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 24.272,
+            "y": 78.556,
+            "z": 65.864
+          },
+          "centroid": {
+            "x": 23.742,
+            "y": 79.129,
+            "z": 65.232
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 51,
+          "residue_node_id": "m_csa:25:residue:1",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 5,
+          "ca": {
+            "x": 21.494,
+            "y": 74.826,
+            "z": 62.298
+          },
+          "centroid": {
+            "x": 21.682,
+            "y": 75.481,
+            "z": 62.336
+          },
+          "chain_name": "A",
+          "code": "Ala",
+          "resid": 172,
+          "residue_node_id": "m_csa:25:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 7,
+          "ca": {
+            "x": 19.682,
+            "y": 75.253,
+            "z": 59.891
+          },
+          "centroid": {
+            "x": 19.368,
+            "y": 75.799,
+            "z": 59.491
+          },
+          "chain_name": "A",
+          "code": "Thr",
+          "resid": 173,
+          "residue_node_id": "m_csa:25:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 27.004,
+            "y": 87.279,
+            "z": 63.469
+          },
+          "centroid": {
+            "x": 25.959,
+            "y": 85.577,
+            "z": 62.898
+          },
+          "chain_name": "A",
+          "code": "Lys",
+          "resid": 144,
+          "residue_node_id": "m_csa:25:residue:4",
+          "roles": [
+            "activator",
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 22.775,
+            "y": 79.427,
+            "z": 57.839
+          },
+          "centroid": {
+            "x": 22.96,
+            "y": 79.446,
+            "z": 58.189
+          },
+          "chain_name": "A",
+          "code": "Cys",
+          "resid": 177,
+          "residue_node_id": "m_csa:25:residue:5",
+          "roles": [
+            "covalently attached",
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "nucleofuge",
+            "nucleophile",
+            "proton acceptor",
+            "proton donor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 5,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:26",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.022,
+          "left": "m_csa:26:residue:1",
+          "right": "m_csa:26:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 5.444,
+          "left": "m_csa:26:residue:1",
+          "right": "m_csa:26:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.315,
+          "left": "m_csa:26:residue:1",
+          "right": "m_csa:26:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 3.865,
+          "left": "m_csa:26:residue:1",
+          "right": "m_csa:26:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.839,
+          "left": "m_csa:26:residue:2",
+          "right": "m_csa:26:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.041,
+          "left": "m_csa:26:residue:2",
+          "right": "m_csa:26:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.16,
+          "left": "m_csa:26:residue:2",
+          "right": "m_csa:26:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.098,
+          "left": "m_csa:26:residue:3",
+          "right": "m_csa:26:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.751,
+          "left": "m_csa:26:residue:3",
+          "right": "m_csa:26:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 7.716,
+          "left": "m_csa:26:residue:4",
+          "right": "m_csa:26:residue:5"
+        }
+      ],
+      "pdb_id": "1PTD",
+      "residue_count": 5,
+      "residues": [
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 18.319,
+            "y": 35.612,
+            "z": 100.945
+          },
+          "centroid": {
+            "x": 17.648,
+            "y": 34.044,
+            "z": 101.703
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 32,
+          "residue_node_id": "m_csa:26:residue:1",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": 20.811,
+            "y": 30.012,
+            "z": 93.016
+          },
+          "centroid": {
+            "x": 20.575,
+            "y": 29.881,
+            "z": 95.245
+          },
+          "chain_name": "A",
+          "code": "Arg",
+          "resid": 69,
+          "residue_node_id": "m_csa:26:residue:2",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond donor"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 14.286,
+            "y": 37.203,
+            "z": 104.237
+          },
+          "centroid": {
+            "x": 14.224,
+            "y": 36.468,
+            "z": 104.613
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 274,
+          "residue_node_id": "m_csa:26:residue:3",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 15.005,
+            "y": 26.565,
+            "z": 95.013
+          },
+          "centroid": {
+            "x": 14.28,
+            "y": 26.402,
+            "z": 96.658
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 82,
+          "residue_node_id": "m_csa:26:residue:4",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 17.022,
+            "y": 33.345,
+            "z": 98.096
+          },
+          "centroid": {
+            "x": 16.634,
+            "y": 32.532,
+            "z": 98.445
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 33,
+          "residue_node_id": "m_csa:26:residue:5",
+          "roles": [
+            "electrostatic stabiliser",
+            "hydrogen bond acceptor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 5,
+      "status": "ok"
+    },
+    {
+      "entry_id": "m_csa:27",
+      "missing_positions": 0,
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.835,
+          "left": "m_csa:27:residue:1",
+          "right": "m_csa:27:residue:2"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.556,
+          "left": "m_csa:27:residue:1",
+          "right": "m_csa:27:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.354,
+          "left": "m_csa:27:residue:1",
+          "right": "m_csa:27:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.717,
+          "left": "m_csa:27:residue:1",
+          "right": "m_csa:27:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.331,
+          "left": "m_csa:27:residue:1",
+          "right": "m_csa:27:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.437,
+          "left": "m_csa:27:residue:1",
+          "right": "m_csa:27:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.514,
+          "left": "m_csa:27:residue:1",
+          "right": "m_csa:27:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.263,
+          "left": "m_csa:27:residue:2",
+          "right": "m_csa:27:residue:3"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.133,
+          "left": "m_csa:27:residue:2",
+          "right": "m_csa:27:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 17.255,
+          "left": "m_csa:27:residue:2",
+          "right": "m_csa:27:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 14.477,
+          "left": "m_csa:27:residue:2",
+          "right": "m_csa:27:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.306,
+          "left": "m_csa:27:residue:2",
+          "right": "m_csa:27:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.518,
+          "left": "m_csa:27:residue:2",
+          "right": "m_csa:27:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.181,
+          "left": "m_csa:27:residue:3",
+          "right": "m_csa:27:residue:4"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.526,
+          "left": "m_csa:27:residue:3",
+          "right": "m_csa:27:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.067,
+          "left": "m_csa:27:residue:3",
+          "right": "m_csa:27:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 8.079,
+          "left": "m_csa:27:residue:3",
+          "right": "m_csa:27:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.131,
+          "left": "m_csa:27:residue:3",
+          "right": "m_csa:27:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 9.367,
+          "left": "m_csa:27:residue:4",
+          "right": "m_csa:27:residue:5"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.188,
+          "left": "m_csa:27:residue:4",
+          "right": "m_csa:27:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.446,
+          "left": "m_csa:27:residue:4",
+          "right": "m_csa:27:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.859,
+          "left": "m_csa:27:residue:4",
+          "right": "m_csa:27:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 6.345,
+          "left": "m_csa:27:residue:5",
+          "right": "m_csa:27:residue:6"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 15.474,
+          "left": "m_csa:27:residue:5",
+          "right": "m_csa:27:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.241,
+          "left": "m_csa:27:residue:5",
+          "right": "m_csa:27:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 10.704,
+          "left": "m_csa:27:residue:6",
+          "right": "m_csa:27:residue:7"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 13.947,
+          "left": "m_csa:27:residue:6",
+          "right": "m_csa:27:residue:8"
+        },
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 12.321,
+          "left": "m_csa:27:residue:7",
+          "right": "m_csa:27:residue:8"
+        }
+      ],
+      "pdb_id": "1AH7",
+      "residue_count": 8,
+      "residues": [
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 38.213,
+            "y": 17.373,
+            "z": 6.111
+          },
+          "centroid": {
+            "x": 39.01,
+            "y": 17.981,
+            "z": 6.015
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 55,
+          "residue_node_id": "m_csa:27:residue:1",
+          "roles": [
+            "hydrogen bond acceptor",
+            "hydrogen bond donor",
+            "metal ligand",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 40.294,
+            "y": 19.963,
+            "z": 14.298
+          },
+          "centroid": {
+            "x": 39.98,
+            "y": 20.017,
+            "z": 12.478
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 118,
+          "residue_node_id": "m_csa:27:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 40.883,
+            "y": 25.744,
+            "z": 11.962
+          },
+          "centroid": {
+            "x": 40.492,
+            "y": 25.358,
+            "z": 11.233
+          },
+          "chain_name": "A",
+          "code": "Asp",
+          "resid": 122,
+          "residue_node_id": "m_csa:27:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 39.235,
+            "y": 30.495,
+            "z": 8.368
+          },
+          "centroid": {
+            "x": 39.546,
+            "y": 28.93,
+            "z": 8.064
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 128,
+          "residue_node_id": "m_csa:27:residue:4",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 44.271,
+            "y": 29.567,
+            "z": 0.525
+          },
+          "centroid": {
+            "x": 43.147,
+            "y": 28.738,
+            "z": 1.73
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 142,
+          "residue_node_id": "m_csa:27:residue:5",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 13,
+          "ca": {
+            "x": 48.26,
+            "y": 25.8,
+            "z": 3.712
+          },
+          "centroid": {
+            "x": 46.325,
+            "y": 24.893,
+            "z": 4.085
+          },
+          "chain_name": "A",
+          "code": "Glu",
+          "resid": 146,
+          "residue_node_id": "m_csa:27:residue:6",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 46.273,
+            "y": 19.736,
+            "z": 12.306
+          },
+          "centroid": {
+            "x": 44.851,
+            "y": 20.246,
+            "z": 11.824
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 14,
+          "residue_node_id": "m_csa:27:residue:7",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "atom_count": 10,
+          "ca": {
+            "x": 35.482,
+            "y": 24.816,
+            "z": 9.214
+          },
+          "centroid": {
+            "x": 35.926,
+            "y": 23.393,
+            "z": 8.56
+          },
+          "chain_name": "A",
+          "code": "His",
+          "resid": 69,
+          "residue_node_id": "m_csa:27:residue:8",
+          "roles": [
+            "metal ligand"
+          ]
+        }
+      ],
+      "resolved_residue_count": 8,
+      "status": "ok"
+    }
+  ],
+  "metadata": {
+    "artifact": "active_site_geometry_features",
+    "entries_with_pairwise_geometry": 13,
+    "entry_count": 20,
+    "input_graph": {
+      "edge_count": 1475,
+      "edge_predicates": {
+        "has_catalytic_residue": 330,
+        "has_ec": 50,
+        "has_mechanism_text": 63,
+        "has_reference_protein": 51,
+        "has_structure": 927,
+        "maps_to_reaction": 54
+      },
+      "node_count": 1513,
+      "node_types": {
+        "catalytic_residue": 330,
+        "ec_number": 48,
+        "m_csa_entry": 50,
+        "mechanism_text": 63,
+        "protein": 51,
+        "rhea_reaction": 53,
+        "structure": 918
+      },
+      "provenance_sources": {
+        "m_csa": 987,
+        "rhea": 107,
+        "uniprot": 1905
+      }
+    },
+    "max_entries": 20,
+    "source": "RCSB PDB mmCIF files via catalytic residue positions from M-CSA"
+  }
+}

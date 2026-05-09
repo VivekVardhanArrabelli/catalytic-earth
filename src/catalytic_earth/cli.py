@@ -10,6 +10,7 @@ from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .models import RegistryError
 from .progress import WorkEntry, append_work_entry, write_progress_report
 from .sources import build_source_ledger, load_sources
+from .structure import write_geometry_features
 from .v2 import (
     build_mechanism_benchmark,
     detect_inconsistencies,
@@ -161,6 +162,20 @@ def cmd_write_v2_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_geometry_features(args: argparse.Namespace) -> int:
+    features = write_geometry_features(
+        graph_path=Path(args.graph),
+        out_path=Path(args.out),
+        max_entries=args.max_entries,
+    )
+    print(
+        "Wrote geometry features to "
+        f"{args.out} ({features['metadata']['entry_count']} entries, "
+        f"{features['metadata']['entries_with_pairwise_geometry']} with pairwise geometry)"
+    )
+    return 0
+
+
 def _split_csv(value: str | None) -> list[str]:
     if not value:
         return []
@@ -289,6 +304,15 @@ def build_parser() -> argparse.ArgumentParser:
     v2_report.add_argument("--candidates", default="artifacts/v2_dark_hydrolase_candidates.json")
     v2_report.add_argument("--out", default="docs/v2_report.md")
     v2_report.set_defaults(func=cmd_write_v2_report)
+
+    geometry = subparsers.add_parser(
+        "build-geometry-features",
+        help="compute active-site residue geometry from PDB mmCIF files",
+    )
+    geometry.add_argument("--graph", default="artifacts/v1_graph.json")
+    geometry.add_argument("--max-entries", type=int, default=20)
+    geometry.add_argument("--out", default="artifacts/v3_geometry_features.json")
+    geometry.set_defaults(func=cmd_build_geometry_features)
 
     log_work = subparsers.add_parser("log-work", help="append a timed work entry")
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")

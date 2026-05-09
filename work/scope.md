@@ -63,6 +63,13 @@ V2 first research artifact is complete:
 - reproducible README command sequence
 - paper-style V2 report draft
 
+Post-V2 quality work has started:
+
+- PDB mmCIF structure parsing
+- active-site residue coordinate extraction
+- pairwise catalytic-residue distance features
+- geometry artifact for a 20-entry graph slice
+
 ## V1 Target
 
 V1 should make the knowledge graph real enough for benchmark design.
@@ -108,5 +115,7 @@ Current expectation:
 - next serious step: replace weak token/motif baselines with geometry-aware
   active-site retrieval and curated mechanism labels
 - higher-impact work now depends on quality, not more scaffolding
+- geometry-aware features are now available for 20 entries; the next bottleneck
+  is using them for retrieval and benchmark labels, not just exporting distances
 
 This estimate must keep being revised from the progress log, not from vibes.
