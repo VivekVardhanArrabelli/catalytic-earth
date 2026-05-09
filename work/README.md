@@ -21,6 +21,14 @@ At the start of each block, record the real wall-clock start timestamp. At
 50 minutes elapsed from that timestamp, stop starting new implementation work
 and begin wrap-up: tests, artifacts, handoff, progress log, commit, and push.
 
+If the agent completes the handoff-assigned task early, it must not idle. It
+must:
+
+1. Write a short plan for the remaining measured time in the same 55-minute
+   block.
+2. Execute the highest-value bounded item from that plan immediately.
+3. Continue until the 50-minute wrap-up boundary, then complete normal wrap-up.
+
 After each hourly work block:
 
 1. Log measured elapsed time and evidence. Use `--time-mode measured` with
@@ -29,7 +37,10 @@ After each hourly work block:
 3. Update `handoff.md` with exact next-agent instructions.
 4. Run relevant checks.
 5. Commit and push to `origin/main`.
-6. Recalibrate the scope or timeline if observed speed contradicts estimates.
+6. Verify remote sync before handoff:
+   `git fetch origin` then confirm `git rev-parse HEAD` equals
+   `git rev-parse origin/main` and confirm no merge is pending.
+7. Recalibrate the scope or timeline if observed speed contradicts estimates.
 
 ## Context Rule
 

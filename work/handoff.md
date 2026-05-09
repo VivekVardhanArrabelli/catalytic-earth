@@ -47,6 +47,9 @@ PYTHONPATH=src python -m unittest discover -s tests
 
 - Treat each automation run as one 55-minute focused block measured from the
   real wall-clock start timestamp.
+- If the assigned task finishes early, do not hand off immediately. Write a
+  short plan for the remaining wall-clock time in the same 55-minute block and
+  execute the highest-value bounded item toward project completion.
 - At 50 minutes elapsed, stop starting new implementation work and begin
   wrap-up: finish tests/artifacts/docs, update this handoff, log measured time,
   regenerate status, commit, and push.
@@ -88,6 +91,15 @@ incremental. Prefer meaningful progress such as:
 - candidate dossier generation
 - meaningful documentation that changes execution
 - important bug fix with tests
+
+Before handoff, git must be fully synced so the next agent starts from canonical
+state:
+
+1. `git fetch origin`
+2. `git pull --ff-only origin main` (or verify already up to date)
+3. `git push origin main`
+4. Verify `git rev-parse HEAD` equals `git rev-parse origin/main`
+5. Verify no merge is in progress (`test ! -f .git/MERGE_HEAD`)
 
 ## V2 Report Rule
 
@@ -134,6 +146,8 @@ What changed in this run:
 Start commands:
 
 ```bash
+git fetch origin
+git pull --ff-only origin main
 git status -sb
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
