@@ -149,6 +149,9 @@ Current expectation:
   used in retrieval scoring
 - substrate-pocket descriptors are now included in retrieval scoring; next
   bottleneck is failure analysis plus larger and cleaner curated labels
+- failure analysis now shows all current out-of-scope false non-abstentions at
+  threshold 0.7 are near-threshold cases; next bottleneck is robust threshold
+  policy and harder negatives, not additional feature plumbing
 - abstention calibration can still reach perfect out-of-scope abstention on the
   tiny provisional set (current selected threshold 0.75), but robustness is
   unproven

@@ -1,0 +1,76 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.7,
+    "category_counts": {
+      "near_threshold": 4
+    },
+    "evaluated_out_of_scope_entries": 16,
+    "false_non_abstentions": 4,
+    "max_false_non_abstention_score": 0.74,
+    "method": "out_of_scope_failure_pattern_analysis",
+    "out_of_scope_abstention_rate": 0.75,
+    "recommended_threshold_for_zero_current_false_non_abstentions": 0.75
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.7,
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6713,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.5
+      },
+      "entry_id": "m_csa:1",
+      "evidence_pattern": "near_threshold",
+      "label_rationale": "Glutamate racemase uses cysteine acid-base racemization chemistry, which is not represented by the current seed fingerprints.",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.7387
+    },
+    {
+      "abstain_threshold": 0.7,
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6871,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.5
+      },
+      "entry_id": "m_csa:17",
+      "evidence_pattern": "near_threshold",
+      "label_rationale": "Purine nucleoside phosphorylase performs phosphorolysis rather than the current hydrolase seed mechanisms.",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.74
+    },
+    {
+      "abstain_threshold": 0.7,
+      "component_scores": {
+        "cofactor_context_score": 0.25,
+        "compactness_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.6667,
+        "substrate_pocket_score": 0.5
+      },
+      "entry_id": "m_csa:18",
+      "evidence_pattern": "near_threshold",
+      "label_rationale": "Glycine amidinotransferase performs group transfer chemistry outside the current seed fingerprints.",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.71
+    },
+    {
+      "abstain_threshold": 0.7,
+      "component_scores": {
+        "cofactor_context_score": 0.25,
+        "compactness_score": 0.914,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.6667,
+        "substrate_pocket_score": 0.5
+      },
+      "entry_id": "m_csa:24",
+      "evidence_pattern": "near_threshold",
+      "label_rationale": "4-chlorobenzoyl-CoA dehalogenase has covalent dehalogenase chemistry not represented by the current seed fingerprints.",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.7031
+    }
+  ]
+}

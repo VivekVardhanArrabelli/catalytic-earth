@@ -30,6 +30,11 @@ PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
 PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
   --retrieval artifacts/v3_geometry_retrieval.json \
   --out artifacts/v3_abstention_calibration.json
+
+PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures \
+  --retrieval artifacts/v3_geometry_retrieval.json \
+  --abstain-threshold 0.7 \
+  --out artifacts/v3_geometry_failure_analysis.json
 ```
 
 ## Current Feature Set

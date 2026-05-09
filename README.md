@@ -90,6 +90,7 @@ python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geo
 python -m catalytic_earth.cli label-summary --out artifacts/v3_label_summary.json
 python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_geometry_label_eval.json
 python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_abstention_calibration.json
+python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.7 --out artifacts/v3_geometry_failure_analysis.json
 python -m catalytic_earth.cli perf-suite --iterations 5 --out artifacts/perf_report.json
 python -m catalytic_earth.cli log-work --stage v0 --task "example work entry" --minutes 1
 python -m catalytic_earth.cli progress-report --out work/status.md

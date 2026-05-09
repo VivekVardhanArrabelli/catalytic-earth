@@ -177,6 +177,70 @@ def sweep_abstention_thresholds(
     }
 
 
+def analyze_out_of_scope_failures(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    abstain_threshold: float = 0.7,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    false_non_abstentions: list[dict[str, Any]] = []
+    out_scope_total = 0
+    out_scope_abstained = 0
+
+    for result in retrieval.get("results", []):
+        entry_id = result.get("entry_id")
+        label = labels_by_entry.get(entry_id)
+        if not label or label.label_type != "out_of_scope":
+            continue
+        out_scope_total += 1
+        top = result.get("top_fingerprints", [])
+        top1 = top[0] if top else {}
+        top1_score = float(top1.get("score", 0.0) or 0.0)
+        abstained = top1_score < abstain_threshold
+        if abstained:
+            out_scope_abstained += 1
+            continue
+        category = classify_out_of_scope_failure(top1, abstain_threshold=abstain_threshold)
+        false_non_abstentions.append(
+            {
+                "entry_id": entry_id,
+                "top1_fingerprint_id": top1.get("fingerprint_id"),
+                "top1_score": round(top1_score, 4),
+                "abstain_threshold": abstain_threshold,
+                "evidence_pattern": category,
+                "component_scores": {
+                    "residue_match_fraction": float(top1.get("residue_match_fraction", 0.0) or 0.0),
+                    "role_match_fraction": float(top1.get("role_match_fraction", 0.0) or 0.0),
+                    "cofactor_context_score": float(top1.get("cofactor_context_score", 0.0) or 0.0),
+                    "substrate_pocket_score": float(top1.get("substrate_pocket_score", 0.0) or 0.0),
+                    "compactness_score": float(top1.get("compactness_score", 0.0) or 0.0),
+                },
+                "label_rationale": label.rationale,
+            }
+        )
+
+    category_counts = Counter(row["evidence_pattern"] for row in false_non_abstentions)
+    max_false_score = max((row["top1_score"] for row in false_non_abstentions), default=None)
+    recommended_threshold = (
+        round(min(1.0, float(max_false_score) + 0.01), 4)
+        if max_false_score is not None
+        else abstain_threshold
+    )
+    return {
+        "metadata": {
+            "method": "out_of_scope_failure_pattern_analysis",
+            "evaluated_out_of_scope_entries": out_scope_total,
+            "false_non_abstentions": len(false_non_abstentions),
+            "out_of_scope_abstention_rate": _ratio(out_scope_abstained, out_scope_total),
+            "abstain_threshold": abstain_threshold,
+            "max_false_non_abstention_score": max_false_score,
+            "recommended_threshold_for_zero_current_false_non_abstentions": recommended_threshold,
+            "category_counts": dict(sorted(category_counts.items())),
+        },
+        "rows": sorted(false_non_abstentions, key=lambda row: row["entry_id"]),
+    }
+
+
 def select_threshold(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
     if not rows:
         return None
@@ -189,6 +253,36 @@ def select_threshold(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
         return (top3, abstention, coverage, -threshold)
 
     return max(rows, key=score)
+
+
+def classify_out_of_scope_failure(
+    top1: dict[str, Any],
+    abstain_threshold: float = 0.7,
+) -> str:
+    score = float(top1.get("score", 0.0) or 0.0)
+    residue = float(top1.get("residue_match_fraction", 0.0) or 0.0)
+    role = float(top1.get("role_match_fraction", 0.0) or 0.0)
+    cofactor = float(top1.get("cofactor_context_score", 0.0) or 0.0)
+    pocket = float(top1.get("substrate_pocket_score", 0.0) or 0.0)
+    compactness = float(top1.get("compactness_score", 0.0) or 0.0)
+
+    margin = score - abstain_threshold
+    if margin <= 0.05:
+        return "near_threshold"
+
+    high_signals = sum(1 for value in [residue, role, cofactor, pocket] if value >= 0.6)
+    if high_signals >= 2:
+        return "mixed_signal_overlap"
+
+    if cofactor >= 0.65 and max(residue, role, pocket) < 0.45:
+        return "cofactor_dominant"
+    if pocket >= 0.65 and max(residue, role, cofactor) < 0.45:
+        return "pocket_dominant"
+    if compactness >= 0.85 and max(residue, role, cofactor, pocket) < 0.45:
+        return "compactness_dominant"
+    if residue >= 0.65 or role >= 0.65:
+        return "signature_overlap_dominant"
+    return "unclear_mixed"
 
 
 def _ratio(numerator: int, denominator: int) -> float | None:

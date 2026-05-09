@@ -121,6 +121,15 @@ What changed in this run:
   finishes early, continue with a written remaining-time plan and implement
   bounded high-value work until the 50-minute wrap-up boundary; before handoff,
   verify `origin/main` sync, clean git status, and no pending merge.
+- Added out-of-scope failure analysis tooling in `src/catalytic_earth/labels.py`
+  and `src/catalytic_earth/cli.py`:
+  - new CLI command: `analyze-geometry-failures`
+  - categorizes false non-abstentions by evidence pattern
+  - emits calibration hint:
+    `recommended_threshold_for_zero_current_false_non_abstentions`
+- Added tests in `tests/test_labels.py` for failure classification and
+  recommended-threshold metadata.
+- Generated `artifacts/v3_geometry_failure_analysis.json` at threshold 0.7.
 - Added substrate-pocket descriptors in `src/catalytic_earth/structure.py`:
   - finds nearby non-catalytic protein residues in an 8A shell around resolved
     catalytic residues
@@ -157,6 +166,7 @@ PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
 PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 20 --out artifacts/v3_geometry_features.json
 PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features.json --out artifacts/v3_geometry_retrieval.json
+PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval.json --abstain-threshold 0.7 --out artifacts/v3_geometry_failure_analysis.json
 ```
 
 Current state:
@@ -173,18 +183,23 @@ Current state:
   - top1 in-scope accuracy: 1.0
   - top3 in-scope accuracy: 1.0
   - out-of-scope abstention: 0.75
+- Failure analysis at threshold 0.7:
+  - false non-abstentions: 4
+  - evidence categories: all `near_threshold`
+  - max false-non-abstention score: 0.74
+  - recommended threshold for zero current false non-abstentions: 0.75
 - Current selected abstention threshold is 0.75 with out-of-scope abstention
   1.0 on this small provisional set.
 - Local performance report exists at `artifacts/perf_report.json`.
 
 Next concrete task:
 
-Run targeted failure analysis on out-of-scope handling and pocket/cofactor
-signals. Concrete path:
-1) inspect per-entry top predictions vs labels for all out-of-scope entries,
-2) categorize false non-abstentions by evidence pattern (residue overlap,
-cofactor-only hits, pocket-only hits), 3) implement one bounded calibration or
-scoring fix and re-evaluate threshold selection.
+Implement one bounded abstention-policy fix using the new failure artifact.
+Concrete path:
+1) codify threshold selection to prefer the smallest threshold that achieves
+zero current out-of-scope false non-abstentions when top3 in-scope is preserved,
+2) compare against the current selection rule on this 20-entry slice,
+3) regenerate calibration + failure artifacts and record the tradeoff.
 
 Known blockers:
 

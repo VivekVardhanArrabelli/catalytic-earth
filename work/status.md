@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 14
-- Measured elapsed time: 12.2 minutes (0.20 hours)
+- Entries: 15
+- Measured elapsed time: 15.0 minutes (0.25 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 2.6 measured minutes (0.04 hours)
-- post-v2: 9.6 measured minutes (0.16 hours)
+- post-v2: 12.4 measured minutes (0.21 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,19 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 78
-- Evidence references logged: 71
+- Artifact references logged: 86
+- Evidence references logged: 77
 
 ## Recent Entries
-
-### 2026-05-09T14:10:40.717863+00:00 - post-v2
-
-- Task: Add curated seed mechanism labels and geometry retrieval evaluation
-- Time mode: estimate
-- Estimated/planned minutes: 35
-- Artifacts: data/registries/curated_mechanism_labels.json, src/catalytic_earth/labels.py, artifacts/v3_label_summary.json, artifacts/v3_geometry_label_eval.json, tests/test_labels.py
-- Evidence: 20 curated labels, 4 in-scope seed-fingerprint labels, 16 out-of-scope labels, 28 tests passed, top3 in-scope accuracy 1.0, top1 in-scope accuracy 0.0
-- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:13:21.398170+00:00 - ops
 
@@ -102,6 +93,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: automation:catalytic-earth-work-loop, work/handoff.md, work/scope.md
 - Evidence: automation requires remaining-time plan after early task completion, automation requires final git sync verification, 35 tests passed, validate passed
 
+### 2026-05-09T16:02:34.920556+00:00 - post-v2
+
+- Task: Add out-of-scope failure analysis artifact and threshold hint
+- Time mode: measured
+- Measured minutes: 2.883
+- Started: 2026-05-09T15:59:35Z
+- Ended: 2026-05-09T16:02:28Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_labels.py, artifacts/v3_geometry_failure_analysis.json, README.md, docs/geometry_features.md, work/handoff.md, work/scope.md
+- Evidence: 37 tests passed, validate passed, 16 out-of-scope entries evaluated at threshold 0.7, 4 false non-abstentions, all failures near_threshold, recommended threshold 0.75
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -118,6 +119,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T15:22:39.241656+00:00: README now states that scaffold work moved faster than first estimated; impact depends on scaling labels, harder benchmarks, expert review, and validation.
 - 2026-05-09T15:30:17.008476+00:00: Substrate-pocket descriptors integrated quickly; next bottleneck is targeted failure analysis and label expansion rather than more feature plumbing.
 - 2026-05-09T15:42:05.002091+00:00: Future runs should consume the full 55-minute wall-clock block by rolling into the next highest-value bounded task when assigned work finishes early.
+- 2026-05-09T16:02:34.920556+00:00: Current out-of-scope errors are threshold-margin cases; next gain likely comes from abstention policy refinement and harder negatives.
 
 ## Scope Adjustments
 
@@ -134,3 +136,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T15:22:39.241656+00:00: Next automation should continue from substrate-pocket descriptors and harder negative controls, not from v0-v2 scaffold planning.
 - 2026-05-09T15:30:17.008476+00:00: Post-V2 retrieval now includes pocket-aware scoring; next bounded iteration should tune abstention and false-positive control using failure categories.
 - 2026-05-09T15:42:05.002091+00:00: Automation handoff now requires origin/main sync verification before the next agent starts.
+- 2026-05-09T16:02:34.920556+00:00: Failure analysis is now explicit and reproducible; next bounded step is threshold-policy tuning with guardrails.

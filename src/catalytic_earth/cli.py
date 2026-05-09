@@ -8,7 +8,13 @@ from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
-from .labels import evaluate_geometry_retrieval, label_summary, load_labels, sweep_abstention_thresholds
+from .labels import (
+    analyze_out_of_scope_failures,
+    evaluate_geometry_retrieval,
+    label_summary,
+    load_labels,
+    sweep_abstention_thresholds,
+)
 from .models import RegistryError
 from .performance import write_local_performance_suite
 from .progress import WorkEntry, append_work_entry, write_progress_report
@@ -234,6 +240,22 @@ def cmd_calibrate_abstention(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_analyze_geometry_failures(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    analysis = analyze_out_of_scope_failures(
+        retrieval,
+        load_labels(Path(args.labels)),
+        abstain_threshold=args.abstain_threshold,
+    )
+    write_json(Path(args.out), analysis)
+    print(
+        "Wrote geometry failure analysis to "
+        f"{args.out} ({analysis['metadata']['false_non_abstentions']} false non-abstentions)"
+    )
+    return 0
+
+
 def cmd_perf_suite(args: argparse.Namespace) -> int:
     report = write_local_performance_suite(
         graph_path=Path(args.graph),
@@ -427,6 +449,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     calibration.add_argument("--out", default="artifacts/v3_abstention_calibration.json")
     calibration.set_defaults(func=cmd_calibrate_abstention)
+
+    failures = subparsers.add_parser(
+        "analyze-geometry-failures",
+        help="categorize out-of-scope false non-abstentions by evidence pattern",
+    )
+    failures.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    failures.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    failures.add_argument("--abstain-threshold", type=float, default=0.75)
+    failures.add_argument("--out", default="artifacts/v3_geometry_failure_analysis.json")
+    failures.set_defaults(func=cmd_analyze_geometry_failures)
 
     perf = subparsers.add_parser(
         "perf-suite",
