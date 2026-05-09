@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 15
-- Measured elapsed time: 15.0 minutes (0.25 hours)
+- Entries: 16
+- Measured elapsed time: 17.1 minutes (0.28 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- ops: 2.6 measured minutes (0.04 hours)
+- ops: 4.6 measured minutes (0.08 hours)
 - post-v2: 12.4 measured minutes (0.21 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
@@ -21,19 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 86
-- Evidence references logged: 77
+- Artifact references logged: 91
+- Evidence references logged: 81
 
 ## Recent Entries
-
-### 2026-05-09T14:13:21.398170+00:00 - ops
-
-- Task: Update automation cadence to 55-minute hourly work blocks with mandatory push
-- Time mode: estimate
-- Estimated/planned minutes: 10
-- Artifacts: work/README.md, work/handoff.md, work/scope.md
-- Evidence: automation updated to hourly RRULE, mandatory push rule recorded
-- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:18:10.779278+00:00 - ops
 
@@ -103,6 +94,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, tests/test_labels.py, artifacts/v3_geometry_failure_analysis.json, README.md, docs/geometry_features.md, work/handoff.md, work/scope.md
 - Evidence: 37 tests passed, validate passed, 16 out-of-scope entries evaluated at threshold 0.7, 4 false non-abstentions, all failures near_threshold, recommended threshold 0.75
 
+### 2026-05-09T16:03:37.698226+00:00 - ops
+
+- Task: Pin automations to GPT-5.5 xhigh
+- Time mode: measured
+- Measured minutes: 2.017
+- Started: 2026-05-09T16:01:14Z
+- Ended: 2026-05-09T16:03:15Z
+- Artifacts: automation:catalytic-earth-work-loop, automation:overnight-batch-driver, work/README.md, work/handoff.md, work/scope.md
+- Evidence: all automation TOML files with model fields now show gpt-5.5, all automation TOML files with reasoning fields now show xhigh, 37 tests passed, validate passed
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -120,6 +121,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T15:30:17.008476+00:00: Substrate-pocket descriptors integrated quickly; next bottleneck is targeted failure analysis and label expansion rather than more feature plumbing.
 - 2026-05-09T15:42:05.002091+00:00: Future runs should consume the full 55-minute wall-clock block by rolling into the next highest-value bounded task when assigned work finishes early.
 - 2026-05-09T16:02:34.920556+00:00: Current out-of-scope errors are threshold-margin cases; next gain likely comes from abstention policy refinement and harder negatives.
+- 2026-05-09T16:03:37.698226+00:00: Automation model selection is now treated as an operating invariant, not an implicit app default.
 
 ## Scope Adjustments
 
@@ -137,3 +139,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T15:30:17.008476+00:00: Post-V2 retrieval now includes pocket-aware scoring; next bounded iteration should tune abstention and false-positive control using failure categories.
 - 2026-05-09T15:42:05.002091+00:00: Automation handoff now requires origin/main sync verification before the next agent starts.
 - 2026-05-09T16:02:34.920556+00:00: Failure analysis is now explicit and reproducible; next bounded step is threshold-policy tuning with guardrails.
+- 2026-05-09T16:03:37.698226+00:00: Catalytic Earth automation documentation now forbids downgrading below gpt-5.5 with xhigh reasoning.

@@ -14,6 +14,10 @@ work session should leave enough state here for a fresh context to continue.
 
 ## Operating Rule
 
+All Codex automations for this project must run on `gpt-5.5` with `xhigh`
+reasoning. Do not downgrade the model or reasoning level when editing the
+automation.
+
 Each automation run is a 55-minute focused work block. The remaining time in
 the hour is break/overhead.
 

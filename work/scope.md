@@ -27,6 +27,7 @@ Track:
 Automation cadence:
 
 - run once per hour
+- run on `gpt-5.5` with `xhigh` reasoning
 - record the real wall-clock start timestamp
 - sync from `origin/main` with `git fetch origin` and
   `git pull --ff-only origin main` before editing

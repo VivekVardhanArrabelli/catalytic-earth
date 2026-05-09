@@ -45,6 +45,7 @@ PYTHONPATH=src python -m unittest discover -s tests
 
 ## During Work
 
+- Confirm the automation is configured as `gpt-5.5` with `xhigh` reasoning.
 - Treat each automation run as one 55-minute focused block measured from the
   real wall-clock start timestamp.
 - If the assigned task finishes early, do not hand off immediately. Write a
