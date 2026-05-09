@@ -94,13 +94,14 @@ Post-V2 quality work has started:
 - pairwise catalytic-residue distance features
 - nearby ligand/cofactor context from mmCIF non-polymer atoms
 - geometry artifacts for 20-entry regression, 30-entry, 40-entry, 50-entry,
-  60-entry, 75-entry, 100-entry, and 125-entry slices
+  60-entry, 75-entry, 100-entry, 125-entry, and 150-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for all 125 entries in the current expanded
+- curated seed mechanism labels for all 150 entries in the current expanded
   geometry slice
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
-- hard-negative controls and label-expansion candidate ranking
+- hard-negative controls, in-scope failure analysis, label-expansion candidate
+  ranking, and cross-slice geometry summaries
 - local artifact performance suite
 
 ## V1 Target
@@ -149,32 +150,36 @@ Current expectation:
   active-site retrieval and curated mechanism labels
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
-  100-, and 125-entry slices; all 100 regression geometry entries are
-  evaluable, and the 125-entry slice has 124/125 evaluable entries
-- curated labels now cover 125 entries, with 38 in-scope seed-fingerprint
-  positives and 87 out-of-scope labels
-- the current 125-entry label queue is empty after adding provisional labels
-  for entries 101-125
-- strengthened geometry scoring reaches top1/top3/retained top3 accuracy of
-  1.0 on the 25 in-scope positives in the 100-entry slice at the current
-  zero-false threshold
+  100-, 125-, and 150-entry slices; all 100 regression geometry entries are
+  evaluable, and the 150-entry slice has 148/150 evaluable entries
+- curated labels now cover 150 entries, with 46 in-scope seed-fingerprint
+  positives and 104 out-of-scope labels
+- the current 150-entry label queue is empty after adding provisional labels
+  for entries 126-150
+- strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
+  the 38 in-scope positives in the 125-entry slice at the current zero-false
+  threshold
 - ligand/cofactor context is now parsed from nearby mmCIF non-polymer atoms and
   used in retrieval scoring
 - substrate-pocket descriptors are now included in retrieval scoring; next
   bottleneck is margin robustness plus larger and cleaner curated labels
 - adaptive abstention thresholds now use observed score boundaries; the
-  20-entry regression slice has a zero-false threshold that retains all 5
+  20-entry regression slice has a zero-false threshold that retains all 7
   in-scope positives
-- the 100-entry expansion slice currently has 0 hard negatives at the positive
-  score floor and 0 near misses within 0.01 below the floor
-- the 125-entry expansion slice currently has 53 hard negatives against the
-  correct-positive score floor, 1 near miss, and a -0.1993 broad top1 score gap;
-  the zero-false threshold retains only 29/38 in-scope positives
-- the 40-, 50-, 60-, 75-, and 100-entry structure-mapping issue reports
-  currently have 0 non-OK mappings after auth/label residue-number fallback;
-  the 125-entry report has 1 labeled out-of-scope insufficient-residue issue
-- next bottleneck is hard-negative separation in the 125-entry slice, especially
-  coarse heme/flavin redox and generic metal-like controls
+- all slices from 20 through 150 currently have 0 hard negatives, 0 near misses,
+  and 0 out-of-scope false non-abstentions at the current calibrated thresholds
+- the 150-entry expansion slice retains 43/46 in-scope positives, has 3
+  in-scope failures, and has a 0.0122 correct-positive separation gap; two
+  failures have absent target cofactor context and one target is absent from
+  top-k; the broad top1 score gap remains negative because evidence-limited
+  in-scope positives score below the out-of-scope ceiling
+- the 20-, 30-, 40-, 50-, 60-, 75-, and 100-entry structure-mapping issue
+  reports currently have 0 non-OK mappings after auth/label residue-number
+  fallback; the 125-entry report has 1 labeled out-of-scope
+  insufficient-residue issue and the 150-entry report has 2
+- next bottleneck is evidence-limited in-scope failure analysis in the 150-entry
+  slice, especially missing local cofactor context for flavin/cobalamin-like
+  mechanisms
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

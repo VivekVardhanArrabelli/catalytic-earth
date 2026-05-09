@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "geometry_entry_count": 20,
+    "issue_count": 0,
+    "label_type_counts": {},
+    "labeled_issue_count": 0,
+    "method": "structure_mapping_issue_analysis",
+    "missing_expected_code_counts": {},
+    "observed_code_at_missing_position_counts": {},
+    "status_counts": {}
+  },
+  "rows": []
+}

@@ -1,0 +1,26 @@
+{
+  "edge_count": 4469,
+  "edge_predicates": {
+    "has_catalytic_residue": 932,
+    "has_ec": 150,
+    "has_mechanism_text": 201,
+    "has_reference_protein": 170,
+    "has_structure": 2837,
+    "maps_to_reaction": 179
+  },
+  "node_count": 4331,
+  "node_types": {
+    "catalytic_residue": 932,
+    "ec_number": 147,
+    "m_csa_entry": 150,
+    "mechanism_text": 201,
+    "protein": 170,
+    "rhea_reaction": 178,
+    "structure": 2553
+  },
+  "provenance_sources": {
+    "m_csa": 2886,
+    "rhea": 357,
+    "uniprot": 5844
+  }
+}

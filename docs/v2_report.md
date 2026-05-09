@@ -54,7 +54,10 @@ for expert review, not validated functions.
 
 ## Next Work
 
-- Replace token overlap with geometry-aware active-site retrieval.
-- Add curated positive and negative mechanism labels.
-- Add substrate-pocket descriptors and environment metadata.
+- Post-V2 work has already added geometry-aware active-site retrieval, curated
+  positive/out-of-scope mechanism labels, ligand/cofactor context, and
+  substrate-pocket descriptors.
+- The current active benchmark is the 150-entry geometry slice. It has 0 hard
+  negatives and 0 out-of-scope false non-abstentions at calibrated abstention,
+  with 3 remaining in-scope failures driven by weak local cofactor evidence.
 - Expand dark-enzyme campaigns beyond generic hydrolases.

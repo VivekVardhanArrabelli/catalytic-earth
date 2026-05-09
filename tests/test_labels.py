@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from catalytic_earth.labels import (
     MechanismLabel,
     analyze_geometry_score_margins,
+    analyze_in_scope_failures,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
     build_hard_negative_controls,
@@ -28,7 +29,7 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 125)
+        self.assertEqual(len(labels), 150)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
@@ -112,6 +113,7 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(margins["metadata"]["min_correct_in_scope_top1_score"], 0.8)
         self.assertEqual(margins["metadata"]["correct_in_scope_evaluable_count"], 1)
         self.assertEqual(margins["metadata"]["max_out_of_scope_top1_score"], 0.2)
+        self.assertEqual(margins["metadata"]["correct_positive_score_separation_gap"], 0.6)
         self.assertEqual(margins["metadata"]["near_margin"], 0.02)
         self.assertEqual(margins["metadata"]["score_margin_boundary_count"], 2)
         self.assertTrue(
@@ -119,8 +121,19 @@ class LabelTests(unittest.TestCase):
                 "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope"
             ]
         )
+        self.assertTrue(
+            margins["metadata"][
+                "strict_threshold_exists_to_retain_all_correct_top1_in_scope_and_abstain_all_out_of_scope"
+            ]
+        )
         self.assertEqual(margins["metadata"]["out_of_scope_entries_at_or_above_min_in_scope"], 0)
+        self.assertEqual(
+            margins["metadata"]["out_of_scope_entries_at_or_above_min_correct_in_scope"],
+            0,
+        )
+        self.assertEqual(margins["conflicting_out_of_scope_against_correct_floor_rows"], [])
         self.assertEqual(margins["limiting_in_scope_rows"][0]["entry_id"], "m_csa:1")
+        self.assertEqual(margins["limiting_correct_in_scope_rows"][0]["entry_id"], "m_csa:1")
         self.assertEqual(margins["limiting_out_of_scope_rows"][0]["entry_id"], "m_csa:2")
 
         controls = build_hard_negative_controls(retrieval, labels)
@@ -355,6 +368,75 @@ class LabelTests(unittest.TestCase):
             analysis["metadata"]["recommended_threshold_for_zero_current_false_non_abstentions"],
             0.85,
         )
+
+    def test_analyze_in_scope_failures(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id="metal_dependent_hydrolase",
+                label_type="seed_fingerprint",
+                confidence="high",
+                rationale="example rationale long enough for correct hit",
+            ),
+            MechanismLabel(
+                entry_id="m_csa:2",
+                fingerprint_id="flavin_dehydrogenase_reductase",
+                label_type="seed_fingerprint",
+                confidence="medium",
+                rationale="example rationale long enough for missed hit",
+            ),
+        ]
+        retrieval = {
+            "results": [
+                {
+                    "entry_id": "m_csa:1",
+                    "top_fingerprints": [
+                        {"fingerprint_id": "metal_dependent_hydrolase", "score": 0.8}
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:2",
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "heme_peroxidase_oxidase",
+                            "score": 0.4,
+                            "residue_match_fraction": 1.0,
+                            "cofactor_evidence_level": "absent",
+                        },
+                        {
+                            "fingerprint_id": "flavin_dehydrogenase_reductase",
+                            "score": 0.3,
+                            "cofactor_context_score": 0.0,
+                            "cofactor_evidence_level": "absent",
+                        },
+                    ],
+                },
+            ]
+        }
+        analysis = analyze_in_scope_failures(retrieval, labels, abstain_threshold=0.5)
+        self.assertEqual(analysis["metadata"]["evaluated_in_scope_count"], 2)
+        self.assertEqual(analysis["metadata"]["failure_count"], 1)
+        self.assertEqual(analysis["metadata"]["top1_mismatch_count"], 1)
+        self.assertEqual(analysis["metadata"]["abstained_positive_count"], 1)
+        self.assertEqual(
+            analysis["metadata"]["target_fingerprint_counts"],
+            {"flavin_dehydrogenase_reductase": 1},
+        )
+        self.assertEqual(
+            analysis["metadata"]["failure_cause_counts"],
+            {"target_cofactor_context_absent": 1},
+        )
+        self.assertEqual(
+            analysis["metadata"]["top1_fingerprint_counts"],
+            {"heme_peroxidase_oxidase": 1},
+        )
+        self.assertEqual(analysis["metadata"]["target_cofactor_evidence_counts"], {"absent": 1})
+        self.assertEqual(analysis["rows"][0]["target_rank"], 2)
+        self.assertEqual(analysis["rows"][0]["score_gap_top1_minus_target"], 0.1)
+        self.assertEqual(analysis["rows"][0]["failure_cause"], "target_cofactor_context_absent")
+        self.assertEqual(analysis["rows"][0]["top1_cofactor_evidence_level"], "absent")
+        self.assertEqual(analysis["rows"][0]["target_cofactor_evidence_level"], "absent")
+        self.assertIn("top1_component_scores", analysis["rows"][0])
 
     def test_classify_out_of_scope_failure_near_threshold(self) -> None:
         category = classify_out_of_scope_failure(

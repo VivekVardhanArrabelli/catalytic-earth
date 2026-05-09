@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.4704,
+    "abstained_positive_count": 0,
+    "evaluated_in_scope_count": 38,
+    "failure_cause_counts": {},
+    "failure_count": 0,
+    "failure_mode_counts": {},
+    "method": "in_scope_geometry_failure_analysis",
+    "retained_in_scope_count": 38,
+    "target_absent_from_top_k_count": 0,
+    "target_cofactor_evidence_counts": {},
+    "target_fingerprint_counts": {},
+    "top1_correct_count": 38,
+    "top1_fingerprint_counts": {},
+    "top1_mismatch_count": 0
+  },
+  "rows": []
+}

@@ -28,9 +28,11 @@ class CliTests(unittest.TestCase):
             demo = Path(tmpdir) / "mechanism_demo.json"
             score_margins = Path(tmpdir) / "score_margins.json"
             hard_negatives = Path(tmpdir) / "hard_negatives.json"
+            in_scope_failures = Path(tmpdir) / "in_scope_failures.json"
             label_candidates = Path(tmpdir) / "label_candidates.json"
             mapping_issues = Path(tmpdir) / "mapping_issues.json"
             calibration = Path(tmpdir) / "calibration.json"
+            slice_summary = Path(tmpdir) / "slice_summary.json"
             subprocess.run(
                 [sys.executable, "-m", "catalytic_earth.cli", "build-ledger", "--out", str(ledger)],
                 cwd=ROOT,
@@ -82,6 +84,21 @@ class CliTests(unittest.TestCase):
                     sys.executable,
                     "-m",
                     "catalytic_earth.cli",
+                    "analyze-in-scope-failures",
+                    "--out",
+                    str(in_scope_failures),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
                     "build-label-expansion-candidates",
                     "--out",
                     str(label_candidates),
@@ -112,6 +129,23 @@ class CliTests(unittest.TestCase):
                     sys.executable,
                     "-m",
                     "catalytic_earth.cli",
+                    "summarize-geometry-slices",
+                    "--artifact-dir",
+                    "artifacts",
+                    "--out",
+                    str(slice_summary),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
                     "calibrate-abstention",
                     "--out",
                     str(calibration),
@@ -127,10 +161,15 @@ class CliTests(unittest.TestCase):
             self.assertIn("score_separation_gap", json.loads(score_margins.read_text())["metadata"])
             self.assertIn("hard_negative_count", json.loads(hard_negatives.read_text())["metadata"])
             self.assertIn(
+                "target_fingerprint_counts",
+                json.loads(in_scope_failures.read_text())["metadata"],
+            )
+            self.assertIn(
                 "ready_for_label_review_count",
                 json.loads(label_candidates.read_text())["metadata"],
             )
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "150")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

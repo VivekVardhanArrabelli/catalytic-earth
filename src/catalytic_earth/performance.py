@@ -8,6 +8,7 @@ from typing import Any, Callable
 from .geometry_retrieval import load_json, run_geometry_retrieval
 from .labels import (
     analyze_geometry_score_margins,
+    analyze_in_scope_failures,
     analyze_structure_mapping_issues,
     build_hard_negative_controls,
     evaluate_geometry_retrieval,
@@ -59,6 +60,15 @@ def run_local_performance_suite(
         _measure(
             "build_hard_negative_controls",
             lambda: build_hard_negative_controls(retrieval, labels),
+            iterations,
+        ),
+        _measure(
+            "analyze_in_scope_failures",
+            lambda: analyze_in_scope_failures(
+                retrieval,
+                labels,
+                abstain_threshold=float(selected_threshold),
+            ),
             iterations,
         ),
         _measure(
@@ -149,7 +159,11 @@ def _result_summary(result: Any) -> dict[str, Any]:
                 "selected_threshold",
                 "legacy_selected_threshold",
                 "hard_negative_count",
+                "failure_count",
+                "top1_mismatch_count",
+                "abstained_positive_count",
                 "score_separation_gap",
+                "correct_positive_score_separation_gap",
                 "issue_count",
                 "labeled_issue_count",
             }

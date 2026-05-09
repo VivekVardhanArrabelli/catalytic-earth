@@ -3,19 +3,16 @@
 ## Mission
 
 Continue Catalytic Earth: an open mechanism-level atlas of enzyme function.
-
-The central artifact is not a dashboard. It is a mechanism-first knowledge graph,
-benchmark suite, and enzyme discovery pipeline that maps protein evidence to
-catalytic hypotheses.
+The central artifact is a mechanism-first knowledge graph, benchmark suite, and
+enzyme discovery pipeline that maps protein evidence to catalytic hypotheses.
 
 Current post-V2 direction: improve scientific quality by moving from text/motif
 baselines to geometry-aware active-site retrieval. Geometry artifacts now cover
-the 20-entry regression slice plus 30-, 40-, 50-, 60-, 75-, and 100-entry
-expansion slices.
+20-, 30-, 40-, 50-, 60-, 75-, 100-, 125-, and 150-entry slices.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-125 entries, including all 125 entries in the expanded geometry slice.
+150 entries, including all entries in the 150-entry geometry slice.
 
 ## Repository
 
@@ -31,166 +28,65 @@ GitHub:
 https://github.com/VivekVardhanArrabelli/catalytic-earth
 ```
 
-## Before Work
+## Operating Rules
 
-1. Read `README.md`.
-2. Read `work/scope.md`.
-3. Read `work/status.md` if it exists.
-4. Run:
+1. Acquire `.git/catalytic-earth-automation.lock` before work.
+2. Sync with `git fetch origin` and `git pull --ff-only origin main`.
+3. Read `README.md`, `work/scope.md`, `work/status.md`, and this file.
+4. Run `PYTHONPATH=src python -m unittest discover -s tests`.
+5. Work productively until 50 elapsed wall-clock minutes, then wrap.
+6. During wrap, update stale docs, log measured time, regenerate status,
+   commit, push, verify `HEAD == origin/main`, and release the lock only when
+   the worktree is clean.
 
-```bash
-PYTHONPATH=src python -m unittest discover -s tests
-```
+## What Changed In This Run
 
-## During Work
+- Expanded the graph, benchmark, geometry, retrieval, calibration, evaluation,
+  failure-analysis, hard-negative, label-candidate, and mapping-issue artifacts
+  through the 150-entry slice.
+- Expanded curated labels from 125 to 150 entries.
+- Added in-scope failure analysis as a CLI/performance workflow and artifact
+  family (`artifacts/v3_in_scope_failure_analysis*.json`).
+- Added cross-slice geometry summaries via
+  `src/catalytic_earth/geometry_reports.py` and
+  `artifacts/v3_geometry_slice_summary.json`.
+- Tightened geometry counterevidence for hydrogenase/redox metal contexts,
+  nonheme iron aromatic oxygenase-like contexts, nonflavin Fe-S/metal contexts,
+  molybdenum-center contexts, and flavin monooxygenase substrate contexts.
+- Added regression tests that keep the 125-entry slice clean and track the
+  150-entry in-scope failure boundary.
+- Updated README, geometry docs, performance docs, V2 report notes, and scope
+  documentation for the 150-entry state.
 
-- Confirm the automation is configured as `gpt-5.5` with `xhigh` reasoning.
-- Treat each automation run as a measured hour with a strict 50-minute
-  productive work requirement followed by about 5 minutes of wrap-up.
-- From the real wall-clock start timestamp until 50 elapsed minutes, keep doing
-  productive work that advances completion of the whole project.
-- If the assigned task finishes early or becomes blocked, do not hand off
-  immediately. Write a short plan for the remaining wall-clock time before the
-  50-minute wrap-up boundary and execute the highest-value bounded unblocked
-  item toward project completion.
-- At 50 minutes elapsed, stop starting new implementation work and begin
-  wrap-up: finish tests/artifacts, review and update README/docs/work files so
-  they reflect the actual end state, update this handoff, log measured time,
-  regenerate status, commit, and push.
-- Documentation review is mandatory. If no docs changes are needed, record
-  `documentation checked; no changes needed` in handoff or progress evidence.
-- Prefer durable code and data schemas over prose.
-- Keep outputs reproducible.
-- Add tests for new normalization logic.
-- Do not make wet-lab or deployment claims.
-- End every automation block by updating `Next Agent Start Here` below with:
-  what changed, where to continue, known blockers, the next concrete task, and
-  first commands to run.
+## Current Metrics
 
-Log time and progress with:
-
-```bash
-PYTHONPATH=src python -m catalytic_earth.cli log-work --help
-PYTHONPATH=src python -m catalytic_earth.cli progress-report --out work/status.md
-```
-
-Use measured time going forward:
-
-```bash
-PYTHONPATH=src python -m catalytic_earth.cli log-work \
-  --stage post-v2 \
-  --task "..." \
-  --minutes 0 \
-  --time-mode measured \
-  --started-at "2026-05-09T00:00:00+00:00" \
-  --ended-at "2026-05-09T00:55:00+00:00"
-```
-
-## Push Rule
-
-Automation runs must commit and push every hour, even if progress is
-incremental. Prefer meaningful progress such as:
-
-- new source adapter
-- graph schema or graph builder improvement
-- benchmark machinery
-- discovery pipeline component
-- candidate dossier generation
-- meaningful documentation that changes execution
-- important bug fix with tests
-
-Before handoff, git must be fully synced so the next agent starts from canonical
-state:
-
-1. `git fetch origin`
-2. `git pull --ff-only origin main` (or verify already up to date)
-3. `git push origin main`
-4. Verify `git rev-parse HEAD` equals `git rev-parse origin/main`
-5. Verify no merge is in progress (`test ! -f .git/MERGE_HEAD`)
-
-## V2 Report Rule
-
-Only report "v2 done" when every criterion in `work/scope.md` under `V2 Target`
-is actually satisfied and reproducible from commands in the repository.
-
-## UI Context Note
-
-Computer Use was attempted against the Codex app for context inspection, but the
-tool reported that it is not allowed to operate on `com.openai.codex` for safety
-reasons. Treat repository state and this handoff file as the reliable recovery
-surface.
-
-## Next Agent Start Here
-
-Fresh-reset continuation after user interruption. Worktree was reset to
-`origin/main` at commit `82f287f` before these changes.
-
-What changed most recently:
-
-- Expanded curated labels from 63 to 125 entries, covering every entry in the
-  current 125-entry geometry expansion slice.
-- Added `cobalamin_radical_rearrangement` and
-  `flavin_dehydrogenase_reductase` seed fingerprints, with curated positives
-  and demo coverage.
-- Added scoring counterevidence for carbon-transfer/SAM-like ligands,
-  nucleotide-transfer ligands, aromatic/positive role-inferred pockets,
-  heme-only and cobalamin-only metal-like contexts, histidine-only metal sites,
-  molybdenum-center heme-like contexts, absent PLP anchors, absent B12 context,
-  and flavin context without reductant support.
-- Expanded graph, benchmark, geometry, retrieval, evaluation, calibration,
-  hard-negative, margin, label-candidate, and mapping-issue artifacts through
-  the 125-entry slice.
-- Updated the performance suite so label-evaluation timing uses the calibrated
-  abstention threshold instead of the stale default.
-- Updated README, geometry docs, V2 strengthening report, performance docs,
-  scope, tests, and reproducibility commands.
-- Added grouped hard-negative controls by top1 fingerprint and cofactor
-  evidence, with group counts, score ranges, reasons, and entry ids.
-- Anchored hard-negative score overlap to correctly ranked in-scope positives
-  instead of every in-scope top1 score, so misranked positives no longer lower
-  the negative-control floor.
-- Added a bounded heme counterevidence rule for
-  `heme_peroxidase_oxidase` predictions when heme evidence is absent.
-
-Current metrics:
-
-- Curated label registry: 125 labels; 38 seed-fingerprint positives and 87
+- Curated label registry: 150 labels; 46 seed-fingerprint positives and 104
   out-of-scope controls.
-- 20-entry regression slice: threshold `0.565`, 20/20 evaluable, 5/5 in-scope
-  positives retained, 0 out-of-scope false non-abstentions, 0 hard negatives,
-  and 0 near misses.
-- 40-entry expansion slice: threshold `0.565`, 40/40 evaluable, 14/14
-  in-scope positives retained, 0 out-of-scope false non-abstentions.
-- 50-entry graph slice: threshold `0.565`, 50/50 evaluable, 16/16 in-scope
-  positives retained, 0 out-of-scope false non-abstentions.
-- 60-entry expanded slice: threshold `0.5653`, 60/60 evaluable, 18/18
-  in-scope positives retained, 0 out-of-scope false non-abstentions.
-- 75-entry expanded slice: threshold `0.5653`, 75/75 evaluable, 20/20
-  in-scope positives retained, 0 out-of-scope false non-abstentions.
-- 100-entry expanded slice: threshold `0.5653`, 100/100 evaluable, 25/25
-  in-scope positives retained, 0 out-of-scope false non-abstentions.
-- 100-entry score margins: minimum in-scope top1 `0.5777`, maximum
-  out-of-scope top1 `0.5652`, gap `0.0125`.
-- 100-entry hard negatives: 0 score-overlap controls and 0 near misses within
-  0.01 below the correct-positive floor.
-- 125-entry expanded slice: threshold `0.5877`, 124/125 evaluable, 29/38
-  in-scope positives retained, 0 out-of-scope false non-abstentions, 53 hard
-  negatives, 1 near miss, correct-positive floor `0.4472`, broad minimum
-  in-scope top1 `0.3883`, maximum out-of-scope top1 `0.5876`, and broad score
-  gap `-0.1993`.
-- 125-entry hard-negative groups: 18 ligand-supported
-  `metal_dependent_hydrolase`, 16 `ser_his_acid_hydrolase` without cofactor
-  requirement, 12 role-inferred `metal_dependent_hydrolase`, 3
-  ligand-supported `flavin_monooxygenase`, 3 absent-context
-  `plp_dependent_enzyme`, and 1 ligand-supported `heme_peroxidase_oxidase`.
+- 20-entry slice: threshold `0.4681`, 20/20 evaluable, 7/7 in-scope positives
+  retained, 0 false non-abstentions, 0 hard negatives.
+- 100-entry slice: threshold `0.4704`, 100/100 evaluable, 25/25 in-scope
+  positives retained, 0 false non-abstentions, 0 hard negatives.
+- 125-entry slice: threshold `0.4704`, 124/125 evaluable, 38/38 in-scope
+  positives retained, 0 false non-abstentions, 0 hard negatives, 0 near misses,
+  score gap `0.0562`.
+- 150-entry slice: threshold `0.5144`, 148/150 evaluable, 43/46 in-scope
+  positives retained, 0 false non-abstentions, 0 hard negatives, 0 near misses,
+  3 in-scope failures, correct-positive gap `0.0122`, broad score gap `-0.169`.
+- 150-entry failure causes: 2 `target_cofactor_context_absent` rows and 1
+  `target_absent_from_top_k` row.
+- Remaining 150-entry in-scope failures:
+  `m_csa:132` (`flavin_monooxygenase`), `m_csa:139`
+  (`flavin_dehydrogenase_reductase`), and `m_csa:140`
+  (`cobalamin_radical_rearrangement`).
 - Label expansion queue: 0 unlabeled entries and 0 ready review candidates in
-  the current 125-entry slice.
-- Structure mapping issues: 0 non-OK entries in the 40-, 50-, 60-, 75-, and
-  100-entry slices after auth/label residue fallback; 1 labeled out-of-scope
-  insufficient-residue issue remains in the 125-entry slice (`m_csa:105`).
-- Verification: 63 unit tests passed on the fresh checkout after these changes.
+  the 150-entry slice.
+- Structure mapping: 0 issues through 100 entries, 1 labeled out-of-scope issue
+  at 125 entries, 2 labeled out-of-scope issues at 150 entries.
+- Verification so far: `PYTHONPATH=src python -m unittest discover -s tests`
+  passed with 74 tests; `PYTHONPATH=src python -m catalytic_earth.cli validate`
+  passed with 150 curated labels.
 
-Start commands:
+## Start Commands
 
 ```bash
 git fetch origin
@@ -198,32 +94,38 @@ git pull --ff-only origin main
 git status -sb
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
-PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_125.json --out artifacts/v3_hard_negative_controls_125.json
-PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_125.json --out artifacts/v3_geometry_score_margins_125.json
-PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_125.json --abstain-threshold 0.5877 --out artifacts/v3_geometry_failure_analysis_125.json
-PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_125.json --out artifacts/v3_structure_mapping_issues_125.json
+PYTHONPATH=src python -m catalytic_earth.cli summarize-geometry-slices --artifact-dir artifacts --out artifacts/v3_geometry_slice_summary.json
+PYTHONPATH=src python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_in_scope_failure_analysis_150.json
 ```
 
-Next concrete task:
+## Next Agent Start Here
 
-Analyze and reduce the 125-entry hard-negative set without breaking the clean
-20- through 100-entry regression slices. Start with
-`artifacts/v3_hard_negative_controls_125.json` and
-`artifacts/v3_geometry_score_margins_125.json`; use the new `groups` rows to
-target the largest remaining clusters. The likely next targets are
-ligand-supported metal-like transfer/isomerase controls, Ser-His-like controls
-without serine-nucleophile coherence, and role-inferred metal oxidoreductase
-controls such as `m_csa:107`.
+Focus on the 3 evidence-limited in-scope failures in the 150-entry slice while
+preserving the current clean out-of-scope boundary.
+
+First bounded task:
+
+1. Open `artifacts/v3_in_scope_failure_analysis_150.json`.
+2. Inspect `m_csa:132`, `m_csa:139`, and `m_csa:140` against
+   `artifacts/v3_geometry_features_150.json` and
+   `artifacts/v3_geometry_retrieval_150.json`.
+3. Decide whether each failure is a scoring problem, a missing local cofactor
+   feature, a seed-family gap, or a label that should stay in scope but remain
+   abstained.
+4. Implement the smallest scoring, feature, or label-audit change that reduces
+   a real failure without creating hard negatives in any slice.
+5. Regenerate retrieval/evaluation/failure/margin/hard-negative artifacts for
+   all slices and rerun tests.
 
 Known blockers:
 
-- Labels are still provisional and small; do not claim validated enzyme
+- Labels are provisional and not expert-reviewed; do not claim validated enzyme
   function.
-- Geometry retrieval is still heuristic, not learned.
+- Geometry retrieval is heuristic, not learned.
 - Ligand/cofactor evidence uses nearby mmCIF ligand atoms and inferred roles;
   it does not model occupancy, alternate conformers, biological assembly, or
   substrate state.
-- The current label queue is empty for the 125-entry slice; quality work should
-  focus on hard-negative separation before more label expansion.
+- The 150-entry failures may be legitimate abstentions if the local structure
+  evidence lacks the expected cofactor context.
 - Full-database scalability has not been measured; `perf-suite` is local
   artifact timing only.

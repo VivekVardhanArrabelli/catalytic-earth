@@ -10,17 +10,44 @@ from .fingerprints import load_fingerprints
 
 METAL_HYDROLASE_TRANSFER_LIGAND_CODES = {
     "BIO",  # pterin/biopterin synthase rearrangement context
+    "DAD",  # adenosine-like cyclase/product analog context
+    "DAA",  # ATP-dependent ligase/ring-forming context
     "FOC",  # fucose-like sugar isomerization context
     "GLV",  # glyoxylate-like ligand in malate synthase hard-negative context
+    "HDA",  # adenylosuccinate synthase intermediate analog context
     "ICT",  # isocitrate redox/decarboxylation context
     "OXL",  # oxalate-like carbonyl/decarboxylation context
     "PGH",  # phosphoglycolate/hydroxamate-like aldolase inhibitor context
+    "PHT",  # phosphoribosyl-transfer analog context
+    "PPC",  # phosphoribosyl-transfer analog context
     "PQQ",  # quinone redox cofactor context
+    "PYR",  # carboxykinase/decarboxylation context
     "U5P",  # nucleotide-sugar transfer context
 }
-MOLYBDENUM_CENTER_LIGAND_CODES = {"MO", "MTE", "MOS", "MOO", "MOM"}
+METAL_HYDROLASE_REDOX_LIGAND_CODES = {
+    "ACN",  # non-heme dioxygenase/aconitate-like context
+    "AZI",  # peroxidase/azide-bound redox context
+    "CRB",  # NAD-linked rearrangement/redox context
+    "CU",  # copper redox center
+    "CU1",  # copper redox center
+    "CUB",  # copper/molybdenum redox center
+    "CMO",  # hydrogenase carbon monoxide ligand
+    "CYN",  # hydrogenase cyanide ligand
+    "DIO",  # nitrile hydratase metal center adduct
+    "FCO",  # hydrogenase Fe-carbonyl redox center
+    "FE2",  # hydrogenase/dinuclear iron redox ligand
+    "FES",  # Rieske or ferredoxin-style iron-sulfur context
+    "F3S",  # iron-sulfur redox center
+    "MCN",  # molybdenum-copper cofactor context
+    "NO",  # metal nitrosyl/redox context
+    "PDT",  # hydrogenase dithiolate bridge
+    "SF4",  # 4Fe-4S redox cluster
+    "VO4",  # vanadate peroxidase context
+}
+MOLYBDENUM_CENTER_LIGAND_CODES = {"MGD", "MO", "MTE", "MOS", "MOO", "MOM"}
 NUCLEOTIDE_TRANSFER_LIGAND_CODES = {
     "ACP",
+    "AP2",
     "ADP",
     "AMP",
     "ANP",
@@ -30,6 +57,10 @@ NUCLEOTIDE_TRANSFER_LIGAND_CODES = {
     "GTP",
     "IDP",
     "IMP",
+}
+FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES = {
+    "BR",  # aromatic monooxygenase product/substrate context in M-CSA 131
+    "PHB",  # p-hydroxybenzoate monooxygenase substrate/product context
 }
 
 
@@ -123,13 +154,14 @@ def score_entry_against_fingerprint(
     compactness = compactness_score(distances)
     substrate_pocket = substrate_pocket_score(fingerprint, entry.get("pocket_context"))
     coherence = mechanistic_coherence_score(fingerprint, residues)
-    counterevidence = counterevidence_penalty(
+    counterevidence = counterevidence_assessment(
         fingerprint=fingerprint,
         residues=residues,
         cofactor_evidence=cofactor_evidence,
         ligand_context=entry.get("ligand_context"),
         substrate_pocket_score_value=substrate_pocket,
         pocket_context=entry.get("pocket_context"),
+        compactness_score_value=compactness,
     )
     raw_score = (
         0.35 * residue_match_fraction
@@ -140,7 +172,7 @@ def score_entry_against_fingerprint(
     )
     if fingerprint.get("id") == "ser_his_acid_hydrolase":
         raw_score *= 0.70 + 0.30 * coherence
-    raw_score *= counterevidence
+    raw_score *= counterevidence["penalty"]
     score = round(raw_score, 4)
     return {
         "fingerprint_id": fingerprint.get("id"),
@@ -153,7 +185,8 @@ def score_entry_against_fingerprint(
         "compactness_score": round(compactness, 4),
         "substrate_pocket_score": round(substrate_pocket, 4),
         "mechanistic_coherence_score": round(coherence, 4),
-        "counterevidence_penalty": round(counterevidence, 4),
+        "counterevidence_penalty": round(counterevidence["penalty"], 4),
+        "counterevidence_reasons": counterevidence["reasons"],
         "matched_signature_roles": matched_signature_roles,
         "distance_summary": distance_summary(distances),
     }
@@ -276,7 +309,15 @@ def cofactor_context_score(
 
         requirement_scores.append(0.0)
 
-    return sum(requirement_scores) / len(requirement_scores) if requirement_scores else 0.0
+    score = sum(requirement_scores) / len(requirement_scores) if requirement_scores else 0.0
+    if (
+        fingerprint_id == "flavin_dehydrogenase_reductase"
+        and score == 0.0
+        and "fe_s_cluster" in observed_families
+        and "single electron" in role_text
+    ):
+        return 0.35
+    return score
 
 
 def cofactor_evidence_level(
@@ -412,7 +453,28 @@ def counterevidence_penalty(
     ligand_context: dict[str, Any] | None,
     substrate_pocket_score_value: float,
     pocket_context: dict[str, Any] | None = None,
+    compactness_score_value: float | None = None,
 ) -> float:
+    return counterevidence_assessment(
+        fingerprint=fingerprint,
+        residues=residues,
+        cofactor_evidence=cofactor_evidence,
+        ligand_context=ligand_context,
+        substrate_pocket_score_value=substrate_pocket_score_value,
+        pocket_context=pocket_context,
+        compactness_score_value=compactness_score_value,
+    )["penalty"]
+
+
+def counterevidence_assessment(
+    fingerprint: dict[str, Any],
+    residues: list[dict[str, Any]],
+    cofactor_evidence: str,
+    ligand_context: dict[str, Any] | None,
+    substrate_pocket_score_value: float,
+    pocket_context: dict[str, Any] | None = None,
+    compactness_score_value: float | None = None,
+) -> dict[str, Any]:
     fingerprint_id = str(fingerprint.get("id", ""))
     residue_roles = {
         _normalize_phrase(role)
@@ -422,33 +484,57 @@ def counterevidence_penalty(
     }
     ligand_families = _ligand_cofactor_families(ligand_context)
     ligand_codes = _ligand_codes(ligand_context)
+    penalty = 1.0
+    reasons: list[str] = []
+
+    def apply(value: float, reason: str) -> None:
+        nonlocal penalty
+        if value < penalty:
+            penalty = value
+        reasons.append(reason)
 
     if fingerprint_id == "metal_dependent_hydrolase":
-        penalty = 1.0
         if cofactor_evidence == "role_inferred" and substrate_pocket_score_value < 0.15:
-            penalty = min(penalty, 0.90)
+            apply(0.72, "role_inferred_metal_low_pocket_support")
+        if cofactor_evidence == "role_inferred" and compactness_score_value is not None:
+            if compactness_score_value < 0.20:
+                apply(0.72, "role_inferred_metal_low_compactness")
+        if cofactor_evidence == "role_inferred" and not _has_water_activation_role(residues):
+            apply(0.72, "role_inferred_metal_missing_water_activation_role")
         if cofactor_evidence == "role_inferred" and _has_aromatic_positive_pocket(pocket_context):
-            penalty = min(penalty, 0.92)
+            apply(0.92, "role_inferred_metal_aromatic_positive_pocket")
         if cofactor_evidence == "role_inferred" and _has_histidine_only_metal_site(residues):
-            penalty = min(penalty, 0.82)
+            apply(0.72, "role_inferred_histidine_only_metal_site")
         if (
             cofactor_evidence == "role_inferred"
             and {"nucleophile", "nucleofuge"}.issubset(residue_roles)
         ):
-            penalty = min(penalty, 0.92)
+            apply(0.72, "role_inferred_metal_covalent_cleavage_roles")
         if "heme" in ligand_families and "metal_ion" not in ligand_families:
-            penalty = min(penalty, 0.75)
+            apply(0.75, "heme_only_context_for_metal_hydrolase")
         if "cobalamin" in ligand_families and "metal_ion" not in ligand_families:
-            penalty = min(penalty, 0.80)
+            apply(0.80, "cobalamin_only_context_for_metal_hydrolase")
         if ligand_codes & NUCLEOTIDE_TRANSFER_LIGAND_CODES:
-            penalty = min(penalty, 0.90)
+            apply(0.72, "nucleotide_transfer_ligand_context")
         if "sam" in ligand_families:
-            penalty = min(penalty, 0.90)
+            apply(0.72, "sam_ligand_context")
+        if "fe_s_cluster" in ligand_families and "metal_ion" not in ligand_families:
+            apply(0.70, "fe_s_cluster_context_for_metal_hydrolase")
         if ligand_codes & METAL_HYDROLASE_TRANSFER_LIGAND_CODES:
-            penalty = min(penalty, 0.95)
+            apply(0.72, "nonhydrolytic_metal_transfer_ligand_context")
+        if ligand_codes & METAL_HYDROLASE_REDOX_LIGAND_CODES:
+            apply(0.72, "metal_redox_ligand_context")
+        if (
+            cofactor_evidence == "ligand_supported"
+            and substrate_pocket_score_value < 0.18
+            and not _has_water_activation_role(residues)
+            and "FE" in ligand_codes
+            and _has_aromatic_oxygenase_pocket(pocket_context)
+        ):
+            apply(0.72, "nonheme_iron_aromatic_low_pocket_without_water_activation")
         if any("single electron" in role for role in residue_roles):
-            penalty = min(penalty, 0.90)
-        return penalty
+            apply(0.72, "single_electron_role_context")
+        return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
     if fingerprint_id == "ser_his_acid_hydrolase":
         metal_ligand_roles = sum(
@@ -457,41 +543,68 @@ def counterevidence_penalty(
             if _residue_has_any_role(residue, {"metal ligand"})
         )
         if "metal_ion" in ligand_families and metal_ligand_roles >= 3:
-            return 0.70
+            apply(0.70, "metal_supported_site_for_ser_his_seed")
         if "metal ligand" in residue_roles and metal_ligand_roles >= 4:
-            return 0.85
-        return 1.0
+            apply(0.85, "metal_ligand_rich_site_for_ser_his_seed")
+        if mechanistic_coherence_score(fingerprint, residues) < 0.5:
+            apply(0.70, "ser_his_seed_missing_triad_coherence")
+        return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
     if fingerprint_id == "heme_peroxidase_oxidase":
         if cofactor_evidence == "absent":
-            return 0.75
+            apply(0.75, "absent_heme_context")
         if "heme" in ligand_families and ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES:
-            return 0.78
-        return 1.0
+            apply(0.65, "molybdenum_center_heme_context")
+        return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
     if fingerprint_id == "plp_dependent_enzyme":
-        if cofactor_evidence == "absent" and not _has_plp_lysine_anchor(residues):
-            return 0.85
-        return 1.0
+        if cofactor_evidence == "absent":
+            if _has_plp_lysine_anchor(residues):
+                apply(0.75, "absent_plp_ligand_with_lysine_anchor")
+            else:
+                apply(0.60, "absent_plp_ligand_without_lysine_anchor")
+        return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
     if fingerprint_id == "cobalamin_radical_rearrangement":
         if cofactor_evidence == "absent":
-            return 0.25
-        return 1.0
+            apply(0.25, "absent_cobalamin_context")
+        return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
     if fingerprint_id == "flavin_monooxygenase":
         if cofactor_evidence == "absent":
-            return 0.60
-        if cofactor_evidence == "ligand_supported" and "nad" not in ligand_families:
-            return 0.75
-        return 1.0
+            apply(0.60, "absent_flavin_context")
+        if "flavin" not in ligand_families:
+            apply(0.60, "nad_only_or_nonflavin_context")
+        if (
+            cofactor_evidence == "ligand_supported"
+            and "nad" not in ligand_families
+            and not ligand_codes & FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES
+        ):
+            apply(0.75, "flavin_without_reductant_context")
+        return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
     if fingerprint_id == "flavin_dehydrogenase_reductase":
+        if (
+            cofactor_evidence == "ligand_supported"
+            and "flavin" in ligand_families
+            and ligand_codes & FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES
+            and not _has_electron_transfer_role(residues)
+        ):
+            apply(0.55, "flavin_monooxygenase_substrate_without_electron_transfer_context")
         if cofactor_evidence == "absent":
-            return 0.60
-        return 1.0
+            if ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES:
+                apply(0.55, "molybdenum_center_without_flavin_context")
+            elif "fe_s_cluster" in ligand_families and "metal_ion" in ligand_families:
+                apply(0.55, "nonheme_iron_fe_s_without_flavin_context")
+            if "fe_s_cluster" in ligand_families and any(
+                "single electron" in role for role in residue_roles
+            ):
+                apply(0.75, "fe_s_single_electron_partial_flavin_context")
+            elif not reasons:
+                apply(0.60, "absent_flavin_context")
+        return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
-    return 1.0
+    return {"penalty": penalty, "reasons": sorted(set(reasons))}
 
 
 def write_geometry_retrieval(
@@ -572,6 +685,16 @@ def _role_hint_match(required_role: str, residue_roles: set[str]) -> bool:
         return any("cobalamin" in role or "metal ligand" in role for role in residue_roles)
     if required_role == "radical stabilizer":
         return any("radical stabiliser" in role or "radical stabilizer" in role for role in residue_roles)
+    if required_role == "redox acid base":
+        return any(
+            "redox" in role
+            or "single electron" in role
+            or "proton acceptor" in role
+            or "proton donor" in role
+            for role in residue_roles
+        )
+    if required_role == "electron transfer path":
+        return any("electron" in role or "redox" in role for role in residue_roles)
     if required_role == "substrate orienter":
         return any(
             "hydrogen bond" in role
@@ -716,6 +839,39 @@ def _has_plp_lysine_anchor(residues: list[dict[str, Any]]) -> bool:
         )
         for residue in residues
     )
+
+
+def _has_water_activation_role(residues: list[dict[str, Any]]) -> bool:
+    water_activation_roles = {
+        "activator",
+        "increase acidity",
+        "increase basicity",
+        "proton acceptor",
+        "proton donor",
+        "proton relay",
+    }
+    return any(_residue_has_any_role(residue, water_activation_roles) for residue in residues)
+
+
+def _has_electron_transfer_role(residues: list[dict[str, Any]]) -> bool:
+    role_fragments = ("electron", "redox")
+    return any(
+        any(fragment in _normalize_phrase(role) for fragment in role_fragments)
+        for residue in residues
+        for role in residue.get("roles", [])
+        if isinstance(role, str)
+    )
+
+
+def _has_aromatic_oxygenase_pocket(pocket_context: dict[str, Any] | None) -> bool:
+    if not isinstance(pocket_context, dict):
+        return False
+    descriptors = pocket_context.get("descriptors", {})
+    if not isinstance(descriptors, dict):
+        return False
+    aromatic = float(descriptors.get("aromatic_fraction", 0.0) or 0.0)
+    positive = float(descriptors.get("positive_fraction", 0.0) or 0.0)
+    return aromatic >= 0.22 and positive <= 0.08
 
 
 def _clamp(value: float) -> float:

@@ -12,274 +12,67 @@ coordinates.
 ## Command
 
 ```bash
-PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph.json \
-  --max-entries 20 \
-  --out artifacts/v3_geometry_features.json
-
-PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features.json \
-  --top-k 5 \
-  --out artifacts/v3_geometry_retrieval.json
-
-PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval.json \
-  --labels data/registries/curated_mechanism_labels.json \
-  --abstain-threshold 0.565 \
-  --out artifacts/v3_geometry_label_eval.json
-
-PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval.json \
-  --out artifacts/v3_abstention_calibration.json
-
-PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures \
-  --retrieval artifacts/v3_geometry_retrieval.json \
-  --abstain-threshold 0.565 \
-  --out artifacts/v3_geometry_failure_analysis.json
-
-PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins \
-  --retrieval artifacts/v3_geometry_retrieval.json \
-  --out artifacts/v3_geometry_score_margins.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval.json \
-  --out artifacts/v3_hard_negative_controls.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph.json \
-  --max-entries 30 \
-  --out artifacts/v3_geometry_features_30.json
-
-PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_30.json \
-  --out artifacts/v3_geometry_retrieval_30.json
-
-PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_30.json \
-  --abstain-threshold 0.565 \
-  --out artifacts/v3_geometry_label_eval_30.json
-
-PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_30.json \
-  --out artifacts/v3_abstention_calibration_30.json
-
-PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins \
-  --retrieval artifacts/v3_geometry_retrieval_30.json \
-  --out artifacts/v3_geometry_score_margins_30.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval_30.json \
-  --out artifacts/v3_hard_negative_controls_30.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph.json \
-  --max-entries 40 \
-  --out artifacts/v3_geometry_features_40.json
-
-PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_40.json \
-  --out artifacts/v3_geometry_retrieval_40.json
-
-PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_40.json \
-  --abstain-threshold 0.565 \
-  --out artifacts/v3_geometry_label_eval_40.json
-
-PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_40.json \
-  --out artifacts/v3_abstention_calibration_40.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval_40.json \
-  --out artifacts/v3_hard_negative_controls_40.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
-  --geometry artifacts/v3_geometry_features_40.json \
-  --retrieval artifacts/v3_geometry_retrieval_40.json \
-  --out artifacts/v3_label_expansion_candidates.json
-
-PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues \
-  --geometry artifacts/v3_geometry_features_40.json \
-  --out artifacts/v3_structure_mapping_issues_40.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph.json \
-  --max-entries 50 \
-  --out artifacts/v3_geometry_features_50.json
-
-PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_50.json \
-  --out artifacts/v3_geometry_retrieval_50.json
-
-PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_50.json \
-  --abstain-threshold 0.565 \
-  --out artifacts/v3_geometry_label_eval_50.json
-
-PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_50.json \
-  --out artifacts/v3_abstention_calibration_50.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
-  --geometry artifacts/v3_geometry_features_50.json \
-  --retrieval artifacts/v3_geometry_retrieval_50.json \
-  --out artifacts/v3_label_expansion_candidates_50.json
-
-PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues \
-  --geometry artifacts/v3_geometry_features_50.json \
-  --out artifacts/v3_structure_mapping_issues_50.json
-
 PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph \
-  --max-mcsa 75 \
-  --page-size 75 \
-  --out artifacts/v1_graph_75.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph_75.json \
-  --max-entries 60 \
-  --out artifacts/v3_geometry_features_60.json
-
-PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_60.json \
-  --out artifacts/v3_geometry_retrieval_60.json
-
-PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_60.json \
-  --abstain-threshold 0.5653 \
-  --out artifacts/v3_geometry_label_eval_60.json
-
-PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_60.json \
-  --out artifacts/v3_abstention_calibration_60.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval_60.json \
-  --out artifacts/v3_hard_negative_controls_60.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
-  --geometry artifacts/v3_geometry_features_60.json \
-  --retrieval artifacts/v3_geometry_retrieval_60.json \
-  --out artifacts/v3_label_expansion_candidates_60.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph_75.json \
-  --max-entries 75 \
-  --out artifacts/v3_geometry_features_75.json
-
-PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_75.json \
-  --out artifacts/v3_geometry_retrieval_75.json
-
-PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_75.json \
-  --abstain-threshold 0.5653 \
-  --out artifacts/v3_geometry_label_eval_75.json
-
-PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_75.json \
-  --out artifacts/v3_abstention_calibration_75.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval_75.json \
-  --out artifacts/v3_hard_negative_controls_75.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
-  --geometry artifacts/v3_geometry_features_75.json \
-  --retrieval artifacts/v3_geometry_retrieval_75.json \
-  --out artifacts/v3_label_expansion_candidates_75.json
-
-PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues \
-  --geometry artifacts/v3_geometry_features_75.json \
-  --out artifacts/v3_structure_mapping_issues_75.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph \
-  --max-mcsa 100 \
+  --max-mcsa 150 \
   --page-size 100 \
-  --out artifacts/v1_graph_100.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph_100.json \
-  --max-entries 100 \
-  --out artifacts/v3_geometry_features_100.json
-
-PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_100.json \
-  --out artifacts/v3_geometry_retrieval_100.json
-
-PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_100.json \
-  --abstain-threshold 0.5653 \
-  --out artifacts/v3_geometry_label_eval_100.json
-
-PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_100.json \
-  --out artifacts/v3_abstention_calibration_100.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval_100.json \
-  --out artifacts/v3_hard_negative_controls_100.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
-  --geometry artifacts/v3_geometry_features_100.json \
-  --retrieval artifacts/v3_geometry_retrieval_100.json \
-  --out artifacts/v3_label_expansion_candidates_100.json
-
-PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues \
-  --geometry artifacts/v3_geometry_features_100.json \
-  --out artifacts/v3_structure_mapping_issues_100.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph \
-  --max-mcsa 125 \
-  --page-size 100 \
-  --out artifacts/v1_graph_125.json
+  --out artifacts/v1_graph_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli graph-summary \
-  --graph artifacts/v1_graph_125.json \
-  --out artifacts/v1_graph_summary_125.json
+  --graph artifacts/v1_graph_150.json \
+  --out artifacts/v1_graph_summary_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-v2-benchmark \
-  --graph artifacts/v1_graph_125.json \
-  --out artifacts/v2_benchmark_125.json
+  --graph artifacts/v1_graph_150.json \
+  --out artifacts/v2_benchmark_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph_125.json \
-  --max-entries 125 \
-  --out artifacts/v3_geometry_features_125.json
+  --graph artifacts/v1_graph_150.json \
+  --max-entries 150 \
+  --out artifacts/v3_geometry_features_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_125.json \
-  --out artifacts/v3_geometry_retrieval_125.json
-
-PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_125.json \
-  --abstain-threshold 0.5877 \
-  --out artifacts/v3_geometry_label_eval_125.json
+  --geometry artifacts/v3_geometry_features_150.json \
+  --out artifacts/v3_geometry_retrieval_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_125.json \
-  --out artifacts/v3_abstention_calibration_125.json
+  --retrieval artifacts/v3_geometry_retrieval_150.json \
+  --out artifacts/v3_abstention_calibration_150.json
+
+PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
+  --retrieval artifacts/v3_geometry_retrieval_150.json \
+  --abstain-threshold 0.5144 \
+  --out artifacts/v3_geometry_label_eval_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures \
-  --retrieval artifacts/v3_geometry_retrieval_125.json \
-  --abstain-threshold 0.5877 \
-  --out artifacts/v3_geometry_failure_analysis_125.json
+  --retrieval artifacts/v3_geometry_retrieval_150.json \
+  --abstain-threshold 0.5144 \
+  --out artifacts/v3_geometry_failure_analysis_150.json
+
+PYTHONPATH=src python -m catalytic_earth.cli analyze-in-scope-failures \
+  --retrieval artifacts/v3_geometry_retrieval_150.json \
+  --abstain-threshold 0.5144 \
+  --out artifacts/v3_in_scope_failure_analysis_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins \
-  --retrieval artifacts/v3_geometry_retrieval_125.json \
-  --out artifacts/v3_geometry_score_margins_125.json
+  --retrieval artifacts/v3_geometry_retrieval_150.json \
+  --out artifacts/v3_geometry_score_margins_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval_125.json \
-  --out artifacts/v3_hard_negative_controls_125.json
+  --retrieval artifacts/v3_geometry_retrieval_150.json \
+  --out artifacts/v3_hard_negative_controls_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
-  --geometry artifacts/v3_geometry_features_125.json \
-  --retrieval artifacts/v3_geometry_retrieval_125.json \
-  --out artifacts/v3_label_expansion_candidates_125.json
+  --geometry artifacts/v3_geometry_features_150.json \
+  --retrieval artifacts/v3_geometry_retrieval_150.json \
+  --out artifacts/v3_label_expansion_candidates_150.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues \
-  --geometry artifacts/v3_geometry_features_125.json \
-  --out artifacts/v3_structure_mapping_issues_125.json
+  --geometry artifacts/v3_geometry_features_150.json \
+  --out artifacts/v3_structure_mapping_issues_150.json
+
+PYTHONPATH=src python -m catalytic_earth.cli summarize-geometry-slices \
+  --artifact-dir artifacts \
+  --out artifacts/v3_geometry_slice_summary.json
 ```
 
 ## Current Feature Set
@@ -316,10 +109,11 @@ For each M-CSA entry with structure positions:
 - cobalamin radical rearrangement scoring with explicit B12/cofactor evidence
 - flavin dehydrogenase/reductase scoring separated from flavin monooxygenases
 - counterevidence penalties for heme-only metal-role overlap, ATP/ADP transfer
-  context, carbon-transfer ligand context, redox electron-transfer roles,
-  histidine-only metal-role sites, molybdenum-center heme-like contexts,
-  PLP-like lysine motifs without PLP, absent B12 context, and flavin contexts
-  missing reductant support
+  context, carbon-transfer ligand context, hydrogenase and metal-redox ligand
+  context, redox electron-transfer roles, histidine-only metal-role sites,
+  molybdenum-center heme-like contexts, PLP-like lysine motifs without PLP,
+  absent B12 context, nonflavin Fe-S/metal contexts, and flavin contexts
+  missing reductant or monooxygenase substrate support
 - catalytic-cluster compactness from pairwise distances
 
 This is still a weak baseline, but it is materially better than pure text
@@ -334,56 +128,44 @@ includes observed score-boundary candidates, not only a coarse fixed grid.
 
 Current slices:
 
-- 20-entry regression slice: threshold 0.565, 20/20 evaluable, 5/5 in-scope
-  positives retained, 0 out-of-scope false non-abstentions.
-- 40-entry expansion slice: threshold 0.565, 40/40 evaluable, 14/14 in-scope
-  positives retained, 0 out-of-scope false non-abstentions.
-- 50-entry graph slice: threshold 0.565, 50/50 evaluable, 16/16 in-scope
-  positives retained, 0 out-of-scope false non-abstentions.
-- 60-entry expanded slice: threshold 0.5653, 60/60 evaluable, 18/18 in-scope
-  positives retained, 0 out-of-scope false non-abstentions.
-- 75-entry expanded slice: threshold 0.5653, 75/75 evaluable, 20/20 in-scope
-  positives retained, 0 out-of-scope false non-abstentions.
-- 100-entry expanded slice: threshold 0.5653, 100/100 evaluable, 25/25
-  in-scope positives retained, 0 out-of-scope false non-abstentions.
-- 125-entry expanded slice: threshold 0.5877, 124/125 evaluable, 29/38
-  in-scope positives retained, 0 out-of-scope false non-abstentions, 53 hard
-  negatives against the correct-positive score floor, 1 near miss, and a
-  negative broad score gap of -0.1993.
+- 20-entry regression slice: threshold 0.4681, 20/20 evaluable, 7/7 in-scope
+  positives retained, 0 out-of-scope false non-abstentions, 0 hard negatives.
+- 100-entry expanded slice: threshold 0.4704, 100/100 evaluable, 25/25
+  in-scope positives retained, 0 out-of-scope false non-abstentions, 0 hard
+  negatives.
+- 125-entry expanded slice: threshold 0.4704, 124/125 evaluable, 38/38
+  in-scope positives retained, 0 out-of-scope false non-abstentions, 0 hard
+  negatives, 0 near misses, and score gap 0.0562.
+- 150-entry expanded slice: threshold 0.5144, 148/150 evaluable, 43/46
+  in-scope positives retained, 0 out-of-scope false non-abstentions, 0 hard
+  negatives, 0 near misses, and 3 in-scope failures. Two failures have absent
+  target cofactor context and one target is absent from the top-k ranking.
 
-The current 100-entry score-margin artifact shows a 0.0125 gap after explicit
-carbon-transfer ligand, aromatic-pocket, PLP-anchor, nucleotide-transfer, and
-cobalamin-context counterevidence plus a separate flavin dehydrogenase/reductase
-seed. The current 100-entry hard-negative artifact has 0 score-overlap controls
-and 0 near misses within 0.01 below the positive floor.
-
-The 125-entry slice is fully labeled but no longer clean: it exposes many
-coarse redox and metal-like hard negatives, especially against ligand-supported
-metal-like, Ser-His-like, and role-inferred metal-dependent seeds. The
-zero-false policy requires threshold 0.5877 and sacrifices positive retention,
-so the next work should split or tighten seed families rather than tune a
-single global threshold.
+`artifacts/v3_geometry_slice_summary.json` summarizes the 20-, 30-, 40-, 50-,
+60-, 75-, 100-, 125-, and 150-entry slices. It currently reports zero hard
+negatives and zero out-of-scope false non-abstentions across all slices. Only
+the 150-entry slice has in-scope failures.
 
 ## Label Expansion Queue
 
-The 125-entry geometry artifact is now fully labeled in the provisional registry:
+The 150-entry geometry artifact is now fully labeled in the provisional registry:
 
-- geometry entries in expansion artifact: 125
-- curated labels: 125
-- evaluable active-site structures: 124
+- geometry entries in expansion artifact: 150
+- curated labels: 150
+- evaluable active-site structures: 148
 - unlabeled entries remaining: 0
 - ready label-expansion candidates remaining: 0
 
 The structure-mapping issue artifacts currently list 0 non-OK entries for the
-40-, 50-, 60-, 75-, and 100-entry slices after matching catalytic residue
-positions against both mmCIF `auth_*` and `label_*` numbering. The 125-entry
-slice has 1 labeled out-of-scope mapping issue: `m_csa:105` has insufficient
-resolved residues in PDB `1VLB`.
+20-, 30-, 40-, 50-, 60-, 75-, and 100-entry slices after matching catalytic
+residue positions against both mmCIF `auth_*` and `label_*` numbering. The
+125-entry slice has 1 labeled out-of-scope mapping issue; the 150-entry slice
+has 2 labeled out-of-scope mapping issues.
 
 ## Curated Seed Labels
 
-`data/registries/curated_mechanism_labels.json` provides 125 provisional labels,
-covering all entries in the 125-entry geometry expansion slice. Labels are
+`data/registries/curated_mechanism_labels.json` provides 150 provisional labels,
+covering all entries in the 150-entry geometry expansion slice. Labels are
 intentionally conservative:
 
 - `seed_fingerprint` means the entry maps to one of the current seed mechanism

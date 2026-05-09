@@ -8,8 +8,10 @@ from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
+from .geometry_reports import write_geometry_slice_summary
 from .labels import (
     analyze_geometry_score_margins,
+    analyze_in_scope_failures,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
     build_hard_negative_controls,
@@ -264,6 +266,22 @@ def cmd_analyze_geometry_failures(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_analyze_in_scope_failures(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    analysis = analyze_in_scope_failures(
+        retrieval,
+        load_labels(Path(args.labels)),
+        abstain_threshold=args.abstain_threshold,
+    )
+    write_json(Path(args.out), analysis)
+    print(
+        "Wrote in-scope geometry failure analysis to "
+        f"{args.out} ({analysis['metadata']['failure_count']} failures)"
+    )
+    return 0
+
+
 def cmd_analyze_geometry_score_margins(args: argparse.Namespace) -> int:
     with Path(args.retrieval).open("r", encoding="utf-8") as handle:
         retrieval = json.load(handle)
@@ -341,6 +359,18 @@ def cmd_perf_suite(args: argparse.Namespace) -> int:
     print(
         "Wrote performance report to "
         f"{args.out} ({len(report['benchmarks'])} benchmarks, {args.iterations} iterations)"
+    )
+    return 0
+
+
+def cmd_summarize_geometry_slices(args: argparse.Namespace) -> int:
+    summary = write_geometry_slice_summary(
+        artifact_dir=Path(args.artifact_dir),
+        out_path=Path(args.out),
+    )
+    print(
+        "Wrote geometry slice summary to "
+        f"{args.out} ({summary['metadata']['slice_count']} slices)"
     )
     return 0
 
@@ -535,6 +565,18 @@ def build_parser() -> argparse.ArgumentParser:
     failures.add_argument("--out", default="artifacts/v3_geometry_failure_analysis.json")
     failures.set_defaults(func=cmd_analyze_geometry_failures)
 
+    in_scope_failures = subparsers.add_parser(
+        "analyze-in-scope-failures",
+        help="categorize in-scope positives that are misranked or abstained",
+    )
+    in_scope_failures.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    in_scope_failures.add_argument(
+        "--labels", default="data/registries/curated_mechanism_labels.json"
+    )
+    in_scope_failures.add_argument("--abstain-threshold", type=float, default=0.7)
+    in_scope_failures.add_argument("--out", default="artifacts/v3_in_scope_failure_analysis.json")
+    in_scope_failures.set_defaults(func=cmd_analyze_in_scope_failures)
+
     score_margins = subparsers.add_parser(
         "analyze-geometry-score-margins",
         help="analyze score overlap between in-scope positives and out-of-scope labels",
@@ -585,6 +627,14 @@ def build_parser() -> argparse.ArgumentParser:
     perf.add_argument("--iterations", type=int, default=5)
     perf.add_argument("--out", default="artifacts/perf_report.json")
     perf.set_defaults(func=cmd_perf_suite)
+
+    slice_summary = subparsers.add_parser(
+        "summarize-geometry-slices",
+        help="summarize geometry evaluation, margin, and control artifacts across slices",
+    )
+    slice_summary.add_argument("--artifact-dir", default="artifacts")
+    slice_summary.add_argument("--out", default="artifacts/v3_geometry_slice_summary.json")
+    slice_summary.set_defaults(func=cmd_summarize_geometry_slices)
 
     log_work = subparsers.add_parser("log-work", help="append a timed work entry")
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "abstain_threshold": 0.5653,
+    "abstain_threshold": 0.4704,
     "evaluable_count": 75,
     "evaluated_count": 75,
     "in_scope_abstention_rate": 0.0,
@@ -13,21 +13,22 @@
       "by_confidence": {
         "high": 3,
         "low": 4,
-        "medium": 118
+        "medium": 143
       },
       "by_fingerprint": {
-        "cobalamin_radical_rearrangement": 2,
-        "flavin_dehydrogenase_reductase": 16,
-        "heme_peroxidase_oxidase": 2,
+        "cobalamin_radical_rearrangement": 3,
+        "flavin_dehydrogenase_reductase": 19,
+        "flavin_monooxygenase": 2,
+        "heme_peroxidase_oxidase": 3,
         "metal_dependent_hydrolase": 15,
-        "plp_dependent_enzyme": 1,
+        "plp_dependent_enzyme": 2,
         "ser_his_acid_hydrolase": 2
       },
       "by_type": {
-        "out_of_scope": 87,
-        "seed_fingerprint": 38
+        "out_of_scope": 104,
+        "seed_fingerprint": 46
       },
-      "label_count": 125
+      "label_count": 150
     },
     "method": "geometry_retrieval_against_curated_seed_labels",
     "out_of_scope_abstention_rate": 1.0,
@@ -58,8 +59,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.559,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3924,
       "top3_correct": false
     },
     {
@@ -119,7 +120,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.408,
+      "top1_score": 0.468,
       "top3_correct": false
     },
     {
@@ -134,7 +135,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5216,
+      "top1_score": 0.4173,
       "top3_correct": false
     },
     {
@@ -179,7 +180,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5649,
+      "top1_score": 0.3954,
       "top3_correct": false
     },
     {
@@ -193,8 +194,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5421,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4133,
       "top3_correct": false
     },
     {
@@ -223,8 +224,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.4829,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3705,
       "top3_correct": false
     },
     {
@@ -239,7 +240,7 @@
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_correct": true,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.6727,
+      "top1_score": 0.7527,
       "top3_correct": true
     },
     {
@@ -254,7 +255,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5379,
+      "top1_score": 0.4077,
       "top3_correct": false
     },
     {
@@ -268,8 +269,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.4688,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4022,
       "top3_correct": false
     },
     {
@@ -283,8 +284,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3618,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3208,
       "top3_correct": false
     },
     {
@@ -298,8 +299,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5334,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4073,
       "top3_correct": false
     },
     {
@@ -313,8 +314,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.4518,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4115,
       "top3_correct": false
     },
     {
@@ -373,8 +374,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.4422,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3947,
       "top3_correct": false
     },
     {
@@ -389,7 +390,7 @@
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_correct": true,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.6706,
+      "top1_score": 0.7506,
       "top3_correct": true
     },
     {
@@ -403,8 +404,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3255,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.2637,
       "top3_correct": false
     },
     {
@@ -418,8 +419,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.4334,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3944,
       "top3_correct": false
     },
     {
@@ -434,7 +435,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5282,
+      "top1_score": 0.4226,
       "top3_correct": false
     },
     {
@@ -449,7 +450,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5267,
+      "top1_score": 0.4213,
       "top3_correct": false
     },
     {
@@ -464,7 +465,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5314,
+      "top1_score": 0.4159,
       "top3_correct": false
     },
     {
@@ -479,7 +480,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5386,
+      "top1_score": 0.4308,
       "top3_correct": false
     },
     {
@@ -493,8 +494,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.4694,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.355,
       "top3_correct": false
     },
     {
@@ -553,8 +554,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5201,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4573,
       "top3_correct": false
     },
     {
@@ -568,8 +569,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3017,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2677,
       "top3_correct": false
     },
     {
@@ -643,8 +644,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5155,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4032,
       "top3_correct": false
     },
     {
@@ -658,8 +659,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3087,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.2964,
       "top3_correct": false
     },
     {
@@ -673,8 +674,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5271,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4102,
       "top3_correct": false
     },
     {
@@ -734,7 +735,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.4342,
+      "top1_score": 0.3039,
       "top3_correct": false
     },
     {
@@ -749,7 +750,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5263,
+      "top1_score": 0.4211,
       "top3_correct": false
     },
     {
@@ -764,7 +765,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5634,
+      "top1_score": 0.427,
       "top3_correct": false
     },
     {
@@ -779,7 +780,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5505,
+      "top1_score": 0.4172,
       "top3_correct": false
     },
     {
@@ -793,8 +794,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.54,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4703,
       "top3_correct": false
     },
     {
@@ -823,8 +824,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.4485,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3988,
       "top3_correct": false
     },
     {
@@ -838,8 +839,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4671,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4045,
       "top3_correct": false
     },
     {
@@ -854,7 +855,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5652,
+      "top1_score": 0.407,
       "top3_correct": false
     },
     {
@@ -869,7 +870,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5129,
+      "top1_score": 0.4103,
       "top3_correct": false
     },
     {
@@ -884,7 +885,7 @@
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_correct": true,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.6653,
+      "top1_score": 0.7453,
       "top3_correct": true
     },
     {
@@ -913,8 +914,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.3001,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.3298,
       "top3_correct": false
     },
     {
@@ -959,7 +960,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5505,
+      "top1_score": 0.4308,
       "top3_correct": false
     },
     {
@@ -974,7 +975,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5445,
+      "top1_score": 0.4356,
       "top3_correct": false
     },
     {
@@ -1019,7 +1020,7 @@
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_correct": true,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.642,
+      "top1_score": 0.722,
       "top3_correct": true
     },
     {
@@ -1049,7 +1050,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5431,
+      "top1_score": 0.4116,
       "top3_correct": false
     },
     {
@@ -1063,8 +1064,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3934,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3605,
       "top3_correct": false
     },
     {
@@ -1078,8 +1079,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.5285,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4076,
       "top3_correct": false
     },
     {
@@ -1094,7 +1095,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5247,
+      "top1_score": 0.3778,
       "top3_correct": false
     },
     {
@@ -1124,7 +1125,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5257,
+      "top1_score": 0.4205,
       "top3_correct": false
     },
     {
@@ -1139,7 +1140,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5158,
+      "top1_score": 0.4127,
       "top3_correct": false
     },
     {
@@ -1154,7 +1155,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5019,
+      "top1_score": 0.3614,
       "top3_correct": false
     },
     {
@@ -1169,7 +1170,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5129,
+      "top1_score": 0.4103,
       "top3_correct": false
     }
   ]

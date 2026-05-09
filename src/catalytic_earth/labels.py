@@ -384,6 +384,110 @@ def analyze_out_of_scope_failures(
     }
 
 
+def analyze_in_scope_failures(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    abstain_threshold: float = 0.7,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    rows: list[dict[str, Any]] = []
+    evaluated_in_scope = 0
+    retained_in_scope = 0
+    top1_correct = 0
+
+    for result in retrieval.get("results", []):
+        entry_id = result.get("entry_id")
+        label = labels_by_entry.get(entry_id)
+        if not label or label.label_type != "seed_fingerprint" or not label.fingerprint_id:
+            continue
+        evaluated_in_scope += 1
+        top = result.get("top_fingerprints", [])
+        top1 = top[0] if top else {}
+        top1_score = float(top1.get("score", 0.0) or 0.0)
+        abstained = top1_score < abstain_threshold
+        retained_in_scope += int(not abstained)
+        is_top1 = top1.get("fingerprint_id") == label.fingerprint_id
+        top1_correct += int(is_top1)
+
+        target_rank = None
+        target_score = None
+        target_fingerprint = None
+        for index, fingerprint in enumerate(top, start=1):
+            if fingerprint.get("fingerprint_id") == label.fingerprint_id:
+                target_rank = index
+                target_score = float(fingerprint.get("score", 0.0) or 0.0)
+                target_fingerprint = fingerprint
+                break
+
+        if is_top1 and not abstained:
+            continue
+
+        failure_modes = []
+        if not is_top1:
+            failure_modes.append("top1_mismatch")
+        if target_rank is None:
+            failure_modes.append("target_absent_from_top_k")
+        if abstained:
+            failure_modes.append("abstained_positive")
+
+        row = {
+            "entry_id": entry_id,
+            "target_fingerprint_id": label.fingerprint_id,
+            "top1_fingerprint_id": top1.get("fingerprint_id"),
+            "top1_score": round(top1_score, 4),
+            "top1_cofactor_evidence_level": top1.get("cofactor_evidence_level"),
+            "target_rank": target_rank,
+            "target_score": round(target_score, 4) if target_score is not None else None,
+            "target_cofactor_evidence_level": (target_fingerprint or {}).get(
+                "cofactor_evidence_level"
+            ),
+            "score_gap_top1_minus_target": (
+                round(top1_score - target_score, 4) if target_score is not None else None
+            ),
+            "abstain_threshold": abstain_threshold,
+            "abstained": abstained,
+            "failure_modes": failure_modes,
+            "status": result.get("status"),
+            "resolved_residue_count": result.get("resolved_residue_count", 0),
+            "evaluable": _is_geometry_evaluable(result),
+            "top1_component_scores": _fingerprint_component_scores(top1),
+            "target_component_scores": _fingerprint_component_scores(target_fingerprint or {}),
+            "context": _retrieval_result_context(result),
+            "label_rationale": label.rationale,
+        }
+        row["failure_cause"] = _classify_in_scope_failure(row)
+        rows.append(row)
+
+    failure_mode_counts = Counter(mode for row in rows for mode in row["failure_modes"])
+    target_fingerprint_counts = Counter(row["target_fingerprint_id"] for row in rows)
+    top1_fingerprint_counts = Counter(row["top1_fingerprint_id"] for row in rows)
+    target_evidence_counts = Counter(
+        row.get("target_cofactor_evidence_level") or "not_ranked" for row in rows
+    )
+    failure_cause_counts = Counter(row["failure_cause"] for row in rows)
+    return {
+        "metadata": {
+            "method": "in_scope_geometry_failure_analysis",
+            "evaluated_in_scope_count": evaluated_in_scope,
+            "failure_count": len(rows),
+            "top1_mismatch_count": int(failure_mode_counts.get("top1_mismatch", 0)),
+            "abstained_positive_count": int(failure_mode_counts.get("abstained_positive", 0)),
+            "target_absent_from_top_k_count": int(
+                failure_mode_counts.get("target_absent_from_top_k", 0)
+            ),
+            "retained_in_scope_count": retained_in_scope,
+            "top1_correct_count": top1_correct,
+            "abstain_threshold": abstain_threshold,
+            "failure_mode_counts": dict(sorted(failure_mode_counts.items())),
+            "failure_cause_counts": dict(sorted(failure_cause_counts.items())),
+            "target_cofactor_evidence_counts": dict(sorted(target_evidence_counts.items())),
+            "target_fingerprint_counts": dict(sorted(target_fingerprint_counts.items())),
+            "top1_fingerprint_counts": dict(sorted(top1_fingerprint_counts.items())),
+        },
+        "rows": sorted(rows, key=lambda row: row["entry_id"]),
+    }
+
+
 def analyze_geometry_score_margins(
     retrieval: dict[str, Any],
     labels: list[MechanismLabel],
@@ -437,15 +541,32 @@ def analyze_geometry_score_margins(
         and max_out_scope_score is not None
         and max_out_scope_score < min_in_scope_score
     )
+    strict_correct_positive_threshold_exists = (
+        min_correct_in_scope_score is not None
+        and max_out_scope_score is not None
+        and max_out_scope_score < min_correct_in_scope_score
+    )
     conflicting_out_scope = [
         row
         for row in out_scope_score_rows
         if min_in_scope_score is not None and row["top1_score"] >= min_in_scope_score
     ]
+    conflicting_out_scope_against_correct_floor = [
+        row
+        for row in out_scope_score_rows
+        if min_correct_in_scope_score is not None
+        and row["top1_score"] >= min_correct_in_scope_score
+    ]
     limiting_in_scope = [
         row
         for row in in_scope_score_rows
         if min_in_scope_score is not None and _same_float(row["top1_score"], min_in_scope_score)
+    ]
+    limiting_correct_in_scope = [
+        row
+        for row in correct_in_scope_score_rows
+        if min_correct_in_scope_score is not None
+        and _same_float(row["top1_score"], min_correct_in_scope_score)
     ]
     limiting_out_scope = [
         row
@@ -481,12 +602,23 @@ def analyze_geometry_score_margins(
                 if min_in_scope_score is not None and max_out_scope_score is not None
                 else None
             ),
+            "correct_positive_score_separation_gap": (
+                round(min_correct_in_scope_score - max_out_scope_score, 4)
+                if min_correct_in_scope_score is not None and max_out_scope_score is not None
+                else None
+            ),
             "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": (
                 strict_threshold_exists
+            ),
+            "strict_threshold_exists_to_retain_all_correct_top1_in_scope_and_abstain_all_out_of_scope": (
+                strict_correct_positive_threshold_exists
             ),
             "near_margin": near_margin,
             "score_margin_boundary_count": len(boundary_rows),
             "out_of_scope_entries_at_or_above_min_in_scope": len(conflicting_out_scope),
+            "out_of_scope_entries_at_or_above_min_correct_in_scope": len(
+                conflicting_out_scope_against_correct_floor
+            ),
             "in_scope_entries_at_or_below_max_out_of_scope": len(in_scope_below_max_out_scope),
             "cofactor_evidence_counts": dict(sorted(cofactor_evidence_counts.items())),
         },
@@ -494,7 +626,15 @@ def analyze_geometry_score_margins(
             conflicting_out_scope,
             key=lambda row: (-row["top1_score"], row["entry_id"]),
         ),
+        "conflicting_out_of_scope_against_correct_floor_rows": sorted(
+            conflicting_out_scope_against_correct_floor,
+            key=lambda row: (-row["top1_score"], row["entry_id"]),
+        ),
         "limiting_in_scope_rows": sorted(limiting_in_scope, key=lambda row: row["entry_id"]),
+        "limiting_correct_in_scope_rows": sorted(
+            limiting_correct_in_scope,
+            key=lambda row: row["entry_id"],
+        ),
         "limiting_out_of_scope_rows": sorted(
             limiting_out_scope,
             key=lambda row: (-row["top1_score"], row["entry_id"]),
@@ -716,16 +856,22 @@ def _hard_negative_row(
         "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
         "context": _retrieval_result_context(result),
         "component_scores": {
-            "residue_match_fraction": float(top1.get("residue_match_fraction", 0.0) or 0.0),
-            "role_match_fraction": float(top1.get("role_match_fraction", 0.0) or 0.0),
-            "cofactor_context_score": float(top1.get("cofactor_context_score", 0.0) or 0.0),
-            "substrate_pocket_score": float(top1.get("substrate_pocket_score", 0.0) or 0.0),
-            "compactness_score": float(top1.get("compactness_score", 0.0) or 0.0),
-            "mechanistic_coherence_score": float(
-                top1.get("mechanistic_coherence_score", 0.0) or 0.0
-            ),
+            **_fingerprint_component_scores(top1),
         },
         "label_rationale": label.rationale,
+    }
+
+
+def _fingerprint_component_scores(fingerprint: dict[str, Any]) -> dict[str, float]:
+    return {
+        "residue_match_fraction": float(fingerprint.get("residue_match_fraction", 0.0) or 0.0),
+        "role_match_fraction": float(fingerprint.get("role_match_fraction", 0.0) or 0.0),
+        "cofactor_context_score": float(fingerprint.get("cofactor_context_score", 0.0) or 0.0),
+        "substrate_pocket_score": float(fingerprint.get("substrate_pocket_score", 0.0) or 0.0),
+        "compactness_score": float(fingerprint.get("compactness_score", 0.0) or 0.0),
+        "mechanistic_coherence_score": float(
+            fingerprint.get("mechanistic_coherence_score", 0.0) or 0.0
+        ),
     }
 
 
@@ -747,6 +893,18 @@ def _retrieval_result_context(result: dict[str, Any]) -> dict[str, Any]:
         "nearby_residue_count": pocket_context.get("nearby_residue_count", 0),
         "pocket_descriptors": descriptors,
     }
+
+
+def _classify_in_scope_failure(row: dict[str, Any]) -> str:
+    if "target_absent_from_top_k" in row.get("failure_modes", []):
+        return "target_absent_from_top_k"
+    if (row.get("target_cofactor_evidence_level") or "not_ranked") == "absent":
+        return "target_cofactor_context_absent"
+    if row.get("abstained") and row.get("top1_fingerprint_id") == row.get("target_fingerprint_id"):
+        return "low_confidence_correct_top1"
+    if row.get("abstained"):
+        return "low_confidence_top1_mismatch"
+    return "top1_mismatch"
 
 
 def classify_hard_negative_control(top1: dict[str, Any]) -> str:
