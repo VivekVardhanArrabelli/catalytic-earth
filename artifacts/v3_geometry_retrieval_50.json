@@ -524,7 +524,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 15,
             "max": 25.255,
@@ -567,7 +567,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5232,
+          "score": 0.3924,
           "substrate_pocket_score": 0.2636
         },
         {
@@ -1310,33 +1310,6 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9759,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 21,
-            "max": 16.754,
-            "median": 8.385,
-            "min": 0.0
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.3101,
-          "substrate_pocket_score": 0.2356
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.9759,
           "counterevidence_penalty": 0.6,
           "distance_summary": {
             "count": 21,
@@ -1371,6 +1344,33 @@
           "role_match_fraction": 0.3333,
           "score": 0.2713,
           "substrate_pocket_score": 0.4055
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9759,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 21,
+            "max": 16.754,
+            "median": 8.385,
+            "min": 0.0
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2326,
+          "substrate_pocket_score": 0.2356
         }
       ]
     },
@@ -1755,10 +1755,45 @@
           "substrate_pocket_score": 0.5
         },
         {
+          "cofactor_context_score": 0.6667,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.8206,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 3,
+            "max": 11.852,
+            "median": 10.871,
+            "min": 5.506
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [],
+              "required_residue": "variable",
+              "required_role": "substrate_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.4237,
+          "substrate_pocket_score": 0.4397
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8206,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 3,
             "max": 11.852,
@@ -1798,43 +1833,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5356,
+          "score": 0.4017,
           "substrate_pocket_score": 0.2667
-        },
-        {
-          "cofactor_context_score": 0.6667,
-          "cofactor_evidence_level": "ligand_supported",
-          "compactness_score": 0.8206,
-          "counterevidence_penalty": 0.75,
-          "distance_summary": {
-            "count": 3,
-            "max": 11.852,
-            "median": 10.871,
-            "min": 5.506
-          },
-          "fingerprint_id": "flavin_monooxygenase",
-          "fingerprint_name": "Flavin-dependent monooxygenase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "basic_or_polar_motif",
-              "required_role": "nadph_binding",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [],
-              "required_residue": "variable",
-              "required_role": "substrate_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.4237,
-          "substrate_pocket_score": 0.4397
         },
         {
           "cofactor_context_score": 0.25,
@@ -2670,10 +2670,62 @@
       "status": "ok",
       "top_fingerprints": [
         {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.761,
+          "counterevidence_penalty": 0.9,
+          "distance_summary": {
+            "count": 55,
+            "max": 22.632,
+            "median": 11.824,
+            "min": 3.776
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "CYS",
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.5201,
+          "substrate_pocket_score": 0.1576
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.761,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 55,
             "max": 22.632,
@@ -2730,60 +2782,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5298,
+          "score": 0.3973,
           "substrate_pocket_score": 0.2592
-        },
-        {
-          "cofactor_context_score": 1.0,
-          "cofactor_evidence_level": "ligand_supported",
-          "compactness_score": 0.761,
-          "counterevidence_penalty": 0.9,
-          "distance_summary": {
-            "count": 55,
-            "max": 22.632,
-            "median": 11.824,
-            "min": 3.776
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP",
-                "CYS",
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Asp/Glu/Cys",
-              "required_role": "metal_ligand",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "ASP",
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Asp/Glu",
-              "required_role": "water_activator",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.5201,
-          "substrate_pocket_score": 0.1576
         },
         {
           "cofactor_context_score": 0.0,
@@ -3454,7 +3454,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9128,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 10,
             "max": 15.536,
@@ -3495,7 +3495,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5421,
+          "score": 0.4066,
           "substrate_pocket_score": 0.2604
         },
         {
@@ -4233,57 +4233,6 @@
           "substrate_pocket_score": 0.5
         },
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.7538,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 21,
-            "max": 20.233,
-            "median": 11.94,
-            "min": 4.854
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "CYS",
-                "CYS",
-                "HIS",
-                "TYR"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "CYS",
-                "CYS",
-                "HIS",
-                "TYR"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5321,
-          "substrate_pocket_score": 0.2784
-        },
-        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7538,
@@ -4362,6 +4311,57 @@
           "role_match_fraction": 0.3333,
           "score": 0.4148,
           "substrate_pocket_score": 0.3959
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7538,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 21,
+            "max": 20.233,
+            "median": 11.94,
+            "min": 4.854
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "CYS",
+                "CYS",
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "CYS",
+                "CYS",
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.399,
+          "substrate_pocket_score": 0.2784
         },
         {
           "cofactor_context_score": 0.15,
@@ -4856,7 +4856,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.626,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 6,
             "max": 19.721,
@@ -4895,7 +4895,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5126,
+          "score": 0.3844,
           "substrate_pocket_score": 0.2167
         },
         {
@@ -5575,36 +5575,6 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6843,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 16.804,
-            "median": 13.051,
-            "min": 5.354
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ARG",
-                "ASP"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.2876,
-          "substrate_pocket_score": 0.2415
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.6843,
           "counterevidence_penalty": 0.6,
           "distance_summary": {
             "count": 10,
@@ -5637,6 +5607,46 @@
           "role_match_fraction": 0.3333,
           "score": 0.2655,
           "substrate_pocket_score": 0.4957
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6843,
+          "counterevidence_penalty": 0.6,
+          "distance_summary": {
+            "count": 10,
+            "max": 16.804,
+            "median": 13.051,
+            "min": 5.354
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "LYS",
+                "LYS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "GLU"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.2178,
+          "substrate_pocket_score": 0.5
         }
       ]
     },
@@ -6552,7 +6562,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6136,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 91,
             "max": 37.062,
@@ -6595,7 +6605,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5126,
+          "score": 0.3844,
           "substrate_pocket_score": 0.2234
         },
         {
@@ -7147,7 +7157,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 10,
             "max": 13.789,
@@ -7188,7 +7198,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5452,
+          "score": 0.4089,
           "substrate_pocket_score": 0.29
         },
         {
@@ -8067,7 +8077,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7478,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 55,
             "max": 20.478,
@@ -8122,7 +8132,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.0,
-          "score": 0.4491,
+          "score": 0.3368,
           "substrate_pocket_score": 0.2616
         },
         {
@@ -8860,7 +8870,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7631,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 15,
             "max": 17.526,
@@ -8903,7 +8913,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5306,
+          "score": 0.3979,
           "substrate_pocket_score": 0.2635
         },
         {
@@ -9661,7 +9671,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9131,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 15,
             "max": 17.277,
@@ -9702,7 +9712,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.544,
+          "score": 0.408,
           "substrate_pocket_score": 0.273
         },
         {
@@ -10497,56 +10507,6 @@
           "substrate_pocket_score": 0.8445
         },
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8861,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 21,
-            "max": 15.457,
-            "median": 9.822,
-            "min": 3.822
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ARG",
-                "ARG",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.0,
-          "score": 0.4594,
-          "substrate_pocket_score": 0.2565
-        },
-        {
           "cofactor_context_score": 0.15,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8861,
@@ -10592,6 +10552,56 @@
           "role_match_fraction": 0.0,
           "score": 0.399,
           "substrate_pocket_score": 0.1435
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8861,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 21,
+            "max": 15.457,
+            "median": 9.822,
+            "min": 3.822
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.3445,
+          "substrate_pocket_score": 0.2565
         },
         {
           "cofactor_context_score": 0.0,
@@ -11265,7 +11275,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.756,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 28,
             "max": 35.493,
@@ -11315,7 +11325,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.0,
-          "score": 0.447,
+          "score": 0.3353,
           "substrate_pocket_score": 0.2437
         },
         {
@@ -11976,7 +11986,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8893,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 10,
             "max": 13.229,
@@ -12021,7 +12031,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5332,
+          "score": 0.3999,
           "substrate_pocket_score": 0.2138
         },
         {
@@ -12753,7 +12763,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 55,
             "max": 25.734,
@@ -12800,7 +12810,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5172,
+          "score": 0.3879,
           "substrate_pocket_score": 0.2149
         },
         {
@@ -13408,56 +13418,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 1.0,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 11.68,
-            "median": 7.733,
-            "min": 5.191
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "CYS",
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ASP",
-                "ASP",
-                "ASP",
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "CYS",
-                "HIS"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5511,
-          "substrate_pocket_score": 0.2741
-        },
-        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
@@ -13501,6 +13461,56 @@
           "role_match_fraction": 0.6667,
           "score": 0.5421,
           "substrate_pocket_score": 0.9298
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 10,
+            "max": 11.68,
+            "median": 7.733,
+            "min": 5.191
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "CYS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "CYS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4133,
+          "substrate_pocket_score": 0.2741
         },
         {
           "cofactor_context_score": 0.2,
@@ -14194,36 +14204,6 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.5734,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 6,
-            "max": 16.528,
-            "median": 14.825,
-            "min": 5.844
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ARG",
-                "ASP"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.2805,
-          "substrate_pocket_score": 0.2532
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.5734,
           "counterevidence_penalty": 0.6,
           "distance_summary": {
             "count": 6,
@@ -14285,6 +14265,45 @@
           "role_match_fraction": 0.3333,
           "score": 0.2354,
           "substrate_pocket_score": 0.229
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.5734,
+          "counterevidence_penalty": 0.6,
+          "distance_summary": {
+            "count": 6,
+            "max": 16.528,
+            "median": 14.825,
+            "min": 5.844
+          },
+          "fingerprint_id": "flavin_dehydrogenase_reductase",
+          "fingerprint_name": "Flavin-dependent dehydrogenase or reductase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "flavin_binder",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "GLU",
+                "GLU"
+              ],
+              "required_residue": "His/Glu/Cys/Tyr/Arg",
+              "required_role": "redox_acid_base",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.2125,
+          "substrate_pocket_score": 0.5
         }
       ]
     },
@@ -14933,60 +14952,6 @@
           "substrate_pocket_score": 0.5
         },
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8458,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 21,
-            "max": 19.123,
-            "median": 10.467,
-            "min": 3.804
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ARG",
-                "ARG",
-                "ARG",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5327,
-          "substrate_pocket_score": 0.2336
-        },
-        {
           "cofactor_context_score": 0.6667,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8458,
@@ -15064,6 +15029,60 @@
           "role_match_fraction": 0.3333,
           "score": 0.4001,
           "substrate_pocket_score": 0.9708
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8458,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 21,
+            "max": 19.123,
+            "median": 10.467,
+            "min": 3.804
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ARG",
+                "ARG",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.3995,
+          "substrate_pocket_score": 0.2336
         },
         {
           "cofactor_context_score": 0.2,
@@ -15832,10 +15851,47 @@
           "substrate_pocket_score": 0.1506
         },
         {
+          "cofactor_context_score": 0.3333,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.6291,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 28,
+            "max": 29.766,
+            "median": 13.934,
+            "min": 3.798
+          },
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "ASN",
+                "LYS"
+              ],
+              "required_residue": "basic_or_polar_motif",
+              "required_role": "nadph_binding",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [],
+              "required_residue": "variable",
+              "required_role": "substrate_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.5035,
+          "substrate_pocket_score": 0.5325
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6291,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 28,
             "max": 29.766,
@@ -15876,45 +15932,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5167,
+          "score": 0.3875,
           "substrate_pocket_score": 0.2423
-        },
-        {
-          "cofactor_context_score": 0.3333,
-          "cofactor_evidence_level": "ligand_supported",
-          "compactness_score": 0.6291,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 28,
-            "max": 29.766,
-            "median": 13.934,
-            "min": 3.798
-          },
-          "fingerprint_id": "flavin_monooxygenase",
-          "fingerprint_name": "Flavin-dependent monooxygenase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ARG",
-                "ASN",
-                "LYS"
-              ],
-              "required_residue": "basic_or_polar_motif",
-              "required_role": "nadph_binding",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [],
-              "required_residue": "variable",
-              "required_role": "substrate_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.5035,
-          "substrate_pocket_score": 0.5325
         },
         {
           "cofactor_context_score": 0.15,
@@ -16441,53 +16460,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.7412,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 21.961,
-            "median": 12.142,
-            "min": 7.157
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS",
-                "TYR"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "TYR"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5362,
-          "substrate_pocket_score": 0.313
-        },
-        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7412,
@@ -16529,6 +16501,53 @@
           "role_match_fraction": 0.3333,
           "score": 0.4688,
           "substrate_pocket_score": 0.9025
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7412,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 10,
+            "max": 21.961,
+            "median": 12.142,
+            "min": 7.157
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "TYR"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4022,
+          "substrate_pocket_score": 0.313
         },
         {
           "cofactor_context_score": 0.2,
@@ -17150,10 +17169,45 @@
       "status": "ok",
       "top_fingerprints": [
         {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.4832,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 28.394,
+            "median": 16.268,
+            "min": 8.534
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His",
+              "required_role": "general_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.3618,
+          "substrate_pocket_score": 0.799
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.4832,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 10,
             "max": 28.394,
@@ -17196,43 +17250,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.0,
-          "score": 0.4278,
+          "score": 0.3208,
           "substrate_pocket_score": 0.2607
-        },
-        {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.4832,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 28.394,
-            "median": 16.268,
-            "min": 8.534
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "His",
-              "required_role": "general_base",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.3618,
-          "substrate_pocket_score": 0.799
         },
         {
           "cofactor_context_score": 0.2,
@@ -17885,54 +17904,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.914,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 15,
-            "max": 15.573,
-            "median": 9.376,
-            "min": 6.074
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ASP",
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "PHE",
-                "TRP"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.543,
-          "substrate_pocket_score": 0.2662
-        },
-        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.914,
@@ -17974,6 +17945,54 @@
           "role_match_fraction": 0.6667,
           "score": 0.5334,
           "substrate_pocket_score": 0.8924
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.914,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 15,
+            "max": 15.573,
+            "median": 9.376,
+            "min": 6.074
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "PHE",
+                "TRP"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4073,
+          "substrate_pocket_score": 0.2662
         },
         {
           "cofactor_context_score": 0.2,
@@ -18553,10 +18572,45 @@
       "status": "ok",
       "top_fingerprints": [
         {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.9864,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 10,
+            "max": 14.527,
+            "median": 8.218,
+            "min": 3.043
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.6667,
+          "score": 0.4518,
+          "substrate_pocket_score": 0.8545
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 10,
             "max": 14.527,
@@ -18594,43 +18648,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5487,
+          "score": 0.4115,
           "substrate_pocket_score": 0.2654
-        },
-        {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.9864,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 14.527,
-            "median": 8.218,
-            "min": 3.043
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [],
-              "required_residue": "Ser",
-              "required_role": "nucleophile",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "ASP"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.6667,
-          "score": 0.4518,
-          "substrate_pocket_score": 0.8545
         },
         {
           "cofactor_context_score": 0.15,
@@ -19193,7 +19212,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 10,
             "max": 14.839,
@@ -19237,7 +19256,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5494,
+          "score": 0.4121,
           "substrate_pocket_score": 0.263
         },
         {
@@ -20094,7 +20113,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8197,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 28,
             "max": 17.255,
@@ -20146,7 +20165,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5362,
+          "score": 0.4021,
           "substrate_pocket_score": 0.2706
         },
         {
@@ -20786,7 +20805,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 15,
             "max": 11.117,
@@ -20828,7 +20847,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5506,
+          "score": 0.413,
           "substrate_pocket_score": 0.2707
         },
         {
@@ -21495,10 +21514,46 @@
       "status": "ok",
       "top_fingerprints": [
         {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.8125,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 18.427,
+            "median": 11.0,
+            "min": 3.818
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.6667,
+          "score": 0.4422,
+          "substrate_pocket_score": 0.8558
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8125,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 15,
             "max": 18.427,
@@ -21536,44 +21591,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5262,
+          "score": 0.3947,
           "substrate_pocket_score": 0.2081
-        },
-        {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.8125,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 15,
-            "max": 18.427,
-            "median": 11.0,
-            "min": 3.818
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [],
-              "required_residue": "Ser",
-              "required_role": "nucleophile",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "ASP",
-                "GLU"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.6667,
-          "score": 0.4422,
-          "substrate_pocket_score": 0.8558
         },
         {
           "cofactor_context_score": 0.15,
@@ -22114,10 +22133,37 @@
       "status": "ok",
       "top_fingerprints": [
         {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 6,
+            "max": 9.251,
+            "median": 6.134,
+            "min": 3.799
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.3255,
+          "substrate_pocket_score": 0.9556
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 6,
             "max": 9.251,
@@ -22150,35 +22196,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.3516,
+          "score": 0.2637,
           "substrate_pocket_score": 0.2549
-        },
-        {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 1.0,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 6,
-            "max": 9.251,
-            "median": 6.134,
-            "min": 3.799
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.3255,
-          "substrate_pocket_score": 0.9556
         },
         {
           "cofactor_context_score": 0.2,
@@ -22888,10 +22907,46 @@
       "status": "ok",
       "top_fingerprints": [
         {
+          "cofactor_context_score": 0.25,
+          "cofactor_evidence_level": "not_required",
+          "compactness_score": 0.631,
+          "counterevidence_penalty": 1.0,
+          "distance_summary": {
+            "count": 15,
+            "max": 20.038,
+            "median": 13.904,
+            "min": 5.853
+          },
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [],
+              "required_residue": "Ser",
+              "required_role": "nucleophile",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU"
+              ],
+              "required_residue": "Asp/Glu",
+              "required_role": "acid_or_orienter",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 0.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.6667,
+          "score": 0.4334,
+          "substrate_pocket_score": 0.8693
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 15,
             "max": 20.038,
@@ -22933,44 +22988,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5259,
+          "score": 0.3944,
           "substrate_pocket_score": 0.3026
-        },
-        {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.631,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 15,
-            "max": 20.038,
-            "median": 13.904,
-            "min": 5.853
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [],
-              "required_residue": "Ser",
-              "required_role": "nucleophile",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "ASP",
-                "GLU"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.6667,
-          "score": 0.4334,
-          "substrate_pocket_score": 0.8693
         },
         {
           "cofactor_context_score": 0.2,
@@ -23457,51 +23476,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.9655,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 6,
-            "max": 12.066,
-            "median": 8.552,
-            "min": 6.358
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5497,
-          "substrate_pocket_score": 0.283
-        },
-        {
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.9655,
@@ -23541,6 +23515,51 @@
           "role_match_fraction": 0.3333,
           "score": 0.5282,
           "substrate_pocket_score": 0.1091
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9655,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 6,
+            "max": 12.066,
+            "median": 8.552,
+            "min": 6.358
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4123,
+          "substrate_pocket_score": 0.283
         },
         {
           "cofactor_context_score": 0.25,
@@ -24071,54 +24090,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.9081,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 15.24,
-            "median": 9.47,
-            "min": 6.271
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5496,
-          "substrate_pocket_score": 0.313
-        },
-        {
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.9081,
@@ -24160,6 +24131,54 @@
           "role_match_fraction": 0.3333,
           "score": 0.5267,
           "substrate_pocket_score": 0.128
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.9081,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 10,
+            "max": 15.24,
+            "median": 9.47,
+            "min": 6.271
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4122,
+          "substrate_pocket_score": 0.313
         },
         {
           "cofactor_context_score": 0.25,
@@ -24875,10 +24894,55 @@
       "status": "ok",
       "top_fingerprints": [
         {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "role_inferred",
+          "compactness_score": 0.7444,
+          "counterevidence_penalty": 0.92,
+          "distance_summary": {
+            "count": 15,
+            "max": 17.044,
+            "median": 12.089,
+            "min": 4.671
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.5314,
+          "substrate_pocket_score": 0.1649
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7444,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 15,
             "max": 17.044,
@@ -24927,53 +24991,8 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5318,
+          "score": 0.3989,
           "substrate_pocket_score": 0.2817
-        },
-        {
-          "cofactor_context_score": 1.0,
-          "cofactor_evidence_level": "role_inferred",
-          "compactness_score": 0.7444,
-          "counterevidence_penalty": 0.92,
-          "distance_summary": {
-            "count": 15,
-            "max": 17.044,
-            "median": 12.089,
-            "min": 4.671
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Asp/Glu/Cys",
-              "required_role": "metal_ligand",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Asp/Glu",
-              "required_role": "water_activator",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.5314,
-          "substrate_pocket_score": 0.1649
         },
         {
           "cofactor_context_score": 0.25,
@@ -25582,36 +25601,6 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 12.476,
-            "median": 7.849,
-            "min": 5.56
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP",
-                "ASP"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.3153,
-          "substrate_pocket_score": 0.2573
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
           "distance_summary": {
             "count": 10,
@@ -25644,6 +25633,36 @@
           "role_match_fraction": 0.3333,
           "score": 0.2848,
           "substrate_pocket_score": 0.5426
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 1.0,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 10,
+            "max": 12.476,
+            "median": 7.849,
+            "min": 5.56
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2364,
+          "substrate_pocket_score": 0.2573
         }
       ]
     },
@@ -26377,45 +26396,6 @@
           "substrate_pocket_score": 0.9691
         },
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8498,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 45,
-            "max": 15.855,
-            "median": 10.403,
-            "min": 3.798
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ARG",
-                "ASP",
-                "ASP"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "PHE"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.4217,
-          "substrate_pocket_score": 0.2695
-        },
-        {
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
@@ -26453,6 +26433,45 @@
           "role_match_fraction": 0.0,
           "score": 0.355,
           "substrate_pocket_score": 0.1177
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8498,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 45,
+            "max": 15.855,
+            "median": 10.403,
+            "min": 3.798
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "PHE"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.3163,
+          "substrate_pocket_score": 0.2695
         },
         {
           "cofactor_context_score": 0.0,
@@ -27651,7 +27670,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9944,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 21,
             "max": 13.689,
@@ -27699,7 +27718,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5429,
+          "score": 0.4072,
           "substrate_pocket_score": 0.2223
         },
         {
@@ -28450,7 +28469,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8706,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 28,
             "max": 13.557,
@@ -28492,7 +28511,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5399,
+          "score": 0.405,
           "substrate_pocket_score": 0.2686
         },
         {
@@ -29754,7 +29773,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.839,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 21,
             "max": 20.982,
@@ -29799,7 +29818,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5332,
+          "score": 0.3999,
           "substrate_pocket_score": 0.2408
         },
         {
@@ -30377,7 +30396,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8488,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 10,
             "max": 17.015,
@@ -30416,7 +30435,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5301,
+          "score": 0.3976,
           "substrate_pocket_score": 0.2145
         },
         {
@@ -31162,7 +31181,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8954,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 45,
             "max": 17.488,
@@ -31219,7 +31238,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5391,
+          "score": 0.4043,
           "substrate_pocket_score": 0.25
         },
         {
@@ -32119,62 +32138,6 @@
           "substrate_pocket_score": 0.2339
         },
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.825,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 66,
-            "max": 17.661,
-            "median": 10.8,
-            "min": 3.823
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ARG",
-                "ASP",
-                "ASP",
-                "ASP",
-                "ASP",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5342,
-          "substrate_pocket_score": 0.2546
-        },
-        {
           "cofactor_context_score": 0.15,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.825,
@@ -32276,6 +32239,62 @@
           "role_match_fraction": 0.6667,
           "score": 0.437,
           "substrate_pocket_score": 0.9057
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.825,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 66,
+            "max": 17.661,
+            "median": 10.8,
+            "min": 3.823
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ASP",
+                "ASP",
+                "ASP",
+                "ASP",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4006,
+          "substrate_pocket_score": 0.2546
         },
         {
           "cofactor_context_score": 0.0,
@@ -32743,54 +32762,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8185,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 14.415,
-            "median": 10.904,
-            "min": 3.838
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ARG",
-                "ASP",
-                "ASP",
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5376,
-          "substrate_pocket_score": 0.281
-        },
-        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8185,
@@ -32834,6 +32805,54 @@
           "role_match_fraction": 0.6667,
           "score": 0.5155,
           "substrate_pocket_score": 0.7733
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8185,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 10,
+            "max": 14.415,
+            "median": 10.904,
+            "min": 3.838
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ASP",
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "HIS"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4032,
+          "substrate_pocket_score": 0.281
         },
         {
           "cofactor_context_score": 0.2,
@@ -33278,44 +33297,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.8635,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 6,
-            "max": 13.712,
-            "median": 10.183,
-            "min": 3.799
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "TYR"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "PHE",
-                "TYR"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.0,
-          "score": 0.342,
-          "substrate_pocket_score": 0.2639
-        },
-        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8635,
@@ -33422,6 +33403,44 @@
           "role_match_fraction": 0.3333,
           "score": 0.2629,
           "substrate_pocket_score": 0.3715
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.8635,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 6,
+            "max": 13.712,
+            "median": 10.183,
+            "min": 3.799
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "TYR"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "PHE",
+                "TYR"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.0,
+          "score": 0.2565,
+          "substrate_pocket_score": 0.2639
         },
         {
           "cofactor_context_score": 0.5,
@@ -33868,56 +33887,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.945,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 21,
-            "max": 15.167,
-            "median": 8.88,
-            "min": 3.724
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "CYS",
-                "HIS"
-              ],
-              "required_residue": "His/Cys/Tyr",
-              "required_role": "heme_ligand",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ARG",
-                "ASP",
-                "HIS"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "CYS",
-                "HIS",
-                "TRP"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.3333,
-          "score": 0.5469,
-          "substrate_pocket_score": 0.2755
-        },
-        {
           "cofactor_context_score": 0.25,
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.945,
@@ -33960,6 +33929,56 @@
           "role_match_fraction": 0.6667,
           "score": 0.5271,
           "substrate_pocket_score": 0.8157
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.945,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 21,
+            "max": 15.167,
+            "median": 8.88,
+            "min": 3.724
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "CYS",
+                "HIS"
+              ],
+              "required_residue": "His/Cys/Tyr",
+              "required_role": "heme_ligand",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ARG",
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "CYS",
+                "HIS",
+                "TRP"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.3333,
+          "score": 0.4102,
+          "substrate_pocket_score": 0.2755
         },
         {
           "cofactor_context_score": 0.2,
@@ -34606,45 +34625,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.7463,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 10,
-            "max": 17.787,
-            "median": 12.059,
-            "min": 3.807
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ARG",
-                "ASP",
-                "ASP"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "PHE"
-              ],
-              "required_residue": "aromatic_or_redox_residue",
-              "required_role": "electron_transfer_path",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.409,
-          "substrate_pocket_score": 0.2398
-        },
-        {
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7463,
@@ -34684,6 +34664,45 @@
           "role_match_fraction": 0.0,
           "score": 0.3494,
           "substrate_pocket_score": 0.1359
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.7463,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 10,
+            "max": 17.787,
+            "median": 12.059,
+            "min": 3.807
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "PHE"
+              ],
+              "required_residue": "aromatic_or_redox_residue",
+              "required_role": "electron_transfer_path",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.3068,
+          "substrate_pocket_score": 0.2398
         },
         {
           "cofactor_context_score": 0.25,
@@ -35344,7 +35363,7 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8513,
-          "counterevidence_penalty": 1.0,
+          "counterevidence_penalty": 0.75,
           "distance_summary": {
             "count": 15,
             "max": 17.534,
@@ -35383,7 +35402,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
-          "score": 0.5343,
+          "score": 0.4007,
           "substrate_pocket_score": 0.2412
         },
         {
@@ -36265,37 +36284,6 @@
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6576,
-          "counterevidence_penalty": 1.0,
-          "distance_summary": {
-            "count": 15,
-            "max": 19.65,
-            "median": 13.478,
-            "min": 5.729
-          },
-          "fingerprint_id": "heme_peroxidase_oxidase",
-          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ARG",
-                "ASP",
-                "ASP"
-              ],
-              "required_residue": "His/Arg/Asp",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.3333,
-          "role_match_fraction": 0.3333,
-          "score": 0.2913,
-          "substrate_pocket_score": 0.28
-        },
-        {
-          "cofactor_context_score": 0.0,
-          "cofactor_evidence_level": "absent",
-          "compactness_score": 0.6576,
           "counterevidence_penalty": 0.6,
           "distance_summary": {
             "count": 15,
@@ -36329,6 +36317,37 @@
           "role_match_fraction": 0.3333,
           "score": 0.254,
           "substrate_pocket_score": 0.3827
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.6576,
+          "counterevidence_penalty": 0.75,
+          "distance_summary": {
+            "count": 15,
+            "max": 19.65,
+            "median": 13.478,
+            "min": 5.729
+          },
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ARG",
+                "ASP",
+                "ASP"
+              ],
+              "required_residue": "His/Arg/Asp",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.3333,
+          "role_match_fraction": 0.3333,
+          "score": 0.2185,
+          "substrate_pocket_score": 0.28
         }
       ]
     }

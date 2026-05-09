@@ -4,9 +4,9 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 20
+- Entries: 21
 - Measured elapsed time: 205.6 minutes (3.43 hours)
-- Estimated/planned time: 390 minutes (6.50 hours)
+- Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
@@ -14,27 +14,17 @@ Generated from `work/progress_log.jsonl`.
 - ops: 13.1 measured minutes (0.22 hours)
 - post-v2: 192.5 measured minutes (3.21 hours)
 - ops: 45 estimated minutes (0.75 hours)
-- post-v2: 165 estimated minutes (2.75 hours)
+- post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
 - v1: 55 estimated minutes (0.92 hours)
 - v2: 70 estimated minutes (1.17 hours)
 
 ## Progress Counters
 
-- Artifact references logged: 123
-- Evidence references logged: 104
+- Artifact references logged: 136
+- Evidence references logged: 109
 
 ## Recent Entries
-
-### 2026-05-09T15:30:17.008476+00:00 - post-v2
-
-- Task: Add substrate-pocket descriptors and pocket-aware retrieval scoring
-- Time mode: measured
-- Measured minutes: 4.333
-- Started: 2026-05-09T15:25:48Z
-- Ended: 2026-05-09T15:30:08Z
-- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/geometry_retrieval.py, tests/test_structure.py, tests/test_geometry_retrieval.py, artifacts/v3_geometry_features.json, artifacts/v3_geometry_retrieval.json, artifacts/v3_geometry_label_eval.json, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, README.md, docs/geometry_features.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
-- Evidence: 35 tests passed, 15/20 entries with substrate-pocket context, 11/20 entries with proximal ligands, 5/20 entries with inferred cofactors, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, selected abstention threshold 0.75, out-of-scope abstention 1.0 at selected threshold
 
 ### 2026-05-09T15:42:05.002091+00:00 - ops
 
@@ -106,6 +96,15 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/performance.py, data/registries/mechanism_fingerprints.json, data/registries/curated_mechanism_labels.json, artifacts/v3_geometry_retrieval_100.json, artifacts/v3_geometry_label_eval_100.json, artifacts/v3_hard_negative_controls_100.json, artifacts/v3_abstention_calibration_100.json, artifacts/v3_geometry_retrieval_125.json, artifacts/v3_geometry_label_eval_125.json, artifacts/v3_abstention_calibration_125.json, artifacts/v3_geometry_failure_analysis_125.json, artifacts/v3_geometry_score_margins_125.json, artifacts/v3_hard_negative_controls_125.json, artifacts/perf_report.json, docs/geometry_features.md, work/handoff.md
 - Evidence: 61 unit tests passed, validate passed, 125 curated labels, 125 geometry entries, 38 in-scope positives, 87 out-of-scope controls, 100-entry slice retains all positives with zero false non-abstentions, 125-entry zero-false threshold 0.5877, 125-entry retained positives 29/38, 125-entry hard negatives 74, 125-entry score gap -0.1404
 
+### 2026-05-09T19:52:34.146667+00:00 - post-v2
+
+- Task: Group 125-entry hard negatives and tighten heme counterevidence
+- Time mode: estimate
+- Estimated/planned minutes: 15
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/geometry_retrieval.py, tests/test_labels.py, tests/test_geometry_retrieval.py, artifacts/v3_hard_negative_controls_125.json, artifacts/v3_geometry_score_margins_125.json, artifacts/perf_report.json, README.md, docs/geometry_features.md, docs/v2_strengthening_report.md, docs/performance.md, work/handoff.md, work/scope.md
+- Evidence: fresh reset to origin/main before work, 63 unit tests passed, validate passed, 125-entry hard negatives reduced from 74 to 53 against correct-positive floor, 20-100 slices still have zero hard negatives
+- Notes: Manual continuation after user-requested fresh checkout; precise start timestamp was not captured.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -128,6 +127,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T17:07:37.625326+00:00: Next priority is hard-negative scorer separation and structure mapping repair, not more scaffold work
 - 2026-05-09T18:08:06.495922+00:00: remaining bottleneck is separating two ligand-supported metal-like controls without losing retained positives
 - 2026-05-09T19:35:11+00:00: The 100-entry slice is clean, but full 125-entry labeling exposes hard redox and metal-like controls; robustness now depends on hard-negative separation and seed-family splits.
+- 2026-05-09T19:52:34.146667+00:00: The main 125-entry bottleneck is no longer hidden heme-absent overlap; remaining controls concentrate in metal-like and Ser-His-like groups.
 
 ## Scope Adjustments
 
@@ -150,3 +150,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T17:07:37.625326+00:00: 40-entry slice now has 36 labels, 26 evaluable structures, and explicit hard-negative plus structure-mapping blockers
 - 2026-05-09T18:08:06.495922+00:00: expanded geometry slice to 60 fully labeled entries with 63 labels
 - 2026-05-09T19:35:11+00:00: Expanded the audited geometry slice to 125 fully labeled entries; next scope is reducing 125-entry hard negatives without regressing the clean 20-100 slices.
+- 2026-05-09T19:52:34.146667+00:00: 125-entry hard-negative controls are now grouped and anchored to correctly ranked positives; next scorer work should target the largest grouped control clusters.

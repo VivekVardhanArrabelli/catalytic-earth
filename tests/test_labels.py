@@ -17,6 +17,7 @@ from catalytic_earth.labels import (
     classify_out_of_scope_failure,
     compare_threshold_policies,
     evaluate_geometry_retrieval,
+    group_hard_negative_controls,
     label_summary,
     load_labels,
     select_threshold,
@@ -108,6 +109,8 @@ class LabelTests(unittest.TestCase):
 
         margins = analyze_geometry_score_margins(retrieval, labels)
         self.assertEqual(margins["metadata"]["min_in_scope_top1_score"], 0.8)
+        self.assertEqual(margins["metadata"]["min_correct_in_scope_top1_score"], 0.8)
+        self.assertEqual(margins["metadata"]["correct_in_scope_evaluable_count"], 1)
         self.assertEqual(margins["metadata"]["max_out_of_scope_top1_score"], 0.2)
         self.assertEqual(margins["metadata"]["near_margin"], 0.02)
         self.assertEqual(margins["metadata"]["score_margin_boundary_count"], 2)
@@ -123,10 +126,14 @@ class LabelTests(unittest.TestCase):
         controls = build_hard_negative_controls(retrieval, labels)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 0)
         self.assertEqual(controls["metadata"]["near_miss_count"], 0)
+        self.assertEqual(controls["groups"], [])
         controls = build_hard_negative_controls(retrieval, labels, score_floor=0.1)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 1)
         self.assertEqual(controls["rows"][0]["negative_control_type"], "score_overlap_with_in_scope_positive")
         self.assertIn("context", controls["rows"][0])
+        self.assertEqual(controls["groups"][0]["top1_fingerprint_id"], "ser_his_acid_hydrolase")
+        self.assertEqual(controls["groups"][0]["cofactor_evidence_level"], "unknown")
+        self.assertEqual(controls["groups"][0]["count"], 1)
 
         near_miss = build_hard_negative_controls(retrieval, labels, score_floor=0.205)
         self.assertEqual(near_miss["metadata"]["hard_negative_count"], 0)
@@ -135,6 +142,7 @@ class LabelTests(unittest.TestCase):
             near_miss["near_miss_rows"][0]["negative_control_type"],
             "near_miss_below_in_scope_floor",
         )
+        self.assertEqual(near_miss["near_miss_groups"][0]["count"], 1)
 
         expansion = build_label_expansion_candidates(
             {
@@ -215,6 +223,41 @@ class LabelTests(unittest.TestCase):
             1,
         )
         self.assertEqual(mapping_issues["rows"][0]["entry_id"], "m_csa:2")
+
+    def test_group_hard_negative_controls(self) -> None:
+        groups = group_hard_negative_controls(
+            [
+                {
+                    "entry_id": "m_csa:2",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.6,
+                    "cofactor_evidence_level": "role_inferred",
+                    "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+                },
+                {
+                    "entry_id": "m_csa:3",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.5,
+                    "cofactor_evidence_level": "role_inferred",
+                    "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+                },
+                {
+                    "entry_id": "m_csa:4",
+                    "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                    "top1_score": 0.55,
+                    "cofactor_evidence_level": "absent",
+                    "hard_negative_reason": "high_score_out_of_scope_overlap",
+                },
+            ]
+        )
+
+        self.assertEqual(groups[0]["top1_fingerprint_id"], "metal_dependent_hydrolase")
+        self.assertEqual(groups[0]["cofactor_evidence_level"], "role_inferred")
+        self.assertEqual(groups[0]["count"], 2)
+        self.assertEqual(groups[0]["min_top1_score"], 0.5)
+        self.assertEqual(groups[0]["mean_top1_score"], 0.55)
+        self.assertEqual(groups[0]["max_top1_score"], 0.6)
+        self.assertEqual(groups[0]["entry_ids"], ["m_csa:2", "m_csa:3"])
 
     def test_threshold_policy_prefers_zero_false_non_abstentions(self) -> None:
         rows = [

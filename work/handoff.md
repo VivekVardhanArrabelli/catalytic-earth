@@ -119,10 +119,10 @@ surface.
 
 ## Next Agent Start Here
 
-Run started: `2026-05-09T18:17:48Z`.
-Run ended: `2026-05-09T19:35:11Z` (`77.383` measured minutes).
+Fresh-reset continuation after user interruption. Worktree was reset to
+`origin/main` at commit `82f287f` before these changes.
 
-What changed in this run:
+What changed most recently:
 
 - Expanded curated labels from 63 to 125 entries, covering every entry in the
   current 125-entry geometry expansion slice.
@@ -141,6 +141,13 @@ What changed in this run:
   abstention threshold instead of the stale default.
 - Updated README, geometry docs, V2 strengthening report, performance docs,
   scope, tests, and reproducibility commands.
+- Added grouped hard-negative controls by top1 fingerprint and cofactor
+  evidence, with group counts, score ranges, reasons, and entry ids.
+- Anchored hard-negative score overlap to correctly ranked in-scope positives
+  instead of every in-scope top1 score, so misranked positives no longer lower
+  the negative-control floor.
+- Added a bounded heme counterevidence rule for
+  `heme_peroxidase_oxidase` predictions when heme evidence is absent.
 
 Current metrics:
 
@@ -162,17 +169,23 @@ Current metrics:
 - 100-entry score margins: minimum in-scope top1 `0.5777`, maximum
   out-of-scope top1 `0.5652`, gap `0.0125`.
 - 100-entry hard negatives: 0 score-overlap controls and 0 near misses within
-  0.01 below the positive floor.
+  0.01 below the correct-positive floor.
 - 125-entry expanded slice: threshold `0.5877`, 124/125 evaluable, 29/38
-  in-scope positives retained, 0 out-of-scope false non-abstentions, 74 hard
-  negatives, 0 near misses, and score gap `-0.1404`.
+  in-scope positives retained, 0 out-of-scope false non-abstentions, 53 hard
+  negatives, 1 near miss, correct-positive floor `0.4472`, broad minimum
+  in-scope top1 `0.3883`, maximum out-of-scope top1 `0.5876`, and broad score
+  gap `-0.1993`.
+- 125-entry hard-negative groups: 18 ligand-supported
+  `metal_dependent_hydrolase`, 16 `ser_his_acid_hydrolase` without cofactor
+  requirement, 12 role-inferred `metal_dependent_hydrolase`, 3
+  ligand-supported `flavin_monooxygenase`, 3 absent-context
+  `plp_dependent_enzyme`, and 1 ligand-supported `heme_peroxidase_oxidase`.
 - Label expansion queue: 0 unlabeled entries and 0 ready review candidates in
   the current 125-entry slice.
 - Structure mapping issues: 0 non-OK entries in the 40-, 50-, 60-, 75-, and
   100-entry slices after auth/label residue fallback; 1 labeled out-of-scope
   insufficient-residue issue remains in the 125-entry slice (`m_csa:105`).
-- Verification this run: 61 unit tests passed, registry validation passed, and
-  local performance report regenerated.
+- Verification: 63 unit tests passed on the fresh checkout after these changes.
 
 Start commands:
 
@@ -193,12 +206,11 @@ Next concrete task:
 Analyze and reduce the 125-entry hard-negative set without breaking the clean
 20- through 100-entry regression slices. Start with
 `artifacts/v3_hard_negative_controls_125.json` and
-`artifacts/v3_geometry_score_margins_125.json`; group the 74 controls by top1
-fingerprint and cofactor evidence, then add one bounded fingerprint split or
-counterevidence rule with tests. The likely first target is separating generic
-heme/flavin redox or metal-like oxidoreductase controls from true heme
-peroxidase/oxidase, flavin dehydrogenase/reductase, and metal-dependent
-hydrolase positives.
+`artifacts/v3_geometry_score_margins_125.json`; use the new `groups` rows to
+target the largest remaining clusters. The likely next targets are
+ligand-supported metal-like transfer/isomerase controls, Ser-His-like controls
+without serine-nucleophile coherence, and role-inferred metal oxidoreductase
+controls such as `m_csa:107`.
 
 Known blockers:
 

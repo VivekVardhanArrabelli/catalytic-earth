@@ -165,8 +165,9 @@ Current expectation:
   in-scope positives
 - the 100-entry expansion slice currently has 0 hard negatives at the positive
   score floor and 0 near misses within 0.01 below the floor
-- the 125-entry expansion slice currently has 74 hard negatives and a -0.1404
-  score gap; the zero-false threshold retains only 29/38 in-scope positives
+- the 125-entry expansion slice currently has 53 hard negatives against the
+  correct-positive score floor, 1 near miss, and a -0.1993 broad top1 score gap;
+  the zero-false threshold retains only 29/38 in-scope positives
 - the 40-, 50-, 60-, 75-, and 100-entry structure-mapping issue reports
   currently have 0 non-OK mappings after auth/label residue-number fallback;
   the 125-entry report has 1 labeled out-of-scope insufficient-residue issue

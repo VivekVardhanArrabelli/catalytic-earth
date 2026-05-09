@@ -230,7 +230,7 @@ PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues \
 
 PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph \
   --max-mcsa 125 \
-  --page-size 125 \
+  --page-size 100 \
   --out artifacts/v1_graph_125.json
 
 PYTHONPATH=src python -m catalytic_earth.cli graph-summary \
@@ -347,8 +347,9 @@ Current slices:
 - 100-entry expanded slice: threshold 0.5653, 100/100 evaluable, 25/25
   in-scope positives retained, 0 out-of-scope false non-abstentions.
 - 125-entry expanded slice: threshold 0.5877, 124/125 evaluable, 29/38
-  in-scope positives retained, 0 out-of-scope false non-abstentions, 74 hard
-  negatives, and a negative score gap of -0.1404.
+  in-scope positives retained, 0 out-of-scope false non-abstentions, 53 hard
+  negatives against the correct-positive score floor, 1 near miss, and a
+  negative broad score gap of -0.1993.
 
 The current 100-entry score-margin artifact shows a 0.0125 gap after explicit
 carbon-transfer ligand, aromatic-pocket, PLP-anchor, nucleotide-transfer, and
@@ -357,10 +358,11 @@ seed. The current 100-entry hard-negative artifact has 0 score-overlap controls
 and 0 near misses within 0.01 below the positive floor.
 
 The 125-entry slice is fully labeled but no longer clean: it exposes many
-coarse redox and metal-like hard negatives, especially against heme, flavin,
-and generic metal-dependent seeds. The zero-false policy requires threshold
-0.5877 and sacrifices positive retention, so the next work should split or
-tighten seed families rather than tune a single global threshold.
+coarse redox and metal-like hard negatives, especially against ligand-supported
+metal-like, Ser-His-like, and role-inferred metal-dependent seeds. The
+zero-false policy requires threshold 0.5877 and sacrifices positive retention,
+so the next work should split or tighten seed families rather than tune a
+single global threshold.
 
 ## Label Expansion Queue
 

@@ -77,7 +77,7 @@
       "zero_false_preserves_retained_top3": true
     },
     "selection_rule": "choose the smallest threshold with zero current out-of-scope false non-abstentions while preserving best top3 in-scope accuracy; fall back to legacy ranking if no threshold satisfies that guard",
-    "threshold_count": 201
+    "threshold_count": 211
   },
   "retained_top3_reference": {
     "abstain_threshold": 0.5653,
@@ -504,7 +504,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.3017,
+      "abstain_threshold": 0.3001,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -551,101 +551,101 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
+      "abstain_threshold": 0.3002,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.0133,
+      "out_of_scope_abstention_rate_evaluable": 0.0133,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 74,
+      "out_of_scope_false_non_abstentions_evaluable": 74,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3017,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.0133,
+      "out_of_scope_abstention_rate_evaluable": 0.0133,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 74,
+      "out_of_scope_false_non_abstentions_evaluable": 74,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
       "abstain_threshold": 0.3018,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0133,
-      "out_of_scope_abstention_rate_evaluable": 0.0133,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 74,
-      "out_of_scope_false_non_abstentions_evaluable": 74,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.342,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0133,
-      "out_of_scope_abstention_rate_evaluable": 0.0133,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 74,
-      "out_of_scope_false_non_abstentions_evaluable": 74,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.3421,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -681,6 +681,194 @@
       "out_of_scope_evaluable_count": 75,
       "out_of_scope_false_non_abstentions": 73,
       "out_of_scope_false_non_abstentions_evaluable": 73,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3087,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.0267,
+      "out_of_scope_abstention_rate_evaluable": 0.0267,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 73,
+      "out_of_scope_false_non_abstentions_evaluable": 73,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3088,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.04,
+      "out_of_scope_abstention_rate_evaluable": 0.04,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 72,
+      "out_of_scope_false_non_abstentions_evaluable": 72,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3255,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.04,
+      "out_of_scope_abstention_rate_evaluable": 0.04,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 72,
+      "out_of_scope_false_non_abstentions_evaluable": 72,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3256,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.0533,
+      "out_of_scope_abstention_rate_evaluable": 0.0533,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 71,
+      "out_of_scope_false_non_abstentions_evaluable": 71,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -722,12 +910,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0267,
-      "out_of_scope_abstention_rate_evaluable": 0.0267,
+      "out_of_scope_abstention_rate": 0.0533,
+      "out_of_scope_abstention_rate_evaluable": 0.0533,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 73,
-      "out_of_scope_false_non_abstentions_evaluable": 73,
+      "out_of_scope_false_non_abstentions": 71,
+      "out_of_scope_false_non_abstentions_evaluable": 71,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -769,12 +957,106 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.04,
-      "out_of_scope_abstention_rate_evaluable": 0.04,
+      "out_of_scope_abstention_rate": 0.0667,
+      "out_of_scope_abstention_rate_evaluable": 0.0667,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 72,
-      "out_of_scope_false_non_abstentions_evaluable": 72,
+      "out_of_scope_false_non_abstentions": 70,
+      "out_of_scope_false_non_abstentions_evaluable": 70,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3494,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.0667,
+      "out_of_scope_abstention_rate_evaluable": 0.0667,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 70,
+      "out_of_scope_false_non_abstentions_evaluable": 70,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3495,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.08,
+      "out_of_scope_abstention_rate_evaluable": 0.08,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 69,
+      "out_of_scope_false_non_abstentions_evaluable": 69,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -816,12 +1098,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.04,
-      "out_of_scope_abstention_rate_evaluable": 0.04,
+      "out_of_scope_abstention_rate": 0.08,
+      "out_of_scope_abstention_rate_evaluable": 0.08,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 72,
-      "out_of_scope_false_non_abstentions_evaluable": 72,
+      "out_of_scope_false_non_abstentions": 69,
+      "out_of_scope_false_non_abstentions_evaluable": 69,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -863,12 +1145,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.04,
-      "out_of_scope_abstention_rate_evaluable": 0.04,
+      "out_of_scope_abstention_rate": 0.08,
+      "out_of_scope_abstention_rate_evaluable": 0.08,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 72,
-      "out_of_scope_false_non_abstentions_evaluable": 72,
+      "out_of_scope_false_non_abstentions": 69,
+      "out_of_scope_false_non_abstentions_evaluable": 69,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -910,12 +1192,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0533,
-      "out_of_scope_abstention_rate_evaluable": 0.0533,
+      "out_of_scope_abstention_rate": 0.0933,
+      "out_of_scope_abstention_rate_evaluable": 0.0933,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 71,
-      "out_of_scope_false_non_abstentions_evaluable": 71,
+      "out_of_scope_false_non_abstentions": 68,
+      "out_of_scope_false_non_abstentions_evaluable": 68,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -927,7 +1209,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.3516,
+      "abstain_threshold": 0.3618,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -957,12 +1239,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0533,
-      "out_of_scope_abstention_rate_evaluable": 0.0533,
+      "out_of_scope_abstention_rate": 0.0933,
+      "out_of_scope_abstention_rate_evaluable": 0.0933,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 71,
-      "out_of_scope_false_non_abstentions_evaluable": 71,
+      "out_of_scope_false_non_abstentions": 68,
+      "out_of_scope_false_non_abstentions_evaluable": 68,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -974,7 +1256,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.3517,
+      "abstain_threshold": 0.3619,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -1004,12 +1286,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0667,
-      "out_of_scope_abstention_rate_evaluable": 0.0667,
+      "out_of_scope_abstention_rate": 0.1067,
+      "out_of_scope_abstention_rate_evaluable": 0.1067,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 70,
-      "out_of_scope_false_non_abstentions_evaluable": 70,
+      "out_of_scope_false_non_abstentions": 67,
+      "out_of_scope_false_non_abstentions_evaluable": 67,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -1051,12 +1333,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0667,
-      "out_of_scope_abstention_rate_evaluable": 0.0667,
+      "out_of_scope_abstention_rate": 0.1067,
+      "out_of_scope_abstention_rate_evaluable": 0.1067,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 70,
-      "out_of_scope_false_non_abstentions_evaluable": 70,
+      "out_of_scope_false_non_abstentions": 67,
+      "out_of_scope_false_non_abstentions_evaluable": 67,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -1098,12 +1380,482 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.08,
-      "out_of_scope_abstention_rate_evaluable": 0.08,
+      "out_of_scope_abstention_rate": 0.12,
+      "out_of_scope_abstention_rate_evaluable": 0.12,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 69,
-      "out_of_scope_false_non_abstentions_evaluable": 69,
+      "out_of_scope_false_non_abstentions": 66,
+      "out_of_scope_false_non_abstentions_evaluable": 66,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3911,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.12,
+      "out_of_scope_abstention_rate_evaluable": 0.12,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 66,
+      "out_of_scope_false_non_abstentions_evaluable": 66,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3912,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.1333,
+      "out_of_scope_abstention_rate_evaluable": 0.1333,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 65,
+      "out_of_scope_false_non_abstentions_evaluable": 65,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3926,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.1333,
+      "out_of_scope_abstention_rate_evaluable": 0.1333,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 65,
+      "out_of_scope_false_non_abstentions_evaluable": 65,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3927,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.1467,
+      "out_of_scope_abstention_rate_evaluable": 0.1467,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 64,
+      "out_of_scope_false_non_abstentions_evaluable": 64,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3934,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.1467,
+      "out_of_scope_abstention_rate_evaluable": 0.1467,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 64,
+      "out_of_scope_false_non_abstentions_evaluable": 64,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3935,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.16,
+      "out_of_scope_abstention_rate_evaluable": 0.16,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 63,
+      "out_of_scope_false_non_abstentions_evaluable": 63,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3954,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.16,
+      "out_of_scope_abstention_rate_evaluable": 0.16,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 63,
+      "out_of_scope_false_non_abstentions_evaluable": 63,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3955,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.1733,
+      "out_of_scope_abstention_rate_evaluable": 0.1733,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 62,
+      "out_of_scope_false_non_abstentions_evaluable": 62,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.3979,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.1733,
+      "out_of_scope_abstention_rate_evaluable": 0.1733,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 62,
+      "out_of_scope_false_non_abstentions_evaluable": 62,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.398,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.1867,
+      "out_of_scope_abstention_rate_evaluable": 0.1867,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 61,
+      "out_of_scope_false_non_abstentions_evaluable": 61,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -1145,12 +1897,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.08,
-      "out_of_scope_abstention_rate_evaluable": 0.08,
+      "out_of_scope_abstention_rate": 0.1867,
+      "out_of_scope_abstention_rate_evaluable": 0.1867,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 69,
-      "out_of_scope_false_non_abstentions_evaluable": 69,
+      "out_of_scope_false_non_abstentions": 61,
+      "out_of_scope_false_non_abstentions_evaluable": 61,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -1162,7 +1914,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.4002,
+      "abstain_threshold": 0.4007,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -1192,12 +1944,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.08,
-      "out_of_scope_abstention_rate_evaluable": 0.08,
+      "out_of_scope_abstention_rate": 0.1867,
+      "out_of_scope_abstention_rate_evaluable": 0.1867,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 69,
-      "out_of_scope_false_non_abstentions_evaluable": 69,
+      "out_of_scope_false_non_abstentions": 61,
+      "out_of_scope_false_non_abstentions_evaluable": 61,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -1209,7 +1961,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.4003,
+      "abstain_threshold": 0.4008,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -1239,12 +1991,529 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0933,
-      "out_of_scope_abstention_rate_evaluable": 0.0933,
+      "out_of_scope_abstention_rate": 0.2,
+      "out_of_scope_abstention_rate_evaluable": 0.2,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 68,
-      "out_of_scope_false_non_abstentions_evaluable": 68,
+      "out_of_scope_false_non_abstentions": 60,
+      "out_of_scope_false_non_abstentions_evaluable": 60,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4018,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2,
+      "out_of_scope_abstention_rate_evaluable": 0.2,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 60,
+      "out_of_scope_false_non_abstentions_evaluable": 60,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4019,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2133,
+      "out_of_scope_abstention_rate_evaluable": 0.2133,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 59,
+      "out_of_scope_false_non_abstentions_evaluable": 59,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4031,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2133,
+      "out_of_scope_abstention_rate_evaluable": 0.2133,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 59,
+      "out_of_scope_false_non_abstentions_evaluable": 59,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4032,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2267,
+      "out_of_scope_abstention_rate_evaluable": 0.2267,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 58,
+      "out_of_scope_false_non_abstentions_evaluable": 58,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4041,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2267,
+      "out_of_scope_abstention_rate_evaluable": 0.2267,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 58,
+      "out_of_scope_false_non_abstentions_evaluable": 58,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4042,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.24,
+      "out_of_scope_abstention_rate_evaluable": 0.24,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 57,
+      "out_of_scope_false_non_abstentions_evaluable": 57,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4051,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.24,
+      "out_of_scope_abstention_rate_evaluable": 0.24,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 57,
+      "out_of_scope_false_non_abstentions_evaluable": 57,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4052,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2533,
+      "out_of_scope_abstention_rate_evaluable": 0.2533,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 56,
+      "out_of_scope_false_non_abstentions_evaluable": 56,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.408,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2533,
+      "out_of_scope_abstention_rate_evaluable": 0.2533,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 56,
+      "out_of_scope_false_non_abstentions_evaluable": 56,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4081,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2667,
+      "out_of_scope_abstention_rate_evaluable": 0.2667,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 55,
+      "out_of_scope_false_non_abstentions_evaluable": 55,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4089,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2667,
+      "out_of_scope_abstention_rate_evaluable": 0.2667,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 55,
+      "out_of_scope_false_non_abstentions_evaluable": 55,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -1286,12 +2555,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.0933,
-      "out_of_scope_abstention_rate_evaluable": 0.0933,
+      "out_of_scope_abstention_rate": 0.28,
+      "out_of_scope_abstention_rate_evaluable": 0.28,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 68,
-      "out_of_scope_false_non_abstentions_evaluable": 68,
+      "out_of_scope_false_non_abstentions": 54,
+      "out_of_scope_false_non_abstentions_evaluable": 54,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -1303,1229 +2572,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.4091,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1067,
-      "out_of_scope_abstention_rate_evaluable": 0.1067,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 67,
-      "out_of_scope_false_non_abstentions_evaluable": 67,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.4278,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1067,
-      "out_of_scope_abstention_rate_evaluable": 0.1067,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 67,
-      "out_of_scope_false_non_abstentions_evaluable": 67,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.4279,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.12,
-      "out_of_scope_abstention_rate_evaluable": 0.12,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 66,
-      "out_of_scope_false_non_abstentions_evaluable": 66,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.4342,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.12,
-      "out_of_scope_abstention_rate_evaluable": 0.12,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 66,
-      "out_of_scope_false_non_abstentions_evaluable": 66,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.4343,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1333,
-      "out_of_scope_abstention_rate_evaluable": 0.1333,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 65,
-      "out_of_scope_false_non_abstentions_evaluable": 65,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.45,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1333,
-      "out_of_scope_abstention_rate_evaluable": 0.1333,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 65,
-      "out_of_scope_false_non_abstentions_evaluable": 65,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.459,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1333,
-      "out_of_scope_abstention_rate_evaluable": 0.1333,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 65,
-      "out_of_scope_false_non_abstentions_evaluable": 65,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.4591,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1467,
-      "out_of_scope_abstention_rate_evaluable": 0.1467,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 64,
-      "out_of_scope_false_non_abstentions_evaluable": 64,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.4694,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1467,
-      "out_of_scope_abstention_rate_evaluable": 0.1467,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 64,
-      "out_of_scope_false_non_abstentions_evaluable": 64,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.4695,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.16,
-      "out_of_scope_abstention_rate_evaluable": 0.16,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 63,
-      "out_of_scope_false_non_abstentions_evaluable": 63,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.4829,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.16,
-      "out_of_scope_abstention_rate_evaluable": 0.16,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 63,
-      "out_of_scope_false_non_abstentions_evaluable": 63,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.483,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1733,
-      "out_of_scope_abstention_rate_evaluable": 0.1733,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 62,
-      "out_of_scope_false_non_abstentions_evaluable": 62,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1733,
-      "out_of_scope_abstention_rate_evaluable": 0.1733,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 62,
-      "out_of_scope_false_non_abstentions_evaluable": 62,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5019,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1733,
-      "out_of_scope_abstention_rate_evaluable": 0.1733,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 62,
-      "out_of_scope_false_non_abstentions_evaluable": 62,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.502,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1867,
-      "out_of_scope_abstention_rate_evaluable": 0.1867,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 61,
-      "out_of_scope_false_non_abstentions_evaluable": 61,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5129,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.1867,
-      "out_of_scope_abstention_rate_evaluable": 0.1867,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 61,
-      "out_of_scope_false_non_abstentions_evaluable": 61,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.513,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2,
-      "out_of_scope_abstention_rate_evaluable": 0.2,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 60,
-      "out_of_scope_false_non_abstentions_evaluable": 60,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5158,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2,
-      "out_of_scope_abstention_rate_evaluable": 0.2,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 60,
-      "out_of_scope_false_non_abstentions_evaluable": 60,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5159,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2133,
-      "out_of_scope_abstention_rate_evaluable": 0.2133,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 59,
-      "out_of_scope_false_non_abstentions_evaluable": 59,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5214,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2133,
-      "out_of_scope_abstention_rate_evaluable": 0.2133,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 59,
-      "out_of_scope_false_non_abstentions_evaluable": 59,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5215,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2267,
-      "out_of_scope_abstention_rate_evaluable": 0.2267,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 58,
-      "out_of_scope_false_non_abstentions_evaluable": 58,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5216,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2267,
-      "out_of_scope_abstention_rate_evaluable": 0.2267,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 58,
-      "out_of_scope_false_non_abstentions_evaluable": 58,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5217,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2533,
-      "out_of_scope_abstention_rate_evaluable": 0.2533,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 56,
-      "out_of_scope_false_non_abstentions_evaluable": 56,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5235,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2533,
-      "out_of_scope_abstention_rate_evaluable": 0.2533,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 56,
-      "out_of_scope_false_non_abstentions_evaluable": 56,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5236,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2667,
-      "out_of_scope_abstention_rate_evaluable": 0.2667,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 55,
-      "out_of_scope_false_non_abstentions_evaluable": 55,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5247,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.2667,
-      "out_of_scope_abstention_rate_evaluable": 0.2667,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 55,
-      "out_of_scope_false_non_abstentions_evaluable": 55,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5248,
+      "abstain_threshold": 0.4103,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2572,54 +2619,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5256,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.28,
-      "out_of_scope_abstention_rate_evaluable": 0.28,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 54,
-      "out_of_scope_false_non_abstentions_evaluable": 54,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5257,
+      "abstain_threshold": 0.4104,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2666,7 +2666,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5258,
+      "abstain_threshold": 0.4108,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.2933,
+      "out_of_scope_abstention_rate_evaluable": 0.2933,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 53,
+      "out_of_scope_false_non_abstentions_evaluable": 53,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4109,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2713,7 +2760,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5259,
+      "abstain_threshold": 0.4121,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2760,7 +2807,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.526,
+      "abstain_threshold": 0.4122,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2807,7 +2854,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5262,
+      "abstain_threshold": 0.4283,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2854,7 +2901,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5263,
+      "abstain_threshold": 0.4284,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2901,7 +2948,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5264,
+      "abstain_threshold": 0.4334,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3333,
+      "out_of_scope_abstention_rate_evaluable": 0.3333,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 50,
+      "out_of_scope_false_non_abstentions_evaluable": 50,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4335,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2948,7 +3042,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5265,
+      "abstain_threshold": 0.4342,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3467,
+      "out_of_scope_abstention_rate_evaluable": 0.3467,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 49,
+      "out_of_scope_false_non_abstentions_evaluable": 49,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4343,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -2995,7 +3136,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5272,
+      "abstain_threshold": 0.4422,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3042,7 +3183,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5273,
+      "abstain_threshold": 0.4423,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3089,7 +3230,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5286,
+      "abstain_threshold": 0.4485,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3136,7 +3277,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5287,
+      "abstain_threshold": 0.4486,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3183,7 +3324,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5298,
+      "abstain_threshold": 0.45,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3230,7 +3371,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5299,
+      "abstain_threshold": 0.4518,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3867,
+      "out_of_scope_abstention_rate_evaluable": 0.3867,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 46,
+      "out_of_scope_false_non_abstentions_evaluable": 46,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4519,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3277,7 +3465,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5306,
+      "abstain_threshold": 0.4671,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3324,7 +3512,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5307,
+      "abstain_threshold": 0.4672,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3371,7 +3559,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5318,
+      "abstain_threshold": 0.4688,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3418,7 +3606,101 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5319,
+      "abstain_threshold": 0.4689,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.4267,
+      "out_of_scope_abstention_rate_evaluable": 0.4267,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 43,
+      "out_of_scope_false_non_abstentions_evaluable": 43,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4694,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.4267,
+      "out_of_scope_abstention_rate_evaluable": 0.4267,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 43,
+      "out_of_scope_false_non_abstentions_evaluable": 43,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.4695,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3465,7 +3747,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5325,
+      "abstain_threshold": 0.4829,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3512,7 +3794,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5326,
+      "abstain_threshold": 0.483,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3559,7 +3841,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5343,
+      "abstain_threshold": 0.5,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3606,7 +3888,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5344,
+      "abstain_threshold": 0.5019,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.4533,
+      "out_of_scope_abstention_rate_evaluable": 0.4533,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 41,
+      "out_of_scope_false_non_abstentions_evaluable": 41,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.502,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3653,7 +3982,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5358,
+      "abstain_threshold": 0.506,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3700,7 +4029,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5359,
+      "abstain_threshold": 0.5061,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3747,7 +4076,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5362,
+      "abstain_threshold": 0.5129,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3794,101 +4123,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5363,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.4933,
-      "out_of_scope_abstention_rate_evaluable": 0.4933,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 38,
-      "out_of_scope_false_non_abstentions_evaluable": 38,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5375,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.4933,
-      "out_of_scope_abstention_rate_evaluable": 0.4933,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 38,
-      "out_of_scope_false_non_abstentions_evaluable": 38,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5376,
+      "abstain_threshold": 0.513,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3935,7 +4170,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5377,
+      "abstain_threshold": 0.5155,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.5067,
+      "out_of_scope_abstention_rate_evaluable": 0.5067,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 37,
+      "out_of_scope_false_non_abstentions_evaluable": 37,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.5156,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -3982,7 +4264,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5379,
+      "abstain_threshold": 0.5158,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4029,7 +4311,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.538,
+      "abstain_threshold": 0.5159,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4076,7 +4358,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5386,
+      "abstain_threshold": 0.5201,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4123,7 +4405,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5387,
+      "abstain_threshold": 0.5202,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4170,7 +4452,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5388,
+      "abstain_threshold": 0.5216,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4217,7 +4499,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5389,
+      "abstain_threshold": 0.5217,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4264,7 +4546,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5393,
+      "abstain_threshold": 0.5247,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4311,7 +4593,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5394,
+      "abstain_threshold": 0.5248,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4358,7 +4640,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5401,
+      "abstain_threshold": 0.5257,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4405,7 +4687,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5402,
+      "abstain_threshold": 0.5258,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4452,7 +4734,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.543,
+      "abstain_threshold": 0.5263,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4499,7 +4781,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5431,
+      "abstain_threshold": 0.5264,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4546,7 +4828,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5432,
+      "abstain_threshold": 0.5265,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.6133,
+      "out_of_scope_abstention_rate_evaluable": 0.6133,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 29,
+      "out_of_scope_false_non_abstentions_evaluable": 29,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.5266,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4593,7 +4922,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5434,
+      "abstain_threshold": 0.5267,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4640,7 +4969,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5435,
+      "abstain_threshold": 0.5268,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4687,7 +5016,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.544,
+      "abstain_threshold": 0.5271,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4734,7 +5063,101 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5441,
+      "abstain_threshold": 0.5272,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.6533,
+      "out_of_scope_abstention_rate_evaluable": 0.6533,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 26,
+      "out_of_scope_false_non_abstentions_evaluable": 26,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.5282,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.6533,
+      "out_of_scope_abstention_rate_evaluable": 0.6533,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 26,
+      "out_of_scope_false_non_abstentions_evaluable": 26,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.5283,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4781,7 +5204,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5443,
+      "abstain_threshold": 0.5285,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4828,7 +5251,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5444,
+      "abstain_threshold": 0.5286,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4875,7 +5298,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5445,
+      "abstain_threshold": 0.5314,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4922,7 +5345,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5446,
+      "abstain_threshold": 0.5315,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -4969,7 +5392,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5452,
+      "abstain_threshold": 0.5325,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5016,7 +5439,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5453,
+      "abstain_threshold": 0.5326,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5063,7 +5486,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5469,
+      "abstain_threshold": 0.5334,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5110,7 +5533,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.547,
+      "abstain_threshold": 0.5335,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5157,7 +5580,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5471,
+      "abstain_threshold": 0.5379,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.72,
+      "out_of_scope_abstention_rate_evaluable": 0.72,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 21,
+      "out_of_scope_false_non_abstentions_evaluable": 21,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.538,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5204,7 +5674,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5472,
+      "abstain_threshold": 0.5386,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.7333,
+      "out_of_scope_abstention_rate_evaluable": 0.7333,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 20,
+      "out_of_scope_false_non_abstentions_evaluable": 20,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.5387,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5251,7 +5768,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5477,
+      "abstain_threshold": 0.54,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5298,7 +5815,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5478,
+      "abstain_threshold": 0.5401,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5345,7 +5862,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5487,
+      "abstain_threshold": 0.5421,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5392,7 +5909,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5488,
+      "abstain_threshold": 0.5422,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5439,7 +5956,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5494,
+      "abstain_threshold": 0.5431,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5486,101 +6003,7 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5495,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.7867,
-      "out_of_scope_abstention_rate_evaluable": 0.7867,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 16,
-      "out_of_scope_false_non_abstentions_evaluable": 16,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5496,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.7867,
-      "out_of_scope_abstention_rate_evaluable": 0.7867,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 16,
-      "out_of_scope_false_non_abstentions_evaluable": 16,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5497,
+      "abstain_threshold": 0.5432,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5627,7 +6050,54 @@
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
-      "abstain_threshold": 0.5498,
+      "abstain_threshold": 0.5443,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.8,
+      "out_of_scope_abstention_rate_evaluable": 0.8,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 15,
+      "out_of_scope_false_non_abstentions_evaluable": 15,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.5444,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,
@@ -5663,6 +6133,100 @@
       "out_of_scope_evaluable_count": 75,
       "out_of_scope_false_non_abstentions": 14,
       "out_of_scope_false_non_abstentions_evaluable": 14,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.5445,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.8133,
+      "out_of_scope_abstention_rate_evaluable": 0.8133,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 14,
+      "out_of_scope_false_non_abstentions_evaluable": 14,
+      "out_of_scope_not_evaluable_count": 0,
+      "top1_accuracy_in_scope": 1.0,
+      "top1_accuracy_in_scope_evaluable": 1.0,
+      "top1_retained_accuracy_in_scope": 1.0,
+      "top1_retained_accuracy_in_scope_evaluable": 1.0,
+      "top3_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope_evaluable": 1.0,
+      "top3_retained_accuracy_in_scope": 1.0,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "abstain_threshold": 0.5446,
+      "evaluable_count": 100,
+      "evaluated_count": 100,
+      "in_scope_abstention_rate": 0.0,
+      "in_scope_count": 25,
+      "in_scope_evaluable_count": 25,
+      "in_scope_not_evaluable_count": 0,
+      "in_scope_retention_rate": 1.0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "label_summary": {
+        "by_confidence": {
+          "high": 3,
+          "low": 4,
+          "medium": 118
+        },
+        "by_fingerprint": {
+          "cobalamin_radical_rearrangement": 2,
+          "flavin_dehydrogenase_reductase": 16,
+          "heme_peroxidase_oxidase": 2,
+          "metal_dependent_hydrolase": 15,
+          "plp_dependent_enzyme": 1,
+          "ser_his_acid_hydrolase": 2
+        },
+        "by_type": {
+          "out_of_scope": 87,
+          "seed_fingerprint": 38
+        },
+        "label_count": 125
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.8267,
+      "out_of_scope_abstention_rate_evaluable": 0.8267,
+      "out_of_scope_count": 75,
+      "out_of_scope_evaluable_count": 75,
+      "out_of_scope_false_non_abstentions": 13,
+      "out_of_scope_false_non_abstentions_evaluable": 13,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -5704,12 +6268,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.8133,
-      "out_of_scope_abstention_rate_evaluable": 0.8133,
+      "out_of_scope_abstention_rate": 0.8267,
+      "out_of_scope_abstention_rate_evaluable": 0.8267,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 14,
-      "out_of_scope_false_non_abstentions_evaluable": 14,
+      "out_of_scope_false_non_abstentions": 13,
+      "out_of_scope_false_non_abstentions_evaluable": 13,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -5751,12 +6315,12 @@
         "label_count": 125
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.8133,
-      "out_of_scope_abstention_rate_evaluable": 0.8133,
+      "out_of_scope_abstention_rate": 0.8267,
+      "out_of_scope_abstention_rate_evaluable": 0.8267,
       "out_of_scope_count": 75,
       "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 14,
-      "out_of_scope_false_non_abstentions_evaluable": 14,
+      "out_of_scope_false_non_abstentions": 13,
+      "out_of_scope_false_non_abstentions_evaluable": 13,
       "out_of_scope_not_evaluable_count": 0,
       "top1_accuracy_in_scope": 1.0,
       "top1_accuracy_in_scope_evaluable": 1.0,
@@ -5769,100 +6333,6 @@
     },
     {
       "abstain_threshold": 0.5506,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.84,
-      "out_of_scope_abstention_rate_evaluable": 0.84,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 12,
-      "out_of_scope_false_non_abstentions_evaluable": 12,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5511,
-      "evaluable_count": 100,
-      "evaluated_count": 100,
-      "in_scope_abstention_rate": 0.0,
-      "in_scope_count": 25,
-      "in_scope_evaluable_count": 25,
-      "in_scope_not_evaluable_count": 0,
-      "in_scope_retention_rate": 1.0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "label_summary": {
-        "by_confidence": {
-          "high": 3,
-          "low": 4,
-          "medium": 118
-        },
-        "by_fingerprint": {
-          "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 16,
-          "heme_peroxidase_oxidase": 2,
-          "metal_dependent_hydrolase": 15,
-          "plp_dependent_enzyme": 1,
-          "ser_his_acid_hydrolase": 2
-        },
-        "by_type": {
-          "out_of_scope": 87,
-          "seed_fingerprint": 38
-        },
-        "label_count": 125
-      },
-      "method": "geometry_retrieval_against_curated_seed_labels",
-      "out_of_scope_abstention_rate": 0.84,
-      "out_of_scope_abstention_rate_evaluable": 0.84,
-      "out_of_scope_count": 75,
-      "out_of_scope_evaluable_count": 75,
-      "out_of_scope_false_non_abstentions": 12,
-      "out_of_scope_false_non_abstentions_evaluable": 12,
-      "out_of_scope_not_evaluable_count": 0,
-      "top1_accuracy_in_scope": 1.0,
-      "top1_accuracy_in_scope_evaluable": 1.0,
-      "top1_retained_accuracy_in_scope": 1.0,
-      "top1_retained_accuracy_in_scope_evaluable": 1.0,
-      "top3_accuracy_in_scope": 1.0,
-      "top3_accuracy_in_scope_evaluable": 1.0,
-      "top3_retained_accuracy_in_scope": 1.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "abstain_threshold": 0.5512,
       "evaluable_count": 100,
       "evaluated_count": 100,
       "in_scope_abstention_rate": 0.0,

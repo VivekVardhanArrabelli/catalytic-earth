@@ -463,6 +463,8 @@ def counterevidence_penalty(
         return 1.0
 
     if fingerprint_id == "heme_peroxidase_oxidase":
+        if cofactor_evidence == "absent":
+            return 0.75
         if "heme" in ligand_families and ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES:
             return 0.78
         return 1.0

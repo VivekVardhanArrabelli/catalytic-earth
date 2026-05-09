@@ -421,11 +421,16 @@ def analyze_geometry_score_margins(
     in_scope_rows = [row for row in rows if row["label_type"] == "seed_fingerprint"]
     out_scope_rows = [row for row in rows if row["label_type"] == "out_of_scope"]
     in_scope_score_rows = [row for row in in_scope_rows if row["evaluable"]]
+    correct_in_scope_score_rows = [row for row in in_scope_score_rows if row["top1_correct"]]
     out_scope_score_rows = [row for row in out_scope_rows if row["evaluable"]]
     cofactor_evidence_counts = Counter(
         row.get("cofactor_evidence_level") or "unknown" for row in rows
     )
     min_in_scope_score = min((row["top1_score"] for row in in_scope_score_rows), default=None)
+    min_correct_in_scope_score = min(
+        (row["top1_score"] for row in correct_in_scope_score_rows),
+        default=None,
+    )
     max_out_scope_score = max((row["top1_score"] for row in out_scope_score_rows), default=None)
     strict_threshold_exists = (
         min_in_scope_score is not None
@@ -465,9 +470,11 @@ def analyze_geometry_score_margins(
             "evaluated_count": len(rows),
             "in_scope_count": len(in_scope_rows),
             "in_scope_evaluable_count": len(in_scope_score_rows),
+            "correct_in_scope_evaluable_count": len(correct_in_scope_score_rows),
             "out_of_scope_count": len(out_scope_rows),
             "out_of_scope_evaluable_count": len(out_scope_score_rows),
             "min_in_scope_top1_score": min_in_scope_score,
+            "min_correct_in_scope_top1_score": min_correct_in_scope_score,
             "max_out_of_scope_top1_score": max_out_scope_score,
             "score_separation_gap": (
                 round(min_in_scope_score - max_out_scope_score, 4)
@@ -551,13 +558,17 @@ def build_hard_negative_controls(
     near_margin: float = 0.01,
 ) -> dict[str, Any]:
     margins = analyze_geometry_score_margins(retrieval, labels)
-    inferred_floor = margins["metadata"]["min_in_scope_top1_score"]
+    inferred_floor = margins["metadata"].get("min_correct_in_scope_top1_score")
+    floor_source = "min_correct_in_scope_top1_score"
+    if inferred_floor is None:
+        inferred_floor = margins["metadata"]["min_in_scope_top1_score"]
+        floor_source = "min_in_scope_top1_score"
     if score_floor is None and inferred_floor is None:
         return {
             "metadata": {
                 "method": "geometry_hard_negative_control_selection",
                 "score_floor": None,
-                "score_floor_source": "min_in_scope_top1_score",
+                "score_floor_source": floor_source,
                 "hard_negative_count": 0,
                 "near_miss_margin": near_margin,
                 "near_miss_count": 0,
@@ -573,6 +584,8 @@ def build_hard_negative_controls(
             },
             "rows": [],
             "near_miss_rows": [],
+            "groups": [],
+            "near_miss_groups": [],
         }
     floor = float(score_floor if score_floor is not None else inferred_floor)
     labels_by_entry = {label.entry_id: label for label in labels}
@@ -620,11 +633,13 @@ def build_hard_negative_controls(
     cofactor_evidence_counts = Counter(
         row.get("cofactor_evidence_level") or "unknown" for row in rows
     )
+    groups = group_hard_negative_controls(rows)
+    near_miss_groups = group_hard_negative_controls(near_miss_rows)
     return {
         "metadata": {
             "method": "geometry_hard_negative_control_selection",
             "score_floor": round(floor, 4),
-            "score_floor_source": "min_in_scope_top1_score" if score_floor is None else "explicit",
+            "score_floor_source": floor_source if score_floor is None else "explicit",
             "hard_negative_count": len(rows),
             "near_miss_margin": near_margin,
             "near_miss_count": len(near_miss_rows),
@@ -643,7 +658,44 @@ def build_hard_negative_controls(
             near_miss_rows,
             key=lambda row: (row["score_gap_to_floor"], row["entry_id"]),
         ),
+        "groups": groups,
+        "near_miss_groups": near_miss_groups,
     }
+
+
+def group_hard_negative_controls(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for row in rows:
+        key = (
+            str(row.get("top1_fingerprint_id") or "unknown"),
+            str(row.get("cofactor_evidence_level") or "unknown"),
+        )
+        grouped.setdefault(key, []).append(row)
+
+    result: list[dict[str, Any]] = []
+    for (fingerprint_id, evidence_level), group_rows in grouped.items():
+        scores = [float(row.get("top1_score", 0.0) or 0.0) for row in group_rows]
+        reasons = Counter(str(row.get("hard_negative_reason") or "unknown") for row in group_rows)
+        result.append(
+            {
+                "top1_fingerprint_id": fingerprint_id,
+                "cofactor_evidence_level": evidence_level,
+                "count": len(group_rows),
+                "min_top1_score": round(min(scores), 4),
+                "mean_top1_score": round(sum(scores) / len(scores), 4),
+                "max_top1_score": round(max(scores), 4),
+                "hard_negative_reason_counts": dict(sorted(reasons.items())),
+                "entry_ids": sorted(str(row.get("entry_id")) for row in group_rows),
+            }
+        )
+    return sorted(
+        result,
+        key=lambda row: (
+            -int(row["count"]),
+            str(row["top1_fingerprint_id"]),
+            str(row["cofactor_evidence_level"]),
+        ),
+    )
 
 
 def _hard_negative_row(

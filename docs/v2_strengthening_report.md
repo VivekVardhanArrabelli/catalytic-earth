@@ -67,10 +67,10 @@ The 125-entry geometry expansion is fully labeled but intentionally harder:
 38 in-scope positives, 87 out-of-scope controls, 124 evaluable active-site
 structures, and 1 labeled out-of-scope structure-mapping issue. Its calibrated
 zero-false threshold is 0.5877, which retains 29/38 in-scope positives
-(`0.7632`) and reports 74 hard negatives by score overlap. That regression is
-useful: it shows the next quality bottleneck is splitting coarse heme/flavin
-redox and generic metal-like controls, not claiming the 100-entry slice is
-solved.
+(`0.7632`) and reports 53 hard negatives by correct-positive score overlap,
+plus 1 near miss. That regression is useful: it shows the next quality
+bottleneck is splitting coarse heme/flavin redox and generic metal-like
+controls, not claiming the 100-entry slice is solved.
 
 ## Performance
 
@@ -86,14 +86,14 @@ and hard-negative selection on existing artifacts.
 
 Latest 5-iteration mean timings:
 
-- load V1 graph: 3.632 ms
-- build V2 benchmark: 0.710 ms
-- run geometry retrieval: 6.050 ms
-- evaluate geometry labels: 0.056 ms
-- sweep abstention thresholds: 2.660 ms
-- analyze geometry score margins: 0.040 ms
-- build hard negative controls: 0.053 ms
-- analyze structure mapping issues: 0.007 ms
+- load V1 graph: 3.916 ms
+- build V2 benchmark: 0.462 ms
+- run geometry retrieval: 33.703 ms
+- evaluate geometry labels: 0.153 ms
+- sweep abstention thresholds: 36.949 ms
+- analyze geometry score margins: 0.213 ms
+- build hard negative controls: 0.367 ms
+- analyze structure mapping issues: 0.013 ms
 
 ## Interpretation
 
@@ -123,9 +123,10 @@ What remains weak:
 
 - the curated label set is still small and provisional despite covering the
   current 125-entry geometry slice
-- the 125-entry slice breaks the clean 100-entry separation with 74 hard
-  negatives and a -0.1404 score gap, so the next work must improve mechanism
-  specificity rather than tune only abstention thresholds
+- the 125-entry slice breaks the clean 100-entry separation with 53 hard
+  negatives against the correct-positive score floor and a -0.1993 broad top1
+  score gap, so the next work must improve mechanism specificity rather than
+  tune only abstention thresholds
 - ligand/cofactor context is only a simple nearby-ligand heuristic
 - substrate-pocket context is currently a heuristic residue-shell summary
 - local performance does not measure full-database scalability

@@ -74,7 +74,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5452,
+      "top1_score": 0.4089,
       "top3_correct": false
     },
     {
@@ -88,8 +88,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5286,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.4283,
       "top3_correct": false
     },
     {
@@ -179,7 +179,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.4996,
+      "top1_score": 0.3747,
       "top3_correct": false
     },
     {
@@ -209,7 +209,7 @@
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5178,
+      "top1_score": 0.3883,
       "top3_correct": false
     },
     {
@@ -374,7 +374,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.4664,
+      "top1_score": 0.3498,
       "top3_correct": false
     },
     {
@@ -404,7 +404,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5306,
+      "top1_score": 0.3979,
       "top3_correct": false
     },
     {
@@ -448,8 +448,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5225,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.4251,
       "top3_correct": false
     },
     {
@@ -509,7 +509,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.544,
+      "top1_score": 0.408,
       "top3_correct": false
     },
     {
@@ -583,8 +583,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5511,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5421,
       "top3_correct": false
     },
     {
@@ -658,8 +658,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5362,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.4688,
       "top3_correct": false
     },
     {
@@ -673,8 +673,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.4278,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3618,
       "top3_correct": false
     },
     {
@@ -688,8 +688,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.543,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5334,
       "top3_correct": false
     },
     {
@@ -703,8 +703,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5487,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.4518,
       "top3_correct": false
     },
     {
@@ -719,7 +719,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5494,
+      "top1_score": 0.4121,
       "top3_correct": false
     },
     {
@@ -763,8 +763,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5262,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.4422,
       "top3_correct": false
     },
     {
@@ -793,8 +793,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.3516,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3255,
       "top3_correct": false
     },
     {
@@ -808,8 +808,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5259,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.4334,
       "top3_correct": false
     },
     {
@@ -823,8 +823,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5497,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5282,
       "top3_correct": false
     },
     {
@@ -838,8 +838,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5496,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5267,
       "top3_correct": false
     },
     {
@@ -853,8 +853,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5318,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5314,
       "top3_correct": false
     },
     {
@@ -943,8 +943,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5298,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5201,
       "top3_correct": false
     },
     {
@@ -1033,8 +1033,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5376,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5155,
       "top3_correct": false
     },
     {
@@ -1048,8 +1048,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.342,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3087,
       "top3_correct": false
     },
     {
@@ -1063,8 +1063,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5469,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5271,
       "top3_correct": false
     },
     {
@@ -1078,8 +1078,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.409,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3494,
       "top3_correct": false
     },
     {
@@ -1094,7 +1094,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5343,
+      "top1_score": 0.4007,
       "top3_correct": false
     },
     {
@@ -1183,8 +1183,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5471,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.54,
       "top3_correct": false
     },
     {
@@ -1199,7 +1199,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5235,
+      "top1_score": 0.3926,
       "top3_correct": false
     },
     {
@@ -1213,8 +1213,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.4485,
       "top3_correct": false
     },
     {
@@ -1228,8 +1228,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5393,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4671,
       "top3_correct": false
     },
     {
@@ -1258,8 +1258,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5216,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5129,
       "top3_correct": false
     },
     {
@@ -1289,7 +1289,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5401,
+      "top1_score": 0.4051,
       "top3_correct": false
     },
     {
@@ -1304,7 +1304,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.4002,
+      "top1_score": 0.3001,
       "top3_correct": false
     },
     {
@@ -1394,7 +1394,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5272,
+      "top1_score": 0.3954,
       "top3_correct": false
     },
     {
@@ -1424,7 +1424,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5477,
+      "top1_score": 0.4108,
       "top3_correct": false
     },
     {
@@ -1453,8 +1453,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.459,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3934,
       "top3_correct": false
     },
     {
@@ -1468,8 +1468,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5434,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.5285,
       "top3_correct": false
     },
     {
@@ -1499,7 +1499,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5388,
+      "top1_score": 0.4041,
       "top3_correct": false
     },
     {
@@ -1544,7 +1544,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.547,
+      "top1_score": 0.4103,
       "top3_correct": false
     },
     {
@@ -1694,7 +1694,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5375,
+      "top1_score": 0.4031,
       "top3_correct": false
     },
     {
@@ -1709,7 +1709,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5214,
+      "top1_score": 0.3911,
       "top3_correct": false
     },
     {
@@ -1813,8 +1813,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.544,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.5265,
       "top3_correct": false
     },
     {
@@ -1828,8 +1828,8 @@
       "status": "ok",
       "target_fingerprint_id": null,
       "top1_correct": false,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5256,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.506,
       "top3_correct": false
     },
     {
@@ -1874,7 +1874,7 @@
       "target_fingerprint_id": null,
       "top1_correct": false,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.5358,
+      "top1_score": 0.4018,
       "top3_correct": false
     },
     {

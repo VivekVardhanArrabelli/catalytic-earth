@@ -71,10 +71,12 @@ out-of-scope controls while retaining all 25 in-scope positives.
 The new 125-entry slice is now fully labeled, and it deliberately exposes the
 next failure mode: 125 entries, 124 evaluable active-site structures, 38
 in-scope positives, 87 out-of-scope controls, 0 ready label-expansion
-candidates, 1 labeled structure-mapping issue, and 74 hard negatives by
-positive-score overlap. The zero-false threshold for that slice rises to
-`0.5877` and retains only 0.7632 of in-scope positives. The next bottleneck is
-hard-negative separation and seed-family diversity, not more dashboard work.
+candidates, 1 labeled structure-mapping issue, and 53 hard negatives by
+correct-positive score overlap. The zero-false threshold for that slice rises
+to `0.5877` and retains only 0.7632 of in-scope positives. The hard-negative
+artifact now groups controls by top fingerprint and cofactor evidence; the next
+bottleneck is hard-negative separation and seed-family diversity, not more
+dashboard work.
 
 ## Quickstart
 
@@ -153,7 +155,7 @@ python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geom
 python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_100.json --out artifacts/v3_hard_negative_controls_100.json
 python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_100.json --retrieval artifacts/v3_geometry_retrieval_100.json --out artifacts/v3_label_expansion_candidates_100.json
 python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_100.json --out artifacts/v3_structure_mapping_issues_100.json
-python -m catalytic_earth.cli build-v1-graph --max-mcsa 125 --page-size 125 --out artifacts/v1_graph_125.json
+python -m catalytic_earth.cli build-v1-graph --max-mcsa 125 --page-size 100 --out artifacts/v1_graph_125.json
 python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_125.json --out artifacts/v1_graph_summary_125.json
 python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_125.json --out artifacts/v2_benchmark_125.json
 python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_125.json --max-entries 125 --out artifacts/v3_geometry_features_125.json

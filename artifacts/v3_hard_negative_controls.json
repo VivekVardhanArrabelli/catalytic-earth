@@ -1,17 +1,19 @@
 {
+  "groups": [],
   "metadata": {
     "cofactor_evidence_counts": {},
-    "evaluable_out_of_scope_count": 15,
-    "evaluated_out_of_scope_count": 15,
+    "evaluable_out_of_scope_count": 13,
+    "evaluated_out_of_scope_count": 13,
     "hard_negative_count": 0,
     "method": "geometry_hard_negative_control_selection",
     "near_miss_count": 0,
     "near_miss_margin": 0.01,
     "score_floor": 0.5777,
-    "score_floor_source": "min_in_scope_top1_score",
+    "score_floor_source": "min_correct_in_scope_top1_score",
     "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": true,
     "top1_fingerprint_counts": {}
   },
+  "near_miss_groups": [],
   "near_miss_rows": [],
   "rows": []
 }

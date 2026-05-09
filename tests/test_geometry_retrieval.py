@@ -485,6 +485,21 @@ class GeometryRetrievalTests(unittest.TestCase):
             1.0,
         )
 
+    def test_heme_fingerprint_penalizes_absent_heme_context(self) -> None:
+        self.assertLess(
+            counterevidence_penalty(
+                fingerprint={"id": "heme_peroxidase_oxidase"},
+                residues=[
+                    {"code": "HIS", "roles": ["hydrogen bond donor"]},
+                    {"code": "TYR", "roles": ["proton relay"]},
+                ],
+                cofactor_evidence="absent",
+                ligand_context={"ligand_codes": [], "cofactor_families": []},
+                substrate_pocket_score_value=0.4,
+            ),
+            1.0,
+        )
+
     def test_flavin_monooxygenase_penalizes_missing_reductant_context(self) -> None:
         self.assertLess(
             counterevidence_penalty(
