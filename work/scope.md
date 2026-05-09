@@ -15,7 +15,8 @@ Initial estimates must be revised against observed progress.
 
 Track:
 
-- wall-clock minutes spent
+- measured wall-clock minutes spent
+- estimated/planned minutes only when a real measurement is unavailable
 - concrete artifacts produced
 - source integrations completed
 - graph size and evidence quality

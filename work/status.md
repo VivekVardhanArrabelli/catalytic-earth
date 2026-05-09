@@ -5,15 +5,17 @@ Generated from `work/progress_log.jsonl`.
 ## Time
 
 - Entries: 10
-- Total logged time: 390 minutes (6.50 hours)
+- Measured elapsed time: 0.0 minutes (0.00 hours)
+- Estimated/planned time: 390 minutes (6.50 hours)
+- Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- ops: 45 minutes (0.75 hours)
-- post-v2: 165 minutes (2.75 hours)
-- v0: 55 minutes (0.92 hours)
-- v1: 55 minutes (0.92 hours)
-- v2: 70 minutes (1.17 hours)
+- ops: 45 estimated minutes (0.75 hours)
+- post-v2: 165 estimated minutes (2.75 hours)
+- v0: 55 estimated minutes (0.92 hours)
+- v1: 55 estimated minutes (0.92 hours)
+- v2: 70 estimated minutes (1.17 hours)
 
 ## Progress Counters
 
@@ -25,58 +27,74 @@ Generated from `work/progress_log.jsonl`.
 ### 2026-05-09T13:54:30.954964+00:00 - v1
 
 - Task: Build persistent catalytic graph with M-CSA pages, Rhea EC mapping, UniProt links, and structure cross-references
-- Minutes: 55
+- Time mode: estimate
+- Estimated/planned minutes: 55
 - Artifacts: docs/graph_schema.md, src/catalytic_earth/graph.py, artifacts/v1_graph.json, artifacts/v1_graph_summary.json
 - Evidence: 50 M-CSA entries, 48 EC nodes, 53 Rhea reactions, 51 proteins, 918 structures, 1513 graph nodes, 1475 graph edges, 15 tests passed
+- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T13:54:31.022704+00:00 - v2
 
 - Task: Build first V2 benchmark, baseline retrieval, inconsistency detector, dark hydrolase mining campaign, dossiers, and report
-- Minutes: 70
+- Time mode: estimate
+- Estimated/planned minutes: 70
 - Artifacts: src/catalytic_earth/v2.py, artifacts/v2_benchmark.json, artifacts/v2_baseline.json, artifacts/v2_inconsistencies.json, artifacts/v2_dark_hydrolase_candidates.json, artifacts/v2_dossiers, docs/v2_report.md
 - Evidence: 50 benchmark records, 6 seed fingerprints, 10 inconsistency issues, 100 dark hydrolase candidates, 10 candidate dossiers, 18 tests passed
+- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:01:49.012481+00:00 - post-v2
 
 - Task: Add geometry-aware active-site feature extraction from PDB mmCIF files
-- Minutes: 45
+- Time mode: estimate
+- Estimated/planned minutes: 45
 - Artifacts: src/catalytic_earth/structure.py, docs/geometry_features.md, artifacts/v3_geometry_features.json, tests/test_structure.py
 - Evidence: 20 graph entries processed, 13 entries with pairwise active-site geometry, 21 tests passed
+- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:03:45.516905+00:00 - post-v2
 
 - Task: Add geometry-aware seed fingerprint retrieval baseline
-- Minutes: 30
+- Time mode: estimate
+- Estimated/planned minutes: 30
 - Artifacts: src/catalytic_earth/geometry_retrieval.py, artifacts/v3_geometry_retrieval.json, tests/test_geometry_retrieval.py
 - Evidence: 20 geometry entries ranked, 6 seed fingerprints scored, 25 tests passed
+- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:10:40.717863+00:00 - post-v2
 
 - Task: Add curated seed mechanism labels and geometry retrieval evaluation
-- Minutes: 35
+- Time mode: estimate
+- Estimated/planned minutes: 35
 - Artifacts: data/registries/curated_mechanism_labels.json, src/catalytic_earth/labels.py, artifacts/v3_label_summary.json, artifacts/v3_geometry_label_eval.json, tests/test_labels.py
 - Evidence: 20 curated labels, 4 in-scope seed-fingerprint labels, 16 out-of-scope labels, 28 tests passed, top3 in-scope accuracy 1.0, top1 in-scope accuracy 0.0
+- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:13:21.398170+00:00 - ops
 
 - Task: Update automation cadence to 55-minute hourly work blocks with mandatory push
-- Minutes: 10
+- Time mode: estimate
+- Estimated/planned minutes: 10
 - Artifacts: work/README.md, work/handoff.md, work/scope.md
 - Evidence: automation updated to hourly RRULE, mandatory push rule recorded
+- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:18:10.779278+00:00 - ops
 
 - Task: Require next-agent handoff update after every hourly block
-- Minutes: 10
+- Time mode: estimate
+- Estimated/planned minutes: 10
 - Artifacts: work/handoff.md, work/README.md, work/scope.md
 - Evidence: automation prompt updated, next-agent handoff section added, operating rule updated
+- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:25:33.013901+00:00 - post-v2
 
 - Task: Strengthen V2 retrieval calibration and performance checks
-- Minutes: 55
+- Time mode: estimate
+- Estimated/planned minutes: 55
 - Artifacts: src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/labels.py, src/catalytic_earth/performance.py, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, docs/v2_strengthening_report.md
 - Evidence: 30 tests passed, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, out-of-scope abstention 0.75, selected abstention threshold 0.8, 5 local performance benchmarks
+- Notes: Estimated/planned time; not measured clock time.
 
 ## Expectation Updates
 

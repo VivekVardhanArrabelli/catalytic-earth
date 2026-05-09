@@ -262,6 +262,10 @@ def cmd_log_work(args: argparse.Namespace) -> int:
         minutes=args.minutes,
         artifacts=_split_csv(args.artifacts),
         evidence=_split_csv(args.evidence),
+        time_mode=args.time_mode,
+        started_at=args.started_at,
+        ended_at=args.ended_at,
+        measured_minutes=args.measured_minutes,
         scope_adjustment=args.scope_adjustment,
         expectation_update=args.expectation_update,
         commit=args.commit,
@@ -439,6 +443,14 @@ def build_parser() -> argparse.ArgumentParser:
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")
     log_work.add_argument("--task", required=True)
     log_work.add_argument("--minutes", type=int, required=True)
+    log_work.add_argument(
+        "--time-mode",
+        choices=["estimate", "measured", "corrected"],
+        default="estimate",
+    )
+    log_work.add_argument("--started-at", default=None, help="ISO timestamp for measured work start")
+    log_work.add_argument("--ended-at", default=None, help="ISO timestamp for measured work end")
+    log_work.add_argument("--measured-minutes", type=float, default=None)
     log_work.add_argument("--artifacts", default="", help="comma-separated artifact references")
     log_work.add_argument("--evidence", default="", help="comma-separated evidence references")
     log_work.add_argument("--scope-adjustment", default=None)

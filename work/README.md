@@ -19,7 +19,8 @@ the hour is break/overhead.
 
 After each hourly work block:
 
-1. Log elapsed time and evidence.
+1. Log measured elapsed time and evidence. Use `--time-mode measured` with
+   `--started-at` and `--ended-at`, or `--measured-minutes`, whenever possible.
 2. Update `status.md`.
 3. Update `handoff.md` with exact next-agent instructions.
 4. Run relevant checks.

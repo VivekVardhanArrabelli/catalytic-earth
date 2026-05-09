@@ -60,6 +60,18 @@ PYTHONPATH=src python -m catalytic_earth.cli log-work --help
 PYTHONPATH=src python -m catalytic_earth.cli progress-report --out work/status.md
 ```
 
+Use measured time going forward:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli log-work \
+  --stage post-v2 \
+  --task "..." \
+  --minutes 0 \
+  --time-mode measured \
+  --started-at "2026-05-09T00:00:00+00:00" \
+  --ended-at "2026-05-09T00:55:00+00:00"
+```
+
 ## Push Rule
 
 Automation runs must commit and push every hour, even if progress is

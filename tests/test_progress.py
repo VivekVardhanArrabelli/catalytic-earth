@@ -34,12 +34,27 @@ class ProgressTests(unittest.TestCase):
             self.assertEqual(entries[0].minutes, 12)
 
             report = build_progress_report(entries)
-            self.assertIn("Total logged time: 12 minutes", report)
+            self.assertIn("Estimated/planned time: 12 minutes", report)
             self.assertIn("timeline adjusted", report)
 
     def test_negative_minutes_rejected(self) -> None:
         with self.assertRaises(ValueError):
             WorkEntry.create(stage="v0", task="bad", minutes=-1, artifacts=[], evidence=[])
+
+    def test_measured_time_from_start_end(self) -> None:
+        entry = WorkEntry.create(
+            stage="ops",
+            task="measured",
+            minutes=0,
+            artifacts=[],
+            evidence=[],
+            time_mode="measured",
+            started_at="2026-05-09T10:00:00+00:00",
+            ended_at="2026-05-09T10:34:00+00:00",
+        )
+        self.assertEqual(entry.measured_minutes, 34.0)
+        report = build_progress_report([entry])
+        self.assertIn("Measured elapsed time: 34.0 minutes", report)
 
 
 if __name__ == "__main__":
