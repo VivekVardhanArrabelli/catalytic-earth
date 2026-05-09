@@ -117,6 +117,10 @@ surface.
 
 What changed in this run:
 
+- Automation and scope rules were tightened: if the assigned handoff task
+  finishes early, continue with a written remaining-time plan and implement
+  bounded high-value work until the 50-minute wrap-up boundary; before handoff,
+  verify `origin/main` sync, clean git status, and no pending merge.
 - Added substrate-pocket descriptors in `src/catalytic_earth/structure.py`:
   - finds nearby non-catalytic protein residues in an 8A shell around resolved
     catalytic residues

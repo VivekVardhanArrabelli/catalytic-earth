@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 13
-- Measured elapsed time: 11.1 minutes (0.19 hours)
+- Entries: 14
+- Measured elapsed time: 12.2 minutes (0.20 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- ops: 1.6 measured minutes (0.03 hours)
+- ops: 2.6 measured minutes (0.04 hours)
 - post-v2: 9.6 measured minutes (0.16 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
@@ -21,19 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 75
-- Evidence references logged: 67
+- Artifact references logged: 78
+- Evidence references logged: 71
 
 ## Recent Entries
-
-### 2026-05-09T14:03:45.516905+00:00 - post-v2
-
-- Task: Add geometry-aware seed fingerprint retrieval baseline
-- Time mode: estimate
-- Estimated/planned minutes: 30
-- Artifacts: src/catalytic_earth/geometry_retrieval.py, artifacts/v3_geometry_retrieval.json, tests/test_geometry_retrieval.py
-- Evidence: 20 geometry entries ranked, 6 seed fingerprints scored, 25 tests passed
-- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:10:40.717863+00:00 - post-v2
 
@@ -101,6 +92,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/geometry_retrieval.py, tests/test_structure.py, tests/test_geometry_retrieval.py, artifacts/v3_geometry_features.json, artifacts/v3_geometry_retrieval.json, artifacts/v3_geometry_label_eval.json, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, README.md, docs/geometry_features.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
 - Evidence: 35 tests passed, 15/20 entries with substrate-pocket context, 11/20 entries with proximal ligands, 5/20 entries with inferred cofactors, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, selected abstention threshold 0.75, out-of-scope abstention 1.0 at selected threshold
 
+### 2026-05-09T15:42:05.002091+00:00 - ops
+
+- Task: Tighten automation early-completion and git sync rules
+- Time mode: measured
+- Measured minutes: 1.033
+- Started: 2026-05-09T15:40:56Z
+- Ended: 2026-05-09T15:41:58Z
+- Artifacts: automation:catalytic-earth-work-loop, work/handoff.md, work/scope.md
+- Evidence: automation requires remaining-time plan after early task completion, automation requires final git sync verification, 35 tests passed, validate passed
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -116,6 +117,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T15:20:27.676203+00:00: Ligand/cofactor context integration from mmCIF was quick; next quality bottleneck shifts to substrate-pocket descriptors and larger curated labels.
 - 2026-05-09T15:22:39.241656+00:00: README now states that scaffold work moved faster than first estimated; impact depends on scaling labels, harder benchmarks, expert review, and validation.
 - 2026-05-09T15:30:17.008476+00:00: Substrate-pocket descriptors integrated quickly; next bottleneck is targeted failure analysis and label expansion rather than more feature plumbing.
+- 2026-05-09T15:42:05.002091+00:00: Future runs should consume the full 55-minute wall-clock block by rolling into the next highest-value bounded task when assigned work finishes early.
 
 ## Scope Adjustments
 
@@ -131,3 +133,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T15:20:27.676203+00:00: Post-V2 quality scope now includes ligand-supported cofactor evidence in retrieval; substrate-pocket descriptors become the next bounded upgrade.
 - 2026-05-09T15:22:39.241656+00:00: Next automation should continue from substrate-pocket descriptors and harder negative controls, not from v0-v2 scaffold planning.
 - 2026-05-09T15:30:17.008476+00:00: Post-V2 retrieval now includes pocket-aware scoring; next bounded iteration should tune abstention and false-positive control using failure categories.
+- 2026-05-09T15:42:05.002091+00:00: Automation handoff now requires origin/main sync verification before the next agent starts.

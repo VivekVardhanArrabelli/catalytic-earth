@@ -28,13 +28,20 @@ Automation cadence:
 
 - run once per hour
 - record the real wall-clock start timestamp
+- sync from `origin/main` with `git fetch origin` and
+  `git pull --ff-only origin main` before editing
 - work for 55 focused minutes measured from that timestamp
+- if the assigned handoff task is completed early, write a short remaining-time
+  plan and implement the highest-value bounded next item instead of handing off
+  early
 - begin wrap-up at 50 elapsed wall-clock minutes
 - reserve 5 minutes for break/overhead
 - log the hour
 - update `work/handoff.md` for the next automation run
 - run checks
 - commit and push every run
+- verify before handoff that no merge is in progress, local `HEAD` equals
+  `origin/main`, and `git status -sb` is clean
 
 If a milestone is completed much faster than expected, increase scope or reduce
 timeline. If a milestone stalls because the data are messier than expected,
