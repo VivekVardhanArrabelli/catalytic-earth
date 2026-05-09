@@ -8,6 +8,7 @@ from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph
 from .models import RegistryError
+from .progress import WorkEntry, append_work_entry, write_progress_report
 from .sources import build_source_ledger, load_sources
 
 
@@ -68,6 +69,35 @@ def cmd_build_seed_graph(args: argparse.Namespace) -> int:
     return 0
 
 
+def _split_csv(value: str | None) -> list[str]:
+    if not value:
+        return []
+    return [item.strip() for item in value.split(",") if item.strip()]
+
+
+def cmd_log_work(args: argparse.Namespace) -> int:
+    entry = WorkEntry.create(
+        stage=args.stage,
+        task=args.task,
+        minutes=args.minutes,
+        artifacts=_split_csv(args.artifacts),
+        evidence=_split_csv(args.evidence),
+        scope_adjustment=args.scope_adjustment,
+        expectation_update=args.expectation_update,
+        commit=args.commit,
+        notes=args.notes,
+    )
+    append_work_entry(entry, Path(args.log))
+    print(f"Logged {entry.minutes} minutes for {entry.stage}: {entry.task}")
+    return 0
+
+
+def cmd_progress_report(args: argparse.Namespace) -> int:
+    write_progress_report(Path(args.log), Path(args.out))
+    print(f"Wrote progress report to {args.out}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="catalytic-earth",
@@ -103,6 +133,24 @@ def build_parser() -> argparse.ArgumentParser:
     graph.add_argument("--mcsa-ids", default="1,2,3")
     graph.add_argument("--out", default="artifacts/seed_graph.json")
     graph.set_defaults(func=cmd_build_seed_graph)
+
+    log_work = subparsers.add_parser("log-work", help="append a timed work entry")
+    log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")
+    log_work.add_argument("--task", required=True)
+    log_work.add_argument("--minutes", type=int, required=True)
+    log_work.add_argument("--artifacts", default="", help="comma-separated artifact references")
+    log_work.add_argument("--evidence", default="", help="comma-separated evidence references")
+    log_work.add_argument("--scope-adjustment", default=None)
+    log_work.add_argument("--expectation-update", default=None)
+    log_work.add_argument("--commit", default=None)
+    log_work.add_argument("--notes", default=None)
+    log_work.add_argument("--log", default="work/progress_log.jsonl")
+    log_work.set_defaults(func=cmd_log_work)
+
+    progress = subparsers.add_parser("progress-report", help="generate work/status.md")
+    progress.add_argument("--log", default="work/progress_log.jsonl")
+    progress.add_argument("--out", default="work/status.md")
+    progress.set_defaults(func=cmd_progress_report)
 
     return parser
 

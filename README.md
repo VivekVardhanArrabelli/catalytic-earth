@@ -51,6 +51,8 @@ python -m catalytic_earth.cli fingerprint-demo --out artifacts/mechanism_demo.js
 python -m catalytic_earth.cli fetch-rhea-sample --limit 10 --out artifacts/rhea_sample.json
 python -m catalytic_earth.cli fetch-mcsa-sample --ids 1,2,3 --out artifacts/mcsa_sample.json
 python -m catalytic_earth.cli build-seed-graph --mcsa-ids 1,2,3 --out artifacts/seed_graph.json
+python -m catalytic_earth.cli log-work --stage v0 --task "example work entry" --minutes 1
+python -m catalytic_earth.cli progress-report --out work/status.md
 python -m unittest discover -s tests
 ```
 
@@ -67,6 +69,7 @@ docs/                   Research protocol and design notes
 src/catalytic_earth/    Validation and artifact-building code
 tests/                  Unit tests for the v0 scaffold
 artifacts/              Generated local outputs
+work/                   Time ledger, scope calibration, and handoff state
 ```
 
 ## First-Year Research Shape
