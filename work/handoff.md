@@ -14,9 +14,9 @@ is `artifacts/v3_geometry_features.json`.
 
 Curated seed labels now live in
 `data/registries/curated_mechanism_labels.json`. The latest evaluation artifact
-is `artifacts/v3_geometry_label_eval.json`; it shows top3 retrieval can recover
-the small in-scope label set, while top1 ranking and out-of-scope abstention are
-still weak.
+is `artifacts/v3_geometry_label_eval.json`; the current 20-entry slice keeps
+top1/top3 in-scope accuracy at 1.0, and abstention remains calibration-sensitive
+because labels are still small and provisional.
 
 ## Repository
 
@@ -103,9 +103,27 @@ surface.
 
 ## Next Agent Start Here
 
-Latest pushed state before this handoff rule: `1be523e`; later work added
-geometry features, geometry retrieval, and curated labels. Run `git log -1` for
-the exact latest commit.
+What changed in this run:
+
+- Added mmCIF ligand/cofactor context extraction in
+  `src/catalytic_earth/structure.py`:
+  - parses nearby `HETATM` ligands around resolved catalytic residues
+  - records `ligand_context` per geometry entry
+  - infers cofactor families (heme, flavin, PLP, SAM, Fe-S, metal ions)
+  - adds geometry metadata counters for proximal ligands and inferred cofactors
+- Updated retrieval scoring in `src/catalytic_earth/geometry_retrieval.py` to
+  use ligand-supported cofactor evidence and penalize unsupported cofactor-heavy
+  fingerprints.
+- Added tests in `tests/test_structure.py` and
+  `tests/test_geometry_retrieval.py` for ligand parsing and cofactor-aware
+  ranking behavior.
+- Regenerated artifacts:
+  - `artifacts/v3_geometry_features.json`
+  - `artifacts/v3_geometry_retrieval.json`
+  - `artifacts/v3_geometry_label_eval.json`
+  - `artifacts/v3_abstention_calibration.json`
+  - `artifacts/perf_report.json`
+- Updated docs: `docs/geometry_features.md`, `docs/v2_strengthening_report.md`.
 
 Start commands:
 
@@ -113,6 +131,7 @@ Start commands:
 git status -sb
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
+PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features.json --out artifacts/v3_geometry_retrieval.json
 ```
 
 Current state:
@@ -120,20 +139,29 @@ Current state:
 - V2 scaffold is complete.
 - Geometry-aware active-site retrieval exists.
 - Curated seed labels exist for the 20-entry geometry slice.
-- Strengthened geometry scoring now recovers the small in-scope label set at
-  top1, but there are only 4 in-scope positives, so this is not robust evidence.
-- Abstention calibration exists at `artifacts/v3_abstention_calibration.json`.
+- Ligand/cofactor context is now parsed from proximal mmCIF non-polymer atoms
+  for the geometry slice (11/20 entries with proximal ligands; 5/20 with mapped
+  cofactor families).
+- Current label evaluation at threshold 0.7:
+  - top1 in-scope accuracy: 1.0
+  - top3 in-scope accuracy: 1.0
+  - out-of-scope abstention: 0.75
+- Current selected abstention threshold is 0.8 with out-of-scope abstention 1.0
+  on this small provisional set.
 - Local performance report exists at `artifacts/perf_report.json`.
 
 Next concrete task:
 
-Improve out-of-scope handling and mechanism coverage. A good next step is to add
-ligand/cofactor context from PDB mmCIF non-polymer records, then use that to
-penalize heme/flavin/PLP/radical-SAM fingerprints when the required cofactor is
-not structurally or textually supported.
+Add substrate-pocket descriptors tied to the same resolved active-site geometry.
+Concrete path:
+1) collect nearby protein residues within a distance shell around catalytic
+   residues, 2) summarize pocket polarity/charge/size proxies, 3) feed those
+   descriptors into retrieval scoring and abstention calibration.
 
 Known blockers:
 
 - Current curated labels are provisional and small.
 - Geometry retrieval still uses simple heuristics, not learned geometry.
-- Ligand/cofactor context and substrate-pocket descriptors are not implemented.
+- Ligand/cofactor evidence is currently nearest-ligand heuristic only; it does
+  not model occupancy, alternate conformers, or biological assembly context.
+- Substrate-pocket descriptors are not implemented yet.

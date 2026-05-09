@@ -2,9 +2,9 @@
   "benchmarks": [
     {
       "iterations": 5,
-      "max_ms": 4.562,
-      "mean_ms": 3.63,
-      "min_ms": 3.283,
+      "max_ms": 3.954,
+      "mean_ms": 3.679,
+      "min_ms": 3.3,
       "name": "load_v1_graph",
       "result_summary": {
         "edge_count": 1475,
@@ -14,9 +14,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.785,
-      "mean_ms": 0.558,
-      "min_ms": 0.473,
+      "max_ms": 0.849,
+      "mean_ms": 0.644,
+      "min_ms": 0.531,
       "name": "build_v2_benchmark",
       "result_summary": {
         "record_count": 50
@@ -24,9 +24,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 2.424,
-      "mean_ms": 2.205,
-      "min_ms": 2.126,
+      "max_ms": 3.839,
+      "mean_ms": 2.891,
+      "min_ms": 2.494,
       "name": "run_geometry_retrieval",
       "result_summary": {
         "entry_count": 20,
@@ -35,9 +35,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.045,
+      "max_ms": 0.042,
       "mean_ms": 0.024,
-      "min_ms": 0.017,
+      "min_ms": 0.018,
       "name": "evaluate_geometry_labels",
       "result_summary": {
         "evaluated_count": 20,
@@ -50,9 +50,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.382,
-      "mean_ms": 0.363,
-      "min_ms": 0.353,
+      "max_ms": 0.386,
+      "mean_ms": 0.38,
+      "min_ms": 0.375,
       "name": "sweep_abstention_thresholds",
       "result_summary": {
         "selected_threshold": 0.8,
@@ -62,11 +62,11 @@
   ],
   "metadata": {
     "inputs": {
-      "geometry_bytes": 98284,
+      "geometry_bytes": 104746,
       "geometry_path": "artifacts/v3_geometry_features.json",
       "graph_bytes": 1102498,
       "graph_path": "artifacts/v1_graph.json",
-      "retrieval_bytes": 85521,
+      "retrieval_bytes": 85522,
       "retrieval_path": "artifacts/v3_geometry_retrieval.json"
     },
     "iterations": 5,

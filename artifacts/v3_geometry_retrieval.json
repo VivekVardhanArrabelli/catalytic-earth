@@ -3,7 +3,7 @@
     "entry_count": 20,
     "fingerprint_count": 6,
     "method": "geometry_aware_seed_fingerprint_retrieval",
-    "scoring": "residue signature match plus catalytic-cluster compactness",
+    "scoring": "residue and role overlap plus ligand-supported cofactor context and compactness",
     "validation_boundary": "retrieval evidence only; not mechanism validation"
   },
   "results": [
@@ -127,7 +127,7 @@
           "score": 0.4405
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 0.6713,
           "distance_summary": {
             "count": 15,
@@ -163,7 +163,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.4171
+          "score": 0.3871
         },
         {
           "cofactor_context_score": 0.0,
@@ -302,7 +302,7 @@
           "score": 0.463
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 0.8966,
           "distance_summary": {
             "count": 10,
@@ -335,7 +335,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.4397
+          "score": 0.4097
         },
         {
           "cofactor_context_score": 0.0,
@@ -709,49 +709,6 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.8,
-          "compactness_score": 0.8861,
-          "distance_summary": {
-            "count": 21,
-            "max": 15.457,
-            "median": 9.822,
-            "min": 3.822
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "LYS"
-              ],
-              "required_residue": "Lys",
-              "required_role": "plp_anchor",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "Asp/Glu/His/Tyr",
-              "required_role": "acid_base",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "GLY",
-                "SER"
-              ],
-              "required_residue": "Gly/Ser/Thr-rich motif",
-              "required_role": "phosphate_binder",
-              "role_hint_match": false
-            }
-          ],
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.0,
-          "score": 0.6686
-        },
-        {
           "cofactor_context_score": 1.0,
           "compactness_score": 0.8861,
           "distance_summary": {
@@ -825,6 +782,49 @@
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
           "score": 0.6519
+        },
+        {
+          "cofactor_context_score": 0.3,
+          "compactness_score": 0.8861,
+          "distance_summary": {
+            "count": 21,
+            "max": 15.457,
+            "median": 9.822,
+            "min": 3.822
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "GLY",
+                "SER"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "residue_match_fraction": 1.0,
+          "role_match_fraction": 0.0,
+          "score": 0.5686
         },
         {
           "cofactor_context_score": 0.0,
@@ -1291,7 +1291,7 @@
           "score": 0.442
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 0.6871,
           "distance_summary": {
             "count": 55,
@@ -1327,7 +1327,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.4187
+          "score": 0.3887
         },
         {
           "cofactor_context_score": 0.0,
@@ -1432,7 +1432,7 @@
           "score": 0.4733
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 1.0,
           "distance_summary": {
             "count": 10,
@@ -1469,7 +1469,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.45
+          "score": 0.42
         },
         {
           "cofactor_context_score": 0.0,
@@ -1754,7 +1754,7 @@
           "score": 0.4579
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 0.8458,
           "distance_summary": {
             "count": 21,
@@ -1790,7 +1790,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.4346
+          "score": 0.4046
         },
         {
           "cofactor_context_score": 0.0,
@@ -1821,7 +1821,7 @@
           "score": 0.3179
         },
         {
-          "cofactor_context_score": 0.0,
+          "cofactor_context_score": 0.6667,
           "compactness_score": 0.8458,
           "distance_summary": {
             "count": 21,
@@ -1834,7 +1834,7 @@
           "matched_signature_roles": [],
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.0846
+          "score": 0.2179
         }
       ]
     },
@@ -2066,7 +2066,7 @@
           "score": 0.4717
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 0.4832,
           "distance_summary": {
             "count": 10,
@@ -2096,7 +2096,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.3983
+          "score": 0.3683
         },
         {
           "cofactor_context_score": 0.0,
@@ -2170,7 +2170,7 @@
           "score": 0.3283
         },
         {
-          "cofactor_context_score": 0.0,
+          "cofactor_context_score": 0.5,
           "compactness_score": 0.4832,
           "distance_summary": {
             "count": 10,
@@ -2178,12 +2178,12 @@
             "median": 16.268,
             "min": 8.534
           },
-          "fingerprint_id": "flavin_monooxygenase",
-          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
           "matched_signature_roles": [],
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.0483
+          "score": 0.1483
         }
       ]
     },
@@ -2301,7 +2301,7 @@
           "score": 0.4647
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 0.914,
           "distance_summary": {
             "count": 15,
@@ -2333,7 +2333,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.4414
+          "score": 0.4114
         },
         {
           "cofactor_context_score": 0.0,
@@ -2359,39 +2359,6 @@
       "resolved_residue_count": 5,
       "status": "ok",
       "top_fingerprints": [
-        {
-          "cofactor_context_score": 0.8,
-          "compactness_score": 0.9864,
-          "distance_summary": {
-            "count": 10,
-            "max": 14.527,
-            "median": 8.218,
-            "min": 3.043
-          },
-          "fingerprint_id": "plp_dependent_enzyme",
-          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "LYS"
-              ],
-              "required_residue": "Lys",
-              "required_role": "plp_anchor",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ASP"
-              ],
-              "required_residue": "Asp/Glu/His/Tyr",
-              "required_role": "acid_base",
-              "role_hint_match": true
-            }
-          ],
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.632
-        },
         {
           "cofactor_context_score": 0.25,
           "compactness_score": 0.9864,
@@ -2422,6 +2389,39 @@
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.6667,
           "score": 0.6153
+        },
+        {
+          "cofactor_context_score": 0.3,
+          "compactness_score": 0.9864,
+          "distance_summary": {
+            "count": 10,
+            "max": 14.527,
+            "median": 8.218,
+            "min": 3.043
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "LYS"
+              ],
+              "required_residue": "Lys",
+              "required_role": "plp_anchor",
+              "role_hint_match": false
+            },
+            {
+              "matched_codes": [
+                "ASP"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            }
+          ],
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.532
         },
         {
           "cofactor_context_score": 0.0,
@@ -2457,7 +2457,7 @@
           "score": 0.472
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 0.9864,
           "distance_summary": {
             "count": 10,
@@ -2488,7 +2488,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.4486
+          "score": 0.4186
         },
         {
           "cofactor_context_score": 0.0,
@@ -2597,7 +2597,7 @@
           "score": 0.4733
         },
         {
-          "cofactor_context_score": 0.35,
+          "cofactor_context_score": 0.2,
           "compactness_score": 1.0,
           "distance_summary": {
             "count": 10,
@@ -2633,7 +2633,7 @@
           ],
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.45
+          "score": 0.42
         },
         {
           "cofactor_context_score": 0.0,

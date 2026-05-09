@@ -134,11 +134,14 @@ Current expectation:
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20 entries; the next bottleneck
   is using them for retrieval and benchmark labels, not just exporting distances
-- curated labels show the current retrieval is weak at top1 but useful at top3
-  for the small in-scope subset; ranking and abstention now need improvement
 - strengthened geometry scoring now reaches top1 in-scope accuracy of 1.0 on
   the tiny curated seed set, but this should not be overinterpreted because only
   4 entries are in-scope positives
+- ligand/cofactor context is now parsed from nearby mmCIF non-polymer atoms and
+  used in retrieval scoring; next bottleneck is substrate-pocket descriptor
+  quality plus larger and cleaner curated labels
+- abstention calibration can reach perfect out-of-scope abstention at threshold
+  0.8 on the tiny provisional set, but robustness is unproven
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

@@ -59,6 +59,17 @@ class GeometryRetrievalTests(unittest.TestCase):
             cofactor_context_score(heme, residue_codes, residue_roles),
         )
 
+    def test_heme_ligand_context_outscores_metal_when_heme_is_observed(self) -> None:
+        residue_codes = ["ASP", "HIS", "HIS"]
+        residue_roles = set()
+        ligand_context = {"cofactor_families": ["heme"]}
+        metal = {"id": "metal_dependent_hydrolase", "cofactors": ["Zn2+"]}
+        heme = {"id": "heme_peroxidase_oxidase", "cofactors": ["heme"]}
+        self.assertGreater(
+            cofactor_context_score(heme, residue_codes, residue_roles, ligand_context),
+            cofactor_context_score(metal, residue_codes, residue_roles, ligand_context),
+        )
+
     def test_run_geometry_retrieval(self) -> None:
         artifact = run_geometry_retrieval(
             {
@@ -73,6 +84,7 @@ class GeometryRetrievalTests(unittest.TestCase):
                             {"code": "HIS", "roles": ["base"]},
                             {"code": "ASP", "roles": ["acid"]},
                         ],
+                        "ligand_context": {"cofactor_families": ["metal_ion"]},
                         "pairwise_distances_angstrom": [{"distance": 6}],
                     }
                 ]

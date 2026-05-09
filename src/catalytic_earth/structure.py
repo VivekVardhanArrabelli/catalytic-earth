@@ -13,6 +13,45 @@ from .v2 import load_graph
 
 PDB_CIF_URL = "https://files.rcsb.org/download/{pdb_id}.cif"
 USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
+LIGAND_DISTANCE_CUTOFF_ANGSTROM = 6.0
+IGNORED_LIGAND_CODES = {"HOH", "WAT", "DOD", "SOL"}
+COFACTOR_LIGAND_MAP = {
+    "HEM": "heme",
+    "HEA": "heme",
+    "HEB": "heme",
+    "HEC": "heme",
+    "HEO": "heme",
+    "FAD": "flavin",
+    "FMN": "flavin",
+    "RBF": "flavin",
+    "NAD": "nad",
+    "NADH": "nad",
+    "NADP": "nad",
+    "NAP": "nad",
+    "NPH": "nad",
+    "PLP": "plp",
+    "PMP": "plp",
+    "LLP": "plp",
+    "SAM": "sam",
+    "SAH": "sam",
+    "MTA": "sam",
+    "FES": "fe_s_cluster",
+    "SF4": "fe_s_cluster",
+    "FS4": "fe_s_cluster",
+}
+METAL_ION_CODES = {
+    "ZN",
+    "MG",
+    "MN",
+    "FE",
+    "CU",
+    "CO",
+    "NI",
+    "CA",
+    "NA",
+    "K",
+    "CD",
+}
 
 
 def fetch_pdb_cif(pdb_id: str, timeout: int = 30) -> str:
@@ -90,6 +129,12 @@ def build_geometry_features(
                     "residues": [],
                     "pairwise_distances_angstrom": [],
                     "missing_positions": len(residues),
+                    "ligand_context": {
+                        "distance_cutoff_angstrom": LIGAND_DISTANCE_CUTOFF_ANGSTROM,
+                        "proximal_ligands": [],
+                        "ligand_codes": [],
+                        "cofactor_families": [],
+                    },
                 }
             )
             continue
@@ -110,6 +155,12 @@ def build_geometry_features(
                     "residues": [],
                     "pairwise_distances_angstrom": [],
                     "missing_positions": len(positions_by_pdb[pdb_id]),
+                    "ligand_context": {
+                        "distance_cutoff_angstrom": LIGAND_DISTANCE_CUTOFF_ANGSTROM,
+                        "proximal_ligands": [],
+                        "ligand_codes": [],
+                        "cofactor_families": [],
+                    },
                 }
             )
             continue
@@ -151,6 +202,7 @@ def build_geometry_features(
                 "missing_positions": missing,
                 "residues": resolved,
                 "pairwise_distances_angstrom": pairwise_distances(resolved),
+                "ligand_context": ligand_context_from_atoms(atoms, resolved),
             }
         )
 
@@ -162,6 +214,16 @@ def build_geometry_features(
             "entry_count": len(entry_features),
             "entries_with_pairwise_geometry": sum(
                 1 for entry in entry_features if entry.get("pairwise_distances_angstrom")
+            ),
+            "entries_with_proximal_ligands": sum(
+                1
+                for entry in entry_features
+                if entry.get("ligand_context", {}).get("proximal_ligands")
+            ),
+            "entries_with_inferred_cofactors": sum(
+                1
+                for entry in entry_features
+                if entry.get("ligand_context", {}).get("cofactor_families")
             ),
             "source": "RCSB PDB mmCIF files via catalytic residue positions from M-CSA",
         },
@@ -244,6 +306,86 @@ def pairwise_distances(residues: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return distances
 
 
+def ligand_context_from_atoms(
+    atoms: list[dict[str, Any]],
+    resolved_residues: list[dict[str, Any]],
+    cutoff_angstrom: float = LIGAND_DISTANCE_CUTOFF_ANGSTROM,
+) -> dict[str, Any]:
+    active_points = [item.get("ca") or item.get("centroid") for item in resolved_residues]
+    active_points = [point for point in active_points if point]
+    if not active_points:
+        return {
+            "distance_cutoff_angstrom": cutoff_angstrom,
+            "proximal_ligands": [],
+            "ligand_codes": [],
+            "cofactor_families": [],
+        }
+
+    by_site: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
+    for atom in atoms:
+        if atom.get("group_PDB") != "HETATM":
+            continue
+        code = (atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        if not code or code in IGNORED_LIGAND_CODES:
+            continue
+        chain = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+        resid = str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
+        by_site[(code, chain, resid)].append(atom)
+
+    site_hits: list[dict[str, Any]] = []
+    for (code, chain, resid), ligand_atoms in by_site.items():
+        min_distance = _min_ligand_distance_to_active_site(ligand_atoms, active_points)
+        if min_distance is None or min_distance > cutoff_angstrom:
+            continue
+        site_hits.append(
+            {
+                "code": code,
+                "chain_name": chain or None,
+                "resid": resid or None,
+                "atom_count": len(ligand_atoms),
+                "min_distance_to_active_site": round(min_distance, 3),
+            }
+        )
+
+    by_code: dict[str, dict[str, Any]] = {}
+    for site in site_hits:
+        code = str(site["code"])
+        existing = by_code.get(code)
+        if existing is None:
+            by_code[code] = {
+                "code": code,
+                "instance_count": 1,
+                "atom_count": int(site["atom_count"]),
+                "min_distance_to_active_site": float(site["min_distance_to_active_site"]),
+            }
+            continue
+        existing["instance_count"] += 1
+        existing["atom_count"] += int(site["atom_count"])
+        existing["min_distance_to_active_site"] = min(
+            float(existing["min_distance_to_active_site"]),
+            float(site["min_distance_to_active_site"]),
+        )
+
+    proximal_ligands = sorted(
+        (
+            {
+                **item,
+                "min_distance_to_active_site": round(float(item["min_distance_to_active_site"]), 3),
+            }
+            for item in by_code.values()
+        ),
+        key=lambda item: (float(item["min_distance_to_active_site"]), str(item["code"])),
+    )
+    ligand_codes = [str(item["code"]) for item in proximal_ligands]
+    cofactor_families = sorted(_infer_cofactor_families(ligand_codes))
+    return {
+        "distance_cutoff_angstrom": cutoff_angstrom,
+        "proximal_ligands": proximal_ligands,
+        "ligand_codes": ligand_codes,
+        "cofactor_families": cofactor_families,
+    }
+
+
 def _atom_row(headers: list[str], values: list[str]) -> dict[str, Any]:
     row: dict[str, Any] = {}
     for header, value in zip(headers, values):
@@ -265,6 +407,32 @@ def _distance(left: dict[str, float], right: dict[str, float]) -> float:
         + (left["y"] - right["y"]) ** 2
         + (left["z"] - right["z"]) ** 2
     )
+
+
+def _min_ligand_distance_to_active_site(
+    ligand_atoms: list[dict[str, Any]],
+    active_points: list[dict[str, float]],
+) -> float | None:
+    min_distance: float | None = None
+    for atom in ligand_atoms:
+        atom_point = {"x": float(atom["Cartn_x"]), "y": float(atom["Cartn_y"]), "z": float(atom["Cartn_z"])}
+        for active in active_points:
+            distance = _distance(atom_point, active)
+            if min_distance is None or distance < min_distance:
+                min_distance = distance
+    return min_distance
+
+
+def _infer_cofactor_families(ligand_codes: list[str]) -> set[str]:
+    families: set[str] = set()
+    for code in ligand_codes:
+        upper = code.upper()
+        mapped = COFACTOR_LIGAND_MAP.get(upper)
+        if mapped:
+            families.add(mapped)
+        if upper in METAL_ION_CODES:
+            families.add("metal_ion")
+    return families
 
 
 def _entry_id_from_residue_node(node_id: str) -> str | None:

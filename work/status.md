@@ -4,13 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 10
-- Measured elapsed time: 0.0 minutes (0.00 hours)
+- Entries: 11
+- Measured elapsed time: 5.2 minutes (0.09 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
+- post-v2: 5.2 measured minutes (0.09 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -19,19 +20,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 45
-- Evidence references logged: 48
+- Artifact references logged: 58
+- Evidence references logged: 55
 
 ## Recent Entries
-
-### 2026-05-09T13:54:30.954964+00:00 - v1
-
-- Task: Build persistent catalytic graph with M-CSA pages, Rhea EC mapping, UniProt links, and structure cross-references
-- Time mode: estimate
-- Estimated/planned minutes: 55
-- Artifacts: docs/graph_schema.md, src/catalytic_earth/graph.py, artifacts/v1_graph.json, artifacts/v1_graph_summary.json
-- Evidence: 50 M-CSA entries, 48 EC nodes, 53 Rhea reactions, 51 proteins, 918 structures, 1513 graph nodes, 1475 graph edges, 15 tests passed
-- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T13:54:31.022704+00:00 - v2
 
@@ -96,6 +88,16 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 30 tests passed, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, out-of-scope abstention 0.75, selected abstention threshold 0.8, 5 local performance benchmarks
 - Notes: Estimated/planned time; not measured clock time.
 
+### 2026-05-09T15:20:27.676203+00:00 - post-v2
+
+- Task: Add mmCIF ligand/cofactor context to geometry features and retrieval scoring
+- Time mode: measured
+- Measured minutes: 5.217
+- Started: 2026-05-09T15:15:06Z
+- Ended: 2026-05-09T15:20:19Z
+- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/geometry_retrieval.py, tests/test_structure.py, tests/test_geometry_retrieval.py, artifacts/v3_geometry_features.json, artifacts/v3_geometry_retrieval.json, artifacts/v3_geometry_label_eval.json, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, docs/geometry_features.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
+- Evidence: 33 tests passed, 11/20 entries with proximal ligands, 5/20 entries with inferred cofactors, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, selected abstention threshold 0.8, out-of-scope abstention 1.0 at selected threshold
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -108,6 +110,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:13:21.398170+00:00: Progress will now be measured per hourly block rather than per ad hoc milestone.
 - 2026-05-09T14:18:10.779278+00:00: Continuity is now treated as a required output of each 55-minute work block.
 - 2026-05-09T14:25:33.013901+00:00: The time overestimate came from confusing scaffold implementation with scientifically robust validation; current progress is fast but still small-label and artifact-scale.
+- 2026-05-09T15:20:27.676203+00:00: Ligand/cofactor context integration from mmCIF was quick; next quality bottleneck shifts to substrate-pocket descriptors and larger curated labels.
 
 ## Scope Adjustments
 
@@ -120,3 +123,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:13:21.398170+00:00: Each automation run is now an hourly carry-forward block: 55 minutes work, 5 minutes break/overhead, commit and push every run.
 - 2026-05-09T14:18:10.779278+00:00: Every automation run must now leave explicit next-agent start instructions before committing and pushing.
 - 2026-05-09T14:25:33.013901+00:00: V2 is stronger: retrieval has cofactor-aware scoring, calibrated abstention, and local performance measurement; full scalability and ligand parsing remain future work.
+- 2026-05-09T15:20:27.676203+00:00: Post-V2 quality scope now includes ligand-supported cofactor evidence in retrieval; substrate-pocket descriptors become the next bounded upgrade.

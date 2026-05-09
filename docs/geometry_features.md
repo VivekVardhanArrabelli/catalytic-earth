@@ -43,6 +43,9 @@ For each M-CSA entry with structure positions:
 - CA coordinates when present
 - pairwise catalytic-residue distances
 - missing-position counts
+- proximal non-polymer ligands from mmCIF `HETATM` records
+- inferred cofactor families from nearby ligands (for example heme, flavin, PLP,
+  metal ions, SAM, Fe-S clusters)
 
 ## Geometry-Aware Retrieval
 
@@ -50,6 +53,7 @@ For each M-CSA entry with structure positions:
 
 - residue signature overlap
 - role hint overlap
+- ligand-supported cofactor context
 - catalytic-cluster compactness from pairwise distances
 
 This is still a weak baseline, but it is materially better than pure text
@@ -79,8 +83,8 @@ label retrieval toward active-site geometry retrieval.
 ## Limitations
 
 - Distances are crude CA-or-centroid descriptors.
-- Alternate conformations, insertion codes, ligands, cofactors, and biological
-  assemblies are not modeled yet.
+- Alternate conformations, insertion codes, and biological assemblies are not
+  modeled yet.
 - Static PDB structures can miss catalytically relevant conformations.
 - Geometry features are evidence, not validation.
 - The current retrieval baseline uses simple compactness heuristics, not a

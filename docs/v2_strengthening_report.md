@@ -68,6 +68,6 @@ What remains weak:
 
 - the curated label set is small and provisional
 - out-of-scope abstention is still imperfect
-- no ligand/cofactor geometry is parsed yet
+- ligand/cofactor context is only a simple nearby-ligand heuristic
 - no substrate-pocket descriptors exist yet
 - local performance does not measure full-database scalability

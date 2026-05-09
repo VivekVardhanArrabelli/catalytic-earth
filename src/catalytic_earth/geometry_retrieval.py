@@ -41,7 +41,7 @@ def run_geometry_retrieval(
             "method": "geometry_aware_seed_fingerprint_retrieval",
             "entry_count": len(results),
             "fingerprint_count": len(fingerprints),
-            "scoring": "residue signature match plus catalytic-cluster compactness",
+            "scoring": "residue and role overlap plus ligand-supported cofactor context and compactness",
             "validation_boundary": "retrieval evidence only; not mechanism validation",
         },
         "results": results,
@@ -81,7 +81,12 @@ def score_entry_against_fingerprint(
 
     residue_match_fraction = len(matched_signature_roles) / max(len(signature), 1)
     role_match_fraction = _role_match_fraction(signature, residue_roles)
-    cofactor_context = cofactor_context_score(fingerprint, residue_codes, residue_roles)
+    cofactor_context = cofactor_context_score(
+        fingerprint,
+        residue_codes,
+        residue_roles,
+        entry.get("ligand_context"),
+    )
     compactness = compactness_score(distances)
     score = round(
         0.42 * residue_match_fraction
@@ -123,38 +128,92 @@ def cofactor_context_score(
     fingerprint: dict[str, Any],
     residue_codes: list[str],
     residue_roles: set[str],
+    ligand_context: dict[str, Any] | None = None,
 ) -> float:
     cofactors = {_normalize_phrase(cofactor) for cofactor in fingerprint.get("cofactors", [])}
     fingerprint_id = fingerprint.get("id")
+    observed_families = _observed_cofactor_families(ligand_context, residue_roles)
+    role_text = " ".join(residue_roles)
+    residue_code_set = set(residue_codes)
+    cys_count = sum(1 for code in residue_codes if code == "CYS")
+
     if not cofactors:
         if fingerprint_id == "ser_his_acid_hydrolase":
             expected = {"SER", "HIS"}
-            acid = bool({"ASP", "GLU"} & set(residue_codes))
+            acid = bool({"ASP", "GLU"} & residue_code_set)
             return 1.0 if expected.issubset(set(residue_codes)) and acid else 0.25
         return 0.5
 
-    if any(_is_metal_cofactor(cofactor) for cofactor in cofactors):
-        if any("metal ligand" in role for role in residue_roles):
-            return 1.0
-        if {"HIS", "ASP", "GLU"} & set(residue_codes):
-            return 0.35
-        return 0.0
+    requirement_scores: list[float] = []
+    for cofactor in sorted(cofactors):
+        if _is_metal_cofactor(cofactor):
+            if "metal_ion" in observed_families:
+                requirement_scores.append(1.0)
+            elif "metal ligand" in role_text:
+                requirement_scores.append(0.4)
+            elif {"HIS", "ASP", "GLU", "CYS"} & residue_code_set:
+                requirement_scores.append(0.2)
+            else:
+                requirement_scores.append(0.0)
+            continue
 
-    if any("heme" in cofactor for cofactor in cofactors):
-        return 1.0 if any("heme" in role for role in residue_roles) else 0.0
+        if "heme" in cofactor:
+            if "heme" in observed_families:
+                requirement_scores.append(1.0)
+            elif "heme" in role_text:
+                requirement_scores.append(0.25)
+            else:
+                requirement_scores.append(0.0)
+            continue
 
-    if any("pyridoxal phosphate" in cofactor for cofactor in cofactors):
-        return 0.8 if "LYS" in residue_codes else 0.0
+        if "pyridoxal phosphate" in cofactor:
+            if "plp" in observed_families:
+                requirement_scores.append(1.0)
+            elif "LYS" in residue_code_set:
+                requirement_scores.append(0.3)
+            else:
+                requirement_scores.append(0.0)
+            continue
 
-    if any(cofactor in {"fad", "fmn", "nadph"} for cofactor in cofactors):
-        joined_roles = " ".join(residue_roles)
-        return 1.0 if any(term in joined_roles for term in ["flavin", "nadph", "redox"]) else 0.0
+        if cofactor in {"fad", "fmn"}:
+            if "flavin" in observed_families:
+                requirement_scores.append(1.0)
+            elif any(term in role_text for term in ["flavin", "redox"]):
+                requirement_scores.append(0.25)
+            else:
+                requirement_scores.append(0.0)
+            continue
 
-    if any("sam" in cofactor or "adenosylmethionine" in cofactor for cofactor in cofactors):
-        cys_count = sum(1 for code in residue_codes if code == "CYS")
-        return 0.8 if cys_count >= 3 else 0.0
+        if cofactor in {"nadph", "nadp", "nad", "nadh"}:
+            if "nad" in observed_families:
+                requirement_scores.append(1.0)
+            elif any(term in role_text for term in ["nadph", "redox"]):
+                requirement_scores.append(0.2)
+            else:
+                requirement_scores.append(0.0)
+            continue
 
-    return 0.0
+        if "sam" in cofactor or "adenosylmethionine" in cofactor:
+            if "sam" in observed_families:
+                requirement_scores.append(1.0)
+            elif cys_count >= 3:
+                requirement_scores.append(0.2)
+            else:
+                requirement_scores.append(0.0)
+            continue
+
+        if "4fe-4s" in cofactor:
+            if "fe_s_cluster" in observed_families:
+                requirement_scores.append(1.0)
+            elif cys_count >= 3:
+                requirement_scores.append(0.2)
+            else:
+                requirement_scores.append(0.0)
+            continue
+
+        requirement_scores.append(0.0)
+
+    return sum(requirement_scores) / len(requirement_scores) if requirement_scores else 0.0
 
 
 def distance_summary(distances: list[dict[str, Any]]) -> dict[str, Any]:
@@ -243,3 +302,25 @@ def _role_match_fraction(signature: list[dict[str, Any]], residue_roles: set[str
 def _is_metal_cofactor(cofactor: str) -> bool:
     metals = {"zn2+", "mg2+", "mn2+", "fe2+/fe3+", "fe2+", "fe3+", "metal"}
     return cofactor in metals or any(metal in cofactor for metal in metals)
+
+
+def _observed_cofactor_families(
+    ligand_context: dict[str, Any] | None,
+    residue_roles: set[str],
+) -> set[str]:
+    families: set[str] = set()
+    if isinstance(ligand_context, dict):
+        for value in ligand_context.get("cofactor_families", []):
+            normalized = _normalize_phrase(str(value))
+            if normalized:
+                families.add(normalized)
+    role_text = " ".join(residue_roles)
+    if "heme" in role_text:
+        families.add("heme")
+    if "flavin" in role_text:
+        families.add("flavin")
+    if "nadph" in role_text or "nadp" in role_text or "nad" in role_text:
+        families.add("nad")
+    if "metal ligand" in role_text:
+        families.add("metal_ion")
+    return families

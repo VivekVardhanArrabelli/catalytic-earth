@@ -9,6 +9,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from catalytic_earth.structure import (
     build_geometry_features,
+    ligand_context_from_atoms,
     pairwise_distances,
     parse_atom_site_loop,
     residue_centroid,
@@ -38,6 +39,9 @@ ATOM 2 C CA ASP A 7 1.0 0.0 0.0 CA ASP A 7
 ATOM 3 C C ASP A 7 1.0 1.0 0.0 C ASP A 7
 ATOM 4 N N CYS A 70 0.0 4.0 0.0 N CYS A 70
 ATOM 5 C CA CYS A 70 0.0 5.0 0.0 CA CYS A 70
+HETATM 6 FE FE HEM A 501 1.8 2.2 0.0 FE HEM A 501
+HETATM 7 C C1 HEM A 501 2.2 2.4 0.2 C1 HEM A 501
+HETATM 8 O O HOH A 700 0.5 0.5 0.5 O HOH A 700
 #
 """
 
@@ -45,7 +49,7 @@ ATOM 5 C CA CYS A 70 0.0 5.0 0.0 CA CYS A 70
 class StructureTests(unittest.TestCase):
     def test_parse_and_select_residue_atoms(self) -> None:
         atoms = parse_atom_site_loop(SAMPLE_CIF)
-        self.assertEqual(len(atoms), 5)
+        self.assertEqual(len(atoms), 8)
         asp_atoms = select_residue_atoms(atoms, chain_name="A", resid=7, code="Asp")
         self.assertEqual(len(asp_atoms), 3)
         self.assertEqual(residue_centroid(asp_atoms), {"x": 0.667, "y": 0.333, "z": 0.0})
@@ -58,6 +62,19 @@ class StructureTests(unittest.TestCase):
             ]
         )
         self.assertEqual(distances[0]["distance"], 5.0)
+
+    def test_ligand_context_filters_water_and_infers_heme(self) -> None:
+        atoms = parse_atom_site_loop(SAMPLE_CIF)
+        context = ligand_context_from_atoms(
+            atoms,
+            [
+                {"ca": {"x": 1.0, "y": 0.0, "z": 0.0}},
+                {"ca": {"x": 0.0, "y": 5.0, "z": 0.0}},
+            ],
+        )
+        self.assertEqual(context["ligand_codes"], ["HEM"])
+        self.assertIn("heme", context["cofactor_families"])
+        self.assertGreaterEqual(context["proximal_ligands"][0]["instance_count"], 1)
 
     def test_build_geometry_features_with_mock_fetcher(self) -> None:
         graph = {
@@ -83,7 +100,9 @@ class StructureTests(unittest.TestCase):
         }
         features = build_geometry_features(graph, max_entries=1, cif_fetcher=lambda _: SAMPLE_CIF)
         self.assertEqual(features["metadata"]["entries_with_pairwise_geometry"], 1)
+        self.assertEqual(features["metadata"]["entries_with_inferred_cofactors"], 1)
         self.assertEqual(features["entries"][0]["resolved_residue_count"], 2)
+        self.assertEqual(features["entries"][0]["ligand_context"]["ligand_codes"], ["HEM"])
 
 
 if __name__ == "__main__":

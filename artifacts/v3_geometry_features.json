@@ -2,6 +2,12 @@
   "entries": [
     {
       "entry_id": "m_csa:1",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -244,6 +250,12 @@
     },
     {
       "entry_id": "m_csa:10",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -425,6 +437,30 @@
     },
     {
       "entry_id": "m_csa:11",
+      "ligand_context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "3DR",
+          "ZN"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 12,
+            "code": "3DR",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.259
+          },
+          {
+            "atom_count": 3,
+            "code": "ZN",
+            "instance_count": 3,
+            "min_distance_to_active_site": 4.962
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -987,6 +1023,12 @@
     },
     {
       "entry_id": "m_csa:12",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 6,
       "pairwise_distances_angstrom": [],
       "pdb_id": "1OTH",
@@ -997,6 +1039,12 @@
     },
     {
       "entry_id": "m_csa:13",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 7,
       "pairwise_distances_angstrom": [],
       "pdb_id": "2BBK",
@@ -1007,6 +1055,28 @@
     },
     {
       "entry_id": "m_csa:14",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "AZI",
+          "VO4"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 3,
+            "code": "AZI",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.665
+          },
+          {
+            "atom_count": 4,
+            "code": "VO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.754
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -1292,6 +1362,12 @@
     },
     {
       "entry_id": "m_csa:15",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 7,
       "pairwise_distances_angstrom": [],
       "pdb_id": "1ZNB",
@@ -1323,6 +1399,23 @@
     },
     {
       "entry_id": "m_csa:16",
+      "ligand_context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "ZN"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 1,
+            "code": "ZN",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.722
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -1499,6 +1592,28 @@
     },
     {
       "entry_id": "m_csa:17",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "IMH",
+          "PO4"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 19,
+            "code": "IMH",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.613
+          },
+          {
+            "atom_count": 5,
+            "code": "PO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.785
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -2075,6 +2190,21 @@
     },
     {
       "entry_id": "m_csa:18",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "BME"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 5,
+            "code": "BME",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.574
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -2259,6 +2389,12 @@
     },
     {
       "entry_id": "m_csa:19",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 4,
       "pairwise_distances_angstrom": [],
       "pdb_id": "1DL2",
@@ -2269,6 +2405,12 @@
     },
     {
       "entry_id": "m_csa:2",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 7,
       "pairwise_distances_angstrom": [],
       "pdb_id": "1BTL",
@@ -2279,6 +2421,30 @@
     },
     {
       "entry_id": "m_csa:20",
+      "ligand_context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "TEO",
+          "FAD"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 9,
+            "code": "TEO",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.595
+          },
+          {
+            "atom_count": 53,
+            "code": "FAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.817
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -2564,6 +2730,21 @@
     },
     {
       "entry_id": "m_csa:21",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "MSE"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 8,
+            "code": "MSE",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.71
+          }
+        ]
+      },
       "missing_positions": 7,
       "pairwise_distances_angstrom": [],
       "pdb_id": "1DO8",
@@ -2595,6 +2776,12 @@
     },
     {
       "entry_id": "m_csa:22",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 5,
       "pairwise_distances_angstrom": [],
       "pdb_id": "1B6B",
@@ -2605,6 +2792,23 @@
     },
     {
       "entry_id": "m_csa:23",
+      "ligand_context": {
+        "cofactor_families": [
+          "sam"
+        ],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "SAM"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 27,
+            "code": "SAM",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.182
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -2782,6 +2986,21 @@
     },
     {
       "entry_id": "m_csa:24",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "BCA"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 53,
+            "code": "BCA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.782
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -3018,6 +3237,21 @@
     },
     {
       "entry_id": "m_csa:25",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "SO4"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 5,
+            "code": "SO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.98
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -3203,6 +3437,12 @@
     },
     {
       "entry_id": "m_csa:26",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": []
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -3384,6 +3624,23 @@
     },
     {
       "entry_id": "m_csa:27",
+      "ligand_context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [
+          "ZN"
+        ],
+        "proximal_ligands": [
+          {
+            "atom_count": 2,
+            "code": "ZN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.659
+          }
+        ]
+      },
       "missing_positions": 0,
       "pairwise_distances_angstrom": [
         {
@@ -3729,7 +3986,9 @@
   ],
   "metadata": {
     "artifact": "active_site_geometry_features",
+    "entries_with_inferred_cofactors": 5,
     "entries_with_pairwise_geometry": 13,
+    "entries_with_proximal_ligands": 11,
     "entry_count": 20,
     "input_graph": {
       "edge_count": 1475,
