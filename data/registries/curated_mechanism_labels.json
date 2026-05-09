@@ -1,0 +1,22 @@
+[
+  {"entry_id":"m_csa:1","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Glutamate racemase uses cysteine acid-base racemization chemistry, which is not represented by the current seed fingerprints."},
+  {"entry_id":"m_csa:2","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Class A beta-lactamase is a serine beta-lactamase but not the Ser-His-Asp/Glu triad hydrolase fingerprint currently defined."},
+  {"entry_id":"m_csa:10","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"3-hydroxydecanoyl-ACP dehydratase performs dehydration chemistry outside the current seed fingerprints."},
+  {"entry_id":"m_csa:11","fingerprint_id":"metal_dependent_hydrolase","label_type":"seed_fingerprint","confidence":"medium","rationale":"Deoxyribonuclease IV is a nuclease hydrolase; nuclease catalysis commonly depends on metal-activated water."},
+  {"entry_id":"m_csa:12","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Ornithine carbamoyltransferase performs carbamoyl transfer chemistry outside the current seed fingerprints."},
+  {"entry_id":"m_csa:13","fingerprint_id":null,"label_type":"out_of_scope","confidence":"low","rationale":"Amine dehydrogenase redox chemistry is not represented by the current seed fingerprints."},
+  {"entry_id":"m_csa:14","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Vanadate-dependent chloride peroxidase is peroxidase chemistry but not the heme-dependent peroxidase or oxidase seed fingerprint."},
+  {"entry_id":"m_csa:15","fingerprint_id":"metal_dependent_hydrolase","label_type":"seed_fingerprint","confidence":"high","rationale":"Class B1 beta-lactamase is a metallo-beta-lactamase using metal-activated hydrolysis."},
+  {"entry_id":"m_csa:16","fingerprint_id":"metal_dependent_hydrolase","label_type":"seed_fingerprint","confidence":"high","rationale":"Class B1 beta-lactamase is a metallo-beta-lactamase using metal-activated hydrolysis."},
+  {"entry_id":"m_csa:17","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Purine nucleoside phosphorylase performs phosphorolysis rather than the current hydrolase seed mechanisms."},
+  {"entry_id":"m_csa:18","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Glycine amidinotransferase performs group transfer chemistry outside the current seed fingerprints."},
+  {"entry_id":"m_csa:19","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Alpha-mannosidase is a glycosidase but its acid-base glycoside hydrolysis mechanism is not represented by the current seed fingerprints."},
+  {"entry_id":"m_csa:20","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Fumarate reductase is redox chemistry outside the current seed fingerprints."},
+  {"entry_id":"m_csa:21","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Malate dehydrogenase and decarboxylating chemistry is outside the current seed fingerprints."},
+  {"entry_id":"m_csa:22","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Aralkylamine N-acetyltransferase performs acetyl transfer chemistry outside the current seed fingerprints."},
+  {"entry_id":"m_csa:23","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Glycine N-methyltransferase is a methyltransferase outside the current seed fingerprints."},
+  {"entry_id":"m_csa:24","fingerprint_id":null,"label_type":"out_of_scope","confidence":"low","rationale":"4-chlorobenzoyl-CoA dehalogenase has covalent dehalogenase chemistry not represented by the current seed fingerprints."},
+  {"entry_id":"m_csa:25","fingerprint_id":null,"label_type":"out_of_scope","confidence":"low","rationale":"N-carbamoylsarcosine amidase is not confidently mapped to a current seed fingerprint without a more specific amidase fingerprint."},
+  {"entry_id":"m_csa:26","fingerprint_id":null,"label_type":"out_of_scope","confidence":"medium","rationale":"Phosphatidylinositol-specific phospholipase C chemistry is not represented by the current seed fingerprints."},
+  {"entry_id":"m_csa:27","fingerprint_id":"metal_dependent_hydrolase","label_type":"seed_fingerprint","confidence":"medium","rationale":"Phospholipase C hydrolyzes phosphodiester bonds and fits a metal-dependent hydrolase seed mechanism in this coarse label set."}
+]

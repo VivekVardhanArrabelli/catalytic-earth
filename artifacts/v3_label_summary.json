@@ -1,0 +1,15 @@
+{
+  "by_confidence": {
+    "high": 2,
+    "low": 3,
+    "medium": 15
+  },
+  "by_fingerprint": {
+    "metal_dependent_hydrolase": 4
+  },
+  "by_type": {
+    "out_of_scope": 16,
+    "seed_fingerprint": 4
+  },
+  "label_count": 20
+}

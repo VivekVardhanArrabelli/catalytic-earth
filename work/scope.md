@@ -69,6 +69,8 @@ Post-V2 quality work has started:
 - active-site residue coordinate extraction
 - pairwise catalytic-residue distance features
 - geometry artifact for a 20-entry graph slice
+- curated seed mechanism labels for the 20-entry geometry slice
+- geometry retrieval evaluation against curated labels
 
 ## V1 Target
 
@@ -117,5 +119,7 @@ Current expectation:
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20 entries; the next bottleneck
   is using them for retrieval and benchmark labels, not just exporting distances
+- curated labels show the current retrieval is weak at top1 but useful at top3
+  for the small in-scope subset; ranking and abstention now need improvement
 
 This estimate must keep being revised from the progress log, not from vibes.

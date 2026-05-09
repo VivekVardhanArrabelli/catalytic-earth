@@ -12,6 +12,12 @@ Current post-V2 direction: improve scientific quality by moving from text/motif
 baselines to geometry-aware active-site retrieval. The first geometry artifact
 is `artifacts/v3_geometry_features.json`.
 
+Curated seed labels now live in
+`data/registries/curated_mechanism_labels.json`. The latest evaluation artifact
+is `artifacts/v3_geometry_label_eval.json`; it shows top3 retrieval can recover
+the small in-scope label set, while top1 ranking and out-of-scope abstention are
+still weak.
+
 ## Repository
 
 Local path:

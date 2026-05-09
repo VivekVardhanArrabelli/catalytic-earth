@@ -61,6 +61,8 @@ python -m catalytic_earth.cli write-dossiers --candidates artifacts/v2_dark_hydr
 python -m catalytic_earth.cli write-v2-report --out docs/v2_report.md
 python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph.json --max-entries 20 --out artifacts/v3_geometry_features.json
 python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features.json --out artifacts/v3_geometry_retrieval.json
+python -m catalytic_earth.cli label-summary --out artifacts/v3_label_summary.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval.json --out artifacts/v3_geometry_label_eval.json
 python -m catalytic_earth.cli log-work --stage v0 --task "example work entry" --minutes 1
 python -m catalytic_earth.cli progress-report --out work/status.md
 python -m unittest discover -s tests

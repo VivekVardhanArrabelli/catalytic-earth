@@ -21,6 +21,11 @@ PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
   --geometry artifacts/v3_geometry_features.json \
   --top-k 5 \
   --out artifacts/v3_geometry_retrieval.json
+
+PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
+  --retrieval artifacts/v3_geometry_retrieval.json \
+  --labels data/registries/curated_mechanism_labels.json \
+  --out artifacts/v3_geometry_label_eval.json
 ```
 
 ## Current Feature Set
@@ -46,6 +51,19 @@ For each M-CSA entry with structure positions:
 This is still a weak baseline, but it is materially better than pure text
 overlap because it makes catalytic residue identity and spatial arrangement part
 of the retrieval score.
+
+## Curated Seed Labels
+
+`data/registries/curated_mechanism_labels.json` provides provisional labels for
+the 20-entry geometry slice. Labels are intentionally conservative:
+
+- `seed_fingerprint` means the entry maps to one of the current seed mechanism
+  fingerprints.
+- `out_of_scope` means the entry needs a more specific fingerprint before it
+  should be used as a positive label.
+
+These labels are curated enough to test retrieval behavior and abstention, but
+they are not a substitute for expert mechanism review.
 
 ## Why This Matters
 

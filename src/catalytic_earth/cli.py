@@ -8,6 +8,7 @@ from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
+from .labels import evaluate_geometry_retrieval, label_summary, load_labels
 from .models import RegistryError
 from .progress import WorkEntry, append_work_entry, write_progress_report
 from .sources import build_source_ledger, load_sources
@@ -33,8 +34,10 @@ def write_json(path: Path, payload: object) -> None:
 def cmd_validate(_: argparse.Namespace) -> int:
     sources = load_sources()
     fingerprints = load_fingerprints()
+    labels = load_labels()
     print(f"Validated {len(sources)} source records")
     print(f"Validated {len(fingerprints)} mechanism fingerprints")
+    print(f"Validated {len(labels)} curated mechanism labels")
     return 0
 
 
@@ -190,6 +193,29 @@ def cmd_run_geometry_retrieval(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_label_summary(args: argparse.Namespace) -> int:
+    labels = load_labels(Path(args.labels))
+    write_json(Path(args.out), label_summary(labels))
+    print(f"Wrote label summary to {args.out}")
+    return 0
+
+
+def cmd_evaluate_geometry_labels(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    evaluation = evaluate_geometry_retrieval(
+        retrieval,
+        load_labels(Path(args.labels)),
+        abstain_threshold=args.abstain_threshold,
+    )
+    write_json(Path(args.out), evaluation)
+    print(
+        "Wrote geometry label evaluation to "
+        f"{args.out} ({evaluation['metadata']['evaluated_count']} entries)"
+    )
+    return 0
+
+
 def _split_csv(value: str | None) -> list[str]:
     if not value:
         return []
@@ -336,6 +362,21 @@ def build_parser() -> argparse.ArgumentParser:
     geom_retrieval.add_argument("--top-k", type=int, default=5)
     geom_retrieval.add_argument("--out", default="artifacts/v3_geometry_retrieval.json")
     geom_retrieval.set_defaults(func=cmd_run_geometry_retrieval)
+
+    labels = subparsers.add_parser("label-summary", help="summarize curated mechanism labels")
+    labels.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    labels.add_argument("--out", default="artifacts/v3_label_summary.json")
+    labels.set_defaults(func=cmd_label_summary)
+
+    label_eval = subparsers.add_parser(
+        "evaluate-geometry-labels",
+        help="evaluate geometry-aware retrieval against curated mechanism labels",
+    )
+    label_eval.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    label_eval.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    label_eval.add_argument("--abstain-threshold", type=float, default=0.7)
+    label_eval.add_argument("--out", default="artifacts/v3_geometry_label_eval.json")
+    label_eval.set_defaults(func=cmd_evaluate_geometry_labels)
 
     log_work = subparsers.add_parser("log-work", help="append a timed work entry")
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")
