@@ -16,8 +16,9 @@ The V2 scaffold was strengthened in several ways:
    slice, with evaluability tracked separately from label availability.
 6. mmCIF structure parsing now resolves catalytic residue positions through
    both `auth_*` and `label_*` numbering namespaces.
-7. The repo now has local performance checks, in-scope failure analysis, and a
-   slice summary artifact for artifact-only workflows.
+7. The repo now has local performance checks, in-scope failure analysis,
+   expected-cofactor coverage analysis, and a slice summary artifact for
+   artifact-only workflows.
 
 ## Retrieval Quality
 
@@ -57,13 +58,14 @@ artifacts/v3_label_expansion_candidates_125.json
 ```
 
 The 150-entry geometry expansion is fully labeled and intentionally harder:
-46 in-scope positives, 104 out-of-scope controls, 148 evaluable active-site
-structures, and 2 labeled out-of-scope structure-mapping issues. Its calibrated
-zero-false threshold is 0.5144, which retains 43/46 in-scope positives
-(`0.9348`) and reports 0 hard negatives and 0 near misses. The remaining
-failures are in-scope positives with weak or missing cofactor context:
-`m_csa:132`, `m_csa:139`, and `m_csa:140`. Two have absent target cofactor
-context; one target is absent from the top-k ranking.
+44 in-scope positives, 106 out-of-scope controls, 148 evaluable active-site
+structures, and 2 labeled out-of-scope structure-mapping issues after auditing
+two enzyme-level labels that were not local active-site seed positives. Its
+calibrated zero-false threshold is 0.5144, which retains 43/44 in-scope
+positives (`0.9773`) and reports 0 hard negatives and 0 near misses. The
+remaining in-scope failure is `m_csa:132`, an evidence-limited abstention where
+the selected `1LUC` structure lacks the expected flavin/NAD cofactor evidence;
+the current actionable in-scope failure count is 0.
 
 ## Performance
 
@@ -75,19 +77,21 @@ artifacts/perf_report.json
 
 The suite is local-only and avoids network calls. It measures the current graph,
 benchmark, retrieval, label evaluation, abstention sweep, score-margin analysis,
-and hard-negative selection on existing artifacts.
+hard-negative selection, in-scope failure analysis, cofactor coverage, and
+structure-mapping diagnostics on existing artifacts.
 
-Latest 3-iteration mean timings on the 150-entry artifacts:
+Latest 5-iteration mean timings on the 150-entry artifacts:
 
-- load V1 graph: 10.836 ms
-- build V2 benchmark: 3.127 ms
-- run geometry retrieval: 42.722 ms
-- evaluate geometry labels: 0.205 ms
-- sweep abstention thresholds: 48.455 ms
-- analyze geometry score margins: 0.260 ms
-- build hard negative controls: 0.306 ms
-- analyze in-scope failures: 0.049 ms
-- analyze structure mapping issues: 0.021 ms
+- load V1 graph: 3.443 ms
+- build V2 benchmark: 0.653 ms
+- run geometry retrieval: 6.165 ms
+- evaluate geometry labels: 0.052 ms
+- sweep abstention thresholds: 2.845 ms
+- analyze geometry score margins: 0.041 ms
+- build hard negative controls: 0.049 ms
+- analyze in-scope failures: 0.187 ms
+- analyze cofactor coverage: 0.175 ms
+- analyze structure mapping issues: 0.008 ms
 
 ## Interpretation
 
@@ -111,15 +115,16 @@ What is now better:
   currently report 0 non-OK mappings on the 100-entry slice, 1 labeled
   out-of-scope issue on the 125-entry slice, and 2 on the 150-entry slice
 - the current label queue is explicit and empty
+- cofactor coverage now separates local support, structure-only support, and
+  expected cofactors absent from the selected structure
 - local performance is measured and reproducible
 
 What remains weak:
 
 - the curated label set is still small and provisional despite covering the
   current 150-entry geometry slice
-- the 150-entry slice still has 3 in-scope positives that are misranked or
-  abstained because local structure evidence lacks the expected cofactor or
-  seed-family context
+- the 150-entry slice still has 1 in-scope positive that is abstained because
+  the selected structure lacks the expected cofactor context
 - ligand/cofactor context is only a simple nearby-ligand heuristic
 - substrate-pocket context is currently a heuristic residue-shell summary
 - local performance does not measure full-database scalability

@@ -6,7 +6,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -705,6 +708,18 @@
           "SO4"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 5,
+            "code": "SO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.511
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 5,
             "code": "SO4",
@@ -1475,6 +1490,20 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.715
           }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 212,
+            "code": "FAD",
+            "instance_count": 4,
+            "min_distance_to_active_site": 3.715
+          }
         ]
       },
       "missing_position_details": [],
@@ -1896,6 +1925,20 @@
             "atom_count": 1,
             "code": "CU",
             "instance_count": 1,
+            "min_distance_to_active_site": 3.853
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CU"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 6,
+            "code": "CU",
+            "instance_count": 6,
             "min_distance_to_active_site": 3.853
           }
         ]
@@ -3213,6 +3256,39 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.333
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "ACY",
+          "NAG",
+          "FUC",
+          "GOL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 8,
+            "code": "ACY",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.333
+          },
+          {
+            "atom_count": 70,
+            "code": "NAG",
+            "instance_count": 5,
+            "min_distance_to_active_site": 18.099
+          },
+          {
+            "atom_count": 10,
+            "code": "FUC",
+            "instance_count": 1,
+            "min_distance_to_active_site": 25.761
+          },
+          {
+            "atom_count": 6,
+            "code": "GOL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 28.618
+          }
         ]
       },
       "missing_position_details": [],
@@ -3872,6 +3948,41 @@
             "code": "GOL",
             "instance_count": 1,
             "min_distance_to_active_site": 4.817
+          }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "ELI",
+          "GOL",
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 106,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.804
+          },
+          {
+            "atom_count": 42,
+            "code": "ELI",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.345
+          },
+          {
+            "atom_count": 72,
+            "code": "GOL",
+            "instance_count": 12,
+            "min_distance_to_active_site": 4.817
+          },
+          {
+            "atom_count": 20,
+            "code": "PO4",
+            "instance_count": 4,
+            "min_distance_to_active_site": 9.813
           }
         ]
       },
@@ -4700,6 +4811,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.079
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MG",
+          "ICT"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 1,
+            "code": "MG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.504
+          },
+          {
+            "atom_count": 13,
+            "code": "ICT",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.079
+          }
         ]
       },
       "missing_position_details": [],
@@ -5239,6 +5371,34 @@
             "atom_count": 1,
             "code": "MN",
             "instance_count": 1,
+            "min_distance_to_active_site": 5.989
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PHT",
+          "PPC",
+          "MN"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 72,
+            "code": "PHT",
+            "instance_count": 6,
+            "min_distance_to_active_site": 4.619
+          },
+          {
+            "atom_count": 132,
+            "code": "PPC",
+            "instance_count": 6,
+            "min_distance_to_active_site": 5.342
+          },
+          {
+            "atom_count": 12,
+            "code": "MN",
+            "instance_count": 12,
             "min_distance_to_active_site": 5.989
           }
         ]
@@ -5877,6 +6037,77 @@
             "code": "MG",
             "instance_count": 1,
             "min_distance_to_active_site": 5.399
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion",
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAM",
+          "ADN",
+          "K",
+          "MET",
+          "PPK",
+          "MG",
+          "PG4",
+          "PEG",
+          "EDO"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 27,
+            "code": "SAM",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.576
+          },
+          {
+            "atom_count": 19,
+            "code": "ADN",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.822
+          },
+          {
+            "atom_count": 2,
+            "code": "K",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.261
+          },
+          {
+            "atom_count": 9,
+            "code": "MET",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.713
+          },
+          {
+            "atom_count": 13,
+            "code": "PPK",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.735
+          },
+          {
+            "atom_count": 2,
+            "code": "MG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.399
+          },
+          {
+            "atom_count": 13,
+            "code": "PG4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 19.227
+          },
+          {
+            "atom_count": 7,
+            "code": "PEG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 20.412
+          },
+          {
+            "atom_count": 4,
+            "code": "EDO",
+            "instance_count": 1,
+            "min_distance_to_active_site": 20.803
           }
         ]
       },
@@ -7514,7 +7745,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -8090,6 +8324,27 @@
           "ZN"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 12,
+            "code": "3DR",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.259
+          },
+          {
+            "atom_count": 3,
+            "code": "ZN",
+            "instance_count": 3,
+            "min_distance_to_active_site": 4.962
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "3DR",
+          "ZN"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 12,
             "code": "3DR",
@@ -9292,6 +9547,18 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.071
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PAO"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 16,
+            "code": "PAO",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.071
+          }
         ]
       },
       "missing_position_details": [],
@@ -10098,6 +10365,18 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.932
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "TRQ"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 32,
+            "code": "TRQ",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.932
+          }
         ]
       },
       "missing_position_details": [
@@ -10901,6 +11180,25 @@
           "VO4"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 3,
+            "code": "AZI",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.665
+          },
+          {
+            "atom_count": 4,
+            "code": "VO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.754
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "AZI",
+          "VO4"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 3,
             "code": "AZI",
@@ -11733,6 +12031,27 @@
             "code": "ZN",
             "instance_count": 2,
             "min_distance_to_active_site": 4.611
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "NA"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 4,
+            "code": "ZN",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.611
+          },
+          {
+            "atom_count": 2,
+            "code": "NA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 7.239
           }
         ]
       },
@@ -12627,6 +12946,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.722
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 4,
+            "code": "ZN",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.722
+          },
+          {
+            "atom_count": 10,
+            "code": "SO4",
+            "instance_count": 2,
+            "min_distance_to_active_site": 13.888
+          }
         ]
       },
       "missing_position_details": [],
@@ -13264,6 +13604,25 @@
             "atom_count": 5,
             "code": "PO4",
             "instance_count": 1,
+            "min_distance_to_active_site": 3.785
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "IMH",
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 19,
+            "code": "IMH",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.613
+          },
+          {
+            "atom_count": 15,
+            "code": "PO4",
+            "instance_count": 3,
             "min_distance_to_active_site": 3.785
           }
         ]
@@ -14362,6 +14721,18 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.574
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "BME"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 5,
+            "code": "BME",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.574
+          }
         ]
       },
       "missing_position_details": [],
@@ -14982,7 +15353,56 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "GOL",
+          "CA",
+          "NAG",
+          "BMA",
+          "NDG",
+          "MAN"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 6,
+            "code": "GOL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.141
+          },
+          {
+            "atom_count": 1,
+            "code": "CA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.763
+          },
+          {
+            "atom_count": 56,
+            "code": "NAG",
+            "instance_count": 4,
+            "min_distance_to_active_site": 17.974
+          },
+          {
+            "atom_count": 22,
+            "code": "BMA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 23.128
+          },
+          {
+            "atom_count": 14,
+            "code": "NDG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 25.376
+          },
+          {
+            "atom_count": 44,
+            "code": "MAN",
+            "instance_count": 4,
+            "min_distance_to_active_site": 28.298
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -15612,6 +16032,50 @@
             "code": "FAD",
             "instance_count": 1,
             "min_distance_to_active_site": 5.817
+          }
+        ],
+        "structure_cofactor_families": [
+          "flavin",
+          "heme",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "TEO",
+          "FAD",
+          "NA",
+          "HEC",
+          "GOL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 9,
+            "code": "TEO",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.595
+          },
+          {
+            "atom_count": 53,
+            "code": "FAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.817
+          },
+          {
+            "atom_count": 1,
+            "code": "NA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 7.27
+          },
+          {
+            "atom_count": 172,
+            "code": "HEC",
+            "instance_count": 4,
+            "min_distance_to_active_site": 10.737
+          },
+          {
+            "atom_count": 6,
+            "code": "GOL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 17.523
           }
         ]
       },
@@ -16483,6 +16947,42 @@
             "atom_count": 1,
             "code": "MN",
             "instance_count": 1,
+            "min_distance_to_active_site": 5.031
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion",
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "MSE",
+          "NAD",
+          "OXL",
+          "MN"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 448,
+            "code": "MSE",
+            "instance_count": 56,
+            "min_distance_to_active_site": 3.077
+          },
+          {
+            "atom_count": 352,
+            "code": "NAD",
+            "instance_count": 8,
+            "min_distance_to_active_site": 3.627
+          },
+          {
+            "atom_count": 24,
+            "code": "OXL",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.562
+          },
+          {
+            "atom_count": 4,
+            "code": "MN",
+            "instance_count": 4,
             "min_distance_to_active_site": 5.031
           }
         ]
@@ -17467,7 +17967,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -18081,6 +18584,27 @@
             "code": "SAM",
             "instance_count": 1,
             "min_distance_to_active_site": 4.182
+          }
+        ],
+        "structure_cofactor_families": [
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAM",
+          "ACT"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 54,
+            "code": "SAM",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.182
+          },
+          {
+            "atom_count": 8,
+            "code": "ACT",
+            "instance_count": 2,
+            "min_distance_to_active_site": 8.223
           }
         ]
       },
@@ -18738,6 +19262,41 @@
             "code": "BCA",
             "instance_count": 1,
             "min_distance_to_active_site": 3.782
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "BCA",
+          "CA",
+          "EDO",
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 159,
+            "code": "BCA",
+            "instance_count": 3,
+            "min_distance_to_active_site": 3.782
+          },
+          {
+            "atom_count": 3,
+            "code": "CA",
+            "instance_count": 3,
+            "min_distance_to_active_site": 14.711
+          },
+          {
+            "atom_count": 8,
+            "code": "EDO",
+            "instance_count": 2,
+            "min_distance_to_active_site": 18.679
+          },
+          {
+            "atom_count": 5,
+            "code": "PO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 32.578
           }
         ]
       },
@@ -19483,6 +20042,18 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.98
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 20,
+            "code": "SO4",
+            "instance_count": 4,
+            "min_distance_to_active_site": 3.98
+          }
         ]
       },
       "missing_position_details": [],
@@ -20098,7 +20669,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -20710,6 +21284,20 @@
             "atom_count": 2,
             "code": "ZN",
             "instance_count": 2,
+            "min_distance_to_active_site": 4.659
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 3,
+            "code": "ZN",
+            "instance_count": 3,
             "min_distance_to_active_site": 4.659
           }
         ]
@@ -21676,6 +22264,34 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.857
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "I3P",
+          "CA",
+          "ACT"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 48,
+            "code": "I3P",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.658
+          },
+          {
+            "atom_count": 4,
+            "code": "CA",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.857
+          },
+          {
+            "atom_count": 8,
+            "code": "ACT",
+            "instance_count": 2,
+            "min_distance_to_active_site": 17.816
+          }
         ]
       },
       "missing_position_details": [],
@@ -22332,6 +22948,18 @@
             "atom_count": 9,
             "code": "CAB",
             "instance_count": 1,
+            "min_distance_to_active_site": 3.786
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "CAB"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 18,
+            "code": "CAB",
+            "instance_count": 2,
             "min_distance_to_active_site": 3.786
           }
         ]
@@ -23089,7 +23717,28 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "NA",
+          "CL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 2,
+            "code": "NA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 15.901
+          },
+          {
+            "atom_count": 2,
+            "code": "CL",
+            "instance_count": 2,
+            "min_distance_to_active_site": 31.119
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -23634,6 +24283,25 @@
           "TMP"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 36,
+            "code": "DHF",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.17
+          },
+          {
+            "atom_count": 23,
+            "code": "TMP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.576
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "DHF",
+          "TMP"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 36,
             "code": "DHF",
@@ -24461,7 +25129,28 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "GIP"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 2,
+            "code": "ZN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 6.188
+          },
+          {
+            "atom_count": 62,
+            "code": "GIP",
+            "instance_count": 2,
+            "min_distance_to_active_site": 6.735
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -24943,7 +25632,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 50,
+            "code": "SO4",
+            "instance_count": 10,
+            "min_distance_to_active_site": 7.097
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -25522,6 +26223,25 @@
             "code": "ACN",
             "instance_count": 1,
             "min_distance_to_active_site": 5.616
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "ACN",
+          "FE2"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 16,
+            "code": "ACN",
+            "instance_count": 4,
+            "min_distance_to_active_site": 5.616
+          },
+          {
+            "atom_count": 4,
+            "code": "FE2",
+            "instance_count": 4,
+            "min_distance_to_active_site": 6.394
           }
         ]
       },
@@ -26330,6 +27050,34 @@
             "instance_count": 2,
             "min_distance_to_active_site": 5.01
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ATP",
+          "MN",
+          "GOL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 31,
+            "code": "ATP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.081
+          },
+          {
+            "atom_count": 2,
+            "code": "MN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.01
+          },
+          {
+            "atom_count": 6,
+            "code": "GOL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 21.286
+          }
         ]
       },
       "missing_position_details": [],
@@ -26843,6 +27591,18 @@
             "atom_count": 3,
             "code": "FMT",
             "instance_count": 1,
+            "min_distance_to_active_site": 3.455
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "FMT"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 6,
+            "code": "FMT",
+            "instance_count": 2,
             "min_distance_to_active_site": 3.455
           }
         ]
@@ -27969,6 +28729,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.031
           }
+        ],
+        "structure_cofactor_families": [
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "HEM",
+          "NAG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 172,
+            "code": "HEM",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.031
+          },
+          {
+            "atom_count": 168,
+            "code": "NAG",
+            "instance_count": 12,
+            "min_distance_to_active_site": 20.36
+          }
         ]
       },
       "missing_position_details": [],
@@ -28779,6 +29560,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.255
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "CL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 15,
+            "code": "ZN",
+            "instance_count": 15,
+            "min_distance_to_active_site": 4.255
+          },
+          {
+            "atom_count": 15,
+            "code": "CL",
+            "instance_count": 15,
+            "min_distance_to_active_site": 7.604
+          }
         ]
       },
       "missing_position_details": [],
@@ -29387,6 +30189,27 @@
             "atom_count": 16,
             "code": "PIR",
             "instance_count": 1,
+            "min_distance_to_active_site": 4.661
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "PIR"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 4,
+            "code": "CA",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.645
+          },
+          {
+            "atom_count": 64,
+            "code": "PIR",
+            "instance_count": 4,
             "min_distance_to_active_site": 4.661
           }
         ]
@@ -30294,6 +31117,41 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.537
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "3PG",
+          "MG",
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 108,
+            "code": "ADP",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.064
+          },
+          {
+            "atom_count": 22,
+            "code": "3PG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.502
+          },
+          {
+            "atom_count": 4,
+            "code": "MG",
+            "instance_count": 4,
+            "min_distance_to_active_site": 5.537
+          },
+          {
+            "atom_count": 30,
+            "code": "PO4",
+            "instance_count": 6,
+            "min_distance_to_active_site": 13.906
+          }
         ]
       },
       "missing_position_details": [],
@@ -30832,7 +31690,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "NAG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 28,
+            "code": "NAG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 15.662
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -31590,6 +32460,20 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.746
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 2,
+            "code": "MG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.746
+          }
         ]
       },
       "missing_position_details": [],
@@ -32176,6 +33060,41 @@
             "code": "FE",
             "instance_count": 1,
             "min_distance_to_active_site": 4.528
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "PO4",
+          "FE",
+          "NAG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 4,
+            "code": "ZN",
+            "instance_count": 4,
+            "min_distance_to_active_site": 3.79
+          },
+          {
+            "atom_count": 20,
+            "code": "PO4",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.265
+          },
+          {
+            "atom_count": 4,
+            "code": "FE",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.528
+          },
+          {
+            "atom_count": 280,
+            "code": "NAG",
+            "instance_count": 20,
+            "min_distance_to_active_site": 16.747
           }
         ]
       },
@@ -33206,6 +34125,34 @@
             "atom_count": 1,
             "code": "MG",
             "instance_count": 1,
+            "min_distance_to_active_site": 4.343
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PO4",
+          "ZN",
+          "MG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 10,
+            "code": "PO4",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.671
+          },
+          {
+            "atom_count": 4,
+            "code": "ZN",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.055
+          },
+          {
+            "atom_count": 2,
+            "code": "MG",
+            "instance_count": 2,
             "min_distance_to_active_site": 4.343
           }
         ]
@@ -34516,7 +35463,28 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "GLC"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 2,
+            "code": "CA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 10.752
+          },
+          {
+            "atom_count": 69,
+            "code": "GLC",
+            "instance_count": 6,
+            "min_distance_to_active_site": 24.098
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -35100,6 +36068,20 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.579
           }
+        ],
+        "structure_cofactor_families": [
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAM"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 54,
+            "code": "SAM",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.579
+          }
         ]
       },
       "missing_position_details": [],
@@ -35534,6 +36516,25 @@
             "code": "WO4",
             "instance_count": 1,
             "min_distance_to_active_site": 3.778
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "WO4",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 5,
+            "code": "WO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.778
+          },
+          {
+            "atom_count": 5,
+            "code": "SO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 23.584
           }
         ]
       },
@@ -36228,6 +37229,34 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.445
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "IMU",
+          "MG",
+          "POP"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 96,
+            "code": "IMU",
+            "instance_count": 4,
+            "min_distance_to_active_site": 3.445
+          },
+          {
+            "atom_count": 8,
+            "code": "MG",
+            "instance_count": 8,
+            "min_distance_to_active_site": 6.569
+          },
+          {
+            "atom_count": 36,
+            "code": "POP",
+            "instance_count": 4,
+            "min_distance_to_active_site": 7.469
+          }
         ]
       },
       "missing_position_details": [],
@@ -36902,6 +37931,18 @@
             "atom_count": 5,
             "code": "PYR",
             "instance_count": 1,
+            "min_distance_to_active_site": 3.616
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PYR"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 15,
+            "code": "PYR",
+            "instance_count": 3,
             "min_distance_to_active_site": 3.616
           }
         ]
@@ -37671,6 +38712,18 @@
             "atom_count": 21,
             "code": "U5P",
             "instance_count": 1,
+            "min_distance_to_active_site": 3.588
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "U5P"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 63,
+            "code": "U5P",
+            "instance_count": 3,
             "min_distance_to_active_site": 3.588
           }
         ]
@@ -38490,6 +39543,41 @@
           "MN"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 31,
+            "code": "ATP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.285
+          },
+          {
+            "atom_count": 1,
+            "code": "MG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.192
+          },
+          {
+            "atom_count": 6,
+            "code": "PYR",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.947
+          },
+          {
+            "atom_count": 1,
+            "code": "MN",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.259
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ATP",
+          "MG",
+          "PYR",
+          "MN"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 31,
             "code": "ATP",
@@ -39501,6 +40589,41 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.321
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PGH",
+          "NA",
+          "ZN",
+          "CL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 20,
+            "code": "PGH",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.424
+          },
+          {
+            "atom_count": 2,
+            "code": "NA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.269
+          },
+          {
+            "atom_count": 7,
+            "code": "ZN",
+            "instance_count": 7,
+            "min_distance_to_active_site": 4.321
+          },
+          {
+            "atom_count": 1,
+            "code": "CL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 27.006
+          }
         ]
       },
       "missing_position_details": [],
@@ -40171,6 +41294,48 @@
             "code": "MSE",
             "instance_count": 2,
             "min_distance_to_active_site": 4.679
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "GLV",
+          "MG",
+          "MSE",
+          "SOR",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 5,
+            "code": "GLV",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.605
+          },
+          {
+            "atom_count": 1,
+            "code": "MG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.622
+          },
+          {
+            "atom_count": 168,
+            "code": "MSE",
+            "instance_count": 21,
+            "min_distance_to_active_site": 4.679
+          },
+          {
+            "atom_count": 12,
+            "code": "SOR",
+            "instance_count": 1,
+            "min_distance_to_active_site": 13.769
+          },
+          {
+            "atom_count": 25,
+            "code": "SO4",
+            "instance_count": 5,
+            "min_distance_to_active_site": 22.797
           }
         ]
       },
@@ -40912,7 +42077,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "DHS"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 22,
+            "code": "DHS",
+            "instance_count": 2,
+            "min_distance_to_active_site": 7.244
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -41319,6 +42496,39 @@
             "code": "GOL",
             "instance_count": 1,
             "min_distance_to_active_site": 4.409
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "FA1",
+          "GOL",
+          "TLA",
+          "TRS"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 144,
+            "code": "FA1",
+            "instance_count": 12,
+            "min_distance_to_active_site": 3.376
+          },
+          {
+            "atom_count": 72,
+            "code": "GOL",
+            "instance_count": 12,
+            "min_distance_to_active_site": 4.409
+          },
+          {
+            "atom_count": 120,
+            "code": "TLA",
+            "instance_count": 12,
+            "min_distance_to_active_site": 6.888
+          },
+          {
+            "atom_count": 32,
+            "code": "TRS",
+            "instance_count": 4,
+            "min_distance_to_active_site": 8.057
           }
         ]
       },
@@ -42340,7 +43550,21 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 4,
+            "code": "MG",
+            "instance_count": 4,
+            "min_distance_to_active_site": 12.452
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -42936,6 +44160,62 @@
             "code": "DIO",
             "instance_count": 1,
             "min_distance_to_active_site": 5.508
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CSD",
+          "CSO",
+          "FE",
+          "NO",
+          "DIO",
+          "ZN",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 16,
+            "code": "CSD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 2.424
+          },
+          {
+            "atom_count": 14,
+            "code": "CSO",
+            "instance_count": 2,
+            "min_distance_to_active_site": 2.487
+          },
+          {
+            "atom_count": 2,
+            "code": "FE",
+            "instance_count": 2,
+            "min_distance_to_active_site": 2.86
+          },
+          {
+            "atom_count": 4,
+            "code": "NO",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.261
+          },
+          {
+            "atom_count": 12,
+            "code": "DIO",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.508
+          },
+          {
+            "atom_count": 2,
+            "code": "ZN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 14.15
+          },
+          {
+            "atom_count": 15,
+            "code": "SO4",
+            "instance_count": 3,
+            "min_distance_to_active_site": 18.714
           }
         ]
       },
@@ -43620,6 +44900,48 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.21
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MG",
+          "DAD",
+          "FOK",
+          "GSP",
+          "CL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 3,
+            "code": "MG",
+            "instance_count": 3,
+            "min_distance_to_active_site": 4.213
+          },
+          {
+            "atom_count": 29,
+            "code": "DAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.21
+          },
+          {
+            "atom_count": 29,
+            "code": "FOK",
+            "instance_count": 1,
+            "min_distance_to_active_site": 10.761
+          },
+          {
+            "atom_count": 32,
+            "code": "GSP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 41.297
+          },
+          {
+            "atom_count": 1,
+            "code": "CL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 45.495
+          }
         ]
       },
       "missing_position_details": [],
@@ -44197,6 +45519,42 @@
             "code": "NAD",
             "instance_count": 1,
             "min_distance_to_active_site": 4.389
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion",
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "CRB",
+          "NAD",
+          "ZN",
+          "CL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 34,
+            "code": "CRB",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.968
+          },
+          {
+            "atom_count": 88,
+            "code": "NAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.389
+          },
+          {
+            "atom_count": 2,
+            "code": "ZN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 6.133
+          },
+          {
+            "atom_count": 1,
+            "code": "CL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 10.343
           }
         ]
       },
@@ -45465,7 +46823,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 20,
+            "code": "PO4",
+            "instance_count": 4,
+            "min_distance_to_active_site": 9.931
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -45992,6 +47362,18 @@
             "instance_count": 1,
             "min_distance_to_active_site": 2.442
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "OXP"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 40,
+            "code": "OXP",
+            "instance_count": 5,
+            "min_distance_to_active_site": 2.442
+          }
         ]
       },
       "missing_position_details": [],
@@ -46462,6 +47844,34 @@
             "code": "DCA",
             "instance_count": 1,
             "min_distance_to_active_site": 5.395
+          }
+        ],
+        "structure_cofactor_families": [
+          "cobalamin"
+        ],
+        "structure_ligand_codes": [
+          "B12",
+          "DCA",
+          "GOL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 182,
+            "code": "B12",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.644
+          },
+          {
+            "atom_count": 94,
+            "code": "DCA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.395
+          },
+          {
+            "atom_count": 54,
+            "code": "GOL",
+            "instance_count": 9,
+            "min_distance_to_active_site": 6.383
           }
         ]
       },
@@ -47227,6 +48637,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.367
           }
+        ],
+        "structure_cofactor_families": [
+          "cobalamin"
+        ],
+        "structure_ligand_codes": [
+          "COB",
+          "TAR"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 186,
+            "code": "COB",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.367
+          },
+          {
+            "atom_count": 20,
+            "code": "TAR",
+            "instance_count": 2,
+            "min_distance_to_active_site": 6.722
+          }
         ]
       },
       "missing_position_details": [],
@@ -47810,7 +49241,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -48521,6 +49955,48 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.949
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "GDP",
+          "HDA",
+          "NO3",
+          "IMP",
+          "MG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 40,
+            "code": "GDP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.263
+          },
+          {
+            "atom_count": 9,
+            "code": "HDA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.476
+          },
+          {
+            "atom_count": 4,
+            "code": "NO3",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.652
+          },
+          {
+            "atom_count": 33,
+            "code": "IMP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.932
+          },
+          {
+            "atom_count": 1,
+            "code": "MG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.949
+          }
         ]
       },
       "missing_position_details": [],
@@ -49168,6 +50644,20 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.725
           }
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 32,
+            "code": "PLP",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.725
+          }
         ]
       },
       "missing_position_details": [],
@@ -49732,7 +51222,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -50492,6 +51985,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.968
           }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "COS"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 212,
+            "code": "FAD",
+            "instance_count": 4,
+            "min_distance_to_active_site": 3.804
+          },
+          {
+            "atom_count": 196,
+            "code": "COS",
+            "instance_count": 4,
+            "min_distance_to_active_site": 5.968
+          }
         ]
       },
       "missing_position_details": [],
@@ -51090,7 +52604,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -51465,7 +52982,21 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "NI"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 1,
+            "code": "NI",
+            "instance_count": 1,
+            "min_distance_to_active_site": 19.804
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -51922,7 +53453,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -52489,6 +54023,34 @@
             "code": "SO4",
             "instance_count": 1,
             "min_distance_to_active_site": 5.531
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "SO4",
+          "CO",
+          "BME"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 10,
+            "code": "SO4",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.531
+          },
+          {
+            "atom_count": 1,
+            "code": "CO",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.042
+          },
+          {
+            "atom_count": 4,
+            "code": "BME",
+            "instance_count": 1,
+            "min_distance_to_active_site": 8.069
           }
         ]
       },
@@ -53230,7 +54792,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -53880,6 +55445,34 @@
           "MG"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 27,
+            "code": "ADP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.446
+          },
+          {
+            "atom_count": 20,
+            "code": "DAA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.573
+          },
+          {
+            "atom_count": 2,
+            "code": "MG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.035
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "DAA",
+          "MG"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 27,
             "code": "ADP",
@@ -54817,6 +56410,25 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.574
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "AMP",
+          "ASN"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 46,
+            "code": "AMP",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.035
+          },
+          {
+            "atom_count": 18,
+            "code": "ASN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.574
+          }
         ]
       },
       "missing_position_details": [],
@@ -55662,7 +57274,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "CNA"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 27,
+            "code": "CNA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.417
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -56059,7 +57683,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "MRD"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 16,
+            "code": "MRD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 7.864
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -56613,6 +58249,25 @@
             "code": "HAX",
             "instance_count": 1,
             "min_distance_to_active_site": 3.61
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "HAX",
+          "OAA"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 52,
+            "code": "HAX",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.61
+          },
+          {
+            "atom_count": 9,
+            "code": "OAA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.198
           }
         ]
       },
@@ -57324,6 +58979,25 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.538
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "DMD",
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 11,
+            "code": "DMD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.538
+          },
+          {
+            "atom_count": 5,
+            "code": "PO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 10.388
+          }
         ]
       },
       "missing_position_details": [],
@@ -57626,7 +59300,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -58228,6 +59905,25 @@
             "code": "TSA",
             "instance_count": 1,
             "min_distance_to_active_site": 3.892
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "TSA",
+          "TRP"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 32,
+            "code": "TSA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.892
+          },
+          {
+            "atom_count": 30,
+            "code": "TRP",
+            "instance_count": 2,
+            "min_distance_to_active_site": 12.849
           }
         ]
       },
@@ -59038,6 +60734,18 @@
             "atom_count": 16,
             "code": "G6Q",
             "instance_count": 1,
+            "min_distance_to_active_site": 5.473
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "G6Q"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 32,
+            "code": "G6Q",
+            "instance_count": 2,
             "min_distance_to_active_site": 5.473
           }
         ]
@@ -60365,6 +62073,48 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.601
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "LPE",
+          "NA",
+          "PO4",
+          "ACT"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 2,
+            "code": "CA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.419
+          },
+          {
+            "atom_count": 43,
+            "code": "LPE",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.601
+          },
+          {
+            "atom_count": 1,
+            "code": "NA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 11.095
+          },
+          {
+            "atom_count": 25,
+            "code": "PO4",
+            "instance_count": 5,
+            "min_distance_to_active_site": 12.871
+          },
+          {
+            "atom_count": 4,
+            "code": "ACT",
+            "instance_count": 1,
+            "min_distance_to_active_site": 15.63
+          }
         ]
       },
       "missing_position_details": [],
@@ -61291,6 +63041,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.46
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "BIO",
+          "ZN"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 34,
+            "code": "BIO",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.356
+          },
+          {
+            "atom_count": 2,
+            "code": "ZN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.46
+          }
         ]
       },
       "missing_position_details": [],
@@ -61960,6 +63731,25 @@
             "code": "FMT",
             "instance_count": 3,
             "min_distance_to_active_site": 3.581
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "FMT",
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 21,
+            "code": "FMT",
+            "instance_count": 7,
+            "min_distance_to_active_site": 3.581
+          },
+          {
+            "atom_count": 5,
+            "code": "PO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 18.598
           }
         ]
       },
@@ -62748,6 +64538,41 @@
             "code": "DAR",
             "instance_count": 1,
             "min_distance_to_active_site": 4.891
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "DAR",
+          "NO3",
+          "MG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 27,
+            "code": "ADP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.989
+          },
+          {
+            "atom_count": 12,
+            "code": "DAR",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.891
+          },
+          {
+            "atom_count": 8,
+            "code": "NO3",
+            "instance_count": 2,
+            "min_distance_to_active_site": 6.043
+          },
+          {
+            "atom_count": 1,
+            "code": "MG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.958
           }
         ]
       },
@@ -63681,6 +65506,27 @@
           "NI"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 12,
+            "code": "KCX",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.527
+          },
+          {
+            "atom_count": 2,
+            "code": "NI",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.573
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "KCX",
+          "NI"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 12,
             "code": "KCX",
@@ -64815,6 +66661,34 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.795
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "U5P",
+          "FE"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 2,
+            "code": "ZN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.653
+          },
+          {
+            "atom_count": 40,
+            "code": "U5P",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.795
+          },
+          {
+            "atom_count": 2,
+            "code": "FE",
+            "instance_count": 2,
+            "min_distance_to_active_site": 15.966
+          }
         ]
       },
       "missing_position_details": [],
@@ -65756,7 +67630,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PBM"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 1,
+            "code": "PBM",
+            "instance_count": 1,
+            "min_distance_to_active_site": 8.382
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -67103,6 +68989,20 @@
             "atom_count": 52,
             "code": "NAD",
             "instance_count": 1,
+            "min_distance_to_active_site": 3.145
+          }
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "NAD"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 208,
+            "code": "NAD",
+            "instance_count": 4,
             "min_distance_to_active_site": 3.145
           }
         ]
@@ -68824,6 +70724,41 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.512
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PO4",
+          "MES",
+          "CA",
+          "URA"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 10,
+            "code": "PO4",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.512
+          },
+          {
+            "atom_count": 24,
+            "code": "MES",
+            "instance_count": 2,
+            "min_distance_to_active_site": 14.536
+          },
+          {
+            "atom_count": 2,
+            "code": "CA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 16.105
+          },
+          {
+            "atom_count": 8,
+            "code": "URA",
+            "instance_count": 1,
+            "min_distance_to_active_site": 26.606
+          }
         ]
       },
       "missing_position_details": [],
@@ -69486,6 +71421,41 @@
             "code": "NAD",
             "instance_count": 1,
             "min_distance_to_active_site": 3.961
+          }
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "UDX",
+          "NAD",
+          "GOL",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 34,
+            "code": "UDX",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.904
+          },
+          {
+            "atom_count": 44,
+            "code": "NAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.961
+          },
+          {
+            "atom_count": 18,
+            "code": "GOL",
+            "instance_count": 3,
+            "min_distance_to_active_site": 9.371
+          },
+          {
+            "atom_count": 15,
+            "code": "SO4",
+            "instance_count": 3,
+            "min_distance_to_active_site": 10.107
           }
         ]
       },
@@ -70238,6 +72208,34 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.009
           }
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "NAP",
+          "COA",
+          "MAH"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 192,
+            "code": "NAP",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.009
+          },
+          {
+            "atom_count": 192,
+            "code": "COA",
+            "instance_count": 4,
+            "min_distance_to_active_site": 6.117
+          },
+          {
+            "atom_count": 44,
+            "code": "MAH",
+            "instance_count": 4,
+            "min_distance_to_active_site": 6.282
+          }
         ]
       },
       "missing_position_details": [],
@@ -70767,6 +72765,18 @@
           "ACT"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 4,
+            "code": "ACT",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.642
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "ACT"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 4,
             "code": "ACT",
@@ -71340,6 +73350,34 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.803
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MN",
+          "FOC",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 5,
+            "code": "MN",
+            "instance_count": 5,
+            "min_distance_to_active_site": 5.207
+          },
+          {
+            "atom_count": 66,
+            "code": "FOC",
+            "instance_count": 6,
+            "min_distance_to_active_site": 5.803
+          },
+          {
+            "atom_count": 10,
+            "code": "SO4",
+            "instance_count": 2,
+            "min_distance_to_active_site": 27.12
+          }
         ]
       },
       "missing_position_details": [],
@@ -71788,6 +73826,18 @@
             "atom_count": 9,
             "code": "CMS",
             "instance_count": 1,
+            "min_distance_to_active_site": 5.927
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "CMS"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 18,
+            "code": "CMS",
+            "instance_count": 2,
             "min_distance_to_active_site": 5.927
           }
         ]
@@ -72247,6 +74297,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.095
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "DHZ",
+          "ZN"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 16,
+            "code": "DHZ",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.216
+          },
+          {
+            "atom_count": 1,
+            "code": "ZN",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.095
+          }
         ]
       },
       "missing_position_details": [],
@@ -72674,6 +74745,34 @@
             "code": "2PE",
             "instance_count": 1,
             "min_distance_to_active_site": 4.012
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "FE",
+          "2PE",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 3,
+            "code": "FE",
+            "instance_count": 3,
+            "min_distance_to_active_site": 3.907
+          },
+          {
+            "atom_count": 84,
+            "code": "2PE",
+            "instance_count": 3,
+            "min_distance_to_active_site": 4.012
+          },
+          {
+            "atom_count": 10,
+            "code": "SO4",
+            "instance_count": 2,
+            "min_distance_to_active_site": 10.764
           }
         ]
       },
@@ -73434,6 +75533,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.546
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PQQ",
+          "CA"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 48,
+            "code": "PQQ",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.21
+          },
+          {
+            "atom_count": 2,
+            "code": "CA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.546
+          }
         ]
       },
       "missing_position_details": [],
@@ -73891,7 +76011,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -74521,6 +76644,25 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.865
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "MSE",
+          "AP2"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 16,
+            "code": "MSE",
+            "instance_count": 2,
+            "min_distance_to_active_site": 2.434
+          },
+          {
+            "atom_count": 23,
+            "code": "AP2",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.865
+          }
         ]
       },
       "missing_position_details": [],
@@ -74982,6 +77124,35 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.786
           }
+        ],
+        "structure_cofactor_families": [
+          "flavin",
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "FMN",
+          "HEM",
+          "PYR"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 62,
+            "code": "FMN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.786
+          },
+          {
+            "atom_count": 43,
+            "code": "HEM",
+            "instance_count": 1,
+            "min_distance_to_active_site": 10.405
+          },
+          {
+            "atom_count": 6,
+            "code": "PYR",
+            "instance_count": 1,
+            "min_distance_to_active_site": 39.253
+          }
         ]
       },
       "missing_position_details": [],
@@ -75421,6 +77592,34 @@
             "code": "CL",
             "instance_count": 1,
             "min_distance_to_active_site": 4.261
+          }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "CL",
+          "ACT"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 106,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.026
+          },
+          {
+            "atom_count": 2,
+            "code": "CL",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.261
+          },
+          {
+            "atom_count": 8,
+            "code": "ACT",
+            "instance_count": 2,
+            "min_distance_to_active_site": 6.463
           }
         ]
       },
@@ -76135,6 +78334,34 @@
             "code": "PQQ",
             "instance_count": 1,
             "min_distance_to_active_site": 5.119
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "PQQ",
+          "GOL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 6,
+            "code": "CA",
+            "instance_count": 6,
+            "min_distance_to_active_site": 4.3
+          },
+          {
+            "atom_count": 48,
+            "code": "PQQ",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.119
+          },
+          {
+            "atom_count": 24,
+            "code": "GOL",
+            "instance_count": 4,
+            "min_distance_to_active_site": 9.031
           }
         ]
       },
@@ -76969,6 +79196,49 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.801
           }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PCD",
+          "IPA",
+          "CL",
+          "FES",
+          "MG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 48,
+            "code": "PCD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.801
+          },
+          {
+            "atom_count": 8,
+            "code": "IPA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 8.663
+          },
+          {
+            "atom_count": 3,
+            "code": "CL",
+            "instance_count": 3,
+            "min_distance_to_active_site": 10.821
+          },
+          {
+            "atom_count": 8,
+            "code": "FES",
+            "instance_count": 2,
+            "min_distance_to_active_site": 15.582
+          },
+          {
+            "atom_count": 2,
+            "code": "MG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 28.596
+          }
         ]
       },
       "missing_position_details": [],
@@ -77199,6 +79469,41 @@
             "code": "TPP",
             "instance_count": 1,
             "min_distance_to_active_site": 5.915
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "TPP",
+          "MG",
+          "PEG",
+          "K"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 104,
+            "code": "TPP",
+            "instance_count": 4,
+            "min_distance_to_active_site": 5.915
+          },
+          {
+            "atom_count": 6,
+            "code": "MG",
+            "instance_count": 6,
+            "min_distance_to_active_site": 8.156
+          },
+          {
+            "atom_count": 21,
+            "code": "PEG",
+            "instance_count": 3,
+            "min_distance_to_active_site": 15.572
+          },
+          {
+            "atom_count": 4,
+            "code": "K",
+            "instance_count": 4,
+            "min_distance_to_active_site": 18.169
           }
         ]
       },
@@ -77971,6 +80276,49 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.636
           }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "CUB",
+          "MCN",
+          "FES",
+          "FAD",
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 22,
+            "code": "CUB",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.468
+          },
+          {
+            "atom_count": 88,
+            "code": "MCN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.636
+          },
+          {
+            "atom_count": 16,
+            "code": "FES",
+            "instance_count": 4,
+            "min_distance_to_active_site": 14.578
+          },
+          {
+            "atom_count": 106,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 26.591
+          },
+          {
+            "atom_count": 5,
+            "code": "PO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 45.838
+          }
         ]
       },
       "missing_position_details": [],
@@ -78573,6 +80921,57 @@
             "code": "SF4",
             "instance_count": 1,
             "min_distance_to_active_site": 4.896
+          }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin",
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "MDE",
+          "SF4",
+          "NAP",
+          "FAD",
+          "FMN",
+          "CL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 63,
+            "code": "MDE",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.23
+          },
+          {
+            "atom_count": 8,
+            "code": "SF4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.896
+          },
+          {
+            "atom_count": 48,
+            "code": "NAP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.115
+          },
+          {
+            "atom_count": 53,
+            "code": "FAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 7.05
+          },
+          {
+            "atom_count": 31,
+            "code": "FMN",
+            "instance_count": 1,
+            "min_distance_to_active_site": 7.195
+          },
+          {
+            "atom_count": 3,
+            "code": "CL",
+            "instance_count": 3,
+            "min_distance_to_active_site": 14.277
           }
         ]
       },
@@ -79244,6 +81643,55 @@
             "code": "FMN",
             "instance_count": 1,
             "min_distance_to_active_site": 3.492
+          }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "ORO",
+          "FMN",
+          "BRE",
+          "ACT",
+          "DDQ",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 11,
+            "code": "ORO",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.48
+          },
+          {
+            "atom_count": 31,
+            "code": "FMN",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.492
+          },
+          {
+            "atom_count": 27,
+            "code": "BRE",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.724
+          },
+          {
+            "atom_count": 4,
+            "code": "ACT",
+            "instance_count": 1,
+            "min_distance_to_active_site": 16.195
+          },
+          {
+            "atom_count": 14,
+            "code": "DDQ",
+            "instance_count": 1,
+            "min_distance_to_active_site": 19.387
+          },
+          {
+            "atom_count": 5,
+            "code": "SO4",
+            "instance_count": 1,
+            "min_distance_to_active_site": 27.173
           }
         ]
       },
@@ -80030,6 +82478,41 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.017
           }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "DAL",
+          "FAD",
+          "PER",
+          "GOL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 6,
+            "code": "DAL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.488
+          },
+          {
+            "atom_count": 53,
+            "code": "FAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.791
+          },
+          {
+            "atom_count": 2,
+            "code": "PER",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.017
+          },
+          {
+            "atom_count": 6,
+            "code": "GOL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 21.266
+          }
         ]
       },
       "missing_position_details": [],
@@ -80547,6 +83030,34 @@
             "code": "FMN",
             "instance_count": 1,
             "min_distance_to_active_site": 4.162
+          }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "AKG",
+          "FMN",
+          "F3S"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 20,
+            "code": "AKG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.846
+          },
+          {
+            "atom_count": 62,
+            "code": "FMN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.162
+          },
+          {
+            "atom_count": 14,
+            "code": "F3S",
+            "instance_count": 2,
+            "min_distance_to_active_site": 14.742
           }
         ]
       },
@@ -81894,6 +84405,25 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.64
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "NDP",
+          "MTX"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 48,
+            "code": "NDP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.239
+          },
+          {
+            "atom_count": 33,
+            "code": "MTX",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.64
+          }
         ]
       },
       "missing_position_details": [],
@@ -82836,6 +85366,34 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.62
           }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "CL",
+          "PO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 106,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.62
+          },
+          {
+            "atom_count": 2,
+            "code": "CL",
+            "instance_count": 2,
+            "min_distance_to_active_site": 8.993
+          },
+          {
+            "atom_count": 20,
+            "code": "PO4",
+            "instance_count": 4,
+            "min_distance_to_active_site": 11.241
+          }
         ]
       },
       "missing_position_details": [],
@@ -83737,6 +86295,35 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.627
           }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FMN",
+          "SF4",
+          "ADP"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 62,
+            "code": "FMN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.627
+          },
+          {
+            "atom_count": 16,
+            "code": "SF4",
+            "instance_count": 2,
+            "min_distance_to_active_site": 10.967
+          },
+          {
+            "atom_count": 54,
+            "code": "ADP",
+            "instance_count": 2,
+            "min_distance_to_active_site": 26.748
+          }
         ]
       },
       "missing_position_details": [],
@@ -84411,6 +86998,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.534
           }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "NAG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 53,
+            "code": "FAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.534
+          },
+          {
+            "atom_count": 70,
+            "code": "NAG",
+            "instance_count": 5,
+            "min_distance_to_active_site": 11.729
+          }
         ]
       },
       "missing_position_details": [],
@@ -84890,6 +87498,27 @@
             "code": "NAP",
             "instance_count": 1,
             "min_distance_to_active_site": 4.052
+          }
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "NAP",
+          "NAD"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 48,
+            "code": "NAP",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.052
+          },
+          {
+            "atom_count": 44,
+            "code": "NAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 41.958
           }
         ]
       },
@@ -85478,6 +88107,35 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.842
           }
+        ],
+        "structure_cofactor_families": [
+          "flavin",
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "FMN",
+          "NAP"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 100,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.307
+          },
+          {
+            "atom_count": 62,
+            "code": "FMN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.842
+          },
+          {
+            "atom_count": 62,
+            "code": "NAP",
+            "instance_count": 2,
+            "min_distance_to_active_site": 8.838
+          }
         ]
       },
       "missing_position_details": [],
@@ -86047,7 +88705,26 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "UNC",
+          "SAC"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 12,
+            "code": "UNC",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.191
+          },
+          {
+            "atom_count": 9,
+            "code": "SAC",
+            "instance_count": 1,
+            "min_distance_to_active_site": 24.728
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -86713,6 +89390,49 @@
             "code": "SF4",
             "instance_count": 1,
             "min_distance_to_active_site": 5.363
+          }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "TPP",
+          "CL",
+          "SF4",
+          "MG",
+          "CA"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 52,
+            "code": "TPP",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.815
+          },
+          {
+            "atom_count": 2,
+            "code": "CL",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.949
+          },
+          {
+            "atom_count": 48,
+            "code": "SF4",
+            "instance_count": 6,
+            "min_distance_to_active_site": 5.363
+          },
+          {
+            "atom_count": 2,
+            "code": "MG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 7.598
+          },
+          {
+            "atom_count": 2,
+            "code": "CA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 25.017
           }
         ]
       },
@@ -87392,6 +90112,34 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.947
           }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "MPD",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 159,
+            "code": "FAD",
+            "instance_count": 3,
+            "min_distance_to_active_site": 4.032
+          },
+          {
+            "atom_count": 24,
+            "code": "MPD",
+            "instance_count": 3,
+            "min_distance_to_active_site": 4.947
+          },
+          {
+            "atom_count": 20,
+            "code": "SO4",
+            "instance_count": 4,
+            "min_distance_to_active_site": 13.174
+          }
         ]
       },
       "missing_position_details": [],
@@ -88051,6 +90799,55 @@
             "code": "HEM",
             "instance_count": 1,
             "min_distance_to_active_site": 5.693
+          }
+        ],
+        "structure_cofactor_families": [
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "MTE",
+          "MO",
+          "HEM",
+          "SO4",
+          "GOL",
+          "EPE"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 48,
+            "code": "MTE",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.614
+          },
+          {
+            "atom_count": 2,
+            "code": "MO",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.622
+          },
+          {
+            "atom_count": 86,
+            "code": "HEM",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.693
+          },
+          {
+            "atom_count": 20,
+            "code": "SO4",
+            "instance_count": 4,
+            "min_distance_to_active_site": 6.318
+          },
+          {
+            "atom_count": 6,
+            "code": "GOL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 11.983
+          },
+          {
+            "atom_count": 15,
+            "code": "EPE",
+            "instance_count": 1,
+            "min_distance_to_active_site": 48.877
           }
         ]
       },
@@ -88789,7 +91586,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -89625,6 +92425,35 @@
             "code": "SF4",
             "instance_count": 1,
             "min_distance_to_active_site": 4.436
+          }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "SF4",
+          "GOL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 106,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.748
+          },
+          {
+            "atom_count": 32,
+            "code": "SF4",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.436
+          },
+          {
+            "atom_count": 24,
+            "code": "GOL",
+            "instance_count": 4,
+            "min_distance_to_active_site": 10.829
           }
         ]
       },
@@ -90786,6 +93615,133 @@
             "code": "CU",
             "instance_count": 1,
             "min_distance_to_active_site": 3.904
+          }
+        ],
+        "structure_cofactor_families": [
+          "heme",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "HEA",
+          "CU",
+          "MG",
+          "PGV",
+          "PEK",
+          "CUA",
+          "PSC",
+          "CHD",
+          "NA",
+          "CDL",
+          "DMU",
+          "TGL",
+          "FME",
+          "TPO",
+          "ZN",
+          "UNX",
+          "SAC"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 240,
+            "code": "HEA",
+            "instance_count": 4,
+            "min_distance_to_active_site": 3.636
+          },
+          {
+            "atom_count": 2,
+            "code": "CU",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.904
+          },
+          {
+            "atom_count": 2,
+            "code": "MG",
+            "instance_count": 2,
+            "min_distance_to_active_site": 7.815
+          },
+          {
+            "atom_count": 408,
+            "code": "PGV",
+            "instance_count": 8,
+            "min_distance_to_active_site": 7.876
+          },
+          {
+            "atom_count": 318,
+            "code": "PEK",
+            "instance_count": 6,
+            "min_distance_to_active_site": 9.326
+          },
+          {
+            "atom_count": 4,
+            "code": "CUA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 9.366
+          },
+          {
+            "atom_count": 104,
+            "code": "PSC",
+            "instance_count": 2,
+            "min_distance_to_active_site": 9.97
+          },
+          {
+            "atom_count": 232,
+            "code": "CHD",
+            "instance_count": 8,
+            "min_distance_to_active_site": 10.048
+          },
+          {
+            "atom_count": 2,
+            "code": "NA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 12.617
+          },
+          {
+            "atom_count": 400,
+            "code": "CDL",
+            "instance_count": 4,
+            "min_distance_to_active_site": 12.963
+          },
+          {
+            "atom_count": 66,
+            "code": "DMU",
+            "instance_count": 2,
+            "min_distance_to_active_site": 14.078
+          },
+          {
+            "atom_count": 378,
+            "code": "TGL",
+            "instance_count": 6,
+            "min_distance_to_active_site": 14.469
+          },
+          {
+            "atom_count": 40,
+            "code": "FME",
+            "instance_count": 4,
+            "min_distance_to_active_site": 16.631
+          },
+          {
+            "atom_count": 22,
+            "code": "TPO",
+            "instance_count": 2,
+            "min_distance_to_active_site": 21.462
+          },
+          {
+            "atom_count": 2,
+            "code": "ZN",
+            "instance_count": 2,
+            "min_distance_to_active_site": 22.474
+          },
+          {
+            "atom_count": 2,
+            "code": "UNX",
+            "instance_count": 2,
+            "min_distance_to_active_site": 26.868
+          },
+          {
+            "atom_count": 18,
+            "code": "SAC",
+            "instance_count": 2,
+            "min_distance_to_active_site": 51.39
           }
         ]
       },
@@ -92909,7 +95865,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "C2O"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 3,
+            "code": "C2O",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.042
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -93816,6 +96784,56 @@
             "code": "NI",
             "instance_count": 1,
             "min_distance_to_active_site": 4.265
+          }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "FCO",
+          "O",
+          "NI",
+          "SF4",
+          "MG",
+          "F3S"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 42,
+            "code": "FCO",
+            "instance_count": 6,
+            "min_distance_to_active_site": 3.679
+          },
+          {
+            "atom_count": 6,
+            "code": "O",
+            "instance_count": 6,
+            "min_distance_to_active_site": 4.104
+          },
+          {
+            "atom_count": 6,
+            "code": "NI",
+            "instance_count": 6,
+            "min_distance_to_active_site": 4.265
+          },
+          {
+            "atom_count": 96,
+            "code": "SF4",
+            "instance_count": 12,
+            "min_distance_to_active_site": 6.667
+          },
+          {
+            "atom_count": 6,
+            "code": "MG",
+            "instance_count": 6,
+            "min_distance_to_active_site": 8.925
+          },
+          {
+            "atom_count": 42,
+            "code": "F3S",
+            "instance_count": 6,
+            "min_distance_to_active_site": 16.142
           }
         ]
       },
@@ -94780,6 +97798,63 @@
             "code": "CMO",
             "instance_count": 1,
             "min_distance_to_active_site": 4.969
+          }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "SF4",
+          "PDT",
+          "CYN",
+          "FE2",
+          "CMO",
+          "CYS",
+          "ZN"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 48,
+            "code": "SF4",
+            "instance_count": 6,
+            "min_distance_to_active_site": 3.486
+          },
+          {
+            "atom_count": 10,
+            "code": "PDT",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.554
+          },
+          {
+            "atom_count": 8,
+            "code": "CYN",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.598
+          },
+          {
+            "atom_count": 4,
+            "code": "FE2",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.824
+          },
+          {
+            "atom_count": 8,
+            "code": "CMO",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.969
+          },
+          {
+            "atom_count": 14,
+            "code": "CYS",
+            "instance_count": 2,
+            "min_distance_to_active_site": 7.429
+          },
+          {
+            "atom_count": 1,
+            "code": "ZN",
+            "instance_count": 1,
+            "min_distance_to_active_site": 15.019
           }
         ]
       },
@@ -95817,7 +98892,19 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "MBR"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 8,
+            "code": "MBR",
+            "instance_count": 2,
+            "min_distance_to_active_site": 8.886
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -96599,6 +99686,32 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.71
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "TAU",
+          "FE2",
+          "AKG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 21,
+            "code": "TAU",
+            "instance_count": 3,
+            "min_distance_to_active_site": 3.877
+          },
+          {
+            "atom_count": 4,
+            "code": "FE2",
+            "instance_count": 4,
+            "min_distance_to_active_site": 4.795
+          },
+          {
+            "atom_count": 40,
+            "code": "AKG",
+            "instance_count": 4,
+            "min_distance_to_active_site": 5.71
+          }
         ]
       },
       "missing_position_details": [],
@@ -97108,6 +100221,28 @@
             "atom_count": 1,
             "code": "FE",
             "instance_count": 1,
+            "min_distance_to_active_site": 5.111
+          }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "FES",
+          "FE"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 12,
+            "code": "FES",
+            "instance_count": 3,
+            "min_distance_to_active_site": 3.76
+          },
+          {
+            "atom_count": 3,
+            "code": "FE",
+            "instance_count": 3,
             "min_distance_to_active_site": 5.111
           }
         ]
@@ -97730,6 +100865,34 @@
             "atom_count": 1,
             "code": "BR",
             "instance_count": 1,
+            "min_distance_to_active_site": 3.486
+          },
+          {
+            "atom_count": 53,
+            "code": "FAD",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.88
+          },
+          {
+            "atom_count": 10,
+            "code": "PHB",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.712
+          }
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "BR",
+          "FAD",
+          "PHB"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 3,
+            "code": "BR",
+            "instance_count": 3,
             "min_distance_to_active_site": 3.486
           },
           {
@@ -98458,7 +101621,28 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "EDO",
+          "MG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 20,
+            "code": "EDO",
+            "instance_count": 5,
+            "min_distance_to_active_site": 7.901
+          },
+          {
+            "atom_count": 3,
+            "code": "MG",
+            "instance_count": 3,
+            "min_distance_to_active_site": 15.77
+          }
+        ]
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -99209,6 +102393,35 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.515
           }
+        ],
+        "structure_cofactor_families": [
+          "heme",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "HEM",
+          "CAM",
+          "K"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 43,
+            "code": "HEM",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.515
+          },
+          {
+            "atom_count": 11,
+            "code": "CAM",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.162
+          },
+          {
+            "atom_count": 1,
+            "code": "K",
+            "instance_count": 1,
+            "min_distance_to_active_site": 18.053
+          }
         ]
       },
       "missing_position_details": [],
@@ -99864,6 +103077,41 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.61
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "FE",
+          "HBI",
+          "MTY",
+          "CL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 1,
+            "code": "FE",
+            "instance_count": 1,
+            "min_distance_to_active_site": 5.61
+          },
+          {
+            "atom_count": 17,
+            "code": "HBI",
+            "instance_count": 1,
+            "min_distance_to_active_site": 6.618
+          },
+          {
+            "atom_count": 12,
+            "code": "MTY",
+            "instance_count": 1,
+            "min_distance_to_active_site": 8.873
+          },
+          {
+            "atom_count": 1,
+            "code": "CL",
+            "instance_count": 1,
+            "min_distance_to_active_site": 17.28
+          }
         ]
       },
       "missing_position_details": [],
@@ -100362,6 +103610,48 @@
             "code": "IYT",
             "instance_count": 1,
             "min_distance_to_active_site": 4.568
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CU",
+          "IYT",
+          "OXY",
+          "GOL",
+          "NI"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 2,
+            "code": "CU",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.973
+          },
+          {
+            "atom_count": 86,
+            "code": "IYT",
+            "instance_count": 3,
+            "min_distance_to_active_site": 4.568
+          },
+          {
+            "atom_count": 2,
+            "code": "OXY",
+            "instance_count": 1,
+            "min_distance_to_active_site": 7.198
+          },
+          {
+            "atom_count": 36,
+            "code": "GOL",
+            "instance_count": 6,
+            "min_distance_to_active_site": 11.505
+          },
+          {
+            "atom_count": 1,
+            "code": "NI",
+            "instance_count": 1,
+            "min_distance_to_active_site": 26.548
           }
         ]
       },
@@ -101140,6 +104430,18 @@
             "atom_count": 2,
             "code": "FE2",
             "instance_count": 2,
+            "min_distance_to_active_site": 4.031
+          }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "FE2"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 12,
+            "code": "FE2",
+            "instance_count": 12,
             "min_distance_to_active_site": 4.031
           }
         ]
@@ -102217,6 +105519,32 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.488
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PN1",
+          "AKG",
+          "FE2"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 24,
+            "code": "PN1",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.488
+          },
+          {
+            "atom_count": 10,
+            "code": "AKG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 12.475
+          },
+          {
+            "atom_count": 1,
+            "code": "FE2",
+            "instance_count": 1,
+            "min_distance_to_active_site": 15.714
+          }
         ]
       },
       "missing_position_details": [],
@@ -102424,6 +105752,27 @@
           "CU1"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 1,
+            "code": "ZN",
+            "instance_count": 1,
+            "min_distance_to_active_site": 3.922
+          },
+          {
+            "atom_count": 1,
+            "code": "CU1",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.359
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "CU1"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 1,
             "code": "ZN",
@@ -103294,6 +106643,71 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.566
           }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MOS",
+          "MTE",
+          "FYX",
+          "ACY",
+          "CA",
+          "GOL",
+          "FES",
+          "FAD"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 8,
+            "code": "MOS",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.419
+          },
+          {
+            "atom_count": 48,
+            "code": "MTE",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.566
+          },
+          {
+            "atom_count": 38,
+            "code": "FYX",
+            "instance_count": 2,
+            "min_distance_to_active_site": 6.543
+          },
+          {
+            "atom_count": 8,
+            "code": "ACY",
+            "instance_count": 2,
+            "min_distance_to_active_site": 8.907
+          },
+          {
+            "atom_count": 2,
+            "code": "CA",
+            "instance_count": 2,
+            "min_distance_to_active_site": 12.398
+          },
+          {
+            "atom_count": 48,
+            "code": "GOL",
+            "instance_count": 8,
+            "min_distance_to_active_site": 13.619
+          },
+          {
+            "atom_count": 16,
+            "code": "FES",
+            "instance_count": 4,
+            "min_distance_to_active_site": 15.451
+          },
+          {
+            "atom_count": 106,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 29.717
+          }
         ]
       },
       "missing_position_details": [],
@@ -103866,7 +107280,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [
         {
@@ -104460,6 +107877,35 @@
             "code": "FAD",
             "instance_count": 1,
             "min_distance_to_active_site": 4.713
+          }
+        ],
+        "structure_cofactor_families": [
+          "flavin",
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "HEC",
+          "FAD",
+          "CL"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 86,
+            "code": "HEC",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.043
+          },
+          {
+            "atom_count": 106,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 4.713
+          },
+          {
+            "atom_count": 2,
+            "code": "CL",
+            "instance_count": 2,
+            "min_distance_to_active_site": 10.936
           }
         ]
       },
@@ -106169,6 +109615,35 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.73
           }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "FES",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 106,
+            "code": "FAD",
+            "instance_count": 2,
+            "min_distance_to_active_site": 3.73
+          },
+          {
+            "atom_count": 8,
+            "code": "FES",
+            "instance_count": 2,
+            "min_distance_to_active_site": 9.439
+          },
+          {
+            "atom_count": 25,
+            "code": "SO4",
+            "instance_count": 5,
+            "min_distance_to_active_site": 22.062
+          }
         ]
       },
       "missing_position_details": [],
@@ -106710,6 +110185,20 @@
           "K"
         ],
         "proximal_ligands": [
+          {
+            "atom_count": 1,
+            "code": "K",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.13
+          }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "K"
+        ],
+        "structure_ligands": [
           {
             "atom_count": 1,
             "code": "K",
@@ -108287,6 +111776,70 @@
             "instance_count": 1,
             "min_distance_to_active_site": 3.971
           }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MGD",
+          "FES",
+          "F3S",
+          "HG",
+          "4MO",
+          "O",
+          "EDO",
+          "CA"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 376,
+            "code": "MGD",
+            "instance_count": 8,
+            "min_distance_to_active_site": 3.513
+          },
+          {
+            "atom_count": 16,
+            "code": "FES",
+            "instance_count": 4,
+            "min_distance_to_active_site": 3.539
+          },
+          {
+            "atom_count": 28,
+            "code": "F3S",
+            "instance_count": 4,
+            "min_distance_to_active_site": 3.971
+          },
+          {
+            "atom_count": 12,
+            "code": "HG",
+            "instance_count": 12,
+            "min_distance_to_active_site": 8.646
+          },
+          {
+            "atom_count": 4,
+            "code": "4MO",
+            "instance_count": 4,
+            "min_distance_to_active_site": 8.93
+          },
+          {
+            "atom_count": 4,
+            "code": "O",
+            "instance_count": 4,
+            "min_distance_to_active_site": 9.169
+          },
+          {
+            "atom_count": 36,
+            "code": "EDO",
+            "instance_count": 9,
+            "min_distance_to_active_site": 14.054
+          },
+          {
+            "atom_count": 8,
+            "code": "CA",
+            "instance_count": 8,
+            "min_distance_to_active_site": 14.618
+          }
         ]
       },
       "missing_position_details": [],
@@ -109107,6 +112660,32 @@
             "instance_count": 1,
             "min_distance_to_active_site": 4.888
           }
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "FE2",
+          "ASV",
+          "SO4"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 1,
+            "code": "FE2",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.752
+          },
+          {
+            "atom_count": 23,
+            "code": "ASV",
+            "instance_count": 1,
+            "min_distance_to_active_site": 4.888
+          },
+          {
+            "atom_count": 15,
+            "code": "SO4",
+            "instance_count": 3,
+            "min_distance_to_active_site": 16.416
+          }
         ]
       },
       "missing_position_details": [],
@@ -109580,6 +113159,49 @@
             "code": "4MO",
             "instance_count": 1,
             "min_distance_to_active_site": 5.638
+          }
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MGD",
+          "BTT",
+          "4MO",
+          "SF4",
+          "CA"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 1128,
+            "code": "MGD",
+            "instance_count": 24,
+            "min_distance_to_active_site": 3.592
+          },
+          {
+            "atom_count": 120,
+            "code": "BTT",
+            "instance_count": 12,
+            "min_distance_to_active_site": 5.577
+          },
+          {
+            "atom_count": 12,
+            "code": "4MO",
+            "instance_count": 12,
+            "min_distance_to_active_site": 5.638
+          },
+          {
+            "atom_count": 288,
+            "code": "SF4",
+            "instance_count": 36,
+            "min_distance_to_active_site": 24.246
+          },
+          {
+            "atom_count": 24,
+            "code": "CA",
+            "instance_count": 24,
+            "min_distance_to_active_site": 30.689
           }
         ]
       },
@@ -110127,6 +113749,41 @@
             "code": "PLP",
             "instance_count": 1,
             "min_distance_to_active_site": 5.116
+          }
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP",
+          "GLY",
+          "GOL",
+          "TGF"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 60,
+            "code": "PLP",
+            "instance_count": 4,
+            "min_distance_to_active_site": 5.116
+          },
+          {
+            "atom_count": 10,
+            "code": "GLY",
+            "instance_count": 2,
+            "min_distance_to_active_site": 7.772
+          },
+          {
+            "atom_count": 24,
+            "code": "GOL",
+            "instance_count": 4,
+            "min_distance_to_active_site": 18.039
+          },
+          {
+            "atom_count": 133,
+            "code": "TGF",
+            "instance_count": 2,
+            "min_distance_to_active_site": 22.998
           }
         ]
       },
@@ -110936,7 +114593,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -111598,7 +115258,10 @@
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
         "ligand_codes": [],
-        "proximal_ligands": []
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
       },
       "missing_position_details": [],
       "missing_positions": 0,
@@ -112297,6 +115960,27 @@
             "instance_count": 1,
             "min_distance_to_active_site": 5.186
           }
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "MG"
+        ],
+        "structure_ligands": [
+          {
+            "atom_count": 54,
+            "code": "ADP",
+            "instance_count": 2,
+            "min_distance_to_active_site": 5.186
+          },
+          {
+            "atom_count": 1,
+            "code": "MG",
+            "instance_count": 1,
+            "min_distance_to_active_site": 7.917
+          }
         ]
       },
       "missing_position_details": [],
@@ -112970,6 +116654,8 @@
     "entries_with_pairwise_geometry": 148,
     "entries_with_pocket_context": 150,
     "entries_with_proximal_ligands": 118,
+    "entries_with_structure_inferred_cofactors": 94,
+    "entries_with_structure_ligands": 135,
     "entry_count": 150,
     "input_graph": {
       "edge_count": 4469,

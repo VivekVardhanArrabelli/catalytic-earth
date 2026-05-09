@@ -52,6 +52,7 @@ ATOM 13 C CA CYS A 164 34.5 0.0 0.0 CA CYS A 181
 HETATM 6 FE FE HEM A 501 1.8 2.2 0.0 FE HEM A 501
 HETATM 7 C C1 HEM A 501 2.2 2.4 0.2 C1 HEM A 501
 HETATM 8 O O HOH A 700 0.5 0.5 0.5 O HOH A 700
+HETATM 9 N N1 FAD A 900 20.0 20.0 20.0 N1 FAD A 900
 #
 """
 
@@ -59,7 +60,7 @@ HETATM 8 O O HOH A 700 0.5 0.5 0.5 O HOH A 700
 class StructureTests(unittest.TestCase):
     def test_parse_and_select_residue_atoms(self) -> None:
         atoms = parse_atom_site_loop(SAMPLE_CIF)
-        self.assertEqual(len(atoms), 16)
+        self.assertEqual(len(atoms), 17)
         asp_atoms = select_residue_atoms(atoms, chain_name="A", resid=7, code="Asp")
         self.assertEqual(len(asp_atoms), 3)
         self.assertEqual(residue_centroid(asp_atoms), {"x": 0.667, "y": 0.333, "z": 0.0})
@@ -100,6 +101,8 @@ class StructureTests(unittest.TestCase):
         )
         self.assertEqual(context["ligand_codes"], ["HEM"])
         self.assertIn("heme", context["cofactor_families"])
+        self.assertEqual(context["structure_ligand_codes"], ["HEM", "FAD"])
+        self.assertIn("flavin", context["structure_cofactor_families"])
         self.assertGreaterEqual(context["proximal_ligands"][0]["instance_count"], 1)
 
     def test_ligand_context_infers_cobalamin_codes(self) -> None:
@@ -162,6 +165,8 @@ class StructureTests(unittest.TestCase):
         features = build_geometry_features(graph, max_entries=1, cif_fetcher=lambda _: SAMPLE_CIF)
         self.assertEqual(features["metadata"]["entries_with_pairwise_geometry"], 1)
         self.assertEqual(features["metadata"]["entries_with_inferred_cofactors"], 1)
+        self.assertEqual(features["metadata"]["entries_with_structure_ligands"], 1)
+        self.assertEqual(features["metadata"]["entries_with_structure_inferred_cofactors"], 1)
         self.assertEqual(features["metadata"]["entries_with_pocket_context"], 1)
         self.assertEqual(features["entries"][0]["resolved_residue_count"], 2)
         self.assertEqual(features["entries"][0]["missing_position_details"], [])

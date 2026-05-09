@@ -2,7 +2,9 @@
   "metadata": {
     "abstain_threshold": 0.4704,
     "abstained_positive_count": 0,
+    "actionable_failure_count": 0,
     "evaluated_in_scope_count": 25,
+    "evidence_limited_abstention_count": 0,
     "failure_cause_counts": {},
     "failure_count": 0,
     "failure_mode_counts": {},

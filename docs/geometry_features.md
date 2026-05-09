@@ -53,6 +53,11 @@ PYTHONPATH=src python -m catalytic_earth.cli analyze-in-scope-failures \
   --abstain-threshold 0.5144 \
   --out artifacts/v3_in_scope_failure_analysis_150.json
 
+PYTHONPATH=src python -m catalytic_earth.cli analyze-cofactor-coverage \
+  --retrieval artifacts/v3_geometry_retrieval_150.json \
+  --abstain-threshold 0.5144 \
+  --out artifacts/v3_cofactor_coverage_150.json
+
 PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins \
   --retrieval artifacts/v3_geometry_retrieval_150.json \
   --out artifacts/v3_geometry_score_margins_150.json
@@ -91,6 +96,9 @@ For each M-CSA entry with structure positions:
 - proximal non-polymer ligands from mmCIF `HETATM` records
 - inferred cofactor families from nearby ligands (for example heme, flavin, PLP,
   cobalamin, metal ions, SAM, Fe-S clusters)
+- structure-wide non-polymer ligand inventory, nearest active-site distances,
+  and structure-wide inferred cofactor families for distinguishing missing
+  local evidence from cofactors elsewhere in the selected structure
 - cofactor evidence level for retrieval hits (`ligand_supported`,
   `role_inferred`, `absent`, or `not_required`)
 - substrate-pocket residue context from nearby protein `ATOM` records
@@ -136,15 +144,29 @@ Current slices:
 - 125-entry expanded slice: threshold 0.4704, 124/125 evaluable, 38/38
   in-scope positives retained, 0 out-of-scope false non-abstentions, 0 hard
   negatives, 0 near misses, and score gap 0.0562.
-- 150-entry expanded slice: threshold 0.5144, 148/150 evaluable, 43/46
+- 150-entry expanded slice: threshold 0.5144, 148/150 evaluable, 43/44
   in-scope positives retained, 0 out-of-scope false non-abstentions, 0 hard
-  negatives, 0 near misses, and 3 in-scope failures. Two failures have absent
-  target cofactor context and one target is absent from the top-k ranking.
+  negatives, 0 near misses, and 1 evidence-limited in-scope abstention. That
+  remaining case is `m_csa:132`, where the selected `1LUC` structure lacks the
+  expected flavin/NAD cofactor evidence.
 
 `artifacts/v3_geometry_slice_summary.json` summarizes the 20-, 30-, 40-, 50-,
 60-, 75-, 100-, 125-, and 150-entry slices. It currently reports zero hard
 negatives and zero out-of-scope false non-abstentions across all slices. Only
-the 150-entry slice has in-scope failures.
+the 150-entry slice has an in-scope failure, and its actionable in-scope failure
+count is 0 after separating evidence-limited abstentions; the summary metadata
+therefore reports `all_zero_actionable_in_scope_failures`.
+
+`artifacts/v3_cofactor_coverage_150.json` tracks expected cofactor coverage for
+in-scope labels. In the 150-entry slice, 39/44 in-scope positives have local
+cofactor support, 1 has the expected cofactor only elsewhere in the selected
+structure, 2 require no cofactor, and 2 lack expected structure-wide cofactor
+evidence. Of the 2 absent-expected-cofactor rows, 1 is retained and 1 is
+abstained. The retained row is `m_csa:41`; the abstained row is `m_csa:132`;
+the structure-only row is `m_csa:108`. The coverage metadata now also exposes
+`evidence_limited_retained_entry_ids`, currently `m_csa:41` and `m_csa:108`, so
+these retained positives can be audited separately from clean local cofactor
+matches without changing the abstention threshold.
 
 ## Label Expansion Queue
 

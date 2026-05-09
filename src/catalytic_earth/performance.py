@@ -7,6 +7,7 @@ from typing import Any, Callable
 
 from .geometry_retrieval import load_json, run_geometry_retrieval
 from .labels import (
+    analyze_cofactor_coverage,
     analyze_geometry_score_margins,
     analyze_in_scope_failures,
     analyze_structure_mapping_issues,
@@ -65,6 +66,15 @@ def run_local_performance_suite(
         _measure(
             "analyze_in_scope_failures",
             lambda: analyze_in_scope_failures(
+                retrieval,
+                labels,
+                abstain_threshold=float(selected_threshold),
+            ),
+            iterations,
+        ),
+        _measure(
+            "analyze_cofactor_coverage",
+            lambda: analyze_cofactor_coverage(
                 retrieval,
                 labels,
                 abstain_threshold=float(selected_threshold),
@@ -166,6 +176,9 @@ def _result_summary(result: Any) -> dict[str, Any]:
                 "correct_positive_score_separation_gap",
                 "issue_count",
                 "labeled_issue_count",
+                "expected_absent_count",
+                "structure_only_count",
+                "local_supported_count",
             }
         }
     return {"keys": sorted(result.keys())}

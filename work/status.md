@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 23
-- Measured elapsed time: 256.3 minutes (4.27 hours)
+- Entries: 24
+- Measured elapsed time: 310.3 minutes (5.17 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 242.9 measured minutes (4.05 hours)
+- post-v2: 296.9 measured minutes (4.95 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,20 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 157
-- Evidence references logged: 125
+- Artifact references logged: 172
+- Evidence references logged: 136
 
 ## Recent Entries
-
-### 2026-05-09T16:03:37.698226+00:00 - ops
-
-- Task: Pin automations to GPT-5.5 xhigh
-- Time mode: measured
-- Measured minutes: 2.017
-- Started: 2026-05-09T16:01:14Z
-- Ended: 2026-05-09T16:03:15Z
-- Artifacts: automation:catalytic-earth-work-loop, automation:overnight-batch-driver, work/README.md, work/handoff.md, work/scope.md
-- Evidence: all automation TOML files with model fields now show gpt-5.5, all automation TOML files with reasoning fields now show xhigh, 37 tests passed, validate passed
 
 ### 2026-05-09T16:14:49.435851+00:00 - ops
 
@@ -105,6 +95,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/labels.py, src/catalytic_earth/geometry_reports.py, src/catalytic_earth/cli.py, src/catalytic_earth/performance.py, data/registries/curated_mechanism_labels.json, artifacts/v3_geometry_retrieval_150.json, artifacts/v3_geometry_label_eval_150.json, artifacts/v3_hard_negative_controls_150.json, artifacts/v3_in_scope_failure_analysis_150.json, artifacts/v3_geometry_slice_summary.json, README.md, docs/geometry_features.md, docs/performance.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
 - Evidence: 74 unit tests passed, validate passed, 150 curated labels, 150 geometry entries, 148 evaluable structures, 46 in-scope positives, 104 out-of-scope controls, 0 hard negatives across all slices, 0 out-of-scope false non-abstentions across all slices, 3 in-scope failures isolated in 150-entry slice, documentation reviewed and updated
 
+### 2026-05-09T22:17:13.285127+00:00 - post-v2
+
+- Task: Audit cofactor coverage and evidence-limited geometry failures
+- Time mode: measured
+- Measured minutes: 54.0
+- Started: 2026-05-09T21:22:55Z
+- Ended: 2026-05-09T22:16:55Z
+- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/labels.py, src/catalytic_earth/geometry_reports.py, src/catalytic_earth/cli.py, src/catalytic_earth/performance.py, data/registries/curated_mechanism_labels.json, artifacts/v3_cofactor_coverage_150.json, artifacts/v3_geometry_slice_summary.json, artifacts/v3_in_scope_failure_analysis_150.json, README.md, docs/geometry_features.md, docs/performance.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
+- Evidence: 75 unit tests passed, validate passed, 150 labels, 44 in-scope positives, 106 out-of-scope controls, 0 hard negatives across slices, 0 out-of-scope false non-abstentions, 1 evidence-limited in-scope abstention, 0 actionable in-scope failures, cofactor coverage artifacts generated, evidence-limited retained positives flagged
+- Notes: documentation reviewed and updated; final diff check, validate, and 75-test suite passed
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -130,6 +131,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T19:52:34.146667+00:00: The main 125-entry bottleneck is no longer hidden heme-absent overlap; remaining controls concentrate in metal-like and Ser-His-like groups.
 - 2026-05-09T20:12:10.878697+00:00: End-of-run quality now includes documentation freshness, not only code artifacts and git cleanliness.
 - 2026-05-09T21:11:49.565784+00:00: Hard-negative separation is clean through the 150-entry slice; next quality bottleneck is evidence-limited in-scope positives with missing local cofactor context.
+- 2026-05-09T22:17:13.285127+00:00: The main 150-entry bottleneck is retained positives without selected-structure cofactor evidence, not hard-negative separation
 
 ## Scope Adjustments
 
@@ -155,3 +157,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T19:52:34.146667+00:00: 125-entry hard-negative controls are now grouped and anchored to correctly ranked positives; next scorer work should target the largest grouped control clusters.
 - 2026-05-09T20:12:10.878697+00:00: Every automation wrap-up must update stale README/docs/work files or explicitly record that documentation was checked and unchanged.
 - 2026-05-09T21:11:49.565784+00:00: Post-V2 geometry scope now tracks 150 labeled entries with cross-slice summary artifacts and in-scope failure analysis.
+- 2026-05-09T22:17:13.285127+00:00: 150-entry geometry scope now separates local active-site positives from enzyme-level labels and tracks cofactor coverage explicitly

@@ -57,13 +57,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         in_scope_failures = _load_json(
             ROOT / "artifacts" / "v3_in_scope_failure_analysis_150.json"
         )
+        cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_150.json")
         margins = _load_json(ROOT / "artifacts" / "v3_geometry_score_margins_150.json")
 
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 46)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 44)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
-        self.assertEqual(in_scope_failures["metadata"]["failure_count"], 3)
-        self.assertEqual(in_scope_failures["metadata"]["top1_mismatch_count"], 3)
+        self.assertEqual(in_scope_failures["metadata"]["failure_count"], 1)
+        self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
+        self.assertEqual(
+            in_scope_failures["metadata"]["evidence_limited_abstention_count"], 1
+        )
+        self.assertEqual(in_scope_failures["metadata"]["top1_mismatch_count"], 1)
+        self.assertEqual(cofactor_coverage["metadata"]["expected_absent_count"], 2)
+        self.assertEqual(cofactor_coverage["metadata"]["expected_absent_retained_count"], 1)
+        self.assertEqual(cofactor_coverage["metadata"]["expected_absent_abstained_count"], 1)
+        self.assertEqual(
+            cofactor_coverage["metadata"]["expected_absent_retained_entry_ids"],
+            ["m_csa:41"],
+        )
+        self.assertEqual(
+            cofactor_coverage["metadata"]["evidence_limited_retained_entry_ids"],
+            ["m_csa:41", "m_csa:108"],
+        )
+        self.assertEqual(
+            cofactor_coverage["metadata"]["evidence_limited_abstained_entry_ids"],
+            ["m_csa:132"],
+        )
         self.assertTrue(
             margins["metadata"][
                 "strict_threshold_exists_to_retain_all_correct_top1_in_scope_and_abstain_all_out_of_scope"

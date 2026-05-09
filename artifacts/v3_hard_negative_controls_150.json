@@ -2,8 +2,8 @@
   "groups": [],
   "metadata": {
     "cofactor_evidence_counts": {},
-    "evaluable_out_of_scope_count": 102,
-    "evaluated_out_of_scope_count": 104,
+    "evaluable_out_of_scope_count": 104,
+    "evaluated_out_of_scope_count": 106,
     "hard_negative_count": 0,
     "method": "geometry_hard_negative_control_selection",
     "near_miss_count": 0,

@@ -41,27 +41,26 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## What Changed In This Run
 
-- Expanded the graph, benchmark, geometry, retrieval, calibration, evaluation,
-  failure-analysis, hard-negative, label-candidate, and mapping-issue artifacts
-  through the 150-entry slice.
-- Expanded curated labels from 125 to 150 entries.
-- Added in-scope failure analysis as a CLI/performance workflow and artifact
-  family (`artifacts/v3_in_scope_failure_analysis*.json`).
-- Added cross-slice geometry summaries via
-  `src/catalytic_earth/geometry_reports.py` and
-  `artifacts/v3_geometry_slice_summary.json`.
-- Tightened geometry counterevidence for hydrogenase/redox metal contexts,
-  nonheme iron aromatic oxygenase-like contexts, nonflavin Fe-S/metal contexts,
-  molybdenum-center contexts, and flavin monooxygenase substrate contexts.
-- Added regression tests that keep the 125-entry slice clean and track the
-  150-entry in-scope failure boundary.
-- Updated README, geometry docs, performance docs, V2 report notes, and scope
-  documentation for the 150-entry state.
+- Audited the 150-entry in-scope failures and reclassified `m_csa:139` and
+  `m_csa:140` as out-of-scope for the current local active-site geometry
+  benchmark.
+- Added structure-wide ligand inventory to geometry features alongside the
+  existing proximal ligand context.
+- Added `analyze-cofactor-coverage`, generated
+  `artifacts/v3_cofactor_coverage*.json`, and included the benchmark in the
+  local performance suite.
+- Split in-scope failure reporting into total failures, actionable failures,
+  and evidence-limited abstentions.
+- Regenerated geometry, retrieval, calibration, evaluation, failure, cofactor
+  coverage, margin, hard-negative, label-candidate, mapping, slice-summary, and
+  performance artifacts across all current slices.
+- Updated regression tests for the new 150-entry boundary and cofactor coverage
+  metrics.
 
 ## Current Metrics
 
-- Curated label registry: 150 labels; 46 seed-fingerprint positives and 104
-  out-of-scope controls.
+- Curated label registry: 150 labels; 44 local active-site seed-fingerprint
+  positives and 106 out-of-scope controls.
 - 20-entry slice: threshold `0.4681`, 20/20 evaluable, 7/7 in-scope positives
   retained, 0 false non-abstentions, 0 hard negatives.
 - 100-entry slice: threshold `0.4704`, 100/100 evaluable, 25/25 in-scope
@@ -69,22 +68,30 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - 125-entry slice: threshold `0.4704`, 124/125 evaluable, 38/38 in-scope
   positives retained, 0 false non-abstentions, 0 hard negatives, 0 near misses,
   score gap `0.0562`.
-- 150-entry slice: threshold `0.5144`, 148/150 evaluable, 43/46 in-scope
+- 150-entry slice: threshold `0.5144`, 148/150 evaluable, 43/44 in-scope
   positives retained, 0 false non-abstentions, 0 hard negatives, 0 near misses,
-  3 in-scope failures, correct-positive gap `0.0122`, broad score gap `-0.169`.
-- 150-entry failure causes: 2 `target_cofactor_context_absent` rows and 1
-  `target_absent_from_top_k` row.
-- Remaining 150-entry in-scope failures:
-  `m_csa:132` (`flavin_monooxygenase`), `m_csa:139`
-  (`flavin_dehydrogenase_reductase`), and `m_csa:140`
-  (`cobalamin_radical_rearrangement`).
+  1 in-scope failure, 0 actionable failures, correct-positive gap `0.0122`,
+  broad score gap `-0.1222`.
+- 150-entry failure cause: `m_csa:132` is
+  `target_cofactor_absent_from_structure`; the selected `1LUC` structure lacks
+  expected flavin/NAD evidence, so it remains an evidence-limited abstention.
+- Cofactor coverage: 39/44 in-scope positives have local cofactor support, 1
+  has expected cofactor support only elsewhere in the selected structure, 2
+  require no cofactor, and 2 lack expected structure-wide cofactor evidence.
+  One absent-expected-cofactor positive is retained (`m_csa:41`) and one is
+  abstained (`m_csa:132`); the structure-only support case is `m_csa:108`.
+- Evidence-limited retained positives are explicit in cofactor coverage
+  metadata: `m_csa:41` and `m_csa:108`. This is an audit flag, not a score
+  penalty, so the current clean out-of-scope boundary is unchanged.
 - Label expansion queue: 0 unlabeled entries and 0 ready review candidates in
   the 150-entry slice.
 - Structure mapping: 0 issues through 100 entries, 1 labeled out-of-scope issue
   at 125 entries, 2 labeled out-of-scope issues at 150 entries.
-- Verification so far: `PYTHONPATH=src python -m unittest discover -s tests`
-  passed with 74 tests; `PYTHONPATH=src python -m catalytic_earth.cli validate`
-  passed with 150 curated labels.
+- Final verification before handoff: `git diff --check`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`, and
+  `PYTHONPATH=src python -m unittest discover -s tests` passed. Documentation
+  was reviewed and updated across README, docs, scope, handoff, and status
+  inputs before regenerating the progress status.
 
 ## Start Commands
 
@@ -96,36 +103,52 @@ PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
 PYTHONPATH=src python -m catalytic_earth.cli summarize-geometry-slices --artifact-dir artifacts --out artifacts/v3_geometry_slice_summary.json
 PYTHONPATH=src python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_in_scope_failure_analysis_150.json
+PYTHONPATH=src python -m catalytic_earth.cli analyze-cofactor-coverage --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_cofactor_coverage_150.json
 ```
+
+## Remaining-Time Plan Executed
+
+The initial assigned 150-entry failure audit reduced the actionable failure
+count to 0 before the productive-work boundary. Remaining time was used to add
+structure-wide ligand inventory, cofactor coverage analysis, evidence-limited
+abstention accounting, explicit evidence-limited retained-positive metadata,
+cross-slice summary fields, tests, regenerated artifacts, and documentation
+updates.
+
+Measured run time: 2026-05-09T21:22:55Z to 2026-05-09T22:16:55Z. The wrap-up
+included documentation review, diff checks, validation, and repeated regression
+test verification before the measured work log was written.
 
 ## Next Agent Start Here
 
-Focus on the 3 evidence-limited in-scope failures in the 150-entry slice while
-preserving the current clean out-of-scope boundary.
+Focus on whether evidence-limited retained positives should remain audit-only
+flags or receive a scoring/abstention penalty, while preserving the current
+clean out-of-scope boundary and keeping `m_csa:132` as an evidence-limited
+abstention unless new structure evidence supports it.
 
 First bounded task:
 
-1. Open `artifacts/v3_in_scope_failure_analysis_150.json`.
-2. Inspect `m_csa:132`, `m_csa:139`, and `m_csa:140` against
-   `artifacts/v3_geometry_features_150.json` and
-   `artifacts/v3_geometry_retrieval_150.json`.
-3. Decide whether each failure is a scoring problem, a missing local cofactor
-   feature, a seed-family gap, or a label that should stay in scope but remain
-   abstained.
-4. Implement the smallest scoring, feature, or label-audit change that reduces
-   a real failure without creating hard negatives in any slice.
-5. Regenerate retrieval/evaluation/failure/margin/hard-negative artifacts for
-   all slices and rerun tests.
+1. Open `artifacts/v3_cofactor_coverage_150.json` and compare
+   `evidence_limited_retained_entry_ids` (`m_csa:41`, `m_csa:108`) with
+   `evidence_limited_abstained_entry_ids` (`m_csa:132`).
+2. Decide whether retained role-inferred or structure-only cofactor positives
+   should be down-weighted, remain retained with audit flags, or become a
+   separate calibration stratum.
+3. If changing scoring, keep the 20- through 150-entry slices at 0 hard
+   negatives and 0 out-of-scope false non-abstentions, and do not regress the
+   audited 125-entry clean slice without recording the tradeoff.
+4. Regenerate retrieval/evaluation/failure/cofactor-coverage/margin/
+   hard-negative artifacts for all slices and rerun tests.
 
 Known blockers:
 
 - Labels are provisional and not expert-reviewed; do not claim validated enzyme
   function.
 - Geometry retrieval is heuristic, not learned.
-- Ligand/cofactor evidence uses nearby mmCIF ligand atoms and inferred roles;
-  it does not model occupancy, alternate conformers, biological assembly, or
-  substrate state.
-- The 150-entry failures may be legitimate abstentions if the local structure
-  evidence lacks the expected cofactor context.
+- Ligand/cofactor evidence uses nearby and structure-wide mmCIF ligand atoms
+  plus inferred roles; it does not model occupancy, alternate conformers,
+  biological assembly, or substrate state.
+- `m_csa:132` is currently best treated as a legitimate abstention because the
+  selected structure lacks expected flavin/NAD evidence.
 - Full-database scalability has not been measured; `perf-suite` is local
   artifact timing only.

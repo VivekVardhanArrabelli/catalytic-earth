@@ -10,6 +10,7 @@ from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
 from .labels import (
+    analyze_cofactor_coverage,
     analyze_geometry_score_margins,
     analyze_in_scope_failures,
     analyze_out_of_scope_failures,
@@ -278,6 +279,22 @@ def cmd_analyze_in_scope_failures(args: argparse.Namespace) -> int:
     print(
         "Wrote in-scope geometry failure analysis to "
         f"{args.out} ({analysis['metadata']['failure_count']} failures)"
+    )
+    return 0
+
+
+def cmd_analyze_cofactor_coverage(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    analysis = analyze_cofactor_coverage(
+        retrieval,
+        load_labels(Path(args.labels)),
+        abstain_threshold=args.abstain_threshold,
+    )
+    write_json(Path(args.out), analysis)
+    print(
+        "Wrote cofactor coverage analysis to "
+        f"{args.out} ({analysis['metadata']['evaluated_in_scope_count']} in-scope entries)"
     )
     return 0
 
@@ -576,6 +593,18 @@ def build_parser() -> argparse.ArgumentParser:
     in_scope_failures.add_argument("--abstain-threshold", type=float, default=0.7)
     in_scope_failures.add_argument("--out", default="artifacts/v3_in_scope_failure_analysis.json")
     in_scope_failures.set_defaults(func=cmd_analyze_in_scope_failures)
+
+    cofactor_coverage = subparsers.add_parser(
+        "analyze-cofactor-coverage",
+        help="summarize expected cofactor coverage for in-scope mechanism labels",
+    )
+    cofactor_coverage.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    cofactor_coverage.add_argument(
+        "--labels", default="data/registries/curated_mechanism_labels.json"
+    )
+    cofactor_coverage.add_argument("--abstain-threshold", type=float, default=0.7)
+    cofactor_coverage.add_argument("--out", default="artifacts/v3_cofactor_coverage.json")
+    cofactor_coverage.set_defaults(func=cmd_analyze_cofactor_coverage)
 
     score_margins = subparsers.add_parser(
         "analyze-geometry-score-margins",

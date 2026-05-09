@@ -152,15 +152,17 @@ Current expectation:
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, and 150-entry slices; all 100 regression geometry entries are
   evaluable, and the 150-entry slice has 148/150 evaluable entries
-- curated labels now cover 150 entries, with 46 in-scope seed-fingerprint
-  positives and 104 out-of-scope labels
+- curated labels now cover 150 entries, with 44 local active-site
+  seed-fingerprint positives and 106 out-of-scope labels after auditing two
+  enzyme-level labels that were not local geometry positives
 - the current 150-entry label queue is empty after adding provisional labels
   for entries 126-150
 - strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
   the 38 in-scope positives in the 125-entry slice at the current zero-false
   threshold
 - ligand/cofactor context is now parsed from nearby mmCIF non-polymer atoms and
-  used in retrieval scoring
+  used in retrieval scoring; structure-wide ligand inventory is also recorded
+  for cofactor coverage audits
 - substrate-pocket descriptors are now included in retrieval scoring; next
   bottleneck is margin robustness plus larger and cleaner curated labels
 - adaptive abstention thresholds now use observed score boundaries; the
@@ -168,18 +170,20 @@ Current expectation:
   in-scope positives
 - all slices from 20 through 150 currently have 0 hard negatives, 0 near misses,
   and 0 out-of-scope false non-abstentions at the current calibrated thresholds
-- the 150-entry expansion slice retains 43/46 in-scope positives, has 3
-  in-scope failures, and has a 0.0122 correct-positive separation gap; two
-  failures have absent target cofactor context and one target is absent from
-  top-k; the broad top1 score gap remains negative because evidence-limited
-  in-scope positives score below the out-of-scope ceiling
+- the 150-entry expansion slice retains 43/44 in-scope positives, has 1
+  evidence-limited in-scope abstention, and has a 0.0122 correct-positive
+  separation gap; the actionable in-scope failure count is 0 after separating
+  selected-structure cofactor absence from scorer failures, but the broad top1
+  score gap remains negative because the evidence-limited positive scores below
+  the out-of-scope ceiling
 - the 20-, 30-, 40-, 50-, 60-, 75-, and 100-entry structure-mapping issue
   reports currently have 0 non-OK mappings after auth/label residue-number
   fallback; the 125-entry report has 1 labeled out-of-scope
   insufficient-residue issue and the 150-entry report has 2
-- next bottleneck is evidence-limited in-scope failure analysis in the 150-entry
-  slice, especially missing local cofactor context for flavin/cobalamin-like
-  mechanisms
+- next bottleneck is abstention/scoring policy for evidence-limited retained
+  positives (`m_csa:41` with absent selected-structure metal evidence and
+  `m_csa:108` with structure-only cofactor evidence), while keeping `m_csa:132`
+  as an evidence-limited abstention
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

@@ -19,8 +19,20 @@ class GeometryReportTests(unittest.TestCase):
         self.assertTrue(summary["metadata"]["all_zero_false_non_abstentions"])
         self.assertFalse(summary["metadata"]["all_zero_in_scope_failures"])
         self.assertTrue(summary["metadata"]["all_zero_ready_label_candidates"])
+        self.assertTrue(summary["metadata"]["all_zero_actionable_in_scope_failures"])
         self.assertEqual(summary["metadata"]["slices_with_in_scope_failures"], ["150"])
-        self.assertEqual(summary["metadata"]["max_in_scope_failure_count"], 3)
+        self.assertEqual(summary["metadata"]["max_in_scope_failure_count"], 1)
+        self.assertEqual(summary["metadata"]["max_actionable_in_scope_failure_count"], 0)
+        self.assertEqual(summary["metadata"]["max_cofactor_expected_absent_count"], 2)
+        self.assertIn("150", summary["metadata"]["slices_with_absent_expected_cofactors"])
+        self.assertEqual(
+            summary["metadata"]["max_cofactor_evidence_limited_retained_count"],
+            2,
+        )
+        self.assertIn(
+            "150",
+            summary["metadata"]["slices_with_limited_retained_cofactor_evidence"],
+        )
         row_20 = summary["rows"][0]
         self.assertEqual(row_20["slice"], "20")
         self.assertEqual(row_20["mapping_issue_count"], 0)
@@ -33,9 +45,19 @@ class GeometryReportTests(unittest.TestCase):
         row_150 = summary["rows"][-1]
         self.assertEqual(row_150["slice"], "150")
         self.assertEqual(row_150["hard_negative_count"], 0)
-        self.assertEqual(row_150["in_scope_failure_count"], 3)
+        self.assertEqual(row_150["entries_with_structure_ligands"], 135)
+        self.assertEqual(row_150["entries_with_structure_inferred_cofactors"], 94)
+        self.assertEqual(row_150["in_scope_failure_count"], 1)
+        self.assertEqual(row_150["actionable_in_scope_failure_count"], 0)
+        self.assertEqual(row_150["evidence_limited_abstention_count"], 1)
+        self.assertEqual(row_150["cofactor_expected_absent_count"], 2)
+        self.assertEqual(row_150["cofactor_expected_absent_abstained_count"], 1)
+        self.assertEqual(row_150["cofactor_expected_absent_retained_count"], 1)
+        self.assertEqual(row_150["cofactor_structure_only_retained_count"], 1)
+        self.assertEqual(row_150["cofactor_evidence_limited_retained_count"], 2)
+        self.assertEqual(row_150["cofactor_evidence_limited_abstained_count"], 1)
         self.assertEqual(row_150["ready_label_candidate_count"], 0)
-        self.assertGreater(row_150["top1_accuracy_in_scope_evaluable"], 0.93)
+        self.assertGreater(row_150["top1_accuracy_in_scope_evaluable"], 0.97)
 
 
 if __name__ == "__main__":

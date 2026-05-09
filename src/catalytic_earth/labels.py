@@ -8,6 +8,7 @@ from typing import Any
 
 from .fingerprints import load_fingerprints
 from .sources import PROJECT_ROOT
+from .structure import COFACTOR_LIGAND_MAP, METAL_ION_CODES
 
 
 LABEL_REGISTRY = PROJECT_ROOT / "data" / "registries" / "curated_mechanism_labels.json"
@@ -390,6 +391,9 @@ def analyze_in_scope_failures(
     abstain_threshold: float = 0.7,
 ) -> dict[str, Any]:
     labels_by_entry = {label.entry_id: label for label in labels}
+    fingerprints_by_id = {
+        fingerprint.id: fingerprint.to_dict() for fingerprint in load_fingerprints()
+    }
     rows: list[dict[str, Any]] = []
     evaluated_in_scope = 0
     retained_in_scope = 0
@@ -408,6 +412,10 @@ def analyze_in_scope_failures(
         retained_in_scope += int(not abstained)
         is_top1 = top1.get("fingerprint_id") == label.fingerprint_id
         top1_correct += int(is_top1)
+        target_cofactor_coverage = _cofactor_coverage_row_parts(
+            result,
+            fingerprints_by_id.get(label.fingerprint_id, {}),
+        )
 
         target_rank = None
         target_score = None
@@ -452,6 +460,15 @@ def analyze_in_scope_failures(
             "evaluable": _is_geometry_evaluable(result),
             "top1_component_scores": _fingerprint_component_scores(top1),
             "target_component_scores": _fingerprint_component_scores(target_fingerprint or {}),
+            "target_expected_cofactor_families": target_cofactor_coverage[
+                "expected_cofactor_families"
+            ],
+            "target_cofactor_coverage_status": target_cofactor_coverage[
+                "coverage_status"
+            ],
+            "target_missing_expected_cofactor_families": target_cofactor_coverage[
+                "missing_expected_families"
+            ],
             "context": _retrieval_result_context(result),
             "label_rationale": label.rationale,
         }
@@ -465,11 +482,20 @@ def analyze_in_scope_failures(
         row.get("target_cofactor_evidence_level") or "not_ranked" for row in rows
     )
     failure_cause_counts = Counter(row["failure_cause"] for row in rows)
+    evidence_limited_abstentions = [
+        row
+        for row in rows
+        if row["abstained"]
+        and row["failure_cause"]
+        in {"target_cofactor_absent_from_structure", "target_cofactor_not_proximal"}
+    ]
     return {
         "metadata": {
             "method": "in_scope_geometry_failure_analysis",
             "evaluated_in_scope_count": evaluated_in_scope,
             "failure_count": len(rows),
+            "actionable_failure_count": len(rows) - len(evidence_limited_abstentions),
+            "evidence_limited_abstention_count": len(evidence_limited_abstentions),
             "top1_mismatch_count": int(failure_mode_counts.get("top1_mismatch", 0)),
             "abstained_positive_count": int(failure_mode_counts.get("abstained_positive", 0)),
             "target_absent_from_top_k_count": int(
@@ -485,6 +511,131 @@ def analyze_in_scope_failures(
             "top1_fingerprint_counts": dict(sorted(top1_fingerprint_counts.items())),
         },
         "rows": sorted(rows, key=lambda row: row["entry_id"]),
+    }
+
+
+def analyze_cofactor_coverage(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    abstain_threshold: float = 0.7,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    fingerprints_by_id = {
+        fingerprint.id: fingerprint.to_dict() for fingerprint in load_fingerprints()
+    }
+    rows: list[dict[str, Any]] = []
+
+    for result in retrieval.get("results", []):
+        entry_id = result.get("entry_id")
+        label = labels_by_entry.get(entry_id)
+        if not label or label.label_type != "seed_fingerprint" or not label.fingerprint_id:
+            continue
+
+        fingerprint = fingerprints_by_id.get(label.fingerprint_id, {})
+        coverage = _cofactor_coverage_row_parts(result, fingerprint)
+        top = result.get("top_fingerprints", [])
+        top1 = top[0] if top else {}
+        top1_score = float(top1.get("score", 0.0) or 0.0)
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "target_fingerprint_id": label.fingerprint_id,
+                **coverage,
+                "top1_fingerprint_id": top1.get("fingerprint_id"),
+                "top1_score": round(top1_score, 4),
+                "abstained": top1_score < abstain_threshold,
+                "status": result.get("status"),
+                "resolved_residue_count": result.get("resolved_residue_count", 0),
+                "evaluable": _is_geometry_evaluable(result),
+            }
+        )
+
+    status_counts = Counter(row["coverage_status"] for row in rows)
+    target_counts = Counter(row["target_fingerprint_id"] for row in rows)
+    missing_counts = Counter(
+        family for row in rows for family in row["missing_expected_families"]
+    )
+    expected_absent_rows = [
+        row for row in rows if row["coverage_status"] == "expected_absent_from_structure"
+    ]
+    structure_only_rows = [
+        row for row in rows if row["coverage_status"] == "expected_structure_only"
+    ]
+    evidence_limited_rows = expected_absent_rows + structure_only_rows
+    expected_absent_retained_rows = [
+        row for row in expected_absent_rows if not row["abstained"]
+    ]
+    expected_absent_abstained_rows = [
+        row for row in expected_absent_rows if row["abstained"]
+    ]
+    structure_only_retained_rows = [
+        row for row in structure_only_rows if not row["abstained"]
+    ]
+    structure_only_abstained_rows = [
+        row for row in structure_only_rows if row["abstained"]
+    ]
+    evidence_limited_retained_rows = [
+        row for row in evidence_limited_rows if not row["abstained"]
+    ]
+    evidence_limited_abstained_rows = [
+        row for row in evidence_limited_rows if row["abstained"]
+    ]
+    return {
+        "metadata": {
+            "method": "in_scope_cofactor_coverage_analysis",
+            "evaluated_in_scope_count": len(rows),
+            "abstain_threshold": abstain_threshold,
+            "coverage_status_counts": dict(sorted(status_counts.items())),
+            "target_fingerprint_counts": dict(sorted(target_counts.items())),
+            "missing_expected_family_counts": dict(sorted(missing_counts.items())),
+            "structure_only_count": int(status_counts.get("expected_structure_only", 0)),
+            "expected_absent_count": int(
+                status_counts.get("expected_absent_from_structure", 0)
+            ),
+            "expected_absent_entry_ids": sorted(
+                (row["entry_id"] for row in expected_absent_rows),
+                key=_entry_id_sort_key,
+            ),
+            "expected_absent_abstained_count": len(expected_absent_abstained_rows),
+            "expected_absent_abstained_entry_ids": sorted(
+                (row["entry_id"] for row in expected_absent_abstained_rows),
+                key=_entry_id_sort_key,
+            ),
+            "expected_absent_retained_count": len(expected_absent_retained_rows),
+            "expected_absent_retained_entry_ids": sorted(
+                (row["entry_id"] for row in expected_absent_retained_rows),
+                key=_entry_id_sort_key,
+            ),
+            "structure_only_retained_count": len(structure_only_retained_rows),
+            "structure_only_retained_entry_ids": sorted(
+                (row["entry_id"] for row in structure_only_retained_rows),
+                key=_entry_id_sort_key,
+            ),
+            "structure_only_abstained_count": len(structure_only_abstained_rows),
+            "structure_only_abstained_entry_ids": sorted(
+                (row["entry_id"] for row in structure_only_abstained_rows),
+                key=_entry_id_sort_key,
+            ),
+            "structure_only_entry_ids": sorted(
+                (row["entry_id"] for row in structure_only_rows),
+                key=_entry_id_sort_key,
+            ),
+            "evidence_limited_retained_count": len(evidence_limited_retained_rows),
+            "evidence_limited_retained_entry_ids": sorted(
+                (row["entry_id"] for row in evidence_limited_retained_rows),
+                key=_entry_id_sort_key,
+            ),
+            "evidence_limited_abstained_count": len(evidence_limited_abstained_rows),
+            "evidence_limited_abstained_entry_ids": sorted(
+                (row["entry_id"] for row in evidence_limited_abstained_rows),
+                key=_entry_id_sort_key,
+            ),
+            "local_supported_count": int(
+                status_counts.get("all_expected_local", 0)
+                + status_counts.get("partial_expected_local", 0)
+            ),
+        },
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(str(row["entry_id"]))),
     }
 
 
@@ -862,7 +1013,10 @@ def _hard_negative_row(
     }
 
 
-def _fingerprint_component_scores(fingerprint: dict[str, Any]) -> dict[str, float]:
+def _fingerprint_component_scores(fingerprint: dict[str, Any]) -> dict[str, Any]:
+    counterevidence_reasons = fingerprint.get("counterevidence_reasons", [])
+    if not isinstance(counterevidence_reasons, list):
+        counterevidence_reasons = []
     return {
         "residue_match_fraction": float(fingerprint.get("residue_match_fraction", 0.0) or 0.0),
         "role_match_fraction": float(fingerprint.get("role_match_fraction", 0.0) or 0.0),
@@ -872,6 +1026,10 @@ def _fingerprint_component_scores(fingerprint: dict[str, Any]) -> dict[str, floa
         "mechanistic_coherence_score": float(
             fingerprint.get("mechanistic_coherence_score", 0.0) or 0.0
         ),
+        "counterevidence_penalty": float(
+            fingerprint.get("counterevidence_penalty", 1.0) or 0.0
+        ),
+        "counterevidence_reasons": list(counterevidence_reasons),
     }
 
 
@@ -890,6 +1048,10 @@ def _retrieval_result_context(result: dict[str, Any]) -> dict[str, Any]:
         "residue_codes": result.get("residue_codes", []),
         "ligand_codes": ligand_context.get("ligand_codes", []),
         "cofactor_families": ligand_context.get("cofactor_families", []),
+        "structure_ligand_codes": ligand_context.get("structure_ligand_codes", []),
+        "structure_cofactor_families": ligand_context.get(
+            "structure_cofactor_families", []
+        ),
         "nearby_residue_count": pocket_context.get("nearby_residue_count", 0),
         "pocket_descriptors": descriptors,
     }
@@ -899,12 +1061,165 @@ def _classify_in_scope_failure(row: dict[str, Any]) -> str:
     if "target_absent_from_top_k" in row.get("failure_modes", []):
         return "target_absent_from_top_k"
     if (row.get("target_cofactor_evidence_level") or "not_ranked") == "absent":
+        if row.get("target_cofactor_coverage_status") == "expected_absent_from_structure":
+            return "target_cofactor_absent_from_structure"
+        if row.get("target_cofactor_coverage_status") == "expected_structure_only":
+            return "target_cofactor_not_proximal"
         return "target_cofactor_context_absent"
     if row.get("abstained") and row.get("top1_fingerprint_id") == row.get("target_fingerprint_id"):
         return "low_confidence_correct_top1"
     if row.get("abstained"):
         return "low_confidence_top1_mismatch"
     return "top1_mismatch"
+
+
+def _cofactor_coverage_row_parts(
+    result: dict[str, Any],
+    fingerprint: dict[str, Any],
+) -> dict[str, Any]:
+    expected = _expected_cofactor_families(fingerprint)
+    ligand_context = result.get("ligand_context", {})
+    if not isinstance(ligand_context, dict):
+        ligand_context = {}
+    local = {
+        str(value)
+        for value in ligand_context.get("cofactor_families", [])
+        if isinstance(value, str)
+    }
+    structure = {
+        str(value)
+        for value in ligand_context.get("structure_cofactor_families", [])
+        if isinstance(value, str)
+    }
+    structure |= local
+    local_matches = expected & local
+    structure_matches = expected & structure
+    matching_structure_ligands = _matching_structure_ligands(ligand_context, expected)
+    matching_distances = [
+        float(item["min_distance_to_active_site"])
+        for item in matching_structure_ligands
+        if item.get("min_distance_to_active_site") is not None
+    ]
+    return {
+        "expected_cofactor_families": sorted(expected),
+        "local_cofactor_families": sorted(local),
+        "structure_cofactor_families": sorted(structure),
+        "local_matches": sorted(local_matches),
+        "structure_matches": sorted(structure_matches),
+        "missing_expected_families": sorted(expected - structure),
+        "matching_structure_ligands": matching_structure_ligands,
+        "nearest_expected_ligand_distance_angstrom": (
+            round(min(matching_distances), 3) if matching_distances else None
+        ),
+        "coverage_status": _cofactor_coverage_status(
+            expected=expected,
+            local_matches=local_matches,
+            structure_matches=structure_matches,
+        ),
+        "structure_ligand_codes": ligand_context.get("structure_ligand_codes", []),
+        "proximal_ligand_codes": ligand_context.get("ligand_codes", []),
+    }
+
+
+def _matching_structure_ligands(
+    ligand_context: dict[str, Any],
+    expected_families: set[str],
+) -> list[dict[str, Any]]:
+    if not expected_families:
+        return []
+    ligands = ligand_context.get("structure_ligands", [])
+    if not isinstance(ligands, list):
+        return []
+    matches: list[dict[str, Any]] = []
+    for ligand in ligands:
+        if not isinstance(ligand, dict):
+            continue
+        family = _ligand_code_family(str(ligand.get("code", "")))
+        if family not in expected_families:
+            continue
+        matches.append(
+            {
+                "code": ligand.get("code"),
+                "family": family,
+                "min_distance_to_active_site": ligand.get("min_distance_to_active_site"),
+                "instance_count": ligand.get("instance_count"),
+            }
+        )
+    return sorted(
+        matches,
+        key=lambda item: (
+            float(item.get("min_distance_to_active_site") or 0.0),
+            str(item.get("code")),
+        ),
+    )
+
+
+def _expected_cofactor_families(fingerprint: dict[str, Any]) -> set[str]:
+    families: set[str] = set()
+    for cofactor in fingerprint.get("cofactors", []):
+        if not isinstance(cofactor, str):
+            continue
+        family = _cofactor_family(cofactor)
+        if family:
+            families.add(family)
+    return families
+
+
+def _ligand_code_family(code: str) -> str:
+    normalized = code.strip().upper()
+    if normalized in METAL_ION_CODES:
+        return "metal_ion"
+    return COFACTOR_LIGAND_MAP.get(normalized, "")
+
+
+def _cofactor_family(cofactor: str) -> str:
+    normalized = cofactor.lower().replace("_", " ").replace("-", " ").strip()
+    if "h2o2" in normalized or " or o2 " in f" {normalized} " or normalized == "o2":
+        return ""
+    if any(
+        metal in normalized for metal in ["zn2+", "mg2+", "mn2+", "fe2+", "fe3+", "metal"]
+    ):
+        return "metal_ion"
+    if "heme" in normalized:
+        return "heme"
+    if "pyridoxal phosphate" in normalized:
+        return "plp"
+    if "cobalamin" in normalized or "vitamin b12" in normalized:
+        return "cobalamin"
+    if normalized in {"fad", "fmn"}:
+        return "flavin"
+    if normalized in {"nadph", "nadp", "nad", "nadh"}:
+        return "nad"
+    if "sam" in normalized or "adenosylmethionine" in normalized:
+        return "sam"
+    if "4fe 4s" in normalized:
+        return "fe_s_cluster"
+    return ""
+
+
+def _cofactor_coverage_status(
+    expected: set[str],
+    local_matches: set[str],
+    structure_matches: set[str],
+) -> str:
+    if not expected:
+        return "not_required"
+    if expected <= local_matches:
+        return "all_expected_local"
+    if local_matches:
+        return "partial_expected_local"
+    if structure_matches:
+        return "expected_structure_only"
+    return "expected_absent_from_structure"
+
+
+def _entry_id_sort_key(entry_id: str) -> tuple[str, int, str]:
+    prefix, _, suffix = entry_id.partition(":")
+    try:
+        numeric = int(suffix)
+    except ValueError:
+        numeric = 0
+    return (prefix, numeric, entry_id)
 
 
 def classify_hard_negative_control(top1: dict[str, Any]) -> str:

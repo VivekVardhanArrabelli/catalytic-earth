@@ -166,6 +166,9 @@ def build_geometry_features(
                         "proximal_ligands": [],
                         "ligand_codes": [],
                         "cofactor_families": [],
+                        "structure_ligands": [],
+                        "structure_ligand_codes": [],
+                        "structure_cofactor_families": [],
                     },
                     "pocket_context": _empty_pocket_context(),
                 }
@@ -193,6 +196,9 @@ def build_geometry_features(
                         "proximal_ligands": [],
                         "ligand_codes": [],
                         "cofactor_families": [],
+                        "structure_ligands": [],
+                        "structure_ligand_codes": [],
+                        "structure_cofactor_families": [],
                     },
                     "pocket_context": _empty_pocket_context(),
                 }
@@ -262,6 +268,16 @@ def build_geometry_features(
                 1
                 for entry in entry_features
                 if entry.get("ligand_context", {}).get("cofactor_families")
+            ),
+            "entries_with_structure_ligands": sum(
+                1
+                for entry in entry_features
+                if entry.get("ligand_context", {}).get("structure_ligands")
+            ),
+            "entries_with_structure_inferred_cofactors": sum(
+                1
+                for entry in entry_features
+                if entry.get("ligand_context", {}).get("structure_cofactor_families")
             ),
             "entries_with_pocket_context": sum(
                 1
@@ -378,6 +394,9 @@ def ligand_context_from_atoms(
             "proximal_ligands": [],
             "ligand_codes": [],
             "cofactor_families": [],
+            "structure_ligands": [],
+            "structure_ligand_codes": [],
+            "structure_cofactor_families": [],
         }
 
     by_site: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
@@ -391,21 +410,42 @@ def ligand_context_from_atoms(
         resid = str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
         by_site[(code, chain, resid)].append(atom)
 
+    structure_sites: list[dict[str, Any]] = []
     site_hits: list[dict[str, Any]] = []
     for (code, chain, resid), ligand_atoms in by_site.items():
         min_distance = _min_ligand_distance_to_active_site(ligand_atoms, active_points)
-        if min_distance is None or min_distance > cutoff_angstrom:
+        if min_distance is None:
             continue
-        site_hits.append(
-            {
-                "code": code,
-                "chain_name": chain or None,
-                "resid": resid or None,
-                "atom_count": len(ligand_atoms),
-                "min_distance_to_active_site": round(min_distance, 3),
-            }
-        )
+        site = {
+            "code": code,
+            "chain_name": chain or None,
+            "resid": resid or None,
+            "atom_count": len(ligand_atoms),
+            "min_distance_to_active_site": round(min_distance, 3),
+        }
+        structure_sites.append(site)
+        if min_distance > cutoff_angstrom:
+            continue
+        site_hits.append(site)
 
+    structure_ligands = _summarize_ligand_sites(structure_sites)
+    proximal_ligands = _summarize_ligand_sites(site_hits)
+    ligand_codes = [str(item["code"]) for item in proximal_ligands]
+    cofactor_families = sorted(_infer_cofactor_families(ligand_codes))
+    structure_ligand_codes = [str(item["code"]) for item in structure_ligands]
+    structure_cofactor_families = sorted(_infer_cofactor_families(structure_ligand_codes))
+    return {
+        "distance_cutoff_angstrom": cutoff_angstrom,
+        "proximal_ligands": proximal_ligands,
+        "ligand_codes": ligand_codes,
+        "cofactor_families": cofactor_families,
+        "structure_ligands": structure_ligands,
+        "structure_ligand_codes": structure_ligand_codes,
+        "structure_cofactor_families": structure_cofactor_families,
+    }
+
+
+def _summarize_ligand_sites(site_hits: list[dict[str, Any]]) -> list[dict[str, Any]]:
     by_code: dict[str, dict[str, Any]] = {}
     for site in site_hits:
         code = str(site["code"])
@@ -425,24 +465,18 @@ def ligand_context_from_atoms(
             float(site["min_distance_to_active_site"]),
         )
 
-    proximal_ligands = sorted(
+    return sorted(
         (
             {
                 **item,
-                "min_distance_to_active_site": round(float(item["min_distance_to_active_site"]), 3),
+                "min_distance_to_active_site": round(
+                    float(item["min_distance_to_active_site"]), 3
+                ),
             }
             for item in by_code.values()
         ),
         key=lambda item: (float(item["min_distance_to_active_site"]), str(item["code"])),
     )
-    ligand_codes = [str(item["code"]) for item in proximal_ligands]
-    cofactor_families = sorted(_infer_cofactor_families(ligand_codes))
-    return {
-        "distance_cutoff_angstrom": cutoff_angstrom,
-        "proximal_ligands": proximal_ligands,
-        "ligand_codes": ligand_codes,
-        "cofactor_families": cofactor_families,
-    }
 
 
 def pocket_context_from_atoms(

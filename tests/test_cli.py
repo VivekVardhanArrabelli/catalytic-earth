@@ -29,6 +29,7 @@ class CliTests(unittest.TestCase):
             score_margins = Path(tmpdir) / "score_margins.json"
             hard_negatives = Path(tmpdir) / "hard_negatives.json"
             in_scope_failures = Path(tmpdir) / "in_scope_failures.json"
+            cofactor_coverage = Path(tmpdir) / "cofactor_coverage.json"
             label_candidates = Path(tmpdir) / "label_candidates.json"
             mapping_issues = Path(tmpdir) / "mapping_issues.json"
             calibration = Path(tmpdir) / "calibration.json"
@@ -57,6 +58,21 @@ class CliTests(unittest.TestCase):
                     "analyze-geometry-score-margins",
                     "--out",
                     str(score_margins),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "analyze-cofactor-coverage",
+                    "--out",
+                    str(cofactor_coverage),
                 ],
                 cwd=ROOT,
                 env={"PYTHONPATH": str(ROOT / "src")},
@@ -163,6 +179,10 @@ class CliTests(unittest.TestCase):
             self.assertIn(
                 "target_fingerprint_counts",
                 json.loads(in_scope_failures.read_text())["metadata"],
+            )
+            self.assertIn(
+                "coverage_status_counts",
+                json.loads(cofactor_coverage.read_text())["metadata"],
             )
             self.assertIn(
                 "ready_for_label_review_count",

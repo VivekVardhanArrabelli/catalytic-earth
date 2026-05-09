@@ -1,37 +1,32 @@
 {
   "metadata": {
     "abstain_threshold": 0.5144,
-    "abstained_positive_count": 3,
-    "evaluated_in_scope_count": 46,
+    "abstained_positive_count": 1,
+    "actionable_failure_count": 0,
+    "evaluated_in_scope_count": 44,
+    "evidence_limited_abstention_count": 1,
     "failure_cause_counts": {
-      "target_absent_from_top_k": 1,
-      "target_cofactor_context_absent": 2
+      "target_cofactor_absent_from_structure": 1
     },
-    "failure_count": 3,
+    "failure_count": 1,
     "failure_mode_counts": {
-      "abstained_positive": 3,
-      "target_absent_from_top_k": 1,
-      "top1_mismatch": 3
+      "abstained_positive": 1,
+      "top1_mismatch": 1
     },
     "method": "in_scope_geometry_failure_analysis",
     "retained_in_scope_count": 43,
-    "target_absent_from_top_k_count": 1,
+    "target_absent_from_top_k_count": 0,
     "target_cofactor_evidence_counts": {
-      "absent": 2,
-      "not_ranked": 1
+      "absent": 1
     },
     "target_fingerprint_counts": {
-      "cobalamin_radical_rearrangement": 1,
-      "flavin_dehydrogenase_reductase": 1,
       "flavin_monooxygenase": 1
     },
     "top1_correct_count": 43,
     "top1_fingerprint_counts": {
-      "heme_peroxidase_oxidase": 1,
-      "metal_dependent_hydrolase": 1,
       "ser_his_acid_hydrolase": 1
     },
-    "top1_mismatch_count": 3
+    "top1_mismatch_count": 1
   },
   "rows": [
     {
@@ -58,11 +53,18 @@
           "SER",
           "HIS",
           "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "EDO",
+          "MG"
         ]
       },
       "entry_id": "m_csa:132",
       "evaluable": true,
-      "failure_cause": "target_cofactor_context_absent",
+      "failure_cause": "target_cofactor_absent_from_structure",
       "failure_modes": [
         "top1_mismatch",
         "abstained_positive"
@@ -71,22 +73,40 @@
       "resolved_residue_count": 5,
       "score_gap_top1_minus_target": 0.1252,
       "status": "ok",
+      "target_cofactor_coverage_status": "expected_absent_from_structure",
       "target_cofactor_evidence_level": "absent",
       "target_component_scores": {
         "cofactor_context_score": 0.0,
         "compactness_score": 0.6384,
+        "counterevidence_penalty": 0.6,
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
         "mechanistic_coherence_score": 1.0,
         "residue_match_fraction": 0.6667,
         "role_match_fraction": 0.3333,
         "substrate_pocket_score": 0.5365
       },
+      "target_expected_cofactor_families": [
+        "flavin",
+        "nad"
+      ],
       "target_fingerprint_id": "flavin_monooxygenase",
+      "target_missing_expected_cofactor_families": [
+        "flavin",
+        "nad"
+      ],
       "target_rank": 5,
       "target_score": 0.2669,
       "top1_cofactor_evidence_level": "not_required",
       "top1_component_scores": {
         "cofactor_context_score": 1.0,
         "compactness_score": 0.6384,
+        "counterevidence_penalty": 0.7,
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
         "mechanistic_coherence_score": 0.0,
         "residue_match_fraction": 1.0,
         "role_match_fraction": 0.3333,
@@ -94,130 +114,6 @@
       },
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_score": 0.3921
-    },
-    {
-      "abstain_threshold": 0.5144,
-      "abstained": true,
-      "context": {
-        "cofactor_families": [],
-        "ligand_codes": [
-          "MOS",
-          "MTE"
-        ],
-        "nearby_residue_count": 62,
-        "pdb_id": "1V97",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1774,
-          "charge_balance": 0.0806,
-          "hydrophobic_fraction": 0.3871,
-          "mean_min_distance_to_active_site": 5.5945,
-          "negative_fraction": 0.0323,
-          "polar_fraction": 0.2742,
-          "positive_fraction": 0.1129,
-          "sulfur_fraction": 0.0645
-        },
-        "residue_codes": [
-          "GLU",
-          "ARG",
-          "GLU"
-        ]
-      },
-      "entry_id": "m_csa:139",
-      "evaluable": true,
-      "failure_cause": "target_cofactor_context_absent",
-      "failure_modes": [
-        "top1_mismatch",
-        "abstained_positive"
-      ],
-      "label_rationale": "Mammalian xanthine dehydrogenase contains flavin-linked electron transfer in a molybdenum/iron-sulfur redox enzyme, matching the broad flavin dehydrogenase seed.",
-      "resolved_residue_count": 3,
-      "score_gap_top1_minus_target": 0.1043,
-      "status": "ok",
-      "target_cofactor_evidence_level": "absent",
-      "target_component_scores": {
-        "cofactor_context_score": 0.0,
-        "compactness_score": 0.6241,
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.5
-      },
-      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "target_rank": 3,
-      "target_score": 0.241,
-      "top1_cofactor_evidence_level": "absent",
-      "top1_component_scores": {
-        "cofactor_context_score": 0.2,
-        "compactness_score": 0.6241,
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.0,
-        "substrate_pocket_score": 0.1734
-      },
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.3453
-    },
-    {
-      "abstain_threshold": 0.5144,
-      "abstained": true,
-      "context": {
-        "cofactor_families": [],
-        "ligand_codes": [],
-        "nearby_residue_count": 46,
-        "pdb_id": "1L1L",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.0652,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.3261,
-          "mean_min_distance_to_active_site": 5.3817,
-          "negative_fraction": 0.0652,
-          "polar_fraction": 0.3261,
-          "positive_fraction": 0.0652,
-          "sulfur_fraction": 0.0217
-        },
-        "residue_codes": [
-          "CYS",
-          "CYS",
-          "GLU",
-          "CYS",
-          "ASN"
-        ]
-      },
-      "entry_id": "m_csa:140",
-      "evaluable": true,
-      "failure_cause": "target_absent_from_top_k",
-      "failure_modes": [
-        "top1_mismatch",
-        "target_absent_from_top_k",
-        "abstained_positive"
-      ],
-      "label_rationale": "Class II ribonucleoside-triphosphate reductase uses adenosylcobalamin radical chemistry, matching the cobalamin radical rearrangement seed.",
-      "resolved_residue_count": 5,
-      "score_gap_top1_minus_target": null,
-      "status": "ok",
-      "target_cofactor_evidence_level": null,
-      "target_component_scores": {
-        "cofactor_context_score": 0.0,
-        "compactness_score": 0.0,
-        "mechanistic_coherence_score": 0.0,
-        "residue_match_fraction": 0.0,
-        "role_match_fraction": 0.0,
-        "substrate_pocket_score": 0.0
-      },
-      "target_fingerprint_id": "cobalamin_radical_rearrangement",
-      "target_rank": null,
-      "target_score": null,
-      "top1_cofactor_evidence_level": "absent",
-      "top1_component_scores": {
-        "cofactor_context_score": 0.0,
-        "compactness_score": 1.0,
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 1.0,
-        "role_match_fraction": 0.6667,
-        "substrate_pocket_score": 0.2087
-      },
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.466
     }
   ]
 }

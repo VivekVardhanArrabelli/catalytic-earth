@@ -23,7 +23,7 @@ protein sequence
 This repository has moved past the initial v0 scaffold. The current public state
 is a scaffold-level V2 research artifact plus post-V2 active-site geometry,
 ligand/cofactor context, substrate-pocket descriptors, curated seed labels,
-abstention calibration, and local performance checks.
+abstention calibration, cofactor coverage audits, and local performance checks.
 
 ## What This Is
 
@@ -51,13 +51,15 @@ The repository currently contains:
    campaign, and candidate dossier writer.
 4. PDB mmCIF active-site geometry extraction for catalytic residues.
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
-6. Substrate-pocket descriptor extraction from nearby protein residues.
-7. Curated mechanism labels for 150 entries, including all 150 entries in the
+6. Structure-wide ligand inventory for cofactor coverage audits.
+7. Substrate-pocket descriptor extraction from nearby protein residues.
+8. Curated mechanism labels for 150 entries, including all 150 entries in the
    current expanded geometry slice.
-8. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
-9. Retrieval evaluation, abstention threshold calibration, hard-negative
-   selection, in-scope failure analysis, label-expansion candidate ranking,
-   geometry slice summaries, and a local performance suite.
+9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
+10. Retrieval evaluation, abstention threshold calibration, hard-negative
+    selection, in-scope failure analysis, cofactor coverage analysis,
+    label-expansion candidate ranking, geometry slice summaries, and a local
+    performance suite.
 
 The 20- through 125-entry evaluation slices are now clean regression slices:
 each has 0 out-of-scope false non-abstentions, 0 hard negatives, 0 near misses,
@@ -67,15 +69,18 @@ evaluable active-site structures, threshold `0.4704`, and a positive score
 separation gap of `0.0562`.
 
 The new 150-entry slice is fully labeled and intentionally harder: 150 entries,
-148 evaluable active-site structures, 46 in-scope positives, 104 out-of-scope
-controls, 0 ready label-expansion candidates, 2 labeled structure-mapping
-issues, 0 hard negatives, and 0 near misses. Its calibrated threshold is
-`0.5144`; it retains 43/46 in-scope positives, abstains on all evaluable
-out-of-scope controls, and leaves 3 in-scope failures to analyze next
-(`m_csa:132`, `m_csa:139`, and `m_csa:140`). Two failures have absent target
-cofactor context and one target is absent from the top-k ranking. The bottleneck
-has shifted from hard-negative separation to evidence-limited in-scope positives
-and seed-family coverage.
+148 evaluable active-site structures, 44 local active-site in-scope positives,
+106 out-of-scope controls, 0 ready label-expansion candidates, 2 labeled
+structure-mapping issues, 0 hard negatives, and 0 near misses. Its calibrated
+threshold is `0.5144`; it retains 43/44 in-scope positives, abstains on all
+evaluable out-of-scope controls, and leaves 1 evidence-limited in-scope
+abstention (`m_csa:132`). That selected `1LUC` structure lacks the expected
+flavin/NAD cofactor evidence, so the current actionable in-scope failure count
+is 0. The bottleneck has shifted from hard-negative separation to cofactor
+coverage, evidence-limited positives, and seed-family audits. Cofactor coverage
+artifacts now explicitly identify retained evidence-limited positives:
+`m_csa:41` lacks expected structure-wide metal evidence, and `m_csa:108` has
+expected cofactor evidence only outside the local active-site neighborhood.
 
 ## Quickstart
 
@@ -113,6 +118,7 @@ python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geom
 python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_geometry_label_eval_150.json
 python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_geometry_failure_analysis_150.json
 python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_in_scope_failure_analysis_150.json
+python -m catalytic_earth.cli analyze-cofactor-coverage --retrieval artifacts/v3_geometry_retrieval_150.json --abstain-threshold 0.5144 --out artifacts/v3_cofactor_coverage_150.json
 python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_150.json --out artifacts/v3_geometry_score_margins_150.json
 python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_150.json --out artifacts/v3_hard_negative_controls_150.json
 python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_150.json --retrieval artifacts/v3_geometry_retrieval_150.json --out artifacts/v3_label_expansion_candidates_150.json
@@ -157,9 +163,10 @@ Current timeline judgment:
    retrieval baseline, inconsistency detection, dark-enzyme candidate dossiers,
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
-2. Next automation blocks: analyze the 3 evidence-limited in-scope failures in
-   the 150-entry slice while preserving 0 hard negatives and 0 out-of-scope
-   false non-abstentions across the 20- through 150-entry slices.
+2. Next automation blocks: decide whether evidence-limited retained positives
+   (`m_csa:41`, `m_csa:108`) need a scoring penalty or remain audit-only flags
+   while preserving 0 hard negatives and 0 out-of-scope false non-abstentions
+   across the 20- through 150-entry slices.
 3. Next serious milestone: make the 150-entry geometry slice pass a stricter
    audited benchmark where success cannot be explained by tiny-label effects or
    seed-family overfitting.
