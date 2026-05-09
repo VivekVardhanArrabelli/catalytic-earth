@@ -41,6 +41,28 @@ V0 initial scaffold is complete:
 - seed catalytic graph linking M-CSA, EC, catalytic residues, and Rhea
 - unit tests
 
+V1 graph foundation is complete:
+
+- persistent JSON graph schema
+- M-CSA paginated ingestion beyond hand-picked IDs
+- Rhea EC reaction mapping beyond toy samples
+- UniProt accession linkage
+- PDB and AlphaFold DB structure cross-reference nodes
+- provenance on graph nodes and edges
+- graph summary command and artifact
+- normalization and graph construction tests
+
+V2 first research artifact is complete:
+
+- mechanism-level benchmark records
+- token-overlap seed fingerprint retrieval baseline
+- leakage controls blocking EC numbers, Rhea identifiers, and source entry ids
+- graph inconsistency detector
+- bounded unreviewed hydrolase mining campaign
+- top candidate dossiers with evidence and uncertainty
+- reproducible README command sequence
+- paper-style V2 report draft
+
 ## V1 Target
 
 V1 should make the knowledge graph real enough for benchmark design.
@@ -76,9 +98,15 @@ Completion criteria:
 Observed speed: v0 scaffold and public repo were completed in one session, so a
 one-year estimate for v0-v2 is too conservative.
 
-Current aggressive expectation:
+Observed speed after V2: v1-v2 were feasible in another concentrated work
+session because the first V2 is deliberately a computational scaffold, not an
+expert-validated enzyme discovery program.
 
-- v1: days to low weeks, depending on source quirks
-- v2: weeks to a few months, depending on benchmark and candidate quality
+Current expectation:
+
+- v2 scaffold: complete
+- next serious step: replace weak token/motif baselines with geometry-aware
+  active-site retrieval and curated mechanism labels
+- higher-impact work now depends on quality, not more scaffolding
 
 This estimate must keep being revised from the progress log, not from vibes.

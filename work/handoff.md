@@ -62,3 +62,10 @@ Commit and push after considerable progress, meaning at least one of:
 
 Only report "v2 done" when every criterion in `work/scope.md` under `V2 Target`
 is actually satisfied and reproducible from commands in the repository.
+
+## UI Context Note
+
+Computer Use was attempted against the Codex app for context inspection, but the
+tool reported that it is not allowed to operate on `com.openai.codex` for safety
+reasons. Treat repository state and this handoff file as the reliable recovery
+surface.

@@ -51,6 +51,14 @@ python -m catalytic_earth.cli fingerprint-demo --out artifacts/mechanism_demo.js
 python -m catalytic_earth.cli fetch-rhea-sample --limit 10 --out artifacts/rhea_sample.json
 python -m catalytic_earth.cli fetch-mcsa-sample --ids 1,2,3 --out artifacts/mcsa_sample.json
 python -m catalytic_earth.cli build-seed-graph --mcsa-ids 1,2,3 --out artifacts/seed_graph.json
+python -m catalytic_earth.cli build-v1-graph --max-mcsa 50 --page-size 50 --out artifacts/v1_graph.json
+python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph.json --out artifacts/v1_graph_summary.json
+python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph.json --out artifacts/v2_benchmark.json
+python -m catalytic_earth.cli run-baseline --benchmark artifacts/v2_benchmark.json --out artifacts/v2_baseline.json
+python -m catalytic_earth.cli detect-inconsistencies --graph artifacts/v1_graph.json --out artifacts/v2_inconsistencies.json
+python -m catalytic_earth.cli mine-dark-hydrolases --limit 100 --out artifacts/v2_dark_hydrolase_candidates.json
+python -m catalytic_earth.cli write-dossiers --candidates artifacts/v2_dark_hydrolase_candidates.json --out-dir artifacts/v2_dossiers --top 10
+python -m catalytic_earth.cli write-v2-report --out docs/v2_report.md
 python -m catalytic_earth.cli log-work --stage v0 --task "example work entry" --minutes 1
 python -m catalytic_earth.cli progress-report --out work/status.md
 python -m unittest discover -s tests
@@ -60,6 +68,9 @@ The commands currently operate on curated seed registries in `data/registries/`.
 The first source-specific adapters fetch small Rhea and M-CSA samples and build
 a seed graph linking M-CSA entries, EC numbers, catalytic residues, and Rhea
 reactions.
+
+The v1 graph command expands this into a persistent graph slice linking M-CSA,
+Rhea, UniProt, PDB, and AlphaFold DB cross-references.
 
 ## Repository Layout
 

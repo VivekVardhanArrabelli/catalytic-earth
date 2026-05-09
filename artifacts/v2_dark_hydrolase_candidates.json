@@ -1,0 +1,3373 @@
+{
+  "candidates": [
+    {
+      "accession": "B4DQI4",
+      "alphafold_ids": [
+        "B4DQI4"
+      ],
+      "ec_numbers": [],
+      "entry_name": "B4DQI4_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests weak characterization",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 188,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 186,
+          "motif": "GVSSG",
+          "start": 182
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Putative protein-lysine deacylase ABHD14B (Alpha/beta hydrolase domain-containing protein 14B)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 12,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A060XT47",
+      "alphafold_ids": [
+        "A0A060XT47"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A060XT47_ONCMY",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 367,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 162,
+          "motif": "GHSLG",
+          "start": 158
+        },
+        {
+          "end": 289,
+          "motif": "SESLG",
+          "start": 285
+        }
+      ],
+      "organism": "Oncorhynchus mykiss (Rainbow trout) (Salmo gairdneri)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A2U9BLL4",
+      "alphafold_ids": [
+        "A0A2U9BLL4"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2U9BLL4_SCOMX",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 361,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        },
+        {
+          "end": 283,
+          "motif": "SESLG",
+          "start": 279
+        }
+      ],
+      "organism": "Scophthalmus maximus (Turbot) (Psetta maxima)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3B4XCC2",
+      "alphafold_ids": [
+        "A0A3B4XCC2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3B4XCC2_SERLL",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 371,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 166,
+          "motif": "GHSLG",
+          "start": 162
+        },
+        {
+          "end": 293,
+          "motif": "SESLG",
+          "start": 289
+        }
+      ],
+      "organism": "Seriola lalandi dorsalis",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3B5B1G1",
+      "alphafold_ids": [
+        "A0A3B5B1G1"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3B5B1G1_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 366,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        },
+        {
+          "end": 288,
+          "motif": "AESLG",
+          "start": 284
+        }
+      ],
+      "organism": "Stegastes partitus (bicolor damselfish)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3N0YZ51",
+      "alphafold_ids": [
+        "A0A3N0YZ51"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3N0YZ51_ANAGA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 366,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 162,
+          "motif": "GHSLG",
+          "start": 158
+        },
+        {
+          "end": 288,
+          "motif": "SESLG",
+          "start": 284
+        }
+      ],
+      "organism": "Anabarilius grahami (Kanglang fish) (Barilius grahami)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3Q0R634",
+      "alphafold_ids": [
+        "A0A3Q0R634"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3Q0R634_AMPCI",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 323,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 120,
+          "motif": "GHSLG",
+          "start": 116
+        },
+        {
+          "end": 245,
+          "motif": "SESLG",
+          "start": 241
+        }
+      ],
+      "organism": "Amphilophus citrinellus (Midas cichlid) (Cichlasoma citrinellum)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3Q1EVE8",
+      "alphafold_ids": [
+        "A0A3Q1EVE8"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3Q1EVE8_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 387,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 182,
+          "motif": "GHSLG",
+          "start": 178
+        },
+        {
+          "end": 309,
+          "motif": "AASLG",
+          "start": 305
+        }
+      ],
+      "organism": "Acanthochromis polyacanthus (spiny chromis)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3Q3E319",
+      "alphafold_ids": [
+        "A0A3Q3E319"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3Q3E319_9LABR",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 369,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 164,
+          "motif": "GHSLG",
+          "start": 160
+        },
+        {
+          "end": 291,
+          "motif": "SESLG",
+          "start": 287
+        }
+      ],
+      "organism": "Labrus bergylta (ballan wrasse)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3Q3MHQ1",
+      "alphafold_ids": [
+        "A0A3Q3MHQ1"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3Q3MHQ1_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 368,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        },
+        {
+          "end": 290,
+          "motif": "SESLG",
+          "start": 286
+        }
+      ],
+      "organism": "Mastacembelus armatus (zig-zag eel)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3S2PI83",
+      "alphafold_ids": [
+        "A0A3S2PI83"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3S2PI83_ORYJA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 375,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 3,
+      "motifs": [
+        {
+          "end": 172,
+          "motif": "GHSLG",
+          "start": 168
+        },
+        {
+          "end": 297,
+          "motif": "SESLG",
+          "start": 293
+        },
+        {
+          "end": 331,
+          "motif": "SSSSG",
+          "start": 327
+        }
+      ],
+      "organism": "Oryzias javanicus (Javanese ricefish) (Aplocheilus javanicus)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A5E4D9Y3",
+      "alphafold_ids": [
+        "A0A5E4D9Y3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A5E4D9Y3_MARMO",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 318,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 124,
+          "motif": "GHSLG",
+          "start": 120
+        },
+        {
+          "end": 274,
+          "motif": "GTSTG",
+          "start": 270
+        }
+      ],
+      "organism": "Marmota monax (Woodchuck)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A665WXJ2",
+      "alphafold_ids": [
+        "A0A665WXJ2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A665WXJ2_ECHNA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 366,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        },
+        {
+          "end": 288,
+          "motif": "SASLG",
+          "start": 284
+        }
+      ],
+      "organism": "Echeneis naucrates (Live sharksucker)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A671NVE5",
+      "alphafold_ids": [
+        "A0A671NVE5"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A671NVE5_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 359,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 155,
+          "motif": "GHSLG",
+          "start": 151
+        },
+        {
+          "end": 281,
+          "motif": "SESIG",
+          "start": 277
+        }
+      ],
+      "organism": "Sinocyclocheilus anshuiensis",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A671SNW8",
+      "alphafold_ids": [
+        "A0A671SNW8"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A671SNW8_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 413,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 209,
+          "motif": "GHSLG",
+          "start": 205
+        },
+        {
+          "end": 335,
+          "motif": "SESLG",
+          "start": 331
+        }
+      ],
+      "organism": "Sinocyclocheilus anshuiensis",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A672HJY7",
+      "alphafold_ids": [
+        "A0A672HJY7"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A672HJY7_SALFA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 369,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        },
+        {
+          "end": 291,
+          "motif": "SESLG",
+          "start": 287
+        }
+      ],
+      "organism": "Salarias fasciatus (Jewelled blenny) (Blennius fasciatus)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A672SM10",
+      "alphafold_ids": [
+        "A0A672SM10"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A672SM10_SINGR",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 335,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 131,
+          "motif": "GHSLG",
+          "start": 127
+        },
+        {
+          "end": 257,
+          "motif": "SESLG",
+          "start": 253
+        }
+      ],
+      "organism": "Sinocyclocheilus grahami (Dianchi golden-line fish) (Barbus grahami)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A673LMF8",
+      "alphafold_ids": [
+        "A0A673LMF8"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A673LMF8_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 363,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 159,
+          "motif": "GHSLG",
+          "start": 155
+        },
+        {
+          "end": 285,
+          "motif": "SESIG",
+          "start": 281
+        }
+      ],
+      "organism": "Sinocyclocheilus rhinocerous",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A6A5E483",
+      "alphafold_ids": [
+        "A0A6A5E483"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A6A5E483_PERFL",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 344,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 3,
+      "motifs": [
+        {
+          "end": 138,
+          "motif": "GHSLG",
+          "start": 134
+        },
+        {
+          "end": 266,
+          "motif": "SESLG",
+          "start": 262
+        },
+        {
+          "end": 300,
+          "motif": "GSSSG",
+          "start": 296
+        }
+      ],
+      "organism": "Perca fluviatilis (European perch)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0AAA9S540",
+      "alphafold_ids": [
+        "A0AAA9S540"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0AAA9S540_BOVIN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 413,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        },
+        {
+          "end": 369,
+          "motif": "GESGG",
+          "start": 365
+        }
+      ],
+      "organism": "Bos taurus (Bovine)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "B2C6G3",
+      "alphafold_ids": [
+        "B2C6G3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "B2C6G3_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 439,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 3,
+      "motifs": [
+        {
+          "end": 129,
+          "motif": "AGSDG",
+          "start": 125
+        },
+        {
+          "end": 146,
+          "motif": "SGSGG",
+          "start": 142
+        },
+        {
+          "end": 254,
+          "motif": "GHSYG",
+          "start": 250
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Protein ABHD8 (Alpha/beta hydrolase domain-containing protein 8)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "B2RD12",
+      "alphafold_ids": [
+        "B2RD12"
+      ],
+      "ec_numbers": [],
+      "entry_name": "B2RD12_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 439,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 3,
+      "motifs": [
+        {
+          "end": 129,
+          "motif": "AGSDG",
+          "start": 125
+        },
+        {
+          "end": 146,
+          "motif": "SGSGG",
+          "start": 142
+        },
+        {
+          "end": 254,
+          "motif": "GHSYG",
+          "start": 250
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Protein ABHD8 (Alpha/beta hydrolase domain-containing protein 8)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "B3KNX9",
+      "alphafold_ids": [
+        "B3KNX9"
+      ],
+      "ec_numbers": [],
+      "entry_name": "B3KNX9_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 339,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 101,
+          "motif": "AGSTG",
+          "start": 97
+        },
+        {
+          "end": 138,
+          "motif": "AWSIG",
+          "start": 134
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Phosphatidylserine lipase ABHD16A (Alpha/beta hydrolase domain-containing protein 16A) (Monoacylglycerol lipase ABHD16A)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "B4DNR3",
+      "alphafold_ids": [
+        "B4DNR3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "B4DNR3_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests weak characterization",
+        "protein name suggests alpha/beta hydrolase context",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 185,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Putative protein-lysine deacylase ABHD14B (Alpha/beta hydrolase domain-containing protein 14B)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "B4DPA4",
+      "alphafold_ids": [
+        "B4DPA4"
+      ],
+      "ec_numbers": [],
+      "entry_name": "B4DPA4_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 385,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 3,
+      "motifs": [
+        {
+          "end": 75,
+          "motif": "AGSDG",
+          "start": 71
+        },
+        {
+          "end": 92,
+          "motif": "SGSGG",
+          "start": 88
+        },
+        {
+          "end": 200,
+          "motif": "GHSYG",
+          "start": 196
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Protein ABHD8 (Alpha/beta hydrolase domain-containing protein 8)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "F8W9U3",
+      "alphafold_ids": [
+        "F8W9U3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "F8W9U3_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests weak characterization",
+        "protein name suggests alpha/beta hydrolase context",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 208,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Putative protein-lysine deacylase ABHD14B (Alpha/beta hydrolase domain-containing protein 14B)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "Q9SKY5",
+      "alphafold_ids": [
+        "Q9SKY5"
+      ],
+      "ec_numbers": [],
+      "entry_name": "Q9SKY5_ARATH",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests weak characterization",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "PDB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 263,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 196,
+          "motif": "GKSVG",
+          "start": 192
+        }
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [
+        "7EF6",
+        "7EF7"
+      ],
+      "protein_name": "At2g32150/F22D22.10 (Haloacid dehalogenase-like hydrolase (HAD) superfamily protein) (Putative hydrolase)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": []
+    },
+    {
+      "accession": "V9HW87",
+      "alphafold_ids": [
+        "V9HW87"
+      ],
+      "ec_numbers": [],
+      "entry_name": "V9HW87_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests weak characterization",
+        "protein name suggests alpha/beta hydrolase context",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 210,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Putative protein-lysine deacylase ABHD14B (Alpha/beta hydrolase domain-containing protein 14B)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 11,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0A0P6IVX6",
+      "alphafold_ids": [
+        "A0A0P6IVX6"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A0P6IVX6_HETGA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Heterocephalus glaber (Naked mole rat)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A140VJD1",
+      "alphafold_ids": [
+        "A0A140VJD1"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A140VJD1_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 405,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 205,
+          "motif": "GISFG",
+          "start": 201
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Protein ABHD1 (Alpha/beta hydrolase domain-containing protein 1)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A1A7WEX4",
+      "alphafold_ids": [
+        "A0A1A7WEX4"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A1A7WEX4_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 366,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        }
+      ],
+      "organism": "Iconisemion striatum",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A1A8D4S6",
+      "alphafold_ids": [
+        "A0A1A8D4S6"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A1A8D4S6_NOTKA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 374,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 170,
+          "motif": "GHSLG",
+          "start": 166
+        }
+      ],
+      "organism": "Nothobranchius kadleci (African annual killifish)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A1A8MV97",
+      "alphafold_ids": [
+        "A0A1A8MV97"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A1A8MV97_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 367,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        }
+      ],
+      "organism": "Nothobranchius pienaari",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A1A8RJZ1",
+      "alphafold_ids": [
+        "A0A1A8RJZ1"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A1A8RJZ1_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 367,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        }
+      ],
+      "organism": "Nothobranchius rachovii (bluefin notho)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A1S3FX02",
+      "alphafold_ids": [
+        "A0A1S3FX02"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A1S3FX02_DIPOR",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 318,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 124,
+          "motif": "GHSLG",
+          "start": 120
+        }
+      ],
+      "organism": "Dipodomys ordii (Ord's kangaroo rat)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A1U8DI21",
+      "alphafold_ids": [
+        "A0A1U8DI21"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A1U8DI21_ALLSI",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 319,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 125,
+          "motif": "GHSLG",
+          "start": 121
+        }
+      ],
+      "organism": "Alligator sinensis (Chinese alligator)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A287CU95",
+      "alphafold_ids": [
+        "A0A287CU95"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A287CU95_ICTTR",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Ictidomys tridecemlineatus (Thirteen-lined ground squirrel) (Spermophilus tridecemlineatus)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A2I4AWU2",
+      "alphafold_ids": [
+        "A0A2I4AWU2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2I4AWU2_AUSLI",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 371,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 174,
+          "motif": "GHSLG",
+          "start": 170
+        }
+      ],
+      "organism": "Austrofundulus limnaeus (Annual killifish)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A2K6AGY3",
+      "alphafold_ids": [
+        "A0A2K6AGY3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2K6AGY3_MANLE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 342,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 148,
+          "motif": "GHSLG",
+          "start": 144
+        }
+      ],
+      "organism": "Mandrillus leucophaeus (Drill) (Papio leucophaeus)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A2K6V0Z7",
+      "alphafold_ids": [
+        "A0A2K6V0Z7"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2K6V0Z7_SAIBB",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 342,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 148,
+          "motif": "GHSLG",
+          "start": 144
+        }
+      ],
+      "organism": "Saimiri boliviensis boliviensis (Bolivian squirrel monkey)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A2U3YC62",
+      "alphafold_ids": [
+        "A0A2U3YC62"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2U3YC62_LEPWE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Leptonychotes weddellii (Weddell seal) (Otaria weddellii)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A2Y9HN70",
+      "alphafold_ids": [
+        "A0A2Y9HN70"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2Y9HN70_NEOSC",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Neomonachus schauinslandi (Hawaiian monk seal) (Monachus schauinslandi)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A2Y9LKQ3",
+      "alphafold_ids": [
+        "A0A2Y9LKQ3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2Y9LKQ3_DELLE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 318,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 124,
+          "motif": "GHSLG",
+          "start": 120
+        }
+      ],
+      "organism": "Delphinapterus leucas (Beluga whale)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A310U788",
+      "alphafold_ids": [
+        "A0A310U788"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A310U788_XENLA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 352,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 158,
+          "motif": "GHSLG",
+          "start": 154
+        }
+      ],
+      "organism": "Xenopus laevis (African clawed frog)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A315V1Z0",
+      "alphafold_ids": [
+        "A0A315V1Z0"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A315V1Z0_GAMAF",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 375,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 170,
+          "motif": "GHSLG",
+          "start": 166
+        }
+      ],
+      "organism": "Gambusia affinis (Western mosquitofish) (Heterandria affinis)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3B3TZD9",
+      "alphafold_ids": [
+        "A0A3B3TZD9"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3B3TZD9_9TELE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 368,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        }
+      ],
+      "organism": "Poecilia latipinna (sailfin molly)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3B5Q7Y7",
+      "alphafold_ids": [
+        "A0A3B5Q7Y7"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3B5Q7Y7_XIPMA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 368,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        }
+      ],
+      "organism": "Xiphophorus maculatus (Southern platyfish) (Platypoecilus maculatus)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3Q2P2G4",
+      "alphafold_ids": [
+        "A0A3Q2P2G4"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3Q2P2G4_FUNHE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 334,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 131,
+          "motif": "GHSLG",
+          "start": 127
+        }
+      ],
+      "organism": "Fundulus heteroclitus (Killifish) (Mummichog)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A3Q2V588",
+      "alphafold_ids": [
+        "A0A3Q2V588"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A3Q2V588_HAPBU",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 366,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 163,
+          "motif": "GHSLG",
+          "start": 159
+        }
+      ],
+      "organism": "Haplochromis burtoni (Burton's mouthbrooder) (Chromis burtoni)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A452DIS9",
+      "alphafold_ids": [
+        "A0A452DIS9"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A452DIS9_BOVIN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 340,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 146,
+          "motif": "GHSLG",
+          "start": 142
+        }
+      ],
+      "organism": "Bos taurus (Bovine)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A485MZ88",
+      "alphafold_ids": [
+        "A0A485MZ88"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A485MZ88_LYNPA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Lynx pardinus (Iberian lynx) (Felis pardina)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A4D9DQR4",
+      "alphafold_ids": [
+        "A0A4D9DQR4"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A4D9DQR4_9SAUR",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 343,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 149,
+          "motif": "GHSLG",
+          "start": 145
+        }
+      ],
+      "organism": "Platysternon megacephalum (big-headed turtle)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A5E4C026",
+      "alphafold_ids": [
+        "A0A5E4C026"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A5E4C026_MARMO",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Marmota monax (Woodchuck)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A668VR65",
+      "alphafold_ids": [
+        "A0A668VR65"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A668VR65_OREAU",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 389,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 186,
+          "motif": "GHSLG",
+          "start": 182
+        }
+      ],
+      "organism": "Oreochromis aureus (Israeli tilapia) (Chromis aureus)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A673TEY7",
+      "alphafold_ids": [
+        "A0A673TEY7"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A673TEY7_SURSU",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 318,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 124,
+          "motif": "GHSLG",
+          "start": 120
+        }
+      ],
+      "organism": "Suricata suricatta (Meerkat)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A6I9M1A2",
+      "alphafold_ids": [
+        "A0A6I9M1A2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A6I9M1A2_PERMB",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Peromyscus maniculatus bairdii (Prairie deer mouse)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A6I9YZK1",
+      "alphafold_ids": [
+        "A0A6I9YZK1"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A6I9YZK1_9SAUR",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 319,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 125,
+          "motif": "GHSLG",
+          "start": 121
+        }
+      ],
+      "organism": "Thamnophis sirtalis",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A6J0B196",
+      "alphafold_ids": [
+        "A0A6J0B196"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A6J0B196_VICPA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 318,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 124,
+          "motif": "GHSLG",
+          "start": 120
+        }
+      ],
+      "organism": "Vicugna pacos (Alpaca) (Lama pacos)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A6J2L5B3",
+      "alphafold_ids": [
+        "A0A6J2L5B3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A6J2L5B3_9CHIR",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 318,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 124,
+          "motif": "GHSLG",
+          "start": 120
+        }
+      ],
+      "organism": "Phyllostomus discolor (pale spear-nosed bat)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A8I6ADA8",
+      "alphafold_ids": [
+        "A0A8I6ADA8"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A8I6ADA8_RAT",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 378,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 184,
+          "motif": "GHSLG",
+          "start": 180
+        }
+      ],
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A8M2BAQ5",
+      "alphafold_ids": [
+        "A0A8M2BAQ5"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A8M2BAQ5_DANRE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 372,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 168,
+          "motif": "GHSLG",
+          "start": 164
+        }
+      ],
+      "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0AAA9SW52",
+      "alphafold_ids": [
+        "A0AAA9SW52"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0AAA9SW52_BOVIN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Bos taurus (Bovine)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A1L593",
+      "alphafold_ids": [
+        "A1L593"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A1L593_BOVIN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 342,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 148,
+          "motif": "GHSLG",
+          "start": 144
+        }
+      ],
+      "organism": "Bos taurus (Bovine)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A6KGS0",
+      "alphafold_ids": [
+        "A6KGS0"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A6KGS0_RAT",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "D3ZAW4",
+      "alphafold_ids": [
+        "D3ZAW4"
+      ],
+      "ec_numbers": [],
+      "entry_name": "D3ZAW4_RAT",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "Q3U7M5",
+      "alphafold_ids": [
+        "Q3U7M5"
+      ],
+      "ec_numbers": [],
+      "entry_name": "Q3U7M5_MOUSE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 355,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 161,
+          "motif": "GHSLG",
+          "start": 157
+        }
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "Q568J2",
+      "alphafold_ids": [
+        "Q568J2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "Q568J2_DANRE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 359,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 155,
+          "motif": "GHSLG",
+          "start": 151
+        }
+      ],
+      "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "Q8C0M2",
+      "alphafold_ids": [
+        "Q8C0M2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "Q8C0M2_MOUSE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 318,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 124,
+          "motif": "GHSLG",
+          "start": 120
+        }
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "Q99KW5",
+      "alphafold_ids": [
+        "Q99KW5"
+      ],
+      "ec_numbers": [],
+      "entry_name": "Q99KW5_MOUSE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 243,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 49,
+          "motif": "GHSLG",
+          "start": 45
+        }
+      ],
+      "organism": "Mus musculus (Mouse)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 10,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A2K5L3K9",
+      "alphafold_ids": [
+        "A0A2K5L3K9"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2K5L3K9_CERAT",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 315,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Cercocebus atys (Sooty mangabey) (Cercocebus torquatus atys)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 9,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0A2K6C8T9",
+      "alphafold_ids": [
+        "A0A2K6C8T9"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2K6C8T9_MACNE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 352,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Macaca nemestrina (Pig-tailed macaque)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 9,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0A2K6KNT9",
+      "alphafold_ids": [
+        "A0A2K6KNT9"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2K6KNT9_RHIBE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 352,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Rhinopithecus bieti (Black snub-nosed monkey) (Pygathrix bieti)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 9,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0A2R9AFJ7",
+      "alphafold_ids": [
+        "A0A2R9AFJ7"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A2R9AFJ7_PANPA",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 339,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Pan paniscus (Pygmy chimpanzee) (Bonobo)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 9,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0A3P9QFU4",
+      "alphafold_ids": [],
+      "ec_numbers": [],
+      "entry_name": "A0A3P9QFU4_POERE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests alpha/beta hydrolase context",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 375,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 170,
+          "motif": "GHSLG",
+          "start": 166
+        }
+      ],
+      "organism": "Poecilia reticulata (Guppy) (Acanthophacelus reticulatus)",
+      "pdb_ids": [],
+      "protein_name": "(Lyso)-N-acylphosphatidylethanolamine lipase (Alpha/beta hydrolase domain-containing protein 4) (Alpha/beta-hydrolase 4)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 9,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A1P8B2T3",
+      "alphafold_ids": [
+        "A0A1P8B2T3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A1P8B2T3_ARATH",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 225,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 196,
+          "motif": "GKSVG",
+          "start": 192
+        }
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [],
+      "protein_name": "Haloacid dehalogenase-like hydrolase (HAD) superfamily protein",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 8,
+      "uncertainty": []
+    },
+    {
+      "accession": "B3KSI2",
+      "alphafold_ids": [
+        "B3KSI2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "B3KSI2_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 268,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 194,
+          "motif": "ALSCG",
+          "start": 190
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "NAD(+) hydrolase SARM1 (NADP(+) hydrolase SARM1) (Sterile alpha and TIR motif-containing protein 1)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 8,
+      "uncertainty": []
+    },
+    {
+      "accession": "D4ADQ2",
+      "alphafold_ids": [
+        "D4ADQ2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "D4ADQ2_RAT",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 222,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 66,
+          "motif": "GPSSG",
+          "start": 62
+        }
+      ],
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_ids": [],
+      "protein_name": "Mitochondrial cardiolipin hydrolase (Choline phosphatase 6) (Mitochondrial phospholipase) (Phosphatidylcholine-hydrolyzing phospholipase D6) (Phospholipase D6) (Protein zucchini homolog)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 8,
+      "uncertainty": []
+    },
+    {
+      "accession": "D6RAW2",
+      "alphafold_ids": [
+        "D6RAW2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "D6RAW2_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 206,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 6,
+          "motif": "SGSNG",
+          "start": 2
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Nudix hydrolase 9",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 8,
+      "uncertainty": []
+    },
+    {
+      "accession": "A0A0A0MSI3",
+      "alphafold_ids": [
+        "A0A0A0MSI3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A0A0MSI3_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 200,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "N-acetyltaurine hydrolase (Phosphotriesterase-related protein)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0A1P8B2T7",
+      "alphafold_ids": [
+        "A0A1P8B2T7"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A1P8B2T7_ARATH",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 185,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [],
+      "protein_name": "Haloacid dehalogenase-like hydrolase (HAD) superfamily protein",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0A8I5ZP46",
+      "alphafold_ids": [
+        "A0A8I5ZP46"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A8I5ZP46_RAT",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 380,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_ids": [],
+      "protein_name": "N-acetyltaurine hydrolase (Phosphotriesterase-related protein)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0AAA9S851",
+      "alphafold_ids": [
+        "A0AAA9S851"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0AAA9S851_BOVIN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 251,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Bos taurus (Bovine)",
+      "pdb_ids": [],
+      "protein_name": "Mitochondrial cardiolipin hydrolase (Choline phosphatase 6) (Mitochondrial phospholipase) (Phosphatidylcholine-hydrolyzing phospholipase D6) (Phospholipase D6)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0AAF6YS76",
+      "alphafold_ids": [
+        "A0AAF6YS76"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0AAF6YS76_BOVIN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 230,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Bos taurus (Bovine)",
+      "pdb_ids": [],
+      "protein_name": "Mitochondrial cardiolipin hydrolase (Choline phosphatase 6) (Mitochondrial phospholipase) (Phosphatidylcholine-hydrolyzing phospholipase D6) (Phospholipase D6)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A0AAF7A200",
+      "alphafold_ids": [
+        "A0AAF7A200"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0AAF7A200_BOVIN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 302,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Bos taurus (Bovine)",
+      "pdb_ids": [],
+      "protein_name": "N-acetyltaurine hydrolase (Phosphotriesterase-related protein)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A2AUR3",
+      "alphafold_ids": [
+        "A2AUR3"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A2AUR3_MOUSE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 321,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Mus musculus (Mouse)",
+      "pdb_ids": [],
+      "protein_name": "N-acetyltaurine hydrolase (Phosphotriesterase-related protein)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A2AUR5",
+      "alphafold_ids": [
+        "A2AUR5"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A2AUR5_MOUSE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 253,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Mus musculus (Mouse)",
+      "pdb_ids": [],
+      "protein_name": "N-acetyltaurine hydrolase (Phosphotriesterase-related protein)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "A6JM34",
+      "alphafold_ids": [
+        "A6JM34"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A6JM34_RAT",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 349,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Rattus norvegicus (Rat)",
+      "pdb_ids": [],
+      "protein_name": "N-acetyltaurine hydrolase (Phosphotriesterase-related protein)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "F1RBR6",
+      "alphafold_ids": [
+        "F1RBR6"
+      ],
+      "ec_numbers": [],
+      "entry_name": "F1RBR6_DANRE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 349,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "pdb_ids": [],
+      "protein_name": "N-acetyltaurine hydrolase (Phosphotriesterase-related protein)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "H0Y8X4",
+      "alphafold_ids": [
+        "H0Y8X4"
+      ],
+      "ec_numbers": [],
+      "entry_name": "H0Y8X4_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 243,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "5-hydroxymethyl-dUMP N-hydrolase (2'-deoxynucleoside 5'-phosphate N-hydrolase 1)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "H7C393",
+      "alphafold_ids": [
+        "H7C393"
+      ],
+      "ec_numbers": [],
+      "entry_name": "H7C393_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 284,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Acylaminoacyl-peptide hydrolase",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "no simple GXSXG-like motif found"
+      ]
+    },
+    {
+      "accession": "J3KSG7",
+      "alphafold_ids": [],
+      "ec_numbers": [],
+      "entry_name": "J3KSG7_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "length is compatible with many alpha/beta hydrolase enzymes",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 257,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 183,
+          "motif": "ALSCG",
+          "start": 179
+        }
+      ],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "NAD(+) hydrolase SARM1 (NADP(+) hydrolase SARM1) (Sterile alpha and TIR motif-containing protein 1)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": []
+    },
+    {
+      "accession": "O49319",
+      "alphafold_ids": [
+        "O49319"
+      ],
+      "ec_numbers": [],
+      "entry_name": "O49319_ARATH",
+      "evidence": [
+        "protein name contains hydrolase",
+        "protein name suggests weak characterization",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 664,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 252,
+          "motif": "GISVG",
+          "start": 248
+        }
+      ],
+      "organism": "Arabidopsis thaliana (Mouse-ear cress)",
+      "pdb_ids": [],
+      "protein_name": "Glycoside hydrolase family 28 protein / polygalacturonase (Pectinase) family protein (Putative polygalacturonase)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 7,
+      "uncertainty": [
+        "length is outside the preferred seed range"
+      ]
+    },
+    {
+      "accession": "A0ACD6B6V2",
+      "alphafold_ids": [],
+      "ec_numbers": [],
+      "entry_name": "A0ACD6B6V2_DANRE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "PDB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 951,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 429,
+          "motif": "SMSHG",
+          "start": 425
+        },
+        {
+          "end": 436,
+          "motif": "SLSAG",
+          "start": 432
+        }
+      ],
+      "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "pdb_ids": [
+        "3WXE",
+        "3WXF",
+        "3WXG"
+      ],
+      "protein_name": "Ubiquitin carboxyl-terminal hydrolase CYLD isoform X1",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 6,
+      "uncertainty": [
+        "length is outside the preferred seed range"
+      ]
+    },
+    {
+      "accession": "E2QCS7",
+      "alphafold_ids": [
+        "E2QCS7"
+      ],
+      "ec_numbers": [],
+      "entry_name": "E2QCS7_DROME",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 1087,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 9,
+      "motifs": [
+        {
+          "end": 77,
+          "motif": "SLSGG",
+          "start": 73
+        },
+        {
+          "end": 382,
+          "motif": "SKSSG",
+          "start": 378
+        },
+        {
+          "end": 391,
+          "motif": "AQSSG",
+          "start": 387
+        },
+        {
+          "end": 406,
+          "motif": "SQSSG",
+          "start": 402
+        },
+        {
+          "end": 600,
+          "motif": "SQSLG",
+          "start": 596
+        },
+        {
+          "end": 615,
+          "motif": "SQSSG",
+          "start": 611
+        },
+        {
+          "end": 630,
+          "motif": "SQSSG",
+          "start": 626
+        },
+        {
+          "end": 645,
+          "motif": "SQSLG",
+          "start": 641
+        },
+        {
+          "end": 857,
+          "motif": "GHSQG",
+          "start": 853
+        }
+      ],
+      "organism": "Drosophila melanogaster (Fruit fly)",
+      "pdb_ids": [],
+      "protein_name": "AB hydrolase-1 domain-containing protein",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 6,
+      "uncertainty": [
+        "length is outside the preferred seed range"
+      ]
+    },
+    {
+      "accession": "A0ACD6B6U9",
+      "alphafold_ids": [],
+      "ec_numbers": [],
+      "entry_name": "A0ACD6B6U9_DANRE",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 912,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 2,
+      "motifs": [
+        {
+          "end": 390,
+          "motif": "SMSHG",
+          "start": 386
+        },
+        {
+          "end": 397,
+          "motif": "SLSAG",
+          "start": 393
+        }
+      ],
+      "organism": "Danio rerio (Zebrafish) (Brachydanio rerio)",
+      "pdb_ids": [],
+      "protein_name": "Ubiquitin carboxyl-terminal hydrolase CYLD isoform X2",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 5,
+      "uncertainty": [
+        "length is outside the preferred seed range"
+      ]
+    },
+    {
+      "accession": "Q8IG45",
+      "alphafold_ids": [
+        "Q8IG45"
+      ],
+      "ec_numbers": [],
+      "entry_name": "Q8IG45_CAEEL",
+      "evidence": [
+        "protein name contains hydrolase",
+        "sequence contains GXSXG-like serine hydrolase motif",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 143,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 1,
+      "motifs": [
+        {
+          "end": 117,
+          "motif": "GRSLG",
+          "start": 113
+        }
+      ],
+      "organism": "Caenorhabditis elegans",
+      "pdb_ids": [],
+      "protein_name": "Acyl-coenzyme A thioesterase 13 (Hotdog-fold thioesterase superfamily member 2) (Palmitoyl-CoA hydrolase) (Thioesterase superfamily member 2)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 5,
+      "uncertainty": [
+        "length is outside the preferred seed range"
+      ]
+    },
+    {
+      "accession": "A0A8Q3WKK9",
+      "alphafold_ids": [
+        "A0A8Q3WKK9"
+      ],
+      "ec_numbers": [],
+      "entry_name": "A0A8Q3WKK9_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 485,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "Lactase-like protein (Klotho/lactase-phlorizin hydrolase-related protein)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 4,
+      "uncertainty": [
+        "no simple GXSXG-like motif found",
+        "length is outside the preferred seed range"
+      ]
+    },
+    {
+      "accession": "C9JNE2",
+      "alphafold_ids": [
+        "C9JNE2"
+      ],
+      "ec_numbers": [],
+      "entry_name": "C9JNE2_HUMAN",
+      "evidence": [
+        "protein name contains hydrolase",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 131,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Homo sapiens (Human)",
+      "pdb_ids": [],
+      "protein_name": "ADP-ribose glycohydrolase OARD1 (O-acetyl-ADP-ribose deacetylase 1) (Terminal ADP-ribose protein glycohydrolase 1) ([Protein ADP-ribosylglutamate] hydrolase OARD1)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 4,
+      "uncertainty": [
+        "no simple GXSXG-like motif found",
+        "length is outside the preferred seed range"
+      ]
+    },
+    {
+      "accession": "O44183",
+      "alphafold_ids": [
+        "O44183"
+      ],
+      "ec_numbers": [],
+      "entry_name": "O44183_CAEEL",
+      "evidence": [
+        "protein name contains hydrolase",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 625,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Caenorhabditis elegans",
+      "pdb_ids": [],
+      "protein_name": "Peptidase M1 leukotriene A4 hydrolase/aminopeptidase C-terminal domain-containing protein",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 4,
+      "uncertainty": [
+        "no simple GXSXG-like motif found",
+        "length is outside the preferred seed range"
+      ]
+    },
+    {
+      "accession": "Q18187",
+      "alphafold_ids": [
+        "Q18187"
+      ],
+      "ec_numbers": [],
+      "entry_name": "Q18187_CAEEL",
+      "evidence": [
+        "protein name contains hydrolase",
+        "AlphaFold DB cross-reference is available",
+        "no EC number in fetched UniProt fields"
+      ],
+      "length": 148,
+      "mechanistic_hypothesis": "Possible Ser-His-Asp/Glu hydrolase-like candidate if motif and fold context agree.",
+      "motif_count": 0,
+      "motifs": [],
+      "organism": "Caenorhabditis elegans",
+      "pdb_ids": [],
+      "protein_name": "Acyl-coenzyme A thioesterase 13 (Hotdog-fold thioesterase superfamily member 2) (Palmitoyl-CoA hydrolase) (Thioesterase superfamily member 2)",
+      "reviewed": "unreviewed",
+      "safety_scope": "candidate for computational review only; no validated function is claimed",
+      "score": 4,
+      "uncertainty": [
+        "no simple GXSXG-like motif found",
+        "length is outside the preferred seed range"
+      ]
+    }
+  ],
+  "metadata": {
+    "campaign": "dark_hydrolase_seed",
+    "query": "(reviewed:false) AND (protein_name:hydrolase) AND NOT (ec:*)",
+    "record_count": 100,
+    "safety_scope": "computational prioritization only; not validated function or protocol",
+    "source": {
+      "query": "(reviewed:false) AND (protein_name:hydrolase) AND NOT (ec:*)",
+      "record_count": 100,
+      "size": 100,
+      "source": "uniprot",
+      "url": "https://rest.uniprot.org/uniprotkb/search?query=%28reviewed%3Afalse%29+AND+%28protein_name%3Ahydrolase%29+AND+NOT+%28ec%3A%2A%29&fields=accession%2Cid%2Cprotein_name%2Corganism_name%2Clength%2Csequence%2Cec%2Cxref_pdb%2Cxref_alphafolddb%2Creviewed&format=tsv&size=100"
+    }
+  }
+}

@@ -1,0 +1,4002 @@
+{
+  "metadata": {
+    "fingerprint_count": 6,
+    "leakage_control": "baseline consumes only allowed_features from the benchmark record",
+    "method": "token_overlap_baseline",
+    "record_count": 50
+  },
+  "results": [
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:1",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "alpha",
+            "asp",
+            "base",
+            "bond",
+            "glu",
+            "his",
+            "hydrogen",
+            "ser"
+          ],
+          "score": 0.0957
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "activation",
+            "asp",
+            "base",
+            "bond",
+            "catalysis",
+            "cys",
+            "his",
+            "on"
+          ],
+          "score": 0.0918
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "glu",
+            "his",
+            "proton",
+            "ser"
+          ],
+          "score": 0.0825
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "bond",
+            "cys",
+            "deprotonates",
+            "glu",
+            "his"
+          ],
+          "score": 0.07
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "activation",
+            "atom",
+            "cys"
+          ],
+          "score": 0.0323
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:10",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acyl",
+            "alpha",
+            "asp",
+            "base",
+            "bond",
+            "carbonyl",
+            "catalytic",
+            "group",
+            "his",
+            "histidine",
+            "hydrogen",
+            "leaving",
+            "oxyanion",
+            "substrate"
+          ],
+          "score": 0.1061
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "bond",
+            "catalytic",
+            "cys",
+            "deprotonates",
+            "group",
+            "his",
+            "leaving",
+            "positions",
+            "substrate",
+            "water"
+          ],
+          "score": 0.087
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "bond",
+            "enzyme",
+            "gly",
+            "group",
+            "his",
+            "orientation",
+            "proton",
+            "ring",
+            "substrate"
+          ],
+          "score": 0.0803
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "bond",
+            "catalysis",
+            "cys",
+            "his",
+            "substrate"
+          ],
+          "score": 0.049
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "basic",
+            "positions",
+            "reaction",
+            "substrate"
+          ],
+          "score": 0.0299
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:11",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "binding",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "hydrolysis",
+            "ligand",
+            "metal",
+            "phosphate",
+            "zn2"
+          ],
+          "score": 0.0863
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "hydrolysis",
+            "nucleophile",
+            "nucleophilic",
+            "positioned",
+            "substitution"
+          ],
+          "score": 0.0809
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "binding",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "phosphate",
+            "tyr"
+          ],
+          "score": 0.0567
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "arg",
+            "asp",
+            "binding",
+            "bond",
+            "his",
+            "ligand",
+            "on",
+            "tyr"
+          ],
+          "score": 0.0559
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "atom",
+            "binding",
+            "ligand",
+            "target"
+          ],
+          "score": 0.0294
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:12",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "alpha",
+            "asp",
+            "attack",
+            "bond",
+            "carbonyl",
+            "catalytic",
+            "group",
+            "his",
+            "hydrogen",
+            "nucleophilic",
+            "oxyanion",
+            "substrate",
+            "triad"
+          ],
+          "score": 0.076
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "attack",
+            "bond",
+            "catalytic",
+            "cys",
+            "group",
+            "his",
+            "matching",
+            "phosphate",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0682
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "alignment",
+            "amine",
+            "amino",
+            "asp",
+            "bond",
+            "forms",
+            "group",
+            "his",
+            "phosphate",
+            "proton",
+            "substrate"
+          ],
+          "score": 0.0629
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "arg",
+            "asp",
+            "bond",
+            "cys",
+            "his",
+            "on",
+            "residues",
+            "substrate"
+          ],
+          "score": 0.0503
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "binds",
+            "cys",
+            "substrate"
+          ],
+          "score": 0.0172
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:13",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "amine",
+            "asp",
+            "enzyme",
+            "forms",
+            "group",
+            "proton",
+            "substrate",
+            "thr",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0962
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "electron",
+            "heme",
+            "oxidation",
+            "residues",
+            "substrate",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0741
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "cofactor",
+            "complex",
+            "derived",
+            "enzyme",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0606
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "group",
+            "substrate"
+          ],
+          "score": 0.0275
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "group",
+            "substrate"
+          ],
+          "score": 0.0265
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:14",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "active",
+            "arg",
+            "base",
+            "binding",
+            "bond",
+            "catalysis",
+            "dependent",
+            "his",
+            "ligand",
+            "on",
+            "oxidation",
+            "peroxidase",
+            "peroxide"
+          ],
+          "score": 0.0972
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "base",
+            "binding",
+            "bond",
+            "dependent",
+            "enzyme",
+            "gly",
+            "group",
+            "his",
+            "lys",
+            "ring",
+            "ser"
+          ],
+          "score": 0.0833
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "activator",
+            "attack",
+            "binding",
+            "bond",
+            "dependent",
+            "group",
+            "his",
+            "ligand",
+            "metal"
+          ],
+          "score": 0.0676
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "attack",
+            "base",
+            "bond",
+            "group",
+            "his",
+            "hydrogen",
+            "nucleophilic",
+            "ser"
+          ],
+          "score": 0.0621
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "binding",
+            "binds",
+            "dependent",
+            "oxygen",
+            "peroxide",
+            "reaction"
+          ],
+          "score": 0.0429
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:15",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "beta",
+            "bond",
+            "carbonyl",
+            "his",
+            "hydrogen",
+            "nucleophile",
+            "nucleophilic",
+            "oxyanion",
+            "substrate"
+          ],
+          "score": 0.1078
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "asp",
+            "attack",
+            "bond",
+            "cys",
+            "his",
+            "ligand",
+            "metal",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0935
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "his",
+            "lys",
+            "lysine",
+            "substrate"
+          ],
+          "score": 0.055
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "cys",
+            "his",
+            "ligand",
+            "substrate"
+          ],
+          "score": 0.0541
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "cys",
+            "ligand",
+            "substrate"
+          ],
+          "score": 0.0291
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:16",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "asp",
+            "bond",
+            "deprotonates",
+            "group",
+            "his",
+            "ligand",
+            "metal",
+            "water"
+          ],
+          "score": 0.0874
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "beta",
+            "bond",
+            "group",
+            "his",
+            "hydrogen"
+          ],
+          "score": 0.0588
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "group",
+            "his",
+            "proton"
+          ],
+          "score": 0.0476
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "asp",
+            "bond",
+            "his",
+            "ligand"
+          ],
+          "score": 0.0467
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "reaction"
+          ],
+          "score": 0.0101
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:17",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "bond",
+            "bonded",
+            "catalytic",
+            "glu",
+            "group",
+            "his",
+            "hydrogen",
+            "protonated",
+            "ser",
+            "substitution",
+            "triad"
+          ],
+          "score": 0.0764
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "phosphate",
+            "proton",
+            "ring",
+            "ser",
+            "tyr"
+          ],
+          "score": 0.0608
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "activator",
+            "bond",
+            "catalytic",
+            "glu",
+            "group",
+            "his",
+            "phosphate"
+          ],
+          "score": 0.053
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "bond",
+            "his",
+            "on",
+            "tyr"
+          ],
+          "score": 0.0258
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "polar",
+            "reaction"
+          ],
+          "score": 0.0138
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:18",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "active",
+            "arg",
+            "asp",
+            "bond",
+            "cys",
+            "electron",
+            "his",
+            "residue",
+            "residues",
+            "substrate",
+            "supports",
+            "transfer"
+          ],
+          "score": 0.0839
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "attack",
+            "bond",
+            "group",
+            "his",
+            "histidine",
+            "hydrogen",
+            "nucleophile",
+            "nucleophilic",
+            "substrate"
+          ],
+          "score": 0.0719
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "bond",
+            "enzyme",
+            "forms",
+            "gly",
+            "group",
+            "his",
+            "proton",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.071
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "attack",
+            "bond",
+            "cys",
+            "group",
+            "his",
+            "substrate"
+          ],
+          "score": 0.05
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "atom",
+            "cys",
+            "cysteine",
+            "enzyme",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0397
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:19",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "alpha",
+            "asp",
+            "base",
+            "beta",
+            "bond",
+            "catalytic",
+            "glu",
+            "group",
+            "hydrogen",
+            "hydrolase",
+            "leaving",
+            "nucleophile",
+            "nucleophilic"
+          ],
+          "score": 0.0886
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "activator",
+            "asp",
+            "bond",
+            "catalytic",
+            "deprotonates",
+            "glu",
+            "group",
+            "hydrolase",
+            "leaving",
+            "water"
+          ],
+          "score": 0.0667
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "enzyme",
+            "glu",
+            "group",
+            "like",
+            "proton"
+          ],
+          "score": 0.0545
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "active",
+            "arg",
+            "asp",
+            "base",
+            "bond",
+            "like",
+            "residue",
+            "residues"
+          ],
+          "score": 0.0539
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "derived",
+            "enzyme",
+            "within"
+          ],
+          "score": 0.0185
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:2",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "attack",
+            "base",
+            "beta",
+            "bond",
+            "bonded",
+            "carbonyl",
+            "glu",
+            "group",
+            "hydrogen",
+            "nucleophile",
+            "nucleophilic",
+            "ser",
+            "serine",
+            "substrate"
+          ],
+          "score": 0.1176
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "base",
+            "bond",
+            "glu",
+            "group",
+            "lys",
+            "proton",
+            "ser",
+            "substrate"
+          ],
+          "score": 0.063
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "attack",
+            "bond",
+            "glu",
+            "group",
+            "substrate"
+          ],
+          "score": 0.0458
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "activation",
+            "active",
+            "base",
+            "bond",
+            "substrate"
+          ],
+          "score": 0.0379
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "activation",
+            "cluster",
+            "substrate",
+            "within"
+          ],
+          "score": 0.0328
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:20",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "active",
+            "arg",
+            "binding",
+            "bond",
+            "his",
+            "on",
+            "pathway",
+            "residues",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0821
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "attack",
+            "bond",
+            "carbonyl",
+            "glu",
+            "group",
+            "his",
+            "hydrogen",
+            "nucleophilic",
+            "substrate"
+          ],
+          "score": 0.0763
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "binding",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "proton",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0672
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "attack",
+            "binding",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "substrate"
+          ],
+          "score": 0.0507
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "binding",
+            "fad",
+            "flavin",
+            "polar",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0472
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:21",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "arg",
+            "asp",
+            "binding",
+            "bond",
+            "catalysis",
+            "ligand",
+            "residues",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0855
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "binding",
+            "bond",
+            "glu",
+            "lys",
+            "proton",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0776
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "binding",
+            "bond",
+            "glu",
+            "ligand",
+            "metal",
+            "mg2",
+            "mn2",
+            "substrate"
+          ],
+          "score": 0.0763
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "bond",
+            "general",
+            "glu",
+            "hydrogen",
+            "substrate"
+          ],
+          "score": 0.0603
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "binding",
+            "oxygen",
+            "reaction",
+            "substrate"
+          ],
+          "score": 0.036
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:22",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acyl",
+            "bond",
+            "carbonyl",
+            "his",
+            "hydrogen",
+            "positioned",
+            "ser",
+            "substrate"
+          ],
+          "score": 0.063
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "amine",
+            "binding",
+            "bond",
+            "his",
+            "proton",
+            "ser",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.062
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "binding",
+            "bond",
+            "his",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0373
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "binding",
+            "bond",
+            "his",
+            "substrate"
+          ],
+          "score": 0.0373
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "binding",
+            "reaction",
+            "substrate"
+          ],
+          "score": 0.0242
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:23",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "amine",
+            "amino",
+            "binding",
+            "bond",
+            "enzyme",
+            "gly",
+            "group",
+            "his",
+            "orientation",
+            "tyr"
+          ],
+          "score": 0.0714
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "attack",
+            "bond",
+            "carbonyl",
+            "group",
+            "his",
+            "hydrogen",
+            "nucleophilic"
+          ],
+          "score": 0.0496
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "arg",
+            "binding",
+            "bond",
+            "his",
+            "on",
+            "tyr"
+          ],
+          "score": 0.0483
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "attack",
+            "binding",
+            "bond",
+            "group",
+            "his"
+          ],
+          "score": 0.0411
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "basic",
+            "binding",
+            "binds",
+            "reaction"
+          ],
+          "score": 0.0294
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:24",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acyl",
+            "asp",
+            "attack",
+            "base",
+            "bond",
+            "general",
+            "his",
+            "histidine",
+            "hole",
+            "hydrogen",
+            "nucleophile",
+            "oxyanion"
+          ],
+          "score": 0.1062
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "bond",
+            "enzyme",
+            "gly",
+            "his",
+            "proton",
+            "ring"
+          ],
+          "score": 0.0672
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "activator",
+            "asp",
+            "attack",
+            "bond",
+            "his",
+            "water"
+          ],
+          "score": 0.0574
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "bond",
+            "his",
+            "on"
+          ],
+          "score": 0.0403
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "enzyme"
+          ],
+          "score": 0.0085
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:25",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "bond",
+            "enzyme",
+            "group",
+            "lys",
+            "lysine",
+            "proton",
+            "substrate",
+            "thr"
+          ],
+          "score": 0.099
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "bond",
+            "general",
+            "group",
+            "hydrogen",
+            "hydrolysis",
+            "nucleophile",
+            "substrate"
+          ],
+          "score": 0.09
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "activator",
+            "asp",
+            "bond",
+            "cys",
+            "group",
+            "hydrolysis",
+            "substrate"
+          ],
+          "score": 0.0762
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "bond",
+            "cys",
+            "substrate"
+          ],
+          "score": 0.0463
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "cys",
+            "enzyme",
+            "substrate"
+          ],
+          "score": 0.0303
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:26",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "attack",
+            "base",
+            "bond",
+            "general",
+            "his",
+            "hydrogen",
+            "hydrolysis",
+            "nucleophile",
+            "nucleophilic",
+            "substrate"
+          ],
+          "score": 0.1263
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "enzyme",
+            "his",
+            "phosphate",
+            "proton",
+            "substrate"
+          ],
+          "score": 0.09
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "arg",
+            "asp",
+            "base",
+            "bond",
+            "his",
+            "on",
+            "substrate"
+          ],
+          "score": 0.0777
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "bond",
+            "his",
+            "hydrolysis",
+            "phosphate",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0777
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "oxygen",
+            "substrate"
+          ],
+          "score": 0.0206
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:27",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "asp",
+            "attack",
+            "bond",
+            "coordination",
+            "deprotonates",
+            "glu",
+            "group",
+            "his",
+            "leaving",
+            "ligand",
+            "metal",
+            "phosphate",
+            "substrate",
+            "water",
+            "zn2"
+          ],
+          "score": 0.1212
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "attack",
+            "base",
+            "bond",
+            "general",
+            "glu",
+            "group",
+            "his",
+            "hydrogen",
+            "leaving",
+            "nucleophilic",
+            "substrate"
+          ],
+          "score": 0.0992
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "amino",
+            "asp",
+            "base",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "phosphate",
+            "proton",
+            "substrate"
+          ],
+          "score": 0.0815
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "active",
+            "asp",
+            "base",
+            "bond",
+            "center",
+            "his",
+            "ligand",
+            "on",
+            "one",
+            "substrate"
+          ],
+          "score": 0.0803
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "atom",
+            "binds",
+            "cluster",
+            "ligand",
+            "substrate"
+          ],
+          "score": 0.0379
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:28",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "general",
+            "glu",
+            "group",
+            "his",
+            "hydrogen",
+            "nucleophile"
+          ],
+          "score": 0.1087
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "forms",
+            "glu",
+            "group",
+            "his",
+            "phosphate",
+            "proton"
+          ],
+          "score": 0.1064
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "asp",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "ligand",
+            "metal",
+            "phosphate",
+            "water"
+          ],
+          "score": 0.1042
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "his",
+            "ligand",
+            "on"
+          ],
+          "score": 0.0707
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "reaction"
+          ],
+          "score": 0.0108
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:29",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "acyl",
+            "asp",
+            "attack",
+            "base",
+            "bond",
+            "carbonyl",
+            "general",
+            "glu",
+            "hydrogen",
+            "hydrolysis",
+            "nucleophile",
+            "nucleophilic",
+            "substrate"
+          ],
+          "score": 0.14
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "enzyme",
+            "forms",
+            "glu",
+            "lys",
+            "proton",
+            "substrate",
+            "thr",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.1262
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "activation",
+            "asp",
+            "base",
+            "bond",
+            "catalysis",
+            "on",
+            "substrate",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0926
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "asp",
+            "attack",
+            "bond",
+            "glu",
+            "hydrolysis",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0727
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "activation",
+            "enzyme",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0388
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:3",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "binding",
+            "bond",
+            "electron",
+            "his",
+            "reduction",
+            "residues",
+            "substrate",
+            "surface",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0815
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "binding",
+            "bond",
+            "enzyme",
+            "gly",
+            "his",
+            "proton",
+            "substrate",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0667
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "binding",
+            "fad",
+            "flavin",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0388
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "binding",
+            "enzyme",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0305
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "bond",
+            "his",
+            "hydrogen",
+            "substrate"
+          ],
+          "score": 0.029
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:30",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "anaerobic",
+            "cys",
+            "enzyme",
+            "enzymes",
+            "radical",
+            "within"
+          ],
+          "score": 0.0682
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "bond",
+            "group",
+            "hydrogen",
+            "leaving"
+          ],
+          "score": 0.0412
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "bond",
+            "enzyme",
+            "gly",
+            "group"
+          ],
+          "score": 0.0404
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "bond",
+            "cys",
+            "pathway",
+            "radical"
+          ],
+          "score": 0.0396
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "bond",
+            "cys",
+            "group",
+            "leaving"
+          ],
+          "score": 0.0396
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:31",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "attack",
+            "base",
+            "bond",
+            "bonded",
+            "general",
+            "glu",
+            "group",
+            "hydrogen",
+            "leaving",
+            "nucleophile",
+            "nucleophilic",
+            "oxyanion",
+            "protonated",
+            "serine",
+            "substrate"
+          ],
+          "score": 0.0547
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "active",
+            "arg",
+            "asp",
+            "base",
+            "binding",
+            "bond",
+            "cys",
+            "like",
+            "on",
+            "one",
+            "residue",
+            "substrate",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0473
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "binding",
+            "bond",
+            "glu",
+            "group",
+            "like",
+            "orientation",
+            "proton",
+            "ring",
+            "substrate",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0443
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "activator",
+            "asp",
+            "attack",
+            "binding",
+            "bond",
+            "cys",
+            "deprotonates",
+            "glu",
+            "group",
+            "leaving",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0408
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "basic",
+            "binding",
+            "binds",
+            "like",
+            "reaction",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0224
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:32",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "base",
+            "bond",
+            "enzyme",
+            "forms",
+            "glu",
+            "his",
+            "proton",
+            "substrate"
+          ],
+          "score": 0.0597
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "base",
+            "bond",
+            "his",
+            "ligand",
+            "on",
+            "one",
+            "substrate"
+          ],
+          "score": 0.0588
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "bond",
+            "glu",
+            "his",
+            "hydrolysis",
+            "ligand",
+            "metal",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0588
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "base",
+            "bond",
+            "glu",
+            "his",
+            "hydrogen",
+            "hydrolysis",
+            "substrate"
+          ],
+          "score": 0.0526
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "half",
+            "reaction",
+            "substrate"
+          ],
+          "score": 0.0233
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:33",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "bond",
+            "deprotonates",
+            "glu",
+            "his",
+            "ligand",
+            "metal"
+          ],
+          "score": 0.0588
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "bond",
+            "glu",
+            "his",
+            "hydrogen",
+            "oxyanion"
+          ],
+          "score": 0.0505
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "bond",
+            "glu",
+            "his",
+            "proton",
+            "transfer"
+          ],
+          "score": 0.0495
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "bond",
+            "his",
+            "ligand",
+            "transfer"
+          ],
+          "score": 0.0385
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "ligand",
+            "transfer"
+          ],
+          "score": 0.0211
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:34",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "aromatic",
+            "base",
+            "bond",
+            "geometry",
+            "his",
+            "ligand",
+            "on",
+            "one",
+            "tyr"
+          ],
+          "score": 0.0662
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "attack",
+            "bond",
+            "geometry",
+            "glu",
+            "group",
+            "his",
+            "leaving",
+            "ligand",
+            "metal",
+            "water"
+          ],
+          "score": 0.0662
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "attack",
+            "base",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "histidine",
+            "hydrogen",
+            "leaving"
+          ],
+          "score": 0.0608
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "base",
+            "bond",
+            "enzyme",
+            "glu",
+            "group",
+            "his",
+            "proton",
+            "ring",
+            "tyr"
+          ],
+          "score": 0.06
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "enzyme",
+            "fe",
+            "ligand",
+            "support"
+          ],
+          "score": 0.0274
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:35",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "attack",
+            "bond",
+            "deprotonates",
+            "group",
+            "ligand",
+            "metal",
+            "phosphate",
+            "substrate"
+          ],
+          "score": 0.122
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "bond",
+            "group",
+            "hydrogen",
+            "nucleophilic",
+            "substitution",
+            "substrate"
+          ],
+          "score": 0.1
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "group",
+            "lys",
+            "phosphate",
+            "proton",
+            "substrate",
+            "thr"
+          ],
+          "score": 0.0976
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "ligand",
+            "substrate"
+          ],
+          "score": 0.0455
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "reaction",
+            "substrate"
+          ],
+          "score": 0.0256
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:36",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "bond",
+            "group",
+            "hydrogen",
+            "hydrolysis",
+            "nucleophile",
+            "nucleophilic",
+            "ser",
+            "substrate"
+          ],
+          "score": 0.0813
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "binding",
+            "bond",
+            "enzyme",
+            "group",
+            "lys",
+            "proton",
+            "ser",
+            "substrate",
+            "thr"
+          ],
+          "score": 0.08
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "attack",
+            "binding",
+            "bond",
+            "group",
+            "hydrolysis",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0703
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "arg",
+            "asp",
+            "binding",
+            "bond",
+            "on",
+            "residue",
+            "substrate"
+          ],
+          "score": 0.062
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "binding",
+            "oxygen",
+            "polar",
+            "reaction",
+            "substrate"
+          ],
+          "score": 0.0417
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:37",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "bond",
+            "catalysis",
+            "distal",
+            "his",
+            "iron",
+            "ligand",
+            "on",
+            "one",
+            "peroxidase",
+            "peroxide",
+            "radical",
+            "reduction",
+            "residues",
+            "tyr"
+          ],
+          "score": 0.1119
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "bond",
+            "enzyme",
+            "gly",
+            "his",
+            "proton",
+            "ser",
+            "tyr"
+          ],
+          "score": 0.05
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "bond",
+            "his",
+            "hydrogen",
+            "nearby",
+            "ser"
+          ],
+          "score": 0.0357
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "bond",
+            "his",
+            "ligand",
+            "metal",
+            "nearby"
+          ],
+          "score": 0.0347
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "oxygenase",
+            "peroxide",
+            "reaction"
+          ],
+          "score": 0.0224
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:38",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "base",
+            "bond",
+            "cys",
+            "his",
+            "ligand",
+            "on",
+            "one",
+            "residues",
+            "surface"
+          ],
+          "score": 0.0763
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "attack",
+            "bond",
+            "coordination",
+            "cys",
+            "glu",
+            "his",
+            "ligand",
+            "metal",
+            "water"
+          ],
+          "score": 0.0682
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "attack",
+            "base",
+            "bond",
+            "glu",
+            "his",
+            "hydrogen",
+            "nucleophilic"
+          ],
+          "score": 0.062
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "base",
+            "bond",
+            "glu",
+            "his",
+            "proton",
+            "ring"
+          ],
+          "score": 0.053
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "cys",
+            "ligand",
+            "rearrangement"
+          ],
+          "score": 0.0236
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:39",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "group",
+            "his",
+            "hydrogen",
+            "hydrolase",
+            "leaving",
+            "substrate"
+          ],
+          "score": 0.0617
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "group",
+            "his",
+            "orientation",
+            "proton",
+            "substrate",
+            "thr"
+          ],
+          "score": 0.061
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "activation",
+            "active",
+            "asp",
+            "base",
+            "bond",
+            "his",
+            "ligand",
+            "residues",
+            "substrate"
+          ],
+          "score": 0.0602
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "group",
+            "his",
+            "hydrolase",
+            "leaving",
+            "ligand",
+            "metal",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0602
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "activation",
+            "ligand",
+            "substrate"
+          ],
+          "score": 0.0185
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:4",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "cys",
+            "electron",
+            "his",
+            "ligand",
+            "one",
+            "reduction",
+            "residue",
+            "transfer"
+          ],
+          "score": 0.0621
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "bond",
+            "catalytic",
+            "cys",
+            "glu",
+            "his",
+            "ligand",
+            "metal",
+            "water"
+          ],
+          "score": 0.0621
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "enzyme",
+            "glu",
+            "his",
+            "proton",
+            "thr",
+            "transfer"
+          ],
+          "score": 0.0497
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "catalytic",
+            "glu",
+            "his",
+            "hydrogen",
+            "positioned"
+          ],
+          "score": 0.0437
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "binds",
+            "cys",
+            "enzyme",
+            "ligand",
+            "transfer"
+          ],
+          "score": 0.0323
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:40",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "binding",
+            "bond",
+            "enzyme",
+            "gly",
+            "group",
+            "lys",
+            "phosphate",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0682
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "attack",
+            "beta",
+            "bond",
+            "group",
+            "hydrogen",
+            "nucleophilic",
+            "substrate"
+          ],
+          "score": 0.053
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "arg",
+            "binding",
+            "bond",
+            "residues",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0515
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "attack",
+            "binding",
+            "bond",
+            "group",
+            "phosphate",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0515
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "binding",
+            "oxygen",
+            "reaction",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0397
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:41",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "glu",
+            "group",
+            "his",
+            "leaving",
+            "ligand",
+            "metal",
+            "phosphate",
+            "water"
+          ],
+          "score": 0.0952
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "base",
+            "general",
+            "glu",
+            "group",
+            "his",
+            "leaving"
+          ],
+          "score": 0.0777
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "glu",
+            "group",
+            "his",
+            "phosphate",
+            "proton",
+            "tyr"
+          ],
+          "score": 0.0762
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "his",
+            "ligand",
+            "tyr"
+          ],
+          "score": 0.0455
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "atom",
+            "ligand",
+            "positioning"
+          ],
+          "score": 0.0297
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:42",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "attack",
+            "base",
+            "bond",
+            "general",
+            "glu",
+            "his",
+            "hydrogen",
+            "nucleophile",
+            "nucleophilic"
+          ],
+          "score": 0.1099
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "attack",
+            "bond",
+            "glu",
+            "his",
+            "ligand",
+            "metal",
+            "water"
+          ],
+          "score": 0.0825
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "base",
+            "bond",
+            "glu",
+            "his",
+            "proton"
+          ],
+          "score": 0.0619
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "arg",
+            "base",
+            "bond",
+            "his",
+            "ligand"
+          ],
+          "score": 0.0606
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "reaction"
+          ],
+          "score": 0.0109
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:43",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "bond",
+            "catalysis",
+            "his",
+            "ligand",
+            "on",
+            "one",
+            "residues",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0846
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "bond",
+            "group",
+            "his",
+            "leaving",
+            "ligand",
+            "metal",
+            "phosphate",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0846
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "attack",
+            "bond",
+            "general",
+            "group",
+            "his",
+            "hydrogen",
+            "leaving",
+            "substrate"
+          ],
+          "score": 0.0787
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "bond",
+            "enzyme",
+            "group",
+            "his",
+            "phosphate",
+            "proton",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0775
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "atom",
+            "enzyme",
+            "fe",
+            "ligand",
+            "substrate"
+          ],
+          "score": 0.04
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:44",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "bond",
+            "catalytic",
+            "glu",
+            "his",
+            "hydrogen",
+            "nucleophile",
+            "nucleophilic",
+            "ser",
+            "serine",
+            "substitution"
+          ],
+          "score": 0.1053
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "activator",
+            "asp",
+            "attack",
+            "bond",
+            "catalytic",
+            "deprotonates",
+            "glu",
+            "his",
+            "ligand",
+            "metal",
+            "water"
+          ],
+          "score": 0.1017
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "enzyme",
+            "glu",
+            "his",
+            "lys",
+            "proton",
+            "ser",
+            "thr"
+          ],
+          "score": 0.0756
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "arg",
+            "asp",
+            "bond",
+            "catalysis",
+            "his",
+            "ligand",
+            "on",
+            "residue"
+          ],
+          "score": 0.0744
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "enzyme",
+            "ligand"
+          ],
+          "score": 0.0171
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:45",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "alpha",
+            "asp",
+            "attack",
+            "beta",
+            "bond",
+            "catalytic",
+            "conserved",
+            "glu",
+            "his",
+            "hydrogen",
+            "hydrolysis",
+            "nucleophile",
+            "nucleophilic",
+            "triad"
+          ],
+          "score": 0.1045
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "binding",
+            "bond",
+            "catalytic",
+            "conserved",
+            "glu",
+            "his",
+            "hydrolysis",
+            "near",
+            "water"
+          ],
+          "score": 0.078
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "binding",
+            "bond",
+            "conserved",
+            "enzyme",
+            "glu",
+            "his",
+            "proton"
+          ],
+          "score": 0.0563
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "arg",
+            "asp",
+            "binding",
+            "bond",
+            "his",
+            "one"
+          ],
+          "score": 0.0483
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "atom",
+            "binding",
+            "enzyme",
+            "enzymes",
+            "near"
+          ],
+          "score": 0.0368
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:46",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "attack",
+            "base",
+            "beta",
+            "bond",
+            "carbonyl",
+            "catalytic",
+            "group",
+            "hydrogen",
+            "nucleophilic"
+          ],
+          "score": 0.0608
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "activator",
+            "attack",
+            "binding",
+            "bond",
+            "catalytic",
+            "group",
+            "phosphate",
+            "specific"
+          ],
+          "score": 0.0592
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "amine",
+            "amino",
+            "base",
+            "binding",
+            "bond",
+            "group",
+            "phosphate",
+            "tyr"
+          ],
+          "score": 0.053
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "base",
+            "binding",
+            "bond",
+            "on",
+            "residue",
+            "residues",
+            "tyr"
+          ],
+          "score": 0.0523
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "basic",
+            "binding",
+            "binds",
+            "reaction"
+          ],
+          "score": 0.0276
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:47",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "bond",
+            "catalytic",
+            "general",
+            "glu",
+            "group",
+            "his",
+            "hydrogen",
+            "leaving",
+            "nucleophile",
+            "protonated",
+            "substrate"
+          ],
+          "score": 0.0956
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "activation",
+            "active",
+            "arg",
+            "asp",
+            "bond",
+            "cys",
+            "his",
+            "on",
+            "residue",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0851
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "catalytic",
+            "cys",
+            "deprotonates",
+            "glu",
+            "group",
+            "his",
+            "leaving",
+            "phosphate",
+            "substrate",
+            "water"
+          ],
+          "score": 0.0851
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "bond",
+            "glu",
+            "group",
+            "his",
+            "phosphate",
+            "proton",
+            "substrate",
+            "thr",
+            "transfer"
+          ],
+          "score": 0.0786
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "activation",
+            "cys",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.029
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:48",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "glu",
+            "hydrogen",
+            "nucleophilic",
+            "substitution",
+            "substrate"
+          ],
+          "score": 0.0897
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "glu",
+            "proton",
+            "substrate"
+          ],
+          "score": 0.061
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "arg",
+            "asp",
+            "bond",
+            "on",
+            "substrate"
+          ],
+          "score": 0.0595
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "glu",
+            "substrate"
+          ],
+          "score": 0.0471
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "reaction",
+            "substrate"
+          ],
+          "score": 0.0267
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:49",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "alpha",
+            "asp",
+            "base",
+            "bond",
+            "bonded",
+            "glu",
+            "group",
+            "histidine",
+            "hydrogen",
+            "hydrolysis",
+            "ser",
+            "substrate"
+          ],
+          "score": 0.0902
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "amine",
+            "asp",
+            "base",
+            "binding",
+            "bond",
+            "carbanion",
+            "glu",
+            "group",
+            "proton",
+            "ser",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0889
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "base",
+            "binding",
+            "bond",
+            "electron",
+            "one",
+            "residue",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0643
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "binding",
+            "bond",
+            "glu",
+            "group",
+            "hydrolysis",
+            "substrate"
+          ],
+          "score": 0.0567
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "binding",
+            "cofactor",
+            "substrate"
+          ],
+          "score": 0.0222
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:5",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "bond",
+            "catalytic",
+            "his",
+            "histidine",
+            "hole",
+            "hydrogen",
+            "nucleophile",
+            "oxyanion",
+            "ser",
+            "serine",
+            "triad"
+          ],
+          "score": 0.1461
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "gly",
+            "his",
+            "proton",
+            "ser",
+            "tyr"
+          ],
+          "score": 0.0722
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "attack",
+            "bond",
+            "catalytic",
+            "his",
+            "scissile"
+          ],
+          "score": 0.06
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "his",
+            "tyr"
+          ],
+          "score": 0.0392
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [],
+          "score": 0.0
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:50",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "adjacent",
+            "asp",
+            "binding",
+            "bond",
+            "carbanion",
+            "decarboxylases",
+            "enzyme",
+            "group",
+            "lys",
+            "phosphate",
+            "proton",
+            "pyridoxal",
+            "substrate",
+            "thr",
+            "transfer"
+          ],
+          "score": 0.0732
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "carbonyl",
+            "group",
+            "hydrogen",
+            "nucleophile",
+            "nucleophilic",
+            "positioned",
+            "protonated",
+            "substitution",
+            "substrate"
+          ],
+          "score": 0.0531
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "arg",
+            "asp",
+            "binding",
+            "bond",
+            "residues",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0374
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "asp",
+            "binding",
+            "bond",
+            "group",
+            "phosphate",
+            "substrate"
+          ],
+          "score": 0.0326
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "binding",
+            "cofactor",
+            "enzyme",
+            "substrate",
+            "transfer",
+            "within"
+          ],
+          "score": 0.0293
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:6",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "attack",
+            "bond",
+            "catalytic",
+            "glu",
+            "his",
+            "histidine",
+            "hydrogen",
+            "nucleophile",
+            "nucleophilic",
+            "substrate"
+          ],
+          "score": 0.0667
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "active",
+            "bond",
+            "cys",
+            "electron",
+            "his",
+            "on",
+            "redox",
+            "residue",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0649
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "bond",
+            "enzyme",
+            "glu",
+            "his",
+            "lys",
+            "proton",
+            "substrate",
+            "tyr"
+          ],
+          "score": 0.0519
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activator",
+            "attack",
+            "bond",
+            "catalytic",
+            "cys",
+            "glu",
+            "his",
+            "substrate"
+          ],
+          "score": 0.0513
+        },
+        {
+          "fingerprint_id": "radical_sam_enzyme",
+          "fingerprint_name": "Radical SAM enzyme",
+          "overlap_terms": [
+            "atom",
+            "cys",
+            "enzyme",
+            "substrate"
+          ],
+          "score": 0.0268
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:7",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "alpha",
+            "asp",
+            "base",
+            "bond",
+            "bonded",
+            "carbonyl",
+            "general",
+            "hydrogen",
+            "substrate"
+          ],
+          "score": 0.0806
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "ligand",
+            "proximal",
+            "residues",
+            "substrate",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0781
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "base",
+            "bond",
+            "lys",
+            "proton",
+            "substrate",
+            "transfer",
+            "tyr"
+          ],
+          "score": 0.0709
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "half",
+            "proximal",
+            "reaction",
+            "substrate",
+            "transfer"
+          ],
+          "score": 0.0413
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "bond",
+            "ligand",
+            "metal",
+            "substrate"
+          ],
+          "score": 0.0376
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:8",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "glu",
+            "group",
+            "like",
+            "lys",
+            "proton",
+            "ring",
+            "transfer"
+          ],
+          "score": 0.0756
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "glu",
+            "group",
+            "nucleophilic",
+            "protonated",
+            "substitution"
+          ],
+          "score": 0.0588
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "arg",
+            "asp",
+            "electron",
+            "like",
+            "transfer"
+          ],
+          "score": 0.0484
+        },
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "asp",
+            "glu",
+            "group",
+            "metal"
+          ],
+          "score": 0.0317
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "like",
+            "reaction",
+            "transfer"
+          ],
+          "score": 0.0261
+        }
+      ]
+    },
+    {
+      "leakage_control_checked": true,
+      "record_id": "m_csa:9",
+      "top_fingerprints": [
+        {
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "overlap_terms": [
+            "activated",
+            "amide",
+            "asp",
+            "binding",
+            "bond",
+            "glu",
+            "his",
+            "hydrolysis",
+            "ligand",
+            "metal",
+            "phosphate"
+          ],
+          "score": 0.0821
+        },
+        {
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "binding",
+            "bond",
+            "glu",
+            "his",
+            "lys",
+            "phosphate",
+            "proton"
+          ],
+          "score": 0.0672
+        },
+        {
+          "fingerprint_id": "heme_peroxidase_oxidase",
+          "fingerprint_name": "Heme-dependent peroxidase or oxidase",
+          "overlap_terms": [
+            "acid",
+            "active",
+            "arg",
+            "asp",
+            "binding",
+            "bond",
+            "his",
+            "ligand"
+          ],
+          "score": 0.0584
+        },
+        {
+          "fingerprint_id": "ser_his_acid_hydrolase",
+          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
+          "overlap_terms": [
+            "acid",
+            "asp",
+            "bond",
+            "general",
+            "glu",
+            "his",
+            "hydrolysis"
+          ],
+          "score": 0.0522
+        },
+        {
+          "fingerprint_id": "flavin_monooxygenase",
+          "fingerprint_name": "Flavin-dependent monooxygenase",
+          "overlap_terms": [
+            "basic",
+            "binding",
+            "reaction"
+          ],
+          "score": 0.0231
+        }
+      ]
+    }
+  ]
+}

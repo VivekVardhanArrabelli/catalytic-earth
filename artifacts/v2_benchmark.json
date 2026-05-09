@@ -1,0 +1,1936 @@
+{
+  "metadata": {
+    "leakage_control": "EC numbers, Rhea identifiers, and source entry ids are blocked from allowed features.",
+    "record_count": 50,
+    "task": "mechanism_fingerprint_retrieval"
+  },
+  "records": [
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 6,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "increase basicity",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "glutamate racemase",
+        "mechanism_text": "A two base mechanism is proposed where Cys70 and Cys178 are responsible for the deprotonation and protonation of the C-alpha atom of D-Glutamate, respectively. Cys70 deprotonates the C-alpha to form an enolate intermediate before Cys178 reprotonates on the opposite face to produce L-Glutamate. The carboxylates of Asp7 and Glu147 are also important in catalysis by assisting activation of the acid/base thiols.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Cys",
+          "Glu",
+          "His",
+          "Ser"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:5.1.1.3"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:12813"
+        ],
+        "source_entry_id": "m_csa:1"
+      },
+      "record_id": "m_csa:1",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase",
+        "mechanism_text": "The two base hypothesis for the dehydration reaction proceeds as follows: His70 deprotonates the substrate, initiating double bond rearrangement and the formation of an oxyanion. The oxyanion collapses, initiating double bond rearrangement and the elimination of water with concomitant deprotonation of Asp84B. \r\n<br/><br/>\r\nPeptide dipoles from Gly79 and Cys80 at the N terminus of the central alpha helix (alpha 3) may provide stabilisation to the presumed enol/enolate intermediate and to the leaving hydroxyl group. \r\n<br/><br/>\r\nHis70 in the free enzyme donates a proton in a hydrogen bond, to the backbone carbonyl of Val76. This is consistent with the catalytic role for histidine, because this results in a basic lone pair of electrons. The hydrogen bond also positions the imidazole ring rather precisely. Thus we infer that His70 is in the correct tautomeric state and optimal orientation for catalysis in the free enzyme.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Cys",
+          "Gly",
+          "His",
+          "Val"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:4.2.1.59"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:13097"
+        ],
+        "source_entry_id": "m_csa:10"
+      },
+      "record_id": "m_csa:10",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 11,
+        "catalytic_role_terms": [
+          "metal ligand",
+          "transition state stabiliser"
+        ],
+        "enzyme_name": "deoxyribonuclease IV (phage-T4-induced)",
+        "mechanism_text": "Hydrolysis proceeds through a pentacoordinate transition state where the unesterified phosphate oxygen that bridges Zn2 and Zn3 remains bound to its cognate metal ions. Initial binding of Endo IV to an extrahelical AP site is constrained by the intact target P-O3' covalent bond, and in the pretransition state, the bridging hydroxide between Zn1 and Zn2 would be positioned ideally for an in-line attack on the phosphate. Glu-261, which is also a Zn2 ligand, may assist in orienting and activating the attacking nucleophile. Charge neutralisation of the phosphate group by interaction with the three Zn2+ ions likely renders the phosphorus atom susceptible to nucleophilic substitution, and the pentacoordinate transition state resulting from attack by the bridging hydroxide is stabilised by all the three metal ions. As this transition state collapses to the reaction products, the stereochemical configuration of the phosphate is inverted and the developing negative charge at O3' stabilised by interactions with Zn3 [PMID:10458614].",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Glu",
+          "His",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.1.21.2"
+        ],
+        "rhea_node_ids": [],
+        "source_entry_id": "m_csa:11"
+      },
+      "record_id": "m_csa:11",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 6,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "enzyme_name": "ornithine carbamoyltransferase",
+        "mechanism_text": "Cys 303 forms a proton relay system with Asp 263 and the alpha amino group of the ornithine. A tetrahedral intermediate is stabilised by Gln 171, which can form a hydrogen bond to the positive N-delta of ornithine, and by Arg 141, Arg 330 and His 168, which can form hydrogen bonds to the oxyanion that results from nucleophilic attack on the carbonyl. The proton attached to Cys 303 may leave the active site via a chain of ordered water molecules.\r\nPMID:9253409 pointed out a similarity between the triad of residues (E.coli numbering) His272, Cys273 and Glu299 are similar to those of the catalytic triads of thiol peptidases. However, use of the template-matching program TESS and the structural alignment program ProFit showed that the RMSD of these fits was very tenuous and the similarity is likely to be coincidental. PMID:9852088 does not believe the catalytic triad is significant. More recently, Sankaranarayanan et al. (PMID:18062991) suggest this is unlikely and that the active site is such that the ornithine binds in the neutral state (see mechanism 2). Here, the protein active site acts to stabilise the intermediates and transition states. The ornithine substrate binds in the neutral form. The amine group initiates a nucleophilic attach on the carbonyl of the carbamoyl phosphate substrate. This forms a tetrahedral intermediate that collapses, eliminating the phosphate product with concomitant deprotonation of the L-citrulline.",
+        "mechanism_text_count": 2,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Cys",
+          "Gln",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.1.3.3"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:19513"
+        ],
+        "source_entry_id": "m_csa:12"
+      },
+      "record_id": "m_csa:12",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "proton acceptor",
+          "proton donor",
+          "proton relay",
+          "single electron donor",
+          "steric role"
+        ],
+        "enzyme_name": "amine dehydrogenase",
+        "mechanism_text": "Methylamine dehydrogenase carries out the oxidation of methylamine. The enzyme forms a complex with the type I blue copper protein amicyanin and cytochrome. Electron transfer procedes from the protein-derived tryptophan tryptophylquinone (TTQ) cofactor to the copper in amicyanin and then to the heme group of the cytochrome. Methylamine dehydrogenase carries out the oxidation of methylamine. In this alternative mechanism the only difference to the first mechanism proposed is that steps 3 and 5 are performed by bases external to the cofactor-substrate complex, and after step 5 the identities of the Asp residues are flipped.",
+        "mechanism_text_count": 2,
+        "reference_protein_count": 2,
+        "residue_codes": [
+          "Asp",
+          "Phe",
+          "Thr",
+          "Trp",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.4.9.1"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:30207"
+        ],
+        "source_entry_id": "m_csa:13"
+      },
+      "record_id": "m_csa:13",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "activator",
+          "covalently attached",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand"
+        ],
+        "enzyme_name": "chloride peroxidase (vanadate dependent)",
+        "mechanism_text": "The enzyme contains vanadium in the active site. Vanadium has a trigonal bipyramid structure and is coordinated by three non protein oxygen ligands, His496 and an exogenous azide ligand. The negative charge is compensated for by hydrogen bonds to Arg360, Arg490, Lys353, Gly403 and Ser402. Catalysis is thought to occur through a ping-pong mechanism. The first step is the binding of the hydrogen peroxide at the same binding site, His404, as the azide to form a peroxo intermediate. The Cl- then binds the activated peroxidase. This is stabilised by hydrophobic interactions with Trp350, Phe397 and the imidazole ring of His404. Without knowledge of the intermediates formed the exact mechanism remains unknown. His404 is thought to play a crucial role as an acid-base group as changes in pH inhibit the reaction. Nucleophilic attack of Cl- on the activated peroxide or halide oxidation through the coordinated metal would allow the reaction to proceed.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Gly",
+          "His",
+          "Lys",
+          "Ser"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.11.1.10"
+        ],
+        "rhea_node_ids": [],
+        "source_entry_id": "m_csa:14"
+      },
+      "record_id": "m_csa:14",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 8,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond donor",
+          "metal ligand",
+          "steric role"
+        ],
+        "enzyme_name": "beta-lactamase (Class B1)",
+        "mechanism_text": "A mechanism has been proposed by Fabiane et al (PMID:9730812). The beta-lactam carbonyl interacts with zinc1 polarising the bond and enhancing its susceptibility to nucleophilic attack. A zinc1 associated water/hydroxide is the nucleophile which attacks the beta-lactam carbonyl carbon. The substrate carboxylate moiety interacts with zinc2 and lysine 184. Asparagine 193 and zinc1 stabilise the oxyanion. An incoming water molecule is activated by the zinc ions and deprontonated by the intermediate.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asn",
+          "Asp",
+          "Cys",
+          "His",
+          "Lys"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.5.2.6"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:20401"
+        ],
+        "source_entry_id": "m_csa:15"
+      },
+      "record_id": "m_csa:15",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "beta-lactamase (Class B1)",
+        "mechanism_text": "This entry describes the monometallic mechanism where the zinc ion is bound in the His3 site. Here the zinc activated water initiates the reaction, Asp90 deprotonates the OH of the tetrahedral intermediate and finally, the intermediate collapses, with the nitrogen group re-protonating from Asp90. The active site starting state is regenerated from bulk solvent, the zinc activates the water to re-form the initiating hydroxide ion (not shown).",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asn",
+          "Asp",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.5.2.6"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:20401"
+        ],
+        "source_entry_id": "m_csa:16"
+      },
+      "record_id": "m_csa:16",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 11,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "polar interaction",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "purine-nucleoside phosphorylase",
+        "mechanism_text": "The substitution reaction occurs by a SN1 type mechanism. His86 is hydrogen bonded to Glu89, and abstracts a proton from the phosphate ion which causes strain and weakening of the glycosidic bond. The glycosidic bond is cleaved, forming an oxycarbenium ion intermediate which is stabilised by the phosphate dianion. Therefore, the phosphate anion is used for both the initiation of bond cleavage and stabilisation of  intermediate [PMID:9305963]. Proposed mechanism in which the phosphate is activated by His86 and attacks the ribose ring directly via an SN2 type reaction. The phosphate group is di-anionic and is stabilised by the Ser33-His64-His86 catalytic triad. It attacks the electrophilic C1 involved in the glycosidic bond in an SN2 manner. His257, Tyr88, Met119 all stabilise the ribose ring transition state while Ala116 and Ser220 also stabilise alongside the triad the phosphate transition state. Hypoxanthine is then protonated by the phosphoryl proton via the 2' and 3' OH groups on the ribose, although there are multiple pathways that protonation can take place through.",
+        "mechanism_text_count": 3,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Ala",
+          "Asn",
+          "Glu",
+          "His",
+          "Met",
+          "Ser",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.4.2.1"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:13233",
+          "rhea:RHEA:19805",
+          "rhea:RHEA:27638",
+          "rhea:RHEA:27642",
+          "rhea:RHEA:27646",
+          "rhea:RHEA:27738",
+          "rhea:RHEA:27742",
+          "rhea:RHEA:27750",
+          "rhea:RHEA:36431"
+        ],
+        "source_entry_id": "m_csa:17"
+      },
+      "record_id": "m_csa:17",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "glycine amidinotransferase",
+        "mechanism_text": "The reaction comprises of two steps, both involving nucleophilic attack. The first step starts by the addition of the carbon atom of the guanidino group of L-Arg to the thiol group of Cys407 of the enzyme, and donation of the thiol proton to the L-Arg substrate. The thiol group of C407 forms a covalently bound intermediate with the carbon atom of the guanidino group, and donates its proton to the imino group of the arginine substrate. Hydrogen bonds and salt linkage of the guanidino nitrogens to Asp170 and Asp305 enhance the electrophilicity of the guanidino-carbon atom, and a potential hydrogen bond of the epsilon-imino nitrogen to His303 supports proton transfer to this atom. Subsequently the bond between the epsilon-imino group and the amidino-carbon atom is broken to generate L-Orn. The second step starts with a proton transfer from the positively charged Gly substrate to His303 and a nucleophilic attack of the lone electron pair of the Gly nitrogen atom at the carbon atom of the bound amidino group. This is followed by the formation of a tetrahedral adduct and its collapse by cleavage of the amidino-carbon-sulfur bond to generate guanidinoacetic acid. \r\n<br/><br/>\r\nThe amidino-carbon atom of the arginine substrate is placed between the thiol group of the cysteine residue and the imino group of the histidine residue. The arginine is fixed tightly to the active site by formation of hydrogen bonds between the amidino nitrogen atoms and the carboxyl groups of aspartate residues 170 and 305. These orient the substrate's guanidino group such that the sulphur atom of CYS 407, the guanidino-carbon atom and the nitrogen atom of HIS 303 are in a line orthogonal to the plane of the guanidino group.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Cys",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.1.4.1"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:13201"
+        ],
+        "source_entry_id": "m_csa:18"
+      },
+      "record_id": "m_csa:18",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 8,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "increase nucleophilicity",
+          "proton acceptor",
+          "proton donor",
+          "steric role"
+        ],
+        "enzyme_name": "mannosyl-oligosaccharide 1,2-alpha-mannosidase",
+        "mechanism_text": "The catalytic acidic residues and the calcium ion required for activity are located in the centre of an (alpha-alpha)7 barrel at the top of a beta-hairpin. The enzyme is an inverting hydrolase, causing an inversion of configuration at C1 of the tenth oligosaccharide residue. \r\n<br/><br/>\r\nThe reaction proceeds as follows: Glu132 acts as a catalytic base and abstracts a proton from water. A hydrogen bond with Arg136 increases the acidity of Glu132. Asp275 is then thought to act as the catalytic acid donating a proton to the leaving group. This computationally derived mechanism consists of five steps in which Asp463 transfers its proton to water; this \"activated\" water then protonates the mannose (which is held in  an ALPH-compliant 3S1-like conformation within the active site) leaving group. Glu599 activates the nucleophilic water, the water attacks and causes an inversion of stereochemistry at the actibde centre. Glu599 then deprotonates the nucleophile to generate the final products. The products subsequently leave the enzyme, and the liberated d-mannose molecule will flip into the ground-state 4C1 chair in an independent conformational process. Finally, a proton exchange between Glu599 and Asp463 will reset the enzyme for a next catalytic cycle.",
+        "mechanism_text_count": 2,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Glu"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.2.1.113"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:56008",
+          "rhea:RHEA:56028"
+        ],
+        "source_entry_id": "m_csa:19"
+      },
+      "record_id": "m_csa:19",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "activator",
+          "covalently attached",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "beta-lactamase (Class A)",
+        "mechanism_text": "The beta-lactamase mechanism consists of two steps: acylation (covalent attachment of the beta-lactam to an active site serine, Ser70), followed by deacylation. In the first step, a base catalysed nucleophilic attack from Ser70 at the carbonyl carbon of the beta-lactam occurs, where activation of Ser70 by Lys73 and nucleophilic attack happen simultaneously. The protonation at lactam N(1) is catalysed within a hydrogen bonded cluster involving the 2-carboxylate group in the substrate, side chains Ser130, Lys234 and a exogenous solvent molecule. The nucleophilic Ser70 has been shown to approach the butterfly cadge beta-lactam structure from the exo face, its activity directed by interactions with the surrounding ion pairs. The beta-lactamase mechanism consists of two steps: acylation (covalent attachment of the beta-lactam to an active site serine, Ser70), followed by deacylation. The first step, base catalysed nucleophilic attack from Ser70 at the carbonyl carbon of the lactam occurs where activation of Ser70 by Glu166 and nucleophilic attack happen simultaneously. The protonation at lactam N(1) is catalysed within a hydrogen bonded cluster involving the 2-carboxylate group in the substrate, side chains Ser130, Lys234 and a exogenous solvent molecule. The nucleophilic Ser70 has been shown to approach the butterfly cadge beta-lactam structure from the exo face, its activity directed by interactions with the surrounding ion pairs.",
+        "mechanism_text_count": 2,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Ala",
+          "Glu",
+          "Lys",
+          "Ser"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.5.2.6"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:20401"
+        ],
+        "source_entry_id": "m_csa:2"
+      },
+      "record_id": "m_csa:2",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "increase acidity",
+          "proton acceptor",
+          "proton donor",
+          "proton relay",
+          "steric role"
+        ],
+        "enzyme_name": "fumarate reductase (quinol)",
+        "mechanism_text": "On binding at the active site, the C1 carboxylate group of the fumarate substrate is polarised and twisted out of the planar configuration by closure of the clamp domain and the resulting steric constraints. \r\n<br/><br/>\r\nThe substrate carbonyl groups are polarised through interactions with surrounding charged residues, facilitating hydride transfer from N5 of reduced FAD to the substrate C2. \r\n<br/><br/>\r\nThe polar hydrogen bonding environment of the C4 carboxylate, as a result of interactions with His504, Arg544 and Arg402, polarises the C2-C3 bond of the substrate, causing C2 to become increasingly susceptible to nucleophilic attack and facilitating hydride transfer from N5 of the reduced flavin to the si face of the substrate. Concurrently, a proton is transferred to the substrate from His504. \r\n<br/><br/>\r\nArg402 acts as an acid catalyst, transferring a proton to the substrate as part of a proton delivery pathway involving Arg381 and Glu378, resulting in the formation of the product, succinate.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Glu",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.3.5.4"
+        ],
+        "rhea_node_ids": [],
+        "source_entry_id": "m_csa:20"
+      },
+      "record_id": "m_csa:20",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 8,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "enzyme_name": "malate dehydrogenase (oxaloacetate-decarboxylating)",
+        "mechanism_text": "The catalysis by malate enzymes generally proceeds in two steps - dehydrogenation of the malate to produce oxaloacetate and then decarboxylation to produce pyruvate. A bound metal divalent cation (Mg2+ or Mn2+) polarises the C2 hydroxyl of malate for dehydrogenation and stabilises the C2 enolic oxygen for decarboxylation. Lys183 is the most likely candidate for a general acid to protonate the enol-pyruvate product of decarboxylation. Tyr112 plays a vital role in the dehydrogenation reaction although the structural basis for such a role is yet to be determined. Many other residues are involved in substrate binding and stabilisation.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asn",
+          "Asp",
+          "Glu",
+          "Lys",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.1.1.38"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:12653",
+          "rhea:RHEA:15641"
+        ],
+        "source_entry_id": "m_csa:21"
+      },
+      "record_id": "m_csa:21",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor",
+          "steric role"
+        ],
+        "enzyme_name": "aralkylamine N-acetyltransferase",
+        "mechanism_text": "His122 initiates the reaction by deprotonating the indol substrate, which adds to the carbonyl carbon of acyl-CoA. The CoA is eliminated and reprotonated from Tyr168, which returns to its native state by deprotonating the product secondary amine. \r\n<br/><br/>\r\nIt remains uncertain whether Tyr168 or His120 acts as the proton donor to the coenzyme-A anion, although crystallographic data would suggest His120 to be situated too far from the acyl-CoA binding site to be directly involved. The structural element Loop1 appears to undergo significant changes in organisation during substrate binding. Pro64, which is positioned within this flexible region, has been shown to be crucial for efficient substrate recognition.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "His",
+          "Leu",
+          "Ser",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.3.1.87"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:20497",
+          "rhea:RHEA:25217"
+        ],
+        "source_entry_id": "m_csa:22"
+      },
+      "record_id": "m_csa:22",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor"
+        ],
+        "enzyme_name": "glycine N-methyltransferase",
+        "mechanism_text": "SAM and glycine bind in the active site in sequential order (SAM first). Glycine binds to the NE of tryptophan and the main chain carbonyl of alanine. Hydrogen bond interactions between glutamate and the SAM and glutamate and the glycine encourage the nucleophilic attack by glycine on the SAM methyl group. However, GNMT primarily catalyses the reaction through proximity and orientation effects. Arg175 favours the binding of the basic form of glycine (amine group neutral and carboxylate group deprotonated) over the zwitterionic form. Glycine and SAM are bound in such a way to align the lone pair orbital of the amino nitrogen of the amine and C-S bond of the methyl group of SAM. Tyr21 is thought to polarise this bond, though there is conflicting evidence on the subject. The thermal motion of the enzyme causes the two substrates to collide, leading to an Sn2 reaction to form sarcosine and SAH. The transition state of this reaction is stabilised by hydrogen bonds between the amine group of glycine and Gly137 and Tyr242. It is better stabilised when glycine is in the basic form than the zwitterionic form.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Gly",
+          "His",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.1.1.20"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:19937"
+        ],
+        "source_entry_id": "m_csa:23"
+      },
+      "record_id": "m_csa:23",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 6,
+        "catalytic_role_terms": [
+          "activator",
+          "covalently attached",
+          "electrofuge",
+          "electrophile",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "4-chlorobenzoyl-CoA dehalogenase",
+        "mechanism_text": "Aspartate 145 attacks the chlorobenzoate ring at the chlorinated carbon forming an arylated enzyme intermediate (Meisenheimer intermediate). The chloride then leaves and the enzyme returns to the resting state by attack of an activated water on the acyl carbon. Histidine 90 is thought to be the general base which activates the water based on mutagenic studies. The backbone amides of phenylalanine 64 and glycine 114 form an oxyanion hole for the stabilisation of the tetrahedral intermediate formed in the hydrolytic step [PMID:8679561].",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Ala",
+          "Asp",
+          "Gly",
+          "His",
+          "Phe",
+          "Trp"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.8.1.7"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:14853"
+        ],
+        "source_entry_id": "m_csa:24"
+      },
+      "record_id": "m_csa:24",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "activator",
+          "covalently attached",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "N-carbamoylsarcosine amidase",
+        "mechanism_text": "Cys177 is activated as a nucleophile by the general base Asp51, attacking the carbamoyl group of the substrate. The resulting anionic tretrahedral intermediate is stabilised by the cationic lysine side chain of Lys144. Ammonia is eliminated from the enzyme-substrate adduct intermediate. Hydrolysis eliminates Cys177, producing sarcosine, CO<sub>2</sub> and NH<sub>3</sub>. The release of ammonia is thought to be promoted through electrostatic interactions with Asp51.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Ala",
+          "Asp",
+          "Cys",
+          "Lys",
+          "Thr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.5.1.59"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:20057"
+        ],
+        "source_entry_id": "m_csa:25"
+      },
+      "record_id": "m_csa:25",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "phosphatidylinositol diacylglycerol-lyase",
+        "mechanism_text": "<p>The first step of the is an intramolecular nucleophilic attack by the C2 hydroxyl of the substrate on the phosphorus producing IP and a myo-inositol 1,2-cyclic phosphate.  This is catalysed by His32 and His82 acting as general base and general acid catalysts respectively. </p>\r\n\r\n<p>The second step is reverse of the first step but with water acting as the nucleophile. This results in the hydrolysis of a phosphorus-oxygen bond in myo-inositol 1,2-cyclic phosphate to give D-myo-inositol 1-phosphate.  However, for the bacterial enzyme, this step is slow and the main product is myo-inositol 1,2-cyclic phosphate.</p>",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:4.6.1.13"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:17093"
+        ],
+        "source_entry_id": "m_csa:26"
+      },
+      "record_id": "m_csa:26",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 8,
+        "catalytic_role_terms": [
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "phospholipase C",
+        "mechanism_text": "Crystallographic data has shown the substrate phosphate to coordinate directly to the tri-metallic active site, as well as proximate amino acids. \r\n<br/><br/>\r\nThe general base (Asp55) deprotonates water, which initiates a nucleophilic attack on the phosphorus atom of the phosphodiester linkage. This results in two products, phosphorylcholine and diacylglycerol. Diacylglycerol should be activated by a general acid, which could be one of the Zn(II) ions or could be another amino acid, but the identity of this is unknown. The phosphate group of the substrate binds to the trinuclear zinc cluster mainly through direct coordination to Zn1 and Zn2, and hydrogen bonding to the Zn2-bound water molecule. The hydroxide bridging Zn1 and Zn3 makes the nucleophilic attack on the phosphorus center, concertedly with the dissociation of the leaving alkoxide, which takes a proton from the Zn2-bound water molecule. In the subsequent step, the Zn2 bound hydroxide makes a reverse attack, resulting in the regeneration of the bridging hydroxide.",
+        "mechanism_text_count": 2,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Glu",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.1.4.3"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:10604"
+        ],
+        "source_entry_id": "m_csa:27"
+      },
+      "record_id": "m_csa:27",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 6,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "increase acidity",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "phosphoinositide phospholipase C",
+        "mechanism_text": "The OH group on C2 acts as a nucleophile, activated by the general base Glu 341, and forms a cyclic phosphate intermediate, with the release of DAG facilitated by the general acid His 356. The intermediate, stabilised by Ca2+ and His 311, is then hydrolysed by a water molecule activated by His 356 to give 1,4,5,inositol trisphosphate and complete the reaction cycle.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asn",
+          "Asp",
+          "Glu",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.1.4.11"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:33179"
+        ],
+        "source_entry_id": "m_csa:28"
+      },
+      "record_id": "m_csa:28",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 6,
+        "catalytic_role_terms": [
+          "covalently attached",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "enzyme_name": "glutamin-(asparagin-)ase",
+        "mechanism_text": "Tyr 1034 is polarised by Glu 3294 B and facilitates proton abstraction from Thr 1020 and its transfer to the substrate. Nucleophilic attack by Thr 1020 proceeds on the carbonyl carbon and this forms a tetrahedral intermediate, which collapses using Tyr 1034 as a general acid/base catalyst, and activation by Glu 3294 B with release of ammonia as a by-product. Hydrolysis occurs using Thr 1100 to activate water as a nucleophile to attack the carbonyl carbon, which is activated by Tyr 1034. By general acid/base catalysis of Tyr 1034 and activation by Glu 3294 B the tetrahedral intermediate again collapses to break the acyl-enzyme linkage and release the product.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Glu",
+          "Lys",
+          "Thr",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.5.1.38"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:15889",
+          "rhea:RHEA:21016"
+        ],
+        "source_entry_id": "m_csa:29"
+      },
+      "record_id": "m_csa:29",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 3,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "enzyme_name": "NAD(P)H dehydrogenase (quinone)",
+        "mechanism_text": "The obligatory two-electron reduction is shown here to proceed via two direct hydride transfers.\r\n<br/><br/>\r\nThe mechanism has two distinct steps. Firstly, hydride transfer occurs from NAD(P)H to the enzyme-bound flavin followed by the release of NAD(P)+. Secondly, a hydride transfer takes place from the flavin to the quionone followed by the releases of hydroquinone. The mechanism follows a 'ping-pong' kinetic scheme. The binding of the quinone substrate cannot occur until NAD(P)+ is released because the nictotinamide and quninone share the same binding site. \r\n<br/><br/>\r\nThis enzyme features two independent, equivalent active sites which are located at opposite ends of the dimer interface. Residues from both monomers line the large active sites which extend from the protein surface to the isoalloxazine rings of the FAD cofactors [PMID:11035252].",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Gly",
+          "His",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.6.5.2"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:46160",
+          "rhea:RHEA:46164"
+        ],
+        "source_entry_id": "m_csa:3"
+      },
+      "record_id": "m_csa:3",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 4,
+        "catalytic_role_terms": [
+          "covalently attached",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "hydrogen radical acceptor",
+          "hydrogen radical donor",
+          "hydrogen radical relay",
+          "leaving group (radical)",
+          "radical combinant",
+          "radical stabiliser"
+        ],
+        "enzyme_name": "formate C-acetyltransferase",
+        "mechanism_text": "The resting state of the enzyme involves the glycyl radical, as determined by spectroscopic studies. The backbone radical is kinetically stable, but extremely susceptible to reactions with molecular oxygen. This is thought to be involved in regulating the enzymes function within the anaerobic metabolism, and the regulation of the pathway more generally.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Cys",
+          "Gly",
+          "Trp"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.3.1.54"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:11844"
+        ],
+        "source_entry_id": "m_csa:30"
+      },
+      "record_id": "m_csa:30",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 6,
+        "catalytic_role_terms": [
+          "activator",
+          "covalently attached",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "increase acidity",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor",
+          "steric role",
+          "van der waals interaction"
+        ],
+        "enzyme_name": "thymidylate synthase",
+        "mechanism_text": "Active site closure upon the binding of the substrates correctly aligns the reactants, allowing the reaction to proceed correctly [PMID:12525150]. Asp-221 is the only residue whose side chain hydrogen bonds directly to the pterin ring of the cofactor. D221 variants that cannot form this hydrogen bond either do not form a covalent ternary complex form the ternary complex with a much higher Kd. Crystallography has shown that the hydrogen bond is critical for excluding nonproductive cofactor binding modes in the ternary complex. In the structure of D221N, for example, where the hydrogen bond acceptor, Asp, is replaced with the donor, Asn, the pterin ring of the cofactor binds in a flipped conformation and cannot condense with dUMP [PMID:12525151]. The cofactor in this reaction plays a duel role, first it is a one-carbon donor and then it is a reductant of the transferred methylene at different steps in the reaction. It is regenerated stereospecifically by dihyrdofolate reductase and serine hydroxymethyltransferases in the thymidylate synthase cycle [PMID:2223755].    \r\n<br/><br/>\r\nThe mechanism proceeds as follows: Cys198 initiates a nucleophilic attack on the ene carbon of dUMP in a Michael (1,4) addition reaction. It is polarised by Arg218.  The oxyanion formed deprotonates water, which in turn deprotonates Glu60. Glu60 deprotonates water, which deprotonates the hydroxyl group, which initiates a nucleophilic attack upon the activated (by Asp221) methylenetetrahydrofolate at the CH<sub>2</sub>=N carbon. Tyr146 deprotonates water, which deprotonates the carbon newly connected to the methylenetetrahydrofolate. This causes the formation of a C=C and the oxyanion formed deprotonates water, which in turn deprotonates Glu60. Glu60 deprotonates water, which deprotonates the hydroxyl group, eliminating the negatively charged dihydrofolate. The negatively charged nitrogen of dihydrofolate eliminates a hydride ion, which adds to the CH<sub>2</sub>=C group of the covalently attached methyl-dUMP, causing the elimination of Cys198. The molecular mechanism is developed in nine steps (ten with the inferred return step), three more steps than in mechanism 1, this is due not only to the fact that some of the steps, initially supposed to be concerted-like reactions, take place through stable intermediates but also to a more detailed description of the chemical transformations.  \r\n<br/><br/>\r\nIn the first step, Cys146 transfers a hydrogen to a water molecule that acts as a base in an exothermic reaction. Three water molecules, present in the X-ray structure of the protein obtained by Stroud <i>et al.</i>, contribute to the transfer of a proton from Cys146 through three transition state structures. The protein environment favors, thermodynamically, the transfer of a proton to the water molecule. \r\n<br/><br/>\r\nThe protonated water molecule acts as a general acid catalyst in step 2, transferring a hydrogen to N10 of the CH<sub>2</sub>H<sub>4</sub>folate cofactor and facilitating the opening of the imidazolidine ring followed by the formation of the activated form of the cofactor, the iminium ion 5-CH<sub>2</sub>H<sub>4</sub>folate.   \r\n<br/><br/>\r\nIn the next step (step 4), a nucleophilic attack at C6 of dUMP by the basic deprotonated Cys146 and the concomitant formation of a bond between C5 of dUMP and the iminium ion take place in a concerted way. \r\n<br/><br/>\r\nStep 5 is an E2 elimination of the thiol anion (Cys146) at C6 and the proton at C5, forming an intermediate double bond. The only general base that can abstract the proton is the water molecule (W40), which is hydrogen bonded to Tyr94. The following step (step 6) involves the protonation of N5 (folate) that turns the tetrahydropterin into a much better leaving group.   Afterwards, the formation of the protonated pyrazine ring facilitates the scission of the methylene bridge established between the substrate and the cofactor, which takes place with a concomitant trans-diaxial nucleophilic attack of the negatively charged Cys46 on C6 of the folate (step 7). This concerted step leads to the elimination of H4folate and to the cleavage of the covalent bond between the pteridine ring and the exo-methyline dUMP intermediate. Subsequently, the favourable three-dimensional orientation of the pterin ring of the cofactor and the pyrimidine of the substrate prepares the system for a transfer of hydride from H<sub>4</sub>folate to dUMP in step 8, releasing the Cys146 in a single concerted but very asynchronous step. The protonated Cys is regenerated in the reverse of the first step (inferred).",
+        "mechanism_text_count": 2,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Cys",
+          "Glu",
+          "Trp",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.1.1.45"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:12104"
+        ],
+        "source_entry_id": "m_csa:31"
+      },
+      "record_id": "m_csa:31",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 4,
+        "catalytic_role_terms": [
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "enzyme_name": "lactoylglutathione lyase",
+        "mechanism_text": "This is the mechanism that occurs with the R enantiomer.  The mechanism employed by the enzyme reflects the stereochemistry of the substrate. Both S and R forms of the hemithioacetal bind in the active site, coordinated to the Zn(II) metal in the place of previously coordinated water molecules.   \r\n<br/><br/>\r\nThe R enantiomer reaction mechanism differs in that it involves two bases (Glu99 and Glu172) as opposed to only one base in the S case (Glu172). The enzyme only works on the hemithioacetal intermediate which is formed by the spontaneous reaction between methylglyoxal and glutathione. \r\n<br/><br/>\r\nBoth reaction mechanisms form a cis-ene-diol intermediate coordinated directly to the Zn centre. This intermediate then undergoes keto-enol tautomerisation, assisted  by Glu172 in both mechanisms to form the R-2-hydroxyacylglutathione product.   \r\n<br/><br/>\r\nLactoylgutathione lyase I catalyses the first half of the mechanism to detoxify methyl-glyoxyl, where the product of this reaction is relayed to  glyoxylase II (M0157) which catalyses the hydrolysis reaction to form D-lactate and glutathione.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Gln",
+          "Glu",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:4.4.1.5"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:19069"
+        ],
+        "source_entry_id": "m_csa:32"
+      },
+      "record_id": "m_csa:32",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "methylmalonyl-CoA epimerase",
+        "mechanism_text": "Although there is no Co(II) present in the crystal structure, it has been determined that the ion is necessary and the most likely to bind well [PMID:11470438].  \r\n<br/><br/>\r\nGlu48 deprotonates the chiral centre of methylmalonyl-CoA, forming an enol intermediate. Glu141 then deprotonates Glu48. The oxyanion intermediate collapses, reforming the ketone while the chiral centre is reformed by proton transfer from Glu141.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Gln",
+          "Glu",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:5.1.99.1"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:20553"
+        ],
+        "source_entry_id": "m_csa:33"
+      },
+      "record_id": "m_csa:33",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 6,
+        "catalytic_role_terms": [
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "polar/non-polar interaction",
+          "proton acceptor",
+          "proton donor",
+          "steric role"
+        ],
+        "enzyme_name": "catechol 2,3-dioxygenase",
+        "mechanism_text": "Circular dichroism, magnetic circular dichroism and X-ray absorption spectroscopy on the resting enzyme all support the presence of a five-coordinated Fe(II) site with square-pyramidal geometry. Fe is co-ordinated by histidines 153 and 214, and glutamate 265 as well as a water and a hydroxyl.  Only the Glu265, Tyr255 and the water molecules - of which there are two bound to the active site Fe(II) - can take an anionic form. This suggests that one of the water ligands is bound as a hydroxide ion to maintain a charge neutral active site [PMID:10368270].   \r\n<br/><br/>\r\nCatechol enters the active site and replaces the water and hydroxyl group around the Fe. The leaving hydroxyl abstracts a proton from one of the catecholic hydroxyl. Oxygen enters the active site and is orientated as a sixth Fe ligand and also parallel to the catechol bond to be broken. Histidine 199 acts as a base and abstracts the proton from the other catecholic hydroxyl. This allows the oxygen to attack the aromatic ring and cleaves it. Addition of water releases the oxygenated product and replaces the Fe ligands.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Glu",
+          "His",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.13.11.2"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:17337"
+        ],
+        "source_entry_id": "m_csa:34"
+      },
+      "record_id": "m_csa:34",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "phosphorylase kinase",
+        "mechanism_text": "Asp149 deprotonates the protein substrate hydroxyl group, initiating nucleophilic attack upon the gamma-phosphate of ATP in a substitution reaction that eliminates ADP. The phosphorylated protein deprotonates Asp149 [PMID:10545198].",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asn",
+          "Asp",
+          "Lys",
+          "Thr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.7.11.19"
+        ],
+        "rhea_node_ids": [],
+        "source_entry_id": "m_csa:35"
+      },
+      "record_id": "m_csa:35",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 10,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "polar/non-polar interaction",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "(S)-2-haloacid dehalogenase",
+        "mechanism_text": "When the L-2-haloacid is taken into the active site its carboxyl group is recognised by Arg41 before forming a Michaelis compound with the enzyme. The substrate binding drives out a water molecule freeing Asp10's nucleophilic oxygen allowing attack on the C2 carbon via an SN2 mechanism. Asp10 is stabilised by hydrogen bonding to Lys151, Thr14 and Ser175. Arg41 is thought to abstract the halide ion from the substrate. Ser118 serves as the main residue for stabilising the substrate carboxyl moiety in the reaction intermediate. Asn177 and Asp180 are also thought to be involved in the hydrolysis reaction.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asn",
+          "Asp",
+          "Lys",
+          "Phe",
+          "Ser",
+          "Thr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.8.1.2"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:11192"
+        ],
+        "source_entry_id": "m_csa:36"
+      },
+      "record_id": "m_csa:36",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "hydrogen radical acceptor",
+          "hydrogen radical donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor",
+          "radical stabiliser",
+          "steric role"
+        ],
+        "enzyme_name": "prostaglandin-endoperoxide synthase",
+        "mechanism_text": "Mutagenesis studies have identified a number of residues essential for catalysis. The replacement of any one of His207, His309 or His388 (numbering for PGH1) by Gln or Ala abolishes both enzyme activities. His388 is the axial ligand for the haem iron, while His 207 is nearby on the distal side. Puzzlingly, His309 is far away from the active site in the structures which are now available. However, Gln203 has also been implicated in the peroxidase activity, cooperating with His207; while Tyr385 has been shown my mutation to be important for the cyclo-oxygenase activity. Spectroscopic data suggest that a tyrosyl radical formed as a result of peroxide reduction abstracts a hydrogen from arachidonate to start the cyclo-oxygenase reaction.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Gln",
+          "Gly",
+          "His",
+          "Leu",
+          "Ser",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.14.99.1"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:23728"
+        ],
+        "source_entry_id": "m_csa:37"
+      },
+      "record_id": "m_csa:37",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "GTP cyclohydrolase I",
+        "mechanism_text": "GTP cyclohydrolase I contains an essential zinc cation, thought to act as a Lewis acid, activating a water molecule towards hydrolytic opening of the imidazole ring of GTP. Three residues, Cys110, Cys181, His112 coordinate to this metal, with one vacant coordination position available to the hydrolytic water.   \r\n<br/><br/>\r\nThe reaction is initiated by His179, which acts as an acid and donates a proton to N7. The positively charged ring is now susceptible to nucleophilic attack at C8 by a water molecule. His112 protonates the bridging O of the furanose ring which leads to the opening of the furanose ring. Amadori rearrangement of this intermediate and proton abstraction by a base thought to be Ser135 leads to another intermediate. The last stage of the reaction, the closure of the pterin ring system is thought to be non-enzymatically catalysed either on the protein surface, or in solution.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Cys",
+          "Gln",
+          "Glu",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.5.4.16"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:17473"
+        ],
+        "source_entry_id": "m_csa:38"
+      },
+      "record_id": "m_csa:38",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 8,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "inosine-uridine preferring nucleoside hydrolase",
+        "mechanism_text": "The proposed active centre is a relatively large cavity. The cavity is roughly cylindrical, located at the region identified as the \"topological switchpoint\". From modelling studies, PHE 167 seems to be in proper orientation to interact with the purine substrate in a base-stacking interaction, as typically observed in proteins which bind nucleotides. The carboxylate groups of three of four aspartate residues found in the cavity (ASP 10, ASP 14, ASP15 and ASP 242 - ASP 14 does not coordinate) along with THR 126, coordinate a divalent cation (possibly calcium).   \r\n<br/><br/>\r\nA proposed mechanism suggests ribooxocarbenium stabilisation with weak leaving group activation. His 241 acts as an acid to protonate the N7 of the leaving purine. Ca(II) ion together with Asp10 activates a water molecule which nucleophilically attacks ribose C1'. Ca(II) ion serves to decrease the pKa of the attacking water molecule while Asp10 accept a proton from the water molecule. These leads to a ribooxocarbenium transition state which will spontaneously dissociate to form ribose and purine. The transition state is stabilised by Asn168, which electrostatically interacts with charged ribose O4'.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asn",
+          "Asp",
+          "His",
+          "Phe",
+          "Thr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.2.2.1"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:23344"
+        ],
+        "source_entry_id": "m_csa:39"
+      },
+      "record_id": "m_csa:39",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 11,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "modifies pKa",
+          "proton acceptor",
+          "proton donor",
+          "single electron acceptor",
+          "single electron donor",
+          "single electron relay"
+        ],
+        "enzyme_name": "nitrite reductase (copper type)",
+        "mechanism_text": "The resting oxidised state of the enzyme contains a water molecule coordinated to a Cu<sup>2+</sup> ion at the type II copper centre. Nitrite then binds to the type II copper ion and and displaces the water molecule. The type II copper now receives an electron from the type I copper and transfers it to the nitrite, which together with protonation of the nitrite leads to reduction of nitrite to NO + H<sub>2</sub>O. \r\n<br/><br/>\r\nTwo protons are needed for the reduction of NO<sub>2</sub><sup>-</sup> to NO + H<sub>2</sub>O, but the details of proton transfer have still not been firmly established. Proposed sources for the protons include His 255 (although it has also been proposed that this residue is not positioned appropriately for this role); the water molecule that bridges His 255 and Asp 98; the water molecule initially bound to copper (which is suggested to be deprotonated by Asp 98 prior to its displacement by NO<sub>2</sub><sup>-</sup>, with Asp 98 later supplying the proton to the nitrite); and the nitrite entering as HNO<sub>2</sub> with one proton already present. The resting oxidised state of the enzyme contains a water molecule coordinated to a Cu<sup>2+</sup> ion at the type II copper centre. Nitrite then binds to the type II copper ion and and displaces the water molecule. This makes electron transfer from pseudoazurin to the type II copper centre via the type I copper centre energetically favourable. Nitrite reduction occurs at the type II centre. The type II copper transfers the electron it received to the nitrite, which together with protonation of the nitrite leads to reduction of nitrite to NO + H<sub>2</sub>O. \r\n<br/><br/>\r\nTwo protons are needed for the reduction of NO<sub>2</sub><sup>-</sup> to NO + H<sub>2</sub>O, which are likely to come from bulk solvent as the Asp98A catalytic residue is at the end of a proton tunnel connected to the bulk solvent.",
+        "mechanism_text_count": 2,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Cys",
+          "Glu",
+          "His",
+          "Met",
+          "Thr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.7.2.1"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:15233"
+        ],
+        "source_entry_id": "m_csa:4"
+      },
+      "record_id": "m_csa:4",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 4,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond donor"
+        ],
+        "enzyme_name": "phosphoglycerate kinase",
+        "mechanism_text": "Phosphoglycerate kinase catalyses the reversible phosphoryl transfer between 1,3-bisphosphoglycerate and ADP to form 3-phosphoglycerate and ATP, in the presence of magnesium. Phosphoryl transfer occurs by a single step in-line mechanism, or SN2-reaction mechanism, with nucleophilic attack by the ADP-beta-phosphate oxygen atom at the 1-phosphate group of 1,3-BPG. This reaction involves an inversion of configuration at the gamma phosphorous atom. The main role of the enzyme is to orientate the two compounds favourably with respect to each other and to stabilise the pentacoordinate transition state. The protein undergoes a conformational change after binding substrate to exclude water from the active site; in the closed formation, the Lys219 side chain moves into position to assist the main chain amides of two residues, Gly376 and Gly399, the Mg(II) ion and the Arg39 side chain in transition state stabilisation.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Gly",
+          "Lys"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.7.2.3"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:14801"
+        ],
+        "source_entry_id": "m_csa:40"
+      },
+      "record_id": "m_csa:40",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "increase acidity",
+          "increase basicity",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "deoxyribonuclease I",
+        "mechanism_text": "The reaction involves an in-line attack at the DNA phosphorus group by a water molecule. His252 may act as a general base to abstract a proton from a water molecule opposite the O3' atom. Subsequent attack at the phosphorus group with inversion of its configuration gives rise to a penta-covalent state that may be stabilised by the metal ion. His134 is in an ideal position to protonate the leaving O3'. The metal ion may also be important for the correct positioning of the phosphate group.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Glu",
+          "His",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.1.21.1"
+        ],
+        "rhea_node_ids": [],
+        "source_entry_id": "m_csa:41"
+      },
+      "record_id": "m_csa:41",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "increase acidity",
+          "increase basicity",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "nuclease",
+        "mechanism_text": "HIS 89 and GLU 127 are both potential participants in the nuclease reaction. It has been postulated that HIS 89 serves as a general acid and GLU 127 serves as either a nucleophile or a general base. Phosphodiesters are hydrolysed via nucleophilic attack by a water molecule forming a penta-coordinated trigonal bipyramid intermediate.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asn",
+          "Glu",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.1.30.2"
+        ],
+        "rhea_node_ids": [],
+        "source_entry_id": "m_csa:42"
+      },
+      "record_id": "m_csa:42",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 10,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton donor"
+        ],
+        "enzyme_name": "purple acid phosphatase",
+        "mechanism_text": "On the basis of structural studies with bound phosphate and tungstate (inhibitor), and the observed inversion of the phosphorous configuration during catalysis, an SN2-type mechanism is proposed for PAP. The substrate phosphate is bound to the Me(II) ion via one of the non-esterified oxygen atoms and oriented by His202 and His296 (numbering for kidney bean enzyme) for in-line attack of an Fe(III)-bound hydroxide ion from a position opposite the esterified oxygen. These residues and the metal ions are presumed to stabilise the pentaco-ordinate transition state. Tentatively, His296 may then act as a general acid to protonate the leaving group, followed by the attack of a water molecule on the Fe(III) atom to release the inorganic phosphate.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asn",
+          "Asp",
+          "His",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.1.3.2"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:15017"
+        ],
+        "source_entry_id": "m_csa:43"
+      },
+      "record_id": "m_csa:43",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 12,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "metal ligand",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "alkaline phosphatase",
+        "mechanism_text": "A metal-activated water molecule deprotonates the nucleophilic serine residue. Serine attacks the phosphomonoester in a substitution reaction which eliminates the alcohol. The alcohol anion deprotonates water, which initiates a nucleophilic attack on the covalently bound phosphorus in a substitution reaction which eliminates serine as an anion. Serine then deprotonates water to regenerate the starting state of the enzyme.     \r\n<br/><br/>\r\nThere have been suggestions that the magnesium ion in the active site is essential for catalysis (PMID:10873454), but more recent evidence suggests it is not directly involved in the catalytic mechanism (PMID:18851975).",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Glu",
+          "His",
+          "Lys",
+          "Ser",
+          "Thr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.1.3.1"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:15017"
+        ],
+        "source_entry_id": "m_csa:44"
+      },
+      "record_id": "m_csa:44",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "cyclomaltodextrin glucanotransferase",
+        "mechanism_text": "This enzyme has an Asp-Asp-Glu catalytic triad that is absolutely conserved in all the amylolytic enzymes.This triad occurs in the so-called domain A of the protein.   \r\n<br/><br/>\r\nThe first step of the cyclisation reaction is the binding of the starch chain at binding site 1 (in the E-domain, which includes part of the Ca3 binding site). After this event, binding is extended to the active site through a secondary binding site (also in the E domain) which is located near a groove leading to the active site.    \r\n<br/><br/>\r\nCleavage of the starch chain is initiated by the nucleophilic attack of Asp229 at one of the alpha(1-->4) glycosidic bonds (breaking the bond) leading to a beta(1-->4) glycosidically linked covalent intermediate. In the cyclase reaction, the non-reducing end of the covalently linked intermediate then migrates to the acceptor site. This acceptor then attacks the \u22121 glucose C1 atom leading to a cyclodextrin product (cyclisation).  \r\n<br/><br/>\r\nIf the acceptor is a water molecule, the the linear hydrolysis product is formed (hydrolysis).   \r\n<br/><br/>\r\nIf the acceptor molecule is another  linear maltooligosaccharide then the product is a longer linear oligosaccharide (transglycosylation or disproportionation).",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Glu",
+          "His"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.4.1.19"
+        ],
+        "rhea_node_ids": [],
+        "source_entry_id": "m_csa:45"
+      },
+      "record_id": "m_csa:45",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 4,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "steric role"
+        ],
+        "enzyme_name": "site-specific DNA-methyltransferase (adenine-specific)",
+        "mechanism_text": "The binding site for S-adenosyl-L-methionine is located in a cavity in the N-terminal domain. Its positive charge is compensated for by seven negatively charged residues, Glu22, Glu45, Glu71, Glu78, Glu84, Asp89 and Glu113. Hydrogen bonds occur with Asp89, Phe90, Glu71, Glu45, Glu22 and Thr23 in addition to many hydrophobic interactions. The DNA binds in the cleft formed by the N- and C-terminal domains which has a high positive electrostatic potential allowing interaction with the negative DNA phosphate backbone. The adenine to be methylated is brought to the active methyl group in S-adenosyl-L-methionine by looping out of the base into a gap between the flexible N-terminal loop and beta strand.   \r\n<br/><br/>\r\nSince no basic residue is found in the vicinity of the 6-amino group, a catalytic mechanism in which N6 is activated by deprotonation can be ruled out. Instead, the amine is activated by interactions with Asn105 and the backbone carbonyl of Pro106. The reaction proceeds by a the nucleophilic attack of the adenine N6 on the methyl of SAM in an SN2-type reaction.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asn",
+          "Phe",
+          "Pro",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.1.1.72"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:15197"
+        ],
+        "source_entry_id": "m_csa:46"
+      },
+      "record_id": "m_csa:46",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor",
+          "steric role"
+        ],
+        "enzyme_name": "protein-tyrosine-phosphatase non-receptor class",
+        "mechanism_text": "The mechanism is thought to be primarily dissociative, with more catalytic importance placed on stabilising the negative charge on the leaving group, rather than activation of the nucleophile. Phosphoryl transfer occurs in a single step, with an inline displacement mechanism. The key components are as follows:  \r\n<ol>\r\n<li>Thr 410 hydrogen bonds to Cys 403, lowering Cys 403's pKa and stabilising a thiolate anion on this residue. </li>\r\n<li>Asp 356 is protonated, and acts as a general acid to protonate the substrate tyrosine residue, promoting phosphoryl transfer. </li>\r\n<li>The trigonal bipyramid transition state is stabilised by Arg 409. </li>\r\n<li>Cys 403 becomes phosphorylated. The substrate is released and water enters the active site.</li>\r\n<li>Asp 356 activates the water molecule by hydrogen bonding. </li>\r\n<li>During phosphoryl transfer, Thr 410 stabilises the growing negative charge on the thiolate of Cys 403. Arg 409 again stabilises the transition state. Asp 356 deprotonates the water nucleophile.</li>\r\n<li>Inorganic phosphate is formed.</li>\r\n</ol>",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Cys",
+          "Glu",
+          "His",
+          "Thr",
+          "Trp"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.1.3.48"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:10684"
+        ],
+        "source_entry_id": "m_csa:47"
+      },
+      "record_id": "m_csa:47",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "attractive charge-charge interaction",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "hypoxanthine phosphoribosyltransferase",
+        "mechanism_text": "In a nucleophilic bimolecular substitution, Asp137 activates the guanine for attach on the C2 of the substrate ribose, the reaction proceeds via a positively charged transition state.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Glu",
+          "Phe"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.4.2.8"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:17973",
+          "rhea:RHEA:25424"
+        ],
+        "source_entry_id": "m_csa:48"
+      },
+      "record_id": "m_csa:48",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "activator",
+          "covalently attached",
+          "electrofuge",
+          "electron pair acceptor",
+          "electron pair donor",
+          "electrophile",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "proton acceptor",
+          "proton donor",
+          "proton relay",
+          "steric role"
+        ],
+        "enzyme_name": "histidine decarboxylase",
+        "mechanism_text": "The binding site contains two pockets, one for the imidazole group, and another one for the carboxyl -COOMe group.    \r\n<br/><br/>\r\nThe mechanism of histidine decarboxylation can be divided into three parts i) forming the Schiff base ii) decarboxylation/reprotonation iii) breaking the Schiff base.   \r\n<br/><br/>\r\nThe substrate first condenses with the pyruvoyl residue Prv-82 to form a Schiff base in which the substrate amine nitrogen is bonded to the alpha-carbon of Prv. As the carboxyl group of the substrate is removed, its negative charge passes to the alpha-carbon of the substrate, creating a transient carbanion. The Schiff base acts as a bridge - permitting resonance stabilisation of this alpha-carbon bond by the cofactor (acts as an electron sink). After the release of carbon dioxide, the alpha-carbon captures a proton from a suitable donor and the product is now ready to be freed by hydrolysis of the Schiff base.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Glu",
+          "Phe",
+          "Ser",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:4.1.1.22"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:20840"
+        ],
+        "source_entry_id": "m_csa:49"
+      },
+      "record_id": "m_csa:49",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "covalently attached",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "increase acidity",
+          "increase basicity",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "carboxypeptidase D",
+        "mechanism_text": "Carboxypeptidase D uses a catalytic triad to activate serine 146 as a nucleophile to attack the scissile peptide bond. Histidine 397 and aspartate 338 from the neighbouring subunit complete the triad. The backbone amides of glycine 53 and tyrosine 147 make up the oxyanion hole to stabilise the tetrahedral intermediate.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Gly",
+          "His",
+          "Ser",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:3.4.16.6"
+        ],
+        "rhea_node_ids": [],
+        "source_entry_id": "m_csa:5"
+      },
+      "record_id": "m_csa:5",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 6,
+        "catalytic_role_terms": [
+          "activator",
+          "electrostatic destabiliser",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor",
+          "repulsive charge-charge interaction"
+        ],
+        "enzyme_name": "orotidine-5'-phosphate decarboxylase",
+        "mechanism_text": "<p>The enzyme has a novel mechanism: the carbanion generated by carbon dioxide loss is localised in an sp2 orbital perpendicular to the pi system of the pyrimidine. In all other decarboxylases, the carbanion is delocalised either into an adjacent carbonyl or into a covalently bound thiamin, pyridoxal or pyruvoyl cofactor. </p>   \r\n\r\n<p>The mechanism is a bimolecular electrophilic substitution SE2 in which decarboxylation and protonation occur in a step-wise manner. Firstly, the anionic carboxylate of the substrate is positioned in a negatively charged region close to the carboxylate of Asp60 and Asp65(B) and the carbon of the pyrimidine destined to become the carbanium is close to the positive protonated Lys62. This allows destabilisation of the ground state and the stabilisation of negative charge accumulation in the transition state. </p>    \r\n\r\n<p>Extensive hydrogen bonding interactions within the active site provide the binding energy required to force the carboxylate groups into close proximity. As the reaction proceeds, the weakly basic C-C bond linking the carboxy group to the pyrimidine becomes progressively more basic until proton transfer from the adjacent Lys62 occurs.</p> This is the carbene mechanism, lack of deuterium isotope effect and failure to detect the addition of a nucleophile has been used to suggest that this mechanism is not favoured. There is also no evidence of what residues could be acting as the proton donor or nucleophile in the other mechanistic suggestions. In the carbene mechanism, protonation of the O4 carbonyl generates a carbocation at C6 of the substrate. Decarboxylation would then generate a stabilised carbene, rather than the high-energy vinyl carbanion This is the nucleophilic addition mechanism, which due to lack of evidence of deuterium isotope effect and failure to detect the addition of a nucleophile has been suggested against. There is also no evidence of what residues could be acting as the  nucleophile. In this mechanism  the decarboxylation is proceeded by the initial addition of a nucleophile to C5 of OMP and the formation of the vinyl carbanion is avoided by the concerted elimination of carbon dioxide and the active site nucleophile.",
+        "mechanism_text_count": 3,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Lys",
+          "Thr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:4.1.1.23"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:11596"
+        ],
+        "source_entry_id": "m_csa:50"
+      },
+      "record_id": "m_csa:50",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 7,
+        "catalytic_role_terms": [
+          "activator",
+          "electrofuge",
+          "electrophile",
+          "electrostatic stabiliser",
+          "hydrogen bond acceptor",
+          "hydrogen bond donor",
+          "nucleofuge",
+          "nucleophile",
+          "proton acceptor",
+          "proton donor"
+        ],
+        "enzyme_name": "glutathione-disulfide reductase",
+        "mechanism_text": "Initially, the enzyme is in the oxidised state, with its redox active cysteines 58 and 63 forming a disulphide bond to each other. A hydride is transferred from NAD(P)H to FAD, a process facilitated by Glu201, Lys66 and Tyr197, as demonstrated by mutagenesis and structural studies. From there the electron makes an SN2 attack on the sulfur atom of Cys63, causing Cys58 to be displaced as thiolate. This residue is now ready to attack the substrate, which in all cases except mercuric reductase is another disulphide bond. His467 from the other subunit of the dimer has an essential role here, as shown by mutagenesis; first it seems to withdraw a proton from Cys58, activating the latter residue for a nucleophilic attack on the substrate. The proton is then poised to polarise the resulting Cys58-substrate mixed disulphide bond, making it vulnerable to attack from Cys63 to return the enzyme to its rest state. In addition to His467, another residue from the second subunit is found in the active site: Glu472 is shown to be essential by mutagenesis, and in structures is seen to orientate the catalytic Histidine.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Cys",
+          "Glu",
+          "His",
+          "Lys",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.8.1.7"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:11740"
+        ],
+        "source_entry_id": "m_csa:6"
+      },
+      "record_id": "m_csa:6",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 4,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "hydrogen bond donor",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor",
+          "proton relay"
+        ],
+        "enzyme_name": "isocitrate dehydrogenase (NADP+)",
+        "mechanism_text": "Asp283AA acts as the base towards isocitrate C1-OH, initiating simultaneous hydride transfer to NADP+ while forming a carbonyl at this position. The second half of the reaction involves decarboxylation from C2, forming an enolate which is stabilised by the divalent cation and proximal positively charged residues. This intermediate then undergoes a rearrangement to form the C2-carbonyl and form alpha-ketoglutarate. Asp283AA activates is hydrogen bonded to both Lys230 and Tyr160. In this mechanism Asp activates the Lys to act as the general base in the first step and the Tyr to be the general acid in the last step. The hydride transfer from substrate to NADP+ is concerted with the initial deprotonation. \r\n<br/><br/>\r\nThe second half of the reaction involves decarboxylation from C2, forming an enolate which is stabilised by the divalent cation and proximal positively charged residues. This intermediate then undergoes a rearrangement to form the final product with Tyr as the general acid. Asp283AA acts as the base towards isocitrate C1-OH, the charged intermediate is well stabilised by the Mg(II) ion, the hydride transfer from the intermediate to NADP+, forming a carbonyl at the C1 position, occurs in a separate step. The second half of the reaction involves decarboxylation from C2, forming an enolate which is stabilised by the divalent cation and proximal positively charged residues. This intermediate then undergoes a rearrangement to form the C2-carbonyl and form alpha-ketoglutarate.",
+        "mechanism_text_count": 3,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Asp",
+          "Lys",
+          "Tyr"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:1.1.1.42"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:19629"
+        ],
+        "source_entry_id": "m_csa:7"
+      },
+      "record_id": "m_csa:7",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 5,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "proton acceptor",
+          "proton donor",
+          "repulsive charge-charge interaction",
+          "steric role"
+        ],
+        "enzyme_name": "nicotinate-nucleotide diphosphorylase (carboxylating) (type II)",
+        "mechanism_text": "Phosphoribosyl transfer has been proposed to proceed via a unimolecular nucleophilic substitution (SN1 reaction) involving an oxycarbonium-like intermediate. In a rate-limiting step, the pyrophosphate group of PRPP is protonated and cleaved to yield an oxycarbonium of ribosylphosphate. The formation of the anticipated intermediate may be facilitated by the electron-withdrawing power of the metal ions and the C3-exo pucker of the ribosyl ring. Subsequently, the nucleophilic N1 of QA combines with the oxycarbonium in a diffusion-controlled reaction to form quinolinic acid mononucleotide (QAMN) [PMID:9862811].",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Arg",
+          "Asp",
+          "Glu",
+          "Lys"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.4.2.19"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:12733"
+        ],
+        "source_entry_id": "m_csa:8"
+      },
+      "record_id": "m_csa:8",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    },
+    {
+      "allowed_features": {
+        "catalytic_residue_count": 14,
+        "catalytic_role_terms": [
+          "electrostatic stabiliser",
+          "metal ligand",
+          "proton acceptor",
+          "proton donor",
+          "steric role"
+        ],
+        "enzyme_name": "methionine adenosyltransferase",
+        "mechanism_text": "The reaction involves the cleavage of the triphosphate chain from ATP, in forming the product, and hydrolysis of the PPPi moiety to PPi and Pi before the AdoMet product is released. \r\n<br/><br/>\r\nMechanistic studies have shown the AdoMet forming reaction to follow an SN2 mechanism, with the S atom of methionine attacking the C5 atom of ATP directly. His29 acts as a general acid, activated by the surrounding basic backbone amide groups, towards the O5' as the C5'-O5' bond cleaves. Simultaneously, the methionine sulphur attacks the developing cation. This reaction is followed by the hydrolysis of triphosphate to phosphate and pyrophosphate, providing energy for the removal of the reaction product from the active site. \r\n<br/><br/>\r\nThe reaction requires divalent metal cations for activity, two binding sites have been identified both by structural information and EPR studies.",
+        "mechanism_text_count": 1,
+        "reference_protein_count": 1,
+        "residue_codes": [
+          "Ala",
+          "Arg",
+          "Asp",
+          "Glu",
+          "His",
+          "Lys",
+          "Phe"
+        ]
+      },
+      "blocked_leakage_fields": {
+        "ec_node_ids": [
+          "ec:2.5.1.6"
+        ],
+        "rhea_node_ids": [
+          "rhea:RHEA:21080"
+        ],
+        "source_entry_id": "m_csa:9"
+      },
+      "record_id": "m_csa:9",
+      "target_proxy": {
+        "rationale": "V2 uses seed fingerprint retrieval as a benchmark proxy before curated labels exist.",
+        "task": "retrieve_seed_mechanism_fingerprint"
+      }
+    }
+  ]
+}

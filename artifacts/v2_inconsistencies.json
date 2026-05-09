@@ -1,0 +1,94 @@
+{
+  "issues": [
+    {
+      "entry_id": "m_csa:20",
+      "issue_type": "ec_mismatch",
+      "mcsa_ec_numbers": [
+        "1.3.5.4"
+      ],
+      "message": "M-CSA EC annotation is not fully present on the linked UniProt record.",
+      "protein_id": "uniprot:Q07WU7",
+      "severity": "medium",
+      "uniprot_ec_numbers": [
+        "1.3.2.4"
+      ]
+    },
+    {
+      "entry_id": "m_csa:39",
+      "issue_type": "ec_mismatch",
+      "mcsa_ec_numbers": [
+        "3.2.2.1"
+      ],
+      "message": "M-CSA EC annotation is not fully present on the linked UniProt record.",
+      "protein_id": "uniprot:Q27546",
+      "severity": "medium",
+      "uniprot_ec_numbers": [
+        "3.2.2.2",
+        "3.2.2.3"
+      ]
+    },
+    {
+      "ec_number": "3.1.21.2",
+      "entry_id": "m_csa:11",
+      "issue_type": "missing_rhea_mapping",
+      "message": "No Rhea reaction mapping was found for this EC number in the current graph.",
+      "severity": "medium"
+    },
+    {
+      "ec_number": "1.11.1.10",
+      "entry_id": "m_csa:14",
+      "issue_type": "missing_rhea_mapping",
+      "message": "No Rhea reaction mapping was found for this EC number in the current graph.",
+      "severity": "medium"
+    },
+    {
+      "ec_number": "1.3.5.4",
+      "entry_id": "m_csa:20",
+      "issue_type": "missing_rhea_mapping",
+      "message": "No Rhea reaction mapping was found for this EC number in the current graph.",
+      "severity": "medium"
+    },
+    {
+      "ec_number": "2.7.11.19",
+      "entry_id": "m_csa:35",
+      "issue_type": "missing_rhea_mapping",
+      "message": "No Rhea reaction mapping was found for this EC number in the current graph.",
+      "severity": "medium"
+    },
+    {
+      "ec_number": "3.1.21.1",
+      "entry_id": "m_csa:41",
+      "issue_type": "missing_rhea_mapping",
+      "message": "No Rhea reaction mapping was found for this EC number in the current graph.",
+      "severity": "medium"
+    },
+    {
+      "ec_number": "3.1.30.2",
+      "entry_id": "m_csa:42",
+      "issue_type": "missing_rhea_mapping",
+      "message": "No Rhea reaction mapping was found for this EC number in the current graph.",
+      "severity": "medium"
+    },
+    {
+      "ec_number": "2.4.1.19",
+      "entry_id": "m_csa:45",
+      "issue_type": "missing_rhea_mapping",
+      "message": "No Rhea reaction mapping was found for this EC number in the current graph.",
+      "severity": "medium"
+    },
+    {
+      "ec_number": "3.4.16.6",
+      "entry_id": "m_csa:5",
+      "issue_type": "missing_rhea_mapping",
+      "message": "No Rhea reaction mapping was found for this EC number in the current graph.",
+      "severity": "medium"
+    }
+  ],
+  "metadata": {
+    "issue_count": 10,
+    "issue_types": {
+      "ec_mismatch": 2,
+      "missing_rhea_mapping": 8
+    }
+  }
+}
