@@ -18,20 +18,23 @@ All Codex automations for this project must run on `gpt-5.5` with `xhigh`
 reasoning. Do not downgrade the model or reasoning level when editing the
 automation.
 
-Each automation run is a 55-minute focused work block. The remaining time in
-the hour is break/overhead.
+Each automation run is a measured hour with a strict 50-minute productive work
+requirement followed by about 5 minutes of wrap-up. The productive portion must
+advance completion of the whole project.
 
 At the start of each block, record the real wall-clock start timestamp. At
 50 minutes elapsed from that timestamp, stop starting new implementation work
 and begin wrap-up: tests, artifacts, handoff, progress log, commit, and push.
 
-If the agent completes the handoff-assigned task early, it must not idle. It
-must:
+Before 50 elapsed minutes, the agent must not hand off early, idle, or spend the
+remaining time only reporting. If the handoff-assigned task is completed or
+blocked, it must:
 
-1. Write a short plan for the remaining measured time in the same 55-minute
-   block.
-2. Execute the highest-value bounded item from that plan immediately.
-3. Continue until the 50-minute wrap-up boundary, then complete normal wrap-up.
+1. Write a short plan for the remaining measured time before the 50-minute
+   wrap-up boundary.
+2. Execute the highest-value bounded unblocked item from that plan immediately.
+3. Continue advancing the project until the 50-minute wrap-up boundary, then
+   complete normal wrap-up.
 
 After each hourly work block:
 

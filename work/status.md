@@ -4,14 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 16
-- Measured elapsed time: 17.1 minutes (0.28 hours)
+- Entries: 17
+- Measured elapsed time: 25.6 minutes (0.43 hours)
 - Estimated/planned time: 390 minutes (6.50 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
-- ops: 4.6 measured minutes (0.08 hours)
+- ops: 13.1 measured minutes (0.22 hours)
 - post-v2: 12.4 measured minutes (0.21 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 165 estimated minutes (2.75 hours)
@@ -21,19 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 91
-- Evidence references logged: 81
+- Artifact references logged: 95
+- Evidence references logged: 85
 
 ## Recent Entries
-
-### 2026-05-09T14:18:10.779278+00:00 - ops
-
-- Task: Require next-agent handoff update after every hourly block
-- Time mode: estimate
-- Estimated/planned minutes: 10
-- Artifacts: work/handoff.md, work/README.md, work/scope.md
-- Evidence: automation prompt updated, next-agent handoff section added, operating rule updated
-- Notes: Estimated/planned time; not measured clock time.
 
 ### 2026-05-09T14:25:33.013901+00:00 - post-v2
 
@@ -104,6 +95,16 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: automation:catalytic-earth-work-loop, automation:overnight-batch-driver, work/README.md, work/handoff.md, work/scope.md
 - Evidence: all automation TOML files with model fields now show gpt-5.5, all automation TOML files with reasoning fields now show xhigh, 37 tests passed, validate passed
 
+### 2026-05-09T16:14:49.435851+00:00 - ops
+
+- Task: Require full 50-minute productive automation work
+- Time mode: measured
+- Measured minutes: 8.517
+- Started: 2026-05-09T16:06:10Z
+- Ended: 2026-05-09T16:14:41Z
+- Artifacts: automation:catalytic-earth-work-loop, work/README.md, work/handoff.md, work/scope.md
+- Evidence: automation requires productive project work until 50 elapsed wall-clock minutes, automation forbids early handoff idle time or reporting-only time before wrap, 37 tests passed, validate passed
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -122,6 +123,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T15:42:05.002091+00:00: Future runs should consume the full 55-minute wall-clock block by rolling into the next highest-value bounded task when assigned work finishes early.
 - 2026-05-09T16:02:34.920556+00:00: Current out-of-scope errors are threshold-margin cases; next gain likely comes from abstention policy refinement and harder negatives.
 - 2026-05-09T16:03:37.698226+00:00: Automation model selection is now treated as an operating invariant, not an implicit app default.
+- 2026-05-09T16:14:49.435851+00:00: Automation runs now distinguish productive work time from wrap-up time; normal runs should spend at least 50 measured minutes advancing the project.
 
 ## Scope Adjustments
 
@@ -140,3 +142,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T15:42:05.002091+00:00: Automation handoff now requires origin/main sync verification before the next agent starts.
 - 2026-05-09T16:02:34.920556+00:00: Failure analysis is now explicit and reproducible; next bounded step is threshold-policy tuning with guardrails.
 - 2026-05-09T16:03:37.698226+00:00: Catalytic Earth automation documentation now forbids downgrading below gpt-5.5 with xhigh reasoning.
+- 2026-05-09T16:14:49.435851+00:00: If assigned work finishes or blocks early, agents must switch to the highest-value bounded unblocked task until the 50-minute work boundary.

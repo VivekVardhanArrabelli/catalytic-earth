@@ -46,11 +46,14 @@ PYTHONPATH=src python -m unittest discover -s tests
 ## During Work
 
 - Confirm the automation is configured as `gpt-5.5` with `xhigh` reasoning.
-- Treat each automation run as one 55-minute focused block measured from the
-  real wall-clock start timestamp.
-- If the assigned task finishes early, do not hand off immediately. Write a
-  short plan for the remaining wall-clock time in the same 55-minute block and
-  execute the highest-value bounded item toward project completion.
+- Treat each automation run as a measured hour with a strict 50-minute
+  productive work requirement followed by about 5 minutes of wrap-up.
+- From the real wall-clock start timestamp until 50 elapsed minutes, keep doing
+  productive work that advances completion of the whole project.
+- If the assigned task finishes early or becomes blocked, do not hand off
+  immediately. Write a short plan for the remaining wall-clock time before the
+  50-minute wrap-up boundary and execute the highest-value bounded unblocked
+  item toward project completion.
 - At 50 minutes elapsed, stop starting new implementation work and begin
   wrap-up: finish tests/artifacts/docs, update this handoff, log measured time,
   regenerate status, commit, and push.

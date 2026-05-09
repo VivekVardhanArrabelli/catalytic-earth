@@ -31,10 +31,11 @@ Automation cadence:
 - record the real wall-clock start timestamp
 - sync from `origin/main` with `git fetch origin` and
   `git pull --ff-only origin main` before editing
-- work for 55 focused minutes measured from that timestamp
-- if the assigned handoff task is completed early, write a short remaining-time
-  plan and implement the highest-value bounded next item instead of handing off
-  early
+- work productively toward project completion until 50 elapsed wall-clock
+  minutes
+- if the assigned handoff task is completed early or blocked, write a short
+  remaining-time plan and implement the highest-value bounded unblocked next
+  item instead of handing off early
 - begin wrap-up at 50 elapsed wall-clock minutes
 - reserve 5 minutes for break/overhead
 - log the hour
