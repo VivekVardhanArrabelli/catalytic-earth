@@ -9,6 +9,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from catalytic_earth.geometry_retrieval import (
     compactness_score,
+    cofactor_context_score,
     distance_summary,
     run_geometry_retrieval,
     score_entry_against_fingerprint,
@@ -46,7 +47,17 @@ class GeometryRetrievalTests(unittest.TestCase):
         }
         score = score_entry_against_fingerprint(entry, fingerprint)
         self.assertEqual(score["residue_match_fraction"], 1.0)
-        self.assertGreater(score["score"], 0.9)
+        self.assertGreater(score["score"], 0.7)
+
+    def test_metal_context_outscores_heme_without_heme_evidence(self) -> None:
+        residue_codes = ["ASP", "HIS", "HIS"]
+        residue_roles = {"metal ligand"}
+        metal = {"id": "metal_dependent_hydrolase", "cofactors": ["Zn2+"]}
+        heme = {"id": "heme_peroxidase_oxidase", "cofactors": ["heme"]}
+        self.assertGreater(
+            cofactor_context_score(metal, residue_codes, residue_roles),
+            cofactor_context_score(heme, residue_codes, residue_roles),
+        )
 
     def test_run_geometry_retrieval(self) -> None:
         artifact = run_geometry_retrieval(

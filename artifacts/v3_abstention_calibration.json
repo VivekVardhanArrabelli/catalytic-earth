@@ -1,0 +1,560 @@
+{
+  "metadata": {
+    "method": "abstention_threshold_sweep",
+    "selected_threshold": 0.8,
+    "selection_rule": "maximize top3 in-scope accuracy, then out-of-scope abstention, then coverage",
+    "threshold_count": 21
+  },
+  "selected": {
+    "abstain_threshold": 0.8,
+    "evaluated_count": 20,
+    "in_scope_count": 4,
+    "label_summary": {
+      "by_confidence": {
+        "high": 2,
+        "low": 3,
+        "medium": 15
+      },
+      "by_fingerprint": {
+        "metal_dependent_hydrolase": 4
+      },
+      "by_type": {
+        "out_of_scope": 16,
+        "seed_fingerprint": 4
+      },
+      "label_count": 20
+    },
+    "method": "geometry_retrieval_against_curated_seed_labels",
+    "out_of_scope_abstention_rate": 1.0,
+    "out_of_scope_count": 16,
+    "top1_accuracy_in_scope": 1.0,
+    "top3_accuracy_in_scope": 1.0
+  },
+  "thresholds": [
+    {
+      "abstain_threshold": 0.0,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.0,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.05,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.0,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.1,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.15,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.2,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.25,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.3,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.35,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.4,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.45,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.3125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.5,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.375,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.55,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.5625,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.6,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.625,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.65,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.6875,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.7,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.75,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.75,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 0.8125,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.8,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 1.0,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.85,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 1.0,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.9,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 1.0,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 0.95,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 1.0,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    },
+    {
+      "abstain_threshold": 1.0,
+      "evaluated_count": 20,
+      "in_scope_count": 4,
+      "label_summary": {
+        "by_confidence": {
+          "high": 2,
+          "low": 3,
+          "medium": 15
+        },
+        "by_fingerprint": {
+          "metal_dependent_hydrolase": 4
+        },
+        "by_type": {
+          "out_of_scope": 16,
+          "seed_fingerprint": 4
+        },
+        "label_count": 20
+      },
+      "method": "geometry_retrieval_against_curated_seed_labels",
+      "out_of_scope_abstention_rate": 1.0,
+      "out_of_scope_count": 16,
+      "top1_accuracy_in_scope": 1.0,
+      "top3_accuracy_in_scope": 1.0
+    }
+  ]
+}

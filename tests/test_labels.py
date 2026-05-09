@@ -12,6 +12,7 @@ from catalytic_earth.labels import (
     evaluate_geometry_retrieval,
     label_summary,
     load_labels,
+    sweep_abstention_thresholds,
 )
 
 
@@ -71,6 +72,10 @@ class LabelTests(unittest.TestCase):
         evaluation = evaluate_geometry_retrieval(retrieval, labels, abstain_threshold=0.7)
         self.assertEqual(evaluation["metadata"]["top1_accuracy_in_scope"], 1.0)
         self.assertEqual(evaluation["metadata"]["out_of_scope_abstention_rate"], 1.0)
+
+        sweep = sweep_abstention_thresholds(retrieval, labels, thresholds=[0.0, 0.7, 1.0])
+        self.assertEqual(sweep["metadata"]["threshold_count"], 3)
+        self.assertIn("selected", sweep)
 
 
 if __name__ == "__main__":

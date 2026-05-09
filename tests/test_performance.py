@@ -1,0 +1,26 @@
+from __future__ import annotations
+
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from catalytic_earth.performance import run_local_performance_suite
+
+
+class PerformanceTests(unittest.TestCase):
+    def test_run_local_performance_suite(self) -> None:
+        graph = ROOT / "artifacts" / "v1_graph.json"
+        geometry = ROOT / "artifacts" / "v3_geometry_features.json"
+        retrieval = ROOT / "artifacts" / "v3_geometry_retrieval.json"
+        report = run_local_performance_suite(graph, geometry, retrieval, iterations=1)
+        self.assertEqual(report["metadata"]["iterations"], 1)
+        self.assertGreaterEqual(len(report["benchmarks"]), 5)
+        self.assertIn("mean_ms", report["benchmarks"][0])
+
+
+if __name__ == "__main__":
+    unittest.main()

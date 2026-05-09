@@ -26,6 +26,10 @@ PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
   --retrieval artifacts/v3_geometry_retrieval.json \
   --labels data/registries/curated_mechanism_labels.json \
   --out artifacts/v3_geometry_label_eval.json
+
+PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
+  --retrieval artifacts/v3_geometry_retrieval.json \
+  --out artifacts/v3_abstention_calibration.json
 ```
 
 ## Current Feature Set

@@ -153,6 +153,44 @@ def evaluate_geometry_retrieval(
     }
 
 
+def sweep_abstention_thresholds(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    thresholds: list[float] | None = None,
+) -> dict[str, Any]:
+    if thresholds is None:
+        thresholds = [round(index / 20, 2) for index in range(0, 21)]
+    rows = [
+        evaluate_geometry_retrieval(retrieval, labels, abstain_threshold=threshold)["metadata"]
+        for threshold in thresholds
+    ]
+    selected = select_threshold(rows)
+    return {
+        "metadata": {
+            "method": "abstention_threshold_sweep",
+            "threshold_count": len(rows),
+            "selected_threshold": selected.get("abstain_threshold") if selected else None,
+            "selection_rule": "maximize top3 in-scope accuracy, then out-of-scope abstention, then coverage",
+        },
+        "thresholds": rows,
+        "selected": selected,
+    }
+
+
+def select_threshold(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    if not rows:
+        return None
+
+    def score(row: dict[str, Any]) -> tuple[float, float, float, float]:
+        top3 = row.get("top3_accuracy_in_scope") or 0.0
+        abstention = row.get("out_of_scope_abstention_rate") or 0.0
+        threshold = float(row.get("abstain_threshold") or 0.0)
+        coverage = 1.0 - threshold
+        return (top3, abstention, coverage, -threshold)
+
+    return max(rows, key=score)
+
+
 def _ratio(numerator: int, denominator: int) -> float | None:
     if denominator == 0:
         return None

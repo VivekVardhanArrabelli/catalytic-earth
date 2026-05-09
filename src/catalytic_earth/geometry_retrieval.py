@@ -57,7 +57,7 @@ def score_entry_against_fingerprint(
     signature = fingerprint.get("active_site_signature", [])
     residue_codes = [_canonical_code(residue.get("code")) for residue in residues]
     residue_roles = {
-        role.lower()
+        _normalize_phrase(role)
         for residue in residues
         for role in residue.get("roles", [])
         if isinstance(role, str)
@@ -66,9 +66,9 @@ def score_entry_against_fingerprint(
     matched_signature_roles: list[dict[str, Any]] = []
     for requirement in signature:
         allowed = _allowed_residue_codes(requirement.get("residue", ""))
-        role = str(requirement.get("role", "")).lower()
+        role = _normalize_phrase(str(requirement.get("role", "")))
         matched_codes = sorted(code for code in residue_codes if code in allowed)
-        role_hint_match = any(part in " ".join(residue_roles) for part in role.split("_") if part)
+        role_hint_match = _role_hint_match(role, residue_roles)
         if matched_codes or role_hint_match:
             matched_signature_roles.append(
                 {
@@ -80,13 +80,23 @@ def score_entry_against_fingerprint(
             )
 
     residue_match_fraction = len(matched_signature_roles) / max(len(signature), 1)
+    role_match_fraction = _role_match_fraction(signature, residue_roles)
+    cofactor_context = cofactor_context_score(fingerprint, residue_codes, residue_roles)
     compactness = compactness_score(distances)
-    score = round(0.72 * residue_match_fraction + 0.28 * compactness, 4)
+    score = round(
+        0.42 * residue_match_fraction
+        + 0.28 * role_match_fraction
+        + 0.20 * cofactor_context
+        + 0.10 * compactness,
+        4,
+    )
     return {
         "fingerprint_id": fingerprint.get("id"),
         "fingerprint_name": fingerprint.get("name"),
         "score": score,
         "residue_match_fraction": round(residue_match_fraction, 4),
+        "role_match_fraction": round(role_match_fraction, 4),
+        "cofactor_context_score": round(cofactor_context, 4),
         "compactness_score": round(compactness, 4),
         "matched_signature_roles": matched_signature_roles,
         "distance_summary": distance_summary(distances),
@@ -107,6 +117,44 @@ def compactness_score(distances: list[dict[str, Any]]) -> float:
     if median >= 24:
         return 0.0
     return max(0.0, 1 - ((median - 8) / 16))
+
+
+def cofactor_context_score(
+    fingerprint: dict[str, Any],
+    residue_codes: list[str],
+    residue_roles: set[str],
+) -> float:
+    cofactors = {_normalize_phrase(cofactor) for cofactor in fingerprint.get("cofactors", [])}
+    fingerprint_id = fingerprint.get("id")
+    if not cofactors:
+        if fingerprint_id == "ser_his_acid_hydrolase":
+            expected = {"SER", "HIS"}
+            acid = bool({"ASP", "GLU"} & set(residue_codes))
+            return 1.0 if expected.issubset(set(residue_codes)) and acid else 0.25
+        return 0.5
+
+    if any(_is_metal_cofactor(cofactor) for cofactor in cofactors):
+        if any("metal ligand" in role for role in residue_roles):
+            return 1.0
+        if {"HIS", "ASP", "GLU"} & set(residue_codes):
+            return 0.35
+        return 0.0
+
+    if any("heme" in cofactor for cofactor in cofactors):
+        return 1.0 if any("heme" in role for role in residue_roles) else 0.0
+
+    if any("pyridoxal phosphate" in cofactor for cofactor in cofactors):
+        return 0.8 if "LYS" in residue_codes else 0.0
+
+    if any(cofactor in {"fad", "fmn", "nadph"} for cofactor in cofactors):
+        joined_roles = " ".join(residue_roles)
+        return 1.0 if any(term in joined_roles for term in ["flavin", "nadph", "redox"]) else 0.0
+
+    if any("sam" in cofactor or "adenosylmethionine" in cofactor for cofactor in cofactors):
+        cys_count = sum(1 for code in residue_codes if code == "CYS")
+        return 0.8 if cys_count >= 3 else 0.0
+
+    return 0.0
 
 
 def distance_summary(distances: list[dict[str, Any]]) -> dict[str, Any]:
@@ -166,3 +214,32 @@ def _canonical_code(code: Any) -> str:
         "T": "THR",
     }
     return aliases.get(cleaned, cleaned if len(cleaned) == 3 else "")
+
+
+def _normalize_phrase(value: str) -> str:
+    return value.lower().replace("_", " ").replace("-", " ").strip()
+
+
+def _role_hint_match(required_role: str, residue_roles: set[str]) -> bool:
+    if required_role in residue_roles:
+        return True
+    if required_role == "acid base":
+        return any("proton acceptor" in role or "proton donor" in role for role in residue_roles)
+    if required_role == "acid or orienter":
+        return any("proton" in role or "hydrogen bond" in role for role in residue_roles)
+    return False
+
+
+def _role_match_fraction(signature: list[dict[str, Any]], residue_roles: set[str]) -> float:
+    if not signature:
+        return 0.0
+    matched = 0
+    for requirement in signature:
+        if _role_hint_match(_normalize_phrase(str(requirement.get("role", ""))), residue_roles):
+            matched += 1
+    return matched / len(signature)
+
+
+def _is_metal_cofactor(cofactor: str) -> bool:
+    metals = {"zn2+", "mg2+", "mn2+", "fe2+/fe3+", "fe2+", "fe3+", "metal"}
+    return cofactor in metals or any(metal in cofactor for metal in metals)

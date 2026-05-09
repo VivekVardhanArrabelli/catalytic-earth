@@ -4,30 +4,23 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 9
-- Total logged time: 335 minutes (5.58 hours)
+- Entries: 10
+- Total logged time: 390 minutes (6.50 hours)
 
 ## Time By Stage
 
 - ops: 45 minutes (0.75 hours)
-- post-v2: 110 minutes (1.83 hours)
+- post-v2: 165 minutes (2.75 hours)
 - v0: 55 minutes (0.92 hours)
 - v1: 55 minutes (0.92 hours)
 - v2: 70 minutes (1.17 hours)
 
 ## Progress Counters
 
-- Artifact references logged: 39
-- Evidence references logged: 42
+- Artifact references logged: 45
+- Evidence references logged: 48
 
 ## Recent Entries
-
-### 2026-05-09T13:40:25.768544+00:00 - ops
-
-- Task: Add durable work folder, time ledger, scope calibration, and progress report tooling
-- Minutes: 25
-- Artifacts: work/README.md, work/scope.md, work/handoff.md, src/catalytic_earth/progress.py, tests/test_progress.py
-- Evidence: 12 tests passed, progress-report command, log-work command
 
 ### 2026-05-09T13:54:30.954964+00:00 - v1
 
@@ -78,6 +71,13 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/handoff.md, work/README.md, work/scope.md
 - Evidence: automation prompt updated, next-agent handoff section added, operating rule updated
 
+### 2026-05-09T14:25:33.013901+00:00 - post-v2
+
+- Task: Strengthen V2 retrieval calibration and performance checks
+- Minutes: 55
+- Artifacts: src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/labels.py, src/catalytic_earth/performance.py, artifacts/v3_abstention_calibration.json, artifacts/perf_report.json, docs/v2_strengthening_report.md
+- Evidence: 30 tests passed, top1 in-scope accuracy 1.0, top3 in-scope accuracy 1.0, out-of-scope abstention 0.75, selected abstention threshold 0.8, 5 local performance benchmarks
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -89,6 +89,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:10:40.717863+00:00: The next bottleneck is improving ranking and abstention, not adding labels machinery.
 - 2026-05-09T14:13:21.398170+00:00: Progress will now be measured per hourly block rather than per ad hoc milestone.
 - 2026-05-09T14:18:10.779278+00:00: Continuity is now treated as a required output of each 55-minute work block.
+- 2026-05-09T14:25:33.013901+00:00: The time overestimate came from confusing scaffold implementation with scientifically robust validation; current progress is fast but still small-label and artifact-scale.
 
 ## Scope Adjustments
 
@@ -100,3 +101,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-09T14:10:40.717863+00:00: Curated labels are now explicit for the 20-entry geometry slice; retrieval quality is measurable and currently weak at top1.
 - 2026-05-09T14:13:21.398170+00:00: Each automation run is now an hourly carry-forward block: 55 minutes work, 5 minutes break/overhead, commit and push every run.
 - 2026-05-09T14:18:10.779278+00:00: Every automation run must now leave explicit next-agent start instructions before committing and pushing.
+- 2026-05-09T14:25:33.013901+00:00: V2 is stronger: retrieval has cofactor-aware scoring, calibrated abstention, and local performance measurement; full scalability and ligand parsing remain future work.

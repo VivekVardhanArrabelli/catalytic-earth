@@ -8,8 +8,9 @@ from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
-from .labels import evaluate_geometry_retrieval, label_summary, load_labels
+from .labels import evaluate_geometry_retrieval, label_summary, load_labels, sweep_abstention_thresholds
 from .models import RegistryError
+from .performance import write_local_performance_suite
 from .progress import WorkEntry, append_work_entry, write_progress_report
 from .sources import build_source_ledger, load_sources
 from .structure import write_geometry_features
@@ -216,6 +217,38 @@ def cmd_evaluate_geometry_labels(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_calibrate_abstention(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    thresholds = [float(item) for item in args.thresholds.split(",") if item.strip()]
+    calibration = sweep_abstention_thresholds(
+        retrieval,
+        load_labels(Path(args.labels)),
+        thresholds=thresholds,
+    )
+    write_json(Path(args.out), calibration)
+    print(
+        "Wrote abstention calibration to "
+        f"{args.out} (selected={calibration['metadata']['selected_threshold']})"
+    )
+    return 0
+
+
+def cmd_perf_suite(args: argparse.Namespace) -> int:
+    report = write_local_performance_suite(
+        graph_path=Path(args.graph),
+        geometry_path=Path(args.geometry),
+        retrieval_path=Path(args.retrieval),
+        out_path=Path(args.out),
+        iterations=args.iterations,
+    )
+    print(
+        "Wrote performance report to "
+        f"{args.out} ({len(report['benchmarks'])} benchmarks, {args.iterations} iterations)"
+    )
+    return 0
+
+
 def _split_csv(value: str | None) -> list[str]:
     if not value:
         return []
@@ -377,6 +410,30 @@ def build_parser() -> argparse.ArgumentParser:
     label_eval.add_argument("--abstain-threshold", type=float, default=0.7)
     label_eval.add_argument("--out", default="artifacts/v3_geometry_label_eval.json")
     label_eval.set_defaults(func=cmd_evaluate_geometry_labels)
+
+    calibration = subparsers.add_parser(
+        "calibrate-abstention",
+        help="sweep abstention thresholds for geometry label evaluation",
+    )
+    calibration.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    calibration.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    calibration.add_argument(
+        "--thresholds",
+        default="0.0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0",
+    )
+    calibration.add_argument("--out", default="artifacts/v3_abstention_calibration.json")
+    calibration.set_defaults(func=cmd_calibrate_abstention)
+
+    perf = subparsers.add_parser(
+        "perf-suite",
+        help="run local artifact performance checks",
+    )
+    perf.add_argument("--graph", default="artifacts/v1_graph.json")
+    perf.add_argument("--geometry", default="artifacts/v3_geometry_features.json")
+    perf.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval.json")
+    perf.add_argument("--iterations", type=int, default=5)
+    perf.add_argument("--out", default="artifacts/perf_report.json")
+    perf.set_defaults(func=cmd_perf_suite)
 
     log_work = subparsers.add_parser("log-work", help="append a timed work entry")
     log_work.add_argument("--stage", required=True, help="milestone stage, for example v0 or v1")

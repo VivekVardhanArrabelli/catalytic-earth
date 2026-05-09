@@ -104,18 +104,20 @@ Current state:
 - V2 scaffold is complete.
 - Geometry-aware active-site retrieval exists.
 - Curated seed labels exist for the 20-entry geometry slice.
-- Latest label evaluation shows top3 retrieval can recover the small in-scope
-  label set, while top1 ranking and out-of-scope abstention are still weak.
+- Strengthened geometry scoring now recovers the small in-scope label set at
+  top1, but there are only 4 in-scope positives, so this is not robust evidence.
+- Abstention calibration exists at `artifacts/v3_abstention_calibration.json`.
+- Local performance report exists at `artifacts/perf_report.json`.
 
 Next concrete task:
 
-Improve retrieval ranking/abstention using curated labels. A good next step is
-to add a calibrated abstention report that sweeps thresholds and reports top1,
-top3, coverage, and out-of-scope abstention tradeoffs, then use that to choose a
-default threshold.
+Improve out-of-scope handling and mechanism coverage. A good next step is to add
+ligand/cofactor context from PDB mmCIF non-polymer records, then use that to
+penalize heme/flavin/PLP/radical-SAM fingerprints when the required cofactor is
+not structurally or textually supported.
 
 Known blockers:
 
 - Current curated labels are provisional and small.
-- Geometry retrieval uses simple residue/compactness heuristics, not learned
-  geometry or ligand/cofactor context.
+- Geometry retrieval still uses simple heuristics, not learned geometry.
+- Ligand/cofactor context and substrate-pocket descriptors are not implemented.
