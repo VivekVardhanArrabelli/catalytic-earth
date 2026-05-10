@@ -20,7 +20,10 @@
     "latest_scaling_quality_review_warnings": [
       "active_learning_queue_concentrated_by_top1_family",
       "new_review_debt_has_scaling_failure_modes",
-      "structure_mapping_issues_present"
+      "structure_mapping_issues_present",
+      "alternate_structure_hits_lack_local_support",
+      "remap_local_leads_require_strict_guardrail",
+      "reaction_substrate_mismatch_audit_hits"
     ],
     "method": "label_factory_batch_summary",
     "next_batch_rule": "open the next label tranche only when every accepted batch has zero hard negatives, zero near misses, zero false non-abstentions, zero actionable in-scope failures, ready factory gates, and active queues that retain all unlabeled candidates; for preview batches, also attach the scaling-quality audit and resolve any audit blocker",
@@ -33,7 +36,7 @@
       "accepted_new_label_count": 5,
       "actionable_in_scope_failure_count": 0,
       "active_queue_all_unlabeled_retained": true,
-      "active_queue_unlabeled_count": 76,
+      "active_queue_unlabeled_count": 81,
       "active_queue_unlabeled_omitted": 0,
       "baseline_label_count": 619,
       "batch": "700",
@@ -65,7 +68,10 @@
       "scaling_quality_review_warnings": [
         "active_learning_queue_concentrated_by_top1_family",
         "new_review_debt_has_scaling_failure_modes",
-        "structure_mapping_issues_present"
+        "structure_mapping_issues_present",
+        "alternate_structure_hits_lack_local_support",
+        "remap_local_leads_require_strict_guardrail",
+        "reaction_substrate_mismatch_audit_hits"
       ],
       "scaling_quality_unclassified_new_debt_count": 0,
       "source": "v3_label_batch_acceptance_check_700_preview.json"

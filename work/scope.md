@@ -171,9 +171,13 @@ Current expectation:
   pending after the 700 batch
 - label scaling is now gated by the factory: the current 700 audit proposes 79
   bronze-to-silver promotions, flags 112 abstention/review rows, mines 100
-  adversarial negative controls, exports 161 expert-review items from the
+  adversarial negative controls, exports 182 expert-review items from the
   current ranked review cutoff plus all unlabeled candidates from the 700
-  review queue, and passes the label-factory gate check
+  review queue, and passes the label-factory gate check; the active-learning
+  queue now includes a reaction/substrate mismatch ranking term, and the 700
+  family-propagation guardrail blocks 24 reported rows on the same mismatch
+  signal with priority retention beyond `max_rows` (17 labeled propagation
+  blocks and 7 unlabeled pending-review blocks)
 - review-debt triage now ranks 81 evidence-gap rows from the 700 review pass,
   with 81 `needs_more_evidence` decisions, 61 carried rows, 20 new rows, and
   next-action counts split by debt status
@@ -204,8 +208,8 @@ Current expectation:
   11, 15, 17, 17, and 19 respectively
 - next bottleneck is reviewing the accepted 700 factory state and its 81-row
   review-debt plus scaling-quality audit before any further tranche. The
-  accepted clean labels are `m_csa:666`, `m_csa:686`, `m_csa:688`,
-  `m_csa:694`, `m_csa:697`, and `m_csa:699`; the other 81 review-state rows
+  accepted clean labels are `m_csa:686`, `m_csa:688`, `m_csa:694`,
+  `m_csa:697`, and `m_csa:699`; the other 81 review-state rows
   remain outside the benchmark. The 700 scaling-quality audit observes
   ontology scope pressure, family-propagation boundaries, cofactor ambiguity,
   reaction/substrate mismatches, active-site mapping gaps, and active-learning
@@ -218,8 +222,10 @@ Current expectation:
   expected-family hits among new-debt rows; the all-debt scan finds review-only
   local expected-family hits from conservative remaps for `m_csa:577`,
   `m_csa:592`, and `m_csa:641`, plus 16 structure-wide-only lead rows. The
-  remap lead summary keeps all 44 leads non-countable until review import,
-  evidence-gap clearance, and label-factory gates pass. The alternate path is
+  remap-local audit routes `m_csa:577` and `m_csa:641` to expert family-boundary
+  review and `m_csa:592` to expert reaction/substrate review. The reaction
+  mismatch audit flags 18 active-queue hydrolase-top1 rows with kinase or ATP
+  phosphoryl-transfer text, and all remain non-countable. The alternate path is
   resolving
   review-state/evidence-limited rows
   (`m_csa:494`, `m_csa:510`, `m_csa:529`, `m_csa:534`, `m_csa:650`,

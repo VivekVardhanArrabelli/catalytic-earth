@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 40
-- Measured elapsed time: 1361.3 minutes (22.69 hours)
+- Entries: 41
+- Measured elapsed time: 1414.4 minutes (23.57 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1347.9 measured minutes (22.47 hours)
+- post-v2: 1401.0 measured minutes (23.35 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,20 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 383
-- Evidence references logged: 305
+- Artifact references logged: 398
+- Evidence references logged: 314
 
 ## Recent Entries
-
-### 2026-05-10T07:28:17.575433+00:00 - post-v2
-
-- Task: Accept 525 and 550 label-factory batches
-- Time mode: measured
-- Measured minutes: 51.133
-- Started: 2026-05-10T06:37:00Z
-- Ended: 2026-05-10T07:28:08Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, src/catalytic_earth/geometry_reports.py, data/registries/curated_mechanism_labels.json, artifacts/v3_label_batch_acceptance_check_525.json, artifacts/v3_label_batch_acceptance_check_550.json, artifacts/v3_geometry_label_eval_550.json, artifacts/v3_geometry_slice_summary.json, work/handoff.md
-- Evidence: 135 unit tests passed, validate passed, 546 countable labels, 550 queue has 0 ready candidates, 9/9 label-factory gates passed, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, documentation reviewed and updated
 
 ### 2026-05-10T08:36:59.402518+00:00 - post-v2
 
@@ -113,6 +103,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 162 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, focused 700 scan remapped 63 alternate-PDB structures, all-debt scan covered 46 review-debt scan candidates and 739 PDB structures, 0 scan fetch failures, 3 review-only local expected-family remap leads, 44 remap leads kept non-countable, 0 hard negatives or count growth introduced, 10-iteration local perf check completed in tmp
 - Notes: Documentation checked and updated across README, docs/label_factory.md, work/scope.md, work/handoff.md, work/label_preview_700_notes.md, and status inputs; normal measured run.
 
+### 2026-05-10T19:48:49.955298+00:00 - post-v2
+
+- Task: Audit 700 reaction mismatch guardrails
+- Time mode: measured
+- Measured minutes: 53.133
+- Started: 2026-05-10T18:54:51Z
+- Ended: 2026-05-10T19:47:59Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_review_debt_remap_local_lead_audit_700.json, artifacts/v3_review_debt_structure_selection_candidates_700.json, artifacts/v3_reaction_substrate_mismatch_audit_700.json, artifacts/v3_family_propagation_guardrails_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_active_learning_review_queue_700.json, tests/test_labels.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: 169 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, 18 active-queue reaction/substrate mismatch rows kept non-countable, 24 family-propagation reaction/substrate mismatch blockers retained, 17 labeled propagation mismatch blocks, 7 unlabeled pending-review mismatch blocks, 0 accepted reaction/substrate mismatch labels
+- Notes: Documentation checked and updated across README, docs, work notes, scope, handoff, and status inputs.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -155,6 +156,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T16:41:45.028412+00:00: Stop further tranche growth at 624 countable labels until 81 review-state rows are triaged or stronger evidence is added.
 - 2026-05-10T17:43:34.382296+00:00: Count growth remains stopped at 624 countable labels until accepted-700 review debt has local evidence or explicit expert resolution.
 - 2026-05-10T18:46:18.139775+00:00: Next bottleneck is auditing m_csa:577 m_csa:592 and m_csa:641 remap-local leads against counterevidence before any further gated scaling.
+- 2026-05-10T19:48:49.955298+00:00: Next bottleneck is deciding whether kinase/phosphoryl-transfer mismatch rows need an ontology-family rule or expert reaction/substrate export before more count growth.
 
 ## Scope Adjustments
 
@@ -197,3 +199,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T16:41:45.028412+00:00: 700-entry slice is guardrail-clean for clean labels; next bounded work is review-debt repair, not blind expansion.
 - 2026-05-10T17:43:34.382296+00:00: Review-debt repair now separates alternate-structure cofactor leads from local active-site evidence before any further gated scaling.
 - 2026-05-10T18:46:18.139775+00:00: Alternate-PDB residue remapping now produces review-only local evidence leads but does not reopen count growth.
+- 2026-05-10T19:48:49.955298+00:00: 700 scaling remains stopped at 624 countable labels until reaction/substrate mismatch lanes are resolved by ontology rule or expert review.

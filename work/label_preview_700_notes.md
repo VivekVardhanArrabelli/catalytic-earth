@@ -103,3 +103,38 @@ review-only local expected-family hits for `m_csa:577`, `m_csa:592`, and
 `artifacts/v3_review_debt_remap_leads_700_all_bounded.json` summarizes 44
 review-only leads and keeps every row non-countable until review import,
 evidence-gap clearance, and label-factory gates pass.
+
+`artifacts/v3_review_debt_remap_local_lead_audit_700.json` audits the three
+remap-local leads before any review import. `m_csa:577` and `m_csa:641` route
+to expert family-boundary review because counterevidence remains after the
+alternate-PDB local remap hits. `m_csa:592` routes to expert
+reaction/substrate review because glucokinase and ATP phosphoryl-transfer text
+conflict with the hydrolase top hit; local `MG` in alternate structures does
+not resolve the reaction-class mismatch. All three rows keep a strict remap
+guardrail: remap-local evidence is non-countable unless explicit
+alternate-PDB residue positions or expert review/import evidence clear the gap
+and the label-factory gate passes. The structure-selection candidate summary
+therefore has 0 current candidates after reaction mismatch triage. The 700
+scaling-quality audit now attaches this remap-local audit and records
+`conservative_remap_local_evidence_without_explicit_alt_positions` as an
+observed review-only failure mode.
+
+`artifacts/v3_reaction_substrate_mismatch_audit_700.json` broadens the audit to
+the active-learning queue. It flags 18 hydrolase-top1 rows with kinase names or
+ATP phosphoryl-transfer text, keeps all 18 non-countable, and feeds a
+`reaction_substrate_mismatch_value` ranking term in the 700 active-learning
+queue. The accepted 700 batch still has 0 accepted reaction/substrate mismatch
+rows.
+
+## Remaining-Time Plan 2026-05-10T19:01Z
+
+The assigned remap-local audit is complete early, with countable labels still
+held at 624. Use the rest of the productive window to harden the factory around
+that finding: keep the remap-local audit attached to scaling-quality checks,
+add reaction/substrate mismatch triage and active-queue ranking, and verify the
+new artifacts with regression tests before wrap-up.
+
+Completed during the run: family-propagation guardrails now retain all 24
+hydrolase-top1 reaction/substrate mismatch blockers, including 14 rows beyond
+`max_rows`, with 17 labeled propagation blocks and 7 unlabeled pending-review
+blocks.

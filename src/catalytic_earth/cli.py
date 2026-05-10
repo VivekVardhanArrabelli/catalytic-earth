@@ -23,6 +23,8 @@ from .labels import (
     analyze_review_debt_remediation,
     analyze_structure_mapping_issues,
     audit_label_scaling_quality,
+    audit_reaction_substrate_mismatches,
+    audit_review_debt_remap_local_leads,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_expert_review_export,
@@ -47,6 +49,7 @@ from .labels import (
     summarize_label_factory_batches,
     summarize_review_debt,
     summarize_review_debt_remap_leads,
+    summarize_review_debt_structure_selection_candidates,
     sweep_abstention_thresholds,
 )
 from .ontology import load_mechanism_ontology
@@ -807,6 +810,75 @@ def cmd_summarize_review_debt_remap_leads(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_audit_review_debt_remap_local_leads(args: argparse.Namespace) -> int:
+    with Path(args.remap_leads).open("r", encoding="utf-8") as handle:
+        remap_leads = json.load(handle)
+    remediation = None
+    if args.remediation:
+        with Path(args.remediation).open("r", encoding="utf-8") as handle:
+            remediation = json.load(handle)
+    review_gaps = None
+    if args.review_evidence_gaps:
+        with Path(args.review_evidence_gaps).open("r", encoding="utf-8") as handle:
+            review_gaps = json.load(handle)
+    audit = audit_review_debt_remap_local_leads(
+        remap_leads,
+        remediation_plan=remediation,
+        review_evidence_gaps=review_gaps,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote review debt remap-local lead audit to "
+        f"{args.out} ({audit['metadata']['audited_entry_count']} entries)"
+    )
+    return 0
+
+
+def cmd_summarize_review_debt_structure_selection_candidates(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.remap_local_lead_audit).open("r", encoding="utf-8") as handle:
+        remap_local_audit = json.load(handle)
+    with Path(args.alternate_structure_scan).open("r", encoding="utf-8") as handle:
+        alternate_scan = json.load(handle)
+    remediation = None
+    if args.remediation:
+        with Path(args.remediation).open("r", encoding="utf-8") as handle:
+            remediation = json.load(handle)
+    summary = summarize_review_debt_structure_selection_candidates(
+        remap_local_audit,
+        alternate_scan,
+        remediation_plan=remediation,
+    )
+    write_json(Path(args.out), summary)
+    print(
+        "Wrote review debt structure-selection candidates to "
+        f"{args.out} ({summary['metadata']['candidate_count']} entries)"
+    )
+    return 0
+
+
+def cmd_audit_reaction_substrate_mismatches(args: argparse.Namespace) -> int:
+    review_gaps = None
+    if args.review_evidence_gaps:
+        with Path(args.review_evidence_gaps).open("r", encoding="utf-8") as handle:
+            review_gaps = json.load(handle)
+    queue = None
+    if args.active_learning_queue:
+        with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+            queue = json.load(handle)
+    audit = audit_reaction_substrate_mismatches(
+        review_evidence_gaps=review_gaps,
+        active_learning_queue=queue,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote reaction/substrate mismatch audit to "
+        f"{args.out} ({audit['metadata']['mismatch_count']} rows)"
+    )
+    return 0
+
+
 def cmd_check_label_preview_promotion(args: argparse.Namespace) -> int:
     with Path(args.preview_acceptance).open("r", encoding="utf-8") as handle:
         acceptance = json.load(handle)
@@ -867,6 +939,16 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
     if args.alternate_structure_scan:
         with Path(args.alternate_structure_scan).open("r", encoding="utf-8") as handle:
             alternate_structure_scan = json.load(handle)
+    remap_local_lead_audit = None
+    if args.remap_local_lead_audit:
+        with Path(args.remap_local_lead_audit).open("r", encoding="utf-8") as handle:
+            remap_local_lead_audit = json.load(handle)
+    reaction_mismatch_audit = None
+    if args.reaction_substrate_mismatch_audit:
+        with Path(args.reaction_substrate_mismatch_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            reaction_mismatch_audit = json.load(handle)
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -880,6 +962,8 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         expert_review_export=expert_review_export,
         sequence_clusters=sequence_clusters,
         alternate_structure_scan=alternate_structure_scan,
+        remap_local_lead_audit=remap_local_lead_audit,
+        reaction_substrate_mismatch_audit=reaction_mismatch_audit,
         batch_id=args.batch_id,
     )
     write_json(Path(args.out), audit)
@@ -1645,6 +1729,55 @@ def build_parser() -> argparse.ArgumentParser:
     )
     remap_leads.set_defaults(func=cmd_summarize_review_debt_remap_leads)
 
+    remap_local_audit = subparsers.add_parser(
+        "audit-review-debt-remap-local-leads",
+        help="audit remap-local review-debt leads before review import",
+    )
+    remap_local_audit.add_argument(
+        "--remap-leads",
+        default="artifacts/v3_review_debt_remap_leads.json",
+    )
+    remap_local_audit.add_argument("--remediation", default=None)
+    remap_local_audit.add_argument("--review-evidence-gaps", default=None)
+    remap_local_audit.add_argument(
+        "--out",
+        default="artifacts/v3_review_debt_remap_local_lead_audit.json",
+    )
+    remap_local_audit.set_defaults(func=cmd_audit_review_debt_remap_local_leads)
+
+    structure_selection = subparsers.add_parser(
+        "summarize-review-debt-structure-selection-candidates",
+        help="summarize review-only local structure-selection candidates",
+    )
+    structure_selection.add_argument(
+        "--remap-local-lead-audit",
+        default="artifacts/v3_review_debt_remap_local_lead_audit.json",
+    )
+    structure_selection.add_argument(
+        "--alternate-structure-scan",
+        default="artifacts/v3_review_debt_alternate_structure_scan.json",
+    )
+    structure_selection.add_argument("--remediation", default=None)
+    structure_selection.add_argument(
+        "--out",
+        default="artifacts/v3_review_debt_structure_selection_candidates.json",
+    )
+    structure_selection.set_defaults(
+        func=cmd_summarize_review_debt_structure_selection_candidates
+    )
+
+    reaction_mismatch = subparsers.add_parser(
+        "audit-reaction-substrate-mismatches",
+        help="triage text-level reaction/substrate mismatch risks",
+    )
+    reaction_mismatch.add_argument("--review-evidence-gaps", default=None)
+    reaction_mismatch.add_argument("--active-learning-queue", default=None)
+    reaction_mismatch.add_argument(
+        "--out",
+        default="artifacts/v3_reaction_substrate_mismatch_audit.json",
+    )
+    reaction_mismatch.set_defaults(func=cmd_audit_reaction_substrate_mismatches)
+
     preview_promotion = subparsers.add_parser(
         "check-label-preview-promotion",
         help="separate mechanical preview acceptance from promotion readiness",
@@ -1706,6 +1839,8 @@ def build_parser() -> argparse.ArgumentParser:
     scaling_quality.add_argument("--expert-review-export", default=None)
     scaling_quality.add_argument("--sequence-clusters", default=None)
     scaling_quality.add_argument("--alternate-structure-scan", default=None)
+    scaling_quality.add_argument("--remap-local-lead-audit", default=None)
+    scaling_quality.add_argument("--reaction-substrate-mismatch-audit", default=None)
     scaling_quality.add_argument(
         "--out",
         default="artifacts/v3_label_scaling_quality_audit.json",

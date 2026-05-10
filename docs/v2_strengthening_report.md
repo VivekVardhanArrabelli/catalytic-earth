@@ -151,8 +151,10 @@ What is now better:
   slice, 17 on the 650- and 675-entry slices, and 19 on the 700-entry slice
 - the current 700-entry label queue is explicit; the accepted 700 batch is
   resolved only for 5 clean labels, and the post-batch active-learning queue
-  retains all 64 unlabeled candidate rows while 81 review-state rows remain
-  non-countable
+  retains all 76 unlabeled candidate rows while 81 review-state rows remain
+  non-countable; the queue now prioritizes 18 reaction/substrate mismatch
+  review rows with kinase or ATP phosphoryl-transfer text, while
+  family-propagation guardrails retain 24 related propagation blockers
 - cofactor coverage now separates local support, structure-only support, and
   expected cofactors absent from the selected structure
 - cofactor policy sweeps recommend audit-only handling for evidence-limited

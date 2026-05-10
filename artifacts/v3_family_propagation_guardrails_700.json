@@ -3,21 +3,33 @@
     "audited_count": 552,
     "blocker_counts": {
       "close_cross_family_top1_top2": 89,
+      "reaction_substrate_mismatch": 24,
       "target_family_top1_family_mismatch": 1,
-      "top1_cofactor_absent": 109,
-      "top1_counterevidence_present": 117,
+      "top1_cofactor_absent": 114,
+      "top1_counterevidence_present": 126,
       "unlabeled_candidate_requires_direct_review": 76
     },
     "decision_counts": {
-      "block_family_propagation": 124,
-      "block_propagation_pending_review": 54,
-      "bronze_review_only": 22
+      "block_family_propagation": 138,
+      "block_propagation_pending_review": 55,
+      "bronze_review_only": 21
     },
-    "local_proxy_rule": "when UniRef, CATH, or InterPro evidence is unavailable, mechanism text, ligand/cofactor context, and pocket geometry can prioritize review but cannot promote beyond bronze by themselves",
+    "local_proxy_rule": "when UniRef, CATH, or InterPro evidence is unavailable, mechanism text, ligand/cofactor context, pocket geometry, and reaction/substrate mismatch signals can prioritize or block propagation but cannot promote beyond bronze by themselves",
     "max_rows": 200,
     "method": "family_propagation_guardrail_audit",
     "ontology_version": "label_factory_v1",
-    "reported_count": 200,
+    "priority_added_count": 14,
+    "priority_inclusion_rule": "always retain reaction/substrate mismatch blockers even when they rank below max_rows",
+    "reaction_substrate_mismatch_count": 24,
+    "reaction_substrate_mismatch_label_state_counts": {
+      "labeled": 17,
+      "unlabeled": 7
+    },
+    "reaction_substrate_mismatch_reason_counts": {
+      "atp_phosphoryl_transfer_text_with_hydrolase_top1": 11,
+      "kinase_name_with_hydrolase_top1": 20
+    },
+    "reported_count": 214,
     "source_guardrails": [
       {
         "rule": "Family propagation requires shared mechanism family plus conserved catalytic role signatures; sequence cluster membership alone cannot promote labels above bronze.",
@@ -60,6 +72,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -89,6 +102,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -120,6 +134,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -155,6 +170,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -186,6 +202,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -215,6 +232,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -247,6 +265,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -277,6 +296,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -306,6 +326,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -340,6 +361,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -348,6 +370,39 @@
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.363
+    },
+    {
+      "current_label_type": null,
+      "current_tier": null,
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "label_state": "unlabeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 40,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": []
+      },
+      "mechanism_text_snippets": [
+        "Asp 100 acts as a general base to remove a proton from the O6 hydroxyl group of glucose, which can then attack the gamma phosphorous of ATP. Simultaneously, Lys 169 acts as an acid catalyst, protonating the gamma phosphate's O3. There is then subsequent proton transfer from Asp205 to Lys169 so th..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5769,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.264
     },
     {
       "current_label_type": null,
@@ -369,6 +424,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -398,6 +454,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -427,6 +484,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -460,6 +518,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -485,10 +544,14 @@
         "The proposed mechanism is an in-line single displacement reaction where the acetate acts as the nucleophile to attack the gamma phosphate of ATP, resulting in acetyl phosphate and ADP. For this reaction to take place, a magnesium ion, His180, Arg241 and Arg91 are important in stabilising the reac..."
       ],
       "propagation_blockers": [
+        "reaction_substrate_mismatch",
         "top1_counterevidence_present",
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -519,6 +582,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -549,6 +613,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -574,10 +639,14 @@
         "The catalysis is most likely to follow an associative in-line mechanism to form a pentacovalent intermediate. Asp141 acts as a base to deprotonate the hydroxyl group of CDP-ME to promote its nucleophilic attack on the terminal phosphate of ATP. Lys10 stabilises the transition state by interacting..."
       ],
       "propagation_blockers": [
+        "reaction_substrate_mismatch",
         "top1_cofactor_absent",
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -611,6 +680,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -642,6 +712,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -672,6 +743,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -706,6 +778,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -731,10 +804,14 @@
         "Asp278 acts as a base to deprotonate the 4-hydroxyl group of inositol ring. The negatively charged oxygen atom of the hydroxyl group acts as a nucleophile and directly attack the terminal-phosphate of ATP. The product is formed via a SN2 mechanism. Mg2+ and Lys150 which coordinates with alpha-pho..."
       ],
       "propagation_blockers": [
+        "reaction_substrate_mismatch",
         "top1_cofactor_absent",
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -763,11 +840,16 @@
       ],
       "propagation_blockers": [
         "close_cross_family_top1_top2",
+        "reaction_substrate_mismatch",
         "top1_cofactor_absent",
         "top1_counterevidence_present",
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -798,6 +880,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -831,6 +914,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -860,6 +944,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -890,6 +975,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_monooxygenase",
@@ -916,10 +1002,14 @@
       ],
       "propagation_blockers": [
         "close_cross_family_top1_top2",
+        "reaction_substrate_mismatch",
         "top1_counterevidence_present",
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -950,6 +1040,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -981,6 +1072,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1012,6 +1104,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1041,6 +1134,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1071,6 +1165,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_monooxygenase",
@@ -1102,6 +1197,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -1135,6 +1231,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_monooxygenase",
@@ -1166,6 +1263,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "plp_dependent_enzyme",
@@ -1195,6 +1293,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1226,6 +1325,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -1255,6 +1355,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1284,6 +1385,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1315,6 +1417,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -1348,6 +1451,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -1381,6 +1485,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1411,6 +1516,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1444,6 +1550,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -1479,6 +1586,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_monooxygenase",
@@ -1509,6 +1617,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1538,6 +1647,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1563,10 +1673,14 @@
         "The 6-hydroxyl group of Glucose is 3A from the gamma-phosphorus atom and oriented for an in-line displacement reaction. Asp657 is a catalytic base. It abstracts a proton from the 6-hydroxyl group, activating the oxygen which then attacks the gamma-phosphorous. This leads to lysis of the phosphodi..."
       ],
       "propagation_blockers": [
+        "reaction_substrate_mismatch",
         "top1_cofactor_absent",
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1600,6 +1714,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1630,6 +1745,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1663,6 +1779,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -1695,6 +1812,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "block_propagation_pending_review",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1727,6 +1845,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -1760,6 +1879,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1790,6 +1910,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1820,6 +1941,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1828,34 +1950,6 @@
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3293
-    },
-    {
-      "current_label_type": null,
-      "current_tier": null,
-      "entry_id": "m_csa:592",
-      "entry_name": "glucokinase",
-      "label_state": "unlabeled",
-      "local_proxy_evidence": {
-        "mechanism_text_count": 1,
-        "nearby_residue_count": 40,
-        "proximal_cofactor_families": [],
-        "structure_cofactor_families": []
-      },
-      "mechanism_text_snippets": [
-        "Asp 100 acts as a general base to remove a proton from the O6 hydroxyl group of glucose, which can then attack the gamma phosphorous of ATP. Simultaneously, Lys 169 acts as an acid catalyst, protonating the gamma phosphate's O3. There is then subsequent proton transfer from Asp205 to Lys169 so th..."
-      ],
-      "propagation_blockers": [
-        "unlabeled_candidate_requires_direct_review"
-      ],
-      "propagation_decision": "bronze_review_only",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.5769,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.264
     },
     {
       "current_label_type": null,
@@ -1880,6 +1974,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1908,6 +2003,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -1938,6 +2034,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -1970,6 +2067,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -1998,6 +2096,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -2030,6 +2129,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2062,6 +2162,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2094,6 +2195,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2126,6 +2228,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2158,6 +2261,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2190,6 +2294,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2220,6 +2325,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2252,6 +2358,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2284,6 +2391,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2316,6 +2424,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2348,6 +2457,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2380,6 +2490,7 @@
         "unlabeled_candidate_requires_direct_review"
       ],
       "propagation_decision": "bronze_review_only",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2408,6 +2519,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -2438,6 +2550,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2473,6 +2586,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -2508,6 +2622,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2540,6 +2655,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2574,6 +2690,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2604,6 +2721,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -2634,6 +2752,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2665,6 +2784,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -2693,6 +2813,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2723,6 +2844,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -2751,6 +2873,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -2782,6 +2905,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2817,6 +2941,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2846,6 +2971,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2880,6 +3006,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -2911,6 +3038,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2940,6 +3068,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -2970,6 +3099,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -2999,6 +3129,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3028,6 +3159,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3058,6 +3190,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3089,6 +3222,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3118,6 +3252,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3147,6 +3282,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3176,9 +3312,13 @@
         "Asp149 deprotonates the protein substrate hydroxyl group, initiating nucleophilic attack upon the gamma-phosphate of ATP in a substitution reaction that eliminates ADP. The phosphorylated protein deprotonates Asp149 [PMID:10545198]."
       ],
       "propagation_blockers": [
+        "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3208,6 +3348,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3242,6 +3383,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -3275,6 +3417,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_monooxygenase",
@@ -3305,6 +3448,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3338,6 +3482,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -3367,6 +3512,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3398,6 +3544,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3428,6 +3575,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -3459,6 +3607,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -3488,9 +3637,14 @@
         "The substrate undergoes decarboxylation, resulting in the formation of an enol intermediate, stabilised by positively charged residues. The oxyanion formed attacks the gamma phosphate of ATP in a nucleophilic substitution, giving the products of ADP and phosphoenolpyruvate."
       ],
       "propagation_blockers": [
+        "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3524,6 +3678,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3557,6 +3712,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3587,6 +3743,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -3617,6 +3774,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -3651,6 +3809,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -3686,6 +3845,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -3718,6 +3878,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3752,6 +3913,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3782,6 +3944,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3811,6 +3974,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -3840,6 +4004,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3872,6 +4037,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3901,6 +4067,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3930,6 +4097,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3960,6 +4128,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -3990,6 +4159,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -4021,6 +4191,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4051,6 +4222,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -4083,6 +4255,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4111,6 +4284,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4140,6 +4314,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4168,6 +4343,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -4196,6 +4372,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -4225,6 +4402,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4253,6 +4431,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -4281,6 +4460,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4311,6 +4491,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "plp_dependent_enzyme",
@@ -4343,6 +4524,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4372,6 +4554,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4404,6 +4587,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -4436,6 +4620,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4465,6 +4650,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -4497,6 +4683,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -4528,6 +4715,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -4563,6 +4751,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -4599,6 +4788,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -4633,6 +4823,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4662,6 +4853,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4695,6 +4887,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4725,6 +4918,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -4753,6 +4947,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4787,6 +4982,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4818,6 +5014,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4850,6 +5047,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -4882,6 +5080,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4917,6 +5116,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "target_ontology_family": "flavin_redox",
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -4945,6 +5145,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -4978,6 +5179,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_monooxygenase",
@@ -5008,6 +5210,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -5042,6 +5245,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_monooxygenase",
@@ -5075,6 +5279,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -5105,6 +5310,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5133,6 +5339,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5166,6 +5373,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5200,6 +5408,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5228,6 +5437,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5256,6 +5466,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5292,6 +5503,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -5325,6 +5537,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": "flavin_monooxygenase",
       "target_ontology_family": "flavin_redox",
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -5357,6 +5570,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -5392,6 +5606,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5421,6 +5636,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5450,6 +5666,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -5482,6 +5699,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5516,6 +5734,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5546,6 +5765,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -5580,6 +5800,7 @@
         "close_cross_family_top1_top2"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "target_ontology_family": "flavin_redox",
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -5608,6 +5829,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5642,6 +5864,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5671,6 +5894,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5705,6 +5929,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5735,6 +5960,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -5763,6 +5989,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5794,6 +6021,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -5823,9 +6051,14 @@
         "The catalysis follows an inline displacement mechanism. The hydroxyl group of HP performs a nucleophilic attack to the beta-phosphate group of ATP to yield HP-pyrophosphate and AMP. Arg92, Arg82 and two Mg(II) ions stabilise the transition state. Both Mg(II) ions activate the beta-phosphorus for..."
       ],
       "propagation_blockers": [
+        "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5855,6 +6088,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5885,6 +6119,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_monooxygenase",
@@ -5914,6 +6149,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5943,6 +6179,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -5976,6 +6213,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
@@ -6004,6 +6242,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "target_ontology_family": "hydrolysis",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -6033,6 +6272,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -6062,6 +6302,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -6091,6 +6332,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -6119,6 +6361,7 @@
         "top1_cofactor_absent"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -6152,6 +6395,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -6184,6 +6428,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -6215,6 +6460,7 @@
         "top1_counterevidence_present"
       ],
       "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
       "target_fingerprint_id": null,
       "target_ontology_family": null,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -6223,6 +6469,492 @@
       "top2_fingerprint_id": "flavin_monooxygenase",
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.2666
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 2,
+        "nearby_residue_count": 38,
+        "proximal_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "The entry represents the proposed dissociative (S<sub>N</sub>1-type) mechanism. Here a metaphosphate anion is eliminated from the ATP substrate in an intramolecular elimination. This extremely reactive intermediate then attacks the protein tyrosine substrate in an addition reaction with concomitt...",
+        "This entry represents the associative (S<sub>N</sub>2-type) mechanism. Here Asp1132 deprotonates the substrate Tyr hydroxide, activating it for nucleophilic attack on the gamma phosphate of ATP, which forms a pentavalent transition state. The transition state is stabilised by hydrogen bonding to..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4033,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.281
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 17,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "The serine residue of the protein substrate attacks the terminal, pentavalent phosphorous of ATP. Asp194 abstracts a proton from the phospho-serine residue. Asp194 relays the proton to ADP, regenerating the active site."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_cofactor_absent"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3223,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.1821
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:299",
+      "entry_name": "pantetheine-phosphate adenylyltransferase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 45,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": []
+      },
+      "mechanism_text_snippets": [
+        "One of the 4'-phosphate oxygen's of Ppant undergoes nucleophilic attack on the alpha-phosphate group of ATP with pyrophosphate as the leaving group. The pentacovalent transition state is stabilised by His18 while the leaving group is stabilised by Arg91, Ser129 and the magnesium ion."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_cofactor_absent"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3517,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.3318
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:310",
+      "entry_name": "D-alanine-(R)-lactate ligase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 70,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "The D-lactate substrate attacks the terminal phosphate of ATP in a concerted mechanism to form ADP and phosphorylated D-lactate. D-alanine attacks the alpha phosphate of the D-lactate phosphate adduct, forming a tetrahedral intermediate. The tetrahedral intermediate collapses, eliminating inorgan..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_cofactor_absent"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3649,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.295
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:327",
+      "entry_name": "protein histidine kinase (CheA)",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 15,
+        "proximal_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "This kinase first phosphorylates His45, the phosphate group is then passed on to the nucleophilic Asp of the CheY substrate."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.2704,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2148
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:365",
+      "entry_name": "Phosphofructokinase I",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 46,
+        "proximal_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "Asp128 is proposed to act as a base, abstracting a proton from 1-OH of 6-phosphofructose. This increases the nucleophilicity of the functional group which then attacks at the gamma phosphate of ATP in an SN2 reaction, forming 1,6-bisphosphate fructose and ADP."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3999,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2759
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:498",
+      "entry_name": "glutathione synthase (eukaryotic)",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 89,
+        "proximal_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "Although this protein shares very little similarity to the prokaryotic enzyme (MACiE 199), the reaction is thought to proceed in a similar manner with two successive transfer reactions. Firstly, it transfers the gamma-phosphate group of ATP to the C-terminal carboxylate of the second substrate, g..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3949,
+      "top2_fingerprint_id": "plp_dependent_enzyme",
+      "top2_ontology_family": "plp_chemistry",
+      "top2_score": 0.2836
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:541",
+      "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 32,
+        "proximal_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "The formyl oxygen of the major rotamer of the enolate form of 5-formylTHF makes a nucleophilic attack on the gamma-phosphoryl group of ATP to form a phosphorylated intermediate. At this intermediate, enzyme-bound ADP can freely equilibriate with the solvent ADP. The N10 of the iminium phosphate i..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4001,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2831
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:588",
+      "entry_name": "thymidine kinase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 64,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": []
+      },
+      "mechanism_text_snippets": [
+        "The catalytic mechanism proceeds as follows: Glu83 acts as a general base to activate the acceptor group, 5'-hydroxyl group of thymidine. The activated acceptor group makes a nucleophilic attack on the transferred group, gamma-phosphate of ATP. During the transition state, the transferred group a..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4073,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2642
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 33,
+        "proximal_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "One proposed mechanism is a general base mechanism. Glu251 deprotonates the targeted serine residue of the pyruvate dehydrogenase E1 subunit and promotes its nucleophilic attack on the terminal phosphate of ATP. His247 polarises Glu243 to allow deprotonation. Magnesium ion coordinated to Asp help..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4004,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3101
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:615",
+      "entry_name": "deoxyguanosine kinase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 32,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": []
+      },
+      "mechanism_text_snippets": [
+        "Activation of the 5'-OH of the deoxyribose by deprotonation with Glu 70 allows a nucleophilic attack of the gamma-phosphate of the phosphate donor. Arg 142 as well as the magnesium cation stabilise the trigonal bypyrimidal transition state formed in the reaction. The magnesium ion will coordinate..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_cofactor_absent"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3789,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2828
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:637",
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 41,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "In line nucleophilic attack from the dNMP on the gamma phosphate of ATP seems the most likely mechanism for the reaction. This proceeds via a pentavalent phosphate transition state, stabilised by catalytic residues Arg68, His 206 and a catalytic Mg2+ ion whose location in the enzyme has not been..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4066,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2768
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 39,
+        "proximal_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "Nucleophilic attack on the gamma phosphate of ATP by the 3' or 5' OH group of the substrate allows formation of a pentavalent phosphate transition state which collapses to release the products. In order to accelerate this the deprotonation of the OH group is accomplished by Asp 190 and the transi..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4066,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2794
+    },
+    {
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:651",
+      "entry_name": "hexokinase (type II)",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 38,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": []
+      },
+      "mechanism_text_snippets": [
+        "The reaction proceeds via an SN2 mechanism with the 6C OH of the glucose acting as a nucleophile, due to deprotonation by Asp 211, to attack the gamma phosphate of ATP. In doing so the position of glucose in the binding site changes to bring it within optimum hydrogen bonding distance of Ser 158,..."
+      ],
+      "propagation_blockers": [
+        "reaction_substrate_mismatch",
+        "top1_cofactor_absent"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3633,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2678
     }
   ]
 }

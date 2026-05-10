@@ -69,7 +69,10 @@ families:
 across UniRef/CATH/InterPro-style evidence or the current local proxies
 available in this repo: M-CSA mechanism text, ligand/cofactor context, and
 pocket geometry. Local proxies can prioritize review but cannot promote labels
-above bronze without direct evidence.
+above bronze without direct evidence. The 700 guardrail now treats hydrolase-top1
+rows with kinase or ATP phosphoryl-transfer text as `reaction_substrate_mismatch`
+propagation blockers before any label can count, and always retains those
+blocker rows even when they rank below the normal `max_rows` cutoff.
 
 ## Active Learning Queue
 
@@ -85,7 +88,9 @@ above bronze without direct evidence.
 The queue includes unlabeled tranche candidates plus labeled entries whose
 current evidence needs review. After the accepted 700 batch, the current queue
 artifact is `artifacts/v3_active_learning_review_queue_700.json`: it retains
-all 64 unlabeled post-batch candidate rows in addition to labeled review rows.
+all 76 unlabeled post-batch candidate rows in addition to labeled review rows
+and includes a `reaction_substrate_mismatch_value` ranking term for kinase or
+ATP phosphoryl-transfer text with hydrolase top hits.
 The gate fails if a queue limit truncates unlabeled candidates, so label
 expansion cannot silently skip lower-ranked unlabeled rows.
 
@@ -191,6 +196,14 @@ expected-family hits for `m_csa:577`, `m_csa:592`, and `m_csa:641`, and leaves
 `summarize-review-debt-remap-leads` artifact
 `artifacts/v3_review_debt_remap_leads_700_all_bounded.json` summarizes 44
 review-only leads and keeps `countable_label_candidate_count` at 0.
+The follow-up
+`artifacts/v3_review_debt_remap_local_lead_audit_700.json` keeps the three
+remap-local hits non-countable: `m_csa:577` and `m_csa:641` require expert
+family-boundary review, and `m_csa:592` requires expert reaction/substrate
+review because glucokinase/ATP phosphoryl-transfer text conflicts with a
+hydrolase top hit. `artifacts/v3_review_debt_structure_selection_candidates_700.json`
+therefore has 0 current structure-selection candidates after reaction mismatch
+triage.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
@@ -212,6 +225,17 @@ PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt-remap-leads \
   --remediation artifacts/v3_review_debt_remediation_700_all.json \
   --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
   --out artifacts/v3_review_debt_remap_leads_700_all_bounded.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-review-debt-remap-local-leads \
+  --remap-leads artifacts/v3_review_debt_remap_leads_700_all_bounded.json \
+  --remediation artifacts/v3_review_debt_remediation_700_all.json \
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
+  --out artifacts/v3_review_debt_remap_local_lead_audit_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-reaction-substrate-mismatches \
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_700.json \
+  --out artifacts/v3_reaction_substrate_mismatch_audit_700.json
 ```
 
 ```bash
@@ -378,6 +402,8 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality \
   --expert-review-export artifacts/v3_expert_review_export_700_preview_post_batch.json \
   --sequence-clusters artifacts/v3_sequence_cluster_proxy_700.json \
   --alternate-structure-scan artifacts/v3_review_debt_alternate_structure_scan_700.json \
+  --remap-local-lead-audit artifacts/v3_review_debt_remap_local_lead_audit_700.json \
+  --reaction-substrate-mismatch-audit artifacts/v3_reaction_substrate_mismatch_audit_700.json \
   --out artifacts/v3_label_scaling_quality_audit_700_preview.json
 ```
 
@@ -410,9 +436,14 @@ Current 700-queue gate state:
 - 79 bronze-to-silver promotions are proposed in the applied-label artifact
   after the accepted 700 batch.
 - 188 rows are queued for active-learning review after the accepted 700 batch,
-  including all 64 unlabeled post-batch candidates.
+  including all 76 unlabeled post-batch candidates; 18 queued rows carry the
+  reaction/substrate mismatch review signal.
+- The 700 family-propagation guardrail reports 24
+  `reaction_substrate_mismatch` blockers, including 14 priority-retained rows
+  beyond `max_rows`, split into 17 labeled propagation blocks and 7 unlabeled
+  pending-review blocks.
 - 100 adversarial negative controls are mined.
-- 161 expert-review items are exported from the post-700 review queue.
+- 182 expert-review items are exported from the post-700 review queue.
 - The 500, 525, 550, 575, 600, 625, 650, 675, and 700 decision batches
   accepted 149 new countable labels beyond the 475-entry source slice. The
   canonical registry now contains 624 bronze automation-curated labels, while

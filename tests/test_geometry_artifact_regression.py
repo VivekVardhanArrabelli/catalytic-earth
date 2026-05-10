@@ -614,6 +614,19 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             / "artifacts"
             / "v3_review_debt_remap_leads_700_all_bounded.json"
         )
+        remap_local_audit_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_review_debt_remap_local_lead_audit_700.json"
+        )
+        structure_selection_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_review_debt_structure_selection_candidates_700.json"
+        )
+        reaction_mismatch_700 = _load_json(
+            ROOT / "artifacts" / "v3_reaction_substrate_mismatch_audit_700.json"
+        )
         sequence_clusters_675 = _load_json(
             ROOT / "artifacts" / "v3_sequence_cluster_proxy_675.json"
         )
@@ -634,6 +647,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         gate_650 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_650.json")
         gate_675 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_675.json")
         gate_700 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_700.json")
+        family_guardrails_700 = _load_json(
+            ROOT / "artifacts" / "v3_family_propagation_guardrails_700.json"
+        )
+        active_queue_700 = _load_json(
+            ROOT / "artifacts" / "v3_active_learning_review_queue_700.json"
+        )
+        expert_export_700 = _load_json(
+            ROOT / "artifacts" / "v3_expert_review_export_700_post_batch.json"
+        )
 
         self.assertTrue(acceptance["metadata"]["accepted_for_counting"])
         self.assertEqual(acceptance["metadata"]["accepted_new_label_count"], 24)
@@ -677,6 +699,16 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(acceptance_700["metadata"]["pending_review_count"], 81)
         self.assertEqual(acceptance_700["metadata"]["accepted_review_gap_count"], 0)
         self.assertEqual(acceptance_700["metadata"]["accepted_review_gap_entry_ids"], [])
+        self.assertEqual(
+            acceptance_700["metadata"]["accepted_reaction_substrate_mismatch_count"],
+            0,
+        )
+        self.assertEqual(
+            acceptance_700["metadata"][
+                "accepted_reaction_substrate_mismatch_entry_ids"
+            ],
+            [],
+        )
         self.assertEqual(preview_summary_675["metadata"]["blocker_count"], 0)
         self.assertTrue(preview_summary_675["metadata"]["all_active_queues_retain_unlabeled_candidates"])
         self.assertEqual(preview_summary_675["metadata"]["scaling_quality_audit_count"], 1)
@@ -838,6 +870,60 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertIn(
             "alternate_structure_hits_lack_local_support",
+            scaling_quality_700["review_warnings"],
+        )
+        self.assertTrue(scaling_quality_700["metadata"]["remap_local_lead_audit_present"])
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "remap_local_lead_audit_strict_guardrail_entry_ids"
+            ],
+            ["m_csa:577", "m_csa:592", "m_csa:641"],
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "remap_local_lead_audit_expert_family_boundary_review_entry_ids"
+            ],
+            ["m_csa:577", "m_csa:641"],
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "remap_local_lead_audit_local_structure_selection_rule_candidate_entry_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "remap_local_lead_audit_expert_reaction_substrate_review_entry_ids"
+            ],
+            ["m_csa:592"],
+        )
+        self.assertIn(
+            "remap_local_leads_require_strict_guardrail",
+            scaling_quality_700["review_warnings"],
+        )
+        self.assertTrue(
+            scaling_quality_700["metadata"][
+                "reaction_substrate_mismatch_audit_present"
+            ]
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"]["reaction_substrate_mismatch_audit_count"],
+            18,
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "family_guardrail_reaction_substrate_mismatch_count"
+            ],
+            24,
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "family_guardrail_reaction_substrate_mismatch_label_state_counts"
+            ],
+            {"labeled": 17, "unlabeled": 7},
+        )
+        self.assertIn(
+            "reaction_substrate_mismatch_audit_hits",
             scaling_quality_700["review_warnings"],
         )
         self.assertEqual(remediation_700["metadata"]["requested_entry_count"], 20)
@@ -1002,6 +1088,61 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 for row in remap_leads_700_all["rows"]
             )
         )
+        self.assertEqual(
+            remap_local_audit_700["metadata"]["audited_entry_ids"],
+            ["m_csa:577", "m_csa:592", "m_csa:641"],
+        )
+        self.assertEqual(
+            remap_local_audit_700["metadata"]["decision_counts"],
+            {
+                "expert_family_boundary_review_required": 2,
+                "expert_reaction_substrate_review_required": 1,
+            },
+        )
+        self.assertEqual(
+            remap_local_audit_700["metadata"][
+                "expert_family_boundary_review_entry_ids"
+            ],
+            ["m_csa:577", "m_csa:641"],
+        )
+        self.assertEqual(
+            remap_local_audit_700["metadata"][
+                "local_structure_selection_rule_candidate_entry_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            remap_local_audit_700["metadata"][
+                "expert_reaction_substrate_review_entry_ids"
+            ],
+            ["m_csa:592"],
+        )
+        self.assertEqual(
+            remap_local_audit_700["metadata"]["strict_remap_guardrail_entry_ids"],
+            ["m_csa:577", "m_csa:592", "m_csa:641"],
+        )
+        self.assertTrue(
+            all(
+                row["countable_label_candidate"] is False
+                for row in remap_local_audit_700["rows"]
+            )
+        )
+        self.assertEqual(
+            structure_selection_700["metadata"]["candidate_entry_ids"],
+            [],
+        )
+        self.assertEqual(
+            structure_selection_700["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(structure_selection_700["rows"], [])
+        self.assertEqual(reaction_mismatch_700["metadata"]["mismatch_count"], 18)
+        self.assertIn(
+            "m_csa:592",
+            reaction_mismatch_700["metadata"]["mismatch_entry_ids"],
+        )
+        self.assertEqual(
+            reaction_mismatch_700["metadata"]["countable_label_candidate_count"], 0
+        )
         self.assertEqual(sequence_clusters_700["metadata"]["entry_count"], 700)
         self.assertEqual(sequence_clusters_700["metadata"]["missing_reference_count"], 0)
         self.assertEqual(scaling_quality_675["blockers"], [])
@@ -1020,6 +1161,21 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             scaling_failure_modes["review_queue_collapse_to_one_chemistry"]["status"],
             "observed",
         )
+        scaling_failure_modes_700 = {
+            row["id"]: row for row in scaling_quality_700["failure_modes"]
+        }
+        self.assertEqual(
+            scaling_failure_modes_700[
+                "conservative_remap_local_evidence_without_explicit_alt_positions"
+            ]["entry_ids"],
+            ["m_csa:577", "m_csa:592", "m_csa:641"],
+        )
+        self.assertEqual(
+            scaling_failure_modes_700[
+                "reaction_direction_or_substrate_class_mismatch"
+            ]["issue_count"],
+            23,
+        )
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions"], 0)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
@@ -1035,6 +1191,31 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(gate_650["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_675["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_700["metadata"]["automation_ready_for_next_label_batch"])
+        self.assertIn(
+            "reaction_substrate_mismatch_value",
+            active_queue_700["metadata"]["ranking_terms"],
+        )
+        self.assertEqual(
+            family_guardrails_700["metadata"]["reaction_substrate_mismatch_count"],
+            24,
+        )
+        self.assertEqual(
+            family_guardrails_700["metadata"]["priority_added_count"],
+            14,
+        )
+        self.assertEqual(
+            family_guardrails_700["metadata"]["blocker_counts"]["reaction_substrate_mismatch"],
+            24,
+        )
+        self.assertEqual(
+            family_guardrails_700["metadata"][
+                "reaction_substrate_mismatch_label_state_counts"
+            ],
+            {"labeled": 17, "unlabeled": 7},
+        )
+        self.assertEqual(active_queue_700["metadata"]["total_unlabeled_candidate_count"], 76)
+        self.assertEqual(active_queue_700["metadata"]["score_totals"]["reaction_substrate_mismatch_value"], 23.4)
+        self.assertEqual(expert_export_700["metadata"]["exported_count"], 182)
         self.assertEqual(gate_550["blockers"], [])
         self.assertEqual(gate_575["blockers"], [])
         self.assertEqual(gate_600["blockers"], [])

@@ -19,6 +19,8 @@ from catalytic_earth.labels import (
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
     audit_label_scaling_quality,
+    audit_reaction_substrate_mismatches,
+    audit_review_debt_remap_local_leads,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_expert_review_export,
@@ -47,6 +49,7 @@ from catalytic_earth.labels import (
     summarize_label_factory_batches,
     summarize_review_debt,
     summarize_review_debt_remap_leads,
+    summarize_review_debt_structure_selection_candidates,
     sweep_abstention_thresholds,
 )
 
@@ -584,6 +587,11 @@ class LabelTests(unittest.TestCase):
         self.assertGreaterEqual(queue["metadata"]["queued_count"], 2)
         self.assertEqual(queue["rows"][0]["rank"], 1)
         self.assertIn("uncertainty", queue["rows"][0]["review_scores"])
+        self.assertIn(
+            "reaction_substrate_mismatch_value",
+            queue["metadata"]["ranking_terms"],
+        )
+        self.assertIn("reaction_substrate_mismatch_count", queue["metadata"])
         self.assertTrue(queue["metadata"]["all_unlabeled_rows_retained"])
 
         export = build_expert_review_export(queue, labels, max_rows=1)
@@ -679,6 +687,7 @@ class LabelTests(unittest.TestCase):
                     "hard_negative_value",
                     "evidence_conflict",
                     "family_boundary_value",
+                    "reaction_substrate_mismatch_value",
                 ],
             },
             "rows": [
@@ -914,6 +923,56 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(check["metadata"]["accepted_new_label_entry_ids"], ["m_csa:2"])
         self.assertEqual(check["metadata"]["accepted_review_gap_entry_ids"], ["m_csa:2"])
         self.assertIn("accepted_labels_have_no_review_evidence_gaps", check["blockers"])
+
+    def test_label_batch_acceptance_blocks_reaction_substrate_mismatch(self) -> None:
+        baseline = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="Baseline label is already countable.",
+            )
+        ]
+        new_label = MechanismLabel(
+            entry_id="m_csa:2",
+            fingerprint_id="metal_dependent_hydrolase",
+            label_type="seed_fingerprint",
+            confidence="medium",
+            rationale="New label should be blocked by reaction mismatch evidence.",
+        )
+        check = check_label_batch_acceptance(
+            baseline_labels=baseline,
+            review_state_labels=baseline + [new_label],
+            countable_labels=baseline + [new_label],
+            evaluation={"metadata": {"out_of_scope_false_non_abstentions": 0}},
+            hard_negatives={"metadata": {"hard_negative_count": 0, "near_miss_count": 0}},
+            in_scope_failures={"metadata": {"actionable_failure_count": 0}},
+            label_factory_gate={"metadata": {"automation_ready_for_next_label_batch": True}},
+            review_evidence_gaps={
+                "rows": [
+                    {
+                        "entry_id": "m_csa:2",
+                        "entry_name": "glucokinase-like accepted label",
+                        "decision_action": "accept_label",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "mechanism_text_snippets": [
+                            "Glucose attacks the gamma phosphorous of ATP."
+                        ],
+                    }
+                ]
+            },
+        )
+
+        self.assertFalse(check["metadata"]["accepted_for_counting"])
+        self.assertEqual(
+            check["metadata"]["accepted_reaction_substrate_mismatch_entry_ids"],
+            ["m_csa:2"],
+        )
+        self.assertIn(
+            "accepted_labels_have_no_reaction_substrate_mismatches",
+            check["blockers"],
+        )
 
     def test_review_debt_summary_prioritizes_cofactor_and_boundary_gaps(self) -> None:
         gaps = {
@@ -1421,6 +1480,261 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertEqual(summary["rows"][0]["local_expected_ligand_codes"], ["FAD"])
         self.assertEqual(summary["rows"][0]["structure_expected_ligand_codes"], ["FAD"])
 
+    def test_review_debt_remap_local_lead_audit_classifies_review_lanes(self) -> None:
+        remap_leads = {
+            "metadata": {"method": "review_debt_remap_lead_summary"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:653",
+                    "entry_name": "counterevidence remap lead",
+                    "lead_type": "local_expected_family_hit_from_remap",
+                    "gap_reasons": [
+                        "counterevidence_present",
+                        "expected_cofactor_absent_from_structure",
+                    ],
+                    "expected_cofactor_families": ["metal_ion"],
+                    "local_expected_family_hit_pdb_ids": ["2BBB"],
+                    "local_expected_family_hit_from_remap_pdb_ids": ["2BBB"],
+                    "local_expected_ligand_codes": ["ZN"],
+                    "remap_basis_counts": {"same_chain_residue_id": 1},
+                    "remapped_residue_position_structure_count": 1,
+                },
+                {
+                    "entry_id": "m_csa:654",
+                    "entry_name": "clean remap lead",
+                    "lead_type": "local_expected_family_hit_from_remap",
+                    "gap_reasons": ["expected_cofactor_absent_from_structure"],
+                    "expected_cofactor_families": ["metal_ion"],
+                    "local_expected_family_hit_pdb_ids": ["3CCC"],
+                    "local_expected_family_hit_from_remap_pdb_ids": ["3CCC"],
+                    "local_expected_ligand_codes": ["MG"],
+                    "remap_basis_counts": {"same_chain_residue_id": 1},
+                    "remapped_residue_position_structure_count": 1,
+                },
+                {
+                    "entry_id": "m_csa:655",
+                    "entry_name": "glucokinase-like remap lead",
+                    "lead_type": "local_expected_family_hit_from_remap",
+                    "gap_reasons": ["expected_cofactor_absent_from_structure"],
+                    "expected_cofactor_families": ["metal_ion"],
+                    "local_expected_family_hit_pdb_ids": ["4DDD"],
+                    "local_expected_family_hit_from_remap_pdb_ids": ["4DDD"],
+                    "local_expected_ligand_codes": ["MG"],
+                    "remap_basis_counts": {"same_chain_residue_id": 1},
+                    "remapped_residue_position_structure_count": 1,
+                },
+            ],
+        }
+        remediation = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:653",
+                    "selected_pdb_id": "1AAA",
+                    "coverage_status": "expected_absent_from_structure",
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "alternate_pdb_with_residue_positions_count": 0,
+                    "candidate_pdb_with_residue_positions_count": 1,
+                    "counterevidence_reasons": ["role_inferred_metal_low_pocket_support"],
+                    "target_fingerprint_id": "metal_dependent_hydrolase",
+                    "target_score": 0.42,
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.42,
+                },
+                {
+                    "entry_id": "m_csa:654",
+                    "selected_pdb_id": "3AAA",
+                    "coverage_status": "expected_absent_from_structure",
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "alternate_pdb_with_residue_positions_count": 0,
+                    "candidate_pdb_with_residue_positions_count": 1,
+                    "counterevidence_reasons": [],
+                    "target_fingerprint_id": "metal_dependent_hydrolase",
+                    "target_score": 0.58,
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.58,
+                },
+                {
+                    "entry_id": "m_csa:655",
+                    "selected_pdb_id": "4AAA",
+                    "coverage_status": "expected_absent_from_structure",
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "alternate_pdb_with_residue_positions_count": 0,
+                    "candidate_pdb_with_residue_positions_count": 1,
+                    "counterevidence_reasons": [],
+                    "target_fingerprint_id": "metal_dependent_hydrolase",
+                    "target_score": 0.6,
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.6,
+                },
+            ]
+        }
+        review_gaps = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:655",
+                    "entry_name": "glucokinase-like remap lead",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "mechanism_text_snippets": [
+                        "Glucose attacks the gamma phosphorous of ATP during kinase chemistry."
+                    ],
+                }
+            ]
+        }
+
+        audit = audit_review_debt_remap_local_leads(
+            remap_leads,
+            remediation_plan=remediation,
+            review_evidence_gaps=review_gaps,
+        )
+
+        self.assertEqual(
+            audit["metadata"]["method"], "review_debt_remap_local_lead_audit"
+        )
+        self.assertEqual(audit["metadata"]["audited_entry_count"], 3)
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            audit["metadata"]["decision_counts"],
+            {
+                "expert_family_boundary_review_required": 1,
+                "expert_reaction_substrate_review_required": 1,
+                "local_structure_selection_rule_candidate": 1,
+            },
+        )
+        self.assertEqual(
+            audit["metadata"]["expert_family_boundary_review_entry_ids"],
+            ["m_csa:653"],
+        )
+        self.assertEqual(
+            audit["metadata"]["local_structure_selection_rule_candidate_entry_ids"],
+            ["m_csa:654"],
+        )
+        self.assertEqual(
+            audit["metadata"]["expert_reaction_substrate_review_entry_ids"],
+            ["m_csa:655"],
+        )
+        self.assertEqual(
+            audit["metadata"]["strict_remap_guardrail_entry_ids"],
+            ["m_csa:653", "m_csa:654", "m_csa:655"],
+        )
+        self.assertTrue(audit["rows"][0]["strict_remap_guardrail_required"])
+        self.assertIn(
+            "local_evidence_from_conservative_remap_only",
+            audit["rows"][0]["counting_blockers"],
+        )
+        self.assertEqual(
+            audit["rows"][1]["recommended_resolution"],
+            "local_structure_selection_review",
+        )
+        self.assertEqual(audit["rows"][2]["recommended_resolution"], "expert_review")
+        self.assertIn(
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            audit["rows"][2]["reaction_substrate_mismatch_reasons"],
+        )
+
+    def test_review_debt_structure_selection_candidates_remain_review_only(self) -> None:
+        remap_local_audit = {
+            "metadata": {"method": "review_debt_remap_local_lead_audit"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:654",
+                    "entry_name": "clean remap lead",
+                    "audit_decision": "local_structure_selection_rule_candidate",
+                    "selected_pdb_id": "3AAA",
+                    "selected_structure_gap_reasons": [
+                        "selected_structure_missing_expected_cofactor_family"
+                    ],
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "expected_cofactor_families": ["metal_ion"],
+                    "local_expected_ligand_codes": ["MG"],
+                    "local_expected_family_hit_from_remap_pdb_ids": ["3CCC"],
+                    "strict_remap_guardrail_required": True,
+                    "alternate_pdb_with_explicit_residue_positions_count": 0,
+                }
+            ],
+        }
+        alternate_scan = {
+            "metadata": {"method": "review_debt_alternate_structure_scan"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:654",
+                    "entry_name": "clean remap lead",
+                    "selected_pdb_id": "3AAA",
+                    "structure_hits": [
+                        {
+                            "pdb_id": "3CCC",
+                            "residue_position_source": "selected_position_remap",
+                            "residue_position_remap_basis": "same_chain_residue_id",
+                            "usable_residue_position_count": 2,
+                            "remapped_residue_position_count": 2,
+                            "expected_family_hits": ["metal_ion"],
+                            "local_expected_family_hits": ["metal_ion"],
+                            "local_ligand_codes": ["BGC", "MG"],
+                            "ligand_codes": ["ANP", "BGC", "MG"],
+                        }
+                    ],
+                }
+            ],
+        }
+
+        summary = summarize_review_debt_structure_selection_candidates(
+            remap_local_audit,
+            alternate_scan,
+        )
+
+        self.assertEqual(
+            summary["metadata"]["method"],
+            "review_debt_structure_selection_candidate_summary",
+        )
+        self.assertEqual(summary["metadata"]["candidate_entry_ids"], ["m_csa:654"])
+        self.assertEqual(summary["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(summary["rows"][0]["countable_label_candidate"])
+        self.assertEqual(summary["rows"][0]["candidate_pdb_ids"], ["3CCC"])
+        self.assertEqual(summary["rows"][0]["candidate_local_expected_ligand_codes"], ["MG"])
+        self.assertTrue(summary["rows"][0]["strict_remap_guardrail_required"])
+
+    def test_reaction_substrate_mismatch_audit_flags_kinase_hydrolase_text(self) -> None:
+        audit = audit_reaction_substrate_mismatches(
+            active_learning_queue={
+                "rows": [
+                    {
+                        "entry_id": "m_csa:655",
+                        "entry_name": "glucokinase-like lead",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_score": 0.6,
+                        "rank": 5,
+                        "mechanism_text_snippets": [
+                            "Glucose attacks the gamma phosphorous of ATP."
+                        ],
+                    },
+                    {
+                        "entry_id": "m_csa:656",
+                        "entry_name": "metal hydrolase control",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "mechanism_text_snippets": [
+                            "Water attacks the substrate in a hydrolysis reaction."
+                        ],
+                    },
+                ]
+            }
+        )
+
+        self.assertEqual(audit["metadata"]["method"], "reaction_substrate_mismatch_audit")
+        self.assertEqual(audit["metadata"]["mismatch_entry_ids"], ["m_csa:655"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(audit["rows"][0]["countable_label_candidate"])
+        self.assertIn(
+            "kinase_name_with_hydrolase_top1",
+            audit["rows"][0]["mismatch_reasons"],
+        )
+        self.assertIn(
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            audit["rows"][0]["mismatch_reasons"],
+        )
+
     def test_preview_promotion_readiness_warns_on_new_review_debt(self) -> None:
         acceptance = {
             "metadata": {
@@ -1612,6 +1926,24 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
                 "fetch_failure_count": 0,
             }
         }
+        remap_local_audit = {
+            "metadata": {
+                "method": "review_debt_remap_local_lead_audit",
+                "countable_label_candidate_count": 0,
+                "strict_remap_guardrail_entry_ids": ["m_csa:650"],
+                "expert_family_boundary_review_entry_ids": ["m_csa:650"],
+                "local_structure_selection_rule_candidate_entry_ids": [],
+                "decision_rule": "test rule",
+            }
+        }
+        reaction_mismatch_audit = {
+            "metadata": {
+                "method": "reaction_substrate_mismatch_audit",
+                "mismatch_count": 1,
+                "mismatch_entry_ids": ["m_csa:650"],
+                "mismatch_reason_counts": {"kinase_name_with_hydrolase_top1": 1},
+            }
+        }
 
         audit = audit_label_scaling_quality(
             acceptance,
@@ -1625,6 +1957,8 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             structure_mapping=structure_mapping,
             sequence_clusters=sequence_clusters,
             alternate_structure_scan=alternate_scan,
+            remap_local_lead_audit=remap_local_audit,
+            reaction_substrate_mismatch_audit=reaction_mismatch_audit,
             batch_id="test_preview",
         )
 
@@ -1665,8 +1999,27 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         )
         self.assertIn("candidate_entries_share_sequence_clusters", audit["review_warnings"])
         self.assertIn("alternate_structure_hits_lack_local_support", audit["review_warnings"])
+        self.assertIn("remap_local_leads_require_strict_guardrail", audit["review_warnings"])
+        self.assertIn("reaction_substrate_mismatch_audit_hits", audit["review_warnings"])
+        self.assertTrue(audit["gates"]["remap_local_leads_remain_review_only"])
+        self.assertEqual(
+            audit["metadata"]["remap_local_lead_audit_strict_guardrail_entry_ids"],
+            ["m_csa:650"],
+        )
         failure_modes = {row["id"]: row for row in audit["failure_modes"]}
         self.assertEqual(failure_modes["sibling_mechanism_confusion"]["issue_count"], 1)
+        self.assertEqual(
+            failure_modes[
+                "conservative_remap_local_evidence_without_explicit_alt_positions"
+            ]["entry_ids"],
+            ["m_csa:650"],
+        )
+        self.assertEqual(
+            failure_modes["reaction_direction_or_substrate_class_mismatch"][
+                "entry_ids"
+            ],
+            ["m_csa:650", "m_csa:651"],
+        )
         self.assertEqual(failure_modes["text_leakage_without_mechanistic_evidence"]["entry_ids"], ["m_csa:651"])
         self.assertEqual(failure_modes["sequence_family_leakage"]["status"], "guardrail_active")
         self.assertEqual(
@@ -2279,7 +2632,12 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
                 rationale="example rationale long enough for propagation audit",
             )
         ]
-        geometry = {"entries": [{"entry_id": "m_csa:8", "entry_name": "unlabeled proxy"}]}
+        geometry = {
+            "entries": [
+                {"entry_id": "m_csa:8", "entry_name": "unlabeled proxy"},
+                {"entry_id": "m_csa:9", "entry_name": "adenylate kinase proxy"},
+            ]
+        }
         retrieval = {
             "results": [
                 {
@@ -2299,12 +2657,35 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
                         {"fingerprint_id": "plp_dependent_enzyme", "score": 0.6}
                     ],
                 },
+                {
+                    "entry_id": "m_csa:9",
+                    "entry_name": "adenylate kinase proxy",
+                    "mechanism_text_count": 1,
+                    "mechanism_text_snippets": [
+                        "ATP gamma phosphate is transferred to the acceptor substrate."
+                    ],
+                    "top_fingerprints": [
+                        {"fingerprint_id": "metal_dependent_hydrolase", "score": 0.62}
+                    ],
+                },
             ]
         }
         guardrails = build_family_propagation_guardrails(geometry, retrieval, labels)
-        decisions = {row["entry_id"]: row["propagation_decision"] for row in guardrails["rows"]}
+        rows = {row["entry_id"]: row for row in guardrails["rows"]}
+        decisions = {entry_id: row["propagation_decision"] for entry_id, row in rows.items()}
         self.assertEqual(decisions["m_csa:1"], "block_family_propagation")
         self.assertEqual(decisions["m_csa:8"], "bronze_review_only")
+        self.assertEqual(decisions["m_csa:9"], "block_propagation_pending_review")
+        self.assertIn("reaction_substrate_mismatch", rows["m_csa:9"]["propagation_blockers"])
+        self.assertIn(
+            "kinase_name_with_hydrolase_top1",
+            rows["m_csa:9"]["reaction_substrate_mismatch_reasons"],
+        )
+        self.assertEqual(guardrails["metadata"]["reaction_substrate_mismatch_count"], 1)
+        self.assertEqual(
+            guardrails["metadata"]["reaction_substrate_mismatch_label_state_counts"],
+            {"unlabeled": 1},
+        )
         self.assertIn("source_guardrails", guardrails["metadata"])
 
     def test_group_hard_negative_controls(self) -> None:

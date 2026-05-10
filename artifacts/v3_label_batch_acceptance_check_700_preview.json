@@ -2,6 +2,7 @@
   "blockers": [],
   "gates": {
     "accepted_labels_added": true,
+    "accepted_labels_have_no_reaction_substrate_mismatches": true,
     "accepted_labels_have_no_review_evidence_gaps": true,
     "countable_registry_preserves_baseline": true,
     "factory_gate_ready": true,
@@ -21,6 +22,8 @@
       "m_csa:697",
       "m_csa:699"
     ],
+    "accepted_reaction_substrate_mismatch_count": 0,
+    "accepted_reaction_substrate_mismatch_entry_ids": [],
     "accepted_review_gap_count": 0,
     "accepted_review_gap_entry_ids": [],
     "actionable_in_scope_failure_count": 0,

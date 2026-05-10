@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "candidate_count": 0,
+    "candidate_entry_ids": [],
+    "countable_label_candidate_count": 0,
+    "method": "review_debt_structure_selection_candidate_summary",
+    "review_rule": "structure-selection candidates are review-only until explicit alternate-structure residue evidence or expert review clears the selected-structure cofactor gap and label-factory gates pass",
+    "source_audit_method": "review_debt_remap_local_lead_audit",
+    "source_scan_method": "review_debt_alternate_structure_scan",
+    "strict_remap_guardrail_entry_ids": []
+  },
+  "rows": []
+}

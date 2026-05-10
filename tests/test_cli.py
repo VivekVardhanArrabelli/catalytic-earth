@@ -504,6 +504,219 @@ class CliTests(unittest.TestCase):
             )
             self.assertFalse(summary["rows"][0]["countable_label_candidate"])
 
+    def test_audit_review_debt_remap_local_leads_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            remap_leads = root / "remap_leads.json"
+            remediation = root / "remediation.json"
+            out = root / "audit.json"
+            remap_leads.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_debt_remap_lead_summary"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:653",
+                                "entry_name": "alternate local metal gap",
+                                "lead_type": "local_expected_family_hit_from_remap",
+                                "gap_reasons": [
+                                    "counterevidence_present",
+                                    "expected_cofactor_absent_from_structure",
+                                ],
+                                "expected_cofactor_families": ["metal_ion"],
+                                "local_expected_family_hit_pdb_ids": ["2BBB"],
+                                "local_expected_family_hit_from_remap_pdb_ids": [
+                                    "2BBB"
+                                ],
+                                "local_expected_ligand_codes": ["ZN"],
+                                "remap_basis_counts": {"same_chain_residue_id": 1},
+                                "remapped_residue_position_structure_count": 1,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            remediation.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:653",
+                                "selected_pdb_id": "1AAA",
+                                "coverage_status": "expected_absent_from_structure",
+                                "selected_active_site_has_expected_family": False,
+                                "selected_structure_has_expected_family": False,
+                                "alternate_pdb_with_residue_positions_count": 0,
+                                "candidate_pdb_with_residue_positions_count": 1,
+                                "counterevidence_reasons": [
+                                    "role_inferred_metal_low_pocket_support"
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-review-debt-remap-local-leads",
+                    "--remap-leads",
+                    str(remap_leads),
+                    "--remediation",
+                    str(remediation),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(audit["metadata"]["audited_entry_count"], 1)
+            self.assertEqual(
+                audit["metadata"]["expert_family_boundary_review_entry_ids"],
+                ["m_csa:653"],
+            )
+            self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+            self.assertTrue(audit["rows"][0]["strict_remap_guardrail_required"])
+
+    def test_summarize_review_debt_structure_selection_candidates_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            remap_local_audit = root / "remap_local_audit.json"
+            alternate_scan = root / "alternate_scan.json"
+            out = root / "structure_selection.json"
+            remap_local_audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_debt_remap_local_lead_audit"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:654",
+                                "entry_name": "clean remap lead",
+                                "audit_decision": "local_structure_selection_rule_candidate",
+                                "selected_pdb_id": "3AAA",
+                                "selected_structure_gap_reasons": [
+                                    "selected_structure_missing_expected_cofactor_family"
+                                ],
+                                "selected_active_site_has_expected_family": False,
+                                "selected_structure_has_expected_family": False,
+                                "expected_cofactor_families": ["metal_ion"],
+                                "local_expected_ligand_codes": ["MG"],
+                                "local_expected_family_hit_from_remap_pdb_ids": [
+                                    "3CCC"
+                                ],
+                                "strict_remap_guardrail_required": True,
+                                "alternate_pdb_with_explicit_residue_positions_count": 0,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            alternate_scan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_debt_alternate_structure_scan"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:654",
+                                "entry_name": "clean remap lead",
+                                "structure_hits": [
+                                    {
+                                        "pdb_id": "3CCC",
+                                        "residue_position_source": "selected_position_remap",
+                                        "residue_position_remap_basis": "same_chain_residue_id",
+                                        "usable_residue_position_count": 2,
+                                        "remapped_residue_position_count": 2,
+                                        "expected_family_hits": ["metal_ion"],
+                                        "local_expected_family_hits": ["metal_ion"],
+                                        "local_ligand_codes": ["BGC", "MG"],
+                                        "ligand_codes": ["ANP", "BGC", "MG"],
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "summarize-review-debt-structure-selection-candidates",
+                    "--remap-local-lead-audit",
+                    str(remap_local_audit),
+                    "--alternate-structure-scan",
+                    str(alternate_scan),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            summary = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(summary["metadata"]["candidate_entry_ids"], ["m_csa:654"])
+            self.assertEqual(summary["metadata"]["countable_label_candidate_count"], 0)
+            self.assertEqual(summary["rows"][0]["candidate_local_expected_ligand_codes"], ["MG"])
+
+    def test_audit_reaction_substrate_mismatches_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue = root / "queue.json"
+            out = root / "reaction_mismatch.json"
+            queue.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:655",
+                                "entry_name": "glucokinase-like lead",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "mechanism_text_snippets": [
+                                    "Glucose attacks the gamma phosphorous of ATP."
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-reaction-substrate-mismatches",
+                    "--active-learning-queue",
+                    str(queue),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(audit["metadata"]["mismatch_entry_ids"], ["m_csa:655"])
+            self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+
     def test_check_label_preview_promotion_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -618,6 +831,8 @@ class CliTests(unittest.TestCase):
             mapping = root / "mapping.json"
             sequence_clusters = root / "sequence_clusters.json"
             alternate_scan = root / "alternate_scan.json"
+            remap_local_audit = root / "remap_local_audit.json"
+            reaction_mismatch_audit = root / "reaction_mismatch_audit.json"
             out = root / "audit.json"
             acceptance.write_text(
                 json.dumps(
@@ -734,6 +949,37 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            remap_local_audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_remap_local_lead_audit",
+                            "countable_label_candidate_count": 0,
+                            "strict_remap_guardrail_entry_ids": ["m_csa:651"],
+                            "expert_family_boundary_review_entry_ids": [],
+                            "local_structure_selection_rule_candidate_entry_ids": [
+                                "m_csa:651"
+                            ],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reaction_mismatch_audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "reaction_substrate_mismatch_audit",
+                            "mismatch_count": 1,
+                            "mismatch_entry_ids": ["m_csa:651"],
+                            "mismatch_reason_counts": {
+                                "kinase_name_with_hydrolase_top1": 1
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -765,6 +1011,10 @@ class CliTests(unittest.TestCase):
                     str(sequence_clusters),
                     "--alternate-structure-scan",
                     str(alternate_scan),
+                    "--remap-local-lead-audit",
+                    str(remap_local_audit),
+                    "--reaction-substrate-mismatch-audit",
+                    str(reaction_mismatch_audit),
                     "--out",
                     str(out),
                 ],
@@ -783,7 +1033,13 @@ class CliTests(unittest.TestCase):
                 "not_observed_in_sequence_cluster_artifact",
             )
             self.assertTrue(audit["metadata"]["alternate_structure_scan_present"])
+            self.assertTrue(audit["metadata"]["remap_local_lead_audit_present"])
+            self.assertTrue(
+                audit["metadata"]["reaction_substrate_mismatch_audit_present"]
+            )
             self.assertIn("alternate_structure_hits_lack_local_support", audit["review_warnings"])
+            self.assertIn("remap_local_leads_require_strict_guardrail", audit["review_warnings"])
+            self.assertIn("reaction_substrate_mismatch_audit_hits", audit["review_warnings"])
 
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

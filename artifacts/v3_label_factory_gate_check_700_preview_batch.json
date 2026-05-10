@@ -17,12 +17,12 @@
     "automation_ready_for_next_label_batch": true,
     "bulk_scaling_rule": "new labels may be added in batches only after this gate check passes and the generated batch artifacts are regenerated",
     "dominant_active_queue_family": "hydrolysis",
-    "dominant_active_queue_family_fraction": 0.8245,
+    "dominant_active_queue_family_fraction": 0.8135,
     "gate_count": 11,
     "label_count": 624,
     "method": "label_factory_gate_check",
     "omitted_underrepresented_queue_entry_ids": [],
     "passed_gate_count": 11,
-    "underrepresented_queue_entry_count": 33
+    "underrepresented_queue_entry_count": 36
   }
 }

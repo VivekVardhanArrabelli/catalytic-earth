@@ -86,11 +86,12 @@
           "m_csa:702"
         ],
         "guardrail_blocker_counts": {
-          "close_cross_family_top1_top2": 89,
+          "close_cross_family_top1_top2": 87,
+          "reaction_substrate_mismatch": 24,
           "target_family_top1_family_mismatch": 1,
-          "top1_cofactor_absent": 109,
-          "top1_counterevidence_present": 117,
-          "unlabeled_candidate_requires_direct_review": 76
+          "top1_cofactor_absent": 111,
+          "top1_counterevidence_present": 123,
+          "unlabeled_candidate_requires_direct_review": 81
         },
         "issue_class": "family_propagation_boundary"
       },
@@ -101,7 +102,7 @@
     {
       "entry_ids": [],
       "evidence": {
-        "local_proxy_rule": "when UniRef, CATH, or InterPro evidence is unavailable, mechanism text, ligand/cofactor context, and pocket geometry can prioritize review but cannot promote beyond bronze by themselves",
+        "local_proxy_rule": "when UniRef, CATH, or InterPro evidence is unavailable, mechanism text, ligand/cofactor context, pocket geometry, and reaction/substrate mismatch signals can prioritize or block propagation but cannot promote beyond bronze by themselves",
         "source_guardrails": [
           {
             "rule": "Family propagation requires shared mechanism family plus conserved catalytic role signatures; sequence cluster membership alone cannot promote labels above bronze.",
@@ -256,6 +257,23 @@
     },
     {
       "entry_ids": [
+        "m_csa:35",
+        "m_csa:51",
+        "m_csa:151",
+        "m_csa:246",
+        "m_csa:365",
+        "m_csa:498",
+        "m_csa:541",
+        "m_csa:588",
+        "m_csa:592",
+        "m_csa:603",
+        "m_csa:637",
+        "m_csa:640",
+        "m_csa:643",
+        "m_csa:654",
+        "m_csa:662",
+        "m_csa:663",
+        "m_csa:670",
         "m_csa:683",
         "m_csa:685",
         "m_csa:696",
@@ -265,6 +283,23 @@
       ],
       "evidence": {
         "entry_ids": [
+          "m_csa:35",
+          "m_csa:51",
+          "m_csa:151",
+          "m_csa:246",
+          "m_csa:365",
+          "m_csa:498",
+          "m_csa:541",
+          "m_csa:588",
+          "m_csa:592",
+          "m_csa:603",
+          "m_csa:637",
+          "m_csa:640",
+          "m_csa:643",
+          "m_csa:654",
+          "m_csa:662",
+          "m_csa:663",
+          "m_csa:670",
           "m_csa:683",
           "m_csa:685",
           "m_csa:696",
@@ -272,10 +307,35 @@
           "m_csa:700",
           "m_csa:702"
         ],
-        "issue_class": "reaction_or_substrate_class_mismatch"
+        "issue_class": "reaction_or_substrate_class_mismatch",
+        "reaction_substrate_mismatch_audit_entry_ids": [
+          "m_csa:35",
+          "m_csa:51",
+          "m_csa:151",
+          "m_csa:246",
+          "m_csa:365",
+          "m_csa:498",
+          "m_csa:541",
+          "m_csa:588",
+          "m_csa:592",
+          "m_csa:603",
+          "m_csa:637",
+          "m_csa:640",
+          "m_csa:643",
+          "m_csa:654",
+          "m_csa:662",
+          "m_csa:663",
+          "m_csa:670",
+          "m_csa:696"
+        ],
+        "reaction_substrate_mismatch_audit_present": true,
+        "reaction_substrate_mismatch_audit_reason_counts": {
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1": 9,
+          "kinase_name_with_hydrolase_top1": 16
+        }
       },
       "id": "reaction_direction_or_substrate_class_mismatch",
-      "issue_count": 6,
+      "issue_count": 23,
       "status": "observed"
     },
     {
@@ -303,6 +363,29 @@
       },
       "id": "active_site_residue_remapping_error",
       "issue_count": 5,
+      "status": "observed"
+    },
+    {
+      "entry_ids": [
+        "m_csa:577",
+        "m_csa:592",
+        "m_csa:641"
+      ],
+      "evidence": {
+        "countable_label_candidate_count": 0,
+        "expert_family_boundary_review_entry_ids": [
+          "m_csa:577",
+          "m_csa:641"
+        ],
+        "expert_reaction_substrate_review_entry_ids": [
+          "m_csa:592"
+        ],
+        "local_structure_selection_rule_candidate_entry_ids": [],
+        "remap_local_lead_audit_present": true,
+        "review_rule": "counterevidence routes remap-local leads to expert review; otherwise selected-structure cofactor absence makes them local structure-selection review candidates, with conservative remap evidence kept non-countable until explicit review/import evidence and factory gates clear"
+      },
+      "id": "conservative_remap_local_evidence_without_explicit_alt_positions",
+      "issue_count": 3,
       "status": "observed"
     },
     {
@@ -334,18 +417,18 @@
       "entry_ids": [],
       "evidence": {
         "active_queue_top1_ontology_family_counts": {
-          "flavin_redox": 17,
-          "heme_redox": 14,
-          "hydrolysis": 155,
+          "flavin_redox": 18,
+          "heme_redox": 16,
+          "hydrolysis": 157,
           "plp_chemistry": 2
         },
         "dominant_family": "hydrolysis",
-        "dominant_family_fraction": 0.8245,
+        "dominant_family_fraction": 0.8135,
         "omitted_underrepresented_queue_entry_ids": [],
-        "underrepresented_queue_entry_count": 33
+        "underrepresented_queue_entry_count": 36
       },
       "id": "review_queue_collapse_to_one_chemistry",
-      "issue_count": 155,
+      "issue_count": 157,
       "status": "observed"
     },
     {
@@ -364,6 +447,7 @@
     "active_queue_retains_unlabeled_candidates": true,
     "family_guardrails_present": true,
     "new_review_debt_rows_classified": true,
+    "remap_local_leads_remain_review_only": true,
     "review_export_retains_underrepresented_families": true,
     "zero_actionable_in_scope_failures": true,
     "zero_false_non_abstentions": true,
@@ -428,6 +512,15 @@
     "audit_recommendation": "review_before_promoting",
     "audit_rule": "before promoting a preview batch, classify new ontology, family-propagation, cofactor, mapping, queue-composition, hard-negative, and text-leakage failure modes; accepted labels with unresolved review debt are not promotion-ready",
     "batch_id": "700_preview",
+    "family_guardrail_reaction_substrate_mismatch_count": 24,
+    "family_guardrail_reaction_substrate_mismatch_label_state_counts": {
+      "labeled": 17,
+      "unlabeled": 7
+    },
+    "family_guardrail_reaction_substrate_mismatch_reason_counts": {
+      "atp_phosphoryl_transfer_text_with_hydrolase_top1": 11,
+      "kinase_name_with_hydrolase_top1": 20
+    },
     "issue_class_counts": {
       "active_site_mapping_gap": 5,
       "cofactor_family_ambiguity": 17,
@@ -463,17 +556,56 @@
       "m_csa:702"
     ],
     "omitted_underrepresented_queue_entry_ids": [],
+    "reaction_substrate_mismatch_audit_count": 18,
+    "reaction_substrate_mismatch_audit_entry_ids": [
+      "m_csa:35",
+      "m_csa:51",
+      "m_csa:151",
+      "m_csa:246",
+      "m_csa:365",
+      "m_csa:498",
+      "m_csa:541",
+      "m_csa:588",
+      "m_csa:592",
+      "m_csa:603",
+      "m_csa:637",
+      "m_csa:640",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:670",
+      "m_csa:696"
+    ],
+    "reaction_substrate_mismatch_audit_present": true,
     "readiness_recommendation": "review_before_promoting",
+    "remap_local_lead_audit_countable_label_candidate_count": 0,
+    "remap_local_lead_audit_expert_family_boundary_review_entry_ids": [
+      "m_csa:577",
+      "m_csa:641"
+    ],
+    "remap_local_lead_audit_expert_reaction_substrate_review_entry_ids": [
+      "m_csa:592"
+    ],
+    "remap_local_lead_audit_local_structure_selection_rule_candidate_entry_ids": [],
+    "remap_local_lead_audit_present": true,
+    "remap_local_lead_audit_strict_guardrail_entry_ids": [
+      "m_csa:577",
+      "m_csa:592",
+      "m_csa:641"
+    ],
     "sequence_cluster_missing_entry_count": 0,
     "source_acceptance_method": "label_batch_acceptance_check",
     "unclassified_new_review_debt_entry_ids": [],
-    "underrepresented_queue_entry_count": 33
+    "underrepresented_queue_entry_count": 36
   },
   "review_warnings": [
     "active_learning_queue_concentrated_by_top1_family",
     "new_review_debt_has_scaling_failure_modes",
     "structure_mapping_issues_present",
-    "alternate_structure_hits_lack_local_support"
+    "alternate_structure_hits_lack_local_support",
+    "remap_local_leads_require_strict_guardrail",
+    "reaction_substrate_mismatch_audit_hits"
   ],
   "rows": [
     {
@@ -898,6 +1030,7 @@
       "entry_id": "m_csa:696",
       "entry_name": "hexokinase (type I)",
       "family_propagation_blockers": [
+        "reaction_substrate_mismatch",
         "top1_cofactor_absent",
         "unlabeled_candidate_requires_direct_review"
       ],

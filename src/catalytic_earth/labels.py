@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -2568,6 +2568,12 @@ def build_active_learning_review_queue(
         top2_score = round(float(top2.get("score", 0.0) or 0.0), 4) if top2 else 0.0
         top1_id = top1.get("fingerprint_id")
         family = fingerprint_family(str(top1_id), ontology)
+        reaction_mismatch_reasons = _remap_local_reaction_substrate_mismatch_reasons(
+            entry_name=str(result.get("entry_name") or entry.get("entry_name") or ""),
+            mechanism_text_snippets=result.get("mechanism_text_snippets")
+            or entry.get("mechanism_text_snippets", []),
+            top1_fingerprint_id=top1_id,
+        )
         scores = _active_learning_scores(
             entry=entry,
             result=result,
@@ -2578,6 +2584,7 @@ def build_active_learning_review_queue(
             top2_score=top2_score,
             abstain_threshold=abstain_threshold,
             ontology=ontology,
+            reaction_substrate_mismatch_reasons=reaction_mismatch_reasons,
         )
         queue_rows.append(
             {
@@ -2599,6 +2606,7 @@ def build_active_learning_review_queue(
                 "counterevidence_reasons": _counterevidence_reasons_from_row(
                     {"component_scores": _fingerprint_component_scores(top1)}
                 ),
+                "reaction_substrate_mismatch_reasons": reaction_mismatch_reasons,
                 "review_scores": scores,
                 "review_score": round(sum(scores.values()), 4),
                 "mechanism_text_snippets": result.get("mechanism_text_snippets")
@@ -2618,6 +2626,11 @@ def build_active_learning_review_queue(
     omitted_unlabeled_count = sum(
         1 for row in omitted_rows if row["label_state"] == "unlabeled"
     )
+    reaction_mismatch_entry_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in ranked_rows
+        if row.get("reaction_substrate_mismatch_reasons")
+    )
     score_totals = Counter()
     for row in ranked_rows:
         for key, value in row["review_scores"].items():
@@ -2636,6 +2649,7 @@ def build_active_learning_review_queue(
                 "hard_negative_value",
                 "evidence_conflict",
                 "family_boundary_value",
+                "reaction_substrate_mismatch_value",
             ],
             "score_totals": dict(sorted((key, round(value, 4)) for key, value in score_totals.items())),
             "unlabeled_count": sum(1 for row in ranked_rows if row["label_state"] == "unlabeled"),
@@ -2644,6 +2658,8 @@ def build_active_learning_review_queue(
             ),
             "unlabeled_omitted_by_max_rows": omitted_unlabeled_count,
             "all_unlabeled_rows_retained": omitted_unlabeled_count == 0,
+            "reaction_substrate_mismatch_count": len(reaction_mismatch_entry_ids),
+            "reaction_substrate_mismatch_entry_ids": reaction_mismatch_entry_ids,
             "labeled_review_count": sum(1 for row in ranked_rows if row["label_state"] == "labeled"),
         },
         "rows": ranked_rows,
@@ -2994,6 +3010,7 @@ def check_label_factory_gates(
         "hard_negative_value",
         "evidence_conflict",
         "family_boundary_value",
+        "reaction_substrate_mismatch_value",
     }
     active_queue_meta = active_learning_queue.get("metadata", {})
     ranking_terms = set(active_queue_meta.get("ranking_terms", []))
@@ -3138,19 +3155,29 @@ def check_label_batch_acceptance(
         label.entry_id for label in countable_labels if label.entry_id not in baseline_entry_ids
     }
     review_gap_entry_ids: set[str] = set()
+    reaction_mismatch_entry_ids: set[str] = set()
     if review_evidence_gaps:
-        review_gap_entry_ids = {
-            str(row.get("entry_id"))
-            for row in review_evidence_gaps.get("rows", [])
-            if isinstance(row, dict)
-            and isinstance(row.get("entry_id"), str)
-            and (
-                row.get("decision_action") == "mark_needs_more_evidence"
-                or bool(row.get("gap_reasons"))
+        for row in review_evidence_gaps.get("rows", []):
+            if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
+                continue
+            entry_id = str(row["entry_id"])
+            if row.get("decision_action") == "mark_needs_more_evidence" or bool(
+                row.get("gap_reasons")
+            ):
+                review_gap_entry_ids.add(entry_id)
+            mismatch_reasons = _remap_local_reaction_substrate_mismatch_reasons(
+                entry_name=str(row.get("entry_name", "")),
+                mechanism_text_snippets=row.get("mechanism_text_snippets", []),
+                top1_fingerprint_id=row.get("top1_fingerprint_id"),
             )
-        }
+            if mismatch_reasons:
+                reaction_mismatch_entry_ids.add(entry_id)
     accepted_review_gap_ids = sorted(
         new_countable_entry_ids & review_gap_entry_ids,
+        key=_entry_id_sort_key,
+    )
+    accepted_reaction_mismatch_ids = sorted(
+        new_countable_entry_ids & reaction_mismatch_entry_ids,
         key=_entry_id_sort_key,
     )
     accepted_new_label_entry_ids = sorted(new_countable_entry_ids, key=_entry_id_sort_key)
@@ -3177,6 +3204,9 @@ def check_label_batch_acceptance(
     }
     if review_evidence_gaps is not None:
         gates["accepted_labels_have_no_review_evidence_gaps"] = not accepted_review_gap_ids
+        gates["accepted_labels_have_no_reaction_substrate_mismatches"] = (
+            not accepted_reaction_mismatch_ids
+        )
     blockers = [name for name, passed in gates.items() if not passed]
     return {
         "metadata": {
@@ -3201,6 +3231,12 @@ def check_label_batch_acceptance(
             "factory_gate_ready": gate_meta.get("automation_ready_for_next_label_batch"),
             "accepted_review_gap_count": len(accepted_review_gap_ids),
             "accepted_review_gap_entry_ids": accepted_review_gap_ids,
+            "accepted_reaction_substrate_mismatch_count": len(
+                accepted_reaction_mismatch_ids
+            ),
+            "accepted_reaction_substrate_mismatch_entry_ids": (
+                accepted_reaction_mismatch_ids
+            ),
             "accepted_for_counting": not blockers,
             "review_state_rule": (
                 "pending-review labels remain in the review-state registry but "
@@ -4659,6 +4695,526 @@ def summarize_review_debt_remap_leads(
     }
 
 
+def audit_review_debt_remap_local_leads(
+    remap_leads: dict[str, Any],
+    *,
+    remediation_plan: dict[str, Any] | None = None,
+    review_evidence_gaps: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Classify remap-local evidence leads before any review import."""
+    remediation_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (remediation_plan or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    gap_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (review_evidence_gaps or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    rows: list[dict[str, Any]] = []
+    for row in remap_leads.get("rows", []):
+        if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
+            continue
+        if row.get("lead_type") != "local_expected_family_hit_from_remap":
+            continue
+
+        entry_id = str(row["entry_id"])
+        remediation_row = remediation_by_entry.get(entry_id, {})
+        gap_row = gap_by_entry.get(entry_id, {})
+        gap_reasons = _sorted_strings(
+            row.get("gap_reasons")
+            or remediation_row.get("gap_reasons")
+            or gap_row.get("gap_reasons", [])
+        )
+        counterevidence_reasons = _sorted_strings(
+            remediation_row.get("counterevidence_reasons", [])
+        )
+        counterevidence_present = (
+            "counterevidence_present" in set(gap_reasons)
+            or bool(counterevidence_reasons)
+        )
+        selected_active_site_has_expected_family = bool(
+            remediation_row.get("selected_active_site_has_expected_family")
+        )
+        selected_structure_has_expected_family = bool(
+            remediation_row.get("selected_structure_has_expected_family")
+        )
+        coverage_status = str(
+            remediation_row.get("coverage_status")
+            or row.get("coverage_status")
+            or gap_row.get("coverage_status")
+            or ""
+        )
+        top1_fingerprint_id = (
+            remediation_row.get("top1_fingerprint_id") or gap_row.get("top1_fingerprint_id")
+        )
+        reaction_mismatch_reasons = _remap_local_reaction_substrate_mismatch_reasons(
+            entry_name=str(
+                row.get("entry_name")
+                or remediation_row.get("entry_name")
+                or gap_row.get("entry_name")
+                or ""
+            ),
+            mechanism_text_snippets=gap_row.get("mechanism_text_snippets", []),
+            top1_fingerprint_id=top1_fingerprint_id,
+        )
+
+        selected_structure_gap_reasons: list[str] = []
+        if coverage_status == "expected_absent_from_structure":
+            selected_structure_gap_reasons.append(
+                "selected_structure_missing_expected_cofactor_family"
+            )
+        if not selected_active_site_has_expected_family:
+            selected_structure_gap_reasons.append(
+                "selected_active_site_expected_family_absent"
+            )
+        if not selected_structure_has_expected_family:
+            selected_structure_gap_reasons.append(
+                "selected_structure_expected_family_absent"
+            )
+
+        alternate_explicit_position_count = int(
+            remediation_row.get("alternate_pdb_with_residue_positions_count", 0) or 0
+        )
+        local_hit_pdb_ids = _sorted_strings(
+            row.get("local_expected_family_hit_pdb_ids", [])
+        )
+        remap_local_hit_pdb_ids = _sorted_strings(
+            row.get("local_expected_family_hit_from_remap_pdb_ids", [])
+        )
+        all_local_hits_from_remap = bool(remap_local_hit_pdb_ids) and (
+            local_hit_pdb_ids == remap_local_hit_pdb_ids
+        )
+        strict_remap_guardrail_required = (
+            all_local_hits_from_remap and alternate_explicit_position_count == 0
+        )
+
+        if counterevidence_present:
+            audit_decision = "expert_family_boundary_review_required"
+            decision_reason = (
+                "counterevidence remains after alternate-structure local remap hits"
+            )
+            recommended_resolution = "expert_review"
+        elif reaction_mismatch_reasons:
+            audit_decision = "expert_reaction_substrate_review_required"
+            decision_reason = (
+                "reaction or substrate text conflicts with the top ontology family"
+            )
+            recommended_resolution = "expert_review"
+        elif selected_structure_gap_reasons:
+            audit_decision = "local_structure_selection_rule_candidate"
+            decision_reason = (
+                "selected structure lacks expected local cofactor but alternate "
+                "structures have remap-local expected-family hits"
+            )
+            recommended_resolution = "local_structure_selection_review"
+        else:
+            audit_decision = "stricter_remap_guardrail_required"
+            decision_reason = (
+                "remap-local evidence must be verified before review import"
+            )
+            recommended_resolution = "remap_evidence_verification"
+
+        counting_blockers = set(gap_reasons)
+        counting_blockers.add("review_marked_needs_more_evidence")
+        if strict_remap_guardrail_required:
+            counting_blockers.add("local_evidence_from_conservative_remap_only")
+            counting_blockers.add("alternate_pdb_lacks_explicit_mcsa_positions")
+        if selected_structure_gap_reasons:
+            counting_blockers.update(selected_structure_gap_reasons)
+        if counterevidence_present:
+            counting_blockers.add("counterevidence_present")
+        counting_blockers.update(reaction_mismatch_reasons)
+
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": row.get("entry_name")
+                or remediation_row.get("entry_name")
+                or gap_row.get("entry_name"),
+                "audit_decision": audit_decision,
+                "decision_reason": decision_reason,
+                "recommended_resolution": recommended_resolution,
+                "countable_label_candidate": False,
+                "counting_blockers": sorted(counting_blockers),
+                "strict_remap_guardrail_required": strict_remap_guardrail_required,
+                "selected_pdb_id": remediation_row.get("selected_pdb_id"),
+                "selected_structure_gap_reasons": sorted(set(selected_structure_gap_reasons)),
+                "selected_active_site_has_expected_family": (
+                    selected_active_site_has_expected_family
+                ),
+                "selected_structure_has_expected_family": (
+                    selected_structure_has_expected_family
+                ),
+                "alternate_pdb_with_explicit_residue_positions_count": (
+                    alternate_explicit_position_count
+                ),
+                "candidate_pdb_with_explicit_residue_positions_count": int(
+                    remediation_row.get(
+                        "candidate_pdb_with_residue_positions_count", 0
+                    )
+                    or 0
+                ),
+                "local_expected_family_hit_from_remap_pdb_ids": (
+                    remap_local_hit_pdb_ids
+                ),
+                "local_expected_family_hit_pdb_ids": local_hit_pdb_ids,
+                "local_expected_ligand_codes": _sorted_strings(
+                    row.get("local_expected_ligand_codes", [])
+                ),
+                "expected_cofactor_families": _sorted_strings(
+                    row.get("expected_cofactor_families", [])
+                ),
+                "remap_basis_counts": dict(row.get("remap_basis_counts", {})),
+                "remapped_residue_position_structure_count": int(
+                    row.get("remapped_residue_position_structure_count", 0) or 0
+                ),
+                "counterevidence_present": counterevidence_present,
+                "counterevidence_reasons": counterevidence_reasons,
+                "reaction_substrate_mismatch_reasons": reaction_mismatch_reasons,
+                "gap_reasons": gap_reasons,
+                "target_fingerprint_id": remediation_row.get("target_fingerprint_id"),
+                "target_score": remediation_row.get("target_score")
+                if remediation_row.get("target_score") is not None
+                else gap_row.get("target_score"),
+                "top1_fingerprint_id": top1_fingerprint_id,
+                "top1_score": remediation_row.get("top1_score")
+                if remediation_row.get("top1_score") is not None
+                else gap_row.get("top1_score"),
+                "review_policy": (
+                    "local expected-family hits from conservative alternate-PDB "
+                    "residue remaps remain review-only; they cannot clear review "
+                    "debt or count labels without explicit expert/import evidence "
+                    "and a passing label-factory gate"
+                ),
+            }
+        )
+
+    rows = sorted(rows, key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))))
+    decision_counts = Counter(str(row.get("audit_decision")) for row in rows)
+    expert_review_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in rows
+        if row.get("audit_decision") == "expert_family_boundary_review_required"
+    )
+    structure_rule_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in rows
+        if row.get("audit_decision") == "local_structure_selection_rule_candidate"
+    )
+    expert_reaction_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in rows
+        if row.get("audit_decision") == "expert_reaction_substrate_review_required"
+    )
+    strict_guardrail_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in rows
+        if row.get("strict_remap_guardrail_required")
+    )
+    return {
+        "metadata": {
+            "method": "review_debt_remap_local_lead_audit",
+            "source_summary_method": remap_leads.get("metadata", {}).get("method"),
+            "audited_entry_count": len(rows),
+            "audited_entry_ids": _sorted_entry_ids(row.get("entry_id") for row in rows),
+            "decision_counts": dict(sorted(decision_counts.items())),
+            "expert_family_boundary_review_entry_ids": expert_review_ids,
+            "expert_reaction_substrate_review_entry_ids": expert_reaction_ids,
+            "local_structure_selection_rule_candidate_entry_ids": structure_rule_ids,
+            "strict_remap_guardrail_entry_ids": strict_guardrail_ids,
+            "countable_label_candidate_count": 0,
+            "decision_rule": (
+                "counterevidence routes remap-local leads to expert review; "
+                "otherwise selected-structure cofactor absence makes them local "
+                "structure-selection review candidates, with conservative remap "
+                "evidence kept non-countable until explicit review/import evidence "
+                "and factory gates clear"
+            ),
+        },
+        "rows": rows,
+    }
+
+
+def summarize_review_debt_structure_selection_candidates(
+    remap_local_lead_audit: dict[str, Any],
+    alternate_structure_scan: dict[str, Any],
+    *,
+    remediation_plan: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Summarize review-only local structure-selection candidates."""
+    scan_by_entry = {
+        str(row.get("entry_id")): row
+        for row in alternate_structure_scan.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    remediation_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (remediation_plan or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    rows: list[dict[str, Any]] = []
+    for audit_row in remap_local_lead_audit.get("rows", []):
+        if not isinstance(audit_row, dict) or not isinstance(
+            audit_row.get("entry_id"), str
+        ):
+            continue
+        if audit_row.get("audit_decision") != "local_structure_selection_rule_candidate":
+            continue
+        entry_id = str(audit_row["entry_id"])
+        scan_row = scan_by_entry.get(entry_id, {})
+        remediation_row = remediation_by_entry.get(entry_id, {})
+        candidate_pdb_ids = _sorted_strings(
+            audit_row.get("local_expected_family_hit_from_remap_pdb_ids", [])
+        )
+        candidate_hits = [
+            hit
+            for hit in scan_row.get("structure_hits", [])
+            if isinstance(hit, dict) and hit.get("pdb_id") in set(candidate_pdb_ids)
+        ]
+        candidate_summaries = [
+            {
+                "pdb_id": hit.get("pdb_id"),
+                "residue_position_source": hit.get("residue_position_source"),
+                "residue_position_remap_basis": hit.get(
+                    "residue_position_remap_basis"
+                ),
+                "usable_residue_position_count": int(
+                    hit.get("usable_residue_position_count", 0) or 0
+                ),
+                "remapped_residue_position_count": int(
+                    hit.get("remapped_residue_position_count", 0) or 0
+                ),
+                "expected_family_hits": _sorted_strings(
+                    hit.get("expected_family_hits", [])
+                ),
+                "local_expected_family_hits": _sorted_strings(
+                    hit.get("local_expected_family_hits", [])
+                ),
+                "local_ligand_codes": _sorted_strings(hit.get("local_ligand_codes", [])),
+                "structure_ligand_codes": _sorted_strings(hit.get("ligand_codes", [])),
+            }
+            for hit in candidate_hits
+        ]
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": audit_row.get("entry_name")
+                or remediation_row.get("entry_name")
+                or scan_row.get("entry_name"),
+                "selected_pdb_id": audit_row.get("selected_pdb_id")
+                or remediation_row.get("selected_pdb_id")
+                or scan_row.get("selected_pdb_id"),
+                "selected_structure_gap_reasons": _sorted_strings(
+                    audit_row.get("selected_structure_gap_reasons", [])
+                ),
+                "selected_active_site_has_expected_family": bool(
+                    audit_row.get("selected_active_site_has_expected_family")
+                ),
+                "selected_structure_has_expected_family": bool(
+                    audit_row.get("selected_structure_has_expected_family")
+                ),
+                "candidate_pdb_ids": candidate_pdb_ids,
+                "candidate_hit_count": len(candidate_summaries),
+                "candidate_hits": candidate_summaries,
+                "candidate_local_ligand_codes": _sorted_strings(
+                    code
+                    for hit in candidate_summaries
+                    for code in hit.get("local_ligand_codes", [])
+                    if code
+                ),
+                "candidate_local_expected_ligand_codes": _ligand_codes_matching_families(
+                    (
+                        code
+                        for hit in candidate_summaries
+                        for code in hit.get("local_ligand_codes", [])
+                    ),
+                    audit_row.get("expected_cofactor_families", []),
+                ),
+                "expected_cofactor_families": _sorted_strings(
+                    audit_row.get("expected_cofactor_families", [])
+                ),
+                "local_expected_ligand_codes": _sorted_strings(
+                    audit_row.get("local_expected_ligand_codes", [])
+                ),
+                "alternate_pdb_with_explicit_residue_positions_count": int(
+                    audit_row.get(
+                        "alternate_pdb_with_explicit_residue_positions_count", 0
+                    )
+                    or 0
+                ),
+                "strict_remap_guardrail_required": bool(
+                    audit_row.get("strict_remap_guardrail_required")
+                ),
+                "countable_label_candidate": False,
+                "recommended_next_action": (
+                    "review_selected_structure_replacement_before_review_import"
+                ),
+                "review_policy": (
+                    "candidate alternate structures may inform a local "
+                    "structure-selection rule, but conservative remap-local "
+                    "ligand hits are review-only and cannot make labels "
+                    "countable without explicit review/import evidence and "
+                    "passing factory gates"
+                ),
+            }
+        )
+
+    rows = sorted(rows, key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))))
+    return {
+        "metadata": {
+            "method": "review_debt_structure_selection_candidate_summary",
+            "source_audit_method": remap_local_lead_audit.get("metadata", {}).get(
+                "method"
+            ),
+            "source_scan_method": alternate_structure_scan.get("metadata", {}).get(
+                "method"
+            ),
+            "candidate_count": len(rows),
+            "candidate_entry_ids": _sorted_entry_ids(row.get("entry_id") for row in rows),
+            "strict_remap_guardrail_entry_ids": _sorted_entry_ids(
+                row.get("entry_id")
+                for row in rows
+                if row.get("strict_remap_guardrail_required")
+            ),
+            "countable_label_candidate_count": 0,
+            "review_rule": (
+                "structure-selection candidates are review-only until explicit "
+                "alternate-structure residue evidence or expert review clears "
+                "the selected-structure cofactor gap and label-factory gates pass"
+            ),
+        },
+        "rows": rows,
+    }
+
+
+def audit_reaction_substrate_mismatches(
+    *,
+    review_evidence_gaps: dict[str, Any] | None = None,
+    active_learning_queue: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Find review rows where text suggests reaction class mismatch."""
+    by_entry: dict[str, dict[str, Any]] = {}
+    source_names_by_entry: dict[str, set[str]] = defaultdict(set)
+    for source_name, artifact in [
+        ("review_evidence_gaps", review_evidence_gaps),
+        ("active_learning_queue", active_learning_queue),
+    ]:
+        for row in (artifact or {}).get("rows", []):
+            if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
+                continue
+            entry_id = str(row["entry_id"])
+            merged = by_entry.setdefault(entry_id, {})
+            merged.update({key: value for key, value in row.items() if value is not None})
+            source_names_by_entry[entry_id].add(source_name)
+
+    rows: list[dict[str, Any]] = []
+    for entry_id, row in by_entry.items():
+        reasons = _remap_local_reaction_substrate_mismatch_reasons(
+            entry_name=str(row.get("entry_name", "")),
+            mechanism_text_snippets=row.get("mechanism_text_snippets", []),
+            top1_fingerprint_id=row.get("top1_fingerprint_id"),
+        )
+        if not reasons:
+            continue
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": row.get("entry_name"),
+                "source_artifacts": sorted(source_names_by_entry.get(entry_id, [])),
+                "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+                "top1_ontology_family": row.get("top1_ontology_family")
+                or fingerprint_family(str(row.get("top1_fingerprint_id"))),
+                "top1_score": row.get("top1_score"),
+                "target_fingerprint_id": row.get("target_fingerprint_id"),
+                "decision_action": row.get("decision_action"),
+                "decision_review_status": row.get("decision_review_status"),
+                "source_recommended_action": row.get("recommended_action"),
+                "recommended_action": "expert_reaction_substrate_review",
+                "rank": row.get("rank"),
+                "label_state": row.get("label_state"),
+                "current_label_type": row.get("current_label_type"),
+                "mismatch_reasons": reasons,
+                "mechanism_text_snippets": row.get("mechanism_text_snippets", []),
+                "countable_label_candidate": False,
+                "review_policy": (
+                    "reaction/substrate text that conflicts with the top ontology "
+                    "family must be expert-reviewed before any label can count"
+                ),
+            }
+        )
+
+    rows = sorted(rows, key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))))
+    reason_counts = Counter(
+        reason for row in rows for reason in row.get("mismatch_reasons", [])
+    )
+    top1_counts = Counter(str(row.get("top1_fingerprint_id")) for row in rows)
+    return {
+        "metadata": {
+            "method": "reaction_substrate_mismatch_audit",
+            "mismatch_count": len(rows),
+            "mismatch_entry_ids": _sorted_entry_ids(row.get("entry_id") for row in rows),
+            "mismatch_reason_counts": dict(sorted(reason_counts.items())),
+            "top1_fingerprint_counts": dict(sorted(top1_counts.items())),
+            "countable_label_candidate_count": 0,
+            "review_rule": (
+                "keyword-level reaction/substrate mismatch signals are review "
+                "triage only; they cannot reject or accept labels without expert "
+                "or rule-backed review"
+            ),
+        },
+        "rows": rows,
+    }
+
+
+def _remap_local_reaction_substrate_mismatch_reasons(
+    *,
+    entry_name: str,
+    mechanism_text_snippets: Any,
+    top1_fingerprint_id: Any,
+) -> list[str]:
+    if top1_fingerprint_id != "metal_dependent_hydrolase":
+        return []
+    text = " ".join(
+        [entry_name, *[str(snippet) for snippet in _sorted_strings(mechanism_text_snippets)]]
+    ).lower()
+    reasons: list[str] = []
+    if "kinase" in text:
+        reasons.append("kinase_name_with_hydrolase_top1")
+    atp_phosphoryl_context = "atp" in text and any(
+        term in text
+        for term in [
+            "gamma phosph",
+            "terminal phosphate",
+            "phosphoryl group",
+            "phosphate group of atp",
+            "phosphorous of atp",
+        ]
+    )
+    transfer_language = any(
+        term in text
+        for term in [
+            "transfer",
+            "transferred",
+            "phosphorylated",
+            "inline displacement",
+            "in-line displacement",
+            "attacks the gamma",
+            "attack on the gamma",
+            "attack to the beta",
+        ]
+    )
+    hydrolysis_language = any(
+        term in text for term in ["hydrolysis", "hydrolytic", "water", "lytic water"]
+    )
+    if atp_phosphoryl_context and transfer_language and not hydrolysis_language:
+        reasons.append("atp_phosphoryl_transfer_text_with_hydrolase_top1")
+    return reasons
+
+
 def _ligand_codes_matching_families(
     ligand_codes: Any,
     expected_families: Any,
@@ -5311,6 +5867,8 @@ def audit_label_scaling_quality(
     expert_review_export: dict[str, Any] | None = None,
     sequence_clusters: dict[str, Any] | None = None,
     alternate_structure_scan: dict[str, Any] | None = None,
+    remap_local_lead_audit: dict[str, Any] | None = None,
+    reaction_substrate_mismatch_audit: dict[str, Any] | None = None,
     batch_id: str | None = None,
 ) -> dict[str, Any]:
     acceptance_meta = acceptance.get("metadata", {})
@@ -5320,6 +5878,8 @@ def audit_label_scaling_quality(
     hard_meta = hard_negatives.get("metadata", {})
     mapping_meta = (structure_mapping or {}).get("metadata", {})
     alternate_scan_meta = (alternate_structure_scan or {}).get("metadata", {})
+    remap_local_meta = (remap_local_lead_audit or {}).get("metadata", {})
+    reaction_mismatch_meta = (reaction_substrate_mismatch_audit or {}).get("metadata", {})
     new_debt_ids = sorted(
         (
             str(entry_id)
@@ -5574,6 +6134,67 @@ def audit_label_scaling_quality(
         review_warnings.append("alternate_structure_scan_fetch_failures")
     if alternate_scan_structure_wide_hits:
         review_warnings.append("alternate_structure_hits_lack_local_support")
+    remap_local_audit_present = (
+        remap_local_meta.get("method") == "review_debt_remap_local_lead_audit"
+    )
+    remap_local_countable_candidate_count = int(
+        remap_local_meta.get("countable_label_candidate_count", 0) or 0
+    )
+    remap_local_strict_guardrail_ids = _sorted_entry_ids(
+        remap_local_meta.get("strict_remap_guardrail_entry_ids", [])
+    )
+    remap_local_expert_review_ids = _sorted_entry_ids(
+        remap_local_meta.get("expert_family_boundary_review_entry_ids", [])
+    )
+    remap_local_reaction_review_ids = _sorted_entry_ids(
+        remap_local_meta.get("expert_reaction_substrate_review_entry_ids", [])
+    )
+    remap_local_structure_rule_ids = _sorted_entry_ids(
+        remap_local_meta.get("local_structure_selection_rule_candidate_entry_ids", [])
+    )
+    gates["remap_local_leads_remain_review_only"] = (
+        not remap_local_audit_present or remap_local_countable_candidate_count == 0
+    )
+    blockers = [name for name, passed in gates.items() if not passed]
+    if remap_local_countable_candidate_count > 0:
+        review_warnings.append("remap_local_lead_audit_countable_candidates")
+    if remap_local_strict_guardrail_ids:
+        review_warnings.append("remap_local_leads_require_strict_guardrail")
+    reaction_mismatch_audit_present = (
+        reaction_mismatch_meta.get("method") == "reaction_substrate_mismatch_audit"
+    )
+    reaction_mismatch_audit_entry_ids = _sorted_entry_ids(
+        reaction_mismatch_meta.get("mismatch_entry_ids", [])
+    )
+    if reaction_mismatch_audit_entry_ids:
+        review_warnings.append("reaction_substrate_mismatch_audit_hits")
+
+    reaction_failure_mode = _scaling_failure_mode_summary(
+        "reaction_direction_or_substrate_class_mismatch",
+        issue_rows,
+        "reaction_or_substrate_class_mismatch",
+        "not_observed_in_new_review_debt",
+        extra_evidence={
+            "reaction_substrate_mismatch_audit_present": (
+                reaction_mismatch_audit_present
+            ),
+            "reaction_substrate_mismatch_audit_entry_ids": (
+                reaction_mismatch_audit_entry_ids
+            ),
+            "reaction_substrate_mismatch_audit_reason_counts": (
+                reaction_mismatch_meta.get("mismatch_reason_counts", {})
+            ),
+        },
+    )
+    if reaction_mismatch_audit_entry_ids:
+        combined_reaction_ids = _sorted_entry_ids(
+            set(reaction_failure_mode.get("entry_ids", []))
+            | set(reaction_mismatch_audit_entry_ids)
+        )
+        reaction_failure_mode["status"] = "observed"
+        reaction_failure_mode["issue_count"] = len(combined_reaction_ids)
+        reaction_failure_mode["entry_ids"] = combined_reaction_ids
+        reaction_failure_mode["evidence"]["entry_ids"] = combined_reaction_ids
 
     failure_modes = [
         _scaling_failure_mode_summary(
@@ -5644,12 +6265,7 @@ def audit_label_scaling_quality(
             "multi_domain_or_mixed_evidence",
             "not_observed_in_new_review_debt",
         ),
-        _scaling_failure_mode_summary(
-            "reaction_direction_or_substrate_class_mismatch",
-            issue_rows,
-            "reaction_or_substrate_class_mismatch",
-            "not_observed_in_new_review_debt",
-        ),
+        reaction_failure_mode,
         _scaling_failure_mode_summary(
             "active_site_residue_remapping_error",
             issue_rows,
@@ -5660,6 +6276,30 @@ def audit_label_scaling_quality(
                 "structure_mapping_status_counts": mapping_meta.get("status_counts", {}),
             },
         ),
+        {
+            "id": "conservative_remap_local_evidence_without_explicit_alt_positions",
+            "status": "observed"
+            if remap_local_strict_guardrail_ids
+            else "not_observed"
+            if remap_local_audit_present
+            else "not_assessed_no_remap_local_lead_audit",
+            "issue_count": len(remap_local_strict_guardrail_ids),
+            "entry_ids": remap_local_strict_guardrail_ids,
+            "evidence": {
+                "remap_local_lead_audit_present": remap_local_audit_present,
+                "expert_family_boundary_review_entry_ids": remap_local_expert_review_ids,
+                "expert_reaction_substrate_review_entry_ids": (
+                    remap_local_reaction_review_ids
+                ),
+                "local_structure_selection_rule_candidate_entry_ids": (
+                    remap_local_structure_rule_ids
+                ),
+                "countable_label_candidate_count": (
+                    remap_local_countable_candidate_count
+                ),
+                "review_rule": remap_local_meta.get("decision_rule"),
+            },
+        },
         _scaling_failure_mode_summary(
             "structure_sequence_id_mismatch",
             issue_rows,
@@ -5765,6 +6405,40 @@ def audit_label_scaling_quality(
             "alternate_structure_scan_fetch_failure_count": (
                 alternate_scan_fetch_failure_count
             ),
+            "remap_local_lead_audit_present": remap_local_audit_present,
+            "remap_local_lead_audit_countable_label_candidate_count": (
+                remap_local_countable_candidate_count
+            ),
+            "remap_local_lead_audit_strict_guardrail_entry_ids": (
+                remap_local_strict_guardrail_ids
+            ),
+            "remap_local_lead_audit_expert_family_boundary_review_entry_ids": (
+                remap_local_expert_review_ids
+            ),
+            "remap_local_lead_audit_expert_reaction_substrate_review_entry_ids": (
+                remap_local_reaction_review_ids
+            ),
+            "remap_local_lead_audit_local_structure_selection_rule_candidate_entry_ids": (
+                remap_local_structure_rule_ids
+            ),
+            "family_guardrail_reaction_substrate_mismatch_count": int(
+                family_meta.get("reaction_substrate_mismatch_count", 0) or 0
+            ),
+            "family_guardrail_reaction_substrate_mismatch_reason_counts": (
+                family_meta.get("reaction_substrate_mismatch_reason_counts", {})
+            ),
+            "family_guardrail_reaction_substrate_mismatch_label_state_counts": (
+                family_meta.get("reaction_substrate_mismatch_label_state_counts", {})
+            ),
+            "reaction_substrate_mismatch_audit_present": (
+                reaction_mismatch_audit_present
+            ),
+            "reaction_substrate_mismatch_audit_entry_ids": (
+                reaction_mismatch_audit_entry_ids
+            ),
+            "reaction_substrate_mismatch_audit_count": int(
+                reaction_mismatch_meta.get("mismatch_count", 0) or 0
+            ),
             "issue_class_counts": dict(sorted(issue_class_counts.items())),
             "audit_rule": (
                 "before promoting a preview batch, classify new ontology, "
@@ -5840,7 +6514,10 @@ def _label_scaling_issue_classes(
         issue_classes.add("cofactor_family_ambiguity")
     if "domain" in text or len(row.get("structure_cofactor_families", []) or []) > 1:
         issue_classes.add("multi_domain_or_mixed_evidence")
-    if _has_reaction_or_substrate_mismatch(text, str(top1 or ""), str(target or "")):
+    if (
+        "reaction_substrate_mismatch" in guardrail_blockers
+        or _has_reaction_or_substrate_mismatch(text, str(top1 or ""), str(target or ""))
+    ):
         issue_classes.add("reaction_or_substrate_class_mismatch")
     if (
         mapping_status not in {"ok", "None"}
@@ -5989,6 +6666,15 @@ def build_family_propagation_guardrails(
         top2 = top[1] if len(top) > 1 else {}
         top1_id = top1.get("fingerprint_id")
         top2_id = top2.get("fingerprint_id")
+        entry_name = str(result.get("entry_name") or entry.get("entry_name") or "")
+        mechanism_text_snippets = result.get("mechanism_text_snippets") or entry.get(
+            "mechanism_text_snippets", []
+        )
+        reaction_mismatch_reasons = _remap_local_reaction_substrate_mismatch_reasons(
+            entry_name=entry_name,
+            mechanism_text_snippets=mechanism_text_snippets,
+            top1_fingerprint_id=top1_id,
+        )
         target_family = fingerprint_family(label.fingerprint_id, ontology) if label else None
         top1_family = fingerprint_family(str(top1_id), ontology)
         top2_family = fingerprint_family(str(top2_id), ontology) if top2 else None
@@ -5999,6 +6685,7 @@ def build_family_propagation_guardrails(
             target_family=target_family,
             top1_family=top1_family,
             top2_family=top2_family,
+            reaction_substrate_mismatch_reasons=reaction_mismatch_reasons,
         )
         decision = _family_propagation_decision(label, blockers)
         if label and decision == "direct_label_no_propagation_issue":
@@ -6006,7 +6693,7 @@ def build_family_propagation_guardrails(
         rows.append(
             {
                 "entry_id": entry_id,
-                "entry_name": result.get("entry_name") or entry.get("entry_name"),
+                "entry_name": entry_name,
                 "label_state": "labeled" if label else "unlabeled",
                 "current_label_type": label.label_type if label else None,
                 "current_tier": label.tier if label else None,
@@ -6020,6 +6707,7 @@ def build_family_propagation_guardrails(
                 "top2_score": round(float(top2.get("score", 0.0) or 0.0), 4) if top2 else None,
                 "propagation_decision": decision,
                 "propagation_blockers": blockers,
+                "reaction_substrate_mismatch_reasons": reaction_mismatch_reasons,
                 "local_proxy_evidence": {
                     "mechanism_text_count": int(
                         result.get("mechanism_text_count", entry.get("mechanism_text_count", 0)) or 0
@@ -6040,20 +6728,38 @@ def build_family_propagation_guardrails(
                     if isinstance(result.get("pocket_context"), dict)
                     else 0,
                 },
-                "mechanism_text_snippets": result.get("mechanism_text_snippets")
-                or entry.get("mechanism_text_snippets", []),
+                "mechanism_text_snippets": mechanism_text_snippets,
             }
         )
-    ranked_rows = sorted(
+    all_ranked_rows = sorted(
         rows,
         key=lambda row: (
             _family_decision_priority(row["propagation_decision"]),
             _entry_id_sort_key(row["entry_id"]),
         ),
-    )[:max_rows]
+    )
+    ranked_rows = all_ranked_rows[:max_rows]
+    selected_entry_ids = {row["entry_id"] for row in ranked_rows}
+    priority_added_rows = [
+        row
+        for row in all_ranked_rows[max_rows:]
+        if row.get("reaction_substrate_mismatch_reasons")
+        and row["entry_id"] not in selected_entry_ids
+    ]
+    ranked_rows.extend(priority_added_rows)
     decision_counts = Counter(row["propagation_decision"] for row in ranked_rows)
     blocker_counts = Counter(
         blocker for row in ranked_rows for blocker in row["propagation_blockers"]
+    )
+    reaction_mismatch_reason_counts = Counter(
+        reason
+        for row in ranked_rows
+        for reason in row.get("reaction_substrate_mismatch_reasons", [])
+    )
+    reaction_mismatch_label_state_counts = Counter(
+        str(row.get("label_state"))
+        for row in ranked_rows
+        if row.get("reaction_substrate_mismatch_reasons")
     )
     return {
         "metadata": {
@@ -6061,14 +6767,29 @@ def build_family_propagation_guardrails(
             "audited_count": len(rows),
             "reported_count": len(ranked_rows),
             "max_rows": max_rows,
+            "priority_added_count": len(priority_added_rows),
+            "priority_inclusion_rule": (
+                "always retain reaction/substrate mismatch blockers even when "
+                "they rank below max_rows"
+            ),
             "ontology_version": ontology.get("version"),
             "decision_counts": dict(sorted(decision_counts.items())),
             "blocker_counts": dict(sorted(blocker_counts.items())),
+            "reaction_substrate_mismatch_count": sum(
+                1 for row in ranked_rows if row.get("reaction_substrate_mismatch_reasons")
+            ),
+            "reaction_substrate_mismatch_reason_counts": dict(
+                sorted(reaction_mismatch_reason_counts.items())
+            ),
+            "reaction_substrate_mismatch_label_state_counts": dict(
+                sorted(reaction_mismatch_label_state_counts.items())
+            ),
             "source_guardrails": ontology.get("propagation_guardrails", []),
             "local_proxy_rule": (
                 "when UniRef, CATH, or InterPro evidence is unavailable, mechanism text, "
-                "ligand/cofactor context, and pocket geometry can prioritize review but "
-                "cannot promote beyond bronze by themselves"
+                "ligand/cofactor context, pocket geometry, and reaction/substrate "
+                "mismatch signals can prioritize or block propagation but cannot "
+                "promote beyond bronze by themselves"
             ),
         },
         "rows": ranked_rows,
@@ -6334,6 +7055,7 @@ def _active_learning_scores(
     top2_score: float,
     abstain_threshold: float,
     ontology: dict[str, Any],
+    reaction_substrate_mismatch_reasons: list[str] | None = None,
 ) -> dict[str, float]:
     top = result.get("top_fingerprints", [])
     top1 = top[0] if top else {}
@@ -6370,6 +7092,7 @@ def _active_learning_scores(
         family_boundary_value = max(0.0, 1.0 - min(top_gap / 0.2, 1.0))
     if label and label.fingerprint_id and top1_family != fingerprint_family(label.fingerprint_id, ontology):
         family_boundary_value = max(family_boundary_value, 0.8)
+    reaction_substrate_mismatch_value = 1.0 if reaction_substrate_mismatch_reasons else 0.0
     return {
         "uncertainty": round(1.4 * uncertainty, 4),
         "impact": round(1.1 * impact, 4),
@@ -6377,6 +7100,9 @@ def _active_learning_scores(
         "hard_negative_value": round(1.2 * hard_negative_value, 4),
         "evidence_conflict": round(1.5 * evidence_conflict, 4),
         "family_boundary_value": round(1.1 * family_boundary_value, 4),
+        "reaction_substrate_mismatch_value": round(
+            1.3 * reaction_substrate_mismatch_value, 4
+        ),
     }
 
 
@@ -7009,6 +7735,7 @@ def _family_propagation_blockers(
     target_family: str | None,
     top1_family: str | None,
     top2_family: str | None,
+    reaction_substrate_mismatch_reasons: list[str] | None = None,
 ) -> list[str]:
     blockers: list[str] = []
     if label and target_family and top1_family and target_family != top1_family:
@@ -7022,6 +7749,8 @@ def _family_propagation_blockers(
         blockers.append("top1_cofactor_absent")
     if _fingerprint_component_scores(top1).get("counterevidence_reasons"):
         blockers.append("top1_counterevidence_present")
+    if reaction_substrate_mismatch_reasons:
+        blockers.append("reaction_substrate_mismatch")
     if not label:
         blockers.append("unlabeled_candidate_requires_direct_review")
     return sorted(set(blockers))

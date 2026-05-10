@@ -63,7 +63,8 @@ The repository currently contains:
     performance suite.
 11. Label-factory automation: explicit bronze/silver/gold label schema,
     mechanism ontology, deterministic promotion/demotion audit, active-learning
-    review queue, adversarial negative mining, family-propagation guardrails,
+    review queue, adversarial negative mining, family-propagation guardrails
+    including reaction/substrate mismatch blockers,
     expert-review export/import, review-debt triage, batch summary with
     scaling-quality audit attachment, and a scaling gate.
 
@@ -102,9 +103,10 @@ actionable in-scope failures. See
 Label scaling is now gated by the label factory rather than raw queue size. The
 current 700 factory audit proposes 79 bronze-to-silver promotions, flags 112
 abstention/review rows, mines 100 adversarial negative controls from 466
-out-of-scope candidates, exports 161 expert-review items from the post-700
+out-of-scope candidates, exports 182 expert-review items from the post-700
 review queue, and passes the 700-slice gate check. The active-learning gate now
-also fails if unlabeled candidate rows are truncated by the queue limit.
+also fails if unlabeled candidate rows are truncated by the queue limit and the
+queue prioritizes reaction/substrate mismatch risks for review.
 `artifacts/v3_label_batch_acceptance_check_700.json` records that the latest
 accepted batch added 5 labels for counting while 81 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
@@ -129,9 +131,14 @@ active-site support. The all-debt bounded scan
 covers all 46 scan-candidate review-debt rows and all 739 candidate PDB
 structures, remaps 362 alternate-PDB structures, and finds review-only local
 expected-family hits for `m_csa:577`, `m_csa:592`, and `m_csa:641`.
-`artifacts/v3_review_debt_remap_leads_700_all_bounded.json` keeps those leads
-non-countable until review import, evidence-gap clearance, and label-factory
-gates pass.
+`artifacts/v3_review_debt_remap_local_lead_audit_700.json` routes
+`m_csa:577` and `m_csa:641` to expert family-boundary review and `m_csa:592`
+to expert reaction/substrate review, while keeping all three under a strict
+non-countable remap guardrail. `artifacts/v3_reaction_substrate_mismatch_audit_700.json`
+flags 18 active-queue hydrolase-top1 rows with kinase or ATP phosphoryl-transfer
+text for expert reaction/substrate review. The 700 family-propagation guardrail
+now retains all 24 hydrolase-top1 reaction/substrate mismatch blockers, split
+between 17 labeled propagation blocks and 7 unlabeled pending-review blocks.
 See
 `docs/label_factory.md`.
 

@@ -60,6 +60,9 @@ that structure-wide cofactor-family hits still lack local active-site support.
 - `artifacts/v3_review_debt_remediation_700.json`
 - `artifacts/v3_review_debt_remediation_700_all.json`
 - `artifacts/v3_review_debt_alternate_structure_scan_700.json`
+- `artifacts/v3_review_debt_remap_local_lead_audit_700.json`
+- `artifacts/v3_reaction_substrate_mismatch_audit_700.json`
+- `artifacts/v3_family_propagation_guardrails_700.json`
 - `artifacts/v3_label_scaling_quality_audit_700_preview.json`
 - `artifacts/v3_sequence_cluster_proxy_700.json`
 
@@ -72,9 +75,14 @@ registry. The latest accepted batch-acceptance check passes: 5 additional
 labels were accepted for counting in the 700 batch, 81 review-state decisions
 remain pending, and the countable subset has 0 hard negatives, 0 near misses,
 0 out-of-scope false non-abstentions, and 0 actionable in-scope failures. The
-post-700 active-learning queue retains all 64 unlabeled candidate rows; the
-factory gate fails if a capped queue omits any unlabeled row. The batch summary
-reports 9/9 accepted batches with 0 blockers.
+post-700 active-learning queue retains all 76 unlabeled candidate rows; the
+factory gate fails if a capped queue omits any unlabeled row. The queue now
+includes reaction/substrate mismatch ranking, and the 700 mismatch audit routes
+18 hydrolase-top1 kinase or ATP phosphoryl-transfer rows to expert review. The
+700 family-propagation guardrail separately retains 24 reaction/substrate
+mismatch blockers, including 14 rows kept beyond `max_rows`; these split into
+17 labeled propagation blocks and 7 unlabeled pending-review blocks. The batch
+summary reports 9/9 accepted batches with 0 blockers.
 The 675 preview initially exposed accepted out-of-scope rows that still carried
 review debt, so the provisional decision rule now defers below-threshold,
 evidence-limited negatives instead of counting them. The regenerated preview

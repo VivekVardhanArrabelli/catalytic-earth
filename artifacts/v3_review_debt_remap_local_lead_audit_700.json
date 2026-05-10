@@ -1,0 +1,270 @@
+{
+  "metadata": {
+    "audited_entry_count": 3,
+    "audited_entry_ids": [
+      "m_csa:577",
+      "m_csa:592",
+      "m_csa:641"
+    ],
+    "countable_label_candidate_count": 0,
+    "decision_counts": {
+      "expert_family_boundary_review_required": 2,
+      "expert_reaction_substrate_review_required": 1
+    },
+    "decision_rule": "counterevidence routes remap-local leads to expert review; otherwise selected-structure cofactor absence makes them local structure-selection review candidates, with conservative remap evidence kept non-countable until explicit review/import evidence and factory gates clear",
+    "expert_family_boundary_review_entry_ids": [
+      "m_csa:577",
+      "m_csa:641"
+    ],
+    "expert_reaction_substrate_review_entry_ids": [
+      "m_csa:592"
+    ],
+    "local_structure_selection_rule_candidate_entry_ids": [],
+    "method": "review_debt_remap_local_lead_audit",
+    "source_summary_method": "review_debt_remap_lead_summary",
+    "strict_remap_guardrail_entry_ids": [
+      "m_csa:577",
+      "m_csa:592",
+      "m_csa:641"
+    ]
+  },
+  "rows": [
+    {
+      "alternate_pdb_with_explicit_residue_positions_count": 0,
+      "audit_decision": "expert_family_boundary_review_required",
+      "candidate_pdb_with_explicit_residue_positions_count": 1,
+      "countable_label_candidate": false,
+      "counterevidence_present": true,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "counting_blockers": [
+        "alternate_pdb_lacks_explicit_mcsa_positions",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "local_evidence_from_conservative_remap_only",
+        "review_marked_needs_more_evidence",
+        "selected_active_site_expected_family_absent",
+        "selected_structure_expected_family_absent",
+        "selected_structure_missing_expected_cofactor_family"
+      ],
+      "decision_reason": "counterevidence remains after alternate-structure local remap hits",
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "local_expected_family_hit_from_remap_pdb_ids": [
+        "1AWB",
+        "1IMC",
+        "1IMD",
+        "1IME",
+        "4AS4",
+        "6GIU",
+        "6GJ0",
+        "6ZK0"
+      ],
+      "local_expected_family_hit_pdb_ids": [
+        "1AWB",
+        "1IMC",
+        "1IMD",
+        "1IME",
+        "4AS4",
+        "6GIU",
+        "6GJ0",
+        "6ZK0"
+      ],
+      "local_expected_ligand_codes": [
+        "CA",
+        "MG",
+        "MN"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_resolution": "expert_review",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 11
+      },
+      "remapped_residue_position_structure_count": 11,
+      "review_policy": "local expected-family hits from conservative alternate-PDB residue remaps remain review-only; they cannot clear review debt or count labels without explicit expert/import evidence and a passing label-factory gate",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1IMA",
+      "selected_structure_gap_reasons": [
+        "selected_active_site_expected_family_absent",
+        "selected_structure_expected_family_absent",
+        "selected_structure_missing_expected_cofactor_family"
+      ],
+      "selected_structure_has_expected_family": false,
+      "strict_remap_guardrail_required": true,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.4288,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4288
+    },
+    {
+      "alternate_pdb_with_explicit_residue_positions_count": 0,
+      "audit_decision": "expert_reaction_substrate_review_required",
+      "candidate_pdb_with_explicit_residue_positions_count": 1,
+      "countable_label_candidate": false,
+      "counterevidence_present": false,
+      "counterevidence_reasons": [],
+      "counting_blockers": [
+        "alternate_pdb_lacks_explicit_mcsa_positions",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "expected_cofactor_absent_from_structure",
+        "kinase_name_with_hydrolase_top1",
+        "local_evidence_from_conservative_remap_only",
+        "review_marked_needs_more_evidence",
+        "selected_active_site_expected_family_absent",
+        "selected_structure_expected_family_absent",
+        "selected_structure_missing_expected_cofactor_family"
+      ],
+      "decision_reason": "reaction or substrate text conflicts with the top ontology family",
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "local_expected_family_hit_from_remap_pdb_ids": [
+        "3FGU",
+        "3ID8"
+      ],
+      "local_expected_family_hit_pdb_ids": [
+        "3FGU",
+        "3ID8"
+      ],
+      "local_expected_ligand_codes": [
+        "MG"
+      ],
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "recommended_resolution": "expert_review",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 7
+      },
+      "remapped_residue_position_structure_count": 7,
+      "review_policy": "local expected-family hits from conservative alternate-PDB residue remaps remain review-only; they cannot clear review debt or count labels without explicit expert/import evidence and a passing label-factory gate",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "3IDH",
+      "selected_structure_gap_reasons": [
+        "selected_active_site_expected_family_absent",
+        "selected_structure_expected_family_absent",
+        "selected_structure_missing_expected_cofactor_family"
+      ],
+      "selected_structure_has_expected_family": false,
+      "strict_remap_guardrail_required": true,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.5769,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5769
+    },
+    {
+      "alternate_pdb_with_explicit_residue_positions_count": 0,
+      "audit_decision": "expert_family_boundary_review_required",
+      "candidate_pdb_with_explicit_residue_positions_count": 1,
+      "countable_label_candidate": false,
+      "counterevidence_present": true,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "counting_blockers": [
+        "alternate_pdb_lacks_explicit_mcsa_positions",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "local_evidence_from_conservative_remap_only",
+        "review_marked_needs_more_evidence",
+        "selected_active_site_expected_family_absent",
+        "selected_structure_expected_family_absent",
+        "selected_structure_missing_expected_cofactor_family"
+      ],
+      "decision_reason": "counterevidence remains after alternate-structure local remap hits",
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "local_expected_family_hit_from_remap_pdb_ids": [
+        "1J7N",
+        "1PWP",
+        "1PWQ",
+        "1YQY",
+        "1ZXV",
+        "4DV8",
+        "4PKQ",
+        "4PKR",
+        "4PKS",
+        "4PKT",
+        "4PKU",
+        "4PKV",
+        "4PKW",
+        "4WF6",
+        "4XM6",
+        "4XM7",
+        "4XM8",
+        "5D1S",
+        "5D1T",
+        "5D1U"
+      ],
+      "local_expected_family_hit_pdb_ids": [
+        "1J7N",
+        "1PWP",
+        "1PWQ",
+        "1YQY",
+        "1ZXV",
+        "4DV8",
+        "4PKQ",
+        "4PKR",
+        "4PKS",
+        "4PKT",
+        "4PKU",
+        "4PKV",
+        "4PKW",
+        "4WF6",
+        "4XM6",
+        "4XM7",
+        "4XM8",
+        "5D1S",
+        "5D1T",
+        "5D1U"
+      ],
+      "local_expected_ligand_codes": [
+        "ZN"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_resolution": "expert_review",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 21
+      },
+      "remapped_residue_position_structure_count": 21,
+      "review_policy": "local expected-family hits from conservative alternate-PDB residue remaps remain review-only; they cannot clear review debt or count labels without explicit expert/import evidence and a passing label-factory gate",
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1PWV",
+      "selected_structure_gap_reasons": [
+        "selected_active_site_expected_family_absent",
+        "selected_structure_expected_family_absent",
+        "selected_structure_missing_expected_cofactor_family"
+      ],
+      "selected_structure_has_expected_family": false,
+      "strict_remap_guardrail_required": true,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.4261,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4261
+    }
+  ]
+}
