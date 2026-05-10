@@ -13,6 +13,7 @@ from catalytic_earth.labels import (
     analyze_cofactor_coverage,
     analyze_geometry_score_margins,
     analyze_in_scope_failures,
+    analyze_review_evidence_gaps,
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
@@ -26,6 +27,7 @@ from catalytic_earth.labels import (
     build_provisional_review_decision_batch,
     check_label_batch_acceptance,
     check_label_factory_gates,
+    check_label_review_resolution,
     classify_out_of_scope_failure,
     compare_threshold_policies,
     countable_benchmark_labels,
@@ -45,12 +47,12 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 499)
+        self.assertEqual(len(labels), 546)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
-        self.assertEqual(summary["by_tier"]["bronze"], 499)
-        self.assertEqual(summary["by_review_status"]["automation_curated"], 499)
+        self.assertEqual(summary["by_tier"]["bronze"], 546)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 546)
         self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:
@@ -761,6 +763,169 @@ class LabelTests(unittest.TestCase):
         )
         self.assertTrue(acceptance["metadata"]["accepted_for_counting"])
         self.assertEqual(acceptance["metadata"]["accepted_new_label_count"], 1)
+
+    def test_targeted_review_deferral_resolves_candidate_without_counting(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="Existing out-of-scope baseline label for resolution testing.",
+            )
+        ]
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:2",
+                    "entry_name": "cobalamin gap enzyme",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:2",
+                        "entry_name": "cobalamin gap enzyme",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+                        "top1_score": 0.38,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "not_required",
+                        "counterevidence_reasons": ["ser_his_seed_missing_triad_coherence"],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "A cobalamin radical mechanism begins with Co-C5 bond cleavage."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+                {
+                    "entry_id": "m_csa:3",
+                    "entry_name": "lower-priority boundary",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:3",
+                        "entry_name": "lower-priority boundary",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "plp_dependent_enzyme",
+                        "top1_score": 0.52,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "ligand_supported",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": ["PLP chemistry is supported locally."],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+            ],
+        }
+        batch = build_provisional_review_decision_batch(
+            review,
+            batch_id="targeted_deferral",
+            reviewer="automation_label_factory_test",
+            entry_ids={"m_csa:2"},
+        )
+        self.assertEqual(len(batch["review_items"]), 1)
+        self.assertEqual(batch["metadata"]["selected_entry_ids"], ["m_csa:2"])
+        self.assertEqual(batch["metadata"]["decision_counts"], {"mark_needs_more_evidence": 1})
+        self.assertEqual(
+            batch["metadata"]["decision_entry_ids"]["mark_needs_more_evidence"],
+            ["m_csa:2"],
+        )
+
+        review_state = import_expert_review_decisions(labels, batch)
+        countable = import_countable_review_decisions(labels, batch)
+        check = check_label_review_resolution(
+            baseline_labels=labels,
+            review_state_labels=review_state,
+            countable_labels=countable,
+            review_artifact=batch,
+            label_expansion_candidates={"rows": [{"entry_id": "m_csa:2"}]},
+            label_factory_gate={
+                "metadata": {"automation_ready_for_next_label_batch": True}
+            },
+        )
+        self.assertTrue(check["metadata"]["resolved_for_scaling"])
+        self.assertEqual(check["metadata"]["accepted_new_label_count"], 0)
+        self.assertEqual(check["metadata"]["needs_more_evidence_entry_ids"], ["m_csa:2"])
+        self.assertEqual(check["metadata"]["remaining_unresolved_candidate_count"], 0)
+        self.assertEqual({label.entry_id for label in countable}, {"m_csa:1"})
+
+        retrieval = {
+            "results": [
+                {
+                    "entry_id": "m_csa:2",
+                    "entry_name": "cobalamin gap enzyme",
+                    "ligand_context": {
+                        "cofactor_families": [],
+                        "ligand_codes": ["PGO"],
+                        "structure_cofactor_families": ["cobalamin"],
+                        "structure_ligand_codes": ["PGO", "B12"],
+                        "structure_ligands": [
+                            {
+                                "code": "B12",
+                                "instance_count": 1,
+                                "min_distance_to_active_site": 8.349,
+                            }
+                        ],
+                    },
+                    "mechanism_text_snippets": [
+                        "A cobalamin radical mechanism begins with Co-C5 bond cleavage."
+                    ],
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "ser_his_acid_hydrolase",
+                            "score": 0.38,
+                            "counterevidence_reasons": [
+                                "ser_his_seed_missing_triad_coherence"
+                            ],
+                        },
+                        {
+                            "fingerprint_id": "cobalamin_radical_rearrangement",
+                            "score": 0.37,
+                        },
+                    ],
+                }
+            ]
+        }
+        gaps = analyze_review_evidence_gaps(retrieval, batch)
+        self.assertEqual(gaps["metadata"]["gap_count"], 1)
+        self.assertEqual(gaps["rows"][0]["coverage_status"], "expected_structure_only")
+        self.assertEqual(gaps["rows"][0]["nearest_expected_ligand_distance_angstrom"], 8.349)
+        self.assertIn("expected_cofactor_not_local", gaps["rows"][0]["gap_reasons"])
+
+    def test_provisional_batch_accepts_ser_his_hydrolase_text_despite_counterevidence(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:519",
+                    "entry_name": "triacylglycerol lipase",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:519",
+                        "entry_name": "triacylglycerol lipase",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+                        "top1_score": 0.6199,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "not_required",
+                        "counterevidence_reasons": [
+                            "metal_supported_site_for_ser_his_seed"
+                        ],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "This alpha-beta hydrolase uses a classical Ser-His-Asp triad mechanism."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                }
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decision = batch["review_items"][0]["decision"]
+        self.assertEqual(decision["action"], "accept_label")
+        self.assertEqual(decision["label_type"], "seed_fingerprint")
+        self.assertEqual(decision["fingerprint_id"], "ser_his_acid_hydrolase")
+        self.assertIn("Ser-His-Asp/Glu hydrolase triad", decision["rationale"])
 
     def test_adversarial_negative_controls_use_more_than_threshold(self) -> None:
         labels = [

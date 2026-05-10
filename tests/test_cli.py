@@ -266,6 +266,8 @@ class CliTests(unittest.TestCase):
             imported_labels = Path(tmpdir) / "imported_labels.json"
             countable_labels = Path(tmpdir) / "countable_labels.json"
             gate_check = Path(tmpdir) / "gate_check.json"
+            review_resolution = Path(tmpdir) / "review_resolution.json"
+            review_gaps = Path(tmpdir) / "review_gaps.json"
             family_guardrails = Path(tmpdir) / "family_guardrails.json"
             migrated_labels = Path(tmpdir) / "migrated_labels.json"
             mapping_issues = Path(tmpdir) / "mapping_issues.json"
@@ -497,6 +499,23 @@ class CliTests(unittest.TestCase):
                     sys.executable,
                     "-m",
                     "catalytic_earth.cli",
+                    "analyze-review-evidence-gaps",
+                    "--review",
+                    str(decision_batch),
+                    "--out",
+                    str(review_gaps),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
                     "build-adversarial-negatives",
                     "--out",
                     str(adversarial_negatives),
@@ -588,6 +607,33 @@ class CliTests(unittest.TestCase):
                     sys.executable,
                     "-m",
                     "catalytic_earth.cli",
+                    "check-label-review-resolution",
+                    "--baseline-label-count",
+                    "499",
+                    "--review",
+                    str(decision_batch),
+                    "--review-state-labels",
+                    str(imported_labels),
+                    "--countable-labels",
+                    str(countable_labels),
+                    "--label-expansion-candidates",
+                    str(label_candidates),
+                    "--label-factory-gate",
+                    str(gate_check),
+                    "--out",
+                    str(review_resolution),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
                     "analyze-structure-mapping-issues",
                     "--out",
                     str(mapping_issues),
@@ -662,11 +708,13 @@ class CliTests(unittest.TestCase):
             self.assertIn("decision_schema", json.loads(review_export.read_text())["metadata"])
             self.assertIn("decision_counts", json.loads(decision_batch.read_text())["metadata"])
             self.assertIn("automation_ready_for_next_label_batch", json.loads(gate_check.read_text())["metadata"])
+            self.assertIn("resolved_for_scaling", json.loads(review_resolution.read_text())["metadata"])
+            self.assertIn("gap_reason_counts", json.loads(review_gaps.read_text())["metadata"])
             self.assertIn("source_guardrails", json.loads(family_guardrails.read_text())["metadata"])
             self.assertGreaterEqual(len(json.loads(imported_labels.read_text())), 475)
             self.assertLessEqual(len(json.loads(countable_labels.read_text())), len(json.loads(imported_labels.read_text())))
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "500")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "550")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

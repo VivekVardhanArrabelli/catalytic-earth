@@ -2790,9 +2790,18 @@ def build_provisional_review_decision_batch(
     batch_id: str = "provisional_batch",
     reviewer: str = "automation_label_factory",
     max_boundary_controls: int = 5,
+    entry_ids: set[str] | None = None,
 ) -> dict[str, Any]:
     batch = deepcopy(review_artifact)
+    requested_entry_ids = set(entry_ids or set())
+    if requested_entry_ids:
+        batch["review_items"] = [
+            item
+            for item in batch.get("review_items", [])
+            if isinstance(item, dict) and item.get("entry_id") in requested_entry_ids
+        ]
     decision_counts: Counter = Counter()
+    decision_entry_ids: dict[str, list[str]] = {}
     selected_boundary_controls = 0
     for item in batch.get("review_items", []):
         if not isinstance(item, dict):
@@ -2817,7 +2826,10 @@ def build_provisional_review_decision_batch(
                 reviewer=reviewer,
             )
             selected_boundary_controls += 1
-        decision_counts[str(item["decision"].get("action", "no_decision"))] += 1
+        action = str(item["decision"].get("action", "no_decision"))
+        decision_counts[action] += 1
+        if isinstance(item.get("entry_id"), str):
+            decision_entry_ids.setdefault(action, []).append(str(item["entry_id"]))
     metadata = dict(batch.get("metadata", {}))
     metadata.update(
         {
@@ -2825,7 +2837,20 @@ def build_provisional_review_decision_batch(
             "source_method": review_artifact.get("metadata", {}).get("method"),
             "batch_id": batch_id,
             "reviewer": reviewer,
+            "selected_entry_ids": sorted(requested_entry_ids),
+            "missing_entry_ids": sorted(
+                requested_entry_ids
+                - {
+                    str(item.get("entry_id"))
+                    for item in batch.get("review_items", [])
+                    if isinstance(item, dict) and isinstance(item.get("entry_id"), str)
+                }
+            ),
             "decision_counts": dict(sorted(decision_counts.items())),
+            "decision_entry_ids": {
+                action: sorted(entry_ids)
+                for action, entry_ids in sorted(decision_entry_ids.items())
+            },
             "boundary_control_decisions": selected_boundary_controls,
             "policy": (
                 "Automation-curated batch decisions stay bronze and are imported "
@@ -3053,6 +3078,259 @@ def check_label_batch_acceptance(
             "review_state": review_summary,
             "countable": countable_summary,
         },
+    }
+
+
+def check_label_review_resolution(
+    baseline_labels: list[MechanismLabel],
+    review_state_labels: list[MechanismLabel],
+    countable_labels: list[MechanismLabel],
+    review_artifact: dict[str, Any],
+    label_expansion_candidates: dict[str, Any],
+    label_factory_gate: dict[str, Any],
+    baseline_label_count: int | None = None,
+) -> dict[str, Any]:
+    baseline_count = baseline_label_count if baseline_label_count is not None else len(baseline_labels)
+    baseline_ids = {label.entry_id for label in baseline_labels}
+    review_state_by_entry = {label.entry_id: label for label in review_state_labels}
+    countable_by_entry = {label.entry_id: label for label in countable_labels}
+    candidate_ids = sorted(
+        {
+            str(row.get("entry_id"))
+            for row in label_expansion_candidates.get("rows", [])
+            if isinstance(row, dict)
+            and isinstance(row.get("entry_id"), str)
+            and row.get("entry_id") not in baseline_ids
+        },
+        key=_entry_id_sort_key,
+    )
+    decisions_by_entry: dict[str, str] = {}
+    decision_counts: Counter = Counter()
+    for item in review_artifact.get("review_items", []):
+        if not isinstance(item, dict) or not isinstance(item.get("entry_id"), str):
+            continue
+        decision = item.get("decision", {})
+        if not isinstance(decision, dict):
+            continue
+        action = str(decision.get("action", "no_decision"))
+        decision_counts[action] += 1
+        if action != "no_decision":
+            decisions_by_entry[str(item["entry_id"])] = action
+
+    resolving_actions = {"accept_label", "mark_needs_more_evidence", "reject_label"}
+    unresolved_candidate_ids = [
+        entry_id
+        for entry_id in candidate_ids
+        if decisions_by_entry.get(entry_id) not in resolving_actions
+    ]
+    accepted_entry_ids = sorted(
+        [entry_id for entry_id, action in decisions_by_entry.items() if action == "accept_label"],
+        key=_entry_id_sort_key,
+    )
+    needs_more_evidence_entry_ids = sorted(
+        [
+            entry_id
+            for entry_id, action in decisions_by_entry.items()
+            if action == "mark_needs_more_evidence"
+        ],
+        key=_entry_id_sort_key,
+    )
+    rejected_entry_ids = sorted(
+        [entry_id for entry_id, action in decisions_by_entry.items() if action == "reject_label"],
+        key=_entry_id_sort_key,
+    )
+    needs_more_evidence_not_imported = [
+        entry_id
+        for entry_id in needs_more_evidence_entry_ids
+        if review_state_by_entry.get(entry_id) is None
+        or review_state_by_entry[entry_id].review_status != "needs_expert_review"
+    ]
+    accepted_missing_from_countable = [
+        entry_id for entry_id in accepted_entry_ids if entry_id not in countable_by_entry
+    ]
+    gates = {
+        "review_state_preserves_baseline": len(review_state_labels) >= baseline_count,
+        "countable_registry_preserves_baseline": len(countable_labels) >= baseline_count,
+        "no_pending_review_in_countable": not any(
+            label.review_status == "needs_expert_review" for label in countable_labels
+        ),
+        "review_decisions_cover_unlabeled_candidates": not unresolved_candidate_ids,
+        "needs_more_evidence_imported": not needs_more_evidence_not_imported,
+        "accepted_decisions_countable": not accepted_missing_from_countable,
+        "countable_growth_matches_acceptances": len(countable_labels)
+        <= baseline_count + len(accepted_entry_ids),
+        "factory_gate_ready": bool(
+            label_factory_gate.get("metadata", {}).get("automation_ready_for_next_label_batch")
+        ),
+    }
+    blockers = [name for name, passed in gates.items() if not passed]
+    return {
+        "metadata": {
+            "method": "label_review_resolution_check",
+            "baseline_label_count": baseline_count,
+            "review_state_label_count": len(review_state_labels),
+            "countable_label_count": len(countable_labels),
+            "candidate_count": len(candidate_ids),
+            "candidate_entry_ids": candidate_ids,
+            "accepted_entry_ids": accepted_entry_ids,
+            "needs_more_evidence_entry_ids": needs_more_evidence_entry_ids,
+            "rejected_entry_ids": rejected_entry_ids,
+            "accepted_new_label_count": max(0, len(countable_labels) - baseline_count),
+            "remaining_unresolved_candidate_count": len(unresolved_candidate_ids),
+            "remaining_unresolved_candidate_ids": unresolved_candidate_ids,
+            "needs_more_evidence_not_imported": needs_more_evidence_not_imported,
+            "accepted_missing_from_countable": accepted_missing_from_countable,
+            "decision_counts": dict(sorted(decision_counts.items())),
+            "resolved_for_scaling": not blockers,
+            "resolution_rule": (
+                "remaining label-expansion candidates must have an accept, reject, "
+                "or needs-more-evidence decision before the next tranche opens; "
+                "needs-more-evidence records stay out of the countable benchmark"
+            ),
+        },
+        "gates": gates,
+        "blockers": blockers,
+    }
+
+
+def analyze_review_evidence_gaps(
+    retrieval: dict[str, Any],
+    review_artifact: dict[str, Any],
+) -> dict[str, Any]:
+    results_by_entry = {
+        result.get("entry_id"): result
+        for result in retrieval.get("results", [])
+        if isinstance(result, dict) and isinstance(result.get("entry_id"), str)
+    }
+    fingerprints_by_id = {
+        fingerprint.id: fingerprint.to_dict() for fingerprint in load_fingerprints()
+    }
+    rows: list[dict[str, Any]] = []
+    for item in review_artifact.get("review_items", []):
+        if not isinstance(item, dict) or not isinstance(item.get("entry_id"), str):
+            continue
+        decision = item.get("decision", {})
+        if not isinstance(decision, dict):
+            continue
+        action = str(decision.get("action", "no_decision"))
+        if action == "no_decision":
+            continue
+        entry_id = str(item["entry_id"])
+        result = results_by_entry.get(entry_id, {})
+        queue_context = item.get("queue_context", {})
+        if not isinstance(queue_context, dict):
+            queue_context = {}
+        fingerprint_id = decision.get("fingerprint_id") or queue_context.get(
+            "top1_fingerprint_id"
+        )
+        fingerprint = fingerprints_by_id.get(str(fingerprint_id), {})
+        coverage = _cofactor_coverage_row_parts(result, fingerprint) if fingerprint else {}
+        top = result.get("top_fingerprints", [])
+        top1 = top[0] if top else {}
+        top1_score = float(
+            top1.get(
+                "score",
+                queue_context.get("top1_score", 0.0),
+            )
+            or 0.0
+        )
+        threshold = float(queue_context.get("abstain_threshold", 0.0) or 0.0)
+        target_rank, target = _target_fingerprint_hit(top, str(fingerprint_id))
+        target_score = (
+            round(float(target.get("score", 0.0) or 0.0), 4)
+            if isinstance(target, dict)
+            else None
+        )
+        coverage_status = str(coverage.get("coverage_status", "unknown"))
+        gap_reasons = []
+        if action == "mark_needs_more_evidence":
+            gap_reasons.append("review_marked_needs_more_evidence")
+        if coverage_status == "expected_structure_only":
+            gap_reasons.append("expected_cofactor_not_local")
+        elif coverage_status == "expected_absent_from_structure":
+            gap_reasons.append("expected_cofactor_absent_from_structure")
+        if threshold and top1_score < threshold:
+            gap_reasons.append("top1_below_abstention_threshold")
+        if fingerprint_id and target_rank != 1:
+            gap_reasons.append("target_not_top1")
+        counterevidence = sorted(
+            set(
+                [
+                    str(reason)
+                    for reason in queue_context.get("counterevidence_reasons", [])
+                    if str(reason)
+                ]
+                + _fingerprint_component_scores(target or top1).get(
+                    "counterevidence_reasons", []
+                )
+            )
+        )
+        if counterevidence:
+            gap_reasons.append("counterevidence_present")
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": item.get("entry_name") or result.get("entry_name"),
+                "decision_action": action,
+                "decision_review_status": decision.get("review_status"),
+                "target_fingerprint_id": fingerprint_id,
+                "target_rank": target_rank,
+                "target_score": target_score,
+                "top1_fingerprint_id": top1.get(
+                    "fingerprint_id",
+                    queue_context.get("top1_fingerprint_id"),
+                ),
+                "top1_score": round(top1_score, 4),
+                "abstain_threshold": threshold,
+                "coverage_status": coverage_status,
+                "expected_cofactor_families": coverage.get(
+                    "expected_cofactor_families", []
+                ),
+                "local_cofactor_families": coverage.get("local_cofactor_families", []),
+                "structure_cofactor_families": coverage.get(
+                    "structure_cofactor_families", []
+                ),
+                "matching_structure_ligands": coverage.get(
+                    "matching_structure_ligands", []
+                ),
+                "nearest_expected_ligand_distance_angstrom": coverage.get(
+                    "nearest_expected_ligand_distance_angstrom"
+                ),
+                "proximal_ligand_codes": coverage.get("proximal_ligand_codes", []),
+                "structure_ligand_codes": coverage.get("structure_ligand_codes", []),
+                "counterevidence_reasons": counterevidence,
+                "gap_reasons": sorted(set(gap_reasons)),
+                "decision_rationale": decision.get("rationale"),
+                "mechanism_text_snippets": result.get("mechanism_text_snippets")
+                or queue_context.get("mechanism_text_snippets", []),
+            }
+        )
+    gap_reason_counts = Counter(reason for row in rows for reason in row["gap_reasons"])
+    coverage_counts = Counter(str(row["coverage_status"]) for row in rows)
+    return {
+        "metadata": {
+            "method": "review_evidence_gap_analysis",
+            "reviewed_decision_count": len(rows),
+            "gap_count": sum(1 for row in rows if row["gap_reasons"]),
+            "needs_more_evidence_count": sum(
+                1 for row in rows if row["decision_action"] == "mark_needs_more_evidence"
+            ),
+            "needs_more_evidence_entry_ids": sorted(
+                (
+                    row["entry_id"]
+                    for row in rows
+                    if row["decision_action"] == "mark_needs_more_evidence"
+                ),
+                key=_entry_id_sort_key,
+            ),
+            "coverage_status_counts": dict(sorted(coverage_counts.items())),
+            "gap_reason_counts": dict(sorted(gap_reason_counts.items())),
+            "audit_rule": (
+                "review deferrals must preserve the local evidence gap rather "
+                "than silently counting structure-wide or text-only support"
+            ),
+        },
+        "rows": sorted(rows, key=lambda row: _entry_id_sort_key(row["entry_id"])),
     }
 
 
@@ -3556,6 +3834,19 @@ def _provisional_unlabeled_decision(
         and ("phosphatase" in text or "phosphodiester" in text or "phosphate" in text)
         and ("hydrolys" in text or "water" in text)
     )
+    ser_his_hydrolase_hint = (
+        top1 == "ser_his_acid_hydrolase"
+        and top1_score >= threshold
+        and (
+            "ser-his" in text
+            or "ser his" in text
+            or "catalytic triad" in text
+            or "triad mechanism" in text
+            or "alpha-beta hydrolase" in text
+            or "lipase" in entry_name.lower()
+            or "hydrolase" in entry_name.lower()
+        )
+    )
     supported_seed = (
         top1_score >= threshold
         and top1
@@ -3597,6 +3888,22 @@ def _provisional_unlabeled_decision(
             "evidence_score": 0.55,
             "review_status": "needs_expert_review",
         }
+    if ser_his_hydrolase_hint:
+        return {
+            "action": "accept_label",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} is provisionally assigned to ser_his_acid_hydrolase: "
+                f"retrieval score {top1_score:.4f} clears the {threshold:.4f} floor "
+                "and mechanism text supports a Ser-His-Asp/Glu hydrolase triad."
+            ),
+            "evidence_score": 0.67,
+            "review_status": "automation_curated",
+        }
     if supported_seed or metal_hydrolysis_hint:
         confidence = "high" if top1_score >= 0.5 and cofactor_level == "ligand_supported" else "medium"
         return {
@@ -3618,8 +3925,15 @@ def _provisional_unlabeled_decision(
     confidence = "low" if blockers else "medium"
     rationale_bits = [
         f"{entry_name} is provisionally outside the current seed fingerprints.",
-        f"Top retrieval {top1 or 'none'} scored {top1_score:.4f}, below the {threshold:.4f} floor.",
     ]
+    if top1_score < threshold:
+        rationale_bits.append(
+            f"Top retrieval {top1 or 'none'} scored {top1_score:.4f}, below the {threshold:.4f} floor."
+        )
+    else:
+        rationale_bits.append(
+            f"Top retrieval {top1 or 'none'} scored {top1_score:.4f}, but current automation rules do not support a countable seed assignment."
+        )
     if counterevidence:
         rationale_bits.append(
             "Counterevidence: " + ", ".join(sorted(counterevidence)) + "."

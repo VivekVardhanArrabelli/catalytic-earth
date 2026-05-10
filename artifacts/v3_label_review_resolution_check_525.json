@@ -1,0 +1,68 @@
+{
+  "blockers": [],
+  "gates": {
+    "accepted_decisions_countable": true,
+    "countable_growth_matches_acceptances": true,
+    "countable_registry_preserves_baseline": true,
+    "factory_gate_ready": true,
+    "needs_more_evidence_imported": true,
+    "no_pending_review_in_countable": true,
+    "review_decisions_cover_unlabeled_candidates": true,
+    "review_state_preserves_baseline": true
+  },
+  "metadata": {
+    "accepted_entry_ids": [
+      "m_csa:503",
+      "m_csa:504",
+      "m_csa:505",
+      "m_csa:506",
+      "m_csa:507",
+      "m_csa:508",
+      "m_csa:509",
+      "m_csa:511",
+      "m_csa:512",
+      "m_csa:513",
+      "m_csa:514",
+      "m_csa:515",
+      "m_csa:516",
+      "m_csa:517",
+      "m_csa:518",
+      "m_csa:519",
+      "m_csa:520",
+      "m_csa:521",
+      "m_csa:522",
+      "m_csa:523",
+      "m_csa:524",
+      "m_csa:525",
+      "m_csa:526",
+      "m_csa:527"
+    ],
+    "accepted_missing_from_countable": [],
+    "accepted_new_label_count": 0,
+    "baseline_label_count": 523,
+    "candidate_count": 0,
+    "candidate_entry_ids": [],
+    "countable_label_count": 523,
+    "decision_counts": {
+      "accept_label": 24,
+      "mark_needs_more_evidence": 6,
+      "no_decision": 19
+    },
+    "method": "label_review_resolution_check",
+    "needs_more_evidence_entry_ids": [
+      "m_csa:4",
+      "m_csa:13",
+      "m_csa:54",
+      "m_csa:140",
+      "m_csa:222",
+      "m_csa:510"
+    ],
+    "needs_more_evidence_not_imported": [],
+    "rejected_entry_ids": [],
+    "remaining_unresolved_candidate_count": 0,
+    "remaining_unresolved_candidate_ids": [],
+    "resolution_rule": "remaining label-expansion candidates must have an accept, reject, or needs-more-evidence decision before the next tranche opens; needs-more-evidence records stay out of the countable benchmark",
+    "resolved_for_scaling": true,
+    "review_state_label_count": 525
+  }
+}

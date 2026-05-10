@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "audit_rule": "review deferrals must preserve the local evidence gap rather than silently counting structure-wide or text-only support",
+    "coverage_status_counts": {
+      "expected_structure_only": 1
+    },
+    "gap_count": 1,
+    "gap_reason_counts": {
+      "counterevidence_present": 1,
+      "expected_cofactor_not_local": 1,
+      "review_marked_needs_more_evidence": 1,
+      "target_not_top1": 1,
+      "top1_below_abstention_threshold": 1
+    },
+    "method": "review_evidence_gap_analysis",
+    "needs_more_evidence_count": 1,
+    "needs_more_evidence_entry_ids": [
+      "m_csa:494"
+    ],
+    "reviewed_decision_count": 1
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "counterevidence_reasons": [
+        "metal_ligand_rich_site_for_ser_his_seed",
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "coverage_status": "expected_structure_only",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "propanediol dehydratase has cobalamin-radical mechanism text, but the selected structure lacks local cobalamin support; keep this candidate in expert review before counting it.",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:494",
+      "entry_name": "propanediol dehydratase",
+      "expected_cofactor_families": [
+        "cobalamin"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "target_not_top1",
+        "top1_below_abstention_threshold"
+      ],
+      "local_cofactor_families": [],
+      "matching_structure_ligands": [
+        {
+          "code": "B12",
+          "family": "cobalamin",
+          "instance_count": 2,
+          "min_distance_to_active_site": 8.349
+        }
+      ],
+      "mechanism_text_snippets": [
+        "The radical mechanism involves binding of 1,2-propanediol to the enzyme to induce homolytic cleavage of the Co-C5' bond of the coenzyme to form cob(II)alamin and the adenosyl radical. Hydrogen abstraction from the substrate follows producing a substrate generated radical and 5'-deoxyadenosine. Re..."
+      ],
+      "nearest_expected_ligand_distance_angstrom": 8.349,
+      "proximal_ligand_codes": [
+        "K",
+        "PGO"
+      ],
+      "structure_cofactor_families": [
+        "cobalamin"
+      ],
+      "structure_ligand_codes": [
+        "K",
+        "PGO",
+        "B12"
+      ],
+      "target_fingerprint_id": "cobalamin_radical_rearrangement",
+      "target_rank": null,
+      "target_score": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3828
+    }
+  ]
+}

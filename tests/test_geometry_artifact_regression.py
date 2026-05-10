@@ -13,9 +13,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
     def test_label_summary_artifact_matches_curated_registry(self) -> None:
         summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
 
-        self.assertEqual(summary["label_count"], 499)
-        self.assertEqual(summary["by_type"]["seed_fingerprint"], 131)
-        self.assertEqual(summary["by_type"]["out_of_scope"], 368)
+        self.assertEqual(summary["label_count"], 546)
+        self.assertEqual(summary["by_type"]["seed_fingerprint"], 144)
+        self.assertEqual(summary["by_type"]["out_of_scope"], 402)
 
     def test_125_entry_geometry_artifacts_remain_clean(self) -> None:
         evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_125.json")
@@ -542,8 +542,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         gate = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_500.json")
 
-        self.assertEqual(label_summary["by_tier"], {"bronze": 499})
-        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 499})
+        self.assertEqual(label_summary["by_tier"], {"bronze": 546})
+        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 546})
         self.assertEqual(audit["metadata"]["promote_to_silver_count"], 63)
         self.assertEqual(audit["metadata"]["abstention_or_review_count"], 101)
         self.assertEqual(audit["metadata"]["hard_negative_evidence_entry_count"], 100)
@@ -567,6 +567,27 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertTrue(gate["metadata"]["automation_ready_for_next_label_batch"])
         self.assertEqual(gate["blockers"], [])
+
+    def test_525_and_550_batch_acceptance_are_gated(self) -> None:
+        acceptance = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_525.json")
+        acceptance_550 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_550.json")
+        evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_550.json")
+        hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_550.json")
+        candidates_550 = _load_json(ROOT / "artifacts" / "v3_label_expansion_candidates_550.json")
+        gate_550 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_550.json")
+
+        self.assertTrue(acceptance["metadata"]["accepted_for_counting"])
+        self.assertEqual(acceptance["metadata"]["accepted_new_label_count"], 24)
+        self.assertEqual(acceptance["metadata"]["countable_label_count"], 523)
+        self.assertTrue(acceptance_550["metadata"]["accepted_for_counting"])
+        self.assertEqual(acceptance_550["metadata"]["accepted_new_label_count"], 23)
+        self.assertEqual(acceptance_550["metadata"]["countable_label_count"], 546)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions"], 0)
+        self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
+        self.assertEqual(candidates_550["metadata"]["ready_for_label_review_count"], 0)
+        self.assertTrue(gate_550["metadata"]["automation_ready_for_next_label_batch"])
+        self.assertEqual(gate_550["blockers"], [])
 
 
 def _load_json(path: Path) -> dict:

@@ -19,6 +19,7 @@ from .labels import (
     analyze_in_scope_failures,
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
+    analyze_review_evidence_gaps,
     analyze_structure_mapping_issues,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
@@ -30,6 +31,7 @@ from .labels import (
     build_provisional_review_decision_batch,
     check_label_batch_acceptance,
     check_label_factory_gates,
+    check_label_review_resolution,
     countable_benchmark_labels,
     evaluate_geometry_retrieval,
     apply_label_factory_actions,
@@ -642,11 +644,50 @@ def cmd_build_review_decision_batch(args: argparse.Namespace) -> int:
         batch_id=args.batch_id,
         reviewer=args.reviewer,
         max_boundary_controls=args.max_boundary_controls,
+        entry_ids=set(args.entry_id or []),
     )
     write_json(Path(args.out), batch)
     print(
         "Wrote provisional review decision batch to "
         f"{args.out} ({batch['metadata']['decision_counts']})"
+    )
+    return 0
+
+
+def cmd_check_label_review_resolution(args: argparse.Namespace) -> int:
+    with Path(args.review).open("r", encoding="utf-8") as handle:
+        review = json.load(handle)
+    with Path(args.label_expansion_candidates).open("r", encoding="utf-8") as handle:
+        candidates = json.load(handle)
+    with Path(args.label_factory_gate).open("r", encoding="utf-8") as handle:
+        label_factory_gate = json.load(handle)
+    check = check_label_review_resolution(
+        baseline_labels=load_labels(Path(args.baseline_labels)),
+        review_state_labels=load_labels(Path(args.review_state_labels)),
+        countable_labels=load_labels(Path(args.countable_labels)),
+        review_artifact=review,
+        label_expansion_candidates=candidates,
+        label_factory_gate=label_factory_gate,
+        baseline_label_count=args.baseline_label_count,
+    )
+    write_json(Path(args.out), check)
+    print(
+        "Wrote label review resolution check to "
+        f"{args.out} (resolved={check['metadata']['resolved_for_scaling']})"
+    )
+    return 0
+
+
+def cmd_analyze_review_evidence_gaps(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    with Path(args.review).open("r", encoding="utf-8") as handle:
+        review = json.load(handle)
+    analysis = analyze_review_evidence_gaps(retrieval, review)
+    write_json(Path(args.out), analysis)
+    print(
+        "Wrote review evidence gap analysis to "
+        f"{args.out} ({analysis['metadata']['gap_count']} gaps)"
     )
     return 0
 
@@ -1195,6 +1236,12 @@ def build_parser() -> argparse.ArgumentParser:
     decision_batch.add_argument("--batch-id", default="provisional_batch")
     decision_batch.add_argument("--reviewer", default="automation_label_factory")
     decision_batch.add_argument("--max-boundary-controls", type=int, default=5)
+    decision_batch.add_argument(
+        "--entry-id",
+        action="append",
+        default=[],
+        help="limit the generated decision batch to a specific review entry; repeatable",
+    )
     decision_batch.add_argument("--out", default="artifacts/v3_review_decision_batch.json")
     decision_batch.set_defaults(func=cmd_build_review_decision_batch)
 
@@ -1226,6 +1273,29 @@ def build_parser() -> argparse.ArgumentParser:
     batch_acceptance.add_argument("--label-factory-gate", default="artifacts/v3_label_factory_gate_check_batch.json")
     batch_acceptance.add_argument("--out", default="artifacts/v3_label_batch_acceptance_check.json")
     batch_acceptance.set_defaults(func=cmd_check_label_batch_acceptance)
+
+    review_resolution = subparsers.add_parser(
+        "check-label-review-resolution",
+        help="verify that remaining review candidates were accepted, rejected, or deferred",
+    )
+    review_resolution.add_argument("--baseline-labels", default="data/registries/curated_mechanism_labels.json")
+    review_resolution.add_argument("--baseline-label-count", type=int, default=None)
+    review_resolution.add_argument("--review", default="artifacts/v3_review_decision_batch.json")
+    review_resolution.add_argument("--review-state-labels", default="artifacts/v3_imported_labels_batch.json")
+    review_resolution.add_argument("--countable-labels", default="artifacts/v3_countable_labels_batch.json")
+    review_resolution.add_argument("--label-expansion-candidates", default="artifacts/v3_label_expansion_candidates_500.json")
+    review_resolution.add_argument("--label-factory-gate", default="artifacts/v3_label_factory_gate_check_500.json")
+    review_resolution.add_argument("--out", default="artifacts/v3_label_review_resolution_check.json")
+    review_resolution.set_defaults(func=cmd_check_label_review_resolution)
+
+    review_gaps = subparsers.add_parser(
+        "analyze-review-evidence-gaps",
+        help="audit accepted or deferred review decisions against retrieval evidence gaps",
+    )
+    review_gaps.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval_500.json")
+    review_gaps.add_argument("--review", default="artifacts/v3_review_decision_batch.json")
+    review_gaps.add_argument("--out", default="artifacts/v3_review_evidence_gaps.json")
+    review_gaps.set_defaults(func=cmd_analyze_review_evidence_gaps)
 
     family_guardrails = subparsers.add_parser(
         "build-family-propagation-guardrails",

@@ -1,0 +1,2967 @@
+{
+  "metadata": {
+    "batch_id": "525_batch_provisional",
+    "boundary_control_decisions": 5,
+    "decision_counts": {
+      "accept_label": 24,
+      "mark_needs_more_evidence": 6,
+      "no_decision": 19
+    },
+    "decision_entry_ids": {
+      "accept_label": [
+        "m_csa:503",
+        "m_csa:504",
+        "m_csa:505",
+        "m_csa:506",
+        "m_csa:507",
+        "m_csa:508",
+        "m_csa:509",
+        "m_csa:511",
+        "m_csa:512",
+        "m_csa:513",
+        "m_csa:514",
+        "m_csa:515",
+        "m_csa:516",
+        "m_csa:517",
+        "m_csa:518",
+        "m_csa:519",
+        "m_csa:520",
+        "m_csa:521",
+        "m_csa:522",
+        "m_csa:523",
+        "m_csa:524",
+        "m_csa:525",
+        "m_csa:526",
+        "m_csa:527"
+      ],
+      "mark_needs_more_evidence": [
+        "m_csa:13",
+        "m_csa:140",
+        "m_csa:222",
+        "m_csa:4",
+        "m_csa:510",
+        "m_csa:54"
+      ],
+      "no_decision": [
+        "m_csa:104",
+        "m_csa:121",
+        "m_csa:130",
+        "m_csa:135",
+        "m_csa:136",
+        "m_csa:144",
+        "m_csa:17",
+        "m_csa:185",
+        "m_csa:212",
+        "m_csa:217",
+        "m_csa:220",
+        "m_csa:267",
+        "m_csa:268",
+        "m_csa:278",
+        "m_csa:324",
+        "m_csa:336",
+        "m_csa:361",
+        "m_csa:82",
+        "m_csa:91"
+      ]
+    },
+    "decision_schema": {
+      "action": [
+        "accept_label",
+        "mark_needs_more_evidence",
+        "reject_label",
+        "no_decision"
+      ],
+      "label_type": [
+        "seed_fingerprint",
+        "out_of_scope"
+      ],
+      "review_status": [
+        "automation_curated",
+        "needs_expert_review",
+        "expert_reviewed"
+      ],
+      "tier": [
+        "bronze",
+        "silver",
+        "gold"
+      ]
+    },
+    "exported_count": 49,
+    "max_ranked_rows": 25,
+    "method": "provisional_label_review_decision_batch",
+    "missing_entry_ids": [],
+    "policy": "Automation-curated batch decisions stay bronze and are imported as automation_curated or needs_expert_review records, not gold or expert-reviewed labels.",
+    "provenance_rule": "imports append review provenance and preserve existing evidence.sources",
+    "reviewer": "automation_label_factory",
+    "selected_entry_ids": [],
+    "source_method": "expert_review_export",
+    "unlabeled_inclusion_rule": "append all unlabeled queue rows even when ranked below the export cutoff"
+  },
+  "review_items": [
+    {
+      "current_label": {
+        "confidence": "low",
+        "entry_id": "m_csa:13",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.4,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Amine dehydrogenase redox chemistry is not represented by the current seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "medium",
+        "evidence_score": 0.55,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": "out_of_scope",
+        "rationale": "amine dehydrogenase is a high-ranked boundary control: top retrieval heme_peroxidase_oxidase scored 0.4056 near the 0.4115 abstention floor. Counterevidence: absent_heme_context.",
+        "review_status": "needs_expert_review",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:13",
+      "entry_name": "amine dehydrogenase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:13",
+        "entry_name": "amine dehydrogenase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Methylamine dehydrogenase carries out the oxidation of methylamine. The enzyme forms a complex with the type I blue copper protein amicyanin and cytochrome. Electron transfer procedes from the protein-derived tryptophan tryptophylquinone (TTQ) cofactor to the copper in amicyanin and then to the h...",
+          "Methylamine dehydrogenase carries out the oxidation of methylamine. In this alternative mechanism the only difference to the first mechanism proposed is that steps 3 and 5 are performed by bases external to the cofactor-substrate complex, and after step 5 the identities of the Asp residues are fl..."
+        ],
+        "rank": 1,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 6.3442,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0406,
+          "hard_negative_value": 1.1528,
+          "impact": 0.7755,
+          "novelty": 0.5303,
+          "uncertainty": 1.345
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.4056,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.3948
+      },
+      "rank": 1
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:4",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Copper nitrite reductase performs metal-centered electron-transfer reduction chemistry outside the current seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "medium",
+        "evidence_score": 0.55,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": "out_of_scope",
+        "rationale": "nitrite reductase (copper type) is a high-ranked boundary control: top retrieval heme_peroxidase_oxidase scored 0.3963 near the 0.4115 abstention floor. Counterevidence: absent_heme_context.",
+        "review_status": "needs_expert_review",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:4",
+      "entry_name": "nitrite reductase (copper type)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:4",
+        "entry_name": "nitrite reductase (copper type)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The resting oxidised state of the enzyme contains a water molecule coordinated to a Cu<sup>2+</sup> ion at the type II copper centre. Nitrite then binds to the type II copper ion and and displaces the water molecule. The type II copper now receives an electron from the type I copper and transfers...",
+          "The resting oxidised state of the enzyme contains a water molecule coordinated to a Cu<sup>2+</sup> ion at the type II copper centre. Nitrite then binds to the type II copper ion and and displaces the water molecule. This makes electron transfer from pseudoazurin to the type II copper centre via..."
+        ],
+        "rank": 2,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 6.289,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0813,
+          "hard_negative_value": 1.0784,
+          "impact": 0.7724,
+          "novelty": 0.5303,
+          "uncertainty": 1.3266
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.3963,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3929
+      },
+      "rank": 2
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:140",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Class II ribonucleoside-triphosphate reductase uses B12-associated radical reduction rather than the current cobalamin radical rearrangement seed, and the selected local active site lacks proximal cobalamin evidence.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "medium",
+        "evidence_score": 0.55,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": "out_of_scope",
+        "rationale": "ribonucleoside-triphosphate reductase (class II) is a high-ranked boundary control: top retrieval heme_peroxidase_oxidase scored 0.4038 near the 0.4115 abstention floor. Counterevidence: absent_heme_context.",
+        "review_status": "needs_expert_review",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:140",
+      "entry_name": "ribonucleoside-triphosphate reductase (class II)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:140",
+        "entry_name": "ribonucleoside-triphosphate reductase (class II)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The cofactor adenosylcobalamin generates a 5-deoxyadenosyl radical by homolytic cleavage of its carbon-cobalt bond generate a protein thiyl radical on the side chain of Cys408 via a hydrogen transfer reaction. The radical on the sulfur of Cys408 is transferred to the ribonucleoside triphosphate s..."
+        ],
+        "rank": 3,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 6.2431,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0736,
+          "hard_negative_value": 1.1384,
+          "impact": 0.6466,
+          "novelty": 0.5303,
+          "uncertainty": 1.3542
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.4038,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.399
+      },
+      "rank": 3
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:222",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Class I fructose-bisphosphate aldolase uses lysine Schiff-base aldol chemistry rather than PLP-dependent or hydrolase seed chemistry.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "medium",
+        "evidence_score": 0.55,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": "out_of_scope",
+        "rationale": "fructose-bisphosphate aldolase (Class I) is a high-ranked boundary control: top retrieval heme_peroxidase_oxidase scored 0.3968 near the 0.4115 abstention floor. Counterevidence: absent_heme_context.",
+        "review_status": "needs_expert_review",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:222",
+      "entry_name": "fructose-bisphosphate aldolase (Class I)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:222",
+        "entry_name": "fructose-bisphosphate aldolase (Class I)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "<p>The catalytic mechanism of archaic fructose-1,6-bisphosphate aldolase proceeds after binding and ring-opening of the substrate. Lys 229 attacks the C2-carbonyl carbon nucleophilically to form a carbinolamine using general acid catalysis as well. General acid catalysis by Glu187 (Tyr146 is Arch..."
+        ],
+        "rank": 4,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 6.1131,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0456,
+          "hard_negative_value": 1.0824,
+          "impact": 0.6443,
+          "novelty": 0.5303,
+          "uncertainty": 1.3105
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.3968,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.3869
+      },
+      "rank": 4
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:54",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Type I 3-dehydroquinate dehydratase uses Schiff-base-assisted dehydration chemistry outside the current seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "medium",
+        "evidence_score": 0.55,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": "out_of_scope",
+        "rationale": "3-dehydroquinate dehydratase (type I) is a high-ranked boundary control: top retrieval heme_peroxidase_oxidase scored 0.4076 near the 0.4115 abstention floor. Counterevidence: absent_heme_context.",
+        "review_status": "needs_expert_review",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:54",
+      "entry_name": "3-dehydroquinate dehydratase (type I)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:54",
+        "entry_name": "3-dehydroquinate dehydratase (type I)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "His143 is thought to play a part as a general acid in the formation of a Schiff base: a covalent adduct between the substrate and Lys170 of the enzyme. The role of the Schiff base is to act as an electron sink . It may also play a role in distorting the carbocyclic ring of dehydroquinate to rende..."
+        ],
+        "rank": 5,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 6.0943,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0455,
+          "hard_negative_value": 1.1688,
+          "impact": 0.4938,
+          "novelty": 0.5303,
+          "uncertainty": 1.3559
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.4076,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.3977
+      },
+      "rank": 5
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:267",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Dihydrodipicolinate synthase uses lysine Schiff-base aldol condensation and cyclization chemistry rather than PLP-dependent or hydrolase seed chemistry.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:267",
+      "entry_name": "dihydrodipicolinate synthase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:267",
+        "entry_name": "dihydrodipicolinate synthase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "In the first step, the E-amino group of the active site Lys161 acts as a nucleophile towards the keto group of pyruvate, forming an internal Schiff base adduct. Tyr133 is aligned to form a hydrogen bond with the keto oxygen of pyruvate which accelerates the dehydration of the tetrahedral intermed..."
+        ],
+        "rank": 6,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 6.0825,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.061,
+          "hard_negative_value": 1.048,
+          "impact": 0.6429,
+          "novelty": 0.5303,
+          "uncertainty": 1.3003
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.3925,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.3854
+      },
+      "rank": 6
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:121",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Sulfite oxidase uses molybdenum-centered sulfite oxidation with heme electron transfer, outside the current heme peroxidase or oxidase seed.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:121",
+      "entry_name": "sulfite oxidase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [
+          "molybdenum_center_heme_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:121",
+        "entry_name": "sulfite oxidase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "This protein requires both Heme and a molybdenum (VI) centre to be catalytically active. The sulfite substrate initiates a nucleophilic attack on one of the oxo ligands of the Mo(VI) centre, reducing the Mo to +4. This forms the sulfate product, which is displaced from the active site by water. D..."
+        ],
+        "rank": 7,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 6.0441,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.8828,
+          "hard_negative_value": 1.1952,
+          "impact": 0.6489,
+          "novelty": 0.5303,
+          "uncertainty": 1.2869
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.4109,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3714
+      },
+      "rank": 7
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:135",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Peptidylglycine monooxygenase is copper-dependent oxygenation chemistry outside the current metal-hydrolase, heme, and flavin seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:135",
+      "entry_name": "peptidylglycine monooxygenase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [
+          "metal_redox_ligand_context",
+          "single_electron_role_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:135",
+        "entry_name": "peptidylglycine monooxygenase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Ascorbate donates a single electron to one of the Cu(II) centres, which causes the hydroxide ligand to dissociate from the Cu(II) centre. A second ascorbate donates a single electron to the other Cu(II) centre, which causes the water ligand to dissociate from the Cu(II) centre. The two semidehydr...",
+          "The 2 copper centres will be reduced by the ascorbarte cofactors which will then result in one of the reduced copper centres donating an electron to a dioxygen molecule. The Cu(II)-superoxo intermediate abstracts a hydrogen from the substrate produces a Cu(II)-hydroperoxo species which will then...",
+          "A highly reduced copper-oxo species is proposed in this mechanism for substrate C-H bond cleavage which is preceded by electron transfer from one copper centre to another. Similarly to other mechanism the 2 Copper centres are reduced by ascorbates and one donates an electron to a dioxygen which p..."
+        ],
+        "rank": 8,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_need_review",
+        "review_score": 5.9872,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0461,
+          "hard_negative_value": 1.0232,
+          "impact": 0.8985,
+          "novelty": 0.2397,
+          "uncertainty": 1.2797
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3894,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.3796
+      },
+      "rank": 8
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:361",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Aldoxime dehydratase is a heme-dependent dehydration enzyme, not a heme peroxidase/oxidase seed mechanism in the current registry.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:361",
+      "entry_name": "aldoxime dehydratase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:361",
+        "entry_name": "aldoxime dehydratase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "It is proposed that the dehydration reaction of the heme-bound aldoxime proceeds in a general acid-base catalysis with His320 working as a catalytic residue in the distal heme pocket. The residue His299 is coordinated as a distal ligand to the Fe(II) centre of the heme prosthetic group, directing..."
+        ],
+        "rank": 9,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.9596,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0598,
+          "hard_negative_value": 1.0432,
+          "impact": 0.6427,
+          "novelty": 0.4167,
+          "uncertainty": 1.2972
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3919,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3846
+      },
+      "rank": 9
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:82",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Glutamine-fructose-6-phosphate transaminase isomerizing performs amidotransfer/isomerization chemistry outside the current PLP seed.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "plp_dependent_enzyme",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:82",
+      "entry_name": "glutamine-fructose-6-phosphate transaminase (isomerizing)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_plp_ligand_with_lysine_anchor"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:82",
+        "entry_name": "glutamine-fructose-6-phosphate transaminase (isomerizing)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "In the GAT domain deprotonated Cys1 attacks the amide carbonyl of L-glutamine forming a tetrahedral intermediate. Gly99 and Asn98 stabilise negative charge by formation of an oxyanion hole via hydrogen bonding. Subsequent collapse leads to release of ammonia, which is then transferred to the isom..."
+        ],
+        "rank": 10,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.9379,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0016,
+          "hard_negative_value": 1.1032,
+          "impact": 0.6451,
+          "novelty": 0.3889,
+          "uncertainty": 1.2991
+        },
+        "top1_fingerprint_id": "plp_dependent_enzyme",
+        "top1_ontology_family": "plp_chemistry",
+        "top1_score": 0.3994,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3815
+      },
+      "rank": 10
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:144",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Arsenite oxidase uses molybdenum and iron-sulfur redox chemistry outside the current flavin dehydrogenase and heme seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:144",
+      "entry_name": "arsenite oxidase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "role_inferred",
+        "counterevidence_reasons": [
+          "fe_s_cluster_context_for_metal_hydrolase",
+          "metal_redox_ligand_context",
+          "role_inferred_metal_missing_water_activation_role",
+          "single_electron_role_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:144",
+        "entry_name": "arsenite oxidase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The arsenic of the arsenite substrate attacks one of the molybdenum coordinating oxo groups, resulting in a Mo(VI) to Mo(IV) reduction. The oxo group forms a second bond to the arsenic, forming the product arsenate and resulting in the loss of the oxo group from the molybdenum complex and the rem..."
+        ],
+        "rank": 11,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.9261,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0461,
+          "hard_negative_value": 1.148,
+          "impact": 0.647,
+          "novelty": 0.2397,
+          "uncertainty": 1.3453
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.405,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.3952
+      },
+      "rank": 11
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:278",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Plastoquinol-plastocyanin reductase performs copper-centered protein electron transfer rather than metal-activated hydrolysis or current heme/flavin seed chemistry.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:278",
+      "entry_name": "plastoquinol-plastocyanin reductase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "role_inferred",
+        "counterevidence_reasons": [
+          "metal_redox_ligand_context",
+          "role_inferred_metal_low_pocket_support",
+          "single_electron_role_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:278",
+        "entry_name": "plastoquinol-plastocyanin reductase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Cu is coordinated in a skewed tetrahedral cage of Cys82, His39, weakly bound Met90 and His85. One side of His85 is exposed to the solvent in a region of hydrophobic residues which interact with the electron donor and acceptor. Cyt f donates one electron to oxidised PC at the Cu(II) centre forming..."
+        ],
+        "rank": 12,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.8615,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0917,
+          "hard_negative_value": 1.112,
+          "impact": 0.5685,
+          "novelty": 0.2397,
+          "uncertainty": 1.3496
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4005,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.399
+      },
+      "rank": 12
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:268",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Methionine synthase uses methylcobalamin heterolytic methyl transfer rather than adenosylcobalamin radical rearrangement in the current cobalamin seed.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:268",
+      "entry_name": "methionine synthase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:268",
+        "entry_name": "methionine synthase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "This enzyme is unique in E. coli in that it utilises methylcobalamin (rather than adenosylcobalamin) and catalysis involves a heterolytic (rather than homolytic) cleavage of the Co-C bond [PMID:8652590]. The Cob(I)alamin intermediate generated by this heterolytic cleavage is highly reactive and i..."
+        ],
+        "rank": 13,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.8479,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.9334,
+          "hard_negative_value": 1.192,
+          "impact": 0.4948,
+          "novelty": 0.4167,
+          "uncertainty": 1.311
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4105,
+        "top2_fingerprint_id": "cobalamin_radical_rearrangement",
+        "top2_score": 0.3802
+      },
+      "rank": 13
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:220",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Benzoylformate decarboxylase is thiamine-diphosphate-dependent decarboxylation chemistry outside the current seed fingerprint set.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:220",
+      "entry_name": "benzoylformate decarboxylase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:220",
+        "entry_name": "benzoylformate decarboxylase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Glu47E deprotonates the thiamine diphosphate cofactor, which initiates double bond rearrangement that results in the deprotonation of the N=CH-S group, activating the thiamine diphosphate cofactor. The carbanion of thiamine diphosphate attacks the carbonyl carbon of alpha-oxo-benzeneacetic acid i...",
+          "This alternative mechanism is based off more up to date computational experiments (26/06/2018), which used density functional theory calculations. The mechanism begins with intramolecular proton transfer within the cofactor which activates it for nucleophilic attack on phenylglyoxylate. This resu...",
+          "In this 3rd proposed mechanism, based off the same 2018 computational study, decarboxylation occurs immediately after the formation of the substrate-cofactor intermediate. The difference barrier energies between these two mechanisms is not sufficiently high to conclude which is the more accurate...."
+        ],
+        "rank": 14,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.842,
+        "review_scores": {
+          "evidence_conflict": 1.35,
+          "family_boundary_value": 0.8058,
+          "hard_negative_value": 1.1448,
+          "impact": 0.9035,
+          "novelty": 0.4167,
+          "uncertainty": 1.2212
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4046,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3511
+      },
+      "rank": 14
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:136",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Acyl-acyl-carrier-protein desaturase uses diiron oxidative desaturation chemistry outside the current hydrolase and redox seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:136",
+      "entry_name": "acyl-[acyl-carrier-protein] desaturase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "role_inferred",
+        "counterevidence_reasons": [
+          "metal_redox_ligand_context",
+          "role_inferred_metal_missing_water_activation_role",
+          "single_electron_role_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:136",
+        "entry_name": "acyl-[acyl-carrier-protein] desaturase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "<p>An electron transport chain carries an electron from ferredoxin to one of the iron centres via several residues. A second electron is then carried to the second iron centre. Several redox reactions take place involving oxygen, water and the iron centres, which result in deprotonation of the su..."
+        ],
+        "rank": 15,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.8325,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0522,
+          "hard_negative_value": 1.0824,
+          "impact": 0.6443,
+          "novelty": 0.2397,
+          "uncertainty": 1.3139
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3968,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.3881
+      },
+      "rank": 15
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:130",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Naphthalene 1,2-dioxygenase uses Rieske iron-sulfur and non-heme iron oxygenation chemistry outside the current flavin dehydrogenase seed.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:130",
+      "entry_name": "naphthalene 1,2-dioxygenase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "fe_s_single_electron_partial_flavin_context",
+          "nonheme_iron_fe_s_without_flavin_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:130",
+        "entry_name": "naphthalene 1,2-dioxygenase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "NAD initiates a hydride transfer to the FAD cofactor, which then undergoes a rearrangement to transfer a single electron to the final of three iron-sulfur clusters. This electron is then transferred to a dixygen molecule via a three residue relay (His104, Asp205 and His208). The peroxo group form..."
+        ],
+        "rank": 16,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.7628,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.9658,
+          "hard_negative_value": 1.0816,
+          "impact": 0.6442,
+          "novelty": 0.3017,
+          "uncertainty": 1.2695
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.3967,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3723
+      },
+      "rank": 16
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:217",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "(S)-hydroxynitrile lyase has an alpha/beta-hydrolase triad but performs nonhydrolytic acid-base lyase chemistry rather than Ser-His-Asp/Glu acyl hydrolysis.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:217",
+      "entry_name": "(S)-hydroxynitrile lyase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:217",
+        "entry_name": "(S)-hydroxynitrile lyase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Although this mechanism utilises the traditional Ser-His-Asp triad of the alpha/beta-hydrolase superfamily, it proceeds <i>via</i> general acid/base catalysis, rather than nucleophilic attack of the serine."
+        ],
+        "rank": 17,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.7451,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.8679,
+          "hard_negative_value": 1.0912,
+          "impact": 0.6446,
+          "novelty": 0.4167,
+          "uncertainty": 1.2247
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3979,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3557
+      },
+      "rank": 17
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "protein disulfide-isomerase (DsbC) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3612, below the 0.4115 floor. Counterevidence: absent_heme_context.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:512",
+      "entry_name": "protein disulfide-isomerase (DsbC)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:512",
+        "entry_name": "protein disulfide-isomerase (DsbC)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Asp 95 and Arg 125 increase the nucleophilicity of Cys 98 allowing it to attack the first of the disulphide bonds in a nucleophilic substitution reaction that results in an enzyme bound intermediate with a new thiolate. The newly formed thiolate attacks the second of the disulphide bonds in a nuc...",
+          "This is the second proposed mechanism for the repair of a misoxidized cysteine pair, where the enzyme acts as a reductase rather than as an isomerase. In common with the other mechanism there is nucleophillic attack from Cys 98, promoted by Asp 95 and Arg125, which breaks the disulphide bond of t..."
+        ],
+        "rank": 18,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 5.6909,
+        "review_scores": {
+          "evidence_conflict": 0.675,
+          "family_boundary_value": 1.0439,
+          "hard_negative_value": 0.7976,
+          "impact": 0.6839,
+          "novelty": 1.3303,
+          "uncertainty": 1.1602
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.3612,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.351
+      },
+      "rank": 18
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:17",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Purine nucleoside phosphorylase performs phosphorolysis rather than the current hydrolase seed mechanisms.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:17",
+      "entry_name": "purine-nucleoside phosphorylase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:17",
+        "entry_name": "purine-nucleoside phosphorylase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The substitution reaction occurs by a SN1 type mechanism. His86 is hydrogen bonded to Glu89, and abstracts a proton from the phosphate ion which causes strain and weakening of the glycosidic bond. The glycosidic bond is cleaved, forming an oxycarbenium ion intermediate which is stabilised by the...",
+          "Proposed mechanism in which the phosphate is activated by His86 and attacks the ribose ring directly via an SN2 type reaction.",
+          "The phosphate group is di-anionic and is stabilised by the Ser33-His64-His86 catalytic triad. It attacks the electrophilic C1 involved in the glycosidic bond in an SN2 manner. His257, Tyr88, Met119 all stabilise the ribose ring transition state while Ala116 and Ser220 also stabilise alongside the..."
+        ],
+        "rank": 19,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.6794,
+        "review_scores": {
+          "evidence_conflict": 1.35,
+          "family_boundary_value": 0.7744,
+          "hard_negative_value": 1.0712,
+          "impact": 0.9005,
+          "novelty": 0.4167,
+          "uncertainty": 1.1666
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3954,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3362
+      },
+      "rank": 19
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:212",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Nitrogenase couples ATP hydrolysis to iron-sulfur and FeMo-co electron transfer, outside the current flavin, heme, radical-SAM, and hydrolase seeds.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:212",
+      "entry_name": "nitrogenase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "fe_s_single_electron_partial_flavin_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:212",
+        "entry_name": "nitrogenase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The Fe protein and the FeMo protein must associate before catalytic reactions can occur. Once associated, Asp129 from the Fe protein removes a proton from water and hydroxide acts as the nucleophile in the hydrolysis of ATP to ADP and phosphate. This causes a conformational change that enables th..."
+        ],
+        "rank": 20,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.6772,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.8019,
+          "hard_negative_value": 1.1848,
+          "impact": 0.6485,
+          "novelty": 0.3017,
+          "uncertainty": 1.2403
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.4096,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3554
+      },
+      "rank": 20
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:91",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Pyrimidine-nucleoside phosphorylase performs phosphorolysis rather than the current hydrolysis seed mechanisms.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:91",
+      "entry_name": "pyrimidine-nucleoside phosphorylase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:91",
+        "entry_name": "pyrimidine-nucleoside phosphorylase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "A probable mechanism of pyrimidine phosphorylation is similar to the Sn1 type reaction proposed for purine nucleoside phosphorylase - the polarisation of the N1-C1' glycosidic bond. This polarisation is encourages by three major factors: the nucleoside could bind in high energy conformation which..."
+        ],
+        "rank": 21,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.6637,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.8388,
+          "hard_negative_value": 1.0672,
+          "impact": 0.6437,
+          "novelty": 0.4167,
+          "uncertainty": 1.1973
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3949,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3474
+      },
+      "rank": 21
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:336",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "L-3-hydroxyacyl-CoA dehydrogenase uses NAD-dependent hydride transfer rather than flavin, heme, PLP, cobalamin, radical-SAM, or hydrolase seed chemistry.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:336",
+      "entry_name": "L-3-hydroxyacyl-CoA dehydrogenase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:336",
+        "entry_name": "L-3-hydroxyacyl-CoA dehydrogenase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The Glu-His diad, conserved across all functionally related enzymes, acts in concert to deprotonate the 3-OH of the substrate. The oxyanion intermediate collapses, eliminating a hydride to the C4 position of the NAD cofactor. A proton transfer step has been inferred to allow for active site regen..."
+        ],
+        "rank": 22,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.6615,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.8718,
+          "hard_negative_value": 1.0832,
+          "impact": 0.5673,
+          "novelty": 0.4167,
+          "uncertainty": 1.2225
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3969,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3554
+      },
+      "rank": 22
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:104",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Quinoprotein glucose dehydrogenase uses PQQ-dependent glucose oxidation outside the current flavin, heme, cobalamin, and hydrolase seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:104",
+      "entry_name": "quinoprotein glucose dehydrogenase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [
+          "nonhydrolytic_metal_transfer_ligand_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:104",
+        "entry_name": "quinoprotein glucose dehydrogenase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Crystallographic evidence [PMID:10508152] strongly supports the direct hydride transfer from the glucose to the C5 of the PQQ cofactor. Followed by re-oxidation of the PQQ cofactor by ubiquinone.",
+          "The addition-elimination reaction comprises general base catalysed proton abstraction, followed by the formation of a covalent PQQ-substrate adduct, and oxidative elimination of the product. Followed by re-oxidation of the PQQ cofactor by ubiquinone.",
+          "Alternative mechanism in which a direct hydride transfer from the glucose to the C4 of the PQQ cofactor occurs. Followed by re-oxidation of the PQQ cofactor by ubiquinone."
+        ],
+        "rank": 23,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.6447,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.7585,
+          "hard_negative_value": 1.0816,
+          "impact": 0.9009,
+          "novelty": 0.2397,
+          "uncertainty": 1.164
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3967,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.3346
+      },
+      "rank": 23
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:324",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Triosephosphate isomerase performs enediol isomerization chemistry outside the current hydrolase and cofactor-dependent seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:324",
+      "entry_name": "triosephosphate isomerase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:324",
+        "entry_name": "triosephosphate isomerase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "To accomplish this isomerization, TIM first extracts a pro-R hydrogen from the C1 of DHAP and then stereospecifically introduces a proton onto the C2 atom. The flexible loop formed by residues 167-177 allows the active site to organise around substrate, and it's distortion has been shown to reduc...",
+          "In this proposal, Lys13 is the electrophile, rather than His95. In this mechanism, the first step is the same (Glu165 acts as the catalytic base). Then Lys13 acts as the electrophile, through the conserved Glu97, to reprotaonate the enolate. This cases His95 to rotate in the active site, correctl..."
+        ],
+        "rank": 24,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.6402,
+        "review_scores": {
+          "evidence_conflict": 1.35,
+          "family_boundary_value": 0.8019,
+          "hard_negative_value": 1.1016,
+          "impact": 0.7734,
+          "novelty": 0.4167,
+          "uncertainty": 1.1966
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3992,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.345
+      },
+      "rank": 24
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:185",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "8-oxoguanine DNA glycosylase uses base-excision glycosylase and lyase chemistry outside the current hydrolase and redox seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:185",
+      "entry_name": "8-oxoguanine DNA-glycosylase (type-1 OGG1 family)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:185",
+        "entry_name": "8-oxoguanine DNA-glycosylase (type-1 OGG1 family)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Lys249 attacks the DNA 8-oxoguanine substrate in a nucleophilic substitution reaction that yields enzyme bound DNA and the conjugate base of 8-oxoguanine. Lys249 initiates an intramolecular elimination, cleaving the C-O bond in the DNA ribose ring and resulting in the deprotonation of 8-oxoguanin..."
+        ],
+        "rank": 25,
+        "readiness_blockers": [
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.637,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 1.0164,
+          "hard_negative_value": 1.1,
+          "impact": 0.414,
+          "novelty": 0.3017,
+          "uncertainty": 1.3049
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.399,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3838
+      },
+      "rank": 25
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "low",
+        "evidence_score": 0.4,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "malate dehydrogenase (type 1) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3562, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:527",
+      "entry_name": "malate dehydrogenase (type 1)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:527",
+        "entry_name": "malate dehydrogenase (type 1)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The enzyme catalyses the interconversion of malonate and oxaloacetate with the oxidation and reduction of the NAD cofactor. A histidine-aspartate pair form a proton relay system in the active site, which allows the histidine to act as both a general acid and general base to the substrate. In the..."
+        ],
+        "rank": 42,
+        "readiness_blockers": [
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 5.3874,
+        "review_scores": {
+          "evidence_conflict": 0.675,
+          "family_boundary_value": 1.0714,
+          "hard_negative_value": 0.7576,
+          "impact": 0.3999,
+          "novelty": 1.3303,
+          "uncertainty": 1.1532
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.3562,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.351
+      },
+      "rank": 42
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "low",
+        "evidence_score": 0.4,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "malate dehydrogenase (type 2) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3526, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:526",
+      "entry_name": "malate dehydrogenase (type 2)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:526",
+        "entry_name": "malate dehydrogenase (type 2)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The enzyme uses a catalytic Asp-His dyad. The C2 position of malate is situated above the C4 position of the nicotinamide moiety of NAD+. His186 is in position to abstract a proton from the hydroxyl group attached to C2 which then forms a carbonyl group with the transfer of a hydride to NAD+. Thu..."
+        ],
+        "rank": 47,
+        "readiness_blockers": [
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 5.3721,
+        "review_scores": {
+          "evidence_conflict": 0.675,
+          "family_boundary_value": 1.0912,
+          "hard_negative_value": 0.7288,
+          "impact": 0.3987,
+          "novelty": 1.3303,
+          "uncertainty": 1.1481
+        },
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.3526,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.351
+      },
+      "rank": 47
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "galactarate dehydratase (type III) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3587, below the 0.4115 floor. Counterevidence: nonhydrolytic_hydratase_dehydratase_text_context, role_inferred_metal_hydrophobic_low_pocket_support, role_inferred_metal_low_pocket_support.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:503",
+      "entry_name": "galactarate dehydratase (type III)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "role_inferred",
+        "counterevidence_reasons": [
+          "nonhydrolytic_hydratase_dehydratase_text_context",
+          "role_inferred_metal_hydrophobic_low_pocket_support",
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:503",
+        "entry_name": "galactarate dehydratase (type III)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Proton abstraction is performed by His 292 followed by general acid-catalysed dehydration by His 191. H292 then facilitates tautomerisation to the final product, 2-keto-3-deoxy-galactarate."
+        ],
+        "rank": 57,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 5.1699,
+        "review_scores": {
+          "evidence_conflict": 0.9,
+          "family_boundary_value": 0.7969,
+          "hard_negative_value": 0.7776,
+          "impact": 0.6317,
+          "novelty": 1.0397,
+          "uncertainty": 1.024
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3587,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3036
+      },
+      "rank": 57
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "histone acetyltransferase (GCN5 family) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3622, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:524",
+      "entry_name": "histone acetyltransferase (GCN5 family)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:524",
+        "entry_name": "histone acetyltransferase (GCN5 family)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The hydrophobic residues Phe 563, Phe 568, Ile 571, Val 572, Leu 606, Ile 637 and Tyr 640 raise the pKa of Glu 570, facilitating proton transfer. Glu 570 acts as a general base by abstracting a proton from the N atom of lysine of the substrate histone. This activates the N atom for nucleophilic a..."
+        ],
+        "rank": 63,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 5.0656,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 1.0466,
+          "hard_negative_value": 0.8056,
+          "impact": 0.6329,
+          "novelty": 1.0397,
+          "uncertainty": 1.1658
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3622,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3525
+      },
+      "rank": 63
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "phosphoglycerate mutase (2,3-diphosphoglycerate-dependent) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3774, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:504",
+      "entry_name": "phosphoglycerate mutase (2,3-diphosphoglycerate-dependent)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:504",
+        "entry_name": "phosphoglycerate mutase (2,3-diphosphoglycerate-dependent)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The substrate/cofactor initially binds with its phospho group favorably hydrogen bonded by His8, Arg59. The phosphohistidine intermediate would result from the nucleophilic attack of His8 on the phospho group, with accompanying transfer of a proton from Glu86 to the dephosphorylated product. This..."
+        ],
+        "rank": 65,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 5.0554,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 0.9647,
+          "hard_negative_value": 0.9272,
+          "impact": 0.5609,
+          "novelty": 1.0397,
+          "uncertainty": 1.1879
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3774,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3528
+      },
+      "rank": 65
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "medium",
+        "evidence_score": 0.55,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "8-oxoguanine DNA-glycosylase (ExoA family) has metal-dependent hydrolysis mechanism text, but its retrieval score 0.4208 is too close to the 0.4115 abstention floor for automatic counting.",
+        "review_status": "needs_expert_review",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "role_inferred",
+        "counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:510",
+        "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Asp210 acts as a general base activating the water molecule for nucleophilic attack on the scissile phosphate. Asn212 positions the water for nucleophilic attack in a hydrogen bond network with Asp210. The pentaphosphate intermediate formed is stabilized by His309, Asp283, the Mg ions and Tyr171...."
+        ],
+        "rank": 73,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.9842,
+        "review_scores": {
+          "evidence_conflict": 0.3,
+          "family_boundary_value": 0.7062,
+          "hard_negative_value": 1.1256,
+          "impact": 0.6522,
+          "novelty": 1.0397,
+          "uncertainty": 1.1605
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4208,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3492
+      },
+      "rank": 73
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "peptidylprolyl isomerase (PpiC-type) is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.2913, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:511",
+      "entry_name": "peptidylprolyl isomerase (PpiC-type)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:511",
+        "entry_name": "peptidylprolyl isomerase (PpiC-type)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The cis and trans forms of the prolyl peptide bond are, unlike peptide bonds involving other amino acids, very similar in energy levels. However, interconversion involves breaking the resonance overlap of the CN partial double bond, with very high activation energy. The enzyme is able to reduce t...",
+          "Pin 1 catalyzes the cis-trans isomerization of proline amide bonds and is higly selective for proline residues with a phosphorylated threonine or serine immediately proceeding it. The main effect of Pin1 on the isomerization reaction is the reduction of the free energy barrier. This is accomplish..."
+        ],
+        "rank": 96,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.7232,
+        "review_scores": {
+          "evidence_conflict": 0.675,
+          "family_boundary_value": 1.0835,
+          "hard_negative_value": 0.2384,
+          "impact": 0.7378,
+          "novelty": 1.1017,
+          "uncertainty": 0.8868
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2913,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.2883
+      },
+      "rank": 96
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "thiosulfate sulfurtransferase (prokaryotic) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3704, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:505",
+      "entry_name": "thiosulfate sulfurtransferase (prokaryotic)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:505",
+        "entry_name": "thiosulfate sulfurtransferase (prokaryotic)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Cys230, held in its thiolate form by the positively charged electrostatic field of the active site, attacks the thiosulfate substrate in a nucleophilic substitution reaction. The resulting persulfate bond is well stabilised by the active site eletrostatic field. Cyanate then binds and attacks the..."
+        ],
+        "rank": 98,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.6895,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 0.7293,
+          "hard_negative_value": 0.8712,
+          "impact": 0.6356,
+          "novelty": 1.0397,
+          "uncertainty": 1.0387
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3704,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.303
+      },
+      "rank": 98
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "protein-Npi-phosphohistidine---sugar phosphotransferase (type III) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3776, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:514",
+      "entry_name": "protein-Npi-phosphohistidine---sugar phosphotransferase (type III)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:514",
+        "entry_name": "protein-Npi-phosphohistidine---sugar phosphotransferase (type III)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The transfer of a phosphoryl group from a heat stable phosphocarrier binding protein to Enzyme II occurs at His 78 phosphorylation sites within each chain of the the homotrimer. The eta N of His 78 acts as a nucleophile towards the phosphoryl group on the carrier protein. An electrostatic interac..."
+        ],
+        "rank": 102,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.5708,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 0.693,
+          "hard_negative_value": 0.9288,
+          "impact": 0.4839,
+          "novelty": 1.0397,
+          "uncertainty": 1.0504
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3776,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3036
+      },
+      "rank": 102
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "H+-transporting two-sector ATPase (V-type) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3544, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:508",
+      "entry_name": "H+-transporting two-sector ATPase (V-type)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:508",
+        "entry_name": "H+-transporting two-sector ATPase (V-type)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Protein splicing begins with an acyl rearrangement at the N-terminal junction where Cys 1 attacks the carbonyl carbon of the preceding residue forming a thioester intermediate. The nucleophilicity of the cysteine residue is increased by polarisation by Asn 76, which acts as a general base catalys..."
+        ],
+        "rank": 103,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.5197,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 0.7497,
+          "hard_negative_value": 0.7432,
+          "impact": 0.6303,
+          "novelty": 1.0397,
+          "uncertainty": 0.9818
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3544,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.2907
+      },
+      "rank": 103
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "protein-Npi-phosphohistidine---sugar phosphotransferase (type II) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3617, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:513",
+      "entry_name": "protein-Npi-phosphohistidine---sugar phosphotransferase (type II)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:513",
+        "entry_name": "protein-Npi-phosphohistidine---sugar phosphotransferase (type II)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "An associative phosphoryl transfer mechanism is assumed, the P atom passes from a tetrahedron in phospho-HPr, through a trigonal bipyramid in the transition state, to an inverted tetrahedron in phospho-IIAglc. In order to bring the hydrated phosphoryl group of phospho-HPr into the transition stat..."
+        ],
+        "rank": 104,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.5127,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 0.7865,
+          "hard_negative_value": 0.8016,
+          "impact": 0.4787,
+          "novelty": 1.0397,
+          "uncertainty": 1.0312
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3617,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3047
+      },
+      "rank": 104
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "low",
+        "evidence_score": 0.4,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "homoserine dehydrogenase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2825, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context. Review blockers: fewer_than_three_resolved_residues.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:521",
+      "entry_name": "homoserine dehydrogenase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:521",
+        "entry_name": "homoserine dehydrogenase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The NAD(P)H dependent reduction of L aspartate semi-aldehyde proceeds via hydride transfer. The hydride donating NAD(P)H cofactor is bound in the Rossmann fold, where enzyme-cofactor hydrogen bond interactions exist between cofactor phosphate moieties and sugar hydroxyl groups and the enzyme amid..."
+        ],
+        "rank": 105,
+        "readiness_blockers": [
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.4916,
+        "review_scores": {
+          "evidence_conflict": 0.975,
+          "family_boundary_value": 0.8129,
+          "hard_negative_value": 0.168,
+          "impact": 0.3756,
+          "novelty": 1.4481,
+          "uncertainty": 0.712
+        },
+        "top1_fingerprint_id": "flavin_monooxygenase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2825,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.2303
+      },
+      "rank": 105
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "N-hydroxyarylamine O-acetyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3482, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:515",
+      "entry_name": "N-hydroxyarylamine O-acetyltransferase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:515",
+        "entry_name": "N-hydroxyarylamine O-acetyltransferase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The N-acetylation mechanism involves the transfer of an acetyl group from acetyl coenzyme A to the aryl substrate. The main catalytic residue, Cys 69 has been shown to form a reactive acyl-enzyme intermediate which is readily deacetylated by the basic N atom of the amine substrate. The close prox..."
+        ],
+        "rank": 106,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.4726,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 0.77,
+          "hard_negative_value": 0.6936,
+          "impact": 0.6282,
+          "novelty": 1.0397,
+          "uncertainty": 0.9661
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3482,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.2882
+      },
+      "rank": 106
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "H+-transporting two-sector ATPase (F-type, bacterial) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3489, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:507",
+      "entry_name": "H+-transporting two-sector ATPase (F-type, bacterial)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:507",
+        "entry_name": "H+-transporting two-sector ATPase (F-type, bacterial)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The synthesis of ATP occurs through proton translocation across the membrane. A proton is picked up by Asn 214 on the periplasmic side where the H+ concentration is high. This is then passed to Asp 61, causing the breaking of a salt bridge between this residue and Arg 210. As a result, the Asp 61..."
+        ],
+        "rank": 108,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.3016,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 0.7018,
+          "hard_negative_value": 0.6992,
+          "impact": 0.5515,
+          "novelty": 1.0397,
+          "uncertainty": 0.9344
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3489,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.2765
+      },
+      "rank": 108
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "low",
+        "evidence_score": 0.4,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "histone acetyltransferase (MYST family) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3757, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:525",
+      "entry_name": "histone acetyltransferase (MYST family)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:525",
+        "entry_name": "histone acetyltransferase (MYST family)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "One reaction mechanism proposes it obeys ping-pong kinetics, with initial nucleophilic attack from Cys 304 on the acetyl-coA assisted by deprotonation of Cys 304 by the general base Glu 338. This results in the transfer of the acyl moiety to Cys 304. Histone binds and the target lysine is deproto...",
+          "More recent mutagenesis studies have ruled out Cys304 as a catalytic residue in the Esa1 that physiologically associates to two accessory proteins to form the complex piccolo NuA4. Therefore, this mechanism proposal is different to the one seen in the other proposed mechanism. Esa1 is proposed to..."
+        ],
+        "rank": 110,
+        "readiness_blockers": [
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 3.9255,
+        "review_scores": {
+          "evidence_conflict": 0.375,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.9136,
+          "impact": 0.5346,
+          "novelty": 1.0397,
+          "uncertainty": 1.0626
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3757,
+        "top2_fingerprint_id": "ser_his_acid_hydrolase",
+        "top2_score": 0.3089
+      },
+      "rank": 110
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "low",
+        "evidence_score": 0.4,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "pectate lyase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2477, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context. Review blockers: fewer_than_three_resolved_residues.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:509",
+      "entry_name": "pectate lyase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:509",
+        "entry_name": "pectate lyase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Arg 307 deprotonates the C5 H atom from the axial position. The negative charge is stabilised on the carboxyl oxygen atom by Asn 172. The carboxyl group is reformed with the elimination of the leaving group from the C4 position. The leaving group is protonated to form an alcohol, most likey by th..."
+        ],
+        "rank": 115,
+        "readiness_blockers": [
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 3.3917,
+        "review_scores": {
+          "evidence_conflict": 0.975,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.3641,
+          "novelty": 1.4481,
+          "uncertainty": 0.6045
+        },
+        "top1_fingerprint_id": "flavin_monooxygenase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2477,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.2093
+      },
+      "rank": 115
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.67,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "triacylglycerol lipase (Pseudomonas family) is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.6199 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:519",
+      "entry_name": "triacylglycerol lipase (Pseudomonas family)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "metal_ligand_rich_site_for_ser_his_seed",
+          "metal_supported_site_for_ser_his_seed"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:519",
+        "entry_name": "triacylglycerol lipase (Pseudomonas family)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "This protein is a member of the alpha-beta hydrolase superfamily and is known to function via a classical Ser-His-Asp triad mechanism. Here the histidine of the triad activates the serine, which acts as a nucleophile, forming a covalent intermediate, which then collapses to eliminate the first pr..."
+        ],
+        "rank": 116,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 2.9812,
+        "review_scores": {
+          "evidence_conflict": 0.6,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.7179,
+          "novelty": 1.2167,
+          "uncertainty": 0.4466
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.6199,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.5794
+      },
+      "rank": 116
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.67,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "triacylglycerol lipase (EstA) is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8875 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:518",
+      "entry_name": "triacylglycerol lipase (EstA)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:518",
+        "entry_name": "triacylglycerol lipase (EstA)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "His 156 activates Ser 77 through general base catalysis to deprotonate Ser 77 allowing it to make a nucleophilic attack on the ester bond. His 156 donates a proton to the leaving group and then activates a water molecule to allow the hydrolysis of the acyl-enzyme intermediate, again by general ba..."
+        ],
+        "rank": 118,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 2.0229,
+        "review_scores": {
+          "evidence_conflict": 0.0,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.8062,
+          "novelty": 1.2167,
+          "uncertainty": 0.0
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.8875,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3718
+      },
+      "rank": 118
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.67,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "palmitoyl[protein] hydrolase (type 2) is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8790 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:523",
+      "entry_name": "palmitoyl[protein] hydrolase (type 2)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:523",
+        "entry_name": "palmitoyl[protein] hydrolase (type 2)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Like other alpha-beta hydrolases, PPT2 uses a Ser-His-Asp triad. Ser 111 acts as a nucleophile to attack the thioester carbonyl group, while His 283 deprotonates the attacking Ser 111 and Asp 228 functions to modify the pKa of His 283. The tetrahedral intermediate resulting from attack by Ser 111..."
+        ],
+        "rank": 119,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 2.0201,
+        "review_scores": {
+          "evidence_conflict": 0.0,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.8034,
+          "novelty": 1.2167,
+          "uncertainty": 0.0
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.879,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3733
+      },
+      "rank": 119
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.67,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "triacylglycerol lipase (type B carboxylestrase) is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8772 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:520",
+      "entry_name": "triacylglycerol lipase (type B carboxylestrase)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:520",
+        "entry_name": "triacylglycerol lipase (type B carboxylestrase)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "This protein is a member of the alpha-beta hydrolase superfamily and is known to function via a Ser-His-Glu triad mechanism. Here the histidine of the triad activates the serine, which acts as a nucleophile, forming a covalent intermediate, which then collapses to eliminate the first product. Hyd..."
+        ],
+        "rank": 120,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 2.0195,
+        "review_scores": {
+          "evidence_conflict": 0.0,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.8028,
+          "novelty": 1.2167,
+          "uncertainty": 0.0
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.8772,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.376
+      },
+      "rank": 120
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "medium",
+        "evidence_score": 0.67,
+        "fingerprint_id": "ser_his_acid_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "palmitoyl[protein] hydrolase (type 1) is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.7793 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:522",
+      "entry_name": "palmitoyl[protein] hydrolase (type 1)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:522",
+        "entry_name": "palmitoyl[protein] hydrolase (type 1)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "PPT1 contains a catalytic triad composed of Ser115, His 289 and Asp233. Nucleophilic attack by Ser155 on the carbonyl of the substrate palmitate generates a enzyme-substrate tetrahedral intermediate where the main chain NH components of Met41 and Gln116 acts as hydrogen bond donors to stabilise t..."
+        ],
+        "rank": 121,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 1.9872,
+        "review_scores": {
+          "evidence_conflict": 0.0,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.7705,
+          "novelty": 1.2167,
+          "uncertainty": 0.0
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.7793,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3698
+      },
+      "rank": 121
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.72,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "carbonate dehydratase (gamma class) is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5640 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:516",
+      "entry_name": "carbonate dehydratase (gamma class)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:516",
+        "entry_name": "carbonate dehydratase (gamma class)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Glu 62 deprotonates a water molecule liganded to Co. This proton is then abstracted by Glu 84 (and ultimately shuttled out to buffer.) This hydroxyl ligand then abstracts a proton from the adjacent liganded water molecule. The newly formed hydroxide ligand is stabilised by hydrogen bonding to Gln..."
+        ],
+        "rank": 122,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 1.9387,
+        "review_scores": {
+          "evidence_conflict": 0.0,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.6995,
+          "novelty": 1.0397,
+          "uncertainty": 0.1995
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.564,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3348
+      },
+      "rank": 122
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.72,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "seed_fingerprint",
+        "rationale": "ferredoxin--NADP reductase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.8380 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:506",
+      "entry_name": "ferredoxin--NADP reductase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:506",
+        "entry_name": "ferredoxin--NADP reductase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The FAD cofactor is the functional catalytic group, however the residues around it are conserved and have roles in bonding, orientation, proton transfer and modification of the reduction potential at the FAD. <br/><br/> Ferredoxin (Fd) transfers an electron to FAD via the pi-system of Phe65 of Fd..."
+        ],
+        "rank": 123,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 1.8916,
+        "review_scores": {
+          "evidence_conflict": 0.0,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.7899,
+          "novelty": 1.1017,
+          "uncertainty": 0.0
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.838,
+        "top2_fingerprint_id": "flavin_monooxygenase",
+        "top2_score": 0.4332
+      },
+      "rank": 123
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "accept_label",
+        "confidence": "high",
+        "evidence_score": 0.72,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": "seed_fingerprint",
+        "rationale": "carbonate dehydratase (beta class) is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5965 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+        "review_status": "automation_curated",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:517",
+      "entry_name": "carbonate dehydratase (beta class)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:517",
+        "entry_name": "carbonate dehydratase (beta class)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "After association of carbon dioxide with the binding site, Asp 44 (activated by binding with zinc and electrostatic interaction with Arg 46) acts as a base to abstract a proton from the water molecule. This yields a nucleophilic hydroxide that binds the zinc which further activates it for nucleop..."
+        ],
+        "rank": 124,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 1.8129,
+        "review_scores": {
+          "evidence_conflict": 0.0,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.7102,
+          "novelty": 1.0397,
+          "uncertainty": 0.063
+        },
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.5965,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3554
+      },
+      "rank": 124
+    }
+  ]
+}

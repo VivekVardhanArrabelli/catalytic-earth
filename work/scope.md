@@ -98,8 +98,8 @@ Post-V2 quality work has started:
   225-entry, 250-entry, 275-entry, 300-entry, 325-entry, 350-entry, 375-entry,
   400-entry, 425-entry, 450-entry, 475-entry, and 500-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for 499 countable entries, with the remaining
-  500-slice candidate held in review
+- curated seed mechanism labels for 546 countable entries, with pending
+  review-state evidence gaps kept outside the countable registry
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
 - hard-negative controls, in-scope failure analysis, label-expansion candidate
@@ -157,21 +157,20 @@ Current expectation:
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
-  400-, 425-, 450-, 475-, and 500-entry slices; all 100 regression geometry
-  entries are evaluable, and the 500-entry countable slice has 490/498 labeled
-  rows evaluable
-- curated labels now cover 499 entries, with 131 local active-site
-  seed-fingerprint positives in the 500-entry geometry evaluation and 368 total
-  out-of-scope labels; every label now has explicit tier, review status,
+  400-, 425-, 450-, 475-, 500-, 525-, and 550-entry slices; all 100 regression
+  geometry entries are evaluable, and the 550-entry countable slice has
+  535/545 labeled rows evaluable
+- curated labels now cover 546 entries, with 144 local active-site
+  seed-fingerprint positives in the 550-entry geometry evaluation and 402 total
+  out-of-scope labels; every label has explicit tier, review status,
   confidence, evidence score, and evidence provenance fields
-- the current 500-entry label queue has one remaining unlabeled candidate,
-  `m_csa:494`; the first two factory decision batches accepted 24 countable
-  labels and left 6 review-state decisions pending
-- label scaling is now gated by the factory: the current audit proposes 63
-  bronze-to-silver promotions, flags 101 abstention/review rows, mines 100
-  adversarial negative controls, exports 26 expert-review items including the
-  remaining unlabeled 500-slice candidate, and passes the label-factory gate
-  check
+- the 500-, 525-, and 550-entry queues have been processed through the label
+  factory; accepted batches added 71 labels beyond the 475-entry source slice
+  and left 9 review-state decisions pending after the 550 batch
+- label scaling is now gated by the factory: the current 550 audit proposes 70
+  bronze-to-silver promotions, flags 106 abstention/review rows, mines 100
+  adversarial negative controls, exports 25 expert-review items from the
+  current 550 review queue, and passes the label-factory gate check
 - strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
   the 38 in-scope positives in the 125-entry slice at the current zero-false
   threshold
@@ -183,9 +182,9 @@ Current expectation:
 - adaptive abstention thresholds now use observed score boundaries; the
   20-entry regression slice has a zero-false threshold that retains all 7
   in-scope positives
-- all slices from 20 through 500 currently have 0 hard negatives, 0 near misses,
+- all slices from 20 through 550 currently have 0 hard negatives, 0 near misses,
   and 0 out-of-scope false non-abstentions at the current calibrated thresholds
-- the 500-entry countable slice retains 127/131 in-scope positives, has 4
+- the 550-entry countable slice retains 140/144 in-scope positives, has 4
   evidence-limited in-scope abstentions, and has a 0.0131 correct-positive
   separation gap; the actionable in-scope failure count is 0 after separating
   selected-structure cofactor gaps from scorer failures
@@ -194,14 +193,15 @@ Current expectation:
   fallback; the 125-entry report has 1 labeled out-of-scope
   insufficient-residue issue, the 150- and 175-entry reports each have 2, the
   200-, 225-, 250-, 275-, and 300-entry reports each have 3, and the 325-,
-  350-, 375-, 400-, 425-, 450-, 475-, and 500-entry reports have 4, 5, 7, 7,
-  7, 7, 7, and 8 respectively
-- next bottleneck is resolving `m_csa:494` through the 500-entry factory queue
-  or resolving the evidence-limited abstentions (`m_csa:132`, `m_csa:353`,
-  `m_csa:372`, and `m_csa:430`), while ensuring evidence-limited retained
-  positives (`m_csa:41`, `m_csa:108`, `m_csa:160`, `m_csa:446`, and
-  `m_csa:486`) remain audit-visible and preserving the zero-hard-negative
-  guardrail
+  350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, and 550-entry reports have
+  4, 5, 7, 7, 7, 7, 7, 8, 8, and 10 respectively
+- next bottleneck is either opening the 575-entry scaffold from the
+  550 review-state registry or resolving review-state/evidence-limited rows
+  (`m_csa:494`, `m_csa:510`, `m_csa:529`, `m_csa:534`,
+  `m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`), while ensuring
+  evidence-limited retained positives (`m_csa:41`, `m_csa:108`, `m_csa:160`,
+  `m_csa:446`, and `m_csa:486`) remain audit-visible and preserving the
+  zero-hard-negative guardrail
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

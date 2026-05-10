@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "geometry_entry_count": 549,
+    "issue_count": 10,
+    "label_type_counts": {
+      "out_of_scope": 7,
+      "seed_fingerprint": 1,
+      "unlabeled": 2
+    },
+    "labeled_issue_count": 8,
+    "method": "structure_mapping_issue_analysis",
+    "missing_expected_code_counts": {},
+    "observed_code_at_missing_position_counts": {},
+    "status_counts": {
+      "insufficient_resolved_residues": 8,
+      "no_structure_positions": 2
+    }
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:105",
+      "entry_name": "aldehyde dehydrogenase (FAD-independent)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The general reaction is attack of hydroxide on the aldehyde, while the terminal aldehyde hydride is transferred to the sulfido ligand of Mo. The mechanism proceeds as follows: <ol> <li>In the resting enzyme, moldybdenum is Mo(VI) and coordinated to molybdopterin and water, with oxo and sulfido li..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1VLB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:137",
+      "entry_name": "deacetoxycephalosporin-C synthase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "There are two half reactions that occur in the enzyme which are independent in as much as they can be uncoupled under certain conditions. In the oxidative half reaction the Fe (II) centre binds to dioxygen, acting as a nucleophile thus becoming oxidised to Fe (III). This creates a peroxide radica..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1UNB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:193",
+      "entry_name": "precorrin-8X methylmutase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "CobH is one of a few known enzymes that catalyse pericyclic reactions. His 43 protonates the nitrogen of the pyrrolenine C ring of precorrin-8x, which triggers a suprafacial [1,5]-sigmatropic rearrangement; the methyl group passes from C-11 to C-12 in a single concerted step, with the double bond..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1F2V",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:318",
+      "entry_name": "glutamate-tRNA ligase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction occurs in two steps, the first reaction of which only occurs in the presence of the bound cognate tRNA molecule. First, in-line nucleophilic attack from the alpha carboxylate oxygen from glutamate on the alpha phosphate of ATP forms glutamylAMP and releases PPi. In this reaction a pe..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1J09",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:327",
+      "entry_name": "protein histidine kinase (CheA)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "This kinase first phosphorylates His45, the phosphate group is then passed on to the nucleophilic Asp of the CheY substrate."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1I58",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:360",
+      "entry_name": "strictosidine synthase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The enzyme catalyses the biological equivalent of the Pictet-Spengler reaction, a reaction used to form synthetic equivalents of indole alkaloids of pharmaceutical interest."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "2FP8",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:372",
+      "entry_name": "NikJ, nikkomycin biosynthesis protein P1",
+      "label_type": "seed_fingerprint",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "SAM is activated by the [Fe4S4]-AdoMet cluster to produce the methionine substrate and the 5'-deoxyadenosyl radical (5'-dA). The 5'-dA abstracts a hydrogen atom from the substrate, which then undergoes rearrangement to form the second ring structure. This then abstracts a hydrogen atom from Cys19..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 4,
+      "pdb_id": null,
+      "resolved_residue_count": 0,
+      "status": "no_structure_positions",
+      "target_fingerprint_id": "radical_sam_enzyme"
+    },
+    {
+      "entry_id": "m_csa:501",
+      "entry_name": "alcohol dehydrogenase (class V)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Specifics of the mechanism are not yet known, save via homology to other zinc-dependent alcohol dehydrogenases. It is likely that Lys52 acts as the general acid/base in the unique catalytic triad."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 10,
+      "pdb_id": null,
+      "resolved_residue_count": 0,
+      "status": "no_structure_positions",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:531",
+      "entry_name": "L-carnitine CoA-transferase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "By analogy with Formyl-CoA transferase, Asp 169 is nucleophilic and attacks the carbonyl carbon of the crotonobetainyl-CoA thioester group. This displaces the coenzyme A thiolate. CoAS- then displaces the coronobetainyl intermediate on Asp169. Carnitine enters the active site and the carboxylate..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1XVT",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:536",
+      "entry_name": "magnesium chelatase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Binding of the porphyrin.BChlH complex and the Magnesium triggers the release of the ATP binding site of the BChI subunit which is able to hydrolyse ATP. The hydrolysis of ATP proceeds via the nucleophilic attack of a water molecule on the gamma phosphate, to form a pentavalent transition state s..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1G8P",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    }
+  ]
+}

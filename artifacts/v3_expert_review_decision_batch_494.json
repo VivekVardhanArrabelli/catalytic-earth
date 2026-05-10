@@ -1,0 +1,100 @@
+{
+  "metadata": {
+    "batch_id": "500_m_csa_494_evidence_gap",
+    "boundary_control_decisions": 0,
+    "decision_counts": {
+      "mark_needs_more_evidence": 1
+    },
+    "decision_entry_ids": {
+      "mark_needs_more_evidence": [
+        "m_csa:494"
+      ]
+    },
+    "decision_schema": {
+      "action": [
+        "accept_label",
+        "mark_needs_more_evidence",
+        "reject_label",
+        "no_decision"
+      ],
+      "label_type": [
+        "seed_fingerprint",
+        "out_of_scope"
+      ],
+      "review_status": [
+        "automation_curated",
+        "needs_expert_review",
+        "expert_reviewed"
+      ],
+      "tier": [
+        "bronze",
+        "silver",
+        "gold"
+      ]
+    },
+    "exported_count": 26,
+    "max_ranked_rows": 25,
+    "method": "provisional_label_review_decision_batch",
+    "missing_entry_ids": [],
+    "policy": "Automation-curated batch decisions stay bronze and are imported as automation_curated or needs_expert_review records, not gold or expert-reviewed labels.",
+    "provenance_rule": "imports append review provenance and preserve existing evidence.sources",
+    "reviewer": "automation_label_factory",
+    "selected_entry_ids": [
+      "m_csa:494"
+    ],
+    "source_method": "expert_review_export",
+    "unlabeled_inclusion_rule": "append all unlabeled queue rows even when ranked below the export cutoff"
+  },
+  "review_items": [
+    {
+      "current_label": null,
+      "decision": {
+        "action": "mark_needs_more_evidence",
+        "confidence": "medium",
+        "evidence_score": 0.55,
+        "fingerprint_id": "cobalamin_radical_rearrangement",
+        "label_type": "seed_fingerprint",
+        "rationale": "propanediol dehydratase has cobalamin-radical mechanism text, but the selected structure lacks local cobalamin support; keep this candidate in expert review before counting it.",
+        "review_status": "needs_expert_review",
+        "reviewer": "automation_label_factory",
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:494",
+      "entry_name": "propanediol dehydratase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "not_required",
+        "counterevidence_reasons": [
+          "metal_ligand_rich_site_for_ser_his_seed",
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:494",
+        "entry_name": "propanediol dehydratase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The radical mechanism involves binding of 1,2-propanediol to the enzyme to induce homolytic cleavage of the Co-C5' bond of the coenzyme to form cob(II)alamin and the adenosyl radical. Hydrogen abstraction from the substrate follows producing a substrate generated radical and 5'-deoxyadenosine. Re..."
+        ],
+        "rank": 90,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.6962,
+        "review_scores": {
+          "evidence_conflict": 0.6,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.9704,
+          "impact": 0.6397,
+          "novelty": 1.2167,
+          "uncertainty": 1.2694
+        },
+        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3828,
+        "top2_fingerprint_id": "metal_dependent_hydrolase",
+        "top2_score": 0.3792
+      },
+      "rank": 90
+    }
+  ]
+}
