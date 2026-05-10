@@ -173,7 +173,9 @@ Current expectation:
   bronze-to-silver promotions, flags 112 abstention/review rows, mines 100
   adversarial negative controls, exports 182 expert-review items from the
   current ranked review cutoff plus all unlabeled candidates from the 700
-  review queue, and passes the 12-check label-factory gate; the
+  review queue, exports all 76 active `expert_label_decision_needed` rows as
+  review-only no-decision items, generates a complete non-countable repair
+  candidate summary for those rows, and passes the 14-check label-factory gate; the
   active-learning queue now includes a reaction/substrate mismatch ranking
   term, and the 700 family-propagation guardrail blocks 24 reported rows on
   the same mismatch signal with priority retention beyond `max_rows` (17
@@ -181,7 +183,10 @@ Current expectation:
   dedicated mismatch review export carries all 24 lanes, confirms the labeled
   lane is currently out-of-scope rather than seed-labeled, defers new ontology
   family creation until expert review, and the generated decision batch leaves
-  all 24 as `no_decision`
+  all 24 as `no_decision`. The expert-label decision export records 0 countable
+  candidates, 0 missing export rows, and risk flags dominated by cofactor-family
+  ambiguity, counterevidence boundaries, active-site mapping gaps, and
+  nonlocal/text-leakage risk
 - review-debt triage now ranks 81 evidence-gap rows from the 700 review pass,
   with 81 `needs_more_evidence` decisions, 61 carried rows, 20 new rows, and
   next-action counts split by debt status

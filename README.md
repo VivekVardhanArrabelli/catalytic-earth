@@ -104,10 +104,14 @@ Label scaling is now gated by the label factory rather than raw queue size. The
 current 700 factory audit proposes 79 bronze-to-silver promotions, flags 112
 abstention/review rows, mines 100 adversarial negative controls from 466
 out-of-scope candidates, exports 182 expert-review items from the post-700
-review queue, and passes the 12-check 700-slice gate. The gate now also fails
-if unlabeled candidate rows are truncated by the queue limit or if
+review queue, exports all 76 active `expert_label_decision_needed` rows as
+review-only no-decision items, generates a non-countable repair-candidate plan
+for those 76 rows, and passes the 14-check 700-slice gate. The gate now also
+fails if unlabeled candidate rows are truncated by the queue limit, if
 family-guardrail reaction/substrate mismatch lanes lack a dedicated review
-export.
+export, if expert-label decision rows are not explicitly routed as non-countable
+external-review items, or if those rows lack a complete non-countable repair
+candidate summary.
 `artifacts/v3_label_batch_acceptance_check_700.json` records that the latest
 accepted batch added 5 labels for counting while 81 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
@@ -117,8 +121,10 @@ rows for the accepted 700 state. The 675 and 700 scaling-quality audits keep
 pending evidence gaps outside the benchmark, classify new debt rows, and attach
 graph-derived sequence-cluster proxy artifacts; both audits report 0 accepted
 labels with review debt and 0 near-duplicate hits among audited rows. See
-`work/label_preview_675_notes.md` and `work/label_preview_700_notes.md` for the
-clean label profiles and the top evidence gaps to inspect.
+`work/label_preview_675_notes.md`, `work/label_preview_700_notes.md`, and
+`work/expert_label_decision_review_700_notes.md` for the clean label profiles,
+the top evidence gaps, the expert-decision review-only profile, and the
+prioritized non-countable repair buckets.
 The 700 review-debt repair pass now adds structure-aware remediation artifacts:
 `artifacts/v3_review_debt_remediation_700.json`,
 `artifacts/v3_review_debt_remediation_700_all.json`, and

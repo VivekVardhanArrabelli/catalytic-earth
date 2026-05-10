@@ -2861,6 +2861,515 @@ def build_expert_review_export(
     }
 
 
+def build_expert_label_decision_review_export(
+    *,
+    active_learning_queue: dict[str, Any],
+    labels: list[MechanismLabel],
+    review_debt: dict[str, Any] | None = None,
+    reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Export active-queue expert-label decisions without creating countable labels."""
+    labels_by_entry = {label.entry_id: label for label in labels}
+    review_debt_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (review_debt or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    review_debt_meta = (review_debt or {}).get("metadata", {})
+    carried_debt_ids = {
+        str(entry_id)
+        for entry_id in review_debt_meta.get("carried_review_debt_entry_ids", [])
+        if isinstance(entry_id, str)
+    }
+    new_debt_ids = {
+        str(entry_id)
+        for entry_id in review_debt_meta.get("new_review_debt_entry_ids", [])
+        if isinstance(entry_id, str)
+    }
+    all_debt_ids = carried_debt_ids | new_debt_ids
+    mismatch_export_meta = (
+        reaction_substrate_mismatch_review_export or {}
+    ).get("metadata", {})
+    mismatch_export_entry_ids = set(
+        _sorted_entry_ids(mismatch_export_meta.get("exported_entry_ids", []))
+    )
+    if reaction_substrate_mismatch_review_export and not mismatch_export_entry_ids:
+        mismatch_export_entry_ids = set(
+            _sorted_entry_ids(
+                item.get("entry_id")
+                for item in reaction_substrate_mismatch_review_export.get(
+                    "review_items", []
+                )
+                if isinstance(item, dict)
+            )
+        )
+
+    rows = [
+        row
+        for row in active_learning_queue.get("rows", [])
+        if isinstance(row, dict)
+        and isinstance(row.get("entry_id"), str)
+        and row.get("recommended_action") == "expert_label_decision_needed"
+    ]
+    rows = sorted(
+        rows,
+        key=lambda row: (
+            int(row.get("rank", 0) or 0),
+            _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+    )
+
+    review_items: list[dict[str, Any]] = []
+    mismatch_entry_ids: list[str] = []
+    for row in rows:
+        entry_id = str(row["entry_id"])
+        mismatch_reasons = _sorted_strings(
+            row.get("reaction_substrate_mismatch_reasons", [])
+        )
+        if mismatch_reasons:
+            mismatch_entry_ids.append(entry_id)
+        debt_status = (
+            "carried"
+            if entry_id in carried_debt_ids
+            else "new"
+            if entry_id in new_debt_ids
+            else None
+        )
+        resolution_lane = (
+            "already_routed_reaction_substrate_mismatch_export"
+            if mismatch_reasons and entry_id in mismatch_export_entry_ids
+            else "needs_reaction_substrate_mismatch_export"
+            if mismatch_reasons
+            else "external_expert_label_decision"
+        )
+        quality_risk_flags = _expert_label_decision_review_flags(
+            row,
+            mismatch_reasons,
+        )
+        label = labels_by_entry.get(entry_id)
+        review_items.append(
+            {
+                "rank": row.get("rank"),
+                "entry_id": entry_id,
+                "entry_name": row.get("entry_name"),
+                "current_label": label.to_dict() if label else None,
+                "queue_context": row,
+                "review_debt_context": review_debt_rows_by_entry.get(entry_id),
+                "expert_label_decision_context": {
+                    "source_recommended_action": row.get("recommended_action"),
+                    "resolution_lane": resolution_lane,
+                    "external_review_required": True,
+                    "countable_label_candidate": False,
+                    "review_debt_status": debt_status,
+                    "review_debt_present": entry_id in all_debt_ids,
+                    "reaction_substrate_mismatch_reasons": mismatch_reasons,
+                    "covered_by_reaction_substrate_mismatch_export": (
+                        entry_id in mismatch_export_entry_ids
+                    ),
+                    "quality_risk_flags": quality_risk_flags,
+                    "automation_import_policy": (
+                        "no_decision only; automation must not accept, reject, "
+                        "or count this row without external expert resolution"
+                    ),
+                },
+                "decision": {
+                    "action": "no_decision",
+                    "label_type": row.get("current_label_type"),
+                    "fingerprint_id": row.get("top1_fingerprint_id"),
+                    "tier": "silver",
+                    "confidence": "medium",
+                    "reviewer": None,
+                    "rationale": None,
+                    "evidence_score": None,
+                    "review_status": "expert_reviewed",
+                    "expert_label_resolution": "needs_external_review",
+                },
+            }
+        )
+
+    exported_entry_ids = _sorted_entry_ids(
+        item.get("entry_id") for item in review_items
+    )
+    missing_mismatch_export_entry_ids = _sorted_entry_ids(
+        set(mismatch_entry_ids) - mismatch_export_entry_ids
+    )
+    family_counts = Counter(
+        str(row.get("top1_ontology_family"))
+        for row in rows
+        if row.get("top1_ontology_family")
+    )
+    label_state_counts = Counter(
+        str(row.get("label_state", "unknown")) for row in rows
+    )
+    debt_status_counts = Counter(
+        item["expert_label_decision_context"]["review_debt_status"] or "none"
+        for item in review_items
+    )
+    quality_risk_counts = Counter(
+        flag
+        for item in review_items
+        for flag in item["expert_label_decision_context"]["quality_risk_flags"]
+    )
+    return {
+        "metadata": {
+            "method": "expert_label_decision_review_export",
+            "source_method": active_learning_queue.get("metadata", {}).get("method"),
+            "source_recommended_action": "expert_label_decision_needed",
+            "active_queue_expert_label_decision_count": len(rows),
+            "exported_count": len(review_items),
+            "exported_entry_ids": exported_entry_ids,
+            "countable_label_candidate_count": 0,
+            "decision_counts": {"no_decision": len(review_items)}
+            if review_items
+            else {},
+            "current_label_count": sum(
+                1 for item in review_items if item.get("current_label") is not None
+            ),
+            "unlabeled_count": sum(
+                1 for item in review_items if item.get("current_label") is None
+            ),
+            "top1_ontology_family_counts": dict(sorted(family_counts.items())),
+            "label_state_counts": dict(sorted(label_state_counts.items())),
+            "review_debt_status_counts": dict(sorted(debt_status_counts.items())),
+            "quality_risk_flag_counts": dict(sorted(quality_risk_counts.items())),
+            "review_debt_linked_count": sum(
+                1
+                for item in review_items
+                if item["expert_label_decision_context"]["review_debt_present"]
+            ),
+            "reaction_substrate_mismatch_lane_count": len(set(mismatch_entry_ids)),
+            "reaction_substrate_mismatch_already_exported_count": len(
+                set(mismatch_entry_ids) & mismatch_export_entry_ids
+            ),
+            "missing_reaction_substrate_mismatch_export_entry_ids": (
+                missing_mismatch_export_entry_ids
+            ),
+            "export_ready": len(review_items) == len(rows)
+            and not missing_mismatch_export_entry_ids,
+            "review_only_rule": (
+                "active-queue expert-label decisions are context exports only; "
+                "automation leaves them as no_decision and countable import must "
+                "not add benchmark labels without external expert resolution"
+            ),
+        },
+        "review_items": review_items,
+    }
+
+
+def _expert_label_decision_review_flags(
+    row: dict[str, Any],
+    mismatch_reasons: list[str],
+) -> list[str]:
+    flags = {"external_expert_decision_required"}
+    top1 = str(row.get("top1_fingerprint_id") or "")
+    top2 = str(row.get("top2_fingerprint_id") or "")
+    top1_score = float(row.get("top1_score", 0.0) or 0.0)
+    top2_score = float(row.get("top2_score", 0.0) or 0.0)
+    threshold = float(row.get("abstain_threshold", 0.0) or 0.0)
+    cofactor_level = str(row.get("cofactor_evidence_level") or "unknown")
+    blockers = _sorted_strings(row.get("readiness_blockers", []))
+    counterevidence = _sorted_strings(row.get("counterevidence_reasons", []))
+    snippets = row.get("mechanism_text_snippets", [])
+    text = " ".join(str(snippet) for snippet in snippets)
+    entry_name = str(row.get("entry_name") or "")
+
+    cofactor_sensitive_top1 = top1 in {
+        "cobalamin_radical_rearrangement",
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase",
+        "heme_peroxidase_oxidase",
+        "metal_dependent_hydrolase",
+    }
+    if mismatch_reasons:
+        flags.add("reaction_substrate_mismatch")
+    if any(
+        blocker
+        in {
+            "geometry_status_not_ok",
+            "fewer_than_three_resolved_residues",
+            "missing_pairwise_geometry",
+        }
+        for blocker in blockers
+    ):
+        flags.add("active_site_mapping_or_structure_gap")
+    if cofactor_sensitive_top1 and cofactor_level in {
+        "absent",
+        "structure_only",
+        "role_inferred",
+        "unknown",
+    }:
+        flags.add("cofactor_family_ambiguity")
+    if counterevidence:
+        flags.add("counterevidence_boundary")
+    if (
+        top1 == "metal_dependent_hydrolase"
+        and top2 == "ser_his_acid_hydrolase"
+        and _has_ser_his_hydrolase_text(text.lower(), entry_name)
+    ):
+        flags.add("ser_his_metal_boundary")
+    if top1 and top2 and fingerprint_family(top1) == fingerprint_family(top2):
+        if abs(top1_score - top2_score) <= 0.05:
+            flags.add("sibling_mechanism_confusion")
+    if (
+        threshold
+        and top1_score >= threshold
+        and cofactor_sensitive_top1
+        and cofactor_level != "ligand_supported"
+    ):
+        flags.add("text_leakage_or_nonlocal_evidence_risk")
+    if any(
+        reason
+        in {
+            "glycosidase_not_metal_hydrolase_seed",
+            "nucleotide_transfer_ligand_context",
+            "role_inferred_metal_missing_water_activation_role",
+        }
+        for reason in counterevidence
+    ):
+        flags.add("substrate_class_boundary")
+    return sorted(flags)
+
+
+def summarize_expert_label_decision_repair_candidates(
+    expert_label_decision_review_export: dict[str, Any],
+    *,
+    review_debt_remediation: dict[str, Any] | None = None,
+    structure_mapping: dict[str, Any] | None = None,
+    alternate_structure_scan: dict[str, Any] | None = None,
+    max_rows: int = 30,
+) -> dict[str, Any]:
+    """Prioritize review-only expert-label rows for non-countable repair work."""
+    remediation_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (review_debt_remediation or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    mapping_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (structure_mapping or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    alternate_scan_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (alternate_structure_scan or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    def _alternate_scan_context(row: dict[str, Any]) -> dict[str, Any] | None:
+        if not row:
+            return None
+        structure_hits = row.get("structure_hits", [])
+        if not isinstance(structure_hits, list):
+            structure_hits = []
+        scanned_structure_count = row.get("scanned_structure_count")
+        if scanned_structure_count is None:
+            scanned_structure_count = row.get("candidate_pdb_count")
+        if scanned_structure_count is None and isinstance(
+            row.get("scanned_pdb_ids"), list
+        ):
+            scanned_structure_count = len(row["scanned_pdb_ids"])
+        local_expected_family_hit_count = row.get("local_expected_family_hit_count")
+        if local_expected_family_hit_count is None:
+            local_expected_family_hit_count = sum(
+                1
+                for hit in structure_hits
+                if isinstance(hit, dict) and hit.get("local_expected_family_hits")
+            )
+        structure_wide_expected_family_hit_count = row.get(
+            "structure_wide_expected_family_hit_count"
+        )
+        if structure_wide_expected_family_hit_count is None:
+            structure_wide_expected_family_hit_count = sum(
+                1
+                for hit in structure_hits
+                if isinstance(hit, dict) and hit.get("expected_family_hits")
+            )
+        return {
+            "scan_outcome": row.get("scan_outcome"),
+            "scanned_structure_count": scanned_structure_count,
+            "local_expected_family_hit_count": local_expected_family_hit_count,
+            "structure_wide_expected_family_hit_count": (
+                structure_wide_expected_family_hit_count
+            ),
+            "local_active_site_expected_family_observed": row.get(
+                "local_active_site_expected_family_observed"
+            ),
+            "selected_structure_expected_family_observed": row.get(
+                "selected_structure_expected_family_observed"
+            ),
+            "alternate_structure_expected_family_observed": row.get(
+                "alternate_structure_expected_family_observed"
+            ),
+        }
+
+    candidate_rows: list[dict[str, Any]] = []
+    for item in expert_label_decision_review_export.get("review_items", []):
+        if not isinstance(item, dict) or not isinstance(item.get("entry_id"), str):
+            continue
+        entry_id = str(item["entry_id"])
+        context = item.get("expert_label_decision_context", {})
+        if not isinstance(context, dict):
+            context = {}
+        queue_context = item.get("queue_context", {})
+        if not isinstance(queue_context, dict):
+            queue_context = {}
+        flags = _sorted_strings(context.get("quality_risk_flags", []))
+        repair_bucket = _expert_label_decision_repair_bucket(flags)
+        remediation_row = remediation_by_entry.get(entry_id, {})
+        mapping_row = mapping_by_entry.get(entry_id, {})
+        alternate_scan_row = alternate_scan_by_entry.get(entry_id, {})
+        candidate_rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": item.get("entry_name"),
+                "rank": item.get("rank"),
+                "repair_bucket": repair_bucket,
+                "quality_risk_flags": flags,
+                "top1_fingerprint_id": queue_context.get("top1_fingerprint_id"),
+                "top1_ontology_family": queue_context.get("top1_ontology_family"),
+                "top1_score": queue_context.get("top1_score"),
+                "top2_fingerprint_id": queue_context.get("top2_fingerprint_id"),
+                "top2_score": queue_context.get("top2_score"),
+                "cofactor_evidence_level": queue_context.get("cofactor_evidence_level"),
+                "readiness_blockers": queue_context.get("readiness_blockers", []),
+                "counterevidence_reasons": queue_context.get(
+                    "counterevidence_reasons", []
+                ),
+                "reaction_substrate_mismatch_reasons": context.get(
+                    "reaction_substrate_mismatch_reasons", []
+                ),
+                "review_debt_remediation_context": {
+                    "remediation_bucket": remediation_row.get("remediation_bucket"),
+                    "selected_pdb_id": remediation_row.get("selected_pdb_id"),
+                    "candidate_pdb_structure_count": remediation_row.get(
+                        "candidate_pdb_structure_count"
+                    ),
+                    "alternate_pdb_count": remediation_row.get("alternate_pdb_count"),
+                    "selected_pdb_residue_position_count": remediation_row.get(
+                        "selected_pdb_residue_position_count"
+                    ),
+                    "alternate_pdb_with_residue_positions_count": remediation_row.get(
+                        "alternate_pdb_with_residue_positions_count"
+                    ),
+                }
+                if remediation_row
+                else None,
+                "structure_mapping_status": mapping_row.get("status"),
+                "alternate_structure_scan_context": _alternate_scan_context(
+                    alternate_scan_row
+                ),
+                "countable_label_candidate": False,
+                "recommended_next_action": _expert_label_decision_repair_action(
+                    repair_bucket
+                ),
+            }
+        )
+
+    bucket_priority = {
+        "active_site_mapping_or_structure_gap_repair": 0,
+        "text_leakage_or_nonlocal_evidence_guardrail": 1,
+        "cofactor_evidence_repair": 2,
+        "ser_his_metal_boundary_review": 3,
+        "sibling_mechanism_boundary_review": 4,
+        "reaction_substrate_review_already_exported": 5,
+        "external_expert_label_decision": 6,
+    }
+    ranked_rows = sorted(
+        candidate_rows,
+        key=lambda row: (
+            bucket_priority.get(str(row["repair_bucket"]), 99),
+            int(row.get("rank", 0) or 0),
+            _entry_id_sort_key(str(row["entry_id"])),
+        ),
+    )
+    bucket_counts = Counter(str(row["repair_bucket"]) for row in candidate_rows)
+    flag_counts = Counter(
+        flag for row in candidate_rows for flag in row.get("quality_risk_flags", [])
+    )
+    emitted_rows = ranked_rows if max_rows <= 0 else ranked_rows[:max_rows]
+    candidate_entry_ids = _sorted_entry_ids(row.get("entry_id") for row in candidate_rows)
+    return {
+        "metadata": {
+            "method": "expert_label_decision_repair_candidate_summary",
+            "source_method": expert_label_decision_review_export.get(
+                "metadata", {}
+            ).get("method"),
+            "candidate_count": len(candidate_rows),
+            "emitted_row_count": len(emitted_rows),
+            "omitted_by_max_rows": max(0, len(ranked_rows) - len(emitted_rows)),
+            "all_candidates_retained": len(emitted_rows) == len(ranked_rows),
+            "max_rows": max_rows,
+            "countable_label_candidate_count": 0,
+            "candidate_entry_ids": candidate_entry_ids,
+            "repair_bucket_counts": dict(sorted(bucket_counts.items())),
+            "quality_risk_flag_counts": dict(sorted(flag_counts.items())),
+            "remediation_context_linked_count": sum(
+                1
+                for row in candidate_rows
+                if row.get("review_debt_remediation_context") is not None
+            ),
+            "structure_mapping_context_linked_count": sum(
+                1 for row in candidate_rows if row.get("structure_mapping_status")
+            ),
+            "alternate_structure_scan_context_linked_count": sum(
+                1
+                for row in candidate_rows
+                if row.get("alternate_structure_scan_context") is not None
+            ),
+            "review_only_rule": (
+                "repair candidates identify evidence work only; they do not "
+                "accept, reject, or count expert-label decision rows"
+            ),
+        },
+        "rows": emitted_rows,
+    }
+
+
+def _expert_label_decision_repair_bucket(flags: list[str]) -> str:
+    flag_set = set(flags)
+    if "active_site_mapping_or_structure_gap" in flag_set:
+        return "active_site_mapping_or_structure_gap_repair"
+    if "text_leakage_or_nonlocal_evidence_risk" in flag_set:
+        return "text_leakage_or_nonlocal_evidence_guardrail"
+    if "cofactor_family_ambiguity" in flag_set:
+        return "cofactor_evidence_repair"
+    if "ser_his_metal_boundary" in flag_set:
+        return "ser_his_metal_boundary_review"
+    if "sibling_mechanism_confusion" in flag_set:
+        return "sibling_mechanism_boundary_review"
+    if "reaction_substrate_mismatch" in flag_set:
+        return "reaction_substrate_review_already_exported"
+    return "external_expert_label_decision"
+
+
+def _expert_label_decision_repair_action(repair_bucket: str) -> str:
+    return {
+        "active_site_mapping_or_structure_gap_repair": (
+            "inspect selected structure mapping, residue resolution, and alternate "
+            "PDB support before any label decision"
+        ),
+        "text_leakage_or_nonlocal_evidence_guardrail": (
+            "require local mechanistic evidence; do not count text-only or "
+            "nonlocal support"
+        ),
+        "cofactor_evidence_repair": (
+            "inspect local cofactor evidence and counterevidence before review"
+        ),
+        "ser_his_metal_boundary_review": (
+            "keep Ser-His versus metal-hydrolase boundary rows in review"
+        ),
+        "sibling_mechanism_boundary_review": (
+            "compare sibling mechanism evidence before external review"
+        ),
+        "reaction_substrate_review_already_exported": (
+            "use the dedicated reaction/substrate mismatch review export"
+        ),
+        "external_expert_label_decision": (
+            "external expert label decision required"
+        ),
+    }.get(repair_bucket, "external expert label decision required")
+
+
 def build_provisional_review_decision_batch(
     review_artifact: dict[str, Any],
     *,
@@ -2880,6 +3389,9 @@ def build_provisional_review_decision_batch(
     review_source_method = review_artifact.get("metadata", {}).get("method")
     reaction_mismatch_review_only = (
         review_source_method == "reaction_substrate_mismatch_review_export"
+    )
+    expert_label_decision_review_only = (
+        review_source_method == "expert_label_decision_review_export"
     )
     decision_counts: Counter = Counter()
     decision_entry_ids: dict[str, list[str]] = {}
@@ -2903,6 +3415,18 @@ def build_provisional_review_decision_batch(
                 "evidence_score": None,
                 "review_status": "expert_reviewed",
                 "reaction_substrate_resolution": "needs_more_evidence",
+            }
+        elif expert_label_decision_review_only or isinstance(
+            item.get("expert_label_decision_context"), dict
+        ):
+            item["decision"] = {
+                **decision,
+                "action": "no_decision",
+                "reviewer": None,
+                "rationale": None,
+                "evidence_score": None,
+                "review_status": "expert_reviewed",
+                "expert_label_resolution": "needs_external_review",
             }
         elif item.get("current_label") is None:
             item["decision"] = _provisional_unlabeled_decision(
@@ -2944,6 +3468,7 @@ def build_provisional_review_decision_batch(
             },
             "boundary_control_decisions": selected_boundary_controls,
             "reaction_substrate_mismatch_review_only": reaction_mismatch_review_only,
+            "expert_label_decision_review_only": expert_label_decision_review_only,
             "policy": (
                 "Automation-curated batch decisions stay bronze and are imported "
                 "as automation_curated or needs_expert_review records, not gold "
@@ -3017,6 +3542,8 @@ def check_label_factory_gates(
     expert_review_export: dict[str, Any],
     family_propagation_guardrails: dict[str, Any] | None = None,
     reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
+    expert_label_decision_review_export: dict[str, Any] | None = None,
+    expert_label_decision_repair_candidates: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     ontology = load_mechanism_ontology()
     required_terms = {
@@ -3111,6 +3638,90 @@ def check_label_factory_gates(
             and mismatch_export_labeled_seed_count == 0
         )
     )
+    expert_label_decision_entry_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in active_learning_queue.get("rows", [])
+        if isinstance(row, dict)
+        and isinstance(row.get("entry_id"), str)
+        and row.get("recommended_action") == "expert_label_decision_needed"
+    )
+    expert_label_export_meta = (expert_label_decision_review_export or {}).get(
+        "metadata", {}
+    )
+    expert_label_export_present = (
+        expert_label_export_meta.get("method")
+        == "expert_label_decision_review_export"
+    )
+    expert_label_export_entry_ids = _sorted_entry_ids(
+        expert_label_export_meta.get("exported_entry_ids", [])
+    )
+    if expert_label_decision_review_export and not expert_label_export_entry_ids:
+        expert_label_export_entry_ids = _sorted_entry_ids(
+            item.get("entry_id")
+            for item in expert_label_decision_review_export.get("review_items", [])
+            if isinstance(item, dict)
+        )
+    missing_expert_label_export_entry_ids = _sorted_entry_ids(
+        set(expert_label_decision_entry_ids) - set(expert_label_export_entry_ids)
+    )
+    expert_label_export_decision_counts = expert_label_export_meta.get(
+        "decision_counts", {}
+    )
+    expert_label_export_countable_count = int(
+        expert_label_export_meta.get("countable_label_candidate_count", 0) or 0
+    )
+    expert_label_export_ready = (
+        not expert_label_decision_entry_ids
+        or (
+            expert_label_export_present
+            and int(expert_label_export_meta.get("exported_count", 0) or 0)
+            >= len(expert_label_decision_entry_ids)
+            and not missing_expert_label_export_entry_ids
+            and expert_label_export_countable_count == 0
+            and bool(expert_label_export_meta.get("export_ready", True))
+            and int(expert_label_export_decision_counts.get("no_decision", 0) or 0)
+            == int(expert_label_export_meta.get("exported_count", 0) or 0)
+        )
+    )
+    expert_label_repair_meta = (
+        expert_label_decision_repair_candidates or {}
+    ).get("metadata", {})
+    expert_label_repair_present = (
+        expert_label_repair_meta.get("method")
+        == "expert_label_decision_repair_candidate_summary"
+    )
+    expert_label_repair_entry_ids = _sorted_entry_ids(
+        expert_label_repair_meta.get("candidate_entry_ids", [])
+    )
+    if expert_label_decision_repair_candidates and not expert_label_repair_entry_ids:
+        expert_label_repair_entry_ids = _sorted_entry_ids(
+            row.get("entry_id")
+            for row in expert_label_decision_repair_candidates.get("rows", [])
+            if isinstance(row, dict)
+        )
+    expert_label_repair_candidate_count = int(
+        expert_label_repair_meta.get("candidate_count", 0) or 0
+    )
+    expert_label_repair_entry_id_count_matches = (
+        expert_label_repair_candidate_count == len(expert_label_repair_entry_ids)
+    )
+    missing_expert_label_repair_entry_ids = _sorted_entry_ids(
+        set(expert_label_decision_entry_ids) - set(expert_label_repair_entry_ids)
+    )
+    expert_label_repair_countable_count = int(
+        expert_label_repair_meta.get("countable_label_candidate_count", 0) or 0
+    )
+    expert_label_repair_ready = (
+        not expert_label_decision_entry_ids
+        or (
+            expert_label_repair_present
+            and expert_label_repair_candidate_count
+            >= len(expert_label_decision_entry_ids)
+            and expert_label_repair_entry_id_count_matches
+            and not missing_expert_label_repair_entry_ids
+            and expert_label_repair_countable_count == 0
+        )
+    )
     gates = {
         "label_schema_explicit": all(
             label.tier in LABEL_TIERS
@@ -3167,6 +3778,10 @@ def check_label_factory_gates(
             and bool(family_meta.get("source_guardrails"))
         ),
         "reaction_substrate_mismatch_review_export_ready": mismatch_export_ready,
+        "expert_label_decision_review_export_ready": expert_label_export_ready,
+        "expert_label_decision_repair_candidates_ready": (
+            expert_label_repair_ready
+        ),
     }
     blockers = [name for name, passed in gates.items() if not passed]
     return {
@@ -3197,6 +3812,42 @@ def check_label_factory_gates(
             ),
             "reaction_substrate_mismatch_review_export_labeled_seed_mismatch_count": (
                 mismatch_export_labeled_seed_count
+            ),
+            "active_queue_expert_label_decision_count": len(
+                expert_label_decision_entry_ids
+            ),
+            "active_queue_expert_label_decision_entry_ids": (
+                expert_label_decision_entry_ids
+            ),
+            "expert_label_decision_review_export_present": (
+                expert_label_export_present
+            ),
+            "expert_label_decision_review_export_entry_ids": (
+                expert_label_export_entry_ids
+            ),
+            "expert_label_decision_review_export_missing_entry_ids": (
+                missing_expert_label_export_entry_ids
+            ),
+            "expert_label_decision_review_export_countable_label_candidate_count": (
+                expert_label_export_countable_count
+            ),
+            "expert_label_decision_repair_candidates_present": (
+                expert_label_repair_present
+            ),
+            "expert_label_decision_repair_candidate_entry_ids": (
+                expert_label_repair_entry_ids
+            ),
+            "expert_label_decision_repair_candidate_count": (
+                expert_label_repair_candidate_count
+            ),
+            "expert_label_decision_repair_candidate_entry_id_count_matches": (
+                expert_label_repair_entry_id_count_matches
+            ),
+            "expert_label_decision_repair_candidates_missing_entry_ids": (
+                missing_expert_label_repair_entry_ids
+            ),
+            "expert_label_decision_repair_candidates_countable_label_candidate_count": (
+                expert_label_repair_countable_count
             ),
             "bulk_scaling_rule": (
                 "new labels may be added in batches only after this gate check "
@@ -3438,6 +4089,41 @@ def summarize_label_factory_batches(
             )
             if gate_meta
             else None,
+            "active_queue_expert_label_decision_count": gate_meta.get(
+                "active_queue_expert_label_decision_count"
+            ),
+            "expert_label_decision_review_export_present": gate_meta.get(
+                "expert_label_decision_review_export_present"
+            ),
+            "expert_label_decision_review_export_missing_count": len(
+                gate_meta.get(
+                    "expert_label_decision_review_export_missing_entry_ids",
+                )
+                or []
+            )
+            if gate_meta
+            else None,
+            "expert_label_decision_review_export_countable_label_candidate_count": (
+                gate_meta.get(
+                    "expert_label_decision_review_export_countable_label_candidate_count"
+                )
+            ),
+            "expert_label_decision_repair_candidates_present": gate_meta.get(
+                "expert_label_decision_repair_candidates_present"
+            ),
+            "expert_label_decision_repair_candidates_missing_count": len(
+                gate_meta.get(
+                    "expert_label_decision_repair_candidates_missing_entry_ids",
+                )
+                or []
+            )
+            if gate_meta
+            else None,
+            "expert_label_decision_repair_candidates_countable_label_candidate_count": (
+                gate_meta.get(
+                    "expert_label_decision_repair_candidates_countable_label_candidate_count"
+                )
+            ),
             "active_queue_unlabeled_count": queue_meta.get("total_unlabeled_candidate_count"),
             "active_queue_unlabeled_omitted": queue_meta.get("unlabeled_omitted_by_max_rows"),
             "active_queue_all_unlabeled_retained": queue_meta.get("all_unlabeled_rows_retained"),
@@ -3488,6 +4174,27 @@ def summarize_label_factory_batches(
             ),
             "latest_reaction_substrate_mismatch_review_export_missing_count": latest.get(
                 "reaction_substrate_mismatch_review_export_missing_count"
+            ),
+            "latest_active_queue_expert_label_decision_count": latest.get(
+                "active_queue_expert_label_decision_count"
+            ),
+            "latest_expert_label_decision_review_export_present": latest.get(
+                "expert_label_decision_review_export_present"
+            ),
+            "latest_expert_label_decision_review_export_missing_count": latest.get(
+                "expert_label_decision_review_export_missing_count"
+            ),
+            "latest_expert_label_decision_review_export_countable_label_candidate_count": latest.get(
+                "expert_label_decision_review_export_countable_label_candidate_count"
+            ),
+            "latest_expert_label_decision_repair_candidates_present": latest.get(
+                "expert_label_decision_repair_candidates_present"
+            ),
+            "latest_expert_label_decision_repair_candidates_missing_count": latest.get(
+                "expert_label_decision_repair_candidates_missing_count"
+            ),
+            "latest_expert_label_decision_repair_candidates_countable_label_candidate_count": latest.get(
+                "expert_label_decision_repair_candidates_countable_label_candidate_count"
             ),
             "all_batches_accepted_for_counting": all(
                 row["accepted_for_counting"] for row in rows
@@ -6191,6 +6898,8 @@ def audit_label_scaling_quality(
     remap_local_lead_audit: dict[str, Any] | None = None,
     reaction_substrate_mismatch_audit: dict[str, Any] | None = None,
     reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
+    expert_label_decision_review_export: dict[str, Any] | None = None,
+    expert_label_decision_repair_candidates: dict[str, Any] | None = None,
     batch_id: str | None = None,
 ) -> dict[str, Any]:
     acceptance_meta = acceptance.get("metadata", {})
@@ -6204,6 +6913,12 @@ def audit_label_scaling_quality(
     reaction_mismatch_meta = (reaction_substrate_mismatch_audit or {}).get("metadata", {})
     reaction_mismatch_export_meta = (
         reaction_substrate_mismatch_review_export or {}
+    ).get("metadata", {})
+    expert_label_decision_export_meta = (
+        expert_label_decision_review_export or {}
+    ).get("metadata", {})
+    expert_label_decision_repair_meta = (
+        expert_label_decision_repair_candidates or {}
     ).get("metadata", {})
     new_debt_ids = sorted(
         (
@@ -6531,6 +7246,103 @@ def audit_label_scaling_quality(
     elif reaction_mismatch_review_export_missing_entry_ids:
         review_warnings.append("reaction_substrate_mismatch_review_export_incomplete")
 
+    active_expert_label_decision_entry_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in active_learning_queue.get("rows", [])
+        if isinstance(row, dict)
+        and isinstance(row.get("entry_id"), str)
+        and row.get("recommended_action") == "expert_label_decision_needed"
+    )
+    expert_label_decision_export_present = (
+        expert_label_decision_export_meta.get("method")
+        == "expert_label_decision_review_export"
+    )
+    expert_label_decision_export_entry_ids = _sorted_entry_ids(
+        expert_label_decision_export_meta.get("exported_entry_ids", [])
+    )
+    if expert_label_decision_review_export and not expert_label_decision_export_entry_ids:
+        expert_label_decision_export_entry_ids = _sorted_entry_ids(
+            item.get("entry_id")
+            for item in expert_label_decision_review_export.get("review_items", [])
+            if isinstance(item, dict)
+        )
+    expert_label_decision_export_missing_entry_ids = _sorted_entry_ids(
+        set(active_expert_label_decision_entry_ids)
+        - set(expert_label_decision_export_entry_ids)
+    )
+    expert_label_decision_export_countable_count = int(
+        expert_label_decision_export_meta.get("countable_label_candidate_count", 0)
+        or 0
+    )
+    expert_label_decision_export_decision_counts = (
+        expert_label_decision_export_meta.get("decision_counts", {})
+    )
+    expert_label_decision_repair_present = (
+        expert_label_decision_repair_meta.get("method")
+        == "expert_label_decision_repair_candidate_summary"
+    )
+    expert_label_decision_repair_entry_ids = _sorted_entry_ids(
+        expert_label_decision_repair_meta.get("candidate_entry_ids", [])
+    )
+    if (
+        expert_label_decision_repair_candidates
+        and not expert_label_decision_repair_entry_ids
+    ):
+        expert_label_decision_repair_entry_ids = _sorted_entry_ids(
+            row.get("entry_id")
+            for row in expert_label_decision_repair_candidates.get("rows", [])
+            if isinstance(row, dict)
+        )
+    expert_label_decision_repair_candidate_count = int(
+        expert_label_decision_repair_meta.get("candidate_count", 0) or 0
+    )
+    expert_label_decision_repair_entry_id_count_matches = (
+        expert_label_decision_repair_candidate_count
+        == len(expert_label_decision_repair_entry_ids)
+    )
+    expert_label_decision_repair_missing_entry_ids = _sorted_entry_ids(
+        set(active_expert_label_decision_entry_ids)
+        - set(expert_label_decision_repair_entry_ids)
+    )
+    expert_label_decision_repair_countable_count = int(
+        expert_label_decision_repair_meta.get("countable_label_candidate_count", 0)
+        or 0
+    )
+    if active_expert_label_decision_entry_ids:
+        gates["expert_label_decision_review_export_retains_review_only_lanes"] = (
+            expert_label_decision_export_present
+            and not expert_label_decision_export_missing_entry_ids
+            and expert_label_decision_export_countable_count == 0
+            and bool(expert_label_decision_export_meta.get("export_ready", True))
+            and int(
+                expert_label_decision_export_decision_counts.get("no_decision", 0)
+                or 0
+            )
+            == int(expert_label_decision_export_meta.get("exported_count", 0) or 0)
+        )
+        gates["expert_label_decision_repair_candidates_cover_review_only_lanes"] = (
+            expert_label_decision_repair_present
+            and expert_label_decision_repair_candidate_count
+            >= len(active_expert_label_decision_entry_ids)
+            and expert_label_decision_repair_entry_id_count_matches
+            and not expert_label_decision_repair_missing_entry_ids
+            and expert_label_decision_repair_countable_count == 0
+        )
+        blockers = [name for name, passed in gates.items() if not passed]
+    if active_expert_label_decision_entry_ids and not expert_label_decision_export_present:
+        review_warnings.append("expert_label_decision_review_export_missing")
+    elif expert_label_decision_export_missing_entry_ids:
+        review_warnings.append("expert_label_decision_review_export_incomplete")
+    if active_expert_label_decision_entry_ids:
+        review_warnings.append("expert_label_decision_rows_require_external_review")
+    if (
+        active_expert_label_decision_entry_ids
+        and not expert_label_decision_repair_present
+    ):
+        review_warnings.append("expert_label_decision_repair_candidates_missing")
+    elif expert_label_decision_repair_missing_entry_ids:
+        review_warnings.append("expert_label_decision_repair_candidates_incomplete")
+
     reaction_failure_mode = _scaling_failure_mode_summary(
         "reaction_direction_or_substrate_class_mismatch",
         issue_rows,
@@ -6703,6 +7515,49 @@ def audit_label_scaling_quality(
                 "omitted_underrepresented_queue_entry_ids": omitted_underrepresented_entry_ids,
             },
         },
+        {
+            "id": "expert_label_decision_review_only_debt",
+            "status": "observed"
+            if active_expert_label_decision_entry_ids
+            else "not_observed",
+            "issue_count": len(active_expert_label_decision_entry_ids),
+            "entry_ids": active_expert_label_decision_entry_ids,
+            "evidence": {
+                "expert_label_decision_review_export_present": (
+                    expert_label_decision_export_present
+                ),
+                "exported_entry_ids": expert_label_decision_export_entry_ids,
+                "missing_entry_ids": expert_label_decision_export_missing_entry_ids,
+                "countable_label_candidate_count": (
+                    expert_label_decision_export_countable_count
+                ),
+                "quality_risk_flag_counts": (
+                    expert_label_decision_export_meta.get(
+                        "quality_risk_flag_counts", {}
+                    )
+                ),
+                "repair_candidates_present": expert_label_decision_repair_present,
+                "repair_candidate_entry_ids": expert_label_decision_repair_entry_ids,
+                "repair_candidate_count": (
+                    expert_label_decision_repair_candidate_count
+                ),
+                "repair_candidate_entry_id_count_matches": (
+                    expert_label_decision_repair_entry_id_count_matches
+                ),
+                "repair_missing_entry_ids": (
+                    expert_label_decision_repair_missing_entry_ids
+                ),
+                "repair_bucket_counts": (
+                    expert_label_decision_repair_meta.get("repair_bucket_counts", {})
+                ),
+                "repair_countable_label_candidate_count": (
+                    expert_label_decision_repair_countable_count
+                ),
+                "review_only_rule": expert_label_decision_export_meta.get(
+                    "review_only_rule"
+                ),
+            },
+        },
         _scaling_failure_mode_summary(
             "text_leakage_without_mechanistic_evidence",
             issue_rows,
@@ -6815,6 +7670,45 @@ def audit_label_scaling_quality(
             ),
             "reaction_substrate_mismatch_review_export_recommended_path": (
                 reaction_mismatch_export_meta.get("recommended_path")
+            ),
+            "active_queue_expert_label_decision_entry_ids": (
+                active_expert_label_decision_entry_ids
+            ),
+            "expert_label_decision_review_export_present": (
+                expert_label_decision_export_present
+            ),
+            "expert_label_decision_review_export_entry_ids": (
+                expert_label_decision_export_entry_ids
+            ),
+            "expert_label_decision_review_export_missing_entry_ids": (
+                expert_label_decision_export_missing_entry_ids
+            ),
+            "expert_label_decision_review_export_countable_label_candidate_count": (
+                expert_label_decision_export_countable_count
+            ),
+            "expert_label_decision_review_export_quality_risk_flag_counts": (
+                expert_label_decision_export_meta.get("quality_risk_flag_counts", {})
+            ),
+            "expert_label_decision_repair_candidates_present": (
+                expert_label_decision_repair_present
+            ),
+            "expert_label_decision_repair_candidate_entry_ids": (
+                expert_label_decision_repair_entry_ids
+            ),
+            "expert_label_decision_repair_candidate_count": (
+                expert_label_decision_repair_candidate_count
+            ),
+            "expert_label_decision_repair_candidate_entry_id_count_matches": (
+                expert_label_decision_repair_entry_id_count_matches
+            ),
+            "expert_label_decision_repair_candidates_missing_entry_ids": (
+                expert_label_decision_repair_missing_entry_ids
+            ),
+            "expert_label_decision_repair_candidates_countable_label_candidate_count": (
+                expert_label_decision_repair_countable_count
+            ),
+            "expert_label_decision_repair_bucket_counts": (
+                expert_label_decision_repair_meta.get("repair_bucket_counts", {})
             ),
             "issue_class_counts": dict(sorted(issue_class_counts.items())),
             "audit_rule": (
@@ -7239,6 +8133,10 @@ def import_countable_review_decisions(
         review_artifact.get("metadata", {}).get("method")
         == "reaction_substrate_mismatch_review_export"
     )
+    expert_label_decision_review_only = (
+        review_artifact.get("metadata", {}).get("method")
+        == "expert_label_decision_review_export"
+    )
     for item in countable_review.get("review_items", []):
         if not isinstance(item, dict):
             continue
@@ -7249,6 +8147,7 @@ def import_countable_review_decisions(
         if (
             decision.get("action") != "accept_label"
             or decision.get("review_status", "expert_reviewed") not in COUNTABLE_REVIEW_STATUSES
+            or expert_label_decision_review_only
             or (
                 reaction_mismatch_review_only
                 and (

@@ -77,6 +77,18 @@ alternate PDBs exist but none of those alternates have M-CSA residue-position
 support, making them structure-wide review leads rather than local active-site
 evidence.
 
+`artifacts/v3_expert_label_decision_review_export_700.json` now routes the
+active-queue expert-decision lane separately from generic review debt. It
+exports all 76 `expert_label_decision_needed` rows as `no_decision`, records 0
+countable candidates, links 56 carried and 20 new review-debt rows, and keeps
+the 7 overlapping reaction/substrate mismatch rows covered by the dedicated
+mismatch export. See `work/expert_label_decision_review_700_notes.md` for the
+review-only risk profile. The paired
+`artifacts/v3_expert_label_decision_repair_candidates_700.json` artifact covers
+all 76 rows with 0 countable candidates and links remediation context for all
+76 plus alternate-structure scan context for 42; the `_700_all` companion
+artifact emits the full 76-row table.
+
 `artifacts/v3_review_debt_alternate_structure_scan_700.json` scanned all 13
 rows that needed alternate-PDB or local-structure selection review, covering
 152 candidate PDB structures with 0 fetch failures. The scan now

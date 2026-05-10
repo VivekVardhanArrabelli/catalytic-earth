@@ -27,6 +27,7 @@ from .labels import (
     audit_review_debt_remap_local_leads,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
+    build_expert_label_decision_review_export,
     build_expert_review_export,
     build_family_propagation_guardrails,
     build_hard_negative_controls,
@@ -47,6 +48,7 @@ from .labels import (
     load_labels,
     migrate_label_registry_records,
     scan_review_debt_alternate_structures,
+    summarize_expert_label_decision_repair_candidates,
     summarize_label_factory_batches,
     summarize_review_debt,
     summarize_review_debt_remap_leads,
@@ -642,6 +644,67 @@ def cmd_export_label_review(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_expert_label_decision_review_export(args: argparse.Namespace) -> int:
+    with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+        queue = json.load(handle)
+    review_debt = None
+    if args.review_debt:
+        with Path(args.review_debt).open("r", encoding="utf-8") as handle:
+            review_debt = json.load(handle)
+    mismatch_export = None
+    if args.reaction_substrate_mismatch_review_export:
+        with Path(args.reaction_substrate_mismatch_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            mismatch_export = json.load(handle)
+    export = build_expert_label_decision_review_export(
+        active_learning_queue=queue,
+        labels=load_labels(Path(args.labels)),
+        review_debt=review_debt,
+        reaction_substrate_mismatch_review_export=mismatch_export,
+    )
+    write_json(Path(args.out), export)
+    print(
+        "Wrote expert-label decision review export to "
+        f"{args.out} ({export['metadata']['exported_count']} items)"
+    )
+    return 0
+
+
+def cmd_summarize_expert_label_decision_repair_candidates(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.expert_label_decision_review_export).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        export = json.load(handle)
+    remediation = None
+    if args.review_debt_remediation:
+        with Path(args.review_debt_remediation).open("r", encoding="utf-8") as handle:
+            remediation = json.load(handle)
+    structure_mapping = None
+    if args.structure_mapping:
+        with Path(args.structure_mapping).open("r", encoding="utf-8") as handle:
+            structure_mapping = json.load(handle)
+    alternate_scan = None
+    if args.alternate_structure_scan:
+        with Path(args.alternate_structure_scan).open("r", encoding="utf-8") as handle:
+            alternate_scan = json.load(handle)
+    summary = summarize_expert_label_decision_repair_candidates(
+        export,
+        review_debt_remediation=remediation,
+        structure_mapping=structure_mapping,
+        alternate_structure_scan=alternate_scan,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), summary)
+    print(
+        "Wrote expert-label decision repair candidates to "
+        f"{args.out} ({summary['metadata']['emitted_row_count']} rows)"
+    )
+    return 0
+
+
 def cmd_import_label_review(args: argparse.Namespace) -> int:
     with Path(args.review).open("r", encoding="utf-8") as handle:
         review = json.load(handle)
@@ -976,6 +1039,18 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             reaction_mismatch_review_export = json.load(handle)
+    expert_label_decision_review_export = None
+    if args.expert_label_decision_review_export:
+        with Path(args.expert_label_decision_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_decision_review_export = json.load(handle)
+    expert_label_decision_repair_candidates = None
+    if args.expert_label_decision_repair_candidates:
+        with Path(args.expert_label_decision_repair_candidates).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_decision_repair_candidates = json.load(handle)
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -992,6 +1067,10 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         remap_local_lead_audit=remap_local_lead_audit,
         reaction_substrate_mismatch_audit=reaction_mismatch_audit,
         reaction_substrate_mismatch_review_export=reaction_mismatch_review_export,
+        expert_label_decision_review_export=expert_label_decision_review_export,
+        expert_label_decision_repair_candidates=(
+            expert_label_decision_repair_candidates
+        ),
         batch_id=args.batch_id,
     )
     write_json(Path(args.out), audit)
@@ -1021,6 +1100,18 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             mismatch_review_export = json.load(handle)
+    expert_label_review_export = None
+    if args.expert_label_decision_review_export:
+        with Path(args.expert_label_decision_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_review_export = json.load(handle)
+    expert_label_repair_candidates = None
+    if args.expert_label_decision_repair_candidates:
+        with Path(args.expert_label_decision_repair_candidates).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_repair_candidates = json.load(handle)
     gates = check_label_factory_gates(
         load_labels(Path(args.labels)),
         factory,
@@ -1030,6 +1121,8 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
         review_export,
         family_propagation_guardrails=family_guardrails,
         reaction_substrate_mismatch_review_export=mismatch_review_export,
+        expert_label_decision_review_export=expert_label_review_export,
+        expert_label_decision_repair_candidates=expert_label_repair_candidates,
     )
     write_json(Path(args.out), gates)
     print(
@@ -1568,6 +1661,51 @@ def build_parser() -> argparse.ArgumentParser:
     review_export.add_argument("--out", default="artifacts/v3_expert_review_export.json")
     review_export.set_defaults(func=cmd_export_label_review)
 
+    expert_label_decision_export = subparsers.add_parser(
+        "build-expert-label-decision-review-export",
+        help="export active-queue expert-label decision rows without countable decisions",
+    )
+    expert_label_decision_export.add_argument(
+        "--active-learning-queue",
+        default="artifacts/v3_active_learning_review_queue.json",
+    )
+    expert_label_decision_export.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    expert_label_decision_export.add_argument("--review-debt", default=None)
+    expert_label_decision_export.add_argument(
+        "--reaction-substrate-mismatch-review-export",
+        default=None,
+    )
+    expert_label_decision_export.add_argument(
+        "--out",
+        default="artifacts/v3_expert_label_decision_review_export.json",
+    )
+    expert_label_decision_export.set_defaults(
+        func=cmd_build_expert_label_decision_review_export
+    )
+
+    expert_label_decision_repair = subparsers.add_parser(
+        "summarize-expert-label-decision-repair-candidates",
+        help="prioritize review-only expert-label decision rows for evidence repair",
+    )
+    expert_label_decision_repair.add_argument(
+        "--expert-label-decision-review-export",
+        default="artifacts/v3_expert_label_decision_review_export.json",
+    )
+    expert_label_decision_repair.add_argument("--review-debt-remediation", default=None)
+    expert_label_decision_repair.add_argument("--structure-mapping", default=None)
+    expert_label_decision_repair.add_argument("--alternate-structure-scan", default=None)
+    expert_label_decision_repair.add_argument("--max-rows", type=int, default=30)
+    expert_label_decision_repair.add_argument(
+        "--out",
+        default="artifacts/v3_expert_label_decision_repair_candidates.json",
+    )
+    expert_label_decision_repair.set_defaults(
+        func=cmd_summarize_expert_label_decision_repair_candidates
+    )
+
     review_import = subparsers.add_parser(
         "import-label-review",
         help="apply expert review decisions to a label registry copy",
@@ -1615,6 +1753,8 @@ def build_parser() -> argparse.ArgumentParser:
     gate_check.add_argument("--expert-review-export", default="artifacts/v3_expert_review_export_500.json")
     gate_check.add_argument("--family-propagation-guardrails", default="artifacts/v3_family_propagation_guardrails_500.json")
     gate_check.add_argument("--reaction-substrate-mismatch-review-export", default=None)
+    gate_check.add_argument("--expert-label-decision-review-export", default=None)
+    gate_check.add_argument("--expert-label-decision-repair-candidates", default=None)
     gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
     gate_check.set_defaults(func=cmd_check_label_factory_gates)
 
@@ -1903,6 +2043,14 @@ def build_parser() -> argparse.ArgumentParser:
     scaling_quality.add_argument("--reaction-substrate-mismatch-audit", default=None)
     scaling_quality.add_argument(
         "--reaction-substrate-mismatch-review-export",
+        default=None,
+    )
+    scaling_quality.add_argument(
+        "--expert-label-decision-review-export",
+        default=None,
+    )
+    scaling_quality.add_argument(
+        "--expert-label-decision-repair-candidates",
         default=None,
     )
     scaling_quality.add_argument(

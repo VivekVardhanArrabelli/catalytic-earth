@@ -816,6 +816,244 @@ class CliTests(unittest.TestCase):
                 "expert_reaction_substrate_review_before_ontology_split",
             )
 
+    def test_build_expert_label_decision_review_export_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            labels = root / "labels.json"
+            queue = root / "queue.json"
+            debt = root / "review_debt.json"
+            mismatch_export = root / "mismatch_export.json"
+            remediation = root / "remediation.json"
+            structure_mapping = root / "structure_mapping.json"
+            alternate_scan = root / "alternate_scan.json"
+            out = root / "expert_label_decision_export.json"
+            repair_out = root / "expert_label_decision_repair.json"
+            labels.write_text(
+                json.dumps(
+                    [
+                        {
+                            "entry_id": "m_csa:1",
+                            "fingerprint_id": None,
+                            "label_type": "out_of_scope",
+                            "confidence": "medium",
+                            "rationale": "Existing boundary control kept outside seed labels.",
+                            "tier": "bronze",
+                            "review_status": "automation_curated",
+                            "evidence_score": 0.65,
+                            "evidence": {"sources": ["test"]},
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "active_learning_label_review_queue"},
+                        "rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:650",
+                                "entry_name": "phospholipase A1",
+                                "label_state": "unlabeled",
+                                "recommended_action": "expert_label_decision_needed",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "top1_ontology_family": "hydrolysis",
+                                "top1_score": 0.61,
+                                "top2_fingerprint_id": "ser_his_acid_hydrolase",
+                                "top2_score": 0.45,
+                                "abstain_threshold": 0.4115,
+                                "cofactor_evidence_level": "ligand_supported",
+                                "readiness_blockers": [],
+                                "counterevidence_reasons": [],
+                                "reaction_substrate_mismatch_reasons": [],
+                                "mechanism_text_snippets": [
+                                    "Ser-His hydrolase text with no explicit metal catalysis."
+                                ],
+                            },
+                            {
+                                "rank": 2,
+                                "entry_id": "m_csa:655",
+                                "entry_name": "glucokinase",
+                                "label_state": "unlabeled",
+                                "recommended_action": "expert_label_decision_needed",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "top1_ontology_family": "hydrolysis",
+                                "top1_score": 0.5,
+                                "abstain_threshold": 0.4115,
+                                "cofactor_evidence_level": "ligand_supported",
+                                "readiness_blockers": [],
+                                "counterevidence_reasons": [
+                                    "nucleotide_transfer_ligand_context"
+                                ],
+                                "reaction_substrate_mismatch_reasons": [
+                                    "kinase_name_with_hydrolase_top1"
+                                ],
+                                "mechanism_text_snippets": [
+                                    "ATP phosphoryl transfer to glucose."
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            debt.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_summary",
+                            "carried_review_debt_entry_ids": ["m_csa:650"],
+                            "new_review_debt_entry_ids": ["m_csa:655"],
+                        },
+                        "rows": [{"entry_id": "m_csa:650"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mismatch_export.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "reaction_substrate_mismatch_review_export",
+                            "exported_count": 1,
+                            "exported_entry_ids": ["m_csa:655"],
+                        },
+                        "review_items": [{"entry_id": "m_csa:655"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            remediation.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:650",
+                                "remediation_bucket": "active_site_mapping_repair",
+                                "selected_pdb_id": "1ABC",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            structure_mapping.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:650",
+                                "status": "insufficient_resolved_residues",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            alternate_scan.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:650",
+                                "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+                                "scanned_structure_count": 3,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-expert-label-decision-review-export",
+                    "--active-learning-queue",
+                    str(queue),
+                    "--labels",
+                    str(labels),
+                    "--review-debt",
+                    str(debt),
+                    "--reaction-substrate-mismatch-review-export",
+                    str(mismatch_export),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            export = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(export["metadata"]["exported_count"], 2)
+            self.assertEqual(export["metadata"]["decision_counts"], {"no_decision": 2})
+            self.assertEqual(export["metadata"]["countable_label_candidate_count"], 0)
+            self.assertEqual(
+                export["metadata"][
+                    "missing_reaction_substrate_mismatch_export_entry_ids"
+                ],
+                [],
+            )
+            self.assertEqual(
+                export["metadata"]["quality_risk_flag_counts"][
+                    "external_expert_decision_required"
+                ],
+                2,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "summarize-expert-label-decision-repair-candidates",
+                    "--expert-label-decision-review-export",
+                    str(out),
+                    "--review-debt-remediation",
+                    str(remediation),
+                    "--structure-mapping",
+                    str(structure_mapping),
+                    "--alternate-structure-scan",
+                    str(alternate_scan),
+                    "--max-rows",
+                    "0",
+                    "--out",
+                    str(repair_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            repair = json.loads(repair_out.read_text(encoding="utf-8"))
+            self.assertEqual(repair["metadata"]["candidate_count"], 2)
+            self.assertEqual(repair["metadata"]["countable_label_candidate_count"], 0)
+            self.assertEqual(
+                repair["metadata"]["repair_bucket_counts"][
+                    "reaction_substrate_review_already_exported"
+                ],
+                1,
+            )
+            self.assertEqual(repair["metadata"]["remediation_context_linked_count"], 1)
+            self.assertEqual(
+                repair["metadata"]["structure_mapping_context_linked_count"], 1
+            )
+            self.assertEqual(
+                repair["metadata"]["alternate_structure_scan_context_linked_count"], 1
+            )
+            rows = {row["entry_id"]: row for row in repair["rows"]}
+            self.assertEqual(
+                rows["m_csa:650"]["alternate_structure_scan_context"][
+                    "scanned_structure_count"
+                ],
+                3,
+            )
+
     def test_import_countable_review_rejects_automation_mismatch_accepts(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -993,6 +1231,8 @@ class CliTests(unittest.TestCase):
             alternate_scan = root / "alternate_scan.json"
             remap_local_audit = root / "remap_local_audit.json"
             reaction_mismatch_audit = root / "reaction_mismatch_audit.json"
+            expert_label_export = root / "expert_label_export.json"
+            expert_label_repair = root / "expert_label_repair.json"
             out = root / "audit.json"
             acceptance.write_text(
                 json.dumps(
@@ -1046,7 +1286,17 @@ class CliTests(unittest.TestCase):
                 json.dumps(
                     {
                         "metadata": {"all_unlabeled_rows_retained": True},
-                        "rows": [{"entry_id": "m_csa:651", "top1_ontology_family": "heme_redox"}],
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:650",
+                                "recommended_action": "expert_label_decision_needed",
+                                "top1_ontology_family": "hydrolysis",
+                            },
+                            {
+                                "entry_id": "m_csa:651",
+                                "top1_ontology_family": "heme_redox",
+                            },
+                        ],
                     }
                 ),
                 encoding="utf-8",
@@ -1140,6 +1390,36 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            expert_label_export.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "expert_label_decision_review_export",
+                            "exported_count": 1,
+                            "exported_entry_ids": ["m_csa:650"],
+                            "countable_label_candidate_count": 0,
+                            "decision_counts": {"no_decision": 1},
+                            "export_ready": True,
+                        },
+                        "review_items": [{"entry_id": "m_csa:650"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            expert_label_repair.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "expert_label_decision_repair_candidate_summary",
+                            "candidate_count": 1,
+                            "candidate_entry_ids": ["m_csa:650"],
+                            "countable_label_candidate_count": 0,
+                        },
+                        "rows": [{"entry_id": "m_csa:650"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -1175,6 +1455,10 @@ class CliTests(unittest.TestCase):
                     str(remap_local_audit),
                     "--reaction-substrate-mismatch-audit",
                     str(reaction_mismatch_audit),
+                    "--expert-label-decision-review-export",
+                    str(expert_label_export),
+                    "--expert-label-decision-repair-candidates",
+                    str(expert_label_repair),
                     "--out",
                     str(out),
                 ],
@@ -1196,6 +1480,17 @@ class CliTests(unittest.TestCase):
             self.assertTrue(audit["metadata"]["remap_local_lead_audit_present"])
             self.assertTrue(
                 audit["metadata"]["reaction_substrate_mismatch_audit_present"]
+            )
+            self.assertTrue(
+                audit["gates"][
+                    "expert_label_decision_repair_candidates_cover_review_only_lanes"
+                ]
+            )
+            self.assertEqual(
+                audit["metadata"][
+                    "expert_label_decision_repair_candidates_missing_entry_ids"
+                ],
+                [],
             )
             self.assertIn("alternate_structure_hits_lack_local_support", audit["review_warnings"])
             self.assertIn("remap_local_leads_require_strict_guardrail", audit["review_warnings"])

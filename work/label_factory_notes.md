@@ -64,6 +64,10 @@ that structure-wide cofactor-family hits still lack local active-site support.
 - `artifacts/v3_reaction_substrate_mismatch_audit_700.json`
 - `artifacts/v3_reaction_substrate_mismatch_review_export_700.json`
 - `artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json`
+- `artifacts/v3_expert_label_decision_review_export_700.json`
+- `artifacts/v3_expert_label_decision_decision_batch_700.json`
+- `artifacts/v3_expert_label_decision_repair_candidates_700.json`
+- `artifacts/v3_expert_label_decision_repair_candidates_700_all.json`
 - `artifacts/v3_family_propagation_guardrails_700.json`
 - `artifacts/v3_label_scaling_quality_audit_700_preview.json`
 - `artifacts/v3_sequence_cluster_proxy_700.json`
@@ -72,7 +76,7 @@ Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 12/12 factory checks pass on the 624-label countable
+Current gate state: 14/14 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional
 labels were accepted for counting in the 700 batch, 81 review-state decisions
 remain pending, and the countable subset has 0 hard negatives, 0 near misses,
@@ -87,10 +91,18 @@ mismatch blockers, including 14 rows kept beyond `max_rows`; these split into
 dedicated mismatch review export now carries all 24 lanes together, records
 17 current out-of-scope labels plus 7 unlabeled rows, defers any new ontology
 family rule until expert review, and the generated decision batch preserves all
-24 as `no_decision`. Countable review import also refuses accepted
+24 as `no_decision`. The expert-label decision repair-candidate summary now
+covers all 76 active expert-decision rows with 0 countable candidates, so the
+gate also fails if that non-countable repair plan is incomplete. Countable
+review import also refuses accepted
 reaction/substrate mismatch rows unless they are explicitly expert-reviewed and
 carry a non-`needs_more_evidence` reaction/substrate resolution. The batch
-summary reports 9/9 accepted batches with 0 blockers.
+summary reports 9/9 accepted batches with 0 blockers. The dedicated
+expert-label decision export now carries all 76 active-queue
+`expert_label_decision_needed` rows as review-only `no_decision` items, records
+0 countable candidates, confirms 0 missing expert-decision export rows, and
+keeps the 7 overlapping reaction/substrate mismatch rows tied to the mismatch
+export.
 The 675 preview initially exposed accepted out-of-scope rows that still carried
 review debt, so the provisional decision rule now defers below-threshold,
 evidence-limited negatives instead of counting them. The regenerated preview

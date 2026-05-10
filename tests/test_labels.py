@@ -24,6 +24,7 @@ from catalytic_earth.labels import (
     audit_review_debt_remap_local_leads,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
+    build_expert_label_decision_review_export,
     build_expert_review_export,
     build_family_propagation_guardrails,
     build_hard_negative_controls,
@@ -47,6 +48,7 @@ from catalytic_earth.labels import (
     load_labels,
     migrate_label_record,
     scan_review_debt_alternate_structures,
+    summarize_expert_label_decision_repair_candidates,
     select_threshold,
     summarize_label_factory_batches,
     summarize_review_debt,
@@ -1992,6 +1994,301 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             0,
         )
 
+    def test_expert_label_decision_review_export_keeps_rows_review_only(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="Existing reviewed boundary control.",
+            )
+        ]
+        queue = {
+            "metadata": {
+                "method": "active_learning_review_queue",
+                "queued_count": 3,
+                "all_unlabeled_rows_retained": True,
+                "ranking_terms": [
+                    "uncertainty",
+                    "impact",
+                    "novelty",
+                    "hard_negative_value",
+                    "evidence_conflict",
+                    "family_boundary_value",
+                    "reaction_substrate_mismatch_value",
+                ],
+            },
+            "rows": [
+                {
+                    "rank": 1,
+                    "entry_id": "m_csa:1",
+                    "entry_name": "labeled boundary",
+                    "label_state": "labeled",
+                    "current_label_type": "out_of_scope",
+                    "recommended_action": "hold_bronze_boundary_review",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_ontology_family": "hydrolysis",
+                },
+                {
+                    "rank": 2,
+                    "entry_id": "m_csa:650",
+                    "entry_name": "phospholipase A1",
+                    "label_state": "unlabeled",
+                    "recommended_action": "expert_label_decision_needed",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_ontology_family": "hydrolysis",
+                    "top1_score": 0.6085,
+                    "cofactor_evidence_level": "ligand_supported",
+                    "reaction_substrate_mismatch_reasons": [],
+                },
+                {
+                    "rank": 3,
+                    "entry_id": "m_csa:655",
+                    "entry_name": "glucokinase",
+                    "label_state": "unlabeled",
+                    "recommended_action": "expert_label_decision_needed",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_ontology_family": "hydrolysis",
+                    "top1_score": 0.512,
+                    "cofactor_evidence_level": "ligand_supported",
+                    "reaction_substrate_mismatch_reasons": [
+                        "kinase_name_with_hydrolase_top1"
+                    ],
+                },
+            ],
+        }
+        review_debt = {
+            "metadata": {
+                "method": "review_debt_summary",
+                "carried_review_debt_entry_ids": ["m_csa:650"],
+                "new_review_debt_entry_ids": ["m_csa:655"],
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:650",
+                    "recommended_next_action": "expert_review_decision_needed",
+                }
+            ],
+        }
+        mismatch_export = {
+            "metadata": {
+                "method": "reaction_substrate_mismatch_review_export",
+                "exported_count": 1,
+                "exported_entry_ids": ["m_csa:655"],
+            },
+            "review_items": [{"entry_id": "m_csa:655"}],
+        }
+
+        export = build_expert_label_decision_review_export(
+            active_learning_queue=queue,
+            labels=labels,
+            review_debt=review_debt,
+            reaction_substrate_mismatch_review_export=mismatch_export,
+        )
+
+        self.assertEqual(export["metadata"]["exported_count"], 2)
+        self.assertEqual(export["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(export["metadata"]["decision_counts"], {"no_decision": 2})
+        self.assertEqual(
+            export["metadata"]["quality_risk_flag_counts"][
+                "external_expert_decision_required"
+            ],
+            2,
+        )
+        self.assertEqual(
+            export["metadata"]["quality_risk_flag_counts"][
+                "reaction_substrate_mismatch"
+            ],
+            1,
+        )
+        self.assertEqual(
+            export["metadata"]["missing_reaction_substrate_mismatch_export_entry_ids"],
+            [],
+        )
+        contexts = {
+            item["entry_id"]: item["expert_label_decision_context"]
+            for item in export["review_items"]
+        }
+        self.assertEqual(
+            contexts["m_csa:650"]["resolution_lane"],
+            "external_expert_label_decision",
+        )
+        self.assertEqual(
+            contexts["m_csa:655"]["resolution_lane"],
+            "already_routed_reaction_substrate_mismatch_export",
+        )
+        self.assertIn(
+            "reaction_substrate_mismatch",
+            contexts["m_csa:655"]["quality_risk_flags"],
+        )
+        self.assertFalse(contexts["m_csa:650"]["countable_label_candidate"])
+
+        batch = build_provisional_review_decision_batch(export)
+        self.assertTrue(batch["metadata"]["expert_label_decision_review_only"])
+        self.assertEqual(batch["metadata"]["decision_counts"], {"no_decision": 2})
+        countable = import_countable_review_decisions(labels, batch)
+        self.assertEqual([label.entry_id for label in countable], ["m_csa:1"])
+        unsafe_countable = deepcopy(export)
+        unsafe_countable["review_items"][0]["decision"] = {
+            "action": "accept_label",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": "automation_label_factory",
+            "rationale": "Automation must not count expert-label decision exports.",
+            "evidence_score": 0.65,
+            "review_status": "automation_curated",
+        }
+        self.assertEqual(
+            [label.entry_id for label in import_countable_review_decisions(labels, unsafe_countable)],
+            ["m_csa:1"],
+        )
+        repair = summarize_expert_label_decision_repair_candidates(
+            export,
+            review_debt_remediation={
+                "rows": [
+                    {
+                        "entry_id": "m_csa:650",
+                        "remediation_bucket": "active_site_mapping_repair",
+                        "selected_pdb_id": "1ABC",
+                        "alternate_pdb_count": 2,
+                    }
+                ]
+            },
+            structure_mapping={
+                "rows": [{"entry_id": "m_csa:650", "status": "ok"}]
+            },
+            alternate_structure_scan={
+                "rows": [
+                    {
+                        "entry_id": "m_csa:650",
+                        "scan_outcome": "alternate_structure_has_expected_cofactor_candidate",
+                        "scanned_structure_count": 4,
+                    }
+                ]
+            },
+            max_rows=0,
+        )
+        self.assertEqual(repair["metadata"]["candidate_count"], 2)
+        self.assertEqual(repair["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            repair["metadata"]["repair_bucket_counts"],
+            {
+                "reaction_substrate_review_already_exported": 1,
+                "external_expert_label_decision": 1,
+            },
+        )
+        repair_rows = {row["entry_id"]: row for row in repair["rows"]}
+        self.assertEqual(
+            repair_rows["m_csa:655"]["repair_bucket"],
+            "reaction_substrate_review_already_exported",
+        )
+        self.assertEqual(
+            repair_rows["m_csa:650"]["repair_bucket"],
+            "external_expert_label_decision",
+        )
+        self.assertEqual(
+            repair_rows["m_csa:650"]["review_debt_remediation_context"][
+                "selected_pdb_id"
+            ],
+            "1ABC",
+        )
+        self.assertEqual(repair["metadata"]["remediation_context_linked_count"], 1)
+        self.assertEqual(repair["metadata"]["structure_mapping_context_linked_count"], 1)
+        self.assertEqual(
+            repair["metadata"]["alternate_structure_scan_context_linked_count"], 1
+        )
+        self.assertEqual(
+            repair["metadata"]["candidate_entry_ids"],
+            ["m_csa:650", "m_csa:655"],
+        )
+        self.assertEqual(
+            repair_rows["m_csa:650"]["alternate_structure_scan_context"][
+                "scanned_structure_count"
+            ],
+            4,
+        )
+        self.assertFalse(repair_rows["m_csa:650"]["countable_label_candidate"])
+
+        gate_without_export = check_label_factory_gates(
+            labels,
+            {"metadata": {"promote_to_silver_count": 1, "abstention_or_review_count": 1}},
+            {
+                "metadata": {
+                    "output_label_count": len(labels),
+                    "output_summary": {"by_tier": {"silver": 1}},
+                }
+            },
+            queue,
+            {"metadata": {"control_count": 1, "axis_counts": {"ontology_family_boundary": 1}}},
+            {"metadata": {"exported_count": 1}, "review_items": [{"entry_id": "m_csa:650"}]},
+            family_propagation_guardrails={
+                "metadata": {
+                    "reported_count": 1,
+                    "source_guardrails": [{"source": "local_proxy"}],
+                },
+                "rows": [],
+            },
+        )
+        self.assertFalse(
+            gate_without_export["gates"]["expert_label_decision_review_export_ready"]
+        )
+        self.assertFalse(
+            gate_without_export["gates"][
+                "expert_label_decision_repair_candidates_ready"
+            ]
+        )
+
+        gate_with_export = check_label_factory_gates(
+            labels,
+            {"metadata": {"promote_to_silver_count": 1, "abstention_or_review_count": 1}},
+            {
+                "metadata": {
+                    "output_label_count": len(labels),
+                    "output_summary": {"by_tier": {"silver": 1}},
+                }
+            },
+            queue,
+            {"metadata": {"control_count": 1, "axis_counts": {"ontology_family_boundary": 1}}},
+            {"metadata": {"exported_count": 1}, "review_items": [{"entry_id": "m_csa:650"}]},
+            family_propagation_guardrails={
+                "metadata": {
+                    "reported_count": 1,
+                    "source_guardrails": [{"source": "local_proxy"}],
+                },
+                "rows": [],
+            },
+            expert_label_decision_review_export=export,
+            expert_label_decision_repair_candidates=repair,
+        )
+        self.assertTrue(
+            gate_with_export["gates"]["expert_label_decision_review_export_ready"]
+        )
+        self.assertTrue(
+            gate_with_export["gates"][
+                "expert_label_decision_repair_candidates_ready"
+            ]
+        )
+        self.assertEqual(
+            gate_with_export["metadata"][
+                "expert_label_decision_review_export_missing_entry_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            gate_with_export["metadata"][
+                "expert_label_decision_repair_candidates_missing_entry_ids"
+            ],
+            [],
+        )
+        self.assertTrue(
+            gate_with_export["metadata"][
+                "expert_label_decision_repair_candidate_entry_id_count_matches"
+            ]
+        )
+
     def test_preview_promotion_readiness_warns_on_new_review_debt(self) -> None:
         acceptance = {
             "metadata": {
@@ -2134,7 +2431,11 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         queue = {
             "metadata": {"all_unlabeled_rows_retained": True},
             "rows": [
-                {"entry_id": "m_csa:650", "top1_ontology_family": "hydrolysis"},
+                {
+                    "entry_id": "m_csa:650",
+                    "top1_ontology_family": "hydrolysis",
+                    "recommended_action": "expert_label_decision_needed",
+                },
                 {"entry_id": "m_csa:651", "top1_ontology_family": "flavin_redox"},
             ],
         }
@@ -2201,6 +2502,32 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
                 "mismatch_reason_counts": {"kinase_name_with_hydrolase_top1": 1},
             }
         }
+        expert_label_decision_export = {
+            "metadata": {
+                "method": "expert_label_decision_review_export",
+                "exported_count": 1,
+                "exported_entry_ids": ["m_csa:650"],
+                "countable_label_candidate_count": 0,
+                "decision_counts": {"no_decision": 1},
+                "export_ready": True,
+                "quality_risk_flag_counts": {
+                    "external_expert_decision_required": 1,
+                    "ser_his_metal_boundary": 1,
+                },
+                "review_only_rule": "test review-only rule",
+            },
+            "review_items": [{"entry_id": "m_csa:650"}],
+        }
+        expert_label_decision_repair = {
+            "metadata": {
+                "method": "expert_label_decision_repair_candidate_summary",
+                "candidate_count": 1,
+                "candidate_entry_ids": ["m_csa:650"],
+                "countable_label_candidate_count": 0,
+                "repair_bucket_counts": {"ser_his_metal_boundary_review": 1},
+            },
+            "rows": [{"entry_id": "m_csa:650"}],
+        }
 
         audit = audit_label_scaling_quality(
             acceptance,
@@ -2216,6 +2543,8 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             alternate_structure_scan=alternate_scan,
             remap_local_lead_audit=remap_local_audit,
             reaction_substrate_mismatch_audit=reaction_mismatch_audit,
+            expert_label_decision_review_export=expert_label_decision_export,
+            expert_label_decision_repair_candidates=expert_label_decision_repair,
             batch_id="test_preview",
         )
 
@@ -2258,7 +2587,27 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertIn("alternate_structure_hits_lack_local_support", audit["review_warnings"])
         self.assertIn("remap_local_leads_require_strict_guardrail", audit["review_warnings"])
         self.assertIn("reaction_substrate_mismatch_audit_hits", audit["review_warnings"])
+        self.assertIn(
+            "expert_label_decision_rows_require_external_review",
+            audit["review_warnings"],
+        )
         self.assertTrue(audit["gates"]["remap_local_leads_remain_review_only"])
+        self.assertTrue(
+            audit["gates"][
+                "expert_label_decision_review_export_retains_review_only_lanes"
+            ]
+        )
+        self.assertTrue(
+            audit["gates"][
+                "expert_label_decision_repair_candidates_cover_review_only_lanes"
+            ]
+        )
+        self.assertEqual(
+            audit["metadata"][
+                "expert_label_decision_repair_candidates_missing_entry_ids"
+            ],
+            [],
+        )
         self.assertEqual(
             audit["metadata"]["remap_local_lead_audit_strict_guardrail_entry_ids"],
             ["m_csa:650"],
@@ -2282,6 +2631,22 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertEqual(
             failure_modes["overcounted_paralogs_or_near_duplicates"]["entry_ids"],
             ["m_csa:650", "m_csa:651"],
+        )
+        self.assertEqual(
+            failure_modes["expert_label_decision_review_only_debt"]["entry_ids"],
+            ["m_csa:650"],
+        )
+        self.assertEqual(
+            failure_modes["expert_label_decision_review_only_debt"]["evidence"][
+                "quality_risk_flag_counts"
+            ]["ser_his_metal_boundary"],
+            1,
+        )
+        self.assertEqual(
+            failure_modes["expert_label_decision_review_only_debt"]["evidence"][
+                "repair_bucket_counts"
+            ]["ser_his_metal_boundary_review"],
+            1,
         )
 
     def test_provisional_review_batch_imports_without_expert_claim(self) -> None:
