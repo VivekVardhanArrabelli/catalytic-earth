@@ -40,6 +40,8 @@ from catalytic_earth.labels import (
     load_labels,
     migrate_label_record,
     select_threshold,
+    summarize_label_factory_batches,
+    summarize_review_debt,
     sweep_abstention_thresholds,
 )
 
@@ -47,12 +49,12 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 579)
+        self.assertEqual(len(labels), 618)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
-        self.assertEqual(summary["by_tier"]["bronze"], 579)
-        self.assertEqual(summary["by_review_status"]["automation_curated"], 579)
+        self.assertEqual(summary["by_tier"]["bronze"], 618)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 618)
         self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:
@@ -577,6 +579,7 @@ class LabelTests(unittest.TestCase):
         self.assertGreaterEqual(queue["metadata"]["queued_count"], 2)
         self.assertEqual(queue["rows"][0]["rank"], 1)
         self.assertIn("uncertainty", queue["rows"][0]["review_scores"])
+        self.assertTrue(queue["metadata"]["all_unlabeled_rows_retained"])
 
         export = build_expert_review_export(queue, labels, max_rows=1)
         export["review_items"][0]["decision"] = {
@@ -622,6 +625,170 @@ class LabelTests(unittest.TestCase):
         )
         self.assertTrue(gates["gates"]["label_schema_explicit"])
         self.assertTrue(gates["gates"]["active_queue_ranked"])
+        self.assertTrue(gates["gates"]["active_queue_retains_unlabeled_candidates"])
+
+        truncated_queue = {
+            **queue,
+            "metadata": {
+                **queue["metadata"],
+                "all_unlabeled_rows_retained": False,
+                "unlabeled_omitted_by_max_rows": 1,
+            },
+        }
+        truncated_gates = check_label_factory_gates(
+            labels,
+            audit,
+            None,
+            truncated_queue,
+            {
+                "metadata": {
+                    "control_count": 1,
+                    "axis_counts": {"ontology_family_boundary": 1},
+                }
+            },
+            export,
+            {"metadata": {"reported_count": 1, "source_guardrails": [{"source": "local_proxy"}]}},
+        )
+        self.assertFalse(truncated_gates["gates"]["active_queue_retains_unlabeled_candidates"])
+        self.assertIn("active_queue_retains_unlabeled_candidates", truncated_gates["blockers"])
+
+    def test_label_factory_batch_summary_tracks_review_debt_and_queue_retention(self) -> None:
+        acceptance_625 = {
+            "metadata": {
+                "accepted_for_counting": True,
+                "baseline_label_count": 579,
+                "countable_label_count": 599,
+                "accepted_new_label_count": 20,
+                "pending_review_count": 31,
+                "hard_negative_count": 0,
+                "near_miss_count": 0,
+                "out_of_scope_false_non_abstentions": 0,
+                "actionable_in_scope_failure_count": 0,
+                "factory_gate_ready": True,
+            },
+            "blockers": [],
+        }
+        acceptance_650 = {
+            "metadata": {
+                "accepted_for_counting": True,
+                "baseline_label_count": 599,
+                "countable_label_count": 618,
+                "accepted_new_label_count": 19,
+                "pending_review_count": 37,
+                "hard_negative_count": 0,
+                "near_miss_count": 0,
+                "out_of_scope_false_non_abstentions": 0,
+                "actionable_in_scope_failure_count": 0,
+                "factory_gate_ready": True,
+            },
+            "blockers": [],
+        }
+        gate_650 = {
+            "metadata": {
+                "automation_ready_for_next_label_batch": True,
+                "gate_count": 10,
+                "passed_gate_count": 10,
+            }
+        }
+        retained_queue = {
+            "metadata": {
+                "total_unlabeled_candidate_count": 32,
+                "unlabeled_omitted_by_max_rows": 0,
+                "all_unlabeled_rows_retained": True,
+            }
+        }
+        truncated_queue = {
+            "metadata": {
+                "total_unlabeled_candidate_count": 32,
+                "unlabeled_omitted_by_max_rows": 2,
+                "all_unlabeled_rows_retained": False,
+            }
+        }
+
+        summary = summarize_label_factory_batches(
+            [
+                ("artifacts/v3_label_batch_acceptance_check_625.json", acceptance_625),
+                ("artifacts/v3_label_batch_acceptance_check_650.json", acceptance_650),
+            ],
+            gate_checks=[("artifacts/v3_label_factory_gate_check_650.json", gate_650)],
+            active_learning_queues=[
+                ("artifacts/v3_active_learning_review_queue_650.json", retained_queue)
+            ],
+        )
+
+        self.assertEqual(summary["metadata"]["latest_batch"], "650")
+        self.assertEqual(summary["metadata"]["latest_countable_label_count"], 618)
+        self.assertEqual(summary["metadata"]["latest_pending_review_count"], 37)
+        self.assertEqual(summary["metadata"]["total_accepted_new_label_count"], 39)
+        self.assertTrue(summary["metadata"]["all_zero_hard_negatives"])
+        self.assertTrue(summary["metadata"]["all_active_queues_retain_unlabeled_candidates"])
+
+        blocked = summarize_label_factory_batches(
+            [("artifacts/v3_label_batch_acceptance_check_650.json", acceptance_650)],
+            active_learning_queues=[
+                ("artifacts/v3_active_learning_review_queue_650.json", truncated_queue)
+            ],
+        )
+        self.assertFalse(blocked["metadata"]["all_active_queues_retain_unlabeled_candidates"])
+        self.assertEqual(
+            blocked["blockers"][0]["blockers"],
+            ["unlabeled_rows_omitted_from_active_queue"],
+        )
+
+    def test_review_debt_summary_prioritizes_cofactor_and_boundary_gaps(self) -> None:
+        gaps = {
+            "metadata": {"method": "review_evidence_gap_analysis"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:650",
+                    "entry_name": "phospholipase A1",
+                    "decision_action": "mark_needs_more_evidence",
+                    "coverage_status": "expected_structure_only",
+                    "gap_reasons": [
+                        "review_marked_needs_more_evidence",
+                        "counterevidence_present",
+                        "target_not_top1",
+                    ],
+                    "counterevidence_reasons": ["metal_boundary_without_text"],
+                    "target_fingerprint_id": "ser_his_acid_hydrolase",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.61,
+                    "target_score": 0.58,
+                },
+                {
+                    "entry_id": "m_csa:494",
+                    "entry_name": "cobalamin candidate",
+                    "decision_action": "mark_needs_more_evidence",
+                    "coverage_status": "expected_absent_from_structure",
+                    "gap_reasons": [
+                        "review_marked_needs_more_evidence",
+                        "expected_cofactor_absent_from_structure",
+                    ],
+                    "counterevidence_reasons": [],
+                    "target_fingerprint_id": "cobalamin_radical_rearrangement",
+                    "top1_fingerprint_id": "cobalamin_radical_rearrangement",
+                    "top1_score": 0.3,
+                    "target_score": 0.3,
+                },
+            ],
+        }
+        queue = {
+            "rows": [
+                {"entry_id": "m_csa:650", "rank": 1, "review_score": 8.0},
+                {"entry_id": "m_csa:494", "rank": 40, "review_score": 5.0},
+            ]
+        }
+
+        summary = summarize_review_debt(gaps, active_learning_queue=queue, max_rows=2)
+
+        self.assertEqual(summary["metadata"]["review_debt_count"], 2)
+        self.assertEqual(summary["metadata"]["active_queue_rows_linked"], 2)
+        self.assertEqual(summary["rows"][0]["entry_id"], "m_csa:650")
+        self.assertEqual(
+            summary["rows"][0]["recommended_next_action"],
+            "verify_local_cofactor_or_active_site_mapping",
+        )
+        self.assertIn("counterevidence_present", summary["metadata"]["gap_reason_counts"])
 
     def test_provisional_review_batch_imports_without_expert_claim(self) -> None:
         labels = [
@@ -891,6 +1058,39 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(gaps["rows"][0]["coverage_status"], "expected_structure_only")
         self.assertEqual(gaps["rows"][0]["nearest_expected_ligand_distance_angstrom"], 8.349)
         self.assertIn("expected_cofactor_not_local", gaps["rows"][0]["gap_reasons"])
+
+    def test_provisional_review_defers_ser_his_metal_boundary(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:650",
+                    "entry_name": "phospholipase A1",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:650",
+                        "entry_name": "phospholipase A1",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_score": 0.6085,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "ligand_supported",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "The mechanism is analogous to serine hydrolases. His acts as a base to deprotonate Ser for nucleophilic attack."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                }
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decision = batch["review_items"][0]["decision"]
+
+        self.assertEqual(decision["action"], "mark_needs_more_evidence")
+        self.assertEqual(decision["fingerprint_id"], "ser_his_acid_hydrolase")
+        self.assertIn("top retrieval favored metal_dependent_hydrolase", decision["rationale"])
 
     def test_provisional_batch_accepts_ser_his_hydrolase_text_despite_counterevidence(self) -> None:
         review = {

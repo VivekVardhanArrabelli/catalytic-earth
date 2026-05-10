@@ -1,29 +1,29 @@
 {
   "by_confidence": {
-    "high": 27,
-    "low": 24,
-    "medium": 528
+    "high": 28,
+    "low": 36,
+    "medium": 554
   },
   "by_fingerprint": {
     "cobalamin_radical_rearrangement": 2,
     "flavin_dehydrogenase_reductase": 35,
     "flavin_monooxygenase": 2,
     "heme_peroxidase_oxidase": 10,
-    "metal_dependent_hydrolase": 53,
+    "metal_dependent_hydrolase": 54,
     "plp_dependent_enzyme": 21,
     "radical_sam_enzyme": 1,
-    "ser_his_acid_hydrolase": 23
+    "ser_his_acid_hydrolase": 26
   },
   "by_review_status": {
-    "automation_curated": 579
+    "automation_curated": 618
   },
   "by_tier": {
-    "bronze": 579
+    "bronze": 618
   },
   "by_type": {
-    "out_of_scope": 432,
-    "seed_fingerprint": 147
+    "out_of_scope": 467,
+    "seed_fingerprint": 151
   },
-  "label_count": 579,
-  "mean_evidence_score": 0.6462
+  "label_count": 618,
+  "mean_evidence_score": 0.6418
 }

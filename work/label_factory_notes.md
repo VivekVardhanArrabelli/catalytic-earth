@@ -2,12 +2,12 @@
 
 ## Current Plan
 
-The 500-, 525-, 550-, 575-, and 600-slice label-factory batches have been
-processed through countable import and acceptance checks. A 625-entry preview
-has also been generated and passes preview acceptance, but it has not been
-promoted to the canonical curated-label registry. The next bounded block should
-review and either promote or discard the 625 preview, then regenerate canonical
-625 artifacts if promoted; do not reprocess accepted 575 or 600 batches.
+The 500-, 525-, 550-, 575-, 600-, 625-, and 650-slice label-factory batches
+have been processed through countable import and acceptance checks. A 675
+preview batch has been generated and passes preview acceptance, but it is not
+canonical yet. The next bounded block should review that preview before
+promotion, or resolve persistent review-state rows first. Do not reprocess
+accepted 625 or 650 batches.
 
 ## Current Generated Artifacts
 
@@ -36,19 +36,35 @@ review and either promote or discard the 625 preview, then regenerate canonical
 - `artifacts/v3_imported_labels_batch_600.json`
 - `artifacts/v3_countable_labels_batch_600.json`
 - `artifacts/v3_label_factory_gate_check_600.json`
-- `artifacts/v3_label_batch_acceptance_check_625_preview.json`
+- `artifacts/v3_label_batch_acceptance_check_625.json`
+- `artifacts/v3_imported_labels_batch_625.json`
+- `artifacts/v3_countable_labels_batch_625.json`
+- `artifacts/v3_label_factory_gate_check_625.json`
+- `artifacts/v3_label_batch_acceptance_check_650.json`
+- `artifacts/v3_imported_labels_batch_650.json`
+- `artifacts/v3_countable_labels_batch_650.json`
+- `artifacts/v3_label_factory_gate_check_650.json`
+- `artifacts/v3_label_factory_batch_summary.json`
+- `artifacts/v3_label_batch_acceptance_check_675_preview.json`
+- `artifacts/v3_imported_labels_batch_675_preview.json`
+- `artifacts/v3_countable_labels_batch_675_preview.json`
+- `artifacts/v3_label_factory_gate_check_675_preview_batch.json`
 
 Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 9/9 factory checks pass on the 579-label countable
-registry. The latest accepted batch-acceptance check passes: 16 additional labels were
-accepted for counting in the 600 batch, 26 review-state decisions remain
+Current gate state: 10/10 factory checks pass on the 618-label countable
+registry. The latest accepted batch-acceptance check passes: 19 additional labels were
+accepted for counting in the 650 batch, 37 review-state decisions remain
 pending, and the countable subset has 0 hard negatives, 0 near misses,
 0 out-of-scope false non-abstentions, and 0 actionable in-scope failures.
-The 625 preview would add 20 more labels, but it remains a preview artifact
-until the next run promotes it intentionally.
+The post-650 active-learning queue retains all 32 unlabeled candidate rows;
+the factory gate fails if a capped queue omits any unlabeled row. The batch
+summary reports 7/7 accepted batches with 0 blockers.
+The 675 preview would add 18 countable labels and leave 39 review-state
+decisions pending while preserving 0 hard negatives, 0 near misses,
+0 out-of-scope false non-abstentions, and 0 actionable in-scope failures.
 
 Do not derive that countable subset by filtering the review-state registry: the
 review-state artifact intentionally marks several baseline boundary controls as
@@ -60,7 +76,7 @@ Remaining review-state candidates:
 - `m_csa:494`: likely cobalamin radical rearrangement, but B12 evidence is
   structure-wide only (`8.349 A` from the selected active-site residues), so it
   remains a documented non-countable evidence gap.
-- `m_csa:510`, `m_csa:529`, `m_csa:534`, and later 575/600 boundary rows:
+- `m_csa:510`, `m_csa:529`, `m_csa:534`, `m_csa:650`, and later boundary rows:
   tranche candidates marked `needs_expert_review` by the provisional batch
   rules.
 - Five carried boundary-control rows (`m_csa:4`, `m_csa:13`, `m_csa:54`,

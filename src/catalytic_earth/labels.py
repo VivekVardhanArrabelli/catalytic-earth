@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from collections import Counter
 from copy import deepcopy
 from dataclasses import dataclass, field
@@ -2595,12 +2596,17 @@ def build_active_learning_review_queue(
             }
         )
 
-    ranked_rows = sorted(
+    all_ranked_rows = sorted(
         queue_rows,
         key=lambda row: (-row["review_score"], _entry_id_sort_key(row["entry_id"])),
-    )[:max_rows]
+    )
+    ranked_rows = all_ranked_rows[:max_rows]
+    omitted_rows = all_ranked_rows[max_rows:]
     for index, row in enumerate(ranked_rows, start=1):
         row["rank"] = index
+    omitted_unlabeled_count = sum(
+        1 for row in omitted_rows if row["label_state"] == "unlabeled"
+    )
     score_totals = Counter()
     for row in ranked_rows:
         for key, value in row["review_scores"].items():
@@ -2622,6 +2628,11 @@ def build_active_learning_review_queue(
             ],
             "score_totals": dict(sorted((key, round(value, 4)) for key, value in score_totals.items())),
             "unlabeled_count": sum(1 for row in ranked_rows if row["label_state"] == "unlabeled"),
+            "total_unlabeled_candidate_count": sum(
+                1 for row in all_ranked_rows if row["label_state"] == "unlabeled"
+            ),
+            "unlabeled_omitted_by_max_rows": omitted_unlabeled_count,
+            "all_unlabeled_rows_retained": omitted_unlabeled_count == 0,
             "labeled_review_count": sum(1 for row in ranked_rows if row["label_state"] == "labeled"),
         },
         "rows": ranked_rows,
@@ -2934,7 +2945,8 @@ def check_label_factory_gates(
         "evidence_conflict",
         "family_boundary_value",
     }
-    ranking_terms = set(active_learning_queue.get("metadata", {}).get("ranking_terms", []))
+    active_queue_meta = active_learning_queue.get("metadata", {})
+    ranking_terms = set(active_queue_meta.get("ranking_terms", []))
     adversarial_axes = set(adversarial_negatives.get("metadata", {}).get("axis_counts", {}))
     gates = {
         "label_schema_explicit": all(
@@ -2968,10 +2980,13 @@ def check_label_factory_gates(
         ),
         "ontology_loaded": len(ontology.get("families", [])) > 0,
         "active_queue_ranked": int(
-            active_learning_queue.get("metadata", {}).get("queued_count", 0)
+            active_queue_meta.get("queued_count", 0)
         )
         > 0
         and required_terms <= ranking_terms,
+        "active_queue_retains_unlabeled_candidates": bool(
+            active_queue_meta.get("all_unlabeled_rows_retained", True)
+        ),
         "adversarial_negatives_mined": int(
             adversarial_negatives.get("metadata", {}).get("control_count", 0)
         )
@@ -3079,6 +3094,136 @@ def check_label_batch_acceptance(
             "countable": countable_summary,
         },
     }
+
+
+def summarize_label_factory_batches(
+    acceptance_checks: list[tuple[str, dict[str, Any]]],
+    gate_checks: list[tuple[str, dict[str, Any]]] | None = None,
+    active_learning_queues: list[tuple[str, dict[str, Any]]] | None = None,
+) -> dict[str, Any]:
+    gate_by_batch = {
+        _artifact_batch_id(name): artifact
+        for name, artifact in gate_checks or []
+        if _artifact_batch_id(name)
+    }
+    queue_by_batch = {
+        _artifact_batch_id(name): artifact
+        for name, artifact in active_learning_queues or []
+        if _artifact_batch_id(name)
+    }
+    rows: list[dict[str, Any]] = []
+    blockers: list[dict[str, Any]] = []
+    for name, artifact in acceptance_checks:
+        batch_id = _artifact_batch_id(name) or str(len(rows) + 1)
+        metadata = artifact.get("metadata", {})
+        gate = gate_by_batch.get(batch_id, {})
+        gate_meta = gate.get("metadata", {}) if isinstance(gate, dict) else {}
+        queue = queue_by_batch.get(batch_id, {})
+        queue_meta = queue.get("metadata", {}) if isinstance(queue, dict) else {}
+        row_blockers = list(artifact.get("blockers", []))
+        if not metadata.get("accepted_for_counting", False):
+            row_blockers.append("batch_not_accepted_for_counting")
+        if gate_meta and not gate_meta.get("automation_ready_for_next_label_batch", False):
+            row_blockers.append("factory_gate_not_ready")
+        if queue_meta and not queue_meta.get("all_unlabeled_rows_retained", True):
+            row_blockers.append("unlabeled_rows_omitted_from_active_queue")
+        row = {
+            "batch": batch_id,
+            "source": name,
+            "accepted_for_counting": bool(metadata.get("accepted_for_counting", False)),
+            "accepted_new_label_count": int(metadata.get("accepted_new_label_count", 0) or 0),
+            "baseline_label_count": int(metadata.get("baseline_label_count", 0) or 0),
+            "countable_label_count": int(metadata.get("countable_label_count", 0) or 0),
+            "review_state_label_count": int(metadata.get("review_state_label_count", 0) or 0),
+            "pending_review_count": int(metadata.get("pending_review_count", 0) or 0),
+            "hard_negative_count": int(metadata.get("hard_negative_count", 0) or 0),
+            "near_miss_count": int(metadata.get("near_miss_count", 0) or 0),
+            "out_of_scope_false_non_abstentions": int(
+                metadata.get("out_of_scope_false_non_abstentions", 0) or 0
+            ),
+            "actionable_in_scope_failure_count": int(
+                metadata.get("actionable_in_scope_failure_count", 0) or 0
+            ),
+            "factory_gate_ready": bool(
+                metadata.get(
+                    "factory_gate_ready",
+                    gate_meta.get("automation_ready_for_next_label_batch", False),
+                )
+            ),
+            "gate_count": gate_meta.get("gate_count"),
+            "passed_gate_count": gate_meta.get("passed_gate_count"),
+            "active_queue_unlabeled_count": queue_meta.get("total_unlabeled_candidate_count"),
+            "active_queue_unlabeled_omitted": queue_meta.get("unlabeled_omitted_by_max_rows"),
+            "active_queue_all_unlabeled_retained": queue_meta.get("all_unlabeled_rows_retained"),
+            "blockers": sorted(set(row_blockers)),
+        }
+        rows.append(row)
+        if row["blockers"]:
+            blockers.append(
+                {
+                    "batch": batch_id,
+                    "source": name,
+                    "blockers": row["blockers"],
+                }
+            )
+    rows = sorted(rows, key=lambda row: _entry_id_sort_key(f"m_csa:{row['batch']}"))
+    latest = rows[-1] if rows else {}
+    return {
+        "metadata": {
+            "method": "label_factory_batch_summary",
+            "batch_count": len(rows),
+            "accepted_batch_count": sum(1 for row in rows if row["accepted_for_counting"]),
+            "total_accepted_new_label_count": sum(
+                int(row["accepted_new_label_count"]) for row in rows
+            ),
+            "latest_batch": latest.get("batch"),
+            "latest_countable_label_count": latest.get("countable_label_count", 0),
+            "latest_pending_review_count": latest.get("pending_review_count", 0),
+            "all_batches_accepted_for_counting": all(
+                row["accepted_for_counting"] for row in rows
+            )
+            if rows
+            else False,
+            "all_factory_gates_ready": all(row["factory_gate_ready"] for row in rows)
+            if rows
+            else False,
+            "all_zero_hard_negatives": all(row["hard_negative_count"] == 0 for row in rows)
+            if rows
+            else False,
+            "all_zero_near_misses": all(row["near_miss_count"] == 0 for row in rows)
+            if rows
+            else False,
+            "all_zero_false_non_abstentions": all(
+                row["out_of_scope_false_non_abstentions"] == 0 for row in rows
+            )
+            if rows
+            else False,
+            "all_zero_actionable_in_scope_failures": all(
+                row["actionable_in_scope_failure_count"] == 0 for row in rows
+            )
+            if rows
+            else False,
+            "all_active_queues_retain_unlabeled_candidates": all(
+                row["active_queue_all_unlabeled_retained"] is not False for row in rows
+            )
+            if rows
+            else False,
+            "blocker_count": len(blockers),
+            "next_batch_rule": (
+                "open the next label tranche only when every accepted batch has "
+                "zero hard negatives, zero near misses, zero false non-abstentions, "
+                "zero actionable in-scope failures, ready factory gates, and active "
+                "queues that retain all unlabeled candidates"
+            ),
+        },
+        "rows": rows,
+        "blockers": blockers,
+    }
+
+
+def _artifact_batch_id(name: str) -> str | None:
+    matches = re.findall(r"(?<!\d)(\d{2,5})(?!\d)", str(name))
+    return matches[-1] if matches else None
 
 
 def check_label_review_resolution(
@@ -3332,6 +3477,126 @@ def analyze_review_evidence_gaps(
         },
         "rows": sorted(rows, key=lambda row: _entry_id_sort_key(row["entry_id"])),
     }
+
+
+def summarize_review_debt(
+    review_evidence_gaps: dict[str, Any],
+    active_learning_queue: dict[str, Any] | None = None,
+    max_rows: int = 25,
+) -> dict[str, Any]:
+    queue_rank_by_entry: dict[str, int] = {}
+    queue_score_by_entry: dict[str, float] = {}
+    if active_learning_queue:
+        for row in active_learning_queue.get("rows", []):
+            if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
+                continue
+            entry_id = str(row["entry_id"])
+            queue_rank_by_entry[entry_id] = int(row.get("rank", 0) or 0)
+            queue_score_by_entry[entry_id] = float(row.get("review_score", 0.0) or 0.0)
+    debt_rows: list[dict[str, Any]] = []
+    for row in review_evidence_gaps.get("rows", []):
+        if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
+            continue
+        gap_reasons = [str(reason) for reason in row.get("gap_reasons", [])]
+        action = str(row.get("decision_action", ""))
+        if action != "mark_needs_more_evidence" and not gap_reasons:
+            continue
+        entry_id = str(row["entry_id"])
+        coverage_status = str(row.get("coverage_status", "unknown"))
+        priority_score = _review_debt_priority_score(
+            gap_reasons,
+            coverage_status,
+            queue_rank_by_entry.get(entry_id),
+        )
+        debt_rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": row.get("entry_name"),
+                "priority_score": round(priority_score, 4),
+                "active_queue_rank": queue_rank_by_entry.get(entry_id),
+                "active_queue_review_score": (
+                    round(queue_score_by_entry[entry_id], 4)
+                    if entry_id in queue_score_by_entry
+                    else None
+                ),
+                "decision_action": action,
+                "coverage_status": coverage_status,
+                "gap_reasons": sorted(set(gap_reasons)),
+                "counterevidence_reasons": row.get("counterevidence_reasons", []),
+                "target_fingerprint_id": row.get("target_fingerprint_id"),
+                "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+                "top1_score": row.get("top1_score"),
+                "target_score": row.get("target_score"),
+                "recommended_next_action": _review_debt_next_action(
+                    gap_reasons,
+                    coverage_status,
+                ),
+            }
+        )
+    ranked_rows = sorted(
+        debt_rows,
+        key=lambda row: (-float(row["priority_score"]), _entry_id_sort_key(row["entry_id"])),
+    )
+    gap_reason_counts = Counter(reason for row in debt_rows for reason in row["gap_reasons"])
+    coverage_counts = Counter(str(row["coverage_status"]) for row in debt_rows)
+    next_action_counts = Counter(str(row["recommended_next_action"]) for row in debt_rows)
+    return {
+        "metadata": {
+            "method": "review_debt_summary",
+            "source_method": review_evidence_gaps.get("metadata", {}).get("method"),
+            "review_debt_count": len(debt_rows),
+            "needs_more_evidence_count": sum(
+                1 for row in debt_rows if row["decision_action"] == "mark_needs_more_evidence"
+            ),
+            "prioritized_count": min(max_rows, len(ranked_rows)),
+            "gap_reason_counts": dict(sorted(gap_reason_counts.items())),
+            "coverage_status_counts": dict(sorted(coverage_counts.items())),
+            "recommended_next_action_counts": dict(sorted(next_action_counts.items())),
+            "active_queue_rows_linked": sum(
+                1 for row in debt_rows if row["active_queue_rank"] is not None
+            ),
+            "triage_rule": (
+                "prioritize review debt with local/structure-wide cofactor gaps, "
+                "counterevidence, below-threshold retrieval, family mismatches, and "
+                "high active-learning rank"
+            ),
+        },
+        "rows": ranked_rows[:max_rows],
+    }
+
+
+def _review_debt_priority_score(
+    gap_reasons: list[str],
+    coverage_status: str,
+    active_queue_rank: int | None,
+) -> float:
+    score = float(len(set(gap_reasons)))
+    if coverage_status == "expected_absent_from_structure":
+        score += 2.0
+    elif coverage_status == "expected_structure_only":
+        score += 1.5
+    if "counterevidence_present" in gap_reasons:
+        score += 1.0
+    if "target_not_top1" in gap_reasons:
+        score += 1.0
+    if "top1_below_abstention_threshold" in gap_reasons:
+        score += 0.75
+    if active_queue_rank:
+        score += max(0.0, 1.0 - min(active_queue_rank, 100) / 100.0)
+    return score
+
+
+def _review_debt_next_action(gap_reasons: list[str], coverage_status: str) -> str:
+    reasons = set(gap_reasons)
+    if coverage_status == "expected_absent_from_structure":
+        return "inspect_alternate_structure_or_cofactor_source"
+    if coverage_status == "expected_structure_only":
+        return "verify_local_cofactor_or_active_site_mapping"
+    if "target_not_top1" in reasons or "counterevidence_present" in reasons:
+        return "expert_family_boundary_review"
+    if "top1_below_abstention_threshold" in reasons:
+        return "keep_abstained_until_stronger_evidence"
+    return "expert_review_decision_needed"
 
 
 def build_family_propagation_guardrails(
@@ -3846,6 +4111,13 @@ def _provisional_unlabeled_decision(
         text,
         entry_name,
     )
+    ser_his_text_hint = _has_ser_his_hydrolase_text(text, entry_name)
+    ser_his_metal_boundary = (
+        top1 == "metal_dependent_hydrolase"
+        and top1_score >= threshold
+        and ser_his_text_hint
+        and not _has_metal_catalysis_text(text, entry_name)
+    )
     non_hydrolytic_metal_boundary = (
         top1 == "metal_dependent_hydrolase"
         and top1_score >= threshold
@@ -3855,15 +4127,7 @@ def _provisional_unlabeled_decision(
         top1 == "ser_his_acid_hydrolase"
         and top1_score >= threshold
         and not _has_clear_nonhydrolytic_text(text, entry_name)
-        and (
-            "ser-his" in text
-            or "ser his" in text
-            or "catalytic triad" in text
-            or "triad mechanism" in text
-            or "alpha-beta hydrolase" in text
-            or "lipase" in entry_name.lower()
-            or "hydrolase" in entry_name.lower()
-        )
+        and ser_his_text_hint
     )
     supported_seed = (
         top1_score >= threshold
@@ -3925,6 +4189,23 @@ def _provisional_unlabeled_decision(
                 f"{entry_name} has metal-dependent hydrolysis mechanism text, "
                 f"but its retrieval score {top1_score:.4f} is too close to the "
                 f"{threshold:.4f} abstention floor for automatic counting."
+            ),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
+    if ser_his_metal_boundary:
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} has Ser-His hydrolase mechanism text, but top "
+                f"retrieval favored metal_dependent_hydrolase at {top1_score:.4f} "
+                "without explicit metal-catalysis text; keep this candidate in "
+                "expert review before counting it."
             ),
             "evidence_score": 0.55,
             "review_status": "needs_expert_review",
@@ -4084,6 +4365,49 @@ def _has_metal_hydrolysis_text(text: str, entry_name: str) -> bool:
         "attacking nucleophilic hydroxide",
     }
     return any(term in combined for term in direct_terms | water_attack_terms)
+
+
+def _has_ser_his_hydrolase_text(text: str, entry_name: str) -> bool:
+    combined = f"{entry_name.lower()} {text}"
+    return any(
+        term in combined
+        for term in {
+            "ser-his",
+            "ser his",
+            "ser-his-asp",
+            "ser-his-glu",
+            "serine hydrolase",
+            "catalytic triad",
+            "triad mechanism",
+            "alpha-beta hydrolase",
+            "lipase",
+        }
+    ) or (
+        ("ser" in combined or "serine" in combined)
+        and ("his" in combined or "histidine" in combined)
+        and any(term in combined for term in {"nucleophile", "deprotonates", "base"})
+    )
+
+
+def _has_metal_catalysis_text(text: str, entry_name: str) -> bool:
+    combined = f"{entry_name.lower()} {text}"
+    return any(
+        term in combined
+        for term in {
+            "zinc",
+            "zn",
+            "mg2",
+            "mg(2",
+            "magnesium",
+            "mn",
+            "manganese",
+            "metal ion",
+            "metal centre",
+            "metal center",
+            "metal-dependent",
+            "metal dependent",
+        }
+    )
 
 
 def _has_clear_nonhydrolytic_text(text: str, entry_name: str) -> bool:

@@ -1937,39 +1937,19 @@
       "entry_id": "m_csa:72",
       "evidence": {
         "cofactor_evidence_level": null,
-        "conflicts": [
-          "adversarial_negative_evidence",
-          "top1_counterevidence:nonhydrolytic_isomerase_lyase_text_context",
-          "top1_counterevidence:role_inferred_metal_low_compactness"
-        ],
-        "factory_actions": [
-          {
-            "evidence_conflicts": [
-              "adversarial_negative_evidence",
-              "top1_counterevidence:nonhydrolytic_isomerase_lyase_text_context",
-              "top1_counterevidence:role_inferred_metal_low_compactness"
-            ],
-            "factory_evidence_score": 0.4411,
-            "recommended_action": "hold_bronze_need_review",
-            "target_fingerprint_id": null,
-            "target_score": null,
-            "top1_fingerprint_id": "metal_dependent_hydrolase",
-            "top1_score": 0.3253
-          }
-        ],
+        "conflicts": [],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": 0.3253,
+        "retrieval_score": null,
         "sources": [
-          "curator_rationale",
-          "label_factory_audit"
+          "curator_rationale"
         ]
       },
       "evidence_score": 0.65,
       "fingerprint_id": null,
       "label_type": "out_of_scope",
       "rationale": "L-fuculose-phosphate aldolase uses aldol carbon-carbon bond chemistry rather than the current metal-dependent hydrolase seed.",
-      "review_status": "needs_expert_review",
+      "review_status": "automation_curated",
       "tier": "bronze"
     },
     {
@@ -15637,24 +15617,676 @@
       "rationale": "myeloperoxidase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3815, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
       "review_status": "automation_curated",
       "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:603",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [
+          "adversarial_negative_evidence",
+          "out_of_scope_boundary_near_positive_floor",
+          "top1_counterevidence:nucleotide_transfer_ligand_context"
+        ],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 101,
+            "rationale": "[pyruvate dehydrogenase (acetyl-transferring)] kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4004, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [
+              "adversarial_negative_evidence",
+              "out_of_scope_boundary_near_positive_floor",
+              "top1_counterevidence:nucleotide_transfer_ligand_context"
+            ],
+            "factory_evidence_score": 0.4073,
+            "recommended_action": "hold_bronze_boundary_review",
+            "target_fingerprint_id": null,
+            "target_score": null,
+            "top1_fingerprint_id": "metal_dependent_hydrolase",
+            "top1_score": 0.4004
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.4004,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "[pyruvate dehydrogenase (acetyl-transferring)] kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4004, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+      "review_status": "needs_expert_review",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:604",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 114,
+            "rationale": "[ribulose-bisphosphate carboxylase]-lysine N-methyltransferase is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3033, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "[ribulose-bisphosphate carboxylase]-lysine N-methyltransferase is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3033, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:605",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 109,
+            "rationale": "choline O-acetyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3623, below the 0.4115 floor.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "choline O-acetyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3623, below the 0.4115 floor.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:606",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 53,
+            "rationale": "enoyl-[acyl-carrier-protein] reductase (NADH) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3490, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "enoyl-[acyl-carrier-protein] reductase (NADH) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3490, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:607",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 121,
+            "rationale": "ADP-ribosyl cyclase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3444, below the 0.4115 floor.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "ADP-ribosyl cyclase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3444, below the 0.4115 floor.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:609",
+      "evidence": {
+        "cofactor_evidence_level": "not_required",
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 125,
+            "rationale": "alpha-lytic endopeptidase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8864 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7834,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "ser_his_acid_hydrolase",
+            "target_score": 0.8864,
+            "top1_fingerprint_id": "ser_his_acid_hydrolase",
+            "top1_score": 0.8864
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.8864,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.7834,
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "rationale": "alpha-lytic endopeptidase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8864 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+      "review_status": "automation_curated",
+      "tier": "silver"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:610",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 123,
+            "rationale": "precorrin-2 dehydrogenase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.1856, below the 0.4115 floor. Counterevidence: metal_bound_nad_redox_text_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "precorrin-2 dehydrogenase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.1856, below the 0.4115 floor. Counterevidence: metal_bound_nad_redox_text_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:612",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 95,
+            "rationale": "anhydrosialidase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3581, below the 0.4115 floor.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "anhydrosialidase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3581, below the 0.4115 floor.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:613",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [
+          "adversarial_negative_evidence",
+          "out_of_scope_boundary_near_positive_floor",
+          "top1_counterevidence:absent_flavin_context"
+        ],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 48,
+            "rationale": "deoxyribose-phosphate aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.3985, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [
+              "adversarial_negative_evidence",
+              "out_of_scope_boundary_near_positive_floor",
+              "top1_counterevidence:absent_flavin_context"
+            ],
+            "factory_evidence_score": 0.4082,
+            "recommended_action": "hold_bronze_boundary_review",
+            "target_fingerprint_id": null,
+            "target_score": null,
+            "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "top1_score": 0.3985
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.3985,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "deoxyribose-phosphate aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.3985, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
+      "review_status": "needs_expert_review",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:614",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 107,
+            "rationale": "3-deoxy-8-phosphooctulonate synthase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2683, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "3-deoxy-8-phosphooctulonate synthase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2683, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:615",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 112,
+            "rationale": "deoxyguanosine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3789, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "deoxyguanosine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3789, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:616",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 30,
+            "rationale": "hyaluronoglucosaminidase is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3488, below the 0.4115 floor. Counterevidence: absent_heme_context.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "hyaluronoglucosaminidase is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3488, below the 0.4115 floor. Counterevidence: absent_heme_context.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:617",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 80,
+            "rationale": "opine dehydrogenase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3681, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "opine dehydrogenase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3681, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:618",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 124,
+            "rationale": "saccharopine dehydrogenase (NADP+, L-glutamate-forming) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.2975, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "saccharopine dehydrogenase (NADP+, L-glutamate-forming) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.2975, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:619",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 75,
+            "rationale": "glyceraldehyde-3-phosphate dehydrogenase (NAD(P)+) (phosphorylating) is provisionally outside the current seed fingerprints. Top retrieval ser_his_acid_hydrolase scored 0.3713, below the 0.4115 floor. Counterevidence: ser_his_seed_missing_triad_coherence. Review blockers: fewer_than_three_resolved_residues.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "glyceraldehyde-3-phosphate dehydrogenase (NAD(P)+) (phosphorylating) is provisionally outside the current seed fingerprints. Top retrieval ser_his_acid_hydrolase scored 0.3713, below the 0.4115 floor. Counterevidence: ser_his_seed_missing_triad_coherence. Review blockers: fewer_than_three_resolved_residues.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:620",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 117,
+            "rationale": "enoyl-[acyl-carrier-protein] reductase (NADPH, B-specific) is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.1850, below the 0.4115 floor. Counterevidence: absent_flavin_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "enoyl-[acyl-carrier-protein] reductase (NADPH, B-specific) is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.1850, below the 0.4115 floor. Counterevidence: absent_flavin_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:621",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 65,
+            "rationale": "caffeate O-methyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3727, below the 0.4115 floor.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "caffeate O-methyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3727, below the 0.4115 floor.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "low",
+      "entry_id": "m_csa:622",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 110,
+            "rationale": "alpha,alpha-trehalose-phosphate synthase (UDP-forming) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3662, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.4,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "alpha,alpha-trehalose-phosphate synthase (UDP-forming) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3662, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:625",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 108,
+            "rationale": "polynucleotide 5'-hydroxyl-kinase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2302, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "polynucleotide 5'-hydroxyl-kinase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2302, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:627",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 66,
+            "rationale": "protein-disulfide reductase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3596, below the 0.4115 floor.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.65,
+      "fingerprint_id": null,
+      "label_type": "out_of_scope",
+      "rationale": "protein-disulfide reductase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3596, below the 0.4115 floor.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
     }
   ],
   "metadata": {
     "action_counts": {
       "abstain_pending_evidence": 9,
-      "hold_bronze_boundary_review": 78,
-      "hold_bronze_need_review": 19,
-      "hold_current_tier": 400,
-      "promote_to_silver": 72
+      "hold_bronze_boundary_review": 80,
+      "hold_bronze_need_review": 18,
+      "hold_current_tier": 418,
+      "promote_to_silver": 73
     },
-    "input_label_count": 579,
+    "input_label_count": 599,
     "method": "apply_label_factory_actions",
-    "output_label_count": 579,
+    "output_label_count": 599,
     "output_summary": {
       "by_confidence": {
         "high": 27,
-        "low": 24,
-        "medium": 528
+        "low": 33,
+        "medium": 539
       },
       "by_fingerprint": {
         "cobalamin_radical_rearrangement": 2,
@@ -15664,22 +16296,22 @@
         "metal_dependent_hydrolase": 53,
         "plp_dependent_enzyme": 21,
         "radical_sam_enzyme": 1,
-        "ser_his_acid_hydrolase": 23
+        "ser_his_acid_hydrolase": 24
       },
       "by_review_status": {
-        "automation_curated": 473,
-        "needs_expert_review": 106
+        "automation_curated": 492,
+        "needs_expert_review": 107
       },
       "by_tier": {
-        "bronze": 507,
-        "silver": 72
+        "bronze": 526,
+        "silver": 73
       },
       "by_type": {
-        "out_of_scope": 432,
-        "seed_fingerprint": 147
+        "out_of_scope": 451,
+        "seed_fingerprint": 148
       },
-      "label_count": 579,
-      "mean_evidence_score": 0.6537
+      "label_count": 599,
+      "mean_evidence_score": 0.6501
     }
   }
 }

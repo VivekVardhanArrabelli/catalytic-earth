@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 34
-- Measured elapsed time: 845.2 minutes (14.09 hours)
+- Entries: 35
+- Measured elapsed time: 1104.8 minutes (18.41 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 831.9 measured minutes (13.86 hours)
+- post-v2: 1091.4 measured minutes (18.19 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,21 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 312
-- Evidence references logged: 235
+- Artifact references logged: 323
+- Evidence references logged: 245
 
 ## Recent Entries
-
-### 2026-05-10T01:18:40.670377+00:00 - post-v2
-
-- Task: Expand geometry benchmark to 275 labels and text counterevidence
-- Time mode: measured
-- Measured minutes: 50.45
-- Started: 2026-05-10T00:27:55Z
-- Ended: 2026-05-10T01:18:22Z
-- Artifacts: data/registries/curated_mechanism_labels.json, artifacts/v3_geometry_retrieval_275.json, artifacts/v3_geometry_label_eval_275.json, artifacts/v3_geometry_slice_summary.json, artifacts/perf_report.json
-- Evidence: 96 unit tests passed, validate passed, 275 labels, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures
-- Notes: Added mechanism-text counterevidence and propagated entry names/snippets into review artifacts.
 
 ### 2026-05-10T02:23:20.695520+00:00 - post-v2
 
@@ -113,6 +102,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 139 unit tests passed, validate passed, 579 countable labels, 575 and 600 batches accepted, 600 queue has 0 ready candidates, 625 preview generated and accepted but not promoted, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 9/9 label-factory gates passed
 - Notes: Documentation reviewed and updated during wrap-up; normal measured run.
 
+### 2026-05-10T13:59:54.901465+00:00 - post-v2
+
+- Task: Accept 625 and 650 label-factory batches and generate 675 preview
+- Time mode: measured
+- Measured minutes: 259.569
+- Started: 2026-05-10T09:39:56.856Z
+- Ended: 2026-05-10T13:59:31Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/geometry_reports.py, data/registries/curated_mechanism_labels.json, artifacts/v3_label_batch_acceptance_check_625.json, artifacts/v3_label_batch_acceptance_check_650.json, artifacts/v3_label_batch_acceptance_check_675_preview.json, artifacts/v3_geometry_label_eval_650.json, artifacts/v3_geometry_slice_summary.json, artifacts/v3_label_factory_batch_summary.json, docs/label_factory.md, work/handoff.md
+- Evidence: 143 unit tests passed, validate passed, 618 countable labels, 625 and 650 batches accepted, 675 preview generated but not promoted, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 10/10 label-factory gates passed, active queues retain all unlabeled candidates
+- Notes: Documentation reviewed and updated during wrap-up; run overran normal envelope during 675 artifact generation.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -149,6 +149,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T06:26:21.995107+00:00: The active bottleneck is cobalamin local cofactor evidence for m_csa:494 and preserving countable/review-state separation.
 - 2026-05-10T07:28:17.575433+00:00: The active bottleneck moved from the 500 cobalamin deferral to preserving review-state labels while opening a 575-entry tranche.
 - 2026-05-10T08:36:59.402518+00:00: The active bottleneck is reviewing the accepted 625 preview before promoting it to canonical labels.
+- 2026-05-10T13:59:54.901465+00:00: The active bottleneck is reviewing the accepted 675 preview before promoting it to canonical labels.
 
 ## Scope Adjustments
 
@@ -185,3 +186,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T06:26:21.995107+00:00: 500-slice label scaling now has countable batch import and acceptance checks; next scope is resolving m_csa:494, not opening a 525-label tranche.
 - 2026-05-10T07:28:17.575433+00:00: Label-factory scaling can continue from the 550 review-state registry; next tranche should use 546 as the countable baseline.
 - 2026-05-10T08:36:59.402518+00:00: Post-V2 geometry scope now tracks accepted 600-entry countable labels and a generated 625-entry preview batch.
+- 2026-05-10T13:59:54.901465+00:00: Post-V2 geometry scope now tracks accepted 650-entry countable labels and a generated 675 preview batch.

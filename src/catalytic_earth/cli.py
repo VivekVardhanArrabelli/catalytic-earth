@@ -40,6 +40,8 @@ from .labels import (
     label_summary,
     load_labels,
     migrate_label_registry_records,
+    summarize_label_factory_batches,
+    summarize_review_debt,
     sweep_abstention_thresholds,
 )
 from .ontology import load_mechanism_ontology
@@ -692,6 +694,26 @@ def cmd_analyze_review_evidence_gaps(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_summarize_review_debt(args: argparse.Namespace) -> int:
+    with Path(args.review_evidence_gaps).open("r", encoding="utf-8") as handle:
+        review_gaps = json.load(handle)
+    queue = None
+    if args.active_learning_queue:
+        with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+            queue = json.load(handle)
+    summary = summarize_review_debt(
+        review_gaps,
+        active_learning_queue=queue,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), summary)
+    print(
+        "Wrote review debt summary to "
+        f"{args.out} ({summary['metadata']['review_debt_count']} rows)"
+    )
+    return 0
+
+
 def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
     with Path(args.label_factory_audit).open("r", encoding="utf-8") as handle:
         factory = json.load(handle)
@@ -745,6 +767,29 @@ def cmd_check_label_batch_acceptance(args: argparse.Namespace) -> int:
     print(
         "Wrote label batch acceptance check to "
         f"{args.out} (accepted={check['metadata']['accepted_for_counting']})"
+    )
+    return 0
+
+
+def _load_named_json_artifacts(paths: list[str]) -> list[tuple[str, dict[str, object]]]:
+    artifacts: list[tuple[str, dict[str, object]]] = []
+    for raw_path in paths:
+        path = Path(raw_path)
+        with path.open("r", encoding="utf-8") as handle:
+            artifacts.append((path.name, json.load(handle)))
+    return artifacts
+
+
+def cmd_summarize_label_factory_batches(args: argparse.Namespace) -> int:
+    summary = summarize_label_factory_batches(
+        _load_named_json_artifacts(args.acceptance),
+        gate_checks=_load_named_json_artifacts(args.gate),
+        active_learning_queues=_load_named_json_artifacts(args.active_learning_queue),
+    )
+    write_json(Path(args.out), summary)
+    print(
+        "Wrote label factory batch summary to "
+        f"{args.out} ({summary['metadata']['batch_count']} batches)"
     )
     return 0
 
@@ -1274,6 +1319,31 @@ def build_parser() -> argparse.ArgumentParser:
     batch_acceptance.add_argument("--out", default="artifacts/v3_label_batch_acceptance_check.json")
     batch_acceptance.set_defaults(func=cmd_check_label_batch_acceptance)
 
+    batch_summary = subparsers.add_parser(
+        "summarize-label-factory-batches",
+        help="summarize accepted label-factory batches and scaling guardrails",
+    )
+    batch_summary.add_argument(
+        "--acceptance",
+        action="append",
+        required=True,
+        help="label batch acceptance artifact; repeat for each batch",
+    )
+    batch_summary.add_argument(
+        "--gate",
+        action="append",
+        default=[],
+        help="label factory gate artifact; repeat for matching batches",
+    )
+    batch_summary.add_argument(
+        "--active-learning-queue",
+        action="append",
+        default=[],
+        help="active-learning queue artifact; repeat for matching batches",
+    )
+    batch_summary.add_argument("--out", default="artifacts/v3_label_factory_batch_summary.json")
+    batch_summary.set_defaults(func=cmd_summarize_label_factory_batches)
+
     review_resolution = subparsers.add_parser(
         "check-label-review-resolution",
         help="verify that remaining review candidates were accepted, rejected, or deferred",
@@ -1296,6 +1366,19 @@ def build_parser() -> argparse.ArgumentParser:
     review_gaps.add_argument("--review", default="artifacts/v3_review_decision_batch.json")
     review_gaps.add_argument("--out", default="artifacts/v3_review_evidence_gaps.json")
     review_gaps.set_defaults(func=cmd_analyze_review_evidence_gaps)
+
+    review_debt = subparsers.add_parser(
+        "summarize-review-debt",
+        help="prioritize pending review evidence gaps for the next label-factory pass",
+    )
+    review_debt.add_argument(
+        "--review-evidence-gaps",
+        default="artifacts/v3_review_evidence_gaps.json",
+    )
+    review_debt.add_argument("--active-learning-queue", default=None)
+    review_debt.add_argument("--max-rows", type=int, default=25)
+    review_debt.add_argument("--out", default="artifacts/v3_review_debt_summary.json")
+    review_debt.set_defaults(func=cmd_summarize_review_debt)
 
     family_guardrails = subparsers.add_parser(
         "build-family-propagation-guardrails",

@@ -38,11 +38,11 @@ Current slice artifact:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-label-factory-audit \
-  --retrieval artifacts/v3_geometry_retrieval_600.json \
-  --hard-negatives artifacts/v3_hard_negative_controls_600.json \
-  --adversarial-negatives artifacts/v3_adversarial_negative_controls_600.json \
+  --retrieval artifacts/v3_geometry_retrieval_650.json \
+  --hard-negatives artifacts/v3_hard_negative_controls_650.json \
+  --adversarial-negatives artifacts/v3_adversarial_negative_controls_650.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_label_factory_audit_600.json
+  --out artifacts/v3_label_factory_audit_650.json
 ```
 
 `apply-label-factory-actions` materializes those recommendations into a registry
@@ -50,8 +50,8 @@ artifact for review without overwriting the curated registry:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli apply-label-factory-actions \
-  --label-factory-audit artifacts/v3_label_factory_audit_600.json \
-  --out artifacts/v3_label_factory_applied_labels_600.json
+  --label-factory-audit artifacts/v3_label_factory_audit_650.json \
+  --out artifacts/v3_label_factory_applied_labels_650.json
 ```
 
 ## Mechanism Ontology
@@ -83,10 +83,11 @@ above bronze without direct evidence.
 - family-boundary value
 
 The queue includes unlabeled tranche candidates plus labeled entries whose
-current evidence needs review. After the accepted 600 batch, the canonical
-600-entry queue has no unlabeled rows because every 600-slice row is either
-countable or explicitly in review state. The current queue artifact is
-`artifacts/v3_active_learning_review_queue_600.json`.
+current evidence needs review. After the accepted 650 batch, the current queue
+artifact is `artifacts/v3_active_learning_review_queue_650.json`: it retains
+all 32 unlabeled post-batch candidate rows in addition to labeled review rows.
+The gate fails if a queue limit truncates unlabeled candidates, so label
+expansion cannot silently skip lower-ranked unlabeled rows.
 
 ## Adversarial Negatives
 
@@ -129,24 +130,31 @@ structure-wide ligand support, score-floor gaps, and counterevidence. This is
 used to keep deferrals such as `m_csa:494` auditable without counting
 text-only or structure-wide evidence as a benchmark label.
 
-Completed 600 batch workflow:
+`summarize-review-debt` turns those gap rows into a triage artifact for the
+next expert-review pass. It ranks review debt by cofactor evidence gaps,
+counterevidence, below-threshold retrieval, family mismatches, and active-queue
+rank, then recommends whether to inspect alternate structures, verify local
+cofactor/active-site mapping, or route a family-boundary question to expert
+review. The current artifact is `artifacts/v3_review_debt_summary_650.json`.
+
+Completed 650 batch workflow:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-review-decision-batch \
-  --review artifacts/v3_expert_review_export_600.json \
-  --batch-id 600_batch \
+  --review artifacts/v3_expert_review_export_650.json \
+  --batch-id 650_batch \
   --reviewer automation_label_factory \
-  --out artifacts/v3_expert_review_decision_batch_600.json
+  --out artifacts/v3_expert_review_decision_batch_650.json
 
 PYTHONPATH=src python -m catalytic_earth.cli import-label-review \
-  --review artifacts/v3_expert_review_decision_batch_600.json \
+  --review artifacts/v3_expert_review_decision_batch_650.json \
   --labels data/registries/curated_mechanism_labels.json \
-  --out artifacts/v3_imported_labels_batch_600.json
+  --out artifacts/v3_imported_labels_batch_650.json
 
 PYTHONPATH=src python -m catalytic_earth.cli import-countable-label-review \
-  --review artifacts/v3_expert_review_decision_batch_600.json \
+  --review artifacts/v3_expert_review_decision_batch_650.json \
   --labels data/registries/curated_mechanism_labels.json \
-  --out artifacts/v3_countable_labels_batch_600.json
+  --out artifacts/v3_countable_labels_batch_650.json
 ```
 
 ## Scaling Gate
@@ -155,62 +163,91 @@ Before any new label batch is counted as benchmark labels, run:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates \
-  --label-factory-audit artifacts/v3_label_factory_audit_600.json \
-  --applied-label-factory artifacts/v3_label_factory_applied_labels_600.json \
-  --active-learning-queue artifacts/v3_active_learning_review_queue_600.json \
-  --adversarial-negatives artifacts/v3_adversarial_negative_controls_600.json \
-  --expert-review-export artifacts/v3_expert_review_export_600_post_batch.json \
-  --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_600.json \
-  --out artifacts/v3_label_factory_gate_check_600.json
+  --label-factory-audit artifacts/v3_label_factory_audit_650.json \
+  --applied-label-factory artifacts/v3_label_factory_applied_labels_650.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_650.json \
+  --adversarial-negatives artifacts/v3_adversarial_negative_controls_650.json \
+  --expert-review-export artifacts/v3_expert_review_export_650_post_batch.json \
+  --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_650.json \
+  --out artifacts/v3_label_factory_gate_check_650.json
 ```
 
 For a decision batch, also verify the countable subset:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli check-label-batch-acceptance \
-  --baseline-label-count 563 \
-  --review-state-labels artifacts/v3_imported_labels_batch_600.json \
-  --countable-labels artifacts/v3_countable_labels_batch_600.json \
-  --evaluation artifacts/v3_geometry_label_eval_600.json \
-  --hard-negatives artifacts/v3_hard_negative_controls_600.json \
-  --in-scope-failures artifacts/v3_in_scope_failure_analysis_600.json \
-  --label-factory-gate artifacts/v3_label_factory_gate_check_600.json \
-  --out artifacts/v3_label_batch_acceptance_check_600.json
+  --baseline-label-count 599 \
+  --review-state-labels artifacts/v3_imported_labels_batch_650.json \
+  --countable-labels artifacts/v3_countable_labels_batch_650.json \
+  --evaluation artifacts/v3_geometry_label_eval_650.json \
+  --hard-negatives artifacts/v3_hard_negative_controls_650.json \
+  --in-scope-failures artifacts/v3_in_scope_failure_analysis_650.json \
+  --label-factory-gate artifacts/v3_label_factory_gate_check_650.json \
+  --out artifacts/v3_label_batch_acceptance_check_650.json
 ```
 
 The baseline count should be the countable registry size before the batch. For
-the accepted 600 batch this was `563 -> 579`, recorded in
-`artifacts/v3_label_batch_acceptance_check_600.json`.
+the accepted 650 batch this was `599 -> 618`, recorded in
+`artifacts/v3_label_batch_acceptance_check_650.json`. The prior accepted 625
+batch was `579 -> 599`.
 
-The 625-entry tranche has been generated through preview import and acceptance
-artifacts (`artifacts/v3_label_batch_acceptance_check_625_preview.json`), but it
-has not been promoted to `data/registries/curated_mechanism_labels.json`.
-Promote it only after rechecking the preview decisions and regenerating the
-canonical 625 gate artifacts.
+Accepted batches are also aggregated by
+`artifacts/v3_label_factory_batch_summary.json`:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli summarize-label-factory-batches \
+  --acceptance artifacts/v3_label_batch_acceptance_check_500.json \
+  --acceptance artifacts/v3_label_batch_acceptance_check_525.json \
+  --acceptance artifacts/v3_label_batch_acceptance_check_550.json \
+  --acceptance artifacts/v3_label_batch_acceptance_check_575.json \
+  --acceptance artifacts/v3_label_batch_acceptance_check_600.json \
+  --acceptance artifacts/v3_label_batch_acceptance_check_625.json \
+  --acceptance artifacts/v3_label_batch_acceptance_check_650.json \
+  --gate artifacts/v3_label_factory_gate_check_500.json \
+  --gate artifacts/v3_label_factory_gate_check_525.json \
+  --gate artifacts/v3_label_factory_gate_check_550.json \
+  --gate artifacts/v3_label_factory_gate_check_575.json \
+  --gate artifacts/v3_label_factory_gate_check_600.json \
+  --gate artifacts/v3_label_factory_gate_check_625.json \
+  --gate artifacts/v3_label_factory_gate_check_650.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_500.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_525.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_550.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_575.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_600.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_625.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_650.json \
+  --out artifacts/v3_label_factory_batch_summary.json
+```
+
+The summary records accepted-batch counts, review debt, hard-negative status,
+factory gate status, and unlabeled queue retention across all accepted batches.
 
 Bulk label expansion should proceed only in batches, and each batch must
 regenerate the factory audit, adversarial negatives, active-learning queue,
 expert export/import artifacts, family-propagation guardrails, validation, and
 tests before its labels are counted.
 
-Current 600-queue gate state:
+Current 650-queue gate state:
 
-- 9/9 gate checks pass.
+- 10/10 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
-  and family-propagation guardrails ready.
-- 72 bronze-to-silver promotions are proposed in the preview applied-label
-  artifact after the accepted 600 batch.
-- 106 labels are queued for active-learning review after the accepted 600
-  batch.
+  family-propagation guardrails ready, and unlabeled queue retention ready.
+- 75 bronze-to-silver promotions are proposed in the applied-label artifact
+  after the accepted 650 batch.
+- 144 rows are queued for active-learning review after the accepted 650 batch,
+  including all 32 unlabeled post-batch candidates.
 - 100 adversarial negative controls are mined.
-- 25 expert-review items are exported from the post-600 review queue.
-- The 500, 525, 550, 575, and 600 decision batches accepted 104 new countable labels
+- 56 expert-review items are exported from the post-650 review queue.
+- The 500, 525, 550, 575, 600, 625, and 650 decision batches accepted 143 new countable labels
   beyond the 475-entry source slice. The canonical registry now contains
-  579 bronze automation-curated labels, while the review-state registry keeps
+  618 bronze automation-curated labels, while the review-state registry keeps
   pending `needs_expert_review` placeholders separate from the countable
   benchmark.
+- A 675 preview batch is generated and preview-accepted, but it is not promoted
+  to the canonical registry until its decisions are reviewed.
 
 ## Automation Lock
 

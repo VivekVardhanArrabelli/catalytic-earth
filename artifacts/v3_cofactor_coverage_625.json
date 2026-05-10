@@ -5,10 +5,10 @@
       "all_expected_local": 114,
       "expected_absent_from_structure": 6,
       "expected_structure_only": 3,
-      "not_required": 23,
+      "not_required": 24,
       "partial_expected_local": 1
     },
-    "evaluated_in_scope_count": 147,
+    "evaluated_in_scope_count": 148,
     "evidence_limited_abstained_count": 4,
     "evidence_limited_abstained_entry_ids": [
       "m_csa:132",
@@ -78,7 +78,7 @@
       "metal_dependent_hydrolase": 53,
       "plp_dependent_enzyme": 21,
       "radical_sam_enzyme": 1,
-      "ser_his_acid_hydrolase": 23
+      "ser_his_acid_hydrolase": 24
     }
   },
   "rows": [
@@ -12102,6 +12102,70 @@
       "target_fingerprint_id": "heme_peroxidase_oxidase",
       "top1_fingerprint_id": "heme_peroxidase_oxidase",
       "top1_score": 0.6074
+    },
+    {
+      "abstained": false,
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "alpha-lytic endopeptidase",
+        "ligand_codes": [
+          "SO4",
+          "GOL"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Alpha-lytic protease employs a classic Ser-His-Asp triad. His 235 removes a proton from Ser 342 as the latter nucleophilically attacks the peptide carbonyl to give a tetrahedral intermediate which is stabilised by the NH groups of Gly 340 and Ser 342. Breakdown of the intermediate with protonatio..."
+        ],
+        "nearby_residue_count": 55,
+        "pdb_id": "1SSX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1091,
+          "charge_balance": 0.0364,
+          "hydrophobic_fraction": 0.3091,
+          "mean_min_distance_to_active_site": 5.1582,
+          "negative_fraction": 0.0727,
+          "polar_fraction": 0.2182,
+          "positive_fraction": 0.1091,
+          "sulfur_fraction": 0.0727
+        },
+        "residue_codes": [
+          "GLY",
+          "SER",
+          "SER",
+          "HIS",
+          "SER",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4",
+          "GOL"
+        ]
+      },
+      "coverage_status": "not_required",
+      "entry_id": "m_csa:609",
+      "evaluable": true,
+      "expected_cofactor_families": [],
+      "local_cofactor_families": [],
+      "local_matches": [],
+      "matching_structure_ligands": [],
+      "missing_expected_families": [],
+      "nearest_expected_ligand_distance_angstrom": null,
+      "proximal_ligand_codes": [
+        "SO4",
+        "GOL"
+      ],
+      "resolved_residue_count": 6,
+      "status": "ok",
+      "structure_cofactor_families": [],
+      "structure_ligand_codes": [
+        "SO4",
+        "GOL"
+      ],
+      "structure_matches": [],
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.8864
     }
   ]
 }

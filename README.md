@@ -53,8 +53,8 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 579 entries: all entries in the 475-entry
-   source slice plus accepted, factory-gated labels through the 600-entry
+8. Curated mechanism labels for 618 entries: all entries in the 475-entry
+   source slice plus accepted, factory-gated labels through the 650-entry
    candidate queue.
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
@@ -64,19 +64,20 @@ The repository currently contains:
 11. Label-factory automation: explicit bronze/silver/gold label schema,
     mechanism ontology, deterministic promotion/demotion audit, active-learning
     review queue, adversarial negative mining, family-propagation guardrails,
-    expert-review export/import, and a scaling gate.
+    expert-review export/import, review-debt triage, batch summary, and a
+    scaling gate.
 
-The 20- through 600-entry evaluation slices are clean out-of-scope regression
+The 20- through 650-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
 under calibrated abstention. The 125-entry slice has 38 in-scope positives, 87
 out-of-scope controls, 124/125 evaluable active-site structures, threshold
 `0.4115`, and a positive score separation gap of `0.0308`.
 
-The current 600-entry countable stress slice has 599 geometry entries, 568
-evaluable active-site structures, 147 local active-site in-scope positives, 431
-evaluated out-of-scope controls, 0 remaining label-expansion candidates, 10
-structure-mapping issues, 0 hard negatives, and 0 near misses. Its calibrated
-threshold is `0.4115`; it retains 143/147 in-scope positives, abstains on all
+The current 650-entry countable stress slice has 601 evaluable active-site
+structures among 617 evaluated labeled rows, 151 local active-site in-scope
+positives, 466 evaluated out-of-scope controls, 17 structure-mapping issues,
+0 hard negatives, and 0 near misses. Its calibrated threshold is `0.4115`;
+it retains 147/151 in-scope positives, abstains on all
 evaluable out-of-scope controls, and leaves the same 4 evidence-limited
 in-scope abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`).
 The current actionable in-scope failure count is 0 after separating
@@ -87,24 +88,29 @@ positives. Cofactor coverage artifacts explicitly identify retained
 evidence-limited positives: `m_csa:41`, `m_csa:108`, `m_csa:160`,
 `m_csa:446`, and `m_csa:486`.
 
-The 500-, 525-, 550-, 575-, and 600-entry candidate queues have been processed through the
+The 500-, 525-, 550-, 575-, 600-, 625-, and 650-entry candidate queues have been processed through the
 label factory. `m_csa:494` is intentionally preserved as a non-countable
 `needs_expert_review` cobalamin evidence gap because B12 evidence is
-structure-wide only. The 575 and 600 batches accepted 33 additional countable
+structure-wide only. The 625 and 650 batches accepted 39 additional countable
 labels while preserving 0 hard negatives, 0 near misses, 0 out-of-scope false
 non-abstentions, and 0 actionable in-scope failures. See
 `work/label_queue_500_notes.md`, `work/label_queue_525_notes.md`,
 `work/label_queue_550_notes.md`, and `work/label_factory_notes.md`.
 
 Label scaling is now gated by the label factory rather than raw queue size. The
-current 600 factory audit proposes 72 bronze-to-silver promotions, flags 106
-abstention/review rows, mines 100 adversarial negative controls from 431
-out-of-scope candidates, exports 25 expert-review items from the post-600
-review queue, and passes the 600-slice gate check.
-`artifacts/v3_label_batch_acceptance_check_600.json` records that the latest
-accepted batch added 16 labels for counting while 26 review-state decisions
-remain pending. A 625-entry preview is generated and accepted in preview
-artifacts, but it is not yet promoted to the canonical registry. See
+current 650 factory audit proposes 75 bronze-to-silver promotions, flags 112
+abstention/review rows, mines 100 adversarial negative controls from 466
+out-of-scope candidates, exports 56 expert-review items from the post-650
+review queue, and passes the 650-slice gate check. The active-learning gate now
+also fails if unlabeled candidate rows are truncated by the queue limit.
+`artifacts/v3_label_batch_acceptance_check_650.json` records that the latest
+accepted batch added 19 labels for counting while 37 review-state decisions
+remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
+accepted batch history and confirms 7/7 accepted batches remain guardrail-clean.
+`artifacts/v3_review_debt_summary_650.json` prioritizes 53 current evidence-gap
+rows for the next review pass. A 675-entry preview is generated and accepted in
+preview artifacts, but it is not yet promoted to the canonical registry.
+See
 `docs/label_factory.md`.
 
 ## Quickstart
@@ -203,12 +209,12 @@ Current timeline judgment:
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
 2. Current automation blocks: keep using the label factory for every new
-   tranche. The 600 slice is accepted; the next tranche should start by
-   reviewing the generated 625 preview artifacts before promoting them to the
-   canonical registry. Each batch must pass promotion/demotion, adversarial-negative,
+   tranche. The 650 slice is accepted; the generated 675 preview should be
+   reviewed before any promotion to the canonical registry. Each batch must
+   pass promotion/demotion, adversarial-negative,
    active-learning, expert-review export/import, family-propagation,
    validation, and test gates before labels count toward the benchmark.
-3. Next serious milestone: expand beyond 579 countable labels or resolve the
+3. Next serious milestone: expand beyond 618 countable labels or resolve the
    evidence-limited abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and
    `m_csa:430`) by improving structure/cofactor evidence, while preserving the
    current hard-negative guardrails.

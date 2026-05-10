@@ -1,19 +1,19 @@
 {
   "metadata": {
     "abstain_threshold": 0.4115,
-    "evaluable_count": 568,
-    "evaluated_count": 578,
-    "in_scope_abstention_rate": 0.0272,
-    "in_scope_count": 147,
-    "in_scope_evaluable_count": 146,
+    "evaluable_count": 584,
+    "evaluated_count": 598,
+    "in_scope_abstention_rate": 0.027,
+    "in_scope_count": 148,
+    "in_scope_evaluable_count": 147,
     "in_scope_not_evaluable_count": 1,
-    "in_scope_retention_rate": 0.9728,
-    "in_scope_retention_rate_evaluable": 0.9795,
+    "in_scope_retention_rate": 0.973,
+    "in_scope_retention_rate_evaluable": 0.9796,
     "label_summary": {
       "by_confidence": {
         "high": 27,
-        "low": 24,
-        "medium": 528
+        "low": 33,
+        "medium": 539
       },
       "by_fingerprint": {
         "cobalamin_radical_rearrangement": 2,
@@ -23,37 +23,37 @@
         "metal_dependent_hydrolase": 53,
         "plp_dependent_enzyme": 21,
         "radical_sam_enzyme": 1,
-        "ser_his_acid_hydrolase": 23
+        "ser_his_acid_hydrolase": 24
       },
       "by_review_status": {
-        "automation_curated": 579
+        "automation_curated": 599
       },
       "by_tier": {
-        "bronze": 579
+        "bronze": 599
       },
       "by_type": {
-        "out_of_scope": 432,
-        "seed_fingerprint": 147
+        "out_of_scope": 451,
+        "seed_fingerprint": 148
       },
-      "label_count": 579,
-      "mean_evidence_score": 0.6462
+      "label_count": 599,
+      "mean_evidence_score": 0.6426
     },
     "method": "geometry_retrieval_against_curated_seed_labels",
     "out_of_scope_abstention_rate": 1.0,
     "out_of_scope_abstention_rate_evaluable": 1.0,
-    "out_of_scope_count": 431,
-    "out_of_scope_evaluable_count": 422,
+    "out_of_scope_count": 450,
+    "out_of_scope_evaluable_count": 437,
     "out_of_scope_false_non_abstentions": 0,
     "out_of_scope_false_non_abstentions_evaluable": 0,
-    "out_of_scope_not_evaluable_count": 9,
-    "top1_accuracy_in_scope": 0.9728,
-    "top1_accuracy_in_scope_evaluable": 0.9795,
-    "top1_retained_accuracy_in_scope": 0.9728,
-    "top1_retained_accuracy_in_scope_evaluable": 0.9795,
+    "out_of_scope_not_evaluable_count": 13,
+    "top1_accuracy_in_scope": 0.973,
+    "top1_accuracy_in_scope_evaluable": 0.9796,
+    "top1_retained_accuracy_in_scope": 0.973,
+    "top1_retained_accuracy_in_scope_evaluable": 0.9796,
     "top3_accuracy_in_scope": 0.9932,
     "top3_accuracy_in_scope_evaluable": 0.9932,
-    "top3_retained_accuracy_in_scope": 0.9728,
-    "top3_retained_accuracy_in_scope_evaluable": 0.9795
+    "top3_retained_accuracy_in_scope": 0.973,
+    "top3_retained_accuracy_in_scope_evaluable": 0.9796
   },
   "rows": [
     {
@@ -28325,6 +28325,302 @@
       "abstained": true,
       "confidence": "medium",
       "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+        "ligand_codes": [
+          "ADP",
+          "MG"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "One proposed mechanism is a general base mechanism. Glu251 deprotonates the targeted serine residue of the pyruvate dehydrogenase E1 subunit and promotes its nucleophilic attack on the terminal phosphate of ATP. His247 polarises Glu243 to allow deprotonation. Magnesium ion coordinated to Asp help..."
+        ],
+        "nearby_residue_count": 33,
+        "pdb_id": "1JM6",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1818,
+          "charge_balance": 0.0606,
+          "hydrophobic_fraction": 0.5758,
+          "mean_min_distance_to_active_site": 5.4179,
+          "negative_fraction": 0.0303,
+          "polar_fraction": 0.1515,
+          "positive_fraction": 0.0909,
+          "sulfur_fraction": 0.1515
+        },
+        "residue_codes": [
+          "LYS",
+          "ASN",
+          "GLU",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "MG"
+        ]
+      },
+      "entry_id": "m_csa:603",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "[pyruvate dehydrogenase (acetyl-transferring)] kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4004, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+      "resolved_residue_count": 4,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4004,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "[ribulose-bisphosphate carboxylase]-lysine N-methyltransferase",
+        "ligand_codes": [
+          "EPE"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The ionised form of Tyr 287 deprotonates the -NH3+ group of Lys 14 (on the large subunit of Rubisco). The resulting Lys-NH2 group can then attack the methyl group of the AdoMet sulphonium cation. It is proposed that the pKa of Tyr 287 is depressed (so allowing it to be present in the ionised form..."
+        ],
+        "nearby_residue_count": 16,
+        "pdb_id": "1MLV",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1875,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3125,
+          "mean_min_distance_to_active_site": 5.8788,
+          "negative_fraction": 0.1875,
+          "polar_fraction": 0.25,
+          "positive_fraction": 0.1875,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "EPE",
+          "SAH"
+        ]
+      },
+      "entry_id": "m_csa:604",
+      "evaluable": false,
+      "label_type": "out_of_scope",
+      "rationale": "[ribulose-bisphosphate carboxylase]-lysine N-methyltransferase is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3033, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3033,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "choline O-acetyltransferase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "His 334 acts as a general base to remove the proton from the choline OH group as the oxygen attacks the carbonyl of acetyl CoA. The resulting tetrahedral oxyanion intermediate is stabilised by Ser 550. Collapse of the tetrahedral intermediate releases CoA which is protonated by the His 334. Tyr 9..."
+        ],
+        "nearby_residue_count": 52,
+        "pdb_id": "1Q6X",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0962,
+          "charge_balance": -0.0577,
+          "hydrophobic_fraction": 0.3654,
+          "mean_min_distance_to_active_site": 5.2045,
+          "negative_fraction": 0.1154,
+          "polar_fraction": 0.3269,
+          "positive_fraction": 0.0577,
+          "sulfur_fraction": 0.0962
+        },
+        "residue_codes": [
+          "TYR",
+          "PRO",
+          "HIS",
+          "SER"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "NA"
+        ]
+      },
+      "entry_id": "m_csa:605",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "choline O-acetyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3623, below the 0.4115 floor.",
+      "resolved_residue_count": 4,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3623,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "enoyl-[acyl-carrier-protein] reductase (NADH)",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The catalytic mechanism involves C3 of the substrate being subject to hydride attack by NADH, a bound cofactor. Formation of an enolate intermediate follows, which accepts a proton from Tyr 156. A role in transition state stabilisation through hydrogen bonding has also been suggested for Tyr 156...."
+        ],
+        "nearby_residue_count": 33,
+        "pdb_id": "1QSG",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1212,
+          "charge_balance": -0.0303,
+          "hydrophobic_fraction": 0.4545,
+          "mean_min_distance_to_active_site": 5.5575,
+          "negative_fraction": 0.0909,
+          "polar_fraction": 0.2424,
+          "positive_fraction": 0.0606,
+          "sulfur_fraction": 0.0303
+        },
+        "residue_codes": [
+          "TYR",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "TCL",
+          "NAD",
+          "GLC"
+        ]
+      },
+      "entry_id": "m_csa:606",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "enoyl-[acyl-carrier-protein] reductase (NADH) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3490, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues.",
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.349,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "ADP-ribosyl cyclase",
+        "ligand_codes": [
+          "N"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Glu203 nucleophilically attacks the ribose C1' which nicotinamide attached to. The nucleophilic attack eliminates the nicotinamide and leads to the formation of a Glu179-R5P intermediate. N1 of purine group then acts as a nucleophile to attack the ester bond between Glu203 and ribose, resulting i..."
+        ],
+        "nearby_residue_count": 40,
+        "pdb_id": "1R16",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.325,
+          "charge_balance": 0.025,
+          "hydrophobic_fraction": 0.25,
+          "mean_min_distance_to_active_site": 5.2913,
+          "negative_fraction": 0.075,
+          "polar_fraction": 0.275,
+          "positive_fraction": 0.1,
+          "sulfur_fraction": 0.025
+        },
+        "residue_codes": [
+          "PHE",
+          "GLU",
+          "GLU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "N",
+          "PYF"
+        ]
+      },
+      "entry_id": "m_csa:607",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "ADP-ribosyl cyclase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3444, below the 0.4115 floor.",
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3444,
+      "top3_correct": false
+    },
+    {
+      "abstained": false,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "alpha-lytic endopeptidase",
+        "ligand_codes": [
+          "SO4",
+          "GOL"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Alpha-lytic protease employs a classic Ser-His-Asp triad. His 235 removes a proton from Ser 342 as the latter nucleophilically attacks the peptide carbonyl to give a tetrahedral intermediate which is stabilised by the NH groups of Gly 340 and Ser 342. Breakdown of the intermediate with protonatio..."
+        ],
+        "nearby_residue_count": 55,
+        "pdb_id": "1SSX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1091,
+          "charge_balance": 0.0364,
+          "hydrophobic_fraction": 0.3091,
+          "mean_min_distance_to_active_site": 5.1582,
+          "negative_fraction": 0.0727,
+          "polar_fraction": 0.2182,
+          "positive_fraction": 0.1091,
+          "sulfur_fraction": 0.0727
+        },
+        "residue_codes": [
+          "GLY",
+          "SER",
+          "SER",
+          "HIS",
+          "SER",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4",
+          "GOL"
+        ]
+      },
+      "entry_id": "m_csa:609",
+      "evaluable": true,
+      "label_type": "seed_fingerprint",
+      "rationale": "alpha-lytic endopeptidase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8864 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+      "resolved_residue_count": 6,
+      "status": "ok",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.8864,
+      "top3_correct": true
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
         "cofactor_families": [],
         "entry_name": "2-hydroxymuconate tautomerase",
         "ligand_codes": [
@@ -28367,6 +28663,415 @@
       "top1_correct": false,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_score": 0.3298,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "precorrin-2 dehydrogenase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "NAD-dependent dehydrogenation occurs by Asp 141 functioning as a catalytic general base to abstract a proton from the pyrrole nitrogen of ring C with concomitant hydride transfer from the prochiral bridge carbon to the nicotinamide ring of NAD. During ferrochelation Asp 141 again acts as a genera..."
+        ],
+        "nearby_residue_count": 11,
+        "pdb_id": "1KYQ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0909,
+          "charge_balance": 0.0909,
+          "hydrophobic_fraction": 0.3636,
+          "mean_min_distance_to_active_site": 5.6594,
+          "negative_fraction": 0.0909,
+          "polar_fraction": 0.2727,
+          "positive_fraction": 0.1818,
+          "sulfur_fraction": 0.0909
+        },
+        "residue_codes": [
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "NAD",
+          "MSE"
+        ]
+      },
+      "entry_id": "m_csa:610",
+      "evaluable": false,
+      "label_type": "out_of_scope",
+      "rationale": "precorrin-2 dehydrogenase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.1856, below the 0.4115 floor. Counterevidence: metal_bound_nad_redox_text_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.1856,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "anhydrosialidase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "In the first step, O2 of the substrate acquires a proton and leaves. Asp 318 either provides this proton directly or stabilises a proton from the solvent in the vicinity. The resulting positively charged oxocarbonium intermediate is stabilised by the negative side chains of Asp 318 and Glu 595, a..."
+        ],
+        "nearby_residue_count": 56,
+        "pdb_id": "1SLL",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1071,
+          "charge_balance": 0.0893,
+          "hydrophobic_fraction": 0.3214,
+          "mean_min_distance_to_active_site": 5.6562,
+          "negative_fraction": 0.0536,
+          "polar_fraction": 0.3571,
+          "positive_fraction": 0.1429,
+          "sulfur_fraction": 0.0179
+        },
+        "residue_codes": [
+          "ASP",
+          "GLU",
+          "TYR"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "entry_id": "m_csa:612",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "anhydrosialidase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3581, below the 0.4115 floor.",
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3581,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "deoxyribose-phosphate aldolase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The reaction proceeds via initial nucleophilic attack by Lys 167 on acetaldehyde to form a Schiff base intermediate; deprotonation of the Lys 167 by Asp 102 facilitates this. Subsequent deprotonation of the C2 of the acetaldehyde by a Lys 201 activated water molecule (Wat29) results in the produc..."
+        ],
+        "nearby_residue_count": 39,
+        "pdb_id": "1P1X",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1538,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.4103,
+          "mean_min_distance_to_active_site": 5.7399,
+          "negative_fraction": 0.0769,
+          "polar_fraction": 0.2821,
+          "positive_fraction": 0.0769,
+          "sulfur_fraction": 0.1026
+        },
+        "residue_codes": [
+          "ASP",
+          "LYS",
+          "LYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "entry_id": "m_csa:613",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "deoxyribose-phosphate aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.3985, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.3985,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "3-deoxy-8-phosphooctulonate synthase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The reaction proceeds through an aldol-like condensation where water activated phosphoenolpyruvate attacks A5P. This forms a bis-phosphorylated tetrahedral intermediate recorded in mass spectrometry experiments. The resulting intermediate then collapses, eliminating a phosphate group. Subsequent..."
+        ],
+        "nearby_residue_count": 34,
+        "pdb_id": "1Q3N",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1765,
+          "charge_balance": 0.0883,
+          "hydrophobic_fraction": 0.2941,
+          "mean_min_distance_to_active_site": 5.3693,
+          "negative_fraction": 0.1176,
+          "polar_fraction": 0.2941,
+          "positive_fraction": 0.2059,
+          "sulfur_fraction": 0.0588
+        },
+        "residue_codes": [
+          "ASN",
+          "LYS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PEP"
+        ]
+      },
+      "entry_id": "m_csa:614",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "3-deoxy-8-phosphooctulonate synthase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2683, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2683,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "deoxyguanosine kinase",
+        "ligand_codes": [
+          "DTP"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Activation of the 5'-OH of the deoxyribose by deprotonation with Glu 70 allows a nucleophilic attack of the gamma-phosphate of the phosphate donor. Arg 142 as well as the magnesium cation stabilise the trigonal bypyrimidal transition state formed in the reaction. The magnesium ion will coordinate..."
+        ],
+        "nearby_residue_count": 32,
+        "pdb_id": "2OCP",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2188,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3438,
+          "mean_min_distance_to_active_site": 5.8043,
+          "negative_fraction": 0.0938,
+          "polar_fraction": 0.2812,
+          "positive_fraction": 0.0938,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "GLU",
+          "ARG"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "DTP"
+        ]
+      },
+      "entry_id": "m_csa:615",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "deoxyguanosine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3789, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3789,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "hyaluronoglucosaminidase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "As in the chitinolytic enzymes, the sugar ring is distorted towards the transition state, with the antibonding orbital of the scissile bond held in a favourable orientation to overlap with the non-bonding orbital containing one of the ring oxygen lone pairs. In addition, the carbonyl of the subst..."
+        ],
+        "nearby_residue_count": 54,
+        "pdb_id": "1FCQ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2963,
+          "charge_balance": 0.0185,
+          "hydrophobic_fraction": 0.4259,
+          "mean_min_distance_to_active_site": 5.2127,
+          "negative_fraction": 0.0556,
+          "polar_fraction": 0.0926,
+          "positive_fraction": 0.0741,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "ASP",
+          "GLU",
+          "TYR",
+          "TYR",
+          "TRP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "entry_id": "m_csa:616",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "hyaluronoglucosaminidase is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3488, below the 0.4115 floor. Counterevidence: absent_heme_context.",
+      "resolved_residue_count": 5,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3488,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "opine dehydrogenase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The mechanism proposal is based on the similarity in the chemistry of the opine dehydrogenase family to that of the amino acid dehydrogenases. The reaction is believed to proceed via nucleophilic attack by the L amino acid on the pyruvate with a histidine residue acting as a general acid, allowin..."
+        ],
+        "nearby_residue_count": 30,
+        "pdb_id": "1BG6",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.5,
+          "mean_min_distance_to_active_site": 5.1725,
+          "negative_fraction": 0.0333,
+          "polar_fraction": 0.2,
+          "positive_fraction": 0.0333,
+          "sulfur_fraction": 0.0333
+        },
+        "residue_codes": [
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "entry_id": "m_csa:617",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "opine dehydrogenase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3681, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3681,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "saccharopine dehydrogenase (NADP+, L-glutamate-forming)",
+        "ligand_codes": [
+          "NDP",
+          "SHR"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "In the forward reaction from glutamate and alpha-aminoadipic-delta-semialdehyde to saccharopine, first, the amino nitrogen atom of the glutamate acts as a nucleophile to attack the carbon atom of the aldehyde group of alpha-aminoadipate-delta-semialdehyde, resulting in the formation of carbinoami..."
+        ],
+        "nearby_residue_count": 20,
+        "pdb_id": "1E5Q",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1,
+          "charge_balance": 0.05,
+          "hydrophobic_fraction": 0.4,
+          "mean_min_distance_to_active_site": 5.8599,
+          "negative_fraction": 0.1,
+          "polar_fraction": 0.25,
+          "positive_fraction": 0.15,
+          "sulfur_fraction": 0.1
+        },
+        "residue_codes": [
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "NDP",
+          "SHR"
+        ]
+      },
+      "entry_id": "m_csa:618",
+      "evaluable": false,
+      "label_type": "out_of_scope",
+      "rationale": "saccharopine dehydrogenase (NADP+, L-glutamate-forming) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.2975, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2975,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [
+          "nad"
+        ],
+        "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NAD(P)+) (phosphorylating)",
+        "ligand_codes": [
+          "NAP",
+          "SO4"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The reaction proceeds via initial nucleophilic addition-elimination by cysteine on glycerate-1-3-bisphosphate resulting in the thioacyl enzyme intermediate. Hydride transfer to the intermediate from the cofactor results in a further hemithiolaceto enzyme intermediate, with protonation by histidin..."
+        ],
+        "nearby_residue_count": 35,
+        "pdb_id": "1CF2",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0857,
+          "charge_balance": 0.0858,
+          "hydrophobic_fraction": 0.4,
+          "mean_min_distance_to_active_site": 5.4782,
+          "negative_fraction": 0.0571,
+          "polar_fraction": 0.4,
+          "positive_fraction": 0.1429,
+          "sulfur_fraction": 0.0286
+        },
+        "residue_codes": [
+          "CYS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "NAP",
+          "SO4"
+        ]
+      },
+      "entry_id": "m_csa:619",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "glyceraldehyde-3-phosphate dehydrogenase (NAD(P)+) (phosphorylating) is provisionally outside the current seed fingerprints. Top retrieval ser_his_acid_hydrolase scored 0.3713, below the 0.4115 floor. Counterevidence: ser_his_seed_missing_triad_coherence. Review blockers: fewer_than_three_resolved_residues.",
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3713,
       "top3_correct": false
     },
     {
@@ -28425,6 +29130,244 @@
       "top1_fingerprint_id": "cobalamin_radical_rearrangement",
       "top1_score": 0.8934,
       "top3_correct": true
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "enoyl-[acyl-carrier-protein] reductase (NADPH, B-specific)",
+        "ligand_codes": [
+          "GOL"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The proposed mechanism is based on analogy with the prokaryotic enoyl thioester reductases such as InhA. A hydride is transferred from NADPH to the beta position of the alpha-beta unsaturated carbonyl substrate (Michael addition) to give an enol(ate) intermediate. The hydroxy group of Tyr 79 acts..."
+        ],
+        "nearby_residue_count": 15,
+        "pdb_id": "1GUF",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2,
+          "charge_balance": 0.1333,
+          "hydrophobic_fraction": 0.3333,
+          "mean_min_distance_to_active_site": 5.5839,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.4,
+          "positive_fraction": 0.1333,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "TYR"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "GOL",
+          "NDP",
+          "SO4"
+        ]
+      },
+      "entry_id": "m_csa:620",
+      "evaluable": false,
+      "label_type": "out_of_scope",
+      "rationale": "enoyl-[acyl-carrier-protein] reductase (NADPH, B-specific) is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.1850, below the 0.4115 floor. Counterevidence: absent_flavin_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.185,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "caffeate O-methyltransferase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "COMT is an S-adenosyl-L-Met-dependent methyltransferase that methylates 3'-hydroxyl- and 5'-hydroxyl-containing phenylpropanoid-derived lignin precursors. Using His 269 as a general base, the 3'- or 5'-hydroxyl group is deprotonated, facilitating the transfer of the reactive methyl group of S-ade..."
+        ],
+        "nearby_residue_count": 36,
+        "pdb_id": "1KYW",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1389,
+          "charge_balance": 0.0833,
+          "hydrophobic_fraction": 0.3889,
+          "mean_min_distance_to_active_site": 5.0539,
+          "negative_fraction": 0.0556,
+          "polar_fraction": 0.2222,
+          "positive_fraction": 0.1389,
+          "sulfur_fraction": 0.1667
+        },
+        "residue_codes": [
+          "GLU",
+          "GLU",
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAH",
+          "HFL"
+        ]
+      },
+      "entry_id": "m_csa:621",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "caffeate O-methyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3727, below the 0.4115 floor.",
+      "resolved_residue_count": 4,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3727,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "alpha,alpha-trehalose-phosphate synthase (UDP-forming)",
+        "ligand_codes": [
+          "U2F"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The reaction mechanism proceeds via an SNi type, meaning internal return whereby nucleophilic attack occurs on the same side as the leaving group departs. The ring oxygen of the UDP glucose donates electron density to C1 to allow the UDP to leave the molecule. This forms a shortly lived oxocarben..."
+        ],
+        "nearby_residue_count": 30,
+        "pdb_id": "1UQT",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.3667,
+          "charge_balance": 0.0666,
+          "hydrophobic_fraction": 0.3,
+          "mean_min_distance_to_active_site": 5.7446,
+          "negative_fraction": 0.0667,
+          "polar_fraction": 0.2,
+          "positive_fraction": 0.1333,
+          "sulfur_fraction": 0.0333
+        },
+        "residue_codes": [
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "U2F"
+        ]
+      },
+      "entry_id": "m_csa:622",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "alpha,alpha-trehalose-phosphate synthase (UDP-forming) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3662, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3662,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "polynucleotide 5'-hydroxyl-kinase",
+        "ligand_codes": [
+          "ADP"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "PNK catalyses the transfer of the gamma-phosphate from adenosine triphosphate or other nucleoside triphosphates to the 5'-OH of polynucleotides. The activity proceeds via an ordered sequential mechanism. Phosphoryl transfer results in an inversion of configuration at the phosphorous. The attackin..."
+        ],
+        "nearby_residue_count": 66,
+        "pdb_id": "1LTQ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0758,
+          "charge_balance": 0.0757,
+          "hydrophobic_fraction": 0.3333,
+          "mean_min_distance_to_active_site": 5.5635,
+          "negative_fraction": 0.0758,
+          "polar_fraction": 0.2727,
+          "positive_fraction": 0.1515,
+          "sulfur_fraction": 0.0303
+        },
+        "residue_codes": [
+          "LYS",
+          "ARG",
+          "ASP",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "ADP",
+          "MSE",
+          "DMS"
+        ]
+      },
+      "entry_id": "m_csa:625",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "polynucleotide 5'-hydroxyl-kinase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2302, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
+      "resolved_residue_count": 4,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2302,
+      "top3_correct": false
+    },
+    {
+      "abstained": true,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "protein-disulfide reductase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Cys 109 is the primary nucleophile that attacks the intramolecular disulphide to form a disulphide between DsbD and DsbC. Cys 103 then acts as a secondary nucleophile to reduce this disulphide, activated by a Asp 68-Tyr 42 diad which acts as a proton relay system. This results in the reduced form..."
+        ],
+        "nearby_residue_count": 32,
+        "pdb_id": "1L6P",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2812,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.2812,
+          "mean_min_distance_to_active_site": 4.7898,
+          "negative_fraction": 0.125,
+          "polar_fraction": 0.125,
+          "positive_fraction": 0.125,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "ASP",
+          "PHE",
+          "TYR",
+          "TYR",
+          "CYS",
+          "CYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "entry_id": "m_csa:627",
+      "evaluable": true,
+      "label_type": "out_of_scope",
+      "rationale": "protein-disulfide reductase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3596, below the 0.4115 floor.",
+      "resolved_residue_count": 6,
+      "status": "ok",
+      "target_fingerprint_id": null,
+      "top1_correct": false,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3596,
+      "top3_correct": false
     },
     {
       "abstained": false,

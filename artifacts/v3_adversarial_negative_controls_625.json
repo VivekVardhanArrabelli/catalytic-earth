@@ -5,10 +5,10 @@
       "cofactor_mimic": 79,
       "counterevidence_stress": 99,
       "mechanistic_coherence_mimic": 94,
-      "ontology_family_boundary": 51,
-      "threshold_boundary": 76
+      "ontology_family_boundary": 49,
+      "threshold_boundary": 78
     },
-    "candidate_count": 431,
+    "candidate_count": 450,
     "control_count": 100,
     "max_rows": 100,
     "method": "adversarial_negative_control_mining",
@@ -4851,6 +4851,88 @@
     },
     {
       "abstain_threshold": 0.4115,
+      "adversarial_score": 2.95,
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 1.0,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "nucleotide_transfer_ligand_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.103
+      },
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+        "ligand_codes": [
+          "ADP",
+          "MG"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "One proposed mechanism is a general base mechanism. Glu251 deprotonates the targeted serine residue of the pyruvate dehydrogenase E1 subunit and promotes its nucleophilic attack on the terminal phosphate of ATP. His247 polarises Glu243 to allow deprotonation. Magnesium ion coordinated to Asp help..."
+        ],
+        "nearby_residue_count": 33,
+        "pdb_id": "1JM6",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1818,
+          "charge_balance": 0.0606,
+          "hydrophobic_fraction": 0.5758,
+          "mean_min_distance_to_active_site": 5.4179,
+          "negative_fraction": 0.0303,
+          "polar_fraction": 0.1515,
+          "positive_fraction": 0.0909,
+          "sulfur_fraction": 0.1515
+        },
+        "residue_codes": [
+          "LYS",
+          "ASN",
+          "GLU",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "MG"
+        ]
+      },
+      "control_axes": [
+        "cofactor_mimic",
+        "counterevidence_stress",
+        "mechanistic_coherence_mimic",
+        "threshold_boundary"
+      ],
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "label_rationale": "[pyruvate dehydrogenase (acetyl-transferring)] kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4004, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+      "rank": 56,
+      "score_gap_to_abstain_threshold": 0.0111,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4004,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3101
+    },
+    {
+      "abstain_threshold": 0.4115,
       "adversarial_score": 2.9484,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
@@ -4933,7 +5015,7 @@
       "entry_id": "m_csa:187",
       "entry_name": "mandelate racemase",
       "label_rationale": "Mandelate racemase uses metal-associated acid-base racemization rather than metal-activated hydrolysis.",
-      "rank": 56,
+      "rank": 57,
       "score_gap_to_abstain_threshold": 0.0496,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5018,7 +5100,7 @@
       "entry_id": "m_csa:177",
       "entry_name": "proteasome endopeptidase complex",
       "label_rationale": "The proteasome endopeptidase complex uses N-terminal threonine protease chemistry rather than the current Ser-His-Asp/Glu or metal-dependent hydrolase seeds.",
-      "rank": 57,
+      "rank": 58,
       "score_gap_to_abstain_threshold": 0.0471,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5110,7 +5192,7 @@
       "entry_id": "m_csa:145",
       "entry_name": "isopenicillin-N synthase",
       "label_rationale": "Isopenicillin-N synthase is a non-heme iron oxidative ring-forming enzyme outside the current hydrolase and redox seed fingerprints.",
-      "rank": 58,
+      "rank": 59,
       "score_gap_to_abstain_threshold": 0.0058,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5197,7 +5279,7 @@
       "entry_id": "m_csa:463",
       "entry_name": "D(-)-tartrate dehydratase",
       "label_rationale": "D-tartrate dehydratase uses Mg-stabilized enediolate formation and beta-elimination of water, not metal-activated hydrolysis in the current seed scope.",
-      "rank": 59,
+      "rank": 60,
       "score_gap_to_abstain_threshold": 0.0552,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5275,7 +5357,7 @@
       "entry_id": "m_csa:268",
       "entry_name": "methionine synthase",
       "label_rationale": "Methionine synthase uses methylcobalamin heterolytic methyl transfer rather than adenosylcobalamin radical rearrangement in the current cobalamin seed.",
-      "rank": 60,
+      "rank": 61,
       "score_gap_to_abstain_threshold": 0.001,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5363,7 +5445,7 @@
       "entry_id": "m_csa:236",
       "entry_name": "3-dehydro-L-gulonate-6-phosphate decarboxylase",
       "label_rationale": "3-dehydro-L-gulonate-6-phosphate decarboxylase uses magnesium-stabilized decarboxylation and proton transfer rather than metal-activated hydrolysis.",
-      "rank": 61,
+      "rank": 62,
       "score_gap_to_abstain_threshold": 0.0568,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5448,7 +5530,7 @@
       "entry_id": "m_csa:269",
       "entry_name": "muconate cycloisomerase (syn)",
       "label_rationale": "Muconate cycloisomerase performs metal-associated cycloisomerization through enolate chemistry rather than metal-activated hydrolysis.",
-      "rank": 62,
+      "rank": 63,
       "score_gap_to_abstain_threshold": 0.0536,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5538,7 +5620,7 @@
       "entry_id": "m_csa:308",
       "entry_name": "xylose isomerase (actinobacterial)",
       "label_rationale": "Actinobacterial xylose isomerase uses metal-mediated hydride-shift isomerization rather than metal-activated hydrolysis.",
-      "rank": 63,
+      "rank": 64,
       "score_gap_to_abstain_threshold": 0.0549,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5620,7 +5702,7 @@
       "entry_id": "m_csa:377",
       "entry_name": "N-succinylamino acid racemase",
       "label_rationale": "N-succinylamino acid racemase uses metal-stabilized two-base racemization rather than metal-activated hydrolysis in the current seed definitions.",
-      "rank": 64,
+      "rank": 65,
       "score_gap_to_abstain_threshold": 0.0497,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5714,7 +5796,7 @@
       "entry_id": "m_csa:182",
       "entry_name": "methylisocitrate lyase",
       "label_rationale": "Methylisocitrate lyase performs metal-assisted carbon-carbon lyase chemistry, not metal-activated hydrolysis in the current seed set.",
-      "rank": 65,
+      "rank": 66,
       "score_gap_to_abstain_threshold": 0.0612,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5789,7 +5871,7 @@
       "entry_id": "m_csa:225",
       "entry_name": "adenosylmethionine decarboxylase (prokaryotic)",
       "label_rationale": "Prokaryotic adenosylmethionine decarboxylase uses pyruvoyl-dependent decarboxylation and maturation chemistry outside the current seed set.",
-      "rank": 66,
+      "rank": 67,
       "score_gap_to_abstain_threshold": 0.0056,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5876,7 +5958,7 @@
       "entry_id": "m_csa:502",
       "entry_name": "galactarate dehydratase (D-threo-forming)",
       "label_rationale": "galactarate dehydratase (D-threo-forming) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3541, below the 0.4115 floor. Counterevidence: nonhydrolytic_hydratase_dehydratase_text_context.",
-      "rank": 67,
+      "rank": 68,
       "score_gap_to_abstain_threshold": 0.0574,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -5959,7 +6041,7 @@
       "entry_id": "m_csa:125",
       "entry_name": "catechol oxidase",
       "label_rationale": "Catechol oxidase is a copper-dependent oxidase and does not match the current metal-dependent hydrolase or heme/flavin redox seed fingerprints.",
-      "rank": 68,
+      "rank": 69,
       "score_gap_to_abstain_threshold": 0.016,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6062,7 +6144,7 @@
       "entry_id": "m_csa:59",
       "entry_name": "3-dehydroquinate synthase",
       "label_rationale": "3-dehydroquinate synthase uses NAD-linked redox, elimination, and ring-forming chemistry outside the current seed fingerprints.",
-      "rank": 69,
+      "rank": 70,
       "score_gap_to_abstain_threshold": 0.0582,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6146,7 +6228,7 @@
       "entry_id": "m_csa:35",
       "entry_name": "phosphorylase kinase",
       "label_rationale": "Phosphorylase kinase performs ATP-dependent phosphoryl transfer outside the current seed fingerprints.",
-      "rank": 70,
+      "rank": 71,
       "score_gap_to_abstain_threshold": 0.0046,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6228,7 +6310,7 @@
       "entry_id": "m_csa:198",
       "entry_name": "long-chain-fatty-acid-CoA ligase",
       "label_rationale": "Long-chain-fatty-acid-CoA ligase performs ATP-dependent acyl-adenylate and thioester-forming ligation outside the current seed fingerprints.",
-      "rank": 71,
+      "rank": 72,
       "score_gap_to_abstain_threshold": 0.015,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6315,7 +6397,7 @@
       "entry_id": "m_csa:194",
       "entry_name": "phosphomannomutase/ phosphoglucomutase",
       "label_rationale": "Phosphomannomutase/phosphoglucomutase performs intramolecular phosphoryl transfer rather than metal-activated hydrolysis.",
-      "rank": 72,
+      "rank": 73,
       "score_gap_to_abstain_threshold": 0.016,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6397,7 +6479,7 @@
       "entry_id": "m_csa:273",
       "entry_name": "L-ribulose-5-phosphate 4-epimerase",
       "label_rationale": "L-ribulose-5-phosphate 4-epimerase uses metal-associated retroaldol and aldol epimerization chemistry rather than metal-activated hydrolysis.",
-      "rank": 73,
+      "rank": 74,
       "score_gap_to_abstain_threshold": 0.0597,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6478,7 +6560,7 @@
       "entry_id": "m_csa:361",
       "entry_name": "aldoxime dehydratase",
       "label_rationale": "Aldoxime dehydratase is a heme-dependent dehydration enzyme, not a heme peroxidase/oxidase seed mechanism in the current registry.",
-      "rank": 74,
+      "rank": 75,
       "score_gap_to_abstain_threshold": 0.0196,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6562,7 +6644,7 @@
       "entry_id": "m_csa:262",
       "entry_name": "trichodiene synthase",
       "label_rationale": "Trichodiene synthase uses magnesium-associated diphosphate departure and terpene carbocation rearrangement rather than metal-activated hydrolysis.",
-      "rank": 75,
+      "rank": 76,
       "score_gap_to_abstain_threshold": 0.0034,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6647,7 +6729,7 @@
       "entry_id": "m_csa:151",
       "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
       "label_rationale": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase performs ATP-dependent pyrophosphoryl transfer, not the current metal-hydrolase seed.",
-      "rank": 76,
+      "rank": 77,
       "score_gap_to_abstain_threshold": 0.0034,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6737,7 +6819,7 @@
       "entry_id": "m_csa:7",
       "entry_name": "isocitrate dehydrogenase (NADP+)",
       "label_rationale": "Isocitrate dehydrogenase performs NADP-linked oxidation and decarboxylation, not metal-activated hydrolysis in the current seed set.",
-      "rank": 77,
+      "rank": 78,
       "score_gap_to_abstain_threshold": 0.057,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6821,7 +6903,7 @@
       "entry_id": "m_csa:246",
       "entry_name": "receptor protein-tyrosine kinase",
       "label_rationale": "Receptor protein-tyrosine kinase performs ATP-dependent phosphoryl transfer rather than metal-activated hydrolysis in the current seed definitions.",
-      "rank": 78,
+      "rank": 79,
       "score_gap_to_abstain_threshold": 0.0082,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6916,7 +6998,7 @@
       "entry_id": "m_csa:74",
       "entry_name": "dethiobiotin synthase",
       "label_rationale": "Dethiobiotin synthase uses ATP-dependent ring-forming ligase chemistry outside the current seed fingerprints.",
-      "rank": 79,
+      "rank": 80,
       "score_gap_to_abstain_threshold": 0.0143,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -6999,7 +7081,7 @@
       "entry_id": "m_csa:541",
       "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
       "label_rationale": "5-formyltetrahydrofolate cyclo-ligase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4001, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
-      "rank": 80,
+      "rank": 81,
       "score_gap_to_abstain_threshold": 0.0114,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7081,7 +7163,7 @@
       "entry_id": "m_csa:99",
       "entry_name": "methanol dehydrogenase (cytochrome c)",
       "label_rationale": "Methanol dehydrogenase uses PQQ/cytochrome-linked redox chemistry outside the current seed fingerprints.",
-      "rank": 81,
+      "rank": 82,
       "score_gap_to_abstain_threshold": 0.0088,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7172,7 +7254,7 @@
       "entry_id": "m_csa:498",
       "entry_name": "glutathione synthase (eukaryotic)",
       "label_rationale": "glutathione synthase (eukaryotic) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3949, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
-      "rank": 82,
+      "rank": 83,
       "score_gap_to_abstain_threshold": 0.0166,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7269,7 +7351,7 @@
       "entry_id": "m_csa:212",
       "entry_name": "nitrogenase",
       "label_rationale": "Nitrogenase couples ATP hydrolysis to iron-sulfur and FeMo-co electron transfer, outside the current flavin, heme, radical-SAM, and hydrolase seeds.",
-      "rank": 83,
+      "rank": 84,
       "score_gap_to_abstain_threshold": 0.0019,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_ontology_family": "flavin_redox",
@@ -7351,7 +7433,7 @@
       "entry_id": "m_csa:549",
       "entry_name": "exodeoxyribonuclease (lambda-induced)",
       "label_rationale": "exodeoxyribonuclease (lambda-induced) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4105, below the 0.4115 floor. Counterevidence: role_inferred_metal_low_pocket_support.",
-      "rank": 84,
+      "rank": 85,
       "score_gap_to_abstain_threshold": 0.001,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7438,7 +7520,7 @@
       "entry_id": "m_csa:365",
       "entry_name": "Phosphofructokinase I",
       "label_rationale": "Phosphofructokinase I performs ATP-dependent phosphoryl transfer rather than metal-activated hydrolysis in the current seed definitions.",
-      "rank": 85,
+      "rank": 86,
       "score_gap_to_abstain_threshold": 0.0116,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7519,7 +7601,7 @@
       "entry_id": "m_csa:588",
       "entry_name": "thymidine kinase",
       "label_rationale": "thymidine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4073, below the 0.4115 floor. Counterevidence: role_inferred_metal_low_pocket_support.",
-      "rank": 86,
+      "rank": 87,
       "score_gap_to_abstain_threshold": 0.0042,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7597,7 +7679,7 @@
       "entry_id": "m_csa:217",
       "entry_name": "(S)-hydroxynitrile lyase",
       "label_rationale": "(S)-hydroxynitrile lyase has an alpha/beta-hydrolase triad but performs nonhydrolytic acid-base lyase chemistry rather than Ser-His-Asp/Glu acyl hydrolysis.",
-      "rank": 87,
+      "rank": 88,
       "score_gap_to_abstain_threshold": 0.0136,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7677,7 +7759,7 @@
       "entry_id": "m_csa:336",
       "entry_name": "L-3-hydroxyacyl-CoA dehydrogenase",
       "label_rationale": "L-3-hydroxyacyl-CoA dehydrogenase uses NAD-dependent hydride transfer rather than flavin, heme, PLP, cobalamin, radical-SAM, or hydrolase seed chemistry.",
-      "rank": 88,
+      "rank": 89,
       "score_gap_to_abstain_threshold": 0.0146,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7766,7 +7848,7 @@
       "entry_id": "m_csa:53",
       "entry_name": "malate synthase",
       "label_rationale": "Malate synthase combines metal-assisted carbon-carbon bond formation with thioester processing, outside the current coarse hydrolase seed.",
-      "rank": 89,
+      "rank": 90,
       "score_gap_to_abstain_threshold": 0.0174,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7856,7 +7938,7 @@
       "entry_id": "m_csa:199",
       "entry_name": "glutathione synthase (prokaryotic)",
       "label_rationale": "Prokaryotic glutathione synthase performs ATP-dependent peptide-bond ligation outside the current hydrolase and PLP seed mechanisms.",
-      "rank": 90,
+      "rank": 91,
       "score_gap_to_abstain_threshold": 0.0169,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7937,7 +8019,7 @@
       "entry_id": "m_csa:75",
       "entry_name": "aspartate-ammonia ligase",
       "label_rationale": "Aspartate-ammonia ligase performs ATP-dependent ligation chemistry outside the current hydrolase and PLP seed fingerprints.",
-      "rank": 91,
+      "rank": 92,
       "score_gap_to_abstain_threshold": 0.0218,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -7998,7 +8080,7 @@
       "entry_id": "m_csa:69",
       "entry_name": "acyl-[acyl-carrier-protein]-UDP-N-acetylglucosamine O-acyltransferase",
       "label_rationale": "Acyl-carrier-protein UDP-N-acetylglucosamine O-acyltransferase performs acyl transfer chemistry outside the current seed fingerprints.",
-      "rank": 92,
+      "rank": 93,
       "score_gap_to_abstain_threshold": 0.022,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -8079,7 +8161,7 @@
       "entry_id": "m_csa:91",
       "entry_name": "pyrimidine-nucleoside phosphorylase",
       "label_rationale": "Pyrimidine-nucleoside phosphorylase performs phosphorolysis rather than the current hydrolysis seed mechanisms.",
-      "rank": 93,
+      "rank": 94,
       "score_gap_to_abstain_threshold": 0.0166,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -8087,6 +8169,76 @@
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3474
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "adversarial_score": 2.7212,
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.9897,
+        "counterevidence_penalty": 0.6,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.6,
+            "reason": "absent_flavin_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.6667,
+        "substrate_pocket_score": 0.5
+      },
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "deoxyribose-phosphate aldolase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The reaction proceeds via initial nucleophilic attack by Lys 167 on acetaldehyde to form a Schiff base intermediate; deprotonation of the Lys 167 by Asp 102 facilitates this. Subsequent deprotonation of the C2 of the acetaldehyde by a Lys 201 activated water molecule (Wat29) results in the produc..."
+        ],
+        "nearby_residue_count": 39,
+        "pdb_id": "1P1X",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1538,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.4103,
+          "mean_min_distance_to_active_site": 5.7399,
+          "negative_fraction": 0.0769,
+          "polar_fraction": 0.2821,
+          "positive_fraction": 0.0769,
+          "sulfur_fraction": 0.1026
+        },
+        "residue_codes": [
+          "ASP",
+          "LYS",
+          "LYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "control_axes": [
+        "counterevidence_stress",
+        "mechanistic_coherence_mimic",
+        "threshold_boundary"
+      ],
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:613",
+      "entry_name": "deoxyribose-phosphate aldolase",
+      "label_rationale": "deoxyribose-phosphate aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.3985, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
+      "rank": 95,
+      "score_gap_to_abstain_threshold": 0.013,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.3985,
+      "top2_fingerprint_id": "plp_dependent_enzyme",
+      "top2_ontology_family": "plp_chemistry",
+      "top2_score": 0.3423
     },
     {
       "abstain_threshold": 0.4115,
@@ -8154,7 +8306,7 @@
       "entry_id": "m_csa:325",
       "entry_name": "isochorismate synthase (menaquinone-specific)",
       "label_rationale": "Menaquinone-specific isochorismate synthase performs water-assisted chorismate rearrangement and elimination rather than metal-activated hydrolysis.",
-      "rank": 94,
+      "rank": 96,
       "score_gap_to_abstain_threshold": 0.0139,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -8240,7 +8392,7 @@
       "entry_id": "m_csa:58",
       "entry_name": "adenylate cyclase",
       "label_rationale": "Adenylate cyclase performs metal-assisted cyclic phosphate formation from ATP, not metal-activated hydrolysis in the current seed set.",
-      "rank": 95,
+      "rank": 97,
       "score_gap_to_abstain_threshold": 0.0272,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -8317,7 +8469,7 @@
       "entry_id": "m_csa:230",
       "entry_name": "porphobilinogen synthase",
       "label_rationale": "Porphobilinogen synthase uses lysine Schiff-base carbon-carbon condensation chemistry outside the current hydrolase and cofactor-redox seed fingerprints.",
-      "rank": 96,
+      "rank": 98,
       "score_gap_to_abstain_threshold": 0.0125,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_ontology_family": "flavin_redox",
@@ -8388,7 +8540,7 @@
       "entry_id": "m_csa:162",
       "entry_name": "deoxyribonuclease (pyrimidine dimer)",
       "label_rationale": "Deoxyribonuclease (pyrimidine dimer) uses N-terminal nucleophilic glycosylase/lyase chemistry outside the current hydrolase and redox seed fingerprints.",
-      "rank": 97,
+      "rank": 99,
       "score_gap_to_abstain_threshold": 0.0125,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_ontology_family": "flavin_redox",
@@ -8468,7 +8620,7 @@
       "entry_id": "m_csa:552",
       "entry_name": "aconitate hydratase",
       "label_rationale": "aconitate hydratase is provisionally outside the current seed fingerprints. Top retrieval ser_his_acid_hydrolase scored 0.3836, below the 0.4115 floor. Counterevidence: ser_his_seed_missing_triad_coherence.",
-      "rank": 98,
+      "rank": 100,
       "score_gap_to_abstain_threshold": 0.0279,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -8476,176 +8628,6 @@
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3406
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "adversarial_score": 2.6464,
-      "cofactor_evidence_level": "role_inferred",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.0504,
-        "counterevidence_penalty": 0.62,
-        "counterevidence_penalty_details": [
-          {
-            "penalty": 0.62,
-            "reason": "nonhydrolytic_isomerase_lyase_text_context"
-          },
-          {
-            "penalty": 0.72,
-            "reason": "role_inferred_metal_low_compactness"
-          }
-        ],
-        "counterevidence_reasons": [
-          "nonhydrolytic_isomerase_lyase_text_context",
-          "role_inferred_metal_low_compactness"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1821
-      },
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "L-fuculose-phosphate aldolase",
-        "ligand_codes": [
-          "SO4"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "In the non substrate bound enzyme, Glu73, the proposed catalytic base is deprotonated and coordinated to the Zn centre. When dihydroxyacetone or 1-fructose binds, in what is assumed an open configuration, the residue is pushed aside into a non polar environment. This increases its pKa such that t..."
-        ],
-        "nearby_residue_count": 67,
-        "pdb_id": "2FUA",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1343,
-          "charge_balance": 0.0597,
-          "hydrophobic_fraction": 0.4627,
-          "mean_min_distance_to_active_site": 5.3015,
-          "negative_fraction": 0.0448,
-          "polar_fraction": 0.2836,
-          "positive_fraction": 0.1045,
-          "sulfur_fraction": 0.0597
-        },
-        "residue_codes": [
-          "HIS",
-          "HIS",
-          "GLU",
-          "TYR",
-          "HIS",
-          "TYR"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "SO4",
-          "CO",
-          "BME"
-        ]
-      },
-      "control_axes": [
-        "cofactor_mimic",
-        "counterevidence_stress",
-        "mechanistic_coherence_mimic",
-        "ontology_family_boundary"
-      ],
-      "counterevidence_reasons": [
-        "nonhydrolytic_isomerase_lyase_text_context",
-        "role_inferred_metal_low_compactness"
-      ],
-      "entry_id": "m_csa:72",
-      "entry_name": "L-fuculose-phosphate aldolase",
-      "label_rationale": "L-fuculose-phosphate aldolase uses aldol carbon-carbon bond chemistry rather than the current metal-dependent hydrolase seed.",
-      "rank": 99,
-      "score_gap_to_abstain_threshold": 0.0862,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3253,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3093
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "adversarial_score": 2.6312,
-      "cofactor_evidence_level": "absent",
-      "component_scores": {
-        "cofactor_context_score": 0.0,
-        "compactness_score": 0.0,
-        "counterevidence_penalty": 0.65,
-        "counterevidence_penalty_details": [
-          {
-            "penalty": 0.65,
-            "reason": "absent_heme_context"
-          }
-        ],
-        "counterevidence_reasons": [
-          "absent_heme_context"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 1.0,
-        "role_match_fraction": 0.6667,
-        "substrate_pocket_score": 0.2881
-      },
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "formate dehydrogenase (nitrate-inducible)",
-        "ligand_codes": [
-          "MGD",
-          "6MO"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Formate displaces the selenate group of Se-Cys196(alpha) from the Mo(VI) centre. His197(alpha) accepts a proton from formate, which leads to the formation of carbon dioxide (possibly via a selenium-carboxylated intermediate) and the reduction of the molybdenum centre to Mo(IV). The selenate group..."
-        ],
-        "nearby_residue_count": 42,
-        "pdb_id": "1KQF",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.119,
-          "charge_balance": 0.0952,
-          "hydrophobic_fraction": 0.5476,
-          "mean_min_distance_to_active_site": 5.507,
-          "negative_fraction": 0.0,
-          "polar_fraction": 0.2143,
-          "positive_fraction": 0.0952,
-          "sulfur_fraction": 0.0714
-        },
-        "residue_codes": [
-          "SEC",
-          "HIS",
-          "HIS"
-        ],
-        "structure_cofactor_families": [
-          "fe_s_cluster",
-          "heme"
-        ],
-        "structure_ligand_codes": [
-          "MGD",
-          "6MO",
-          "HEM",
-          "CDL",
-          "SF4"
-        ]
-      },
-      "control_axes": [
-        "counterevidence_stress",
-        "mechanistic_coherence_mimic",
-        "ontology_family_boundary"
-      ],
-      "counterevidence_reasons": [
-        "absent_heme_context"
-      ],
-      "entry_id": "m_csa:563",
-      "entry_name": "formate dehydrogenase (nitrate-inducible)",
-      "label_rationale": "formate dehydrogenase (nitrate-inducible) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3596, below the 0.4115 floor. Counterevidence: absent_heme_context.",
-      "rank": 100,
-      "score_gap_to_abstain_threshold": 0.0519,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_ontology_family": "heme_redox",
-      "top1_score": 0.3596,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_ontology_family": "hydrolysis",
-      "top2_score": 0.3587
     }
   ]
 }

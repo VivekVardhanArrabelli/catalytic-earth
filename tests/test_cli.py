@@ -94,6 +94,136 @@ class CliTests(unittest.TestCase):
             )
             self.assertEqual(len(json.loads(out.read_text(encoding="utf-8"))), 1)
 
+    def test_summarize_label_factory_batches_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acceptance = root / "v3_label_batch_acceptance_check_650.json"
+            gate = root / "v3_label_factory_gate_check_650.json"
+            queue = root / "v3_active_learning_review_queue_650.json"
+            out = root / "summary.json"
+            acceptance.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "accepted_for_counting": True,
+                            "baseline_label_count": 599,
+                            "countable_label_count": 618,
+                            "accepted_new_label_count": 19,
+                            "pending_review_count": 37,
+                            "hard_negative_count": 0,
+                            "near_miss_count": 0,
+                            "out_of_scope_false_non_abstentions": 0,
+                            "actionable_in_scope_failure_count": 0,
+                            "factory_gate_ready": True,
+                        },
+                        "blockers": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "automation_ready_for_next_label_batch": True,
+                            "gate_count": 10,
+                            "passed_gate_count": 10,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "total_unlabeled_candidate_count": 32,
+                            "unlabeled_omitted_by_max_rows": 0,
+                            "all_unlabeled_rows_retained": True,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "summarize-label-factory-batches",
+                    "--acceptance",
+                    str(acceptance),
+                    "--gate",
+                    str(gate),
+                    "--active-learning-queue",
+                    str(queue),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            summary = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(summary["metadata"]["latest_batch"], "650")
+            self.assertTrue(summary["metadata"]["all_active_queues_retain_unlabeled_candidates"])
+
+    def test_summarize_review_debt_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            gaps = root / "v3_review_evidence_gaps_650.json"
+            queue = root / "v3_active_learning_review_queue_650.json"
+            out = root / "review_debt.json"
+            gaps.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_evidence_gap_analysis"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:650",
+                                "entry_name": "phospholipase A1",
+                                "decision_action": "mark_needs_more_evidence",
+                                "coverage_status": "expected_structure_only",
+                                "gap_reasons": ["counterevidence_present"],
+                                "target_fingerprint_id": "ser_his_acid_hydrolase",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps({"rows": [{"entry_id": "m_csa:650", "rank": 1, "review_score": 8.0}]}),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "summarize-review-debt",
+                    "--review-evidence-gaps",
+                    str(gaps),
+                    "--active-learning-queue",
+                    str(queue),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            summary = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(summary["metadata"]["review_debt_count"], 1)
+            self.assertEqual(summary["rows"][0]["entry_id"], "m_csa:650")
+
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             lock_dir = Path(tmpdir) / "run.lock"
@@ -714,7 +844,7 @@ class CliTests(unittest.TestCase):
             self.assertGreaterEqual(len(json.loads(imported_labels.read_text())), 475)
             self.assertLessEqual(len(json.loads(countable_labels.read_text())), len(json.loads(imported_labels.read_text())))
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "600")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "650")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

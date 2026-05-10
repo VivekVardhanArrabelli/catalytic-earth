@@ -11,12 +11,12 @@ baselines to geometry-aware active-site retrieval and label-factory quality
 automation. Geometry artifacts now cover
 20-, 30-, 40-, 50-, 60-, 75-, 100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-,
 300-, 325-, 350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-,
-600-, and 625-preview entry curated slices. The 500-entry and larger slices are
+600-, 625-, and 650-entry curated slices. The 500-entry and larger slices are
 countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-579 countable labels. Review-state registries preserve pending
+618 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -48,25 +48,29 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## What Changed In This Run
 
-- Accepted gated 575- and 600-entry label-factory batches. The 575 batch added
-  17 countable labels; the 600 batch added 16 countable labels.
-- Tightened provisional review rules so high-scoring metal-boundary,
-  non-abstaining out-of-scope, unresolved-geometry seed, and Ser-His synthase
-  boundary cases remain `needs_expert_review` instead of becoming countable
-  labels.
-- Extended geometry slice summaries and regression tests through the 600-entry
-  countable slice.
-- Generated a 625-entry preview scaffold through geometry, retrieval,
-  pre-batch queue, provisional decisions, preview import, and preview
-  acceptance. It is intentionally not promoted to the canonical registry yet.
-- Regenerated canonical 575/600 graph, benchmark, geometry, retrieval,
-  evaluation, hard-negative, cofactor, label-factory, active-learning,
-  expert-review, guardrail, status, and performance artifacts.
+- Recovered a stale automation lock with a dirty worktree and finalized the
+  coherent in-progress label-factory scaling work rather than starting a
+  conflicting tranche.
+- Accepted gated 625- and 650-entry label-factory batches. The 625 batch added
+  20 countable labels; the 650 batch added 19 countable labels.
+- Tightened provisional review rules so Ser-His mechanism text paired with a
+  metal-dependent top hit stays `needs_expert_review` unless explicit metal
+  catalysis evidence is present.
+- Added an active-learning gate requiring all unlabeled candidate rows to be
+  retained even when the ranked queue is capped.
+- Added `artifacts/v3_label_factory_batch_summary.json` to aggregate accepted
+  batches, review debt, gate status, and active-queue retention.
+- Added `artifacts/v3_review_debt_summary_650.json` to rank 53 evidence-gap
+  rows for the next review pass.
+- Extended geometry slice summaries, regression tests, and performance timing
+  through the 650-entry countable slice.
+- Generated 675 graph, graph-summary, and benchmark scaffold artifacts, but did
+  not open a 675 label batch.
 
 ## Current Metrics
 
-- Curated label registry: 579 bronze automation-curated labels, with 147
-  seed-fingerprint positives and 432 out-of-scope labels.
+- Curated label registry: 618 bronze automation-curated labels, with 151
+  seed-fingerprint positives and 467 out-of-scope labels.
 - 20-entry slice: threshold `0.4104`, 20/20 evaluable, 7/7 in-scope positives
   retained, 0 false non-abstentions, 0 hard negatives.
 - 125-entry slice: threshold `0.4115`, 124/125 evaluable, 38/38 in-scope
@@ -92,6 +96,16 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   rows evaluable, 143/147 in-scope positives retained, 0 false
   non-abstentions, 0 hard negatives, 0 near misses, 4 evidence-limited
   in-scope abstentions, and 0 ready label candidates.
+- 625-entry countable slice: threshold `0.4115`, 584/598 evaluated labeled
+  rows evaluable, 144/148 in-scope positives retained, 0 false
+  non-abstentions, 0 hard negatives, 0 near misses, 4 evidence-limited
+  in-scope abstentions, and 25 ready label candidates before the accepted
+  batch decisions.
+- 650-entry countable slice: threshold `0.4115`, 601/617 evaluated labeled
+  rows evaluable, 147/151 in-scope positives retained, 0 false
+  non-abstentions, 0 hard negatives, 0 near misses, 4 evidence-limited
+  in-scope abstentions, and 31 ready label candidates before the accepted
+  batch decisions.
 - Evidence-limited abstentions remain `m_csa:132`, `m_csa:353`, `m_csa:372`,
   and `m_csa:430`.
 - Retained evidence-limited positives remain `m_csa:41`, `m_csa:108`,
@@ -102,19 +116,23 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   evidence-limited retained positives without losing retained positives.
 - The closest below-floor out-of-scope control is still `m_csa:65`, a
   metal-dependent hydrolase hit `0.0131` below the correct-positive floor.
-- Label factory at 600: 72 bronze-to-silver promotions proposed, 106 active
-  learning review rows queued, 100 adversarial negatives mined, 25
-  expert-review export items generated, and 9/9 gate checks passing.
-- Latest accepted batch acceptance: 16 additional labels accepted for counting, 26
-  review-state decisions pending, 579 countable labels, 0 hard negatives,
+- Label factory at 650: 75 bronze-to-silver promotions proposed, 144 active
+  learning review rows queued, 100 adversarial negatives mined, 56
+  expert-review export items generated, and 10/10 gate checks passing.
+- Label batch summary: 7/7 accepted batches, 0 blockers, 0 hard negatives,
+  0 near misses, 0 false non-abstentions, 0 actionable in-scope failures, and
+  all active queues retained their unlabeled candidates.
+- Latest accepted batch acceptance: 19 additional labels accepted for counting, 37
+  review-state decisions pending, 618 countable labels, 0 hard negatives,
   0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable
   in-scope failures.
-- 625 preview: 20 additional labels would be accepted, 31 review-state
-  decisions would remain pending, and the preview has 0 hard negatives,
-  0 near misses, and 0 out-of-scope false non-abstentions. It is not counted
-  until the next run promotes it.
-- Structure mapping: 11 total mapping issues at 600. The 625 preview has 15.
-- Local performance was regenerated on 600 artifacts in `artifacts/perf_report.json`.
+- 650 post-batch active-learning queue: all 32 unlabeled candidates are
+  retained; no unlabeled rows are omitted by the queue limit.
+- Review debt summary: 53 evidence-gap rows, 37 `needs_more_evidence`
+  decisions, 42 rows linked back to active-learning ranks, and `m_csa:494`
+  remains the highest-priority local/structure-wide cofactor gap.
+- Structure mapping: 17 total mapping issues at 650.
+- Local performance was regenerated on 650 artifacts in `artifacts/perf_report.json`.
 
 ## Start Commands
 
@@ -126,27 +144,26 @@ PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/cat
 PYTHONPATH=src python -m unittest discover -s tests
 PYTHONPATH=src python -m catalytic_earth.cli validate
 PYTHONPATH=src python -m catalytic_earth.cli summarize-geometry-slices --artifact-dir artifacts --out artifacts/v3_geometry_slice_summary.json
-PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_600.json --retrieval artifacts/v3_geometry_retrieval_600.json --labels artifacts/v3_imported_labels_batch_600.json --out artifacts/v3_label_expansion_candidates_600.json
-PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates --label-factory-audit artifacts/v3_label_factory_audit_600.json --applied-label-factory artifacts/v3_label_factory_applied_labels_600.json --active-learning-queue artifacts/v3_active_learning_review_queue_600.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_600.json --expert-review-export artifacts/v3_expert_review_export_600_post_batch.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_600.json --out artifacts/v3_label_factory_gate_check_600.json
+PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_650.json --retrieval artifacts/v3_geometry_retrieval_650.json --labels artifacts/v3_imported_labels_batch_650.json --out artifacts/v3_label_expansion_candidates_650.json
+PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates --label-factory-audit artifacts/v3_label_factory_audit_650.json --applied-label-factory artifacts/v3_label_factory_applied_labels_650.json --active-learning-queue artifacts/v3_active_learning_review_queue_650.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_650.json --expert-review-export artifacts/v3_expert_review_export_650_post_batch.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_650.json --out artifacts/v3_label_factory_gate_check_650.json
 ```
 
 ## Next Agent Start Here
 
-Review the 625 preview before doing any new scaling. The preview artifacts are
-already generated:
+Start from the accepted 650 state. Do not reopen the accepted 625/650 batches.
 
-1. Inspect `artifacts/v3_expert_review_decision_batch_625_preview.json`,
-   `artifacts/v3_label_batch_acceptance_check_625_preview.json`, and
-   `artifacts/v3_review_evidence_gaps_600.json`.
-2. If the preview decisions are acceptable, promote
-   `artifacts/v3_countable_labels_batch_625_preview.json` to
-   `data/registries/curated_mechanism_labels.json`, rename/regenerate the
-   canonical 625 artifacts without the `_preview` suffix, extend
-   `GEOMETRY_SLICES` and tests to include 625, regenerate docs/status, and run
-   validation/tests before committing.
-3. If the preview decisions are not acceptable, leave the canonical registry at
-   579 labels and record which 625 rows need deferral or rule changes before
-   any labels are counted.
+1. Inspect `artifacts/v3_active_learning_review_queue_650.json`,
+   `artifacts/v3_expert_review_export_650_post_batch.json`,
+   `artifacts/v3_review_evidence_gaps_650.json`,
+   `artifacts/v3_review_debt_summary_650.json`, and the generated
+   `artifacts/v1_graph_675.json` / `artifacts/v2_benchmark_675.json` scaffold.
+2. Decide whether the next bounded task should be a 675 factory preview or an
+   evidence-quality pass on the persistent review-state rows. If opening 675,
+   run the full label-factory pipeline and keep the active-queue unlabeled
+   retention gate passing before any labels count.
+3. Keep `m_csa:650` in review unless explicit metal-catalysis evidence is
+   added; it is the new regression case for Ser-His text with a metal-dependent
+   top retrieval hit.
 
 Known blockers:
 
@@ -166,12 +183,15 @@ Known blockers:
 
 ## Run Timing
 
-- STARTED_AT: 2026-05-10T07:37:59.343957Z
-- ENDED_AT: 2026-05-10T08:36:35Z
-- Measured elapsed time: 58.594 minutes
+- STARTED_AT: 2026-05-10T09:39:56.856Z
+- ENDED_AT: 2026-05-10T13:59:31Z
+- Measured elapsed time: 259.578 minutes
 - Documentation checked and updated across README, docs, scope, handoff,
   label-factory notes, geometry/performance reports, and status inputs before
   final status regeneration.
 - Final verification passed: `git diff --check`, `PYTHONPATH=src python -m
   catalytic_earth.cli validate`, and `PYTHONPATH=src python -m unittest
-  discover -s tests` passed with 139 tests.
+  discover -s tests` passed with 143 tests.
+- Note: this run exceeded the normal wrap-up envelope after long 675 graph and
+  geometry artifact generation; no further implementation should start until
+  the next scheduled run reviews the 675 preview.

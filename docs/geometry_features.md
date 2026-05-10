@@ -215,19 +215,28 @@ Current slices:
   labeled rows evaluable, 143/147 in-scope positives retained, 0 out-of-scope
   false non-abstentions, 0 hard negatives, 0 near misses, and 4
   evidence-limited in-scope abstentions.
+- 625-entry countable stress slice: threshold 0.4115, 584/598 evaluated
+  labeled rows evaluable, 144/148 in-scope positives retained, 0 out-of-scope
+  false non-abstentions, 0 hard negatives, 0 near misses, and 4
+  evidence-limited in-scope abstentions.
+- 650-entry countable stress slice: threshold 0.4115, 601/617 evaluated
+  labeled rows evaluable, 147/151 in-scope positives retained, 0 out-of-scope
+  false non-abstentions, 0 hard negatives, 0 near misses, and 4
+  evidence-limited in-scope abstentions.
 
 `artifacts/v3_geometry_slice_summary.json` summarizes the 20-, 30-, 40-, 50-,
 60-, 75-, 100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-,
-375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, and 600-entry slices. It
+375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-, and
+650-entry slices. It
 currently reports zero hard negatives, zero near misses, and zero out-of-scope
 false non-abstentions across all slices. Total in-scope failures across slice
-rows are 46, max in any slice is 4, and the actionable in-scope failure count
+rows are 54, max in any slice is 4, and the actionable in-scope failure count
 is 0 after separating selected-structure cofactor gaps from scorer failures.
 
-`artifacts/v3_cofactor_coverage_600.json` tracks expected cofactor coverage for
-in-scope labels. In the 600-entry countable slice, 115/147 in-scope positives
+`artifacts/v3_cofactor_coverage_650.json` tracks expected cofactor coverage for
+in-scope labels. In the 650-entry countable slice, 116/151 in-scope positives
 have local cofactor support, 3 have expected cofactor support only elsewhere in
-the selected structure, 22 require no cofactor, and 6 lack
+the selected structure, 26 require no cofactor, and 6 lack
 expected structure-wide cofactor evidence. Of the 6 absent-expected-cofactor
 rows, 3 are retained and 3 are abstained. The coverage metadata exposes
 `evidence_limited_retained_entry_ids`, currently `m_csa:41`, `m_csa:108`,
@@ -235,7 +244,7 @@ rows, 3 are retained and 3 are abstained. The coverage metadata exposes
 separately from clean local cofactor matches without changing the abstention
 threshold.
 
-`artifacts/v3_cofactor_policy_600.json` sweeps small post-hoc penalties for
+`artifacts/v3_cofactor_policy_650.json` sweeps small post-hoc penalties for
 absent or structure-only cofactor evidence. It recommends
 `audit_only_or_separate_stratum` because no tested policy reduces
 evidence-limited retained positives without losing retained positives. The
@@ -243,19 +252,19 @@ smallest retained evidence-limited margin is now `0.013`.
 
 ## Label Expansion Queue
 
-The 500-, 525-, 550-, 575-, and 600-entry source slices have been processed through the
-label factory. The 600-entry queue is fully resolved for scaling because every
-row is either countable or explicitly in review state:
+The 500-, 525-, 550-, 575-, 600-, 625-, and 650-entry source slices have been processed through the
+label factory. The 650-entry batch is resolved for scaling because every
+pre-batch candidate has an accept, reject, or needs-more-evidence decision:
 
-- geometry entries in expansion artifact: 599
-- countable curated labels: 579
-- evaluated labeled rows: 578
-- evaluable labeled active-site structures: 568
-- unlabeled entries remaining: 0
+- geometry entries in expansion artifact: 650
+- countable curated labels: 618
+- evaluated labeled rows: 617
+- evaluable labeled active-site structures: 601
+- post-batch unlabeled queue rows retained: 32
 - review notes: `work/label_factory_notes.md`
-- active-learning review queue: `artifacts/v3_active_learning_review_queue_600.json`
-- expert-review export: `artifacts/v3_expert_review_export_600_post_batch.json`
-- factory gate check: `artifacts/v3_label_factory_gate_check_600.json`
+- active-learning review queue: `artifacts/v3_active_learning_review_queue_650.json`
+- expert-review export: `artifacts/v3_expert_review_export_650_post_batch.json`
+- factory gate check: `artifacts/v3_label_factory_gate_check_650.json`
 
 `m_csa:494` remains non-countable by design until local cobalamin evidence or
 expert review resolves the structure-wide-only B12 gap.
@@ -267,14 +276,14 @@ residue positions against both mmCIF `auth_*` and `label_*` numbering. The
 175-entry slices each have 2 labeled out-of-scope mapping issues; the 200-,
 225-, 250-, 275-, and 300-entry slices each have 3 labeled out-of-scope mapping
 issues; the 325-, 350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-,
-575-, and 600-entry slices have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10, 11, and 11
-mapping issues respectively.
+575-, 600-, 625-, and 650-entry slices have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10,
+11, 11, 15, and 17 mapping issues respectively.
 
 ## Curated Seed Labels
 
-`data/registries/curated_mechanism_labels.json` provides 579 provisional labels,
-covering all entries in the 475-entry source slice plus 104 accepted labels from
-the 500-, 525-, 550-, 575-, and 600-entry queues. Labels now carry explicit
+`data/registries/curated_mechanism_labels.json` provides 618 provisional labels,
+covering all entries in the 475-entry source slice plus 143 accepted labels from
+the 500-, 525-, 550-, 575-, 600-, 625-, and 650-entry queues. Labels now carry explicit
 `tier`, `review_status`, `confidence`, `evidence_score`, and `evidence`
 provenance fields. Labels are intentionally conservative:
 
