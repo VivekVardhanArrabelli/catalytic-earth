@@ -165,6 +165,7 @@ def score_entry_against_fingerprint(
     compactness = compactness_score(distances)
     substrate_pocket = substrate_pocket_score(fingerprint, entry.get("pocket_context"))
     coherence = mechanistic_coherence_score(fingerprint, residues)
+    mechanism_context = _entry_mechanism_context(entry)
     counterevidence = counterevidence_assessment(
         fingerprint=fingerprint,
         residues=residues,
@@ -173,7 +174,7 @@ def score_entry_against_fingerprint(
         substrate_pocket_score_value=substrate_pocket,
         pocket_context=entry.get("pocket_context"),
         compactness_score_value=compactness,
-        mechanism_text_snippets=_entry_mechanism_context(entry),
+        mechanism_text_snippets=mechanism_context,
     )
     raw_score = (
         0.35 * residue_match_fraction
@@ -182,6 +183,18 @@ def score_entry_against_fingerprint(
         + 0.08 * compactness
         + 0.15 * substrate_pocket
     )
+    if (
+        fingerprint.get("id") == "plp_dependent_enzyme"
+        and cofactor_evidence == "ligand_supported"
+        and _has_plp_transaldimination_text_context(_joined_mechanism_text(mechanism_context))
+    ):
+        raw_score += 0.08
+    if (
+        fingerprint.get("id") == "plp_dependent_enzyme"
+        and cofactor_evidence == "ligand_supported"
+        and _has_plp_beta_elimination_text_context(_joined_mechanism_text(mechanism_context))
+    ):
+        raw_score += 0.04
     if fingerprint.get("id") == "ser_his_acid_hydrolase":
         raw_score *= 0.70 + 0.30 * coherence
     raw_score *= counterevidence["penalty"]
@@ -591,6 +604,10 @@ def counterevidence_assessment(
             apply(0.62, "nonhydrolytic_isomerase_lyase_text_context")
         if _has_nonhydrolytic_hydratase_dehydratase_text_context(mechanism_text):
             apply(0.62, "nonhydrolytic_hydratase_dehydratase_text_context")
+        if _has_aminoacyl_ligase_text_context(mechanism_text):
+            apply(0.58, "aminoacyl_ligase_not_metal_hydrolysis")
+        if _has_glycosidase_text_context(mechanism_text):
+            apply(0.58, "glycosidase_not_metal_hydrolase_seed")
         if _has_alpha_ketoglutarate_hydroxylation_text_context(mechanism_text):
             apply(0.55, "nonhydrolytic_alpha_ketoglutarate_hydroxylation")
         if (
@@ -827,7 +844,20 @@ def _role_match_fraction(signature: list[dict[str, Any]], residue_roles: set[str
 
 def _residue_has_any_role(residue: dict[str, Any], required_roles: set[str]) -> bool:
     roles = {_normalize_phrase(role) for role in residue.get("roles", []) if isinstance(role, str)}
-    return any(required in roles for required in required_roles)
+    if any(required in roles for required in required_roles):
+        return True
+    for role in roles:
+        if role == "covalent catalysis" and required_roles & {"nucleophile", "covalently attached"}:
+            return True
+        if (
+            role in {"proton shuttle (general acid/base)", "proton shuttle general acid/base"}
+            and required_roles
+            & {"acid base", "general base", "proton acceptor", "proton donor", "proton relay"}
+        ):
+            return True
+        if role == "modifies pka" and required_roles & {"acid", "acid base", "proton acceptor", "proton donor"}:
+            return True
+    return False
 
 
 def _is_metal_cofactor(cofactor: str) -> bool:
@@ -961,6 +991,11 @@ def _has_nonhydrolytic_isomerase_lyase_text_context(mechanism_text: str) -> bool
             "epimerase",
             "epimerisation",
             "epimerization",
+            "racemase",
+            "racemization",
+            "racemisation",
+            "racemised",
+            "racemized",
             "lyase",
             "cycloisomerase",
             "retroaldol",
@@ -990,6 +1025,65 @@ def _has_nonhydrolytic_hydratase_dehydratase_text_context(mechanism_text: str) -
             "hydration",
             "inter-conversion",
             "interconversion",
+        )
+    )
+
+
+def _has_aminoacyl_ligase_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_ligase = "trna ligase" in mechanism_text or "trna charging" in mechanism_text
+    has_aminoacyl = "aminoacyl" in mechanism_text or "aminoacyl adenylate" in mechanism_text
+    has_atp_activation = "atp" in mechanism_text and (
+        "adenylate" in mechanism_text or "anhydride" in mechanism_text
+    )
+    return has_ligase or (has_aminoacyl and has_atp_activation)
+
+
+def _has_glycosidase_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    return any(
+        term in mechanism_text
+        for term in (
+            "glycosidase",
+            "glucosidase",
+            "galactosidase",
+            "glucuronidase",
+            "glycosyl hydrolase",
+            "alpha-amylase",
+            "amylase",
+            "isoamylase",
+            "licheninase",
+        )
+    )
+
+
+def _has_plp_transaldimination_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    return any(
+        term in mechanism_text
+        for term in (
+            "transaldimination",
+            "external aldimine",
+            "internal schiff base",
+            "schiff base",
+        )
+    )
+
+
+def _has_plp_beta_elimination_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    return any(
+        term in mechanism_text
+        for term in (
+            "beta-elimination",
+            "beta elimination",
+            "c-s bond cleavage",
+            "c-s bond",
+            "cystathionine",
         )
     )
 

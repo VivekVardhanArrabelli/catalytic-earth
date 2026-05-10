@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 28
-- Measured elapsed time: 525.9 minutes (8.76 hours)
+- Entries: 29
+- Measured elapsed time: 581.4 minutes (9.69 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 512.5 measured minutes (8.54 hours)
+- post-v2: 568.0 measured minutes (9.47 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,19 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 231
-- Evidence references logged: 169
+- Artifact references logged: 246
+- Evidence references logged: 181
 
 ## Recent Entries
-
-### 2026-05-09T19:52:34.146667+00:00 - post-v2
-
-- Task: Group 125-entry hard negatives and tighten heme counterevidence
-- Time mode: estimate
-- Estimated/planned minutes: 15
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/geometry_retrieval.py, tests/test_labels.py, tests/test_geometry_retrieval.py, artifacts/v3_hard_negative_controls_125.json, artifacts/v3_geometry_score_margins_125.json, artifacts/perf_report.json, README.md, docs/geometry_features.md, docs/v2_strengthening_report.md, docs/performance.md, work/handoff.md, work/scope.md
-- Evidence: fresh reset to origin/main before work, 63 unit tests passed, validate passed, 125-entry hard negatives reduced from 74 to 53 against correct-positive floor, 20-100 slices still have zero hard negatives
-- Notes: Manual continuation after user-requested fresh checkout; precise start timestamp was not captured.
 
 ### 2026-05-09T20:12:10.878697+00:00 - ops
 
@@ -109,6 +100,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 105 unit tests passed, validate passed, 375 curated labels, 374 geometry entries in 375 slice, 367 evaluable structures, 98 in-scope positives, 276 out-of-scope controls, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 400-entry queue has 22 ready label-review candidates
 - Notes: Documentation checked and updated during wrap-up; normal measured run.
 
+### 2026-05-10T03:26:17.876722+00:00 - post-v2
+
+- Task: Expand geometry benchmark to 450 labels
+- Time mode: measured
+- Measured minutes: 55.517
+- Started: 2026-05-10T02:30:25Z
+- Ended: 2026-05-10T03:25:56Z
+- Artifacts: data/registries/curated_mechanism_labels.json, src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/geometry_reports.py, artifacts/v3_geometry_label_eval_450.json, artifacts/v3_hard_negative_controls_450.json, artifacts/v3_geometry_slice_summary.json, artifacts/v3_label_expansion_candidates_475.json, artifacts/perf_report.json, README.md, docs/geometry_features.md, docs/v2_strengthening_report.md, docs/performance.md, docs/v2_report.md, work/handoff.md, work/scope.md
+- Evidence: 113 unit tests passed, validate passed, 450 curated labels, 449 geometry entries in 450 slice, 442 evaluable structures, 124 in-scope positives, 325 out-of-scope controls, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 475-entry queue has 23 ready label-review candidates
+- Notes: Documentation reviewed and updated during wrap-up; normal measured run.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -139,6 +141,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T00:22:01.303388+00:00: The 225-entry bottleneck is now the selected-structure cofactor gap for m_csa:132 or the next label expansion, not hard-negative separation.
 - 2026-05-10T01:18:40.670377+00:00: Next bottleneck is expanding beyond 275 labels or resolving m_csa:132 selected-structure cofactor absence.
 - 2026-05-10T02:23:20.695520+00:00: The benchmark can expand in 25-entry curation tranches while preserving guardrails; the next bottleneck is 400-entry label quality and evidence-limited cofactor gaps.
+- 2026-05-10T03:26:17.876722+00:00: The benchmark can continue expanding in curated 25-entry tranches, but the next bottleneck is 475-entry label quality and evidence-limited cofactor gaps.
 
 ## Scope Adjustments
 
@@ -169,3 +172,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T00:22:01.303388+00:00: Post-V2 geometry scope now tracks a fully labeled 225-entry source slice with 12 cross-slice summaries and clean hard-negative guardrails.
 - 2026-05-10T01:18:40.670377+00:00: Post-V2 geometry scope now tracks a fully labeled 275-entry source slice.
 - 2026-05-10T02:23:20.695520+00:00: Post-V2 geometry scope now tracks a fully labeled 375-entry source slice and a generated 400-entry candidate queue.
+- 2026-05-10T03:26:17.876722+00:00: Post-V2 geometry scope now tracks a fully labeled 450-entry source slice and a generated 475-entry candidate queue.

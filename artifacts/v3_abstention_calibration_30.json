@@ -11,25 +11,25 @@
     "in_scope_retention_rate_evaluable": 1.0,
     "label_summary": {
       "by_confidence": {
-        "high": 3,
+        "high": 11,
         "low": 4,
-        "medium": 368
+        "medium": 435
       },
       "by_fingerprint": {
         "cobalamin_radical_rearrangement": 2,
-        "flavin_dehydrogenase_reductase": 30,
+        "flavin_dehydrogenase_reductase": 32,
         "flavin_monooxygenase": 2,
-        "heme_peroxidase_oxidase": 6,
-        "metal_dependent_hydrolase": 38,
-        "plp_dependent_enzyme": 11,
+        "heme_peroxidase_oxidase": 7,
+        "metal_dependent_hydrolase": 46,
+        "plp_dependent_enzyme": 19,
         "radical_sam_enzyme": 1,
-        "ser_his_acid_hydrolase": 8
+        "ser_his_acid_hydrolase": 15
       },
       "by_type": {
-        "out_of_scope": 277,
-        "seed_fingerprint": 98
+        "out_of_scope": 326,
+        "seed_fingerprint": 124
       },
-      "label_count": 375
+      "label_count": 450
     },
     "method": "geometry_retrieval_against_curated_seed_labels",
     "out_of_scope_abstention_rate": 1.0,
@@ -93,25 +93,25 @@
     "in_scope_retention_rate_evaluable": 1.0,
     "label_summary": {
       "by_confidence": {
-        "high": 3,
+        "high": 11,
         "low": 4,
-        "medium": 368
+        "medium": 435
       },
       "by_fingerprint": {
         "cobalamin_radical_rearrangement": 2,
-        "flavin_dehydrogenase_reductase": 30,
+        "flavin_dehydrogenase_reductase": 32,
         "flavin_monooxygenase": 2,
-        "heme_peroxidase_oxidase": 6,
-        "metal_dependent_hydrolase": 38,
-        "plp_dependent_enzyme": 11,
+        "heme_peroxidase_oxidase": 7,
+        "metal_dependent_hydrolase": 46,
+        "plp_dependent_enzyme": 19,
         "radical_sam_enzyme": 1,
-        "ser_his_acid_hydrolase": 8
+        "ser_his_acid_hydrolase": 15
       },
       "by_type": {
-        "out_of_scope": 277,
-        "seed_fingerprint": 98
+        "out_of_scope": 326,
+        "seed_fingerprint": 124
       },
-      "label_count": 375
+      "label_count": 450
     },
     "method": "geometry_retrieval_against_curated_seed_labels",
     "out_of_scope_abstention_rate": 1.0,
@@ -142,25 +142,25 @@
     "in_scope_retention_rate_evaluable": 1.0,
     "label_summary": {
       "by_confidence": {
-        "high": 3,
+        "high": 11,
         "low": 4,
-        "medium": 368
+        "medium": 435
       },
       "by_fingerprint": {
         "cobalamin_radical_rearrangement": 2,
-        "flavin_dehydrogenase_reductase": 30,
+        "flavin_dehydrogenase_reductase": 32,
         "flavin_monooxygenase": 2,
-        "heme_peroxidase_oxidase": 6,
-        "metal_dependent_hydrolase": 38,
-        "plp_dependent_enzyme": 11,
+        "heme_peroxidase_oxidase": 7,
+        "metal_dependent_hydrolase": 46,
+        "plp_dependent_enzyme": 19,
         "radical_sam_enzyme": 1,
-        "ser_his_acid_hydrolase": 8
+        "ser_his_acid_hydrolase": 15
       },
       "by_type": {
-        "out_of_scope": 277,
-        "seed_fingerprint": 98
+        "out_of_scope": 326,
+        "seed_fingerprint": 124
       },
-      "label_count": 375
+      "label_count": 450
     },
     "method": "geometry_retrieval_against_curated_seed_labels",
     "out_of_scope_abstention_rate": 1.0,
@@ -192,25 +192,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0,
@@ -241,25 +241,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0,
@@ -290,25 +290,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0,
@@ -339,25 +339,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0,
@@ -388,25 +388,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0,
@@ -437,25 +437,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0,
@@ -486,25 +486,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0,
@@ -535,25 +535,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0476,
@@ -584,25 +584,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0476,
@@ -633,25 +633,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0952,
@@ -682,25 +682,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0952,
@@ -731,25 +731,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.0952,
@@ -780,25 +780,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.1429,
@@ -829,25 +829,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.1429,
@@ -878,25 +878,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.1905,
@@ -927,25 +927,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.1905,
@@ -976,25 +976,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.1905,
@@ -1025,25 +1025,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.2381,
@@ -1074,25 +1074,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.2381,
@@ -1123,25 +1123,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.2857,
@@ -1172,25 +1172,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.2857,
@@ -1221,25 +1221,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.3333,
@@ -1270,25 +1270,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.3333,
@@ -1319,25 +1319,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.381,
@@ -1368,25 +1368,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.381,
@@ -1417,25 +1417,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.4286,
@@ -1466,25 +1466,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.4762,
@@ -1515,25 +1515,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.4762,
@@ -1564,25 +1564,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.5238,
@@ -1613,25 +1613,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.5238,
@@ -1662,25 +1662,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.5714,
@@ -1711,25 +1711,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.5714,
@@ -1760,25 +1760,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.619,
@@ -1809,25 +1809,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.619,
@@ -1858,25 +1858,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.6667,
@@ -1907,25 +1907,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.6667,
@@ -1956,25 +1956,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.7143,
@@ -2005,25 +2005,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.7143,
@@ -2054,25 +2054,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.7619,
@@ -2103,25 +2103,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.7619,
@@ -2152,25 +2152,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.8095,
@@ -2201,25 +2201,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.8095,
@@ -2250,25 +2250,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.8571,
@@ -2299,25 +2299,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.8571,
@@ -2348,25 +2348,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.9048,
@@ -2397,25 +2397,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.9048,
@@ -2446,25 +2446,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.9048,
@@ -2495,25 +2495,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.9524,
@@ -2544,25 +2544,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 0.9524,
@@ -2593,25 +2593,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -2642,25 +2642,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -2691,25 +2691,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -2740,25 +2740,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -2789,25 +2789,25 @@
       "in_scope_retention_rate_evaluable": 1.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -2838,25 +2838,25 @@
       "in_scope_retention_rate_evaluable": 0.8889,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -2887,25 +2887,25 @@
       "in_scope_retention_rate_evaluable": 0.8889,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -2936,25 +2936,25 @@
       "in_scope_retention_rate_evaluable": 0.7778,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -2985,25 +2985,25 @@
       "in_scope_retention_rate_evaluable": 0.7778,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3034,25 +3034,25 @@
       "in_scope_retention_rate_evaluable": 0.6667,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3083,25 +3083,25 @@
       "in_scope_retention_rate_evaluable": 0.6667,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3132,25 +3132,25 @@
       "in_scope_retention_rate_evaluable": 0.5556,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3181,25 +3181,25 @@
       "in_scope_retention_rate_evaluable": 0.5556,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3230,25 +3230,25 @@
       "in_scope_retention_rate_evaluable": 0.5556,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3279,25 +3279,25 @@
       "in_scope_retention_rate_evaluable": 0.4444,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3328,25 +3328,25 @@
       "in_scope_retention_rate_evaluable": 0.4444,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3377,25 +3377,25 @@
       "in_scope_retention_rate_evaluable": 0.4444,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3426,25 +3426,25 @@
       "in_scope_retention_rate_evaluable": 0.4444,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3475,25 +3475,25 @@
       "in_scope_retention_rate_evaluable": 0.3333,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3524,25 +3524,25 @@
       "in_scope_retention_rate_evaluable": 0.3333,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3573,25 +3573,25 @@
       "in_scope_retention_rate_evaluable": 0.3333,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3622,25 +3622,25 @@
       "in_scope_retention_rate_evaluable": 0.2222,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3671,25 +3671,25 @@
       "in_scope_retention_rate_evaluable": 0.2222,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3720,25 +3720,25 @@
       "in_scope_retention_rate_evaluable": 0.1111,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3769,25 +3769,25 @@
       "in_scope_retention_rate_evaluable": 0.1111,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3818,25 +3818,25 @@
       "in_scope_retention_rate_evaluable": 0.1111,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3867,25 +3867,25 @@
       "in_scope_retention_rate_evaluable": 0.1111,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3916,25 +3916,25 @@
       "in_scope_retention_rate_evaluable": 0.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -3965,25 +3965,25 @@
       "in_scope_retention_rate_evaluable": 0.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -4014,25 +4014,25 @@
       "in_scope_retention_rate_evaluable": 0.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,
@@ -4063,25 +4063,25 @@
       "in_scope_retention_rate_evaluable": 0.0,
       "label_summary": {
         "by_confidence": {
-          "high": 3,
+          "high": 11,
           "low": 4,
-          "medium": 368
+          "medium": 435
         },
         "by_fingerprint": {
           "cobalamin_radical_rearrangement": 2,
-          "flavin_dehydrogenase_reductase": 30,
+          "flavin_dehydrogenase_reductase": 32,
           "flavin_monooxygenase": 2,
-          "heme_peroxidase_oxidase": 6,
-          "metal_dependent_hydrolase": 38,
-          "plp_dependent_enzyme": 11,
+          "heme_peroxidase_oxidase": 7,
+          "metal_dependent_hydrolase": 46,
+          "plp_dependent_enzyme": 19,
           "radical_sam_enzyme": 1,
-          "ser_his_acid_hydrolase": 8
+          "ser_his_acid_hydrolase": 15
         },
         "by_type": {
-          "out_of_scope": 277,
-          "seed_fingerprint": 98
+          "out_of_scope": 326,
+          "seed_fingerprint": 124
         },
-        "label_count": 375
+        "label_count": 450
       },
       "method": "geometry_retrieval_against_curated_seed_labels",
       "out_of_scope_abstention_rate": 1.0,

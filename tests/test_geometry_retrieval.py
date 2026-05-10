@@ -87,6 +87,15 @@ class GeometryRetrievalTests(unittest.TestCase):
         fingerprint = {"id": "ser_his_acid_hydrolase"}
         self.assertEqual(mechanistic_coherence_score(fingerprint, residues), 0.0)
 
+    def test_ser_his_coherence_accepts_mcsa_role_synonyms(self) -> None:
+        residues = [
+            {"code": "SER", "roles": ["covalent catalysis"]},
+            {"code": "HIS", "roles": ["proton shuttle (general acid/base)"]},
+            {"code": "ASP", "roles": ["modifies pKa"]},
+        ]
+        fingerprint = {"id": "ser_his_acid_hydrolase"}
+        self.assertEqual(mechanistic_coherence_score(fingerprint, residues), 1.0)
+
     def test_metal_context_outscores_heme_without_heme_evidence(self) -> None:
         residue_codes = ["ASP", "HIS", "HIS"]
         residue_roles = {"metal ligand"}
@@ -919,6 +928,96 @@ class GeometryRetrievalTests(unittest.TestCase):
             "nonhydrolytic_alpha_ketoglutarate_hydroxylation",
             assessment["reasons"],
         )
+
+    def test_metal_hydrolase_penalizes_aminoacyl_ligase_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "CYS", "roles": ["metal ligand"]},
+                {"code": "LYS", "roles": ["electrostatic stabiliser"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["ZN"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "Methionine-tRNA ligase forms an aminoacyl adenylate with ATP "
+                "before transferring the amino acid to tRNA."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.58)
+        self.assertIn("aminoacyl_ligase_not_metal_hydrolysis", assessment["reasons"])
+
+    def test_metal_hydrolase_penalizes_glycosidase_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "ASP", "roles": ["metal ligand"]},
+                {"code": "GLU", "roles": ["proton shuttle (general acid/base)"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["CA"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "Isoamylase is a glycosidase with Asp/Glu glycosyl hydrolase chemistry."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.58)
+        self.assertIn("glycosidase_not_metal_hydrolase_seed", assessment["reasons"])
+
+    def test_plp_text_context_boosts_ligand_supported_transaldimination(self) -> None:
+        entry = {
+            "mechanism_text_snippets": [
+                "The enzyme proceeds through transaldimination and an external aldimine."
+            ],
+            "residues": [
+                {"code": "TYR", "roles": ["proton shuttle (general acid/base)"]},
+                {"code": "ASP", "roles": ["electrostatic stabiliser"]},
+            ],
+            "ligand_context": {"ligand_codes": ["LLP"], "cofactor_families": ["plp"]},
+            "pocket_context": {"nearby_residue_count": 1, "descriptors": {"polar_fraction": 0.3}},
+            "pairwise_distances_angstrom": [{"distance": 14.5}],
+        }
+        fingerprint = {
+            "id": "plp_dependent_enzyme",
+            "name": "Pyridoxal phosphate dependent enzyme",
+            "cofactors": ["pyridoxal phosphate"],
+            "active_site_signature": [
+                {"role": "plp_anchor", "residue": "Lys"},
+                {"role": "acid_base", "residue": "Asp/Glu/His/Tyr"},
+                {"role": "phosphate_binder", "residue": "Gly/Ser/Thr-rich motif"},
+            ],
+        }
+        score = score_entry_against_fingerprint(entry, fingerprint)
+        self.assertGreaterEqual(score["score"], 0.42)
+
+    def test_plp_beta_elimination_text_context_boosts_ligand_supported_entry(self) -> None:
+        entry = {
+            "mechanism_text_snippets": [
+                "A PLP external aldimine aligns the sulfur atom for C-S bond cleavage "
+                "during beta-elimination."
+            ],
+            "residues": [
+                {"code": "TYR", "roles": ["proton shuttle (general acid/base)"]},
+                {"code": "ASP", "roles": ["electrostatic stabiliser"]},
+                {"code": "ARG", "roles": ["electrostatic stabiliser"]},
+            ],
+            "ligand_context": {"ligand_codes": ["LLP"], "cofactor_families": ["plp"]},
+            "pocket_context": {"nearby_residue_count": 50, "descriptors": {"polar_fraction": 0.32}},
+            "pairwise_distances_angstrom": [{"distance": 14.5}],
+        }
+        fingerprint = {
+            "id": "plp_dependent_enzyme",
+            "name": "Pyridoxal phosphate dependent enzyme",
+            "cofactors": ["pyridoxal phosphate"],
+            "active_site_signature": [
+                {"role": "plp_anchor", "residue": "Lys"},
+                {"role": "acid_base", "residue": "Asp/Glu/His/Tyr"},
+                {"role": "phosphate_binder", "residue": "Gly/Ser/Thr-rich motif"},
+            ],
+        }
+        score = score_entry_against_fingerprint(entry, fingerprint)
+        self.assertGreaterEqual(score["score"], 0.45)
 
     def test_ser_his_hydrolase_penalizes_phosphoryl_transfer_text_context(self) -> None:
         assessment = counterevidence_assessment(

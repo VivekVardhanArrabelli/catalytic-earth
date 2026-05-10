@@ -161,7 +161,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ROOT / "artifacts" / "v3_structure_mapping_issues_200.json"
         )
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 65)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 135)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -190,7 +190,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_225.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_225.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 71)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 153)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -228,7 +228,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_250.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_250.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 78)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 171)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -264,7 +264,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_275.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_275.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 81)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 193)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -316,7 +316,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_375.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_375.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 98)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 276)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -342,6 +342,144 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             heme_hit["counterevidence_reasons"],
         )
         self.assertLess(heme_hit["score"], 0.4145)
+
+    def test_400_entry_geometry_artifacts_clear_curated_queue(self) -> None:
+        evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_400.json")
+        hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_400.json")
+        in_scope_failures = _load_json(
+            ROOT / "artifacts" / "v3_in_scope_failure_analysis_400.json"
+        )
+        label_candidates = _load_json(
+            ROOT / "artifacts" / "v3_label_expansion_candidates_400.json"
+        )
+        retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_400.json")
+
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 106)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 293)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.981)
+        self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["failure_count"], 3)
+        self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
+        self.assertEqual(label_candidates["metadata"]["candidate_count"], 0)
+        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 450)
+
+        chymotrypsin = next(row for row in retrieval["results"] if row["entry_id"] == "m_csa:387")
+        self.assertEqual(
+            chymotrypsin["top_fingerprints"][0]["fingerprint_id"],
+            "ser_his_acid_hydrolase",
+        )
+        self.assertEqual(chymotrypsin["top_fingerprints"][0]["mechanistic_coherence_score"], 1.0)
+        self.assertGreaterEqual(chymotrypsin["top_fingerprints"][0]["score"], 0.8)
+
+        trna_ligase = next(row for row in retrieval["results"] if row["entry_id"] == "m_csa:384")
+        self.assertIn(
+            "aminoacyl_ligase_not_metal_hydrolysis",
+            trna_ligase["top_fingerprints"][0]["counterevidence_reasons"],
+        )
+        self.assertLess(trna_ligase["top_fingerprints"][0]["score"], 0.4145)
+
+    def test_425_entry_geometry_artifacts_clear_plp_and_glycosidase_slice(self) -> None:
+        evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_425.json")
+        hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_425.json")
+        in_scope_failures = _load_json(
+            ROOT / "artifacts" / "v3_in_scope_failure_analysis_425.json"
+        )
+        label_candidates = _load_json(
+            ROOT / "artifacts" / "v3_label_expansion_candidates_425.json"
+        )
+        cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_425.json")
+        retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_425.json")
+
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 117)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 307)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9828)
+        self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["failure_count"], 3)
+        self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["evidence_limited_abstention_count"], 3)
+        self.assertEqual(label_candidates["metadata"]["candidate_count"], 0)
+        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 450)
+        self.assertEqual(
+            cofactor_coverage["metadata"]["evidence_limited_abstained_entry_ids"],
+            ["m_csa:132", "m_csa:353", "m_csa:372"],
+        )
+
+        tryptophanase = next(row for row in retrieval["results"] if row["entry_id"] == "m_csa:410")
+        self.assertEqual(tryptophanase["entry_name"], "tryptophanase")
+        self.assertEqual(
+            tryptophanase["top_fingerprints"][0]["fingerprint_id"],
+            "plp_dependent_enzyme",
+        )
+        self.assertEqual(
+            tryptophanase["top_fingerprints"][0]["cofactor_evidence_level"],
+            "ligand_supported",
+        )
+        self.assertGreaterEqual(tryptophanase["top_fingerprints"][0]["score"], 0.4644)
+
+        isoamylase = next(row for row in retrieval["results"] if row["entry_id"] == "m_csa:421")
+        self.assertIn(
+            "glycosidase_not_metal_hydrolase_seed",
+            isoamylase["top_fingerprints"][0]["counterevidence_reasons"],
+        )
+        self.assertLess(isoamylase["top_fingerprints"][0]["score"], 0.4145)
+
+    def test_450_entry_geometry_artifacts_clear_beta_lyase_slice(self) -> None:
+        evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_450.json")
+        hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_450.json")
+        in_scope_failures = _load_json(
+            ROOT / "artifacts" / "v3_in_scope_failure_analysis_450.json"
+        )
+        label_candidates = _load_json(
+            ROOT / "artifacts" / "v3_label_expansion_candidates_450.json"
+        )
+        cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_450.json")
+        retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_450.json")
+
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 124)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 325)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9756)
+        self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["failure_count"], 4)
+        self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["evidence_limited_abstention_count"], 4)
+        self.assertEqual(label_candidates["metadata"]["candidate_count"], 0)
+        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 450)
+        self.assertEqual(
+            cofactor_coverage["metadata"]["evidence_limited_abstained_entry_ids"],
+            ["m_csa:132", "m_csa:353", "m_csa:372", "m_csa:430"],
+        )
+
+        cystathionine_lyase = next(
+            row for row in retrieval["results"] if row["entry_id"] == "m_csa:449"
+        )
+        self.assertEqual(cystathionine_lyase["entry_name"], "cystathionine beta-lyase")
+        self.assertEqual(
+            cystathionine_lyase["top_fingerprints"][0]["fingerprint_id"],
+            "plp_dependent_enzyme",
+        )
+        self.assertEqual(
+            cystathionine_lyase["top_fingerprints"][0]["cofactor_evidence_level"],
+            "ligand_supported",
+        )
+        self.assertGreaterEqual(cystathionine_lyase["top_fingerprints"][0]["score"], 0.4551)
+
+        acetylxylan_esterase = next(
+            row for row in retrieval["results"] if row["entry_id"] == "m_csa:431"
+        )
+        self.assertEqual(
+            acetylxylan_esterase["top_fingerprints"][0]["fingerprint_id"],
+            "ser_his_acid_hydrolase",
+        )
+        self.assertGreaterEqual(acetylxylan_esterase["top_fingerprints"][0]["score"], 0.7892)
 
 
 def _load_json(path: Path) -> dict:

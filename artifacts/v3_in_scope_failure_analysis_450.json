@@ -1,0 +1,427 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "abstained_positive_count": 4,
+    "actionable_failure_count": 0,
+    "evaluated_in_scope_count": 124,
+    "evidence_limited_abstention_count": 4,
+    "failure_cause_counts": {
+      "target_cofactor_absent_from_structure": 3,
+      "target_cofactor_not_proximal": 1
+    },
+    "failure_count": 4,
+    "failure_mode_counts": {
+      "abstained_positive": 4,
+      "top1_mismatch": 4
+    },
+    "method": "in_scope_geometry_failure_analysis",
+    "retained_in_scope_count": 120,
+    "target_absent_from_top_k_count": 0,
+    "target_cofactor_evidence_counts": {
+      "absent": 4
+    },
+    "target_fingerprint_counts": {
+      "flavin_dehydrogenase_reductase": 1,
+      "flavin_monooxygenase": 1,
+      "plp_dependent_enzyme": 1,
+      "radical_sam_enzyme": 1
+    },
+    "top1_correct_count": 120,
+    "top1_fingerprint_counts": {
+      "flavin_monooxygenase": 1,
+      "metal_dependent_hydrolase": 1,
+      "ser_his_acid_hydrolase": 2
+    },
+    "top1_mismatch_count": 4
+  },
+  "rows": [
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": true,
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "alkanal monooxygenase (FMN-linked)",
+        "ligand_codes": [],
+        "mechanism_text_count": 3,
+        "mechanism_text_snippets": [
+          "This proposal represents a modified version of the chemically initiated electron exchange luminescence which predicts that the oxidation potential of the flavin should affect the rate of bioluminescence reaction and found to be so in experiments with substituted FMN analogues [PMID:8422349]. Here...",
+          "This mechanism follows the Baeyer-Villiger mechanism which follows that once the FMN-peroxo adduct is formed it can nucleophilically attack the aldehyde substrate forming an intermediate which will on collapse transfer a hydride to the 2nd oxygen of the peroxo adduct resulting in the cleavage of...",
+          "This follows initially a similar reaction as the other proposals where following a double bond rearrangement of FMNH2 and the production if a radical the addition of dioxygen to flavin produces an intermediate which can then nucleophilically attack the aldehyde substrate. The flavin C(4a)-peroxyh..."
+        ],
+        "nearby_residue_count": 74,
+        "pdb_id": "1LUC",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1486,
+          "charge_balance": -0.0135,
+          "hydrophobic_fraction": 0.4054,
+          "mean_min_distance_to_active_site": 5.5226,
+          "negative_fraction": 0.0811,
+          "polar_fraction": 0.2027,
+          "positive_fraction": 0.0676,
+          "sulfur_fraction": 0.0676
+        },
+        "residue_codes": [
+          "CYS",
+          "ASP",
+          "SER",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "EDO",
+          "MG"
+        ]
+      },
+      "entry_id": "m_csa:132",
+      "evaluable": true,
+      "failure_cause": "target_cofactor_absent_from_structure",
+      "failure_modes": [
+        "top1_mismatch",
+        "abstained_positive"
+      ],
+      "label_rationale": "Alkanal monooxygenase is FMN-linked oxygenation chemistry, fitting the broad flavin monooxygenase seed fingerprint.",
+      "resolved_residue_count": 5,
+      "score_gap_top1_minus_target": 0.1252,
+      "status": "ok",
+      "target_cofactor_coverage_status": "expected_absent_from_structure",
+      "target_cofactor_evidence_level": "absent",
+      "target_component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.6384,
+        "counterevidence_penalty": 0.6,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.6,
+            "reason": "absent_flavin_context"
+          },
+          {
+            "penalty": 0.6,
+            "reason": "nad_only_or_nonflavin_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.5365
+      },
+      "target_expected_cofactor_families": [
+        "flavin",
+        "nad"
+      ],
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "target_missing_expected_cofactor_families": [
+        "flavin",
+        "nad"
+      ],
+      "target_rank": 5,
+      "target_score": 0.2669,
+      "top1_cofactor_evidence_level": "not_required",
+      "top1_component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6384,
+        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.7,
+            "reason": "ser_his_seed_missing_triad_coherence"
+          }
+        ],
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.927
+      },
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3921
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": true,
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "UDP-N-acetylenolpyruvylglucosamine reductase (MurB)",
+        "ligand_codes": [
+          "EEB"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The mechanism proceeds as follows: NADPH binds to the enzyme and hydride transfer of the 4-pro -S hydrogen of NADPH to N5 of an enzyme-bound flavin (FAD cofactor). Release of NADP+ is followed by the binding of UDP-GlcNAc to the enzyme active site. Hydride transfer from the reduced flavin to C3 o..."
+        ],
+        "nearby_residue_count": 33,
+        "pdb_id": "1MBB",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1515,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3636,
+          "mean_min_distance_to_active_site": 5.1337,
+          "negative_fraction": 0.0909,
+          "polar_fraction": 0.2121,
+          "positive_fraction": 0.0909,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "ARG",
+          "SER",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "EEB",
+          "FAD"
+        ]
+      },
+      "entry_id": "m_csa:353",
+      "evaluable": true,
+      "failure_cause": "target_cofactor_not_proximal",
+      "failure_modes": [
+        "top1_mismatch",
+        "abstained_positive"
+      ],
+      "label_rationale": "UDP-N-acetylenolpyruvylglucosamine reductase uses NADPH/FAD hydride transfer and substrate reduction, matching the broad flavin dehydrogenase or reductase seed.",
+      "resolved_residue_count": 3,
+      "score_gap_top1_minus_target": 0.0004,
+      "status": "ok",
+      "target_cofactor_coverage_status": "expected_structure_only",
+      "target_cofactor_evidence_level": "absent",
+      "target_component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 1.0,
+        "counterevidence_penalty": 0.6,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.6,
+            "reason": "absent_flavin_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.5
+      },
+      "target_expected_cofactor_families": [
+        "flavin"
+      ],
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "target_missing_expected_cofactor_families": [],
+      "target_rank": 2,
+      "target_score": 0.281,
+      "top1_cofactor_evidence_level": "absent",
+      "top1_component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 1.0,
+        "counterevidence_penalty": 0.6,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.6,
+            "reason": "absent_flavin_context"
+          },
+          {
+            "penalty": 0.6,
+            "reason": "nad_only_or_nonflavin_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.5045
+      },
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2814
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": true,
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "NikJ, nikkomycin biosynthesis protein P1",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "SAM is activated by the [Fe4S4]-AdoMet cluster to produce the methionine substrate and the 5'-deoxyadenosyl radical (5'-dA). The 5'-dA abstracts a hydrogen atom from the substrate, which then undergoes rearrangement to form the second ring structure. This then abstracts a hydrogen atom from Cys19..."
+        ],
+        "nearby_residue_count": 0,
+        "pdb_id": null,
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.0,
+          "mean_min_distance_to_active_site": 0.0,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.0,
+          "positive_fraction": 0.0,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "entry_id": "m_csa:372",
+      "evaluable": false,
+      "failure_cause": "target_cofactor_absent_from_structure",
+      "failure_modes": [
+        "top1_mismatch",
+        "abstained_positive"
+      ],
+      "label_rationale": "NikJ uses a [4Fe-4S]-AdoMet radical mechanism, matching the radical SAM enzyme seed despite limited resolved local geometry.",
+      "resolved_residue_count": 0,
+      "score_gap_top1_minus_target": 0.0,
+      "status": "no_structure_positions",
+      "target_cofactor_coverage_status": "expected_absent_from_structure",
+      "target_cofactor_evidence_level": "absent",
+      "target_component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.0,
+        "counterevidence_penalty": 1.0,
+        "counterevidence_penalty_details": [],
+        "counterevidence_reasons": [],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.0,
+        "role_match_fraction": 0.0,
+        "substrate_pocket_score": 0.5
+      },
+      "target_expected_cofactor_families": [
+        "fe_s_cluster",
+        "sam"
+      ],
+      "target_fingerprint_id": "radical_sam_enzyme",
+      "target_missing_expected_cofactor_families": [
+        "fe_s_cluster",
+        "sam"
+      ],
+      "target_rank": 2,
+      "target_score": 0.075,
+      "top1_cofactor_evidence_level": "absent",
+      "top1_component_scores": {
+        "cofactor_context_score": 0.0,
+        "compactness_score": 0.0,
+        "counterevidence_penalty": 1.0,
+        "counterevidence_penalty_details": [],
+        "counterevidence_reasons": [],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.0,
+        "role_match_fraction": 0.0,
+        "substrate_pocket_score": 0.5
+      },
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.075
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": true,
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "8-amino-7-oxononanoate synthase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The mechanism of AONS catalysis appears to be similar to those of other PLP-dependent enzymes. The catalysed reaction involves an acylation step with inversion of configuration and a decarboxylation with retention of configuration. The steps involved are as follows: <ol> <li>Formation of the Ala-..."
+        ],
+        "nearby_residue_count": 65,
+        "pdb_id": "1BS0",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0923,
+          "charge_balance": -0.0461,
+          "hydrophobic_fraction": 0.3846,
+          "mean_min_distance_to_active_site": 5.2785,
+          "negative_fraction": 0.0923,
+          "polar_fraction": 0.2769,
+          "positive_fraction": 0.0462,
+          "sulfur_fraction": 0.0462
+        },
+        "residue_codes": [
+          "LYS",
+          "SER",
+          "ASP",
+          "HIS",
+          "HIS",
+          "GLU",
+          "ASN"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4"
+        ]
+      },
+      "entry_id": "m_csa:430",
+      "evaluable": true,
+      "failure_cause": "target_cofactor_absent_from_structure",
+      "failure_modes": [
+        "top1_mismatch",
+        "abstained_positive"
+      ],
+      "label_rationale": "8-amino-7-oxononanoate synthase uses PLP external aldimine chemistry with acylation and decarboxylation steps, matching the broad PLP-dependent enzyme seed.",
+      "resolved_residue_count": 7,
+      "score_gap_top1_minus_target": 0.035,
+      "status": "ok",
+      "target_cofactor_coverage_status": "expected_absent_from_structure",
+      "target_cofactor_evidence_level": "absent",
+      "target_component_scores": {
+        "cofactor_context_score": 0.15,
+        "compactness_score": 0.9175,
+        "counterevidence_penalty": 0.75,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.75,
+            "reason": "absent_plp_ligand_with_lysine_anchor"
+          }
+        ],
+        "counterevidence_reasons": [
+          "absent_plp_ligand_with_lysine_anchor"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.0,
+        "substrate_pocket_score": 0.2292
+      },
+      "target_expected_cofactor_families": [
+        "plp"
+      ],
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_missing_expected_cofactor_families": [
+        "plp"
+      ],
+      "target_rank": 3,
+      "target_score": 0.3636,
+      "top1_cofactor_evidence_level": "not_required",
+      "top1_component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.9175,
+        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.7,
+            "reason": "ser_his_seed_missing_triad_coherence"
+          }
+        ],
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.8667
+      },
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3986
+    }
+  ]
+}

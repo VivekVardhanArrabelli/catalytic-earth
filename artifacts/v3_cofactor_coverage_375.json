@@ -1672,7 +1672,7 @@
       ],
       "target_fingerprint_id": "plp_dependent_enzyme",
       "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.6035
+      "top1_score": 0.6835
     },
     {
       "abstained": false,
@@ -3884,7 +3884,7 @@
       ],
       "target_fingerprint_id": "plp_dependent_enzyme",
       "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.5919
+      "top1_score": 0.6719
     },
     {
       "abstained": false,
@@ -5749,7 +5749,7 @@
       ],
       "target_fingerprint_id": "plp_dependent_enzyme",
       "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.5055
+      "top1_score": 0.5855
     },
     {
       "abstained": false,
@@ -7239,7 +7239,7 @@
       ],
       "target_fingerprint_id": "plp_dependent_enzyme",
       "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.7039
+      "top1_score": 0.7839
     },
     {
       "abstained": false,
@@ -7602,7 +7602,7 @@
       ],
       "target_fingerprint_id": "plp_dependent_enzyme",
       "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.5837
+      "top1_score": 0.6637
     },
     {
       "abstained": false,
@@ -7943,7 +7943,7 @@
       ],
       "target_fingerprint_id": "plp_dependent_enzyme",
       "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.6947
+      "top1_score": 0.7747
     },
     {
       "abstained": false,

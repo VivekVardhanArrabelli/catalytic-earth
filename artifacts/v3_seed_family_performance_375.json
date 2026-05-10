@@ -152,9 +152,9 @@
       "evidence_limited_entry_ids": [],
       "fingerprint_id": "plp_dependent_enzyme",
       "labeled_count": 11,
-      "max_top1_score": 0.7039,
-      "mean_top1_score": 0.6,
-      "min_top1_score": 0.5055,
+      "max_top1_score": 0.7839,
+      "mean_top1_score": 0.6436,
+      "min_top1_score": 0.5721,
       "retained_count": 11,
       "retained_top3_correct_count": 11,
       "retention_rate_evaluable": 1.0,
@@ -330,14 +330,14 @@
   },
   "out_of_scope_top1_families": [
     {
-      "abstained_count": 142,
+      "abstained_count": 139,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 70,
+        "absent": 67,
         "ligand_supported": 47,
         "role_inferred": 28
       },
-      "count": 145,
+      "count": 142,
       "entry_ids": [
         "m_csa:2",
         "m_csa:7",
@@ -421,14 +421,12 @@
         "m_csa:198",
         "m_csa:199",
         "m_csa:200",
-        "m_csa:203",
         "m_csa:206",
         "m_csa:215",
         "m_csa:223",
         "m_csa:224",
         "m_csa:231",
         "m_csa:234",
-        "m_csa:235",
         "m_csa:236",
         "m_csa:240",
         "m_csa:243",
@@ -455,7 +453,6 @@
         "m_csa:299",
         "m_csa:306",
         "m_csa:308",
-        "m_csa:309",
         "m_csa:310",
         "m_csa:312",
         "m_csa:313",
@@ -485,22 +482,22 @@
         "m_csa:374",
         "m_csa:375"
       ],
-      "evaluable_count": 142,
+      "evaluable_count": 139,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "metal_dependent_hydrolase",
       "max_top1_score": 0.4114,
-      "mean_top1_score": 0.3699,
+      "mean_top1_score": 0.3692,
       "min_top1_score": 0.26
     },
     {
-      "abstained_count": 50,
+      "abstained_count": 51,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 50,
+        "absent": 51,
         "ligand_supported": 1
       },
-      "count": 51,
+      "count": 52,
       "entry_ids": [
         "m_csa:4",
         "m_csa:10",
@@ -531,6 +528,7 @@
         "m_csa:226",
         "m_csa:227",
         "m_csa:228",
+        "m_csa:235",
         "m_csa:237",
         "m_csa:241",
         "m_csa:245",
@@ -554,21 +552,21 @@
         "m_csa:351",
         "m_csa:362"
       ],
-      "evaluable_count": 50,
+      "evaluable_count": 51,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "heme_peroxidase_oxidase",
       "max_top1_score": 0.4109,
-      "mean_top1_score": 0.3506,
+      "mean_top1_score": 0.3498,
       "min_top1_score": 0.2898
     },
     {
-      "abstained_count": 40,
+      "abstained_count": 41,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "not_required": 40
+        "not_required": 41
       },
-      "count": 40,
+      "count": 41,
       "entry_ids": [
         "m_csa:1",
         "m_csa:17",
@@ -586,6 +584,7 @@
         "m_csa:191",
         "m_csa:201",
         "m_csa:202",
+        "m_csa:203",
         "m_csa:217",
         "m_csa:220",
         "m_csa:225",
@@ -611,12 +610,12 @@
         "m_csa:366",
         "m_csa:370"
       ],
-      "evaluable_count": 40,
+      "evaluable_count": 41,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "ser_his_acid_hydrolase",
       "max_top1_score": 0.4105,
-      "mean_top1_score": 0.3728,
+      "mean_top1_score": 0.3711,
       "min_top1_score": 0.2285
     },
     {
@@ -663,13 +662,13 @@
       "min_top1_score": 0.233
     },
     {
-      "abstained_count": 10,
+      "abstained_count": 11,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 9,
+        "absent": 10,
         "ligand_supported": 2
       },
-      "count": 11,
+      "count": 12,
       "entry_ids": [
         "m_csa:40",
         "m_csa:116",
@@ -678,17 +677,18 @@
         "m_csa:290",
         "m_csa:296",
         "m_csa:298",
+        "m_csa:309",
         "m_csa:318",
         "m_csa:326",
         "m_csa:364",
         "m_csa:368"
       ],
-      "evaluable_count": 10,
+      "evaluable_count": 11,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "flavin_monooxygenase",
       "max_top1_score": 0.3868,
-      "mean_top1_score": 0.2719,
+      "mean_top1_score": 0.2706,
       "min_top1_score": 0.1789
     },
     {

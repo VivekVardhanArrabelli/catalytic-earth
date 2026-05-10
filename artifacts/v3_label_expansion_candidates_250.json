@@ -4,7 +4,7 @@
     "candidate_count": 0,
     "candidate_group_count": 0,
     "geometry_entry_count": 249,
-    "labeled_entry_count": 375,
+    "labeled_entry_count": 450,
     "method": "geometry_label_expansion_candidate_selection",
     "ready_for_label_review_count": 0
   },
