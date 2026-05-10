@@ -211,7 +211,11 @@ Current expectation:
   reaction/substrate mismatches, active-site mapping gaps, and active-learning
   queue concentration in deferred rows, while the sequence-cluster proxy reports
   0 missing assignments and 0 near-duplicate hits among audited rows. The
-  alternate path is resolving
+  700 remediation artifacts now expose all 81 review-debt rows, all 20 new rows,
+  and a complete 152-structure alternate-PDB scan for the 13 rows that needed
+  structure-scan review; `m_csa:679`, `m_csa:696`, and `m_csa:698` have only
+  structure-wide expected-family hits and 0 local active-site expected-family
+  hits, so they remain non-countable. The alternate path is resolving
   review-state/evidence-limited rows
   (`m_csa:494`, `m_csa:510`, `m_csa:529`, `m_csa:534`, `m_csa:650`,
   `m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`), while ensuring

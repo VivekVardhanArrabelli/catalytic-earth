@@ -20,6 +20,7 @@ from .labels import (
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_review_evidence_gaps,
+    analyze_review_debt_remediation,
     analyze_structure_mapping_issues,
     audit_label_scaling_quality,
     build_active_learning_review_queue,
@@ -42,6 +43,7 @@ from .labels import (
     label_summary,
     load_labels,
     migrate_label_registry_records,
+    scan_review_debt_alternate_structures,
     summarize_label_factory_batches,
     summarize_review_debt,
     sweep_abstention_thresholds,
@@ -734,6 +736,52 @@ def cmd_summarize_review_debt(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_analyze_review_debt_remediation(args: argparse.Namespace) -> int:
+    with Path(args.review_debt).open("r", encoding="utf-8") as handle:
+        review_debt = json.load(handle)
+    with Path(args.review_evidence_gaps).open("r", encoding="utf-8") as handle:
+        review_gaps = json.load(handle)
+    graph = None
+    if args.graph:
+        with Path(args.graph).open("r", encoding="utf-8") as handle:
+            graph = json.load(handle)
+    geometry = None
+    if args.geometry:
+        with Path(args.geometry).open("r", encoding="utf-8") as handle:
+            geometry = json.load(handle)
+    max_rows = args.max_rows if args.max_rows > 0 else None
+    plan = analyze_review_debt_remediation(
+        review_debt,
+        review_gaps,
+        graph=graph,
+        geometry=geometry,
+        debt_status=args.debt_status,
+        max_rows=max_rows,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote review debt remediation plan to "
+        f"{args.out} ({plan['metadata']['emitted_row_count']} rows)"
+    )
+    return 0
+
+
+def cmd_scan_review_debt_alternate_structures(args: argparse.Namespace) -> int:
+    with Path(args.remediation).open("r", encoding="utf-8") as handle:
+        remediation = json.load(handle)
+    scan = scan_review_debt_alternate_structures(
+        remediation,
+        max_entries=args.max_entries,
+        max_structures_per_entry=args.max_structures_per_entry,
+    )
+    write_json(Path(args.out), scan)
+    print(
+        "Wrote review debt alternate-structure scan to "
+        f"{args.out} ({scan['metadata']['scanned_structure_count']} structures)"
+    )
+    return 0
+
+
 def cmd_check_label_preview_promotion(args: argparse.Namespace) -> int:
     with Path(args.preview_acceptance).open("r", encoding="utf-8") as handle:
         acceptance = json.load(handle)
@@ -790,6 +838,10 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
     if args.sequence_clusters:
         with Path(args.sequence_clusters).open("r", encoding="utf-8") as handle:
             sequence_clusters = json.load(handle)
+    alternate_structure_scan = None
+    if args.alternate_structure_scan:
+        with Path(args.alternate_structure_scan).open("r", encoding="utf-8") as handle:
+            alternate_structure_scan = json.load(handle)
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -802,6 +854,7 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         structure_mapping=structure_mapping,
         expert_review_export=expert_review_export,
         sequence_clusters=sequence_clusters,
+        alternate_structure_scan=alternate_structure_scan,
         batch_id=args.batch_id,
     )
     write_json(Path(args.out), audit)
@@ -1504,6 +1557,53 @@ def build_parser() -> argparse.ArgumentParser:
     review_debt.add_argument("--out", default="artifacts/v3_review_debt_summary.json")
     review_debt.set_defaults(func=cmd_summarize_review_debt)
 
+    review_debt_remediation = subparsers.add_parser(
+        "analyze-review-debt-remediation",
+        help="plan concrete remediation checks for pending review-debt rows",
+    )
+    review_debt_remediation.add_argument(
+        "--review-debt",
+        default="artifacts/v3_review_debt_summary.json",
+    )
+    review_debt_remediation.add_argument(
+        "--review-evidence-gaps",
+        default="artifacts/v3_review_evidence_gaps.json",
+    )
+    review_debt_remediation.add_argument("--graph", default=None)
+    review_debt_remediation.add_argument("--geometry", default=None)
+    review_debt_remediation.add_argument(
+        "--debt-status",
+        choices=["new", "carried", "all"],
+        default="new",
+    )
+    review_debt_remediation.add_argument(
+        "--max-rows",
+        type=int,
+        default=0,
+        help="optional row cap; 0 emits all requested debt rows",
+    )
+    review_debt_remediation.add_argument(
+        "--out",
+        default="artifacts/v3_review_debt_remediation.json",
+    )
+    review_debt_remediation.set_defaults(func=cmd_analyze_review_debt_remediation)
+
+    alternate_scan = subparsers.add_parser(
+        "scan-review-debt-alternate-structures",
+        help="scan bounded alternate PDB structures for review-debt cofactor evidence",
+    )
+    alternate_scan.add_argument(
+        "--remediation",
+        default="artifacts/v3_review_debt_remediation.json",
+    )
+    alternate_scan.add_argument("--max-entries", type=int, default=5)
+    alternate_scan.add_argument("--max-structures-per-entry", type=int, default=6)
+    alternate_scan.add_argument(
+        "--out",
+        default="artifacts/v3_review_debt_alternate_structure_scan.json",
+    )
+    alternate_scan.set_defaults(func=cmd_scan_review_debt_alternate_structures)
+
     preview_promotion = subparsers.add_parser(
         "check-label-preview-promotion",
         help="separate mechanical preview acceptance from promotion readiness",
@@ -1564,6 +1664,7 @@ def build_parser() -> argparse.ArgumentParser:
     scaling_quality.add_argument("--structure-mapping", default=None)
     scaling_quality.add_argument("--expert-review-export", default=None)
     scaling_quality.add_argument("--sequence-clusters", default=None)
+    scaling_quality.add_argument("--alternate-structure-scan", default=None)
     scaling_quality.add_argument(
         "--out",
         default="artifacts/v3_label_scaling_quality_audit.json",

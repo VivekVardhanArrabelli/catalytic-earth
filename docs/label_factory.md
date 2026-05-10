@@ -143,6 +143,49 @@ artifact is provided, the summary records carried versus new review-debt rows
 and full carried/new entry-id lists so preview growth is auditable even when
 the prioritized row table is capped.
 
+`analyze-review-debt-remediation` expands review-debt triage into a
+structure-aware repair plan without making any label countable. It preserves
+every requested debt row, links it to the selected geometry structure, graph
+reference proteins, candidate PDB structures, alternate PDB availability,
+M-CSA residue-position coverage, cofactor gap reasons, and a concrete repair
+bucket. For the accepted 700 state this closes the previous visibility gap
+where the summary metadata listed 20 new review-debt ids but the capped row
+table only exposed detailed triage for a subset. The focused accepted-700
+artifact covers the 20 new rows; `artifacts/v3_review_debt_remediation_700_all.json`
+covers all 81 current review-debt rows. The full plan currently records 69
+rows where alternate PDBs exist but none of those alternates have M-CSA
+residue-position support, so those alternates cannot provide local active-site
+evidence without a stronger remapping pass.
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli analyze-review-debt-remediation \
+  --review-debt artifacts/v3_review_debt_summary_700.json \
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
+  --graph artifacts/v1_graph_700.json \
+  --geometry artifacts/v3_geometry_features_700.json \
+  --debt-status new \
+  --out artifacts/v3_review_debt_remediation_700.json
+```
+
+`scan-review-debt-alternate-structures` performs a bounded structure-wide ligand
+scan for remediation rows that need alternate-PDB or local-structure selection
+review. When M-CSA residue positions are available for a scanned PDB, it also
+computes local ligand context around those catalytic residues. The scan is
+explicitly review evidence only: expected cofactor-family hits remain
+non-countable unless later evidence shows local active-site support and clears
+the factory gates. The accepted-700 scan covers all 13 structure-scan
+candidates, scans 152 candidate PDB structures with 0 fetch failures, finds
+structure-wide expected-family hits for `m_csa:679`, `m_csa:696`, and
+`m_csa:698`, and records that all three still lack local active-site support.
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
+  --remediation artifacts/v3_review_debt_remediation_700.json \
+  --max-entries 13 \
+  --max-structures-per-entry 60 \
+  --out artifacts/v3_review_debt_alternate_structure_scan_700.json
+```
+
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt \
   --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
@@ -306,6 +349,7 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality \
   --structure-mapping artifacts/v3_structure_mapping_issues_700.json \
   --expert-review-export artifacts/v3_expert_review_export_700_preview_post_batch.json \
   --sequence-clusters artifacts/v3_sequence_cluster_proxy_700.json \
+  --alternate-structure-scan artifacts/v3_review_debt_alternate_structure_scan_700.json \
   --out artifacts/v3_label_scaling_quality_audit_700_preview.json
 ```
 
@@ -367,7 +411,9 @@ Current 700-queue gate state:
   scope pressure, family-propagation boundaries, cofactor ambiguity,
   reaction/substrate mismatches, active-site mapping gaps, and
   hydrolysis-dominated queue composition as promotion-review issues for
-  deferred rows.
+  deferred rows. The attached alternate-structure scan adds a separate warning
+  for structure-wide expected-family hits that still lack local active-site
+  support.
 
 ## Automation Lock
 

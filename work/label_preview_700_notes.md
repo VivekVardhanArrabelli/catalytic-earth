@@ -54,3 +54,40 @@ their gap reasons. The highest-value next repair is an alternate-structure or
 cofactor-source inspection for the new 700 debt rows, especially the heme/flavin
 absence patterns that are producing below-threshold, counterevidence-heavy
 deferrals.
+
+## 700 Remediation Pass
+
+`artifacts/v3_review_debt_remediation_700.json` now expands the 20 new
+review-debt rows into a structure-aware repair plan. The buckets are:
+
+- 12 `alternate_pdb_ligand_scan`
+- 3 `external_cofactor_source_review`
+- 1 `active_site_mapping_repair`
+- 1 `local_mapping_or_structure_selection_review`
+- 1 `expert_family_boundary_review`
+- 2 `expert_label_decision`
+
+`artifacts/v3_review_debt_remediation_700_all.json` applies the same
+structure-aware plan to all 81 review-debt rows. Across the full debt surface,
+the repair buckets are 37 `alternate_pdb_ligand_scan`, 9
+`local_mapping_or_structure_selection_review`, 9 `external_cofactor_source_review`,
+7 `expert_family_boundary_review`, 16 `expert_label_decision`, and 3
+`active_site_mapping_repair`. The full plan also records 69 rows where
+alternate PDBs exist but none of those alternates have M-CSA residue-position
+support, making them structure-wide review leads rather than local active-site
+evidence.
+
+`artifacts/v3_review_debt_alternate_structure_scan_700.json` scanned all 13
+rows that needed alternate-PDB or local-structure selection review, covering
+152 candidate PDB structures with 0 fetch failures. Ten rows had no expected
+cofactor family in any scanned candidate structure: `m_csa:687`, `m_csa:680`,
+`m_csa:678`, `m_csa:690`, `m_csa:691`, `m_csa:700`, `m_csa:682`, `m_csa:693`,
+`m_csa:695`, and `m_csa:702`.
+
+Three rows had structure-wide expected-family hits: `m_csa:679`, `m_csa:696`,
+and `m_csa:698`. The scan also computed local ligand context wherever M-CSA
+residue positions were available, and no row had a local expected-family hit.
+These rows remain review debt, not countable labels. In particular, the
+alternate PDB hits for `m_csa:679` and `m_csa:696` have 0 M-CSA
+residue-position support, and `m_csa:698` resolves the selected catalytic
+residues but only sees local `MTE`, not local metal support.

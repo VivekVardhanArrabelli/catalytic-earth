@@ -595,6 +595,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         scaling_quality_700 = _load_json(
             ROOT / "artifacts" / "v3_label_scaling_quality_audit_700_preview.json"
         )
+        remediation_700 = _load_json(
+            ROOT / "artifacts" / "v3_review_debt_remediation_700.json"
+        )
+        remediation_700_all = _load_json(
+            ROOT / "artifacts" / "v3_review_debt_remediation_700_all.json"
+        )
+        alternate_scan_700 = _load_json(
+            ROOT / "artifacts" / "v3_review_debt_alternate_structure_scan_700.json"
+        )
         sequence_clusters_675 = _load_json(
             ROOT / "artifacts" / "v3_sequence_cluster_proxy_675.json"
         )
@@ -772,6 +781,100 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             scaling_quality_700["metadata"]["accepted_clean_label_entry_ids"],
             ["m_csa:686", "m_csa:688", "m_csa:694", "m_csa:697", "m_csa:699"],
+        )
+        self.assertTrue(scaling_quality_700["metadata"]["alternate_structure_scan_present"])
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "alternate_structure_scan_expected_family_hit_entry_ids"
+            ],
+            ["m_csa:679", "m_csa:696", "m_csa:698"],
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "alternate_structure_scan_local_expected_family_hit_entry_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "alternate_structure_scan_structure_wide_hit_without_local_support_entry_ids"
+            ],
+            ["m_csa:679", "m_csa:696", "m_csa:698"],
+        )
+        self.assertIn(
+            "alternate_structure_hits_lack_local_support",
+            scaling_quality_700["review_warnings"],
+        )
+        self.assertEqual(remediation_700["metadata"]["requested_entry_count"], 20)
+        self.assertEqual(remediation_700["metadata"]["emitted_row_count"], 20)
+        self.assertTrue(remediation_700["metadata"]["all_requested_entries_have_gap_detail"])
+        self.assertEqual(remediation_700_all["metadata"]["requested_entry_count"], 81)
+        self.assertEqual(remediation_700_all["metadata"]["emitted_row_count"], 81)
+        self.assertTrue(remediation_700_all["metadata"]["all_requested_entries_have_gap_detail"])
+        self.assertEqual(remediation_700_all["metadata"]["missing_geometry_entry_ids"], [])
+        self.assertEqual(remediation_700["metadata"]["alternate_pdb_position_gap_entry_count"], 16)
+        self.assertEqual(remediation_700_all["metadata"]["alternate_pdb_position_gap_entry_count"], 69)
+        self.assertEqual(remediation_700_all["metadata"]["selected_pdb_position_gap_entry_count"], 0)
+        self.assertEqual(remediation_700["metadata"]["missing_graph_context_entry_ids"], [])
+        self.assertEqual(remediation_700["metadata"]["missing_geometry_entry_ids"], [])
+        self.assertEqual(
+            remediation_700["metadata"]["remediation_bucket_counts"],
+            {
+                "active_site_mapping_repair": 1,
+                "alternate_pdb_ligand_scan": 12,
+                "expert_family_boundary_review": 1,
+                "expert_label_decision": 2,
+                "external_cofactor_source_review": 3,
+                "local_mapping_or_structure_selection_review": 1,
+            },
+        )
+        remediation_rows = {row["entry_id"]: row for row in remediation_700["rows"]}
+        self.assertEqual(
+            remediation_rows["m_csa:687"]["remediation_bucket"],
+            "alternate_pdb_ligand_scan",
+        )
+        self.assertEqual(remediation_rows["m_csa:687"]["alternate_pdb_count"], 20)
+        self.assertEqual(
+            remediation_rows["m_csa:692"]["remediation_bucket"],
+            "active_site_mapping_repair",
+        )
+        self.assertEqual(
+            remediation_rows["m_csa:698"]["remediation_bucket"],
+            "local_mapping_or_structure_selection_review",
+        )
+        self.assertEqual(remediation_rows["m_csa:679"]["selected_pdb_residue_position_count"], 5)
+        self.assertEqual(
+            remediation_rows["m_csa:679"]["alternate_pdb_with_residue_positions_count"],
+            0,
+        )
+        self.assertEqual(
+            remediation_rows["m_csa:696"]["alternate_pdb_with_residue_positions_count"],
+            0,
+        )
+        self.assertEqual(
+            remediation_rows["m_csa:698"]["alternate_pdb_with_residue_positions_count"],
+            0,
+        )
+        self.assertEqual(alternate_scan_700["metadata"]["candidate_entry_count"], 13)
+        self.assertEqual(alternate_scan_700["metadata"]["scanned_entry_count"], 13)
+        self.assertEqual(alternate_scan_700["metadata"]["scanned_structure_count"], 152)
+        self.assertEqual(alternate_scan_700["metadata"]["fetch_failure_count"], 0)
+        self.assertEqual(
+            alternate_scan_700["metadata"]["expected_family_hit_entry_ids"],
+            ["m_csa:679", "m_csa:696", "m_csa:698"],
+        )
+        self.assertEqual(
+            alternate_scan_700["metadata"][
+                "structure_wide_hit_without_local_support_entry_ids"
+            ],
+            ["m_csa:679", "m_csa:696", "m_csa:698"],
+        )
+        self.assertEqual(
+            alternate_scan_700["metadata"]["scan_outcome_counts"],
+            {
+                "alternate_structure_has_expected_cofactor_candidate": 3,
+                "no_expected_cofactor_in_scanned_structures": 10,
+            },
         )
         self.assertEqual(sequence_clusters_700["metadata"]["entry_count"], 700)
         self.assertEqual(sequence_clusters_700["metadata"]["missing_reference_count"], 0)

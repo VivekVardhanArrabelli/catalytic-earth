@@ -16,6 +16,7 @@ from catalytic_earth.structure import (
     parse_atom_site_loop,
     residue_centroid,
     select_residue_atoms,
+    structure_ligand_inventory_from_atoms,
 )
 
 
@@ -104,6 +105,16 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(context["structure_ligand_codes"], ["HEM", "FAD"])
         self.assertIn("flavin", context["structure_cofactor_families"])
         self.assertGreaterEqual(context["proximal_ligands"][0]["instance_count"], 1)
+
+    def test_structure_ligand_inventory_summarizes_structure_wide_cofactors(self) -> None:
+        atoms = parse_atom_site_loop(SAMPLE_CIF)
+        inventory = structure_ligand_inventory_from_atoms(atoms)
+
+        self.assertEqual(inventory["ligand_codes"], ["FAD", "HEM"])
+        self.assertEqual(inventory["cofactor_families"], ["flavin", "heme"])
+        ligands_by_code = {item["code"]: item for item in inventory["ligands"]}
+        self.assertEqual(ligands_by_code["HEM"]["instance_count"], 1)
+        self.assertEqual(ligands_by_code["HEM"]["atom_count"], 2)
 
     def test_ligand_context_infers_cobalamin_codes(self) -> None:
         context = ligand_context_from_atoms(

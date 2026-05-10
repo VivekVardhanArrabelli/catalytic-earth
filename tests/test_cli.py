@@ -312,6 +312,119 @@ class CliTests(unittest.TestCase):
             )
             self.assertEqual(summary["rows"][0]["entry_id"], "m_csa:650")
 
+    def test_analyze_review_debt_remediation_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            debt = root / "review_debt.json"
+            gaps = root / "review_gaps.json"
+            graph = root / "graph.json"
+            geometry = root / "geometry.json"
+            out = root / "remediation.json"
+            debt.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_summary",
+                            "review_debt_entry_ids": ["m_csa:651"],
+                            "new_review_debt_entry_ids": ["m_csa:651"],
+                            "carried_review_debt_entry_ids": [],
+                        },
+                        "rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gaps.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_evidence_gap_analysis"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:651",
+                                "entry_name": "flavin gap",
+                                "decision_action": "mark_needs_more_evidence",
+                                "coverage_status": "expected_absent_from_structure",
+                                "gap_reasons": ["expected_cofactor_absent_from_structure"],
+                                "expected_cofactor_families": ["flavin"],
+                                "local_cofactor_families": [],
+                                "structure_cofactor_families": [],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {
+                                "id": "pdb:1AAA",
+                                "type": "structure",
+                                "structure_source": "pdb",
+                                "structure_id": "1AAA",
+                            },
+                            {
+                                "id": "pdb:2BBB",
+                                "type": "structure",
+                                "structure_source": "pdb",
+                                "structure_id": "2BBB",
+                            },
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:651",
+                                "target": "uniprot:P651",
+                                "predicate": "has_reference_protein",
+                            },
+                            {
+                                "source": "uniprot:P651",
+                                "target": "pdb:1AAA",
+                                "predicate": "has_structure",
+                            },
+                            {
+                                "source": "uniprot:P651",
+                                "target": "pdb:2BBB",
+                                "predicate": "has_structure",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            geometry.write_text(
+                json.dumps({"entries": [{"entry_id": "m_csa:651", "pdb_id": "1AAA", "status": "ok"}]}),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "analyze-review-debt-remediation",
+                    "--review-debt",
+                    str(debt),
+                    "--review-evidence-gaps",
+                    str(gaps),
+                    "--graph",
+                    str(graph),
+                    "--geometry",
+                    str(geometry),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            plan = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(plan["metadata"]["requested_entry_count"], 1)
+            self.assertEqual(plan["rows"][0]["entry_id"], "m_csa:651")
+            self.assertEqual(plan["rows"][0]["alternate_pdb_ids"], ["2BBB"])
+
     def test_check_label_preview_promotion_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -425,6 +538,7 @@ class CliTests(unittest.TestCase):
             decision = root / "decision.json"
             mapping = root / "mapping.json"
             sequence_clusters = root / "sequence_clusters.json"
+            alternate_scan = root / "alternate_scan.json"
             out = root / "audit.json"
             acceptance.write_text(
                 json.dumps(
@@ -526,6 +640,21 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            alternate_scan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_alternate_structure_scan",
+                            "expected_family_hit_entry_ids": ["m_csa:651"],
+                            "structure_wide_hit_without_local_support_entry_ids": [
+                                "m_csa:651"
+                            ],
+                            "fetch_failure_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -555,6 +684,8 @@ class CliTests(unittest.TestCase):
                     str(mapping),
                     "--sequence-clusters",
                     str(sequence_clusters),
+                    "--alternate-structure-scan",
+                    str(alternate_scan),
                     "--out",
                     str(out),
                 ],
@@ -572,6 +703,8 @@ class CliTests(unittest.TestCase):
                 audit["metadata"]["near_duplicate_audit_status"],
                 "not_observed_in_sequence_cluster_artifact",
             )
+            self.assertTrue(audit["metadata"]["alternate_structure_scan_present"])
+            self.assertIn("alternate_structure_hits_lack_local_support", audit["review_warnings"])
 
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

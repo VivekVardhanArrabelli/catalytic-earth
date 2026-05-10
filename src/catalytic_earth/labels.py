@@ -11,7 +11,17 @@ from typing import Any
 from .fingerprints import load_fingerprints
 from .ontology import fingerprint_family, load_mechanism_ontology
 from .sources import PROJECT_ROOT
-from .structure import COFACTOR_LIGAND_MAP, METAL_ION_CODES
+from .structure import (
+    COFACTOR_LIGAND_MAP,
+    METAL_ION_CODES,
+    atom_position,
+    fetch_pdb_cif,
+    ligand_context_from_atoms,
+    parse_atom_site_loop,
+    residue_centroid,
+    select_residue_atoms,
+    structure_ligand_inventory_from_atoms,
+)
 
 
 LABEL_REGISTRY = PROJECT_ROOT / "data" / "registries" / "curated_mechanism_labels.json"
@@ -3806,6 +3816,465 @@ def summarize_review_debt(
     }
 
 
+def analyze_review_debt_remediation(
+    review_debt: dict[str, Any],
+    review_evidence_gaps: dict[str, Any],
+    *,
+    graph: dict[str, Any] | None = None,
+    geometry: dict[str, Any] | None = None,
+    debt_status: str = "new",
+    max_rows: int | None = None,
+) -> dict[str, Any]:
+    """Plan concrete follow-up checks for review-debt rows without counting labels."""
+    if debt_status not in {"new", "carried", "all"}:
+        raise ValueError("debt_status must be one of: new, carried, all")
+
+    debt_meta = review_debt.get("metadata", {})
+    new_ids = _sorted_entry_ids(debt_meta.get("new_review_debt_entry_ids", []))
+    carried_ids = _sorted_entry_ids(debt_meta.get("carried_review_debt_entry_ids", []))
+    all_ids = _sorted_entry_ids(debt_meta.get("review_debt_entry_ids", []))
+    if not all_ids:
+        all_ids = _sorted_entry_ids(
+            row.get("entry_id")
+            for row in review_debt.get("rows", [])
+            if isinstance(row, dict)
+        )
+    if debt_status == "new":
+        selected_ids = new_ids
+    elif debt_status == "carried":
+        selected_ids = carried_ids
+    else:
+        selected_ids = all_ids
+
+    selected_set = set(selected_ids)
+    debt_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in review_debt.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    gap_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in review_evidence_gaps.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    graph_context_by_entry = _review_debt_graph_context_by_entry(graph)
+    geometry_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (geometry or {}).get("entries", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    rows: list[dict[str, Any]] = []
+    for entry_id in selected_ids:
+        gap_row = gap_rows_by_entry.get(entry_id, {"entry_id": entry_id})
+        debt_row = debt_rows_by_entry.get(entry_id, {})
+        graph_context = graph_context_by_entry.get(entry_id, {})
+        geometry_row = geometry_by_entry.get(entry_id, {})
+        gap_reasons = [str(reason) for reason in gap_row.get("gap_reasons", [])]
+        coverage_status = str(gap_row.get("coverage_status", "unknown"))
+        priority_score = debt_row.get("priority_score")
+        if priority_score is None:
+            priority_score = _review_debt_priority_score(
+                gap_reasons,
+                coverage_status,
+                debt_row.get("active_queue_rank"),
+            )
+        selected_pdb_id = geometry_row.get("pdb_id")
+        pdb_structure_ids = graph_context.get("pdb_structure_ids", [])
+        alternate_pdb_ids = [
+            pdb_id for pdb_id in pdb_structure_ids if pdb_id != selected_pdb_id
+        ]
+        residue_position_counts = graph_context.get("pdb_residue_position_counts", {})
+        residue_positions = graph_context.get("pdb_residue_positions", {})
+        candidate_position_counts = {
+            pdb_id: int(residue_position_counts.get(pdb_id, 0) or 0)
+            for pdb_id in pdb_structure_ids
+        }
+        alternate_position_counts = {
+            pdb_id: int(residue_position_counts.get(pdb_id, 0) or 0)
+            for pdb_id in alternate_pdb_ids
+        }
+        expected_families = _sorted_strings(gap_row.get("expected_cofactor_families", []))
+        local_families = _sorted_strings(gap_row.get("local_cofactor_families", []))
+        structure_families = _sorted_strings(
+            gap_row.get("structure_cofactor_families", [])
+        )
+        row = {
+            "entry_id": entry_id,
+            "entry_name": gap_row.get("entry_name") or debt_row.get("entry_name"),
+            "debt_status": _review_debt_status(entry_id, new_ids, carried_ids),
+            "priority_score": round(float(priority_score or 0.0), 4),
+            "recommended_next_action": debt_row.get("recommended_next_action")
+            or _review_debt_next_action(gap_reasons, coverage_status),
+            "remediation_bucket": _review_debt_remediation_bucket(
+                gap_reasons,
+                coverage_status,
+                geometry_row=geometry_row,
+                alternate_pdb_count=len(alternate_pdb_ids),
+            ),
+            "coverage_status": coverage_status,
+            "gap_reasons": sorted(set(gap_reasons)),
+            "counterevidence_reasons": gap_row.get("counterevidence_reasons", []),
+            "target_fingerprint_id": gap_row.get("target_fingerprint_id"),
+            "top1_fingerprint_id": gap_row.get("top1_fingerprint_id"),
+            "top1_score": gap_row.get("top1_score"),
+            "target_score": gap_row.get("target_score"),
+            "expected_cofactor_families": expected_families,
+            "local_cofactor_families": local_families,
+            "structure_cofactor_families": structure_families,
+            "matching_structure_ligands": gap_row.get("matching_structure_ligands", []),
+            "nearest_expected_ligand_distance_angstrom": gap_row.get(
+                "nearest_expected_ligand_distance_angstrom"
+            ),
+            "proximal_ligand_codes": _sorted_strings(gap_row.get("proximal_ligand_codes", [])),
+            "structure_ligand_codes": _sorted_strings(gap_row.get("structure_ligand_codes", [])),
+            "selected_pdb_id": selected_pdb_id,
+            "geometry_status": geometry_row.get("status"),
+            "resolved_residue_count": geometry_row.get("resolved_residue_count"),
+            "missing_positions": geometry_row.get("missing_positions"),
+            "reference_uniprot_ids": graph_context.get("reference_uniprot_ids", []),
+            "candidate_pdb_structure_count": len(pdb_structure_ids),
+            "candidate_pdb_structure_ids": pdb_structure_ids,
+            "candidate_pdb_residue_position_counts": candidate_position_counts,
+            "candidate_pdb_residue_positions": {
+                pdb_id: residue_positions.get(pdb_id, [])
+                for pdb_id in pdb_structure_ids
+                if residue_positions.get(pdb_id)
+            },
+            "candidate_pdb_with_residue_positions_count": sum(
+                1 for count in candidate_position_counts.values() if count > 0
+            ),
+            "alternate_pdb_count": len(alternate_pdb_ids),
+            "alternate_pdb_ids": alternate_pdb_ids,
+            "alternate_pdb_residue_position_counts": alternate_position_counts,
+            "alternate_pdb_with_residue_positions_count": sum(
+                1 for count in alternate_position_counts.values() if count > 0
+            ),
+            "selected_pdb_residue_position_count": int(
+                residue_position_counts.get(str(selected_pdb_id), 0) or 0
+            )
+            if selected_pdb_id
+            else 0,
+            "alphafold_structure_ids": graph_context.get("alphafold_structure_ids", []),
+            "cofactor_gap_requires_local_evidence": bool(
+                set(expected_families) - set(local_families)
+            ),
+            "selected_structure_has_expected_family": bool(
+                set(expected_families) & set(structure_families)
+            ),
+            "selected_active_site_has_expected_family": bool(
+                set(expected_families) & set(local_families)
+            ),
+        }
+        rows.append(row)
+
+    ranked_rows = sorted(
+        rows,
+        key=lambda row: (-float(row["priority_score"]), _entry_id_sort_key(row["entry_id"])),
+    )
+    if max_rows is not None and max_rows > 0:
+        output_rows = ranked_rows[:max_rows]
+    else:
+        output_rows = ranked_rows
+
+    missing_gap_ids = sorted(selected_set - set(gap_rows_by_entry), key=_entry_id_sort_key)
+    missing_graph_ids = sorted(
+        (
+            row["entry_id"]
+            for row in ranked_rows
+            if not row["reference_uniprot_ids"] and not row["candidate_pdb_structure_ids"]
+        ),
+        key=_entry_id_sort_key,
+    )
+    missing_geometry_ids = sorted(
+        (row["entry_id"] for row in ranked_rows if row["geometry_status"] is None),
+        key=_entry_id_sort_key,
+    )
+    remediation_counts = Counter(str(row["remediation_bucket"]) for row in ranked_rows)
+    coverage_counts = Counter(str(row["coverage_status"]) for row in ranked_rows)
+    gap_reason_counts = Counter(reason for row in ranked_rows for reason in row["gap_reasons"])
+    expected_family_counts = Counter(
+        family for row in ranked_rows for family in row["expected_cofactor_families"]
+    )
+    structure_availability_counts = Counter(
+        _review_debt_structure_availability(row) for row in ranked_rows
+    )
+    alternate_position_gap_entry_ids = sorted(
+        (
+            row["entry_id"]
+            for row in ranked_rows
+            if int(row.get("alternate_pdb_count", 0) or 0) > 0
+            and int(row.get("alternate_pdb_with_residue_positions_count", 0) or 0) == 0
+        ),
+        key=_entry_id_sort_key,
+    )
+    selected_position_gap_entry_ids = sorted(
+        (
+            row["entry_id"]
+            for row in ranked_rows
+            if row.get("selected_pdb_id")
+            and int(row.get("selected_pdb_residue_position_count", 0) or 0) == 0
+        ),
+        key=_entry_id_sort_key,
+    )
+
+    return {
+        "metadata": {
+            "method": "review_debt_remediation_plan",
+            "source_review_debt_method": debt_meta.get("method"),
+            "source_review_gap_method": review_evidence_gaps.get("metadata", {}).get("method"),
+            "debt_status_filter": debt_status,
+            "requested_entry_count": len(selected_ids),
+            "emitted_row_count": len(output_rows),
+            "all_requested_entries_have_gap_detail": not missing_gap_ids,
+            "missing_gap_detail_entry_ids": missing_gap_ids,
+            "missing_graph_context_entry_ids": missing_graph_ids,
+            "missing_geometry_entry_ids": missing_geometry_ids,
+            "remediation_bucket_counts": dict(sorted(remediation_counts.items())),
+            "coverage_status_counts": dict(sorted(coverage_counts.items())),
+            "gap_reason_counts": dict(sorted(gap_reason_counts.items())),
+            "expected_cofactor_family_counts": dict(sorted(expected_family_counts.items())),
+            "structure_availability_counts": dict(
+                sorted(structure_availability_counts.items())
+            ),
+            "alternate_pdb_position_gap_entry_count": len(
+                alternate_position_gap_entry_ids
+            ),
+            "alternate_pdb_position_gap_entry_ids": alternate_position_gap_entry_ids,
+            "selected_pdb_position_gap_entry_count": len(
+                selected_position_gap_entry_ids
+            ),
+            "selected_pdb_position_gap_entry_ids": selected_position_gap_entry_ids,
+            "new_review_debt_entry_ids": new_ids,
+            "carried_review_debt_entry_ids": carried_ids,
+            "triage_rule": (
+                "keep review-debt rows out of the countable benchmark; inspect "
+                "selected-structure cofactor gaps against alternate PDB availability, "
+                "active-site mapping status, and graph reference-protein context before "
+                "promoting any additional labels"
+            ),
+        },
+        "rows": output_rows,
+    }
+
+
+def scan_review_debt_alternate_structures(
+    remediation_plan: dict[str, Any],
+    *,
+    max_entries: int = 5,
+    max_structures_per_entry: int = 6,
+    cif_fetcher=fetch_pdb_cif,
+    inventory_by_pdb: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    if max_entries < 1:
+        raise ValueError("max_entries must be positive")
+    if max_structures_per_entry < 1:
+        raise ValueError("max_structures_per_entry must be positive")
+
+    scan_buckets = {
+        "alternate_pdb_ligand_scan",
+        "local_mapping_or_structure_selection_review",
+    }
+    candidate_rows = [
+        row
+        for row in remediation_plan.get("rows", [])
+        if isinstance(row, dict) and row.get("remediation_bucket") in scan_buckets
+    ]
+    selected_rows = candidate_rows[:max_entries]
+    inventory_cache: dict[str, dict[str, Any]] = {
+        str(pdb_id).upper(): dict(inventory)
+        for pdb_id, inventory in (inventory_by_pdb or {}).items()
+    }
+    output_rows: list[dict[str, Any]] = []
+    fetch_failures: list[dict[str, Any]] = []
+
+    for row in selected_rows:
+        entry_id = str(row.get("entry_id"))
+        selected_pdb_id = str(row.get("selected_pdb_id") or "").upper()
+        candidate_pdb_ids = _review_debt_scan_pdb_ids(row)
+        residue_position_counts = {
+            str(pdb_id).upper(): int(count or 0)
+            for pdb_id, count in (
+                row.get("candidate_pdb_residue_position_counts", {}) or {}
+            ).items()
+        }
+        residue_positions_by_pdb = {
+            str(pdb_id).upper(): positions
+            for pdb_id, positions in (
+                row.get("candidate_pdb_residue_positions", {}) or {}
+            ).items()
+            if isinstance(positions, list)
+        }
+        scanned_pdb_ids = candidate_pdb_ids[:max_structures_per_entry]
+        unscanned_pdb_ids = candidate_pdb_ids[max_structures_per_entry:]
+        expected_families = set(_sorted_strings(row.get("expected_cofactor_families", [])))
+        structure_hits: list[dict[str, Any]] = []
+        for pdb_id in scanned_pdb_ids:
+            try:
+                inventory = inventory_cache.get(pdb_id)
+                if inventory is None:
+                    atoms = parse_atom_site_loop(cif_fetcher(pdb_id))
+                    inventory = structure_ligand_inventory_from_atoms(atoms)
+                    inventory_cache[pdb_id] = inventory
+                else:
+                    atoms = []
+            except Exception as exc:  # network/source errors become artifact evidence
+                failure = {
+                    "entry_id": entry_id,
+                    "pdb_id": pdb_id,
+                    "error": str(exc),
+                }
+                fetch_failures.append(failure)
+                structure_hits.append(
+                    {
+                        "pdb_id": pdb_id,
+                        "fetch_error": str(exc),
+                        "ligand_codes": [],
+                        "cofactor_families": [],
+                        "expected_family_hits": [],
+                        "is_selected_structure": pdb_id == selected_pdb_id,
+                        "residue_position_count": int(
+                            residue_position_counts.get(pdb_id, 0) or 0
+                        ),
+                    }
+                )
+                continue
+            families = set(_sorted_strings(inventory.get("cofactor_families", [])))
+            expected_hits = sorted(expected_families & families)
+            local_context = _review_debt_local_ligand_context(
+                atoms if atoms else None,
+                pdb_id,
+                residue_positions_by_pdb,
+                cif_fetcher=cif_fetcher,
+                inventory_cache=inventory_cache,
+            )
+            local_families = set(
+                _sorted_strings(local_context.get("cofactor_families", []))
+            )
+            local_expected_hits = sorted(expected_families & local_families)
+            structure_hits.append(
+                {
+                    "pdb_id": pdb_id,
+                    "ligand_codes": _sorted_strings(inventory.get("ligand_codes", [])),
+                    "cofactor_families": sorted(families),
+                    "expected_family_hits": expected_hits,
+                    "local_ligand_codes": _sorted_strings(
+                        local_context.get("ligand_codes", [])
+                    ),
+                    "local_cofactor_families": sorted(local_families),
+                    "local_expected_family_hits": local_expected_hits,
+                    "local_resolved_residue_count": local_context.get(
+                        "resolved_residue_count"
+                    ),
+                    "is_selected_structure": pdb_id == selected_pdb_id,
+                    "residue_position_count": int(
+                        residue_position_counts.get(pdb_id, 0) or 0
+                    ),
+                }
+            )
+        selected_hit = any(
+            hit.get("is_selected_structure") and hit.get("expected_family_hits")
+            for hit in structure_hits
+        )
+        alternate_hit = any(
+            not hit.get("is_selected_structure") and hit.get("expected_family_hits")
+            for hit in structure_hits
+        )
+        local_hit = any(hit.get("local_expected_family_hits") for hit in structure_hits)
+        output_rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": row.get("entry_name"),
+                "remediation_bucket": row.get("remediation_bucket"),
+                "expected_cofactor_families": sorted(expected_families),
+                "selected_pdb_id": selected_pdb_id or None,
+                "candidate_pdb_count": len(candidate_pdb_ids),
+                "selected_structure_has_expected_family": bool(
+                    row.get("selected_structure_has_expected_family")
+                ),
+                "selected_active_site_has_expected_family": bool(
+                    row.get("selected_active_site_has_expected_family")
+                ),
+                "alternate_pdb_with_residue_positions_count": int(
+                    row.get("alternate_pdb_with_residue_positions_count", 0) or 0
+                ),
+                "scanned_pdb_ids": scanned_pdb_ids,
+                "unscanned_pdb_ids": unscanned_pdb_ids,
+                "scanned_pdb_residue_position_counts": {
+                    pdb_id: int(residue_position_counts.get(pdb_id, 0) or 0)
+                    for pdb_id in scanned_pdb_ids
+                },
+                "structure_hits": structure_hits,
+                "selected_structure_expected_family_observed": bool(selected_hit),
+                "alternate_structure_expected_family_observed": bool(alternate_hit),
+                "local_active_site_expected_family_observed": bool(local_hit),
+                "scan_outcome": _review_debt_scan_outcome(
+                    selected_hit=bool(selected_hit),
+                    alternate_hit=bool(alternate_hit),
+                    candidate_pdb_count=len(candidate_pdb_ids),
+                    unscanned_pdb_count=len(unscanned_pdb_ids),
+                ),
+            }
+        )
+
+    outcome_counts = Counter(str(row["scan_outcome"]) for row in output_rows)
+    expected_hit_entry_ids = sorted(
+        (
+            row["entry_id"]
+            for row in output_rows
+            if row["selected_structure_expected_family_observed"]
+            or row["alternate_structure_expected_family_observed"]
+        ),
+        key=_entry_id_sort_key,
+    )
+    structure_wide_hit_only_entry_ids = sorted(
+        (
+            row["entry_id"]
+            for row in output_rows
+            if (
+                row["selected_structure_expected_family_observed"]
+                or row["alternate_structure_expected_family_observed"]
+            )
+            and not row["local_active_site_expected_family_observed"]
+        ),
+        key=_entry_id_sort_key,
+    )
+    local_hit_entry_ids = sorted(
+        (
+            row["entry_id"]
+            for row in output_rows
+            if row["local_active_site_expected_family_observed"]
+        ),
+        key=_entry_id_sort_key,
+    )
+    return {
+        "metadata": {
+            "method": "review_debt_alternate_structure_scan",
+            "source_method": remediation_plan.get("metadata", {}).get("method"),
+            "candidate_entry_count": len(candidate_rows),
+            "scanned_entry_count": len(output_rows),
+            "unscanned_candidate_entry_count": max(0, len(candidate_rows) - len(output_rows)),
+            "max_entries": max_entries,
+            "max_structures_per_entry": max_structures_per_entry,
+            "scanned_structure_count": sum(len(row["scanned_pdb_ids"]) for row in output_rows),
+            "fetch_failure_count": len(fetch_failures),
+            "fetch_failures": fetch_failures,
+            "expected_family_hit_entry_ids": expected_hit_entry_ids,
+            "local_expected_family_hit_entry_ids": local_hit_entry_ids,
+            "structure_wide_hit_without_local_support_entry_ids": (
+                structure_wide_hit_only_entry_ids
+            ),
+            "scan_outcome_counts": dict(sorted(outcome_counts.items())),
+            "scan_rule": (
+                "bounded structure-wide ligand scan for selected high-priority "
+                "review-debt rows; hits are cofactor-source evidence for review, "
+                "not countable label acceptance"
+            ),
+        },
+        "rows": output_rows,
+    }
+
+
 def _review_debt_priority_score(
     gap_reasons: list[str],
     coverage_status: str,
@@ -3838,6 +4307,264 @@ def _review_debt_next_action(gap_reasons: list[str], coverage_status: str) -> st
     if "top1_below_abstention_threshold" in reasons:
         return "keep_abstained_until_stronger_evidence"
     return "expert_review_decision_needed"
+
+
+def _review_debt_remediation_bucket(
+    gap_reasons: list[str],
+    coverage_status: str,
+    *,
+    geometry_row: dict[str, Any],
+    alternate_pdb_count: int,
+) -> str:
+    reasons = set(gap_reasons)
+    geometry_status = str(geometry_row.get("status", "unknown"))
+    if geometry_status not in {"ok", "unknown"}:
+        return "active_site_mapping_repair"
+    if coverage_status == "expected_structure_only":
+        return "local_mapping_or_structure_selection_review"
+    if (
+        coverage_status == "expected_absent_from_structure"
+        or "expected_cofactor_absent_from_structure" in reasons
+    ):
+        if alternate_pdb_count > 0:
+            return "alternate_pdb_ligand_scan"
+        return "external_cofactor_source_review"
+    if "target_not_top1" in reasons or "counterevidence_present" in reasons:
+        return "expert_family_boundary_review"
+    if "top1_below_abstention_threshold" in reasons:
+        return "retrieval_threshold_evidence_review"
+    return "expert_label_decision"
+
+
+def _review_debt_status(
+    entry_id: str,
+    new_ids: list[str],
+    carried_ids: list[str],
+) -> str | None:
+    if entry_id in set(new_ids):
+        return "new"
+    if entry_id in set(carried_ids):
+        return "carried"
+    return None
+
+
+def _review_debt_graph_context_by_entry(
+    graph: dict[str, Any] | None,
+) -> dict[str, dict[str, Any]]:
+    if not isinstance(graph, dict):
+        return {}
+    nodes = graph.get("nodes", [])
+    node_by_id = {
+        str(node.get("id")): node
+        for node in nodes
+        if isinstance(node, dict) and isinstance(node.get("id"), str)
+    }
+    proteins_by_entry: dict[str, set[str]] = {}
+    structures_by_protein: dict[str, set[str]] = {}
+    residue_position_counts_by_entry: dict[str, Counter] = {}
+    residue_positions_by_entry: dict[str, dict[str, list[dict[str, Any]]]] = {}
+    for node in nodes:
+        if not isinstance(node, dict) or node.get("type") != "catalytic_residue":
+            continue
+        node_id = str(node.get("id", ""))
+        if ":residue:" not in node_id:
+            continue
+        entry_id = node_id.split(":residue:", 1)[0]
+        counter = residue_position_counts_by_entry.setdefault(entry_id, Counter())
+        pdb_ids_for_residue: set[str] = set()
+        for position in node.get("structure_positions", []):
+            if not isinstance(position, dict) or not position.get("pdb_id"):
+                continue
+            pdb_id = str(position.get("pdb_id", "")).upper()
+            pdb_ids_for_residue.add(pdb_id)
+            residue_positions_by_entry.setdefault(entry_id, {}).setdefault(pdb_id, []).append(
+                {
+                    "residue_node_id": node_id,
+                    "chain_name": position.get("chain_name"),
+                    "code": position.get("code"),
+                    "resid": position.get("resid"),
+                    "roles": node.get("roles", []),
+                }
+            )
+        for pdb_id in pdb_ids_for_residue:
+            counter[pdb_id] += 1
+    for edge in graph.get("edges", []):
+        if not isinstance(edge, dict):
+            continue
+        source = edge.get("source")
+        target = edge.get("target")
+        predicate = edge.get("predicate")
+        if not isinstance(source, str) or not isinstance(target, str):
+            continue
+        if predicate == "has_reference_protein" and source.startswith("m_csa:"):
+            proteins_by_entry.setdefault(source, set()).add(target)
+        elif predicate == "has_structure" and source.startswith("uniprot:"):
+            structures_by_protein.setdefault(source, set()).add(target)
+
+    context: dict[str, dict[str, Any]] = {}
+    for entry_id, proteins in proteins_by_entry.items():
+        structures = sorted(
+            {
+                structure
+                for protein_id in proteins
+                for structure in structures_by_protein.get(protein_id, set())
+            },
+            key=str,
+        )
+        pdb_ids: list[str] = []
+        alphafold_ids: list[str] = []
+        for structure_id in structures:
+            node = node_by_id.get(structure_id, {})
+            source = str(node.get("structure_source", ""))
+            raw_id = str(node.get("structure_id") or structure_id.split(":", 1)[-1])
+            if structure_id.startswith("pdb:") or source == "pdb":
+                pdb_ids.append(raw_id.upper())
+            elif structure_id.startswith("alphafold:") or source == "alphafold_db":
+                alphafold_ids.append(raw_id)
+        context[entry_id] = {
+            "reference_uniprot_ids": _sorted_strings(
+                protein.split(":", 1)[-1] for protein in proteins
+            ),
+            "pdb_structure_ids": _sorted_strings(pdb_ids),
+            "alphafold_structure_ids": _sorted_strings(alphafold_ids),
+            "pdb_residue_position_counts": dict(
+                sorted(residue_position_counts_by_entry.get(entry_id, {}).items())
+            ),
+            "pdb_residue_positions": {
+                pdb_id: positions
+                for pdb_id, positions in sorted(
+                    residue_positions_by_entry.get(entry_id, {}).items()
+                )
+            },
+        }
+    return context
+
+
+def _review_debt_structure_availability(row: dict[str, Any]) -> str:
+    if int(row.get("candidate_pdb_structure_count", 0) or 0) == 0:
+        if row.get("alphafold_structure_ids"):
+            return "alphafold_only"
+        return "no_structure_context"
+    if int(row.get("alternate_pdb_count", 0) or 0) > 0:
+        return "selected_plus_alternate_pdb"
+    return "selected_pdb_only"
+
+
+def _review_debt_scan_pdb_ids(row: dict[str, Any]) -> list[str]:
+    ordered: list[str] = []
+    selected = row.get("selected_pdb_id")
+    if selected:
+        ordered.append(str(selected).upper())
+    for pdb_id in row.get("alternate_pdb_ids", []):
+        normalized = str(pdb_id).upper()
+        if normalized and normalized not in ordered:
+            ordered.append(normalized)
+    for pdb_id in row.get("candidate_pdb_structure_ids", []):
+        normalized = str(pdb_id).upper()
+        if normalized and normalized not in ordered:
+            ordered.append(normalized)
+    return ordered
+
+
+def _review_debt_local_ligand_context(
+    atoms: list[dict[str, Any]] | None,
+    pdb_id: str,
+    residue_positions_by_pdb: dict[str, list[dict[str, Any]]],
+    *,
+    cif_fetcher=fetch_pdb_cif,
+    inventory_cache: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    positions = residue_positions_by_pdb.get(pdb_id, [])
+    if not positions:
+        return {
+            "ligand_codes": [],
+            "cofactor_families": [],
+            "resolved_residue_count": 0,
+        }
+    if atoms is None:
+        try:
+            atoms = parse_atom_site_loop(cif_fetcher(pdb_id))
+            if inventory_cache is not None and pdb_id not in inventory_cache:
+                inventory_cache[pdb_id] = structure_ligand_inventory_from_atoms(atoms)
+        except Exception:
+            return {
+                "ligand_codes": [],
+                "cofactor_families": [],
+                "resolved_residue_count": 0,
+            }
+    resolved: list[dict[str, Any]] = []
+    for position in positions:
+        if not isinstance(position, dict):
+            continue
+        if not position.get("chain_name") or position.get("resid") in {None, "", ".", "?"}:
+            continue
+        residue_atoms = select_residue_atoms(
+            atoms,
+            chain_name=position.get("chain_name"),
+            resid=position.get("resid"),
+            code=position.get("code"),
+        )
+        if not residue_atoms:
+            continue
+        resolved.append(
+            {
+                "residue_node_id": position.get("residue_node_id"),
+                "code": position.get("code"),
+                "chain_name": position.get("chain_name"),
+                "resid": position.get("resid"),
+                "centroid": residue_centroid(residue_atoms),
+                "ca": atom_position(residue_atoms, "CA"),
+                "roles": position.get("roles", []),
+            }
+        )
+    context = ligand_context_from_atoms(atoms, resolved)
+    return {
+        **context,
+        "resolved_residue_count": len(resolved),
+    }
+
+
+def _review_debt_scan_outcome(
+    *,
+    selected_hit: bool,
+    alternate_hit: bool,
+    candidate_pdb_count: int,
+    unscanned_pdb_count: int,
+) -> str:
+    if alternate_hit:
+        return "alternate_structure_has_expected_cofactor_candidate"
+    if selected_hit:
+        return "selected_structure_has_expected_cofactor_candidate"
+    if candidate_pdb_count == 0:
+        return "no_pdb_candidates_for_structure_scan"
+    if unscanned_pdb_count > 0:
+        return "no_hit_in_scanned_structures_continue_scan"
+    return "no_expected_cofactor_in_scanned_structures"
+
+
+def _sorted_entry_ids(values: Any) -> list[str]:
+    if values is None or isinstance(values, str):
+        return []
+    try:
+        iterable = list(values)
+    except TypeError:
+        return []
+    return sorted(
+        (str(value) for value in iterable if isinstance(value, str) and value),
+        key=_entry_id_sort_key,
+    )
+
+
+def _sorted_strings(values: Any) -> list[str]:
+    if isinstance(values, str):
+        values = [values]
+    if values is None:
+        return []
+    try:
+        iterable = list(values)
+    except TypeError:
+        return []
+    return sorted({str(value) for value in iterable if str(value)})
 
 
 def check_label_preview_promotion_readiness(
@@ -3995,6 +4722,7 @@ def audit_label_scaling_quality(
     structure_mapping: dict[str, Any] | None = None,
     expert_review_export: dict[str, Any] | None = None,
     sequence_clusters: dict[str, Any] | None = None,
+    alternate_structure_scan: dict[str, Any] | None = None,
     batch_id: str | None = None,
 ) -> dict[str, Any]:
     acceptance_meta = acceptance.get("metadata", {})
@@ -4003,6 +4731,7 @@ def audit_label_scaling_quality(
     family_meta = family_propagation_guardrails.get("metadata", {})
     hard_meta = hard_negatives.get("metadata", {})
     mapping_meta = (structure_mapping or {}).get("metadata", {})
+    alternate_scan_meta = (alternate_structure_scan or {}).get("metadata", {})
     new_debt_ids = sorted(
         (
             str(entry_id)
@@ -4228,6 +4957,24 @@ def audit_label_scaling_quality(
         review_warnings.append("sequence_cluster_artifact_missing_for_near_duplicate_audit")
     elif near_duplicate_audit_status == "observed":
         review_warnings.append("candidate_entries_share_sequence_clusters")
+    alternate_scan_fetch_failure_count = int(
+        alternate_scan_meta.get("fetch_failure_count", 0) or 0
+    )
+    alternate_scan_expected_hits = _sorted_entry_ids(
+        alternate_scan_meta.get("expected_family_hit_entry_ids", [])
+    )
+    alternate_scan_local_hits = _sorted_entry_ids(
+        alternate_scan_meta.get("local_expected_family_hit_entry_ids", [])
+    )
+    alternate_scan_structure_wide_hits = _sorted_entry_ids(
+        alternate_scan_meta.get(
+            "structure_wide_hit_without_local_support_entry_ids", []
+        )
+    )
+    if alternate_scan_fetch_failure_count > 0:
+        review_warnings.append("alternate_structure_scan_fetch_failures")
+    if alternate_scan_structure_wide_hits:
+        review_warnings.append("alternate_structure_hits_lack_local_support")
 
     failure_modes = [
         _scaling_failure_mode_summary(
@@ -4386,6 +5133,20 @@ def audit_label_scaling_quality(
             "near_duplicate_audit_status": near_duplicate_audit_status,
             "near_duplicate_entry_ids": near_duplicate_entry_ids,
             "sequence_cluster_missing_entry_count": sequence_cluster_missing_entry_count,
+            "alternate_structure_scan_present": alternate_scan_meta.get("method")
+            == "review_debt_alternate_structure_scan",
+            "alternate_structure_scan_expected_family_hit_entry_ids": (
+                alternate_scan_expected_hits
+            ),
+            "alternate_structure_scan_local_expected_family_hit_entry_ids": (
+                alternate_scan_local_hits
+            ),
+            "alternate_structure_scan_structure_wide_hit_without_local_support_entry_ids": (
+                alternate_scan_structure_wide_hits
+            ),
+            "alternate_structure_scan_fetch_failure_count": (
+                alternate_scan_fetch_failure_count
+            ),
             "issue_class_counts": dict(sorted(issue_class_counts.items())),
             "audit_rule": (
                 "before promoting a preview batch, classify new ontology, "

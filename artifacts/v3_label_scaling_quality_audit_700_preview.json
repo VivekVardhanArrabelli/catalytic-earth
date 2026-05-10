@@ -381,6 +381,19 @@
     ],
     "accepted_new_debt_count": 0,
     "accepted_new_debt_entry_ids": [],
+    "alternate_structure_scan_expected_family_hit_entry_ids": [
+      "m_csa:679",
+      "m_csa:696",
+      "m_csa:698"
+    ],
+    "alternate_structure_scan_fetch_failure_count": 0,
+    "alternate_structure_scan_local_expected_family_hit_entry_ids": [],
+    "alternate_structure_scan_present": true,
+    "alternate_structure_scan_structure_wide_hit_without_local_support_entry_ids": [
+      "m_csa:679",
+      "m_csa:696",
+      "m_csa:698"
+    ],
     "audit_recommendation": "review_before_promoting",
     "audit_rule": "before promoting a preview batch, classify new ontology, family-propagation, cofactor, mapping, queue-composition, hard-negative, and text-leakage failure modes; accepted labels with unresolved review debt are not promotion-ready",
     "batch_id": "700_preview",
@@ -428,7 +441,8 @@
   "review_warnings": [
     "active_learning_queue_concentrated_by_top1_family",
     "new_review_debt_has_scaling_failure_modes",
-    "structure_mapping_issues_present"
+    "structure_mapping_issues_present",
+    "alternate_structure_hits_lack_local_support"
   ],
   "rows": [
     {

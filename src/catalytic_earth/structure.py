@@ -450,6 +450,43 @@ def ligand_context_from_atoms(
     }
 
 
+def structure_ligand_inventory_from_atoms(atoms: list[dict[str, Any]]) -> dict[str, Any]:
+    by_code: dict[str, dict[str, Any]] = {}
+    for atom in atoms:
+        if atom.get("group_PDB") != "HETATM":
+            continue
+        code = (atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        if not code or code in IGNORED_LIGAND_CODES:
+            continue
+        existing = by_code.setdefault(
+            code,
+            {
+                "code": code,
+                "instance_count": 0,
+                "atom_count": 0,
+            },
+        )
+        existing["atom_count"] += 1
+        chain = str(atom.get("auth_asym_id") or atom.get("label_asym_id") or "")
+        resid = str(atom.get("auth_seq_id") or atom.get("label_seq_id") or "")
+        site_key = (chain, resid)
+        sites = existing.setdefault("_sites", set())
+        if site_key not in sites:
+            sites.add(site_key)
+            existing["instance_count"] += 1
+
+    ligands: list[dict[str, Any]] = []
+    for item in by_code.values():
+        item.pop("_sites", None)
+        ligands.append(item)
+    ligand_codes = sorted(by_code)
+    return {
+        "ligands": sorted(ligands, key=lambda item: str(item["code"])),
+        "ligand_codes": ligand_codes,
+        "cofactor_families": sorted(_infer_cofactor_families(ligand_codes)),
+    }
+
+
 def _summarize_ligand_sites(site_hits: list[dict[str, Any]]) -> list[dict[str, Any]]:
     by_code: dict[str, dict[str, Any]] = {}
     for site in site_hits:

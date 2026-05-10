@@ -9,9 +9,9 @@ The V2/V3 scaffold should measure local runtime instead of relying on intuition.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli perf-suite \
-  --graph artifacts/v1_graph_650.json \
-  --geometry artifacts/v3_geometry_features_650.json \
-  --retrieval artifacts/v3_geometry_retrieval_650.json \
+  --graph artifacts/v1_graph_700.json \
+  --geometry artifacts/v3_geometry_features_700.json \
+  --retrieval artifacts/v3_geometry_retrieval_700.json \
   --iterations 5 \
   --out artifacts/perf_report.json
 ```
@@ -37,24 +37,24 @@ The suite currently measures:
 - auditing retrieval quality by seed fingerprint family
 - summarizing non-OK structure mappings and missing-residue diagnostics
 
-Latest 5-iteration mean timings on the current 650-entry local artifacts, using
+Latest 5-iteration mean timings on the current 700-entry local artifacts, using
 calibrated threshold `0.4115` for label evaluation:
 
-- load V1 graph: 98.765 ms
-- build V2 benchmark: 9.290 ms
-- run geometry retrieval: 233.338 ms
-- evaluate geometry labels: 13.820 ms
-- sweep abstention thresholds: 1259.684 ms
-- analyze geometry score margins: 1.625 ms
-- build hard negative controls: 3.027 ms
+- load V1 graph: 106.489 ms
+- build V2 benchmark: 9.891 ms
+- run geometry retrieval: 255.786 ms
+- evaluate geometry labels: 1.280 ms
+- sweep abstention thresholds: 1147.058 ms
+- analyze geometry score margins: 1.600 ms
+- build hard negative controls: 3.008 ms
 - build adversarial negative controls: 3.294 ms
-- build label-factory audit: 16.763 ms
-- build active-learning review queue: 2.290 ms
-- analyze in-scope failures: 0.888 ms
-- analyze cofactor coverage: 1.143 ms
-- analyze cofactor abstention policy: 1300.817 ms
-- analyze seed-family performance: 1.783 ms
-- analyze structure mapping issues: 0.117 ms
+- build label-factory audit: 6.415 ms
+- build active-learning review queue: 2.697 ms
+- analyze in-scope failures: 0.856 ms
+- analyze cofactor coverage: 1.150 ms
+- analyze cofactor abstention policy: 1265.857 ms
+- analyze seed-family performance: 1.618 ms
+- analyze structure mapping issues: 0.082 ms
 
 ## Boundary
 

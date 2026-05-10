@@ -13,6 +13,7 @@ from catalytic_earth.labels import (
     analyze_cofactor_coverage,
     analyze_geometry_score_margins,
     analyze_in_scope_failures,
+    analyze_review_debt_remediation,
     analyze_review_evidence_gaps,
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
@@ -41,6 +42,7 @@ from catalytic_earth.labels import (
     label_summary,
     load_labels,
     migrate_label_record,
+    scan_review_debt_alternate_structures,
     select_threshold,
     summarize_label_factory_batches,
     summarize_review_debt,
@@ -988,6 +990,234 @@ class LabelTests(unittest.TestCase):
         )
         self.assertEqual(with_baseline["rows"][0]["debt_status"], "new")
 
+    def test_review_debt_remediation_keeps_all_new_rows_inspectable(self) -> None:
+        review_debt = {
+            "metadata": {
+                "method": "review_debt_summary",
+                "review_debt_entry_ids": ["m_csa:650", "m_csa:651"],
+                "new_review_debt_entry_ids": ["m_csa:650", "m_csa:651"],
+                "carried_review_debt_entry_ids": [],
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:650",
+                    "priority_score": 7.0,
+                    "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
+                    "debt_status": "new",
+                }
+            ],
+        }
+        gaps = {
+            "metadata": {"method": "review_evidence_gap_analysis"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:650",
+                    "entry_name": "phospholipase A1",
+                    "decision_action": "mark_needs_more_evidence",
+                    "coverage_status": "expected_structure_only",
+                    "gap_reasons": ["expected_cofactor_not_local"],
+                    "expected_cofactor_families": ["metal_ion"],
+                    "local_cofactor_families": [],
+                    "structure_cofactor_families": ["metal_ion"],
+                    "target_fingerprint_id": "ser_his_acid_hydrolase",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                },
+                {
+                    "entry_id": "m_csa:651",
+                    "entry_name": "flavin gap",
+                    "decision_action": "mark_needs_more_evidence",
+                    "coverage_status": "expected_absent_from_structure",
+                    "gap_reasons": ["expected_cofactor_absent_from_structure"],
+                    "expected_cofactor_families": ["flavin"],
+                    "local_cofactor_families": [],
+                    "structure_cofactor_families": [],
+                    "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+                    "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+                },
+            ],
+        }
+        graph = {
+            "nodes": [
+                {"id": "pdb:1AAA", "type": "structure", "structure_source": "pdb", "structure_id": "1AAA"},
+                {"id": "pdb:2BBB", "type": "structure", "structure_source": "pdb", "structure_id": "2BBB"},
+                {"id": "pdb:3CCC", "type": "structure", "structure_source": "pdb", "structure_id": "3CCC"},
+                {"id": "pdb:4DDD", "type": "structure", "structure_source": "pdb", "structure_id": "4DDD"},
+                {"id": "alphafold:P651", "type": "structure", "structure_source": "alphafold_db", "structure_id": "P651"},
+                {
+                    "id": "m_csa:651:residue:1",
+                    "type": "catalytic_residue",
+                    "structure_positions": [{"pdb_id": "3CCC"}, {"pdb_id": "4DDD"}],
+                },
+                {
+                    "id": "m_csa:651:residue:2",
+                    "type": "catalytic_residue",
+                    "structure_positions": [{"pdb_id": "3CCC"}],
+                },
+            ],
+            "edges": [
+                {"source": "m_csa:650", "target": "uniprot:P650", "predicate": "has_reference_protein"},
+                {"source": "uniprot:P650", "target": "pdb:1AAA", "predicate": "has_structure"},
+                {"source": "uniprot:P650", "target": "pdb:2BBB", "predicate": "has_structure"},
+                {"source": "m_csa:651", "target": "uniprot:P651", "predicate": "has_reference_protein"},
+                {"source": "uniprot:P651", "target": "pdb:3CCC", "predicate": "has_structure"},
+                {"source": "uniprot:P651", "target": "pdb:4DDD", "predicate": "has_structure"},
+                {"source": "uniprot:P651", "target": "alphafold:P651", "predicate": "has_structure"},
+            ],
+        }
+        geometry = {
+            "entries": [
+                {"entry_id": "m_csa:650", "pdb_id": "1AAA", "status": "ok"},
+                {"entry_id": "m_csa:651", "pdb_id": "3CCC", "status": "ok"},
+            ]
+        }
+
+        plan = analyze_review_debt_remediation(
+            review_debt,
+            gaps,
+            graph=graph,
+            geometry=geometry,
+            debt_status="new",
+        )
+
+        self.assertEqual(plan["metadata"]["method"], "review_debt_remediation_plan")
+        self.assertEqual(plan["metadata"]["requested_entry_count"], 2)
+        self.assertEqual(plan["metadata"]["emitted_row_count"], 2)
+        self.assertTrue(plan["metadata"]["all_requested_entries_have_gap_detail"])
+        rows_by_entry = {row["entry_id"]: row for row in plan["rows"]}
+        self.assertEqual(
+            rows_by_entry["m_csa:650"]["remediation_bucket"],
+            "local_mapping_or_structure_selection_review",
+        )
+        self.assertEqual(
+            rows_by_entry["m_csa:651"]["remediation_bucket"],
+            "alternate_pdb_ligand_scan",
+        )
+        self.assertEqual(rows_by_entry["m_csa:651"]["alternate_pdb_ids"], ["4DDD"])
+        self.assertEqual(rows_by_entry["m_csa:651"]["alphafold_structure_ids"], ["P651"])
+        self.assertEqual(rows_by_entry["m_csa:651"]["selected_pdb_residue_position_count"], 2)
+        self.assertEqual(
+            rows_by_entry["m_csa:651"]["alternate_pdb_residue_position_counts"],
+            {"4DDD": 1},
+        )
+        self.assertEqual(
+            plan["metadata"]["remediation_bucket_counts"]["alternate_pdb_ligand_scan"],
+            1,
+        )
+        self.assertEqual(plan["metadata"]["alternate_pdb_position_gap_entry_ids"], ["m_csa:650"])
+
+    def test_review_debt_alternate_structure_scan_records_expected_family_hits(self) -> None:
+        remediation = {
+            "metadata": {"method": "review_debt_remediation_plan"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:651",
+                    "entry_name": "flavin gap",
+                    "remediation_bucket": "alternate_pdb_ligand_scan",
+                    "expected_cofactor_families": ["flavin"],
+                    "selected_pdb_id": "1AAA",
+                    "alternate_pdb_ids": ["2BBB", "3CCC"],
+                    "candidate_pdb_structure_ids": ["1AAA", "2BBB", "3CCC"],
+                }
+            ],
+        }
+
+        scan = scan_review_debt_alternate_structures(
+            remediation,
+            max_entries=1,
+            max_structures_per_entry=2,
+            inventory_by_pdb={
+                "1AAA": {"ligand_codes": ["SO4"], "cofactor_families": []},
+                "2BBB": {"ligand_codes": ["FAD"], "cofactor_families": ["flavin"]},
+            },
+        )
+
+        self.assertEqual(scan["metadata"]["method"], "review_debt_alternate_structure_scan")
+        self.assertEqual(scan["metadata"]["scanned_entry_count"], 1)
+        self.assertEqual(scan["metadata"]["scanned_structure_count"], 2)
+        self.assertEqual(scan["metadata"]["expected_family_hit_entry_ids"], ["m_csa:651"])
+        self.assertEqual(scan["metadata"]["local_expected_family_hit_entry_ids"], [])
+        self.assertEqual(
+            scan["metadata"]["structure_wide_hit_without_local_support_entry_ids"],
+            ["m_csa:651"],
+        )
+        row = scan["rows"][0]
+        self.assertEqual(row["scanned_pdb_ids"], ["1AAA", "2BBB"])
+        self.assertEqual(row["unscanned_pdb_ids"], ["3CCC"])
+        self.assertTrue(row["alternate_structure_expected_family_observed"])
+        self.assertEqual(
+            row["scan_outcome"],
+            "alternate_structure_has_expected_cofactor_candidate",
+        )
+
+    def test_review_debt_alternate_structure_scan_records_local_hits(self) -> None:
+        cif_text = """data_test
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+ATOM 1 N N ASP A 7 0.0 0.0 0.0 N ASP A 7
+ATOM 2 C CA ASP A 7 1.0 0.0 0.0 CA ASP A 7
+HETATM 3 N N1 FAD A 900 1.5 0.0 0.0 N1 FAD A 900
+#
+"""
+        remediation = {
+            "metadata": {"method": "review_debt_remediation_plan"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:652",
+                    "entry_name": "local flavin gap",
+                    "remediation_bucket": "local_mapping_or_structure_selection_review",
+                    "expected_cofactor_families": ["flavin"],
+                    "selected_pdb_id": "2BBB",
+                    "alternate_pdb_ids": [],
+                    "candidate_pdb_structure_ids": ["2BBB"],
+                    "candidate_pdb_residue_position_counts": {"2BBB": 1},
+                    "candidate_pdb_residue_positions": {
+                        "2BBB": [
+                            {
+                                "chain_name": "A",
+                                "resid": 7,
+                                "code": "ASP",
+                                "residue_node_id": "m_csa:652:residue:1",
+                            }
+                        ]
+                    },
+                }
+            ],
+        }
+
+        scan = scan_review_debt_alternate_structures(
+            remediation,
+            max_entries=1,
+            max_structures_per_entry=1,
+            cif_fetcher=lambda _pdb_id: cif_text,
+            inventory_by_pdb={
+                "2BBB": {"ligand_codes": ["FAD"], "cofactor_families": ["flavin"]},
+            },
+        )
+
+        self.assertEqual(scan["metadata"]["expected_family_hit_entry_ids"], ["m_csa:652"])
+        self.assertEqual(scan["metadata"]["local_expected_family_hit_entry_ids"], ["m_csa:652"])
+        self.assertEqual(
+            scan["metadata"]["structure_wide_hit_without_local_support_entry_ids"],
+            [],
+        )
+        hit = scan["rows"][0]["structure_hits"][0]
+        self.assertEqual(hit["local_expected_family_hits"], ["flavin"])
+        self.assertEqual(hit["local_resolved_residue_count"], 1)
+
     def test_preview_promotion_readiness_warns_on_new_review_debt(self) -> None:
         acceptance = {
             "metadata": {
@@ -1166,6 +1396,14 @@ class LabelTests(unittest.TestCase):
                 }
             ]
         }
+        alternate_scan = {
+            "metadata": {
+                "method": "review_debt_alternate_structure_scan",
+                "expected_family_hit_entry_ids": ["m_csa:651"],
+                "structure_wide_hit_without_local_support_entry_ids": ["m_csa:651"],
+                "fetch_failure_count": 0,
+            }
+        }
 
         audit = audit_label_scaling_quality(
             acceptance,
@@ -1178,6 +1416,7 @@ class LabelTests(unittest.TestCase):
             decision_batch=decision_batch,
             structure_mapping=structure_mapping,
             sequence_clusters=sequence_clusters,
+            alternate_structure_scan=alternate_scan,
             batch_id="test_preview",
         )
 
@@ -1187,7 +1426,25 @@ class LabelTests(unittest.TestCase):
         self.assertIn("accepted_new_labels_without_review_debt", audit["blockers"])
         self.assertIn("cofactor_family_ambiguity", audit["metadata"]["issue_class_counts"])
         self.assertEqual(audit["metadata"]["near_duplicate_audit_status"], "observed")
+        self.assertTrue(audit["metadata"]["alternate_structure_scan_present"])
+        self.assertEqual(
+            audit["metadata"]["alternate_structure_scan_expected_family_hit_entry_ids"],
+            ["m_csa:651"],
+        )
+        self.assertEqual(
+            audit["metadata"][
+                "alternate_structure_scan_local_expected_family_hit_entry_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            audit["metadata"][
+                "alternate_structure_scan_structure_wide_hit_without_local_support_entry_ids"
+            ],
+            ["m_csa:651"],
+        )
         self.assertIn("candidate_entries_share_sequence_clusters", audit["review_warnings"])
+        self.assertIn("alternate_structure_hits_lack_local_support", audit["review_warnings"])
         failure_modes = {row["id"]: row for row in audit["failure_modes"]}
         self.assertEqual(failure_modes["sibling_mechanism_confusion"]["issue_count"], 1)
         self.assertEqual(failure_modes["text_leakage_without_mechanistic_evidence"]["entry_ids"], ["m_csa:651"])

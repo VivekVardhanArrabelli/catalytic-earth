@@ -116,6 +116,13 @@ graph-derived sequence-cluster proxy artifacts; both audits report 0 accepted
 labels with review debt and 0 near-duplicate hits among audited rows. See
 `work/label_preview_675_notes.md` and `work/label_preview_700_notes.md` for the
 clean label profiles and the top evidence gaps to inspect.
+The 700 review-debt repair pass now adds structure-aware remediation artifacts:
+`artifacts/v3_review_debt_remediation_700.json`,
+`artifacts/v3_review_debt_remediation_700_all.json`, and
+`artifacts/v3_review_debt_alternate_structure_scan_700.json`. The full scan
+checks 152 candidate PDB structures for 13 structure-scan rows, finds 3
+structure-wide cofactor-family hits, and keeps them non-countable because 0
+have local active-site support.
 See
 `docs/label_factory.md`.
 
@@ -221,10 +228,11 @@ Current timeline judgment:
    pass promotion/demotion, adversarial-negative,
    active-learning, expert-review export/import, family-propagation,
    validation, and test gates before labels count toward the benchmark.
-3. Next serious milestone: expand beyond 624 countable labels or resolve the
-   evidence-limited abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and
-   `m_csa:430`) by improving structure/cofactor evidence, while preserving the
-   current hard-negative guardrails.
+3. Next serious milestone: repair the 81-row accepted-700 review-debt surface
+   or resolve the evidence-limited abstentions (`m_csa:132`, `m_csa:353`,
+   `m_csa:372`, and `m_csa:430`) by improving local structure/cofactor
+   evidence, while preserving the current hard-negative guardrails. Only then
+   reopen count growth beyond 624 countable labels.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that
    are credible enough for external labs to prioritize.
