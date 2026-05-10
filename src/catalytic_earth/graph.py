@@ -297,6 +297,104 @@ def summarize_graph(graph: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def build_sequence_cluster_proxy(
+    graph: dict[str, Any],
+    entry_ids: set[str] | None = None,
+) -> dict[str, Any]:
+    """Group M-CSA entries by exact reference UniProt accession sets."""
+    requested_entry_ids = set(entry_ids or set())
+    nodes_by_id = {
+        str(node.get("id")): node
+        for node in graph.get("nodes", [])
+        if isinstance(node, dict) and isinstance(node.get("id"), str)
+    }
+    references_by_entry: dict[str, set[str]] = defaultdict(set)
+    for edge in graph.get("edges", []):
+        if not isinstance(edge, dict):
+            continue
+        source = edge.get("source")
+        target = edge.get("target")
+        if (
+            edge.get("predicate") == "has_reference_protein"
+            and isinstance(source, str)
+            and isinstance(target, str)
+            and source.startswith("m_csa:")
+            and target.startswith("uniprot:")
+        ):
+            references_by_entry[source].add(target.removeprefix("uniprot:"))
+
+    rows: list[dict[str, Any]] = []
+    missing_reference_entry_ids: list[str] = []
+    for entry_id, node in sorted(
+        nodes_by_id.items(),
+        key=lambda item: _graph_entry_sort_key(item[0]),
+    ):
+        if node.get("type") != "m_csa_entry":
+            continue
+        if requested_entry_ids and entry_id not in requested_entry_ids:
+            continue
+        references = sorted(references_by_entry.get(entry_id, set()))
+        if not references:
+            missing_reference_entry_ids.append(entry_id)
+            continue
+        cluster_id = "uniprot:" + "+".join(references)
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": node.get("name"),
+                "sequence_cluster_id": cluster_id,
+                "cluster_source": "reference_uniprot_exact_set",
+                "reference_uniprot_ids": references,
+                "reference_count": len(references),
+            }
+        )
+
+    cluster_members: dict[str, list[str]] = defaultdict(list)
+    for row in rows:
+        cluster_members[str(row["sequence_cluster_id"])].append(str(row["entry_id"]))
+    clusters = [
+        {
+            "sequence_cluster_id": cluster_id,
+            "cluster_source": "reference_uniprot_exact_set",
+            "entry_ids": sorted(members, key=_graph_entry_sort_key),
+            "entry_count": len(members),
+        }
+        for cluster_id, members in sorted(cluster_members.items())
+    ]
+    duplicate_clusters = [cluster for cluster in clusters if cluster["entry_count"] > 1]
+    graph_meta = graph.get("metadata", {})
+    return {
+        "metadata": {
+            "method": "sequence_cluster_proxy_from_reference_uniprot",
+            "cluster_source": "reference_uniprot_exact_set",
+            "graph_builder": graph_meta.get("builder"),
+            "graph_generated_at": graph_meta.get("generated_at"),
+            "entry_count": len(rows),
+            "cluster_count": len(clusters),
+            "duplicate_cluster_count": len(duplicate_clusters),
+            "missing_reference_count": len(missing_reference_entry_ids),
+            "missing_reference_entry_ids": missing_reference_entry_ids,
+            "multi_reference_entry_count": sum(
+                1 for row in rows if int(row.get("reference_count", 0)) > 1
+            ),
+            "selected_entry_ids": sorted(requested_entry_ids, key=_graph_entry_sort_key),
+            "scope_note": (
+                "Exact reference UniProt accession sets are a local proxy for "
+                "near-duplicate sequence clusters; they do not replace UniRef "
+                "or all-vs-all sequence clustering."
+            ),
+        },
+        "rows": sorted(rows, key=lambda row: _graph_entry_sort_key(str(row["entry_id"]))),
+        "clusters": clusters,
+        "duplicate_clusters": duplicate_clusters,
+    }
+
+
+def _graph_entry_sort_key(entry_id: str) -> tuple[str, int, str]:
+    prefix, _, suffix = entry_id.partition(":")
+    return (prefix, int(suffix) if suffix.isdigit() else 10**9, suffix)
+
+
 def build_seed_graph(mcsa_ids: list[int]) -> dict[str, Any]:
     mcsa_sample = fetch_mcsa_sample(mcsa_ids)
     nodes: dict[str, dict[str, Any]] = {}

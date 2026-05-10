@@ -13,8 +13,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
     def test_label_summary_artifact_matches_curated_registry(self) -> None:
         summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
 
-        self.assertEqual(summary["label_count"], 618)
-        self.assertEqual(summary["by_type"]["seed_fingerprint"], 151)
+        self.assertEqual(summary["label_count"], 624)
+        self.assertEqual(summary["by_type"]["seed_fingerprint"], 157)
         self.assertEqual(summary["by_type"]["out_of_scope"], 467)
 
     def test_125_entry_geometry_artifacts_remain_clean(self) -> None:
@@ -542,8 +542,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         gate = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_500.json")
 
-        self.assertEqual(label_summary["by_tier"], {"bronze": 618})
-        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 618})
+        self.assertEqual(label_summary["by_tier"], {"bronze": 624})
+        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 624})
         self.assertEqual(audit["metadata"]["promote_to_silver_count"], 63)
         self.assertEqual(audit["metadata"]["abstention_or_review_count"], 101)
         self.assertEqual(audit["metadata"]["hard_negative_evidence_entry_count"], 100)
@@ -568,7 +568,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(gate["metadata"]["automation_ready_for_next_label_batch"])
         self.assertEqual(gate["blockers"], [])
 
-    def test_525_through_650_batch_acceptance_are_gated(self) -> None:
+    def test_525_through_700_batch_acceptance_are_gated(self) -> None:
         acceptance = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_525.json")
         acceptance_550 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_550.json")
         acceptance_575 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_575.json")
@@ -578,6 +578,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         acceptance_675_preview = _load_json(
             ROOT / "artifacts" / "v3_label_batch_acceptance_check_675_preview.json"
         )
+        acceptance_675 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_675.json")
+        acceptance_700 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_700.json")
         preview_summary_675 = _load_json(
             ROOT / "artifacts" / "v3_label_factory_preview_summary_675.json"
         )
@@ -589,6 +591,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         scaling_quality_675 = _load_json(
             ROOT / "artifacts" / "v3_label_scaling_quality_audit_675_preview.json"
+        )
+        scaling_quality_700 = _load_json(
+            ROOT / "artifacts" / "v3_label_scaling_quality_audit_700_preview.json"
+        )
+        sequence_clusters_675 = _load_json(
+            ROOT / "artifacts" / "v3_sequence_cluster_proxy_675.json"
+        )
+        sequence_clusters_700 = _load_json(
+            ROOT / "artifacts" / "v3_sequence_cluster_proxy_700.json"
         )
         evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_650.json")
         hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_650.json")
@@ -602,6 +613,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         gate_600 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_600.json")
         gate_625 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_625.json")
         gate_650 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_650.json")
+        gate_675 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_675.json")
+        gate_700 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_700.json")
 
         self.assertTrue(acceptance["metadata"]["accepted_for_counting"])
         self.assertEqual(acceptance["metadata"]["accepted_new_label_count"], 24)
@@ -628,6 +641,23 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(acceptance_675_preview["metadata"]["pending_review_count"], 61)
         self.assertEqual(acceptance_675_preview["metadata"]["accepted_review_gap_count"], 0)
         self.assertEqual(acceptance_675_preview["metadata"]["accepted_review_gap_entry_ids"], [])
+        self.assertTrue(acceptance_675["metadata"]["accepted_for_counting"])
+        self.assertEqual(acceptance_675["metadata"]["accepted_new_label_count"], 1)
+        self.assertEqual(acceptance_675["metadata"]["accepted_new_label_entry_ids"], ["m_csa:666"])
+        self.assertEqual(acceptance_675["metadata"]["countable_label_count"], 619)
+        self.assertEqual(acceptance_675["metadata"]["pending_review_count"], 61)
+        self.assertEqual(acceptance_675["metadata"]["accepted_review_gap_count"], 0)
+        self.assertEqual(acceptance_675["metadata"]["accepted_review_gap_entry_ids"], [])
+        self.assertTrue(acceptance_700["metadata"]["accepted_for_counting"])
+        self.assertEqual(acceptance_700["metadata"]["accepted_new_label_count"], 5)
+        self.assertEqual(
+            acceptance_700["metadata"]["accepted_new_label_entry_ids"],
+            ["m_csa:686", "m_csa:688", "m_csa:694", "m_csa:697", "m_csa:699"],
+        )
+        self.assertEqual(acceptance_700["metadata"]["countable_label_count"], 624)
+        self.assertEqual(acceptance_700["metadata"]["pending_review_count"], 81)
+        self.assertEqual(acceptance_700["metadata"]["accepted_review_gap_count"], 0)
+        self.assertEqual(acceptance_700["metadata"]["accepted_review_gap_entry_ids"], [])
         self.assertEqual(preview_summary_675["metadata"]["blocker_count"], 0)
         self.assertTrue(preview_summary_675["metadata"]["all_active_queues_retain_unlabeled_candidates"])
         self.assertEqual(preview_summary_675["metadata"]["scaling_quality_audit_count"], 1)
@@ -637,7 +667,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             preview_summary_675["metadata"]["latest_scaling_quality_recommendation"],
             "review_before_promoting",
         )
-        self.assertIn(
+        self.assertNotIn(
             "sequence_cluster_artifact_missing_for_near_duplicate_audit",
             preview_summary_675["metadata"]["latest_scaling_quality_review_warnings"],
         )
@@ -724,12 +754,27 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             scaling_quality_675["metadata"]["near_duplicate_audit_status"],
-            "not_assessed_no_sequence_cluster_artifact",
+            "not_observed_in_sequence_cluster_artifact",
         )
-        self.assertIn(
+        self.assertNotIn(
             "sequence_cluster_artifact_missing_for_near_duplicate_audit",
             scaling_quality_675["review_warnings"],
         )
+        self.assertEqual(scaling_quality_675["metadata"]["sequence_cluster_missing_entry_count"], 0)
+        self.assertEqual(sequence_clusters_675["metadata"]["entry_count"], 675)
+        self.assertEqual(sequence_clusters_675["metadata"]["missing_reference_count"], 0)
+        self.assertEqual(
+            scaling_quality_700["metadata"]["near_duplicate_audit_status"],
+            "not_observed_in_sequence_cluster_artifact",
+        )
+        self.assertEqual(scaling_quality_700["metadata"]["sequence_cluster_missing_entry_count"], 0)
+        self.assertEqual(scaling_quality_700["metadata"]["accepted_new_debt_count"], 0)
+        self.assertEqual(
+            scaling_quality_700["metadata"]["accepted_clean_label_entry_ids"],
+            ["m_csa:686", "m_csa:688", "m_csa:694", "m_csa:697", "m_csa:699"],
+        )
+        self.assertEqual(sequence_clusters_700["metadata"]["entry_count"], 700)
+        self.assertEqual(sequence_clusters_700["metadata"]["missing_reference_count"], 0)
         self.assertEqual(scaling_quality_675["blockers"], [])
         scaling_failure_modes = {
             row["id"]: row for row in scaling_quality_675["failure_modes"]
@@ -759,11 +804,15 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(gate_600["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_625["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_650["metadata"]["automation_ready_for_next_label_batch"])
+        self.assertTrue(gate_675["metadata"]["automation_ready_for_next_label_batch"])
+        self.assertTrue(gate_700["metadata"]["automation_ready_for_next_label_batch"])
         self.assertEqual(gate_550["blockers"], [])
         self.assertEqual(gate_575["blockers"], [])
         self.assertEqual(gate_600["blockers"], [])
         self.assertEqual(gate_625["blockers"], [])
         self.assertEqual(gate_650["blockers"], [])
+        self.assertEqual(gate_675["blockers"], [])
+        self.assertEqual(gate_700["blockers"], [])
 
 
 def _load_json(path: Path) -> dict:

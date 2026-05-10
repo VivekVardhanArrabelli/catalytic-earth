@@ -27204,6 +27204,56 @@
       "top1_score": 0.6835
     },
     {
+      "cofactor_evidence_level": "not_required",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "alpha-amino-acid esterase",
+        "ligand_codes": [
+          "MSE"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The catalytic mechanism for both hydrolysis and ester synthesis follows that of serine hydrolases. But during ester synthesis, instead of transferring the acyl group in the intermediate to a water molecule, the acyl group is transferred to a beta-lactam nuclei. His340 acts as a base to deprotonat..."
+        ],
+        "nearby_residue_count": 50,
+        "pdb_id": "1MPX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.18,
+          "charge_balance": -0.06,
+          "hydrophobic_fraction": 0.22,
+          "mean_min_distance_to_active_site": 5.3575,
+          "negative_fraction": 0.14,
+          "polar_fraction": 0.26,
+          "positive_fraction": 0.08,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "TYR",
+          "ASP",
+          "TYR",
+          "SER",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MSE",
+          "GOL",
+          "CA"
+        ]
+      },
+      "entry_id": "m_csa:666",
+      "evaluable": true,
+      "label_type": "seed_fingerprint",
+      "resolved_residue_count": 5,
+      "status": "ok",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.8521
+    },
+    {
       "cofactor_evidence_level": "ligand_supported",
       "context": {
         "cofactor_families": [
@@ -27683,15 +27733,15 @@
     "cofactor_evidence_counts": {
       "absent": 295,
       "ligand_supported": 194,
-      "not_required": 87,
+      "not_required": 88,
       "role_inferred": 41
     },
-    "correct_in_scope_evaluable_count": 147,
+    "correct_in_scope_evaluable_count": 148,
     "correct_positive_score_separation_gap": 0.0131,
-    "evaluated_count": 617,
-    "in_scope_count": 151,
+    "evaluated_count": 618,
+    "in_scope_count": 152,
     "in_scope_entries_at_or_below_max_out_of_scope": 3,
-    "in_scope_evaluable_count": 150,
+    "in_scope_evaluable_count": 151,
     "max_out_of_scope_top1_score": 0.4114,
     "method": "geometry_score_margin_analysis",
     "min_correct_in_scope_top1_score": 0.4245,
@@ -56433,6 +56483,56 @@
       "top1_correct": true,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_score": 0.6835
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "alpha-amino-acid esterase",
+        "ligand_codes": [
+          "MSE"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The catalytic mechanism for both hydrolysis and ester synthesis follows that of serine hydrolases. But during ester synthesis, instead of transferring the acyl group in the intermediate to a water molecule, the acyl group is transferred to a beta-lactam nuclei. His340 acts as a base to deprotonat..."
+        ],
+        "nearby_residue_count": 50,
+        "pdb_id": "1MPX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.18,
+          "charge_balance": -0.06,
+          "hydrophobic_fraction": 0.22,
+          "mean_min_distance_to_active_site": 5.3575,
+          "negative_fraction": 0.14,
+          "polar_fraction": 0.26,
+          "positive_fraction": 0.08,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "TYR",
+          "ASP",
+          "TYR",
+          "SER",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MSE",
+          "GOL",
+          "CA"
+        ]
+      },
+      "entry_id": "m_csa:666",
+      "evaluable": true,
+      "label_type": "seed_fingerprint",
+      "resolved_residue_count": 5,
+      "status": "ok",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_correct": true,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.8521
     },
     {
       "cofactor_evidence_level": "absent",

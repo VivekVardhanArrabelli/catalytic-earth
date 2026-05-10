@@ -156,7 +156,7 @@
       "abstained_count": 0,
       "abstained_entry_ids": [],
       "cofactor_coverage_status_counts": {
-        "not_required": 26
+        "not_required": 27
       },
       "entry_ids": [
         "m_csa:5",
@@ -184,23 +184,24 @@
         "m_csa:556",
         "m_csa:608",
         "m_csa:609",
-        "m_csa:631"
+        "m_csa:631",
+        "m_csa:666"
       ],
-      "evaluable_count": 26,
+      "evaluable_count": 27,
       "evidence_limited_count": 0,
       "evidence_limited_entry_ids": [],
       "fingerprint_id": "ser_his_acid_hydrolase",
-      "labeled_count": 26,
+      "labeled_count": 27,
       "max_top1_score": 0.9056,
-      "mean_top1_score": 0.8126,
+      "mean_top1_score": 0.814,
       "min_top1_score": 0.4379,
-      "retained_count": 26,
-      "retained_top3_correct_count": 26,
+      "retained_count": 27,
+      "retained_top3_correct_count": 27,
       "retention_rate_evaluable": 1.0,
       "top1_accuracy_evaluable": 1.0,
-      "top1_correct_count": 26,
+      "top1_correct_count": 27,
       "top3_accuracy_evaluable": 1.0,
-      "top3_correct_count": 26,
+      "top3_correct_count": 27,
       "top3_retained_accuracy_evaluable": 1.0
     },
     {

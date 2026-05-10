@@ -165,14 +165,40 @@
           "m_csa:676",
           "m_csa:677"
         ],
-        "entry_to_sequence_cluster": {},
+        "entry_to_sequence_cluster": {
+          "m_csa:653": "uniprot:P70826",
+          "m_csa:654": "uniprot:Q8FI04",
+          "m_csa:655": "uniprot:P05100",
+          "m_csa:656": "uniprot:P19120",
+          "m_csa:657": "uniprot:P10507+P11914",
+          "m_csa:658": "uniprot:P48842",
+          "m_csa:659": "uniprot:P05523",
+          "m_csa:660": "uniprot:P82385",
+          "m_csa:661": "uniprot:P51691",
+          "m_csa:662": "uniprot:P78356",
+          "m_csa:663": "uniprot:P0A9J6",
+          "m_csa:664": "uniprot:P56740",
+          "m_csa:665": "uniprot:P33221",
+          "m_csa:666": "uniprot:Q6YBS3",
+          "m_csa:667": "uniprot:Q9XBQ3",
+          "m_csa:668": "uniprot:P08148",
+          "m_csa:669": "uniprot:P0A2X8",
+          "m_csa:670": "uniprot:P55882",
+          "m_csa:671": "uniprot:Q44185",
+          "m_csa:672": "uniprot:P22635+P22636",
+          "m_csa:673": "uniprot:Q01738",
+          "m_csa:674": "uniprot:P60327",
+          "m_csa:675": "uniprot:Q06700",
+          "m_csa:676": "uniprot:Q59632",
+          "m_csa:677": "uniprot:P0AFI7"
+        },
         "overrepresented_sequence_cluster_counts": {},
-        "reason": "current local artifacts do not include sequence-cluster membership; keep this as an explicit audit gap before larger-scale propagation",
-        "sequence_cluster_missing_entry_count": null
+        "reason": null,
+        "sequence_cluster_missing_entry_count": 0
       },
       "id": "overcounted_paralogs_or_near_duplicates",
       "issue_count": 0,
-      "status": "not_assessed_no_sequence_cluster_artifact"
+      "status": "not_observed_in_sequence_cluster_artifact"
     },
     {
       "entry_ids": [
@@ -393,7 +419,7 @@
       "reaction_or_substrate_class_mismatch": 14
     },
     "method": "label_scaling_quality_audit",
-    "near_duplicate_audit_status": "not_assessed_no_sequence_cluster_artifact",
+    "near_duplicate_audit_status": "not_observed_in_sequence_cluster_artifact",
     "near_duplicate_entry_ids": [],
     "new_review_debt_count": 24,
     "new_review_debt_entry_ids": [
@@ -424,7 +450,7 @@
     ],
     "omitted_underrepresented_queue_entry_ids": [],
     "readiness_recommendation": "review_before_promoting",
-    "sequence_cluster_missing_entry_count": null,
+    "sequence_cluster_missing_entry_count": 0,
     "source_acceptance_method": "label_batch_acceptance_check",
     "unclassified_new_review_debt_entry_ids": [],
     "underrepresented_queue_entry_count": 26
@@ -432,8 +458,7 @@
   "review_warnings": [
     "active_learning_queue_concentrated_by_top1_family",
     "new_review_debt_has_scaling_failure_modes",
-    "structure_mapping_issues_present",
-    "sequence_cluster_artifact_missing_for_near_duplicate_audit"
+    "structure_mapping_issues_present"
   ],
   "rows": [
     {

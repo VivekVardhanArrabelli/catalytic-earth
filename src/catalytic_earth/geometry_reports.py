@@ -35,12 +35,14 @@ GEOMETRY_SLICES = [
     ("600", "_600"),
     ("625", "_625"),
     ("650", "_650"),
+    ("675", "_675"),
+    ("700", "_700"),
 ]
 
 
 def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
-    for slice_label, suffix in GEOMETRY_SLICES:
+    for slice_label, suffix in _geometry_slices(artifact_dir):
         geometry = _read_optional_json(artifact_dir / f"v3_geometry_features{suffix}.json")
         evaluation = _read_optional_json(artifact_dir / f"v3_geometry_label_eval{suffix}.json")
         hard_negatives = _read_optional_json(
@@ -366,6 +368,16 @@ def write_geometry_slice_summary(artifact_dir: Path, out_path: Path) -> dict[str
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return summary
+
+
+def _geometry_slices(artifact_dir: Path) -> list[tuple[str, str]]:
+    slices = {label: suffix for label, suffix in GEOMETRY_SLICES}
+    for path in artifact_dir.glob("v3_geometry_label_eval_*.json"):
+        suffix = path.stem.removeprefix("v3_geometry_label_eval")
+        slice_label = suffix.removeprefix("_")
+        if slice_label.isdigit():
+            slices.setdefault(slice_label, suffix)
+    return sorted(slices.items(), key=lambda item: int(item[0]))
 
 
 def _read_optional_json(path: Path) -> dict[str, Any]:

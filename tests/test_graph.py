@@ -8,7 +8,12 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from catalytic_earth.graph import assemble_knowledge_graph, build_seed_graph, summarize_graph
+from catalytic_earth.graph import (
+    assemble_knowledge_graph,
+    build_seed_graph,
+    build_sequence_cluster_proxy,
+    summarize_graph,
+)
 
 
 class GraphTests(unittest.TestCase):
@@ -117,6 +122,38 @@ class GraphTests(unittest.TestCase):
         )
         self.assertEqual(summary["node_types"]["protein"], 1)
         self.assertEqual(summary["edge_predicates"]["has_structure"], 1)
+
+    def test_sequence_cluster_proxy_groups_reference_uniprot_sets(self) -> None:
+        graph = {
+            "metadata": {"builder": "test_graph", "generated_at": "2026-05-10T00:00:00+00:00"},
+            "nodes": [
+                {"id": "m_csa:1", "type": "m_csa_entry", "name": "first"},
+                {"id": "m_csa:2", "type": "m_csa_entry", "name": "second"},
+                {"id": "m_csa:3", "type": "m_csa_entry", "name": "third"},
+                {"id": "m_csa:4", "type": "m_csa_entry", "name": "missing"},
+            ],
+            "edges": [
+                {"source": "m_csa:1", "target": "uniprot:P12345", "predicate": "has_reference_protein"},
+                {"source": "m_csa:2", "target": "uniprot:P12345", "predicate": "has_reference_protein"},
+                {"source": "m_csa:3", "target": "uniprot:P23456", "predicate": "has_reference_protein"},
+                {"source": "m_csa:3", "target": "uniprot:P34567", "predicate": "has_reference_protein"},
+            ],
+        }
+        proxy = build_sequence_cluster_proxy(graph)
+
+        self.assertEqual(proxy["metadata"]["entry_count"], 3)
+        self.assertEqual(proxy["metadata"]["duplicate_cluster_count"], 1)
+        self.assertEqual(proxy["metadata"]["missing_reference_entry_ids"], ["m_csa:4"])
+        self.assertEqual(proxy["metadata"]["multi_reference_entry_count"], 1)
+        self.assertEqual(
+            proxy["duplicate_clusters"][0]["entry_ids"],
+            ["m_csa:1", "m_csa:2"],
+        )
+        row_by_entry = {row["entry_id"]: row for row in proxy["rows"]}
+        self.assertEqual(
+            row_by_entry["m_csa:3"]["sequence_cluster_id"],
+            "uniprot:P23456+P34567",
+        )
 
 
 if __name__ == "__main__":

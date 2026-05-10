@@ -5,10 +5,10 @@
       "all_expected_local": 115,
       "expected_absent_from_structure": 6,
       "expected_structure_only": 3,
-      "not_required": 26,
+      "not_required": 27,
       "partial_expected_local": 1
     },
-    "evaluated_in_scope_count": 151,
+    "evaluated_in_scope_count": 152,
     "evidence_limited_abstained_count": 4,
     "evidence_limited_abstained_entry_ids": [
       "m_csa:132",
@@ -78,7 +78,7 @@
       "metal_dependent_hydrolase": 54,
       "plp_dependent_enzyme": 21,
       "radical_sam_enzyme": 1,
-      "ser_his_acid_hydrolase": 26
+      "ser_his_acid_hydrolase": 27
     }
   },
   "rows": [
@@ -12367,6 +12367,73 @@
       "target_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_score": 0.8752
+    },
+    {
+      "abstained": false,
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "alpha-amino-acid esterase",
+        "ligand_codes": [
+          "MSE"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The catalytic mechanism for both hydrolysis and ester synthesis follows that of serine hydrolases. But during ester synthesis, instead of transferring the acyl group in the intermediate to a water molecule, the acyl group is transferred to a beta-lactam nuclei. His340 acts as a base to deprotonat..."
+        ],
+        "nearby_residue_count": 50,
+        "pdb_id": "1MPX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.18,
+          "charge_balance": -0.06,
+          "hydrophobic_fraction": 0.22,
+          "mean_min_distance_to_active_site": 5.3575,
+          "negative_fraction": 0.14,
+          "polar_fraction": 0.26,
+          "positive_fraction": 0.08,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "TYR",
+          "ASP",
+          "TYR",
+          "SER",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MSE",
+          "GOL",
+          "CA"
+        ]
+      },
+      "coverage_status": "not_required",
+      "entry_id": "m_csa:666",
+      "evaluable": true,
+      "expected_cofactor_families": [],
+      "local_cofactor_families": [],
+      "local_matches": [],
+      "matching_structure_ligands": [],
+      "missing_expected_families": [],
+      "nearest_expected_ligand_distance_angstrom": null,
+      "proximal_ligand_codes": [
+        "MSE"
+      ],
+      "resolved_residue_count": 5,
+      "status": "ok",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ],
+      "structure_ligand_codes": [
+        "MSE",
+        "GOL",
+        "CA"
+      ],
+      "structure_matches": [],
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.8521
     }
   ]
 }

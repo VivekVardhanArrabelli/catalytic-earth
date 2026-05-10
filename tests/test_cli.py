@@ -22,6 +22,57 @@ class CliTests(unittest.TestCase):
         )
         self.assertIn("Validated", result.stdout)
 
+    def test_build_sequence_cluster_proxy_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            graph = root / "graph.json"
+            out = root / "clusters.json"
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"builder": "test"},
+                        "nodes": [
+                            {"id": "m_csa:1", "type": "m_csa_entry", "name": "first"},
+                            {"id": "m_csa:2", "type": "m_csa_entry", "name": "second"},
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:1",
+                                "target": "uniprot:P12345",
+                                "predicate": "has_reference_protein",
+                            },
+                            {
+                                "source": "m_csa:2",
+                                "target": "uniprot:P12345",
+                                "predicate": "has_reference_protein",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-sequence-cluster-proxy",
+                    "--graph",
+                    str(graph),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            clusters = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(clusters["metadata"]["duplicate_cluster_count"], 1)
+            self.assertEqual(clusters["duplicate_clusters"][0]["entry_count"], 2)
+
     def test_filter_countable_labels_requires_explicit_lossy_filter(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             labels = Path(tmpdir) / "labels.json"
@@ -1142,7 +1193,7 @@ class CliTests(unittest.TestCase):
             self.assertGreaterEqual(len(json.loads(imported_labels.read_text())), 475)
             self.assertLessEqual(len(json.loads(countable_labels.read_text())), len(json.loads(imported_labels.read_text())))
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "650")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "700")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

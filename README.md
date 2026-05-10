@@ -53,8 +53,8 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 618 entries: all entries in the 475-entry
-   source slice plus accepted, factory-gated labels through the 650-entry
+8. Curated mechanism labels for 624 entries: all entries in the 475-entry
+   source slice plus accepted, factory-gated labels through the 700-entry
    candidate queue.
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
@@ -67,17 +67,17 @@ The repository currently contains:
     expert-review export/import, review-debt triage, batch summary with
     scaling-quality audit attachment, and a scaling gate.
 
-The 20- through 650-entry evaluation slices are clean out-of-scope regression
+The 20- through 700-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
 under calibrated abstention. The 125-entry slice has 38 in-scope positives, 87
 out-of-scope controls, 124/125 evaluable active-site structures, threshold
 `0.4115`, and a positive score separation gap of `0.0308`.
 
-The current 650-entry countable stress slice has 601 evaluable active-site
-structures among 617 evaluated labeled rows, 151 local active-site in-scope
-positives, 466 evaluated out-of-scope controls, 17 structure-mapping issues,
+The current 700-entry countable stress slice has 607 evaluable active-site
+structures among 623 evaluated labeled rows, 157 local active-site in-scope
+positives, 466 evaluated out-of-scope controls, 19 structure-mapping issues,
 0 hard negatives, and 0 near misses. Its calibrated threshold is `0.4115`;
-it retains 147/151 in-scope positives, abstains on all
+it retains 153/157 in-scope positives, abstains on all
 evaluable out-of-scope controls, and leaves the same 4 evidence-limited
 in-scope abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`).
 The current actionable in-scope failure count is 0 after separating
@@ -88,42 +88,34 @@ positives. Cofactor coverage artifacts explicitly identify retained
 evidence-limited positives: `m_csa:41`, `m_csa:108`, `m_csa:160`,
 `m_csa:446`, and `m_csa:486`.
 
-The 500-, 525-, 550-, 575-, 600-, 625-, and 650-entry candidate queues have been processed through the
-label factory. `m_csa:494` is intentionally preserved as a non-countable
-`needs_expert_review` cobalamin evidence gap because B12 evidence is
-structure-wide only. The 625 and 650 batches accepted 39 additional countable
-labels while preserving 0 hard negatives, 0 near misses, 0 out-of-scope false
-non-abstentions, and 0 actionable in-scope failures. See
+The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, and 700-entry candidate
+queues have been processed through the label factory. `m_csa:494` is
+intentionally preserved as a non-countable `needs_expert_review` cobalamin
+evidence gap because B12 evidence is structure-wide only. The 675 and 700
+batches accepted 6 additional clean countable labels while preserving 0 hard
+negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0
+actionable in-scope failures. See
 `work/label_queue_500_notes.md`, `work/label_queue_525_notes.md`,
-`work/label_queue_550_notes.md`, and `work/label_factory_notes.md`.
+`work/label_queue_550_notes.md`, `work/label_factory_notes.md`, and
+`work/label_preview_700_notes.md`.
 
 Label scaling is now gated by the label factory rather than raw queue size. The
-current 650 factory audit proposes 75 bronze-to-silver promotions, flags 112
+current 700 factory audit proposes 79 bronze-to-silver promotions, flags 112
 abstention/review rows, mines 100 adversarial negative controls from 466
-out-of-scope candidates, exports 56 expert-review items from the post-650
-review queue, and passes the 650-slice gate check. The active-learning gate now
+out-of-scope candidates, exports 161 expert-review items from the post-700
+review queue, and passes the 700-slice gate check. The active-learning gate now
 also fails if unlabeled candidate rows are truncated by the queue limit.
-`artifacts/v3_label_batch_acceptance_check_650.json` records that the latest
-accepted batch added 19 labels for counting while 37 review-state decisions
+`artifacts/v3_label_batch_acceptance_check_700.json` records that the latest
+accepted batch added 5 labels for counting while 81 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
-accepted batch history and confirms 7/7 accepted batches remain guardrail-clean.
-`artifacts/v3_review_debt_summary_650.json` prioritizes 53 current evidence-gap
-rows for the accepted 650 state. A 675-entry preview has been generated and
-quality-repaired before promotion: the provisional decision rule now defers
-below-threshold, evidence-limited negatives instead of counting them. The
-preview acceptance artifact counts only one clean new label (`m_csa:666`) and
-keeps 61 review-state decisions pending.
-`artifacts/v3_review_debt_summary_675_preview.json` prioritizes 61 preview
-evidence-gap rows, including 24 new rows beyond the accepted 650 state.
-`artifacts/v3_label_scaling_quality_audit_675_preview.json` records the
-explicit scaling-failure audit: 0 accepted labels have review debt, 0 hard
-negatives remain, and the diversity-aware review export retains all
-underrepresented ontology-family rows despite hydrolysis-dominated queue
-composition. The audit still recommends review before promotion because review
-debt increased, and it now records a missing sequence-cluster artifact warning
-for the stronger paralog/near-duplicate check. See
-`work/label_preview_675_notes.md` for the clean label profile and the top
-evidence gaps to inspect.
+accepted batch history and confirms 9/9 accepted batches remain guardrail-clean.
+`artifacts/v3_review_debt_summary_700.json` prioritizes 81 current evidence-gap
+rows for the accepted 700 state. The 675 and 700 scaling-quality audits keep
+pending evidence gaps outside the benchmark, classify new debt rows, and attach
+graph-derived sequence-cluster proxy artifacts; both audits report 0 accepted
+labels with review debt and 0 near-duplicate hits among audited rows. See
+`work/label_preview_675_notes.md` and `work/label_preview_700_notes.md` for the
+clean label profiles and the top evidence gaps to inspect.
 See
 `docs/label_factory.md`.
 
@@ -156,6 +148,7 @@ python -m catalytic_earth.cli label-summary --out artifacts/v3_label_summary.jso
 
 python -m catalytic_earth.cli build-v1-graph --max-mcsa 500 --page-size 100 --out artifacts/v1_graph_500.json
 python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_500.json --out artifacts/v1_graph_summary_500.json
+python -m catalytic_earth.cli build-sequence-cluster-proxy --graph artifacts/v1_graph_500.json --out artifacts/v3_sequence_cluster_proxy_500.json
 python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_500.json --out artifacts/v2_benchmark_500.json
 python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_500.json --max-entries 500 --out artifacts/v3_geometry_features_500.json
 python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_500.json --out artifacts/v3_geometry_retrieval_500.json
@@ -223,12 +216,12 @@ Current timeline judgment:
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
 2. Current automation blocks: keep using the label factory for every new
-   tranche. The 650 slice is accepted; the generated 675 preview should be
-   reviewed before any promotion to the canonical registry. Each batch must
+   tranche. The 700 slice is accepted only for its clean countable labels; 81
+   review-state rows remain outside the benchmark. Each batch must
    pass promotion/demotion, adversarial-negative,
    active-learning, expert-review export/import, family-propagation,
    validation, and test gates before labels count toward the benchmark.
-3. Next serious milestone: expand beyond 618 countable labels or resolve the
+3. Next serious milestone: expand beyond 624 countable labels or resolve the
    evidence-limited abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and
    `m_csa:430`) by improving structure/cofactor evidence, while preserving the
    current hard-negative guardrails.

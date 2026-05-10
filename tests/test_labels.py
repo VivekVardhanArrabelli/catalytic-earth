@@ -51,12 +51,12 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 618)
+        self.assertEqual(len(labels), 624)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
-        self.assertEqual(summary["by_tier"]["bronze"], 618)
-        self.assertEqual(summary["by_review_status"]["automation_curated"], 618)
+        self.assertEqual(summary["by_tier"]["bronze"], 624)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 624)
         self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:

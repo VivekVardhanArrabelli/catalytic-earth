@@ -9,7 +9,7 @@ from pathlib import Path
 from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .fingerprints import build_mechanism_demo, load_fingerprints
-from .graph import build_seed_graph, build_v1_graph, summarize_graph
+from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
 from .labels import (
@@ -226,6 +226,19 @@ def cmd_graph_summary(args: argparse.Namespace) -> int:
     summary = summarize_graph(graph)
     write_json(Path(args.out), summary)
     print(f"Wrote graph summary to {args.out}")
+    return 0
+
+
+def cmd_build_sequence_cluster_proxy(args: argparse.Namespace) -> int:
+    with Path(args.graph).open("r", encoding="utf-8") as handle:
+        graph = json.load(handle)
+    artifact = build_sequence_cluster_proxy(graph, entry_ids=set(args.entry_id or []))
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote sequence cluster proxy to "
+        f"{args.out} ({artifact['metadata']['entry_count']} entries, "
+        f"{artifact['metadata']['duplicate_cluster_count']} duplicate clusters)"
+    )
     return 0
 
 
@@ -1067,6 +1080,18 @@ def build_parser() -> argparse.ArgumentParser:
     summary.add_argument("--graph", default="artifacts/v1_graph.json")
     summary.add_argument("--out", default="artifacts/v1_graph_summary.json")
     summary.set_defaults(func=cmd_graph_summary)
+
+    sequence_clusters = subparsers.add_parser(
+        "build-sequence-cluster-proxy",
+        help="build a local exact-UniProt sequence-cluster proxy from a graph artifact",
+    )
+    sequence_clusters.add_argument("--graph", default="artifacts/v1_graph.json")
+    sequence_clusters.add_argument("--entry-id", action="append", default=[])
+    sequence_clusters.add_argument(
+        "--out",
+        default="artifacts/v3_sequence_cluster_proxy.json",
+    )
+    sequence_clusters.set_defaults(func=cmd_build_sequence_cluster_proxy)
 
     benchmark = subparsers.add_parser(
         "build-v2-benchmark",

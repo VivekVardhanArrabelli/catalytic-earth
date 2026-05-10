@@ -16949,6 +16949,48 @@
       "rationale": "4-hydroxy-2-oxovalerate aldolase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3619, below the 0.4115 floor. Counterevidence: nonhydrolytic_isomerase_lyase_text_context, nonhydrolytic_metal_transfer_ligand_context.",
       "review_status": "needs_expert_review",
       "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:666",
+      "evidence": {
+        "cofactor_evidence_level": "not_required",
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 147,
+            "rationale": "alpha-amino-acid esterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8521 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7679,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "ser_his_acid_hydrolase",
+            "target_score": 0.8521,
+            "top1_fingerprint_id": "ser_his_acid_hydrolase",
+            "top1_score": 0.8521
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.8521,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.7679,
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "rationale": "alpha-amino-acid esterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8521 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+      "review_status": "automation_curated",
+      "tier": "silver"
     }
   ],
   "metadata": {
@@ -16957,16 +16999,16 @@
       "hold_bronze_boundary_review": 82,
       "hold_bronze_need_review": 20,
       "hold_current_tier": 430,
-      "promote_to_silver": 76
+      "promote_to_silver": 77
     },
-    "input_label_count": 618,
+    "input_label_count": 619,
     "method": "apply_label_factory_actions",
-    "output_label_count": 618,
+    "output_label_count": 619,
     "output_summary": {
       "by_confidence": {
         "high": 28,
         "low": 36,
-        "medium": 554
+        "medium": 555
       },
       "by_fingerprint": {
         "cobalamin_radical_rearrangement": 2,
@@ -16976,22 +17018,22 @@
         "metal_dependent_hydrolase": 54,
         "plp_dependent_enzyme": 21,
         "radical_sam_enzyme": 1,
-        "ser_his_acid_hydrolase": 26
+        "ser_his_acid_hydrolase": 27
       },
       "by_review_status": {
-        "automation_curated": 507,
+        "automation_curated": 508,
         "needs_expert_review": 111
       },
       "by_tier": {
         "bronze": 542,
-        "silver": 76
+        "silver": 77
       },
       "by_type": {
         "out_of_scope": 467,
-        "seed_fingerprint": 151
+        "seed_fingerprint": 152
       },
-      "label_count": 618,
-      "mean_evidence_score": 0.6496
+      "label_count": 619,
+      "mean_evidence_score": 0.6498
     }
   }
 }

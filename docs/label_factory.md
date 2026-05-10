@@ -38,11 +38,11 @@ Current slice artifact:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-label-factory-audit \
-  --retrieval artifacts/v3_geometry_retrieval_650.json \
-  --hard-negatives artifacts/v3_hard_negative_controls_650.json \
-  --adversarial-negatives artifacts/v3_adversarial_negative_controls_650.json \
+  --retrieval artifacts/v3_geometry_retrieval_700.json \
+  --hard-negatives artifacts/v3_hard_negative_controls_700.json \
+  --adversarial-negatives artifacts/v3_adversarial_negative_controls_700.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_label_factory_audit_650.json
+  --out artifacts/v3_label_factory_audit_700.json
 ```
 
 `apply-label-factory-actions` materializes those recommendations into a registry
@@ -50,8 +50,8 @@ artifact for review without overwriting the curated registry:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli apply-label-factory-actions \
-  --label-factory-audit artifacts/v3_label_factory_audit_650.json \
-  --out artifacts/v3_label_factory_applied_labels_650.json
+  --label-factory-audit artifacts/v3_label_factory_audit_700.json \
+  --out artifacts/v3_label_factory_applied_labels_700.json
 ```
 
 ## Mechanism Ontology
@@ -83,9 +83,9 @@ above bronze without direct evidence.
 - family-boundary value
 
 The queue includes unlabeled tranche candidates plus labeled entries whose
-current evidence needs review. After the accepted 650 batch, the current queue
-artifact is `artifacts/v3_active_learning_review_queue_650.json`: it retains
-all 32 unlabeled post-batch candidate rows in addition to labeled review rows.
+current evidence needs review. After the accepted 700 batch, the current queue
+artifact is `artifacts/v3_active_learning_review_queue_700.json`: it retains
+all 64 unlabeled post-batch candidate rows in addition to labeled review rows.
 The gate fails if a queue limit truncates unlabeled candidates, so label
 expansion cannot silently skip lower-ranked unlabeled rows.
 
@@ -135,21 +135,21 @@ next expert-review pass. It ranks review debt by cofactor evidence gaps,
 counterevidence, below-threshold retrieval, family mismatches, and active-queue
 rank, then recommends whether to inspect alternate structures, verify local
 cofactor/active-site mapping, or route a family-boundary question to expert
-review. The accepted-650 artifact is
-`artifacts/v3_review_debt_summary_650.json`; the generated but unpromoted
-675 preview has its own triage artifact at
-`artifacts/v3_review_debt_summary_675_preview.json`. When a baseline debt
+review. The accepted-700 artifact is
+`artifacts/v3_review_debt_summary_700.json`; preview passes keep their own
+triage artifacts such as `artifacts/v3_review_debt_summary_700_preview.json`
+until clean labels are promoted. When a baseline debt
 artifact is provided, the summary records carried versus new review-debt rows
 and full carried/new entry-id lists so preview growth is auditable even when
 the prioritized row table is capped.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt \
-  --review-evidence-gaps artifacts/v3_review_evidence_gaps_675_preview.json \
-  --active-learning-queue artifacts/v3_active_learning_review_queue_675_preview_batch.json \
-  --baseline-review-debt artifacts/v3_review_debt_summary_650.json \
-  --max-rows 35 \
-  --out artifacts/v3_review_debt_summary_675_preview.json
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_700.json \
+  --baseline-review-debt artifacts/v3_review_debt_summary_675.json \
+  --max-rows 45 \
+  --out artifacts/v3_review_debt_summary_700.json
 ```
 
 Completed 650 batch workflow:
@@ -209,6 +209,10 @@ batch was `579 -> 599`. Supplying `--review-evidence-gaps` adds the
 counting-boundary guardrail that rejects any newly countable label still
 appearing in the review-gap artifact.
 
+For the accepted 700 clean-label pass this was `619 -> 624`, recorded in
+`artifacts/v3_label_batch_acceptance_check_700.json`. The 81 review-state rows
+remain outside the countable benchmark.
+
 Accepted batches are also aggregated by
 `artifacts/v3_label_factory_batch_summary.json`:
 
@@ -221,6 +225,8 @@ PYTHONPATH=src python -m catalytic_earth.cli summarize-label-factory-batches \
   --acceptance artifacts/v3_label_batch_acceptance_check_600.json \
   --acceptance artifacts/v3_label_batch_acceptance_check_625.json \
   --acceptance artifacts/v3_label_batch_acceptance_check_650.json \
+  --acceptance artifacts/v3_label_batch_acceptance_check_675.json \
+  --acceptance artifacts/v3_label_batch_acceptance_check_700.json \
   --gate artifacts/v3_label_factory_gate_check_500.json \
   --gate artifacts/v3_label_factory_gate_check_525.json \
   --gate artifacts/v3_label_factory_gate_check_550.json \
@@ -228,6 +234,8 @@ PYTHONPATH=src python -m catalytic_earth.cli summarize-label-factory-batches \
   --gate artifacts/v3_label_factory_gate_check_600.json \
   --gate artifacts/v3_label_factory_gate_check_625.json \
   --gate artifacts/v3_label_factory_gate_check_650.json \
+  --gate artifacts/v3_label_factory_gate_check_675.json \
+  --gate artifacts/v3_label_factory_gate_check_700.json \
   --active-learning-queue artifacts/v3_active_learning_review_queue_500.json \
   --active-learning-queue artifacts/v3_active_learning_review_queue_525.json \
   --active-learning-queue artifacts/v3_active_learning_review_queue_550.json \
@@ -235,6 +243,10 @@ PYTHONPATH=src python -m catalytic_earth.cli summarize-label-factory-batches \
   --active-learning-queue artifacts/v3_active_learning_review_queue_600.json \
   --active-learning-queue artifacts/v3_active_learning_review_queue_625.json \
   --active-learning-queue artifacts/v3_active_learning_review_queue_650.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_675.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_700.json \
+  --scaling-quality-audit artifacts/v3_label_scaling_quality_audit_675_preview.json \
+  --scaling-quality-audit artifacts/v3_label_scaling_quality_audit_700_preview.json \
   --out artifacts/v3_label_factory_batch_summary.json
 ```
 
@@ -282,22 +294,31 @@ risk.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality \
-  --batch-id 675_preview \
-  --acceptance artifacts/v3_label_batch_acceptance_check_675_preview.json \
-  --readiness artifacts/v3_label_preview_promotion_readiness_675.json \
-  --review-debt artifacts/v3_review_debt_summary_675_preview.json \
-  --review-evidence-gaps artifacts/v3_review_evidence_gaps_675_preview.json \
-  --active-learning-queue artifacts/v3_active_learning_review_queue_675_preview_batch.json \
-  --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_675_preview_batch.json \
-  --hard-negatives artifacts/v3_hard_negative_controls_675_preview_batch.json \
-  --decision-batch artifacts/v3_expert_review_decision_batch_675_preview.json \
-  --structure-mapping artifacts/v3_structure_mapping_issues_675.json \
-  --expert-review-export artifacts/v3_expert_review_export_675_preview_post_batch.json \
-  --out artifacts/v3_label_scaling_quality_audit_675_preview.json
+  --batch-id 700_preview \
+  --acceptance artifacts/v3_label_batch_acceptance_check_700_preview.json \
+  --readiness artifacts/v3_label_preview_promotion_readiness_700.json \
+  --review-debt artifacts/v3_review_debt_summary_700_preview.json \
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_700_preview.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_700_preview_batch.json \
+  --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700_preview_batch.json \
+  --hard-negatives artifacts/v3_hard_negative_controls_700_preview_batch.json \
+  --decision-batch artifacts/v3_expert_review_decision_batch_700_preview.json \
+  --structure-mapping artifacts/v3_structure_mapping_issues_700.json \
+  --expert-review-export artifacts/v3_expert_review_export_700_preview_post_batch.json \
+  --sequence-clusters artifacts/v3_sequence_cluster_proxy_700.json \
+  --out artifacts/v3_label_scaling_quality_audit_700_preview.json
 ```
 
-When sequence-family or near-duplicate cluster evidence is available, add
-`--sequence-clusters`. Without it, the audit emits a specific
+The local sequence-cluster proxy is generated from exact reference UniProt
+accession sets:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-sequence-cluster-proxy \
+  --graph artifacts/v1_graph_700.json \
+  --out artifacts/v3_sequence_cluster_proxy_700.json
+```
+
+If `--sequence-clusters` is omitted or empty, the audit emits a specific
 `sequence_cluster_artifact_missing_for_near_duplicate_audit` warning so the
 paralog/near-duplicate check is not silently skipped before larger propagation
 batches.
@@ -307,48 +328,46 @@ regenerate the factory audit, adversarial negatives, active-learning queue,
 expert export/import artifacts, family-propagation guardrails, validation, and
 tests before its labels are counted.
 
-Current 650-queue gate state:
+Current 700-queue gate state:
 
-- 10/10 gate checks pass.
+- 11/11 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
   family-propagation guardrails ready, and unlabeled queue retention ready.
-- 75 bronze-to-silver promotions are proposed in the applied-label artifact
-  after the accepted 650 batch.
-- 144 rows are queued for active-learning review after the accepted 650 batch,
-  including all 32 unlabeled post-batch candidates.
+- 79 bronze-to-silver promotions are proposed in the applied-label artifact
+  after the accepted 700 batch.
+- 188 rows are queued for active-learning review after the accepted 700 batch,
+  including all 64 unlabeled post-batch candidates.
 - 100 adversarial negative controls are mined.
-- 56 expert-review items are exported from the post-650 review queue.
-- The 500, 525, 550, 575, 600, 625, and 650 decision batches accepted 143 new
-  countable labels beyond the 475-entry source slice. The canonical registry
-  now contains 618 bronze automation-curated labels, while the review-state
-  registry keeps pending `needs_expert_review` placeholders separate from the
+- 161 expert-review items are exported from the post-700 review queue.
+- The 500, 525, 550, 575, 600, 625, 650, 675, and 700 decision batches
+  accepted 149 new countable labels beyond the 475-entry source slice. The
+  canonical registry now contains 624 bronze automation-curated labels, while
+  the review-state registry keeps pending `needs_expert_review` placeholders
+  separate from the countable benchmark.
+- The 675 and 700 clean-label passes were promoted only for labels with no
+  review-gap reasons. `m_csa:666` was accepted at 675, and `m_csa:686`,
+  `m_csa:688`, `m_csa:694`, `m_csa:697`, and `m_csa:699` were accepted at
+  700. The 700 review-debt summary ranks 81 evidence-gap rows, including 61
+  carried rows and 20 new rows. Pending review-state rows remain outside the
   countable benchmark.
-- A 675 preview batch is generated and preview-accepted, but it is not promoted
-  to the canonical registry until its decisions are reviewed. The preview was
-  quality-repaired so below-threshold evidence-limited negatives remain
-  review-state only. Its review-debt summary ranks 61 evidence-gap rows,
-  including 61 `needs_more_evidence` decisions, 37 carried rows, 24 new rows,
-  and full carried/new entry-id lists plus next-action counts by debt status in
-  metadata. `artifacts/v3_label_factory_preview_summary_675.json` records 1
-  clean countable addition (`m_csa:666`), 61 pending review-state rows, 11/11
-  passing gates, 1 attached scaling-quality audit with recommendation
-  `review_before_promoting`, and 0 blocker metrics.
-- `artifacts/v3_label_preview_promotion_readiness_675.json` separates
+- `artifacts/v3_label_preview_promotion_readiness_700.json` separates
   mechanical acceptance from promotion. It is mechanically ready, but its
   recommendation is `review_before_promoting` because preview review debt rises
-  from 53 to 61 rows and pending review rows remain. The readiness metadata
+  from 61 to 81 rows and pending review rows remain. The readiness metadata
   also copies the new debt entry ids and next-action counts from the preview
   debt summary.
 - `artifacts/v3_label_scaling_quality_audit_675_preview.json` records the
-  failure-mode audit. It has 0 accepted labels with review debt and 0 hard
-  negatives. It observes hydrolysis-dominated queue composition, but the
-  diversity-aware review export retains all underrepresented ontology-family
-  rows, so the scaling-quality audit has 0 blockers. It still flags ontology
-  scope pressure, cofactor ambiguity, reaction/substrate mismatches, active-site
-  mapping gaps, and the missing sequence-cluster artifact needed for a stronger
-  paralog/near-duplicate audit as promotion-review issues.
+  675 failure-mode audit, and
+  `artifacts/v3_label_scaling_quality_audit_700_preview.json` records the 700
+  failure-mode audit. Both have 0 accepted labels with review debt and 0 hard
+  negatives. Both attach sequence-cluster proxy artifacts and report no
+  near-duplicate hits among audited rows. The 700 audit still flags ontology
+  scope pressure, family-propagation boundaries, cofactor ambiguity,
+  reaction/substrate mismatches, active-site mapping gaps, and
+  hydrolysis-dominated queue composition as promotion-review issues for
+  deferred rows.
 
 ## Automation Lock
 

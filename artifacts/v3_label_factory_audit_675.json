@@ -7,23 +7,23 @@
       "hold_bronze_boundary_review": 82,
       "hold_bronze_need_review": 20,
       "hold_current_tier": 430,
-      "promote_to_silver": 76
+      "promote_to_silver": 77
     },
     "demote_to_bronze_count": 0,
     "demotion_rule": "silver/gold labels demote to bronze, or bronze labels stay review-only, when retrieval counterevidence, abstention, top-family mismatch, or out-of-scope false non-abstention is present",
-    "evaluated_label_count": 617,
+    "evaluated_label_count": 618,
     "hard_negative_evidence_entry_count": 100,
-    "label_count": 618,
+    "label_count": 619,
     "method": "label_factory_promotion_demotion_audit",
-    "promote_to_silver_count": 76,
+    "promote_to_silver_count": 77,
     "promotion_rule": "bronze labels promote to silver when retrieval agrees with the label, the score clears the abstention threshold, and no evidence-limiting cofactor or counterevidence conflict is present",
     "target_tier_counts": {
       "bronze": 541,
-      "silver": 76
+      "silver": 77
     },
     "tier_transition_counts": {
       "bronze->bronze": 541,
-      "bronze->silver": 76
+      "bronze->silver": 77
     }
   },
   "rows": [
@@ -34046,6 +34046,77 @@
       "top2_gap": 0.0137,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.163
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "not_required",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "alpha-amino-acid esterase",
+        "ligand_codes": [
+          "MSE"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The catalytic mechanism for both hydrolysis and ester synthesis follows that of serine hydrolases. But during ester synthesis, instead of transferring the acyl group in the intermediate to a water molecule, the acyl group is transferred to a beta-lactam nuclei. His340 acts as a base to deprotonat..."
+        ],
+        "nearby_residue_count": 50,
+        "pdb_id": "1MPX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.18,
+          "charge_balance": -0.06,
+          "hydrophobic_fraction": 0.22,
+          "mean_min_distance_to_active_site": 5.3575,
+          "negative_fraction": 0.14,
+          "polar_fraction": 0.26,
+          "positive_fraction": 0.08,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "TYR",
+          "ASP",
+          "TYR",
+          "SER",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MSE",
+          "GOL",
+          "CA"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:666",
+      "entry_name": "alpha-amino-acid esterase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [],
+      "factory_evidence_score": 0.7679,
+      "hard_negative_evidence": [],
+      "label_rationale": "alpha-amino-acid esterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8521 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.67,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_ontology_family": "hydrolysis",
+      "target_rank": 1,
+      "target_score": 0.8521,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.8521,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_gap": 0.4856,
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.3665
     },
     {
       "abstain_threshold": 0.4115,
