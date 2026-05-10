@@ -16,6 +16,8 @@ GEOMETRY_SLICES = [
     ("125", "_125"),
     ("150", "_150"),
     ("175", "_175"),
+    ("200", "_200"),
+    ("225", "_225"),
 ]
 
 
@@ -110,6 +112,15 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
                 "closest_near_miss_score": closest_near_miss.get("top1_score"),
                 "closest_near_miss_score_gap_to_floor": closest_near_miss.get(
                     "score_gap_to_floor"
+                ),
+                "closest_below_floor_entry_id": hard_meta.get(
+                    "closest_below_floor_entry_id"
+                ),
+                "closest_below_floor_top1_fingerprint_id": hard_meta.get(
+                    "closest_below_floor_top1_fingerprint_id"
+                ),
+                "minimum_below_floor_score_gap": hard_meta.get(
+                    "minimum_below_floor_score_gap"
                 ),
                 "score_separation_gap": margin_meta.get("score_separation_gap"),
                 "correct_positive_score_separation_gap": margin_meta.get(
@@ -247,6 +258,17 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
         for row in rows
         if row.get("closest_near_miss_score_gap_to_floor") is not None
     ]
+    below_floor_boundary_rows = [
+        row for row in rows if row.get("minimum_below_floor_score_gap") is not None
+    ]
+    closest_below_floor = min(
+        below_floor_boundary_rows,
+        key=lambda row: (
+            float(row.get("minimum_below_floor_score_gap", float("inf"))),
+            str(row.get("slice", "")),
+        ),
+        default={},
+    )
     slices_with_near_misses = [
         row["slice"]
         for row in rows
@@ -305,6 +327,16 @@ def summarize_geometry_slices(artifact_dir: Path) -> dict[str, Any]:
             "minimum_near_miss_score_gap_to_floor": min(
                 near_miss_gaps,
                 default=None,
+            ),
+            "minimum_below_floor_score_gap": closest_below_floor.get(
+                "minimum_below_floor_score_gap"
+            ),
+            "closest_below_floor_slice": closest_below_floor.get("slice"),
+            "closest_below_floor_entry_id": closest_below_floor.get(
+                "closest_below_floor_entry_id"
+            ),
+            "closest_below_floor_top1_fingerprint_id": closest_below_floor.get(
+                "closest_below_floor_top1_fingerprint_id"
             ),
             "validation_boundary": "artifact summary only; depends on curated labels and generated JSON inputs",
         },

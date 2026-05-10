@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "abstain_threshold": 0.4236,
+    "abstain_threshold": 0.4145,
     "abstained_positive_count": 1,
     "actionable_failure_count": 0,
     "evaluated_in_scope_count": 59,
@@ -30,7 +30,7 @@
   },
   "rows": [
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4145,
       "abstained": true,
       "context": {
         "cofactor_families": [],
@@ -79,6 +79,16 @@
         "cofactor_context_score": 0.0,
         "compactness_score": 0.6384,
         "counterevidence_penalty": 0.6,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.6,
+            "reason": "absent_flavin_context"
+          },
+          {
+            "penalty": 0.6,
+            "reason": "nad_only_or_nonflavin_context"
+          }
+        ],
         "counterevidence_reasons": [
           "absent_flavin_context",
           "nad_only_or_nonflavin_context"
@@ -104,6 +114,12 @@
         "cofactor_context_score": 1.0,
         "compactness_score": 0.6384,
         "counterevidence_penalty": 0.7,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.7,
+            "reason": "ser_his_seed_missing_triad_coherence"
+          }
+        ],
         "counterevidence_reasons": [
           "ser_his_seed_missing_triad_coherence"
         ],

@@ -1,103 +1,85 @@
 {
-  "groups": [],
-  "metadata": {
-    "closest_near_miss_entry_id": "m_csa:65",
-    "closest_near_miss_top1_fingerprint_id": "metal_dependent_hydrolase",
-    "cofactor_evidence_counts": {},
-    "evaluable_out_of_scope_count": 114,
-    "evaluated_out_of_scope_count": 116,
-    "hard_negative_count": 0,
-    "method": "geometry_hard_negative_control_selection",
-    "minimum_near_miss_score_gap_to_floor": 0.001,
-    "near_miss_cofactor_evidence_counts": {
-      "ligand_supported": 8,
-      "role_inferred": 9
-    },
-    "near_miss_count": 17,
-    "near_miss_margin": 0.01,
-    "near_miss_top1_fingerprint_counts": {
-      "metal_dependent_hydrolase": 17
-    },
-    "score_floor": 0.4245,
-    "score_floor_source": "min_correct_in_scope_top1_score",
-    "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": false,
-    "top1_fingerprint_counts": {}
-  },
-  "near_miss_groups": [
-    {
-      "cofactor_evidence_level": "role_inferred",
-      "count": 9,
-      "counterevidence_reason_counts": {
-        "fe_s_cluster_context_for_metal_hydrolase": 1,
-        "metal_redox_ligand_context": 3,
-        "nucleotide_transfer_ligand_context": 1,
-        "role_inferred_histidine_only_metal_site": 1,
-        "role_inferred_metal_aromatic_positive_pocket": 2,
-        "role_inferred_metal_covalent_cleavage_roles": 2,
-        "role_inferred_metal_low_pocket_support": 2,
-        "role_inferred_metal_missing_water_activation_role": 4,
-        "single_electron_role_context": 1
-      },
-      "entry_ids": [
-        "m_csa:101",
-        "m_csa:125",
-        "m_csa:129",
-        "m_csa:144",
-        "m_csa:145",
-        "m_csa:156",
-        "m_csa:32",
-        "m_csa:33",
-        "m_csa:64"
-      ],
-      "hard_negative_reason_counts": {
-        "metal_role_overlap_without_confirmed_hydrolysis": 9
-      },
-      "max_score_gap_to_floor": 0.0093,
-      "max_top1_score": 0.4226,
-      "mean_score_gap_to_floor": 0.0057,
-      "mean_top1_score": 0.4188,
-      "min_score_gap_to_floor": 0.0019,
-      "min_top1_score": 0.4152,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
-    },
+  "closest_below_floor_rows": [
     {
       "cofactor_evidence_level": "ligand_supported",
-      "count": 8,
-      "counterevidence_reason_counts": {
-        "metal_redox_ligand_context": 2,
-        "nonhydrolytic_metal_transfer_ligand_context": 4,
-        "nucleotide_transfer_ligand_context": 3,
-        "single_electron_role_context": 1
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.9783,
+        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.7,
+            "reason": "nonheme_iron_aromatic_low_pocket_without_water_activation"
+          }
+        ],
+        "counterevidence_reasons": [
+          "nonheme_iron_aromatic_low_pocket_without_water_activation"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1364
       },
-      "entry_ids": [
-        "m_csa:126",
-        "m_csa:130",
-        "m_csa:151",
-        "m_csa:35",
-        "m_csa:52",
-        "m_csa:65",
-        "m_csa:95",
-        "m_csa:99"
-      ],
-      "hard_negative_reason_counts": {
-        "high_score_out_of_scope_overlap": 8
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "ligand_codes": [
+          "FE"
+        ],
+        "nearby_residue_count": 44,
+        "pdb_id": "2TOH",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2727,
+          "charge_balance": -0.0454,
+          "hydrophobic_fraction": 0.3636,
+          "mean_min_distance_to_active_site": 5.0524,
+          "negative_fraction": 0.0909,
+          "polar_fraction": 0.1818,
+          "positive_fraction": 0.0455,
+          "sulfur_fraction": 0.0682
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "SER",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "FE",
+          "HBI",
+          "MTY",
+          "CL"
+        ]
       },
-      "max_score_gap_to_floor": 0.0099,
-      "max_top1_score": 0.4235,
-      "mean_score_gap_to_floor": 0.006,
-      "mean_top1_score": 0.4184,
-      "min_score_gap_to_floor": 0.001,
-      "min_top1_score": 0.4146,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
-    }
-  ],
-  "near_miss_rows": [
+      "entry_id": "m_csa:134",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Tyrosine 3-monooxygenase uses tetrahydrobiopterin and non-heme iron aromatic hydroxylation outside the current flavin and heme seed fingerprints.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0101,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4144
+    },
     {
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
         "compactness_score": 1.0,
-        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "nonhydrolytic_metal_transfer_ligand_context"
+          },
+          {
+            "penalty": 0.68,
+            "reason": "nucleotide_transfer_ligand_context"
+          }
+        ],
         "counterevidence_reasons": [
           "nonhydrolytic_metal_transfer_ligand_context",
           "nucleotide_transfer_ligand_context"
@@ -151,19 +133,99 @@
       "entry_id": "m_csa:65",
       "hard_negative_reason": "high_score_out_of_scope_overlap",
       "label_rationale": "Adenylosuccinate synthase performs nucleotide-dependent ligation/addition chemistry outside the current hydrolase and PLP seed fingerprints.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
+      "negative_control_type": "below_in_scope_floor",
       "score_floor": 0.4245,
-      "score_gap_to_floor": 0.001,
+      "score_gap_to_floor": 0.0131,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4235
+      "top1_score": 0.4114
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.0,
+        "counterevidence_penalty": 0.63,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.63,
+            "reason": "molybdenum_center_heme_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "molybdenum_center_heme_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2811
+      },
+      "context": {
+        "cofactor_families": [
+          "heme"
+        ],
+        "ligand_codes": [
+          "MTE",
+          "MO",
+          "HEM"
+        ],
+        "nearby_residue_count": 74,
+        "pdb_id": "1SOX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2297,
+          "charge_balance": 0.081,
+          "hydrophobic_fraction": 0.3919,
+          "mean_min_distance_to_active_site": 5.4193,
+          "negative_fraction": 0.0676,
+          "polar_fraction": 0.2027,
+          "positive_fraction": 0.1486,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "CYS",
+          "HIS",
+          "HIS",
+          "ARG",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "MTE",
+          "MO",
+          "HEM",
+          "SO4",
+          "GOL",
+          "EPE"
+        ]
+      },
+      "entry_id": "m_csa:121",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Sulfite oxidase uses molybdenum-centered sulfite oxidation with heme electron transfer, outside the current heme peroxidase or oxidase seed.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0136,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4109
     },
     {
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
         "compactness_score": 0.9655,
-        "counterevidence_penalty": 0.72,
+        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.7,
+            "reason": "role_inferred_metal_hydrophobic_low_pocket_support"
+          },
+          {
+            "penalty": 0.72,
+            "reason": "role_inferred_metal_low_pocket_support"
+          }
+        ],
         "counterevidence_reasons": [
+          "role_inferred_metal_hydrophobic_low_pocket_support",
           "role_inferred_metal_low_pocket_support"
         ],
         "mechanistic_coherence_score": 1.0,
@@ -203,19 +265,116 @@
       "entry_id": "m_csa:32",
       "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
       "label_rationale": "Lactoylglutathione lyase uses metal-assisted lyase/isomerization chemistry rather than metal-activated hydrolysis.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
+      "negative_control_type": "below_in_scope_floor",
       "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0019,
+      "score_gap_to_floor": 0.0136,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4226
+      "top1_score": 0.4109
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6136,
+        "counterevidence_penalty": 0.72,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.72,
+            "reason": "sam_ligand_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "sam_ligand_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1832
+      },
+      "context": {
+        "cofactor_families": [
+          "metal_ion",
+          "sam"
+        ],
+        "ligand_codes": [
+          "SAM",
+          "ADN",
+          "K",
+          "MET",
+          "PPK",
+          "MG"
+        ],
+        "nearby_residue_count": 107,
+        "pdb_id": "5A1I",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0748,
+          "charge_balance": -0.0281,
+          "hydrophobic_fraction": 0.3925,
+          "mean_min_distance_to_active_site": 4.8509,
+          "negative_fraction": 0.0935,
+          "polar_fraction": 0.2617,
+          "positive_fraction": 0.0654,
+          "sulfur_fraction": 0.0374
+        },
+        "residue_codes": [
+          "GLU",
+          "LYS",
+          "LYS",
+          "LYS",
+          "GLU",
+          "ASP",
+          "LYS",
+          "HIS",
+          "ASP",
+          "LYS",
+          "PHE",
+          "ASP",
+          "ALA",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion",
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAM",
+          "ADN",
+          "K",
+          "MET",
+          "PPK",
+          "MG",
+          "PG4",
+          "PEG",
+          "EDO"
+        ]
+      },
+      "entry_id": "m_csa:9",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Methionine adenosyltransferase performs ATP-dependent adenosyl transfer and triphosphate processing outside the current seed fingerprints.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0142,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4103
     },
     {
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
         "compactness_score": 0.9081,
-        "counterevidence_penalty": 0.72,
+        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.7,
+            "reason": "role_inferred_metal_hydrophobic_low_pocket_support"
+          },
+          {
+            "penalty": 0.72,
+            "reason": "role_inferred_metal_low_pocket_support"
+          }
+        ],
         "counterevidence_reasons": [
+          "role_inferred_metal_hydrophobic_low_pocket_support",
           "role_inferred_metal_low_pocket_support"
         ],
         "mechanistic_coherence_score": 1.0,
@@ -253,18 +412,28 @@
       "entry_id": "m_csa:33",
       "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
       "label_rationale": "Methylmalonyl-CoA epimerase uses metal-associated acid-base epimerization rather than the current hydrolase seed mechanisms.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
+      "negative_control_type": "below_in_scope_floor",
       "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0032,
+      "score_gap_to_floor": 0.0149,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4213
+      "top1_score": 0.4096
     },
     {
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
         "compactness_score": 0.9163,
-        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "metal_redox_ligand_context"
+          },
+          {
+            "penalty": 0.7,
+            "reason": "single_electron_role_context"
+          }
+        ],
         "counterevidence_reasons": [
           "metal_redox_ligand_context",
           "single_electron_role_context"
@@ -314,18 +483,28 @@
       "entry_id": "m_csa:130",
       "hard_negative_reason": "high_score_out_of_scope_overlap",
       "label_rationale": "Naphthalene 1,2-dioxygenase uses Rieske iron-sulfur and non-heme iron oxygenation chemistry outside the current flavin dehydrogenase seed.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
+      "negative_control_type": "below_in_scope_floor",
       "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0042,
+      "score_gap_to_floor": 0.0162,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4203
+      "top1_score": 0.4083
     },
     {
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
         "compactness_score": 0.8931,
-        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "metal_redox_ligand_context"
+          },
+          {
+            "penalty": 0.72,
+            "reason": "role_inferred_metal_missing_water_activation_role"
+          }
+        ],
         "counterevidence_reasons": [
           "metal_redox_ligand_context",
           "role_inferred_metal_missing_water_activation_role"
@@ -370,18 +549,24 @@
       "entry_id": "m_csa:129",
       "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
       "label_rationale": "Taurine dioxygenase is a non-heme iron and alpha-ketoglutarate dioxygenase, outside the current flavin or heme redox seed fingerprints.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
+      "negative_control_type": "below_in_scope_floor",
       "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0043,
+      "score_gap_to_floor": 0.0163,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4202
+      "top1_score": 0.4082
     },
     {
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
         "compactness_score": 1.0,
-        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "nucleotide_transfer_ligand_context"
+          }
+        ],
         "counterevidence_reasons": [
           "nucleotide_transfer_ligand_context"
         ],
@@ -430,18 +615,24 @@
       "entry_id": "m_csa:151",
       "hard_negative_reason": "high_score_out_of_scope_overlap",
       "label_rationale": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase performs ATP-dependent pyrophosphoryl transfer, not the current metal-hydrolase seed.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
+      "negative_control_type": "below_in_scope_floor",
       "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0044,
+      "score_gap_to_floor": 0.0164,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4201
+      "top1_score": 0.4081
     },
     {
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
         "compactness_score": 0.9705,
-        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "metal_redox_ligand_context"
+          }
+        ],
         "counterevidence_reasons": [
           "metal_redox_ligand_context"
         ],
@@ -497,594 +688,36 @@
       "entry_id": "m_csa:126",
       "hard_negative_reason": "high_score_out_of_scope_overlap",
       "label_rationale": "Cytochrome-c3 hydrogenase performs nickel/iron hydrogen redox chemistry outside the current hydrolase, flavin, heme, PLP, and cobalamin seed fingerprints.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
+      "negative_control_type": "below_in_scope_floor",
       "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0048,
+      "score_gap_to_floor": 0.0168,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4197
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 1.0,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_reasons": [
-          "nucleotide_transfer_ligand_context"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1671
-      },
-      "context": {
-        "cofactor_families": [
-          "metal_ion"
-        ],
-        "ligand_codes": [
-          "ATP",
-          "MN"
-        ],
-        "nearby_residue_count": 41,
-        "pdb_id": "2PHK",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1707,
-          "charge_balance": 0.0244,
-          "hydrophobic_fraction": 0.3902,
-          "mean_min_distance_to_active_site": 5.0986,
-          "negative_fraction": 0.0976,
-          "polar_fraction": 0.2195,
-          "positive_fraction": 0.122,
-          "sulfur_fraction": 0.0488
-        },
-        "residue_codes": [
-          "ASN",
-          "LYS",
-          "THR",
-          "ASP",
-          "ASP"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "ATP",
-          "MN",
-          "GOL"
-        ]
-      },
-      "entry_id": "m_csa:35",
-      "hard_negative_reason": "high_score_out_of_scope_overlap",
-      "label_rationale": "Phosphorylase kinase performs ATP-dependent phosphoryl transfer outside the current seed fingerprints.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0056,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4189
-    },
-    {
-      "cofactor_evidence_level": "role_inferred",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.7963,
-        "counterevidence_penalty": 0.72,
-        "counterevidence_reasons": [
-          "role_inferred_histidine_only_metal_site",
-          "role_inferred_metal_missing_water_activation_role"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1638
-      },
-      "context": {
-        "cofactor_families": [],
-        "ligand_codes": [],
-        "nearby_residue_count": 80,
-        "pdb_id": "1BT3",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.275,
-          "charge_balance": 0.025,
-          "hydrophobic_fraction": 0.3375,
-          "mean_min_distance_to_active_site": 5.1408,
-          "negative_fraction": 0.0375,
-          "polar_fraction": 0.2625,
-          "positive_fraction": 0.0625,
-          "sulfur_fraction": 0.0625
-        },
-        "residue_codes": [
-          "HIS",
-          "HIS",
-          "HIS",
-          "HIS",
-          "PHE",
-          "HIS",
-          "HIS"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "C2O"
-        ]
-      },
-      "entry_id": "m_csa:125",
-      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
-      "label_rationale": "Catechol oxidase is a copper-dependent oxidase and does not match the current metal-dependent hydrolase or heme/flavin redox seed fingerprints.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0057,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4188
-    },
-    {
-      "cofactor_evidence_level": "role_inferred",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.9094,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_reasons": [
-          "role_inferred_metal_covalent_cleavage_roles"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.2149
-      },
-      "context": {
-        "cofactor_families": [],
-        "ligand_codes": [],
-        "nearby_residue_count": 57,
-        "pdb_id": "1D6M",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1053,
-          "charge_balance": 0.0176,
-          "hydrophobic_fraction": 0.4386,
-          "mean_min_distance_to_active_site": 5.3294,
-          "negative_fraction": 0.0877,
-          "polar_fraction": 0.3158,
-          "positive_fraction": 0.1053,
-          "sulfur_fraction": 0.0702
-        },
-        "residue_codes": [
-          "GLU",
-          "TYR",
-          "ARG",
-          "ASP",
-          "LYS",
-          "ASP"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": []
-      },
-      "entry_id": "m_csa:64",
-      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
-      "label_rationale": "DNA topoisomerase type III uses DNA strand-cleavage and religation chemistry rather than the current metal-dependent hydrolase seed.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0057,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4188
-    },
-    {
-      "cofactor_evidence_level": "role_inferred",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.9836,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_reasons": [
-          "nucleotide_transfer_ligand_context",
-          "role_inferred_metal_covalent_cleavage_roles"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1667
-      },
-      "context": {
-        "cofactor_families": [],
-        "ligand_codes": [
-          "MSE",
-          "AP2"
-        ],
-        "nearby_residue_count": 39,
-        "pdb_id": "5FIT",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1282,
-          "charge_balance": 0.0513,
-          "hydrophobic_fraction": 0.4103,
-          "mean_min_distance_to_active_site": 5.1846,
-          "negative_fraction": 0.0769,
-          "polar_fraction": 0.2308,
-          "positive_fraction": 0.1282,
-          "sulfur_fraction": 0.0256
-        },
-        "residue_codes": [
-          "HIS",
-          "HIS",
-          "GLN",
-          "HIS"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "MSE",
-          "AP2"
-        ]
-      },
-      "entry_id": "m_csa:101",
-      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
-      "label_rationale": "Bis(5'-adenosyl)-triphosphatase uses HIT-superfamily histidine nucleotidyl hydrolase chemistry not represented by the current metal or Ser-His-Asp/Glu hydrolase seeds.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0066,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4179
-    },
-    {
-      "cofactor_evidence_level": "role_inferred",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.9598,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_reasons": [
-          "metal_redox_ligand_context",
-          "role_inferred_metal_aromatic_positive_pocket",
-          "role_inferred_metal_missing_water_activation_role"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1763
-      },
-      "context": {
-        "cofactor_families": [],
-        "ligand_codes": [
-          "FE2",
-          "ASV"
-        ],
-        "nearby_residue_count": 40,
-        "pdb_id": "1ODM",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.2,
-          "charge_balance": 0.05,
-          "hydrophobic_fraction": 0.325,
-          "mean_min_distance_to_active_site": 5.1045,
-          "negative_fraction": 0.075,
-          "polar_fraction": 0.25,
-          "positive_fraction": 0.125,
-          "sulfur_fraction": 0.025
-        },
-        "residue_codes": [
-          "HIS",
-          "PHE",
-          "HIS",
-          "ASP"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "FE2",
-          "ASV",
-          "SO4"
-        ]
-      },
-      "entry_id": "m_csa:145",
-      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
-      "label_rationale": "Isopenicillin-N synthase is a non-heme iron oxidative ring-forming enzyme outside the current hydrolase and redox seed fingerprints.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0069,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4176
-    },
-    {
-      "cofactor_evidence_level": "role_inferred",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.8808,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_reasons": [
-          "fe_s_cluster_context_for_metal_hydrolase",
-          "metal_redox_ligand_context",
-          "role_inferred_metal_missing_water_activation_role",
-          "single_electron_role_context"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.2115
-      },
-      "context": {
-        "cofactor_families": [
-          "fe_s_cluster"
-        ],
-        "ligand_codes": [
-          "MGD",
-          "FES",
-          "F3S"
-        ],
-        "nearby_residue_count": 74,
-        "pdb_id": "1G8K",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1486,
-          "charge_balance": 0.0135,
-          "hydrophobic_fraction": 0.2973,
-          "mean_min_distance_to_active_site": 5.3789,
-          "negative_fraction": 0.0541,
-          "polar_fraction": 0.3378,
-          "positive_fraction": 0.0676,
-          "sulfur_fraction": 0.1486
-        },
-        "residue_codes": [
-          "SER",
-          "HIS",
-          "SER",
-          "CYS",
-          "SER",
-          "HIS"
-        ],
-        "structure_cofactor_families": [
-          "fe_s_cluster",
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "MGD",
-          "FES",
-          "F3S",
-          "HG",
-          "4MO",
-          "O",
-          "EDO",
-          "CA"
-        ]
-      },
-      "entry_id": "m_csa:144",
-      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
-      "label_rationale": "Arsenite oxidase uses molybdenum and iron-sulfur redox chemistry outside the current flavin dehydrogenase and heme seed fingerprints.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0076,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4169
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.8486,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_reasons": [
-          "nonhydrolytic_metal_transfer_ligand_context"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.2151
-      },
-      "context": {
-        "cofactor_families": [
-          "metal_ion"
-        ],
-        "ligand_codes": [
-          "MN",
-          "FOC"
-        ],
-        "nearby_residue_count": 43,
-        "pdb_id": "1FUI",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1395,
-          "charge_balance": 0.0233,
-          "hydrophobic_fraction": 0.3256,
-          "mean_min_distance_to_active_site": 5.4,
-          "negative_fraction": 0.0465,
-          "polar_fraction": 0.3488,
-          "positive_fraction": 0.0698,
-          "sulfur_fraction": 0.0465
-        },
-        "residue_codes": [
-          "GLU",
-          "ASP",
-          "HIS"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "MN",
-          "FOC",
-          "SO4"
-        ]
-      },
-      "entry_id": "m_csa:95",
-      "hard_negative_reason": "high_score_out_of_scope_overlap",
-      "label_rationale": "L-fucose isomerase uses metal-associated sugar isomerization rather than metal-activated hydrolysis in the current seed set.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0091,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4154
-    },
-    {
-      "cofactor_evidence_level": "role_inferred",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.5839,
-        "counterevidence_penalty": 0.92,
-        "counterevidence_reasons": [
-          "role_inferred_metal_aromatic_positive_pocket"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.3333,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1865
-      },
-      "context": {
-        "cofactor_families": [],
-        "ligand_codes": [
-          "TP7",
-          "F43",
-          "MGN",
-          "GL3"
-        ],
-        "nearby_residue_count": 59,
-        "pdb_id": "1MRO",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.2034,
-          "charge_balance": 0.0678,
-          "hydrophobic_fraction": 0.3559,
-          "mean_min_distance_to_active_site": 5.8417,
-          "negative_fraction": 0.0678,
-          "polar_fraction": 0.2712,
-          "positive_fraction": 0.1356,
-          "sulfur_fraction": 0.0847
-        },
-        "residue_codes": [
-          "GLN",
-          "TYR",
-          "TYR",
-          "ASN"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "TP7",
-          "F43",
-          "MGN",
-          "GL3",
-          "COM",
-          "GOL",
-          "MHS",
-          "AGM",
-          "SMC",
-          "ZN",
-          "NA"
-        ]
-      },
-      "entry_id": "m_csa:156",
-      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
-      "label_rationale": "Coenzyme-B sulfoethylthiotransferase uses nickel-associated radical methyl transfer chemistry outside the current metal-hydrolase and cobalamin seeds.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0093,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4152
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.8746,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_reasons": [
-          "nonhydrolytic_metal_transfer_ligand_context"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1981
-      },
-      "context": {
-        "cofactor_families": [
-          "metal_ion"
-        ],
-        "ligand_codes": [
-          "PGH",
-          "NA",
-          "ZN"
-        ],
-        "nearby_residue_count": 53,
-        "pdb_id": "1B57",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1321,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.3774,
-          "mean_min_distance_to_active_site": 5.2402,
-          "negative_fraction": 0.0943,
-          "polar_fraction": 0.283,
-          "positive_fraction": 0.0943,
-          "sulfur_fraction": 0.0566
-        },
-        "residue_codes": [
-          "GLU",
-          "ASN",
-          "ASP",
-          "HIS",
-          "HIS",
-          "HIS"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "PGH",
-          "NA",
-          "ZN",
-          "CL"
-        ]
-      },
-      "entry_id": "m_csa:52",
-      "hard_negative_reason": "high_score_out_of_scope_overlap",
-      "label_rationale": "Class II fructose-bisphosphate aldolase uses metal-assisted aldol carbon-carbon bond chemistry rather than metal-activated hydrolysis.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0094,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4151
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.953,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_reasons": [
-          "nonhydrolytic_metal_transfer_ligand_context"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.1511
-      },
-      "context": {
-        "cofactor_families": [
-          "metal_ion"
-        ],
-        "ligand_codes": [
-          "PQQ",
-          "CA"
-        ],
-        "nearby_residue_count": 46,
-        "pdb_id": "1G72",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1739,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.3043,
-          "mean_min_distance_to_active_site": 5.6609,
-          "negative_fraction": 0.0435,
-          "polar_fraction": 0.2391,
-          "positive_fraction": 0.0435,
-          "sulfur_fraction": 0.1087
-        },
-        "residue_codes": [
-          "ASP",
-          "ASN",
-          "GLU"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "PQQ",
-          "CA"
-        ]
-      },
-      "entry_id": "m_csa:99",
-      "hard_negative_reason": "high_score_out_of_scope_overlap",
-      "label_rationale": "Methanol dehydrogenase uses PQQ/cytochrome-linked redox chemistry outside the current seed fingerprints.",
-      "negative_control_type": "near_miss_below_in_scope_floor",
-      "score_floor": 0.4245,
-      "score_gap_to_floor": 0.0099,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.4146
+      "top1_score": 0.4077
     }
   ],
+  "groups": [],
+  "metadata": {
+    "closest_below_floor_entry_id": "m_csa:134",
+    "closest_below_floor_top1_fingerprint_id": "metal_dependent_hydrolase",
+    "closest_near_miss_entry_id": null,
+    "closest_near_miss_top1_fingerprint_id": null,
+    "cofactor_evidence_counts": {},
+    "evaluable_out_of_scope_count": 114,
+    "evaluated_out_of_scope_count": 116,
+    "hard_negative_count": 0,
+    "method": "geometry_hard_negative_control_selection",
+    "minimum_below_floor_score_gap": 0.0101,
+    "minimum_near_miss_score_gap_to_floor": null,
+    "near_miss_cofactor_evidence_counts": {},
+    "near_miss_count": 0,
+    "near_miss_margin": 0.01,
+    "near_miss_top1_fingerprint_counts": {},
+    "score_floor": 0.4245,
+    "score_floor_source": "min_correct_in_scope_top1_score",
+    "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": false,
+    "top1_fingerprint_counts": {}
+  },
+  "near_miss_groups": [],
+  "near_miss_rows": [],
   "rows": []
 }

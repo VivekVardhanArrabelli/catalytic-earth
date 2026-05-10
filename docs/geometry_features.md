@@ -13,77 +13,77 @@ coordinates.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph \
-  --max-mcsa 175 \
+  --max-mcsa 225 \
   --page-size 100 \
-  --out artifacts/v1_graph_175.json
+  --out artifacts/v1_graph_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli graph-summary \
-  --graph artifacts/v1_graph_175.json \
-  --out artifacts/v1_graph_summary_175.json
+  --graph artifacts/v1_graph_225.json \
+  --out artifacts/v1_graph_summary_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-v2-benchmark \
-  --graph artifacts/v1_graph_175.json \
-  --out artifacts/v2_benchmark_175.json
+  --graph artifacts/v1_graph_225.json \
+  --out artifacts/v2_benchmark_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph_175.json \
-  --max-entries 175 \
-  --out artifacts/v3_geometry_features_175.json
+  --graph artifacts/v1_graph_225.json \
+  --max-entries 225 \
+  --out artifacts/v3_geometry_features_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_175.json \
-  --out artifacts/v3_geometry_retrieval_175.json
+  --geometry artifacts/v3_geometry_features_225.json \
+  --out artifacts/v3_geometry_retrieval_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --out artifacts/v3_abstention_calibration_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --out artifacts/v3_abstention_calibration_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --abstain-threshold 0.4236 \
-  --out artifacts/v3_geometry_label_eval_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --abstain-threshold 0.4145 \
+  --out artifacts/v3_geometry_label_eval_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --abstain-threshold 0.4236 \
-  --out artifacts/v3_geometry_failure_analysis_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --abstain-threshold 0.4145 \
+  --out artifacts/v3_geometry_failure_analysis_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-in-scope-failures \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --abstain-threshold 0.4236 \
-  --out artifacts/v3_in_scope_failure_analysis_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --abstain-threshold 0.4145 \
+  --out artifacts/v3_in_scope_failure_analysis_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-cofactor-coverage \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --abstain-threshold 0.4236 \
-  --out artifacts/v3_cofactor_coverage_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --abstain-threshold 0.4145 \
+  --out artifacts/v3_cofactor_coverage_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-cofactor-policy \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --abstain-threshold 0.4236 \
-  --out artifacts/v3_cofactor_policy_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --abstain-threshold 0.4145 \
+  --out artifacts/v3_cofactor_policy_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-seed-family-performance \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --abstain-threshold 0.4236 \
-  --out artifacts/v3_seed_family_performance_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --abstain-threshold 0.4145 \
+  --out artifacts/v3_seed_family_performance_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --out artifacts/v3_geometry_score_margins_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --out artifacts/v3_geometry_score_margins_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --out artifacts/v3_hard_negative_controls_175.json
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --out artifacts/v3_hard_negative_controls_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
-  --geometry artifacts/v3_geometry_features_175.json \
-  --retrieval artifacts/v3_geometry_retrieval_175.json \
-  --out artifacts/v3_label_expansion_candidates_175.json
+  --geometry artifacts/v3_geometry_features_225.json \
+  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --out artifacts/v3_label_expansion_candidates_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues \
-  --geometry artifacts/v3_geometry_features_175.json \
-  --out artifacts/v3_structure_mapping_issues_175.json
+  --geometry artifacts/v3_geometry_features_225.json \
+  --out artifacts/v3_structure_mapping_issues_225.json
 
 PYTHONPATH=src python -m catalytic_earth.cli summarize-geometry-slices \
   --artifact-dir artifacts \
@@ -126,12 +126,13 @@ For each M-CSA entry with structure positions:
 - serine-hydrolase mechanistic coherence for the Ser nucleophile requirement
 - cobalamin radical rearrangement scoring with explicit B12/cofactor evidence
 - flavin dehydrogenase/reductase scoring separated from flavin monooxygenases
-- counterevidence penalties for heme-only metal-role overlap, ATP/ADP/APC transfer
-  context, carbon-transfer ligand context, hydrogenase and metal-redox ligand
-  context, redox electron-transfer roles, histidine-only metal-role sites,
-  molybdenum-center heme-like contexts, PLP-like lysine motifs without PLP,
-  absent B12 context, nonflavin Fe-S/metal contexts, and flavin contexts
-  missing reductant or monooxygenase substrate support
+- counterevidence penalties for heme-only metal-role overlap, ATP/ADP/APC
+  transfer context, carbon-transfer ligand context, thiamine/biotin/
+  phosphomutase transfer contexts, hydrogenase and metal-redox ligand context,
+  redox electron-transfer roles, histidine-only metal-role sites, molybdenum-
+  center heme-like contexts, PLP-like lysine motifs without PLP, absent B12
+  context, nonflavin Fe-S contexts, nonhydrolytic Ser/His electrophile sites,
+  and flavin contexts missing reductant or monooxygenase substrate support
 - catalytic-cluster compactness from pairwise distances
 
 This is still a weak baseline, but it is materially better than pure text
@@ -148,53 +149,54 @@ Current slices:
 
 - 20-entry regression slice: threshold 0.4104, 20/20 evaluable, 7/7 in-scope
   positives retained, 0 out-of-scope false non-abstentions, 0 hard negatives.
-- 100-entry expanded slice: threshold 0.4236, 100/100 evaluable, 25/25
+- 100-entry expanded slice: threshold 0.4115, 100/100 evaluable, 25/25
   in-scope positives retained, 0 out-of-scope false non-abstentions, 0 hard
   negatives.
-- 125-entry expanded slice: threshold 0.4236, 124/125 evaluable, 38/38
+- 125-entry expanded slice: threshold 0.4115, 124/125 evaluable, 38/38
   in-scope positives retained, 0 out-of-scope false non-abstentions, 0 hard
-  negatives, 0 near misses, and score gap 0.103.
-- 150-entry expanded slice: threshold 0.4236, 148/150 evaluable, 43/44
+  negatives, 0 near misses, and score gap 0.0308.
+- 150-entry expanded slice: threshold 0.4145, 148/150 evaluable, 43/44
   in-scope positives retained, 0 out-of-scope false non-abstentions, 0 hard
   negatives, 0 near misses, and 1 evidence-limited in-scope abstention. That
   remaining case is `m_csa:132`, where the selected `1LUC` structure lacks the
   expected flavin/NAD cofactor evidence.
-- 175-entry stress slice: threshold 0.4236, 173/175 evaluable, 58/59 in-scope
-  positives retained, 0 out-of-scope false non-abstentions, 0 hard negatives,
-  17 near misses, and 1 evidence-limited in-scope abstention. The closest
-  near miss is `m_csa:65`, a ligand-supported metal-dependent hydrolase hit
-  `0.001` below the correct-positive floor.
+- 225-entry stress slice: threshold 0.4145, 221/224 geometry entries evaluable,
+  70/71 in-scope positives retained, 0 out-of-scope false non-abstentions,
+  0 hard negatives, 0 near misses, and 1 evidence-limited in-scope abstention.
+  The remaining case is `m_csa:132`, where the selected `1LUC` structure lacks
+  the expected flavin/NAD cofactor evidence.
 
 `artifacts/v3_geometry_slice_summary.json` summarizes the 20-, 30-, 40-, 50-,
-60-, 75-, 100-, 125-, 150-, and 175-entry slices. It currently reports zero hard
-negatives and zero out-of-scope false non-abstentions across all slices. Only
-the 150- and 175-entry slices have in-scope failures, and their actionable
-in-scope failure count is 0 after separating evidence-limited abstentions; the
-summary metadata therefore reports `all_zero_actionable_in_scope_failures`.
+60-, 75-, 100-, 125-, 150-, 175-, 200-, and 225-entry slices. It currently
+reports zero hard negatives, zero near misses, and zero out-of-scope false
+non-abstentions across all slices. The 150-, 175-, 200-, and 225-entry slices
+have one evidence-limited in-scope abstention each, and the actionable in-scope
+failure count is 0 after separating selected-structure cofactor absence from
+scorer failures.
 
-`artifacts/v3_cofactor_coverage_175.json` tracks expected cofactor coverage for
-in-scope labels. In the 175-entry slice, 51/59 in-scope positives have local
-cofactor support, 1 has the expected cofactor only elsewhere in the selected
-structure, 4 require no cofactor, and 3 lack expected structure-wide cofactor
-evidence. Of the 3 absent-expected-cofactor rows, 2 are retained and 1 is
-abstained. The coverage metadata exposes `evidence_limited_retained_entry_ids`,
-currently `m_csa:41`, `m_csa:108`, and `m_csa:160`, so these retained positives
-can be audited separately from clean local cofactor matches without changing
-the abstention threshold.
+`artifacts/v3_cofactor_coverage_225.json` tracks expected cofactor coverage for
+in-scope labels. In the 225-entry slice, 61/71 in-scope positives have all
+expected local cofactor support, 1 has partial local support, 1 has the expected
+cofactor only elsewhere in the selected structure, 5 require no cofactor, and 3
+lack expected structure-wide cofactor evidence. Of the 3 absent-expected-
+cofactor rows, 2 are retained and 1 is abstained. The coverage metadata exposes
+`evidence_limited_retained_entry_ids`, currently `m_csa:41`, `m_csa:108`, and
+`m_csa:160`, so these retained positives can be audited separately from clean
+local cofactor matches without changing the abstention threshold.
 
-`artifacts/v3_cofactor_policy_175.json` sweeps small post-hoc penalties for
+`artifacts/v3_cofactor_policy_225.json` sweeps small post-hoc penalties for
 absent or structure-only cofactor evidence. It recommends
 `audit_only_or_separate_stratum` because no tested policy reduces
 evidence-limited retained positives without losing retained positives. The
-smallest retained evidence-limited margin is now `0.0009`.
+smallest retained evidence-limited margin is now `0.01`.
 
 ## Label Expansion Queue
 
-The 175-entry geometry artifact is now fully labeled in the provisional registry:
+The 225-entry source slice is now fully labeled in the provisional registry:
 
-- geometry entries in expansion artifact: 175
-- curated labels: 175
-- evaluable active-site structures: 173
+- geometry entries in expansion artifact: 224
+- curated labels: 225
+- evaluable active-site structures: 221
 - unlabeled entries remaining: 0
 - ready label-expansion candidates remaining: 0
 
@@ -202,12 +204,13 @@ The structure-mapping issue artifacts currently list 0 non-OK entries for the
 20-, 30-, 40-, 50-, 60-, 75-, and 100-entry slices after matching catalytic
 residue positions against both mmCIF `auth_*` and `label_*` numbering. The
 125-entry slice has 1 labeled out-of-scope mapping issue; the 150- and
-175-entry slices each have 2 labeled out-of-scope mapping issues.
+175-entry slices each have 2 labeled out-of-scope mapping issues; the 200- and
+225-entry slices each have 3 labeled out-of-scope mapping issues.
 
 ## Curated Seed Labels
 
-`data/registries/curated_mechanism_labels.json` provides 175 provisional labels,
-covering all entries in the 175-entry geometry expansion slice. Labels are
+`data/registries/curated_mechanism_labels.json` provides 225 provisional labels,
+covering all entries in the 225-entry source slice. Labels are
 intentionally conservative:
 
 - `seed_fingerprint` means the entry maps to one of the current seed mechanism

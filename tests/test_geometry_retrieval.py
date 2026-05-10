@@ -335,6 +335,25 @@ class GeometryRetrievalTests(unittest.TestCase):
             ),
             1.0,
         )
+        hydrophobic_assessment = counterevidence_assessment(
+            fingerprint=fingerprint,
+            residues=residues,
+            cofactor_evidence="role_inferred",
+            ligand_context={"cofactor_families": []},
+            substrate_pocket_score_value=0.12,
+            pocket_context={
+                "descriptors": {
+                    "hydrophobic_fraction": 0.55,
+                    "polar_fraction": 0.18,
+                    "negative_fraction": 0.02,
+                },
+            },
+        )
+        self.assertEqual(hydrophobic_assessment["penalty"], 0.70)
+        self.assertIn(
+            "role_inferred_metal_hydrophobic_low_pocket_support",
+            hydrophobic_assessment["reasons"],
+        )
 
     def test_role_inferred_metal_hydrolase_requires_water_activation_support(self) -> None:
         fingerprint = {"id": "metal_dependent_hydrolase"}
@@ -471,8 +490,12 @@ class GeometryRetrievalTests(unittest.TestCase):
             ligand_context={"ligand_codes": ["APC", "MG"], "cofactor_families": ["metal_ion"]},
             substrate_pocket_score_value=0.2,
         )
-        self.assertEqual(apc_assessment["penalty"], 0.70)
+        self.assertEqual(apc_assessment["penalty"], 0.68)
         self.assertIn("nucleotide_transfer_ligand_context", apc_assessment["reasons"])
+        self.assertIn(
+            {"reason": "nucleotide_transfer_ligand_context", "penalty": 0.68},
+            apc_assessment["penalty_details"],
+        )
         self.assertLess(
             counterevidence_penalty(
                 fingerprint=fingerprint,
@@ -596,6 +619,51 @@ class GeometryRetrievalTests(unittest.TestCase):
             ),
             1.0,
         )
+        self.assertLess(
+            counterevidence_penalty(
+                **base_args,
+                ligand_context={"ligand_codes": ["APG", "MG"], "cofactor_families": ["metal_ion"]},
+            ),
+            0.70,
+        )
+        self.assertLess(
+            counterevidence_penalty(
+                **base_args,
+                ligand_context={"ligand_codes": ["SEP", "ZN"], "cofactor_families": ["metal_ion"]},
+            ),
+            0.70,
+        )
+        for ligand_code in ("G16", "TPP"):
+            with self.subTest(ligand_code=ligand_code):
+                self.assertLess(
+                    counterevidence_penalty(
+                        **base_args,
+                        ligand_context={
+                            "ligand_codes": [ligand_code, "MG"],
+                            "cofactor_families": ["metal_ion"],
+                        },
+                    ),
+                    0.70,
+                )
+        kcx_carboxyltransfer = counterevidence_assessment(
+            **base_args,
+            ligand_context={
+                "ligand_codes": ["KCX", "MG", "ZN"],
+                "cofactor_families": ["metal_ion"],
+            },
+        )
+        self.assertEqual(kcx_carboxyltransfer["penalty"], 0.68)
+        self.assertIn(
+            "biotin_carboxyltransfer_mixed_metal_context",
+            kcx_carboxyltransfer["reasons"],
+        )
+        self.assertEqual(
+            counterevidence_penalty(
+                **base_args,
+                ligand_context={"ligand_codes": ["KCX", "ZN"], "cofactor_families": ["metal_ion"]},
+            ),
+            1.0,
+        )
         self.assertEqual(
             counterevidence_penalty(
                 **base_args,
@@ -604,20 +672,82 @@ class GeometryRetrievalTests(unittest.TestCase):
             1.0,
         )
 
+    def test_ligand_supported_metal_hydrolase_requires_residue_role_support(self) -> None:
+        weak_metal = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "THR", "roles": ["nucleophile"]},
+                {"code": "ASP", "roles": ["electrostatic stabiliser"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["MG"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+        )
+        self.assertEqual(weak_metal["penalty"], 0.70)
+        self.assertIn(
+            "ligand_supported_metal_without_metal_ligand_roles",
+            weak_metal["reasons"],
+        )
+
+        hydrophobic_low_pocket = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "ASP", "roles": ["metal ligand"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["MG"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.08,
+            pocket_context={
+                "descriptors": {
+                    "hydrophobic_fraction": 0.56,
+                    "polar_fraction": 0.12,
+                    "negative_fraction": 0.03,
+                },
+            },
+        )
+        self.assertEqual(hydrophobic_low_pocket["penalty"], 0.70)
+        self.assertIn(
+            "ligand_supported_metal_hydrophobic_low_pocket_support",
+            hydrophobic_low_pocket["reasons"],
+        )
+
     def test_role_inferred_metal_hydrolase_penalizes_covalent_cleavage_roles(self) -> None:
-        self.assertLess(
-            counterevidence_penalty(
-                fingerprint={"id": "metal_dependent_hydrolase"},
-                residues=[
-                    {"code": "TYR", "roles": ["nucleophile"]},
-                    {"code": "ASP", "roles": ["metal ligand", "nucleofuge"]},
-                    {"code": "GLU", "roles": ["metal ligand"]},
-                ],
-                cofactor_evidence="role_inferred",
-                ligand_context={"ligand_codes": [], "cofactor_families": []},
-                substrate_pocket_score_value=0.2,
-            ),
-            1.0,
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "TYR", "roles": ["nucleophile"]},
+                {"code": "ASP", "roles": ["metal ligand", "nucleofuge"]},
+                {"code": "GLU", "roles": ["metal ligand"]},
+            ],
+            cofactor_evidence="role_inferred",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+        )
+        self.assertEqual(assessment["penalty"], 0.68)
+        self.assertIn("role_inferred_metal_covalent_cleavage_roles", assessment["reasons"])
+
+    def test_role_inferred_metal_hydrolase_penalizes_radical_transfer_roles(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "TYR", "roles": ["radical stabiliser"]},
+                {"code": "ASN", "roles": ["activator"]},
+            ],
+            cofactor_evidence="role_inferred",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+        )
+        self.assertEqual(assessment["penalty"], 0.68)
+        self.assertIn("role_inferred_metal_radical_transfer_roles", assessment["reasons"])
+        self.assertEqual(
+            assessment["penalty_details"],
+            [
+                {
+                    "reason": "role_inferred_metal_radical_transfer_roles",
+                    "penalty": 0.68,
+                }
+            ],
         )
 
     def test_metal_hydrolase_penalizes_heme_only_context(self) -> None:
@@ -645,22 +775,21 @@ class GeometryRetrievalTests(unittest.TestCase):
         )
 
     def test_metal_hydrolase_penalizes_histidine_only_metal_site(self) -> None:
-        self.assertLess(
-            counterevidence_penalty(
-                fingerprint={"id": "metal_dependent_hydrolase"},
-                residues=[
-                    {"code": "HIS", "roles": ["metal ligand"]},
-                    {"code": "HIS", "roles": ["metal ligand"]},
-                    {"code": "HIS", "roles": ["metal ligand"]},
-                    {"code": "HIS", "roles": ["metal ligand"]},
-                    {"code": "PHE", "roles": ["steric role"]},
-                ],
-                cofactor_evidence="role_inferred",
-                ligand_context={"ligand_codes": [], "cofactor_families": []},
-                substrate_pocket_score_value=0.2,
-            ),
-            0.9,
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "PHE", "roles": ["steric role"]},
+            ],
+            cofactor_evidence="role_inferred",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
         )
+        self.assertEqual(assessment["penalty"], 0.68)
+        self.assertIn("role_inferred_histidine_only_metal_site", assessment["reasons"])
 
     def test_heme_fingerprint_penalizes_molybdenum_center_context(self) -> None:
         self.assertLess(
@@ -764,6 +893,16 @@ class GeometryRetrievalTests(unittest.TestCase):
         self.assertLess(molybdenum["penalty"], 0.6)
         self.assertIn("molybdenum_center_without_flavin_context", molybdenum["reasons"])
 
+        fe_s_only = counterevidence_assessment(
+            fingerprint={"id": "flavin_dehydrogenase_reductase"},
+            residues=[{"code": "CYS", "roles": ["single electron relay"]}],
+            cofactor_evidence="absent",
+            ligand_context={"ligand_codes": ["SF4"], "cofactor_families": ["fe_s_cluster"]},
+            substrate_pocket_score_value=0.5,
+        )
+        self.assertEqual(fe_s_only["penalty"], 0.63)
+        self.assertIn("fe_s_single_electron_partial_flavin_context", fe_s_only["reasons"])
+
     def test_flavin_monooxygenase_penalizes_nad_only_context(self) -> None:
         self.assertLess(
             counterevidence_penalty(
@@ -783,6 +922,24 @@ class GeometryRetrievalTests(unittest.TestCase):
             substrate_pocket_score_value=0.5,
         )
         self.assertIn("nad_only_or_nonflavin_context", assessment["reasons"])
+
+    def test_ser_his_hydrolase_penalizes_nonhydrolytic_electrophile_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "ser_his_acid_hydrolase"},
+            residues=[
+                {"code": "SER", "roles": ["nucleophile", "covalently attached"]},
+                {"code": "HIS", "roles": ["proton acceptor", "proton donor"]},
+                {"code": "GLU", "roles": ["electrophile"]},
+            ],
+            cofactor_evidence="not_required",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.7,
+        )
+        self.assertEqual(assessment["penalty"], 0.45)
+        self.assertIn(
+            "ser_his_nonhydrolytic_electrophile_without_leaving_group",
+            assessment["reasons"],
+        )
 
     def test_metal_supported_site_penalizes_ser_his_assignment(self) -> None:
         entry = {

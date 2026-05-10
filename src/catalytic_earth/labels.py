@@ -1260,9 +1260,13 @@ def build_hard_negative_controls(
                 "closest_near_miss_entry_id": None,
                 "closest_near_miss_top1_fingerprint_id": None,
                 "minimum_near_miss_score_gap_to_floor": None,
+                "closest_below_floor_entry_id": None,
+                "closest_below_floor_top1_fingerprint_id": None,
+                "minimum_below_floor_score_gap": None,
             },
             "rows": [],
             "near_miss_rows": [],
+            "closest_below_floor_rows": [],
             "groups": [],
             "near_miss_groups": [],
         }
@@ -1270,6 +1274,7 @@ def build_hard_negative_controls(
     labels_by_entry = {label.entry_id: label for label in labels}
     rows: list[dict[str, Any]] = []
     near_miss_rows: list[dict[str, Any]] = []
+    below_floor_rows: list[dict[str, Any]] = []
 
     for result in retrieval.get("results", []):
         entry_id = result.get("entry_id")
@@ -1282,18 +1287,23 @@ def build_hard_negative_controls(
         top1 = top[0] if top else {}
         top1_score = round(float(top1.get("score", 0.0) or 0.0), 4)
         if top1_score < floor:
-            if floor - top1_score <= near_margin:
+            below_floor_row = {
+                **_hard_negative_row(
+                    label=label,
+                    result=result,
+                    top1=top1,
+                    top1_score=top1_score,
+                    score_floor=floor,
+                    negative_control_type="below_in_scope_floor",
+                ),
+                "score_gap_to_floor": round(floor - top1_score, 4),
+            }
+            below_floor_rows.append(below_floor_row)
+            if below_floor_row["score_gap_to_floor"] <= near_margin:
                 near_miss_rows.append(
                     {
-                        **_hard_negative_row(
-                            label=label,
-                            result=result,
-                            top1=top1,
-                            top1_score=top1_score,
-                            score_floor=floor,
-                            negative_control_type="near_miss_below_in_scope_floor",
-                        ),
-                        "score_gap_to_floor": round(floor - top1_score, 4),
+                        **below_floor_row,
+                        "negative_control_type": "near_miss_below_in_scope_floor",
                     }
                 )
             continue
@@ -1328,6 +1338,11 @@ def build_hard_negative_controls(
         ),
         default={},
     )
+    closest_below_floor_rows = sorted(
+        below_floor_rows,
+        key=lambda row: (float(row["score_gap_to_floor"]), row["entry_id"]),
+    )[:10]
+    closest_below_floor = closest_below_floor_rows[0] if closest_below_floor_rows else {}
     return {
         "metadata": {
             "method": "geometry_hard_negative_control_selection",
@@ -1358,12 +1373,20 @@ def build_hard_negative_controls(
             "minimum_near_miss_score_gap_to_floor": closest_near_miss.get(
                 "score_gap_to_floor"
             ),
+            "closest_below_floor_entry_id": closest_below_floor.get("entry_id"),
+            "closest_below_floor_top1_fingerprint_id": closest_below_floor.get(
+                "top1_fingerprint_id"
+            ),
+            "minimum_below_floor_score_gap": closest_below_floor.get(
+                "score_gap_to_floor"
+            ),
         },
         "rows": sorted(rows, key=lambda row: (-row["top1_score"], row["entry_id"])),
         "near_miss_rows": sorted(
             near_miss_rows,
             key=lambda row: (row["score_gap_to_floor"], row["entry_id"]),
         ),
+        "closest_below_floor_rows": closest_below_floor_rows,
         "groups": groups,
         "near_miss_groups": near_miss_groups,
     }
@@ -1465,6 +1488,9 @@ def _fingerprint_component_scores(fingerprint: dict[str, Any]) -> dict[str, Any]
     counterevidence_reasons = fingerprint.get("counterevidence_reasons", [])
     if not isinstance(counterevidence_reasons, list):
         counterevidence_reasons = []
+    penalty_details = fingerprint.get("counterevidence_penalty_details", [])
+    if not isinstance(penalty_details, list):
+        penalty_details = []
     return {
         "residue_match_fraction": float(fingerprint.get("residue_match_fraction", 0.0) or 0.0),
         "role_match_fraction": float(fingerprint.get("role_match_fraction", 0.0) or 0.0),
@@ -1478,6 +1504,9 @@ def _fingerprint_component_scores(fingerprint: dict[str, Any]) -> dict[str, Any]
             fingerprint.get("counterevidence_penalty", 1.0) or 0.0
         ),
         "counterevidence_reasons": list(counterevidence_reasons),
+        "counterevidence_penalty_details": [
+            detail for detail in penalty_details if isinstance(detail, dict)
+        ],
     }
 
 

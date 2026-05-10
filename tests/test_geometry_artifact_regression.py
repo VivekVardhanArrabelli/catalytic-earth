@@ -96,7 +96,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             cofactor_policy["metadata"]["minimum_evidence_limited_retained_margin"],
-            0.1029,
+            0.0277,
         )
         self.assertEqual(
             cofactor_policy["metadata"]["recommendation"],
@@ -127,29 +127,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
         self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9831)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
-        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 17)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(
             hard_negatives["metadata"]["near_miss_top1_fingerprint_counts"],
-            {"metal_dependent_hydrolase": 17},
+            {},
         )
         self.assertEqual(
             hard_negatives["metadata"]["near_miss_cofactor_evidence_counts"],
-            {"ligand_supported": 8, "role_inferred": 9},
+            {},
         )
-        self.assertEqual(hard_negatives["metadata"]["closest_near_miss_entry_id"], "m_csa:65")
-        self.assertEqual(
-            hard_negatives["metadata"]["minimum_near_miss_score_gap_to_floor"],
-            0.001,
-        )
-        role_inferred_near_misses = hard_negatives["near_miss_groups"][0]
-        self.assertEqual(role_inferred_near_misses["count"], 9)
-        self.assertEqual(role_inferred_near_misses["min_score_gap_to_floor"], 0.0019)
-        self.assertEqual(
-            role_inferred_near_misses["counterevidence_reason_counts"][
-                "role_inferred_metal_missing_water_activation_role"
-            ],
-            4,
-        )
+        self.assertIsNone(hard_negatives["metadata"]["closest_near_miss_entry_id"])
+        self.assertIsNone(hard_negatives["metadata"]["minimum_near_miss_score_gap_to_floor"])
+        self.assertEqual(hard_negatives["near_miss_groups"], [])
         self.assertEqual(in_scope_failures["metadata"]["failure_count"], 1)
         self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
         self.assertEqual(
@@ -158,6 +147,77 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(seed_family["metadata"]["largest_in_scope_family"], "metal_dependent_hydrolase")
         self.assertEqual(seed_family["metadata"]["largest_in_scope_family_count"], 28)
+
+    def test_200_entry_geometry_artifacts_clear_new_hard_negatives(self) -> None:
+        evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_200.json")
+        hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_200.json")
+        in_scope_failures = _load_json(
+            ROOT / "artifacts" / "v3_in_scope_failure_analysis_200.json"
+        )
+        label_candidates = _load_json(
+            ROOT / "artifacts" / "v3_label_expansion_candidates_200.json"
+        )
+        mapping_issues = _load_json(
+            ROOT / "artifacts" / "v3_structure_mapping_issues_200.json"
+        )
+
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 225)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 65)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 135)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9846)
+        self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
+        self.assertEqual(
+            hard_negatives["metadata"]["closest_below_floor_entry_id"],
+            "m_csa:134",
+        )
+        self.assertEqual(in_scope_failures["metadata"]["failure_count"], 1)
+        self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["evidence_limited_abstention_count"], 1)
+        self.assertEqual(label_candidates["metadata"]["ready_for_label_review_count"], 0)
+        self.assertEqual(mapping_issues["metadata"]["issue_count"], 3)
+
+    def test_225_entry_geometry_artifacts_clear_stress_slice(self) -> None:
+        evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_225.json")
+        hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_225.json")
+        in_scope_failures = _load_json(
+            ROOT / "artifacts" / "v3_in_scope_failure_analysis_225.json"
+        )
+        label_candidates = _load_json(
+            ROOT / "artifacts" / "v3_label_expansion_candidates_225.json"
+        )
+        cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_225.json")
+        retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_225.json")
+
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 225)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 71)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 153)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9859)
+        self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
+        self.assertEqual(
+            hard_negatives["metadata"]["closest_below_floor_entry_id"],
+            "m_csa:134",
+        )
+        self.assertEqual(in_scope_failures["metadata"]["failure_count"], 1)
+        self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["evidence_limited_abstention_count"], 1)
+        self.assertEqual(
+            cofactor_coverage["metadata"]["evidence_limited_abstained_entry_ids"],
+            ["m_csa:132"],
+        )
+        alanine_racemase = next(
+            row for row in retrieval["results"] if row["entry_id"] == "m_csa:213"
+        )
+        self.assertIn("plp", alanine_racemase["ligand_context"]["cofactor_families"])
+        self.assertEqual(
+            alanine_racemase["top_fingerprints"][0]["fingerprint_id"],
+            "plp_dependent_enzyme",
+        )
+        self.assertGreaterEqual(alanine_racemase["top_fingerprints"][0]["score"], 0.4145)
+        self.assertEqual(label_candidates["metadata"]["ready_for_label_review_count"], 0)
 
 
 def _load_json(path: Path) -> dict:

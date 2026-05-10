@@ -201,6 +201,506 @@
       "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
+      "absent_penalty": 0.01,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.0,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.01,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.005,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.01,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.01,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.01,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.02,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.01,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.02,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.0,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.02,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.005,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.02,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.01,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.02,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.02,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.02,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.05,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.0,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.05,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.005,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.05,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.01,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.05,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.02,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.05,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.08,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.0,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.08,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.005,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.08,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.01,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.08,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.02,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.08,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.1,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.0,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.1,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.005,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.1,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.01,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.1,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.02,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "absent_penalty": 0.1,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:4",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.3929,
+      "top1_base_score": 0.3929,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
       "absent_penalty": 0.1,
       "abstained": true,
       "changed_abstention": false,
@@ -1199,6 +1699,86 @@
       "top1_adjusted_score": 0.2533,
       "top1_base_score": 0.2533,
       "top1_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "absent_penalty": 0.0,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:24",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.02,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.353,
+      "top1_base_score": 0.353,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "absent_penalty": 0.0,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:24",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.353,
+      "top1_base_score": 0.353,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "absent_penalty": 0.01,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:24",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.343,
+      "top1_base_score": 0.353,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "absent_penalty": 0.02,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:24",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.333,
+      "top1_base_score": 0.353,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
     },
     {
       "absent_penalty": 0.08,
@@ -4876,9 +5456,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.05,
@@ -4896,9 +5476,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.05,
@@ -4916,9 +5496,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.05,
@@ -4936,9 +5516,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.05,
@@ -4956,9 +5536,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.08,
@@ -4976,9 +5556,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.08,
@@ -4996,9 +5576,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.08,
@@ -5016,9 +5596,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.08,
@@ -5036,9 +5616,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.08,
@@ -5056,9 +5636,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.1,
@@ -5076,9 +5656,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.1,
@@ -5096,9 +5676,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.1,
@@ -5116,9 +5696,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.1,
@@ -5136,9 +5716,9 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "absent_penalty": 0.1,
@@ -5156,9 +5736,29 @@
       "target_expected_cofactor_families": [],
       "target_fingerprint_id": null,
       "target_policy_penalty": null,
-      "top1_adjusted_score": 0.327,
-      "top1_base_score": 0.327,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
+      "top1_adjusted_score": 0.318,
+      "top1_base_score": 0.318,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "absent_penalty": 0.0,
+      "abstained": true,
+      "changed_abstention": false,
+      "changed_top1": true,
+      "entry_id": "m_csa:59",
+      "label_type": "out_of_scope",
+      "lost_retained_positive": false,
+      "retained_positive": false,
+      "structure_only_penalty": 0.05,
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
+      "target_policy_penalty": null,
+      "top1_adjusted_score": 0.339,
+      "top1_base_score": 0.339,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
     },
     {
       "absent_penalty": 0.1,
@@ -6059,46 +6659,6 @@
       "top1_adjusted_score": 0.276,
       "top1_base_score": 0.276,
       "top1_fingerprint_id": "ser_his_acid_hydrolase"
-    },
-    {
-      "absent_penalty": 0.1,
-      "abstained": true,
-      "changed_abstention": false,
-      "changed_top1": true,
-      "entry_id": "m_csa:86",
-      "label_type": "out_of_scope",
-      "lost_retained_positive": false,
-      "retained_positive": false,
-      "structure_only_penalty": 0.0,
-      "target_adjusted_score": null,
-      "target_base_score": null,
-      "target_cofactor_coverage_status": null,
-      "target_expected_cofactor_families": [],
-      "target_fingerprint_id": null,
-      "target_policy_penalty": null,
-      "top1_adjusted_score": 0.2445,
-      "top1_base_score": 0.2445,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
-    },
-    {
-      "absent_penalty": 0.1,
-      "abstained": true,
-      "changed_abstention": false,
-      "changed_top1": true,
-      "entry_id": "m_csa:86",
-      "label_type": "out_of_scope",
-      "lost_retained_positive": false,
-      "retained_positive": false,
-      "structure_only_penalty": 0.005,
-      "target_adjusted_score": null,
-      "target_base_score": null,
-      "target_cofactor_coverage_status": null,
-      "target_expected_cofactor_families": [],
-      "target_fingerprint_id": null,
-      "target_policy_penalty": null,
-      "top1_adjusted_score": 0.2395,
-      "top1_base_score": 0.2445,
-      "top1_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
       "absent_penalty": 0.05,
@@ -7110,7 +7670,7 @@
       0.08,
       0.1
     ],
-    "abstain_threshold": 0.4236,
+    "abstain_threshold": 0.4115,
     "audit_evidence_limited_retained_positive_count": 1,
     "audit_evidence_limited_retained_positive_entry_ids": [
       "m_csa:41"
@@ -7118,7 +7678,7 @@
     "guardrail_passing_policy_count": 30,
     "lossless_decision_changing_policy_count": 0,
     "method": "cofactor_abstention_policy_sweep",
-    "minimum_evidence_limited_retained_margin": 0.1622,
+    "minimum_evidence_limited_retained_margin": 0.1743,
     "penalty_scope": "post-hoc score subtraction for top-k fingerprint hits whose expected cofactor families are absent from the selected structure or only outside the local active-site neighborhood",
     "policy_count": 30,
     "recommendation": "audit_only_or_separate_stratum",
@@ -7128,7 +7688,7 @@
       "changed_abstention_entry_ids": [],
       "changed_top1_count": 0,
       "changed_top1_entry_ids": [],
-      "correct_positive_score_separation_gap": 0.1542,
+      "correct_positive_score_separation_gap": 0.1663,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7164,7 +7724,7 @@
       "changed_abstention_entry_ids": [],
       "changed_top1_count": 0,
       "changed_top1_entry_ids": [],
-      "correct_positive_score_separation_gap": 0.1542,
+      "correct_positive_score_separation_gap": 0.1663,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7192,7 +7752,7 @@
       "changed_top1_entry_ids": [
         "m_csa:45"
       ],
-      "correct_positive_score_separation_gap": 0.1542,
+      "correct_positive_score_separation_gap": 0.1663,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7220,7 +7780,7 @@
       "changed_top1_entry_ids": [
         "m_csa:45"
       ],
-      "correct_positive_score_separation_gap": 0.1542,
+      "correct_positive_score_separation_gap": 0.1663,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7244,13 +7804,14 @@
       "absent_penalty": 0.0,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 3,
+      "changed_top1_count": 4,
       "changed_top1_entry_ids": [
+        "m_csa:24",
         "m_csa:45",
         "m_csa:48",
         "m_csa:56"
       ],
-      "correct_positive_score_separation_gap": 0.1542,
+      "correct_positive_score_separation_gap": 0.1663,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7274,13 +7835,15 @@
       "absent_penalty": 0.0,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 3,
+      "changed_top1_count": 5,
       "changed_top1_entry_ids": [
+        "m_csa:24",
         "m_csa:45",
         "m_csa:48",
-        "m_csa:56"
+        "m_csa:56",
+        "m_csa:59"
       ],
-      "correct_positive_score_separation_gap": 0.1542,
+      "correct_positive_score_separation_gap": 0.1663,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7304,9 +7867,11 @@
       "absent_penalty": 0.01,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 0,
-      "changed_top1_entry_ids": [],
-      "correct_positive_score_separation_gap": 0.1523,
+      "changed_top1_count": 1,
+      "changed_top1_entry_ids": [
+        "m_csa:4"
+      ],
+      "correct_positive_score_separation_gap": 0.1644,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7330,11 +7895,12 @@
       "absent_penalty": 0.01,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 1,
+      "changed_top1_count": 2,
       "changed_top1_entry_ids": [
+        "m_csa:4",
         "m_csa:45"
       ],
-      "correct_positive_score_separation_gap": 0.1523,
+      "correct_positive_score_separation_gap": 0.1644,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7358,11 +7924,12 @@
       "absent_penalty": 0.01,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 1,
+      "changed_top1_count": 2,
       "changed_top1_entry_ids": [
+        "m_csa:4",
         "m_csa:45"
       ],
-      "correct_positive_score_separation_gap": 0.1523,
+      "correct_positive_score_separation_gap": 0.1644,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7386,11 +7953,12 @@
       "absent_penalty": 0.01,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 1,
+      "changed_top1_count": 2,
       "changed_top1_entry_ids": [
+        "m_csa:4",
         "m_csa:45"
       ],
-      "correct_positive_score_separation_gap": 0.1523,
+      "correct_positive_score_separation_gap": 0.1644,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7414,13 +7982,15 @@
       "absent_penalty": 0.01,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 3,
+      "changed_top1_count": 5,
       "changed_top1_entry_ids": [
+        "m_csa:4",
+        "m_csa:24",
         "m_csa:45",
         "m_csa:48",
         "m_csa:56"
       ],
-      "correct_positive_score_separation_gap": 0.1523,
+      "correct_positive_score_separation_gap": 0.1644,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7444,9 +8014,11 @@
       "absent_penalty": 0.02,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 0,
-      "changed_top1_entry_ids": [],
-      "correct_positive_score_separation_gap": 0.1423,
+      "changed_top1_count": 1,
+      "changed_top1_entry_ids": [
+        "m_csa:4"
+      ],
+      "correct_positive_score_separation_gap": 0.1544,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7470,11 +8042,12 @@
       "absent_penalty": 0.02,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 1,
+      "changed_top1_count": 2,
       "changed_top1_entry_ids": [
+        "m_csa:4",
         "m_csa:45"
       ],
-      "correct_positive_score_separation_gap": 0.1423,
+      "correct_positive_score_separation_gap": 0.1544,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7498,11 +8071,12 @@
       "absent_penalty": 0.02,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 1,
+      "changed_top1_count": 2,
       "changed_top1_entry_ids": [
+        "m_csa:4",
         "m_csa:45"
       ],
-      "correct_positive_score_separation_gap": 0.1423,
+      "correct_positive_score_separation_gap": 0.1544,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7526,11 +8100,12 @@
       "absent_penalty": 0.02,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 1,
+      "changed_top1_count": 2,
       "changed_top1_entry_ids": [
+        "m_csa:4",
         "m_csa:45"
       ],
-      "correct_positive_score_separation_gap": 0.1423,
+      "correct_positive_score_separation_gap": 0.1544,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7554,13 +8129,15 @@
       "absent_penalty": 0.02,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 3,
+      "changed_top1_count": 5,
       "changed_top1_entry_ids": [
+        "m_csa:4",
+        "m_csa:24",
         "m_csa:45",
         "m_csa:48",
         "m_csa:56"
       ],
-      "correct_positive_score_separation_gap": 0.1423,
+      "correct_positive_score_separation_gap": 0.1544,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7584,8 +8161,9 @@
       "absent_penalty": 0.05,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 10,
+      "changed_top1_count": 11,
       "changed_top1_entry_ids": [
+        "m_csa:4",
         "m_csa:22",
         "m_csa:23",
         "m_csa:30",
@@ -7597,7 +8175,7 @@
         "m_csa:89",
         "m_csa:92"
       ],
-      "correct_positive_score_separation_gap": 0.1123,
+      "correct_positive_score_separation_gap": 0.1244,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7615,120 +8193,6 @@
       "retained_positive_count": 25,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "absent_penalty": 0.05,
-      "changed_abstention_count": 0,
-      "changed_abstention_entry_ids": [],
-      "changed_top1_count": 11,
-      "changed_top1_entry_ids": [
-        "m_csa:22",
-        "m_csa:23",
-        "m_csa:30",
-        "m_csa:31",
-        "m_csa:36",
-        "m_csa:45",
-        "m_csa:54",
-        "m_csa:57",
-        "m_csa:82",
-        "m_csa:89",
-        "m_csa:92"
-      ],
-      "correct_positive_score_separation_gap": 0.1123,
-      "evidence_limited_abstained_positive_count": 0,
-      "evidence_limited_abstained_positive_entry_ids": [],
-      "evidence_limited_retained_positive_count": 1,
-      "evidence_limited_retained_positive_entry_ids": [
-        "m_csa:41"
-      ],
-      "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "lost_retained_positive_count": 0,
-      "lost_retained_positive_entry_ids": [],
-      "near_miss_count": 0,
-      "newly_retained_positive_count": 0,
-      "newly_retained_positive_entry_ids": [],
-      "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 25,
-      "strict_threshold_exists_for_correct_positives": true,
-      "structure_only_penalty": 0.005,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "absent_penalty": 0.05,
-      "changed_abstention_count": 0,
-      "changed_abstention_entry_ids": [],
-      "changed_top1_count": 11,
-      "changed_top1_entry_ids": [
-        "m_csa:22",
-        "m_csa:23",
-        "m_csa:30",
-        "m_csa:31",
-        "m_csa:36",
-        "m_csa:45",
-        "m_csa:54",
-        "m_csa:57",
-        "m_csa:82",
-        "m_csa:89",
-        "m_csa:92"
-      ],
-      "correct_positive_score_separation_gap": 0.1123,
-      "evidence_limited_abstained_positive_count": 0,
-      "evidence_limited_abstained_positive_entry_ids": [],
-      "evidence_limited_retained_positive_count": 1,
-      "evidence_limited_retained_positive_entry_ids": [
-        "m_csa:41"
-      ],
-      "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "lost_retained_positive_count": 0,
-      "lost_retained_positive_entry_ids": [],
-      "near_miss_count": 0,
-      "newly_retained_positive_count": 0,
-      "newly_retained_positive_entry_ids": [],
-      "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 25,
-      "strict_threshold_exists_for_correct_positives": true,
-      "structure_only_penalty": 0.01,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "absent_penalty": 0.05,
-      "changed_abstention_count": 0,
-      "changed_abstention_entry_ids": [],
-      "changed_top1_count": 11,
-      "changed_top1_entry_ids": [
-        "m_csa:22",
-        "m_csa:23",
-        "m_csa:30",
-        "m_csa:31",
-        "m_csa:36",
-        "m_csa:45",
-        "m_csa:54",
-        "m_csa:57",
-        "m_csa:82",
-        "m_csa:89",
-        "m_csa:92"
-      ],
-      "correct_positive_score_separation_gap": 0.1123,
-      "evidence_limited_abstained_positive_count": 0,
-      "evidence_limited_abstained_positive_entry_ids": [],
-      "evidence_limited_retained_positive_count": 1,
-      "evidence_limited_retained_positive_entry_ids": [
-        "m_csa:41"
-      ],
-      "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "lost_retained_positive_count": 0,
-      "lost_retained_positive_entry_ids": [],
-      "near_miss_count": 0,
-      "newly_retained_positive_count": 0,
-      "newly_retained_positive_entry_ids": [],
-      "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 25,
-      "strict_threshold_exists_for_correct_positives": true,
-      "structure_only_penalty": 0.02,
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
@@ -7737,6 +8201,124 @@
       "changed_abstention_entry_ids": [],
       "changed_top1_count": 12,
       "changed_top1_entry_ids": [
+        "m_csa:4",
+        "m_csa:22",
+        "m_csa:23",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:36",
+        "m_csa:45",
+        "m_csa:54",
+        "m_csa:57",
+        "m_csa:82",
+        "m_csa:89",
+        "m_csa:92"
+      ],
+      "correct_positive_score_separation_gap": 0.1244,
+      "evidence_limited_abstained_positive_count": 0,
+      "evidence_limited_abstained_positive_entry_ids": [],
+      "evidence_limited_retained_positive_count": 1,
+      "evidence_limited_retained_positive_entry_ids": [
+        "m_csa:41"
+      ],
+      "hard_negative_count": 0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "lost_retained_positive_count": 0,
+      "lost_retained_positive_entry_ids": [],
+      "near_miss_count": 0,
+      "newly_retained_positive_count": 0,
+      "newly_retained_positive_entry_ids": [],
+      "out_of_scope_false_non_abstentions_evaluable": 0,
+      "retained_positive_count": 25,
+      "strict_threshold_exists_for_correct_positives": true,
+      "structure_only_penalty": 0.005,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "absent_penalty": 0.05,
+      "changed_abstention_count": 0,
+      "changed_abstention_entry_ids": [],
+      "changed_top1_count": 12,
+      "changed_top1_entry_ids": [
+        "m_csa:4",
+        "m_csa:22",
+        "m_csa:23",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:36",
+        "m_csa:45",
+        "m_csa:54",
+        "m_csa:57",
+        "m_csa:82",
+        "m_csa:89",
+        "m_csa:92"
+      ],
+      "correct_positive_score_separation_gap": 0.1244,
+      "evidence_limited_abstained_positive_count": 0,
+      "evidence_limited_abstained_positive_entry_ids": [],
+      "evidence_limited_retained_positive_count": 1,
+      "evidence_limited_retained_positive_entry_ids": [
+        "m_csa:41"
+      ],
+      "hard_negative_count": 0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "lost_retained_positive_count": 0,
+      "lost_retained_positive_entry_ids": [],
+      "near_miss_count": 0,
+      "newly_retained_positive_count": 0,
+      "newly_retained_positive_entry_ids": [],
+      "out_of_scope_false_non_abstentions_evaluable": 0,
+      "retained_positive_count": 25,
+      "strict_threshold_exists_for_correct_positives": true,
+      "structure_only_penalty": 0.01,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "absent_penalty": 0.05,
+      "changed_abstention_count": 0,
+      "changed_abstention_entry_ids": [],
+      "changed_top1_count": 12,
+      "changed_top1_entry_ids": [
+        "m_csa:4",
+        "m_csa:22",
+        "m_csa:23",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:36",
+        "m_csa:45",
+        "m_csa:54",
+        "m_csa:57",
+        "m_csa:82",
+        "m_csa:89",
+        "m_csa:92"
+      ],
+      "correct_positive_score_separation_gap": 0.1244,
+      "evidence_limited_abstained_positive_count": 0,
+      "evidence_limited_abstained_positive_entry_ids": [],
+      "evidence_limited_retained_positive_count": 1,
+      "evidence_limited_retained_positive_entry_ids": [
+        "m_csa:41"
+      ],
+      "hard_negative_count": 0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "lost_retained_positive_count": 0,
+      "lost_retained_positive_entry_ids": [],
+      "near_miss_count": 0,
+      "newly_retained_positive_count": 0,
+      "newly_retained_positive_entry_ids": [],
+      "out_of_scope_false_non_abstentions_evaluable": 0,
+      "retained_positive_count": 25,
+      "strict_threshold_exists_for_correct_positives": true,
+      "structure_only_penalty": 0.02,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "absent_penalty": 0.05,
+      "changed_abstention_count": 0,
+      "changed_abstention_entry_ids": [],
+      "changed_top1_count": 13,
+      "changed_top1_entry_ids": [
+        "m_csa:4",
         "m_csa:22",
         "m_csa:23",
         "m_csa:30",
@@ -7750,7 +8332,7 @@
         "m_csa:89",
         "m_csa:92"
       ],
-      "correct_positive_score_separation_gap": 0.1123,
+      "correct_positive_score_separation_gap": 0.1244,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7774,9 +8356,10 @@
       "absent_penalty": 0.08,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 19,
+      "changed_top1_count": 20,
       "changed_top1_entry_ids": [
         "m_csa:2",
+        "m_csa:4",
         "m_csa:14",
         "m_csa:22",
         "m_csa:23",
@@ -7796,7 +8379,7 @@
         "m_csa:93",
         "m_csa:100"
       ],
-      "correct_positive_score_separation_gap": 0.0823,
+      "correct_positive_score_separation_gap": 0.0944,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -7814,147 +8397,6 @@
       "retained_positive_count": 25,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "absent_penalty": 0.08,
-      "changed_abstention_count": 0,
-      "changed_abstention_entry_ids": [],
-      "changed_top1_count": 20,
-      "changed_top1_entry_ids": [
-        "m_csa:2",
-        "m_csa:14",
-        "m_csa:22",
-        "m_csa:23",
-        "m_csa:25",
-        "m_csa:29",
-        "m_csa:30",
-        "m_csa:31",
-        "m_csa:36",
-        "m_csa:40",
-        "m_csa:45",
-        "m_csa:49",
-        "m_csa:54",
-        "m_csa:57",
-        "m_csa:67",
-        "m_csa:82",
-        "m_csa:89",
-        "m_csa:92",
-        "m_csa:93",
-        "m_csa:100"
-      ],
-      "correct_positive_score_separation_gap": 0.0823,
-      "evidence_limited_abstained_positive_count": 0,
-      "evidence_limited_abstained_positive_entry_ids": [],
-      "evidence_limited_retained_positive_count": 1,
-      "evidence_limited_retained_positive_entry_ids": [
-        "m_csa:41"
-      ],
-      "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "lost_retained_positive_count": 0,
-      "lost_retained_positive_entry_ids": [],
-      "near_miss_count": 0,
-      "newly_retained_positive_count": 0,
-      "newly_retained_positive_entry_ids": [],
-      "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 25,
-      "strict_threshold_exists_for_correct_positives": true,
-      "structure_only_penalty": 0.005,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "absent_penalty": 0.08,
-      "changed_abstention_count": 0,
-      "changed_abstention_entry_ids": [],
-      "changed_top1_count": 20,
-      "changed_top1_entry_ids": [
-        "m_csa:2",
-        "m_csa:14",
-        "m_csa:22",
-        "m_csa:23",
-        "m_csa:25",
-        "m_csa:29",
-        "m_csa:30",
-        "m_csa:31",
-        "m_csa:36",
-        "m_csa:40",
-        "m_csa:45",
-        "m_csa:49",
-        "m_csa:54",
-        "m_csa:57",
-        "m_csa:67",
-        "m_csa:82",
-        "m_csa:89",
-        "m_csa:92",
-        "m_csa:93",
-        "m_csa:100"
-      ],
-      "correct_positive_score_separation_gap": 0.0823,
-      "evidence_limited_abstained_positive_count": 0,
-      "evidence_limited_abstained_positive_entry_ids": [],
-      "evidence_limited_retained_positive_count": 1,
-      "evidence_limited_retained_positive_entry_ids": [
-        "m_csa:41"
-      ],
-      "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "lost_retained_positive_count": 0,
-      "lost_retained_positive_entry_ids": [],
-      "near_miss_count": 0,
-      "newly_retained_positive_count": 0,
-      "newly_retained_positive_entry_ids": [],
-      "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 25,
-      "strict_threshold_exists_for_correct_positives": true,
-      "structure_only_penalty": 0.01,
-      "top3_retained_accuracy_in_scope_evaluable": 1.0
-    },
-    {
-      "absent_penalty": 0.08,
-      "changed_abstention_count": 0,
-      "changed_abstention_entry_ids": [],
-      "changed_top1_count": 20,
-      "changed_top1_entry_ids": [
-        "m_csa:2",
-        "m_csa:14",
-        "m_csa:22",
-        "m_csa:23",
-        "m_csa:25",
-        "m_csa:29",
-        "m_csa:30",
-        "m_csa:31",
-        "m_csa:36",
-        "m_csa:40",
-        "m_csa:45",
-        "m_csa:49",
-        "m_csa:54",
-        "m_csa:57",
-        "m_csa:67",
-        "m_csa:82",
-        "m_csa:89",
-        "m_csa:92",
-        "m_csa:93",
-        "m_csa:100"
-      ],
-      "correct_positive_score_separation_gap": 0.0823,
-      "evidence_limited_abstained_positive_count": 0,
-      "evidence_limited_abstained_positive_entry_ids": [],
-      "evidence_limited_retained_positive_count": 1,
-      "evidence_limited_retained_positive_entry_ids": [
-        "m_csa:41"
-      ],
-      "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 1.0,
-      "lost_retained_positive_count": 0,
-      "lost_retained_positive_entry_ids": [],
-      "near_miss_count": 0,
-      "newly_retained_positive_count": 0,
-      "newly_retained_positive_entry_ids": [],
-      "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 25,
-      "strict_threshold_exists_for_correct_positives": true,
-      "structure_only_penalty": 0.02,
       "top3_retained_accuracy_in_scope_evaluable": 1.0
     },
     {
@@ -7964,6 +8406,151 @@
       "changed_top1_count": 21,
       "changed_top1_entry_ids": [
         "m_csa:2",
+        "m_csa:4",
+        "m_csa:14",
+        "m_csa:22",
+        "m_csa:23",
+        "m_csa:25",
+        "m_csa:29",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:36",
+        "m_csa:40",
+        "m_csa:45",
+        "m_csa:49",
+        "m_csa:54",
+        "m_csa:57",
+        "m_csa:67",
+        "m_csa:82",
+        "m_csa:89",
+        "m_csa:92",
+        "m_csa:93",
+        "m_csa:100"
+      ],
+      "correct_positive_score_separation_gap": 0.0944,
+      "evidence_limited_abstained_positive_count": 0,
+      "evidence_limited_abstained_positive_entry_ids": [],
+      "evidence_limited_retained_positive_count": 1,
+      "evidence_limited_retained_positive_entry_ids": [
+        "m_csa:41"
+      ],
+      "hard_negative_count": 0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "lost_retained_positive_count": 0,
+      "lost_retained_positive_entry_ids": [],
+      "near_miss_count": 0,
+      "newly_retained_positive_count": 0,
+      "newly_retained_positive_entry_ids": [],
+      "out_of_scope_false_non_abstentions_evaluable": 0,
+      "retained_positive_count": 25,
+      "strict_threshold_exists_for_correct_positives": true,
+      "structure_only_penalty": 0.005,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "absent_penalty": 0.08,
+      "changed_abstention_count": 0,
+      "changed_abstention_entry_ids": [],
+      "changed_top1_count": 21,
+      "changed_top1_entry_ids": [
+        "m_csa:2",
+        "m_csa:4",
+        "m_csa:14",
+        "m_csa:22",
+        "m_csa:23",
+        "m_csa:25",
+        "m_csa:29",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:36",
+        "m_csa:40",
+        "m_csa:45",
+        "m_csa:49",
+        "m_csa:54",
+        "m_csa:57",
+        "m_csa:67",
+        "m_csa:82",
+        "m_csa:89",
+        "m_csa:92",
+        "m_csa:93",
+        "m_csa:100"
+      ],
+      "correct_positive_score_separation_gap": 0.0944,
+      "evidence_limited_abstained_positive_count": 0,
+      "evidence_limited_abstained_positive_entry_ids": [],
+      "evidence_limited_retained_positive_count": 1,
+      "evidence_limited_retained_positive_entry_ids": [
+        "m_csa:41"
+      ],
+      "hard_negative_count": 0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "lost_retained_positive_count": 0,
+      "lost_retained_positive_entry_ids": [],
+      "near_miss_count": 0,
+      "newly_retained_positive_count": 0,
+      "newly_retained_positive_entry_ids": [],
+      "out_of_scope_false_non_abstentions_evaluable": 0,
+      "retained_positive_count": 25,
+      "strict_threshold_exists_for_correct_positives": true,
+      "structure_only_penalty": 0.01,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "absent_penalty": 0.08,
+      "changed_abstention_count": 0,
+      "changed_abstention_entry_ids": [],
+      "changed_top1_count": 21,
+      "changed_top1_entry_ids": [
+        "m_csa:2",
+        "m_csa:4",
+        "m_csa:14",
+        "m_csa:22",
+        "m_csa:23",
+        "m_csa:25",
+        "m_csa:29",
+        "m_csa:30",
+        "m_csa:31",
+        "m_csa:36",
+        "m_csa:40",
+        "m_csa:45",
+        "m_csa:49",
+        "m_csa:54",
+        "m_csa:57",
+        "m_csa:67",
+        "m_csa:82",
+        "m_csa:89",
+        "m_csa:92",
+        "m_csa:93",
+        "m_csa:100"
+      ],
+      "correct_positive_score_separation_gap": 0.0944,
+      "evidence_limited_abstained_positive_count": 0,
+      "evidence_limited_abstained_positive_entry_ids": [],
+      "evidence_limited_retained_positive_count": 1,
+      "evidence_limited_retained_positive_entry_ids": [
+        "m_csa:41"
+      ],
+      "hard_negative_count": 0,
+      "in_scope_retention_rate_evaluable": 1.0,
+      "lost_retained_positive_count": 0,
+      "lost_retained_positive_entry_ids": [],
+      "near_miss_count": 0,
+      "newly_retained_positive_count": 0,
+      "newly_retained_positive_entry_ids": [],
+      "out_of_scope_false_non_abstentions_evaluable": 0,
+      "retained_positive_count": 25,
+      "strict_threshold_exists_for_correct_positives": true,
+      "structure_only_penalty": 0.02,
+      "top3_retained_accuracy_in_scope_evaluable": 1.0
+    },
+    {
+      "absent_penalty": 0.08,
+      "changed_abstention_count": 0,
+      "changed_abstention_entry_ids": [],
+      "changed_top1_count": 22,
+      "changed_top1_entry_ids": [
+        "m_csa:2",
+        "m_csa:4",
         "m_csa:14",
         "m_csa:22",
         "m_csa:23",
@@ -7985,7 +8572,7 @@
         "m_csa:93",
         "m_csa:100"
       ],
-      "correct_positive_score_separation_gap": 0.0823,
+      "correct_positive_score_separation_gap": 0.0944,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -8012,6 +8599,7 @@
       "changed_top1_count": 29,
       "changed_top1_entry_ids": [
         "m_csa:2",
+        "m_csa:4",
         "m_csa:10",
         "m_csa:12",
         "m_csa:14",
@@ -8035,13 +8623,12 @@
         "m_csa:73",
         "m_csa:82",
         "m_csa:85",
-        "m_csa:86",
         "m_csa:89",
         "m_csa:92",
         "m_csa:93",
         "m_csa:100"
       ],
-      "correct_positive_score_separation_gap": 0.0623,
+      "correct_positive_score_separation_gap": 0.0744,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -8068,6 +8655,7 @@
       "changed_top1_count": 30,
       "changed_top1_entry_ids": [
         "m_csa:2",
+        "m_csa:4",
         "m_csa:10",
         "m_csa:12",
         "m_csa:14",
@@ -8092,13 +8680,12 @@
         "m_csa:73",
         "m_csa:82",
         "m_csa:85",
-        "m_csa:86",
         "m_csa:89",
         "m_csa:92",
         "m_csa:93",
         "m_csa:100"
       ],
-      "correct_positive_score_separation_gap": 0.0623,
+      "correct_positive_score_separation_gap": 0.0744,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -8122,9 +8709,10 @@
       "absent_penalty": 0.1,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 29,
+      "changed_top1_count": 30,
       "changed_top1_entry_ids": [
         "m_csa:2",
+        "m_csa:4",
         "m_csa:10",
         "m_csa:12",
         "m_csa:14",
@@ -8154,7 +8742,7 @@
         "m_csa:93",
         "m_csa:100"
       ],
-      "correct_positive_score_separation_gap": 0.0623,
+      "correct_positive_score_separation_gap": 0.0744,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -8178,9 +8766,10 @@
       "absent_penalty": 0.1,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 29,
+      "changed_top1_count": 30,
       "changed_top1_entry_ids": [
         "m_csa:2",
+        "m_csa:4",
         "m_csa:10",
         "m_csa:12",
         "m_csa:14",
@@ -8210,7 +8799,7 @@
         "m_csa:93",
         "m_csa:100"
       ],
-      "correct_positive_score_separation_gap": 0.0623,
+      "correct_positive_score_separation_gap": 0.0744,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -8234,9 +8823,10 @@
       "absent_penalty": 0.1,
       "changed_abstention_count": 0,
       "changed_abstention_entry_ids": [],
-      "changed_top1_count": 30,
+      "changed_top1_count": 31,
       "changed_top1_entry_ids": [
         "m_csa:2",
+        "m_csa:4",
         "m_csa:10",
         "m_csa:12",
         "m_csa:14",
@@ -8267,7 +8857,7 @@
         "m_csa:93",
         "m_csa:100"
       ],
-      "correct_positive_score_separation_gap": 0.0623,
+      "correct_positive_score_separation_gap": 0.0744,
       "evidence_limited_abstained_positive_count": 0,
       "evidence_limited_abstained_positive_entry_ids": [],
       "evidence_limited_retained_positive_count": 1,
@@ -8290,7 +8880,7 @@
   ],
   "rows": [
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:1",
@@ -8319,7 +8909,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:2",
@@ -8348,7 +8938,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:3",
@@ -8379,7 +8969,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:4",
@@ -8399,16 +8989,16 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4045,
-      "top1_base_score": 0.4045,
-      "top1_cofactor_coverage_status": "all_expected_local",
+      "top1_adjusted_score": 0.3963,
+      "top1_base_score": 0.3963,
+      "top1_cofactor_coverage_status": "expected_absent_from_structure",
       "top1_correct": false,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
       "top1_policy_penalty": 0.0,
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:5",
@@ -8437,7 +9027,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:6",
@@ -8468,7 +9058,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:7",
@@ -8488,8 +9078,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4002,
-      "top1_base_score": 0.4002,
+      "top1_adjusted_score": 0.3888,
+      "top1_base_score": 0.3888,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -8497,7 +9087,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:8",
@@ -8517,8 +9107,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.3513,
-      "top1_base_score": 0.3513,
+      "top1_adjusted_score": 0.3413,
+      "top1_base_score": 0.3413,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -8526,7 +9116,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:9",
@@ -8555,7 +9145,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:10",
@@ -8584,7 +9174,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:11",
@@ -8615,7 +9205,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:12",
@@ -8644,7 +9234,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "low",
       "entry_id": "m_csa:13",
@@ -8673,7 +9263,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:14",
@@ -8693,8 +9283,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4057,
-      "top1_base_score": 0.4057,
+      "top1_adjusted_score": 0.3941,
+      "top1_base_score": 0.3941,
       "top1_cofactor_coverage_status": "expected_absent_from_structure",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -8702,7 +9292,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:15",
@@ -8733,7 +9323,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:16",
@@ -8764,7 +9354,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:17",
@@ -8793,7 +9383,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:18",
@@ -8822,7 +9412,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:19",
@@ -8851,7 +9441,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:20",
@@ -8882,7 +9472,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:21",
@@ -8902,8 +9492,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.3964,
-      "top1_base_score": 0.3964,
+      "top1_adjusted_score": 0.385,
+      "top1_base_score": 0.385,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -8911,7 +9501,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:22",
@@ -8940,7 +9530,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:23",
@@ -8969,7 +9559,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "low",
       "entry_id": "m_csa:24",
@@ -8989,16 +9579,16 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.3734,
-      "top1_base_score": 0.3734,
-      "top1_cofactor_coverage_status": "not_required",
+      "top1_adjusted_score": 0.3706,
+      "top1_base_score": 0.3706,
+      "top1_cofactor_coverage_status": "expected_structure_only",
       "top1_correct": false,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_policy_penalty": 0.0,
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "low",
       "entry_id": "m_csa:25",
@@ -9027,7 +9617,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:26",
@@ -9056,7 +9646,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:27",
@@ -9087,7 +9677,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:28",
@@ -9118,7 +9708,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:29",
@@ -9147,7 +9737,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:30",
@@ -9176,7 +9766,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:31",
@@ -9205,7 +9795,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:32",
@@ -9225,8 +9815,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4226,
-      "top1_base_score": 0.4226,
+      "top1_adjusted_score": 0.4109,
+      "top1_base_score": 0.4109,
       "top1_cofactor_coverage_status": "expected_structure_only",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -9234,7 +9824,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:33",
@@ -9254,8 +9844,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4213,
-      "top1_base_score": 0.4213,
+      "top1_adjusted_score": 0.4096,
+      "top1_base_score": 0.4096,
       "top1_cofactor_coverage_status": "expected_absent_from_structure",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -9263,7 +9853,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:34",
@@ -9283,8 +9873,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4043,
-      "top1_base_score": 0.4043,
+      "top1_adjusted_score": 0.3928,
+      "top1_base_score": 0.3928,
       "top1_cofactor_coverage_status": "expected_absent_from_structure",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -9292,7 +9882,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:35",
@@ -9312,8 +9902,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4189,
-      "top1_base_score": 0.4189,
+      "top1_adjusted_score": 0.4069,
+      "top1_base_score": 0.4069,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -9321,7 +9911,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:36",
@@ -9350,7 +9940,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:37",
@@ -9381,7 +9971,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:38",
@@ -9412,7 +10002,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:39",
@@ -9443,7 +10033,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:40",
@@ -9472,7 +10062,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:41",
@@ -9505,7 +10095,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:42",
@@ -9536,7 +10126,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:43",
@@ -9567,7 +10157,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:44",
@@ -9598,7 +10188,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:45",
@@ -9627,7 +10217,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:46",
@@ -9656,7 +10246,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:47",
@@ -9685,7 +10275,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:48",
@@ -9714,7 +10304,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:49",
@@ -9743,7 +10333,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:50",
@@ -9772,7 +10362,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:51",
@@ -9792,8 +10382,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4094,
-      "top1_base_score": 0.4094,
+      "top1_adjusted_score": 0.3977,
+      "top1_base_score": 0.3977,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -9801,7 +10391,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:52",
@@ -9821,8 +10411,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4151,
-      "top1_base_score": 0.4151,
+      "top1_adjusted_score": 0.4032,
+      "top1_base_score": 0.4032,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -9830,7 +10420,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:53",
@@ -9850,8 +10440,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4056,
-      "top1_base_score": 0.4056,
+      "top1_adjusted_score": 0.3941,
+      "top1_base_score": 0.3941,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -9859,7 +10449,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:54",
@@ -9888,7 +10478,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:55",
@@ -9917,7 +10507,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:56",
@@ -9946,7 +10536,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:57",
@@ -9975,7 +10565,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:58",
@@ -9995,8 +10585,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.3956,
-      "top1_base_score": 0.3956,
+      "top1_adjusted_score": 0.3843,
+      "top1_base_score": 0.3843,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -10004,7 +10594,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:59",
@@ -10024,8 +10614,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.3989,
-      "top1_base_score": 0.3989,
+      "top1_adjusted_score": 0.3875,
+      "top1_base_score": 0.3875,
       "top1_cofactor_coverage_status": "expected_structure_only",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -10033,7 +10623,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:60",
@@ -10062,7 +10652,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:61",
@@ -10091,7 +10681,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:62",
@@ -10122,7 +10712,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:63",
@@ -10153,7 +10743,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:64",
@@ -10173,8 +10763,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4188,
-      "top1_base_score": 0.4188,
+      "top1_adjusted_score": 0.4069,
+      "top1_base_score": 0.4069,
       "top1_cofactor_coverage_status": "expected_absent_from_structure",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -10182,7 +10772,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:65",
@@ -10202,8 +10792,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4235,
-      "top1_base_score": 0.4235,
+      "top1_adjusted_score": 0.4114,
+      "top1_base_score": 0.4114,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -10211,7 +10801,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:66",
@@ -10242,7 +10832,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:67",
@@ -10271,7 +10861,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:68",
@@ -10302,7 +10892,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:69",
@@ -10331,7 +10921,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:70",
@@ -10360,7 +10950,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:71",
@@ -10389,7 +10979,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:72",
@@ -10418,7 +11008,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:73",
@@ -10447,7 +11037,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:74",
@@ -10467,8 +11057,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4089,
-      "top1_base_score": 0.4089,
+      "top1_adjusted_score": 0.3972,
+      "top1_base_score": 0.3972,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -10476,7 +11066,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:75",
@@ -10496,8 +11086,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4012,
-      "top1_base_score": 0.4012,
+      "top1_adjusted_score": 0.3897,
+      "top1_base_score": 0.3897,
       "top1_cofactor_coverage_status": "expected_absent_from_structure",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -10505,7 +11095,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:76",
@@ -10534,7 +11124,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:77",
@@ -10563,7 +11153,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:78",
@@ -10592,7 +11182,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:79",
@@ -10621,7 +11211,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:80",
@@ -10650,7 +11240,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:81",
@@ -10679,7 +11269,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:82",
@@ -10708,7 +11298,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:83",
@@ -10739,7 +11329,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:84",
@@ -10759,8 +11349,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4118,
-      "top1_base_score": 0.4118,
+      "top1_adjusted_score": 0.4001,
+      "top1_base_score": 0.4001,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -10768,7 +11358,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:85",
@@ -10797,7 +11387,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:86",
@@ -10826,7 +11416,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:87",
@@ -10857,7 +11447,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:88",
@@ -10877,8 +11467,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.412,
-      "top1_base_score": 0.412,
+      "top1_adjusted_score": 0.4002,
+      "top1_base_score": 0.4002,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -10886,7 +11476,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:89",
@@ -10915,7 +11505,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:90",
@@ -10944,7 +11534,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:91",
@@ -10973,7 +11563,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:92",
@@ -11002,7 +11592,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:93",
@@ -11031,7 +11621,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:94",
@@ -11060,7 +11650,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:95",
@@ -11080,8 +11670,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4154,
-      "top1_base_score": 0.4154,
+      "top1_adjusted_score": 0.4036,
+      "top1_base_score": 0.4036,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -11089,7 +11679,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "low",
       "entry_id": "m_csa:96",
@@ -11118,7 +11708,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:97",
@@ -11149,7 +11739,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:98",
@@ -11180,7 +11770,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:99",
@@ -11200,8 +11790,8 @@
       "target_nearest_expected_ligand_distance_angstrom": null,
       "target_policy_penalty": null,
       "target_rank": null,
-      "top1_adjusted_score": 0.4146,
-      "top1_base_score": 0.4146,
+      "top1_adjusted_score": 0.4027,
+      "top1_base_score": 0.4027,
       "top1_cofactor_coverage_status": "all_expected_local",
       "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
@@ -11209,7 +11799,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4236,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:100",
@@ -11245,9 +11835,9 @@
       "already_below_threshold": false,
       "entry_id": "m_csa:41",
       "nearest_expected_ligand_distance_angstrom": null,
-      "penalty_must_exceed_margin_to_abstain": 0.1622,
+      "penalty_must_exceed_margin_to_abstain": 0.1743,
       "retained_positive": true,
-      "score_margin_to_abstain_threshold": 0.1622,
+      "score_margin_to_abstain_threshold": 0.1743,
       "target_base_score": 0.5858,
       "target_cofactor_coverage_status": "expected_absent_from_structure",
       "target_expected_cofactor_families": [

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "abstain_threshold": 0.4236,
+    "abstain_threshold": 0.4145,
     "coverage_status_counts": {
       "all_expected_local": 38,
       "expected_absent_from_structure": 2,
@@ -1266,7 +1266,7 @@
       ],
       "target_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.5265
+      "top1_score": 0.4422
     },
     {
       "abstained": false,

@@ -2,20 +2,20 @@
   "by_confidence": {
     "high": 3,
     "low": 4,
-    "medium": 168
+    "medium": 218
   },
   "by_fingerprint": {
     "cobalamin_radical_rearrangement": 2,
-    "flavin_dehydrogenase_reductase": 18,
+    "flavin_dehydrogenase_reductase": 20,
     "flavin_monooxygenase": 2,
-    "heme_peroxidase_oxidase": 3,
-    "metal_dependent_hydrolase": 28,
-    "plp_dependent_enzyme": 2,
-    "ser_his_acid_hydrolase": 4
+    "heme_peroxidase_oxidase": 4,
+    "metal_dependent_hydrolase": 32,
+    "plp_dependent_enzyme": 6,
+    "ser_his_acid_hydrolase": 5
   },
   "by_type": {
-    "out_of_scope": 116,
-    "seed_fingerprint": 59
+    "out_of_scope": 154,
+    "seed_fingerprint": 71
   },
-  "label_count": 175
+  "label_count": 225
 }

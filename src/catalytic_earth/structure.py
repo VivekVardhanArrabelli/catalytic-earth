@@ -59,6 +59,8 @@ COFACTOR_LIGAND_MAP = {
     "NAP": "nad",
     "NPH": "nad",
     "PLP": "plp",
+    "PLV": "plp",
+    "PDD": "plp",
     "PMP": "plp",
     "LLP": "plp",
     "SAM": "sam",

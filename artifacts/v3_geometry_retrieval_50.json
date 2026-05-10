@@ -482,6 +482,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.6713,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -531,6 +537,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -584,6 +596,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 15,
@@ -628,6 +641,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -682,6 +701,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6713,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -1213,6 +1242,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9759,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -1251,6 +1281,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9759,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -1302,6 +1338,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9759,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -1344,6 +1386,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9759,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -1388,6 +1436,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9759,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -1780,6 +1838,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8206,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 3,
@@ -1828,6 +1887,12 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8206,
           "counterevidence_penalty": 0.75,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.75,
+              "reason": "flavin_without_reductant_context"
+            }
+          ],
           "counterevidence_reasons": [
             "flavin_without_reductant_context"
           ],
@@ -1866,6 +1931,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8206,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 3,
@@ -1904,6 +1970,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8206,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -1954,6 +2026,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8206,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -2763,66 +2841,16 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 1.0,
-          "cofactor_evidence_level": "ligand_supported",
-          "compactness_score": 0.761,
-          "counterevidence_penalty": 0.7,
-          "counterevidence_reasons": [
-            "metal_redox_ligand_context",
-            "single_electron_role_context"
-          ],
-          "distance_summary": {
-            "count": 55,
-            "max": 22.632,
-            "median": 11.824,
-            "min": 3.776
-          },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [
-                "ASP",
-                "CYS",
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Asp/Glu/Cys",
-              "required_role": "metal_ligand",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "ASP",
-                "GLU",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS",
-                "HIS"
-              ],
-              "required_residue": "His/Asp/Glu",
-              "required_role": "water_activator",
-              "role_hint_match": false
-            }
-          ],
-          "mechanistic_coherence_score": 1.0,
-          "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.3333,
-          "score": 0.4045,
-          "substrate_pocket_score": 0.1576
-        },
-        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.761,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -2886,10 +2914,82 @@
           "substrate_pocket_score": 0.2592
         },
         {
+          "cofactor_context_score": 1.0,
+          "cofactor_evidence_level": "ligand_supported",
+          "compactness_score": 0.761,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "metal_redox_ligand_context"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "single_electron_role_context"
+            }
+          ],
+          "counterevidence_reasons": [
+            "metal_redox_ligand_context",
+            "single_electron_role_context"
+          ],
+          "distance_summary": {
+            "count": 55,
+            "max": 22.632,
+            "median": 11.824,
+            "min": 3.776
+          },
+          "fingerprint_id": "metal_dependent_hydrolase",
+          "fingerprint_name": "Metal-dependent hydrolase",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "CYS",
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu/Cys",
+              "required_role": "metal_ligand",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "ASP",
+                "GLU",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS",
+                "HIS"
+              ],
+              "required_residue": "His/Asp/Glu",
+              "required_role": "water_activator",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.3929,
+          "substrate_pocket_score": 0.1576
+        },
+        {
           "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.761,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -2958,6 +3058,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.761,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -3006,6 +3120,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.761,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -3555,6 +3679,7 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9128,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -3601,6 +3726,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9128,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -3641,6 +3767,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9128,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -3692,6 +3824,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9128,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -3743,6 +3881,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9128,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -4371,6 +4519,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.7538,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -4426,6 +4575,12 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.7538,
           "counterevidence_penalty": 0.75,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.75,
+              "reason": "flavin_without_reductant_context"
+            }
+          ],
           "counterevidence_reasons": [
             "flavin_without_reductant_context"
           ],
@@ -4465,6 +4620,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7538,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -4512,6 +4673,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7538,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -4556,6 +4718,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7538,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -5040,7 +5208,13 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.626,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "nonhydrolytic_metal_transfer_ligand_context"
+            }
+          ],
           "counterevidence_reasons": [
             "nonhydrolytic_metal_transfer_ligand_context"
           ],
@@ -5075,7 +5249,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.4002,
+          "score": 0.3888,
           "substrate_pocket_score": 0.1886
         },
         {
@@ -5083,6 +5257,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.626,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -5132,6 +5312,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.626,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -5180,6 +5366,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.626,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -5219,6 +5415,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.626,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -5739,8 +5941,19 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.6843,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "nonhydrolytic_metal_transfer_ligand_context"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ligand_supported_metal_without_metal_ligand_roles"
+            }
+          ],
           "counterevidence_reasons": [
+            "ligand_supported_metal_without_metal_ligand_roles",
             "nonhydrolytic_metal_transfer_ligand_context"
           ],
           "distance_summary": {
@@ -5774,7 +5987,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.3513,
+          "score": 0.3413,
           "substrate_pocket_score": 0.2255
         },
         {
@@ -5782,6 +5995,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6843,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -5825,6 +6044,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6843,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -5866,6 +6095,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6843,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -5908,6 +6143,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.6843,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -6875,6 +7116,12 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.6136,
           "counterevidence_penalty": 0.72,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.72,
+              "reason": "sam_ligand_context"
+            }
+          ],
           "counterevidence_reasons": [
             "sam_ligand_context"
           ],
@@ -6925,6 +7172,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6136,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -6978,6 +7231,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6136,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -7036,6 +7295,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.6136,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -7082,6 +7355,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6136,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -7533,6 +7816,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -7584,6 +7873,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -7625,6 +7915,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -7675,6 +7971,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8966,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -7715,6 +8017,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8966,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -8432,6 +8744,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.7478,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 55,
@@ -8486,6 +8799,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7478,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -8551,6 +8870,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7478,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -8617,6 +8942,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7478,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -8666,6 +9005,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7478,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -9302,6 +9651,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7631,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 15,
@@ -9343,6 +9693,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7631,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -9396,6 +9752,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7631,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -9451,6 +9813,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7631,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -9491,6 +9859,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7631,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -10129,6 +10507,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9131,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -10180,6 +10564,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9131,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -10230,6 +10620,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9131,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -10269,6 +10669,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9131,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "single_electron_role_context"
+            }
+          ],
           "counterevidence_reasons": [
             "single_electron_role_context"
           ],
@@ -10311,6 +10717,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9131,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -10919,7 +11331,17 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.8861,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "metal_redox_ligand_context"
+            },
+            {
+              "penalty": 0.72,
+              "reason": "role_inferred_metal_low_pocket_support"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_redox_ligand_context",
             "role_inferred_metal_low_pocket_support"
@@ -10955,7 +11377,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.4057,
+          "score": 0.3941,
           "substrate_pocket_score": 0.1021
         },
         {
@@ -10963,6 +11385,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8861,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -11010,6 +11438,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8861,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -11063,6 +11497,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8861,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -11120,6 +11560,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8861,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -11759,6 +12205,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.756,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 28,
@@ -11806,6 +12253,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.756,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -11867,6 +12320,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.756,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -11927,6 +12386,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.756,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -11972,6 +12445,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.756,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -12509,6 +12992,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8893,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -12553,6 +13037,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8893,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -12608,6 +13098,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8893,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -12663,6 +13159,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8893,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -12705,6 +13211,16 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8893,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_supported_site_for_ser_his_seed",
             "ser_his_seed_missing_triad_coherence"
@@ -13314,6 +13830,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.6871,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -13366,6 +13888,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 55,
@@ -13410,6 +13933,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -13467,6 +13996,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -13529,6 +14064,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6871,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -14045,6 +14590,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -14093,6 +14644,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -14138,6 +14690,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -14191,6 +14749,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -14241,6 +14805,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -14819,6 +15393,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.5734,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 6,
@@ -14861,6 +15436,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.5734,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -14903,6 +15484,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.5734,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -14942,6 +15533,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.5734,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -14976,6 +15573,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.5734,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -15640,6 +16243,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8458,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -15699,6 +16303,12 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8458,
           "counterevidence_penalty": 0.75,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.75,
+              "reason": "flavin_without_reductant_context"
+            }
+          ],
           "counterevidence_reasons": [
             "flavin_without_reductant_context"
           ],
@@ -15742,6 +16352,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8458,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -15786,6 +16397,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8458,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -15843,6 +16460,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8458,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -16600,7 +17223,13 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.6291,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "nonhydrolytic_metal_transfer_ligand_context"
+            }
+          ],
           "counterevidence_reasons": [
             "nonhydrolytic_metal_transfer_ligand_context"
           ],
@@ -16639,7 +17268,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.3964,
+          "score": 0.385,
           "substrate_pocket_score": 0.1506
         },
         {
@@ -16647,6 +17276,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6291,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -16698,6 +17333,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6291,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -16750,6 +17391,12 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.6291,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "nad_only_or_nonflavin_context"
           ],
@@ -16790,6 +17437,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6291,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -17271,6 +17924,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7412,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -17309,6 +17963,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7412,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -17359,6 +18019,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7412,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -17410,6 +18076,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7412,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -17456,6 +18128,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7412,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -18013,6 +18695,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.4832,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -18067,6 +18755,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.4832,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -18120,6 +18814,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.4832,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -18160,6 +18864,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.4832,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -18198,6 +18908,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.4832,
           "counterevidence_penalty": 0.72,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.72,
+              "reason": "sam_ligand_context"
+            }
+          ],
           "counterevidence_reasons": [
             "sam_ligand_context"
           ],
@@ -18792,56 +19508,11 @@
       "status": "ok",
       "top_fingerprints": [
         {
-          "cofactor_context_score": 0.25,
-          "cofactor_evidence_level": "not_required",
-          "compactness_score": 0.914,
-          "counterevidence_penalty": 0.7,
-          "counterevidence_reasons": [
-            "ser_his_seed_missing_triad_coherence"
-          ],
-          "distance_summary": {
-            "count": 15,
-            "max": 15.573,
-            "median": 9.376,
-            "min": 6.074
-          },
-          "fingerprint_id": "ser_his_acid_hydrolase",
-          "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
-          "matched_signature_roles": [
-            {
-              "matched_codes": [],
-              "required_residue": "Ser",
-              "required_role": "nucleophile",
-              "role_hint_match": true
-            },
-            {
-              "matched_codes": [
-                "HIS"
-              ],
-              "required_residue": "His",
-              "required_role": "general_base",
-              "role_hint_match": false
-            },
-            {
-              "matched_codes": [
-                "ASP"
-              ],
-              "required_residue": "Asp/Glu",
-              "required_role": "acid_or_orienter",
-              "role_hint_match": true
-            }
-          ],
-          "mechanistic_coherence_score": 0.0,
-          "residue_match_fraction": 1.0,
-          "role_match_fraction": 0.6667,
-          "score": 0.3734,
-          "substrate_pocket_score": 0.8924
-        },
-        {
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.914,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 15,
@@ -18882,6 +19553,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.914,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -18933,6 +19610,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.914,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -18983,6 +19666,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.914,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -19016,6 +19709,53 @@
           "role_match_fraction": 0.3333,
           "score": 0.2804,
           "substrate_pocket_score": 0.5396
+        },
+        {
+          "cofactor_context_score": 0.0,
+          "cofactor_evidence_level": "absent",
+          "compactness_score": 0.914,
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_reasons": [
+            "absent_plp_ligand_without_lysine_anchor"
+          ],
+          "distance_summary": {
+            "count": 15,
+            "max": 15.573,
+            "median": 9.376,
+            "min": 6.074
+          },
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
+          "matched_signature_roles": [
+            {
+              "matched_codes": [
+                "ASP",
+                "HIS"
+              ],
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
+            },
+            {
+              "matched_codes": [
+                "GLY"
+              ],
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
+              "role_hint_match": false
+            }
+          ],
+          "mechanistic_coherence_score": 1.0,
+          "residue_match_fraction": 0.6667,
+          "role_match_fraction": 0.3333,
+          "score": 0.2554,
+          "substrate_pocket_score": 0.2615
         }
       ]
     },
@@ -19487,6 +20227,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -19526,6 +20267,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -19574,6 +20321,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -19623,6 +20376,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9864,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -19661,6 +20420,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9864,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -20140,6 +20909,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -20184,6 +20954,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -20238,6 +21014,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -20291,6 +21073,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -20332,6 +21124,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -21018,6 +21816,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8197,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 28,
@@ -21070,6 +21869,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8197,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -21132,6 +21937,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8197,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -21193,6 +22004,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8197,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -21236,6 +22057,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8197,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -21760,6 +22595,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 1.0,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 15,
@@ -21806,6 +22642,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -21858,6 +22700,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -21912,6 +22760,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -21953,6 +22811,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -22552,6 +23424,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8125,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 15,
@@ -22592,6 +23465,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8125,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -22643,6 +23522,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8125,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -22691,6 +23576,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8125,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -22730,6 +23621,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8125,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -23202,6 +24103,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 6,
@@ -23233,6 +24135,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -23276,6 +24184,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -23319,6 +24233,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -23349,6 +24269,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 6,
@@ -24006,6 +24927,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 15,
@@ -24047,6 +24969,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -24099,6 +25027,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -24152,6 +25086,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.631,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -24191,6 +25131,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.631,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -24609,8 +25559,19 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.9655,
-          "counterevidence_penalty": 0.72,
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "role_inferred_metal_hydrophobic_low_pocket_support"
+            },
+            {
+              "penalty": 0.72,
+              "reason": "role_inferred_metal_low_pocket_support"
+            }
+          ],
           "counterevidence_reasons": [
+            "role_inferred_metal_hydrophobic_low_pocket_support",
             "role_inferred_metal_low_pocket_support"
           ],
           "distance_summary": {
@@ -24646,7 +25607,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.4226,
+          "score": 0.4109,
           "substrate_pocket_score": 0.1091
         },
         {
@@ -24654,6 +25615,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9655,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -24702,6 +25669,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9655,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -24753,6 +25726,16 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9655,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "ser_his_seed_missing_triad_coherence"
@@ -24795,6 +25778,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9655,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -25252,8 +26245,19 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.9081,
-          "counterevidence_penalty": 0.72,
+          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "role_inferred_metal_hydrophobic_low_pocket_support"
+            },
+            {
+              "penalty": 0.72,
+              "reason": "role_inferred_metal_low_pocket_support"
+            }
+          ],
           "counterevidence_reasons": [
+            "role_inferred_metal_hydrophobic_low_pocket_support",
             "role_inferred_metal_low_pocket_support"
           ],
           "distance_summary": {
@@ -25291,7 +26295,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.4213,
+          "score": 0.4096,
           "substrate_pocket_score": 0.128
         },
         {
@@ -25299,6 +26303,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9081,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -25350,6 +26360,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9081,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -25404,6 +26420,16 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9081,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "ser_his_seed_missing_triad_coherence"
@@ -25447,6 +26473,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9081,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -26092,7 +27128,17 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.7444,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "metal_redox_ligand_context"
+            },
+            {
+              "penalty": 0.92,
+              "reason": "role_inferred_metal_aromatic_positive_pocket"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_redox_ligand_context",
             "role_inferred_metal_aromatic_positive_pocket"
@@ -26134,7 +27180,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.4043,
+          "score": 0.3928,
           "substrate_pocket_score": 0.1649
         },
         {
@@ -26142,6 +27188,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7444,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -26201,6 +27253,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7444,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -26261,6 +27319,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7444,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -26303,6 +27371,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7444,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -26734,7 +27808,13 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 1.0,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "nucleotide_transfer_ligand_context"
+            }
+          ],
           "counterevidence_reasons": [
             "nucleotide_transfer_ligand_context"
           ],
@@ -26769,7 +27849,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.4189,
+          "score": 0.4069,
           "substrate_pocket_score": 0.1671
         },
         {
@@ -26777,6 +27857,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -26818,6 +27908,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -26858,6 +27954,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -26899,6 +28001,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 1.0,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -27589,6 +28697,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 45,
@@ -27629,6 +28738,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -27683,6 +28798,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -27733,6 +28854,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8498,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -27775,6 +28902,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8498,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -28380,6 +29517,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8326,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -28430,10 +29568,25 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.8326,
-          "counterevidence_penalty": 0.72,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "role_inferred_metal_radical_transfer_roles"
+            },
+            {
+              "penalty": 0.72,
+              "reason": "role_inferred_metal_low_pocket_support"
+            },
+            {
+              "penalty": 0.75,
+              "reason": "heme_only_context_for_metal_hydrolase"
+            }
+          ],
           "counterevidence_reasons": [
             "heme_only_context_for_metal_hydrolase",
-            "role_inferred_metal_low_pocket_support"
+            "role_inferred_metal_low_pocket_support",
+            "role_inferred_metal_radical_transfer_roles"
           ],
           "distance_summary": {
             "count": 21,
@@ -28466,7 +29619,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.4177,
+          "score": 0.3945,
           "substrate_pocket_score": 0.1343
         },
         {
@@ -28474,6 +29627,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8326,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -28529,6 +29688,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8326,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -28576,6 +29741,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8326,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -28972,6 +30147,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.9944,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -29018,6 +30194,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9944,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -29076,6 +30258,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9944,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -29136,6 +30324,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.9944,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -29178,6 +30376,16 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.9944,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_supported_site_for_ser_his_seed",
             "ser_his_seed_missing_triad_coherence"
@@ -29809,6 +31017,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8706,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 28,
@@ -29853,6 +31062,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8706,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -29905,6 +31120,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8706,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -29957,6 +31178,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8706,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -30001,6 +31236,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8706,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -30522,6 +31767,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7874,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -30562,6 +31817,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7874,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -30603,6 +31864,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7874,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -30644,6 +31911,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7874,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -30673,8 +31946,19 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.7874,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "nucleotide_transfer_ligand_context"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ligand_supported_metal_without_metal_ligand_roles"
+            }
+          ],
           "counterevidence_reasons": [
+            "ligand_supported_metal_without_metal_ligand_roles",
             "nucleotide_transfer_ligand_context"
           ],
           "distance_summary": {
@@ -30689,7 +31973,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
-          "score": 0.1885,
+          "score": 0.1831,
           "substrate_pocket_score": 0.175
         }
       ]
@@ -31188,6 +32472,7 @@
           "cofactor_evidence_level": "role_inferred",
           "compactness_score": 0.839,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -31236,6 +32521,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.839,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -31291,6 +32582,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.839,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -31346,6 +32643,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.839,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -31386,6 +32693,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.839,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -31847,6 +33160,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8488,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -31887,6 +33201,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8488,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -31936,6 +33256,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8488,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -31989,6 +33315,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8488,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -32031,6 +33367,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8488,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -32669,6 +34011,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8954,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 45,
@@ -32721,6 +34064,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8954,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -32788,6 +34137,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8954,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -32854,6 +34209,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8954,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -32899,6 +34264,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8954,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -33673,6 +35052,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.825,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 66,
@@ -33725,6 +35105,20 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.825,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "metal_supported_site_for_ser_his_seed"
+            },
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            },
+            {
+              "penalty": 0.85,
+              "reason": "metal_ligand_rich_site_for_ser_his_seed"
+            }
+          ],
           "counterevidence_reasons": [
             "metal_ligand_rich_site_for_ser_his_seed",
             "metal_supported_site_for_ser_his_seed",
@@ -33781,6 +35175,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.825,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -33840,6 +35240,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.825,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -33900,6 +35306,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.825,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -34384,6 +35796,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8185,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -34428,6 +35841,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8185,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -34476,6 +35895,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8185,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -34527,6 +35952,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8185,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -34578,6 +36009,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8185,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -34947,6 +36388,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8635,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -34996,6 +36443,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8635,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -35035,6 +36492,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8635,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -35076,6 +36539,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8635,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -35106,6 +36575,7 @@
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8635,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 6,
@@ -35570,6 +37040,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.945,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -35617,6 +37093,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.945,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 21,
@@ -35660,6 +37137,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.945,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -35713,6 +37196,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.945,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -35768,6 +37257,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.945,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -36350,6 +37849,7 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7463,
           "counterevidence_penalty": 1.0,
+          "counterevidence_penalty_details": [],
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 10,
@@ -36392,6 +37892,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7463,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -36441,6 +37947,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7463,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -36480,6 +37996,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.7463,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -36522,6 +38044,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.7463,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -37111,6 +38639,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8513,
           "counterevidence_penalty": 0.65,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.65,
+              "reason": "absent_heme_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -37160,6 +38694,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8513,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -37211,6 +38751,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.8513,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -37253,6 +38799,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8513,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -37288,12 +38844,18 @@
           "substrate_pocket_score": 0.5047
         },
         {
-          "cofactor_context_score": 0.2,
+          "cofactor_context_score": 0.0,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.8513,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
-            "nonhydrolytic_metal_transfer_ligand_context"
+            "absent_plp_ligand_without_lysine_anchor"
           ],
           "distance_summary": {
             "count": 15,
@@ -37301,35 +38863,34 @@
             "median": 10.379,
             "min": 3.765
           },
-          "fingerprint_id": "metal_dependent_hydrolase",
-          "fingerprint_name": "Metal-dependent hydrolase",
+          "fingerprint_id": "plp_dependent_enzyme",
+          "fingerprint_name": "Pyridoxal phosphate dependent enzyme",
           "matched_signature_roles": [
             {
               "matched_codes": [
                 "ASP",
                 "GLU",
-                "GLU"
+                "GLU",
+                "TYR"
               ],
-              "required_residue": "His/Asp/Glu/Cys",
-              "required_role": "metal_ligand",
-              "role_hint_match": false
+              "required_residue": "Asp/Glu/His/Tyr",
+              "required_role": "acid_base",
+              "role_hint_match": true
             },
             {
               "matched_codes": [
-                "ASP",
-                "GLU",
-                "GLU"
+                "SER"
               ],
-              "required_residue": "His/Asp/Glu",
-              "required_role": "water_activator",
+              "required_residue": "Gly/Ser/Thr-rich motif",
+              "required_role": "phosphate_binder",
               "role_hint_match": false
             }
           ],
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
-          "role_match_fraction": 0.0,
-          "score": 0.2565,
-          "substrate_pocket_score": 0.1934
+          "role_match_fraction": 0.3333,
+          "score": 0.2514,
+          "substrate_pocket_score": 0.25
         }
       ]
     },
@@ -37941,6 +39502,12 @@
           "cofactor_evidence_level": "not_required",
           "compactness_score": 0.6576,
           "counterevidence_penalty": 0.7,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.7,
+              "reason": "ser_his_seed_missing_triad_coherence"
+            }
+          ],
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -37980,6 +39547,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6576,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -38023,6 +39596,12 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6576,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -38065,6 +39644,16 @@
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6576,
           "counterevidence_penalty": 0.6,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.6,
+              "reason": "absent_flavin_context"
+            },
+            {
+              "penalty": 0.6,
+              "reason": "nad_only_or_nonflavin_context"
+            }
+          ],
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -38106,7 +39695,13 @@
           "cofactor_context_score": 0.2,
           "cofactor_evidence_level": "absent",
           "compactness_score": 0.6576,
-          "counterevidence_penalty": 0.7,
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "nonhydrolytic_metal_transfer_ligand_context"
+            }
+          ],
           "counterevidence_reasons": [
             "nonhydrolytic_metal_transfer_ligand_context"
           ],
@@ -38141,7 +39736,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
-          "score": 0.2419,
+          "score": 0.235,
           "substrate_pocket_score": 0.1574
         }
       ]

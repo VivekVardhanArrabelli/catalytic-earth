@@ -126,6 +126,29 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(context["ligand_codes"], ["B12"])
         self.assertIn("cobalamin", context["cofactor_families"])
 
+    def test_ligand_context_infers_plp_variants(self) -> None:
+        for ligand_code in ("PLV", "PDD"):
+            with self.subTest(ligand_code=ligand_code):
+                context = ligand_context_from_atoms(
+                    [
+                        {
+                            "group_PDB": "HETATM",
+                            "auth_comp_id": ligand_code,
+                            "label_comp_id": ligand_code,
+                            "auth_asym_id": "A",
+                            "label_asym_id": "A",
+                            "auth_seq_id": "600",
+                            "label_seq_id": "600",
+                            "Cartn_x": 1.0,
+                            "Cartn_y": 0.0,
+                            "Cartn_z": 0.0,
+                        }
+                    ],
+                    [{"ca": {"x": 0.0, "y": 0.0, "z": 0.0}}],
+                )
+                self.assertEqual(context["ligand_codes"], [ligand_code])
+                self.assertIn("plp", context["cofactor_families"])
+
     def test_ligand_context_does_not_treat_alkali_ions_as_metal_cofactors(self) -> None:
         active_site = [{"ca": {"x": 0.0, "y": 0.0, "z": 0.0}}]
         alkali_atoms = [

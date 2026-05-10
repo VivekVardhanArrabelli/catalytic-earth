@@ -32,7 +32,7 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 175)
+        self.assertEqual(len(labels), 225)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
@@ -142,6 +142,13 @@ class LabelTests(unittest.TestCase):
         controls = build_hard_negative_controls(retrieval, labels)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 0)
         self.assertEqual(controls["metadata"]["near_miss_count"], 0)
+        self.assertEqual(controls["metadata"]["closest_below_floor_entry_id"], "m_csa:2")
+        self.assertEqual(controls["metadata"]["minimum_below_floor_score_gap"], 0.6)
+        self.assertEqual(controls["closest_below_floor_rows"][0]["entry_id"], "m_csa:2")
+        self.assertEqual(
+            controls["closest_below_floor_rows"][0]["negative_control_type"],
+            "below_in_scope_floor",
+        )
         self.assertEqual(controls["groups"], [])
         controls = build_hard_negative_controls(retrieval, labels, score_floor=0.1)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 1)
@@ -163,10 +170,12 @@ class LabelTests(unittest.TestCase):
             {"unknown": 1},
         )
         self.assertEqual(near_miss["metadata"]["closest_near_miss_entry_id"], "m_csa:2")
+        self.assertEqual(near_miss["metadata"]["closest_below_floor_entry_id"], "m_csa:2")
         self.assertEqual(
             near_miss["metadata"]["minimum_near_miss_score_gap_to_floor"],
             0.005,
         )
+        self.assertEqual(near_miss["metadata"]["minimum_below_floor_score_gap"], 0.005)
         self.assertEqual(
             near_miss["near_miss_rows"][0]["negative_control_type"],
             "near_miss_below_in_scope_floor",

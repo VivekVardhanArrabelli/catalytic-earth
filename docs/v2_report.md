@@ -57,10 +57,10 @@ for expert review, not validated functions.
 - Post-V2 work has already added geometry-aware active-site retrieval, curated
   positive/out-of-scope mechanism labels, ligand/cofactor context, and
   substrate-pocket descriptors, plus cofactor coverage audit artifacts.
-- The current active benchmark is the 175-entry geometry slice. It has 0 hard
-  negatives and 0 out-of-scope false non-abstentions at calibrated abstention,
-  with 17 near misses, 1 evidence-limited in-scope abstention, and 0 actionable
-  in-scope failures after cofactor coverage and label-scope audit. Retained
-  evidence-limited positives are now audit-visible as `m_csa:41`, `m_csa:108`,
-  and `m_csa:160`.
+- The current active benchmark is the 225-label geometry slice. It has 0 hard
+  negatives, 0 near misses, and 0 out-of-scope false non-abstentions at
+  calibrated abstention, with 1 evidence-limited in-scope abstention and 0
+  actionable in-scope failures after cofactor coverage and label-scope audit.
+  Retained evidence-limited positives are audit-visible as `m_csa:41`,
+  `m_csa:108`, and `m_csa:160`.
 - Expand dark-enzyme campaigns beyond generic hydrolases.
