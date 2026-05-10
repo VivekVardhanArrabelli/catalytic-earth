@@ -13,9 +13,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
     def test_label_summary_artifact_matches_curated_registry(self) -> None:
         summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
 
-        self.assertEqual(summary["label_count"], 475)
-        self.assertEqual(summary["by_type"]["seed_fingerprint"], 127)
-        self.assertEqual(summary["by_type"]["out_of_scope"], 348)
+        self.assertEqual(summary["label_count"], 499)
+        self.assertEqual(summary["by_type"]["seed_fingerprint"], 131)
+        self.assertEqual(summary["by_type"]["out_of_scope"], 368)
 
     def test_125_entry_geometry_artifacts_remain_clean(self) -> None:
         evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_125.json")
@@ -492,10 +492,10 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         candidates = _load_json(ROOT / "artifacts" / "v3_label_expansion_candidates_500.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_500.json")
 
-        self.assertEqual(candidates["metadata"]["labeled_entry_count"], 475)
-        self.assertEqual(candidates["metadata"]["candidate_count"], 25)
-        self.assertEqual(candidates["metadata"]["candidate_group_count"], 9)
-        self.assertEqual(candidates["metadata"]["ready_for_label_review_count"], 21)
+        self.assertEqual(candidates["metadata"]["labeled_entry_count"], 499)
+        self.assertEqual(candidates["metadata"]["candidate_count"], 1)
+        self.assertEqual(candidates["metadata"]["candidate_group_count"], 1)
+        self.assertEqual(candidates["metadata"]["ready_for_label_review_count"], 1)
 
         dialkylglycine_decarboxylase = next(
             row for row in retrieval["results"] if row["entry_id"] == "m_csa:482"
@@ -528,12 +528,12 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
 
     def test_label_factory_artifacts_gate_500_queue(self) -> None:
         label_summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
-        audit = _load_json(ROOT / "artifacts" / "v3_label_factory_audit_475.json")
+        audit = _load_json(ROOT / "artifacts" / "v3_label_factory_audit_500.json")
         applied = _load_json(
-            ROOT / "artifacts" / "v3_label_factory_applied_labels_475.json"
+            ROOT / "artifacts" / "v3_label_factory_applied_labels_500.json"
         )
         adversarial = _load_json(
-            ROOT / "artifacts" / "v3_adversarial_negative_controls_475.json"
+            ROOT / "artifacts" / "v3_adversarial_negative_controls_500.json"
         )
         queue = _load_json(ROOT / "artifacts" / "v3_active_learning_review_queue_500.json")
         review_export = _load_json(ROOT / "artifacts" / "v3_expert_review_export_500.json")
@@ -542,28 +542,28 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         gate = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_500.json")
 
-        self.assertEqual(label_summary["by_tier"], {"bronze": 475})
-        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 475})
-        self.assertEqual(audit["metadata"]["promote_to_silver_count"], 61)
-        self.assertEqual(audit["metadata"]["abstention_or_review_count"], 98)
+        self.assertEqual(label_summary["by_tier"], {"bronze": 499})
+        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 499})
+        self.assertEqual(audit["metadata"]["promote_to_silver_count"], 63)
+        self.assertEqual(audit["metadata"]["abstention_or_review_count"], 101)
         self.assertEqual(audit["metadata"]["hard_negative_evidence_entry_count"], 100)
-        self.assertEqual(applied["metadata"]["output_summary"]["by_tier"]["silver"], 61)
+        self.assertEqual(applied["metadata"]["output_summary"]["by_tier"]["silver"], 63)
         self.assertEqual(
             applied["metadata"]["output_summary"]["by_review_status"]["needs_expert_review"],
-            98,
+            101,
         )
         self.assertEqual(adversarial["metadata"]["control_count"], 100)
         self.assertIn("ontology_family_boundary", adversarial["metadata"]["axis_counts"])
-        self.assertEqual(queue["metadata"]["unlabeled_count"], 25)
-        self.assertEqual(queue["metadata"]["queued_count"], 123)
-        self.assertEqual(review_export["metadata"]["exported_count"], 50)
+        self.assertEqual(queue["metadata"]["unlabeled_count"], 1)
+        self.assertEqual(queue["metadata"]["queued_count"], 102)
+        self.assertEqual(review_export["metadata"]["exported_count"], 26)
         self.assertEqual(
             sum(1 for item in review_export["review_items"] if item["current_label"] is None),
-            25,
+            1,
         )
         self.assertEqual(
             guardrails["metadata"]["decision_counts"]["block_propagation_pending_review"],
-            22,
+            1,
         )
         self.assertTrue(gate["metadata"]["automation_ready_for_next_label_batch"])
         self.assertEqual(gate["blockers"], [])

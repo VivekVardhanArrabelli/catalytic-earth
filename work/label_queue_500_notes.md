@@ -2,27 +2,26 @@
 
 These are curation notes for `artifacts/v3_label_expansion_candidates_500.json`
 and the factory-generated `artifacts/v3_active_learning_review_queue_500.json`.
-They are not registry labels yet. Use them to start the next bounded label pass,
-but route every decision through `artifacts/v3_expert_review_export_500.json`
-and `import-label-review` before counting formal labels.
+The first two 500-slice decision batches have been processed: 24 labels were
+accepted into the countable registry, while `m_csa:494` remains the review
+candidate. Route every future decision through
+`artifacts/v3_expert_review_export_500.json` and import into a registry copy
+before counting formal labels.
 
 ## Queue State
 
-- Curated labels already present: 475.
-- Candidate rows beyond the curated slice: 25.
-- Candidate groups: 9.
-- Ready label-review rows after PLP/prenyl context updates: 21.
+- Curated labels already present: 499.
+- Candidate rows beyond the curated slice: 1.
+- Candidate groups: 1.
+- Ready label-review rows after the accepted batches: 1.
 - Geometry entries: 499.
-- Structure-mapping issues: 8 total, 7 already covered by existing labels.
+- Structure-mapping issues: 8 total, all covered by existing countable labels.
 
 ## High-Confidence Seed Candidates
 
 - `m_csa:482` 2,2-dialkylglycine decarboxylase (pyruvate):
   likely `plp_dependent_enzyme`. The `5PA` ligand is now mapped to PLP context,
   and retrieval ranks PLP first with local ligand support.
-- `m_csa:486` polynucleotide 5'-phosphatase:
-  likely `metal_dependent_hydrolase`. Mechanism text describes divalent-cation
-  coordination and phosphate hydrolysis.
 - `m_csa:494` propanediol dehydratase:
   likely `cobalamin_radical_rearrangement`, but treat carefully. The selected
   structure carries B12 only as structure-wide context, not local context
@@ -34,6 +33,19 @@ and `import-label-review` before counting formal labels.
 - `m_csa:497` nitric-oxide reductase (FMN):
   likely `flavin_dehydrogenase_reductase`. Retrieval has local FMN support and
   ranks flavin dehydrogenase/reductase first.
+
+Accepted as countable positives: `m_csa:482`, `m_csa:486`, `m_csa:495`, and
+`m_csa:497`. `m_csa:486` became countable after the scorer recognized
+metal-phosphate hydrolysis text context and raised its metal-hydrolase score to
+`0.5051`; it remains audit-visible as structure-only metal evidence rather than
+a clean local-ligand hit.
+
+Next review target: keep `m_csa:494` non-countable until the cobalamin evidence
+gap is resolved. Its current retrieval top hit is `ser_his_acid_hydrolase` at
+`0.3828`, below the `0.4115` floor and with triad counterevidence; B12 appears
+only in the structure-wide ligand inventory, while local ligands are `K` and
+`PGO`. The provisional batch builder now requires local ligand-supported
+cobalamin evidence before automation-curated cobalamin labels can count.
 
 ## Likely Out-Of-Scope Controls
 
@@ -69,9 +81,15 @@ and `import-label-review` before counting formal labels.
   homology, no selected structure positions.
 - `m_csa:502` galactarate dehydratase: enolase-like dehydratase/elimination.
 
+All likely out-of-scope controls above were accepted as bronze
+automation-curated out-of-scope labels in the first countable batch.
+
 ## Scorer Context Added Before Labeling
 
 - `5PA` is now treated as a PLP-family ligand so `m_csa:482` ranks as a
   ligand-supported PLP hit.
 - `FII` and farnesyltransferase text now trigger nonhydrolytic prenyl-transfer
   counterevidence, dropping `m_csa:484` below the current abstention threshold.
+- `artifacts/v3_label_batch_acceptance_check_500.json` records that the latest
+  accepted one-label subset preserves 0 hard negatives, 0 near misses,
+  0 out-of-scope false non-abstentions, and 0 actionable in-scope failures.

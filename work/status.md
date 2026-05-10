@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 31
-- Measured elapsed time: 684.6 minutes (11.41 hours)
+- Entries: 32
+- Measured elapsed time: 735.5 minutes (12.26 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 671.2 measured minutes (11.19 hours)
+- post-v2: 722.1 measured minutes (12.04 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,21 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 281
-- Evidence references logged: 204
+- Artifact references logged: 293
+- Evidence references logged: 218
 
 ## Recent Entries
-
-### 2026-05-09T22:17:13.285127+00:00 - post-v2
-
-- Task: Audit cofactor coverage and evidence-limited geometry failures
-- Time mode: measured
-- Measured minutes: 54.0
-- Started: 2026-05-09T21:22:55Z
-- Ended: 2026-05-09T22:16:55Z
-- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/labels.py, src/catalytic_earth/geometry_reports.py, src/catalytic_earth/cli.py, src/catalytic_earth/performance.py, data/registries/curated_mechanism_labels.json, artifacts/v3_cofactor_coverage_150.json, artifacts/v3_geometry_slice_summary.json, artifacts/v3_in_scope_failure_analysis_150.json, README.md, docs/geometry_features.md, docs/performance.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
-- Evidence: 75 unit tests passed, validate passed, 150 labels, 44 in-scope positives, 106 out-of-scope controls, 0 hard negatives across slices, 0 out-of-scope false non-abstentions, 1 evidence-limited in-scope abstention, 0 actionable in-scope failures, cofactor coverage artifacts generated, evidence-limited retained positives flagged
-- Notes: documentation reviewed and updated; final diff check, validate, and 75-test suite passed
 
 ### 2026-05-09T23:20:32.069816+00:00 - post-v2
 
@@ -113,6 +102,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 130 unit tests passed, validate passed, 475 explicit tiered labels, 61 silver promotions proposed, 98 review labels proposed, 100 adversarial negatives mined, 123 active-learning rows queued, all 25 unlabeled candidates exported for review, 9 label-factory gates passed, automation-lock CLI tested, documentation reviewed and updated
 - Notes: documentation reviewed and updated; normal measured run
 
+### 2026-05-10T06:26:21.995107+00:00 - post-v2
+
+- Task: Process 500 label-factory batches
+- Time mode: measured
+- Measured minutes: 50.933
+- Started: 2026-05-10T05:35:25Z
+- Ended: 2026-05-10T06:26:21Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, src/catalytic_earth/geometry_retrieval.py, data/registries/curated_mechanism_labels.json, artifacts/v3_geometry_retrieval_500.json, artifacts/v3_geometry_label_eval_500.json, artifacts/v3_label_factory_audit_500.json, artifacts/v3_active_learning_review_queue_500.json, artifacts/v3_expert_review_decision_batch_500.json, artifacts/v3_label_batch_acceptance_check_500.json, docs/label_factory.md, work/handoff.md
+- Evidence: 132 unit tests passed, validate passed, 499 countable labels, 1 remaining 500-slice candidate, 63 silver promotions proposed, 101 review labels proposed, 100 adversarial negatives mined, 102 active-learning rows queued, 26 expert-review items exported, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, filter-countable safety guard tested, documentation reviewed and updated
+- Notes: Documentation checked and updated during wrap-up; normal measured run.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -146,6 +146,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T03:26:17.876722+00:00: The benchmark can continue expanding in curated 25-entry tranches, but the next bottleneck is 475-entry label quality and evidence-limited cofactor gaps.
 - 2026-05-10T04:23:35.521223+00:00: The benchmark can keep expanding in 25-entry curation tranches; next bottleneck is 500-entry label quality and evidence-limited cofactor gaps.
 - 2026-05-10T05:25:09.634817+00:00: Next bottleneck is importing decisions from the 500 queue through the label factory rather than expanding labels directly.
+- 2026-05-10T06:26:21.995107+00:00: The active bottleneck is cobalamin local cofactor evidence for m_csa:494 and preserving countable/review-state separation.
 
 ## Scope Adjustments
 
@@ -179,3 +180,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T03:26:17.876722+00:00: Post-V2 geometry scope now tracks a fully labeled 450-entry source slice and a generated 475-entry candidate queue.
 - 2026-05-10T04:23:35.521223+00:00: Post-V2 geometry scope now tracks a fully labeled 475-entry source slice and a generated 500-entry candidate queue.
 - 2026-05-10T05:25:09.634817+00:00: Label scaling is now factory-gated; new labels must pass promotion, demotion, adversarial-negative, active-learning, expert-review, family-propagation, validation, and test checks before counting.
+- 2026-05-10T06:26:21.995107+00:00: 500-slice label scaling now has countable batch import and acceptance checks; next scope is resolving m_csa:494, not opening a 525-label tranche.

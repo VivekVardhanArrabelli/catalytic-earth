@@ -57,16 +57,18 @@ for expert review, not validated functions.
 - Post-V2 work has already added geometry-aware active-site retrieval, curated
   positive/out-of-scope mechanism labels, ligand/cofactor context, and
   substrate-pocket descriptors, plus cofactor coverage audit artifacts.
-- The current active benchmark is the 475-label geometry slice. It has 0 hard
-  negatives, 0 near misses, and 0 out-of-scope false non-abstentions at
-  calibrated abstention, with 4 evidence-limited in-scope abstentions
+- The current active benchmark is the 499-label countable geometry slice within
+  the 500-entry source artifact. It has 0 hard negatives, 0 near misses, and
+  0 out-of-scope false non-abstentions at calibrated abstention, with
+  4 evidence-limited in-scope abstentions
   (`m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`) and 0 actionable
   in-scope failures after cofactor coverage and label-scope audit. Retained
   evidence-limited positives are audit-visible as `m_csa:41`, `m_csa:108`,
-  `m_csa:160`, and `m_csa:446`.
-- A 500-entry label-expansion queue has been generated for the next curation
-  pass, with 25 unlabeled candidate rows and 21 ready review entries. It now
-  must pass the label-factory gate before any new labels count in the benchmark.
+  `m_csa:160`, `m_csa:446`, and `m_csa:486`.
+- The 500-entry label-expansion queue has been processed through the label
+  factory: 24 labels were accepted for counting, while `m_csa:494` remains the
+  ready review entry. Future additions must pass the label-factory gate before
+  any new labels count in the benchmark.
 - Label-factory artifacts now provide bronze/silver/gold label schema,
   promotion/demotion audit, adversarial negative controls, active-learning
   review ranking, family-propagation guardrails, and expert-review

@@ -53,8 +53,9 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 475 entries, including all entries in the
-   current 475-entry source slice.
+8. Curated mechanism labels for 499 entries: all entries in the 475-entry
+   source slice plus 24 accepted, factory-gated labels from the 500-entry
+   candidate queue.
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
     selection, in-scope failure analysis, cofactor coverage analysis,
@@ -65,39 +66,42 @@ The repository currently contains:
     review queue, adversarial negative mining, family-propagation guardrails,
     expert-review export/import, and a scaling gate.
 
-The 20- through 475-entry evaluation slices are clean out-of-scope regression
+The 20- through 500-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
 under calibrated abstention. The 125-entry slice has 38 in-scope positives, 87
 out-of-scope controls, 124/125 evaluable active-site structures, threshold
 `0.4115`, and a positive score separation gap of `0.0308`.
 
-The current 475-label stress slice has 474 geometry entries, 467 evaluable
-active-site structures, 127 local active-site in-scope positives, 347 evaluated
-out-of-scope controls, 0 ready label-expansion candidates, 7 labeled
-out-of-scope structure-mapping issues, 0 hard negatives, and 0 near misses. Its
-calibrated threshold is `0.4115`; it retains 123/127 in-scope positives,
-abstains on all evaluable out-of-scope controls, and leaves 4 evidence-limited
+The current 500-entry countable stress slice has 499 geometry entries, 490
+evaluable active-site structures, 131 local active-site in-scope positives, 367
+evaluated out-of-scope controls, 1 remaining label-expansion candidate, 8
+structure-mapping issues, 0 hard negatives, and 0 near misses. Its calibrated
+threshold is `0.4115`; it retains 127/131 in-scope positives, abstains on all
+evaluable out-of-scope controls, and leaves the same 4 evidence-limited
 in-scope abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`).
 The current actionable in-scope failure count is 0 after separating
 selected-structure cofactor gaps from scorer failures. Cofactor policy sweeps
 recommend audit-only handling rather than a score penalty because no tested
 penalty reduces retained evidence-limited positives without losing retained
 positives. Cofactor coverage artifacts explicitly identify retained
-evidence-limited positives: `m_csa:41`, `m_csa:108`, `m_csa:160`, and
-`m_csa:446`.
+evidence-limited positives: `m_csa:41`, `m_csa:108`, `m_csa:160`,
+`m_csa:446`, and `m_csa:486`.
 
-An unlabeled 500-entry candidate queue has also been generated for the next
-curation pass. It contains 499 geometry entries, 25 unlabeled candidate rows,
-and 21 entries ready for label review, but it is not yet part of the curated
-cross-slice benchmark summary. The queue now recognizes the `5PA` ligand as PLP
-context and applies farnesyl/prenyl transfer counterevidence for
-`m_csa:484`; see `work/label_queue_500_notes.md` for the next curation notes.
+The 500-entry candidate queue has been processed through the label factory.
+`m_csa:482`, `m_csa:486`, `m_csa:495`, and `m_csa:497` were accepted as
+countable positive seed labels; 20 out-of-scope controls were accepted;
+`m_csa:494` remains the single uncounted review candidate because B12 evidence
+is structure-wide only. The queue recognizes the `5PA` ligand as PLP context
+and applies farnesyl/prenyl transfer counterevidence for `m_csa:484`; see
+`work/label_queue_500_notes.md`.
 
 Label scaling is now gated by the label factory rather than raw queue size. The
-current factory audit proposes 61 bronze-to-silver promotions, flags 98
-abstention/review rows, mines 100 adversarial negative controls from 347
-out-of-scope candidates, exports 50 expert-review items including all 25
-unlabeled 500-slice candidates, and passes the 500-queue gate check. See
+current factory audit proposes 63 bronze-to-silver promotions, flags 101
+abstention/review rows, mines 100 adversarial negative controls from 367
+out-of-scope candidates, exports 26 expert-review items including the remaining
+unlabeled 500-slice candidate, and passes the 500-slice gate check.
+`artifacts/v3_label_batch_acceptance_check_500.json` records that 1 additional
+label was accepted for counting while 6 review-state decisions remain pending. See
 `docs/label_factory.md`.
 
 ## Quickstart
@@ -127,32 +131,32 @@ python -m catalytic_earth.cli write-v2-report --out docs/v2_report.md
 
 python -m catalytic_earth.cli label-summary --out artifacts/v3_label_summary.json
 
-python -m catalytic_earth.cli build-v1-graph --max-mcsa 475 --page-size 100 --out artifacts/v1_graph_475.json
-python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_475.json --out artifacts/v1_graph_summary_475.json
-python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_475.json --out artifacts/v2_benchmark_475.json
-python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_475.json --max-entries 475 --out artifacts/v3_geometry_features_475.json
-python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_475.json --out artifacts/v3_geometry_retrieval_475.json
-python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_475.json --out artifacts/v3_abstention_calibration_475.json
-python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_475.json --abstain-threshold 0.4115 --out artifacts/v3_geometry_label_eval_475.json
-python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_475.json --abstain-threshold 0.4115 --out artifacts/v3_geometry_failure_analysis_475.json
-python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_475.json --abstain-threshold 0.4115 --out artifacts/v3_in_scope_failure_analysis_475.json
-python -m catalytic_earth.cli analyze-cofactor-coverage --retrieval artifacts/v3_geometry_retrieval_475.json --abstain-threshold 0.4115 --out artifacts/v3_cofactor_coverage_475.json
-python -m catalytic_earth.cli analyze-cofactor-policy --retrieval artifacts/v3_geometry_retrieval_475.json --abstain-threshold 0.4115 --out artifacts/v3_cofactor_policy_475.json
-python -m catalytic_earth.cli analyze-seed-family-performance --retrieval artifacts/v3_geometry_retrieval_475.json --abstain-threshold 0.4115 --out artifacts/v3_seed_family_performance_475.json
-python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_475.json --out artifacts/v3_geometry_score_margins_475.json
-python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_475.json --out artifacts/v3_hard_negative_controls_475.json
-python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_475.json --retrieval artifacts/v3_geometry_retrieval_475.json --out artifacts/v3_label_expansion_candidates_475.json
-python -m catalytic_earth.cli build-adversarial-negatives --retrieval artifacts/v3_geometry_retrieval_475.json --abstain-threshold 0.4115 --out artifacts/v3_adversarial_negative_controls_475.json
-python -m catalytic_earth.cli build-label-factory-audit --retrieval artifacts/v3_geometry_retrieval_475.json --hard-negatives artifacts/v3_hard_negative_controls_475.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_475.json --abstain-threshold 0.4115 --out artifacts/v3_label_factory_audit_475.json
-python -m catalytic_earth.cli apply-label-factory-actions --label-factory-audit artifacts/v3_label_factory_audit_475.json --out artifacts/v3_label_factory_applied_labels_475.json
-python -m catalytic_earth.cli build-active-learning-queue --geometry artifacts/v3_geometry_features_500.json --retrieval artifacts/v3_geometry_retrieval_500.json --label-factory-audit artifacts/v3_label_factory_audit_475.json --abstain-threshold 0.4115 --max-rows 150 --out artifacts/v3_active_learning_review_queue_500.json
+python -m catalytic_earth.cli build-v1-graph --max-mcsa 500 --page-size 100 --out artifacts/v1_graph_500.json
+python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_500.json --out artifacts/v1_graph_summary_500.json
+python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_500.json --out artifacts/v2_benchmark_500.json
+python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_500.json --max-entries 500 --out artifacts/v3_geometry_features_500.json
+python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_500.json --out artifacts/v3_geometry_retrieval_500.json
+python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_500.json --out artifacts/v3_abstention_calibration_500.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_500.json --abstain-threshold 0.4115 --out artifacts/v3_geometry_label_eval_500.json
+python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_500.json --abstain-threshold 0.4115 --out artifacts/v3_geometry_failure_analysis_500.json
+python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_500.json --abstain-threshold 0.4115 --out artifacts/v3_in_scope_failure_analysis_500.json
+python -m catalytic_earth.cli analyze-cofactor-coverage --retrieval artifacts/v3_geometry_retrieval_500.json --abstain-threshold 0.4115 --out artifacts/v3_cofactor_coverage_500.json
+python -m catalytic_earth.cli analyze-cofactor-policy --retrieval artifacts/v3_geometry_retrieval_500.json --abstain-threshold 0.4115 --out artifacts/v3_cofactor_policy_500.json
+python -m catalytic_earth.cli analyze-seed-family-performance --retrieval artifacts/v3_geometry_retrieval_500.json --abstain-threshold 0.4115 --out artifacts/v3_seed_family_performance_500.json
+python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_500.json --out artifacts/v3_geometry_score_margins_500.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_500.json --out artifacts/v3_hard_negative_controls_500.json
+python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_500.json --retrieval artifacts/v3_geometry_retrieval_500.json --out artifacts/v3_label_expansion_candidates_500.json
+python -m catalytic_earth.cli build-adversarial-negatives --retrieval artifacts/v3_geometry_retrieval_500.json --abstain-threshold 0.4115 --out artifacts/v3_adversarial_negative_controls_500.json
+python -m catalytic_earth.cli build-label-factory-audit --retrieval artifacts/v3_geometry_retrieval_500.json --hard-negatives artifacts/v3_hard_negative_controls_500.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_500.json --abstain-threshold 0.4115 --out artifacts/v3_label_factory_audit_500.json
+python -m catalytic_earth.cli apply-label-factory-actions --label-factory-audit artifacts/v3_label_factory_audit_500.json --out artifacts/v3_label_factory_applied_labels_500.json
+python -m catalytic_earth.cli build-active-learning-queue --geometry artifacts/v3_geometry_features_500.json --retrieval artifacts/v3_geometry_retrieval_500.json --label-factory-audit artifacts/v3_label_factory_audit_500.json --abstain-threshold 0.4115 --max-rows 150 --out artifacts/v3_active_learning_review_queue_500.json
 python -m catalytic_earth.cli export-label-review --queue artifacts/v3_active_learning_review_queue_500.json --out artifacts/v3_expert_review_export_500.json
 python -m catalytic_earth.cli import-label-review --review artifacts/v3_expert_review_export_500.json --out artifacts/v3_expert_review_import_preview_500.json
 python -m catalytic_earth.cli build-family-propagation-guardrails --geometry artifacts/v3_geometry_features_500.json --retrieval artifacts/v3_geometry_retrieval_500.json --out artifacts/v3_family_propagation_guardrails_500.json
-python -m catalytic_earth.cli check-label-factory-gates --label-factory-audit artifacts/v3_label_factory_audit_475.json --applied-label-factory artifacts/v3_label_factory_applied_labels_475.json --active-learning-queue artifacts/v3_active_learning_review_queue_500.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_475.json --expert-review-export artifacts/v3_expert_review_export_500.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_500.json --out artifacts/v3_label_factory_gate_check_500.json
-python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_475.json --out artifacts/v3_structure_mapping_issues_475.json
+python -m catalytic_earth.cli check-label-factory-gates --label-factory-audit artifacts/v3_label_factory_audit_500.json --applied-label-factory artifacts/v3_label_factory_applied_labels_500.json --active-learning-queue artifacts/v3_active_learning_review_queue_500.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_500.json --expert-review-export artifacts/v3_expert_review_export_500.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_500.json --out artifacts/v3_label_factory_gate_check_500.json
+python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_500.json --out artifacts/v3_structure_mapping_issues_500.json
 python -m catalytic_earth.cli summarize-geometry-slices --artifact-dir artifacts --out artifacts/v3_geometry_slice_summary.json
-python -m catalytic_earth.cli perf-suite --graph artifacts/v1_graph_475.json --geometry artifacts/v3_geometry_features_475.json --retrieval artifacts/v3_geometry_retrieval_475.json --iterations 5 --out artifacts/perf_report.json
+python -m catalytic_earth.cli perf-suite --graph artifacts/v1_graph_500.json --geometry artifacts/v3_geometry_features_500.json --retrieval artifacts/v3_geometry_retrieval_500.json --iterations 5 --out artifacts/perf_report.json
 
 python -m catalytic_earth.cli log-work --stage post-v2 --task "example work entry" --minutes 1
 python -m catalytic_earth.cli progress-report --out work/status.md
@@ -195,12 +199,13 @@ Current timeline judgment:
    retrieval baseline, inconsistency detection, dark-enzyme candidate dossiers,
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
-2. Next automation blocks: use the label factory to review the generated
-   500-entry queue in batches, not by blind label-count expansion. Each batch
-   must pass promotion/demotion, adversarial-negative, active-learning,
-   expert-review export/import, family-propagation, validation, and test gates
-   before labels count toward the benchmark.
-3. Next serious milestone: expand beyond 475 labels or resolve the
+2. Current automation blocks: use the label factory to finish the remaining
+   500-slice review candidate (`m_csa:494`) before opening a larger tranche.
+   Each batch must pass promotion/demotion,
+   adversarial-negative, active-learning, expert-review export/import,
+   family-propagation, validation, and test gates before labels count toward
+   the benchmark.
+3. Next serious milestone: expand beyond 499 countable labels or resolve the
    evidence-limited abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and
    `m_csa:430`) by improving structure/cofactor evidence, while preserving the
    current hard-negative guardrails.

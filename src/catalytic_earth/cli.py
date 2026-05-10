@@ -27,10 +27,14 @@ from .labels import (
     build_hard_negative_controls,
     build_label_expansion_candidates,
     build_label_factory_audit,
+    build_provisional_review_decision_batch,
+    check_label_batch_acceptance,
     check_label_factory_gates,
+    countable_benchmark_labels,
     evaluate_geometry_retrieval,
     apply_label_factory_actions,
     import_expert_review_decisions,
+    import_countable_review_decisions,
     label_summary,
     load_labels,
     migrate_label_registry_records,
@@ -328,6 +332,23 @@ def cmd_migrate_label_registry(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_filter_countable_labels(args: argparse.Namespace) -> int:
+    labels = load_labels(Path(args.labels))
+    countable = countable_benchmark_labels(labels)
+    non_countable_count = len(labels) - len(countable)
+    if non_countable_count and not args.allow_pending_review:
+        print(
+            "Refusing to filter a registry with "
+            f"{non_countable_count} non-countable review records; use "
+            "import-countable-label-review for label-review batches or pass "
+            "--allow-pending-review for an intentional lossy filter."
+        )
+        return 2
+    write_label_registry(Path(args.out), [label.to_dict() for label in countable])
+    print(f"Wrote countable label registry to {args.out} ({len(countable)} labels)")
+    return 0
+
+
 def cmd_evaluate_geometry_labels(args: argparse.Namespace) -> int:
     with Path(args.retrieval).open("r", encoding="utf-8") as handle:
         retrieval = json.load(handle)
@@ -604,6 +625,32 @@ def cmd_import_label_review(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_import_countable_label_review(args: argparse.Namespace) -> int:
+    with Path(args.review).open("r", encoding="utf-8") as handle:
+        review = json.load(handle)
+    imported = import_countable_review_decisions(load_labels(Path(args.labels)), review)
+    write_label_registry(Path(args.out), [label.to_dict() for label in imported])
+    print(f"Wrote countable imported label registry to {args.out} ({len(imported)} labels)")
+    return 0
+
+
+def cmd_build_review_decision_batch(args: argparse.Namespace) -> int:
+    with Path(args.review).open("r", encoding="utf-8") as handle:
+        review = json.load(handle)
+    batch = build_provisional_review_decision_batch(
+        review,
+        batch_id=args.batch_id,
+        reviewer=args.reviewer,
+        max_boundary_controls=args.max_boundary_controls,
+    )
+    write_json(Path(args.out), batch)
+    print(
+        "Wrote provisional review decision batch to "
+        f"{args.out} ({batch['metadata']['decision_counts']})"
+    )
+    return 0
+
+
 def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
     with Path(args.label_factory_audit).open("r", encoding="utf-8") as handle:
         factory = json.load(handle)
@@ -630,6 +677,33 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
     print(
         "Wrote label factory gate check to "
         f"{args.out} (ready={gates['metadata']['automation_ready_for_next_label_batch']})"
+    )
+    return 0
+
+
+def cmd_check_label_batch_acceptance(args: argparse.Namespace) -> int:
+    with Path(args.evaluation).open("r", encoding="utf-8") as handle:
+        evaluation = json.load(handle)
+    with Path(args.hard_negatives).open("r", encoding="utf-8") as handle:
+        hard_negatives = json.load(handle)
+    with Path(args.in_scope_failures).open("r", encoding="utf-8") as handle:
+        in_scope_failures = json.load(handle)
+    with Path(args.label_factory_gate).open("r", encoding="utf-8") as handle:
+        label_factory_gate = json.load(handle)
+    check = check_label_batch_acceptance(
+        baseline_labels=load_labels(Path(args.baseline_labels)),
+        review_state_labels=load_labels(Path(args.review_state_labels)),
+        countable_labels=load_labels(Path(args.countable_labels)),
+        evaluation=evaluation,
+        hard_negatives=hard_negatives,
+        in_scope_failures=in_scope_failures,
+        label_factory_gate=label_factory_gate,
+        baseline_label_count=args.baseline_label_count,
+    )
+    write_json(Path(args.out), check)
+    print(
+        "Wrote label batch acceptance check to "
+        f"{args.out} (accepted={check['metadata']['accepted_for_counting']})"
     )
     return 0
 
@@ -898,6 +972,22 @@ def build_parser() -> argparse.ArgumentParser:
     migrate_labels.add_argument("--out", default="data/registries/curated_mechanism_labels.json")
     migrate_labels.set_defaults(func=cmd_migrate_label_registry)
 
+    countable_labels = subparsers.add_parser(
+        "filter-countable-labels",
+        help=(
+            "write labels already eligible for benchmark counting; use "
+            "import-countable-label-review for review-state batch imports"
+        ),
+    )
+    countable_labels.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    countable_labels.add_argument("--out", default="artifacts/v3_countable_labels.json")
+    countable_labels.add_argument(
+        "--allow-pending-review",
+        action="store_true",
+        help="allow intentionally dropping pending/rejected review records",
+    )
+    countable_labels.set_defaults(func=cmd_filter_countable_labels)
+
     label_eval = subparsers.add_parser(
         "evaluate-geometry-labels",
         help="evaluate geometry-aware retrieval against curated mechanism labels",
@@ -1088,6 +1178,26 @@ def build_parser() -> argparse.ArgumentParser:
     review_import.add_argument("--out", default="artifacts/v3_imported_labels.json")
     review_import.set_defaults(func=cmd_import_label_review)
 
+    countable_review_import = subparsers.add_parser(
+        "import-countable-label-review",
+        help="apply only accepted countable review decisions to a label registry copy",
+    )
+    countable_review_import.add_argument("--review", default="artifacts/v3_expert_review_export.json")
+    countable_review_import.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    countable_review_import.add_argument("--out", default="artifacts/v3_countable_imported_labels.json")
+    countable_review_import.set_defaults(func=cmd_import_countable_label_review)
+
+    decision_batch = subparsers.add_parser(
+        "build-review-decision-batch",
+        help="fill an expert-review export copy with provisional label-factory decisions",
+    )
+    decision_batch.add_argument("--review", default="artifacts/v3_expert_review_export.json")
+    decision_batch.add_argument("--batch-id", default="provisional_batch")
+    decision_batch.add_argument("--reviewer", default="automation_label_factory")
+    decision_batch.add_argument("--max-boundary-controls", type=int, default=5)
+    decision_batch.add_argument("--out", default="artifacts/v3_review_decision_batch.json")
+    decision_batch.set_defaults(func=cmd_build_review_decision_batch)
+
     gate_check = subparsers.add_parser(
         "check-label-factory-gates",
         help="verify label-factory artifacts before the next label batch",
@@ -1101,6 +1211,21 @@ def build_parser() -> argparse.ArgumentParser:
     gate_check.add_argument("--family-propagation-guardrails", default="artifacts/v3_family_propagation_guardrails_500.json")
     gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
     gate_check.set_defaults(func=cmd_check_label_factory_gates)
+
+    batch_acceptance = subparsers.add_parser(
+        "check-label-batch-acceptance",
+        help="verify an accepted label-review batch before benchmark counting",
+    )
+    batch_acceptance.add_argument("--baseline-labels", default="data/registries/curated_mechanism_labels.json")
+    batch_acceptance.add_argument("--baseline-label-count", type=int, default=None)
+    batch_acceptance.add_argument("--review-state-labels", default="artifacts/v3_imported_labels_batch.json")
+    batch_acceptance.add_argument("--countable-labels", default="artifacts/v3_countable_labels_batch.json")
+    batch_acceptance.add_argument("--evaluation", default="artifacts/v3_geometry_label_eval_batch.json")
+    batch_acceptance.add_argument("--hard-negatives", default="artifacts/v3_hard_negative_controls_batch.json")
+    batch_acceptance.add_argument("--in-scope-failures", default="artifacts/v3_in_scope_failure_analysis_batch.json")
+    batch_acceptance.add_argument("--label-factory-gate", default="artifacts/v3_label_factory_gate_check_batch.json")
+    batch_acceptance.add_argument("--out", default="artifacts/v3_label_batch_acceptance_check.json")
+    batch_acceptance.set_defaults(func=cmd_check_label_batch_acceptance)
 
     family_guardrails = subparsers.add_parser(
         "build-family-propagation-guardrails",

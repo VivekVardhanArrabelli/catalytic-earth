@@ -15,7 +15,7 @@
     "automation_ready_for_next_label_batch": true,
     "bulk_scaling_rule": "new labels may be added in batches only after this gate check passes and the generated batch artifacts are regenerated",
     "gate_count": 9,
-    "label_count": 475,
+    "label_count": 499,
     "method": "label_factory_gate_check",
     "passed_gate_count": 9
   }

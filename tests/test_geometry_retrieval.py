@@ -409,6 +409,22 @@ class GeometryRetrievalTests(unittest.TestCase):
             ),
             0.75,
         )
+        phosphate_hydrolysis = counterevidence_assessment(
+            fingerprint=fingerprint,
+            residues=weak_role_only_site,
+            cofactor_evidence="role_inferred",
+            ligand_context={"cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+            compactness_score_value=0.5,
+            mechanism_text_snippets=[
+                "A divalent cation coordinates the gamma-phosphate and water hydrolyses the phosphopolynucleotide substrate."
+            ],
+        )
+        self.assertEqual(phosphate_hydrolysis["penalty"], 0.88)
+        self.assertIn(
+            "role_inferred_metal_phosphate_hydrolysis_text_support",
+            phosphate_hydrolysis["reasons"],
+        )
 
     def test_role_inferred_metal_hydrolase_penalizes_aromatic_positive_pocket(self) -> None:
         fingerprint = {"id": "metal_dependent_hydrolase"}

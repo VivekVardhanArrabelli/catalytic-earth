@@ -13,77 +13,77 @@ coordinates.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-v1-graph \
-  --max-mcsa 475 \
+  --max-mcsa 500 \
   --page-size 100 \
-  --out artifacts/v1_graph_475.json
+  --out artifacts/v1_graph_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli graph-summary \
-  --graph artifacts/v1_graph_475.json \
-  --out artifacts/v1_graph_summary_475.json
+  --graph artifacts/v1_graph_500.json \
+  --out artifacts/v1_graph_summary_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-v2-benchmark \
-  --graph artifacts/v1_graph_475.json \
-  --out artifacts/v2_benchmark_475.json
+  --graph artifacts/v1_graph_500.json \
+  --out artifacts/v2_benchmark_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
-  --graph artifacts/v1_graph_475.json \
-  --max-entries 475 \
-  --out artifacts/v3_geometry_features_475.json
+  --graph artifacts/v1_graph_500.json \
+  --max-entries 500 \
+  --out artifacts/v3_geometry_features_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli run-geometry-retrieval \
-  --geometry artifacts/v3_geometry_features_475.json \
-  --out artifacts/v3_geometry_retrieval_475.json
+  --geometry artifacts/v3_geometry_features_500.json \
+  --out artifacts/v3_geometry_retrieval_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli calibrate-abstention \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
-  --out artifacts/v3_abstention_calibration_475.json
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
+  --out artifacts/v3_abstention_calibration_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli evaluate-geometry-labels \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_geometry_label_eval_475.json
+  --out artifacts/v3_geometry_label_eval_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-failures \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_geometry_failure_analysis_475.json
+  --out artifacts/v3_geometry_failure_analysis_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-in-scope-failures \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_in_scope_failure_analysis_475.json
+  --out artifacts/v3_in_scope_failure_analysis_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-cofactor-coverage \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_cofactor_coverage_475.json
+  --out artifacts/v3_cofactor_coverage_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-cofactor-policy \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_cofactor_policy_475.json
+  --out artifacts/v3_cofactor_policy_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-seed-family-performance \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_seed_family_performance_475.json
+  --out artifacts/v3_seed_family_performance_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-geometry-score-margins \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
-  --out artifacts/v3_geometry_score_margins_475.json
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
+  --out artifacts/v3_geometry_score_margins_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-hard-negative-controls \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
-  --out artifacts/v3_hard_negative_controls_475.json
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
+  --out artifacts/v3_hard_negative_controls_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates \
-  --geometry artifacts/v3_geometry_features_475.json \
-  --retrieval artifacts/v3_geometry_retrieval_475.json \
-  --out artifacts/v3_label_expansion_candidates_475.json
+  --geometry artifacts/v3_geometry_features_500.json \
+  --retrieval artifacts/v3_geometry_retrieval_500.json \
+  --out artifacts/v3_label_expansion_candidates_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli analyze-structure-mapping-issues \
-  --geometry artifacts/v3_geometry_features_475.json \
-  --out artifacts/v3_structure_mapping_issues_475.json
+  --geometry artifacts/v3_geometry_features_500.json \
+  --out artifacts/v3_structure_mapping_issues_500.json
 
 PYTHONPATH=src python -m catalytic_earth.cli summarize-geometry-slices \
   --artifact-dir artifacts \
@@ -194,27 +194,32 @@ Current slices:
   The current abstained positives are `m_csa:132`, `m_csa:353`, `m_csa:372`,
   and `m_csa:430`; all are treated as evidence-limited rather than actionable
   scorer failures.
+- 500-entry countable stress slice: threshold 0.4115, 490/498 evaluated
+  labeled rows evaluable, 127/131 in-scope positives retained, 0 out-of-scope
+  false non-abstentions, 0 hard negatives, 0 near misses, and 4
+  evidence-limited in-scope abstentions. The only remaining 500-slice candidate
+  is `m_csa:494`.
 
 `artifacts/v3_geometry_slice_summary.json` summarizes the 20-, 30-, 40-, 50-,
 60-, 75-, 100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-,
-375-, 400-, 425-, 450-, and 475-entry slices. It
+375-, 400-, 425-, 450-, 475-, and 500-entry slices. It
 currently reports zero hard negatives, zero near misses, and zero out-of-scope
 false non-abstentions across all slices. Total in-scope failures across slice
-rows are 26, max in any slice is 4, and the actionable in-scope failure count
+rows are 30, max in any slice is 4, and the actionable in-scope failure count
 is 0 after separating selected-structure cofactor gaps from scorer failures.
 
-`artifacts/v3_cofactor_coverage_475.json` tracks expected cofactor coverage for
-in-scope labels. In the 475-entry slice, 101/127 in-scope positives have all
-expected local cofactor support, 2 have expected cofactor support only
-elsewhere in the selected structure, 17 require no cofactor, and 6 lack
+`artifacts/v3_cofactor_coverage_500.json` tracks expected cofactor coverage for
+in-scope labels. In the 500-entry countable slice, 105/131 in-scope positives
+have local cofactor support, 3 have expected cofactor support only elsewhere in
+the selected structure, 17 require no cofactor, and 6 lack
 expected structure-wide cofactor evidence. Of the 6 absent-expected-cofactor
 rows, 3 are retained and 3 are abstained. The coverage metadata exposes
 `evidence_limited_retained_entry_ids`, currently `m_csa:41`, `m_csa:108`,
-`m_csa:160`, and `m_csa:446`, so these retained positives can be audited
+`m_csa:160`, `m_csa:446`, and `m_csa:486`, so these retained positives can be audited
 separately from clean local cofactor matches without changing the abstention
 threshold.
 
-`artifacts/v3_cofactor_policy_475.json` sweeps small post-hoc penalties for
+`artifacts/v3_cofactor_policy_500.json` sweeps small post-hoc penalties for
 absent or structure-only cofactor evidence. It recommends
 `audit_only_or_separate_stratum` because no tested policy reduces
 evidence-limited retained positives without losing retained positives. The
@@ -222,26 +227,21 @@ smallest retained evidence-limited margin is now `0.013`.
 
 ## Label Expansion Queue
 
-The 475-entry source slice is now fully labeled in the provisional registry:
-
-- geometry entries in expansion artifact: 474
-- curated labels: 475
-- evaluable active-site structures: 467
-- unlabeled entries remaining: 0
-- ready label-expansion candidates remaining: 0
-
-The generated 500-entry candidate queue is unlabeled beyond the 475-entry
-registry and must now flow through the label factory before any new labels are
-counted:
+The 500-entry source slice is now accepted through the label factory except
+for one non-countable review candidate:
 
 - geometry entries in expansion artifact: 499
-- curated labels already present: 475
-- unlabeled candidate rows: 25
-- ready label-expansion candidates: 21
+- countable curated labels: 499
+- evaluated labeled rows: 498
+- evaluable labeled active-site structures: 490
+- unlabeled entries remaining: 1
 - review notes: `work/label_queue_500_notes.md`
 - active-learning review queue: `artifacts/v3_active_learning_review_queue_500.json`
 - expert-review export: `artifacts/v3_expert_review_export_500.json`
 - factory gate check: `artifacts/v3_label_factory_gate_check_500.json`
+
+The remaining candidate, `m_csa:494`, must flow through the label factory
+before it can count.
 
 The structure-mapping issue artifacts currently list 0 non-OK entries for the
 20-, 30-, 40-, 50-, 60-, 75-, and 100-entry slices after matching catalytic
@@ -249,13 +249,14 @@ residue positions against both mmCIF `auth_*` and `label_*` numbering. The
 125-entry slice has 1 labeled out-of-scope mapping issue; the 150- and
 175-entry slices each have 2 labeled out-of-scope mapping issues; the 200-,
 225-, 250-, 275-, and 300-entry slices each have 3 labeled out-of-scope mapping
-issues; the 325-, 350-, 375-, 400-, 425-, 450-, and 475-entry slices have 4,
-5, 7, 7, 7, 7, and 7 labeled out-of-scope mapping issues respectively.
+issues; the 325-, 350-, 375-, 400-, 425-, 450-, 475-, and 500-entry slices
+have 4, 5, 7, 7, 7, 7, 7, and 8 mapping issues respectively.
 
 ## Curated Seed Labels
 
-`data/registries/curated_mechanism_labels.json` provides 475 provisional labels,
-covering all entries in the 475-entry source slice. Labels now carry explicit
+`data/registries/curated_mechanism_labels.json` provides 499 provisional labels,
+covering all entries in the 475-entry source slice plus 24 accepted labels from
+the 500-entry queue. Labels now carry explicit
 `tier`, `review_status`, `confidence`, `evidence_score`, and `evidence`
 provenance fields. Labels are intentionally conservative:
 

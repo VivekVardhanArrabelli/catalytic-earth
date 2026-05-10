@@ -22,6 +22,78 @@ class CliTests(unittest.TestCase):
         )
         self.assertIn("Validated", result.stdout)
 
+    def test_filter_countable_labels_requires_explicit_lossy_filter(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            labels = Path(tmpdir) / "labels.json"
+            out = Path(tmpdir) / "countable.json"
+            labels.write_text(
+                json.dumps(
+                    [
+                        {
+                            "entry_id": "m_csa:1",
+                            "fingerprint_id": None,
+                            "label_type": "out_of_scope",
+                            "tier": "bronze",
+                            "review_status": "automation_curated",
+                            "confidence": "medium",
+                            "evidence_score": 0.65,
+                            "evidence": {"sources": ["test"]},
+                            "rationale": "This countable baseline label is long enough.",
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "fingerprint_id": None,
+                            "label_type": "out_of_scope",
+                            "tier": "bronze",
+                            "review_status": "needs_expert_review",
+                            "confidence": "medium",
+                            "evidence_score": 0.55,
+                            "evidence": {"sources": ["test"]},
+                            "rationale": "This pending review label is long enough.",
+                        },
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            blocked = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "filter-countable-labels",
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(blocked.returncode, 2)
+            self.assertIn("Refusing to filter", blocked.stdout)
+            self.assertFalse(out.exists())
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "filter-countable-labels",
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(out),
+                    "--allow-pending-review",
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(len(json.loads(out.read_text(encoding="utf-8"))), 1)
+
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             lock_dir = Path(tmpdir) / "run.lock"
@@ -190,7 +262,9 @@ class CliTests(unittest.TestCase):
             active_queue = Path(tmpdir) / "active_queue.json"
             adversarial_negatives = Path(tmpdir) / "adversarial_negatives.json"
             review_export = Path(tmpdir) / "review_export.json"
+            decision_batch = Path(tmpdir) / "decision_batch.json"
             imported_labels = Path(tmpdir) / "imported_labels.json"
+            countable_labels = Path(tmpdir) / "countable_labels.json"
             gate_check = Path(tmpdir) / "gate_check.json"
             family_guardrails = Path(tmpdir) / "family_guardrails.json"
             migrated_labels = Path(tmpdir) / "migrated_labels.json"
@@ -404,6 +478,25 @@ class CliTests(unittest.TestCase):
                     sys.executable,
                     "-m",
                     "catalytic_earth.cli",
+                    "build-review-decision-batch",
+                    "--review",
+                    str(review_export),
+                    "--batch-id",
+                    "test_batch",
+                    "--out",
+                    str(decision_batch),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
                     "build-adversarial-negatives",
                     "--out",
                     str(adversarial_negatives),
@@ -463,9 +556,26 @@ class CliTests(unittest.TestCase):
                     "catalytic_earth.cli",
                     "import-label-review",
                     "--review",
-                    str(review_export),
+                    str(decision_batch),
                     "--out",
                     str(imported_labels),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "import-countable-label-review",
+                    "--review",
+                    str(decision_batch),
+                    "--out",
+                    str(countable_labels),
                 ],
                 cwd=ROOT,
                 env={"PYTHONPATH": str(ROOT / "src")},
@@ -550,11 +660,13 @@ class CliTests(unittest.TestCase):
             self.assertIn("ranking_terms", json.loads(active_queue.read_text())["metadata"])
             self.assertIn("axis_counts", json.loads(adversarial_negatives.read_text())["metadata"])
             self.assertIn("decision_schema", json.loads(review_export.read_text())["metadata"])
+            self.assertIn("decision_counts", json.loads(decision_batch.read_text())["metadata"])
             self.assertIn("automation_ready_for_next_label_batch", json.loads(gate_check.read_text())["metadata"])
             self.assertIn("source_guardrails", json.loads(family_guardrails.read_text())["metadata"])
             self.assertGreaterEqual(len(json.loads(imported_labels.read_text())), 475)
+            self.assertLessEqual(len(json.loads(countable_labels.read_text())), len(json.loads(imported_labels.read_text())))
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "475")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "500")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

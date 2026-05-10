@@ -23,12 +23,16 @@ from catalytic_earth.labels import (
     build_hard_negative_controls,
     build_label_expansion_candidates,
     build_label_factory_audit,
+    build_provisional_review_decision_batch,
+    check_label_batch_acceptance,
     check_label_factory_gates,
     classify_out_of_scope_failure,
     compare_threshold_policies,
+    countable_benchmark_labels,
     evaluate_geometry_retrieval,
     apply_label_factory_actions,
     group_hard_negative_controls,
+    import_countable_review_decisions,
     import_expert_review_decisions,
     label_summary,
     load_labels,
@@ -41,12 +45,12 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 475)
+        self.assertEqual(len(labels), 499)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
-        self.assertEqual(summary["by_tier"]["bronze"], 475)
-        self.assertEqual(summary["by_review_status"]["automation_curated"], 475)
+        self.assertEqual(summary["by_tier"]["bronze"], 499)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 499)
         self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:
@@ -616,6 +620,147 @@ class LabelTests(unittest.TestCase):
         )
         self.assertTrue(gates["gates"]["label_schema_explicit"])
         self.assertTrue(gates["gates"]["active_queue_ranked"])
+
+    def test_provisional_review_batch_imports_without_expert_claim(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="Existing boundary-control label for review testing.",
+            )
+        ]
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:1",
+                    "entry_name": "existing boundary enzyme",
+                    "current_label": labels[0].to_dict(),
+                    "queue_context": {
+                        "entry_id": "m_csa:1",
+                        "entry_name": "existing boundary enzyme",
+                        "current_label_type": "out_of_scope",
+                        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                        "top1_score": 0.405,
+                        "abstain_threshold": 0.4115,
+                        "counterevidence_reasons": ["absent_heme_context"],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+                {
+                    "entry_id": "m_csa:10",
+                    "entry_name": "new PLP enzyme",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:10",
+                        "entry_name": "new PLP enzyme",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "plp_dependent_enzyme",
+                        "top1_score": 0.62,
+                        "abstain_threshold": 0.5,
+                        "cofactor_evidence_level": "ligand_supported",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "PLP dependent chemistry supports a seed-fingerprint assignment."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+                {
+                    "entry_id": "m_csa:11",
+                    "entry_name": "new cobalamin enzyme",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:11",
+                        "entry_name": "new cobalamin enzyme",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+                        "top1_score": 0.38,
+                        "abstain_threshold": 0.5,
+                        "cofactor_evidence_level": "not_required",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "A cobalamin radical mechanism begins with Co-C5 bond cleavage."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+                {
+                    "entry_id": "m_csa:12",
+                    "entry_name": "structure-wide cobalamin enzyme",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:12",
+                        "entry_name": "structure-wide cobalamin enzyme",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "cobalamin_radical_rearrangement",
+                        "top1_score": 0.62,
+                        "abstain_threshold": 0.5,
+                        "cofactor_evidence_level": "structure_only",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "A cobalamin radical rearrangement uses adenosylcobalamin."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+            ],
+        }
+        batch = build_provisional_review_decision_batch(
+            review,
+            batch_id="test_batch",
+            reviewer="automation_label_factory_test",
+            max_boundary_controls=1,
+        )
+        self.assertEqual(batch["metadata"]["decision_counts"]["accept_label"], 1)
+        self.assertEqual(batch["metadata"]["decision_counts"]["mark_needs_more_evidence"], 3)
+
+        imported = import_expert_review_decisions(labels, batch)
+        imported_by_entry = {label.entry_id: label for label in imported}
+        self.assertEqual(imported_by_entry["m_csa:1"].review_status, "needs_expert_review")
+        self.assertEqual(imported_by_entry["m_csa:10"].review_status, "automation_curated")
+        self.assertEqual(imported_by_entry["m_csa:10"].tier, "bronze")
+        self.assertIn(
+            "label_factory_review_import",
+            imported_by_entry["m_csa:10"].evidence["sources"],
+        )
+        self.assertNotIn(
+            "expert_review_import",
+            imported_by_entry["m_csa:10"].evidence["sources"],
+        )
+        self.assertEqual(imported_by_entry["m_csa:11"].review_status, "needs_expert_review")
+        self.assertEqual(
+            imported_by_entry["m_csa:11"].fingerprint_id,
+            "cobalamin_radical_rearrangement",
+        )
+        self.assertEqual(imported_by_entry["m_csa:12"].review_status, "needs_expert_review")
+        countable = countable_benchmark_labels(imported)
+        self.assertEqual({label.entry_id for label in countable}, {"m_csa:10"})
+        countable_import = import_countable_review_decisions(labels, batch)
+        self.assertEqual(
+            {label.entry_id for label in countable_import},
+            {"m_csa:1", "m_csa:10"},
+        )
+        self.assertEqual(
+            {label.entry_id: label.review_status for label in countable_import},
+            {"m_csa:1": "automation_curated", "m_csa:10": "automation_curated"},
+        )
+        acceptance = check_label_batch_acceptance(
+            baseline_labels=labels,
+            review_state_labels=imported,
+            countable_labels=countable_import,
+            evaluation={"metadata": {"out_of_scope_false_non_abstentions": 0}},
+            hard_negatives={"metadata": {"hard_negative_count": 0, "near_miss_count": 0}},
+            in_scope_failures={"metadata": {"actionable_failure_count": 0}},
+            label_factory_gate={"metadata": {"automation_ready_for_next_label_batch": True}},
+        )
+        self.assertTrue(acceptance["metadata"]["accepted_for_counting"])
+        self.assertEqual(acceptance["metadata"]["accepted_new_label_count"], 1)
 
     def test_adversarial_negative_controls_use_more_than_threshold(self) -> None:
         labels = [

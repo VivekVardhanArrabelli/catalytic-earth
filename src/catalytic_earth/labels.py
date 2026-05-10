@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter
+from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -35,6 +36,7 @@ REVIEW_STATUSES = {
     "expert_reviewed",
     "rejected",
 }
+COUNTABLE_REVIEW_STATUSES = {"automation_curated", "expert_reviewed"}
 CONFIDENCE_EVIDENCE_SCORES = {
     "high": 0.85,
     "medium": 0.65,
@@ -193,6 +195,14 @@ def label_summary(labels: list[MechanismLabel]) -> dict[str, Any]:
             round(sum(evidence_scores) / len(evidence_scores), 4) if evidence_scores else None
         ),
     }
+
+
+def countable_benchmark_labels(labels: list[MechanismLabel]) -> list[MechanismLabel]:
+    return [
+        label
+        for label in labels
+        if label.review_status in COUNTABLE_REVIEW_STATUSES
+    ]
 
 
 def evaluate_geometry_retrieval(
@@ -2738,9 +2748,14 @@ def build_expert_review_export(
                 ],
                 "tier": ["bronze", "silver", "gold"],
                 "label_type": ["seed_fingerprint", "out_of_scope"],
+                "review_status": [
+                    "automation_curated",
+                    "needs_expert_review",
+                    "expert_reviewed",
+                ],
             },
             "provenance_rule": (
-                "imports append expert_review_import evidence and preserve existing evidence.sources"
+                "imports append review provenance and preserve existing evidence.sources"
             ),
         },
         "review_items": [
@@ -2761,11 +2776,66 @@ def build_expert_review_export(
                     "reviewer": None,
                     "rationale": None,
                     "evidence_score": None,
+                    "review_status": "expert_reviewed",
                 },
             }
             for row in rows
         ],
     }
+
+
+def build_provisional_review_decision_batch(
+    review_artifact: dict[str, Any],
+    *,
+    batch_id: str = "provisional_batch",
+    reviewer: str = "automation_label_factory",
+    max_boundary_controls: int = 5,
+) -> dict[str, Any]:
+    batch = deepcopy(review_artifact)
+    decision_counts: Counter = Counter()
+    selected_boundary_controls = 0
+    for item in batch.get("review_items", []):
+        if not isinstance(item, dict):
+            continue
+        queue_context = item.get("queue_context", {})
+        if not isinstance(queue_context, dict):
+            queue_context = {}
+        decision = item.get("decision", {})
+        if not isinstance(decision, dict):
+            decision = {}
+            item["decision"] = decision
+        if item.get("current_label") is None:
+            item["decision"] = _provisional_unlabeled_decision(
+                item,
+                queue_context,
+                reviewer=reviewer,
+            )
+        elif selected_boundary_controls < max_boundary_controls:
+            item["decision"] = _provisional_boundary_control_decision(
+                item,
+                queue_context,
+                reviewer=reviewer,
+            )
+            selected_boundary_controls += 1
+        decision_counts[str(item["decision"].get("action", "no_decision"))] += 1
+    metadata = dict(batch.get("metadata", {}))
+    metadata.update(
+        {
+            "method": "provisional_label_review_decision_batch",
+            "source_method": review_artifact.get("metadata", {}).get("method"),
+            "batch_id": batch_id,
+            "reviewer": reviewer,
+            "decision_counts": dict(sorted(decision_counts.items())),
+            "boundary_control_decisions": selected_boundary_controls,
+            "policy": (
+                "Automation-curated batch decisions stay bronze and are imported "
+                "as automation_curated or needs_expert_review records, not gold "
+                "or expert-reviewed labels."
+            ),
+        }
+    )
+    batch["metadata"] = metadata
+    return batch
 
 
 def apply_label_factory_actions(
@@ -2911,6 +2981,81 @@ def check_label_factory_gates(
     }
 
 
+def check_label_batch_acceptance(
+    baseline_labels: list[MechanismLabel],
+    review_state_labels: list[MechanismLabel],
+    countable_labels: list[MechanismLabel],
+    evaluation: dict[str, Any],
+    hard_negatives: dict[str, Any],
+    in_scope_failures: dict[str, Any],
+    label_factory_gate: dict[str, Any],
+    baseline_label_count: int | None = None,
+) -> dict[str, Any]:
+    baseline_count = baseline_label_count if baseline_label_count is not None else len(baseline_labels)
+    countable_count = len(countable_labels)
+    review_summary = label_summary(review_state_labels)
+    countable_summary = label_summary(countable_labels)
+    evaluation_meta = evaluation.get("metadata", {})
+    hard_meta = hard_negatives.get("metadata", {})
+    in_scope_meta = in_scope_failures.get("metadata", {})
+    gate_meta = label_factory_gate.get("metadata", {})
+    pending_review_count = int(
+        review_summary.get("by_review_status", {}).get("needs_expert_review", 0)
+    )
+    gates = {
+        "countable_registry_preserves_baseline": countable_count >= baseline_count,
+        "accepted_labels_added": countable_count > baseline_count,
+        "no_pending_review_in_countable": not any(
+            label.review_status == "needs_expert_review" for label in countable_labels
+        ),
+        "zero_out_of_scope_false_non_abstentions": int(
+            evaluation_meta.get("out_of_scope_false_non_abstentions", 0)
+        )
+        == 0,
+        "zero_hard_negatives": int(hard_meta.get("hard_negative_count", 0)) == 0,
+        "zero_near_misses": int(hard_meta.get("near_miss_count", 0)) == 0,
+        "zero_actionable_in_scope_failures": int(
+            in_scope_meta.get("actionable_failure_count", 0)
+        )
+        == 0,
+        "factory_gate_ready": bool(gate_meta.get("automation_ready_for_next_label_batch")),
+    }
+    blockers = [name for name, passed in gates.items() if not passed]
+    return {
+        "metadata": {
+            "method": "label_batch_acceptance_check",
+            "baseline_label_count": baseline_count,
+            "review_state_label_count": len(review_state_labels),
+            "countable_label_count": countable_count,
+            "accepted_new_label_count": max(0, countable_count - baseline_count),
+            "pending_review_count": pending_review_count,
+            "out_of_scope_false_non_abstentions": evaluation_meta.get(
+                "out_of_scope_false_non_abstentions"
+            ),
+            "hard_negative_count": hard_meta.get("hard_negative_count"),
+            "near_miss_count": hard_meta.get("near_miss_count"),
+            "actionable_in_scope_failure_count": in_scope_meta.get(
+                "actionable_failure_count"
+            ),
+            "evidence_limited_abstention_count": in_scope_meta.get(
+                "evidence_limited_abstention_count"
+            ),
+            "factory_gate_ready": gate_meta.get("automation_ready_for_next_label_batch"),
+            "accepted_for_counting": not blockers,
+            "review_state_rule": (
+                "pending-review labels remain in the review-state registry but "
+                "are not copied into the countable benchmark registry"
+            ),
+        },
+        "gates": gates,
+        "blockers": blockers,
+        "summaries": {
+            "review_state": review_summary,
+            "countable": countable_summary,
+        },
+    }
+
+
 def build_family_propagation_guardrails(
     geometry: dict[str, Any],
     retrieval: dict[str, Any],
@@ -3039,13 +3184,18 @@ def import_expert_review_decisions(
             raise ValueError("review item entry_id must be a non-empty string")
         existing = records_by_entry.get(entry_id)
         if action == "mark_needs_more_evidence":
-            if not existing:
-                continue
-            records_by_entry[entry_id] = _apply_review_status(
-                existing,
-                review_status="needs_expert_review",
-                decision=decision,
-            )
+            if existing:
+                records_by_entry[entry_id] = _apply_review_status(
+                    existing,
+                    review_status="needs_expert_review",
+                    decision=decision,
+                )
+            else:
+                records_by_entry[entry_id] = _review_placeholder_record(
+                    entry_id=entry_id,
+                    item=item,
+                    decision=decision,
+                )
             continue
         if action == "reject_label":
             if not existing:
@@ -3070,6 +3220,25 @@ def import_expert_review_decisions(
     ]
     _validate_label_fingerprints(imported)
     return imported
+
+
+def import_countable_review_decisions(
+    labels: list[MechanismLabel],
+    review_artifact: dict[str, Any],
+) -> list[MechanismLabel]:
+    countable_review = deepcopy(review_artifact)
+    for item in countable_review.get("review_items", []):
+        if not isinstance(item, dict):
+            continue
+        decision = item.get("decision", {})
+        if not isinstance(decision, dict):
+            continue
+        if (
+            decision.get("action") != "accept_label"
+            or decision.get("review_status", "expert_reviewed") not in COUNTABLE_REVIEW_STATUSES
+        ):
+            item["decision"] = {**decision, "action": "no_decision"}
+    return import_expert_review_decisions(labels, countable_review)
 
 
 def _validate_label_fingerprints(labels: list[MechanismLabel]) -> None:
@@ -3351,6 +3520,162 @@ def _review_readiness_blockers(entry: dict[str, Any], top1_score: float) -> list
     return blockers
 
 
+def _provisional_unlabeled_decision(
+    item: dict[str, Any],
+    queue_context: dict[str, Any],
+    *,
+    reviewer: str,
+) -> dict[str, Any]:
+    entry_id = str(item.get("entry_id", ""))
+    entry_name = str(item.get("entry_name", entry_id))
+    snippets = queue_context.get("mechanism_text_snippets", [])
+    text = " ".join(str(snippet) for snippet in snippets).lower()
+    top1 = str(queue_context.get("top1_fingerprint_id") or "")
+    top1_score = float(queue_context.get("top1_score", 0.0) or 0.0)
+    threshold = float(queue_context.get("abstain_threshold", 0.0) or 0.0)
+    cofactor_level = str(queue_context.get("cofactor_evidence_level") or "unknown")
+    counterevidence = [
+        str(reason)
+        for reason in queue_context.get("counterevidence_reasons", [])
+        if str(reason)
+    ]
+    blockers = [
+        str(blocker)
+        for blocker in queue_context.get("readiness_blockers", [])
+        if str(blocker)
+    ]
+
+    cobalamin_hint = (
+        "cobalamin" in text
+        or "co-c5" in text
+        or "adenosylcobalamin" in text
+        or entry_id == "m_csa:494"
+    )
+    metal_hydrolysis_hint = (
+        top1 == "metal_dependent_hydrolase"
+        and ("phosphatase" in text or "phosphodiester" in text or "phosphate" in text)
+        and ("hydrolys" in text or "water" in text)
+    )
+    supported_seed = (
+        top1_score >= threshold
+        and top1
+        and cofactor_level != "absent"
+        and not counterevidence
+    )
+    if cobalamin_hint and (
+        top1 != "cobalamin_radical_rearrangement"
+        or cofactor_level != "ligand_supported"
+    ):
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "cobalamin_radical_rearrangement",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} has cobalamin-radical mechanism text, but the "
+                "selected structure lacks local cobalamin support; keep this "
+                "candidate in expert review before counting it."
+            ),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
+    if metal_hydrolysis_hint and top1_score < threshold + 0.03:
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} has metal-dependent hydrolysis mechanism text, "
+                f"but its retrieval score {top1_score:.4f} is too close to the "
+                f"{threshold:.4f} abstention floor for automatic counting."
+            ),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
+    if supported_seed or metal_hydrolysis_hint:
+        confidence = "high" if top1_score >= 0.5 and cofactor_level == "ligand_supported" else "medium"
+        return {
+            "action": "accept_label",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": top1,
+            "tier": "bronze",
+            "confidence": confidence,
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} is provisionally assigned to {top1}: retrieval "
+                f"score {top1_score:.4f} clears the {threshold:.4f} floor and "
+                f"the review context reports {cofactor_level} cofactor evidence."
+            ),
+            "evidence_score": 0.72 if confidence == "high" else 0.65,
+            "review_status": "automation_curated",
+        }
+
+    confidence = "low" if blockers else "medium"
+    rationale_bits = [
+        f"{entry_name} is provisionally outside the current seed fingerprints.",
+        f"Top retrieval {top1 or 'none'} scored {top1_score:.4f}, below the {threshold:.4f} floor.",
+    ]
+    if counterevidence:
+        rationale_bits.append(
+            "Counterevidence: " + ", ".join(sorted(counterevidence)) + "."
+        )
+    if blockers:
+        rationale_bits.append("Review blockers: " + ", ".join(sorted(blockers)) + ".")
+    return {
+        "action": "accept_label",
+        "label_type": "out_of_scope",
+        "fingerprint_id": None,
+        "tier": "bronze",
+        "confidence": confidence,
+        "reviewer": reviewer,
+        "rationale": " ".join(rationale_bits),
+        "evidence_score": 0.4 if confidence == "low" else 0.65,
+        "review_status": "automation_curated",
+    }
+
+
+def _provisional_boundary_control_decision(
+    item: dict[str, Any],
+    queue_context: dict[str, Any],
+    *,
+    reviewer: str,
+) -> dict[str, Any]:
+    entry_name = str(item.get("entry_name", item.get("entry_id", "entry")))
+    top1 = str(queue_context.get("top1_fingerprint_id") or "unknown")
+    top1_score = float(queue_context.get("top1_score", 0.0) or 0.0)
+    threshold = float(queue_context.get("abstain_threshold", 0.0) or 0.0)
+    counterevidence = [
+        str(reason)
+        for reason in queue_context.get("counterevidence_reasons", [])
+        if str(reason)
+    ]
+    evidence_note = (
+        " Counterevidence: " + ", ".join(sorted(counterevidence)) + "."
+        if counterevidence
+        else ""
+    )
+    return {
+        "action": "mark_needs_more_evidence",
+        "label_type": queue_context.get("current_label_type", "out_of_scope"),
+        "fingerprint_id": top1,
+        "tier": "bronze",
+        "confidence": "medium",
+        "reviewer": reviewer,
+        "rationale": (
+            f"{entry_name} is a high-ranked boundary control: top retrieval "
+            f"{top1} scored {top1_score:.4f} near the {threshold:.4f} "
+            f"abstention floor.{evidence_note}"
+        ),
+        "evidence_score": 0.55,
+        "review_status": "needs_expert_review",
+    }
+
+
 def _apply_review_status(
     existing: dict[str, Any],
     review_status: str,
@@ -3409,6 +3734,13 @@ def _accepted_expert_label_record(
         raise ValueError(f"{entry_id}: accepted review requires rationale")
     tier = decision.get("tier", "silver")
     confidence = decision.get("confidence", "medium")
+    review_status = decision.get("review_status", "expert_reviewed")
+    if review_status not in {"automation_curated", "expert_reviewed"}:
+        raise ValueError(
+            f"{entry_id}: accepted review requires automation_curated or expert_reviewed status"
+        )
+    if tier == "gold" and review_status != "expert_reviewed":
+        raise ValueError(f"{entry_id}: gold labels require expert_reviewed status")
     evidence_score = decision.get("evidence_score")
     if evidence_score is None:
         evidence_score = 1.0 if tier == "gold" else CONFIDENCE_EVIDENCE_SCORES.get(str(confidence), 0.65)
@@ -3417,11 +3749,46 @@ def _accepted_expert_label_record(
         "fingerprint_id": fingerprint_id,
         "label_type": label_type,
         "tier": tier,
-        "review_status": "expert_reviewed",
+        "review_status": review_status,
         "confidence": confidence,
         "evidence_score": evidence_score,
         "evidence": _expert_review_evidence(
             (existing or {}).get("evidence", {}),
+            decision,
+            queue_context=item.get("queue_context", {}),
+        ),
+        "rationale": rationale,
+    }
+
+
+def _review_placeholder_record(
+    entry_id: str,
+    item: dict[str, Any],
+    decision: dict[str, Any],
+) -> dict[str, Any]:
+    label_type = decision.get("label_type")
+    if label_type not in {"seed_fingerprint", "out_of_scope"}:
+        raise ValueError(f"{entry_id}: review placeholder requires valid label_type")
+    fingerprint_id = decision.get("fingerprint_id")
+    if label_type == "out_of_scope":
+        fingerprint_id = None
+    rationale = decision.get("rationale")
+    if not isinstance(rationale, str) or len(rationale) < 20:
+        raise ValueError(f"{entry_id}: review placeholder requires rationale")
+    confidence = decision.get("confidence", "low")
+    evidence_score = decision.get("evidence_score")
+    if evidence_score is None:
+        evidence_score = CONFIDENCE_EVIDENCE_SCORES.get(str(confidence), 0.4)
+    return {
+        "entry_id": entry_id,
+        "fingerprint_id": fingerprint_id,
+        "label_type": label_type,
+        "tier": "bronze",
+        "review_status": "needs_expert_review",
+        "confidence": confidence,
+        "evidence_score": evidence_score,
+        "evidence": _expert_review_evidence(
+            {},
             decision,
             queue_context=item.get("queue_context", {}),
         ),
@@ -3484,8 +3851,14 @@ def _expert_review_evidence(
     if not isinstance(existing_evidence, dict):
         existing_evidence = {}
     sources = list(existing_evidence.get("sources", []))
-    if "expert_review_import" not in sources:
-        sources.append("expert_review_import")
+    source_name = (
+        "label_factory_review_import"
+        if decision.get("review_status") == "automation_curated"
+        or str(decision.get("reviewer", "")).startswith("automation")
+        else "expert_review_import"
+    )
+    if source_name not in sources:
+        sources.append(source_name)
     expert_reviews = list(existing_evidence.get("expert_reviews", []))
     expert_reviews.append(
         {
@@ -3493,6 +3866,8 @@ def _expert_review_evidence(
             "action": decision.get("action"),
             "rationale": decision.get("rationale"),
             "queue_rank": (queue_context or {}).get("rank"),
+            "review_status": decision.get("review_status"),
+            "source": source_name,
         }
     )
     return {

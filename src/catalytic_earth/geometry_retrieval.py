@@ -552,7 +552,10 @@ def counterevidence_assessment(
             if compactness_score_value < 0.20:
                 apply(0.72, "role_inferred_metal_low_compactness")
         if cofactor_evidence == "role_inferred" and not _has_water_activation_role(residues):
-            apply(0.72, "role_inferred_metal_missing_water_activation_role")
+            if _has_metal_phosphate_hydrolysis_text_context(mechanism_text):
+                apply(0.88, "role_inferred_metal_phosphate_hydrolysis_text_support")
+            else:
+                apply(0.72, "role_inferred_metal_missing_water_activation_role")
         if cofactor_evidence == "role_inferred" and _has_aromatic_positive_pocket(pocket_context):
             apply(0.92, "role_inferred_metal_aromatic_positive_pocket")
         if cofactor_evidence == "role_inferred" and _has_histidine_only_metal_site(residues):
@@ -1177,6 +1180,44 @@ def _has_zinc_methyltransfer_text_context(mechanism_text: str) -> bool:
         )
     )
     return has_zinc and has_methyl_transfer
+
+
+def _has_metal_phosphate_hydrolysis_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_phosphate_substrate = any(
+        term in mechanism_text
+        for term in (
+            "phosphatase",
+            "phosphodiester",
+            "phosphopolynucleotide",
+            "gamma-phosphate",
+            "phosphate",
+        )
+    )
+    has_hydrolysis = any(term in mechanism_text for term in ("hydroly", "water"))
+    has_metal = any(
+        term in mechanism_text
+        for term in (
+            "divalent cation",
+            "mg(ii)",
+            "mn(ii)",
+            "magnesium",
+            "manganese",
+            "metal ion",
+        )
+    )
+    transfer_only = any(
+        term in mechanism_text
+        for term in (
+            "transfer reaction",
+            "ligase",
+            "synthase",
+            "methyl transfer",
+            "prenyl transfer",
+        )
+    )
+    return has_phosphate_substrate and has_hydrolysis and has_metal and not transfer_only
 
 
 def _has_alpha_ketoglutarate_hydroxylation_text_context(mechanism_text: str) -> bool:

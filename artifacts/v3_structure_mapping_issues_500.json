@@ -3,11 +3,10 @@
     "geometry_entry_count": 499,
     "issue_count": 8,
     "label_type_counts": {
-      "out_of_scope": 6,
-      "seed_fingerprint": 1,
-      "unlabeled": 1
+      "out_of_scope": 7,
+      "seed_fingerprint": 1
     },
-    "labeled_issue_count": 7,
+    "labeled_issue_count": 8,
     "method": "structure_mapping_issue_analysis",
     "missing_expected_code_counts": {},
     "observed_code_at_missing_position_counts": {},
@@ -125,7 +124,7 @@
     {
       "entry_id": "m_csa:501",
       "entry_name": "alcohol dehydrogenase (class V)",
-      "label_type": null,
+      "label_type": "out_of_scope",
       "mechanism_text_count": 1,
       "mechanism_text_snippets": [
         "Specifics of the mechanism are not yet known, save via homology to other zinc-dependent alcohol dehydrogenases. It is likely that Lys52 acts as the general acid/base in the unique catalytic triad."
