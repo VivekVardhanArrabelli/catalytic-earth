@@ -19,6 +19,10 @@ The V2 scaffold was strengthened in several ways:
 7. The repo now has local performance checks, in-scope failure analysis,
    expected-cofactor coverage analysis, cofactor policy sweeps, seed-family
    performance audits, and a slice summary artifact for artifact-only workflows.
+8. Label-factory automation now gates scaling with explicit label tiers,
+   deterministic promotion/demotion, adversarial negatives, active-learning
+   review queues, family-propagation guardrails, and expert-review
+   export/import.
 
 ## Retrieval Quality
 
@@ -71,6 +75,16 @@ candidate rows, and 21 ready label-review entries. It is queued for curation,
 has review notes in `work/label_queue_500_notes.md`, and has not been added to
 the curated cross-slice benchmark summary yet.
 
+The label-factory slice adds `artifacts/v3_label_factory_audit_475.json`,
+`artifacts/v3_label_factory_applied_labels_475.json`,
+`artifacts/v3_adversarial_negative_controls_475.json`,
+`artifacts/v3_active_learning_review_queue_500.json`,
+`artifacts/v3_expert_review_export_500.json`,
+`artifacts/v3_family_propagation_guardrails_500.json`, and
+`artifacts/v3_label_factory_gate_check_500.json`. The current gate passes for
+the next label batch, but labels still need batch review/import before they
+count in the benchmark.
+
 ## Performance
 
 Current artifact:
@@ -87,18 +101,21 @@ artifacts.
 
 Latest 5-iteration mean timings on the 475-entry artifacts:
 
-- load V1 graph: 49.736 ms
-- build V2 benchmark: 6.766 ms
-- run geometry retrieval: 176.244 ms
-- evaluate geometry labels: 0.902 ms
-- sweep abstention thresholds: 672.691 ms
-- analyze geometry score margins: 1.221 ms
-- build hard negative controls: 2.213 ms
-- analyze in-scope failures: 0.764 ms
-- analyze cofactor coverage: 0.925 ms
-- analyze cofactor abstention policy: 795.197 ms
-- analyze seed-family performance: 1.332 ms
-- analyze structure mapping issues: 0.055 ms
+- load V1 graph: 52.308 ms
+- build V2 benchmark: 6.375 ms
+- run geometry retrieval: 183.270 ms
+- evaluate geometry labels: 1.066 ms
+- sweep abstention thresholds: 747.247 ms
+- analyze geometry score margins: 1.295 ms
+- build hard negative controls: 2.392 ms
+- build adversarial negative controls: 2.548 ms
+- build label-factory audit: 5.234 ms
+- build active-learning review queue: 1.681 ms
+- analyze in-scope failures: 0.843 ms
+- analyze cofactor coverage: 0.983 ms
+- analyze cofactor abstention policy: 850.490 ms
+- analyze seed-family performance: 1.436 ms
+- analyze structure mapping issues: 0.066 ms
 
 ## Interpretation
 
@@ -125,7 +142,8 @@ What is now better:
   325-entry slice, 5 on the 350-entry slice, and 7 on the 375-, 400-, 425-, and
   450- and 475-entry slices
 - the current 475-entry label queue is explicit and empty; the 500-entry queue
-  is generated for the next curation pass
+  is generated for the next curation pass and now has a factory-gated review
+  workflow
 - cofactor coverage now separates local support, structure-only support, and
   expected cofactors absent from the selected structure
 - cofactor policy sweeps recommend audit-only handling for evidence-limited
@@ -135,7 +153,7 @@ What is now better:
 What remains weak:
 
 - the curated label set is still provisional despite covering the current
-  475-entry source slice
+  475-entry source slice; bronze/silver factory tiers are not expert validation
 - the 475-entry slice still has 4 in-scope positives that are abstained because
   the selected structures lack expected local or structure-wide cofactor context
 - ligand/cofactor context is only a simple nearby-ligand heuristic

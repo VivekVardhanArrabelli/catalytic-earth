@@ -103,6 +103,10 @@ Post-V2 quality work has started:
 - calibrated abstention threshold sweep
 - hard-negative controls, in-scope failure analysis, label-expansion candidate
   ranking, and cross-slice geometry summaries
+- label-factory automation with explicit bronze/silver/gold labels, mechanism
+  ontology, promotion/demotion audit, active-learning queue, adversarial
+  negative controls, family-propagation guardrails, expert-review
+  export/import, and a gate check before counting new label batches
 - local artifact performance suite
 
 ## V1 Target
@@ -156,10 +160,15 @@ Current expectation:
   are evaluable, and the 475-entry slice has 467/474 geometry entries evaluable
 - curated labels now cover 475 entries, with 127 local active-site
   seed-fingerprint positives in the 475-entry geometry evaluation and 348 total
-  out-of-scope labels
+  out-of-scope labels; every label now has explicit tier, review status,
+  confidence, evidence score, and evidence provenance fields
 - the current 475-entry label queue is empty after adding provisional labels
   through the 475-entry source slice; a 500-entry candidate queue has been
   generated with 25 unlabeled rows and 21 ready label-review candidates
+- label scaling is now gated by the factory: the current audit proposes 61
+  bronze-to-silver promotions, flags 98 abstention/review rows, mines 100
+  adversarial negative controls, exports 50 expert-review items including all
+  25 unlabeled 500-slice candidates, and passes the label-factory gate check
 - strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
   the 38 in-scope positives in the 125-entry slice at the current zero-false
   threshold
@@ -184,11 +193,12 @@ Current expectation:
   200-, 225-, 250-, 275-, and 300-entry reports each have 3, and the 325-,
   350-, 375-, 400-, 425-, 450-, and 475-entry reports have 4, 5, 7, 7, 7, 7,
   and 7 respectively
-- next bottleneck is curating the generated 500-entry queue or resolving the
-  evidence-limited abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and
-  `m_csa:430`), while ensuring evidence-limited retained positives
-  (`m_csa:41`, `m_csa:108`, `m_csa:160`, and `m_csa:446`) remain
-  audit-visible and preserving the zero-hard-negative guardrail
+- next bottleneck is importing expert/curator decisions from the 500-entry
+  factory queue or resolving the evidence-limited abstentions (`m_csa:132`,
+  `m_csa:353`, `m_csa:372`, and `m_csa:430`), while ensuring
+  evidence-limited retained positives (`m_csa:41`, `m_csa:108`, `m_csa:160`,
+  and `m_csa:446`) remain audit-visible and preserving the
+  zero-hard-negative guardrail
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

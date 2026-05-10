@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 30
-- Measured elapsed time: 633.2 minutes (10.55 hours)
+- Entries: 31
+- Measured elapsed time: 684.6 minutes (11.41 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 619.8 measured minutes (10.33 hours)
+- post-v2: 671.2 measured minutes (11.19 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,20 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 260
-- Evidence references logged: 193
+- Artifact references logged: 281
+- Evidence references logged: 204
 
 ## Recent Entries
-
-### 2026-05-09T21:11:49.565784+00:00 - post-v2
-
-- Task: Expand geometry benchmark to 150 labels and clean hard negatives
-- Time mode: measured
-- Measured minutes: 50.467
-- Started: 2026-05-09T20:21:21Z
-- Ended: 2026-05-09T21:11:49Z
-- Artifacts: src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/labels.py, src/catalytic_earth/geometry_reports.py, src/catalytic_earth/cli.py, src/catalytic_earth/performance.py, data/registries/curated_mechanism_labels.json, artifacts/v3_geometry_retrieval_150.json, artifacts/v3_geometry_label_eval_150.json, artifacts/v3_hard_negative_controls_150.json, artifacts/v3_in_scope_failure_analysis_150.json, artifacts/v3_geometry_slice_summary.json, README.md, docs/geometry_features.md, docs/performance.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md
-- Evidence: 74 unit tests passed, validate passed, 150 curated labels, 150 geometry entries, 148 evaluable structures, 46 in-scope positives, 104 out-of-scope controls, 0 hard negatives across all slices, 0 out-of-scope false non-abstentions across all slices, 3 in-scope failures isolated in 150-entry slice, documentation reviewed and updated
 
 ### 2026-05-09T22:17:13.285127+00:00 - post-v2
 
@@ -112,6 +102,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 116 unit tests passed, validate passed, 475 curated labels, 474 geometry entries in 475 slice, 467 evaluable structures, 127 in-scope positives, 347 out-of-scope controls, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 500-entry queue has 21 ready label-review candidates
 - Notes: Documentation reviewed and updated during wrap-up; normal measured run.
 
+### 2026-05-10T05:25:09.634817+00:00 - post-v2
+
+- Task: Build label factory automation gate
+- Time mode: measured
+- Measured minutes: 51.383
+- Started: 2026-05-10T04:33:25Z
+- Ended: 2026-05-10T05:24:48Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, src/catalytic_earth/ontology.py, src/catalytic_earth/automation.py, src/catalytic_earth/performance.py, data/registries/curated_mechanism_labels.json, data/registries/mechanism_ontology.json, artifacts/v3_label_factory_audit_475.json, artifacts/v3_label_factory_applied_labels_475.json, artifacts/v3_adversarial_negative_controls_475.json, artifacts/v3_active_learning_review_queue_500.json, artifacts/v3_expert_review_export_500.json, artifacts/v3_expert_review_import_preview_500.json, artifacts/v3_family_propagation_guardrails_500.json, artifacts/v3_label_factory_gate_check_500.json, artifacts/perf_report.json, docs/label_factory.md, README.md, work/handoff.md, work/scope.md, work/label_factory_notes.md
+- Evidence: 130 unit tests passed, validate passed, 475 explicit tiered labels, 61 silver promotions proposed, 98 review labels proposed, 100 adversarial negatives mined, 123 active-learning rows queued, all 25 unlabeled candidates exported for review, 9 label-factory gates passed, automation-lock CLI tested, documentation reviewed and updated
+- Notes: documentation reviewed and updated; normal measured run
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -144,6 +145,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T02:23:20.695520+00:00: The benchmark can expand in 25-entry curation tranches while preserving guardrails; the next bottleneck is 400-entry label quality and evidence-limited cofactor gaps.
 - 2026-05-10T03:26:17.876722+00:00: The benchmark can continue expanding in curated 25-entry tranches, but the next bottleneck is 475-entry label quality and evidence-limited cofactor gaps.
 - 2026-05-10T04:23:35.521223+00:00: The benchmark can keep expanding in 25-entry curation tranches; next bottleneck is 500-entry label quality and evidence-limited cofactor gaps.
+- 2026-05-10T05:25:09.634817+00:00: Next bottleneck is importing decisions from the 500 queue through the label factory rather than expanding labels directly.
 
 ## Scope Adjustments
 
@@ -176,3 +178,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T02:23:20.695520+00:00: Post-V2 geometry scope now tracks a fully labeled 375-entry source slice and a generated 400-entry candidate queue.
 - 2026-05-10T03:26:17.876722+00:00: Post-V2 geometry scope now tracks a fully labeled 450-entry source slice and a generated 475-entry candidate queue.
 - 2026-05-10T04:23:35.521223+00:00: Post-V2 geometry scope now tracks a fully labeled 475-entry source slice and a generated 500-entry candidate queue.
+- 2026-05-10T05:25:09.634817+00:00: Label scaling is now factory-gated; new labels must pass promotion, demotion, adversarial-negative, active-learning, expert-review, family-propagation, validation, and test checks before counting.

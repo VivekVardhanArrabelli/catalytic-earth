@@ -14,9 +14,16 @@
     "radical_sam_enzyme": 1,
     "ser_his_acid_hydrolase": 17
   },
+  "by_review_status": {
+    "automation_curated": 475
+  },
+  "by_tier": {
+    "bronze": 475
+  },
   "by_type": {
     "out_of_scope": 348,
     "seed_fingerprint": 127
   },
-  "label_count": 475
+  "label_count": 475,
+  "mean_evidence_score": 0.6538
 }

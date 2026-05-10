@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .adapters import fetch_mcsa_sample, fetch_rhea_sample
+from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
 from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
@@ -17,13 +20,23 @@ from .labels import (
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
+    build_active_learning_review_queue,
+    build_adversarial_negative_controls,
+    build_expert_review_export,
+    build_family_propagation_guardrails,
     build_hard_negative_controls,
     build_label_expansion_candidates,
+    build_label_factory_audit,
+    check_label_factory_gates,
     evaluate_geometry_retrieval,
+    apply_label_factory_actions,
+    import_expert_review_decisions,
     label_summary,
     load_labels,
+    migrate_label_registry_records,
     sweep_abstention_thresholds,
 )
+from .ontology import load_mechanism_ontology
 from .models import RegistryError
 from .performance import write_local_performance_suite
 from .progress import WorkEntry, append_work_entry, write_progress_report
@@ -47,14 +60,102 @@ def write_json(path: Path, payload: object) -> None:
         handle.write("\n")
 
 
+def write_label_registry(path: Path, records: list[dict[str, object]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as handle:
+        handle.write("[\n")
+        for index, record in enumerate(records):
+            suffix = "," if index < len(records) - 1 else ""
+            handle.write(f"  {json.dumps(record, sort_keys=True, separators=(',', ':'))}{suffix}\n")
+        handle.write("]\n")
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def _git_output(repo_root: Path, *args: str) -> str:
+    result = subprocess.run(
+        ["git", *args],
+        cwd=repo_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return result.stdout.strip()
+
+
+def _git_worktree_dirty(repo_root: Path) -> bool:
+    return bool(_git_output(repo_root, "status", "--porcelain"))
+
+
+def _git_merge_in_progress(repo_root: Path) -> bool:
+    merge_head = _git_output(repo_root, "rev-parse", "--git-path", "MERGE_HEAD")
+    return (repo_root / merge_head).exists()
+
+
+def _git_head_synced_with_origin_main(repo_root: Path) -> bool:
+    head = _git_output(repo_root, "rev-parse", "HEAD")
+    origin_main = _git_output(repo_root, "rev-parse", "origin/main")
+    return head == origin_main
+
+
 def cmd_validate(_: argparse.Namespace) -> int:
     sources = load_sources()
     fingerprints = load_fingerprints()
+    ontology = load_mechanism_ontology()
     labels = load_labels()
     print(f"Validated {len(sources)} source records")
     print(f"Validated {len(fingerprints)} mechanism fingerprints")
+    print(f"Validated {len(ontology['families'])} mechanism ontology families")
     print(f"Validated {len(labels)} curated mechanism labels")
     return 0
+
+
+def cmd_automation_lock(args: argparse.Namespace) -> int:
+    lock_dir = Path(args.lock_dir)
+    repo_root = Path(args.repo_root)
+    stale_after_seconds = args.stale_after_minutes * 60
+    if args.lock_action == "status":
+        result = inspect_automation_lock(
+            lock_dir,
+            stale_after_seconds=stale_after_seconds,
+        )
+        print(json.dumps(result.as_dict(), sort_keys=True))
+        return 0
+    if args.lock_action == "acquire":
+        worktree_dirty = args.worktree_dirty
+        if not args.skip_worktree_check:
+            worktree_dirty = worktree_dirty or _git_worktree_dirty(repo_root)
+        result = acquire_automation_lock(
+            lock_dir,
+            started_at=args.started_at or _utc_now_iso(),
+            stale_after_seconds=stale_after_seconds,
+            worktree_dirty=worktree_dirty,
+        )
+        print(json.dumps(result.as_dict(), sort_keys=True))
+        return 0 if result.acquired else 3
+    if args.lock_action == "release":
+        blocked: list[str] = []
+        if args.require_clean and _git_worktree_dirty(repo_root):
+            blocked.append("worktree_dirty")
+        if args.require_no_merge and _git_merge_in_progress(repo_root):
+            blocked.append("merge_in_progress")
+        if args.require_synced and not _git_head_synced_with_origin_main(repo_root):
+            blocked.append("head_not_equal_origin_main")
+        if blocked:
+            payload = {
+                "released": False,
+                "lock_dir": str(lock_dir),
+                "status": "release_blocked",
+                "blockers": blocked,
+            }
+            print(json.dumps(payload, sort_keys=True))
+            return 4
+        release_automation_lock(lock_dir)
+        print(json.dumps({"released": True, "lock_dir": str(lock_dir)}, sort_keys=True))
+        return 0
+    raise ValueError(f"unknown automation lock action: {args.lock_action}")
 
 
 def cmd_build_ledger(args: argparse.Namespace) -> int:
@@ -213,6 +314,17 @@ def cmd_label_summary(args: argparse.Namespace) -> int:
     labels = load_labels(Path(args.labels))
     write_json(Path(args.out), label_summary(labels))
     print(f"Wrote label summary to {args.out}")
+    return 0
+
+
+def cmd_migrate_label_registry(args: argparse.Namespace) -> int:
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        data = json.load(handle)
+    if not isinstance(data, list):
+        raise ValueError("label registry must be a list")
+    migrated = migrate_label_registry_records(data)
+    write_label_registry(Path(args.out), migrated)
+    print(f"Wrote migrated label registry to {args.out} ({len(migrated)} labels)")
     return 0
 
 
@@ -387,6 +499,160 @@ def cmd_build_label_expansion_candidates(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_label_factory_audit(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    hard_negatives = None
+    if args.hard_negatives:
+        with Path(args.hard_negatives).open("r", encoding="utf-8") as handle:
+            hard_negatives = json.load(handle)
+    adversarial_negatives = None
+    if args.adversarial_negatives:
+        with Path(args.adversarial_negatives).open("r", encoding="utf-8") as handle:
+            adversarial_negatives = json.load(handle)
+    audit = build_label_factory_audit(
+        retrieval,
+        load_labels(Path(args.labels)),
+        abstain_threshold=args.abstain_threshold,
+        hard_negative_controls=hard_negatives,
+        adversarial_negatives=adversarial_negatives,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote label factory audit to "
+        f"{args.out} ({audit['metadata']['promote_to_silver_count']} promotions)"
+    )
+    return 0
+
+
+def cmd_apply_label_factory_actions(args: argparse.Namespace) -> int:
+    with Path(args.label_factory_audit).open("r", encoding="utf-8") as handle:
+        audit = json.load(handle)
+    applied = apply_label_factory_actions(load_labels(Path(args.labels)), audit)
+    write_json(Path(args.out), applied)
+    print(
+        "Wrote applied label factory actions to "
+        f"{args.out} ({applied['metadata']['output_label_count']} labels)"
+    )
+    return 0
+
+
+def cmd_build_active_learning_queue(args: argparse.Namespace) -> int:
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    factory = None
+    if args.label_factory_audit:
+        with Path(args.label_factory_audit).open("r", encoding="utf-8") as handle:
+            factory = json.load(handle)
+    queue = build_active_learning_review_queue(
+        geometry,
+        retrieval,
+        load_labels(Path(args.labels)),
+        label_factory_audit=factory,
+        abstain_threshold=args.abstain_threshold,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote active-learning review queue to "
+        f"{args.out} ({queue['metadata']['queued_count']} queued)"
+    )
+    return 0
+
+
+def cmd_build_adversarial_negatives(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    controls = build_adversarial_negative_controls(
+        retrieval,
+        load_labels(Path(args.labels)),
+        abstain_threshold=args.abstain_threshold,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), controls)
+    print(
+        "Wrote adversarial negative controls to "
+        f"{args.out} ({controls['metadata']['control_count']} controls)"
+    )
+    return 0
+
+
+def cmd_export_label_review(args: argparse.Namespace) -> int:
+    with Path(args.queue).open("r", encoding="utf-8") as handle:
+        queue = json.load(handle)
+    export = build_expert_review_export(
+        queue,
+        load_labels(Path(args.labels)),
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), export)
+    print(
+        "Wrote expert review export to "
+        f"{args.out} ({export['metadata']['exported_count']} items)"
+    )
+    return 0
+
+
+def cmd_import_label_review(args: argparse.Namespace) -> int:
+    with Path(args.review).open("r", encoding="utf-8") as handle:
+        review = json.load(handle)
+    imported = import_expert_review_decisions(load_labels(Path(args.labels)), review)
+    write_label_registry(Path(args.out), [label.to_dict() for label in imported])
+    print(f"Wrote imported label registry to {args.out} ({len(imported)} labels)")
+    return 0
+
+
+def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
+    with Path(args.label_factory_audit).open("r", encoding="utf-8") as handle:
+        factory = json.load(handle)
+    with Path(args.applied_label_factory).open("r", encoding="utf-8") as handle:
+        applied = json.load(handle)
+    with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+        queue = json.load(handle)
+    with Path(args.adversarial_negatives).open("r", encoding="utf-8") as handle:
+        adversarial = json.load(handle)
+    with Path(args.expert_review_export).open("r", encoding="utf-8") as handle:
+        review_export = json.load(handle)
+    with Path(args.family_propagation_guardrails).open("r", encoding="utf-8") as handle:
+        family_guardrails = json.load(handle)
+    gates = check_label_factory_gates(
+        load_labels(Path(args.labels)),
+        factory,
+        applied,
+        queue,
+        adversarial,
+        review_export,
+        family_propagation_guardrails=family_guardrails,
+    )
+    write_json(Path(args.out), gates)
+    print(
+        "Wrote label factory gate check to "
+        f"{args.out} (ready={gates['metadata']['automation_ready_for_next_label_batch']})"
+    )
+    return 0
+
+
+def cmd_build_family_propagation_guardrails(args: argparse.Namespace) -> int:
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    guardrails = build_family_propagation_guardrails(
+        geometry,
+        retrieval,
+        load_labels(Path(args.labels)),
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), guardrails)
+    print(
+        "Wrote family propagation guardrails to "
+        f"{args.out} ({guardrails['metadata']['reported_count']} rows)"
+    )
+    return 0
+
+
 def cmd_analyze_structure_mapping_issues(args: argparse.Namespace) -> int:
     with Path(args.geometry).open("r", encoding="utf-8") as handle:
         geometry = json.load(handle)
@@ -477,6 +743,39 @@ def build_parser() -> argparse.ArgumentParser:
 
     validate = subparsers.add_parser("validate", help="validate seed registries")
     validate.set_defaults(func=cmd_validate)
+
+    automation_lock = subparsers.add_parser(
+        "automation-lock",
+        help="acquire, inspect, or release the local automation run lock",
+    )
+    automation_lock.add_argument(
+        "--lock-dir",
+        default=".git/catalytic-earth-automation.lock",
+        help="atomic lock directory path",
+    )
+    automation_lock.add_argument("--repo-root", default=".", help="repository root for git checks")
+    automation_lock.add_argument("--stale-after-minutes", type=float, default=90.0)
+    lock_actions = automation_lock.add_subparsers(dest="lock_action", required=True)
+    lock_acquire = lock_actions.add_parser("acquire", help="create the lock atomically")
+    lock_acquire.add_argument("--started-at", default=None)
+    lock_acquire.add_argument(
+        "--worktree-dirty",
+        action="store_true",
+        help="force dirty-worktree handling for stale lock recovery",
+    )
+    lock_acquire.add_argument(
+        "--skip-worktree-check",
+        action="store_true",
+        help="do not call git status before stale-lock handling",
+    )
+    lock_acquire.set_defaults(func=cmd_automation_lock)
+    lock_status = lock_actions.add_parser("status", help="report current lock state")
+    lock_status.set_defaults(func=cmd_automation_lock)
+    lock_release = lock_actions.add_parser("release", help="remove the lock after safety checks")
+    lock_release.add_argument("--require-clean", action="store_true")
+    lock_release.add_argument("--require-no-merge", action="store_true")
+    lock_release.add_argument("--require-synced", action="store_true")
+    lock_release.set_defaults(func=cmd_automation_lock)
 
     ledger = subparsers.add_parser("build-ledger", help="build source ledger artifact")
     ledger.add_argument("--out", default="artifacts/source_ledger.json")
@@ -590,6 +889,14 @@ def build_parser() -> argparse.ArgumentParser:
     labels.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
     labels.add_argument("--out", default="artifacts/v3_label_summary.json")
     labels.set_defaults(func=cmd_label_summary)
+
+    migrate_labels = subparsers.add_parser(
+        "migrate-label-registry",
+        help="rewrite labels with explicit tier, review, and evidence fields",
+    )
+    migrate_labels.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    migrate_labels.add_argument("--out", default="data/registries/curated_mechanism_labels.json")
+    migrate_labels.set_defaults(func=cmd_migrate_label_registry)
 
     label_eval = subparsers.add_parser(
         "evaluate-geometry-labels",
@@ -716,6 +1023,95 @@ def build_parser() -> argparse.ArgumentParser:
     label_candidates.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
     label_candidates.add_argument("--out", default="artifacts/v3_label_expansion_candidates.json")
     label_candidates.set_defaults(func=cmd_build_label_expansion_candidates)
+
+    label_factory = subparsers.add_parser(
+        "build-label-factory-audit",
+        help="apply deterministic label-tier promotion/demotion rules",
+    )
+    label_factory.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval_475.json")
+    label_factory.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    label_factory.add_argument("--abstain-threshold", type=float, default=0.4115)
+    label_factory.add_argument("--hard-negatives", default=None)
+    label_factory.add_argument("--adversarial-negatives", default=None)
+    label_factory.add_argument("--out", default="artifacts/v3_label_factory_audit.json")
+    label_factory.set_defaults(func=cmd_build_label_factory_audit)
+
+    apply_factory = subparsers.add_parser(
+        "apply-label-factory-actions",
+        help="materialize label-factory promotions/review statuses into a registry artifact",
+    )
+    apply_factory.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    apply_factory.add_argument("--label-factory-audit", default="artifacts/v3_label_factory_audit_475.json")
+    apply_factory.add_argument("--out", default="artifacts/v3_label_factory_applied_labels.json")
+    apply_factory.set_defaults(func=cmd_apply_label_factory_actions)
+
+    active_queue = subparsers.add_parser(
+        "build-active-learning-queue",
+        help="rank label candidates and weak labels for expert review",
+    )
+    active_queue.add_argument("--geometry", default="artifacts/v3_geometry_features_500.json")
+    active_queue.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval_500.json")
+    active_queue.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    active_queue.add_argument("--label-factory-audit", default=None)
+    active_queue.add_argument("--abstain-threshold", type=float, default=0.4115)
+    active_queue.add_argument("--max-rows", type=int, default=100)
+    active_queue.add_argument("--out", default="artifacts/v3_active_learning_review_queue.json")
+    active_queue.set_defaults(func=cmd_build_active_learning_queue)
+
+    adversarial_negatives = subparsers.add_parser(
+        "build-adversarial-negatives",
+        help="mine out-of-scope controls that stress label-factory guardrails",
+    )
+    adversarial_negatives.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval_475.json")
+    adversarial_negatives.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    adversarial_negatives.add_argument("--abstain-threshold", type=float, default=0.4115)
+    adversarial_negatives.add_argument("--max-rows", type=int, default=100)
+    adversarial_negatives.add_argument("--out", default="artifacts/v3_adversarial_negative_controls.json")
+    adversarial_negatives.set_defaults(func=cmd_build_adversarial_negatives)
+
+    review_export = subparsers.add_parser(
+        "export-label-review",
+        help="export active-learning queue rows for expert decision import",
+    )
+    review_export.add_argument("--queue", default="artifacts/v3_active_learning_review_queue.json")
+    review_export.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    review_export.add_argument("--max-rows", type=int, default=25)
+    review_export.add_argument("--out", default="artifacts/v3_expert_review_export.json")
+    review_export.set_defaults(func=cmd_export_label_review)
+
+    review_import = subparsers.add_parser(
+        "import-label-review",
+        help="apply expert review decisions to a label registry copy",
+    )
+    review_import.add_argument("--review", default="artifacts/v3_expert_review_export.json")
+    review_import.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    review_import.add_argument("--out", default="artifacts/v3_imported_labels.json")
+    review_import.set_defaults(func=cmd_import_label_review)
+
+    gate_check = subparsers.add_parser(
+        "check-label-factory-gates",
+        help="verify label-factory artifacts before the next label batch",
+    )
+    gate_check.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    gate_check.add_argument("--label-factory-audit", default="artifacts/v3_label_factory_audit_475.json")
+    gate_check.add_argument("--applied-label-factory", default="artifacts/v3_label_factory_applied_labels_475.json")
+    gate_check.add_argument("--active-learning-queue", default="artifacts/v3_active_learning_review_queue_500.json")
+    gate_check.add_argument("--adversarial-negatives", default="artifacts/v3_adversarial_negative_controls_475.json")
+    gate_check.add_argument("--expert-review-export", default="artifacts/v3_expert_review_export_500.json")
+    gate_check.add_argument("--family-propagation-guardrails", default="artifacts/v3_family_propagation_guardrails_500.json")
+    gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
+    gate_check.set_defaults(func=cmd_check_label_factory_gates)
+
+    family_guardrails = subparsers.add_parser(
+        "build-family-propagation-guardrails",
+        help="audit ontology-family propagation blockers and local proxy evidence",
+    )
+    family_guardrails.add_argument("--geometry", default="artifacts/v3_geometry_features_500.json")
+    family_guardrails.add_argument("--retrieval", default="artifacts/v3_geometry_retrieval_500.json")
+    family_guardrails.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
+    family_guardrails.add_argument("--max-rows", type=int, default=200)
+    family_guardrails.add_argument("--out", default="artifacts/v3_family_propagation_guardrails.json")
+    family_guardrails.set_defaults(func=cmd_build_family_propagation_guardrails)
 
     mapping_issues = subparsers.add_parser(
         "analyze-structure-mapping-issues",

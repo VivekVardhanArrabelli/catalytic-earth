@@ -13,7 +13,10 @@ from .labels import (
     analyze_in_scope_failures,
     analyze_seed_family_performance,
     analyze_structure_mapping_issues,
+    build_active_learning_review_queue,
+    build_adversarial_negative_controls,
     build_hard_negative_controls,
+    build_label_factory_audit,
     evaluate_geometry_retrieval,
     load_labels,
     sweep_abstention_thresholds,
@@ -36,6 +39,19 @@ def run_local_performance_suite(
     labels = load_labels()
     calibration = sweep_abstention_thresholds(retrieval, labels)
     selected_threshold = calibration["metadata"].get("selected_threshold") or 0.7
+    hard_negative_controls = build_hard_negative_controls(retrieval, labels)
+    adversarial_negatives = build_adversarial_negative_controls(
+        retrieval,
+        labels,
+        abstain_threshold=float(selected_threshold),
+    )
+    label_factory_audit = build_label_factory_audit(
+        retrieval,
+        labels,
+        abstain_threshold=float(selected_threshold),
+        hard_negative_controls=hard_negative_controls,
+        adversarial_negatives=adversarial_negatives,
+    )
 
     benchmarks = [
         _measure("load_v1_graph", lambda: load_json(graph_path), iterations),
@@ -63,6 +79,37 @@ def run_local_performance_suite(
         _measure(
             "build_hard_negative_controls",
             lambda: build_hard_negative_controls(retrieval, labels),
+            iterations,
+        ),
+        _measure(
+            "build_adversarial_negative_controls",
+            lambda: build_adversarial_negative_controls(
+                retrieval,
+                labels,
+                abstain_threshold=float(selected_threshold),
+            ),
+            iterations,
+        ),
+        _measure(
+            "build_label_factory_audit",
+            lambda: build_label_factory_audit(
+                retrieval,
+                labels,
+                abstain_threshold=float(selected_threshold),
+                hard_negative_controls=hard_negative_controls,
+                adversarial_negatives=adversarial_negatives,
+            ),
+            iterations,
+        ),
+        _measure(
+            "build_active_learning_review_queue",
+            lambda: build_active_learning_review_queue(
+                geometry,
+                retrieval,
+                labels,
+                label_factory_audit=label_factory_audit,
+                abstain_threshold=float(selected_threshold),
+            ),
             iterations,
         ),
         _measure(
@@ -202,6 +249,10 @@ def _result_summary(result: Any) -> dict[str, Any]:
                 "recommendation",
                 "in_scope_family_count",
                 "out_of_scope_top1_family_count",
+                "promote_to_silver_count",
+                "abstention_or_review_count",
+                "control_count",
+                "queued_count",
             }
         }
     return {"keys": sorted(result.keys())}

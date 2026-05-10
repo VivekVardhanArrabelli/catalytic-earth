@@ -36,6 +36,14 @@ class PerformanceTests(unittest.TestCase):
             "analyze_seed_family_performance",
             {benchmark["name"] for benchmark in report["benchmarks"]},
         )
+        self.assertIn(
+            "build_label_factory_audit",
+            {benchmark["name"] for benchmark in report["benchmarks"]},
+        )
+        self.assertIn(
+            "build_active_learning_review_queue",
+            {benchmark["name"] for benchmark in report["benchmarks"]},
+        )
         self.assertIn("mean_ms", report["benchmarks"][0])
 
 

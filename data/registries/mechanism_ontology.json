@@ -1,0 +1,88 @@
+{
+  "version": "label_factory_v1",
+  "root": {
+    "id": "mechanism",
+    "name": "Catalytic mechanism"
+  },
+  "families": [
+    {
+      "id": "hydrolysis",
+      "name": "Hydrolytic bond cleavage",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "ser_his_acid_hydrolase",
+        "metal_dependent_hydrolase"
+      ],
+      "family_boundary_guardrails": [
+        "Do not propagate labels across glycosidase, thiol protease, phosphorolysis, or nonhydrolytic metal-transfer chemistry without mechanism-text support.",
+        "Treat metal ligation as insufficient for hydrolase propagation unless water activation or hydrolytic bond cleavage is explicit."
+      ]
+    },
+    {
+      "id": "plp_chemistry",
+      "name": "Pyridoxal-phosphate chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "plp_dependent_enzyme"
+      ],
+      "family_boundary_guardrails": [
+        "Do not propagate between PLP decarboxylation, transamination, racemization, and beta-elimination subclasses without active-site lysine and substrate-class agreement."
+      ]
+    },
+    {
+      "id": "radical_rearrangement",
+      "name": "Radical rearrangement chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "radical_sam_enzyme",
+        "cobalamin_radical_rearrangement"
+      ],
+      "family_boundary_guardrails": [
+        "Do not propagate radical labels between SAM/Fe-S and adenosylcobalamin systems solely by radical wording.",
+        "Require cofactor-family support or explicit mechanism text before treating radical families as compatible."
+      ]
+    },
+    {
+      "id": "flavin_redox",
+      "name": "Flavin redox chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "flavin_monooxygenase",
+        "flavin_dehydrogenase_reductase"
+      ],
+      "family_boundary_guardrails": [
+        "Separate oxygen insertion from hydride-transfer redox unless FAD/FMN context and reaction-center text support the subclass.",
+        "NAD-only hydride transfer is not enough to propagate a flavin label."
+      ]
+    },
+    {
+      "id": "heme_redox",
+      "name": "Heme peroxide and oxidase chemistry",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [
+        "heme_peroxidase_oxidase"
+      ],
+      "family_boundary_guardrails": [
+        "Do not propagate from generic heme or electron-transfer proteins into peroxide activation without distal activation residue or peroxide/oxygen chemistry support."
+      ]
+    }
+  ],
+  "propagation_guardrails": [
+    {
+      "source": "UniRef",
+      "rule": "Family propagation requires shared mechanism family plus conserved catalytic role signatures; sequence cluster membership alone cannot promote labels above bronze."
+    },
+    {
+      "source": "CATH",
+      "rule": "Domain architecture can raise review priority but cannot promote across ontology families without reaction-center agreement."
+    },
+    {
+      "source": "InterPro",
+      "rule": "Family annotations must be treated as weak evidence when mechanism text or cofactor evidence conflicts with the seed fingerprint."
+    },
+    {
+      "source": "local_proxy",
+      "rule": "When UniRef/CATH/InterPro are unavailable, use entry name, M-CSA mechanism text, cofactor ligands, and pocket geometry as auditable local proxies; keep propagated labels bronze until direct evidence promotes them."
+    }
+  ]
+}

@@ -11,6 +11,8 @@ work session should leave enough state here for a fresh context to continue.
 - `progress_log.jsonl` records timed work entries.
 - `status.md` is generated from the progress log.
 - `handoff.md` stores the current continuation instructions.
+- `label_factory_notes.md` records the current label-factory artifacts and the
+  remaining-time plan used before wrap-up.
 
 ## Operating Rule
 
@@ -26,6 +28,11 @@ At the start of each block, record the real wall-clock start timestamp. At
 50 minutes elapsed from that timestamp, stop starting new implementation work
 and begin wrap-up: tests, artifacts, documentation review, handoff, progress
 log, commit, and push.
+
+Each run must acquire the local automation lock before work. The repository also
+contains tested lock helper code in `src/catalytic_earth/automation.py` and the
+`python -m catalytic_earth.cli automation-lock` wrapper; prompt text alone is
+not the project’s only lock enforcement.
 
 Before 50 elapsed minutes, the agent must not hand off early, idle, or spend the
 remaining time only reporting. If the handoff-assigned task is completed or
@@ -52,7 +59,9 @@ After each hourly work block:
 8. Verify remote sync before handoff:
    `git fetch origin` then confirm `git rev-parse HEAD` equals
    `git rev-parse origin/main` and confirm no merge is pending.
-9. Recalibrate the scope or timeline if observed speed contradicts estimates.
+9. Release the lock with the tested wrapper:
+   `PYTHONPATH=src python -m catalytic_earth.cli automation-lock --lock-dir .git/catalytic-earth-automation.lock release --require-clean --require-no-merge --require-synced`.
+10. Recalibrate the scope or timeline if observed speed contradicts estimates.
 
 ## Context Rule
 

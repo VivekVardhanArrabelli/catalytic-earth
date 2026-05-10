@@ -2,9 +2,9 @@
   "benchmarks": [
     {
       "iterations": 5,
-      "max_ms": 52.83,
-      "mean_ms": 49.736,
-      "min_ms": 45.195,
+      "max_ms": 60.886,
+      "mean_ms": 52.308,
+      "min_ms": 48.834,
       "name": "load_v1_graph",
       "result_summary": {
         "edge_count": 18471,
@@ -14,9 +14,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 8.397,
-      "mean_ms": 6.766,
-      "min_ms": 6.127,
+      "max_ms": 8.272,
+      "mean_ms": 6.375,
+      "min_ms": 5.42,
       "name": "build_v2_benchmark",
       "result_summary": {
         "record_count": 475
@@ -24,9 +24,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 199.355,
-      "mean_ms": 176.244,
-      "min_ms": 162.685,
+      "max_ms": 227.246,
+      "mean_ms": 183.27,
+      "min_ms": 164.598,
       "name": "run_geometry_retrieval",
       "result_summary": {
         "entry_count": 474,
@@ -35,9 +35,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 1.116,
-      "mean_ms": 0.902,
-      "min_ms": 0.826,
+      "max_ms": 1.438,
+      "mean_ms": 1.066,
+      "min_ms": 0.901,
       "name": "evaluate_geometry_labels",
       "result_summary": {
         "evaluable_count": 467,
@@ -63,9 +63,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 708.059,
-      "mean_ms": 672.691,
-      "min_ms": 649.549,
+      "max_ms": 788.915,
+      "mean_ms": 747.247,
+      "min_ms": 718.478,
       "name": "sweep_abstention_thresholds",
       "result_summary": {
         "legacy_selected_threshold": 0.4115,
@@ -75,9 +75,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 1.277,
-      "mean_ms": 1.221,
-      "min_ms": 1.169,
+      "max_ms": 1.455,
+      "mean_ms": 1.295,
+      "min_ms": 1.213,
       "name": "analyze_geometry_score_margins",
       "result_summary": {
         "correct_in_scope_evaluable_count": 123,
@@ -93,9 +93,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 2.288,
-      "mean_ms": 2.213,
-      "min_ms": 2.137,
+      "max_ms": 2.476,
+      "mean_ms": 2.392,
+      "min_ms": 2.31,
       "name": "build_hard_negative_controls",
       "result_summary": {
         "evaluable_out_of_scope_count": 341,
@@ -106,9 +106,48 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.92,
-      "mean_ms": 0.764,
-      "min_ms": 0.702,
+      "max_ms": 2.864,
+      "mean_ms": 2.548,
+      "min_ms": 2.442,
+      "name": "build_adversarial_negative_controls",
+      "result_summary": {
+        "candidate_count": 347,
+        "control_count": 100
+      }
+    },
+    {
+      "iterations": 5,
+      "max_ms": 5.466,
+      "mean_ms": 5.234,
+      "min_ms": 5.062,
+      "name": "build_label_factory_audit",
+      "result_summary": {
+        "abstention_or_review_count": 98,
+        "demote_to_bronze_count": 0,
+        "evaluated_label_count": 474,
+        "hard_negative_evidence_entry_count": 100,
+        "label_count": 475,
+        "promote_to_silver_count": 61
+      }
+    },
+    {
+      "iterations": 5,
+      "max_ms": 1.879,
+      "mean_ms": 1.681,
+      "min_ms": 1.557,
+      "name": "build_active_learning_review_queue",
+      "result_summary": {
+        "candidate_count": 98,
+        "labeled_review_count": 98,
+        "queued_count": 98,
+        "unlabeled_count": 0
+      }
+    },
+    {
+      "iterations": 5,
+      "max_ms": 1.004,
+      "mean_ms": 0.843,
+      "min_ms": 0.763,
       "name": "analyze_in_scope_failures",
       "result_summary": {
         "abstained_positive_count": 4,
@@ -124,9 +163,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.944,
-      "mean_ms": 0.925,
-      "min_ms": 0.902,
+      "max_ms": 0.994,
+      "mean_ms": 0.983,
+      "min_ms": 0.959,
       "name": "analyze_cofactor_coverage",
       "result_summary": {
         "evaluated_in_scope_count": 127,
@@ -143,9 +182,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 882.632,
-      "mean_ms": 795.197,
-      "min_ms": 744.121,
+      "max_ms": 939.733,
+      "mean_ms": 850.49,
+      "min_ms": 775.685,
       "name": "analyze_cofactor_abstention_policy",
       "result_summary": {
         "audit_evidence_limited_retained_positive_count": 4,
@@ -157,9 +196,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 1.543,
-      "mean_ms": 1.332,
-      "min_ms": 1.255,
+      "max_ms": 1.732,
+      "mean_ms": 1.436,
+      "min_ms": 1.275,
       "name": "analyze_seed_family_performance",
       "result_summary": {
         "in_scope_family_count": 8,
@@ -170,9 +209,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.114,
-      "mean_ms": 0.055,
-      "min_ms": 0.036,
+      "max_ms": 0.133,
+      "mean_ms": 0.066,
+      "min_ms": 0.041,
       "name": "analyze_structure_mapping_issues",
       "result_summary": {
         "geometry_entry_count": 474,

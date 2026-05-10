@@ -16,14 +16,23 @@ from catalytic_earth.labels import (
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
+    build_active_learning_review_queue,
+    build_adversarial_negative_controls,
+    build_expert_review_export,
+    build_family_propagation_guardrails,
     build_hard_negative_controls,
     build_label_expansion_candidates,
+    build_label_factory_audit,
+    check_label_factory_gates,
     classify_out_of_scope_failure,
     compare_threshold_policies,
     evaluate_geometry_retrieval,
+    apply_label_factory_actions,
     group_hard_negative_controls,
+    import_expert_review_decisions,
     label_summary,
     load_labels,
+    migrate_label_record,
     select_threshold,
     sweep_abstention_thresholds,
 )
@@ -36,6 +45,9 @@ class LabelTests(unittest.TestCase):
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
+        self.assertEqual(summary["by_tier"]["bronze"], 475)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 475)
+        self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:
         with self.assertRaises(ValueError):
@@ -48,6 +60,21 @@ class LabelTests(unittest.TestCase):
                     "rationale": "This rationale is long enough to pass length.",
                 }
             )
+
+    def test_migrate_legacy_label_record(self) -> None:
+        migrated = migrate_label_record(
+            {
+                "entry_id": "m_csa:1",
+                "fingerprint_id": None,
+                "label_type": "out_of_scope",
+                "confidence": "medium",
+                "rationale": "Legacy label rationale long enough for migration.",
+            }
+        )
+        self.assertEqual(migrated["tier"], "bronze")
+        self.assertEqual(migrated["review_status"], "automation_curated")
+        self.assertEqual(migrated["evidence_score"], 0.65)
+        self.assertEqual(migrated["evidence"]["sources"], ["curator_rationale"])
 
     def test_evaluate_geometry_retrieval(self) -> None:
         labels = [
@@ -374,6 +401,301 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(flavin_row["abstained_entry_ids"], ["m_csa:2"])
         out_scope_row = analysis["out_of_scope_top1_families"][0]
         self.assertEqual(out_scope_row["false_non_abstention_entry_ids"], ["m_csa:3"])
+
+    def test_label_factory_promotes_abstains_and_demotes(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id="metal_dependent_hydrolase",
+                label_type="seed_fingerprint",
+                confidence="high",
+                rationale="example rationale long enough for promotion",
+                evidence_score=0.85,
+            ),
+            MechanismLabel(
+                entry_id="m_csa:2",
+                fingerprint_id="flavin_dehydrogenase_reductase",
+                label_type="seed_fingerprint",
+                confidence="medium",
+                rationale="example rationale long enough for abstention",
+            ),
+            MechanismLabel(
+                entry_id="m_csa:3",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="example rationale long enough for out of scope",
+                tier="silver",
+            ),
+        ]
+        retrieval = {
+            "results": [
+                {
+                    "entry_id": "m_csa:1",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "ligand_context": {"cofactor_families": ["metal_ion"]},
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "metal_dependent_hydrolase",
+                            "score": 0.82,
+                            "cofactor_evidence_level": "ligand_supported",
+                        }
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:2",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "ligand_context": {},
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "ser_his_acid_hydrolase",
+                            "score": 0.3,
+                            "cofactor_evidence_level": "not_required",
+                        },
+                        {
+                            "fingerprint_id": "flavin_dehydrogenase_reductase",
+                            "score": 0.2,
+                            "cofactor_evidence_level": "absent",
+                        },
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:3",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "metal_dependent_hydrolase",
+                            "score": 0.78,
+                            "cofactor_evidence_level": "role_inferred",
+                        }
+                    ],
+                },
+            ]
+        }
+        audit = build_label_factory_audit(retrieval, labels, abstain_threshold=0.5)
+        actions = {row["entry_id"]: row["recommended_action"] for row in audit["rows"]}
+        tiers = {row["entry_id"]: row["proposed_tier"] for row in audit["rows"]}
+        self.assertEqual(actions["m_csa:1"], "promote_to_silver")
+        self.assertEqual(tiers["m_csa:1"], "silver")
+        self.assertEqual(actions["m_csa:2"], "abstain_pending_evidence")
+        self.assertEqual(actions["m_csa:3"], "demote_to_bronze")
+        self.assertEqual(audit["metadata"]["promote_to_silver_count"], 1)
+        self.assertEqual(audit["metadata"]["demote_to_bronze_count"], 1)
+        applied = apply_label_factory_actions(labels, audit)
+        applied_by_entry = {row["entry_id"]: row for row in applied["labels"]}
+        self.assertEqual(applied_by_entry["m_csa:1"]["tier"], "silver")
+        self.assertEqual(
+            applied_by_entry["m_csa:2"]["review_status"],
+            "needs_expert_review",
+        )
+        self.assertEqual(applied_by_entry["m_csa:3"]["tier"], "bronze")
+        self.assertIn(
+            "label_factory_audit",
+            applied_by_entry["m_csa:1"]["evidence"]["sources"],
+        )
+
+    def test_active_learning_queue_and_expert_round_trip(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id="metal_dependent_hydrolase",
+                label_type="seed_fingerprint",
+                confidence="high",
+                rationale="example rationale long enough for existing label",
+                evidence={"sources": ["curator_rationale"], "notes": ["preserve me"]},
+            )
+        ]
+        geometry = {
+            "entries": [
+                {
+                    "entry_id": "m_csa:1",
+                    "entry_name": "existing enzyme",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "mechanism_text_snippets": ["Existing mechanism text."],
+                },
+                {
+                    "entry_id": "m_csa:4",
+                    "entry_name": "new candidate enzyme",
+                    "status": "ok",
+                    "resolved_residue_count": 4,
+                    "mechanism_text_count": 1,
+                    "mechanism_text_snippets": ["Candidate mechanism text."],
+                },
+            ]
+        }
+        retrieval = {
+            "results": [
+                {
+                    "entry_id": "m_csa:1",
+                    "entry_name": "existing enzyme",
+                    "status": "ok",
+                    "resolved_residue_count": 3,
+                    "mechanism_text_count": 1,
+                    "mechanism_text_snippets": ["Existing mechanism text."],
+                    "top_fingerprints": [
+                        {"fingerprint_id": "ser_his_acid_hydrolase", "score": 0.49},
+                        {"fingerprint_id": "metal_dependent_hydrolase", "score": 0.48},
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:4",
+                    "entry_name": "new candidate enzyme",
+                    "status": "ok",
+                    "resolved_residue_count": 4,
+                    "mechanism_text_count": 1,
+                    "mechanism_text_snippets": ["Candidate mechanism text."],
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "plp_dependent_enzyme",
+                            "score": 0.51,
+                            "cofactor_evidence_level": "ligand_supported",
+                        },
+                        {"fingerprint_id": "cobalamin_radical_rearrangement", "score": 0.49},
+                    ],
+                },
+            ]
+        }
+        audit = build_label_factory_audit(retrieval, labels, abstain_threshold=0.5)
+        queue = build_active_learning_review_queue(
+            geometry,
+            retrieval,
+            labels,
+            label_factory_audit=audit,
+            abstain_threshold=0.5,
+            max_rows=10,
+        )
+        self.assertGreaterEqual(queue["metadata"]["queued_count"], 2)
+        self.assertEqual(queue["rows"][0]["rank"], 1)
+        self.assertIn("uncertainty", queue["rows"][0]["review_scores"])
+
+        export = build_expert_review_export(queue, labels, max_rows=1)
+        export["review_items"][0]["decision"] = {
+            "action": "accept_label",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "plp_dependent_enzyme",
+            "tier": "gold",
+            "confidence": "high",
+            "reviewer": "expert-a",
+            "rationale": "Expert review confirms a PLP-family mechanism for this candidate.",
+            "evidence_score": 0.98,
+        }
+        imported = import_expert_review_decisions(labels, export)
+        imported_by_entry = {label.entry_id: label for label in imported}
+        reviewed = imported_by_entry[export["review_items"][0]["entry_id"]]
+        self.assertEqual(reviewed.review_status, "expert_reviewed")
+        self.assertEqual(reviewed.tier, "gold")
+        self.assertIn("expert_review_import", reviewed.evidence["sources"])
+        self.assertEqual(reviewed.evidence["expert_reviews"][0]["reviewer"], "expert-a")
+        if reviewed.entry_id == "m_csa:1":
+            self.assertEqual(reviewed.evidence["notes"], ["preserve me"])
+
+        export["review_items"][0]["decision"] = {
+            **export["review_items"][0]["decision"],
+            "fingerprint_id": "unknown_fingerprint",
+        }
+        with self.assertRaises(ValueError):
+            import_expert_review_decisions(labels, export)
+
+        gates = check_label_factory_gates(
+            labels,
+            audit,
+            None,
+            queue,
+            {
+                "metadata": {
+                    "control_count": 1,
+                    "axis_counts": {"ontology_family_boundary": 1},
+                }
+            },
+            export,
+            {"metadata": {"reported_count": 1, "source_guardrails": [{"source": "local_proxy"}]}},
+        )
+        self.assertTrue(gates["gates"]["label_schema_explicit"])
+        self.assertTrue(gates["gates"]["active_queue_ranked"])
+
+    def test_adversarial_negative_controls_use_more_than_threshold(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:9",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="example rationale long enough for adversarial negative",
+            )
+        ]
+        retrieval = {
+            "results": [
+                {
+                    "entry_id": "m_csa:9",
+                    "entry_name": "near-boundary control",
+                    "top_fingerprints": [
+                        {
+                            "fingerprint_id": "metal_dependent_hydrolase",
+                            "score": 0.49,
+                            "cofactor_evidence_level": "ligand_supported",
+                            "mechanistic_coherence_score": 0.9,
+                            "counterevidence_reasons": ["nonhydrolytic_metal_transfer"],
+                        },
+                        {
+                            "fingerprint_id": "flavin_dehydrogenase_reductase",
+                            "score": 0.47,
+                        },
+                    ],
+                }
+            ]
+        }
+        controls = build_adversarial_negative_controls(
+            retrieval,
+            labels,
+            abstain_threshold=0.5,
+        )
+        self.assertEqual(controls["metadata"]["control_count"], 1)
+        axes = set(controls["rows"][0]["control_axes"])
+        self.assertIn("threshold_boundary", axes)
+        self.assertIn("ontology_family_boundary", axes)
+        self.assertIn("cofactor_mimic", axes)
+
+    def test_family_propagation_guardrails_block_cross_family_proxy_labels(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id="metal_dependent_hydrolase",
+                label_type="seed_fingerprint",
+                confidence="medium",
+                rationale="example rationale long enough for propagation audit",
+            )
+        ]
+        geometry = {"entries": [{"entry_id": "m_csa:8", "entry_name": "unlabeled proxy"}]}
+        retrieval = {
+            "results": [
+                {
+                    "entry_id": "m_csa:1",
+                    "entry_name": "labeled mismatch",
+                    "top_fingerprints": [
+                        {"fingerprint_id": "flavin_dehydrogenase_reductase", "score": 0.5},
+                        {"fingerprint_id": "metal_dependent_hydrolase", "score": 0.49},
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:8",
+                    "entry_name": "unlabeled proxy",
+                    "mechanism_text_count": 1,
+                    "mechanism_text_snippets": ["Proxy mechanism text."],
+                    "top_fingerprints": [
+                        {"fingerprint_id": "plp_dependent_enzyme", "score": 0.6}
+                    ],
+                },
+            ]
+        }
+        guardrails = build_family_propagation_guardrails(geometry, retrieval, labels)
+        decisions = {row["entry_id"]: row["propagation_decision"] for row in guardrails["rows"]}
+        self.assertEqual(decisions["m_csa:1"], "block_family_propagation")
+        self.assertEqual(decisions["m_csa:8"], "bronze_review_only")
+        self.assertIn("source_guardrails", guardrails["metadata"])
 
     def test_group_hard_negative_controls(self) -> None:
         groups = group_hard_negative_controls(

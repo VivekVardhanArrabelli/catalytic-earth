@@ -60,6 +60,10 @@ The repository currently contains:
     selection, in-scope failure analysis, cofactor coverage analysis,
     label-expansion candidate ranking, geometry slice summaries, and a local
     performance suite.
+11. Label-factory automation: explicit bronze/silver/gold label schema,
+    mechanism ontology, deterministic promotion/demotion audit, active-learning
+    review queue, adversarial negative mining, family-propagation guardrails,
+    expert-review export/import, and a scaling gate.
 
 The 20- through 475-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
@@ -88,6 +92,13 @@ and 21 entries ready for label review, but it is not yet part of the curated
 cross-slice benchmark summary. The queue now recognizes the `5PA` ligand as PLP
 context and applies farnesyl/prenyl transfer counterevidence for
 `m_csa:484`; see `work/label_queue_500_notes.md` for the next curation notes.
+
+Label scaling is now gated by the label factory rather than raw queue size. The
+current factory audit proposes 61 bronze-to-silver promotions, flags 98
+abstention/review rows, mines 100 adversarial negative controls from 347
+out-of-scope candidates, exports 50 expert-review items including all 25
+unlabeled 500-slice candidates, and passes the 500-queue gate check. See
+`docs/label_factory.md`.
 
 ## Quickstart
 
@@ -131,6 +142,14 @@ python -m catalytic_earth.cli analyze-seed-family-performance --retrieval artifa
 python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_475.json --out artifacts/v3_geometry_score_margins_475.json
 python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_475.json --out artifacts/v3_hard_negative_controls_475.json
 python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_475.json --retrieval artifacts/v3_geometry_retrieval_475.json --out artifacts/v3_label_expansion_candidates_475.json
+python -m catalytic_earth.cli build-adversarial-negatives --retrieval artifacts/v3_geometry_retrieval_475.json --abstain-threshold 0.4115 --out artifacts/v3_adversarial_negative_controls_475.json
+python -m catalytic_earth.cli build-label-factory-audit --retrieval artifacts/v3_geometry_retrieval_475.json --hard-negatives artifacts/v3_hard_negative_controls_475.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_475.json --abstain-threshold 0.4115 --out artifacts/v3_label_factory_audit_475.json
+python -m catalytic_earth.cli apply-label-factory-actions --label-factory-audit artifacts/v3_label_factory_audit_475.json --out artifacts/v3_label_factory_applied_labels_475.json
+python -m catalytic_earth.cli build-active-learning-queue --geometry artifacts/v3_geometry_features_500.json --retrieval artifacts/v3_geometry_retrieval_500.json --label-factory-audit artifacts/v3_label_factory_audit_475.json --abstain-threshold 0.4115 --max-rows 150 --out artifacts/v3_active_learning_review_queue_500.json
+python -m catalytic_earth.cli export-label-review --queue artifacts/v3_active_learning_review_queue_500.json --out artifacts/v3_expert_review_export_500.json
+python -m catalytic_earth.cli import-label-review --review artifacts/v3_expert_review_export_500.json --out artifacts/v3_expert_review_import_preview_500.json
+python -m catalytic_earth.cli build-family-propagation-guardrails --geometry artifacts/v3_geometry_features_500.json --retrieval artifacts/v3_geometry_retrieval_500.json --out artifacts/v3_family_propagation_guardrails_500.json
+python -m catalytic_earth.cli check-label-factory-gates --label-factory-audit artifacts/v3_label_factory_audit_475.json --applied-label-factory artifacts/v3_label_factory_applied_labels_475.json --active-learning-queue artifacts/v3_active_learning_review_queue_500.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_475.json --expert-review-export artifacts/v3_expert_review_export_500.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_500.json --out artifacts/v3_label_factory_gate_check_500.json
 python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_475.json --out artifacts/v3_structure_mapping_issues_475.json
 python -m catalytic_earth.cli summarize-geometry-slices --artifact-dir artifacts --out artifacts/v3_geometry_slice_summary.json
 python -m catalytic_earth.cli perf-suite --graph artifacts/v1_graph_475.json --geometry artifacts/v3_geometry_features_475.json --retrieval artifacts/v3_geometry_retrieval_475.json --iterations 5 --out artifacts/perf_report.json
@@ -147,6 +166,10 @@ reactions.
 
 The v1 graph command expands this into a persistent graph slice linking M-CSA,
 Rhea, UniProt, PDB, and AlphaFold DB cross-references.
+
+Automation runs use the tested `automation-lock` CLI wrapper to acquire the
+local run lock and to release it only after clean-tree, no-merge, and
+`HEAD == origin/main` checks pass.
 
 ## Repository Layout
 
@@ -172,9 +195,11 @@ Current timeline judgment:
    retrieval baseline, inconsistency detection, dark-enzyme candidate dossiers,
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
-2. Next automation blocks: curate the generated 500-entry candidate queue while
-   preserving 0 hard negatives, 0 near misses, and 0 out-of-scope false
-   non-abstentions across the 20- through 475-entry slices.
+2. Next automation blocks: use the label factory to review the generated
+   500-entry queue in batches, not by blind label-count expansion. Each batch
+   must pass promotion/demotion, adversarial-negative, active-learning,
+   expert-review export/import, family-propagation, validation, and test gates
+   before labels count toward the benchmark.
 3. Next serious milestone: expand beyond 475 labels or resolve the
    evidence-limited abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and
    `m_csa:430`) by improving structure/cofactor evidence, while preserving the

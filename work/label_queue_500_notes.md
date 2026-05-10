@@ -1,9 +1,10 @@
 # 500-Entry Label Queue Notes
 
-These are curation notes for `artifacts/v3_label_expansion_candidates_500.json`.
-They are not registry labels yet. Use them to start the next bounded label pass
-and verify each entry against the full M-CSA mechanism text before committing
-formal labels.
+These are curation notes for `artifacts/v3_label_expansion_candidates_500.json`
+and the factory-generated `artifacts/v3_active_learning_review_queue_500.json`.
+They are not registry labels yet. Use them to start the next bounded label pass,
+but route every decision through `artifacts/v3_expert_review_export_500.json`
+and `import-label-review` before counting formal labels.
 
 ## Queue State
 

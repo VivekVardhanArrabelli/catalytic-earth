@@ -65,5 +65,10 @@ for expert review, not validated functions.
   evidence-limited positives are audit-visible as `m_csa:41`, `m_csa:108`,
   `m_csa:160`, and `m_csa:446`.
 - A 500-entry label-expansion queue has been generated for the next curation
-  pass, with 25 unlabeled candidate rows and 21 ready review entries.
+  pass, with 25 unlabeled candidate rows and 21 ready review entries. It now
+  must pass the label-factory gate before any new labels count in the benchmark.
+- Label-factory artifacts now provide bronze/silver/gold label schema,
+  promotion/demotion audit, adversarial negative controls, active-learning
+  review ranking, family-propagation guardrails, and expert-review
+  export/import.
 - Expand dark-enzyme campaigns beyond generic hydrolases.

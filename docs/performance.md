@@ -28,6 +28,9 @@ The suite currently measures:
 - sweeping abstention thresholds
 - analyzing positive/out-of-scope score margins
 - selecting hard negative controls
+- mining adversarial negative controls
+- applying label-factory promotion/demotion audit
+- building the active-learning review queue
 - analyzing in-scope failures
 - analyzing expected cofactor coverage for in-scope labels
 - sweeping cofactor abstention policy penalties
@@ -37,18 +40,21 @@ The suite currently measures:
 Latest 5-iteration mean timings on the current 475-entry local artifacts, using
 calibrated threshold `0.4115` for label evaluation:
 
-- load V1 graph: 49.736 ms
-- build V2 benchmark: 6.766 ms
-- run geometry retrieval: 176.244 ms
-- evaluate geometry labels: 0.902 ms
-- sweep abstention thresholds: 672.691 ms
-- analyze geometry score margins: 1.221 ms
-- build hard negative controls: 2.213 ms
-- analyze in-scope failures: 0.764 ms
-- analyze cofactor coverage: 0.925 ms
-- analyze cofactor abstention policy: 795.197 ms
-- analyze seed-family performance: 1.332 ms
-- analyze structure mapping issues: 0.055 ms
+- load V1 graph: 52.308 ms
+- build V2 benchmark: 6.375 ms
+- run geometry retrieval: 183.270 ms
+- evaluate geometry labels: 1.066 ms
+- sweep abstention thresholds: 747.247 ms
+- analyze geometry score margins: 1.295 ms
+- build hard negative controls: 2.392 ms
+- build adversarial negative controls: 2.548 ms
+- build label-factory audit: 5.234 ms
+- build active-learning review queue: 1.681 ms
+- analyze in-scope failures: 0.843 ms
+- analyze cofactor coverage: 0.983 ms
+- analyze cofactor abstention policy: 850.490 ms
+- analyze seed-family performance: 1.436 ms
+- analyze structure mapping issues: 0.066 ms
 
 ## Boundary
 

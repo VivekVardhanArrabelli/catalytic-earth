@@ -526,6 +526,48 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertLess(farnesyltransferase["top_fingerprints"][0]["score"], 0.4115)
 
+    def test_label_factory_artifacts_gate_500_queue(self) -> None:
+        label_summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
+        audit = _load_json(ROOT / "artifacts" / "v3_label_factory_audit_475.json")
+        applied = _load_json(
+            ROOT / "artifacts" / "v3_label_factory_applied_labels_475.json"
+        )
+        adversarial = _load_json(
+            ROOT / "artifacts" / "v3_adversarial_negative_controls_475.json"
+        )
+        queue = _load_json(ROOT / "artifacts" / "v3_active_learning_review_queue_500.json")
+        review_export = _load_json(ROOT / "artifacts" / "v3_expert_review_export_500.json")
+        guardrails = _load_json(
+            ROOT / "artifacts" / "v3_family_propagation_guardrails_500.json"
+        )
+        gate = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_500.json")
+
+        self.assertEqual(label_summary["by_tier"], {"bronze": 475})
+        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 475})
+        self.assertEqual(audit["metadata"]["promote_to_silver_count"], 61)
+        self.assertEqual(audit["metadata"]["abstention_or_review_count"], 98)
+        self.assertEqual(audit["metadata"]["hard_negative_evidence_entry_count"], 100)
+        self.assertEqual(applied["metadata"]["output_summary"]["by_tier"]["silver"], 61)
+        self.assertEqual(
+            applied["metadata"]["output_summary"]["by_review_status"]["needs_expert_review"],
+            98,
+        )
+        self.assertEqual(adversarial["metadata"]["control_count"], 100)
+        self.assertIn("ontology_family_boundary", adversarial["metadata"]["axis_counts"])
+        self.assertEqual(queue["metadata"]["unlabeled_count"], 25)
+        self.assertEqual(queue["metadata"]["queued_count"], 123)
+        self.assertEqual(review_export["metadata"]["exported_count"], 50)
+        self.assertEqual(
+            sum(1 for item in review_export["review_items"] if item["current_label"] is None),
+            25,
+        )
+        self.assertEqual(
+            guardrails["metadata"]["decision_counts"]["block_propagation_pending_review"],
+            22,
+        )
+        self.assertTrue(gate["metadata"]["automation_ready_for_next_label_batch"])
+        self.assertEqual(gate["blockers"], [])
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

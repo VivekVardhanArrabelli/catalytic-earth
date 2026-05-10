@@ -231,13 +231,17 @@ The 475-entry source slice is now fully labeled in the provisional registry:
 - ready label-expansion candidates remaining: 0
 
 The generated 500-entry candidate queue is unlabeled beyond the 475-entry
-registry and should be the next curation target:
+registry and must now flow through the label factory before any new labels are
+counted:
 
 - geometry entries in expansion artifact: 499
 - curated labels already present: 475
 - unlabeled candidate rows: 25
 - ready label-expansion candidates: 21
 - review notes: `work/label_queue_500_notes.md`
+- active-learning review queue: `artifacts/v3_active_learning_review_queue_500.json`
+- expert-review export: `artifacts/v3_expert_review_export_500.json`
+- factory gate check: `artifacts/v3_label_factory_gate_check_500.json`
 
 The structure-mapping issue artifacts currently list 0 non-OK entries for the
 20-, 30-, 40-, 50-, 60-, 75-, and 100-entry slices after matching catalytic
@@ -251,8 +255,9 @@ issues; the 325-, 350-, 375-, 400-, 425-, 450-, and 475-entry slices have 4,
 ## Curated Seed Labels
 
 `data/registries/curated_mechanism_labels.json` provides 475 provisional labels,
-covering all entries in the 475-entry source slice. Labels are
-intentionally conservative:
+covering all entries in the 475-entry source slice. Labels now carry explicit
+`tier`, `review_status`, `confidence`, `evidence_score`, and `evidence`
+provenance fields. Labels are intentionally conservative:
 
 - `seed_fingerprint` means the entry maps to one of the current seed mechanism
   fingerprints.
@@ -261,6 +266,11 @@ intentionally conservative:
 
 These labels are curated enough to test retrieval behavior and abstention, but
 they are not a substitute for expert mechanism review.
+
+`docs/label_factory.md` describes the bronze/silver/gold schema, deterministic
+promotion/demotion audit, adversarial negative mining, mechanism ontology,
+active-learning queue, and expert-review export/import workflow that gates
+future label batches.
 
 ## Why This Matters
 

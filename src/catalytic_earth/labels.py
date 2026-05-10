@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import json
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 from .fingerprints import load_fingerprints
+from .ontology import fingerprint_family, load_mechanism_ontology
 from .sources import PROJECT_ROOT
 from .structure import COFACTOR_LIGAND_MAP, METAL_ION_CODES
 
@@ -26,6 +27,19 @@ COFACTOR_EVIDENCE_LIMITED_STATUSES = {
     "expected_absent_from_structure",
     "expected_structure_only",
 }
+LABEL_TIERS = {"bronze", "silver", "gold"}
+REVIEW_STATUSES = {
+    "unreviewed",
+    "automation_curated",
+    "needs_expert_review",
+    "expert_reviewed",
+    "rejected",
+}
+CONFIDENCE_EVIDENCE_SCORES = {
+    "high": 0.85,
+    "medium": 0.65,
+    "low": 0.4,
+}
 
 
 @dataclass(frozen=True)
@@ -35,13 +49,31 @@ class MechanismLabel:
     label_type: str
     confidence: str
     rationale: str
+    tier: str = "bronze"
+    review_status: str = "automation_curated"
+    evidence_score: float = 0.65
+    evidence: dict[str, Any] = field(
+        default_factory=lambda: {
+            "sources": ["curator_rationale"],
+            "retrieval_score": None,
+            "cofactor_evidence_level": None,
+            "conflicts": [],
+            "notes": [],
+            "migration": "label_factory_v1_default",
+        }
+    )
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "MechanismLabel":
+        data = migrate_label_record(data)
         entry_id = data.get("entry_id")
         fingerprint_id = data.get("fingerprint_id")
         label_type = data.get("label_type")
+        tier = data.get("tier")
+        review_status = data.get("review_status")
         confidence = data.get("confidence")
+        evidence_score = data.get("evidence_score")
+        evidence = data.get("evidence")
         rationale = data.get("rationale")
         if not isinstance(entry_id, str) or not entry_id:
             raise ValueError("entry_id must be a non-empty string")
@@ -49,24 +81,86 @@ class MechanismLabel:
             raise ValueError(f"{entry_id}: fingerprint_id must be null or string")
         if label_type not in {"seed_fingerprint", "out_of_scope"}:
             raise ValueError(f"{entry_id}: invalid label_type")
+        if tier not in LABEL_TIERS:
+            raise ValueError(f"{entry_id}: invalid tier")
+        if review_status not in REVIEW_STATUSES:
+            raise ValueError(f"{entry_id}: invalid review_status")
         if confidence not in {"high", "medium", "low"}:
             raise ValueError(f"{entry_id}: invalid confidence")
+        if not isinstance(evidence_score, (int, float)) or not 0 <= float(evidence_score) <= 1:
+            raise ValueError(f"{entry_id}: evidence_score must be between 0 and 1")
+        if not isinstance(evidence, dict):
+            raise ValueError(f"{entry_id}: evidence must be an object")
+        sources = evidence.get("sources")
+        if not isinstance(sources, list) or not sources:
+            raise ValueError(f"{entry_id}: evidence.sources must be a non-empty list")
+        if not all(isinstance(source, str) and source for source in sources):
+            raise ValueError(f"{entry_id}: evidence.sources must contain non-empty strings")
         if not isinstance(rationale, str) or len(rationale) < 20:
             raise ValueError(f"{entry_id}: rationale is too short")
         if label_type == "seed_fingerprint" and not fingerprint_id:
             raise ValueError(f"{entry_id}: seed_fingerprint requires fingerprint_id")
         if label_type == "out_of_scope" and fingerprint_id is not None:
             raise ValueError(f"{entry_id}: out_of_scope requires null fingerprint_id")
-        return cls(entry_id, fingerprint_id, label_type, confidence, rationale)
+        if tier == "gold" and review_status != "expert_reviewed":
+            raise ValueError(f"{entry_id}: gold labels require expert_reviewed status")
+        return cls(
+            entry_id=entry_id,
+            fingerprint_id=fingerprint_id,
+            label_type=label_type,
+            tier=tier,
+            review_status=review_status,
+            confidence=confidence,
+            evidence_score=round(float(evidence_score), 4),
+            evidence=dict(evidence),
+            rationale=rationale,
+        )
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "entry_id": self.entry_id,
             "fingerprint_id": self.fingerprint_id,
             "label_type": self.label_type,
+            "tier": self.tier,
+            "review_status": self.review_status,
             "confidence": self.confidence,
+            "evidence_score": self.evidence_score,
+            "evidence": self.evidence,
             "rationale": self.rationale,
         }
+
+
+def migrate_label_record(data: dict[str, Any]) -> dict[str, Any]:
+    if not isinstance(data, dict):
+        raise ValueError("label record must be an object")
+    confidence = data.get("confidence")
+    default_score = CONFIDENCE_EVIDENCE_SCORES.get(str(confidence), 0.4)
+    evidence = data.get("evidence")
+    if not isinstance(evidence, dict):
+        evidence = {}
+    sources = evidence.get("sources")
+    if not isinstance(sources, list) or not sources:
+        sources = ["curator_rationale"]
+    migrated_evidence = {
+        **evidence,
+        "sources": [str(source) for source in sources if str(source)],
+        "retrieval_score": evidence.get("retrieval_score"),
+        "cofactor_evidence_level": evidence.get("cofactor_evidence_level"),
+        "conflicts": evidence.get("conflicts", []),
+        "notes": evidence.get("notes", []),
+        "migration": evidence.get("migration", "label_factory_v1_default"),
+    }
+    return {
+        **data,
+        "tier": data.get("tier", "bronze"),
+        "review_status": data.get("review_status", "automation_curated"),
+        "evidence_score": data.get("evidence_score", default_score),
+        "evidence": migrated_evidence,
+    }
+
+
+def migrate_label_registry_records(data: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [MechanismLabel.from_dict(item).to_dict() for item in data]
 
 
 def load_labels(path: Path = LABEL_REGISTRY) -> list[MechanismLabel]:
@@ -78,24 +172,25 @@ def load_labels(path: Path = LABEL_REGISTRY) -> list[MechanismLabel]:
     duplicates = [entry_id for entry_id, count in Counter(label.entry_id for label in labels).items() if count > 1]
     if duplicates:
         raise ValueError(f"duplicate labels: {', '.join(sorted(duplicates))}")
-    fingerprint_ids = {fingerprint.id for fingerprint in load_fingerprints()}
-    unknown = sorted(
-        label.fingerprint_id
-        for label in labels
-        if label.fingerprint_id and label.fingerprint_id not in fingerprint_ids
-    )
-    if unknown:
-        raise ValueError(f"unknown fingerprint ids: {', '.join(unknown)}")
+    _validate_label_fingerprints(labels)
     return labels
 
 
 def label_summary(labels: list[MechanismLabel]) -> dict[str, Any]:
+    evidence_scores = [label.evidence_score for label in labels]
     return {
         "label_count": len(labels),
         "by_type": dict(sorted(Counter(label.label_type for label in labels).items())),
+        "by_tier": dict(sorted(Counter(label.tier for label in labels).items())),
+        "by_review_status": dict(
+            sorted(Counter(label.review_status for label in labels).items())
+        ),
         "by_confidence": dict(sorted(Counter(label.confidence for label in labels).items())),
         "by_fingerprint": dict(
             sorted(Counter(label.fingerprint_id for label in labels if label.fingerprint_id).items())
+        ),
+        "mean_evidence_score": (
+            round(sum(evidence_scores) / len(evidence_scores), 4) if evidence_scores else None
         ),
     }
 
@@ -2224,6 +2319,1187 @@ def group_label_expansion_candidates(rows: list[dict[str, Any]]) -> list[dict[st
             str(row["cofactor_evidence_level"]),
         ),
     )
+
+
+def build_label_factory_audit(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    abstain_threshold: float = 0.7,
+    hard_negative_controls: dict[str, Any] | None = None,
+    adversarial_negatives: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    fingerprints_by_id = {
+        fingerprint.id: fingerprint.to_dict() for fingerprint in load_fingerprints()
+    }
+    ontology = load_mechanism_ontology()
+    negative_control_index = _negative_control_index(
+        hard_negative_controls=hard_negative_controls,
+        adversarial_negatives=adversarial_negatives,
+    )
+    rows = [
+        _label_factory_row(
+            label=label,
+            result=result,
+            fingerprints_by_id=fingerprints_by_id,
+            ontology=ontology,
+            abstain_threshold=abstain_threshold,
+            negative_control_evidence=negative_control_index.get(label.entry_id, []),
+        )
+        for result in retrieval.get("results", [])
+        for label in [labels_by_entry.get(result.get("entry_id"))]
+        if label
+    ]
+    action_counts = Counter(row["recommended_action"] for row in rows)
+    target_tier_counts = Counter(row["proposed_tier"] for row in rows)
+    tier_transition_counts = Counter(
+        f"{row['current_tier']}->{row['proposed_tier']}" for row in rows
+    )
+    return {
+        "metadata": {
+            "method": "label_factory_promotion_demotion_audit",
+            "label_count": len(labels),
+            "evaluated_label_count": len(rows),
+            "abstain_threshold": abstain_threshold,
+            "promotion_rule": (
+                "bronze labels promote to silver when retrieval agrees with the "
+                "label, the score clears the abstention threshold, and no "
+                "evidence-limiting cofactor or counterevidence conflict is present"
+            ),
+            "demotion_rule": (
+                "silver/gold labels demote to bronze, or bronze labels stay "
+                "review-only, when retrieval counterevidence, abstention, "
+                "top-family mismatch, or out-of-scope false non-abstention is present"
+            ),
+            "action_counts": dict(sorted(action_counts.items())),
+            "hard_negative_evidence_entry_count": sum(
+                1 for row in rows if row["hard_negative_evidence"]
+            ),
+            "target_tier_counts": dict(sorted(target_tier_counts.items())),
+            "tier_transition_counts": dict(sorted(tier_transition_counts.items())),
+            "promote_to_silver_count": int(action_counts.get("promote_to_silver", 0)),
+            "demote_to_bronze_count": int(action_counts.get("demote_to_bronze", 0)),
+            "abstention_or_review_count": sum(
+                int(action_counts.get(action, 0))
+                for action in {
+                    "abstain_pending_evidence",
+                    "review_conflicting_out_of_scope",
+                    "hold_bronze_boundary_review",
+                    "hold_bronze_need_review",
+                }
+            ),
+        },
+        "rows": sorted(
+            rows,
+            key=lambda row: (
+                row["review_priority_rank"],
+                _entry_id_sort_key(row["entry_id"]),
+            ),
+        ),
+    }
+
+
+def _label_factory_row(
+    label: MechanismLabel,
+    result: dict[str, Any],
+    fingerprints_by_id: dict[str, dict[str, Any]],
+    ontology: dict[str, Any],
+    abstain_threshold: float,
+    negative_control_evidence: list[dict[str, Any]],
+) -> dict[str, Any]:
+    top = result.get("top_fingerprints", [])
+    top1 = top[0] if top else {}
+    top2 = top[1] if len(top) > 1 else {}
+    top1_id = top1.get("fingerprint_id")
+    top1_score = round(float(top1.get("score", 0.0) or 0.0), 4)
+    top2_score = round(float(top2.get("score", 0.0) or 0.0), 4) if top2 else None
+    top2_gap = round(top1_score - top2_score, 4) if top2_score is not None else None
+    target_hit = _target_fingerprint_hit(top, label.fingerprint_id)
+    target_rank = target_hit[0]
+    target = target_hit[1]
+    target_score = (
+        round(float(target.get("score", 0.0) or 0.0), 4) if target is not None else None
+    )
+    abstained = top1_score < abstain_threshold
+    target_coverage = (
+        _cofactor_coverage_row_parts(
+            result,
+            fingerprints_by_id.get(label.fingerprint_id, {}),
+        )
+        if label.fingerprint_id
+        else {}
+    )
+    target_coverage_status = target_coverage.get("coverage_status")
+    conflicts = _label_evidence_conflicts(
+        label=label,
+        top1=top1,
+        top1_score=top1_score,
+        target=target,
+        target_rank=target_rank,
+        target_coverage_status=target_coverage_status,
+        abstained=abstained,
+        abstain_threshold=abstain_threshold,
+    )
+    if negative_control_evidence and label.label_type == "out_of_scope":
+        conflicts.append("adversarial_negative_evidence")
+        conflicts = sorted(set(conflicts))
+    evidence_score = _label_factory_evidence_score(
+        label=label,
+        top1_score=top1_score,
+        target_score=target_score,
+        top1_matches_label=bool(label.fingerprint_id and top1_id == label.fingerprint_id),
+        abstained=abstained,
+        conflicts=conflicts,
+    )
+    recommended_action, proposed_tier = _label_factory_action(
+        label=label,
+        evidence_score=evidence_score,
+        conflicts=conflicts,
+        top1_score=top1_score,
+        abstain_threshold=abstain_threshold,
+    )
+    return {
+        "entry_id": label.entry_id,
+        "entry_name": result.get("entry_name"),
+        "label_type": label.label_type,
+        "target_fingerprint_id": label.fingerprint_id,
+        "target_ontology_family": fingerprint_family(label.fingerprint_id, ontology),
+        "top1_fingerprint_id": top1_id,
+        "top1_ontology_family": fingerprint_family(str(top1_id), ontology),
+        "top2_fingerprint_id": top2.get("fingerprint_id") if top2 else None,
+        "top2_ontology_family": fingerprint_family(str(top2.get("fingerprint_id")), ontology)
+        if top2
+        else None,
+        "top1_score": top1_score,
+        "top2_score": top2_score,
+        "top2_gap": top2_gap,
+        "target_rank": target_rank,
+        "target_score": target_score,
+        "abstain_threshold": abstain_threshold,
+        "abstained": abstained,
+        "current_tier": label.tier,
+        "proposed_tier": proposed_tier,
+        "review_status": label.review_status,
+        "confidence": label.confidence,
+        "registry_evidence_score": label.evidence_score,
+        "factory_evidence_score": evidence_score,
+        "recommended_action": recommended_action,
+        "evidence_conflicts": conflicts,
+        "cofactor_coverage_status": target_coverage_status,
+        "expected_cofactor_families": target_coverage.get("expected_cofactor_families", []),
+        "counterevidence_reasons": _counterevidence_reasons_from_row(
+            {"component_scores": _fingerprint_component_scores(top1)}
+        ),
+        "hard_negative_evidence": negative_control_evidence,
+        "evaluable": _is_geometry_evaluable(result),
+        "review_priority_rank": _label_factory_priority(
+            recommended_action=recommended_action,
+            conflicts=conflicts,
+            top1_score=top1_score,
+            abstain_threshold=abstain_threshold,
+        ),
+        "context": _retrieval_result_context(result),
+        "label_rationale": label.rationale,
+    }
+
+
+def build_active_learning_review_queue(
+    geometry: dict[str, Any],
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    label_factory_audit: dict[str, Any] | None = None,
+    abstain_threshold: float = 0.7,
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    label_counts = Counter(label.fingerprint_id for label in labels if label.fingerprint_id)
+    retrieval_by_entry = {result.get("entry_id"): result for result in retrieval.get("results", [])}
+    geometry_by_entry = {entry.get("entry_id"): entry for entry in geometry.get("entries", [])}
+    audit_rows_by_entry = {
+        row.get("entry_id"): row for row in (label_factory_audit or {}).get("rows", [])
+    }
+    ontology = load_mechanism_ontology()
+
+    queue_rows: list[dict[str, Any]] = []
+    for entry_id in sorted(
+        set(retrieval_by_entry) | set(geometry_by_entry),
+        key=lambda value: _entry_id_sort_key(str(value)),
+    ):
+        if not isinstance(entry_id, str):
+            continue
+        result = retrieval_by_entry.get(entry_id, {})
+        entry = geometry_by_entry.get(entry_id, {})
+        top = result.get("top_fingerprints", [])
+        top1 = top[0] if top else {}
+        top2 = top[1] if len(top) > 1 else {}
+        label = labels_by_entry.get(entry_id)
+        audit_row = audit_rows_by_entry.get(entry_id, {})
+        if label and audit_row.get("recommended_action") in {
+            "promote_to_silver",
+            "hold_current_tier",
+        }:
+            continue
+        if label and not audit_row:
+            continue
+
+        top1_score = round(float(top1.get("score", 0.0) or 0.0), 4)
+        top2_score = round(float(top2.get("score", 0.0) or 0.0), 4) if top2 else 0.0
+        top1_id = top1.get("fingerprint_id")
+        family = fingerprint_family(str(top1_id), ontology)
+        scores = _active_learning_scores(
+            entry=entry,
+            result=result,
+            label=label,
+            audit_row=audit_row,
+            label_counts=label_counts,
+            top1_score=top1_score,
+            top2_score=top2_score,
+            abstain_threshold=abstain_threshold,
+            ontology=ontology,
+        )
+        queue_rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": result.get("entry_name") or entry.get("entry_name"),
+                "label_state": "labeled" if label else "unlabeled",
+                "current_label_type": label.label_type if label else None,
+                "current_tier": label.tier if label else None,
+                "recommended_action": audit_row.get("recommended_action")
+                if audit_row
+                else "expert_label_decision_needed",
+                "top1_fingerprint_id": top1_id,
+                "top1_ontology_family": family,
+                "top1_score": top1_score,
+                "top2_fingerprint_id": top2.get("fingerprint_id") if top2 else None,
+                "top2_score": top2_score if top2 else None,
+                "abstain_threshold": abstain_threshold,
+                "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
+                "counterevidence_reasons": _counterevidence_reasons_from_row(
+                    {"component_scores": _fingerprint_component_scores(top1)}
+                ),
+                "review_scores": scores,
+                "review_score": round(sum(scores.values()), 4),
+                "mechanism_text_snippets": result.get("mechanism_text_snippets")
+                or entry.get("mechanism_text_snippets", []),
+                "readiness_blockers": _review_readiness_blockers(entry, top1_score),
+            }
+        )
+
+    ranked_rows = sorted(
+        queue_rows,
+        key=lambda row: (-row["review_score"], _entry_id_sort_key(row["entry_id"])),
+    )[:max_rows]
+    for index, row in enumerate(ranked_rows, start=1):
+        row["rank"] = index
+    score_totals = Counter()
+    for row in ranked_rows:
+        for key, value in row["review_scores"].items():
+            score_totals[key] += round(float(value), 4)
+    return {
+        "metadata": {
+            "method": "active_learning_label_review_queue",
+            "candidate_count": len(queue_rows),
+            "queued_count": len(ranked_rows),
+            "max_rows": max_rows,
+            "abstain_threshold": abstain_threshold,
+            "ranking_terms": [
+                "uncertainty",
+                "impact",
+                "novelty",
+                "hard_negative_value",
+                "evidence_conflict",
+                "family_boundary_value",
+            ],
+            "score_totals": dict(sorted((key, round(value, 4)) for key, value in score_totals.items())),
+            "unlabeled_count": sum(1 for row in ranked_rows if row["label_state"] == "unlabeled"),
+            "labeled_review_count": sum(1 for row in ranked_rows if row["label_state"] == "labeled"),
+        },
+        "rows": ranked_rows,
+    }
+
+
+def build_adversarial_negative_controls(
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    abstain_threshold: float = 0.7,
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    ontology = load_mechanism_ontology()
+    rows: list[dict[str, Any]] = []
+    for result in retrieval.get("results", []):
+        entry_id = result.get("entry_id")
+        label = labels_by_entry.get(entry_id)
+        if not label or label.label_type != "out_of_scope":
+            continue
+        top = result.get("top_fingerprints", [])
+        if not top:
+            continue
+        top1 = top[0]
+        top2 = top[1] if len(top) > 1 else {}
+        top1_score = round(float(top1.get("score", 0.0) or 0.0), 4)
+        top2_score = round(float(top2.get("score", 0.0) or 0.0), 4) if top2 else 0.0
+        top1_family = fingerprint_family(str(top1.get("fingerprint_id")), ontology)
+        top2_family = fingerprint_family(str(top2.get("fingerprint_id")), ontology) if top2 else None
+        counterevidence = _counterevidence_reasons_from_row(
+            {"component_scores": _fingerprint_component_scores(top1)}
+        )
+        control_axes = _adversarial_negative_axes(
+            top1=top1,
+            top1_score=top1_score,
+            top2_score=top2_score,
+            top1_family=top1_family,
+            top2_family=top2_family,
+            counterevidence=counterevidence,
+            abstain_threshold=abstain_threshold,
+        )
+        if not control_axes:
+            continue
+        adversarial_score = _adversarial_negative_score(
+            top1_score=top1_score,
+            top2_score=top2_score,
+            control_axes=control_axes,
+            abstain_threshold=abstain_threshold,
+        )
+        rows.append(
+            {
+                "entry_id": label.entry_id,
+                "entry_name": result.get("entry_name"),
+                "top1_fingerprint_id": top1.get("fingerprint_id"),
+                "top1_ontology_family": top1_family,
+                "top1_score": top1_score,
+                "top2_fingerprint_id": top2.get("fingerprint_id") if top2 else None,
+                "top2_ontology_family": top2_family,
+                "top2_score": top2_score if top2 else None,
+                "abstain_threshold": abstain_threshold,
+                "score_gap_to_abstain_threshold": round(abstain_threshold - top1_score, 4),
+                "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
+                "control_axes": control_axes,
+                "adversarial_score": adversarial_score,
+                "counterevidence_reasons": counterevidence,
+                "component_scores": _fingerprint_component_scores(top1),
+                "context": _retrieval_result_context(result),
+                "label_rationale": label.rationale,
+            }
+        )
+    ranked_rows = sorted(
+        rows,
+        key=lambda row: (-row["adversarial_score"], _entry_id_sort_key(row["entry_id"])),
+    )[:max_rows]
+    for index, row in enumerate(ranked_rows, start=1):
+        row["rank"] = index
+    axis_counts = Counter(axis for row in ranked_rows for axis in row["control_axes"])
+    return {
+        "metadata": {
+            "method": "adversarial_negative_control_mining",
+            "candidate_count": len(rows),
+            "control_count": len(ranked_rows),
+            "max_rows": max_rows,
+            "abstain_threshold": abstain_threshold,
+            "axis_counts": dict(sorted(axis_counts.items())),
+            "selection_rule": (
+                "rank out-of-scope entries that stress ontology boundaries, "
+                "cofactor mimics, counterevidence, close top1/top2 families, "
+                "and abstention-threshold proximity"
+            ),
+        },
+        "rows": ranked_rows,
+    }
+
+
+def build_expert_review_export(
+    review_queue: dict[str, Any],
+    labels: list[MechanismLabel],
+    max_rows: int = 25,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    queue_rows = review_queue.get("rows", [])
+    rows = list(queue_rows[:max_rows])
+    selected_entry_ids = {row.get("entry_id") for row in rows if isinstance(row, dict)}
+    rows.extend(
+        row
+        for row in queue_rows
+        if isinstance(row, dict)
+        and row.get("entry_id") not in selected_entry_ids
+        and row.get("entry_id") not in labels_by_entry
+    )
+    return {
+        "metadata": {
+            "method": "expert_review_export",
+            "exported_count": len(rows),
+            "max_ranked_rows": max_rows,
+            "unlabeled_inclusion_rule": "append all unlabeled queue rows even when ranked below the export cutoff",
+            "decision_schema": {
+                "action": [
+                    "accept_label",
+                    "mark_needs_more_evidence",
+                    "reject_label",
+                    "no_decision",
+                ],
+                "tier": ["bronze", "silver", "gold"],
+                "label_type": ["seed_fingerprint", "out_of_scope"],
+            },
+            "provenance_rule": (
+                "imports append expert_review_import evidence and preserve existing evidence.sources"
+            ),
+        },
+        "review_items": [
+            {
+                "rank": row.get("rank"),
+                "entry_id": row.get("entry_id"),
+                "entry_name": row.get("entry_name"),
+                "current_label": labels_by_entry[row.get("entry_id")].to_dict()
+                if row.get("entry_id") in labels_by_entry
+                else None,
+                "queue_context": row,
+                "decision": {
+                    "action": "no_decision",
+                    "label_type": row.get("current_label_type"),
+                    "fingerprint_id": row.get("top1_fingerprint_id"),
+                    "tier": "silver",
+                    "confidence": "medium",
+                    "reviewer": None,
+                    "rationale": None,
+                    "evidence_score": None,
+                },
+            }
+            for row in rows
+        ],
+    }
+
+
+def apply_label_factory_actions(
+    labels: list[MechanismLabel],
+    label_factory_audit: dict[str, Any],
+) -> dict[str, Any]:
+    audit_by_entry = {
+        row.get("entry_id"): row
+        for row in label_factory_audit.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    updated: list[MechanismLabel] = []
+    action_counts: Counter = Counter()
+    for label in labels:
+        row = audit_by_entry.get(label.entry_id)
+        if not row:
+            updated.append(label)
+            continue
+        action = row.get("recommended_action")
+        action_counts[str(action)] += 1
+        record = label.to_dict()
+        if action == "promote_to_silver":
+            record["tier"] = "silver"
+            record["evidence_score"] = max(
+                float(record.get("evidence_score", 0.0) or 0.0),
+                float(row.get("factory_evidence_score", 0.0) or 0.0),
+            )
+        elif action == "demote_to_bronze":
+            record["tier"] = "bronze"
+            record["review_status"] = "needs_expert_review"
+        elif action in {
+            "abstain_pending_evidence",
+            "review_conflicting_out_of_scope",
+            "hold_bronze_boundary_review",
+            "hold_bronze_need_review",
+        }:
+            record["review_status"] = "needs_expert_review"
+        else:
+            updated.append(label)
+            continue
+        record["evidence"] = _factory_action_evidence(record.get("evidence", {}), row)
+        updated.append(MechanismLabel.from_dict(record))
+    summary = label_summary(updated)
+    return {
+        "metadata": {
+            "method": "apply_label_factory_actions",
+            "input_label_count": len(labels),
+            "output_label_count": len(updated),
+            "action_counts": dict(sorted(action_counts.items())),
+            "output_summary": summary,
+        },
+        "labels": [label.to_dict() for label in updated],
+    }
+
+
+def check_label_factory_gates(
+    labels: list[MechanismLabel],
+    label_factory_audit: dict[str, Any],
+    applied_label_factory: dict[str, Any] | None,
+    active_learning_queue: dict[str, Any],
+    adversarial_negatives: dict[str, Any],
+    expert_review_export: dict[str, Any],
+    family_propagation_guardrails: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    ontology = load_mechanism_ontology()
+    required_terms = {
+        "uncertainty",
+        "impact",
+        "novelty",
+        "hard_negative_value",
+        "evidence_conflict",
+        "family_boundary_value",
+    }
+    ranking_terms = set(active_learning_queue.get("metadata", {}).get("ranking_terms", []))
+    adversarial_axes = set(adversarial_negatives.get("metadata", {}).get("axis_counts", {}))
+    gates = {
+        "label_schema_explicit": all(
+            label.tier in LABEL_TIERS
+            and label.review_status in REVIEW_STATUSES
+            and isinstance(label.evidence, dict)
+            and bool(label.evidence.get("sources"))
+            for label in labels
+        ),
+        "promotion_demonstrated": int(
+            label_factory_audit.get("metadata", {}).get("promote_to_silver_count", 0)
+        )
+        > 0,
+        "demotion_or_abstention_demonstrated": int(
+            label_factory_audit.get("metadata", {}).get("abstention_or_review_count", 0)
+        )
+        > 0
+        or int(label_factory_audit.get("metadata", {}).get("demote_to_bronze_count", 0))
+        > 0,
+        "applied_label_actions_ready": (
+            isinstance(applied_label_factory, dict)
+            and int(applied_label_factory.get("metadata", {}).get("output_label_count", 0))
+            == len(labels)
+            and int(
+                applied_label_factory.get("metadata", {})
+                .get("output_summary", {})
+                .get("by_tier", {})
+                .get("silver", 0)
+            )
+            > 0
+        ),
+        "ontology_loaded": len(ontology.get("families", [])) > 0,
+        "active_queue_ranked": int(
+            active_learning_queue.get("metadata", {}).get("queued_count", 0)
+        )
+        > 0
+        and required_terms <= ranking_terms,
+        "adversarial_negatives_mined": int(
+            adversarial_negatives.get("metadata", {}).get("control_count", 0)
+        )
+        > 0
+        and bool(adversarial_axes - {"threshold_boundary", "false_non_abstention"}),
+        "expert_review_export_ready": int(
+            expert_review_export.get("metadata", {}).get("exported_count", 0)
+        )
+        > 0,
+        "family_propagation_guardrails_ready": (
+            isinstance(family_propagation_guardrails, dict)
+            and int(family_propagation_guardrails.get("metadata", {}).get("reported_count", 0))
+            > 0
+            and bool(family_propagation_guardrails.get("metadata", {}).get("source_guardrails"))
+        ),
+    }
+    blockers = [name for name, passed in gates.items() if not passed]
+    return {
+        "metadata": {
+            "method": "label_factory_gate_check",
+            "label_count": len(labels),
+            "passed_gate_count": sum(1 for passed in gates.values() if passed),
+            "gate_count": len(gates),
+            "automation_ready_for_next_label_batch": not blockers,
+            "bulk_scaling_rule": (
+                "new labels may be added in batches only after this gate check "
+                "passes and the generated batch artifacts are regenerated"
+            ),
+        },
+        "gates": gates,
+        "blockers": blockers,
+    }
+
+
+def build_family_propagation_guardrails(
+    geometry: dict[str, Any],
+    retrieval: dict[str, Any],
+    labels: list[MechanismLabel],
+    max_rows: int = 200,
+) -> dict[str, Any]:
+    labels_by_entry = {label.entry_id: label for label in labels}
+    ontology = load_mechanism_ontology()
+    geometry_by_entry = {entry.get("entry_id"): entry for entry in geometry.get("entries", [])}
+    rows: list[dict[str, Any]] = []
+    for result in retrieval.get("results", []):
+        entry_id = result.get("entry_id")
+        if not isinstance(entry_id, str):
+            continue
+        label = labels_by_entry.get(entry_id)
+        entry = geometry_by_entry.get(entry_id, {})
+        top = result.get("top_fingerprints", [])
+        if not top:
+            continue
+        top1 = top[0]
+        top2 = top[1] if len(top) > 1 else {}
+        top1_id = top1.get("fingerprint_id")
+        top2_id = top2.get("fingerprint_id")
+        target_family = fingerprint_family(label.fingerprint_id, ontology) if label else None
+        top1_family = fingerprint_family(str(top1_id), ontology)
+        top2_family = fingerprint_family(str(top2_id), ontology) if top2 else None
+        blockers = _family_propagation_blockers(
+            label=label,
+            top1=top1,
+            top2=top2,
+            target_family=target_family,
+            top1_family=top1_family,
+            top2_family=top2_family,
+        )
+        decision = _family_propagation_decision(label, blockers)
+        if label and decision == "direct_label_no_propagation_issue":
+            continue
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": result.get("entry_name") or entry.get("entry_name"),
+                "label_state": "labeled" if label else "unlabeled",
+                "current_label_type": label.label_type if label else None,
+                "current_tier": label.tier if label else None,
+                "target_fingerprint_id": label.fingerprint_id if label else None,
+                "target_ontology_family": target_family,
+                "top1_fingerprint_id": top1_id,
+                "top1_ontology_family": top1_family,
+                "top2_fingerprint_id": top2_id,
+                "top2_ontology_family": top2_family,
+                "top1_score": round(float(top1.get("score", 0.0) or 0.0), 4),
+                "top2_score": round(float(top2.get("score", 0.0) or 0.0), 4) if top2 else None,
+                "propagation_decision": decision,
+                "propagation_blockers": blockers,
+                "local_proxy_evidence": {
+                    "mechanism_text_count": int(
+                        result.get("mechanism_text_count", entry.get("mechanism_text_count", 0)) or 0
+                    ),
+                    "proximal_cofactor_families": (result.get("ligand_context") or {}).get(
+                        "cofactor_families", []
+                    )
+                    if isinstance(result.get("ligand_context"), dict)
+                    else [],
+                    "structure_cofactor_families": (result.get("ligand_context") or {}).get(
+                        "structure_cofactor_families", []
+                    )
+                    if isinstance(result.get("ligand_context"), dict)
+                    else [],
+                    "nearby_residue_count": (result.get("pocket_context") or {}).get(
+                        "nearby_residue_count", 0
+                    )
+                    if isinstance(result.get("pocket_context"), dict)
+                    else 0,
+                },
+                "mechanism_text_snippets": result.get("mechanism_text_snippets")
+                or entry.get("mechanism_text_snippets", []),
+            }
+        )
+    ranked_rows = sorted(
+        rows,
+        key=lambda row: (
+            _family_decision_priority(row["propagation_decision"]),
+            _entry_id_sort_key(row["entry_id"]),
+        ),
+    )[:max_rows]
+    decision_counts = Counter(row["propagation_decision"] for row in ranked_rows)
+    blocker_counts = Counter(
+        blocker for row in ranked_rows for blocker in row["propagation_blockers"]
+    )
+    return {
+        "metadata": {
+            "method": "family_propagation_guardrail_audit",
+            "audited_count": len(rows),
+            "reported_count": len(ranked_rows),
+            "max_rows": max_rows,
+            "ontology_version": ontology.get("version"),
+            "decision_counts": dict(sorted(decision_counts.items())),
+            "blocker_counts": dict(sorted(blocker_counts.items())),
+            "source_guardrails": ontology.get("propagation_guardrails", []),
+            "local_proxy_rule": (
+                "when UniRef, CATH, or InterPro evidence is unavailable, mechanism text, "
+                "ligand/cofactor context, and pocket geometry can prioritize review but "
+                "cannot promote beyond bronze by themselves"
+            ),
+        },
+        "rows": ranked_rows,
+    }
+
+
+def import_expert_review_decisions(
+    labels: list[MechanismLabel],
+    review_artifact: dict[str, Any],
+) -> list[MechanismLabel]:
+    records_by_entry = {label.entry_id: label.to_dict() for label in labels}
+    for item in review_artifact.get("review_items", []):
+        if not isinstance(item, dict):
+            continue
+        decision = item.get("decision", {})
+        if not isinstance(decision, dict):
+            continue
+        action = decision.get("action")
+        if action == "no_decision":
+            continue
+        entry_id = item.get("entry_id")
+        if not isinstance(entry_id, str) or not entry_id:
+            raise ValueError("review item entry_id must be a non-empty string")
+        existing = records_by_entry.get(entry_id)
+        if action == "mark_needs_more_evidence":
+            if not existing:
+                continue
+            records_by_entry[entry_id] = _apply_review_status(
+                existing,
+                review_status="needs_expert_review",
+                decision=decision,
+            )
+            continue
+        if action == "reject_label":
+            if not existing:
+                continue
+            records_by_entry[entry_id] = _apply_review_status(
+                existing,
+                review_status="rejected",
+                decision=decision,
+            )
+            continue
+        if action != "accept_label":
+            raise ValueError(f"{entry_id}: invalid review action {action}")
+        records_by_entry[entry_id] = _accepted_expert_label_record(
+            entry_id=entry_id,
+            existing=existing,
+            item=item,
+            decision=decision,
+        )
+    imported = [
+        MechanismLabel.from_dict(record)
+        for record in sorted(records_by_entry.values(), key=lambda row: _entry_id_sort_key(row["entry_id"]))
+    ]
+    _validate_label_fingerprints(imported)
+    return imported
+
+
+def _validate_label_fingerprints(labels: list[MechanismLabel]) -> None:
+    fingerprint_ids = {fingerprint.id for fingerprint in load_fingerprints()}
+    unknown = sorted(
+        label.fingerprint_id
+        for label in labels
+        if label.fingerprint_id and label.fingerprint_id not in fingerprint_ids
+    )
+    if unknown:
+        raise ValueError(f"unknown fingerprint ids: {', '.join(unknown)}")
+
+
+def _target_fingerprint_hit(
+    top: list[dict[str, Any]],
+    fingerprint_id: str | None,
+) -> tuple[int | None, dict[str, Any] | None]:
+    if not fingerprint_id:
+        return None, None
+    for index, fingerprint in enumerate(top, start=1):
+        if fingerprint.get("fingerprint_id") == fingerprint_id:
+            return index, fingerprint
+    return None, None
+
+
+def _negative_control_index(
+    hard_negative_controls: dict[str, Any] | None,
+    adversarial_negatives: dict[str, Any] | None,
+) -> dict[str, list[dict[str, Any]]]:
+    index: dict[str, list[dict[str, Any]]] = {}
+    for source_name, artifact in [
+        ("hard_negative_controls", hard_negative_controls),
+        ("adversarial_negatives", adversarial_negatives),
+    ]:
+        if not isinstance(artifact, dict):
+            continue
+        for section in ["rows", "near_miss_rows", "closest_below_floor_rows"]:
+            rows = artifact.get(section, [])
+            if not isinstance(rows, list):
+                continue
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                entry_id = row.get("entry_id")
+                if not isinstance(entry_id, str):
+                    continue
+                index.setdefault(entry_id, []).append(
+                    {
+                        "source": source_name,
+                        "section": section,
+                        "rank": row.get("rank"),
+                        "control_axes": row.get("control_axes", []),
+                        "negative_control_type": row.get("negative_control_type"),
+                        "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+                        "top1_score": row.get("top1_score"),
+                    }
+                )
+    return index
+
+
+def _label_evidence_conflicts(
+    label: MechanismLabel,
+    top1: dict[str, Any],
+    top1_score: float,
+    target: dict[str, Any] | None,
+    target_rank: int | None,
+    target_coverage_status: str | None,
+    abstained: bool,
+    abstain_threshold: float,
+) -> list[str]:
+    conflicts: list[str] = []
+    if label.label_type == "seed_fingerprint":
+        if target_rank is None:
+            conflicts.append("target_absent_from_top_k")
+        elif target_rank != 1:
+            conflicts.append("target_not_top1")
+        if abstained:
+            conflicts.append("top1_below_abstention_threshold")
+        if target_coverage_status in COFACTOR_EVIDENCE_LIMITED_STATUSES:
+            conflicts.append(target_coverage_status)
+        target_reasons = _fingerprint_component_scores(target or {}).get(
+            "counterevidence_reasons", []
+        )
+        for reason in target_reasons:
+            conflicts.append(f"target_counterevidence:{reason}")
+    else:
+        if top1_score >= abstain_threshold:
+            conflicts.append("out_of_scope_false_non_abstention")
+        if top1_score >= max(0.0, abstain_threshold - 0.02):
+            conflicts.append("out_of_scope_boundary_near_positive_floor")
+        for reason in _fingerprint_component_scores(top1).get("counterevidence_reasons", []):
+            conflicts.append(f"top1_counterevidence:{reason}")
+    return sorted(set(conflicts))
+
+
+def _label_factory_evidence_score(
+    label: MechanismLabel,
+    top1_score: float,
+    target_score: float | None,
+    top1_matches_label: bool,
+    abstained: bool,
+    conflicts: list[str],
+) -> float:
+    base = label.evidence_score
+    if label.label_type == "seed_fingerprint":
+        retrieval_support = target_score if target_score is not None else 0.0
+        agreement_bonus = 0.15 if top1_matches_label else 0.0
+        abstention_penalty = 0.2 if abstained else 0.0
+    else:
+        retrieval_support = max(0.0, 1.0 - top1_score)
+        agreement_bonus = 0.1 if not abstained else 0.15
+        abstention_penalty = 0.0 if abstained else 0.25
+    conflict_penalty = min(0.45, 0.08 * len(conflicts))
+    return round(
+        max(0.0, min(1.0, 0.35 * base + 0.45 * retrieval_support + agreement_bonus - abstention_penalty - conflict_penalty)),
+        4,
+    )
+
+
+def _label_factory_action(
+    label: MechanismLabel,
+    evidence_score: float,
+    conflicts: list[str],
+    top1_score: float,
+    abstain_threshold: float,
+) -> tuple[str, str]:
+    has_serious_conflict = any(
+        conflict
+        in {
+            "target_absent_from_top_k",
+            "target_not_top1",
+            "top1_below_abstention_threshold",
+            "expected_absent_from_structure",
+            "expected_structure_only",
+            "out_of_scope_false_non_abstention",
+        }
+        for conflict in conflicts
+    )
+    if has_serious_conflict and label.tier in {"silver", "gold"}:
+        return "demote_to_bronze", "bronze"
+    if label.label_type == "seed_fingerprint" and has_serious_conflict:
+        return "abstain_pending_evidence", "bronze"
+    if label.label_type == "out_of_scope" and "out_of_scope_false_non_abstention" in conflicts:
+        return "review_conflicting_out_of_scope", "bronze"
+    if label.label_type == "out_of_scope" and top1_score >= max(0.0, abstain_threshold - 0.02):
+        return "hold_bronze_boundary_review", "bronze"
+    if evidence_score >= 0.68 and label.tier == "bronze":
+        return "promote_to_silver", "silver"
+    if evidence_score < 0.45:
+        return "hold_bronze_need_review", "bronze"
+    return "hold_current_tier", label.tier
+
+
+def _label_factory_priority(
+    recommended_action: str,
+    conflicts: list[str],
+    top1_score: float,
+    abstain_threshold: float,
+) -> int:
+    base_priority = {
+        "demote_to_bronze": 1,
+        "review_conflicting_out_of_scope": 2,
+        "abstain_pending_evidence": 3,
+        "hold_bronze_boundary_review": 4,
+        "hold_bronze_need_review": 5,
+        "promote_to_silver": 8,
+        "hold_current_tier": 9,
+    }.get(recommended_action, 10)
+    if abs(top1_score - abstain_threshold) <= 0.02:
+        base_priority = max(1, base_priority - 1)
+    if conflicts:
+        base_priority = max(1, base_priority - 1)
+    return base_priority
+
+
+def _active_learning_scores(
+    entry: dict[str, Any],
+    result: dict[str, Any],
+    label: MechanismLabel | None,
+    audit_row: dict[str, Any],
+    label_counts: Counter,
+    top1_score: float,
+    top2_score: float,
+    abstain_threshold: float,
+    ontology: dict[str, Any],
+) -> dict[str, float]:
+    top = result.get("top_fingerprints", [])
+    top1 = top[0] if top else {}
+    top2 = top[1] if len(top) > 1 else {}
+    top1_id = top1.get("fingerprint_id")
+    top2_id = top2.get("fingerprint_id")
+    top_gap = abs(top1_score - top2_score)
+    threshold_gap = abs(top1_score - abstain_threshold)
+    uncertainty = max(0.0, 0.6 * (1.0 - min(threshold_gap / 0.2, 1.0)) + 0.4 * (1.0 - min(top_gap / 0.2, 1.0)))
+    mechanism_text_count = int(
+        result.get("mechanism_text_count", entry.get("mechanism_text_count", 0)) or 0
+    )
+    resolved = int(result.get("resolved_residue_count", entry.get("resolved_residue_count", 0)) or 0)
+    impact = min(1.0, 0.35 * min(mechanism_text_count, 3) / 3 + 0.35 * min(resolved, 5) / 5 + 0.3 * top1_score)
+    family_count = int(label_counts.get(top1_id, 0) or 0)
+    novelty = 1.0 / (1.0 + family_count / 25.0)
+    unlabeled_bonus = 0.8 if label is None else 0.0
+    counterevidence = _counterevidence_reasons_from_row(
+        {"component_scores": _fingerprint_component_scores(top1)}
+    )
+    hard_negative_value = 0.0
+    if not label or (label and label.label_type == "out_of_scope"):
+        hard_negative_value = max(0.0, 1.0 - min(abs(top1_score - abstain_threshold) / 0.15, 1.0))
+    evidence_conflict = min(
+        1.0,
+        0.35 * len(audit_row.get("evidence_conflicts", []))
+        + 0.2 * len(counterevidence)
+        + (0.25 if top1.get("cofactor_evidence_level") == "absent" else 0.0),
+    )
+    top1_family = fingerprint_family(str(top1_id), ontology)
+    top2_family = fingerprint_family(str(top2_id), ontology)
+    family_boundary_value = 0.0
+    if top1_family and top2_family and top1_family != top2_family:
+        family_boundary_value = max(0.0, 1.0 - min(top_gap / 0.2, 1.0))
+    if label and label.fingerprint_id and top1_family != fingerprint_family(label.fingerprint_id, ontology):
+        family_boundary_value = max(family_boundary_value, 0.8)
+    return {
+        "uncertainty": round(1.4 * uncertainty, 4),
+        "impact": round(1.1 * impact, 4),
+        "novelty": round(0.7 * novelty + unlabeled_bonus, 4),
+        "hard_negative_value": round(1.2 * hard_negative_value, 4),
+        "evidence_conflict": round(1.5 * evidence_conflict, 4),
+        "family_boundary_value": round(1.1 * family_boundary_value, 4),
+    }
+
+
+def _adversarial_negative_axes(
+    top1: dict[str, Any],
+    top1_score: float,
+    top2_score: float,
+    top1_family: str | None,
+    top2_family: str | None,
+    counterevidence: list[str],
+    abstain_threshold: float,
+) -> list[str]:
+    axes: list[str] = []
+    if abs(top1_score - abstain_threshold) <= 0.03:
+        axes.append("threshold_boundary")
+    if top1_score >= abstain_threshold:
+        axes.append("false_non_abstention")
+    if top1_family and top2_family and top1_family != top2_family and abs(top1_score - top2_score) <= 0.05:
+        axes.append("ontology_family_boundary")
+    if top1.get("cofactor_evidence_level") in {"ligand_supported", "role_inferred"}:
+        axes.append("cofactor_mimic")
+    if counterevidence:
+        axes.append("counterevidence_stress")
+    if float(top1.get("mechanistic_coherence_score", 0.0) or 0.0) >= 0.8:
+        axes.append("mechanistic_coherence_mimic")
+    return sorted(set(axes))
+
+
+def _adversarial_negative_score(
+    top1_score: float,
+    top2_score: float,
+    control_axes: list[str],
+    abstain_threshold: float,
+) -> float:
+    threshold_pressure = max(0.0, 1.0 - min(abs(top1_score - abstain_threshold) / 0.15, 1.0))
+    rank_ambiguity = max(0.0, 1.0 - min(abs(top1_score - top2_score) / 0.2, 1.0))
+    axis_weight = min(1.0, len(control_axes) / 4)
+    return round(1.2 * threshold_pressure + 0.8 * rank_ambiguity + 1.4 * axis_weight, 4)
+
+
+def _review_readiness_blockers(entry: dict[str, Any], top1_score: float) -> list[str]:
+    blockers: list[str] = []
+    if entry.get("status") != "ok":
+        blockers.append("geometry_status_not_ok")
+    if int(entry.get("resolved_residue_count", 0) or 0) < 3:
+        blockers.append("fewer_than_three_resolved_residues")
+    if not entry.get("mechanism_text_snippets"):
+        blockers.append("missing_mechanism_text")
+    if top1_score <= 0:
+        blockers.append("missing_retrieval_score")
+    return blockers
+
+
+def _apply_review_status(
+    existing: dict[str, Any],
+    review_status: str,
+    decision: dict[str, Any],
+) -> dict[str, Any]:
+    evidence = _expert_review_evidence(existing.get("evidence", {}), decision)
+    return {
+        **existing,
+        "review_status": review_status,
+        "evidence": evidence,
+    }
+
+
+def _factory_action_evidence(existing_evidence: dict[str, Any], row: dict[str, Any]) -> dict[str, Any]:
+    if not isinstance(existing_evidence, dict):
+        existing_evidence = {}
+    sources = list(existing_evidence.get("sources", []))
+    if "label_factory_audit" not in sources:
+        sources.append("label_factory_audit")
+    actions = list(existing_evidence.get("factory_actions", []))
+    actions.append(
+        {
+            "recommended_action": row.get("recommended_action"),
+            "factory_evidence_score": row.get("factory_evidence_score"),
+            "top1_fingerprint_id": row.get("top1_fingerprint_id"),
+            "top1_score": row.get("top1_score"),
+            "target_fingerprint_id": row.get("target_fingerprint_id"),
+            "target_score": row.get("target_score"),
+            "evidence_conflicts": row.get("evidence_conflicts", []),
+        }
+    )
+    return {
+        **existing_evidence,
+        "sources": [str(source) for source in sources if str(source)],
+        "retrieval_score": row.get("target_score") or row.get("top1_score"),
+        "cofactor_evidence_level": row.get("cofactor_coverage_status"),
+        "conflicts": row.get("evidence_conflicts", []),
+        "factory_actions": actions,
+    }
+
+
+def _accepted_expert_label_record(
+    entry_id: str,
+    existing: dict[str, Any] | None,
+    item: dict[str, Any],
+    decision: dict[str, Any],
+) -> dict[str, Any]:
+    label_type = decision.get("label_type")
+    if label_type not in {"seed_fingerprint", "out_of_scope"}:
+        raise ValueError(f"{entry_id}: accepted review requires valid label_type")
+    fingerprint_id = decision.get("fingerprint_id")
+    if label_type == "out_of_scope":
+        fingerprint_id = None
+    rationale = decision.get("rationale") or (existing or {}).get("rationale")
+    if not isinstance(rationale, str) or len(rationale) < 20:
+        raise ValueError(f"{entry_id}: accepted review requires rationale")
+    tier = decision.get("tier", "silver")
+    confidence = decision.get("confidence", "medium")
+    evidence_score = decision.get("evidence_score")
+    if evidence_score is None:
+        evidence_score = 1.0 if tier == "gold" else CONFIDENCE_EVIDENCE_SCORES.get(str(confidence), 0.65)
+    return {
+        "entry_id": entry_id,
+        "fingerprint_id": fingerprint_id,
+        "label_type": label_type,
+        "tier": tier,
+        "review_status": "expert_reviewed",
+        "confidence": confidence,
+        "evidence_score": evidence_score,
+        "evidence": _expert_review_evidence(
+            (existing or {}).get("evidence", {}),
+            decision,
+            queue_context=item.get("queue_context", {}),
+        ),
+        "rationale": rationale,
+    }
+
+
+def _family_propagation_blockers(
+    label: MechanismLabel | None,
+    top1: dict[str, Any],
+    top2: dict[str, Any],
+    target_family: str | None,
+    top1_family: str | None,
+    top2_family: str | None,
+) -> list[str]:
+    blockers: list[str] = []
+    if label and target_family and top1_family and target_family != top1_family:
+        blockers.append("target_family_top1_family_mismatch")
+    if top1_family and top2_family and top1_family != top2_family:
+        top1_score = float(top1.get("score", 0.0) or 0.0)
+        top2_score = float(top2.get("score", 0.0) or 0.0)
+        if abs(top1_score - top2_score) <= 0.05:
+            blockers.append("close_cross_family_top1_top2")
+    if top1.get("cofactor_evidence_level") == "absent":
+        blockers.append("top1_cofactor_absent")
+    if _fingerprint_component_scores(top1).get("counterevidence_reasons"):
+        blockers.append("top1_counterevidence_present")
+    if not label:
+        blockers.append("unlabeled_candidate_requires_direct_review")
+    return sorted(set(blockers))
+
+
+def _family_propagation_decision(
+    label: MechanismLabel | None,
+    blockers: list[str],
+) -> str:
+    if not label:
+        if blockers == ["unlabeled_candidate_requires_direct_review"]:
+            return "bronze_review_only"
+        return "block_propagation_pending_review"
+    if blockers:
+        return "block_family_propagation"
+    return "direct_label_no_propagation_issue"
+
+
+def _family_decision_priority(decision: str) -> int:
+    return {
+        "block_propagation_pending_review": 1,
+        "bronze_review_only": 2,
+        "block_family_propagation": 3,
+        "direct_label_no_propagation_issue": 9,
+    }.get(decision, 10)
+
+
+def _expert_review_evidence(
+    existing_evidence: dict[str, Any],
+    decision: dict[str, Any],
+    queue_context: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    if not isinstance(existing_evidence, dict):
+        existing_evidence = {}
+    sources = list(existing_evidence.get("sources", []))
+    if "expert_review_import" not in sources:
+        sources.append("expert_review_import")
+    expert_reviews = list(existing_evidence.get("expert_reviews", []))
+    expert_reviews.append(
+        {
+            "reviewer": decision.get("reviewer"),
+            "action": decision.get("action"),
+            "rationale": decision.get("rationale"),
+            "queue_rank": (queue_context or {}).get("rank"),
+        }
+    )
+    return {
+        **existing_evidence,
+        "sources": [str(source) for source in sources if str(source)],
+        "expert_reviews": expert_reviews,
+    }
 
 
 def analyze_structure_mapping_issues(
