@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 43
-- Measured elapsed time: 1518.4 minutes (25.31 hours)
+- Entries: 44
+- Measured elapsed time: 1573.3 minutes (26.22 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1505.0 measured minutes (25.08 hours)
+- post-v2: 1559.9 measured minutes (26.00 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,21 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 433
-- Evidence references logged: 335
+- Artifact references logged: 454
+- Evidence references logged: 346
 
 ## Recent Entries
-
-### 2026-05-10T14:37:36.208242+00:00 - post-v2
-
-- Task: Add 675 preview promotion readiness and review-debt triage
-- Time mode: measured
-- Measured minutes: 51.1
-- Started: 2026-05-10T13:45:58Z
-- Ended: 2026-05-10T14:37:04Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_review_debt_summary_650.json, artifacts/v3_review_evidence_gaps_675_preview.json, artifacts/v3_review_debt_summary_675_preview.json, artifacts/v3_label_factory_preview_summary_675.json, artifacts/v3_label_preview_promotion_readiness_675.json, work/label_preview_675_notes.md, docs/label_factory.md, work/handoff.md, work/scope.md, README.md
-- Evidence: 146 unit tests passed, validate passed, 675 preview mechanically ready but review_before_promoting, 61 preview debt rows, 37 carried preview debt rows, 24 new preview debt rows, 18 possible countable labels if promoted, 44 pending review rows, 0 hard negatives, 0 near misses, 0 false non-abstentions, 0 actionable in-scope failures
-- Notes: Documentation checked and updated during wrap-up; stale-lock recovery continued from accepted 650 state and left 675 unpromoted.
 
 ### 2026-05-10T15:39:13.368774+00:00 - post-v2
 
@@ -114,6 +103,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 175 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, 76 expert-label decision rows exported as no_decision, 0 expert-decision countable candidates, 76 repair candidates with full all-row table, 14/14 label-factory gates passed, scaling-quality audit covers expert repair gate, 50-iteration local perf check completed in tmp
 - Notes: Documentation checked and updated; normal measured locked run with 50 minutes productive work before wrap-up.
 
+### 2026-05-10T23:56:45.965586+00:00 - post-v2
+
+- Task: Gate expert-decision repair guardrails and discovery path artifacts
+- Time mode: measured
+- Measured minutes: 54.89
+- Started: 2026-05-10T23:01:27.184088Z
+- Ended: 2026-05-10T23:56:20.613793Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/learned_retrieval.py, src/catalytic_earth/cli.py, artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json, artifacts/v3_mechanism_ontology_gap_audit_700.json, artifacts/v3_learned_retrieval_manifest_700.json, artifacts/v3_sequence_similarity_failure_sets_700.json, artifacts/v3_label_factory_gate_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_label_factory_batch_summary.json, tests/test_labels.py, tests/test_cli.py, tests/test_learned_retrieval.py, tests/test_geometry_artifact_regression.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_factory_notes.md, work/label_preview_700_notes.md, work/expert_label_decision_review_700_notes.md
+- Evidence: 182 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, 15/15 label-factory gates passed, 21 priority expert-decision repair lanes kept non-countable, 0 repair-guardrail countable candidates, 115 ontology scope-pressure rows recorded as non-countable, 562 learned-retrieval eligible rows staged, 2 sequence-similarity duplicate clusters kept as controls, local perf checks completed in tmp
+- Notes: Documentation checked and updated; normal measured locked run with at least 50 minutes productive work before wrap-up.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -159,6 +159,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T19:48:49.955298+00:00: Next bottleneck is deciding whether kinase/phosphoryl-transfer mismatch rows need an ontology-family rule or expert reaction/substrate export before more count growth.
 - 2026-05-10T20:50:01.204415+00:00: Next bottleneck shifts from detecting reaction/substrate mismatch lanes to reducing review-only debt without expert-authority count growth.
 - 2026-05-10T22:51:19.534178+00:00: Next bottleneck is reducing expert-label decision review-only debt with evidence repair, not opening 725+ count growth.
+- 2026-05-10T23:56:45.965586+00:00: Next run should reduce expert-label repair debt or harden local-evidence checks before opening any 725+ tranche.
 
 ## Scope Adjustments
 
@@ -204,3 +205,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T19:48:49.955298+00:00: 700 scaling remains stopped at 624 countable labels until reaction/substrate mismatch lanes are resolved by ontology rule or expert review.
 - 2026-05-10T20:50:01.204415+00:00: 700 scaling remains stopped at 624 countable labels; reaction/substrate mismatch lanes now require complete expert-review export before more count growth.
 - 2026-05-10T22:51:19.534178+00:00: 700 scaling remains at 624 countable labels; active expert-label decision lanes now require complete non-countable review export and repair-candidate coverage before any further gated growth.
+- 2026-05-10T23:56:45.965586+00:00: 700 scaling remains at 624 countable labels; this run added repair guardrails and discovery-facing controls instead of count growth because review debt remains the limiting gate.

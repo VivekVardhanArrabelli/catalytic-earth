@@ -12,6 +12,7 @@ from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
+from .learned_retrieval import build_learned_retrieval_manifest
 from .labels import (
     analyze_cofactor_abstention_policy,
     analyze_cofactor_coverage,
@@ -22,8 +23,11 @@ from .labels import (
     analyze_review_evidence_gaps,
     analyze_review_debt_remediation,
     analyze_structure_mapping_issues,
+    audit_expert_label_decision_repair_guardrails,
     audit_label_scaling_quality,
+    audit_mechanism_ontology_gaps,
     audit_reaction_substrate_mismatches,
+    audit_sequence_similarity_failure_sets,
     audit_review_debt_remap_local_leads,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
@@ -705,6 +709,102 @@ def cmd_summarize_expert_label_decision_repair_candidates(
     return 0
 
 
+def cmd_audit_expert_label_decision_repair_guardrails(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.expert_label_decision_repair_candidates).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        repair_candidates = json.load(handle)
+    remap_local_lead_audit = None
+    if args.remap_local_lead_audit:
+        with Path(args.remap_local_lead_audit).open("r", encoding="utf-8") as handle:
+            remap_local_lead_audit = json.load(handle)
+    audit = audit_expert_label_decision_repair_guardrails(
+        repair_candidates,
+        remap_local_lead_audit=remap_local_lead_audit,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote expert-label decision repair guardrail audit to "
+        f"{args.out} ({audit['metadata']['priority_repair_row_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_mechanism_ontology_gaps(args: argparse.Namespace) -> int:
+    with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+        queue = json.load(handle)
+    repair_candidates = None
+    if args.expert_label_decision_repair_candidates:
+        with Path(args.expert_label_decision_repair_candidates).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            repair_candidates = json.load(handle)
+    family_guardrails = None
+    if args.family_propagation_guardrails:
+        with Path(args.family_propagation_guardrails).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            family_guardrails = json.load(handle)
+    audit = audit_mechanism_ontology_gaps(
+        queue,
+        expert_label_decision_repair_candidates=repair_candidates,
+        family_propagation_guardrails=family_guardrails,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote mechanism ontology gap audit to "
+        f"{args.out} ({audit['metadata']['candidate_scope_signal_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_learned_retrieval_manifest(args: argparse.Namespace) -> int:
+    with Path(args.geometry).open("r", encoding="utf-8") as handle:
+        geometry = json.load(handle)
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    ontology_gap_audit = None
+    if args.ontology_gap_audit:
+        with Path(args.ontology_gap_audit).open("r", encoding="utf-8") as handle:
+            ontology_gap_audit = json.load(handle)
+    manifest = build_learned_retrieval_manifest(
+        geometry,
+        retrieval,
+        load_labels(Path(args.labels)),
+        ontology_gap_audit=ontology_gap_audit,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), manifest)
+    print(
+        "Wrote learned retrieval manifest to "
+        f"{args.out} ({manifest['metadata']['eligible_entry_count']} eligible entries)"
+    )
+    return 0
+
+
+def cmd_audit_sequence_similarity_failure_sets(args: argparse.Namespace) -> int:
+    with Path(args.sequence_clusters).open("r", encoding="utf-8") as handle:
+        sequence_clusters = json.load(handle)
+    active_queue = None
+    if args.active_learning_queue:
+        with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+            active_queue = json.load(handle)
+    audit = audit_sequence_similarity_failure_sets(
+        sequence_clusters,
+        load_labels(Path(args.labels)),
+        active_learning_queue=active_queue,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote sequence similarity failure set audit to "
+        f"{args.out} ({audit['metadata']['duplicate_cluster_count']} clusters)"
+    )
+    return 0
+
+
 def cmd_import_label_review(args: argparse.Namespace) -> int:
     with Path(args.review).open("r", encoding="utf-8") as handle:
         review = json.load(handle)
@@ -1051,6 +1151,12 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             expert_label_decision_repair_candidates = json.load(handle)
+    expert_label_decision_repair_guardrail_audit = None
+    if args.expert_label_decision_repair_guardrail_audit:
+        with Path(args.expert_label_decision_repair_guardrail_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_decision_repair_guardrail_audit = json.load(handle)
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -1070,6 +1176,9 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         expert_label_decision_review_export=expert_label_decision_review_export,
         expert_label_decision_repair_candidates=(
             expert_label_decision_repair_candidates
+        ),
+        expert_label_decision_repair_guardrail_audit=(
+            expert_label_decision_repair_guardrail_audit
         ),
         batch_id=args.batch_id,
     )
@@ -1112,6 +1221,12 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             expert_label_repair_candidates = json.load(handle)
+    expert_label_repair_guardrail_audit = None
+    if args.expert_label_decision_repair_guardrail_audit:
+        with Path(args.expert_label_decision_repair_guardrail_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_repair_guardrail_audit = json.load(handle)
     gates = check_label_factory_gates(
         load_labels(Path(args.labels)),
         factory,
@@ -1123,6 +1238,9 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
         reaction_substrate_mismatch_review_export=mismatch_review_export,
         expert_label_decision_review_export=expert_label_review_export,
         expert_label_decision_repair_candidates=expert_label_repair_candidates,
+        expert_label_decision_repair_guardrail_audit=(
+            expert_label_repair_guardrail_audit
+        ),
     )
     write_json(Path(args.out), gates)
     print(
@@ -1706,6 +1824,96 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_summarize_expert_label_decision_repair_candidates
     )
 
+    expert_label_decision_repair_guardrail = subparsers.add_parser(
+        "audit-expert-label-decision-repair-guardrails",
+        help="audit priority expert-label repair lanes as non-countable evidence work",
+    )
+    expert_label_decision_repair_guardrail.add_argument(
+        "--expert-label-decision-repair-candidates",
+        default="artifacts/v3_expert_label_decision_repair_candidates.json",
+    )
+    expert_label_decision_repair_guardrail.add_argument(
+        "--remap-local-lead-audit",
+        default=None,
+    )
+    expert_label_decision_repair_guardrail.add_argument(
+        "--out",
+        default="artifacts/v3_expert_label_decision_repair_guardrail_audit.json",
+    )
+    expert_label_decision_repair_guardrail.set_defaults(
+        func=cmd_audit_expert_label_decision_repair_guardrails
+    )
+
+    ontology_gap_audit = subparsers.add_parser(
+        "audit-mechanism-ontology-gaps",
+        help="summarize review-only mechanism scope pressure beyond current ontology",
+    )
+    ontology_gap_audit.add_argument(
+        "--active-learning-queue",
+        default="artifacts/v3_active_learning_review_queue.json",
+    )
+    ontology_gap_audit.add_argument(
+        "--expert-label-decision-repair-candidates",
+        default=None,
+    )
+    ontology_gap_audit.add_argument(
+        "--family-propagation-guardrails",
+        default=None,
+    )
+    ontology_gap_audit.add_argument("--max-rows", type=int, default=60)
+    ontology_gap_audit.add_argument(
+        "--out",
+        default="artifacts/v3_mechanism_ontology_gap_audit.json",
+    )
+    ontology_gap_audit.set_defaults(func=cmd_audit_mechanism_ontology_gaps)
+
+    learned_retrieval_manifest = subparsers.add_parser(
+        "build-learned-retrieval-manifest",
+        help="build a representation-learning interface with heuristic controls",
+    )
+    learned_retrieval_manifest.add_argument(
+        "--geometry",
+        default="artifacts/v3_geometry_features_700.json",
+    )
+    learned_retrieval_manifest.add_argument(
+        "--retrieval",
+        default="artifacts/v3_geometry_retrieval_700.json",
+    )
+    learned_retrieval_manifest.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    learned_retrieval_manifest.add_argument("--ontology-gap-audit", default=None)
+    learned_retrieval_manifest.add_argument("--max-rows", type=int, default=120)
+    learned_retrieval_manifest.add_argument(
+        "--out",
+        default="artifacts/v3_learned_retrieval_manifest.json",
+    )
+    learned_retrieval_manifest.set_defaults(
+        func=cmd_build_learned_retrieval_manifest
+    )
+
+    sequence_failure_audit = subparsers.add_parser(
+        "audit-sequence-similarity-failure-sets",
+        help="prepare exact-reference sequence-cluster controls for propagation audits",
+    )
+    sequence_failure_audit.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy_700.json",
+    )
+    sequence_failure_audit.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    sequence_failure_audit.add_argument("--active-learning-queue", default=None)
+    sequence_failure_audit.add_argument(
+        "--out",
+        default="artifacts/v3_sequence_similarity_failure_sets.json",
+    )
+    sequence_failure_audit.set_defaults(
+        func=cmd_audit_sequence_similarity_failure_sets
+    )
+
     review_import = subparsers.add_parser(
         "import-label-review",
         help="apply expert review decisions to a label registry copy",
@@ -1755,6 +1963,7 @@ def build_parser() -> argparse.ArgumentParser:
     gate_check.add_argument("--reaction-substrate-mismatch-review-export", default=None)
     gate_check.add_argument("--expert-label-decision-review-export", default=None)
     gate_check.add_argument("--expert-label-decision-repair-candidates", default=None)
+    gate_check.add_argument("--expert-label-decision-repair-guardrail-audit", default=None)
     gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
     gate_check.set_defaults(func=cmd_check_label_factory_gates)
 
@@ -2051,6 +2260,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     scaling_quality.add_argument(
         "--expert-label-decision-repair-candidates",
+        default=None,
+    )
+    scaling_quality.add_argument(
+        "--expert-label-decision-repair-guardrail-audit",
         default=None,
     )
     scaling_quality.add_argument(

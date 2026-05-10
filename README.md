@@ -65,8 +65,10 @@ The repository currently contains:
     mechanism ontology, deterministic promotion/demotion audit, active-learning
     review queue, adversarial negative mining, family-propagation guardrails
     including reaction/substrate mismatch blockers,
-    expert-review export/import, review-debt triage, batch summary with
-    scaling-quality audit attachment, and a scaling gate.
+    expert-review export/import, review-debt triage, repair guardrail audits,
+    ontology-gap and sequence-similarity failure controls, learned-retrieval
+    manifest pathing, batch summary with scaling-quality audit attachment, and a
+    scaling gate.
 
 The 20- through 700-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
@@ -106,12 +108,13 @@ abstention/review rows, mines 100 adversarial negative controls from 466
 out-of-scope candidates, exports 182 expert-review items from the post-700
 review queue, exports all 76 active `expert_label_decision_needed` rows as
 review-only no-decision items, generates a non-countable repair-candidate plan
-for those 76 rows, and passes the 14-check 700-slice gate. The gate now also
+and priority repair guardrail audit for those 76 rows, and passes the 15-check
+700-slice gate. The gate now also
 fails if unlabeled candidate rows are truncated by the queue limit, if
 family-guardrail reaction/substrate mismatch lanes lack a dedicated review
 export, if expert-label decision rows are not explicitly routed as non-countable
 external-review items, or if those rows lack a complete non-countable repair
-candidate summary.
+candidate summary and repair guardrail audit.
 `artifacts/v3_label_batch_acceptance_check_700.json` records that the latest
 accepted batch added 5 labels for counting while 81 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
@@ -125,6 +128,13 @@ labels with review debt and 0 near-duplicate hits among audited rows. See
 `work/expert_label_decision_review_700_notes.md` for the clean label profiles,
 the top evidence gaps, the expert-decision review-only profile, and the
 prioritized non-countable repair buckets.
+The latest non-countable repair artifacts add three discovery-facing controls:
+`artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115 ontology
+scope-pressure rows without creating new families,
+`artifacts/v3_learned_retrieval_manifest_700.json` defines a future learned
+representation interface with 562 eligible rows and heuristic retrieval as the
+control, and `artifacts/v3_sequence_similarity_failure_sets_700.json` keeps the
+2 exact-reference duplicate clusters as sequence-similarity failure controls.
 The 700 review-debt repair pass now adds structure-aware remediation artifacts:
 `artifacts/v3_review_debt_remediation_700.json`,
 `artifacts/v3_review_debt_remediation_700_all.json`, and

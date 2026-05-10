@@ -828,6 +828,7 @@ class CliTests(unittest.TestCase):
             alternate_scan = root / "alternate_scan.json"
             out = root / "expert_label_decision_export.json"
             repair_out = root / "expert_label_decision_repair.json"
+            guardrail_out = root / "expert_label_decision_repair_guardrail.json"
             labels.write_text(
                 json.dumps(
                     [
@@ -864,7 +865,9 @@ class CliTests(unittest.TestCase):
                                 "top2_score": 0.45,
                                 "abstain_threshold": 0.4115,
                                 "cofactor_evidence_level": "ligand_supported",
-                                "readiness_blockers": [],
+                                "readiness_blockers": [
+                                    "fewer_than_three_resolved_residues"
+                                ],
                                 "counterevidence_reasons": [],
                                 "reaction_substrate_mismatch_reasons": [],
                                 "mechanism_text_snippets": [
@@ -1053,6 +1056,33 @@ class CliTests(unittest.TestCase):
                 ],
                 3,
             )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-expert-label-decision-repair-guardrails",
+                    "--expert-label-decision-repair-candidates",
+                    str(repair_out),
+                    "--out",
+                    str(guardrail_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            guardrail = json.loads(guardrail_out.read_text(encoding="utf-8"))
+            self.assertTrue(guardrail["metadata"]["guardrail_ready"])
+            self.assertEqual(guardrail["metadata"]["priority_repair_row_count"], 1)
+            self.assertEqual(
+                guardrail["metadata"]["countable_label_candidate_count"], 0
+            )
+            self.assertIn(
+                "active_site_mapping_or_structure_gap_unresolved",
+                guardrail["rows"][0]["non_countable_blockers"],
+            )
 
     def test_import_countable_review_rejects_automation_mismatch_accepts(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -1114,6 +1144,268 @@ class CliTests(unittest.TestCase):
             )
 
             self.assertEqual(json.loads(out.read_text(encoding="utf-8")), [])
+
+    def test_audit_mechanism_ontology_gaps_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            queue = root / "queue.json"
+            repair = root / "repair.json"
+            out = root / "ontology_gap.json"
+            queue.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "rank": 1,
+                                "entry_id": "m_csa:655",
+                                "entry_name": "glucokinase",
+                                "recommended_action": "expert_label_decision_needed",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "top1_ontology_family": "hydrolysis",
+                                "reaction_substrate_mismatch_reasons": [
+                                    "kinase_name_with_hydrolase_top1"
+                                ],
+                                "mechanism_text_snippets": [
+                                    "ATP phosphoryl transfer to glucose."
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            repair.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:655",
+                                "quality_risk_flags": [
+                                    "text_leakage_or_nonlocal_evidence_risk"
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-mechanism-ontology-gaps",
+                    "--active-learning-queue",
+                    str(queue),
+                    "--expert-label-decision-repair-candidates",
+                    str(repair),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(audit["metadata"]["candidate_scope_signal_count"], 1)
+            self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+            self.assertIn("transferase_phosphoryl", audit["rows"][0]["scope_signals"])
+
+    def test_build_learned_retrieval_manifest_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            geometry = root / "geometry.json"
+            retrieval = root / "retrieval.json"
+            labels = root / "labels.json"
+            out = root / "manifest.json"
+            geometry.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"artifact": "active_site_geometry_features"},
+                        "entries": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "entry_name": "labeled hydrolase",
+                                "status": "ok",
+                                "pdb_id": "1ABC",
+                                "resolved_residue_count": 3,
+                                "residues": [
+                                    {"code": "Ser"},
+                                    {"code": "His"},
+                                    {"code": "Asp"},
+                                ],
+                                "pairwise_distances_angstrom": [{}, {}, {}],
+                                "ligand_context": {"cofactor_families": ["metal"]},
+                                "pocket_context": {
+                                    "descriptors": {"polar_fraction": 0.2}
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            retrieval.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "geometry_aware_seed_fingerprint_retrieval"
+                        },
+                        "results": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "status": "ok",
+                                "top_fingerprints": [
+                                    {
+                                        "fingerprint_id": "ser_his_acid_hydrolase",
+                                        "score": 0.7,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels.write_text(
+                json.dumps(
+                    [
+                        {
+                            "entry_id": "m_csa:1",
+                            "fingerprint_id": "ser_his_acid_hydrolase",
+                            "label_type": "seed_fingerprint",
+                            "confidence": "high",
+                            "rationale": "Curated test label with enough rationale.",
+                            "tier": "bronze",
+                            "review_status": "automation_curated",
+                            "evidence_score": 0.85,
+                            "evidence": {"sources": ["test"]},
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-learned-retrieval-manifest",
+                    "--geometry",
+                    str(geometry),
+                    "--retrieval",
+                    str(retrieval),
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            manifest = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(manifest["metadata"]["eligible_entry_count"], 1)
+            self.assertTrue(manifest["rows"][0]["countable_training_label"])
+
+    def test_audit_sequence_similarity_failure_sets_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            clusters = root / "clusters.json"
+            labels = root / "labels.json"
+            queue = root / "queue.json"
+            out = root / "sequence_failures.json"
+            clusters.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "cluster_source": "reference_uniprot_exact_set",
+                            "cluster_count": 1,
+                        },
+                        "clusters": [
+                            {
+                                "sequence_cluster_id": "uniprot:P12345",
+                                "entry_ids": ["m_csa:1", "m_csa:2"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            labels.write_text(
+                json.dumps(
+                    [
+                        {
+                            "entry_id": "m_csa:1",
+                            "fingerprint_id": "ser_his_acid_hydrolase",
+                            "label_type": "seed_fingerprint",
+                            "confidence": "high",
+                            "rationale": "Curated test label with enough rationale.",
+                            "tier": "bronze",
+                            "review_status": "automation_curated",
+                            "evidence_score": 0.85,
+                            "evidence": {"sources": ["test"]},
+                        },
+                        {
+                            "entry_id": "m_csa:2",
+                            "fingerprint_id": None,
+                            "label_type": "out_of_scope",
+                            "confidence": "medium",
+                            "rationale": "Curated test label with enough rationale.",
+                            "tier": "bronze",
+                            "review_status": "automation_curated",
+                            "evidence_score": 0.65,
+                            "evidence": {"sources": ["test"]},
+                        },
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:2",
+                                "recommended_action": "expert_label_decision_needed",
+                                "top1_ontology_family": "hydrolysis",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-sequence-similarity-failure-sets",
+                    "--sequence-clusters",
+                    str(clusters),
+                    "--labels",
+                    str(labels),
+                    "--active-learning-queue",
+                    str(queue),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(audit["metadata"]["duplicate_cluster_count"], 1)
+            self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
 
     def test_check_label_preview_promotion_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -1233,6 +1525,7 @@ class CliTests(unittest.TestCase):
             reaction_mismatch_audit = root / "reaction_mismatch_audit.json"
             expert_label_export = root / "expert_label_export.json"
             expert_label_repair = root / "expert_label_repair.json"
+            expert_label_repair_guardrail = root / "expert_label_repair_guardrail.json"
             out = root / "audit.json"
             acceptance.write_text(
                 json.dumps(
@@ -1420,6 +1713,21 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            expert_label_repair_guardrail.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "expert_label_decision_repair_guardrail_audit",
+                            "guardrail_ready": True,
+                            "all_priority_lanes_non_countable": True,
+                            "priority_repair_row_count": 1,
+                            "countable_label_candidate_count": 0,
+                        },
+                        "rows": [{"entry_id": "m_csa:650"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -1459,6 +1767,8 @@ class CliTests(unittest.TestCase):
                     str(expert_label_export),
                     "--expert-label-decision-repair-candidates",
                     str(expert_label_repair),
+                    "--expert-label-decision-repair-guardrail-audit",
+                    str(expert_label_repair_guardrail),
                     "--out",
                     str(out),
                 ],

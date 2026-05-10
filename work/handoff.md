@@ -179,8 +179,8 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - Label factory at 700: 79 bronze-to-silver promotions proposed, 188 active
   learning review rows queued, 100 adversarial negatives mined, 182
   expert-review export items generated, 76 active expert-label decision rows
-  routed through a review-only export and complete repair-candidate summary,
-  and 14/14 gate checks passing.
+  routed through a review-only export, complete repair-candidate summary, and
+  priority repair guardrail audit, and 15/15 gate checks passing.
 - Label batch summary: 9/9 accepted batches, 0 blockers, 0 hard negatives,
   0 near misses, 0 false non-abstentions, 0 actionable in-scope failures, and
   all active queues retained their unlabeled candidates.
@@ -207,6 +207,21 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   mapping/structure-gap repairs, 7 text-leakage/nonlocal-evidence guardrails,
   30 cofactor-evidence repairs, 1 Ser-His/metal-boundary review, 1 sibling
   mechanism-boundary review, and 23 external expert-label decisions.
+- 700 expert-label repair guardrail audit: 21 priority repair rows remain
+  non-countable, including 14 active-site mapping/structure-gap rows and 9
+  text-leakage/nonlocal-evidence rows. Three conservative-remap local expected
+  family evidence leads (`m_csa:577`, `m_csa:592`, and `m_csa:641`) remain
+  review-only, with 0 countable label candidates.
+- 700 mechanism ontology gap audit: 115 non-countable scope-pressure rows
+  expose transferase phosphoryl, lyase, isomerase, oxidoreductase long-tail,
+  methyl-transfer, and glycan chemistry pressure without creating a new
+  ontology family from keyword evidence alone.
+- 700 learned retrieval manifest: 562 eligible labeled entries are staged for a
+  future learned-representation path, with 160 emitted rows and the current
+  heuristic geometry retrieval preserved as the required control.
+- 700 sequence-similarity failure-set audit: 2 exact-reference duplicate
+  clusters are kept as non-countable controls before any family propagation or
+  learned-retrieval split.
 - Review debt summary: 81 evidence-gap rows, all `needs_more_evidence`, with
   61 carried rows and 20 new rows. New-debt next actions are 16 alternate
   structure/cofactor-source inspections, 2 expert-review decisions, 1 family
@@ -271,7 +286,7 @@ PYTHONPATH=src python -m catalytic_earth.cli summarize-geometry-slices --artifac
 PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_700.json --retrieval artifacts/v3_geometry_retrieval_700.json --out artifacts/v3_label_expansion_candidates_700.json
 PYTHONPATH=src python -m catalytic_earth.cli build-family-propagation-guardrails --geometry artifacts/v3_geometry_features_700.json --retrieval artifacts/v3_geometry_retrieval_700.json --labels data/registries/curated_mechanism_labels.json --out artifacts/v3_family_propagation_guardrails_700.json
 PYTHONPATH=src python -m catalytic_earth.cli build-family-propagation-guardrails --geometry artifacts/v3_geometry_features_700.json --retrieval artifacts/v3_geometry_retrieval_700.json --labels artifacts/v3_countable_labels_batch_675.json --out artifacts/v3_family_propagation_guardrails_700_preview_batch.json
-PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates --label-factory-audit artifacts/v3_label_factory_audit_700.json --applied-label-factory artifacts/v3_label_factory_applied_labels_700.json --active-learning-queue artifacts/v3_active_learning_review_queue_700.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_700.json --expert-review-export artifacts/v3_expert_review_export_700_post_batch.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700.json --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json --expert-label-decision-review-export artifacts/v3_expert_label_decision_review_export_700.json --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700.json --out artifacts/v3_label_factory_gate_check_700.json
+PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates --label-factory-audit artifacts/v3_label_factory_audit_700.json --applied-label-factory artifacts/v3_label_factory_applied_labels_700.json --active-learning-queue artifacts/v3_active_learning_review_queue_700.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_700.json --expert-review-export artifacts/v3_expert_review_export_700_post_batch.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700.json --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json --expert-label-decision-review-export artifacts/v3_expert_label_decision_review_export_700.json --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700.json --expert-label-decision-repair-guardrail-audit artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json --out artifacts/v3_label_factory_gate_check_700.json
 PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json --active-learning-queue artifacts/v3_active_learning_review_queue_700.json --baseline-review-debt artifacts/v3_review_debt_summary_675.json --max-rows 45 --out artifacts/v3_review_debt_summary_700.json
 PYTHONPATH=src python -m catalytic_earth.cli analyze-review-debt-remediation --review-debt artifacts/v3_review_debt_summary_700.json --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json --graph artifacts/v1_graph_700.json --geometry artifacts/v3_geometry_features_700.json --debt-status new --out artifacts/v3_review_debt_remediation_700.json
 PYTHONPATH=src python -m catalytic_earth.cli analyze-review-debt-remediation --review-debt artifacts/v3_review_debt_summary_700.json --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json --graph artifacts/v1_graph_700.json --geometry artifacts/v3_geometry_features_700.json --debt-status all --out artifacts/v3_review_debt_remediation_700_all.json
@@ -282,8 +297,12 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-review-debt-remap-local-leads
 PYTHONPATH=src python -m catalytic_earth.cli audit-reaction-substrate-mismatches --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json --active-learning-queue artifacts/v3_active_learning_review_queue_700.json --out artifacts/v3_reaction_substrate_mismatch_audit_700.json
 PYTHONPATH=src python -m catalytic_earth.cli build-reaction-substrate-mismatch-review-export --reaction-substrate-mismatch-audit artifacts/v3_reaction_substrate_mismatch_audit_700.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700.json --labels data/registries/curated_mechanism_labels.json --out artifacts/v3_reaction_substrate_mismatch_review_export_700.json
 PYTHONPATH=src python -m catalytic_earth.cli build-review-decision-batch --review artifacts/v3_reaction_substrate_mismatch_review_export_700.json --batch-id 700_reaction_substrate_mismatch_review --reviewer automation_label_factory --out artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json
+PYTHONPATH=src python -m catalytic_earth.cli audit-expert-label-decision-repair-guardrails --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700_all.json --remap-local-lead-audit artifacts/v3_review_debt_remap_local_lead_audit_700.json --out artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json
+PYTHONPATH=src python -m catalytic_earth.cli audit-mechanism-ontology-gaps --active-learning-queue artifacts/v3_active_learning_review_queue_700.json --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700_all.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700.json --max-rows 80 --out artifacts/v3_mechanism_ontology_gap_audit_700.json
+PYTHONPATH=src python -m catalytic_earth.cli build-learned-retrieval-manifest --geometry artifacts/v3_geometry_features_700.json --retrieval artifacts/v3_geometry_retrieval_700.json --labels data/registries/curated_mechanism_labels.json --ontology-gap-audit artifacts/v3_mechanism_ontology_gap_audit_700.json --max-rows 160 --out artifacts/v3_learned_retrieval_manifest_700.json
+PYTHONPATH=src python -m catalytic_earth.cli audit-sequence-similarity-failure-sets --sequence-clusters artifacts/v3_sequence_cluster_proxy_700.json --labels data/registries/curated_mechanism_labels.json --active-learning-queue artifacts/v3_active_learning_review_queue_700.json --out artifacts/v3_sequence_similarity_failure_sets_700.json
 PYTHONPATH=src python -m catalytic_earth.cli build-sequence-cluster-proxy --graph artifacts/v1_graph_700.json --out artifacts/v3_sequence_cluster_proxy_700.json
-PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch-id 700_preview --acceptance artifacts/v3_label_batch_acceptance_check_700_preview.json --readiness artifacts/v3_label_preview_promotion_readiness_700.json --review-debt artifacts/v3_review_debt_summary_700_preview.json --review-evidence-gaps artifacts/v3_review_evidence_gaps_700_preview.json --active-learning-queue artifacts/v3_active_learning_review_queue_700_preview_batch.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700_preview_batch.json --hard-negatives artifacts/v3_hard_negative_controls_700_preview_batch.json --decision-batch artifacts/v3_expert_review_decision_batch_700_preview.json --structure-mapping artifacts/v3_structure_mapping_issues_700.json --expert-review-export artifacts/v3_expert_review_export_700_preview_post_batch.json --sequence-clusters artifacts/v3_sequence_cluster_proxy_700.json --alternate-structure-scan artifacts/v3_review_debt_alternate_structure_scan_700.json --remap-local-lead-audit artifacts/v3_review_debt_remap_local_lead_audit_700.json --reaction-substrate-mismatch-audit artifacts/v3_reaction_substrate_mismatch_audit_700.json --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json --expert-label-decision-review-export artifacts/v3_expert_label_decision_review_export_700.json --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700.json --out artifacts/v3_label_scaling_quality_audit_700_preview.json
+PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch-id 700_preview --acceptance artifacts/v3_label_batch_acceptance_check_700_preview.json --readiness artifacts/v3_label_preview_promotion_readiness_700.json --review-debt artifacts/v3_review_debt_summary_700_preview.json --review-evidence-gaps artifacts/v3_review_evidence_gaps_700_preview.json --active-learning-queue artifacts/v3_active_learning_review_queue_700_preview_batch.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700_preview_batch.json --hard-negatives artifacts/v3_hard_negative_controls_700_preview_batch.json --decision-batch artifacts/v3_expert_review_decision_batch_700_preview.json --structure-mapping artifacts/v3_structure_mapping_issues_700.json --expert-review-export artifacts/v3_expert_review_export_700_preview_post_batch.json --sequence-clusters artifacts/v3_sequence_cluster_proxy_700.json --alternate-structure-scan artifacts/v3_review_debt_alternate_structure_scan_700.json --remap-local-lead-audit artifacts/v3_review_debt_remap_local_lead_audit_700.json --reaction-substrate-mismatch-audit artifacts/v3_reaction_substrate_mismatch_audit_700.json --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json --expert-label-decision-review-export artifacts/v3_expert_label_decision_review_export_700.json --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700.json --expert-label-decision-repair-guardrail-audit artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json --out artifacts/v3_label_scaling_quality_audit_700_preview.json
 ```
 
 ## Next Agent Start Here
@@ -293,32 +312,33 @@ label decisions unless a regression appears. The canonical registry has 624
 countable labels; the latest accepted labels are `m_csa:686`, `m_csa:688`,
 `m_csa:694`, `m_csa:697`, and `m_csa:699`.
 
-The next bounded task is still quality repair, not another tranche. Start with
-`artifacts/v3_expert_label_decision_review_export_700.json`,
-`artifacts/v3_expert_label_decision_decision_batch_700.json`,
-`artifacts/v3_expert_label_decision_repair_candidates_700.json`,
-`artifacts/v3_expert_label_decision_repair_candidates_700_all.json`,
-`work/expert_label_decision_review_700_notes.md`, and
-`artifacts/v3_review_debt_remap_local_lead_audit_700.json`. The
-reaction/substrate mismatch lane now has a decision: do not create a
-kinase/phosphoryl-transfer ontology family from keyword evidence alone. Route
-all 24 hydrolase-top1 kinase or ATP phosphoryl-transfer mismatch lanes through
-expert reaction/substrate review first. The generated decision batch keeps all
-24 as `no_decision`, records 17 current out-of-scope labels and 7 unlabeled
-pending-review rows, and confirms 0 labeled seed mismatches. The 700 gate now
-has 14 checks and requires complete mismatch-lane export, complete
-expert-label decision export, and a complete non-countable expert-label repair
-candidate summary when those lanes are present.
+Label-quality confidence call for this run: operationally good enough to do
+repair and discovery-path work, but not good enough for count growth. Evidence:
+the 700 factory gate passes 15/15 checks; there are 0 hard negatives, 0 near
+misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures,
+0 accepted labels with review debt, 0 expert-decision countable candidates, and
+0 repair-guardrail countable candidates. The blocker is review debt: 81
+review-state decisions remain, with 21 priority expert-label repair lanes and
+14 active-site mapping/structure-gap rows still non-countable. Do not open a
+725+ tranche until one review-only lane is materially reduced or a stronger
+blocker is documented.
 
-The expert-label decision review-only route is now in place. The next
-highest-value repair is to reduce the 76-row expert-decision debt surface
-without expert-authority count growth. Start with non-mismatch, non-countable
-quality repair: investigate the 14 active-site mapping/structure-gap rows or
-the 7 prioritized text-leakage/nonlocal-evidence repair-bucket rows, and add a
-rule/artifact that
-keeps any repaired lane non-countable unless it clears local mechanistic
-evidence. Do not open 725+ label growth until at least one review-only lane is
-materially reduced or a stronger blocker is documented.
+Next bounded task: reduce expert-label repair debt or improve evidence on a
+review-only lane. Start with
+`artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json`,
+`artifacts/v3_expert_label_decision_repair_candidates_700_all.json`,
+`artifacts/v3_mechanism_ontology_gap_audit_700.json`,
+`artifacts/v3_learned_retrieval_manifest_700.json`,
+`artifacts/v3_sequence_similarity_failure_sets_700.json`, and
+`work/expert_label_decision_review_700_notes.md`.
+
+Highest-value options: inspect the 14 priority rows missing local mechanistic
+evidence (`missing_local_mechanistic_evidence_entry_ids` in the repair
+guardrail audit), or take one conservative-remap lead (`m_csa:577`,
+`m_csa:592`, `m_csa:641`) and add a stricter local-evidence or remap-basis
+artifact without making it countable. Do not create a kinase/phosphoryl-transfer
+ontology family from keyword evidence; the mechanism ontology gap audit is
+pressure only.
 
 Keep `m_csa:650` in review unless explicit metal-catalysis evidence is added;
 it is the regression case for Ser-His text with a metal-dependent top retrieval
@@ -342,22 +362,25 @@ Known blockers:
 
 ## Run Timing
 
-- STARTED_AT: 2026-05-10T21:59:58Z
-- ENDED_AT: 2026-05-10T22:50:49Z
-- Measured elapsed time: 50.850 minutes
+- STARTED_AT: 2026-05-10T23:01:27.184088Z
+- ENDED_AT: 2026-05-10T23:56:20.613793Z
+- Measured elapsed time: 54.890 minutes
 - Documentation checked and updated across README, docs/label_factory.md,
   work/scope.md, work/handoff.md, work/label_factory_notes.md,
   work/label_preview_700_notes.md, and
   work/expert_label_decision_review_700_notes.md before status regeneration.
 - Normal locked run from the accepted 700 state did not grow the countable
-  registry. It added a dedicated expert-label decision review export,
-  no-decision batch, top-30 repair candidate summary, and full 76-row repair
-  table; all expert-decision rows remain non-countable.
-- The 700 gate now passes 14/14 checks and requires complete mismatch-lane
-  export, complete expert-label decision export, and complete expert-label
-  repair-candidate coverage with 0 countable candidates. The scaling-quality
-  audit also carries the repair-candidate gate.
+  registry. It added an expert-label decision repair guardrail audit,
+  mechanism-ontology gap audit, learned-retrieval manifest, and
+  sequence-similarity failure-set audit.
+- The 700 gate now passes 15/15 checks and requires complete mismatch-lane
+  export, complete expert-label decision export, complete expert-label
+  repair-candidate coverage, and complete repair-guardrail coverage with 0
+  countable repair candidates. The scaling-quality audit also carries the
+  repair-guardrail gate.
 - Final verification passed: `git diff --check`, `PYTHONPATH=src python -m
   catalytic_earth.cli validate`, and `PYTHONPATH=src python -m unittest
-  discover -s tests` passed with 175 tests. A 50-iteration local perf check was
-  written to `/tmp/catalytic_earth_wrap_perf_check_50.json`.
+  discover -s tests` passed with 182 tests. Local perf checks were written to
+  `/tmp/catalytic_earth_midrun_perf_check_200.json`,
+  `/tmp/catalytic_earth_midrun_perf_check_250.json`, and
+  `/tmp/catalytic_earth_pre_wrap_perf_check_80.json`.

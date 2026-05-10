@@ -7,6 +7,7 @@
     "applied_label_actions_ready": true,
     "demotion_or_abstention_demonstrated": true,
     "expert_label_decision_repair_candidates_ready": true,
+    "expert_label_decision_repair_guardrails_ready": true,
     "expert_label_decision_review_export_ready": true,
     "expert_review_export_diversity_ready": true,
     "expert_review_export_ready": true,
@@ -183,6 +184,11 @@
     "expert_label_decision_repair_candidates_countable_label_candidate_count": 0,
     "expert_label_decision_repair_candidates_missing_entry_ids": [],
     "expert_label_decision_repair_candidates_present": true,
+    "expert_label_decision_repair_guardrail_audit_present": true,
+    "expert_label_decision_repair_guardrail_countable_label_candidate_count": 0,
+    "expert_label_decision_repair_guardrail_local_evidence_review_only_count": 3,
+    "expert_label_decision_repair_guardrail_priority_repair_row_count": 21,
+    "expert_label_decision_repair_guardrail_ready": true,
     "expert_label_decision_review_export_countable_label_candidate_count": 0,
     "expert_label_decision_review_export_entry_ids": [
       "m_csa:494",
@@ -291,11 +297,11 @@
       "m_csa:670",
       "m_csa:696"
     ],
-    "gate_count": 14,
+    "gate_count": 15,
     "label_count": 624,
     "method": "label_factory_gate_check",
     "omitted_underrepresented_queue_entry_ids": [],
-    "passed_gate_count": 14,
+    "passed_gate_count": 15,
     "reaction_substrate_mismatch_review_export_entry_ids": [
       "m_csa:35",
       "m_csa:51",

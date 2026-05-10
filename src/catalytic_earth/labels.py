@@ -3370,6 +3370,493 @@ def _expert_label_decision_repair_action(repair_bucket: str) -> str:
     }.get(repair_bucket, "external expert label decision required")
 
 
+def audit_expert_label_decision_repair_guardrails(
+    expert_label_decision_repair_candidates: dict[str, Any],
+    *,
+    remap_local_lead_audit: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Audit priority expert-label repair lanes before any countable import."""
+    repair_meta = expert_label_decision_repair_candidates.get("metadata", {})
+    remap_meta = (remap_local_lead_audit or {}).get("metadata", {})
+    strict_remap_ids = set(
+        _sorted_entry_ids(remap_meta.get("strict_remap_guardrail_entry_ids", []))
+    )
+    family_review_ids = set(
+        _sorted_entry_ids(remap_meta.get("expert_family_boundary_review_entry_ids", []))
+    )
+    reaction_review_ids = set(
+        _sorted_entry_ids(
+            remap_meta.get("expert_reaction_substrate_review_entry_ids", [])
+        )
+    )
+
+    priority_rows: list[dict[str, Any]] = []
+    for row in expert_label_decision_repair_candidates.get("rows", []):
+        if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
+            continue
+        flags = set(_sorted_strings(row.get("quality_risk_flags", [])))
+        if flags & {
+            "active_site_mapping_or_structure_gap",
+            "text_leakage_or_nonlocal_evidence_risk",
+        }:
+            priority_rows.append(row)
+
+    audit_rows: list[dict[str, Any]] = []
+    for row in priority_rows:
+        entry_id = str(row["entry_id"])
+        flags = set(_sorted_strings(row.get("quality_risk_flags", [])))
+        readiness_blockers = _sorted_strings(row.get("readiness_blockers", []))
+        counterevidence = _sorted_strings(row.get("counterevidence_reasons", []))
+        mismatch_reasons = _sorted_strings(
+            row.get("reaction_substrate_mismatch_reasons", [])
+        )
+        rem_context = row.get("review_debt_remediation_context")
+        if not isinstance(rem_context, dict):
+            rem_context = {}
+        scan_context = row.get("alternate_structure_scan_context")
+        if not isinstance(scan_context, dict):
+            scan_context = {}
+
+        local_hit_count = int(scan_context.get("local_expected_family_hit_count", 0) or 0)
+        structure_wide_hit_count = int(
+            scan_context.get("structure_wide_expected_family_hit_count", 0) or 0
+        )
+        local_observed = (
+            bool(scan_context.get("local_active_site_expected_family_observed"))
+            or local_hit_count > 0
+        )
+        selected_observed = bool(
+            scan_context.get("selected_structure_expected_family_observed")
+        )
+        alternate_observed = bool(
+            scan_context.get("alternate_structure_expected_family_observed")
+        )
+        selected_position_count = int(
+            rem_context.get("selected_pdb_residue_position_count", 0) or 0
+        )
+        alternate_position_count = int(
+            rem_context.get("alternate_pdb_with_residue_positions_count", 0) or 0
+        )
+
+        blockers = {"external_expert_decision_required"}
+        if row.get("countable_label_candidate") is True:
+            blockers.add("repair_candidate_marked_countable")
+        if "active_site_mapping_or_structure_gap" in flags:
+            blockers.add("active_site_mapping_or_structure_gap_unresolved")
+        if "text_leakage_or_nonlocal_evidence_risk" in flags:
+            blockers.add("text_leakage_or_nonlocal_evidence_risk_unresolved")
+        if "cofactor_family_ambiguity" in flags and not local_observed:
+            blockers.add("missing_local_active_site_expected_family_evidence")
+        if counterevidence:
+            blockers.add("counterevidence_boundary_unresolved")
+        if mismatch_reasons or entry_id in reaction_review_ids:
+            blockers.add("reaction_substrate_mismatch_review_required")
+        if entry_id in family_review_ids:
+            blockers.add("expert_family_boundary_review_required")
+        if entry_id in strict_remap_ids or (local_observed and alternate_position_count == 0):
+            blockers.add("strict_conservative_remap_guardrail")
+        if readiness_blockers:
+            blockers.add("readiness_blockers_unresolved")
+        if selected_position_count and selected_position_count < 3:
+            blockers.add("insufficient_selected_structure_residue_support")
+        if structure_wide_hit_count > 0 and not local_observed:
+            blockers.add("structure_wide_only_evidence_noncountable")
+
+        if local_observed and (
+            entry_id in strict_remap_ids or alternate_position_count == 0
+        ):
+            local_evidence_status = (
+                "local_expected_family_evidence_from_conservative_remap_review_only"
+            )
+        elif local_observed:
+            local_evidence_status = (
+                "local_expected_family_evidence_observed_review_only"
+            )
+        elif structure_wide_hit_count > 0 or selected_observed or alternate_observed:
+            local_evidence_status = (
+                "nonlocal_or_structure_wide_expected_family_evidence_only"
+            )
+        elif scan_context:
+            local_evidence_status = "no_local_expected_family_evidence"
+        else:
+            local_evidence_status = "not_scanned_or_no_alternate_context"
+
+        audit_rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": row.get("entry_name"),
+                "repair_bucket": row.get("repair_bucket"),
+                "quality_risk_flags": _sorted_strings(flags),
+                "readiness_blockers": readiness_blockers,
+                "counterevidence_reasons": counterevidence,
+                "reaction_substrate_mismatch_reasons": mismatch_reasons,
+                "local_mechanistic_evidence_status": local_evidence_status,
+                "local_expected_family_hit_count": local_hit_count,
+                "structure_wide_expected_family_hit_count": structure_wide_hit_count,
+                "selected_pdb_id": rem_context.get("selected_pdb_id"),
+                "selected_pdb_residue_position_count": selected_position_count,
+                "alternate_pdb_with_residue_positions_count": alternate_position_count,
+                "strict_remap_guardrail": entry_id in strict_remap_ids,
+                "countable_label_candidate": False,
+                "non_countable_blockers": sorted(blockers),
+                "recommended_next_action": (
+                    "keep as review-only evidence repair; require local "
+                    "mechanistic evidence plus external expert resolution before "
+                    "any countable import"
+                ),
+            }
+        )
+
+    blocker_counts = Counter(
+        blocker for row in audit_rows for blocker in row["non_countable_blockers"]
+    )
+    local_evidence_entry_ids = _sorted_entry_ids(
+        row["entry_id"]
+        for row in audit_rows
+        if row["local_mechanistic_evidence_status"]
+        in {
+            "local_expected_family_evidence_from_conservative_remap_review_only",
+            "local_expected_family_evidence_observed_review_only",
+        }
+    )
+    structure_wide_only_entry_ids = _sorted_entry_ids(
+        row["entry_id"]
+        for row in audit_rows
+        if row["local_mechanistic_evidence_status"]
+        == "nonlocal_or_structure_wide_expected_family_evidence_only"
+    )
+    missing_local_entry_ids = _sorted_entry_ids(
+        row["entry_id"]
+        for row in audit_rows
+        if row["local_mechanistic_evidence_status"]
+        in {"no_local_expected_family_evidence", "not_scanned_or_no_alternate_context"}
+    )
+    priority_entry_ids = _sorted_entry_ids(row["entry_id"] for row in audit_rows)
+    countable_candidate_count = sum(
+        1 for row in audit_rows if row.get("countable_label_candidate") is True
+    )
+    candidate_count = int(repair_meta.get("candidate_count", 0) or 0)
+    full_table_input = bool(repair_meta.get("all_candidates_retained")) or (
+        candidate_count > 0
+        and len(expert_label_decision_repair_candidates.get("rows", []))
+        >= candidate_count
+    )
+    all_priority_lanes_non_countable = (
+        countable_candidate_count == 0
+        and all(row["non_countable_blockers"] for row in audit_rows)
+    )
+    guardrail_ready = full_table_input and all_priority_lanes_non_countable
+    return {
+        "metadata": {
+            "method": "expert_label_decision_repair_guardrail_audit",
+            "source_method": repair_meta.get("method"),
+            "candidate_count": candidate_count,
+            "full_table_input": full_table_input,
+            "priority_repair_row_count": len(audit_rows),
+            "priority_repair_entry_ids": priority_entry_ids,
+            "active_site_mapping_or_structure_gap_row_count": sum(
+                1
+                for row in audit_rows
+                if "active_site_mapping_or_structure_gap"
+                in row.get("quality_risk_flags", [])
+            ),
+            "text_leakage_or_nonlocal_evidence_risk_row_count": sum(
+                1
+                for row in audit_rows
+                if "text_leakage_or_nonlocal_evidence_risk"
+                in row.get("quality_risk_flags", [])
+            ),
+            "local_expected_family_evidence_review_only_count": len(
+                local_evidence_entry_ids
+            ),
+            "local_expected_family_evidence_review_only_entry_ids": (
+                local_evidence_entry_ids
+            ),
+            "structure_wide_only_evidence_entry_ids": structure_wide_only_entry_ids,
+            "missing_local_mechanistic_evidence_entry_ids": missing_local_entry_ids,
+            "strict_remap_guardrail_entry_ids": _sorted_entry_ids(strict_remap_ids),
+            "non_countable_blocker_counts": dict(sorted(blocker_counts.items())),
+            "countable_label_candidate_count": countable_candidate_count,
+            "all_priority_lanes_non_countable": all_priority_lanes_non_countable,
+            "guardrail_ready": guardrail_ready,
+            "audit_recommendation": (
+                "continue_repair_before_count_growth"
+                if audit_rows
+                else "no_priority_repair_lanes_detected"
+            ),
+            "review_only_rule": (
+                "priority expert-label repair lanes stay non-countable unless "
+                "local mechanistic evidence is explicit and external expert "
+                "resolution removes review blockers"
+            ),
+        },
+        "rows": audit_rows,
+    }
+
+
+ONTOLOGY_GAP_PATTERNS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    (
+        "transferase_phosphoryl",
+        ("kinase", "phosphoryl", "phosphotransferase", "atp "),
+    ),
+    ("transferase_methyl", ("methyltransferase", "methyl transfer")),
+    ("lyase", (" lyase", "aldolase", "decarboxylase", "dehydratase")),
+    ("isomerase", ("isomerase", "mutase", "epimerase", "racemase")),
+    (
+        "oxidoreductase_long_tail",
+        ("dehydrogenase", "reductase", "oxidase", "oxygenase", "catalase"),
+    ),
+    ("glycan_chemistry", ("glycosylase", "glycosidase", "dextranase")),
+)
+
+
+def audit_mechanism_ontology_gaps(
+    active_learning_queue: dict[str, Any],
+    *,
+    expert_label_decision_repair_candidates: dict[str, Any] | None = None,
+    family_propagation_guardrails: dict[str, Any] | None = None,
+    max_rows: int = 60,
+) -> dict[str, Any]:
+    """Summarize non-countable mechanism scope pressure beyond current ontology."""
+    ontology = load_mechanism_ontology()
+    existing_families = sorted(
+        str(family.get("id"))
+        for family in ontology.get("families", [])
+        if isinstance(family, dict) and family.get("id")
+    )
+    repair_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (expert_label_decision_repair_candidates or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    family_guardrail_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (family_propagation_guardrails or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    rows: list[dict[str, Any]] = []
+    for queue_row in active_learning_queue.get("rows", []):
+        if not isinstance(queue_row, dict) or not isinstance(
+            queue_row.get("entry_id"), str
+        ):
+            continue
+        entry_id = str(queue_row["entry_id"])
+        repair_row = repair_by_entry.get(entry_id, {})
+        family_guardrail_row = family_guardrail_by_entry.get(entry_id, {})
+        text = _ontology_gap_text(queue_row, repair_row)
+        scope_signals = _ontology_gap_scope_signals(text)
+        if not scope_signals:
+            continue
+        mismatch_reasons = _sorted_strings(
+            queue_row.get("reaction_substrate_mismatch_reasons", [])
+        ) or _sorted_strings(
+            family_guardrail_row.get("reaction_substrate_mismatch_reasons", [])
+        )
+        quality_flags = _sorted_strings(repair_row.get("quality_risk_flags", []))
+        blockers = {"keyword_only_scope_signal", "external_expert_review_required"}
+        if mismatch_reasons:
+            blockers.add("reaction_substrate_mismatch_review_required")
+        if queue_row.get("recommended_action") == "expert_label_decision_needed":
+            blockers.add("expert_label_decision_required")
+        if "cofactor_family_ambiguity" in quality_flags:
+            blockers.add("cofactor_family_ambiguity")
+        if "counterevidence_boundary" in quality_flags:
+            blockers.add("counterevidence_boundary")
+        if "active_site_mapping_or_structure_gap" in quality_flags:
+            blockers.add("active_site_mapping_or_structure_gap")
+        if "text_leakage_or_nonlocal_evidence_risk" in quality_flags:
+            blockers.add("text_leakage_or_nonlocal_evidence_risk")
+
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": queue_row.get("entry_name")
+                or repair_row.get("entry_name"),
+                "rank": queue_row.get("rank"),
+                "scope_signals": scope_signals,
+                "top1_fingerprint_id": queue_row.get("top1_fingerprint_id")
+                or repair_row.get("top1_fingerprint_id"),
+                "top1_ontology_family": queue_row.get("top1_ontology_family")
+                or repair_row.get("top1_ontology_family"),
+                "recommended_action": queue_row.get("recommended_action"),
+                "reaction_substrate_mismatch_reasons": mismatch_reasons,
+                "quality_risk_flags": quality_flags,
+                "countable_label_candidate": False,
+                "ontology_update_blockers": sorted(blockers),
+                "recommended_next_action": (
+                    "collect local mechanistic evidence and expert-reviewed "
+                    "examples before adding or splitting ontology families"
+                ),
+            }
+        )
+
+    signal_counts = Counter(signal for row in rows for signal in row["scope_signals"])
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row["ontology_update_blockers"]
+    )
+    rows = sorted(
+        rows,
+        key=lambda row: (
+            0
+            if "reaction_substrate_mismatch_review_required"
+            in row["ontology_update_blockers"]
+            else 1,
+            int(row.get("rank", 0) or 0),
+            _entry_id_sort_key(str(row["entry_id"])),
+        ),
+    )
+    emitted_rows = rows if max_rows <= 0 else rows[:max_rows]
+    return {
+        "metadata": {
+            "method": "mechanism_ontology_gap_audit",
+            "existing_ontology_families": existing_families,
+            "candidate_scope_signal_count": len(rows),
+            "emitted_row_count": len(emitted_rows),
+            "omitted_by_max_rows": max(0, len(rows) - len(emitted_rows)),
+            "max_rows": max_rows,
+            "scope_signal_counts": dict(sorted(signal_counts.items())),
+            "ontology_update_blocker_counts": dict(sorted(blocker_counts.items())),
+            "countable_label_candidate_count": 0,
+            "ontology_update_ready": False,
+            "review_only_rule": (
+                "scope signals from names, text, and review queues are ontology "
+                "pressure only; they cannot create countable labels or new "
+                "families without local mechanism evidence and expert review"
+            ),
+            "recommended_path": (
+                "prioritize transferase, lyase, isomerase, and long-tail redox "
+                "examples for expert-reviewed seed ontology expansion"
+            ),
+        },
+        "rows": emitted_rows,
+    }
+
+
+def _ontology_gap_text(
+    queue_row: dict[str, Any],
+    repair_row: dict[str, Any],
+) -> str:
+    snippets = queue_row.get("mechanism_text_snippets", [])
+    if not isinstance(snippets, list):
+        snippets = []
+    values = [
+        queue_row.get("entry_name"),
+        repair_row.get("entry_name"),
+        *snippets,
+    ]
+    return " ".join(str(value).lower() for value in values if value)
+
+
+def _ontology_gap_scope_signals(text: str) -> list[str]:
+    signals: list[str] = []
+    padded = f" {text} "
+    for signal, patterns in ONTOLOGY_GAP_PATTERNS:
+        if any(pattern in padded for pattern in patterns):
+            signals.append(signal)
+    return signals
+
+
+def audit_sequence_similarity_failure_sets(
+    sequence_clusters: dict[str, Any],
+    labels: list[MechanismLabel],
+    *,
+    active_learning_queue: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Prepare exact-reference cluster failure sets for propagation audits."""
+    labels_by_entry = {label.entry_id: label for label in labels}
+    queue_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (active_learning_queue or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    rows: list[dict[str, Any]] = []
+    for cluster in sequence_clusters.get("clusters", []):
+        if not isinstance(cluster, dict):
+            continue
+        entry_ids = _sorted_entry_ids(cluster.get("entry_ids", []))
+        if len(entry_ids) <= 1:
+            continue
+        label_type_counts = Counter(
+            labels_by_entry[entry_id].label_type
+            for entry_id in entry_ids
+            if entry_id in labels_by_entry
+        )
+        fingerprint_counts = Counter(
+            labels_by_entry[entry_id].fingerprint_id or "out_of_scope"
+            for entry_id in entry_ids
+            if entry_id in labels_by_entry
+        )
+        top1_family_counts = Counter(
+            str(queue_by_entry[entry_id].get("top1_ontology_family"))
+            for entry_id in entry_ids
+            if entry_id in queue_by_entry
+            and queue_by_entry[entry_id].get("top1_ontology_family")
+        )
+        review_actions = Counter(
+            str(queue_by_entry[entry_id].get("recommended_action"))
+            for entry_id in entry_ids
+            if entry_id in queue_by_entry
+            and queue_by_entry[entry_id].get("recommended_action")
+        )
+        risk_flags = set()
+        if len(label_type_counts) > 1:
+            risk_flags.add("mixed_label_types_within_sequence_cluster")
+        if len(fingerprint_counts) > 1:
+            risk_flags.add("mixed_fingerprints_within_sequence_cluster")
+        if len(top1_family_counts) > 1:
+            risk_flags.add("mixed_top1_families_within_sequence_cluster")
+        if review_actions:
+            risk_flags.add("active_queue_cluster_member")
+        if any(
+            labels_by_entry[entry_id].review_status not in COUNTABLE_REVIEW_STATUSES
+            for entry_id in entry_ids
+            if entry_id in labels_by_entry
+        ):
+            risk_flags.add("review_state_cluster_member")
+        rows.append(
+            {
+                "sequence_cluster_id": cluster.get("sequence_cluster_id")
+                or cluster.get("id"),
+                "cluster_source": cluster.get("cluster_source"),
+                "entry_ids": entry_ids,
+                "label_type_counts": dict(sorted(label_type_counts.items())),
+                "fingerprint_counts": dict(sorted(fingerprint_counts.items())),
+                "top1_ontology_family_counts": dict(sorted(top1_family_counts.items())),
+                "active_queue_recommended_action_counts": dict(
+                    sorted(review_actions.items())
+                ),
+                "risk_flags": sorted(risk_flags) or ["duplicate_cluster_control"],
+                "countable_label_candidate": False,
+                "recommended_next_action": (
+                    "keep as sequence-similarity failure control before any "
+                    "family propagation or learned retrieval split"
+                ),
+            }
+        )
+
+    risk_counts = Counter(flag for row in rows for flag in row["risk_flags"])
+    return {
+        "metadata": {
+            "method": "sequence_similarity_failure_set_audit",
+            "cluster_source": sequence_clusters.get("metadata", {}).get(
+                "cluster_source"
+            ),
+            "input_cluster_count": sequence_clusters.get("metadata", {}).get(
+                "cluster_count"
+            ),
+            "duplicate_cluster_count": len(rows),
+            "risk_flag_counts": dict(sorted(risk_counts.items())),
+            "countable_label_candidate_count": 0,
+            "review_only_rule": (
+                "exact-reference clusters are failure-set controls; they do not "
+                "propagate labels without mechanism evidence"
+            ),
+        },
+        "rows": rows,
+    }
+
+
 def build_provisional_review_decision_batch(
     review_artifact: dict[str, Any],
     *,
@@ -3544,6 +4031,7 @@ def check_label_factory_gates(
     reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
     expert_label_decision_review_export: dict[str, Any] | None = None,
     expert_label_decision_repair_candidates: dict[str, Any] | None = None,
+    expert_label_decision_repair_guardrail_audit: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     ontology = load_mechanism_ontology()
     required_terms = {
@@ -3722,6 +4210,30 @@ def check_label_factory_gates(
             and expert_label_repair_countable_count == 0
         )
     )
+    expert_label_repair_guardrail_meta = (
+        expert_label_decision_repair_guardrail_audit or {}
+    ).get("metadata", {})
+    expert_label_repair_guardrail_present = (
+        expert_label_repair_guardrail_meta.get("method")
+        == "expert_label_decision_repair_guardrail_audit"
+    )
+    expert_label_repair_guardrail_countable_count = int(
+        expert_label_repair_guardrail_meta.get("countable_label_candidate_count", 0)
+        or 0
+    )
+    expert_label_repair_guardrail_ready = (
+        not expert_label_decision_entry_ids
+        or (
+            expert_label_repair_guardrail_present
+            and bool(expert_label_repair_guardrail_meta.get("guardrail_ready"))
+            and bool(
+                expert_label_repair_guardrail_meta.get(
+                    "all_priority_lanes_non_countable"
+                )
+            )
+            and expert_label_repair_guardrail_countable_count == 0
+        )
+    )
     gates = {
         "label_schema_explicit": all(
             label.tier in LABEL_TIERS
@@ -3781,6 +4293,9 @@ def check_label_factory_gates(
         "expert_label_decision_review_export_ready": expert_label_export_ready,
         "expert_label_decision_repair_candidates_ready": (
             expert_label_repair_ready
+        ),
+        "expert_label_decision_repair_guardrails_ready": (
+            expert_label_repair_guardrail_ready
         ),
     }
     blockers = [name for name, passed in gates.items() if not passed]
@@ -3848,6 +4363,23 @@ def check_label_factory_gates(
             ),
             "expert_label_decision_repair_candidates_countable_label_candidate_count": (
                 expert_label_repair_countable_count
+            ),
+            "expert_label_decision_repair_guardrail_audit_present": (
+                expert_label_repair_guardrail_present
+            ),
+            "expert_label_decision_repair_guardrail_priority_repair_row_count": (
+                expert_label_repair_guardrail_meta.get("priority_repair_row_count")
+            ),
+            "expert_label_decision_repair_guardrail_local_evidence_review_only_count": (
+                expert_label_repair_guardrail_meta.get(
+                    "local_expected_family_evidence_review_only_count"
+                )
+            ),
+            "expert_label_decision_repair_guardrail_countable_label_candidate_count": (
+                expert_label_repair_guardrail_countable_count
+            ),
+            "expert_label_decision_repair_guardrail_ready": (
+                expert_label_repair_guardrail_meta.get("guardrail_ready")
             ),
             "bulk_scaling_rule": (
                 "new labels may be added in batches only after this gate check "
@@ -4124,6 +4656,19 @@ def summarize_label_factory_batches(
                     "expert_label_decision_repair_candidates_countable_label_candidate_count"
                 )
             ),
+            "expert_label_decision_repair_guardrail_audit_present": gate_meta.get(
+                "expert_label_decision_repair_guardrail_audit_present"
+            ),
+            "expert_label_decision_repair_guardrail_priority_repair_row_count": (
+                gate_meta.get(
+                    "expert_label_decision_repair_guardrail_priority_repair_row_count"
+                )
+            ),
+            "expert_label_decision_repair_guardrail_countable_label_candidate_count": (
+                gate_meta.get(
+                    "expert_label_decision_repair_guardrail_countable_label_candidate_count"
+                )
+            ),
             "active_queue_unlabeled_count": queue_meta.get("total_unlabeled_candidate_count"),
             "active_queue_unlabeled_omitted": queue_meta.get("unlabeled_omitted_by_max_rows"),
             "active_queue_all_unlabeled_retained": queue_meta.get("all_unlabeled_rows_retained"),
@@ -4195,6 +4740,15 @@ def summarize_label_factory_batches(
             ),
             "latest_expert_label_decision_repair_candidates_countable_label_candidate_count": latest.get(
                 "expert_label_decision_repair_candidates_countable_label_candidate_count"
+            ),
+            "latest_expert_label_decision_repair_guardrail_audit_present": latest.get(
+                "expert_label_decision_repair_guardrail_audit_present"
+            ),
+            "latest_expert_label_decision_repair_guardrail_priority_repair_row_count": latest.get(
+                "expert_label_decision_repair_guardrail_priority_repair_row_count"
+            ),
+            "latest_expert_label_decision_repair_guardrail_countable_label_candidate_count": latest.get(
+                "expert_label_decision_repair_guardrail_countable_label_candidate_count"
             ),
             "all_batches_accepted_for_counting": all(
                 row["accepted_for_counting"] for row in rows
@@ -6900,6 +7454,7 @@ def audit_label_scaling_quality(
     reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
     expert_label_decision_review_export: dict[str, Any] | None = None,
     expert_label_decision_repair_candidates: dict[str, Any] | None = None,
+    expert_label_decision_repair_guardrail_audit: dict[str, Any] | None = None,
     batch_id: str | None = None,
 ) -> dict[str, Any]:
     acceptance_meta = acceptance.get("metadata", {})
@@ -6919,6 +7474,9 @@ def audit_label_scaling_quality(
     ).get("metadata", {})
     expert_label_decision_repair_meta = (
         expert_label_decision_repair_candidates or {}
+    ).get("metadata", {})
+    expert_label_decision_repair_guardrail_meta = (
+        expert_label_decision_repair_guardrail_audit or {}
     ).get("metadata", {})
     new_debt_ids = sorted(
         (
@@ -7308,6 +7866,16 @@ def audit_label_scaling_quality(
         expert_label_decision_repair_meta.get("countable_label_candidate_count", 0)
         or 0
     )
+    expert_label_decision_repair_guardrail_present = (
+        expert_label_decision_repair_guardrail_meta.get("method")
+        == "expert_label_decision_repair_guardrail_audit"
+    )
+    expert_label_decision_repair_guardrail_countable_count = int(
+        expert_label_decision_repair_guardrail_meta.get(
+            "countable_label_candidate_count", 0
+        )
+        or 0
+    )
     if active_expert_label_decision_entry_ids:
         gates["expert_label_decision_review_export_retains_review_only_lanes"] = (
             expert_label_decision_export_present
@@ -7328,6 +7896,18 @@ def audit_label_scaling_quality(
             and not expert_label_decision_repair_missing_entry_ids
             and expert_label_decision_repair_countable_count == 0
         )
+        gates[
+            "expert_label_decision_repair_guardrail_keeps_priority_lanes_non_countable"
+        ] = (
+            expert_label_decision_repair_guardrail_present
+            and bool(expert_label_decision_repair_guardrail_meta.get("guardrail_ready"))
+            and bool(
+                expert_label_decision_repair_guardrail_meta.get(
+                    "all_priority_lanes_non_countable"
+                )
+            )
+            and expert_label_decision_repair_guardrail_countable_count == 0
+        )
         blockers = [name for name, passed in gates.items() if not passed]
     if active_expert_label_decision_entry_ids and not expert_label_decision_export_present:
         review_warnings.append("expert_label_decision_review_export_missing")
@@ -7342,6 +7922,19 @@ def audit_label_scaling_quality(
         review_warnings.append("expert_label_decision_repair_candidates_missing")
     elif expert_label_decision_repair_missing_entry_ids:
         review_warnings.append("expert_label_decision_repair_candidates_incomplete")
+    if (
+        active_expert_label_decision_entry_ids
+        and not expert_label_decision_repair_guardrail_present
+    ):
+        review_warnings.append("expert_label_decision_repair_guardrail_audit_missing")
+    elif expert_label_decision_repair_guardrail_countable_count:
+        review_warnings.append(
+            "expert_label_decision_repair_guardrail_countable_candidates"
+        )
+    elif expert_label_decision_repair_guardrail_meta.get("priority_repair_row_count"):
+        review_warnings.append(
+            "expert_label_decision_priority_repair_lanes_review_only"
+        )
 
     reaction_failure_mode = _scaling_failure_mode_summary(
         "reaction_direction_or_substrate_class_mismatch",
@@ -7553,6 +8146,23 @@ def audit_label_scaling_quality(
                 "repair_countable_label_candidate_count": (
                     expert_label_decision_repair_countable_count
                 ),
+                "repair_guardrail_audit_present": (
+                    expert_label_decision_repair_guardrail_present
+                ),
+                "repair_guardrail_priority_repair_row_count": (
+                    expert_label_decision_repair_guardrail_meta.get(
+                        "priority_repair_row_count"
+                    )
+                ),
+                "repair_guardrail_local_evidence_review_only_entry_ids": (
+                    expert_label_decision_repair_guardrail_meta.get(
+                        "local_expected_family_evidence_review_only_entry_ids",
+                        [],
+                    )
+                ),
+                "repair_guardrail_countable_label_candidate_count": (
+                    expert_label_decision_repair_guardrail_countable_count
+                ),
                 "review_only_rule": expert_label_decision_export_meta.get(
                     "review_only_rule"
                 ),
@@ -7709,6 +8319,22 @@ def audit_label_scaling_quality(
             ),
             "expert_label_decision_repair_bucket_counts": (
                 expert_label_decision_repair_meta.get("repair_bucket_counts", {})
+            ),
+            "expert_label_decision_repair_guardrail_audit_present": (
+                expert_label_decision_repair_guardrail_present
+            ),
+            "expert_label_decision_repair_guardrail_priority_repair_row_count": (
+                expert_label_decision_repair_guardrail_meta.get(
+                    "priority_repair_row_count"
+                )
+            ),
+            "expert_label_decision_repair_guardrail_local_evidence_review_only_count": (
+                expert_label_decision_repair_guardrail_meta.get(
+                    "local_expected_family_evidence_review_only_count"
+                )
+            ),
+            "expert_label_decision_repair_guardrail_countable_label_candidate_count": (
+                expert_label_decision_repair_guardrail_countable_count
             ),
             "issue_class_counts": dict(sorted(issue_class_counts.items())),
             "audit_rule": (

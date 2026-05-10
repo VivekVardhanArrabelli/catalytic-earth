@@ -68,6 +68,10 @@ that structure-wide cofactor-family hits still lack local active-site support.
 - `artifacts/v3_expert_label_decision_decision_batch_700.json`
 - `artifacts/v3_expert_label_decision_repair_candidates_700.json`
 - `artifacts/v3_expert_label_decision_repair_candidates_700_all.json`
+- `artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json`
+- `artifacts/v3_mechanism_ontology_gap_audit_700.json`
+- `artifacts/v3_learned_retrieval_manifest_700.json`
+- `artifacts/v3_sequence_similarity_failure_sets_700.json`
 - `artifacts/v3_family_propagation_guardrails_700.json`
 - `artifacts/v3_label_scaling_quality_audit_700_preview.json`
 - `artifacts/v3_sequence_cluster_proxy_700.json`
@@ -76,7 +80,7 @@ Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 14/14 factory checks pass on the 624-label countable
+Current gate state: 15/15 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional
 labels were accepted for counting in the 700 batch, 81 review-state decisions
 remain pending, and the countable subset has 0 hard negatives, 0 near misses,
@@ -103,6 +107,16 @@ expert-label decision export now carries all 76 active-queue
 0 countable candidates, confirms 0 missing expert-decision export rows, and
 keeps the 7 overlapping reaction/substrate mismatch rows tied to the mismatch
 export.
+The paired repair guardrail audit covers 21 priority expert-decision repair
+lanes, including 14 active-site mapping/structure-gap rows and 9
+text-leakage/nonlocal-evidence risk rows. The only local expected-family leads
+(`m_csa:577`, `m_csa:592`, and `m_csa:641`) come from conservative remaps and
+remain review-only with strict remap, family-boundary, or reaction/substrate
+blockers. The mechanism ontology gap audit records 115 non-countable
+scope-pressure rows, the learned-retrieval manifest defines 562 eligible rows
+for a future representation path while preserving heuristic controls, and the
+sequence-similarity failure-set audit keeps the 2 exact-reference duplicate
+clusters as non-countable propagation controls.
 The 675 preview initially exposed accepted out-of-scope rows that still carried
 review debt, so the provisional decision rule now defers below-threshold,
 evidence-limited negatives instead of counting them. The regenerated preview

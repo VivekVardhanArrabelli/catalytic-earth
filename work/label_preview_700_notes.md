@@ -88,6 +88,16 @@ review-only risk profile. The paired
 all 76 rows with 0 countable candidates and links remediation context for all
 76 plus alternate-structure scan context for 42; the `_700_all` companion
 artifact emits the full 76-row table.
+`artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json` audits 21
+priority repair lanes and keeps all of them non-countable. Its only local
+expected-family leads are `m_csa:577`, `m_csa:592`, and `m_csa:641`, all from
+conservative remaps that still require strict remap guardrails and expert
+family-boundary or reaction/substrate review.
+`artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115 review-only
+ontology-scope pressure rows, while
+`artifacts/v3_learned_retrieval_manifest_700.json` and
+`artifacts/v3_sequence_similarity_failure_sets_700.json` prepare the learned
+retrieval and sequence-similarity control paths without reopening count growth.
 
 `artifacts/v3_review_debt_alternate_structure_scan_700.json` scanned all 13
 rows that needed alternate-PDB or local-structure selection review, covering

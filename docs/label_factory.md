@@ -292,6 +292,56 @@ Use `--max-rows 0` with the same inputs to regenerate
 `artifacts/v3_expert_label_decision_repair_candidates_700_all.json`, the full
 76-row companion table.
 
+Priority expert-decision repair lanes also have a non-countable guardrail audit:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli audit-expert-label-decision-repair-guardrails \
+  --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700_all.json \
+  --remap-local-lead-audit artifacts/v3_review_debt_remap_local_lead_audit_700.json \
+  --out artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json
+```
+
+The accepted-700 guardrail audit covers 21 priority repair rows: 14 active-site
+mapping/structure-gap rows and 9 text-leakage/nonlocal-evidence risk rows,
+with overlap between the two classes. It records 3 local expected-family hits
+from conservative remaps (`m_csa:577`, `m_csa:592`, and `m_csa:641`) and keeps
+all 3 review-only under strict remap, family-boundary, or reaction/substrate
+blockers. It records 0 countable label candidates.
+
+Mechanism-scope pressure and learned-retrieval pathing are tracked separately:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli audit-mechanism-ontology-gaps \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_700.json \
+  --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700_all.json \
+  --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700.json \
+  --max-rows 80 \
+  --out artifacts/v3_mechanism_ontology_gap_audit_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-learned-retrieval-manifest \
+  --geometry artifacts/v3_geometry_features_700.json \
+  --retrieval artifacts/v3_geometry_retrieval_700.json \
+  --labels data/registries/curated_mechanism_labels.json \
+  --ontology-gap-audit artifacts/v3_mechanism_ontology_gap_audit_700.json \
+  --max-rows 160 \
+  --out artifacts/v3_learned_retrieval_manifest_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-sequence-similarity-failure-sets \
+  --sequence-clusters artifacts/v3_sequence_cluster_proxy_700.json \
+  --labels data/registries/curated_mechanism_labels.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_700.json \
+  --out artifacts/v3_sequence_similarity_failure_sets_700.json
+```
+
+These artifacts are review-only. The 700 ontology-gap audit finds 115
+non-countable scope-pressure rows, led by transferase/phosphoryl-transfer,
+lyase, isomerase, long-tail redox, methyltransferase, and glycan-chemistry
+signals. The learned-retrieval manifest defines a future representation-learning
+interface with the current geometry retrieval as a required control; it has 562
+eligible countable/control rows and computes no embeddings. The sequence
+failure-set audit keeps the 2 exact-UniProt duplicate clusters as propagation
+controls.
+
 Completed 650 batch workflow:
 
 ```bash
@@ -341,6 +391,7 @@ PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates \
   --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json \
   --expert-label-decision-review-export artifacts/v3_expert_label_decision_review_export_700.json \
   --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700.json \
+  --expert-label-decision-repair-guardrail-audit artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json \
   --out artifacts/v3_label_factory_gate_check_700.json
 ```
 
@@ -495,13 +546,14 @@ tests before its labels are counted.
 
 Current 700-queue gate state:
 
-- 14/14 gate checks pass.
+- 15/15 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
   family-propagation guardrails ready, mismatch review export ready,
   expert-label decision review export ready, expert-label decision repair
-  candidates ready, and unlabeled queue retention ready.
+  candidates ready, expert-label decision repair guardrails ready, and
+  unlabeled queue retention ready.
 - 79 bronze-to-silver promotions are proposed in the applied-label artifact
   after the accepted 700 batch.
 - 188 rows are queued for active-learning review after the accepted 700 batch,
@@ -523,6 +575,17 @@ Current 700-queue gate state:
 - The expert-label repair-candidate summaries rank the first 30 evidence-repair
   candidates, provide a full 76-row companion table, and record complete bucket
   counts while keeping every row non-countable.
+- The expert-label repair guardrail audit covers 21 priority repair lanes,
+  keeps 3 conservative-remap local evidence leads review-only, and makes the
+  latest accepted-700 factory gate 15/15.
+- `artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115
+  non-countable ontology-scope pressure rows, and
+  `artifacts/v3_learned_retrieval_manifest_700.json` defines a future learned
+  representation interface with 562 eligible rows while preserving the
+  heuristic retrieval baseline as the control.
+- `artifacts/v3_sequence_similarity_failure_sets_700.json` keeps the 2
+  exact-reference duplicate clusters as sequence-similarity failure controls
+  before any propagation or learned split.
 - 100 adversarial negative controls are mined.
 - 182 expert-review items are exported from the post-700 review queue.
 - The 500, 525, 550, 575, 600, 625, 650, 675, and 700 decision batches

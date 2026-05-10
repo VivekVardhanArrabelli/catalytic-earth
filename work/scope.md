@@ -175,7 +175,8 @@ Current expectation:
   current ranked review cutoff plus all unlabeled candidates from the 700
   review queue, exports all 76 active `expert_label_decision_needed` rows as
   review-only no-decision items, generates a complete non-countable repair
-  candidate summary for those rows, and passes the 14-check label-factory gate; the
+  candidate summary and repair guardrail audit for those rows, and passes the
+  15-check label-factory gate; the
   active-learning queue now includes a reaction/substrate mismatch ranking
   term, and the 700 family-propagation guardrail blocks 24 reported rows on
   the same mismatch signal with priority retention beyond `max_rows` (17
@@ -186,7 +187,9 @@ Current expectation:
   all 24 as `no_decision`. The expert-label decision export records 0 countable
   candidates, 0 missing export rows, and risk flags dominated by cofactor-family
   ambiguity, counterevidence boundaries, active-site mapping gaps, and
-  nonlocal/text-leakage risk
+  nonlocal/text-leakage risk. The repair guardrail audit covers 21 priority
+  lanes, keeps 3 conservative-remap local evidence leads review-only, and
+  records 0 countable candidates
 - review-debt triage now ranks 81 evidence-gap rows from the 700 review pass,
   with 81 `needs_more_evidence` decisions, 61 carried rows, 20 new rows, and
   next-action counts split by debt status
@@ -235,7 +238,12 @@ Current expectation:
   review and `m_csa:592` to expert reaction/substrate review. The reaction
   mismatch audit flags 18 active-queue hydrolase-top1 rows with kinase or ATP
   phosphoryl-transfer text, while the dedicated mismatch export covers all 24
-  family-guardrail lanes and all remain non-countable. The alternate path is
+  family-guardrail lanes and all remain non-countable. The mechanism ontology
+  gap audit records 115 review-only scope-pressure rows, the learned-retrieval
+  manifest exposes 562 eligible rows for future representation work with
+  heuristic controls, and the sequence-similarity failure-set audit keeps the 2
+  exact-reference duplicate clusters as non-countable propagation controls. The
+  alternate path is
   resolving
   review-state/evidence-limited rows
   (`m_csa:494`, `m_csa:510`, `m_csa:529`, `m_csa:534`, `m_csa:650`,

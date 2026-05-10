@@ -19,13 +19,17 @@ The export is review-only:
 - `artifacts/v3_expert_label_decision_repair_candidates_700.json` ranks the
   first 30 non-countable repair candidates and keeps the full 76-row bucket
   counts.
+- `artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json` audits
+  the 21 priority repair lanes and keeps every repaired lane non-countable.
 
-The refreshed 700 label-factory gate now has 14 checks. The
+The expert-label decision export gate checks remain strict. The
 `expert_label_decision_review_export_ready` check passes only when every active
 `expert_label_decision_needed` row is present in the dedicated export, all rows
 remain `no_decision`, and the export reports 0 countable candidates. The paired
 `expert_label_decision_repair_candidates_ready` check requires the repair
 summary to cover the same 76 rows with 0 countable candidates.
+The current gate now has 15 checks because it also requires the repair
+guardrail audit to be present, full-table, and non-countable.
 
 ## Risk Profile
 
@@ -79,3 +83,11 @@ for 42 rows; the emitted top 30 rows are prioritization only, while metadata
 retains all 76 candidate entry IDs for gate and audit checks. The companion
 `artifacts/v3_expert_label_decision_repair_candidates_700_all.json` file emits
 all 76 rows for full-table review.
+
+The repair guardrail audit covers the 21 priority rows surfaced by the active
+mapping/structure-gap and text-leakage risk flags. It records local
+expected-family evidence for `m_csa:577`, `m_csa:592`, and `m_csa:641`, but all
+three are conservative-remap leads and remain non-countable. The next repair
+step should either reduce the 14 rows without local mechanistic evidence or add
+stronger evidence for one conservative-remap lead without bypassing expert
+review.

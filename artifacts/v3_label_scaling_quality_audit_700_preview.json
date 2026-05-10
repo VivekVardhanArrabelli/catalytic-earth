@@ -693,6 +693,14 @@
         ],
         "repair_candidates_present": true,
         "repair_countable_label_candidate_count": 0,
+        "repair_guardrail_audit_present": true,
+        "repair_guardrail_countable_label_candidate_count": 0,
+        "repair_guardrail_local_evidence_review_only_entry_ids": [
+          "m_csa:577",
+          "m_csa:592",
+          "m_csa:641"
+        ],
+        "repair_guardrail_priority_repair_row_count": 21,
         "repair_missing_entry_ids": [],
         "review_only_rule": "active-queue expert-label decisions are context exports only; automation leaves them as no_decision and countable import must not add benchmark labels without external expert resolution"
       },
@@ -715,6 +723,7 @@
     "accepted_new_labels_without_review_debt": true,
     "active_queue_retains_unlabeled_candidates": true,
     "expert_label_decision_repair_candidates_cover_review_only_lanes": true,
+    "expert_label_decision_repair_guardrail_keeps_priority_lanes_non_countable": true,
     "expert_label_decision_review_export_retains_review_only_lanes": true,
     "family_guardrails_present": true,
     "new_review_debt_rows_classified": true,
@@ -979,6 +988,10 @@
     "expert_label_decision_repair_candidates_countable_label_candidate_count": 0,
     "expert_label_decision_repair_candidates_missing_entry_ids": [],
     "expert_label_decision_repair_candidates_present": true,
+    "expert_label_decision_repair_guardrail_audit_present": true,
+    "expert_label_decision_repair_guardrail_countable_label_candidate_count": 0,
+    "expert_label_decision_repair_guardrail_local_evidence_review_only_count": 3,
+    "expert_label_decision_repair_guardrail_priority_repair_row_count": 21,
     "expert_label_decision_review_export_countable_label_candidate_count": 0,
     "expert_label_decision_review_export_entry_ids": [
       "m_csa:494",
@@ -1194,7 +1207,8 @@
     "alternate_structure_hits_lack_local_support",
     "remap_local_leads_require_strict_guardrail",
     "reaction_substrate_mismatch_audit_hits",
-    "expert_label_decision_rows_require_external_review"
+    "expert_label_decision_rows_require_external_review",
+    "expert_label_decision_priority_repair_lanes_review_only"
   ],
   "rows": [
     {
