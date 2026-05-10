@@ -1,0 +1,1039 @@
+{
+  "groups": [
+    {
+      "cofactor_evidence_level": "absent",
+      "count": 11,
+      "entry_ids": [
+        "m_csa:605",
+        "m_csa:607",
+        "m_csa:610",
+        "m_csa:612",
+        "m_csa:615",
+        "m_csa:617",
+        "m_csa:618",
+        "m_csa:621",
+        "m_csa:622",
+        "m_csa:624",
+        "m_csa:627"
+      ],
+      "max_top1_score": 0.3789,
+      "mean_top1_score": 0.3429,
+      "min_top1_score": 0.1856,
+      "readiness_blocker_counts": {
+        "has_pairwise_geometry": 2,
+        "resolved_at_least_three_residues": 5,
+        "status_ok": 2,
+        "top1_score_at_least_0_4": 11
+      },
+      "ready_entries": [
+        {
+          "entry_id": "m_csa:605",
+          "entry_name": "choline O-acetyltransferase",
+          "mechanism_text_snippets": [
+            "His 334 acts as a general base to remove the proton from the choline OH group as the oxygen attacks the carbonyl of acetyl CoA. The resulting tetrahedral oxyanion intermediate is stabilised by Ser 550. Collapse of the tetrahedral intermediate releases CoA which is protonated by the His 334. Tyr 9..."
+          ],
+          "top1_score": 0.3623
+        },
+        {
+          "entry_id": "m_csa:607",
+          "entry_name": "ADP-ribosyl cyclase",
+          "mechanism_text_snippets": [
+            "Glu203 nucleophilically attacks the ribose C1' which nicotinamide attached to. The nucleophilic attack eliminates the nicotinamide and leads to the formation of a Glu179-R5P intermediate. N1 of purine group then acts as a nucleophile to attack the ester bond between Glu203 and ribose, resulting i..."
+          ],
+          "top1_score": 0.3444
+        },
+        {
+          "entry_id": "m_csa:612",
+          "entry_name": "anhydrosialidase",
+          "mechanism_text_snippets": [
+            "In the first step, O2 of the substrate acquires a proton and leaves. Asp 318 either provides this proton directly or stabilises a proton from the solvent in the vicinity. The resulting positively charged oxocarbonium intermediate is stabilised by the negative side chains of Asp 318 and Glu 595, a..."
+          ],
+          "top1_score": 0.3581
+        },
+        {
+          "entry_id": "m_csa:621",
+          "entry_name": "caffeate O-methyltransferase",
+          "mechanism_text_snippets": [
+            "COMT is an S-adenosyl-L-Met-dependent methyltransferase that methylates 3'-hydroxyl- and 5'-hydroxyl-containing phenylpropanoid-derived lignin precursors. Using His 269 as a general base, the 3'- or 5'-hydroxyl group is deprotonated, facilitating the transfer of the reactive methyl group of S-ade..."
+          ],
+          "top1_score": 0.3727
+        },
+        {
+          "entry_id": "m_csa:624",
+          "entry_name": "bleomycin hydrolase",
+          "mechanism_text_snippets": [
+            "Bleomycin hydrolase is a cysteine protease. The resting state contains a thioloate-imidazolium pair (Cys 102 and His 398) that is stabilised by Asn 421. Cys 102 attacks the peptide carbonyl to form an acyl enzyme intermediate, with His 398 protonating the departing amine. Negative charge that acc..."
+          ],
+          "top1_score": 0.3788
+        },
+        {
+          "entry_id": "m_csa:627",
+          "entry_name": "protein-disulfide reductase",
+          "mechanism_text_snippets": [
+            "Cys 109 is the primary nucleophile that attacks the intramolecular disulphide to form a disulphide between DsbD and DsbC. Cys 103 then acts as a secondary nucleophile to reduce this disulphide, activated by a Asp 68-Tyr 42 diad which acts as a proton relay system. This results in the reduced form..."
+          ],
+          "top1_score": 0.3596
+        }
+      ],
+      "ready_entry_ids": [
+        "m_csa:605",
+        "m_csa:607",
+        "m_csa:612",
+        "m_csa:621",
+        "m_csa:624",
+        "m_csa:627"
+      ],
+      "ready_for_label_review_count": 6,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "count": 4,
+      "entry_ids": [
+        "m_csa:603",
+        "m_csa:611",
+        "m_csa:623",
+        "m_csa:626"
+      ],
+      "max_top1_score": 0.5927,
+      "mean_top1_score": 0.5403,
+      "min_top1_score": 0.4004,
+      "readiness_blocker_counts": {},
+      "ready_entries": [
+        {
+          "entry_id": "m_csa:603",
+          "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+          "mechanism_text_snippets": [
+            "One proposed mechanism is a general base mechanism. Glu251 deprotonates the targeted serine residue of the pyruvate dehydrogenase E1 subunit and promotes its nucleophilic attack on the terminal phosphate of ATP. His247 polarises Glu243 to allow deprotonation. Magnesium ion coordinated to Asp help..."
+          ],
+          "top1_score": 0.4004
+        },
+        {
+          "entry_id": "m_csa:611",
+          "entry_name": "5'-nucleotidase (bacterial)",
+          "mechanism_text_snippets": [
+            "5'-nucleotidase catalyses the hydrolytic cleavage of 5'-mononucleotides to nucleoside and phosphate by nucleophilic attack of a water molecule on the phosphorous. A water ligand is coordinated to the di-zinc centre. The phosphate group of the substrate binds with one oxygen atom to a metal ion. T..."
+          ],
+          "top1_score": 0.5782
+        },
+        {
+          "entry_id": "m_csa:623",
+          "entry_name": "neprilysin",
+          "mechanism_text_snippets": [
+            "The Zinc ion and the catalytic residue Glu 584 act together to activate a water molecule for nucleophilic attack on the peptide substrate. This forms an oxyanion intermediate, stabilised by His 711 in a hydrogen bond network involving Asp 650 and Arg 717. Subsequent collapse of the intermediate r..."
+          ],
+          "top1_score": 0.5927
+        },
+        {
+          "entry_id": "m_csa:626",
+          "entry_name": "bontoxilysin",
+          "mechanism_text_snippets": [
+            "Glu231 is abase which deprotonates water and in conjugation with polarization by Zn2+ activates water so that it can act as a nucleophile and attack the carbonyl of the peptide bond. Arg369 and Zn2+ stabilise the transition state by interacting with the negatively charged carbonyl oxygen atom of..."
+          ],
+          "top1_score": 0.5901
+        }
+      ],
+      "ready_entry_ids": [
+        "m_csa:603",
+        "m_csa:611",
+        "m_csa:623",
+        "m_csa:626"
+      ],
+      "ready_for_label_review_count": 4,
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "count": 3,
+      "entry_ids": [
+        "m_csa:608",
+        "m_csa:609",
+        "m_csa:619"
+      ],
+      "max_top1_score": 0.8864,
+      "mean_top1_score": 0.7006,
+      "min_top1_score": 0.3713,
+      "readiness_blocker_counts": {
+        "resolved_at_least_three_residues": 1,
+        "top1_score_at_least_0_4": 1
+      },
+      "ready_entries": [
+        {
+          "entry_id": "m_csa:608",
+          "entry_name": "streptogrisin B",
+          "mechanism_text_snippets": [
+            "Ser 255 acts as the nucleophile to attack the peptide after deprotonation by His 147, forming the oxyanion intermediate, stabilised by hydrogen bonding of the oxyanion hole which is formed by Ser 255 and Gly 253. Protonation of the leaving group by His 147 results in the collapse of the tetrahedr..."
+          ],
+          "top1_score": 0.8442
+        },
+        {
+          "entry_id": "m_csa:609",
+          "entry_name": "alpha-lytic endopeptidase",
+          "mechanism_text_snippets": [
+            "Alpha-lytic protease employs a classic Ser-His-Asp triad. His 235 removes a proton from Ser 342 as the latter nucleophilically attacks the peptide carbonyl to give a tetrahedral intermediate which is stabilised by the NH groups of Gly 340 and Ser 342. Breakdown of the intermediate with protonatio..."
+          ],
+          "top1_score": 0.8864
+        }
+      ],
+      "ready_entry_ids": [
+        "m_csa:608",
+        "m_csa:609"
+      ],
+      "ready_for_label_review_count": 2,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "count": 2,
+      "entry_ids": [
+        "m_csa:614",
+        "m_csa:625"
+      ],
+      "max_top1_score": 0.2683,
+      "mean_top1_score": 0.2492,
+      "min_top1_score": 0.2302,
+      "readiness_blocker_counts": {
+        "top1_score_at_least_0_4": 2
+      },
+      "ready_entries": [
+        {
+          "entry_id": "m_csa:614",
+          "entry_name": "3-deoxy-8-phosphooctulonate synthase",
+          "mechanism_text_snippets": [
+            "The reaction proceeds through an aldol-like condensation where water activated phosphoenolpyruvate attacks A5P. This forms a bis-phosphorylated tetrahedral intermediate recorded in mass spectrometry experiments. The resulting intermediate then collapses, eliminating a phosphate group. Subsequent..."
+          ],
+          "top1_score": 0.2683
+        },
+        {
+          "entry_id": "m_csa:625",
+          "entry_name": "polynucleotide 5'-hydroxyl-kinase",
+          "mechanism_text_snippets": [
+            "PNK catalyses the transfer of the gamma-phosphate from adenosine triphosphate or other nucleoside triphosphates to the 5'-OH of polynucleotides. The activity proceeds via an ordered sequential mechanism. Phosphoryl transfer results in an inversion of configuration at the phosphorous. The attackin..."
+          ],
+          "top1_score": 0.2302
+        }
+      ],
+      "ready_entry_ids": [
+        "m_csa:614",
+        "m_csa:625"
+      ],
+      "ready_for_label_review_count": 2,
+      "top1_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "count": 3,
+      "entry_ids": [
+        "m_csa:604",
+        "m_csa:606",
+        "m_csa:616"
+      ],
+      "max_top1_score": 0.349,
+      "mean_top1_score": 0.3337,
+      "min_top1_score": 0.3033,
+      "readiness_blocker_counts": {
+        "has_pairwise_geometry": 1,
+        "resolved_at_least_three_residues": 2,
+        "status_ok": 1,
+        "top1_score_at_least_0_4": 3
+      },
+      "ready_entries": [
+        {
+          "entry_id": "m_csa:616",
+          "entry_name": "hyaluronoglucosaminidase",
+          "mechanism_text_snippets": [
+            "As in the chitinolytic enzymes, the sugar ring is distorted towards the transition state, with the antibonding orbital of the scissile bond held in a favourable orientation to overlap with the non-bonding orbital containing one of the ring oxygen lone pairs. In addition, the carbonyl of the subst..."
+          ],
+          "top1_score": 0.3488
+        }
+      ],
+      "ready_entry_ids": [
+        "m_csa:616"
+      ],
+      "ready_for_label_review_count": 1,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "count": 2,
+      "entry_ids": [
+        "m_csa:613",
+        "m_csa:620"
+      ],
+      "max_top1_score": 0.3985,
+      "mean_top1_score": 0.2918,
+      "min_top1_score": 0.185,
+      "readiness_blocker_counts": {
+        "has_pairwise_geometry": 1,
+        "resolved_at_least_three_residues": 1,
+        "status_ok": 1,
+        "top1_score_at_least_0_4": 2
+      },
+      "ready_entries": [
+        {
+          "entry_id": "m_csa:613",
+          "entry_name": "deoxyribose-phosphate aldolase",
+          "mechanism_text_snippets": [
+            "The reaction proceeds via initial nucleophilic attack by Lys 167 on acetaldehyde to form a Schiff base intermediate; deprotonation of the Lys 167 by Asp 102 facilitates this. Subsequent deprotonation of the C2 of the acetaldehyde by a Lys 201 activated water molecule (Wat29) results in the produc..."
+          ],
+          "top1_score": 0.3985
+        }
+      ],
+      "ready_entry_ids": [
+        "m_csa:613"
+      ],
+      "ready_for_label_review_count": 1,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    }
+  ],
+  "metadata": {
+    "candidate_count": 25,
+    "candidate_group_count": 6,
+    "geometry_entry_count": 624,
+    "labeled_entry_count": 600,
+    "method": "geometry_label_expansion_candidate_selection",
+    "ready_for_label_review_count": 16
+  },
+  "rows": [
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "cofactor_families": [
+        "metal_ion"
+      ],
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "One proposed mechanism is a general base mechanism. Glu251 deprotonates the targeted serine residue of the pyruvate dehydrogenase E1 subunit and promotes its nucleophilic attack on the terminal phosphate of ATP. His247 polarises Glu243 to allow deprotonation. Magnesium ion coordinated to Asp help..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1JM6",
+      "readiness_blockers": [],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": true
+      },
+      "readiness_score": 5,
+      "resolved_residue_count": 4,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4004
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "cofactor_families": [],
+      "entry_id": "m_csa:608",
+      "entry_name": "streptogrisin B",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Ser 255 acts as the nucleophile to attack the peptide after deprotonation by His 147, forming the oxyanion intermediate, stabilised by hydrogen bonding of the oxyanion hole which is formed by Ser 255 and Gly 253. Protonation of the leaving group by His 147 results in the collapse of the tetrahedr..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1DS2",
+      "readiness_blockers": [],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": true
+      },
+      "readiness_score": 5,
+      "resolved_residue_count": 6,
+      "status": "ok",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.8442
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "cofactor_families": [],
+      "entry_id": "m_csa:609",
+      "entry_name": "alpha-lytic endopeptidase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Alpha-lytic protease employs a classic Ser-His-Asp triad. His 235 removes a proton from Ser 342 as the latter nucleophilically attacks the peptide carbonyl to give a tetrahedral intermediate which is stabilised by the NH groups of Gly 340 and Ser 342. Breakdown of the intermediate with protonatio..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1SSX",
+      "readiness_blockers": [],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": true
+      },
+      "readiness_score": 5,
+      "resolved_residue_count": 6,
+      "status": "ok",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.8864
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "cofactor_families": [
+        "metal_ion"
+      ],
+      "entry_id": "m_csa:611",
+      "entry_name": "5'-nucleotidase (bacterial)",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "5'-nucleotidase catalyses the hydrolytic cleavage of 5'-mononucleotides to nucleoside and phosphate by nucleophilic attack of a water molecule on the phosphorous. A water ligand is coordinated to the di-zinc centre. The phosphate group of the substrate binds with one oxygen atom to a metal ion. T..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1USH",
+      "readiness_blockers": [],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": true
+      },
+      "readiness_score": 5,
+      "resolved_residue_count": 12,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5782
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "cofactor_families": [
+        "metal_ion"
+      ],
+      "entry_id": "m_csa:623",
+      "entry_name": "neprilysin",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The Zinc ion and the catalytic residue Glu 584 act together to activate a water molecule for nucleophilic attack on the peptide substrate. This forms an oxyanion intermediate, stabilised by His 711 in a hydrogen bond network involving Asp 650 and Arg 717. Subsequent collapse of the intermediate r..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1R1J",
+      "readiness_blockers": [],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": true
+      },
+      "readiness_score": 5,
+      "resolved_residue_count": 7,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5927
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "cofactor_families": [
+        "metal_ion"
+      ],
+      "entry_id": "m_csa:626",
+      "entry_name": "bontoxilysin",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Glu231 is abase which deprotonates water and in conjugation with polarization by Zn2+ activates water so that it can act as a nucleophile and attack the carbonyl of the peptide bond. Arg369 and Zn2+ stabilise the transition state by interacting with the negatively charged carbonyl oxygen atom of..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1EPW",
+      "readiness_blockers": [],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": true
+      },
+      "readiness_score": 5,
+      "resolved_residue_count": 5,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5901
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:605",
+      "entry_name": "choline O-acetyltransferase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "His 334 acts as a general base to remove the proton from the choline OH group as the oxygen attacks the carbonyl of acetyl CoA. The resulting tetrahedral oxyanion intermediate is stabilised by Ser 550. Collapse of the tetrahedral intermediate releases CoA which is protonated by the His 334. Tyr 9..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1Q6X",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 4,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3623
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:607",
+      "entry_name": "ADP-ribosyl cyclase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Glu203 nucleophilically attacks the ribose C1' which nicotinamide attached to. The nucleophilic attack eliminates the nicotinamide and leads to the formation of a Glu179-R5P intermediate. N1 of purine group then acts as a nucleophile to attack the ester bond between Glu203 and ribose, resulting i..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1R16",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3444
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:612",
+      "entry_name": "anhydrosialidase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "In the first step, O2 of the substrate acquires a proton and leaves. Asp 318 either provides this proton directly or stabilises a proton from the solvent in the vicinity. The resulting positively charged oxocarbonium intermediate is stabilised by the negative side chains of Asp 318 and Glu 595, a..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1SLL",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3581
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:613",
+      "entry_name": "deoxyribose-phosphate aldolase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction proceeds via initial nucleophilic attack by Lys 167 on acetaldehyde to form a Schiff base intermediate; deprotonation of the Lys 167 by Asp 102 facilitates this. Subsequent deprotonation of the C2 of the acetaldehyde by a Lys 201 activated water molecule (Wat29) results in the produc..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1P1X",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.3985
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:614",
+      "entry_name": "3-deoxy-8-phosphooctulonate synthase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction proceeds through an aldol-like condensation where water activated phosphoenolpyruvate attacks A5P. This forms a bis-phosphorylated tetrahedral intermediate recorded in mass spectrometry experiments. The resulting intermediate then collapses, eliminating a phosphate group. Subsequent..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1Q3N",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 3,
+      "status": "ok",
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2683
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:616",
+      "entry_name": "hyaluronoglucosaminidase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "As in the chitinolytic enzymes, the sugar ring is distorted towards the transition state, with the antibonding orbital of the scissile bond held in a favourable orientation to overlap with the non-bonding orbital containing one of the ring oxygen lone pairs. In addition, the carbonyl of the subst..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1FCQ",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 5,
+      "status": "ok",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3488
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:621",
+      "entry_name": "caffeate O-methyltransferase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "COMT is an S-adenosyl-L-Met-dependent methyltransferase that methylates 3'-hydroxyl- and 5'-hydroxyl-containing phenylpropanoid-derived lignin precursors. Using His 269 as a general base, the 3'- or 5'-hydroxyl group is deprotonated, facilitating the transfer of the reactive methyl group of S-ade..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1KYW",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 4,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3727
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:624",
+      "entry_name": "bleomycin hydrolase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Bleomycin hydrolase is a cysteine protease. The resting state contains a thioloate-imidazolium pair (Cys 102 and His 398) that is stabilised by Asn 421. Cys 102 attacks the peptide carbonyl to form an acyl enzyme intermediate, with His 398 protonating the departing amine. Negative charge that acc..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1GCB",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 5,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3788
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:625",
+      "entry_name": "polynucleotide 5'-hydroxyl-kinase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "PNK catalyses the transfer of the gamma-phosphate from adenosine triphosphate or other nucleoside triphosphates to the 5'-OH of polynucleotides. The activity proceeds via an ordered sequential mechanism. Phosphoryl transfer results in an inversion of configuration at the phosphorous. The attackin..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1LTQ",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 4,
+      "status": "ok",
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2302
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:627",
+      "entry_name": "protein-disulfide reductase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Cys 109 is the primary nucleophile that attacks the intramolecular disulphide to form a disulphide between DsbD and DsbC. Cys 103 then acts as a secondary nucleophile to reduce this disulphide, activated by a Asp 68-Tyr 42 diad which acts as a proton relay system. This results in the reduced form..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1L6P",
+      "readiness_blockers": [
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": true,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 4,
+      "resolved_residue_count": 6,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3596
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:606",
+      "entry_name": "enoyl-[acyl-carrier-protein] reductase (NADH)",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The catalytic mechanism involves C3 of the substrate being subject to hydride attack by NADH, a bound cofactor. Formation of an enolate intermediate follows, which accepts a proton from Tyr 156. A role in transition state stabilisation through hydrogen bonding has also been suggested for Tyr 156...."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1QSG",
+      "readiness_blockers": [
+        "resolved_at_least_three_residues",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 3,
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.349
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:615",
+      "entry_name": "deoxyguanosine kinase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Activation of the 5'-OH of the deoxyribose by deprotonation with Glu 70 allows a nucleophilic attack of the gamma-phosphate of the phosphate donor. Arg 142 as well as the magnesium cation stabilise the trigonal bypyrimidal transition state formed in the reaction. The magnesium ion will coordinate..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "2OCP",
+      "readiness_blockers": [
+        "resolved_at_least_three_residues",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 3,
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3789
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:617",
+      "entry_name": "opine dehydrogenase",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The mechanism proposal is based on the similarity in the chemistry of the opine dehydrogenase family to that of the amino acid dehydrogenases. The reaction is believed to proceed via nucleophilic attack by the L amino acid on the pyruvate with a histidine residue acting as a general acid, allowin..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1BG6",
+      "readiness_blockers": [
+        "resolved_at_least_three_residues",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 3,
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3681
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "cofactor_families": [
+        "nad"
+      ],
+      "entry_id": "m_csa:619",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NAD(P)+) (phosphorylating)",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction proceeds via initial nucleophilic addition-elimination by cysteine on glycerate-1-3-bisphosphate resulting in the thioacyl enzyme intermediate. Hydride transfer to the intermediate from the cofactor results in a further hemithiolaceto enzyme intermediate, with protonation by histidin..."
+      ],
+      "mechanistic_coherence_score": 0.0,
+      "pdb_id": "1CF2",
+      "readiness_blockers": [
+        "resolved_at_least_three_residues",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 3,
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.3713
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:622",
+      "entry_name": "alpha,alpha-trehalose-phosphate synthase (UDP-forming)",
+      "has_pairwise_geometry": true,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction mechanism proceeds via an SNi type, meaning internal return whereby nucleophilic attack occurs on the same side as the leaving group departs. The ring oxygen of the UDP glucose donates electron density to C1 to allow the UDP to leave the molecule. This forms a shortly lived oxocarben..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1UQT",
+      "readiness_blockers": [
+        "resolved_at_least_three_residues",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": true,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": true,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 3,
+      "resolved_residue_count": 2,
+      "status": "ok",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3662
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:604",
+      "entry_name": "[ribulose-bisphosphate carboxylase]-lysine N-methyltransferase",
+      "has_pairwise_geometry": false,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The ionised form of Tyr 287 deprotonates the -NH3+ group of Lys 14 (on the large subunit of Rubisco). The resulting Lys-NH2 group can then attack the methyl group of the AdoMet sulphonium cation. It is proposed that the pKa of Tyr 287 is depressed (so allowing it to be present in the ionised form..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1MLV",
+      "readiness_blockers": [
+        "status_ok",
+        "resolved_at_least_three_residues",
+        "has_pairwise_geometry",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": false,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": false,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 1,
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3033
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:610",
+      "entry_name": "precorrin-2 dehydrogenase",
+      "has_pairwise_geometry": false,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "NAD-dependent dehydrogenation occurs by Asp 141 functioning as a catalytic general base to abstract a proton from the pyrrole nitrogen of ring C with concomitant hydride transfer from the prochiral bridge carbon to the nicotinamide ring of NAD. During ferrochelation Asp 141 again acts as a genera..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1KYQ",
+      "readiness_blockers": [
+        "status_ok",
+        "resolved_at_least_three_residues",
+        "has_pairwise_geometry",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": false,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": false,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 1,
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.1856
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:618",
+      "entry_name": "saccharopine dehydrogenase (NADP+, L-glutamate-forming)",
+      "has_pairwise_geometry": false,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "In the forward reaction from glutamate and alpha-aminoadipic-delta-semialdehyde to saccharopine, first, the amino nitrogen atom of the glutamate acts as a nucleophile to attack the carbon atom of the aldehyde group of alpha-aminoadipate-delta-semialdehyde, resulting in the formation of carbinoami..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1E5Q",
+      "readiness_blockers": [
+        "status_ok",
+        "resolved_at_least_three_residues",
+        "has_pairwise_geometry",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": false,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": false,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 1,
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2975
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "cofactor_families": [],
+      "entry_id": "m_csa:620",
+      "entry_name": "enoyl-[acyl-carrier-protein] reductase (NADPH, B-specific)",
+      "has_pairwise_geometry": false,
+      "has_pocket_context": true,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The proposed mechanism is based on analogy with the prokaryotic enoyl thioester reductases such as InhA. A hydride is transferred from NADPH to the beta position of the alpha-beta unsaturated carbonyl substrate (Michael addition) to give an enol(ate) intermediate. The hydroxy group of Tyr 79 acts..."
+      ],
+      "mechanistic_coherence_score": 1.0,
+      "pdb_id": "1GUF",
+      "readiness_blockers": [
+        "status_ok",
+        "resolved_at_least_three_residues",
+        "has_pairwise_geometry",
+        "top1_score_at_least_0_4"
+      ],
+      "readiness_checks": {
+        "has_pairwise_geometry": false,
+        "has_pocket_context": true,
+        "resolved_at_least_three_residues": false,
+        "status_ok": false,
+        "top1_score_at_least_0_4": false
+      },
+      "readiness_score": 1,
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.185
+    }
+  ]
+}

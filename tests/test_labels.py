@@ -47,12 +47,12 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 546)
+        self.assertEqual(len(labels), 579)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
-        self.assertEqual(summary["by_tier"]["bronze"], 546)
-        self.assertEqual(summary["by_review_status"]["automation_curated"], 546)
+        self.assertEqual(summary["by_tier"]["bronze"], 579)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 579)
         self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:
@@ -926,6 +926,165 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(decision["label_type"], "seed_fingerprint")
         self.assertEqual(decision["fingerprint_id"], "ser_his_acid_hydrolase")
         self.assertIn("Ser-His-Asp/Glu hydrolase triad", decision["rationale"])
+
+    def test_provisional_batch_does_not_count_metal_transferase_as_hydrolase(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:568",
+                    "entry_name": "lipopolysaccharide 3-alpha-galactosyltransferase",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:568",
+                        "entry_name": "lipopolysaccharide 3-alpha-galactosyltransferase",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_score": 0.5672,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "ligand_supported",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "The glycosyltransferase reaction proceeds through UDP-galactose transfer."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+                {
+                    "entry_id": "m_csa:577",
+                    "entry_name": "inositol-phosphate phosphatase",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:577",
+                        "entry_name": "inositol-phosphate phosphatase",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_score": 0.4288,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "role_inferred",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "Two Mg(II) ions activate water to cleave the phosphate-inositolate bond."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decisions = {
+            item["entry_id"]: item["decision"] for item in batch["review_items"]
+        }
+        self.assertEqual(decisions["m_csa:568"]["action"], "mark_needs_more_evidence")
+        self.assertEqual(decisions["m_csa:568"]["label_type"], "out_of_scope")
+        self.assertIsNone(decisions["m_csa:568"]["fingerprint_id"])
+        self.assertIn("high-scoring metal-hydrolase boundary", decisions["m_csa:568"]["rationale"])
+        self.assertEqual(decisions["m_csa:577"]["action"], "mark_needs_more_evidence")
+        self.assertEqual(
+            decisions["m_csa:577"]["fingerprint_id"],
+            "metal_dependent_hydrolase",
+        )
+
+    def test_provisional_batch_defers_seed_label_with_structural_blockers(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:567",
+                    "entry_name": "glucose oxidase",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:567",
+                        "entry_name": "glucose oxidase",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+                        "top1_score": 0.685,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "ligand_supported",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [
+                            "geometry_status_not_ok",
+                            "fewer_than_three_resolved_residues",
+                        ],
+                        "mechanism_text_snippets": [
+                            "Glucose oxidase uses FAD for redox chemistry."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                }
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decision = batch["review_items"][0]["decision"]
+        self.assertEqual(decision["action"], "mark_needs_more_evidence")
+        self.assertEqual(decision["fingerprint_id"], "flavin_dehydrogenase_reductase")
+        self.assertIn("not sufficiently resolved", decision["rationale"])
+
+    def test_provisional_batch_defers_non_abstaining_boundary_negative(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:553",
+                    "entry_name": "N-acetylneuraminate lyase",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:553",
+                        "entry_name": "N-acetylneuraminate lyase",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                        "top1_score": 0.4135,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "absent",
+                        "counterevidence_reasons": ["absent_heme_context"],
+                        "readiness_blockers": ["fewer_than_three_resolved_residues"],
+                        "mechanism_text_snippets": [
+                            "A lyase mechanism proceeds through a lysine Schiff-base intermediate."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                }
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decision = batch["review_items"][0]["decision"]
+        self.assertEqual(decision["action"], "mark_needs_more_evidence")
+        self.assertEqual(decision["label_type"], "out_of_scope")
+        self.assertIn("non-abstaining boundary candidate", decision["rationale"])
+
+    def test_provisional_batch_defers_ser_his_boundary_without_triad_text(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:602",
+                    "entry_name": "6-deoxyerythronolide-B synthase",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:602",
+                        "entry_name": "6-deoxyerythronolide-B synthase",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+                        "top1_score": 0.9052,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "not_required",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "The catalytic triad consists of Asp, His, and Ser, but the synthase elongates an acyl carrier protein-bound polyketide chain."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                }
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decision = batch["review_items"][0]["decision"]
+        self.assertEqual(decision["action"], "mark_needs_more_evidence")
+        self.assertEqual(decision["label_type"], "out_of_scope")
+        self.assertIn("Ser-His hydrolase boundary", decision["rationale"])
 
     def test_adversarial_negative_controls_use_more_than_threshold(self) -> None:
         labels = [

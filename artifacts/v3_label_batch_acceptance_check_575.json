@@ -1,0 +1,90 @@
+{
+  "blockers": [],
+  "gates": {
+    "accepted_labels_added": true,
+    "countable_registry_preserves_baseline": true,
+    "factory_gate_ready": true,
+    "no_pending_review_in_countable": true,
+    "zero_actionable_in_scope_failures": true,
+    "zero_hard_negatives": true,
+    "zero_near_misses": true,
+    "zero_out_of_scope_false_non_abstentions": true
+  },
+  "metadata": {
+    "accepted_for_counting": true,
+    "accepted_new_label_count": 17,
+    "actionable_in_scope_failure_count": 0,
+    "baseline_label_count": 546,
+    "countable_label_count": 563,
+    "evidence_limited_abstention_count": 4,
+    "factory_gate_ready": true,
+    "hard_negative_count": 0,
+    "method": "label_batch_acceptance_check",
+    "near_miss_count": 0,
+    "out_of_scope_false_non_abstentions": 0,
+    "pending_review_count": 17,
+    "review_state_label_count": 575,
+    "review_state_rule": "pending-review labels remain in the review-state registry but are not copied into the countable benchmark registry"
+  },
+  "summaries": {
+    "countable": {
+      "by_confidence": {
+        "high": 26,
+        "low": 18,
+        "medium": 519
+      },
+      "by_fingerprint": {
+        "cobalamin_radical_rearrangement": 2,
+        "flavin_dehydrogenase_reductase": 35,
+        "flavin_monooxygenase": 2,
+        "heme_peroxidase_oxidase": 9,
+        "metal_dependent_hydrolase": 53,
+        "plp_dependent_enzyme": 21,
+        "radical_sam_enzyme": 1,
+        "ser_his_acid_hydrolase": 23
+      },
+      "by_review_status": {
+        "automation_curated": 563
+      },
+      "by_tier": {
+        "bronze": 563
+      },
+      "by_type": {
+        "out_of_scope": 417,
+        "seed_fingerprint": 146
+      },
+      "label_count": 563,
+      "mean_evidence_score": 0.6487
+    },
+    "review_state": {
+      "by_confidence": {
+        "high": 26,
+        "low": 18,
+        "medium": 531
+      },
+      "by_fingerprint": {
+        "cobalamin_radical_rearrangement": 3,
+        "flavin_dehydrogenase_reductase": 36,
+        "flavin_monooxygenase": 2,
+        "heme_peroxidase_oxidase": 9,
+        "metal_dependent_hydrolase": 60,
+        "plp_dependent_enzyme": 21,
+        "radical_sam_enzyme": 1,
+        "ser_his_acid_hydrolase": 23
+      },
+      "by_review_status": {
+        "automation_curated": 558,
+        "needs_expert_review": 17
+      },
+      "by_tier": {
+        "bronze": 575
+      },
+      "by_type": {
+        "out_of_scope": 420,
+        "seed_fingerprint": 155
+      },
+      "label_count": 575,
+      "mean_evidence_score": 0.6466
+    }
+  }
+}

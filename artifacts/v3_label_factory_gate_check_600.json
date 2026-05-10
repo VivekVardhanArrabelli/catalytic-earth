@@ -1,0 +1,22 @@
+{
+  "blockers": [],
+  "gates": {
+    "active_queue_ranked": true,
+    "adversarial_negatives_mined": true,
+    "applied_label_actions_ready": true,
+    "demotion_or_abstention_demonstrated": true,
+    "expert_review_export_ready": true,
+    "family_propagation_guardrails_ready": true,
+    "label_schema_explicit": true,
+    "ontology_loaded": true,
+    "promotion_demonstrated": true
+  },
+  "metadata": {
+    "automation_ready_for_next_label_batch": true,
+    "bulk_scaling_rule": "new labels may be added in batches only after this gate check passes and the generated batch artifacts are regenerated",
+    "gate_count": 9,
+    "label_count": 579,
+    "method": "label_factory_gate_check",
+    "passed_gate_count": 9
+  }
+}

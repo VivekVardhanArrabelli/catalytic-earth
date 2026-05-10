@@ -2,11 +2,12 @@
 
 ## Current Plan
 
-The 500-, 525-, and 550-slice label-factory batches have been processed through
-countable import and acceptance checks. The next bounded block should either
-open the 575-entry scaffold from the 550 review-state registry or work on the
-remaining evidence-limited/pending-review rows; do not reprocess accepted 525 or
-550 batches.
+The 500-, 525-, 550-, 575-, and 600-slice label-factory batches have been
+processed through countable import and acceptance checks. A 625-entry preview
+has also been generated and passes preview acceptance, but it has not been
+promoted to the canonical curated-label registry. The next bounded block should
+review and either promote or discard the 625 preview, then regenerate canonical
+625 artifacts if promoted; do not reprocess accepted 575 or 600 batches.
 
 ## Current Generated Artifacts
 
@@ -30,16 +31,24 @@ remaining evidence-limited/pending-review rows; do not reprocess accepted 525 or
 - `artifacts/v3_imported_labels_batch_550.json`
 - `artifacts/v3_countable_labels_batch_550.json`
 - `artifacts/v3_label_factory_gate_check_550.json`
+- `artifacts/v3_label_batch_acceptance_check_575.json`
+- `artifacts/v3_label_batch_acceptance_check_600.json`
+- `artifacts/v3_imported_labels_batch_600.json`
+- `artifacts/v3_countable_labels_batch_600.json`
+- `artifacts/v3_label_factory_gate_check_600.json`
+- `artifacts/v3_label_batch_acceptance_check_625_preview.json`
 
 Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 9/9 factory checks pass on the 546-label countable
-registry. The latest batch-acceptance check passes: 23 additional labels were
-accepted for counting in the 550 batch, 9 review-state decisions remain
+Current gate state: 9/9 factory checks pass on the 579-label countable
+registry. The latest accepted batch-acceptance check passes: 16 additional labels were
+accepted for counting in the 600 batch, 26 review-state decisions remain
 pending, and the countable subset has 0 hard negatives, 0 near misses,
 0 out-of-scope false non-abstentions, and 0 actionable in-scope failures.
+The 625 preview would add 20 more labels, but it remains a preview artifact
+until the next run promotes it intentionally.
 
 Do not derive that countable subset by filtering the review-state registry: the
 review-state artifact intentionally marks several baseline boundary controls as
@@ -51,8 +60,9 @@ Remaining review-state candidates:
 - `m_csa:494`: likely cobalamin radical rearrangement, but B12 evidence is
   structure-wide only (`8.349 A` from the selected active-site residues), so it
   remains a documented non-countable evidence gap.
-- `m_csa:510`, `m_csa:529`, and `m_csa:534`: tranche candidates marked
-  `needs_expert_review` by the provisional batch rules.
+- `m_csa:510`, `m_csa:529`, `m_csa:534`, and later 575/600 boundary rows:
+  tranche candidates marked `needs_expert_review` by the provisional batch
+  rules.
 - Five carried boundary-control rows (`m_csa:4`, `m_csa:13`, `m_csa:54`,
   `m_csa:140`, and `m_csa:222`) remain review-state only.
 

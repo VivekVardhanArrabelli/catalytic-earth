@@ -3822,6 +3822,19 @@ def _provisional_unlabeled_decision(
         for blocker in queue_context.get("readiness_blockers", [])
         if str(blocker)
     ]
+    structural_blockers = {
+        blocker
+        for blocker in blockers
+        if blocker
+        in {
+            "status_ok",
+            "geometry_status_not_ok",
+            "resolved_at_least_three_residues",
+            "fewer_than_three_resolved_residues",
+            "has_pairwise_geometry",
+            "missing_pairwise_geometry",
+        }
+    }
 
     cobalamin_hint = (
         "cobalamin" in text
@@ -3829,14 +3842,19 @@ def _provisional_unlabeled_decision(
         or "adenosylcobalamin" in text
         or entry_id == "m_csa:494"
     )
-    metal_hydrolysis_hint = (
+    metal_hydrolysis_hint = top1 == "metal_dependent_hydrolase" and _has_metal_hydrolysis_text(
+        text,
+        entry_name,
+    )
+    non_hydrolytic_metal_boundary = (
         top1 == "metal_dependent_hydrolase"
-        and ("phosphatase" in text or "phosphodiester" in text or "phosphate" in text)
-        and ("hydrolys" in text or "water" in text)
+        and top1_score >= threshold
+        and not metal_hydrolysis_hint
     )
     ser_his_hydrolase_hint = (
         top1 == "ser_his_acid_hydrolase"
         and top1_score >= threshold
+        and not _has_clear_nonhydrolytic_text(text, entry_name)
         and (
             "ser-his" in text
             or "ser his" in text
@@ -3852,6 +3870,7 @@ def _provisional_unlabeled_decision(
         and top1
         and cofactor_level != "absent"
         and not counterevidence
+        and not structural_blockers
     )
     if cobalamin_hint and (
         top1 != "cobalamin_radical_rearrangement"
@@ -3867,6 +3886,28 @@ def _provisional_unlabeled_decision(
             "rationale": (
                 f"{entry_name} has cobalamin-radical mechanism text, but the "
                 "selected structure lacks local cobalamin support; keep this "
+                "candidate in expert review before counting it."
+            ),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
+    if (
+        top1_score >= threshold
+        and top1
+        and cofactor_level != "absent"
+        and not counterevidence
+        and structural_blockers
+    ):
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": top1,
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} has retrieval support for {top1}, but selected "
+                "active-site geometry is not sufficiently resolved; keep this "
                 "candidate in expert review before counting it."
             ),
             "evidence_score": 0.55,
@@ -3888,6 +3929,29 @@ def _provisional_unlabeled_decision(
             "evidence_score": 0.55,
             "review_status": "needs_expert_review",
         }
+    if non_hydrolytic_metal_boundary:
+        boundary_context = (
+            " mechanism text supports non-hydrolytic transfer, redox, lyase, "
+            "or peroxide chemistry."
+            if _has_clear_nonhydrolytic_text(text, entry_name)
+            else " the review context lacks explicit hydrolysis text."
+        )
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "out_of_scope",
+            "fingerprint_id": None,
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} is a high-scoring metal-hydrolase boundary "
+                f"control at {top1_score:.4f};{boundary_context} Keep this "
+                "candidate in expert review rather than counting it as either "
+                "a seed label or a safe out-of-scope negative."
+            ),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
     if ser_his_hydrolase_hint:
         return {
             "action": "accept_label",
@@ -3903,6 +3967,23 @@ def _provisional_unlabeled_decision(
             ),
             "evidence_score": 0.67,
             "review_status": "automation_curated",
+        }
+    if top1 == "ser_his_acid_hydrolase" and top1_score >= threshold:
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "out_of_scope",
+            "fingerprint_id": None,
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} is a high-scoring Ser-His hydrolase boundary "
+                f"candidate at {top1_score:.4f}, but the review context lacks "
+                "explicit Ser-His-Asp/Glu triad or alpha-beta hydrolase text; "
+                "keep this candidate in expert review before counting it."
+            ),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
         }
     if supported_seed or metal_hydrolysis_hint:
         confidence = "high" if top1_score >= 0.5 and cofactor_level == "ligand_supported" else "medium"
@@ -3920,6 +4001,30 @@ def _provisional_unlabeled_decision(
             ),
             "evidence_score": 0.72 if confidence == "high" else 0.65,
             "review_status": "automation_curated",
+        }
+    if top1_score >= threshold:
+        rationale_bits = [
+            f"{entry_name} is a non-abstaining boundary candidate: top retrieval "
+            f"{top1 or 'none'} scored {top1_score:.4f}, above the {threshold:.4f} "
+            "floor, but current automation rules do not support a countable seed "
+            "assignment.",
+        ]
+        if counterevidence:
+            rationale_bits.append(
+                "Counterevidence: " + ", ".join(sorted(counterevidence)) + "."
+            )
+        if blockers:
+            rationale_bits.append("Review blockers: " + ", ".join(sorted(blockers)) + ".")
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "out_of_scope",
+            "fingerprint_id": None,
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": " ".join(rationale_bits),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
         }
 
     confidence = "low" if blockers else "medium"
@@ -3951,6 +4056,63 @@ def _provisional_unlabeled_decision(
         "evidence_score": 0.4 if confidence == "low" else 0.65,
         "review_status": "automation_curated",
     }
+
+
+def _has_metal_hydrolysis_text(text: str, entry_name: str) -> bool:
+    combined = f"{entry_name.lower()} {text}"
+    direct_terms = {
+        "hydrolase",
+        "hydrolysis",
+        "hydrolyses",
+        "hydrolyzes",
+        "hydrolysed",
+        "hydrolyzed",
+        "phosphatase",
+        "phosphodiesterase",
+        "nuclease",
+        "ribonuclease",
+        "deoxyribonuclease",
+        "esterase",
+        "lipase",
+        "phospholipase",
+    }
+    water_attack_terms = {
+        "water attacks",
+        "water attack",
+        "nucleophilic water",
+        "metal-activated water",
+        "attacking nucleophilic hydroxide",
+    }
+    return any(term in combined for term in direct_terms | water_attack_terms)
+
+
+def _has_clear_nonhydrolytic_text(text: str, entry_name: str) -> bool:
+    combined = f"{entry_name.lower()} {text}"
+    boundary_terms = {
+        "transferase",
+        "glycosyltransferase",
+        "galactosyltransferase",
+        "methyltransferase",
+        "hydride transfer",
+        "dehydrogenase",
+        "reductase",
+        "oxidase",
+        "catalase",
+        "hydrogen peroxide",
+        "peroxide",
+        "lyase",
+        "hydratase",
+        "dehydratase",
+        "synthase",
+        "synthetase",
+        "epimerase",
+        "isomerase",
+        "decarboxylase",
+        "carboxylase",
+        "dioxygenase",
+        "monooxygenase",
+    }
+    return any(term in combined for term in boundary_terms)
 
 
 def _provisional_boundary_control_decision(
