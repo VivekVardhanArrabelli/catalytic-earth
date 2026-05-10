@@ -575,6 +575,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         acceptance_600 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_600.json")
         acceptance_625 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_625.json")
         acceptance_650 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_650.json")
+        acceptance_675_preview = _load_json(
+            ROOT / "artifacts" / "v3_label_batch_acceptance_check_675_preview.json"
+        )
+        preview_summary_675 = _load_json(
+            ROOT / "artifacts" / "v3_label_factory_preview_summary_675.json"
+        )
+        preview_debt_675 = _load_json(
+            ROOT / "artifacts" / "v3_review_debt_summary_675_preview.json"
+        )
+        preview_readiness_675 = _load_json(
+            ROOT / "artifacts" / "v3_label_preview_promotion_readiness_675.json"
+        )
         evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_650.json")
         hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_650.json")
         candidates_550 = _load_json(ROOT / "artifacts" / "v3_label_expansion_candidates_550.json")
@@ -606,6 +618,70 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(acceptance_650["metadata"]["accepted_for_counting"])
         self.assertEqual(acceptance_650["metadata"]["accepted_new_label_count"], 19)
         self.assertEqual(acceptance_650["metadata"]["countable_label_count"], 618)
+        self.assertTrue(acceptance_675_preview["metadata"]["accepted_for_counting"])
+        self.assertEqual(acceptance_675_preview["metadata"]["accepted_new_label_count"], 18)
+        self.assertEqual(acceptance_675_preview["metadata"]["countable_label_count"], 636)
+        self.assertEqual(acceptance_675_preview["metadata"]["pending_review_count"], 44)
+        self.assertEqual(preview_summary_675["metadata"]["blocker_count"], 0)
+        self.assertTrue(preview_summary_675["metadata"]["all_active_queues_retain_unlabeled_candidates"])
+        self.assertEqual(preview_debt_675["metadata"]["review_debt_count"], 61)
+        self.assertEqual(preview_debt_675["metadata"]["needs_more_evidence_count"], 44)
+        self.assertEqual(preview_debt_675["metadata"]["carried_review_debt_count"], 37)
+        self.assertEqual(preview_debt_675["metadata"]["new_review_debt_count"], 24)
+        self.assertEqual(len(preview_debt_675["metadata"]["carried_review_debt_entry_ids"]), 37)
+        self.assertEqual(
+            preview_debt_675["metadata"]["new_review_debt_entry_ids"],
+            [
+                "m_csa:653",
+                "m_csa:654",
+                "m_csa:655",
+                "m_csa:656",
+                "m_csa:657",
+                "m_csa:658",
+                "m_csa:659",
+                "m_csa:660",
+                "m_csa:661",
+                "m_csa:662",
+                "m_csa:663",
+                "m_csa:664",
+                "m_csa:665",
+                "m_csa:667",
+                "m_csa:668",
+                "m_csa:669",
+                "m_csa:670",
+                "m_csa:671",
+                "m_csa:672",
+                "m_csa:673",
+                "m_csa:674",
+                "m_csa:675",
+                "m_csa:676",
+                "m_csa:677",
+            ],
+        )
+        self.assertEqual(
+            preview_debt_675["metadata"]["recommended_next_action_counts_by_debt_status"]["new"],
+            {
+                "expert_family_boundary_review": 2,
+                "expert_review_decision_needed": 3,
+                "inspect_alternate_structure_or_cofactor_source": 14,
+                "verify_local_cofactor_or_active_site_mapping": 5,
+            },
+        )
+        self.assertTrue(preview_readiness_675["metadata"]["mechanically_ready"])
+        self.assertEqual(
+            preview_readiness_675["metadata"]["promotion_recommendation"],
+            "review_before_promoting",
+        )
+        self.assertEqual(preview_readiness_675["metadata"]["review_debt_delta"], 8)
+        self.assertEqual(preview_readiness_675["metadata"]["preview_new_review_debt_count"], 24)
+        self.assertEqual(
+            preview_readiness_675["metadata"]["preview_new_review_debt_entry_ids"],
+            preview_debt_675["metadata"]["new_review_debt_entry_ids"],
+        )
+        self.assertEqual(
+            preview_readiness_675["metadata"]["preview_new_review_debt_next_action_counts"],
+            preview_debt_675["metadata"]["recommended_next_action_counts_by_debt_status"]["new"],
+        )
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions"], 0)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)

@@ -108,8 +108,18 @@ accepted batch added 19 labels for counting while 37 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
 accepted batch history and confirms 7/7 accepted batches remain guardrail-clean.
 `artifacts/v3_review_debt_summary_650.json` prioritizes 53 current evidence-gap
-rows for the next review pass. A 675-entry preview is generated and accepted in
-preview artifacts, but it is not yet promoted to the canonical registry.
+rows for the accepted 650 state. A 675-entry preview is generated and accepted
+in preview artifacts, and `artifacts/v3_review_debt_summary_675_preview.json`
+prioritizes 61 preview evidence-gap rows before any promotion decision,
+including 24 new rows beyond the accepted 650 state.
+`artifacts/v3_label_factory_preview_summary_675.json` records that the preview
+has 10/10 gates passing and 0 blockers. The promotion-readiness artifact
+recommends review before promotion because preview review debt increases from
+53 to 61 rows; the preview debt metadata includes carried/new entry-id lists
+and next-action counts so the next review pass can inspect the 24 new rows
+directly. See
+`work/label_preview_675_notes.md` for the accepted-label profile and the top
+evidence gaps to inspect.
 See
 `docs/label_factory.md`.
 

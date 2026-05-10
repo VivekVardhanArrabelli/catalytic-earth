@@ -27,6 +27,7 @@ from catalytic_earth.labels import (
     build_provisional_review_decision_batch,
     check_label_batch_acceptance,
     check_label_factory_gates,
+    check_label_preview_promotion_readiness,
     check_label_review_resolution,
     classify_out_of_scope_failure,
     compare_threshold_policies,
@@ -782,6 +783,7 @@ class LabelTests(unittest.TestCase):
         summary = summarize_review_debt(gaps, active_learning_queue=queue, max_rows=2)
 
         self.assertEqual(summary["metadata"]["review_debt_count"], 2)
+        self.assertEqual(summary["metadata"]["review_debt_entry_ids"], ["m_csa:494", "m_csa:650"])
         self.assertEqual(summary["metadata"]["active_queue_rows_linked"], 2)
         self.assertEqual(summary["rows"][0]["entry_id"], "m_csa:650")
         self.assertEqual(
@@ -789,6 +791,114 @@ class LabelTests(unittest.TestCase):
             "verify_local_cofactor_or_active_site_mapping",
         )
         self.assertIn("counterevidence_present", summary["metadata"]["gap_reason_counts"])
+
+        with_baseline = summarize_review_debt(
+            gaps,
+            active_learning_queue=queue,
+            baseline_review_debt={"rows": [{"entry_id": "m_csa:494"}]},
+            max_rows=2,
+        )
+        self.assertEqual(with_baseline["metadata"]["debt_status_counts"]["carried"], 1)
+        self.assertEqual(with_baseline["metadata"]["debt_status_counts"]["new"], 1)
+        self.assertEqual(with_baseline["metadata"]["carried_review_debt_entry_ids"], ["m_csa:494"])
+        self.assertEqual(with_baseline["metadata"]["new_review_debt_entry_ids"], ["m_csa:650"])
+        self.assertEqual(
+            with_baseline["metadata"]["recommended_next_action_counts_by_debt_status"]["carried"],
+            {"inspect_alternate_structure_or_cofactor_source": 1},
+        )
+        self.assertEqual(
+            with_baseline["metadata"]["recommended_next_action_counts_by_debt_status"]["new"],
+            {"verify_local_cofactor_or_active_site_mapping": 1},
+        )
+        self.assertEqual(with_baseline["rows"][0]["debt_status"], "new")
+
+    def test_preview_promotion_readiness_warns_on_new_review_debt(self) -> None:
+        acceptance = {
+            "metadata": {
+                "accepted_for_counting": True,
+                "accepted_new_label_count": 18,
+                "countable_label_count": 636,
+                "pending_review_count": 44,
+                "hard_negative_count": 0,
+                "near_miss_count": 0,
+                "out_of_scope_false_non_abstentions": 0,
+                "actionable_in_scope_failure_count": 0,
+            }
+        }
+        preview_summary = {
+            "metadata": {
+                "blocker_count": 0,
+                "latest_countable_label_count": 636,
+                "total_accepted_new_label_count": 18,
+                "all_active_queues_retain_unlabeled_candidates": True,
+            }
+        }
+        current_debt = {
+            "metadata": {
+                "method": "review_debt_summary",
+                "review_debt_count": 53,
+                "needs_more_evidence_count": 37,
+            }
+        }
+        preview_debt = {
+            "metadata": {
+                "method": "review_debt_summary",
+                "review_debt_count": 61,
+                "needs_more_evidence_count": 44,
+                "new_review_debt_count": 1,
+                "carried_review_debt_count": 1,
+                "new_review_debt_entry_ids": ["m_csa:650"],
+                "carried_review_debt_entry_ids": ["m_csa:494"],
+                "recommended_next_action_counts_by_debt_status": {
+                    "new": {"verify_local_cofactor_or_active_site_mapping": 1},
+                    "carried": {"inspect_alternate_structure_or_cofactor_source": 1},
+                },
+            }
+        }
+
+        readiness = check_label_preview_promotion_readiness(
+            acceptance,
+            preview_summary,
+            preview_debt,
+            current_review_debt=current_debt,
+        )
+
+        self.assertTrue(readiness["metadata"]["mechanically_ready"])
+        self.assertEqual(readiness["metadata"]["review_debt_delta"], 8)
+        self.assertEqual(readiness["metadata"]["preview_new_review_debt_count"], 1)
+        self.assertEqual(readiness["metadata"]["preview_new_review_debt_entry_ids"], ["m_csa:650"])
+        self.assertEqual(
+            readiness["metadata"]["preview_new_review_debt_next_action_counts"],
+            {"verify_local_cofactor_or_active_site_mapping": 1},
+        )
+        self.assertEqual(readiness["metadata"]["promotion_recommendation"], "review_before_promoting")
+        self.assertIn("review_debt_count_increased", readiness["review_warnings"])
+
+        clean_preview = check_label_preview_promotion_readiness(
+            {
+                "metadata": {
+                    **acceptance["metadata"],
+                    "pending_review_count": 0,
+                }
+            },
+            preview_summary,
+            {"metadata": {"method": "review_debt_summary", "review_debt_count": 0}},
+            current_review_debt={"metadata": {"review_debt_count": 0}},
+        )
+        self.assertTrue(clean_preview["gates"]["preview_debt_summary_present"])
+        self.assertEqual(clean_preview["metadata"]["promotion_recommendation"], "promote_if_policy_allows")
+
+        mismatched = check_label_preview_promotion_readiness(
+            acceptance,
+            {"metadata": {"blocker_count": 0, "latest_countable_label_count": 999}},
+            preview_debt,
+            current_review_debt=current_debt,
+        )
+        self.assertFalse(mismatched["gates"]["preview_summary_matches_acceptance"])
+        self.assertFalse(mismatched["gates"]["preview_summary_retains_unlabeled_candidates"])
+        self.assertIn("preview_summary_matches_acceptance", mismatched["blockers"])
+        self.assertIn("preview_summary_retains_unlabeled_candidates", mismatched["blockers"])
+        self.assertEqual(mismatched["metadata"]["promotion_recommendation"], "do_not_promote")
 
     def test_provisional_review_batch_imports_without_expert_claim(self) -> None:
         labels = [

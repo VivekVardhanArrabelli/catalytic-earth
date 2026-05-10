@@ -46,7 +46,7 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    commit, push, verify `HEAD == origin/main`, and release the lock only when
    the worktree is clean.
 
-## What Changed In This Run
+## Recent Project Progress
 
 - Recovered a stale automation lock with a dirty worktree and finalized the
   coherent in-progress label-factory scaling work rather than starting a
@@ -62,10 +62,27 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   batches, review debt, gate status, and active-queue retention.
 - Added `artifacts/v3_review_debt_summary_650.json` to rank 53 evidence-gap
   rows for the next review pass.
+- Added preview triage artifacts
+  `artifacts/v3_review_evidence_gaps_675_preview.json` and
+  `artifacts/v3_review_debt_summary_675_preview.json` so the 675 promotion
+  decision can inspect evidence gaps first.
+- Added `artifacts/v3_label_factory_preview_summary_675.json` to summarize the
+  unpromoted preview's acceptance, pending-review, gate, and queue-retention
+  metrics.
+- Added `artifacts/v3_label_preview_promotion_readiness_675.json`; it is
+  mechanically ready but recommends review before promotion because preview
+  review debt increased, and it carries new-debt entry ids and next-action
+  counts for audit. The gate requires preview summary counts to match
+  acceptance and explicit unlabeled-candidate retention.
+- After the preview-readiness gate was in place, used the remaining productive
+  work window to expose carried/new debt entry ids and next-action counts in
+  durable artifacts and regression tests.
+- Added `work/label_preview_675_notes.md` with the accepted-label profile and
+  top evidence gaps to inspect before promotion.
 - Extended geometry slice summaries, regression tests, and performance timing
   through the 650-entry countable slice.
-- Generated 675 graph, graph-summary, and benchmark scaffold artifacts, but did
-  not open a 675 label batch.
+- Reviewed the generated 675 preview artifacts and left them unpromoted because
+  readiness recommends review before promotion.
 
 ## Current Metrics
 
@@ -131,6 +148,16 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - Review debt summary: 53 evidence-gap rows, 37 `needs_more_evidence`
   decisions, 42 rows linked back to active-learning ranks, and `m_csa:494`
   remains the highest-priority local/structure-wide cofactor gap.
+- 675 preview debt summary: 61 evidence-gap rows, 44 `needs_more_evidence`
+  decisions, 44 rows linked back to active-learning ranks, 37 carried rows,
+  24 new rows, full carried/new entry-id lists plus next-action counts by debt
+  status in metadata, and `m_csa:494` remains the top-ranked debt row.
+- 675 preview summary: 18 countable additions if promoted, 44 pending
+  review-state rows, 10/10 gates passing, all unlabeled preview rows retained,
+  and 0 blockers.
+- 675 promotion readiness: mechanically ready, 0 blockers, but
+  `review_before_promoting` with review-debt delta `+8` and
+  needs-more-evidence delta `+7`.
 - Structure mapping: 17 total mapping issues at 650.
 - Local performance was regenerated on 650 artifacts in `artifacts/perf_report.json`.
 
@@ -146,6 +173,8 @@ PYTHONPATH=src python -m catalytic_earth.cli validate
 PYTHONPATH=src python -m catalytic_earth.cli summarize-geometry-slices --artifact-dir artifacts --out artifacts/v3_geometry_slice_summary.json
 PYTHONPATH=src python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_650.json --retrieval artifacts/v3_geometry_retrieval_650.json --labels artifacts/v3_imported_labels_batch_650.json --out artifacts/v3_label_expansion_candidates_650.json
 PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates --label-factory-audit artifacts/v3_label_factory_audit_650.json --applied-label-factory artifacts/v3_label_factory_applied_labels_650.json --active-learning-queue artifacts/v3_active_learning_review_queue_650.json --adversarial-negatives artifacts/v3_adversarial_negative_controls_650.json --expert-review-export artifacts/v3_expert_review_export_650_post_batch.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_650.json --out artifacts/v3_label_factory_gate_check_650.json
+PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt --review-evidence-gaps artifacts/v3_review_evidence_gaps_675_preview.json --active-learning-queue artifacts/v3_active_learning_review_queue_675_preview_batch.json --baseline-review-debt artifacts/v3_review_debt_summary_650.json --max-rows 35 --out artifacts/v3_review_debt_summary_675_preview.json
+PYTHONPATH=src python -m catalytic_earth.cli check-label-preview-promotion --preview-acceptance artifacts/v3_label_batch_acceptance_check_675_preview.json --preview-summary artifacts/v3_label_factory_preview_summary_675.json --preview-review-debt artifacts/v3_review_debt_summary_675_preview.json --current-review-debt artifacts/v3_review_debt_summary_650.json --out artifacts/v3_label_preview_promotion_readiness_675.json
 ```
 
 ## Next Agent Start Here
@@ -155,12 +184,17 @@ Start from the accepted 650 state. Do not reopen the accepted 625/650 batches.
 1. Inspect `artifacts/v3_active_learning_review_queue_650.json`,
    `artifacts/v3_expert_review_export_650_post_batch.json`,
    `artifacts/v3_review_evidence_gaps_650.json`,
-   `artifacts/v3_review_debt_summary_650.json`, and the generated
+   `artifacts/v3_review_debt_summary_650.json`,
+   `artifacts/v3_label_batch_acceptance_check_675_preview.json`,
+   `artifacts/v3_label_factory_preview_summary_675.json`,
+   `artifacts/v3_label_preview_promotion_readiness_675.json`,
+   `artifacts/v3_review_debt_summary_675_preview.json`,
+   `work/label_preview_675_notes.md`, and the generated
    `artifacts/v1_graph_675.json` / `artifacts/v2_benchmark_675.json` scaffold.
-2. Decide whether the next bounded task should be a 675 factory preview or an
-   evidence-quality pass on the persistent review-state rows. If opening 675,
-   run the full label-factory pipeline and keep the active-queue unlabeled
-   retention gate passing before any labels count.
+2. Decide whether to promote the existing 675 preview or first do an
+   evidence-quality pass on the persistent review-state rows. Promotion should
+   only happen after inspecting the readiness/debt artifacts; do not rerun the
+   accepted 625/650 batches.
 3. Keep `m_csa:650` in review unless explicit metal-catalysis evidence is
    added; it is the new regression case for Ser-His text with a metal-dependent
    top retrieval hit.
@@ -183,15 +217,15 @@ Known blockers:
 
 ## Run Timing
 
-- STARTED_AT: 2026-05-10T09:39:56.856Z
-- ENDED_AT: 2026-05-10T13:59:31Z
-- Measured elapsed time: 259.578 minutes
+- STARTED_AT: 2026-05-10T13:45:58Z
+- ENDED_AT: 2026-05-10T14:37:04Z
+- Measured elapsed time: 51.100 minutes
 - Documentation checked and updated across README, docs, scope, handoff,
-  label-factory notes, geometry/performance reports, and status inputs before
-  final status regeneration.
+  label-factory notes, preview notes, and status inputs before final status
+  regeneration.
 - Final verification passed: `git diff --check`, `PYTHONPATH=src python -m
   catalytic_earth.cli validate`, and `PYTHONPATH=src python -m unittest
-  discover -s tests` passed with 143 tests.
-- Note: this run exceeded the normal wrap-up envelope after long 675 graph and
-  geometry artifact generation; no further implementation should start until
-  the next scheduled run reviews the 675 preview.
+  discover -s tests` passed with 146 tests.
+- Note: stale-lock recovery continued from the accepted 650 state and left the
+  675 preview unpromoted; the next scheduled run should inspect the preview
+  readiness/debt artifacts before any promotion.

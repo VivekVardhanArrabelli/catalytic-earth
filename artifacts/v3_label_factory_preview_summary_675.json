@@ -1,0 +1,44 @@
+{
+  "blockers": [],
+  "metadata": {
+    "accepted_batch_count": 1,
+    "all_active_queues_retain_unlabeled_candidates": true,
+    "all_batches_accepted_for_counting": true,
+    "all_factory_gates_ready": true,
+    "all_zero_actionable_in_scope_failures": true,
+    "all_zero_false_non_abstentions": true,
+    "all_zero_hard_negatives": true,
+    "all_zero_near_misses": true,
+    "batch_count": 1,
+    "blocker_count": 0,
+    "latest_batch": "675",
+    "latest_countable_label_count": 636,
+    "latest_pending_review_count": 44,
+    "method": "label_factory_batch_summary",
+    "next_batch_rule": "open the next label tranche only when every accepted batch has zero hard negatives, zero near misses, zero false non-abstentions, zero actionable in-scope failures, ready factory gates, and active queues that retain all unlabeled candidates",
+    "total_accepted_new_label_count": 18
+  },
+  "rows": [
+    {
+      "accepted_for_counting": true,
+      "accepted_new_label_count": 18,
+      "actionable_in_scope_failure_count": 0,
+      "active_queue_all_unlabeled_retained": true,
+      "active_queue_unlabeled_count": 39,
+      "active_queue_unlabeled_omitted": 0,
+      "baseline_label_count": 618,
+      "batch": "675",
+      "blockers": [],
+      "countable_label_count": 636,
+      "factory_gate_ready": true,
+      "gate_count": 10,
+      "hard_negative_count": 0,
+      "near_miss_count": 0,
+      "out_of_scope_false_non_abstentions": 0,
+      "passed_gate_count": 10,
+      "pending_review_count": 44,
+      "review_state_label_count": 675,
+      "source": "v3_label_batch_acceptance_check_675_preview.json"
+    }
+  ]
+}

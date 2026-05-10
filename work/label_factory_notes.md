@@ -49,6 +49,10 @@ accepted 625 or 650 batches.
 - `artifacts/v3_imported_labels_batch_675_preview.json`
 - `artifacts/v3_countable_labels_batch_675_preview.json`
 - `artifacts/v3_label_factory_gate_check_675_preview_batch.json`
+- `artifacts/v3_label_factory_preview_summary_675.json`
+- `artifacts/v3_label_preview_promotion_readiness_675.json`
+- `artifacts/v3_review_evidence_gaps_675_preview.json`
+- `artifacts/v3_review_debt_summary_675_preview.json`
 
 Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
@@ -62,9 +66,17 @@ pending, and the countable subset has 0 hard negatives, 0 near misses,
 The post-650 active-learning queue retains all 32 unlabeled candidate rows;
 the factory gate fails if a capped queue omits any unlabeled row. The batch
 summary reports 7/7 accepted batches with 0 blockers.
-The 675 preview would add 18 countable labels and leave 39 review-state
+The 675 preview would add 18 countable labels and leave 44 review-state
 decisions pending while preserving 0 hard negatives, 0 near misses,
-0 out-of-scope false non-abstentions, and 0 actionable in-scope failures.
+0 out-of-scope false non-abstentions, and 0 actionable in-scope failures. Its
+review-debt summary ranks 61 evidence-gap rows before any promotion decision.
+Its preview summary records 10/10 passing gates and 0 blockers, but promotion
+should still inspect the review-debt artifact first. The promotion-readiness
+check is mechanically ready but recommends `review_before_promoting` because
+review debt increases by 8 rows and needs-more-evidence decisions increase by
+7 rows relative to the accepted 650 state; the preview debt metadata lists all
+37 carried and 24 new debt entry ids. See
+`work/label_preview_675_notes.md` before any promotion.
 
 Do not derive that countable subset by filtering the review-state registry: the
 review-state artifact intentionally marks several baseline boundary controls as

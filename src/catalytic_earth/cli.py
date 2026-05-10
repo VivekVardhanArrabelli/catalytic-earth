@@ -31,6 +31,7 @@ from .labels import (
     build_provisional_review_decision_batch,
     check_label_batch_acceptance,
     check_label_factory_gates,
+    check_label_preview_promotion_readiness,
     check_label_review_resolution,
     countable_benchmark_labels,
     evaluate_geometry_retrieval,
@@ -701,15 +702,45 @@ def cmd_summarize_review_debt(args: argparse.Namespace) -> int:
     if args.active_learning_queue:
         with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
             queue = json.load(handle)
+    baseline_debt = None
+    if args.baseline_review_debt:
+        with Path(args.baseline_review_debt).open("r", encoding="utf-8") as handle:
+            baseline_debt = json.load(handle)
     summary = summarize_review_debt(
         review_gaps,
         active_learning_queue=queue,
+        baseline_review_debt=baseline_debt,
         max_rows=args.max_rows,
     )
     write_json(Path(args.out), summary)
     print(
         "Wrote review debt summary to "
         f"{args.out} ({summary['metadata']['review_debt_count']} rows)"
+    )
+    return 0
+
+
+def cmd_check_label_preview_promotion(args: argparse.Namespace) -> int:
+    with Path(args.preview_acceptance).open("r", encoding="utf-8") as handle:
+        acceptance = json.load(handle)
+    with Path(args.preview_summary).open("r", encoding="utf-8") as handle:
+        summary = json.load(handle)
+    with Path(args.preview_review_debt).open("r", encoding="utf-8") as handle:
+        preview_debt = json.load(handle)
+    current_debt = None
+    if args.current_review_debt:
+        with Path(args.current_review_debt).open("r", encoding="utf-8") as handle:
+            current_debt = json.load(handle)
+    readiness = check_label_preview_promotion_readiness(
+        acceptance,
+        summary,
+        preview_debt,
+        current_review_debt=current_debt,
+    )
+    write_json(Path(args.out), readiness)
+    print(
+        "Wrote label preview promotion readiness to "
+        f"{args.out} ({readiness['metadata']['promotion_recommendation']})"
     )
     return 0
 
@@ -1376,9 +1407,33 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_review_evidence_gaps.json",
     )
     review_debt.add_argument("--active-learning-queue", default=None)
+    review_debt.add_argument("--baseline-review-debt", default=None)
     review_debt.add_argument("--max-rows", type=int, default=25)
     review_debt.add_argument("--out", default="artifacts/v3_review_debt_summary.json")
     review_debt.set_defaults(func=cmd_summarize_review_debt)
+
+    preview_promotion = subparsers.add_parser(
+        "check-label-preview-promotion",
+        help="separate mechanical preview acceptance from promotion readiness",
+    )
+    preview_promotion.add_argument(
+        "--preview-acceptance",
+        default="artifacts/v3_label_batch_acceptance_check_preview.json",
+    )
+    preview_promotion.add_argument(
+        "--preview-summary",
+        default="artifacts/v3_label_factory_preview_summary.json",
+    )
+    preview_promotion.add_argument(
+        "--preview-review-debt",
+        default="artifacts/v3_review_debt_summary_preview.json",
+    )
+    preview_promotion.add_argument("--current-review-debt", default=None)
+    preview_promotion.add_argument(
+        "--out",
+        default="artifacts/v3_label_preview_promotion_readiness.json",
+    )
+    preview_promotion.set_defaults(func=cmd_check_label_preview_promotion)
 
     family_guardrails = subparsers.add_parser(
         "build-family-propagation-guardrails",

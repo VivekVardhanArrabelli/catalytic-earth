@@ -3482,6 +3482,7 @@ def analyze_review_evidence_gaps(
 def summarize_review_debt(
     review_evidence_gaps: dict[str, Any],
     active_learning_queue: dict[str, Any] | None = None,
+    baseline_review_debt: dict[str, Any] | None = None,
     max_rows: int = 25,
 ) -> dict[str, Any]:
     queue_rank_by_entry: dict[str, int] = {}
@@ -3493,6 +3494,16 @@ def summarize_review_debt(
             entry_id = str(row["entry_id"])
             queue_rank_by_entry[entry_id] = int(row.get("rank", 0) or 0)
             queue_score_by_entry[entry_id] = float(row.get("review_score", 0.0) or 0.0)
+    baseline_meta = (baseline_review_debt or {}).get("metadata", {})
+    baseline_debt_ids = {
+        str(entry_id)
+        for entry_id in baseline_meta.get("review_debt_entry_ids", [])
+        if isinstance(entry_id, str)
+    } or {
+        str(row.get("entry_id"))
+        for row in (baseline_review_debt or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
     debt_rows: list[dict[str, Any]] = []
     for row in review_evidence_gaps.get("rows", []):
         if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
@@ -3519,6 +3530,11 @@ def summarize_review_debt(
                     if entry_id in queue_score_by_entry
                     else None
                 ),
+                "debt_status": (
+                    "carried" if entry_id in baseline_debt_ids else "new"
+                )
+                if baseline_review_debt
+                else None,
                 "decision_action": action,
                 "coverage_status": coverage_status,
                 "gap_reasons": sorted(set(gap_reasons)),
@@ -3540,11 +3556,46 @@ def summarize_review_debt(
     gap_reason_counts = Counter(reason for row in debt_rows for reason in row["gap_reasons"])
     coverage_counts = Counter(str(row["coverage_status"]) for row in debt_rows)
     next_action_counts = Counter(str(row["recommended_next_action"]) for row in debt_rows)
+    debt_status_counts = Counter(
+        str(row["debt_status"]) for row in debt_rows if row["debt_status"] is not None
+    )
+    next_action_counts_by_status: dict[str, dict[str, int]] = {}
+    for status in ("carried", "new"):
+        status_counts = Counter(
+            str(row["recommended_next_action"])
+            for row in debt_rows
+            if row.get("debt_status") == status
+        )
+        if status_counts:
+            next_action_counts_by_status[status] = dict(sorted(status_counts.items()))
+    debt_entry_ids = sorted(
+        (str(row["entry_id"]) for row in debt_rows),
+        key=_entry_id_sort_key,
+    )
+    carried_debt_entry_ids = sorted(
+        (
+            str(row["entry_id"])
+            for row in debt_rows
+            if row.get("debt_status") == "carried"
+        ),
+        key=_entry_id_sort_key,
+    )
+    new_debt_entry_ids = sorted(
+        (
+            str(row["entry_id"])
+            for row in debt_rows
+            if row.get("debt_status") == "new"
+        ),
+        key=_entry_id_sort_key,
+    )
     return {
         "metadata": {
             "method": "review_debt_summary",
             "source_method": review_evidence_gaps.get("metadata", {}).get("method"),
             "review_debt_count": len(debt_rows),
+            "review_debt_entry_ids": debt_entry_ids,
+            "carried_review_debt_entry_ids": carried_debt_entry_ids,
+            "new_review_debt_entry_ids": new_debt_entry_ids,
             "needs_more_evidence_count": sum(
                 1 for row in debt_rows if row["decision_action"] == "mark_needs_more_evidence"
             ),
@@ -3552,6 +3603,10 @@ def summarize_review_debt(
             "gap_reason_counts": dict(sorted(gap_reason_counts.items())),
             "coverage_status_counts": dict(sorted(coverage_counts.items())),
             "recommended_next_action_counts": dict(sorted(next_action_counts.items())),
+            "debt_status_counts": dict(sorted(debt_status_counts.items())),
+            "recommended_next_action_counts_by_debt_status": next_action_counts_by_status,
+            "new_review_debt_count": debt_status_counts.get("new", 0),
+            "carried_review_debt_count": debt_status_counts.get("carried", 0),
             "active_queue_rows_linked": sum(
                 1 for row in debt_rows if row["active_queue_rank"] is not None
             ),
@@ -3597,6 +3652,149 @@ def _review_debt_next_action(gap_reasons: list[str], coverage_status: str) -> st
     if "top1_below_abstention_threshold" in reasons:
         return "keep_abstained_until_stronger_evidence"
     return "expert_review_decision_needed"
+
+
+def check_label_preview_promotion_readiness(
+    preview_acceptance: dict[str, Any],
+    preview_summary: dict[str, Any],
+    preview_review_debt: dict[str, Any],
+    current_review_debt: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    acceptance_meta = preview_acceptance.get("metadata", {})
+    preview_summary_meta = preview_summary.get("metadata", {})
+    preview_debt_meta = preview_review_debt.get("metadata", {})
+    current_debt_meta = current_review_debt.get("metadata", {}) if current_review_debt else {}
+    preview_debt_count = int(preview_debt_meta.get("review_debt_count", 0) or 0)
+    current_debt_count = int(current_debt_meta.get("review_debt_count", 0) or 0)
+    preview_needs_more = int(preview_debt_meta.get("needs_more_evidence_count", 0) or 0)
+    current_needs_more = int(current_debt_meta.get("needs_more_evidence_count", 0) or 0)
+    preview_new_debt_ids = [
+        str(entry_id)
+        for entry_id in preview_debt_meta.get("new_review_debt_entry_ids", [])
+        if isinstance(entry_id, str)
+    ]
+    preview_carried_debt_ids = [
+        str(entry_id)
+        for entry_id in preview_debt_meta.get("carried_review_debt_entry_ids", [])
+        if isinstance(entry_id, str)
+    ]
+    next_actions_by_status = preview_debt_meta.get(
+        "recommended_next_action_counts_by_debt_status", {}
+    )
+    preview_new_action_counts = (
+        dict(sorted(next_actions_by_status.get("new", {}).items()))
+        if isinstance(next_actions_by_status, dict)
+        and isinstance(next_actions_by_status.get("new"), dict)
+        else {}
+    )
+    preview_carried_action_counts = (
+        dict(sorted(next_actions_by_status.get("carried", {}).items()))
+        if isinstance(next_actions_by_status, dict)
+        and isinstance(next_actions_by_status.get("carried"), dict)
+        else {}
+    )
+    preview_summary_blocker_count = int(
+        preview_summary_meta.get(
+            "blocker_count",
+            len(preview_summary.get("blockers", []))
+            if isinstance(preview_summary.get("blockers", []), list)
+            else 0,
+        )
+        or 0
+    )
+    summary_countable_count = preview_summary_meta.get("latest_countable_label_count")
+    summary_accepted_count = preview_summary_meta.get("total_accepted_new_label_count")
+    summary_matches_acceptance = (
+        (
+            summary_countable_count is not None
+            and int(summary_countable_count or 0)
+            == int(acceptance_meta.get("countable_label_count", 0) or 0)
+        )
+        and (
+            summary_accepted_count is not None
+            and int(summary_accepted_count or 0)
+            == int(acceptance_meta.get("accepted_new_label_count", 0) or 0)
+        )
+    )
+    gates = {
+        "preview_acceptance_passed": bool(acceptance_meta.get("accepted_for_counting")),
+        "preview_summary_has_no_blockers": preview_summary_blocker_count == 0,
+        "preview_summary_matches_acceptance": summary_matches_acceptance,
+        "preview_summary_retains_unlabeled_candidates": preview_summary_meta.get(
+            "all_active_queues_retain_unlabeled_candidates"
+        )
+        is True,
+        "preview_zero_hard_negatives": int(
+            acceptance_meta.get("hard_negative_count", 0) or 0
+        )
+        == 0,
+        "preview_zero_near_misses": int(acceptance_meta.get("near_miss_count", 0) or 0) == 0,
+        "preview_zero_false_non_abstentions": int(
+            acceptance_meta.get("out_of_scope_false_non_abstentions", 0) or 0
+        )
+        == 0,
+        "preview_zero_actionable_in_scope_failures": int(
+            acceptance_meta.get("actionable_in_scope_failure_count", 0) or 0
+        )
+        == 0,
+        "preview_debt_summary_present": preview_debt_meta.get("method") == "review_debt_summary",
+    }
+    blockers = [name for name, passed in gates.items() if not passed]
+    review_warnings: list[str] = []
+    if current_review_debt and preview_debt_count > current_debt_count:
+        review_warnings.append("review_debt_count_increased")
+    if current_review_debt and preview_needs_more > current_needs_more:
+        review_warnings.append("needs_more_evidence_count_increased")
+    if int(acceptance_meta.get("pending_review_count", 0) or 0) > 0:
+        review_warnings.append("pending_review_rows_remain")
+    mechanically_ready = not blockers
+    recommendation = (
+        "review_before_promoting"
+        if mechanically_ready and review_warnings
+        else "promote_if_policy_allows"
+        if mechanically_ready
+        else "do_not_promote"
+    )
+    return {
+        "metadata": {
+            "method": "label_preview_promotion_readiness",
+            "mechanically_ready": mechanically_ready,
+            "promotion_recommendation": recommendation,
+            "accepted_new_label_count": acceptance_meta.get("accepted_new_label_count"),
+            "preview_countable_label_count": acceptance_meta.get("countable_label_count"),
+            "preview_pending_review_count": acceptance_meta.get("pending_review_count"),
+            "preview_review_debt_count": preview_debt_count,
+            "preview_new_review_debt_count": int(
+                preview_debt_meta.get("new_review_debt_count", 0) or 0
+            ),
+            "preview_carried_review_debt_count": int(
+                preview_debt_meta.get("carried_review_debt_count", 0) or 0
+            ),
+            "preview_new_review_debt_entry_ids": preview_new_debt_ids,
+            "preview_carried_review_debt_entry_ids": preview_carried_debt_ids,
+            "preview_new_review_debt_next_action_counts": preview_new_action_counts,
+            "preview_carried_review_debt_next_action_counts": preview_carried_action_counts,
+            "current_review_debt_count": current_debt_count if current_review_debt else None,
+            "review_debt_delta": (
+                preview_debt_count - current_debt_count if current_review_debt else None
+            ),
+            "preview_needs_more_evidence_count": preview_needs_more,
+            "current_needs_more_evidence_count": (
+                current_needs_more if current_review_debt else None
+            ),
+            "needs_more_evidence_delta": (
+                preview_needs_more - current_needs_more if current_review_debt else None
+            ),
+            "policy": (
+                "mechanical acceptance is not the same as promotion; increased "
+                "review debt or pending review rows should be inspected before "
+                "copying preview countable labels into the canonical registry"
+            ),
+        },
+        "gates": gates,
+        "blockers": blockers,
+        "review_warnings": review_warnings,
+    }
 
 
 def build_family_propagation_guardrails(

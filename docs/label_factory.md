@@ -135,7 +135,22 @@ next expert-review pass. It ranks review debt by cofactor evidence gaps,
 counterevidence, below-threshold retrieval, family mismatches, and active-queue
 rank, then recommends whether to inspect alternate structures, verify local
 cofactor/active-site mapping, or route a family-boundary question to expert
-review. The current artifact is `artifacts/v3_review_debt_summary_650.json`.
+review. The accepted-650 artifact is
+`artifacts/v3_review_debt_summary_650.json`; the generated but unpromoted
+675 preview has its own triage artifact at
+`artifacts/v3_review_debt_summary_675_preview.json`. When a baseline debt
+artifact is provided, the summary records carried versus new review-debt rows
+and full carried/new entry-id lists so preview growth is auditable even when
+the prioritized row table is capped.
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt \
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_675_preview.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_675_preview_batch.json \
+  --baseline-review-debt artifacts/v3_review_debt_summary_650.json \
+  --max-rows 35 \
+  --out artifacts/v3_review_debt_summary_675_preview.json
+```
 
 Completed 650 batch workflow:
 
@@ -223,6 +238,22 @@ PYTHONPATH=src python -m catalytic_earth.cli summarize-label-factory-batches \
 The summary records accepted-batch counts, review debt, hard-negative status,
 factory gate status, and unlabeled queue retention across all accepted batches.
 
+For unpromoted previews, run a promotion-readiness check before copying the
+preview countable labels into the canonical registry:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli check-label-preview-promotion \
+  --preview-acceptance artifacts/v3_label_batch_acceptance_check_675_preview.json \
+  --preview-summary artifacts/v3_label_factory_preview_summary_675.json \
+  --preview-review-debt artifacts/v3_review_debt_summary_675_preview.json \
+  --current-review-debt artifacts/v3_review_debt_summary_650.json \
+  --out artifacts/v3_label_preview_promotion_readiness_675.json
+```
+
+The readiness check requires the preview summary counts to match the acceptance
+artifact and requires explicit unlabeled-candidate queue retention before it can
+report `mechanically_ready`.
+
 Bulk label expansion should proceed only in batches, and each batch must
 regenerate the factory audit, adversarial negatives, active-learning queue,
 expert export/import artifacts, family-propagation guardrails, validation, and
@@ -247,7 +278,19 @@ Current 650-queue gate state:
   pending `needs_expert_review` placeholders separate from the countable
   benchmark.
 - A 675 preview batch is generated and preview-accepted, but it is not promoted
-  to the canonical registry until its decisions are reviewed.
+  to the canonical registry until its decisions are reviewed. Its review-debt
+  summary ranks 61 evidence-gap rows, including 44 `needs_more_evidence`
+  decisions, 37 carried rows, 24 new rows, and full carried/new entry-id lists
+  plus next-action counts by debt status in metadata.
+  `artifacts/v3_label_factory_preview_summary_675.json` records the
+  preview's 18 countable additions, 44 pending review-state rows, 10/10 passing
+  gates, and 0 blocker metrics.
+- `artifacts/v3_label_preview_promotion_readiness_675.json` separates
+  mechanical acceptance from promotion. It is mechanically ready, but its
+  recommendation is `review_before_promoting` because preview review debt rises
+  from 53 to 61 rows and pending review rows remain. The readiness metadata
+  also copies the new debt entry ids and next-action counts from the preview
+  debt summary.
 
 ## Automation Lock
 

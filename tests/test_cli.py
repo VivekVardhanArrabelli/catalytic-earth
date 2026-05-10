@@ -176,6 +176,7 @@ class CliTests(unittest.TestCase):
             root = Path(tmpdir)
             gaps = root / "v3_review_evidence_gaps_650.json"
             queue = root / "v3_active_learning_review_queue_650.json"
+            baseline = root / "baseline_review_debt.json"
             out = root / "review_debt.json"
             gaps.write_text(
                 json.dumps(
@@ -200,6 +201,7 @@ class CliTests(unittest.TestCase):
                 json.dumps({"rows": [{"entry_id": "m_csa:650", "rank": 1, "review_score": 8.0}]}),
                 encoding="utf-8",
             )
+            baseline.write_text(json.dumps({"rows": []}), encoding="utf-8")
 
             subprocess.run(
                 [
@@ -211,6 +213,8 @@ class CliTests(unittest.TestCase):
                     str(gaps),
                     "--active-learning-queue",
                     str(queue),
+                    "--baseline-review-debt",
+                    str(baseline),
                     "--out",
                     str(out),
                 ],
@@ -222,7 +226,113 @@ class CliTests(unittest.TestCase):
             )
             summary = json.loads(out.read_text(encoding="utf-8"))
             self.assertEqual(summary["metadata"]["review_debt_count"], 1)
+            self.assertEqual(summary["metadata"]["new_review_debt_count"], 1)
+            self.assertEqual(summary["metadata"]["new_review_debt_entry_ids"], ["m_csa:650"])
+            self.assertEqual(
+                summary["metadata"]["recommended_next_action_counts_by_debt_status"]["new"],
+                {"verify_local_cofactor_or_active_site_mapping": 1},
+            )
             self.assertEqual(summary["rows"][0]["entry_id"], "m_csa:650")
+
+    def test_check_label_preview_promotion_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acceptance = root / "acceptance.json"
+            summary = root / "summary.json"
+            preview_debt = root / "preview_debt.json"
+            current_debt = root / "current_debt.json"
+            out = root / "readiness.json"
+            acceptance.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "accepted_for_counting": True,
+                            "accepted_new_label_count": 18,
+                            "countable_label_count": 636,
+                            "pending_review_count": 44,
+                            "hard_negative_count": 0,
+                            "near_miss_count": 0,
+                            "out_of_scope_false_non_abstentions": 0,
+                            "actionable_in_scope_failure_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            summary.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "blocker_count": 0,
+                            "latest_countable_label_count": 636,
+                            "total_accepted_new_label_count": 18,
+                            "all_active_queues_retain_unlabeled_candidates": True,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            preview_debt.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_summary",
+                            "review_debt_count": 61,
+                            "needs_more_evidence_count": 44,
+                            "new_review_debt_count": 1,
+                            "new_review_debt_entry_ids": ["m_csa:650"],
+                            "recommended_next_action_counts_by_debt_status": {
+                                "new": {"verify_local_cofactor_or_active_site_mapping": 1}
+                            },
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            current_debt.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_summary",
+                            "review_debt_count": 53,
+                            "needs_more_evidence_count": 37,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "check-label-preview-promotion",
+                    "--preview-acceptance",
+                    str(acceptance),
+                    "--preview-summary",
+                    str(summary),
+                    "--preview-review-debt",
+                    str(preview_debt),
+                    "--current-review-debt",
+                    str(current_debt),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            readiness = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(readiness["metadata"]["promotion_recommendation"], "review_before_promoting")
+            self.assertEqual(readiness["metadata"]["preview_new_review_debt_count"], 1)
+            self.assertEqual(readiness["metadata"]["preview_new_review_debt_entry_ids"], ["m_csa:650"])
+            self.assertEqual(
+                readiness["metadata"]["preview_new_review_debt_next_action_counts"],
+                {"verify_local_cofactor_or_active_site_mapping": 1},
+            )
 
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

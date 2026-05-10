@@ -201,8 +201,13 @@ Current expectation:
   350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-,
   and 650-entry reports have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10, 11, 11, 15, and
   17 respectively
-- next bottleneck is reviewing the generated 675 factory preview before
-  promoting it to the canonical registry, or else resolving review-state/evidence-limited rows
+- next bottleneck is reviewing the generated 675 factory preview and its
+  61-row review-debt summary before promoting it to the canonical registry; the
+  promotion-readiness artifact is mechanically ready but recommends review
+  before promotion because review debt increased, and the preview debt metadata
+  now lists all 37 carried and 24 new debt entry ids plus next-action counts for
+  targeted review; the alternate path is resolving review-state/evidence-limited
+  rows
   (`m_csa:494`, `m_csa:510`, `m_csa:529`, `m_csa:534`, `m_csa:650`,
   `m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`), while ensuring
   evidence-limited retained positives (`m_csa:41`, `m_csa:108`, `m_csa:160`,
