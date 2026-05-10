@@ -834,6 +834,25 @@ class GeometryRetrievalTests(unittest.TestCase):
         self.assertEqual(assessment["penalty"], 0.58)
         self.assertIn("nonhydrolytic_prenyl_carbocation_text_context", assessment["reasons"])
 
+    def test_metal_hydrolase_penalizes_farnesyltransferase_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "ASP", "roles": ["metal ligand"]},
+                {"code": "CYS", "roles": ["metal ligand"]},
+                {"code": "HIS", "roles": ["metal ligand"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["ZN", "FII"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "Protein farnesyltransferase positions the prenyl donor for transfer."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.58)
+        self.assertIn("nonhydrolytic_metal_transfer_ligand_context", assessment["reasons"])
+        self.assertIn("nonhydrolytic_prenyl_carbocation_text_context", assessment["reasons"])
+
     def test_metal_hydrolase_penalizes_nad_redox_text_context(self) -> None:
         assessment = counterevidence_assessment(
             fingerprint={"id": "metal_dependent_hydrolase"},

@@ -127,7 +127,7 @@ class StructureTests(unittest.TestCase):
         self.assertIn("cobalamin", context["cofactor_families"])
 
     def test_ligand_context_infers_plp_variants(self) -> None:
-        for ligand_code in ("PLV", "PDD"):
+        for ligand_code in ("PLV", "PDD", "5PA"):
             with self.subTest(ligand_code=ligand_code):
                 context = ligand_context_from_atoms(
                     [

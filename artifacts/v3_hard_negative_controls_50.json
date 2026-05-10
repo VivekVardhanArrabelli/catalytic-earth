@@ -421,6 +421,76 @@
       "top1_score": 0.3963
     },
     {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.8706,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "nonhydrolytic_metal_transfer_ligand_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "nonhydrolytic_metal_transfer_ligand_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1272
+      },
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "CA",
+          "PIR"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 70,
+        "pdb_id": "2MAS",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0857,
+          "charge_balance": 0.0428,
+          "hydrophobic_fraction": 0.5429,
+          "mean_min_distance_to_active_site": 5.5504,
+          "negative_fraction": 0.0286,
+          "polar_fraction": 0.2,
+          "positive_fraction": 0.0714,
+          "sulfur_fraction": 0.0714
+        },
+        "residue_codes": [
+          "ASP",
+          "ASP",
+          "ASN",
+          "HIS",
+          "PHE",
+          "THR",
+          "ASN",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "PIR"
+        ]
+      },
+      "entry_id": "m_csa:39",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Inosine-uridine nucleoside hydrolase cleaves a glycosidic bond through nucleoside hydrolase chemistry, outside the current metal-dependent hydrolase seed scope.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.5777,
+      "score_gap_to_floor": 0.1819,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3958
+    },
+    {
       "cofactor_evidence_level": "not_required",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -626,64 +696,6 @@
       "score_gap_to_floor": 0.1849,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_score": 0.3928
-    },
-    {
-      "cofactor_evidence_level": "not_required",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.6713,
-        "counterevidence_penalty": 0.7,
-        "counterevidence_penalty_details": [
-          {
-            "penalty": 0.7,
-            "reason": "ser_his_seed_missing_triad_coherence"
-          }
-        ],
-        "counterevidence_reasons": [
-          "ser_his_seed_missing_triad_coherence"
-        ],
-        "mechanistic_coherence_score": 0.0,
-        "residue_match_fraction": 1.0,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.8995
-      },
-      "context": {
-        "cofactor_families": [],
-        "entry_name": null,
-        "ligand_codes": [],
-        "mechanism_text_count": 0,
-        "mechanism_text_snippets": [],
-        "nearby_residue_count": 59,
-        "pdb_id": "1B73",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1017,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.5254,
-          "mean_min_distance_to_active_site": 5.3177,
-          "negative_fraction": 0.0339,
-          "polar_fraction": 0.1695,
-          "positive_fraction": 0.0339,
-          "sulfur_fraction": 0.0339
-        },
-        "residue_codes": [
-          "ASP",
-          "SER",
-          "CYS",
-          "CYS",
-          "HIS",
-          "GLU"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": []
-      },
-      "entry_id": "m_csa:1",
-      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
-      "label_rationale": "Glutamate racemase uses cysteine acid-base racemization chemistry, which is not represented by the current seed fingerprints.",
-      "negative_control_type": "below_in_scope_floor",
-      "score_floor": 0.5777,
-      "score_gap_to_floor": 0.1864,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3913
     }
   ],
   "groups": [],
@@ -693,8 +705,8 @@
     "closest_near_miss_entry_id": null,
     "closest_near_miss_top1_fingerprint_id": null,
     "cofactor_evidence_counts": {},
-    "evaluable_out_of_scope_count": 34,
-    "evaluated_out_of_scope_count": 34,
+    "evaluable_out_of_scope_count": 35,
+    "evaluated_out_of_scope_count": 35,
     "hard_negative_count": 0,
     "method": "geometry_hard_negative_control_selection",
     "minimum_below_floor_score_gap": 0.1668,

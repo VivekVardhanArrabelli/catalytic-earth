@@ -14452,17 +14452,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 0,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     "structure_only_penalties": [
       0.0,
@@ -14492,17 +14492,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 0,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     {
       "absent_penalty": 0.0,
@@ -14524,17 +14524,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 0,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.005,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     {
       "absent_penalty": 0.0,
@@ -14557,17 +14557,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 0,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.01,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     {
       "absent_penalty": 0.0,
@@ -14594,17 +14594,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 0,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.02,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     {
       "absent_penalty": 0.0,
@@ -14634,8 +14634,8 @@
         "m_csa:41",
         "m_csa:160"
       ],
-      "hard_negative_count": 38,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 39,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:108"
@@ -14644,10 +14644,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.05,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.01,
@@ -14670,17 +14670,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 9,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     {
       "absent_penalty": 0.01,
@@ -14704,17 +14704,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 8,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.005,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     {
       "absent_penalty": 0.01,
@@ -14738,17 +14738,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 7,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.01,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     {
       "absent_penalty": 0.01,
@@ -14773,17 +14773,17 @@
         "m_csa:160"
       ],
       "hard_negative_count": 0,
-      "in_scope_retention_rate_evaluable": 0.9831,
+      "in_scope_retention_rate_evaluable": 0.9828,
       "lost_retained_positive_count": 0,
       "lost_retained_positive_entry_ids": [],
       "near_miss_count": 7,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 58,
+      "retained_positive_count": 57,
       "strict_threshold_exists_for_correct_positives": true,
       "structure_only_penalty": 0.02,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9831
+      "top3_retained_accuracy_in_scope_evaluable": 0.9828
     },
     {
       "absent_penalty": 0.01,
@@ -14813,8 +14813,8 @@
         "m_csa:41",
         "m_csa:160"
       ],
-      "hard_negative_count": 30,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 31,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:108"
@@ -14823,10 +14823,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.05,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.02,
@@ -14852,19 +14852,19 @@
         "m_csa:108"
       ],
       "hard_negative_count": 9,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
       ],
-      "near_miss_count": 12,
+      "near_miss_count": 13,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.02,
@@ -14891,46 +14891,7 @@
         "m_csa:108"
       ],
       "hard_negative_count": 8,
-      "in_scope_retention_rate_evaluable": 0.9661,
-      "lost_retained_positive_count": 1,
-      "lost_retained_positive_entry_ids": [
-        "m_csa:160"
-      ],
-      "near_miss_count": 13,
-      "newly_retained_positive_count": 0,
-      "newly_retained_positive_entry_ids": [],
-      "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
-      "strict_threshold_exists_for_correct_positives": false,
-      "structure_only_penalty": 0.005,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
-    },
-    {
-      "absent_penalty": 0.02,
-      "changed_abstention_count": 1,
-      "changed_abstention_entry_ids": [
-        "m_csa:160"
-      ],
-      "changed_top1_count": 4,
-      "changed_top1_entry_ids": [
-        "m_csa:4",
-        "m_csa:45",
-        "m_csa:149",
-        "m_csa:153"
-      ],
-      "correct_positive_score_separation_gap": -0.0069,
-      "evidence_limited_abstained_positive_count": 2,
-      "evidence_limited_abstained_positive_entry_ids": [
-        "m_csa:132",
-        "m_csa:160"
-      ],
-      "evidence_limited_retained_positive_count": 2,
-      "evidence_limited_retained_positive_entry_ids": [
-        "m_csa:41",
-        "m_csa:108"
-      ],
-      "hard_negative_count": 7,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -14939,10 +14900,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
-      "structure_only_penalty": 0.01,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "structure_only_penalty": 0.005,
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.02,
@@ -14969,19 +14930,58 @@
         "m_csa:108"
       ],
       "hard_negative_count": 7,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
       ],
-      "near_miss_count": 12,
+      "near_miss_count": 15,
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
+      "strict_threshold_exists_for_correct_positives": false,
+      "structure_only_penalty": 0.01,
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
+    },
+    {
+      "absent_penalty": 0.02,
+      "changed_abstention_count": 1,
+      "changed_abstention_entry_ids": [
+        "m_csa:160"
+      ],
+      "changed_top1_count": 4,
+      "changed_top1_entry_ids": [
+        "m_csa:4",
+        "m_csa:45",
+        "m_csa:149",
+        "m_csa:153"
+      ],
+      "correct_positive_score_separation_gap": -0.0069,
+      "evidence_limited_abstained_positive_count": 2,
+      "evidence_limited_abstained_positive_entry_ids": [
+        "m_csa:132",
+        "m_csa:160"
+      ],
+      "evidence_limited_retained_positive_count": 2,
+      "evidence_limited_retained_positive_entry_ids": [
+        "m_csa:41",
+        "m_csa:108"
+      ],
+      "hard_negative_count": 7,
+      "in_scope_retention_rate_evaluable": 0.9655,
+      "lost_retained_positive_count": 1,
+      "lost_retained_positive_entry_ids": [
+        "m_csa:160"
+      ],
+      "near_miss_count": 13,
+      "newly_retained_positive_count": 0,
+      "newly_retained_positive_entry_ids": [],
+      "out_of_scope_false_non_abstentions_evaluable": 0,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.02,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.02,
@@ -15013,8 +15013,8 @@
       "evidence_limited_retained_positive_entry_ids": [
         "m_csa:41"
       ],
-      "hard_negative_count": 21,
-      "in_scope_retention_rate_evaluable": 0.9492,
+      "hard_negative_count": 22,
+      "in_scope_retention_rate_evaluable": 0.9483,
       "lost_retained_positive_count": 2,
       "lost_retained_positive_entry_ids": [
         "m_csa:108",
@@ -15024,10 +15024,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 56,
+      "retained_positive_count": 55,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.05,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9492
+      "top3_retained_accuracy_in_scope_evaluable": 0.9483
     },
     {
       "absent_penalty": 0.05,
@@ -15068,8 +15068,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 38,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 39,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15078,10 +15078,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.05,
@@ -15123,8 +15123,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 37,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 38,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15133,10 +15133,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.005,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.05,
@@ -15178,8 +15178,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 37,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 38,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15188,10 +15188,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.01,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.05,
@@ -15233,8 +15233,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 35,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 36,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15243,10 +15243,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.02,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.05,
@@ -15288,8 +15288,8 @@
       "evidence_limited_retained_positive_entry_ids": [
         "m_csa:41"
       ],
-      "hard_negative_count": 33,
-      "in_scope_retention_rate_evaluable": 0.9492,
+      "hard_negative_count": 34,
+      "in_scope_retention_rate_evaluable": 0.9483,
       "lost_retained_positive_count": 2,
       "lost_retained_positive_entry_ids": [
         "m_csa:108",
@@ -15299,10 +15299,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 56,
+      "retained_positive_count": 55,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.05,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9492
+      "top3_retained_accuracy_in_scope_evaluable": 0.9483
     },
     {
       "absent_penalty": 0.08,
@@ -15359,8 +15359,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 53,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 54,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15369,10 +15369,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.08,
@@ -15430,8 +15430,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 49,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 50,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15440,10 +15440,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.005,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.08,
@@ -15501,8 +15501,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 49,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 50,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15511,10 +15511,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.01,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.08,
@@ -15572,8 +15572,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 47,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 48,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15582,10 +15582,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.02,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.08,
@@ -15644,8 +15644,8 @@
       "evidence_limited_retained_positive_entry_ids": [
         "m_csa:41"
       ],
-      "hard_negative_count": 42,
-      "in_scope_retention_rate_evaluable": 0.9492,
+      "hard_negative_count": 43,
+      "in_scope_retention_rate_evaluable": 0.9483,
       "lost_retained_positive_count": 2,
       "lost_retained_positive_entry_ids": [
         "m_csa:108",
@@ -15655,10 +15655,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 56,
+      "retained_positive_count": 55,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.05,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9492
+      "top3_retained_accuracy_in_scope_evaluable": 0.9483
     },
     {
       "absent_penalty": 0.1,
@@ -15729,8 +15729,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 56,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 57,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15739,10 +15739,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.0,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.1,
@@ -15814,8 +15814,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 56,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 57,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15824,10 +15824,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.005,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.1,
@@ -15899,8 +15899,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 56,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 57,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15909,10 +15909,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.01,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.1,
@@ -15984,8 +15984,8 @@
         "m_csa:41",
         "m_csa:108"
       ],
-      "hard_negative_count": 56,
-      "in_scope_retention_rate_evaluable": 0.9661,
+      "hard_negative_count": 57,
+      "in_scope_retention_rate_evaluable": 0.9655,
       "lost_retained_positive_count": 1,
       "lost_retained_positive_entry_ids": [
         "m_csa:160"
@@ -15994,10 +15994,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 57,
+      "retained_positive_count": 56,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.02,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9661
+      "top3_retained_accuracy_in_scope_evaluable": 0.9655
     },
     {
       "absent_penalty": 0.1,
@@ -16070,8 +16070,8 @@
       "evidence_limited_retained_positive_entry_ids": [
         "m_csa:41"
       ],
-      "hard_negative_count": 48,
-      "in_scope_retention_rate_evaluable": 0.9492,
+      "hard_negative_count": 49,
+      "in_scope_retention_rate_evaluable": 0.9483,
       "lost_retained_positive_count": 2,
       "lost_retained_positive_entry_ids": [
         "m_csa:108",
@@ -16081,10 +16081,10 @@
       "newly_retained_positive_count": 0,
       "newly_retained_positive_entry_ids": [],
       "out_of_scope_false_non_abstentions_evaluable": 0,
-      "retained_positive_count": 56,
+      "retained_positive_count": 55,
       "strict_threshold_exists_for_correct_positives": false,
       "structure_only_penalty": 0.05,
-      "top3_retained_accuracy_in_scope_evaluable": 0.9492
+      "top3_retained_accuracy_in_scope_evaluable": 0.9483
     }
   ],
   "rows": [
@@ -17212,34 +17212,32 @@
     },
     {
       "abstain_threshold": 0.4115,
-      "abstained": false,
+      "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:39",
       "evaluable": true,
-      "label_rationale": "Inosine-uridine nucleoside hydrolase uses divalent-cation-assisted water attack on a glycosidic bond, fitting the coarse metal-dependent hydrolase seed.",
-      "label_type": "seed_fingerprint",
+      "label_rationale": "Inosine-uridine nucleoside hydrolase cleaves a glycosidic bond through nucleoside hydrolase chemistry, outside the current metal-dependent hydrolase seed scope.",
+      "label_type": "out_of_scope",
       "resolved_residue_count": 8,
-      "retained_positive": true,
+      "retained_positive": false,
       "status": "ok",
-      "target_adjusted_score": 0.5821,
-      "target_base_score": 0.5821,
-      "target_cofactor_coverage_status": "all_expected_local",
+      "target_adjusted_score": null,
+      "target_base_score": null,
+      "target_cofactor_coverage_status": null,
       "target_evidence_limited": false,
-      "target_expected_cofactor_families": [
-        "metal_ion"
-      ],
-      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_expected_cofactor_families": [],
+      "target_fingerprint_id": null,
       "target_missing_expected_families": [],
-      "target_nearest_expected_ligand_distance_angstrom": 4.645,
-      "target_policy_penalty": 0.0,
-      "target_rank": 1,
-      "top1_adjusted_score": 0.5821,
-      "top1_base_score": 0.5821,
+      "target_nearest_expected_ligand_distance_angstrom": null,
+      "target_policy_penalty": null,
+      "target_rank": null,
+      "top1_adjusted_score": 0.3958,
+      "top1_base_score": 0.3958,
       "top1_cofactor_coverage_status": "all_expected_local",
-      "top1_correct": true,
+      "top1_correct": false,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_policy_penalty": 0.0,
-      "top3_correct": true
+      "top3_correct": false
     },
     {
       "abstain_threshold": 0.4115,

@@ -229,7 +229,7 @@ class CliTests(unittest.TestCase):
                 json.loads(label_candidates.read_text())["metadata"],
             )
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "450")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "475")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

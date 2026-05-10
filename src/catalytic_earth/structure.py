@@ -61,6 +61,7 @@ COFACTOR_LIGAND_MAP = {
     "PLP": "plp",
     "PLV": "plp",
     "PDD": "plp",
+    "5PA": "plp",
     "PMP": "plp",
     "LLP": "plp",
     "SAM": "sam",

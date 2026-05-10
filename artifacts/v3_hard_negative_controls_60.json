@@ -628,73 +628,74 @@
       "top1_score": 0.3963
     },
     {
-      "cofactor_evidence_level": "not_required",
+      "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
-        "compactness_score": 0.6871,
-        "counterevidence_penalty": 0.7,
+        "compactness_score": 0.8706,
+        "counterevidence_penalty": 0.68,
         "counterevidence_penalty_details": [
           {
-            "penalty": 0.7,
-            "reason": "ser_his_seed_missing_triad_coherence"
+            "penalty": 0.68,
+            "reason": "nonhydrolytic_metal_transfer_ligand_context"
           }
         ],
         "counterevidence_reasons": [
-          "ser_his_seed_missing_triad_coherence"
+          "nonhydrolytic_metal_transfer_ligand_context"
         ],
-        "mechanistic_coherence_score": 0.0,
-        "residue_match_fraction": 1.0,
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
         "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.9472
+        "substrate_pocket_score": 0.1272
       },
       "context": {
-        "cofactor_families": [],
+        "cofactor_families": [
+          "metal_ion"
+        ],
         "entry_name": null,
         "ligand_codes": [
-          "IMH",
-          "PO4"
+          "CA",
+          "PIR"
         ],
         "mechanism_text_count": 0,
         "mechanism_text_snippets": [],
-        "nearby_residue_count": 67,
-        "pdb_id": "1RR6",
+        "nearby_residue_count": 70,
+        "pdb_id": "2MAS",
         "pocket_descriptors": {
-          "aromatic_fraction": 0.0746,
-          "charge_balance": -0.0299,
-          "hydrophobic_fraction": 0.4328,
-          "mean_min_distance_to_active_site": 4.9233,
-          "negative_fraction": 0.0896,
-          "polar_fraction": 0.1493,
-          "positive_fraction": 0.0597,
-          "sulfur_fraction": 0.0448
+          "aromatic_fraction": 0.0857,
+          "charge_balance": 0.0428,
+          "hydrophobic_fraction": 0.5429,
+          "mean_min_distance_to_active_site": 5.5504,
+          "negative_fraction": 0.0286,
+          "polar_fraction": 0.2,
+          "positive_fraction": 0.0714,
+          "sulfur_fraction": 0.0714
         },
         "residue_codes": [
-          "HIS",
-          "GLU",
+          "ASP",
+          "ASP",
           "ASN",
-          "SER",
-          "SER",
-          "TYR",
           "HIS",
-          "ALA",
-          "SER",
-          "MET",
-          "HIS"
+          "PHE",
+          "THR",
+          "ASN",
+          "ASP"
         ],
-        "structure_cofactor_families": [],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
         "structure_ligand_codes": [
-          "IMH",
-          "PO4"
+          "CA",
+          "PIR"
         ]
       },
-      "entry_id": "m_csa:17",
-      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
-      "label_rationale": "Purine nucleoside phosphorylase performs phosphorolysis rather than the current hydrolase seed mechanisms.",
+      "entry_id": "m_csa:39",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Inosine-uridine nucleoside hydrolase cleaves a glycosidic bond through nucleoside hydrolase chemistry, outside the current metal-dependent hydrolase seed scope.",
       "negative_control_type": "below_in_scope_floor",
       "score_floor": 0.5777,
-      "score_gap_to_floor": 0.1823,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.3954
+      "score_gap_to_floor": 0.1819,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3958
     }
   ],
   "groups": [],
@@ -704,8 +705,8 @@
     "closest_near_miss_entry_id": null,
     "closest_near_miss_top1_fingerprint_id": null,
     "cofactor_evidence_counts": {},
-    "evaluable_out_of_scope_count": 44,
-    "evaluated_out_of_scope_count": 44,
+    "evaluable_out_of_scope_count": 45,
+    "evaluated_out_of_scope_count": 45,
     "hard_negative_count": 0,
     "method": "geometry_hard_negative_control_selection",
     "minimum_below_floor_score_gap": 0.1668,

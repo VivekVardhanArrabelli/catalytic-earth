@@ -50,7 +50,7 @@
       "abstained_count": 0,
       "abstained_entry_ids": [],
       "cofactor_coverage_status_counts": {
-        "all_expected_local": 14,
+        "all_expected_local": 13,
         "expected_absent_from_structure": 1
       },
       "entry_ids": [
@@ -60,7 +60,6 @@
         "m_csa:27",
         "m_csa:28",
         "m_csa:38",
-        "m_csa:39",
         "m_csa:41",
         "m_csa:42",
         "m_csa:43",
@@ -70,23 +69,23 @@
         "m_csa:97",
         "m_csa:98"
       ],
-      "evaluable_count": 15,
+      "evaluable_count": 14,
       "evidence_limited_count": 1,
       "evidence_limited_entry_ids": [
         "m_csa:41"
       ],
       "fingerprint_id": "metal_dependent_hydrolase",
-      "labeled_count": 15,
+      "labeled_count": 14,
       "max_top1_score": 0.6053,
-      "mean_top1_score": 0.5909,
+      "mean_top1_score": 0.5916,
       "min_top1_score": 0.5777,
-      "retained_count": 15,
-      "retained_top3_correct_count": 15,
+      "retained_count": 14,
+      "retained_top3_correct_count": 14,
       "retention_rate_evaluable": 1.0,
       "top1_accuracy_evaluable": 1.0,
-      "top1_correct_count": 15,
+      "top1_correct_count": 14,
       "top3_accuracy_evaluable": 1.0,
-      "top3_correct_count": 15,
+      "top3_correct_count": 14,
       "top3_retained_accuracy_evaluable": 1.0
     },
     {
@@ -245,14 +244,14 @@
   },
   "out_of_scope_top1_families": [
     {
-      "abstained_count": 73,
+      "abstained_count": 74,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
         "absent": 36,
-        "ligand_supported": 20,
+        "ligand_supported": 21,
         "role_inferred": 18
       },
-      "count": 74,
+      "count": 75,
       "entry_ids": [
         "m_csa:2",
         "m_csa:7",
@@ -274,6 +273,7 @@
         "m_csa:34",
         "m_csa:35",
         "m_csa:36",
+        "m_csa:39",
         "m_csa:45",
         "m_csa:48",
         "m_csa:51",
@@ -329,12 +329,12 @@
         "m_csa:146",
         "m_csa:149"
       ],
-      "evaluable_count": 73,
+      "evaluable_count": 74,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "metal_dependent_hydrolase",
       "max_top1_score": 0.4114,
-      "mean_top1_score": 0.3784,
+      "mean_top1_score": 0.3786,
       "min_top1_score": 0.26
     },
     {

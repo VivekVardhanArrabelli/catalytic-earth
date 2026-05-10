@@ -2,7 +2,7 @@
   "metadata": {
     "abstain_threshold": 0.411,
     "category_counts": {},
-    "evaluated_out_of_scope_entries": 44,
+    "evaluated_out_of_scope_entries": 45,
     "false_non_abstentions": 0,
     "max_false_non_abstention_score": null,
     "method": "out_of_scope_failure_pattern_analysis",

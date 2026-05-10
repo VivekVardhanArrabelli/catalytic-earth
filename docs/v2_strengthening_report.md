@@ -12,7 +12,7 @@ The V2 scaffold was strengthened in several ways:
    before giving full triad evidence.
 4. Abstention calibration now reports the tradeoff between zero out-of-scope
    false non-abstentions and retained in-scope positives.
-5. Curated labels now cover all 450 entries in the current source slice, with
+5. Curated labels now cover all 475 entries in the current source slice, with
    geometry evaluability tracked separately from label availability.
 6. mmCIF structure parsing now resolves catalytic residue positions through
    both `auth_*` and `label_*` numbering namespaces.
@@ -57,18 +57,19 @@ artifacts/v3_hard_negative_controls_125.json
 artifacts/v3_label_expansion_candidates_125.json
 ```
 
-The 450-label geometry stress slice is fully labeled and intentionally harder:
-124 in-scope positives, 325 evaluated out-of-scope controls, 442 evaluable
+The 475-label geometry stress slice is fully labeled and intentionally harder:
+127 in-scope positives, 347 evaluated out-of-scope controls, 467 evaluable
 active-site structures, and 7 labeled out-of-scope structure-mapping issues. Its
-calibrated zero-false threshold is 0.4115, which retains 120/124 in-scope
-positives (`0.9756`) and reports 0 hard negatives plus 0 near misses. The
+calibrated zero-false threshold is 0.4115, which retains 123/127 in-scope
+positives (`0.9685`) and reports 0 hard negatives plus 0 near misses. The
 remaining in-scope failures are `m_csa:132`, `m_csa:353`, `m_csa:372`, and
 `m_csa:430`; all are evidence-limited abstentions tied to selected-structure
 cofactor gaps, so the current actionable in-scope failure count is 0.
 
-The generated 475-entry candidate queue has 474 geometry entries, 25 unlabeled
-candidate rows, and 23 ready label-review entries. It is queued for curation
-and has not been added to the curated cross-slice benchmark summary yet.
+The generated 500-entry candidate queue has 499 geometry entries, 25 unlabeled
+candidate rows, and 21 ready label-review entries. It is queued for curation,
+has review notes in `work/label_queue_500_notes.md`, and has not been added to
+the curated cross-slice benchmark summary yet.
 
 ## Performance
 
@@ -84,20 +85,20 @@ hard-negative selection, in-scope failure analysis, cofactor coverage, cofactor
 policy sweeps, seed-family audits, and structure-mapping diagnostics on existing
 artifacts.
 
-Latest 5-iteration mean timings on the 450-entry artifacts:
+Latest 5-iteration mean timings on the 475-entry artifacts:
 
-- load V1 graph: 44.628 ms
-- build V2 benchmark: 5.798 ms
-- run geometry retrieval: 160.935 ms
-- evaluate geometry labels: 0.832 ms
-- sweep abstention thresholds: 590.03 ms
-- analyze geometry score margins: 1.112 ms
-- build hard negative controls: 2.082 ms
-- analyze in-scope failures: 0.74 ms
-- analyze cofactor coverage: 0.906 ms
-- analyze cofactor abstention policy: 697.571 ms
-- analyze seed-family performance: 1.259 ms
-- analyze structure mapping issues: 0.051 ms
+- load V1 graph: 49.736 ms
+- build V2 benchmark: 6.766 ms
+- run geometry retrieval: 176.244 ms
+- evaluate geometry labels: 0.902 ms
+- sweep abstention thresholds: 672.691 ms
+- analyze geometry score margins: 1.221 ms
+- build hard negative controls: 2.213 ms
+- analyze in-scope failures: 0.764 ms
+- analyze cofactor coverage: 0.925 ms
+- analyze cofactor abstention policy: 795.197 ms
+- analyze seed-family performance: 1.332 ms
+- analyze structure mapping issues: 0.055 ms
 
 ## Interpretation
 
@@ -115,15 +116,15 @@ What is now better:
 - substrate-pocket context now contributes to ranking
 - hard negative controls are explicit instead of hidden in aggregate metrics
 - near-miss controls now expose out-of-scope rows just below the positive score
-  floor; the current 450-entry slice has no near misses
-- curated labels cover all 450 entries in the current source slice
+  floor; the current 475-entry slice has no near misses
+- curated labels cover all 475 entries in the current source slice
 - structure-mapping blockers are now summarized as a first-class artifact and
   currently report 0 non-OK mappings on the 100-entry slice, 1 labeled
   out-of-scope issue on the 125-entry slice, 2 on the 150- and 175-entry
   slices, 3 on the 200-, 225-, 250-, 275-, and 300-entry slices, 4 on the
   325-entry slice, 5 on the 350-entry slice, and 7 on the 375-, 400-, 425-, and
-  450-entry slices
-- the current 450-entry label queue is explicit and empty; the 475-entry queue
+  450- and 475-entry slices
+- the current 475-entry label queue is explicit and empty; the 500-entry queue
   is generated for the next curation pass
 - cofactor coverage now separates local support, structure-only support, and
   expected cofactors absent from the selected structure
@@ -134,8 +135,8 @@ What is now better:
 What remains weak:
 
 - the curated label set is still provisional despite covering the current
-  450-entry source slice
-- the 450-entry slice still has 4 in-scope positives that are abstained because
+  475-entry source slice
+- the 475-entry slice still has 4 in-scope positives that are abstained because
   the selected structures lack expected local or structure-wide cofactor context
 - ligand/cofactor context is only a simple nearby-ligand heuristic
 - substrate-pocket context is currently a heuristic residue-shell summary

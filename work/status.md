@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 29
-- Measured elapsed time: 581.4 minutes (9.69 hours)
+- Entries: 30
+- Measured elapsed time: 633.2 minutes (10.55 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 568.0 measured minutes (9.47 hours)
+- post-v2: 619.8 measured minutes (10.33 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,20 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 246
-- Evidence references logged: 181
+- Artifact references logged: 260
+- Evidence references logged: 193
 
 ## Recent Entries
-
-### 2026-05-09T20:12:10.878697+00:00 - ops
-
-- Task: Require documentation review during automation wrap-up
-- Time mode: measured
-- Measured minutes: 0.217
-- Started: 2026-05-09T20:11:49Z
-- Ended: 2026-05-09T20:12:02Z
-- Artifacts: automation:catalytic-earth-work-loop, work/README.md, work/handoff.md, work/scope.md
-- Evidence: automation requires README/docs/work review during wrap-up, automation requires docs to reflect actual end state, documentation checked and updated, 63 tests passed, validate passed
 
 ### 2026-05-09T21:11:49.565784+00:00 - post-v2
 
@@ -111,6 +101,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 113 unit tests passed, validate passed, 450 curated labels, 449 geometry entries in 450 slice, 442 evaluable structures, 124 in-scope positives, 325 out-of-scope controls, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 475-entry queue has 23 ready label-review candidates
 - Notes: Documentation reviewed and updated during wrap-up; normal measured run.
 
+### 2026-05-10T04:23:35.521223+00:00 - post-v2
+
+- Task: Expand geometry benchmark to 475 labels and queue 500
+- Time mode: measured
+- Measured minutes: 51.767
+- Started: 2026-05-10T03:31:20Z
+- Ended: 2026-05-10T04:23:06Z
+- Artifacts: data/registries/curated_mechanism_labels.json, src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/geometry_reports.py, src/catalytic_earth/structure.py, artifacts/v3_geometry_label_eval_475.json, artifacts/v3_hard_negative_controls_475.json, artifacts/v3_geometry_slice_summary.json, artifacts/v3_label_expansion_candidates_500.json, artifacts/perf_report.json, work/label_queue_500_notes.md, README.md, docs/geometry_features.md, work/handoff.md, work/scope.md
+- Evidence: 116 unit tests passed, validate passed, 475 curated labels, 474 geometry entries in 475 slice, 467 evaluable structures, 127 in-scope positives, 347 out-of-scope controls, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 500-entry queue has 21 ready label-review candidates
+- Notes: Documentation reviewed and updated during wrap-up; normal measured run.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -142,6 +143,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T01:18:40.670377+00:00: Next bottleneck is expanding beyond 275 labels or resolving m_csa:132 selected-structure cofactor absence.
 - 2026-05-10T02:23:20.695520+00:00: The benchmark can expand in 25-entry curation tranches while preserving guardrails; the next bottleneck is 400-entry label quality and evidence-limited cofactor gaps.
 - 2026-05-10T03:26:17.876722+00:00: The benchmark can continue expanding in curated 25-entry tranches, but the next bottleneck is 475-entry label quality and evidence-limited cofactor gaps.
+- 2026-05-10T04:23:35.521223+00:00: The benchmark can keep expanding in 25-entry curation tranches; next bottleneck is 500-entry label quality and evidence-limited cofactor gaps.
 
 ## Scope Adjustments
 
@@ -173,3 +175,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T01:18:40.670377+00:00: Post-V2 geometry scope now tracks a fully labeled 275-entry source slice.
 - 2026-05-10T02:23:20.695520+00:00: Post-V2 geometry scope now tracks a fully labeled 375-entry source slice and a generated 400-entry candidate queue.
 - 2026-05-10T03:26:17.876722+00:00: Post-V2 geometry scope now tracks a fully labeled 450-entry source slice and a generated 475-entry candidate queue.
+- 2026-05-10T04:23:35.521223+00:00: Post-V2 geometry scope now tracks a fully labeled 475-entry source slice and a generated 500-entry candidate queue.

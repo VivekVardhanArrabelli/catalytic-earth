@@ -15,6 +15,7 @@ METAL_HYDROLASE_TRANSFER_LIGAND_CODES = {
     "DAD",  # adenosine-like cyclase/product analog context
     "DAA",  # ATP-dependent ligase/ring-forming context
     "DED",  # diphosphate/isoprenoid isomerase analog context
+    "FII",  # farnesyl diphosphate analog context
     "FOC",  # fucose-like sugar isomerization context
     "G16",  # phosphoglucomutase bisphosphate/phosphoryl-transfer context
     "GLV",  # glyoxylate-like ligand in malate synthase hard-negative context
@@ -23,6 +24,7 @@ METAL_HYDROLASE_TRANSFER_LIGAND_CODES = {
     "OXL",  # oxalate-like carbonyl/decarboxylation context
     "PGH",  # phosphoglycolate/hydroxamate-like aldolase inhibitor context
     "PHT",  # phosphoribosyl-transfer analog context
+    "PIR",  # purine/ribose analog context for nucleoside hydrolase controls
     "POP",  # pyrophosphate amidation or ligase context
     "PPC",  # phosphoribosyl-transfer analog context
     "PQQ",  # quinone redox cofactor context
@@ -604,6 +606,10 @@ def counterevidence_assessment(
             apply(0.62, "nonhydrolytic_isomerase_lyase_text_context")
         if _has_nonhydrolytic_hydratase_dehydratase_text_context(mechanism_text):
             apply(0.62, "nonhydrolytic_hydratase_dehydratase_text_context")
+        if _has_phosphoenolpyruvate_transfer_text_context(mechanism_text):
+            apply(0.55, "phosphoenolpyruvate_transfer_not_metal_hydrolysis")
+        if _has_metal_bound_dehydrogenase_text_context(mechanism_text):
+            apply(0.55, "metal_bound_dehydrogenase_not_hydrolysis")
         if _has_aminoacyl_ligase_text_context(mechanism_text):
             apply(0.58, "aminoacyl_ligase_not_metal_hydrolysis")
         if _has_glycosidase_text_context(mechanism_text):
@@ -951,6 +957,10 @@ def _entry_mechanism_context(entry: dict[str, Any]) -> list[str]:
 def _has_prenyl_carbocation_text_context(mechanism_text: str) -> bool:
     if not mechanism_text:
         return False
+    if "farnesyltransferase" in mechanism_text:
+        return True
+    if "farnesyl" in mechanism_text and "transferase" in mechanism_text:
+        return True
     has_diphosphate_context = "diphosphate" in mechanism_text or "pyrophosphate" in mechanism_text
     has_carbocation_context = any(
         term in mechanism_text
@@ -974,6 +984,23 @@ def _has_nad_redox_text_context(mechanism_text: str) -> bool:
     has_nad = "nad" in mechanism_text
     has_redox = any(term in mechanism_text for term in ("hydride", "oxidise", "oxidize", "reduction"))
     return has_nad and has_redox
+
+
+def _has_metal_bound_dehydrogenase_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_dehydrogenase = "dehydrogenase" in mechanism_text
+    has_metal = any(term in mechanism_text for term in ("zinc", "zn", "metal"))
+    has_redox = any(term in mechanism_text for term in ("hydride", "nad", "redox"))
+    return has_dehydrogenase and has_metal and has_redox
+
+
+def _has_phosphoenolpyruvate_transfer_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_pep = "phospho-enolpyruvate" in mechanism_text or "phosphoenolpyruvate" in mechanism_text
+    has_transfer = "carboxyvinyltransferase" in mechanism_text or "transferase" in mechanism_text
+    return has_pep and has_transfer
 
 
 def _has_nonhydrolytic_isomerase_lyase_text_context(mechanism_text: str) -> bool:
@@ -1050,6 +1077,10 @@ def _has_glycosidase_text_context(mechanism_text: str) -> bool:
             "glucosidase",
             "galactosidase",
             "glucuronidase",
+            "nucleoside hydrolase",
+            "glycosidic bond",
+            "n-glycosidic",
+            "oxocarbenium",
             "glycosyl hydrolase",
             "alpha-amylase",
             "amylase",

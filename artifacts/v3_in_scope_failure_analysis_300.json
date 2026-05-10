@@ -3,7 +3,7 @@
     "abstain_threshold": 0.4115,
     "abstained_positive_count": 1,
     "actionable_failure_count": 0,
-    "evaluated_in_scope_count": 86,
+    "evaluated_in_scope_count": 85,
     "evidence_limited_abstention_count": 1,
     "failure_cause_counts": {
       "target_cofactor_absent_from_structure": 1
@@ -14,7 +14,7 @@
       "top1_mismatch": 1
     },
     "method": "in_scope_geometry_failure_analysis",
-    "retained_in_scope_count": 85,
+    "retained_in_scope_count": 84,
     "target_absent_from_top_k_count": 0,
     "target_cofactor_evidence_counts": {
       "absent": 1
@@ -22,7 +22,7 @@
     "target_fingerprint_counts": {
       "flavin_monooxygenase": 1
     },
-    "top1_correct_count": 85,
+    "top1_correct_count": 84,
     "top1_fingerprint_counts": {
       "ser_his_acid_hydrolase": 1
     },

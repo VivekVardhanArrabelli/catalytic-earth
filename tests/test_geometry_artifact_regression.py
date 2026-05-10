@@ -10,6 +10,13 @@ sys.path.insert(0, str(ROOT / "src"))
 
 
 class GeometryArtifactRegressionTests(unittest.TestCase):
+    def test_label_summary_artifact_matches_curated_registry(self) -> None:
+        summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
+
+        self.assertEqual(summary["label_count"], 475)
+        self.assertEqual(summary["by_type"]["seed_fingerprint"], 127)
+        self.assertEqual(summary["by_type"]["out_of_scope"], 348)
+
     def test_125_entry_geometry_artifacts_remain_clean(self) -> None:
         evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_125.json")
         hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_125.json")
@@ -62,7 +69,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         seed_family = _load_json(ROOT / "artifacts" / "v3_seed_family_performance_150.json")
         margins = _load_json(ROOT / "artifacts" / "v3_geometry_score_margins_150.json")
 
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 44)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 43)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(in_scope_failures["metadata"]["failure_count"], 1)
@@ -123,9 +130,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_policy = _load_json(ROOT / "artifacts" / "v3_cofactor_policy_175.json")
         seed_family = _load_json(ROOT / "artifacts" / "v3_seed_family_performance_175.json")
 
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 59)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 58)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
-        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9831)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9828)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(
@@ -146,7 +153,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "audit_only_or_separate_stratum",
         )
         self.assertEqual(seed_family["metadata"]["largest_in_scope_family"], "metal_dependent_hydrolase")
-        self.assertEqual(seed_family["metadata"]["largest_in_scope_family_count"], 28)
+        self.assertEqual(seed_family["metadata"]["largest_in_scope_family_count"], 27)
 
     def test_200_entry_geometry_artifacts_clear_new_hard_negatives(self) -> None:
         evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_200.json")
@@ -161,11 +168,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ROOT / "artifacts" / "v3_structure_mapping_issues_200.json"
         )
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 65)
-        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 135)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 475)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 64)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 136)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
-        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9846)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9844)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(
@@ -190,11 +197,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_225.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_225.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 71)
-        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 153)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 475)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 70)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 154)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
-        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9859)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9857)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(
@@ -228,11 +235,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_250.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_250.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 78)
-        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 171)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 475)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 77)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 172)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
-        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9872)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.987)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(
@@ -264,11 +271,11 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_275.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_275.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 81)
-        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 193)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 475)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 80)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 194)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
-        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9877)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9875)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(in_scope_failures["metadata"]["failure_count"], 1)
@@ -316,9 +323,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_375.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_375.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 98)
-        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 276)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 475)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 97)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 277)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
@@ -354,17 +361,17 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_400.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 106)
-        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 293)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 475)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 105)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 294)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
-        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.981)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9808)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(in_scope_failures["metadata"]["failure_count"], 3)
         self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
         self.assertEqual(label_candidates["metadata"]["candidate_count"], 0)
-        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 450)
+        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 475)
 
         chymotrypsin = next(row for row in retrieval["results"] if row["entry_id"] == "m_csa:387")
         self.assertEqual(
@@ -393,18 +400,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_425.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_425.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 117)
-        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 307)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 475)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 116)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 308)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
-        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9828)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9826)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(in_scope_failures["metadata"]["failure_count"], 3)
         self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
         self.assertEqual(in_scope_failures["metadata"]["evidence_limited_abstention_count"], 3)
         self.assertEqual(label_candidates["metadata"]["candidate_count"], 0)
-        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 450)
+        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 475)
         self.assertEqual(
             cofactor_coverage["metadata"]["evidence_limited_abstained_entry_ids"],
             ["m_csa:132", "m_csa:353", "m_csa:372"],
@@ -441,18 +448,18 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_450.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_450.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 450)
-        self.assertEqual(evaluation["metadata"]["in_scope_count"], 124)
-        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 325)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 475)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 123)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 326)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
-        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9756)
+        self.assertEqual(evaluation["metadata"]["in_scope_retention_rate_evaluable"], 0.9754)
         self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(in_scope_failures["metadata"]["failure_count"], 4)
         self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
         self.assertEqual(in_scope_failures["metadata"]["evidence_limited_abstention_count"], 4)
         self.assertEqual(label_candidates["metadata"]["candidate_count"], 0)
-        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 450)
+        self.assertEqual(label_candidates["metadata"]["labeled_entry_count"], 475)
         self.assertEqual(
             cofactor_coverage["metadata"]["evidence_limited_abstained_entry_ids"],
             ["m_csa:132", "m_csa:353", "m_csa:372", "m_csa:430"],
@@ -480,6 +487,44 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "ser_his_acid_hydrolase",
         )
         self.assertGreaterEqual(acetylxylan_esterase["top_fingerprints"][0]["score"], 0.7892)
+
+    def test_500_entry_queue_carries_plp_and_prenyl_context(self) -> None:
+        candidates = _load_json(ROOT / "artifacts" / "v3_label_expansion_candidates_500.json")
+        retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_500.json")
+
+        self.assertEqual(candidates["metadata"]["labeled_entry_count"], 475)
+        self.assertEqual(candidates["metadata"]["candidate_count"], 25)
+        self.assertEqual(candidates["metadata"]["candidate_group_count"], 9)
+        self.assertEqual(candidates["metadata"]["ready_for_label_review_count"], 21)
+
+        dialkylglycine_decarboxylase = next(
+            row for row in retrieval["results"] if row["entry_id"] == "m_csa:482"
+        )
+        self.assertIn(
+            "plp",
+            dialkylglycine_decarboxylase["ligand_context"]["cofactor_families"],
+        )
+        self.assertEqual(
+            dialkylglycine_decarboxylase["top_fingerprints"][0]["fingerprint_id"],
+            "plp_dependent_enzyme",
+        )
+        self.assertGreaterEqual(
+            dialkylglycine_decarboxylase["top_fingerprints"][0]["score"],
+            0.5,
+        )
+
+        farnesyltransferase = next(
+            row for row in retrieval["results"] if row["entry_id"] == "m_csa:484"
+        )
+        self.assertIn(
+            "nonhydrolytic_metal_transfer_ligand_context",
+            farnesyltransferase["top_fingerprints"][0]["counterevidence_reasons"],
+        )
+        self.assertIn(
+            "nonhydrolytic_prenyl_carbocation_text_context",
+            farnesyltransferase["top_fingerprints"][0]["counterevidence_reasons"],
+        )
+        self.assertLess(farnesyltransferase["top_fingerprints"][0]["score"], 0.4115)
 
 
 def _load_json(path: Path) -> dict:

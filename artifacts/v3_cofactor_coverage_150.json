@@ -2,13 +2,13 @@
   "metadata": {
     "abstain_threshold": 0.4115,
     "coverage_status_counts": {
-      "all_expected_local": 38,
+      "all_expected_local": 37,
       "expected_absent_from_structure": 2,
       "expected_structure_only": 1,
       "not_required": 2,
       "partial_expected_local": 1
     },
-    "evaluated_in_scope_count": 44,
+    "evaluated_in_scope_count": 43,
     "evidence_limited_abstained_count": 1,
     "evidence_limited_abstained_entry_ids": [
       "m_csa:132"
@@ -31,7 +31,7 @@
     "expected_absent_retained_entry_ids": [
       "m_csa:41"
     ],
-    "local_supported_count": 39,
+    "local_supported_count": 38,
     "method": "in_scope_cofactor_coverage_analysis",
     "missing_expected_family_counts": {
       "flavin": 1,
@@ -53,7 +53,7 @@
       "flavin_dehydrogenase_reductase": 18,
       "flavin_monooxygenase": 2,
       "heme_peroxidase_oxidase": 3,
-      "metal_dependent_hydrolase": 15,
+      "metal_dependent_hydrolase": 14,
       "plp_dependent_enzyme": 2,
       "ser_his_acid_hydrolase": 2
     }
@@ -960,91 +960,6 @@
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_score": 0.6029
-    },
-    {
-      "abstained": false,
-      "context": {
-        "cofactor_families": [
-          "metal_ion"
-        ],
-        "entry_name": null,
-        "ligand_codes": [
-          "CA",
-          "PIR"
-        ],
-        "mechanism_text_count": 0,
-        "mechanism_text_snippets": [],
-        "nearby_residue_count": 70,
-        "pdb_id": "2MAS",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.0857,
-          "charge_balance": 0.0428,
-          "hydrophobic_fraction": 0.5429,
-          "mean_min_distance_to_active_site": 5.5504,
-          "negative_fraction": 0.0286,
-          "polar_fraction": 0.2,
-          "positive_fraction": 0.0714,
-          "sulfur_fraction": 0.0714
-        },
-        "residue_codes": [
-          "ASP",
-          "ASP",
-          "ASN",
-          "HIS",
-          "PHE",
-          "THR",
-          "ASN",
-          "ASP"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "CA",
-          "PIR"
-        ]
-      },
-      "coverage_status": "all_expected_local",
-      "entry_id": "m_csa:39",
-      "evaluable": true,
-      "expected_cofactor_families": [
-        "metal_ion"
-      ],
-      "local_cofactor_families": [
-        "metal_ion"
-      ],
-      "local_matches": [
-        "metal_ion"
-      ],
-      "matching_structure_ligands": [
-        {
-          "code": "CA",
-          "family": "metal_ion",
-          "instance_count": 4,
-          "min_distance_to_active_site": 4.645
-        }
-      ],
-      "missing_expected_families": [],
-      "nearest_expected_ligand_distance_angstrom": 4.645,
-      "proximal_ligand_codes": [
-        "CA",
-        "PIR"
-      ],
-      "resolved_residue_count": 8,
-      "status": "ok",
-      "structure_cofactor_families": [
-        "metal_ion"
-      ],
-      "structure_ligand_codes": [
-        "CA",
-        "PIR"
-      ],
-      "structure_matches": [
-        "metal_ion"
-      ],
-      "target_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5821
     },
     {
       "abstained": false,

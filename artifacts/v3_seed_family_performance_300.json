@@ -4,7 +4,7 @@
       "abstained_count": 0,
       "abstained_entry_ids": [],
       "cofactor_coverage_status_counts": {
-        "all_expected_local": 34,
+        "all_expected_local": 33,
         "expected_absent_from_structure": 2
       },
       "entry_ids": [
@@ -14,7 +14,6 @@
         "m_csa:27",
         "m_csa:28",
         "m_csa:38",
-        "m_csa:39",
         "m_csa:41",
         "m_csa:42",
         "m_csa:43",
@@ -45,24 +44,24 @@
         "m_csa:258",
         "m_csa:300"
       ],
-      "evaluable_count": 36,
+      "evaluable_count": 35,
       "evidence_limited_count": 2,
       "evidence_limited_entry_ids": [
         "m_csa:41",
         "m_csa:160"
       ],
       "fingerprint_id": "metal_dependent_hydrolase",
-      "labeled_count": 36,
+      "labeled_count": 35,
       "max_top1_score": 0.6053,
-      "mean_top1_score": 0.5857,
+      "mean_top1_score": 0.5859,
       "min_top1_score": 0.4245,
-      "retained_count": 36,
-      "retained_top3_correct_count": 36,
+      "retained_count": 35,
+      "retained_top3_correct_count": 35,
       "retention_rate_evaluable": 1.0,
       "top1_accuracy_evaluable": 1.0,
-      "top1_correct_count": 36,
+      "top1_correct_count": 35,
       "top3_accuracy_evaluable": 1.0,
-      "top3_correct_count": 36,
+      "top3_correct_count": 35,
       "top3_retained_accuracy_evaluable": 1.0
     },
     {
@@ -278,7 +277,7 @@
     "abstain_threshold": 0.4115,
     "in_scope_family_count": 7,
     "largest_in_scope_family": "metal_dependent_hydrolase",
-    "largest_in_scope_family_count": 36,
+    "largest_in_scope_family_count": 35,
     "method": "seed_family_performance_audit",
     "out_of_scope_retained_family_count": 0,
     "out_of_scope_top1_family_count": 6,
@@ -288,14 +287,14 @@
   },
   "out_of_scope_top1_families": [
     {
-      "abstained_count": 111,
+      "abstained_count": 109,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 50,
-        "ligand_supported": 38,
+        "absent": 49,
+        "ligand_supported": 37,
         "role_inferred": 24
       },
-      "count": 112,
+      "count": 110,
       "entry_ids": [
         "m_csa:2",
         "m_csa:7",
@@ -322,7 +321,6 @@
         "m_csa:51",
         "m_csa:52",
         "m_csa:53",
-        "m_csa:56",
         "m_csa:58",
         "m_csa:59",
         "m_csa:60",
@@ -392,7 +390,6 @@
         "m_csa:246",
         "m_csa:252",
         "m_csa:253",
-        "m_csa:256",
         "m_csa:257",
         "m_csa:259",
         "m_csa:260",
@@ -410,30 +407,32 @@
         "m_csa:295",
         "m_csa:299"
       ],
-      "evaluable_count": 111,
+      "evaluable_count": 109,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "metal_dependent_hydrolase",
       "max_top1_score": 0.4114,
-      "mean_top1_score": 0.3693,
-      "min_top1_score": 0.26
+      "mean_top1_score": 0.3689,
+      "min_top1_score": 0.2221
     },
     {
-      "abstained_count": 40,
+      "abstained_count": 43,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 40,
+        "absent": 43,
         "ligand_supported": 1
       },
-      "count": 41,
+      "count": 44,
       "entry_ids": [
         "m_csa:4",
         "m_csa:10",
         "m_csa:13",
         "m_csa:26",
+        "m_csa:39",
         "m_csa:49",
         "m_csa:54",
         "m_csa:55",
+        "m_csa:56",
         "m_csa:57",
         "m_csa:73",
         "m_csa:86",
@@ -462,6 +461,7 @@
         "m_csa:245",
         "m_csa:254",
         "m_csa:255",
+        "m_csa:256",
         "m_csa:261",
         "m_csa:264",
         "m_csa:265",
@@ -469,12 +469,12 @@
         "m_csa:284",
         "m_csa:297"
       ],
-      "evaluable_count": 40,
+      "evaluable_count": 43,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "heme_peroxidase_oxidase",
       "max_top1_score": 0.4109,
-      "mean_top1_score": 0.354,
+      "mean_top1_score": 0.3537,
       "min_top1_score": 0.3031
     },
     {

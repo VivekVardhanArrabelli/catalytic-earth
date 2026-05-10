@@ -31133,9 +31133,16 @@
           "cofactor_context_score": 1.0,
           "cofactor_evidence_level": "ligand_supported",
           "compactness_score": 0.8706,
-          "counterevidence_penalty": 1.0,
-          "counterevidence_penalty_details": [],
-          "counterevidence_reasons": [],
+          "counterevidence_penalty": 0.68,
+          "counterevidence_penalty_details": [
+            {
+              "penalty": 0.68,
+              "reason": "nonhydrolytic_metal_transfer_ligand_context"
+            }
+          ],
+          "counterevidence_reasons": [
+            "nonhydrolytic_metal_transfer_ligand_context"
+          ],
           "distance_summary": {
             "count": 28,
             "max": 13.557,
@@ -31171,7 +31178,7 @@
           "mechanistic_coherence_score": 1.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
-          "score": 0.5821,
+          "score": 0.3958,
           "substrate_pocket_score": 0.1272
         },
         {
