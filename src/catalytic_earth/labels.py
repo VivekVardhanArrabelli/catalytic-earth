@@ -14,6 +14,7 @@ from .sources import PROJECT_ROOT
 from .structure import (
     COFACTOR_LIGAND_MAP,
     METAL_ION_CODES,
+    STANDARD_AMINO_ACIDS,
     atom_position,
     fetch_pdb_cif,
     ligand_context_from_atoms,
@@ -4110,14 +4111,18 @@ def scan_review_debt_alternate_structures(
         expected_families = set(_sorted_strings(row.get("expected_cofactor_families", [])))
         structure_hits: list[dict[str, Any]] = []
         for pdb_id in scanned_pdb_ids:
+            atoms: list[dict[str, Any]] | None = None
+            remap_result: dict[str, Any] = {
+                "positions": [],
+                "basis": None,
+                "warnings": [],
+            }
             try:
                 inventory = inventory_cache.get(pdb_id)
                 if inventory is None:
                     atoms = parse_atom_site_loop(cif_fetcher(pdb_id))
                     inventory = structure_ligand_inventory_from_atoms(atoms)
                     inventory_cache[pdb_id] = inventory
-                else:
-                    atoms = []
             except Exception as exc:  # network/source errors become artifact evidence
                 failure = {
                     "entry_id": entry_id,
@@ -4136,15 +4141,52 @@ def scan_review_debt_alternate_structures(
                         "residue_position_count": int(
                             residue_position_counts.get(pdb_id, 0) or 0
                         ),
+                        "usable_residue_position_count": int(
+                            residue_position_counts.get(pdb_id, 0) or 0
+                        ),
+                        "remapped_residue_position_count": 0,
+                        "residue_position_source": (
+                            "mcsa_explicit"
+                            if int(residue_position_counts.get(pdb_id, 0) or 0) > 0
+                            else "none"
+                        ),
+                        "residue_position_remap_basis": None,
+                        "residue_position_remap_warnings": [],
                     }
                 )
                 continue
             families = set(_sorted_strings(inventory.get("cofactor_families", [])))
             expected_hits = sorted(expected_families & families)
+            local_positions_by_pdb = residue_positions_by_pdb
+            explicit_position_count = int(residue_position_counts.get(pdb_id, 0) or 0)
+            if explicit_position_count == 0:
+                if atoms is None and _review_debt_reference_residue_positions(
+                    residue_positions_by_pdb,
+                    selected_pdb_id,
+                ):
+                    try:
+                        atoms = parse_atom_site_loop(cif_fetcher(pdb_id))
+                    except Exception as exc:
+                        remap_result = {
+                            "positions": [],
+                            "basis": None,
+                            "warnings": [f"residue_remap_fetch_failed:{exc}"],
+                        }
+                if atoms is not None:
+                    remap_result = _review_debt_infer_residue_positions(
+                        atoms,
+                        residue_positions_by_pdb,
+                        selected_pdb_id=selected_pdb_id,
+                    )
+                    if remap_result.get("positions"):
+                        local_positions_by_pdb = {
+                            **residue_positions_by_pdb,
+                            pdb_id: list(remap_result.get("positions", [])),
+                        }
             local_context = _review_debt_local_ligand_context(
-                atoms if atoms else None,
+                atoms,
                 pdb_id,
-                residue_positions_by_pdb,
+                local_positions_by_pdb,
                 cif_fetcher=cif_fetcher,
                 inventory_cache=inventory_cache,
             )
@@ -4152,6 +4194,12 @@ def scan_review_debt_alternate_structures(
                 _sorted_strings(local_context.get("cofactor_families", []))
             )
             local_expected_hits = sorted(expected_families & local_families)
+            remapped_position_count = len(remap_result.get("positions", []) or [])
+            residue_position_source = "none"
+            if explicit_position_count > 0:
+                residue_position_source = "mcsa_explicit"
+            elif remapped_position_count > 0:
+                residue_position_source = "selected_position_remap"
             structure_hits.append(
                 {
                     "pdb_id": pdb_id,
@@ -4170,6 +4218,13 @@ def scan_review_debt_alternate_structures(
                     "residue_position_count": int(
                         residue_position_counts.get(pdb_id, 0) or 0
                     ),
+                    "usable_residue_position_count": (
+                        explicit_position_count or remapped_position_count
+                    ),
+                    "remapped_residue_position_count": remapped_position_count,
+                    "residue_position_source": residue_position_source,
+                    "residue_position_remap_basis": remap_result.get("basis"),
+                    "residue_position_remap_warnings": remap_result.get("warnings", []),
                 }
             )
         selected_hit = any(
@@ -4181,6 +4236,11 @@ def scan_review_debt_alternate_structures(
             for hit in structure_hits
         )
         local_hit = any(hit.get("local_expected_family_hits") for hit in structure_hits)
+        remapped_hit = any(
+            hit.get("local_expected_family_hits")
+            and hit.get("residue_position_source") == "selected_position_remap"
+            for hit in structure_hits
+        )
         output_rows.append(
             {
                 "entry_id": entry_id,
@@ -4204,10 +4264,35 @@ def scan_review_debt_alternate_structures(
                     pdb_id: int(residue_position_counts.get(pdb_id, 0) or 0)
                     for pdb_id in scanned_pdb_ids
                 },
+                "scanned_pdb_remapped_residue_position_counts": {
+                    pdb_id: sum(
+                        int(hit.get("remapped_residue_position_count", 0) or 0)
+                        for hit in structure_hits
+                        if hit.get("pdb_id") == pdb_id
+                    )
+                    for pdb_id in scanned_pdb_ids
+                },
+                "scanned_pdb_usable_residue_position_counts": {
+                    pdb_id: sum(
+                        int(hit.get("usable_residue_position_count", 0) or 0)
+                        for hit in structure_hits
+                        if hit.get("pdb_id") == pdb_id
+                    )
+                    for pdb_id in scanned_pdb_ids
+                },
                 "structure_hits": structure_hits,
                 "selected_structure_expected_family_observed": bool(selected_hit),
                 "alternate_structure_expected_family_observed": bool(alternate_hit),
                 "local_active_site_expected_family_observed": bool(local_hit),
+                "local_active_site_expected_family_observed_from_remap": bool(
+                    remapped_hit
+                ),
+                "alternate_pdb_with_remapped_positions_count": sum(
+                    1
+                    for hit in structure_hits
+                    if not hit.get("is_selected_structure")
+                    and int(hit.get("remapped_residue_position_count", 0) or 0) > 0
+                ),
                 "scan_outcome": _review_debt_scan_outcome(
                     selected_hit=bool(selected_hit),
                     alternate_hit=bool(alternate_hit),
@@ -4247,6 +4332,63 @@ def scan_review_debt_alternate_structures(
         ),
         key=_entry_id_sort_key,
     )
+    remapped_entry_ids = sorted(
+        (
+            row["entry_id"]
+            for row in output_rows
+            if any(
+                int(hit.get("remapped_residue_position_count", 0) or 0) > 0
+                for hit in row.get("structure_hits", [])
+            )
+        ),
+        key=_entry_id_sort_key,
+    )
+    alternate_remapped_entry_ids = sorted(
+        (
+            row["entry_id"]
+            for row in output_rows
+            if int(row.get("alternate_pdb_with_remapped_positions_count", 0) or 0) > 0
+        ),
+        key=_entry_id_sort_key,
+    )
+    remapped_local_hit_entry_ids = sorted(
+        (
+            row["entry_id"]
+            for row in output_rows
+            if row.get("local_active_site_expected_family_observed_from_remap")
+        ),
+        key=_entry_id_sort_key,
+    )
+    remap_basis_counts = Counter(
+        str(hit.get("residue_position_remap_basis"))
+        for row in output_rows
+        for hit in row.get("structure_hits", [])
+        if int(hit.get("remapped_residue_position_count", 0) or 0) > 0
+        and hit.get("residue_position_remap_basis")
+    )
+    remap_warning_counts = Counter(
+        str(warning)
+        for row in output_rows
+        for hit in row.get("structure_hits", [])
+        for warning in hit.get("residue_position_remap_warnings", [])
+        if warning
+    )
+    alternate_without_usable_positions = sorted(
+        (
+            row["entry_id"]
+            for row in output_rows
+            if any(
+                not hit.get("is_selected_structure")
+                for hit in row.get("structure_hits", [])
+            )
+            and not any(
+                not hit.get("is_selected_structure")
+                and int(hit.get("usable_residue_position_count", 0) or 0) > 0
+                for hit in row.get("structure_hits", [])
+            )
+        ),
+        key=_entry_id_sort_key,
+    )
     return {
         "metadata": {
             "method": "review_debt_alternate_structure_scan",
@@ -4257,10 +4399,46 @@ def scan_review_debt_alternate_structures(
             "max_entries": max_entries,
             "max_structures_per_entry": max_structures_per_entry,
             "scanned_structure_count": sum(len(row["scanned_pdb_ids"]) for row in output_rows),
+            "unscanned_structure_count": sum(
+                len(row["unscanned_pdb_ids"]) for row in output_rows
+            ),
+            "all_candidate_structures_scanned": all(
+                not row["unscanned_pdb_ids"] for row in output_rows
+            )
+            and len(candidate_rows) == len(output_rows),
             "fetch_failure_count": len(fetch_failures),
             "fetch_failures": fetch_failures,
             "expected_family_hit_entry_ids": expected_hit_entry_ids,
             "local_expected_family_hit_entry_ids": local_hit_entry_ids,
+            "remapped_residue_position_entry_ids": remapped_entry_ids,
+            "alternate_pdb_remapped_residue_position_entry_ids": (
+                alternate_remapped_entry_ids
+            ),
+            "local_expected_family_hit_from_remap_entry_ids": (
+                remapped_local_hit_entry_ids
+            ),
+            "remapped_residue_position_structure_count": sum(
+                1
+                for row in output_rows
+                for hit in row.get("structure_hits", [])
+                if int(hit.get("remapped_residue_position_count", 0) or 0) > 0
+            ),
+            "alternate_pdb_remapped_residue_position_structure_count": sum(
+                int(row.get("alternate_pdb_with_remapped_positions_count", 0) or 0)
+                for row in output_rows
+            ),
+            "residue_position_remap_basis_counts": dict(
+                sorted(remap_basis_counts.items())
+            ),
+            "residue_position_remap_warning_counts": dict(
+                sorted(remap_warning_counts.items())
+            ),
+            "alternate_pdb_without_usable_residue_position_entry_count": len(
+                alternate_without_usable_positions
+            ),
+            "alternate_pdb_without_usable_residue_position_entry_ids": (
+                alternate_without_usable_positions
+            ),
             "structure_wide_hit_without_local_support_entry_ids": (
                 structure_wide_hit_only_entry_ids
             ),
@@ -4273,6 +4451,230 @@ def scan_review_debt_alternate_structures(
         },
         "rows": output_rows,
     }
+
+
+def summarize_review_debt_remap_leads(
+    alternate_structure_scan: dict[str, Any],
+    *,
+    remediation_plan: dict[str, Any] | None = None,
+    review_evidence_gaps: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Summarize review-only alternate-structure remap leads."""
+    remediation_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (remediation_plan or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    gap_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (review_evidence_gaps or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    rows: list[dict[str, Any]] = []
+    for row in alternate_structure_scan.get("rows", []):
+        if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
+            continue
+        entry_id = str(row["entry_id"])
+        hits = [hit for hit in row.get("structure_hits", []) if isinstance(hit, dict)]
+        local_hits = [hit for hit in hits if hit.get("local_expected_family_hits")]
+        remapped_hits = [
+            hit
+            for hit in hits
+            if int(hit.get("remapped_residue_position_count", 0) or 0) > 0
+        ]
+        remapped_local_hits = [
+            hit
+            for hit in local_hits
+            if hit.get("residue_position_source") == "selected_position_remap"
+        ]
+        structure_wide_only_hits = [
+            hit
+            for hit in hits
+            if hit.get("expected_family_hits") and not hit.get("local_expected_family_hits")
+        ]
+        if not (local_hits or remapped_hits or structure_wide_only_hits):
+            continue
+
+        remediation_row = remediation_by_entry.get(entry_id, {})
+        gap_row = gap_by_entry.get(entry_id, {})
+        if remapped_local_hits:
+            lead_type = "local_expected_family_hit_from_remap"
+            recommended_action = "verify_remapped_local_evidence_before_review_import"
+        elif local_hits:
+            lead_type = "local_expected_family_hit"
+            recommended_action = "verify_local_evidence_before_review_import"
+        elif structure_wide_only_hits:
+            lead_type = "structure_wide_hit_without_local_support"
+            recommended_action = "inspect_active_site_mapping_or_structure_selection"
+        else:
+            lead_type = "remapped_positions_without_expected_family_hit"
+            recommended_action = "use_remapped_positions_for_next_local_evidence_scan"
+
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": row.get("entry_name")
+                or remediation_row.get("entry_name")
+                or gap_row.get("entry_name"),
+                "lead_type": lead_type,
+                "recommended_next_action": recommended_action,
+                "countable_label_candidate": False,
+                "review_policy": (
+                    "alternate-structure remaps and ligand hits are review-only; "
+                    "do not count labels until review import and factory gates "
+                    "clear unresolved evidence gaps"
+                ),
+                "debt_status": remediation_row.get("debt_status"),
+                "remediation_bucket": row.get("remediation_bucket")
+                or remediation_row.get("remediation_bucket"),
+                "coverage_status": remediation_row.get("coverage_status")
+                or gap_row.get("coverage_status"),
+                "gap_reasons": remediation_row.get("gap_reasons")
+                or gap_row.get("gap_reasons", []),
+                "expected_cofactor_families": _sorted_strings(
+                    row.get("expected_cofactor_families", [])
+                ),
+                "local_expected_family_hit_pdb_ids": _sorted_strings(
+                    hit.get("pdb_id") for hit in local_hits
+                ),
+                "local_expected_family_hit_from_remap_pdb_ids": _sorted_strings(
+                    hit.get("pdb_id") for hit in remapped_local_hits
+                ),
+                "structure_wide_hit_without_local_support_pdb_ids": _sorted_strings(
+                    hit.get("pdb_id") for hit in structure_wide_only_hits
+                ),
+                "remapped_residue_position_pdb_ids": _sorted_strings(
+                    hit.get("pdb_id") for hit in remapped_hits
+                ),
+                "remapped_residue_position_structure_count": len(remapped_hits),
+                "remap_basis_counts": dict(
+                    sorted(
+                        Counter(
+                            str(hit.get("residue_position_remap_basis"))
+                            for hit in remapped_hits
+                            if hit.get("residue_position_remap_basis")
+                        ).items()
+                    )
+                ),
+                "local_ligand_codes": _sorted_strings(
+                    code
+                    for hit in local_hits
+                    for code in hit.get("local_ligand_codes", [])
+                ),
+                "local_expected_ligand_codes": _ligand_codes_matching_families(
+                    (
+                        code
+                        for hit in local_hits
+                        for code in hit.get("local_ligand_codes", [])
+                    ),
+                    row.get("expected_cofactor_families", []),
+                ),
+                "local_cofactor_families": _sorted_strings(
+                    family
+                    for hit in local_hits
+                    for family in hit.get("local_cofactor_families", [])
+                ),
+                "structure_ligand_codes": _sorted_strings(
+                    code for hit in hits for code in hit.get("ligand_codes", [])
+                ),
+                "structure_expected_ligand_codes": _ligand_codes_matching_families(
+                    (code for hit in hits for code in hit.get("ligand_codes", [])),
+                    row.get("expected_cofactor_families", []),
+                ),
+                "hit_summaries": [
+                    {
+                        "pdb_id": hit.get("pdb_id"),
+                        "is_selected_structure": bool(hit.get("is_selected_structure")),
+                        "residue_position_source": hit.get("residue_position_source"),
+                        "residue_position_remap_basis": hit.get(
+                            "residue_position_remap_basis"
+                        ),
+                        "usable_residue_position_count": int(
+                            hit.get("usable_residue_position_count", 0) or 0
+                        ),
+                        "remapped_residue_position_count": int(
+                            hit.get("remapped_residue_position_count", 0) or 0
+                        ),
+                        "expected_family_hits": _sorted_strings(
+                            hit.get("expected_family_hits", [])
+                        ),
+                        "local_expected_family_hits": _sorted_strings(
+                            hit.get("local_expected_family_hits", [])
+                        ),
+                        "local_ligand_codes": _sorted_strings(
+                            hit.get("local_ligand_codes", [])
+                        ),
+                    }
+                    for hit in hits
+                    if hit.get("expected_family_hits")
+                    or hit.get("local_expected_family_hits")
+                    or int(hit.get("remapped_residue_position_count", 0) or 0) > 0
+                ],
+            }
+        )
+
+    lead_priority = {
+        "local_expected_family_hit_from_remap": 0,
+        "local_expected_family_hit": 1,
+        "structure_wide_hit_without_local_support": 2,
+        "remapped_positions_without_expected_family_hit": 3,
+    }
+    rows = sorted(
+        rows,
+        key=lambda row: (
+            lead_priority.get(str(row.get("lead_type")), 99),
+            _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+    )
+    lead_type_counts = Counter(str(row.get("lead_type")) for row in rows)
+    local_from_remap_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in rows
+        if row.get("lead_type") == "local_expected_family_hit_from_remap"
+    )
+    local_hit_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in rows
+        if str(row.get("lead_type")).startswith("local_expected_family_hit")
+    )
+    return {
+        "metadata": {
+            "method": "review_debt_remap_lead_summary",
+            "source_scan_method": alternate_structure_scan.get("metadata", {}).get(
+                "method"
+            ),
+            "lead_count": len(rows),
+            "lead_type_counts": dict(sorted(lead_type_counts.items())),
+            "local_expected_family_hit_entry_ids": local_hit_ids,
+            "local_expected_family_hit_from_remap_entry_ids": local_from_remap_ids,
+            "countable_label_candidate_count": 0,
+            "review_rule": (
+                "remapped local cofactor evidence can prioritize review but cannot "
+                "make a label countable without review import, evidence-gap "
+                "clearance, and label-factory gate acceptance"
+            ),
+        },
+        "rows": rows,
+    }
+
+
+def _ligand_codes_matching_families(
+    ligand_codes: Any,
+    expected_families: Any,
+) -> list[str]:
+    families = set(_sorted_strings(expected_families))
+    if not families:
+        return []
+    matches: set[str] = set()
+    for code in _sorted_strings(ligand_codes):
+        normalized = code.upper()
+        if "metal_ion" in families and normalized in METAL_ION_CODES:
+            matches.add(normalized)
+        mapped_family = COFACTOR_LIGAND_MAP.get(normalized)
+        if mapped_family in families:
+            matches.add(normalized)
+    return sorted(matches)
 
 
 def _review_debt_priority_score(
@@ -4448,6 +4850,192 @@ def _review_debt_structure_availability(row: dict[str, Any]) -> str:
     if int(row.get("alternate_pdb_count", 0) or 0) > 0:
         return "selected_plus_alternate_pdb"
     return "selected_pdb_only"
+
+
+def _review_debt_reference_residue_positions(
+    residue_positions_by_pdb: dict[str, list[dict[str, Any]]],
+    selected_pdb_id: str,
+) -> list[dict[str, Any]]:
+    selected = str(selected_pdb_id or "").upper()
+    if selected:
+        selected_positions = _review_debt_normalized_residue_positions(
+            residue_positions_by_pdb.get(selected, [])
+        )
+        if selected_positions:
+            return selected_positions
+    for _pdb_id, positions in sorted(residue_positions_by_pdb.items()):
+        normalized = _review_debt_normalized_residue_positions(positions)
+        if normalized:
+            return normalized
+    return []
+
+
+def _review_debt_normalized_residue_positions(
+    positions: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    normalized: list[dict[str, Any]] = []
+    for position in positions:
+        if not isinstance(position, dict):
+            continue
+        chain_name = position.get("chain_name")
+        resid = position.get("resid")
+        code = position.get("code")
+        if chain_name in {None, "", ".", "?"}:
+            continue
+        if resid in {None, "", ".", "?"}:
+            continue
+        if code in {None, "", ".", "?"}:
+            continue
+        normalized.append(
+            {
+                **position,
+                "chain_name": str(chain_name),
+                "resid": str(resid),
+                "code": str(code).upper(),
+            }
+        )
+    return normalized
+
+
+def _review_debt_infer_residue_positions(
+    atoms: list[dict[str, Any]],
+    residue_positions_by_pdb: dict[str, list[dict[str, Any]]],
+    *,
+    selected_pdb_id: str,
+) -> dict[str, Any]:
+    reference_positions = _review_debt_reference_residue_positions(
+        residue_positions_by_pdb,
+        selected_pdb_id,
+    )
+    if not reference_positions:
+        return {
+            "positions": [],
+            "basis": None,
+            "warnings": ["no_reference_residue_positions"],
+        }
+
+    direct_positions = _review_debt_positions_matching_atoms(atoms, reference_positions)
+    if direct_positions:
+        return {
+            "positions": direct_positions,
+            "basis": "same_chain_residue_id",
+            "warnings": [],
+        }
+
+    chain_remap = _review_debt_chain_remapped_positions(atoms, reference_positions)
+    if chain_remap.get("positions"):
+        return chain_remap
+
+    unique_remap = _review_debt_unique_residue_id_remapped_positions(
+        atoms,
+        reference_positions,
+    )
+    if unique_remap.get("positions"):
+        return unique_remap
+
+    warnings = ["no_conservative_residue_position_remap"]
+    warnings.extend(chain_remap.get("warnings", []))
+    warnings.extend(unique_remap.get("warnings", []))
+    return {"positions": [], "basis": None, "warnings": sorted(set(warnings))}
+
+
+def _review_debt_positions_matching_atoms(
+    atoms: list[dict[str, Any]],
+    positions: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    resolved: list[dict[str, Any]] = []
+    for position in positions:
+        residue_atoms = select_residue_atoms(
+            atoms,
+            chain_name=position.get("chain_name"),
+            resid=position.get("resid"),
+            code=position.get("code"),
+        )
+        if not residue_atoms:
+            return []
+        resolved.append(dict(position))
+    return resolved
+
+
+def _review_debt_chain_remapped_positions(
+    atoms: list[dict[str, Any]],
+    reference_positions: list[dict[str, Any]],
+) -> dict[str, Any]:
+    reference_chains = {
+        str(position.get("chain_name"))
+        for position in reference_positions
+        if position.get("chain_name")
+    }
+    if len(reference_chains) != 1:
+        return {
+            "positions": [],
+            "basis": None,
+            "warnings": ["reference_positions_span_multiple_chains"],
+        }
+
+    matches: list[tuple[str, list[dict[str, Any]]]] = []
+    for chain_name in _review_debt_protein_chain_ids(atoms):
+        remapped = [
+            {
+                **position,
+                "chain_name": chain_name,
+            }
+            for position in reference_positions
+        ]
+        if _review_debt_positions_matching_atoms(atoms, remapped):
+            matches.append((chain_name, remapped))
+
+    if len(matches) == 1:
+        return {
+            "positions": matches[0][1],
+            "basis": "same_residue_id_chain_remap",
+            "warnings": [],
+        }
+    if len(matches) > 1:
+        return {
+            "positions": [],
+            "basis": None,
+            "warnings": ["ambiguous_same_residue_id_chain_remap"],
+        }
+    return {"positions": [], "basis": None, "warnings": []}
+
+
+def _review_debt_unique_residue_id_remapped_positions(
+    atoms: list[dict[str, Any]],
+    reference_positions: list[dict[str, Any]],
+) -> dict[str, Any]:
+    remapped: list[dict[str, Any]] = []
+    for position in reference_positions:
+        matching_chains: list[str] = []
+        for chain_name in _review_debt_protein_chain_ids(atoms):
+            candidate = {**position, "chain_name": chain_name}
+            if _review_debt_positions_matching_atoms(atoms, [candidate]):
+                matching_chains.append(chain_name)
+        unique_chains = sorted(set(matching_chains))
+        if len(unique_chains) != 1:
+            return {
+                "positions": [],
+                "basis": None,
+                "warnings": ["ambiguous_or_missing_unique_residue_id_code_remap"],
+            }
+        remapped.append({**position, "chain_name": unique_chains[0]})
+    return {
+        "positions": remapped,
+        "basis": "unique_residue_id_code_remap",
+        "warnings": [],
+    }
+
+
+def _review_debt_protein_chain_ids(atoms: list[dict[str, Any]]) -> list[str]:
+    chains: set[str] = set()
+    for atom in atoms:
+        code = str(atom.get("auth_comp_id") or atom.get("label_comp_id") or "").upper()
+        if code not in STANDARD_AMINO_ACIDS:
+            continue
+        for value in [atom.get("auth_asym_id"), atom.get("label_asym_id")]:
+            if value not in {None, "", ".", "?"}:
+                chains.add(str(value))
+    return sorted(chains)
 
 
 def _review_debt_scan_pdb_ids(row: dict[str, Any]) -> list[str]:
@@ -4966,6 +5554,17 @@ def audit_label_scaling_quality(
     alternate_scan_local_hits = _sorted_entry_ids(
         alternate_scan_meta.get("local_expected_family_hit_entry_ids", [])
     )
+    alternate_scan_remapped_positions = _sorted_entry_ids(
+        alternate_scan_meta.get("remapped_residue_position_entry_ids", [])
+    )
+    alternate_scan_alternate_remapped_positions = _sorted_entry_ids(
+        alternate_scan_meta.get(
+            "alternate_pdb_remapped_residue_position_entry_ids", []
+        )
+    )
+    alternate_scan_remapped_local_hits = _sorted_entry_ids(
+        alternate_scan_meta.get("local_expected_family_hit_from_remap_entry_ids", [])
+    )
     alternate_scan_structure_wide_hits = _sorted_entry_ids(
         alternate_scan_meta.get(
             "structure_wide_hit_without_local_support_entry_ids", []
@@ -5140,6 +5739,25 @@ def audit_label_scaling_quality(
             ),
             "alternate_structure_scan_local_expected_family_hit_entry_ids": (
                 alternate_scan_local_hits
+            ),
+            "alternate_structure_scan_remapped_residue_position_entry_ids": (
+                alternate_scan_remapped_positions
+            ),
+            "alternate_structure_scan_alternate_pdb_remapped_residue_position_entry_ids": (
+                alternate_scan_alternate_remapped_positions
+            ),
+            "alternate_structure_scan_local_expected_family_hit_from_remap_entry_ids": (
+                alternate_scan_remapped_local_hits
+            ),
+            "alternate_structure_scan_remapped_residue_position_structure_count": int(
+                alternate_scan_meta.get("remapped_residue_position_structure_count", 0)
+                or 0
+            ),
+            "alternate_structure_scan_alternate_pdb_remapped_residue_position_structure_count": int(
+                alternate_scan_meta.get(
+                    "alternate_pdb_remapped_residue_position_structure_count", 0
+                )
+                or 0
             ),
             "alternate_structure_scan_structure_wide_hit_without_local_support_entry_ids": (
                 alternate_scan_structure_wide_hits

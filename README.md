@@ -119,10 +119,19 @@ clean label profiles and the top evidence gaps to inspect.
 The 700 review-debt repair pass now adds structure-aware remediation artifacts:
 `artifacts/v3_review_debt_remediation_700.json`,
 `artifacts/v3_review_debt_remediation_700_all.json`, and
-`artifacts/v3_review_debt_alternate_structure_scan_700.json`. The full scan
-checks 152 candidate PDB structures for 13 structure-scan rows, finds 3
-structure-wide cofactor-family hits, and keeps them non-countable because 0
-have local active-site support.
+`artifacts/v3_review_debt_alternate_structure_scan_700.json`. The focused
+accepted-700 scan checks 152 candidate PDB structures for the 13 new-debt
+structure-scan rows, conservatively remaps selected active-site residue
+positions onto 63 alternate-PDB structures, finds 3 structure-wide
+cofactor-family hits, and keeps them non-countable because 0 have local
+active-site support. The all-debt bounded scan
+`artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json`
+covers all 46 scan-candidate review-debt rows and all 739 candidate PDB
+structures, remaps 362 alternate-PDB structures, and finds review-only local
+expected-family hits for `m_csa:577`, `m_csa:592`, and `m_csa:641`.
+`artifacts/v3_review_debt_remap_leads_700_all_bounded.json` keeps those leads
+non-countable until review import, evidence-gap clearance, and label-factory
+gates pass.
 See
 `docs/label_factory.md`.
 

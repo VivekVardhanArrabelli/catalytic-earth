@@ -46,6 +46,7 @@ from .labels import (
     scan_review_debt_alternate_structures,
     summarize_label_factory_batches,
     summarize_review_debt,
+    summarize_review_debt_remap_leads,
     sweep_abstention_thresholds,
 )
 from .ontology import load_mechanism_ontology
@@ -778,6 +779,30 @@ def cmd_scan_review_debt_alternate_structures(args: argparse.Namespace) -> int:
     print(
         "Wrote review debt alternate-structure scan to "
         f"{args.out} ({scan['metadata']['scanned_structure_count']} structures)"
+    )
+    return 0
+
+
+def cmd_summarize_review_debt_remap_leads(args: argparse.Namespace) -> int:
+    with Path(args.alternate_structure_scan).open("r", encoding="utf-8") as handle:
+        scan = json.load(handle)
+    remediation = None
+    if args.remediation:
+        with Path(args.remediation).open("r", encoding="utf-8") as handle:
+            remediation = json.load(handle)
+    review_gaps = None
+    if args.review_evidence_gaps:
+        with Path(args.review_evidence_gaps).open("r", encoding="utf-8") as handle:
+            review_gaps = json.load(handle)
+    summary = summarize_review_debt_remap_leads(
+        scan,
+        remediation_plan=remediation,
+        review_evidence_gaps=review_gaps,
+    )
+    write_json(Path(args.out), summary)
+    print(
+        "Wrote review debt remap lead summary to "
+        f"{args.out} ({summary['metadata']['lead_count']} leads)"
     )
     return 0
 
@@ -1603,6 +1628,22 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_review_debt_alternate_structure_scan.json",
     )
     alternate_scan.set_defaults(func=cmd_scan_review_debt_alternate_structures)
+
+    remap_leads = subparsers.add_parser(
+        "summarize-review-debt-remap-leads",
+        help="summarize review-only alternate-structure remap leads",
+    )
+    remap_leads.add_argument(
+        "--alternate-structure-scan",
+        default="artifacts/v3_review_debt_alternate_structure_scan.json",
+    )
+    remap_leads.add_argument("--remediation", default=None)
+    remap_leads.add_argument("--review-evidence-gaps", default=None)
+    remap_leads.add_argument(
+        "--out",
+        default="artifacts/v3_review_debt_remap_leads.json",
+    )
+    remap_leads.set_defaults(func=cmd_summarize_review_debt_remap_leads)
 
     preview_promotion = subparsers.add_parser(
         "check-label-preview-promotion",

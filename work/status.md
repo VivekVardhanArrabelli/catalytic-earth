@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 39
-- Measured elapsed time: 1308.6 minutes (21.81 hours)
+- Entries: 40
+- Measured elapsed time: 1361.3 minutes (22.69 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1295.2 measured minutes (21.59 hours)
+- post-v2: 1347.9 measured minutes (22.47 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,21 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 369
-- Evidence references logged: 294
+- Artifact references logged: 383
+- Evidence references logged: 305
 
 ## Recent Entries
-
-### 2026-05-10T06:26:21.995107+00:00 - post-v2
-
-- Task: Process 500 label-factory batches
-- Time mode: measured
-- Measured minutes: 50.933
-- Started: 2026-05-10T05:35:25Z
-- Ended: 2026-05-10T06:26:21Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, src/catalytic_earth/geometry_retrieval.py, data/registries/curated_mechanism_labels.json, artifacts/v3_geometry_retrieval_500.json, artifacts/v3_geometry_label_eval_500.json, artifacts/v3_label_factory_audit_500.json, artifacts/v3_active_learning_review_queue_500.json, artifacts/v3_expert_review_decision_batch_500.json, artifacts/v3_label_batch_acceptance_check_500.json, docs/label_factory.md, work/handoff.md
-- Evidence: 132 unit tests passed, validate passed, 499 countable labels, 1 remaining 500-slice candidate, 63 silver promotions proposed, 101 review labels proposed, 100 adversarial negatives mined, 102 active-learning rows queued, 26 expert-review items exported, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, filter-countable safety guard tested, documentation reviewed and updated
-- Notes: Documentation checked and updated during wrap-up; normal measured run.
 
 ### 2026-05-10T07:28:17.575433+00:00 - post-v2
 
@@ -113,6 +102,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 159 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, 81 review-state rows mapped, 20 new review-debt rows mapped, 152 candidate PDB structures scanned, 0 fetch failures, 3 structure-wide expected-family hits, 0 local expected-family hits, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures
 - Notes: Documentation checked and updated; deterministic remediation and audit artifacts regenerated; one-iteration local perf check completed without replacing committed perf report.
 
+### 2026-05-10T18:46:18.139775+00:00 - post-v2
+
+- Task: Add alternate-PDB remap review leads
+- Time mode: measured
+- Measured minutes: 52.7
+- Started: 2026-05-10T17:53:25Z
+- Ended: 2026-05-10T18:46:07Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_review_debt_alternate_structure_scan_700.json, artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json, artifacts/v3_review_debt_remap_leads_700_all_bounded.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, tests/test_labels.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, README.md, docs/label_factory.md, work/label_preview_700_notes.md, work/handoff.md, work/scope.md
+- Evidence: 162 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, focused 700 scan remapped 63 alternate-PDB structures, all-debt scan covered 46 review-debt scan candidates and 739 PDB structures, 0 scan fetch failures, 3 review-only local expected-family remap leads, 44 remap leads kept non-countable, 0 hard negatives or count growth introduced, 10-iteration local perf check completed in tmp
+- Notes: Documentation checked and updated across README, docs/label_factory.md, work/scope.md, work/handoff.md, work/label_preview_700_notes.md, and status inputs; normal measured run.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -154,6 +154,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T15:39:13.368774+00:00: The active bottleneck is deciding whether to promote m_csa:666 alone or resolve the 61 pending 675-preview review-state rows first.
 - 2026-05-10T16:41:45.028412+00:00: Stop further tranche growth at 624 countable labels until 81 review-state rows are triaged or stronger evidence is added.
 - 2026-05-10T17:43:34.382296+00:00: Count growth remains stopped at 624 countable labels until accepted-700 review debt has local evidence or explicit expert resolution.
+- 2026-05-10T18:46:18.139775+00:00: Next bottleneck is auditing m_csa:577 m_csa:592 and m_csa:641 remap-local leads against counterevidence before any further gated scaling.
 
 ## Scope Adjustments
 
@@ -195,3 +196,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T15:39:13.368774+00:00: Post-V2 label-factory scope now blocks accepted review-gap labels, attaches scaling-quality audits to preview summaries, and records the missing sequence-cluster artifact before promotion.
 - 2026-05-10T16:41:45.028412+00:00: 700-entry slice is guardrail-clean for clean labels; next bounded work is review-debt repair, not blind expansion.
 - 2026-05-10T17:43:34.382296+00:00: Review-debt repair now separates alternate-structure cofactor leads from local active-site evidence before any further gated scaling.
+- 2026-05-10T18:46:18.139775+00:00: Alternate-PDB residue remapping now produces review-only local evidence leads but does not reopen count growth.

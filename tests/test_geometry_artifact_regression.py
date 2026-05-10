@@ -604,6 +604,16 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         alternate_scan_700 = _load_json(
             ROOT / "artifacts" / "v3_review_debt_alternate_structure_scan_700.json"
         )
+        alternate_scan_700_all = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_review_debt_alternate_structure_scan_700_all_bounded.json"
+        )
+        remap_leads_700_all = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_review_debt_remap_leads_700_all_bounded.json"
+        )
         sequence_clusters_675 = _load_json(
             ROOT / "artifacts" / "v3_sequence_cluster_proxy_675.json"
         )
@@ -797,6 +807,31 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             scaling_quality_700["metadata"][
+                "alternate_structure_scan_alternate_pdb_remapped_residue_position_entry_ids"
+            ],
+            [
+                "m_csa:678",
+                "m_csa:679",
+                "m_csa:682",
+                "m_csa:687",
+                "m_csa:690",
+                "m_csa:691",
+                "m_csa:693",
+                "m_csa:695",
+                "m_csa:696",
+                "m_csa:698",
+                "m_csa:700",
+                "m_csa:702",
+            ],
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "alternate_structure_scan_alternate_pdb_remapped_residue_position_structure_count"
+            ],
+            63,
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
                 "alternate_structure_scan_structure_wide_hit_without_local_support_entry_ids"
             ],
             ["m_csa:679", "m_csa:696", "m_csa:698"],
@@ -858,6 +893,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(alternate_scan_700["metadata"]["candidate_entry_count"], 13)
         self.assertEqual(alternate_scan_700["metadata"]["scanned_entry_count"], 13)
         self.assertEqual(alternate_scan_700["metadata"]["scanned_structure_count"], 152)
+        self.assertEqual(alternate_scan_700["metadata"]["unscanned_structure_count"], 0)
+        self.assertTrue(alternate_scan_700["metadata"]["all_candidate_structures_scanned"])
         self.assertEqual(alternate_scan_700["metadata"]["fetch_failure_count"], 0)
         self.assertEqual(
             alternate_scan_700["metadata"]["expected_family_hit_entry_ids"],
@@ -875,6 +912,95 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "alternate_structure_has_expected_cofactor_candidate": 3,
                 "no_expected_cofactor_in_scanned_structures": 10,
             },
+        )
+        self.assertEqual(
+            alternate_scan_700["metadata"][
+                "alternate_pdb_remapped_residue_position_structure_count"
+            ],
+            63,
+        )
+        self.assertEqual(
+            alternate_scan_700["metadata"]["residue_position_remap_basis_counts"],
+            {
+                "same_chain_residue_id": 58,
+                "same_residue_id_chain_remap": 3,
+                "unique_residue_id_code_remap": 2,
+            },
+        )
+        self.assertEqual(
+            alternate_scan_700["metadata"][
+                "alternate_pdb_without_usable_residue_position_entry_ids"
+            ],
+            ["m_csa:680"],
+        )
+        self.assertEqual(alternate_scan_700_all["metadata"]["candidate_entry_count"], 46)
+        self.assertEqual(alternate_scan_700_all["metadata"]["scanned_entry_count"], 46)
+        self.assertEqual(alternate_scan_700_all["metadata"]["scanned_structure_count"], 739)
+        self.assertEqual(alternate_scan_700_all["metadata"]["unscanned_structure_count"], 0)
+        self.assertTrue(alternate_scan_700_all["metadata"]["all_candidate_structures_scanned"])
+        self.assertEqual(alternate_scan_700_all["metadata"]["fetch_failure_count"], 0)
+        self.assertEqual(
+            alternate_scan_700_all["metadata"]["local_expected_family_hit_entry_ids"],
+            ["m_csa:577", "m_csa:592", "m_csa:641"],
+        )
+        self.assertEqual(
+            alternate_scan_700_all["metadata"]["scan_outcome_counts"],
+            {
+                "alternate_structure_has_expected_cofactor_candidate": 18,
+                "no_expected_cofactor_in_scanned_structures": 27,
+                "selected_structure_has_expected_cofactor_candidate": 1,
+            },
+        )
+        self.assertEqual(
+            alternate_scan_700_all["metadata"][
+                "local_expected_family_hit_from_remap_entry_ids"
+            ],
+            ["m_csa:577", "m_csa:592", "m_csa:641"],
+        )
+        self.assertEqual(
+            alternate_scan_700_all["metadata"][
+                "alternate_pdb_remapped_residue_position_structure_count"
+            ],
+            362,
+        )
+        self.assertEqual(
+            alternate_scan_700_all["metadata"][
+                "alternate_pdb_without_usable_residue_position_entry_ids"
+            ],
+            [
+                "m_csa:13",
+                "m_csa:510",
+                "m_csa:529",
+                "m_csa:624",
+                "m_csa:657",
+                "m_csa:673",
+                "m_csa:680",
+            ],
+        )
+        self.assertEqual(remap_leads_700_all["metadata"]["lead_count"], 44)
+        self.assertEqual(
+            remap_leads_700_all["metadata"]["lead_type_counts"],
+            {
+                "local_expected_family_hit_from_remap": 3,
+                "remapped_positions_without_expected_family_hit": 25,
+                "structure_wide_hit_without_local_support": 16,
+            },
+        )
+        self.assertEqual(
+            remap_leads_700_all["metadata"][
+                "local_expected_family_hit_from_remap_entry_ids"
+            ],
+            ["m_csa:577", "m_csa:592", "m_csa:641"],
+        )
+        self.assertEqual(
+            [row["entry_id"] for row in remap_leads_700_all["rows"][:3]],
+            ["m_csa:577", "m_csa:592", "m_csa:641"],
+        )
+        self.assertTrue(
+            all(
+                row["countable_label_candidate"] is False
+                for row in remap_leads_700_all["rows"]
+            )
         )
         self.assertEqual(sequence_clusters_700["metadata"]["entry_count"], 700)
         self.assertEqual(sequence_clusters_700["metadata"]["missing_reference_count"], 0)

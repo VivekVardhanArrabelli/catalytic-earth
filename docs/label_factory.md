@@ -154,8 +154,9 @@ table only exposed detailed triage for a subset. The focused accepted-700
 artifact covers the 20 new rows; `artifacts/v3_review_debt_remediation_700_all.json`
 covers all 81 current review-debt rows. The full plan currently records 69
 rows where alternate PDBs exist but none of those alternates have M-CSA
-residue-position support, so those alternates cannot provide local active-site
-evidence without a stronger remapping pass.
+residue-position support, so explicit M-CSA alternate-PDB position evidence is
+absent for those rows. Downstream scan artifacts now keep explicit positions
+separate from conservative selected-structure residue-position remaps.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli analyze-review-debt-remediation \
@@ -169,14 +170,27 @@ PYTHONPATH=src python -m catalytic_earth.cli analyze-review-debt-remediation \
 
 `scan-review-debt-alternate-structures` performs a bounded structure-wide ligand
 scan for remediation rows that need alternate-PDB or local-structure selection
-review. When M-CSA residue positions are available for a scanned PDB, it also
-computes local ligand context around those catalytic residues. The scan is
-explicitly review evidence only: expected cofactor-family hits remain
-non-countable unless later evidence shows local active-site support and clears
-the factory gates. The accepted-700 scan covers all 13 structure-scan
-candidates, scans 152 candidate PDB structures with 0 fetch failures, finds
+review. When M-CSA residue positions are available for a scanned PDB, it
+computes local ligand context around those catalytic residues. If an alternate
+PDB lacks explicit M-CSA positions, it can conservatively remap the selected
+structure's residue ids and residue codes into the alternate structure, while
+recording the remap basis and warnings. The scan is explicitly review evidence
+only: expected cofactor-family hits remain non-countable unless later evidence
+clears the review gap and the factory gates. The focused accepted-700 scan
+covers all 13 structure-scan candidates, scans 152 candidate PDB structures
+with 0 fetch failures, remaps 63 alternate-PDB structures, finds
 structure-wide expected-family hits for `m_csa:679`, `m_csa:696`, and
 `m_csa:698`, and records that all three still lack local active-site support.
+
+The all-debt bounded scan
+`artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json`
+covers all 46 scan-candidate review-debt rows and all 739 candidate PDB
+structures. It remaps 362 alternate-PDB structures, finds review-only local
+expected-family hits for `m_csa:577`, `m_csa:592`, and `m_csa:641`, and leaves
+7 rows without usable alternate-PDB active-site positions. The companion
+`summarize-review-debt-remap-leads` artifact
+`artifacts/v3_review_debt_remap_leads_700_all_bounded.json` summarizes 44
+review-only leads and keeps `countable_label_candidate_count` at 0.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
@@ -184,6 +198,20 @@ PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structur
   --max-entries 13 \
   --max-structures-per-entry 60 \
   --out artifacts/v3_review_debt_alternate_structure_scan_700.json
+```
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
+  --remediation artifacts/v3_review_debt_remediation_700_all.json \
+  --max-entries 46 \
+  --max-structures-per-entry 80 \
+  --out artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json
+
+PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt-remap-leads \
+  --alternate-structure-scan artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json \
+  --remediation artifacts/v3_review_debt_remediation_700_all.json \
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
+  --out artifacts/v3_review_debt_remap_leads_700_all_bounded.json
 ```
 
 ```bash
@@ -413,7 +441,9 @@ Current 700-queue gate state:
   hydrolysis-dominated queue composition as promotion-review issues for
   deferred rows. The attached alternate-structure scan adds a separate warning
   for structure-wide expected-family hits that still lack local active-site
-  support.
+  support, and it now exposes conservative residue-position remap coverage for
+  alternate PDBs. The all-debt remap lead summary keeps local-hit carried-debt
+  rows review-only rather than making them countable.
 
 ## Automation Lock
 

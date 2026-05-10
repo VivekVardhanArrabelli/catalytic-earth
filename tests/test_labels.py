@@ -46,6 +46,7 @@ from catalytic_earth.labels import (
     select_threshold,
     summarize_label_factory_batches,
     summarize_review_debt,
+    summarize_review_debt_remap_leads,
     sweep_abstention_thresholds,
 )
 
@@ -1217,6 +1218,208 @@ HETATM 3 N N1 FAD A 900 1.5 0.0 0.0 N1 FAD A 900
         hit = scan["rows"][0]["structure_hits"][0]
         self.assertEqual(hit["local_expected_family_hits"], ["flavin"])
         self.assertEqual(hit["local_resolved_residue_count"], 1)
+        self.assertEqual(hit["residue_position_source"], "mcsa_explicit")
+
+    def test_review_debt_alternate_structure_scan_remaps_selected_positions(self) -> None:
+        selected_cif = """data_selected
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+ATOM 1 N N ASP A 7 0.0 0.0 0.0 N ASP A 7
+ATOM 2 C CA ASP A 7 1.0 0.0 0.0 CA ASP A 7
+#
+"""
+        alternate_cif = """data_alternate
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+ATOM 1 N N ASP B 7 0.0 0.0 0.0 N ASP B 7
+ATOM 2 C CA ASP B 7 1.0 0.0 0.0 CA ASP B 7
+HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
+#
+"""
+        remediation = {
+            "metadata": {"method": "review_debt_remediation_plan"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:653",
+                    "entry_name": "alternate local flavin gap",
+                    "remediation_bucket": "alternate_pdb_ligand_scan",
+                    "expected_cofactor_families": ["flavin"],
+                    "selected_pdb_id": "1AAA",
+                    "alternate_pdb_ids": ["2BBB"],
+                    "candidate_pdb_structure_ids": ["1AAA", "2BBB"],
+                    "candidate_pdb_residue_position_counts": {"1AAA": 1, "2BBB": 0},
+                    "candidate_pdb_residue_positions": {
+                        "1AAA": [
+                            {
+                                "chain_name": "A",
+                                "resid": 7,
+                                "code": "ASP",
+                                "residue_node_id": "m_csa:653:residue:1",
+                            }
+                        ]
+                    },
+                }
+            ],
+        }
+
+        scan = scan_review_debt_alternate_structures(
+            remediation,
+            max_entries=1,
+            max_structures_per_entry=2,
+            cif_fetcher=lambda pdb_id: selected_cif if pdb_id == "1AAA" else alternate_cif,
+        )
+
+        self.assertEqual(scan["metadata"]["expected_family_hit_entry_ids"], ["m_csa:653"])
+        self.assertEqual(scan["metadata"]["local_expected_family_hit_entry_ids"], ["m_csa:653"])
+        self.assertEqual(
+            scan["metadata"]["alternate_pdb_remapped_residue_position_entry_ids"],
+            ["m_csa:653"],
+        )
+        self.assertEqual(
+            scan["metadata"]["local_expected_family_hit_from_remap_entry_ids"],
+            ["m_csa:653"],
+        )
+        self.assertEqual(
+            scan["metadata"]["residue_position_remap_basis_counts"],
+            {"same_residue_id_chain_remap": 1},
+        )
+        self.assertEqual(scan["metadata"]["unscanned_structure_count"], 0)
+        self.assertTrue(scan["metadata"]["all_candidate_structures_scanned"])
+        self.assertEqual(
+            scan["metadata"]["alternate_pdb_without_usable_residue_position_entry_ids"],
+            [],
+        )
+        self.assertEqual(
+            scan["metadata"]["structure_wide_hit_without_local_support_entry_ids"],
+            [],
+        )
+        row = scan["rows"][0]
+        self.assertEqual(row["scanned_pdb_residue_position_counts"], {"1AAA": 1, "2BBB": 0})
+        self.assertEqual(
+            row["scanned_pdb_remapped_residue_position_counts"],
+            {"1AAA": 0, "2BBB": 1},
+        )
+        self.assertTrue(row["local_active_site_expected_family_observed_from_remap"])
+        alternate_hit = row["structure_hits"][1]
+        self.assertEqual(alternate_hit["pdb_id"], "2BBB")
+        self.assertEqual(alternate_hit["residue_position_source"], "selected_position_remap")
+        self.assertEqual(
+            alternate_hit["residue_position_remap_basis"],
+            "same_residue_id_chain_remap",
+        )
+        self.assertEqual(alternate_hit["local_expected_family_hits"], ["flavin"])
+
+    def test_review_debt_remap_lead_summary_keeps_hits_review_only(self) -> None:
+        scan = {
+            "metadata": {"method": "review_debt_alternate_structure_scan"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:653",
+                    "entry_name": "alternate local flavin gap",
+                    "remediation_bucket": "alternate_pdb_ligand_scan",
+                    "expected_cofactor_families": ["flavin"],
+                    "structure_hits": [
+                        {
+                            "pdb_id": "2BBB",
+                            "ligand_codes": ["FAD"],
+                            "expected_family_hits": ["flavin"],
+                            "local_ligand_codes": ["FAD"],
+                            "local_cofactor_families": ["flavin"],
+                            "local_expected_family_hits": ["flavin"],
+                            "is_selected_structure": False,
+                            "residue_position_source": "selected_position_remap",
+                            "residue_position_remap_basis": "same_residue_id_chain_remap",
+                            "usable_residue_position_count": 1,
+                            "remapped_residue_position_count": 1,
+                        }
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:654",
+                    "entry_name": "structure-only metal gap",
+                    "remediation_bucket": "alternate_pdb_ligand_scan",
+                    "expected_cofactor_families": ["metal_ion"],
+                    "structure_hits": [
+                        {
+                            "pdb_id": "3CCC",
+                            "ligand_codes": ["ZN"],
+                            "expected_family_hits": ["metal_ion"],
+                            "local_ligand_codes": [],
+                            "local_cofactor_families": [],
+                            "local_expected_family_hits": [],
+                            "is_selected_structure": False,
+                            "residue_position_source": "none",
+                            "usable_residue_position_count": 0,
+                            "remapped_residue_position_count": 0,
+                        }
+                    ],
+                },
+            ],
+        }
+        remediation = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:653",
+                    "debt_status": "carried",
+                    "coverage_status": "expected_absent_from_structure",
+                    "gap_reasons": ["expected_cofactor_absent_from_structure"],
+                }
+            ]
+        }
+
+        summary = summarize_review_debt_remap_leads(
+            scan,
+            remediation_plan=remediation,
+        )
+
+        self.assertEqual(summary["metadata"]["method"], "review_debt_remap_lead_summary")
+        self.assertEqual(summary["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            summary["metadata"]["local_expected_family_hit_from_remap_entry_ids"],
+            ["m_csa:653"],
+        )
+        self.assertEqual(
+            summary["metadata"]["lead_type_counts"],
+            {
+                "local_expected_family_hit_from_remap": 1,
+                "structure_wide_hit_without_local_support": 1,
+            },
+        )
+        self.assertFalse(summary["rows"][0]["countable_label_candidate"])
+        self.assertEqual(
+            summary["rows"][0]["recommended_next_action"],
+            "verify_remapped_local_evidence_before_review_import",
+        )
+        self.assertEqual(summary["rows"][0]["local_expected_ligand_codes"], ["FAD"])
+        self.assertEqual(summary["rows"][0]["structure_expected_ligand_codes"], ["FAD"])
 
     def test_preview_promotion_readiness_warns_on_new_review_debt(self) -> None:
         acceptance = {
@@ -1400,6 +1603,11 @@ HETATM 3 N N1 FAD A 900 1.5 0.0 0.0 N1 FAD A 900
             "metadata": {
                 "method": "review_debt_alternate_structure_scan",
                 "expected_family_hit_entry_ids": ["m_csa:651"],
+                "remapped_residue_position_entry_ids": ["m_csa:650"],
+                "alternate_pdb_remapped_residue_position_entry_ids": ["m_csa:650"],
+                "local_expected_family_hit_from_remap_entry_ids": [],
+                "remapped_residue_position_structure_count": 2,
+                "alternate_pdb_remapped_residue_position_structure_count": 2,
                 "structure_wide_hit_without_local_support_entry_ids": ["m_csa:651"],
                 "fetch_failure_count": 0,
             }
@@ -1436,6 +1644,18 @@ HETATM 3 N N1 FAD A 900 1.5 0.0 0.0 N1 FAD A 900
                 "alternate_structure_scan_local_expected_family_hit_entry_ids"
             ],
             [],
+        )
+        self.assertEqual(
+            audit["metadata"][
+                "alternate_structure_scan_alternate_pdb_remapped_residue_position_entry_ids"
+            ],
+            ["m_csa:650"],
+        )
+        self.assertEqual(
+            audit["metadata"][
+                "alternate_structure_scan_alternate_pdb_remapped_residue_position_structure_count"
+            ],
+            2,
         )
         self.assertEqual(
             audit["metadata"][

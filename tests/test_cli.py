@@ -425,6 +425,85 @@ class CliTests(unittest.TestCase):
             self.assertEqual(plan["rows"][0]["entry_id"], "m_csa:651")
             self.assertEqual(plan["rows"][0]["alternate_pdb_ids"], ["2BBB"])
 
+    def test_summarize_review_debt_remap_leads_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            scan = root / "scan.json"
+            remediation = root / "remediation.json"
+            out = root / "remap_leads.json"
+            scan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_debt_alternate_structure_scan"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:653",
+                                "entry_name": "alternate local flavin gap",
+                                "remediation_bucket": "alternate_pdb_ligand_scan",
+                                "expected_cofactor_families": ["flavin"],
+                                "structure_hits": [
+                                    {
+                                        "pdb_id": "2BBB",
+                                        "ligand_codes": ["FAD"],
+                                        "expected_family_hits": ["flavin"],
+                                        "local_ligand_codes": ["FAD"],
+                                        "local_cofactor_families": ["flavin"],
+                                        "local_expected_family_hits": ["flavin"],
+                                        "is_selected_structure": False,
+                                        "residue_position_source": "selected_position_remap",
+                                        "residue_position_remap_basis": "same_chain_residue_id",
+                                        "usable_residue_position_count": 1,
+                                        "remapped_residue_position_count": 1,
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            remediation.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:653",
+                                "debt_status": "carried",
+                                "coverage_status": "expected_absent_from_structure",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "summarize-review-debt-remap-leads",
+                    "--alternate-structure-scan",
+                    str(scan),
+                    "--remediation",
+                    str(remediation),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            summary = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(summary["metadata"]["lead_count"], 1)
+            self.assertEqual(
+                summary["metadata"]["local_expected_family_hit_from_remap_entry_ids"],
+                ["m_csa:653"],
+            )
+            self.assertFalse(summary["rows"][0]["countable_label_candidate"])
+
     def test_check_label_preview_promotion_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

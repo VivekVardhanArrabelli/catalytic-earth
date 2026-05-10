@@ -105,6 +105,11 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   boundary, rerun the deterministic remediation, scaling-quality audit, batch
   summary, validation, and full test suite; use any remaining time to check
   docs for stale current-state claims rather than opening another tranche.
+- Remaining-time plan executed for the remap run: after conservative
+  alternate-PDB residue remapping worked on the focused 700 scan, used the
+  remaining productive window to run a complete all-debt bounded scan, add a
+  review-only remap lead summary command, regenerate artifacts, and verify
+  targeted tests instead of reopening label count growth.
 
 ## Current Metrics
 
@@ -197,10 +202,18 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   reviews, 9 external cofactor-source reviews, 7 family-boundary reviews,
   16 expert label decisions, and 3 active-site mapping repairs. Sixty-nine
   rows have alternate PDBs but 0 alternate-PDB M-CSA residue-position support.
-- 700 alternate-structure scan: 13 structure-scan rows, 152 candidate PDB
-  structures, 0 fetch failures, 3 structure-wide expected-family hit rows
-  (`m_csa:679`, `m_csa:696`, `m_csa:698`), and 0 local active-site
-  expected-family hit rows. These hits remain review-only evidence.
+- 700 focused alternate-structure scan: 13 structure-scan rows, 152 candidate
+  PDB structures, 0 fetch failures, 63 alternate-PDB structures with
+  conservative remapped active-site positions, 3 structure-wide
+  expected-family hit rows (`m_csa:679`, `m_csa:696`, `m_csa:698`), and 0
+  local active-site expected-family hit rows. These hits remain review-only
+  evidence.
+- 700 all-debt bounded alternate-structure scan: 46 scan-candidate review-debt
+  rows, all 739 candidate PDB structures scanned, 0 fetch failures, 362
+  alternate-PDB structures with conservative remapped active-site positions,
+  19 expected-family hit rows, and 3 review-only local expected-family hit
+  rows from remaps (`m_csa:577`, `m_csa:592`, `m_csa:641`). The remap lead
+  summary records 44 review-only leads and 0 countable label candidates.
 - Structure mapping: 19 total mapping issues at 700.
 - Local performance was regenerated on 700 artifacts in `artifacts/perf_report.json`.
 
@@ -220,6 +233,8 @@ PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt --review-evid
 PYTHONPATH=src python -m catalytic_earth.cli analyze-review-debt-remediation --review-debt artifacts/v3_review_debt_summary_700.json --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json --graph artifacts/v1_graph_700.json --geometry artifacts/v3_geometry_features_700.json --debt-status new --out artifacts/v3_review_debt_remediation_700.json
 PYTHONPATH=src python -m catalytic_earth.cli analyze-review-debt-remediation --review-debt artifacts/v3_review_debt_summary_700.json --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json --graph artifacts/v1_graph_700.json --geometry artifacts/v3_geometry_features_700.json --debt-status all --out artifacts/v3_review_debt_remediation_700_all.json
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures --remediation artifacts/v3_review_debt_remediation_700.json --max-entries 13 --max-structures-per-entry 60 --out artifacts/v3_review_debt_alternate_structure_scan_700.json
+PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures --remediation artifacts/v3_review_debt_remediation_700_all.json --max-entries 46 --max-structures-per-entry 80 --out artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json
+PYTHONPATH=src python -m catalytic_earth.cli summarize-review-debt-remap-leads --alternate-structure-scan artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json --remediation artifacts/v3_review_debt_remediation_700_all.json --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json --out artifacts/v3_review_debt_remap_leads_700_all_bounded.json
 PYTHONPATH=src python -m catalytic_earth.cli build-sequence-cluster-proxy --graph artifacts/v1_graph_700.json --out artifacts/v3_sequence_cluster_proxy_700.json
 PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch-id 700_preview --acceptance artifacts/v3_label_batch_acceptance_check_700_preview.json --readiness artifacts/v3_label_preview_promotion_readiness_700.json --review-debt artifacts/v3_review_debt_summary_700_preview.json --review-evidence-gaps artifacts/v3_review_evidence_gaps_700_preview.json --active-learning-queue artifacts/v3_active_learning_review_queue_700_preview_batch.json --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700_preview_batch.json --hard-negatives artifacts/v3_hard_negative_controls_700_preview_batch.json --decision-batch artifacts/v3_expert_review_decision_batch_700_preview.json --structure-mapping artifacts/v3_structure_mapping_issues_700.json --expert-review-export artifacts/v3_expert_review_export_700_preview_post_batch.json --sequence-clusters artifacts/v3_sequence_cluster_proxy_700.json --alternate-structure-scan artifacts/v3_review_debt_alternate_structure_scan_700.json --out artifacts/v3_label_scaling_quality_audit_700_preview.json
 ```
@@ -232,14 +247,17 @@ countable labels; the latest accepted labels are `m_csa:686`, `m_csa:688`,
 `m_csa:694`, `m_csa:697`, and `m_csa:699`.
 
 The next bounded task is still quality repair, not another tranche. Start with
-`artifacts/v3_review_debt_alternate_structure_scan_700.json` and
-`artifacts/v3_review_debt_remediation_700_all.json`: the scan found
-structure-wide expected-family hits for `m_csa:679`, `m_csa:696`, and
-`m_csa:698`, but 0 local active-site expected-family hits. Do not count any of
-these rows unless a later local evidence pass clears their gap reasons in
-`artifacts/v3_review_evidence_gaps_700.json`. The highest-value next repair is
-improving residue-position remapping for alternate PDBs, because 69 review-debt
-rows have alternate PDBs but no alternate-PDB M-CSA residue-position support.
+`artifacts/v3_review_debt_remap_leads_700_all_bounded.json` and
+`artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json`: the
+all-debt scan now covers all 739 candidate PDB structures and found review-only
+local expected-family hits from remapped positions for `m_csa:577`,
+`m_csa:592`, and `m_csa:641`. Do not count any of these rows unless a later
+review import clears their gap reasons in
+`artifacts/v3_review_evidence_gaps_700.json` and the label-factory gates pass.
+The highest-value next repair is to audit those three remap-local leads against
+their counterevidence and selected-structure gaps, then decide whether they
+need expert review, a local structure-selection rule, or a stricter remap
+guardrail.
 
 Keep `m_csa:650` in review unless explicit metal-catalysis evidence is added;
 it is the regression case for Ser-His text with a metal-dependent top retrieval
@@ -263,20 +281,20 @@ Known blockers:
 
 ## Run Timing
 
-- STARTED_AT: 2026-05-10T16:51:58+00:00
-- ENDED_AT: 2026-05-10T17:43:02+00:00
-- Measured elapsed time: 51.067 minutes
+- STARTED_AT: 2026-05-10T17:53:25Z
+- ENDED_AT: 2026-05-10T18:46:07Z
+- Measured elapsed time: 52.700 minutes
 - Documentation checked and updated across README, docs, scope, handoff,
-  label-factory notes, 700 preview notes, and status inputs before final status
-  regeneration.
+  label-factory notes, 700 preview notes, and status inputs before final
+  status regeneration.
 - Normal locked run from the accepted 700 state did not grow the countable
-  registry. It added review-debt remediation planning, full 81-row remediation
-  coverage, a 152-PDB alternate-structure scan, and audit warnings that keep
-  structure-wide expected-family hits non-countable until local active-site
-  support is shown.
+  registry. It added conservative alternate-PDB residue-position remapping,
+  regenerated the focused 700 scan, added a complete all-debt 739-structure
+  bounded scan, and summarized 44 review-only remap leads while keeping
+  countable label candidates at 0.
 - Final verification passed: `git diff --check`, `PYTHONPATH=src python -m
   catalytic_earth.cli validate`, and `PYTHONPATH=src python -m unittest
-  discover -s tests` passed with 159 tests.
-- A one-iteration local perf-suite check on the 700 artifacts completed in
-  `/tmp/catalytic-earth-perf-check.json`; it was used as a wrap-up check and
-  did not replace the committed 5-iteration performance artifact.
+  discover -s tests` passed with 162 tests.
+- Local perf-suite checks on the 700 artifacts completed in `/tmp` during the
+  productive window; they were used as bounded verification and did not replace
+  the committed 5-iteration performance artifact.

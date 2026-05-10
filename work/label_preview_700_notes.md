@@ -79,10 +79,13 @@ evidence.
 
 `artifacts/v3_review_debt_alternate_structure_scan_700.json` scanned all 13
 rows that needed alternate-PDB or local-structure selection review, covering
-152 candidate PDB structures with 0 fetch failures. Ten rows had no expected
-cofactor family in any scanned candidate structure: `m_csa:687`, `m_csa:680`,
-`m_csa:678`, `m_csa:690`, `m_csa:691`, `m_csa:700`, `m_csa:682`, `m_csa:693`,
-`m_csa:695`, and `m_csa:702`.
+152 candidate PDB structures with 0 fetch failures. The scan now
+conservatively remaps selected active-site residue positions onto 63
+alternate-PDB structures; `m_csa:680` remains the only focused-scan row without
+usable alternate-PDB active-site positions. Ten rows had no expected cofactor
+family in any scanned candidate structure: `m_csa:687`, `m_csa:680`,
+`m_csa:678`, `m_csa:690`, `m_csa:691`, `m_csa:700`, `m_csa:682`,
+`m_csa:693`, `m_csa:695`, and `m_csa:702`.
 
 Three rows had structure-wide expected-family hits: `m_csa:679`, `m_csa:696`,
 and `m_csa:698`. The scan also computed local ligand context wherever M-CSA
@@ -91,3 +94,12 @@ These rows remain review debt, not countable labels. In particular, the
 alternate PDB hits for `m_csa:679` and `m_csa:696` have 0 M-CSA
 residue-position support, and `m_csa:698` resolves the selected catalytic
 residues but only sees local `MTE`, not local metal support.
+
+`artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json`
+extends the scan to all 46 scan-candidate review-debt rows and all 739
+candidate PDB structures. It remaps 362 alternate-PDB structures and finds
+review-only local expected-family hits for `m_csa:577`, `m_csa:592`, and
+`m_csa:641`. The companion
+`artifacts/v3_review_debt_remap_leads_700_all_bounded.json` summarizes 44
+review-only leads and keeps every row non-countable until review import,
+evidence-gap clearance, and label-factory gates pass.
