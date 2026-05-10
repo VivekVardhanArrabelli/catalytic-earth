@@ -12,12 +12,12 @@
       "counterevidence_present": 26,
       "expected_cofactor_absent_from_structure": 31,
       "expected_cofactor_not_local": 9,
-      "review_marked_needs_more_evidence": 44,
+      "review_marked_needs_more_evidence": 61,
       "target_not_top1": 2,
       "top1_below_abstention_threshold": 34
     },
     "method": "review_evidence_gap_analysis",
-    "needs_more_evidence_count": 44,
+    "needs_more_evidence_count": 61,
     "needs_more_evidence_entry_ids": [
       "m_csa:4",
       "m_csa:13",
@@ -56,13 +56,30 @@
       "m_csa:643",
       "m_csa:644",
       "m_csa:650",
+      "m_csa:653",
+      "m_csa:654",
+      "m_csa:655",
       "m_csa:656",
       "m_csa:657",
+      "m_csa:658",
+      "m_csa:659",
       "m_csa:660",
       "m_csa:661",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:664",
+      "m_csa:665",
+      "m_csa:667",
       "m_csa:668",
+      "m_csa:669",
+      "m_csa:670",
       "m_csa:671",
-      "m_csa:674"
+      "m_csa:672",
+      "m_csa:673",
+      "m_csa:674",
+      "m_csa:675",
+      "m_csa:676",
+      "m_csa:677"
     ],
     "reviewed_decision_count": 62
   },
@@ -1616,9 +1633,9 @@
       "abstain_threshold": 0.4115,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "diphosphate---fructose-6-phosphate 1-phosphotransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3642, below the 0.4115 floor.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "diphosphate---fructose-6-phosphate 1-phosphotransferase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for metal_dependent_hydrolase is absent.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:653",
       "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
       "expected_cofactor_families": [
@@ -1626,6 +1643,7 @@
       ],
       "gap_reasons": [
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -1651,9 +1669,9 @@
       "abstain_threshold": 0.4115,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3581, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for metal_dependent_hydrolase is absent. Review blockers: fewer_than_three_resolved_residues.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:654",
       "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
       "expected_cofactor_families": [
@@ -1661,6 +1679,7 @@
       ],
       "gap_reasons": [
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -1691,9 +1710,9 @@
         "absent_flavin_context"
       ],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "DNA-3-methyladenine glycosylase I is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.2247, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "DNA-3-methyladenine glycosylase I remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for flavin_dehydrogenase_reductase is absent. Counterevidence: absent_flavin_context.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:655",
       "entry_name": "DNA-3-methyladenine glycosylase I",
       "expected_cofactor_families": [
@@ -1702,6 +1721,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -1823,14 +1843,15 @@
         "ser_his_seed_missing_triad_coherence"
       ],
       "coverage_status": "not_required",
-      "decision_action": "accept_label",
-      "decision_rationale": "arabinogalactan endo-1,4-beta-galactosidase is provisionally outside the current seed fingerprints. Top retrieval ser_his_acid_hydrolase scored 0.3110, below the 0.4115 floor. Counterevidence: ser_his_seed_missing_triad_coherence.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "arabinogalactan endo-1,4-beta-galactosidase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Counterevidence: ser_his_seed_missing_triad_coherence.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:658",
       "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
       "expected_cofactor_families": [],
       "gap_reasons": [
         "counterevidence_present",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -1854,9 +1875,9 @@
         "absent_heme_context"
       ],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "DNA-formamidopyrimidine glycosylase is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3294, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "DNA-formamidopyrimidine glycosylase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for heme_peroxidase_oxidase is absent. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:659",
       "entry_name": "DNA-formamidopyrimidine glycosylase",
       "expected_cofactor_families": [
@@ -1865,6 +1886,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -1988,9 +2010,9 @@
       "abstain_threshold": 0.4115,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "1-phosphatidylinositol-5-phosphate 4-kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3263, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "1-phosphatidylinositol-5-phosphate 4-kinase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for metal_dependent_hydrolase is absent. Review blockers: fewer_than_three_resolved_residues.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:662",
       "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
       "expected_cofactor_families": [
@@ -1998,6 +2020,7 @@
       ],
       "gap_reasons": [
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2021,9 +2044,9 @@
         "nucleotide_transfer_ligand_context"
       ],
       "coverage_status": "expected_structure_only",
-      "decision_action": "accept_label",
-      "decision_rationale": "ribokinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.2601, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "ribokinase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for metal_dependent_hydrolase is absent. Counterevidence: nucleotide_transfer_ligand_context.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:663",
       "entry_name": "ribokinase",
       "expected_cofactor_families": [
@@ -2032,6 +2055,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2072,9 +2096,9 @@
         "absent_flavin_context"
       ],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "dihydroneopterin aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.2703, below the 0.4115 floor. Counterevidence: absent_flavin_context. Review blockers: fewer_than_three_resolved_residues.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "dihydroneopterin aldolase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for flavin_dehydrogenase_reductase is absent. Counterevidence: absent_flavin_context. Review blockers: fewer_than_three_resolved_residues.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:664",
       "entry_name": "dihydroneopterin aldolase",
       "expected_cofactor_families": [
@@ -2083,6 +2107,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2108,9 +2133,9 @@
         "nucleotide_transfer_ligand_context"
       ],
       "coverage_status": "all_expected_local",
-      "decision_action": "accept_label",
-      "decision_rationale": "Formate-dependent phosphoribosylglycinamide formyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3914, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "Formate-dependent phosphoribosylglycinamide formyltransferase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Counterevidence: nucleotide_transfer_ligand_context.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:665",
       "entry_name": "Formate-dependent phosphoribosylglycinamide formyltransferase",
       "expected_cofactor_families": [
@@ -2118,6 +2143,7 @@
       ],
       "gap_reasons": [
         "counterevidence_present",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [
@@ -2195,9 +2221,9 @@
       "abstain_threshold": 0.4115,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "alpha-N-arabinofuranosidase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3767, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "alpha-N-arabinofuranosidase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for metal_dependent_hydrolase is absent. Review blockers: fewer_than_three_resolved_residues.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:667",
       "entry_name": "alpha-N-arabinofuranosidase",
       "expected_cofactor_families": [
@@ -2205,6 +2231,7 @@
       ],
       "gap_reasons": [
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2276,9 +2303,9 @@
         "nad_only_or_nonflavin_context"
       ],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "carbamate kinase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2643, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "carbamate kinase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for flavin_monooxygenase is absent. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:669",
       "entry_name": "carbamate kinase",
       "expected_cofactor_families": [
@@ -2288,6 +2315,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2315,9 +2343,9 @@
         "role_inferred_metal_missing_water_activation_role"
       ],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "hydroxymethylpyrimidine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3474, below the 0.4115 floor. Counterevidence: role_inferred_metal_missing_water_activation_role.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "hydroxymethylpyrimidine kinase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for metal_dependent_hydrolase is role_inferred. Counterevidence: role_inferred_metal_missing_water_activation_role.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:670",
       "entry_name": "hydroxymethylpyrimidine kinase",
       "expected_cofactor_families": [
@@ -2326,6 +2354,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2385,9 +2414,9 @@
       "abstain_threshold": 0.4115,
       "counterevidence_reasons": [],
       "coverage_status": "expected_structure_only",
-      "decision_action": "accept_label",
-      "decision_rationale": "protocatechuate 4,5-dioxygenase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3592, below the 0.4115 floor.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "protocatechuate 4,5-dioxygenase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for metal_dependent_hydrolase is absent.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:672",
       "entry_name": "protocatechuate 4,5-dioxygenase",
       "expected_cofactor_families": [
@@ -2395,6 +2424,7 @@
       ],
       "gap_reasons": [
         "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2427,9 +2457,9 @@
       "abstain_threshold": 0.4115,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "cellobiose dehydrogenase (acceptor) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3702, below the 0.4115 floor.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "cellobiose dehydrogenase (acceptor) remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for metal_dependent_hydrolase is absent.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:673",
       "entry_name": "cellobiose dehydrogenase (acceptor)",
       "expected_cofactor_families": [
@@ -2437,6 +2467,7 @@
       ],
       "gap_reasons": [
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2507,9 +2538,9 @@
         "nad_only_or_nonflavin_context"
       ],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "glutaconyl-CoA decarboxylase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2119, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "glutaconyl-CoA decarboxylase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for flavin_monooxygenase is absent. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:675",
       "entry_name": "glutaconyl-CoA decarboxylase",
       "expected_cofactor_families": [
@@ -2519,6 +2550,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2545,9 +2577,9 @@
         "absent_heme_context"
       ],
       "coverage_status": "expected_absent_from_structure",
-      "decision_action": "accept_label",
-      "decision_rationale": "D-stereospecific aminopeptidase (peptidase S58 family) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3517, below the 0.4115 floor. Counterevidence: absent_heme_context.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "D-stereospecific aminopeptidase (peptidase S58 family) remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for heme_peroxidase_oxidase is absent. Counterevidence: absent_heme_context.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:676",
       "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
       "expected_cofactor_families": [
@@ -2556,6 +2588,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],
@@ -2580,9 +2613,9 @@
         "nad_only_or_nonflavin_context"
       ],
       "coverage_status": "expected_structure_only",
-      "decision_action": "accept_label",
-      "decision_rationale": "pyridoxal 5'-phosphate synthase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2296, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
-      "decision_review_status": "automation_curated",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_rationale": "pyridoxal 5'-phosphate synthase remains below the 0.4115 abstention floor, but it is not a clean countable out-of-scope negative. Selected-structure cofactor evidence for flavin_monooxygenase is absent. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:677",
       "entry_name": "pyridoxal 5'-phosphate synthase",
       "expected_cofactor_families": [
@@ -2592,6 +2625,7 @@
       "gap_reasons": [
         "counterevidence_present",
         "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
       "local_cofactor_families": [],

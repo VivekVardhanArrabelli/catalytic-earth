@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "active_queue_rows_linked": 44,
+    "active_queue_rows_linked": 61,
     "carried_review_debt_count": 37,
     "carried_review_debt_entry_ids": [
       "m_csa:4",
@@ -55,12 +55,12 @@
       "counterevidence_present": 26,
       "expected_cofactor_absent_from_structure": 31,
       "expected_cofactor_not_local": 9,
-      "review_marked_needs_more_evidence": 44,
+      "review_marked_needs_more_evidence": 61,
       "target_not_top1": 2,
       "top1_below_abstention_threshold": 34
     },
     "method": "review_debt_summary",
-    "needs_more_evidence_count": 44,
+    "needs_more_evidence_count": 61,
     "new_review_debt_count": 24,
     "new_review_debt_entry_ids": [
       "m_csa:653",
@@ -178,7 +178,7 @@
   },
   "rows": [
     {
-      "active_queue_rank": 109,
+      "active_queue_rank": 113,
       "active_queue_review_score": 4.616,
       "counterevidence_reasons": [
         "metal_ligand_rich_site_for_ser_his_seed",
@@ -324,6 +324,225 @@
       "top1_score": 0.4076
     },
     {
+      "active_queue_rank": 27,
+      "active_queue_review_score": 5.569,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:676",
+      "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 8.48,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "target_score": 0.3517,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3517
+    },
+    {
+      "active_queue_rank": 58,
+      "active_queue_review_score": 5.1895,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 8.17,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "target_score": 0.3294,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3294
+    },
+    {
+      "active_queue_rank": 136,
+      "active_queue_review_score": 3.8708,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:655",
+      "entry_name": "DNA-3-methyladenine glycosylase I",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 7.75,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "target_score": 0.2247,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.2247
+    },
+    {
+      "active_queue_rank": 144,
+      "active_queue_review_score": 3.0153,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 7.75,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "target_score": 0.2703,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.2703
+    },
+    {
+      "active_queue_rank": 120,
+      "active_queue_review_score": 4.5121,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:669",
+      "entry_name": "carbamate kinase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 7.75,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "target_score": 0.2643,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2643
+    },
+    {
+      "active_queue_rank": 121,
+      "active_queue_review_score": 4.499,
+      "counterevidence_reasons": [
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 7.75,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3474,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3474
+    },
+    {
+      "active_queue_rank": 134,
+      "active_queue_review_score": 3.9354,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:675",
+      "entry_name": "glutaconyl-CoA decarboxylase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 7.75,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "target_score": 0.2119,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2119
+    },
+    {
+      "active_queue_rank": 131,
+      "active_queue_review_score": 4.0771,
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "coverage_status": "expected_structure_only",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 7.25,
+      "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.2601,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2601
+    },
+    {
+      "active_queue_rank": 143,
+      "active_queue_review_score": 3.2153,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "coverage_status": "expected_structure_only",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 7.25,
+      "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "target_score": 0.2296,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2296
+    },
+    {
       "active_queue_rank": 9,
       "active_queue_review_score": 5.9491,
       "counterevidence_reasons": [
@@ -347,170 +566,7 @@
       "top1_score": 0.4135
     },
     {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "absent_flavin_context"
-      ],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:655",
-      "entry_name": "DNA-3-methyladenine glycosylase I",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "target_score": 0.2247,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.2247
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "absent_heme_context"
-      ],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:659",
-      "entry_name": "DNA-formamidopyrimidine glycosylase",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "heme_peroxidase_oxidase",
-      "target_score": 0.3294,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.3294
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "absent_flavin_context"
-      ],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:664",
-      "entry_name": "dihydroneopterin aldolase",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "target_score": 0.2703,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.2703
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "absent_flavin_context",
-        "nad_only_or_nonflavin_context"
-      ],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:669",
-      "entry_name": "carbamate kinase",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "flavin_monooxygenase",
-      "target_score": 0.2643,
-      "top1_fingerprint_id": "flavin_monooxygenase",
-      "top1_score": 0.2643
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "role_inferred_metal_missing_water_activation_role"
-      ],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:670",
-      "entry_name": "hydroxymethylpyrimidine kinase",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "metal_dependent_hydrolase",
-      "target_score": 0.3474,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.3474
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "absent_flavin_context",
-        "nad_only_or_nonflavin_context"
-      ],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:675",
-      "entry_name": "glutaconyl-CoA decarboxylase",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "flavin_monooxygenase",
-      "target_score": 0.2119,
-      "top1_fingerprint_id": "flavin_monooxygenase",
-      "top1_score": 0.2119
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "absent_heme_context"
-      ],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:676",
-      "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "heme_peroxidase_oxidase",
-      "target_score": 0.3517,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.3517
-    },
-    {
-      "active_queue_rank": 74,
+      "active_queue_rank": 77,
       "active_queue_review_score": 4.966,
       "counterevidence_reasons": [
         "role_inferred_metal_low_pocket_support"
@@ -525,7 +581,7 @@
         "expected_cofactor_absent_from_structure",
         "review_marked_needs_more_evidence"
       ],
-      "priority_score": 6.26,
+      "priority_score": 6.23,
       "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "target_score": 0.4208,
@@ -533,54 +589,7 @@
       "top1_score": 0.4208
     },
     {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "nucleotide_transfer_ligand_context"
-      ],
-      "coverage_status": "expected_structure_only",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:663",
-      "entry_name": "ribokinase",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_not_local",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.25,
-      "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
-      "target_fingerprint_id": "metal_dependent_hydrolase",
-      "target_score": 0.2601,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.2601
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [
-        "absent_flavin_context",
-        "nad_only_or_nonflavin_context"
-      ],
-      "coverage_status": "expected_structure_only",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:677",
-      "entry_name": "pyridoxal 5'-phosphate synthase",
-      "gap_reasons": [
-        "counterevidence_present",
-        "expected_cofactor_not_local",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 6.25,
-      "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
-      "target_fingerprint_id": "flavin_monooxygenase",
-      "target_score": 0.2296,
-      "top1_fingerprint_id": "flavin_monooxygenase",
-      "top1_score": 0.2296
-    },
-    {
-      "active_queue_rank": 82,
+      "active_queue_rank": 86,
       "active_queue_review_score": 4.9246,
       "counterevidence_reasons": [
         "role_inferred_metal_low_pocket_support"
@@ -595,7 +604,7 @@
         "expected_cofactor_absent_from_structure",
         "review_marked_needs_more_evidence"
       ],
-      "priority_score": 6.18,
+      "priority_score": 6.14,
       "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "target_score": 0.4261,
@@ -603,7 +612,28 @@
       "top1_score": 0.4261
     },
     {
-      "active_queue_rank": 67,
+      "active_queue_rank": 68,
+      "active_queue_review_score": 5.0447,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:673",
+      "entry_name": "cellobiose dehydrogenase (acceptor)",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 6.07,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3702,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3702
+    },
+    {
+      "active_queue_rank": 70,
       "active_queue_review_score": 5.0337,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
@@ -616,7 +646,7 @@
         "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
-      "priority_score": 6.08,
+      "priority_score": 6.05,
       "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "target_score": 0.3621,
@@ -624,7 +654,7 @@
       "top1_score": 0.3621
     },
     {
-      "active_queue_rank": 68,
+      "active_queue_rank": 71,
       "active_queue_review_score": 5.0254,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
@@ -637,7 +667,7 @@
         "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
-      "priority_score": 6.07,
+      "priority_score": 6.04,
       "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "target_score": 0.3572,
@@ -645,7 +675,7 @@
       "top1_score": 0.3572
     },
     {
-      "active_queue_rank": 119,
+      "active_queue_rank": 127,
       "active_queue_review_score": 4.2385,
       "counterevidence_reasons": [
         "role_inferred_metal_low_pocket_support"
@@ -668,7 +698,7 @@
       "top1_score": 0.4288
     },
     {
-      "active_queue_rank": 116,
+      "active_queue_rank": 123,
       "active_queue_review_score": 4.4719,
       "counterevidence_reasons": [
         "role_inferred_metal_missing_water_activation_role"
@@ -691,7 +721,28 @@
       "top1_score": 0.4227
     },
     {
-      "active_queue_rank": 93,
+      "active_queue_rank": 85,
+      "active_queue_review_score": 4.928,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:653",
+      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 5.9,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3642,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3642
+    },
+    {
+      "active_queue_rank": 97,
       "active_queue_review_score": 4.8143,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
@@ -704,7 +755,7 @@
         "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
-      "priority_score": 5.82,
+      "priority_score": 5.78,
       "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "target_score": 0.3594,
@@ -712,7 +763,7 @@
       "top1_score": 0.3594
     },
     {
-      "active_queue_rank": 113,
+      "active_queue_rank": 117,
       "active_queue_review_score": 4.568,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
@@ -733,7 +784,7 @@
       "top1_score": 0.3703
     },
     {
-      "active_queue_rank": 106,
+      "active_queue_rank": 110,
       "active_queue_review_score": 4.6786,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
@@ -754,7 +805,7 @@
       "top1_score": 0.3647
     },
     {
-      "active_queue_rank": 120,
+      "active_queue_rank": 128,
       "active_queue_review_score": 4.2182,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
@@ -775,7 +826,70 @@
       "top1_score": 0.3788
     },
     {
-      "active_queue_rank": 118,
+      "active_queue_rank": 129,
+      "active_queue_review_score": 4.1807,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 5.75,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3581,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3581
+    },
+    {
+      "active_queue_rank": 135,
+      "active_queue_review_score": 3.8744,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 5.75,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3263,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3263
+    },
+    {
+      "active_queue_rank": 138,
+      "active_queue_review_score": 3.7526,
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "entry_id": "m_csa:667",
+      "entry_name": "alpha-N-arabinofuranosidase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "priority_score": 5.75,
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_score": 0.3767,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3767
+    },
+    {
+      "active_queue_rank": 126,
       "active_queue_review_score": 4.3156,
       "counterevidence_reasons": [],
       "coverage_status": "expected_absent_from_structure",
@@ -796,7 +910,7 @@
       "top1_score": 0.3718
     },
     {
-      "active_queue_rank": 79,
+      "active_queue_rank": 82,
       "active_queue_review_score": 4.9345,
       "counterevidence_reasons": [],
       "coverage_status": "expected_structure_only",
@@ -809,7 +923,7 @@
         "review_marked_needs_more_evidence",
         "top1_below_abstention_threshold"
       ],
-      "priority_score": 5.46,
+      "priority_score": 5.43,
       "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
       "target_fingerprint_id": "metal_dependent_hydrolase",
       "target_score": 0.3608,
@@ -817,7 +931,7 @@
       "top1_score": 0.3608
     },
     {
-      "active_queue_rank": 122,
+      "active_queue_rank": 133,
       "active_queue_review_score": 3.9872,
       "counterevidence_reasons": [],
       "coverage_status": "expected_structure_only",
@@ -838,7 +952,7 @@
       "top1_score": 0.3707
     },
     {
-      "active_queue_rank": 127,
+      "active_queue_rank": 142,
       "active_queue_review_score": 3.319,
       "counterevidence_reasons": [],
       "coverage_status": "expected_structure_only",
@@ -857,112 +971,6 @@
       "target_score": 0.3503,
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_score": 0.3503
-    },
-    {
-      "active_queue_rank": 132,
-      "active_queue_review_score": 1.8913,
-      "counterevidence_reasons": [
-        "metal_supported_site_for_ser_his_seed"
-      ],
-      "coverage_status": "not_required",
-      "debt_status": "carried",
-      "decision_action": "mark_needs_more_evidence",
-      "entry_id": "m_csa:650",
-      "entry_name": "phospholipase A1",
-      "gap_reasons": [
-        "counterevidence_present",
-        "review_marked_needs_more_evidence",
-        "target_not_top1"
-      ],
-      "priority_score": 5.0,
-      "recommended_next_action": "expert_family_boundary_review",
-      "target_fingerprint_id": "ser_his_acid_hydrolase",
-      "target_score": 0.4596,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.6085
-    },
-    {
-      "active_queue_rank": 115,
-      "active_queue_review_score": 4.5125,
-      "counterevidence_reasons": [
-        "nucleotide_transfer_ligand_context"
-      ],
-      "coverage_status": "all_expected_local",
-      "debt_status": "carried",
-      "decision_action": "mark_needs_more_evidence",
-      "entry_id": "m_csa:642",
-      "entry_name": "vesicle-fusing ATPase",
-      "gap_reasons": [
-        "counterevidence_present",
-        "review_marked_needs_more_evidence",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 4.75,
-      "recommended_next_action": "expert_family_boundary_review",
-      "target_fingerprint_id": "metal_dependent_hydrolase",
-      "target_score": 0.3985,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.3985
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:653",
-      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
-      "gap_reasons": [
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 4.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "metal_dependent_hydrolase",
-      "target_score": 0.3642,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.3642
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:654",
-      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
-      "gap_reasons": [
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 4.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "metal_dependent_hydrolase",
-      "target_score": 0.3581,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.3581
-    },
-    {
-      "active_queue_rank": null,
-      "active_queue_review_score": null,
-      "counterevidence_reasons": [],
-      "coverage_status": "expected_absent_from_structure",
-      "debt_status": "new",
-      "decision_action": "accept_label",
-      "entry_id": "m_csa:662",
-      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
-      "gap_reasons": [
-        "expected_cofactor_absent_from_structure",
-        "top1_below_abstention_threshold"
-      ],
-      "priority_score": 4.75,
-      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
-      "target_fingerprint_id": "metal_dependent_hydrolase",
-      "target_score": 0.3263,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.3263
     }
   ]
 }

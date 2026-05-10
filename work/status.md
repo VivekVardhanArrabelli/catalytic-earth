@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 36
-- Measured elapsed time: 1155.9 minutes (19.26 hours)
+- Entries: 37
+- Measured elapsed time: 1206.5 minutes (20.11 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1142.5 measured minutes (19.04 hours)
+- post-v2: 1193.1 measured minutes (19.89 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,21 +21,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 335
-- Evidence references logged: 257
+- Artifact references logged: 344
+- Evidence references logged: 268
 
 ## Recent Entries
-
-### 2026-05-10T03:26:17.876722+00:00 - post-v2
-
-- Task: Expand geometry benchmark to 450 labels
-- Time mode: measured
-- Measured minutes: 55.517
-- Started: 2026-05-10T02:30:25Z
-- Ended: 2026-05-10T03:25:56Z
-- Artifacts: data/registries/curated_mechanism_labels.json, src/catalytic_earth/geometry_retrieval.py, src/catalytic_earth/geometry_reports.py, artifacts/v3_geometry_label_eval_450.json, artifacts/v3_hard_negative_controls_450.json, artifacts/v3_geometry_slice_summary.json, artifacts/v3_label_expansion_candidates_475.json, artifacts/perf_report.json, README.md, docs/geometry_features.md, docs/v2_strengthening_report.md, docs/performance.md, docs/v2_report.md, work/handoff.md, work/scope.md
-- Evidence: 113 unit tests passed, validate passed, 450 curated labels, 449 geometry entries in 450 slice, 442 evaluable structures, 124 in-scope positives, 325 out-of-scope controls, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 475-entry queue has 23 ready label-review candidates
-- Notes: Documentation reviewed and updated during wrap-up; normal measured run.
 
 ### 2026-05-10T04:23:35.521223+00:00 - post-v2
 
@@ -113,6 +102,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 146 unit tests passed, validate passed, 675 preview mechanically ready but review_before_promoting, 61 preview debt rows, 37 carried preview debt rows, 24 new preview debt rows, 18 possible countable labels if promoted, 44 pending review rows, 0 hard negatives, 0 near misses, 0 false non-abstentions, 0 actionable in-scope failures
 - Notes: Documentation checked and updated during wrap-up; stale-lock recovery continued from accepted 650 state and left 675 unpromoted.
 
+### 2026-05-10T15:39:13.368774+00:00 - post-v2
+
+- Task: Tighten 675 preview scaling gates
+- Time mode: measured
+- Measured minutes: 50.6
+- Started: 2026-05-10T14:48:26Z
+- Ended: 2026-05-10T15:39:02Z
+- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_label_batch_acceptance_check_675_preview.json, artifacts/v3_label_factory_preview_summary_675.json, artifacts/v3_label_scaling_quality_audit_675_preview.json, artifacts/v3_expert_review_export_675_preview_post_batch.json, docs/label_factory.md, work/handoff.md, work/label_preview_675_notes.md
+- Evidence: 151 unit tests passed, validate passed, git diff check passed, 675 preview accepts only m_csa:666 as clean countable label, 61 preview review-state rows remain, 0 hard negatives, 0 near misses, 0 false non-abstentions, 0 actionable in-scope failures, 11/11 preview factory gates pass, scaling audit has 0 blockers and explicit sequence-cluster warning
+- Notes: Documentation checked and updated during wrap-up; 675 preview remains unpromoted.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -151,6 +151,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T08:36:59.402518+00:00: The active bottleneck is reviewing the accepted 625 preview before promoting it to canonical labels.
 - 2026-05-10T13:59:54.901465+00:00: The active bottleneck is reviewing the accepted 675 preview before promoting it to canonical labels.
 - 2026-05-10T14:37:36.208242+00:00: The active bottleneck is auditing the 24 new 675-preview review-debt rows before promotion.
+- 2026-05-10T15:39:13.368774+00:00: The active bottleneck is deciding whether to promote m_csa:666 alone or resolve the 61 pending 675-preview review-state rows first.
 
 ## Scope Adjustments
 
@@ -189,3 +190,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T08:36:59.402518+00:00: Post-V2 geometry scope now tracks accepted 600-entry countable labels and a generated 625-entry preview batch.
 - 2026-05-10T13:59:54.901465+00:00: Post-V2 geometry scope now tracks accepted 650-entry countable labels and a generated 675 preview batch.
 - 2026-05-10T14:37:36.208242+00:00: Post-V2 label-factory scope now separates preview mechanical acceptance from promotion readiness with carried/new review-debt metadata.
+- 2026-05-10T15:39:13.368774+00:00: Post-V2 label-factory scope now blocks accepted review-gap labels, attaches scaling-quality audits to preview summaries, and records the missing sequence-cluster artifact before promotion.

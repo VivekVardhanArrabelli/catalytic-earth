@@ -100,6 +100,7 @@ class CliTests(unittest.TestCase):
             acceptance = root / "v3_label_batch_acceptance_check_650.json"
             gate = root / "v3_label_factory_gate_check_650.json"
             queue = root / "v3_active_learning_review_queue_650.json"
+            scaling_audit = root / "v3_label_scaling_quality_audit_650.json"
             out = root / "summary.json"
             acceptance.write_text(
                 json.dumps(
@@ -145,6 +146,24 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            scaling_audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "audit_recommendation": "promotion_quality_audit_clean",
+                            "accepted_new_debt_count": 0,
+                            "unclassified_new_review_debt_entry_ids": [],
+                            "omitted_underrepresented_queue_entry_ids": [],
+                            "issue_class_counts": {},
+                        },
+                        "blockers": [],
+                        "review_warnings": [
+                            "sequence_cluster_artifact_missing_for_near_duplicate_audit"
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -158,6 +177,8 @@ class CliTests(unittest.TestCase):
                     str(gate),
                     "--active-learning-queue",
                     str(queue),
+                    "--scaling-quality-audit",
+                    str(scaling_audit),
                     "--out",
                     str(out),
                 ],
@@ -170,6 +191,12 @@ class CliTests(unittest.TestCase):
             summary = json.loads(out.read_text(encoding="utf-8"))
             self.assertEqual(summary["metadata"]["latest_batch"], "650")
             self.assertTrue(summary["metadata"]["all_active_queues_retain_unlabeled_candidates"])
+            self.assertTrue(summary["metadata"]["latest_scaling_quality_audit_present"])
+            self.assertEqual(
+                summary["metadata"]["latest_scaling_quality_review_warnings"],
+                ["sequence_cluster_artifact_missing_for_near_duplicate_audit"],
+            )
+            self.assertTrue(summary["rows"][0]["scaling_quality_ready"])
 
     def test_summarize_review_debt_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -332,6 +359,167 @@ class CliTests(unittest.TestCase):
             self.assertEqual(
                 readiness["metadata"]["preview_new_review_debt_next_action_counts"],
                 {"verify_local_cofactor_or_active_site_mapping": 1},
+            )
+
+    def test_audit_label_scaling_quality_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            acceptance = root / "acceptance.json"
+            readiness = root / "readiness.json"
+            debt = root / "debt.json"
+            gaps = root / "gaps.json"
+            queue = root / "queue.json"
+            guardrails = root / "guardrails.json"
+            hard = root / "hard.json"
+            decision = root / "decision.json"
+            mapping = root / "mapping.json"
+            sequence_clusters = root / "sequence_clusters.json"
+            out = root / "audit.json"
+            acceptance.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "label_batch_acceptance_check",
+                            "out_of_scope_false_non_abstentions": 0,
+                            "actionable_in_scope_failure_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps({"metadata": {"promotion_recommendation": "review_before_promoting"}}),
+                encoding="utf-8",
+            )
+            debt.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_summary",
+                            "new_review_debt_entry_ids": ["m_csa:651"],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gaps.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_evidence_gap_analysis"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:651",
+                                "entry_name": "accepted debt",
+                                "decision_action": "accept_label",
+                                "coverage_status": "expected_absent_from_structure",
+                                "gap_reasons": ["top1_below_abstention_threshold"],
+                                "counterevidence_reasons": ["absent_heme_context"],
+                                "target_fingerprint_id": "heme_peroxidase_oxidase",
+                                "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                                "mechanism_text_snippets": ["Hydrolysis text without heme evidence."],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            queue.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"all_unlabeled_rows_retained": True},
+                        "rows": [{"entry_id": "m_csa:651", "top1_ontology_family": "heme_redox"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            guardrails.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "family_propagation_guardrail_audit",
+                            "blocker_counts": {},
+                        },
+                        "rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            hard.write_text(
+                json.dumps({"metadata": {"hard_negative_count": 0, "near_miss_count": 0}}),
+                encoding="utf-8",
+            )
+            decision.write_text(
+                json.dumps(
+                    {
+                        "review_items": [
+                            {"entry_id": "m_csa:651", "decision": {"action": "accept_label"}}
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mapping.write_text(
+                json.dumps({"metadata": {"issue_count": 0}, "rows": []}),
+                encoding="utf-8",
+            )
+            sequence_clusters.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:651",
+                                "sequence_cluster_id": "cluster-cli",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-label-scaling-quality",
+                    "--batch-id",
+                    "test_preview",
+                    "--acceptance",
+                    str(acceptance),
+                    "--readiness",
+                    str(readiness),
+                    "--review-debt",
+                    str(debt),
+                    "--review-evidence-gaps",
+                    str(gaps),
+                    "--active-learning-queue",
+                    str(queue),
+                    "--family-propagation-guardrails",
+                    str(guardrails),
+                    "--hard-negatives",
+                    str(hard),
+                    "--decision-batch",
+                    str(decision),
+                    "--structure-mapping",
+                    str(mapping),
+                    "--sequence-clusters",
+                    str(sequence_clusters),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(audit["metadata"]["batch_id"], "test_preview")
+            self.assertEqual(audit["metadata"]["accepted_new_debt_entry_ids"], ["m_csa:651"])
+            self.assertIn("accepted_new_labels_without_review_debt", audit["blockers"])
+            self.assertEqual(
+                audit["metadata"]["near_duplicate_audit_status"],
+                "not_observed_in_sequence_cluster_artifact",
             )
 
     def test_automation_lock_command(self) -> None:

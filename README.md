@@ -64,8 +64,8 @@ The repository currently contains:
 11. Label-factory automation: explicit bronze/silver/gold label schema,
     mechanism ontology, deterministic promotion/demotion audit, active-learning
     review queue, adversarial negative mining, family-propagation guardrails,
-    expert-review export/import, review-debt triage, batch summary, and a
-    scaling gate.
+    expert-review export/import, review-debt triage, batch summary with
+    scaling-quality audit attachment, and a scaling gate.
 
 The 20- through 650-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
@@ -108,17 +108,21 @@ accepted batch added 19 labels for counting while 37 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
 accepted batch history and confirms 7/7 accepted batches remain guardrail-clean.
 `artifacts/v3_review_debt_summary_650.json` prioritizes 53 current evidence-gap
-rows for the accepted 650 state. A 675-entry preview is generated and accepted
-in preview artifacts, and `artifacts/v3_review_debt_summary_675_preview.json`
-prioritizes 61 preview evidence-gap rows before any promotion decision,
-including 24 new rows beyond the accepted 650 state.
-`artifacts/v3_label_factory_preview_summary_675.json` records that the preview
-has 10/10 gates passing and 0 blockers. The promotion-readiness artifact
-recommends review before promotion because preview review debt increases from
-53 to 61 rows; the preview debt metadata includes carried/new entry-id lists
-and next-action counts so the next review pass can inspect the 24 new rows
-directly. See
-`work/label_preview_675_notes.md` for the accepted-label profile and the top
+rows for the accepted 650 state. A 675-entry preview has been generated and
+quality-repaired before promotion: the provisional decision rule now defers
+below-threshold, evidence-limited negatives instead of counting them. The
+preview acceptance artifact counts only one clean new label (`m_csa:666`) and
+keeps 61 review-state decisions pending.
+`artifacts/v3_review_debt_summary_675_preview.json` prioritizes 61 preview
+evidence-gap rows, including 24 new rows beyond the accepted 650 state.
+`artifacts/v3_label_scaling_quality_audit_675_preview.json` records the
+explicit scaling-failure audit: 0 accepted labels have review debt, 0 hard
+negatives remain, and the diversity-aware review export retains all
+underrepresented ontology-family rows despite hydrolysis-dominated queue
+composition. The audit still recommends review before promotion because review
+debt increased, and it now records a missing sequence-cluster artifact warning
+for the stronger paralog/near-duplicate check. See
+`work/label_preview_675_notes.md` for the clean label profile and the top
 evidence gaps to inspect.
 See
 `docs/label_factory.md`.

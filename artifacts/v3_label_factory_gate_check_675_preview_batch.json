@@ -6,6 +6,7 @@
     "adversarial_negatives_mined": true,
     "applied_label_actions_ready": true,
     "demotion_or_abstention_demonstrated": true,
+    "expert_review_export_diversity_ready": true,
     "expert_review_export_ready": true,
     "family_propagation_guardrails_ready": true,
     "label_schema_explicit": true,
@@ -15,9 +16,13 @@
   "metadata": {
     "automation_ready_for_next_label_batch": true,
     "bulk_scaling_rule": "new labels may be added in batches only after this gate check passes and the generated batch artifacts are regenerated",
-    "gate_count": 10,
-    "label_count": 636,
+    "dominant_active_queue_family": "hydrolysis",
+    "dominant_active_queue_family_fraction": 0.8443,
+    "gate_count": 11,
+    "label_count": 619,
     "method": "label_factory_gate_check",
-    "passed_gate_count": 10
+    "omitted_underrepresented_queue_entry_ids": [],
+    "passed_gate_count": 11,
+    "underrepresented_queue_entry_count": 26
   }
 }

@@ -6,23 +6,23 @@
       "abstain_pending_evidence": 9,
       "hold_bronze_boundary_review": 82,
       "hold_bronze_need_review": 20,
-      "hold_current_tier": 447,
+      "hold_current_tier": 430,
       "promote_to_silver": 77
     },
     "demote_to_bronze_count": 0,
     "demotion_rule": "silver/gold labels demote to bronze, or bronze labels stay review-only, when retrieval counterevidence, abstention, top-family mismatch, or out-of-scope false non-abstention is present",
-    "evaluated_label_count": 635,
+    "evaluated_label_count": 618,
     "hard_negative_evidence_entry_count": 100,
-    "label_count": 636,
+    "label_count": 619,
     "method": "label_factory_promotion_demotion_audit",
     "promote_to_silver_count": 77,
     "promotion_rule": "bronze labels promote to silver when retrieval agrees with the label, the score clears the abstention threshold, and no evidence-limiting cofactor or counterevidence conflict is present",
     "target_tier_counts": {
-      "bronze": 558,
+      "bronze": 541,
       "silver": 77
     },
     "tier_transition_counts": {
-      "bronze->bronze": 558,
+      "bronze->bronze": 541,
       "bronze->silver": 77
     }
   },
@@ -1861,7 +1861,7 @@
             "threshold_boundary"
           ],
           "negative_control_type": null,
-          "rank": 99,
+          "rank": 98,
           "section": "rows",
           "source": "adversarial_negatives",
           "top1_fingerprint_id": "ser_his_acid_hydrolase",
@@ -8066,7 +8066,7 @@
             "threshold_boundary"
           ],
           "negative_control_type": null,
-          "rank": 100,
+          "rank": 99,
           "section": "rows",
           "source": "adversarial_negatives",
           "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
@@ -33900,6 +33900,91 @@
       "abstain_threshold": 0.4115,
       "abstained": true,
       "cofactor_coverage_status": null,
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "phosphoribosylaminoimidazolecarboxamide formyltransferase",
+        "ligand_codes": [
+          "AMZ"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The cofactor which supplies the formyl group is N10-formyl-tetrahydrofolate (10-f-THF). During the reaction nucleophilic attack by the amino group of AICAR, facilitated by deprotonation by His 267, forms a tetrahedral intermediate, stabilised by Lys 266 and Asn 431. This collapses following proto..."
+        ],
+        "nearby_residue_count": 43,
+        "pdb_id": "1P4R",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1628,
+          "charge_balance": 0.0465,
+          "hydrophobic_fraction": 0.2558,
+          "mean_min_distance_to_active_site": 5.3902,
+          "negative_fraction": 0.0698,
+          "polar_fraction": 0.3953,
+          "positive_fraction": 0.1163,
+          "sulfur_fraction": 0.0698
+        },
+        "residue_codes": [
+          "LYS",
+          "HIS",
+          "HIS",
+          "ASN"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "AMZ",
+          "K",
+          "354",
+          "XMP"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:646",
+      "entry_name": "phosphoribosylaminoimidazolecarboxamide formyltransferase",
+      "evaluable": true,
+      "evidence_conflicts": [
+        "adversarial_negative_evidence"
+      ],
+      "expected_cofactor_families": [],
+      "factory_evidence_score": 0.5738,
+      "hard_negative_evidence": [
+        {
+          "control_axes": [
+            "mechanistic_coherence_mimic",
+            "ontology_family_boundary",
+            "threshold_boundary"
+          ],
+          "negative_control_type": null,
+          "rank": 100,
+          "section": "rows",
+          "source": "adversarial_negatives",
+          "top1_fingerprint_id": "metal_dependent_hydrolase",
+          "top1_score": 0.3859
+        }
+      ],
+      "label_rationale": "phosphoribosylaminoimidazolecarboxamide formyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3859, below the 0.4115 floor.",
+      "label_type": "out_of_scope",
+      "proposed_tier": "bronze",
+      "recommended_action": "hold_current_tier",
+      "registry_evidence_score": 0.65,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "target_rank": null,
+      "target_score": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3859,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_gap": 0.0317,
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3542
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": true,
+      "cofactor_coverage_status": null,
       "confidence": "low",
       "context": {
         "cofactor_families": [],
@@ -33961,457 +34046,6 @@
       "top2_gap": 0.0137,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.163
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "DNA-3-methyladenine glycosylase I",
-        "ligand_codes": [
-          "ADK"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The reaction proceeds via hydrolysis of the glycosidic bond by nucleophilic attack on C1' of the ribose sugar, freeing the base from the sugar phosphate backbone. As the breaking of the glycosidic bond results in a negative charge developing on the N9 of the base, the transition state is overall..."
-        ],
-        "nearby_residue_count": 50,
-        "pdb_id": "1P7M",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.18,
-          "charge_balance": 0.08,
-          "hydrophobic_fraction": 0.34,
-          "mean_min_distance_to_active_site": 4.8217,
-          "negative_fraction": 0.08,
-          "polar_fraction": 0.26,
-          "positive_fraction": 0.16,
-          "sulfur_fraction": 0.06
-        },
-        "residue_codes": [
-          "TRP",
-          "TYR",
-          "GLU"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "ADK",
-          "ZN"
-        ]
-      },
-      "counterevidence_reasons": [
-        "absent_flavin_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:655",
-      "entry_name": "DNA-3-methyladenine glycosylase I",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:absent_flavin_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.6464,
-      "hard_negative_evidence": [],
-      "label_rationale": "DNA-3-methyladenine glycosylase I is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.2247, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.2247,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.0054,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.2193
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
-        "ligand_codes": [],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Glu136 protonates the glycosidic oxygen while Glu246 acts as a nucleophilic to attack the anomeric carbon to form a covalent enzyme-substrate intermediate. The deprotonated Glu136 then activates a water molecule to hydrolyse the covalent enzyme-substrate intermediate. Arg45 hydrogen bonds with Gl..."
-        ],
-        "nearby_residue_count": 49,
-        "pdb_id": "1FHL",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1429,
-          "charge_balance": -0.0612,
-          "hydrophobic_fraction": 0.3878,
-          "mean_min_distance_to_active_site": 5.2911,
-          "negative_fraction": 0.1224,
-          "polar_fraction": 0.2449,
-          "positive_fraction": 0.0612,
-          "sulfur_fraction": 0.0
-        },
-        "residue_codes": [
-          "GLU",
-          "GLU",
-          "ARG"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": []
-      },
-      "counterevidence_reasons": [
-        "ser_his_seed_missing_triad_coherence"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:658",
-      "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:ser_his_seed_missing_triad_coherence"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.6076,
-      "hard_negative_evidence": [],
-      "label_rationale": "arabinogalactan endo-1,4-beta-galactosidase is provisionally outside the current seed fingerprints. Top retrieval ser_his_acid_hydrolase scored 0.3110, below the 0.4115 floor. Counterevidence: ser_his_seed_missing_triad_coherence.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.311,
-      "top2_fingerprint_id": "flavin_monooxygenase",
-      "top2_gap": 0.0341,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.2769
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "low",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "DNA-formamidopyrimidine glycosylase",
-        "ligand_codes": [
-          "PED"
-        ],
-        "mechanism_text_count": 2,
-        "mechanism_text_snippets": [
-          "Bifunctional DNA glycosylases differ from monofunctional glycosylases in that they form a characteristic covalent Schiff base-like intermediate. Deoxyribose sugar protonation by Glu2 enables Pro1 to nucleophilically attack the oxidised base, opening up the ribose ring. The resulting intermediate...",
-          "Deoxyribose ring protonation and subsequent nucleophilic attack of Pro1 results in the opening of the deoxyribose ring. Multiple protonation events between the residues, substrate and a water molecule cause the cleavage of the N-glycosidic bond between the sugar and base to leave a Schiff base-li..."
-        ],
-        "nearby_residue_count": 22,
-        "pdb_id": "1K82",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.0455,
-          "charge_balance": -0.0454,
-          "hydrophobic_fraction": 0.5,
-          "mean_min_distance_to_active_site": 5.7005,
-          "negative_fraction": 0.0909,
-          "polar_fraction": 0.1364,
-          "positive_fraction": 0.0455,
-          "sulfur_fraction": 0.0455
-        },
-        "residue_codes": [
-          "PRO",
-          "GLU"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "PED",
-          "ZN"
-        ]
-      },
-      "counterevidence_reasons": [
-        "absent_heme_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:659",
-      "entry_name": "DNA-formamidopyrimidine glycosylase",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:absent_heme_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5118,
-      "hard_negative_evidence": [],
-      "label_rationale": "DNA-formamidopyrimidine glycosylase is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3294, below the 0.4115 floor. Counterevidence: absent_heme_context. Review blockers: fewer_than_three_resolved_residues.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.4,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_ontology_family": "heme_redox",
-      "top1_score": 0.3294,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.0004,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.329
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "ribokinase",
-        "ligand_codes": [
-          "ADP",
-          "RIB"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Asp255 acts as a base to deprotonate the O5'-hydroxyl group of ribose. The negatively charged O5' atom then makes a direct nucleophilic attack on the gamma-phosphate group of ATP in an in-line mechanism. An anion hole formed by backbone amide group of residues 252-255 (Ala252, Ala253, Gly254, Asp..."
-        ],
-        "nearby_residue_count": 35,
-        "pdb_id": "1RK2",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.0286,
-          "charge_balance": -0.0571,
-          "hydrophobic_fraction": 0.4,
-          "mean_min_distance_to_active_site": 5.9443,
-          "negative_fraction": 0.0857,
-          "polar_fraction": 0.3429,
-          "positive_fraction": 0.0286,
-          "sulfur_fraction": 0.0
-        },
-        "residue_codes": [
-          "ALA",
-          "ALA",
-          "GLY",
-          "ASP"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "ADP",
-          "RIB",
-          "MG",
-          "ALF"
-        ]
-      },
-      "counterevidence_reasons": [
-        "nucleotide_transfer_ligand_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:663",
-      "entry_name": "ribokinase",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:nucleotide_transfer_ligand_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.6305,
-      "hard_negative_evidence": [],
-      "label_rationale": "ribokinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.2601, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.2601,
-      "top2_fingerprint_id": "plp_dependent_enzyme",
-      "top2_gap": 0.0007,
-      "top2_ontology_family": "plp_chemistry",
-      "top2_score": 0.2594
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "low",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "dihydroneopterin aldolase",
-        "ligand_codes": [],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The reaction is an aldol cleavage reaction similar to those catalysed by aldolases. Deprotonation of the 7C OH by Lys 100, assisted by Glu 22, results in an unstable enamine intermediate which collapses to form the products glycoaldehyde and deprotonated 6 hydroxymethyl dho which picks up a proto..."
-        ],
-        "nearby_residue_count": 30,
-        "pdb_id": "2DHN",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1333,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.3667,
-          "mean_min_distance_to_active_site": 5.0929,
-          "negative_fraction": 0.1,
-          "polar_fraction": 0.2,
-          "positive_fraction": 0.1,
-          "sulfur_fraction": 0.0
-        },
-        "residue_codes": [
-          "LYS",
-          "GLU"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "PH2"
-        ]
-      },
-      "counterevidence_reasons": [
-        "absent_flavin_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:664",
-      "entry_name": "dihydroneopterin aldolase",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:absent_flavin_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5384,
-      "hard_negative_evidence": [],
-      "label_rationale": "dihydroneopterin aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.2703, below the 0.4115 floor. Counterevidence: absent_flavin_context. Review blockers: fewer_than_three_resolved_residues.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.4,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.2703,
-      "top2_fingerprint_id": "flavin_monooxygenase",
-      "top2_gap": 0.0001,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.2702
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [
-          "metal_ion"
-        ],
-        "entry_name": "Formate-dependent phosphoribosylglycinamide formyltransferase",
-        "ligand_codes": [
-          "ANP",
-          "GAR",
-          "MG"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The reaction proceeds via initial nucleophilic attack by the formate substrate on ATP, forming a pentavalent phosphate transition state, stabilised by Mg2+, Ser 160 and Gly 162 at the active site. This releases ADP and the formyl phosphate intermediate that characterises this reaction mechanism a..."
-        ],
-        "nearby_residue_count": 70,
-        "pdb_id": "1EZ1",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1286,
-          "charge_balance": 0.0286,
-          "hydrophobic_fraction": 0.3571,
-          "mean_min_distance_to_active_site": 5.2457,
-          "negative_fraction": 0.1143,
-          "polar_fraction": 0.2286,
-          "positive_fraction": 0.1429,
-          "sulfur_fraction": 0.0286
-        },
-        "residue_codes": [
-          "GLU",
-          "GLU",
-          "ARG",
-          "ASP",
-          "THR",
-          "SER",
-          "GLY"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "ANP",
-          "GAR",
-          "MG",
-          "MPO",
-          "NA",
-          "ACT"
-        ]
-      },
-      "counterevidence_reasons": [
-        "nucleotide_transfer_ligand_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:665",
-      "entry_name": "Formate-dependent phosphoribosylglycinamide formyltransferase",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "adversarial_negative_evidence",
-        "top1_counterevidence:nucleotide_transfer_ligand_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.4914,
-      "hard_negative_evidence": [
-        {
-          "control_axes": [
-            "cofactor_mimic",
-            "counterevidence_stress",
-            "mechanistic_coherence_mimic",
-            "threshold_boundary"
-          ],
-          "negative_control_type": null,
-          "rank": 98,
-          "section": "rows",
-          "source": "adversarial_negatives",
-          "top1_fingerprint_id": "metal_dependent_hydrolase",
-          "top1_score": 0.3914
-        }
-      ],
-      "label_rationale": "Formate-dependent phosphoribosylglycinamide formyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3914, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3914,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.1253,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.2661
     },
     {
       "abstain_threshold": 0.4115,
@@ -34483,364 +34117,6 @@
       "top2_gap": 0.4856,
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.3665
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "carbamate kinase",
-        "ligand_codes": [
-          "SO4"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Phosphoryl transfer from ATP to carbamate or from CP to ADP is proposed to occur via an in-line displacement reaction. The drawn out mechanism shows the formation of carbamate and ATP but the reverse reaction has the carbonyl on carbamate attacking the electrophilic phosphorous on gamma-phosphate..."
-        ],
-        "nearby_residue_count": 60,
-        "pdb_id": "1B7B",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.05,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.4667,
-          "mean_min_distance_to_active_site": 5.077,
-          "negative_fraction": 0.0667,
-          "polar_fraction": 0.25,
-          "positive_fraction": 0.0667,
-          "sulfur_fraction": 0.0333
-        },
-        "residue_codes": [
-          "ASN",
-          "GLY",
-          "LYS",
-          "LYS",
-          "LYS"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "SO4"
-        ]
-      },
-      "counterevidence_reasons": [
-        "absent_flavin_context",
-        "nad_only_or_nonflavin_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:669",
-      "entry_name": "carbamate kinase",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:absent_flavin_context",
-        "top1_counterevidence:nad_only_or_nonflavin_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5486,
-      "hard_negative_evidence": [],
-      "label_rationale": "carbamate kinase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2643, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "flavin_monooxygenase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.2643,
-      "top2_fingerprint_id": "plp_dependent_enzyme",
-      "top2_gap": 0.0501,
-      "top2_ontology_family": "plp_chemistry",
-      "top2_score": 0.2142
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "hydroxymethylpyrimidine kinase",
-        "ligand_codes": [
-          "SO4"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "HMPP kinase catalyses an SN2 type in line displacement reaction where the substrate acts as the nucleophile to attack the gamma phosphate of ATP, forming a pentavalent phosphate transition state. This is stabilised by Mg2+and Lys 176 at the active site, and collapses to release the end products...."
-        ],
-        "nearby_residue_count": 47,
-        "pdb_id": "1JXH",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.0638,
-          "charge_balance": -0.0213,
-          "hydrophobic_fraction": 0.4468,
-          "mean_min_distance_to_active_site": 5.3134,
-          "negative_fraction": 0.1277,
-          "polar_fraction": 0.2128,
-          "positive_fraction": 0.1064,
-          "sulfur_fraction": 0.0426
-        },
-        "residue_codes": [
-          "THR",
-          "THR",
-          "THR",
-          "GLY",
-          "CYS",
-          "LYS",
-          "GLY"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "SO4"
-        ]
-      },
-      "counterevidence_reasons": [
-        "role_inferred_metal_missing_water_activation_role"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:670",
-      "entry_name": "hydroxymethylpyrimidine kinase",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:role_inferred_metal_missing_water_activation_role"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5912,
-      "hard_negative_evidence": [],
-      "label_rationale": "hydroxymethylpyrimidine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3474, below the 0.4115 floor. Counterevidence: role_inferred_metal_missing_water_activation_role.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3474,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.0444,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.303
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "glutaconyl-CoA decarboxylase",
-        "ligand_codes": [],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "In the first stage of the reaction, the decarboxylation of glutaconyl coA occurs spontaneously, forming an enolate intermediate stabilised by an oxyanion hole composed of Gly 194 and Val 151. Protonation of this enolate occurs with biotin acting as the general acid, resulting in the crotonyl CoA..."
-        ],
-        "nearby_residue_count": 49,
-        "pdb_id": "1PIX",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.2041,
-          "charge_balance": 0.0204,
-          "hydrophobic_fraction": 0.3878,
-          "mean_min_distance_to_active_site": 5.5683,
-          "negative_fraction": 0.0408,
-          "polar_fraction": 0.2245,
-          "positive_fraction": 0.0612,
-          "sulfur_fraction": 0.0408
-        },
-        "residue_codes": [
-          "GLY",
-          "VAL",
-          "ILE",
-          "ALA"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "SO4",
-          "FMT"
-        ]
-      },
-      "counterevidence_reasons": [
-        "absent_flavin_context",
-        "nad_only_or_nonflavin_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:675",
-      "entry_name": "glutaconyl-CoA decarboxylase",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:absent_flavin_context",
-        "top1_counterevidence:nad_only_or_nonflavin_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5721,
-      "hard_negative_evidence": [],
-      "label_rationale": "glutaconyl-CoA decarboxylase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2119, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "flavin_monooxygenase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.2119,
-      "top2_fingerprint_id": "plp_dependent_enzyme",
-      "top2_gap": 0.079,
-      "top2_ontology_family": "plp_chemistry",
-      "top2_score": 0.1329
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
-        "ligand_codes": [],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Based on the homologies of the catalytic centres between DmpA and Ntn hydrolases, the catalytic mechanism of DmpA was proposed to follow that of Ntn hydrolases. Ser250 alpha-amino group acts as a base to deprotonate its own hydroxyl group, which nucleophilically attacks the carbonyl group of the..."
-        ],
-        "nearby_residue_count": 51,
-        "pdb_id": "1B65",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1765,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.1961,
-          "mean_min_distance_to_active_site": 5.5149,
-          "negative_fraction": 0.1176,
-          "polar_fraction": 0.2941,
-          "positive_fraction": 0.1176,
-          "sulfur_fraction": 0.0392
-        },
-        "residue_codes": [
-          "SER",
-          "GLY",
-          "SER",
-          "SER",
-          "TYR",
-          "ASN"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": []
-      },
-      "counterevidence_reasons": [
-        "absent_heme_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:676",
-      "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
-      "evaluable": true,
-      "evidence_conflicts": [
-        "top1_counterevidence:absent_heme_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5892,
-      "hard_negative_evidence": [],
-      "label_rationale": "D-stereospecific aminopeptidase (peptidase S58 family) is provisionally outside the current seed fingerprints. Top retrieval heme_peroxidase_oxidase scored 0.3517, below the 0.4115 floor. Counterevidence: absent_heme_context.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_ontology_family": "heme_redox",
-      "top1_score": 0.3517,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.0007,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.351
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "low",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "pyridoxal 5'-phosphate synthase",
-        "ligand_codes": [],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The reaction involves the oxidation of PNP to PLP using the cofactor FMN. It proceeds through hydride transfer from the 4'Carbon to the N7 of FMN, with steric strain from Arg 197 acting to place the substrate and cofactor in correct orientation for this to occur. This forms an electron deficient..."
-        ],
-        "nearby_residue_count": 8,
-        "pdb_id": "1G79",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.375,
-          "charge_balance": 0.125,
-          "hydrophobic_fraction": 0.25,
-          "mean_min_distance_to_active_site": 4.5474,
-          "negative_fraction": 0.125,
-          "polar_fraction": 0.25,
-          "positive_fraction": 0.25,
-          "sulfur_fraction": 0.0
-        },
-        "residue_codes": [
-          "ARG"
-        ],
-        "structure_cofactor_families": [
-          "flavin",
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PO4",
-          "FMN",
-          "BME",
-          "PLP"
-        ]
-      },
-      "counterevidence_reasons": [
-        "absent_flavin_context",
-        "nad_only_or_nonflavin_context"
-      ],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:677",
-      "entry_name": "pyridoxal 5'-phosphate synthase",
-      "evaluable": false,
-      "evidence_conflicts": [
-        "top1_counterevidence:absent_flavin_context",
-        "top1_counterevidence:nad_only_or_nonflavin_context"
-      ],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.4767,
-      "hard_negative_evidence": [],
-      "label_rationale": "pyridoxal 5'-phosphate synthase is provisionally outside the current seed fingerprints. Top retrieval flavin_monooxygenase scored 0.2296, below the 0.4115 floor. Counterevidence: absent_flavin_context, nad_only_or_nonflavin_context. Review blockers: fewer_than_three_resolved_residues, geometry_status_not_ok.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.4,
-      "review_priority_rank": 8,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "flavin_monooxygenase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.2296,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.0446,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.185
     },
     {
       "abstain_threshold": 0.4115,
@@ -47852,75 +47128,6 @@
       "confidence": "medium",
       "context": {
         "cofactor_families": [],
-        "entry_name": "phosphoribosylaminoimidazolecarboxamide formyltransferase",
-        "ligand_codes": [
-          "AMZ"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The cofactor which supplies the formyl group is N10-formyl-tetrahydrofolate (10-f-THF). During the reaction nucleophilic attack by the amino group of AICAR, facilitated by deprotonation by His 267, forms a tetrahedral intermediate, stabilised by Lys 266 and Asn 431. This collapses following proto..."
-        ],
-        "nearby_residue_count": 43,
-        "pdb_id": "1P4R",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1628,
-          "charge_balance": 0.0465,
-          "hydrophobic_fraction": 0.2558,
-          "mean_min_distance_to_active_site": 5.3902,
-          "negative_fraction": 0.0698,
-          "polar_fraction": 0.3953,
-          "positive_fraction": 0.1163,
-          "sulfur_fraction": 0.0698
-        },
-        "residue_codes": [
-          "LYS",
-          "HIS",
-          "HIS",
-          "ASN"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "AMZ",
-          "K",
-          "354",
-          "XMP"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:646",
-      "entry_name": "phosphoribosylaminoimidazolecarboxamide formyltransferase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.6538,
-      "hard_negative_evidence": [],
-      "label_rationale": "phosphoribosylaminoimidazolecarboxamide formyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3859, below the 0.4115 floor.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3859,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.0317,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3542
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
         "entry_name": "3,4-dihydroxy-2-butanone-4-phosphate synthase",
         "ligand_codes": [
           "5RP"
@@ -48048,400 +47255,6 @@
       "top2_gap": 0.0955,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.2678
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
-        "ligand_codes": [
-          "SO4"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Fructose-6-phosphate's 1COH acts as the nucleophile to attack the terminal phosphate of PPi. Its nucleophilicity is increased by the action of Asp 206 which removes a hydrogen ion from the attacking hydroxyl, allowing a pentavalent phosphate transition state to form, stabilised by Mg2+ and severa..."
-        ],
-        "nearby_residue_count": 68,
-        "pdb_id": "1KZH",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1029,
-          "charge_balance": 0.0588,
-          "hydrophobic_fraction": 0.3824,
-          "mean_min_distance_to_active_site": 5.5641,
-          "negative_fraction": 0.0588,
-          "polar_fraction": 0.2647,
-          "positive_fraction": 0.1176,
-          "sulfur_fraction": 0.0441
-        },
-        "residue_codes": [
-          "ASP",
-          "GLY",
-          "ARG",
-          "LYS",
-          "THR",
-          "ASP"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "SO4"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:653",
-      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.6636,
-      "hard_negative_evidence": [],
-      "label_rationale": "diphosphate---fructose-6-phosphate 1-phosphotransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3642, below the 0.4115 floor.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3642,
-      "top2_fingerprint_id": "plp_dependent_enzyme",
-      "top2_gap": 0.0271,
-      "top2_ontology_family": "plp_chemistry",
-      "top2_score": 0.3371
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "low",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
-        "ligand_codes": [
-          "CDM"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The catalysis is most likely to follow an associative in-line mechanism to form a pentacovalent intermediate. Asp141 acts as a base to deprotonate the hydroxyl group of CDP-ME to promote its nucleophilic attack on the terminal phosphate of ATP. Lys10 stabilises the transition state by interacting..."
-        ],
-        "nearby_residue_count": 34,
-        "pdb_id": "1OJ4",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1176,
-          "charge_balance": -0.0294,
-          "hydrophobic_fraction": 0.5294,
-          "mean_min_distance_to_active_site": 5.6604,
-          "negative_fraction": 0.0294,
-          "polar_fraction": 0.1471,
-          "positive_fraction": 0.0,
-          "sulfur_fraction": 0.0
-        },
-        "residue_codes": [
-          "LYS",
-          "ASP"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "CDM",
-          "ANP",
-          "MSE",
-          "CL"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:654",
-      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5789,
-      "hard_negative_evidence": [],
-      "label_rationale": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3581, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.4,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3581,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.0801,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.278
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "low",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
-        "ligand_codes": [],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Asp278 acts as a base to deprotonate the 4-hydroxyl group of inositol ring. The negatively charged oxygen atom of the hydroxyl group acts as a nucleophile and directly attack the terminal-phosphate of ATP. The product is formed via a SN2 mechanism. Mg2+ and Lys150 which coordinates with alpha-pho..."
-        ],
-        "nearby_residue_count": 28,
-        "pdb_id": "1BO1",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1786,
-          "charge_balance": 0.1072,
-          "hydrophobic_fraction": 0.3929,
-          "mean_min_distance_to_active_site": 5.6225,
-          "negative_fraction": 0.0357,
-          "polar_fraction": 0.25,
-          "positive_fraction": 0.1429,
-          "sulfur_fraction": 0.0714
-        },
-        "residue_codes": [
-          "ASP",
-          "LYS"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": []
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:662",
-      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5932,
-      "hard_negative_evidence": [],
-      "label_rationale": "1-phosphatidylinositol-5-phosphate 4-kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3263, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.4,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3263,
-      "top2_fingerprint_id": "flavin_monooxygenase",
-      "top2_gap": 0.069,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.2573
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "low",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "alpha-N-arabinofuranosidase",
-        "ligand_codes": [],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Glu294 forms a covalent bond with the sugar substrate, eliminating the furanose substrate with concomitant deprotonation of Glu175. Glu175 then activates a catalytic water, which adds back to the bound sugar and cleaves it from the enzyme."
-        ],
-        "nearby_residue_count": 37,
-        "pdb_id": "1PZ3",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.2162,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.1892,
-          "mean_min_distance_to_active_site": 5.3907,
-          "negative_fraction": 0.0541,
-          "polar_fraction": 0.4324,
-          "positive_fraction": 0.0541,
-          "sulfur_fraction": 0.0811
-        },
-        "residue_codes": [
-          "GLU",
-          "GLU"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "GOL"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:667",
-      "entry_name": "alpha-N-arabinofuranosidase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.5705,
-      "hard_negative_evidence": [],
-      "label_rationale": "alpha-N-arabinofuranosidase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3767, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.4,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3767,
-      "top2_fingerprint_id": "ser_his_acid_hydrolase",
-      "top2_gap": 0.0807,
-      "top2_ontology_family": "hydrolysis",
-      "top2_score": 0.296
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "protocatechuate 4,5-dioxygenase",
-        "ligand_codes": [],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Based on the common features around the active sites of BphC, a class II extradiol-type catacholic dioxygenase, and LigAB, it was suggested that LigAB has the same catalytic mechanism as BphC. The 2 hydroxyl groups of PCA chelate the Fe(II) centre with only one proton lost upon binding of the sub..."
-        ],
-        "nearby_residue_count": 71,
-        "pdb_id": "1BOU",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1549,
-          "charge_balance": -0.0422,
-          "hydrophobic_fraction": 0.4085,
-          "mean_min_distance_to_active_site": 5.5043,
-          "negative_fraction": 0.0845,
-          "polar_fraction": 0.2394,
-          "positive_fraction": 0.0423,
-          "sulfur_fraction": 0.0845
-        },
-        "residue_codes": [
-          "HIS",
-          "HIS",
-          "GLU",
-          "HIS"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "FE"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:672",
-      "entry_name": "protocatechuate 4,5-dioxygenase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.6659,
-      "hard_negative_evidence": [],
-      "label_rationale": "protocatechuate 4,5-dioxygenase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3592, below the 0.4115 floor.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3592,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.064,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.2952
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": true,
-      "cofactor_coverage_status": null,
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [],
-        "entry_name": "cellobiose dehydrogenase (acceptor)",
-        "ligand_codes": [
-          "6FA"
-        ],
-        "mechanism_text_count": 2,
-        "mechanism_text_snippets": [
-          "The generally agreed on mechanism for this reaction is that of the hydride transfer: His 689 acts as a general base by deprotonating the C1 hydroxyl group of the cellobiose substrate, causing hydride transfer from C1 of the substrate to FAD. Asn 732, by hydrogen bonding to O1 of the substrate, fa...",
-          "A radical mechanism is compatible with structure of the active site, although radical species have not been detected spectroscopically. The first step involves the transfer of one electron from the 1-hydroxyl oxygen of the substrate to N5 of FAD, along with the abstraction of the hydroxyl proton..."
-        ],
-        "nearby_residue_count": 41,
-        "pdb_id": "1KDG",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.122,
-          "charge_balance": -0.0244,
-          "hydrophobic_fraction": 0.4146,
-          "mean_min_distance_to_active_site": 5.356,
-          "negative_fraction": 0.0244,
-          "polar_fraction": 0.3659,
-          "positive_fraction": 0.0,
-          "sulfur_fraction": 0.0244
-        },
-        "residue_codes": [
-          "HIS",
-          "TYR",
-          "ASN"
-        ],
-        "structure_cofactor_families": [],
-        "structure_ligand_codes": [
-          "6FA",
-          "HG",
-          "NAG",
-          "UNX",
-          "EMT",
-          "MAN"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:673",
-      "entry_name": "cellobiose dehydrogenase (acceptor)",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [],
-      "factory_evidence_score": 0.6609,
-      "hard_negative_evidence": [],
-      "label_rationale": "cellobiose dehydrogenase (acceptor) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3702, below the 0.4115 floor.",
-      "label_type": "out_of_scope",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "target_rank": null,
-      "target_score": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3702,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.019,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3512
     }
   ]
 }

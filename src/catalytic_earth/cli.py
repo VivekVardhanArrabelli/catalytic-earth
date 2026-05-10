@@ -21,6 +21,7 @@ from .labels import (
     analyze_out_of_scope_failures,
     analyze_review_evidence_gaps,
     analyze_structure_mapping_issues,
+    audit_label_scaling_quality,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_expert_review_export,
@@ -745,6 +746,59 @@ def cmd_check_label_preview_promotion(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
+    with Path(args.acceptance).open("r", encoding="utf-8") as handle:
+        acceptance = json.load(handle)
+    with Path(args.readiness).open("r", encoding="utf-8") as handle:
+        readiness = json.load(handle)
+    with Path(args.review_debt).open("r", encoding="utf-8") as handle:
+        review_debt = json.load(handle)
+    with Path(args.review_evidence_gaps).open("r", encoding="utf-8") as handle:
+        review_gaps = json.load(handle)
+    with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+        queue = json.load(handle)
+    with Path(args.family_propagation_guardrails).open("r", encoding="utf-8") as handle:
+        guardrails = json.load(handle)
+    with Path(args.hard_negatives).open("r", encoding="utf-8") as handle:
+        hard_negatives = json.load(handle)
+    decision_batch = None
+    if args.decision_batch:
+        with Path(args.decision_batch).open("r", encoding="utf-8") as handle:
+            decision_batch = json.load(handle)
+    structure_mapping = None
+    if args.structure_mapping:
+        with Path(args.structure_mapping).open("r", encoding="utf-8") as handle:
+            structure_mapping = json.load(handle)
+    expert_review_export = None
+    if args.expert_review_export:
+        with Path(args.expert_review_export).open("r", encoding="utf-8") as handle:
+            expert_review_export = json.load(handle)
+    sequence_clusters = None
+    if args.sequence_clusters:
+        with Path(args.sequence_clusters).open("r", encoding="utf-8") as handle:
+            sequence_clusters = json.load(handle)
+    audit = audit_label_scaling_quality(
+        acceptance,
+        readiness,
+        review_debt,
+        review_gaps,
+        queue,
+        guardrails,
+        hard_negatives,
+        decision_batch=decision_batch,
+        structure_mapping=structure_mapping,
+        expert_review_export=expert_review_export,
+        sequence_clusters=sequence_clusters,
+        batch_id=args.batch_id,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote label scaling quality audit to "
+        f"{args.out} ({audit['metadata']['audit_recommendation']})"
+    )
+    return 0
+
+
 def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
     with Path(args.label_factory_audit).open("r", encoding="utf-8") as handle:
         factory = json.load(handle)
@@ -784,6 +838,10 @@ def cmd_check_label_batch_acceptance(args: argparse.Namespace) -> int:
         in_scope_failures = json.load(handle)
     with Path(args.label_factory_gate).open("r", encoding="utf-8") as handle:
         label_factory_gate = json.load(handle)
+    review_gaps = None
+    if args.review_evidence_gaps:
+        with Path(args.review_evidence_gaps).open("r", encoding="utf-8") as handle:
+            review_gaps = json.load(handle)
     check = check_label_batch_acceptance(
         baseline_labels=load_labels(Path(args.baseline_labels)),
         review_state_labels=load_labels(Path(args.review_state_labels)),
@@ -792,6 +850,7 @@ def cmd_check_label_batch_acceptance(args: argparse.Namespace) -> int:
         hard_negatives=hard_negatives,
         in_scope_failures=in_scope_failures,
         label_factory_gate=label_factory_gate,
+        review_evidence_gaps=review_gaps,
         baseline_label_count=args.baseline_label_count,
     )
     write_json(Path(args.out), check)
@@ -816,6 +875,7 @@ def cmd_summarize_label_factory_batches(args: argparse.Namespace) -> int:
         _load_named_json_artifacts(args.acceptance),
         gate_checks=_load_named_json_artifacts(args.gate),
         active_learning_queues=_load_named_json_artifacts(args.active_learning_queue),
+        scaling_quality_audits=_load_named_json_artifacts(args.scaling_quality_audit),
     )
     write_json(Path(args.out), summary)
     print(
@@ -1347,6 +1407,7 @@ def build_parser() -> argparse.ArgumentParser:
     batch_acceptance.add_argument("--hard-negatives", default="artifacts/v3_hard_negative_controls_batch.json")
     batch_acceptance.add_argument("--in-scope-failures", default="artifacts/v3_in_scope_failure_analysis_batch.json")
     batch_acceptance.add_argument("--label-factory-gate", default="artifacts/v3_label_factory_gate_check_batch.json")
+    batch_acceptance.add_argument("--review-evidence-gaps", default=None)
     batch_acceptance.add_argument("--out", default="artifacts/v3_label_batch_acceptance_check.json")
     batch_acceptance.set_defaults(func=cmd_check_label_batch_acceptance)
 
@@ -1371,6 +1432,12 @@ def build_parser() -> argparse.ArgumentParser:
         action="append",
         default=[],
         help="active-learning queue artifact; repeat for matching batches",
+    )
+    batch_summary.add_argument(
+        "--scaling-quality-audit",
+        action="append",
+        default=[],
+        help="scaling-quality audit artifact; repeat for matching preview batches",
     )
     batch_summary.add_argument("--out", default="artifacts/v3_label_factory_batch_summary.json")
     batch_summary.set_defaults(func=cmd_summarize_label_factory_batches)
@@ -1434,6 +1501,49 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_label_preview_promotion_readiness.json",
     )
     preview_promotion.set_defaults(func=cmd_check_label_preview_promotion)
+
+    scaling_quality = subparsers.add_parser(
+        "audit-label-scaling-quality",
+        help="classify preview scaling failure modes before label promotion",
+    )
+    scaling_quality.add_argument("--batch-id", default=None)
+    scaling_quality.add_argument(
+        "--acceptance",
+        default="artifacts/v3_label_batch_acceptance_check_preview.json",
+    )
+    scaling_quality.add_argument(
+        "--readiness",
+        default="artifacts/v3_label_preview_promotion_readiness.json",
+    )
+    scaling_quality.add_argument(
+        "--review-debt",
+        default="artifacts/v3_review_debt_summary_preview.json",
+    )
+    scaling_quality.add_argument(
+        "--review-evidence-gaps",
+        default="artifacts/v3_review_evidence_gaps_preview.json",
+    )
+    scaling_quality.add_argument(
+        "--active-learning-queue",
+        default="artifacts/v3_active_learning_review_queue_preview.json",
+    )
+    scaling_quality.add_argument(
+        "--family-propagation-guardrails",
+        default="artifacts/v3_family_propagation_guardrails_preview.json",
+    )
+    scaling_quality.add_argument(
+        "--hard-negatives",
+        default="artifacts/v3_hard_negative_controls_preview.json",
+    )
+    scaling_quality.add_argument("--decision-batch", default=None)
+    scaling_quality.add_argument("--structure-mapping", default=None)
+    scaling_quality.add_argument("--expert-review-export", default=None)
+    scaling_quality.add_argument("--sequence-clusters", default=None)
+    scaling_quality.add_argument(
+        "--out",
+        default="artifacts/v3_label_scaling_quality_audit.json",
+    )
+    scaling_quality.set_defaults(func=cmd_audit_label_scaling_quality)
 
     family_guardrails = subparsers.add_parser(
         "build-family-propagation-guardrails",

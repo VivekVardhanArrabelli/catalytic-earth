@@ -8,13 +8,21 @@ The 675 batch is a preview only. It is not promoted to
 Mechanical checks pass:
 
 - `artifacts/v3_label_batch_acceptance_check_675_preview.json`: accepted for
-  counting if promoted, with 18 new countable labels and 44 pending
-  review-state rows.
-- `artifacts/v3_label_factory_gate_check_675_preview_batch.json`: 10/10 gates
+  counting if promoted, with 1 clean new countable label and 61 pending
+  review-state rows. The acceptance check now verifies that newly countable
+  labels do not appear in the review-evidence-gap artifact.
+- `artifacts/v3_label_factory_gate_check_675_preview_batch.json`: 11/11 gates
   pass.
 - `artifacts/v3_label_factory_preview_summary_675.json`: 0 blockers, 0 hard
   negatives, 0 near misses, 0 false non-abstentions, and all unlabeled preview
-  rows retained.
+  rows retained. It now attaches the scaling-quality audit and records
+  `review_before_promoting` as the latest audit recommendation.
+- `artifacts/v3_label_scaling_quality_audit_675_preview.json`: 0 accepted
+  labels with review debt after the evidence-limited negative deferral rule was
+  tightened. The audit has 0 blockers because the diversity-aware review export
+  retains all underrepresented ontology-family rows. It records
+  `not_assessed_no_sequence_cluster_artifact` for the paralog/near-duplicate
+  audit until a sequence-cluster artifact is attached.
 
 Promotion should still wait for review:
 
@@ -24,7 +32,9 @@ Promotion should still wait for review:
   counts so the promotion decision can be audited without separately diffing
   debt summaries.
 - Preview review debt increases from 53 to 61 rows.
-- `needs_more_evidence` decisions increase from 37 to 44 rows.
+- `needs_more_evidence` decisions increase from 37 to 61 rows because the
+  preview now keeps below-threshold evidence-limited negatives in review rather
+  than counting them as safe out-of-scope labels.
 - Of the 61 preview debt rows, 37 are carried from the accepted 650 state and
   24 are new in the 675 preview.
 - The preview debt artifact records full `carried_review_debt_entry_ids` and
@@ -43,9 +53,9 @@ Promotion should still wait for review:
   structure/cofactor-source inspection for expected-absent cofactors; the next
   largest group needs local cofactor or active-site mapping checks.
 
-## Accepted Preview Labels
+## Accepted Preview Label
 
-The preview would add 17 `out_of_scope` labels and 1 seed-fingerprint label:
+The preview would add 1 seed-fingerprint label:
 
 - `m_csa:666` as bronze automation-curated `ser_his_acid_hydrolase`.
   Supporting preview evidence: selected structure `1MPX` is geometry `ok`,
@@ -53,8 +63,29 @@ The preview would add 17 `out_of_scope` labels and 1 seed-fingerprint label:
   signature is complete, and mechanism text explicitly describes a serine
   hydrolase-like mechanism.
 
-All other accepted rows are provisional `out_of_scope` labels for mechanisms
-outside the current seed fingerprints or below the calibrated threshold.
+The 17 previously accepted out-of-scope rows are now deferred because their
+below-threshold negative calls depended on missing/structure-only cofactor
+evidence, structural blockers, counterevidence, or reaction/substrate mismatch.
+They remain in the review-state registry and are not countable benchmark
+labels.
+
+## Scaling-Quality Audit
+
+The 675 preview audit documents the required failure-mode checks before any
+promotion:
+
+- 24 new review-debt rows were classified; none are unclassified.
+- 0 accepted labels have review debt; `m_csa:666` is the only clean accepted
+  label.
+- Observed issue classes among the new debt rows: ontology scope pressure
+  (24), cofactor-family ambiguity (19), reaction/substrate-class mismatch (14),
+  active-site mapping gaps (6), family-propagation boundary pressure (1), and
+  mixed evidence (1).
+- Hard-negative family concentration is not observed because the preview has
+  0 hard negatives and 0 near misses.
+- Active-learning queue concentration is observed, but the expert-review export
+  now retains all 26 underrepresented ontology-family rows, so it is not a
+  scaling-quality blocker for this preview.
 
 ## Review Debt
 

@@ -2737,6 +2737,30 @@ def build_expert_review_export(
     queue_rows = review_queue.get("rows", [])
     rows = list(queue_rows[:max_rows])
     selected_entry_ids = {row.get("entry_id") for row in rows if isinstance(row, dict)}
+    family_counts = Counter(
+        str(row.get("top1_ontology_family"))
+        for row in queue_rows
+        if isinstance(row, dict) and row.get("top1_ontology_family")
+    )
+    dominant_family = family_counts.most_common(1)[0] if family_counts else None
+    family_total = sum(family_counts.values())
+    dominant_fraction = (
+        dominant_family[1] / family_total if dominant_family and family_total else 0.0
+    )
+    diversity_rows: list[dict[str, Any]] = []
+    if dominant_family and dominant_fraction >= 0.6:
+        dominant_family_id = dominant_family[0]
+        for row in queue_rows:
+            if not isinstance(row, dict):
+                continue
+            entry_id = row.get("entry_id")
+            if entry_id in selected_entry_ids:
+                continue
+            family_id = row.get("top1_ontology_family")
+            if family_id and str(family_id) != dominant_family_id:
+                diversity_rows.append(row)
+                selected_entry_ids.add(entry_id)
+    rows.extend(diversity_rows)
     rows.extend(
         row
         for row in queue_rows
@@ -2744,12 +2768,27 @@ def build_expert_review_export(
         and row.get("entry_id") not in selected_entry_ids
         and row.get("entry_id") not in labels_by_entry
     )
+    export_family_counts = Counter(
+        str(row.get("top1_ontology_family"))
+        for row in rows
+        if isinstance(row, dict) and row.get("top1_ontology_family")
+    )
     return {
         "metadata": {
             "method": "expert_review_export",
             "exported_count": len(rows),
             "max_ranked_rows": max_rows,
             "unlabeled_inclusion_rule": "append all unlabeled queue rows even when ranked below the export cutoff",
+            "diversity_inclusion_rule": (
+                "when one top1 ontology family covers at least 60% of the active "
+                "queue, append all rows from non-dominant families so expert "
+                "review does not collapse to one chemistry"
+            ),
+            "dominant_top1_ontology_family": dominant_family[0] if dominant_family else None,
+            "dominant_top1_ontology_family_fraction": round(dominant_fraction, 4),
+            "diversity_added_count": len(diversity_rows),
+            "queue_top1_ontology_family_counts": dict(sorted(family_counts.items())),
+            "export_top1_ontology_family_counts": dict(sorted(export_family_counts.items())),
             "decision_schema": {
                 "action": [
                     "accept_label",
@@ -2948,6 +2987,42 @@ def check_label_factory_gates(
     active_queue_meta = active_learning_queue.get("metadata", {})
     ranking_terms = set(active_queue_meta.get("ranking_terms", []))
     adversarial_axes = set(adversarial_negatives.get("metadata", {}).get("axis_counts", {}))
+    queue_family_counts = Counter(
+        str(row.get("top1_ontology_family"))
+        for row in active_learning_queue.get("rows", [])
+        if isinstance(row, dict) and row.get("top1_ontology_family")
+    )
+    queue_family_total = sum(queue_family_counts.values())
+    dominant_queue_family = queue_family_counts.most_common(1)[0] if queue_family_counts else None
+    dominant_queue_fraction = (
+        dominant_queue_family[1] / queue_family_total
+        if dominant_queue_family and queue_family_total
+        else 0.0
+    )
+    exported_review_entry_ids = {
+        str(item.get("entry_id"))
+        for item in expert_review_export.get("review_items", [])
+        if isinstance(item, dict) and isinstance(item.get("entry_id"), str)
+    }
+    underrepresented_queue_entry_ids = sorted(
+        (
+            str(row.get("entry_id"))
+            for row in active_learning_queue.get("rows", [])
+            if isinstance(row, dict)
+            and isinstance(row.get("entry_id"), str)
+            and dominant_queue_family
+            and row.get("top1_ontology_family")
+            and str(row.get("top1_ontology_family")) != dominant_queue_family[0]
+        ),
+        key=_entry_id_sort_key,
+    )
+    omitted_underrepresented_entry_ids = sorted(
+        set(underrepresented_queue_entry_ids) - exported_review_entry_ids,
+        key=_entry_id_sort_key,
+    )
+    export_diversity_ready = (
+        dominant_queue_fraction < 0.6 or not omitted_underrepresented_entry_ids
+    )
     gates = {
         "label_schema_explicit": all(
             label.tier in LABEL_TIERS
@@ -2996,6 +3071,7 @@ def check_label_factory_gates(
             expert_review_export.get("metadata", {}).get("exported_count", 0)
         )
         > 0,
+        "expert_review_export_diversity_ready": export_diversity_ready,
         "family_propagation_guardrails_ready": (
             isinstance(family_propagation_guardrails, dict)
             and int(family_propagation_guardrails.get("metadata", {}).get("reported_count", 0))
@@ -3011,6 +3087,12 @@ def check_label_factory_gates(
             "passed_gate_count": sum(1 for passed in gates.values() if passed),
             "gate_count": len(gates),
             "automation_ready_for_next_label_batch": not blockers,
+            "dominant_active_queue_family": dominant_queue_family[0]
+            if dominant_queue_family
+            else None,
+            "dominant_active_queue_family_fraction": round(dominant_queue_fraction, 4),
+            "underrepresented_queue_entry_count": len(underrepresented_queue_entry_ids),
+            "omitted_underrepresented_queue_entry_ids": omitted_underrepresented_entry_ids,
             "bulk_scaling_rule": (
                 "new labels may be added in batches only after this gate check "
                 "passes and the generated batch artifacts are regenerated"
@@ -3029,6 +3111,7 @@ def check_label_batch_acceptance(
     hard_negatives: dict[str, Any],
     in_scope_failures: dict[str, Any],
     label_factory_gate: dict[str, Any],
+    review_evidence_gaps: dict[str, Any] | None = None,
     baseline_label_count: int | None = None,
 ) -> dict[str, Any]:
     baseline_count = baseline_label_count if baseline_label_count is not None else len(baseline_labels)
@@ -3039,6 +3122,27 @@ def check_label_batch_acceptance(
     hard_meta = hard_negatives.get("metadata", {})
     in_scope_meta = in_scope_failures.get("metadata", {})
     gate_meta = label_factory_gate.get("metadata", {})
+    baseline_entry_ids = {label.entry_id for label in baseline_labels}
+    new_countable_entry_ids = {
+        label.entry_id for label in countable_labels if label.entry_id not in baseline_entry_ids
+    }
+    review_gap_entry_ids: set[str] = set()
+    if review_evidence_gaps:
+        review_gap_entry_ids = {
+            str(row.get("entry_id"))
+            for row in review_evidence_gaps.get("rows", [])
+            if isinstance(row, dict)
+            and isinstance(row.get("entry_id"), str)
+            and (
+                row.get("decision_action") == "mark_needs_more_evidence"
+                or bool(row.get("gap_reasons"))
+            )
+        }
+    accepted_review_gap_ids = sorted(
+        new_countable_entry_ids & review_gap_entry_ids,
+        key=_entry_id_sort_key,
+    )
+    accepted_new_label_entry_ids = sorted(new_countable_entry_ids, key=_entry_id_sort_key)
     pending_review_count = int(
         review_summary.get("by_review_status", {}).get("needs_expert_review", 0)
     )
@@ -3060,6 +3164,8 @@ def check_label_batch_acceptance(
         == 0,
         "factory_gate_ready": bool(gate_meta.get("automation_ready_for_next_label_batch")),
     }
+    if review_evidence_gaps is not None:
+        gates["accepted_labels_have_no_review_evidence_gaps"] = not accepted_review_gap_ids
     blockers = [name for name, passed in gates.items() if not passed]
     return {
         "metadata": {
@@ -3068,6 +3174,7 @@ def check_label_batch_acceptance(
             "review_state_label_count": len(review_state_labels),
             "countable_label_count": countable_count,
             "accepted_new_label_count": max(0, countable_count - baseline_count),
+            "accepted_new_label_entry_ids": accepted_new_label_entry_ids,
             "pending_review_count": pending_review_count,
             "out_of_scope_false_non_abstentions": evaluation_meta.get(
                 "out_of_scope_false_non_abstentions"
@@ -3081,6 +3188,8 @@ def check_label_batch_acceptance(
                 "evidence_limited_abstention_count"
             ),
             "factory_gate_ready": gate_meta.get("automation_ready_for_next_label_batch"),
+            "accepted_review_gap_count": len(accepted_review_gap_ids),
+            "accepted_review_gap_entry_ids": accepted_review_gap_ids,
             "accepted_for_counting": not blockers,
             "review_state_rule": (
                 "pending-review labels remain in the review-state registry but "
@@ -3100,6 +3209,7 @@ def summarize_label_factory_batches(
     acceptance_checks: list[tuple[str, dict[str, Any]]],
     gate_checks: list[tuple[str, dict[str, Any]]] | None = None,
     active_learning_queues: list[tuple[str, dict[str, Any]]] | None = None,
+    scaling_quality_audits: list[tuple[str, dict[str, Any]]] | None = None,
 ) -> dict[str, Any]:
     gate_by_batch = {
         _artifact_batch_id(name): artifact
@@ -3111,6 +3221,11 @@ def summarize_label_factory_batches(
         for name, artifact in active_learning_queues or []
         if _artifact_batch_id(name)
     }
+    scaling_audit_by_batch = {
+        _artifact_batch_id(name): artifact
+        for name, artifact in scaling_quality_audits or []
+        if _artifact_batch_id(name)
+    }
     rows: list[dict[str, Any]] = []
     blockers: list[dict[str, Any]] = []
     for name, artifact in acceptance_checks:
@@ -3120,6 +3235,37 @@ def summarize_label_factory_batches(
         gate_meta = gate.get("metadata", {}) if isinstance(gate, dict) else {}
         queue = queue_by_batch.get(batch_id, {})
         queue_meta = queue.get("metadata", {}) if isinstance(queue, dict) else {}
+        scaling_audit = scaling_audit_by_batch.get(batch_id, {})
+        scaling_meta = (
+            scaling_audit.get("metadata", {}) if isinstance(scaling_audit, dict) else {}
+        )
+        scaling_blockers = (
+            list(scaling_audit.get("blockers", []))
+            if isinstance(scaling_audit, dict)
+            else []
+        )
+        scaling_review_warnings = (
+            list(scaling_audit.get("review_warnings", []))
+            if isinstance(scaling_audit, dict)
+            else []
+        )
+        scaling_accepted_debt_count = int(
+            scaling_meta.get("accepted_new_debt_count", 0) or 0
+        )
+        scaling_omitted_underrepresented = list(
+            scaling_meta.get("omitted_underrepresented_queue_entry_ids", []) or []
+        )
+        scaling_unclassified_debt = list(
+            scaling_meta.get("unclassified_new_review_debt_entry_ids", []) or []
+        )
+        scaling_quality_ready = None
+        if scaling_audit:
+            scaling_quality_ready = (
+                not scaling_blockers
+                and scaling_accepted_debt_count == 0
+                and not scaling_omitted_underrepresented
+                and not scaling_unclassified_debt
+            )
         row_blockers = list(artifact.get("blockers", []))
         if not metadata.get("accepted_for_counting", False):
             row_blockers.append("batch_not_accepted_for_counting")
@@ -3127,6 +3273,8 @@ def summarize_label_factory_batches(
             row_blockers.append("factory_gate_not_ready")
         if queue_meta and not queue_meta.get("all_unlabeled_rows_retained", True):
             row_blockers.append("unlabeled_rows_omitted_from_active_queue")
+        if scaling_quality_ready is False:
+            row_blockers.append("scaling_quality_audit_not_ready")
         row = {
             "batch": batch_id,
             "source": name,
@@ -3155,6 +3303,24 @@ def summarize_label_factory_batches(
             "active_queue_unlabeled_count": queue_meta.get("total_unlabeled_candidate_count"),
             "active_queue_unlabeled_omitted": queue_meta.get("unlabeled_omitted_by_max_rows"),
             "active_queue_all_unlabeled_retained": queue_meta.get("all_unlabeled_rows_retained"),
+            "scaling_quality_audit_present": bool(scaling_audit),
+            "scaling_quality_ready": scaling_quality_ready,
+            "scaling_quality_recommendation": scaling_meta.get("audit_recommendation"),
+            "scaling_quality_blocker_count": len(scaling_blockers),
+            "scaling_quality_blockers": scaling_blockers,
+            "scaling_quality_review_warnings": scaling_review_warnings,
+            "scaling_quality_accepted_new_debt_count": scaling_accepted_debt_count
+            if scaling_audit
+            else None,
+            "scaling_quality_unclassified_new_debt_count": len(scaling_unclassified_debt)
+            if scaling_audit
+            else None,
+            "scaling_quality_omitted_underrepresented_count": len(
+                scaling_omitted_underrepresented
+            )
+            if scaling_audit
+            else None,
+            "scaling_quality_issue_class_counts": scaling_meta.get("issue_class_counts", {}),
             "blockers": sorted(set(row_blockers)),
         }
         rows.append(row)
@@ -3208,12 +3374,32 @@ def summarize_label_factory_batches(
             )
             if rows
             else False,
+            "scaling_quality_audit_count": sum(
+                1 for row in rows if row["scaling_quality_audit_present"]
+            ),
+            "latest_scaling_quality_audit_present": bool(
+                latest.get("scaling_quality_audit_present", False)
+            ),
+            "latest_scaling_quality_recommendation": latest.get(
+                "scaling_quality_recommendation"
+            ),
+            "latest_scaling_quality_review_warnings": latest.get(
+                "scaling_quality_review_warnings", []
+            ),
+            "all_supplied_scaling_quality_audits_ready": all(
+                row["scaling_quality_ready"] is not False
+                for row in rows
+                if row["scaling_quality_audit_present"]
+            )
+            if rows
+            else False,
             "blocker_count": len(blockers),
             "next_batch_rule": (
                 "open the next label tranche only when every accepted batch has "
                 "zero hard negatives, zero near misses, zero false non-abstentions, "
                 "zero actionable in-scope failures, ready factory gates, and active "
-                "queues that retain all unlabeled candidates"
+                "queues that retain all unlabeled candidates; for preview batches, "
+                "also attach the scaling-quality audit and resolve any audit blocker"
             ),
         },
         "rows": rows,
@@ -3795,6 +3981,610 @@ def check_label_preview_promotion_readiness(
         "blockers": blockers,
         "review_warnings": review_warnings,
     }
+
+
+def audit_label_scaling_quality(
+    acceptance: dict[str, Any],
+    readiness: dict[str, Any],
+    review_debt: dict[str, Any],
+    review_evidence_gaps: dict[str, Any],
+    active_learning_queue: dict[str, Any],
+    family_propagation_guardrails: dict[str, Any],
+    hard_negatives: dict[str, Any],
+    decision_batch: dict[str, Any] | None = None,
+    structure_mapping: dict[str, Any] | None = None,
+    expert_review_export: dict[str, Any] | None = None,
+    sequence_clusters: dict[str, Any] | None = None,
+    batch_id: str | None = None,
+) -> dict[str, Any]:
+    acceptance_meta = acceptance.get("metadata", {})
+    readiness_meta = readiness.get("metadata", {})
+    debt_meta = review_debt.get("metadata", {})
+    family_meta = family_propagation_guardrails.get("metadata", {})
+    hard_meta = hard_negatives.get("metadata", {})
+    mapping_meta = (structure_mapping or {}).get("metadata", {})
+    new_debt_ids = sorted(
+        (
+            str(entry_id)
+            for entry_id in debt_meta.get("new_review_debt_entry_ids", [])
+            if isinstance(entry_id, str)
+        ),
+        key=_entry_id_sort_key,
+    )
+    gap_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in review_evidence_gaps.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    guardrail_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in family_propagation_guardrails.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    mapping_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (structure_mapping or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    decision_action_by_entry: dict[str, str] = {}
+    if decision_batch:
+        for item in decision_batch.get("review_items", []):
+            if not isinstance(item, dict) or not isinstance(item.get("entry_id"), str):
+                continue
+            decision = item.get("decision", {})
+            if isinstance(decision, dict):
+                decision_action_by_entry[str(item["entry_id"])] = str(
+                    decision.get("action", "no_decision")
+                )
+    accepted_decision_ids = sorted(
+        (
+            entry_id
+            for entry_id, action in decision_action_by_entry.items()
+            if action == "accept_label"
+        ),
+        key=_entry_id_sort_key,
+    )
+    accepted_new_debt_ids = sorted(
+        set(new_debt_ids) & set(accepted_decision_ids),
+        key=_entry_id_sort_key,
+    )
+    accepted_clean_ids = sorted(
+        set(accepted_decision_ids) - set(new_debt_ids),
+        key=_entry_id_sort_key,
+    )
+    duplicate_audit_entry_ids = sorted(
+        set(new_debt_ids) | set(accepted_decision_ids),
+        key=_entry_id_sort_key,
+    )
+    sequence_cluster_by_entry = _sequence_cluster_by_entry(sequence_clusters)
+    duplicate_cluster_counts: Counter = Counter(
+        sequence_cluster_by_entry[entry_id]
+        for entry_id in duplicate_audit_entry_ids
+        if entry_id in sequence_cluster_by_entry
+    )
+    overrepresented_sequence_clusters = {
+        cluster_id: count
+        for cluster_id, count in duplicate_cluster_counts.items()
+        if count > 1
+    }
+    near_duplicate_entry_ids = sorted(
+        (
+            entry_id
+            for entry_id in duplicate_audit_entry_ids
+            if sequence_cluster_by_entry.get(entry_id) in overrepresented_sequence_clusters
+        ),
+        key=_entry_id_sort_key,
+    )
+    sequence_cluster_missing_entry_count = (
+        len(
+            [
+                entry_id
+                for entry_id in duplicate_audit_entry_ids
+                if entry_id not in sequence_cluster_by_entry
+            ]
+        )
+        if sequence_clusters is not None
+        else None
+    )
+    if sequence_clusters is None:
+        near_duplicate_audit_status = "not_assessed_no_sequence_cluster_artifact"
+    elif not sequence_cluster_by_entry:
+        near_duplicate_audit_status = "not_assessed_sequence_cluster_artifact_empty"
+    elif near_duplicate_entry_ids:
+        near_duplicate_audit_status = "observed"
+    else:
+        near_duplicate_audit_status = "not_observed_in_sequence_cluster_artifact"
+
+    issue_rows: list[dict[str, Any]] = []
+    for entry_id in new_debt_ids:
+        gap_row = gap_rows_by_entry.get(entry_id, {"entry_id": entry_id})
+        guardrail_row = guardrail_rows_by_entry.get(entry_id, {})
+        mapping_row = mapping_rows_by_entry.get(entry_id, {})
+        action = decision_action_by_entry.get(entry_id) or str(
+            gap_row.get("decision_action", "unknown")
+        )
+        issue_classes = _label_scaling_issue_classes(
+            gap_row,
+            family_guardrail_row=guardrail_row,
+            structure_mapping_row=mapping_row,
+            decision_action=action,
+        )
+        issue_rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": gap_row.get("entry_name") or guardrail_row.get("entry_name"),
+                "decision_action": action,
+                "decision_review_status": gap_row.get("decision_review_status"),
+                "issue_classes": issue_classes,
+                "gap_reasons": gap_row.get("gap_reasons", []),
+                "counterevidence_reasons": gap_row.get("counterevidence_reasons", []),
+                "coverage_status": gap_row.get("coverage_status"),
+                "target_fingerprint_id": gap_row.get("target_fingerprint_id"),
+                "top1_fingerprint_id": gap_row.get("top1_fingerprint_id"),
+                "top1_score": gap_row.get("top1_score"),
+                "family_propagation_blockers": guardrail_row.get("propagation_blockers", []),
+                "structure_mapping_status": mapping_row.get("status"),
+            }
+        )
+
+    issue_class_counts = Counter(
+        issue_class for row in issue_rows for issue_class in row["issue_classes"]
+    )
+    active_family_counts = Counter(
+        str(row.get("top1_ontology_family"))
+        for row in active_learning_queue.get("rows", [])
+        if isinstance(row, dict) and row.get("top1_ontology_family")
+    )
+    active_total = sum(active_family_counts.values())
+    dominant_family = active_family_counts.most_common(1)[0] if active_family_counts else None
+    dominant_family_fraction = (
+        round(dominant_family[1] / active_total, 4)
+        if dominant_family and active_total
+        else 0.0
+    )
+    queue_concentrated = bool(
+        dominant_family and active_total >= 10 and dominant_family_fraction >= 0.6
+    )
+    hard_family_counts = Counter(
+        {
+            str(fingerprint): int(count)
+            for fingerprint, count in hard_meta.get("top1_fingerprint_counts", {}).items()
+        }
+    )
+    near_miss_family_counts = Counter(
+        {
+            str(fingerprint): int(count)
+            for fingerprint, count in hard_meta.get("near_miss_top1_fingerprint_counts", {}).items()
+        }
+    )
+    family_blocker_counts = Counter(
+        {
+            str(name): int(count)
+            for name, count in family_meta.get("blocker_counts", {}).items()
+        }
+    )
+    exported_review_entry_ids = {
+        str(item.get("entry_id"))
+        for item in (expert_review_export or {}).get("review_items", [])
+        if isinstance(item, dict) and isinstance(item.get("entry_id"), str)
+    }
+    underrepresented_queue_entry_ids = sorted(
+        (
+            str(row.get("entry_id"))
+            for row in active_learning_queue.get("rows", [])
+            if isinstance(row, dict)
+            and isinstance(row.get("entry_id"), str)
+            and dominant_family
+            and row.get("top1_ontology_family")
+            and str(row.get("top1_ontology_family")) != dominant_family[0]
+        ),
+        key=_entry_id_sort_key,
+    )
+    omitted_underrepresented_entry_ids = sorted(
+        set(underrepresented_queue_entry_ids) - exported_review_entry_ids,
+        key=_entry_id_sort_key,
+    )
+    review_export_retains_underrepresented = (
+        not queue_concentrated
+        or (bool(expert_review_export) and not omitted_underrepresented_entry_ids)
+    )
+    unclassified_new_debt_ids = sorted(
+        (row["entry_id"] for row in issue_rows if not row["issue_classes"]),
+        key=_entry_id_sort_key,
+    )
+    gates = {
+        "zero_hard_negatives": int(hard_meta.get("hard_negative_count", 0) or 0) == 0,
+        "zero_near_misses": int(hard_meta.get("near_miss_count", 0) or 0) == 0,
+        "zero_false_non_abstentions": int(
+            acceptance_meta.get("out_of_scope_false_non_abstentions", 0) or 0
+        )
+        == 0,
+        "zero_actionable_in_scope_failures": int(
+            acceptance_meta.get("actionable_in_scope_failure_count", 0) or 0
+        )
+        == 0,
+        "active_queue_retains_unlabeled_candidates": active_learning_queue.get(
+            "metadata", {}
+        ).get("all_unlabeled_rows_retained")
+        is True,
+        "family_guardrails_present": family_meta.get("method")
+        == "family_propagation_guardrail_audit",
+        "new_review_debt_rows_classified": not unclassified_new_debt_ids,
+        "accepted_new_labels_without_review_debt": not accepted_new_debt_ids,
+        "review_export_retains_underrepresented_families": review_export_retains_underrepresented,
+    }
+    blockers = [name for name, passed in gates.items() if not passed]
+    review_warnings: list[str] = []
+    if queue_concentrated:
+        review_warnings.append("active_learning_queue_concentrated_by_top1_family")
+    if issue_class_counts:
+        review_warnings.append("new_review_debt_has_scaling_failure_modes")
+    if int(mapping_meta.get("issue_count", 0) or 0) > 0:
+        review_warnings.append("structure_mapping_issues_present")
+    if near_duplicate_audit_status in {
+        "not_assessed_no_sequence_cluster_artifact",
+        "not_assessed_sequence_cluster_artifact_empty",
+    }:
+        review_warnings.append("sequence_cluster_artifact_missing_for_near_duplicate_audit")
+    elif near_duplicate_audit_status == "observed":
+        review_warnings.append("candidate_entries_share_sequence_clusters")
+
+    failure_modes = [
+        _scaling_failure_mode_summary(
+            "ontology_node_scope_pressure",
+            issue_rows,
+            "ontology_scope_pressure",
+            "not_observed_in_new_review_debt",
+        ),
+        _scaling_failure_mode_summary(
+            "sibling_mechanism_confusion",
+            issue_rows,
+            "sibling_mechanism_confusion",
+            "not_observed_in_new_review_debt",
+        ),
+        _scaling_failure_mode_summary(
+            "family_propagation_cross_boundary",
+            issue_rows,
+            "family_propagation_boundary",
+            "guardrails_present_no_new_cross_boundary_debt",
+            extra_evidence={
+                "guardrail_blocker_counts": dict(sorted(family_blocker_counts.items())),
+            },
+        ),
+        {
+            "id": "sequence_family_leakage",
+            "status": "guardrail_active",
+            "issue_count": 0,
+            "entry_ids": [],
+            "evidence": {
+                "local_proxy_rule": family_meta.get("local_proxy_rule"),
+                "source_guardrails": family_meta.get("source_guardrails", []),
+            },
+        },
+        {
+            "id": "overcounted_paralogs_or_near_duplicates",
+            "status": near_duplicate_audit_status,
+            "issue_count": len(near_duplicate_entry_ids),
+            "entry_ids": near_duplicate_entry_ids,
+            "evidence": {
+                "audited_entry_ids": duplicate_audit_entry_ids,
+                "entry_to_sequence_cluster": {
+                    entry_id: sequence_cluster_by_entry[entry_id]
+                    for entry_id in duplicate_audit_entry_ids
+                    if entry_id in sequence_cluster_by_entry
+                },
+                "overrepresented_sequence_cluster_counts": dict(
+                    sorted(overrepresented_sequence_clusters.items())
+                ),
+                "sequence_cluster_missing_entry_count": sequence_cluster_missing_entry_count,
+                "reason": None
+                if sequence_clusters is not None
+                else (
+                    "current local artifacts do not include sequence-cluster "
+                    "membership; keep this as an explicit audit gap before "
+                    "larger-scale propagation"
+                ),
+            },
+        },
+        _scaling_failure_mode_summary(
+            "cofactor_family_ambiguity",
+            issue_rows,
+            "cofactor_family_ambiguity",
+            "not_observed_in_new_review_debt",
+        ),
+        _scaling_failure_mode_summary(
+            "multi_domain_or_mixed_evidence",
+            issue_rows,
+            "multi_domain_or_mixed_evidence",
+            "not_observed_in_new_review_debt",
+        ),
+        _scaling_failure_mode_summary(
+            "reaction_direction_or_substrate_class_mismatch",
+            issue_rows,
+            "reaction_or_substrate_class_mismatch",
+            "not_observed_in_new_review_debt",
+        ),
+        _scaling_failure_mode_summary(
+            "active_site_residue_remapping_error",
+            issue_rows,
+            "active_site_mapping_gap",
+            "not_observed_in_new_review_debt",
+            extra_evidence={
+                "structure_mapping_issue_count": mapping_meta.get("issue_count"),
+                "structure_mapping_status_counts": mapping_meta.get("status_counts", {}),
+            },
+        ),
+        _scaling_failure_mode_summary(
+            "structure_sequence_id_mismatch",
+            issue_rows,
+            "structure_sequence_id_mismatch",
+            "not_observed_in_new_review_debt",
+            extra_evidence={
+                "structure_mapping_issue_count": mapping_meta.get("issue_count"),
+                "structure_mapping_status_counts": mapping_meta.get("status_counts", {}),
+            },
+        ),
+        {
+            "id": "hard_negatives_concentrated_in_one_family",
+            "status": "not_observed_zero_hard_negatives"
+            if not hard_family_counts and not near_miss_family_counts
+            else "observed",
+            "issue_count": sum(hard_family_counts.values()) + sum(near_miss_family_counts.values()),
+            "entry_ids": [],
+            "evidence": {
+                "hard_negative_top1_fingerprint_counts": dict(
+                    sorted(hard_family_counts.items())
+                ),
+                "near_miss_top1_fingerprint_counts": dict(
+                    sorted(near_miss_family_counts.items())
+                ),
+            },
+        },
+        {
+            "id": "review_queue_collapse_to_one_chemistry",
+            "status": "observed" if queue_concentrated else "not_observed",
+            "issue_count": dominant_family[1] if queue_concentrated and dominant_family else 0,
+            "entry_ids": [],
+            "evidence": {
+                "active_queue_top1_ontology_family_counts": dict(
+                    sorted(active_family_counts.items())
+                ),
+                "dominant_family": dominant_family[0] if dominant_family else None,
+                "dominant_family_fraction": dominant_family_fraction,
+                "underrepresented_queue_entry_count": len(underrepresented_queue_entry_ids),
+                "omitted_underrepresented_queue_entry_ids": omitted_underrepresented_entry_ids,
+            },
+        },
+        _scaling_failure_mode_summary(
+            "text_leakage_without_mechanistic_evidence",
+            issue_rows,
+            "text_leakage_risk",
+            "not_observed_in_new_review_debt",
+        ),
+    ]
+    audit_recommendation = (
+        "do_not_promote_until_quality_repair"
+        if blockers
+        else str(readiness_meta.get("promotion_recommendation") or "promotion_quality_audit_clean")
+    )
+    return {
+        "metadata": {
+            "method": "label_scaling_quality_audit",
+            "batch_id": batch_id,
+            "source_acceptance_method": acceptance_meta.get("method"),
+            "readiness_recommendation": readiness_meta.get("promotion_recommendation"),
+            "audit_recommendation": audit_recommendation,
+            "new_review_debt_count": len(new_debt_ids),
+            "new_review_debt_entry_ids": new_debt_ids,
+            "accepted_new_debt_count": len(accepted_new_debt_ids),
+            "accepted_new_debt_entry_ids": accepted_new_debt_ids,
+            "accepted_clean_label_count": len(accepted_clean_ids),
+            "accepted_clean_label_entry_ids": accepted_clean_ids,
+            "unclassified_new_review_debt_entry_ids": unclassified_new_debt_ids,
+            "underrepresented_queue_entry_count": len(underrepresented_queue_entry_ids),
+            "omitted_underrepresented_queue_entry_ids": omitted_underrepresented_entry_ids,
+            "near_duplicate_audit_status": near_duplicate_audit_status,
+            "near_duplicate_entry_ids": near_duplicate_entry_ids,
+            "sequence_cluster_missing_entry_count": sequence_cluster_missing_entry_count,
+            "issue_class_counts": dict(sorted(issue_class_counts.items())),
+            "audit_rule": (
+                "before promoting a preview batch, classify new ontology, "
+                "family-propagation, cofactor, mapping, queue-composition, "
+                "hard-negative, and text-leakage failure modes; accepted labels "
+                "with unresolved review debt are not promotion-ready"
+            ),
+        },
+        "gates": gates,
+        "blockers": blockers,
+        "review_warnings": review_warnings,
+        "failure_modes": failure_modes,
+        "rows": issue_rows,
+    }
+
+
+def _label_scaling_issue_classes(
+    row: dict[str, Any],
+    *,
+    family_guardrail_row: dict[str, Any],
+    structure_mapping_row: dict[str, Any],
+    decision_action: str,
+) -> list[str]:
+    gap_reasons = {str(reason) for reason in row.get("gap_reasons", []) if str(reason)}
+    counterevidence = {
+        str(reason) for reason in row.get("counterevidence_reasons", []) if str(reason)
+    }
+    coverage_status = str(row.get("coverage_status", "unknown"))
+    target = row.get("target_fingerprint_id")
+    top1 = row.get("top1_fingerprint_id")
+    target_family = fingerprint_family(str(target)) if isinstance(target, str) else None
+    top1_family = fingerprint_family(str(top1)) if isinstance(top1, str) else None
+    guardrail_blockers = {
+        str(blocker)
+        for blocker in family_guardrail_row.get("propagation_blockers", [])
+        if str(blocker)
+    }
+    rationale = str(row.get("decision_rationale", ""))
+    mapping_status = str(structure_mapping_row.get("status", "ok"))
+    text = " ".join(
+        [
+            str(row.get("entry_name", "")),
+            rationale,
+            " ".join(str(snippet) for snippet in row.get("mechanism_text_snippets", [])),
+        ]
+    ).lower()
+    issue_classes: set[str] = set()
+    if (
+        "top1_below_abstention_threshold" in gap_reasons
+        or "target_not_top1" in gap_reasons
+        or (decision_action == "mark_needs_more_evidence" and "boundary" in rationale)
+        or (decision_action == "accept_label" and gap_reasons)
+    ):
+        issue_classes.add("ontology_scope_pressure")
+    if (
+        isinstance(target, str)
+        and isinstance(top1, str)
+        and target != top1
+        and target_family
+        and target_family == top1_family
+    ):
+        issue_classes.add("sibling_mechanism_confusion")
+    if (
+        (target_family and top1_family and target_family != top1_family)
+        or "target_family_top1_family_mismatch" in guardrail_blockers
+        or "close_cross_family_top1_top2" in guardrail_blockers
+    ):
+        issue_classes.add("family_propagation_boundary")
+    if (
+        coverage_status in {"expected_absent_from_structure", "expected_structure_only"}
+        or any("cofactor" in reason or "heme" in reason or "flavin" in reason or "metal" in reason for reason in counterevidence)
+    ):
+        issue_classes.add("cofactor_family_ambiguity")
+    if "domain" in text or len(row.get("structure_cofactor_families", []) or []) > 1:
+        issue_classes.add("multi_domain_or_mixed_evidence")
+    if _has_reaction_or_substrate_mismatch(text, str(top1 or ""), str(target or "")):
+        issue_classes.add("reaction_or_substrate_class_mismatch")
+    if (
+        mapping_status not in {"ok", "None"}
+        or "fewer_than_three_resolved_residues" in rationale
+        or "geometry_status_not_ok" in rationale
+    ):
+        issue_classes.add("active_site_mapping_gap")
+    if mapping_status in {"no_structure_positions", "structure_fetch_failed"}:
+        issue_classes.add("structure_sequence_id_mismatch")
+    if decision_action == "accept_label" and (
+        gap_reasons
+        or counterevidence
+        or coverage_status in COFACTOR_EVIDENCE_LIMITED_STATUSES
+    ):
+        issue_classes.add("text_leakage_risk")
+    return sorted(issue_classes)
+
+
+def _has_reaction_or_substrate_mismatch(text: str, top1: str, target: str) -> bool:
+    fingerprint_text = f"{top1} {target}".lower()
+    redox_terms = ("oxid", "reduct", "redox", "hydride", "electron", "dioxygenase")
+    transfer_terms = ("kinase", "phosphotransferase", "ligase", "transferase")
+    hydrolysis_terms = ("hydrolase", "hydrolysis", "glycosidic", "peptidase", "esterase")
+    if "hydrolase" in fingerprint_text and any(term in text for term in redox_terms):
+        return True
+    if "hydrolase" in fingerprint_text and any(term in text for term in transfer_terms):
+        return True
+    if (
+        ("flavin" in fingerprint_text or "heme" in fingerprint_text)
+        and any(term in text for term in hydrolysis_terms)
+    ):
+        return True
+    return False
+
+
+def _scaling_failure_mode_summary(
+    mode_id: str,
+    rows: list[dict[str, Any]],
+    issue_class: str,
+    clean_status: str,
+    extra_evidence: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    matching_rows = [
+        row for row in rows if issue_class in set(row.get("issue_classes", []))
+    ]
+    entry_ids = sorted(
+        (str(row["entry_id"]) for row in matching_rows),
+        key=_entry_id_sort_key,
+    )
+    evidence: dict[str, Any] = {
+        "issue_class": issue_class,
+        "entry_ids": entry_ids,
+    }
+    if extra_evidence:
+        evidence.update(extra_evidence)
+    return {
+        "id": mode_id,
+        "status": "observed" if matching_rows else clean_status,
+        "issue_count": len(matching_rows),
+        "entry_ids": entry_ids,
+        "evidence": evidence,
+    }
+
+
+def _sequence_cluster_by_entry(sequence_clusters: dict[str, Any] | None) -> dict[str, str]:
+    if not isinstance(sequence_clusters, dict):
+        return {}
+    cluster_by_entry: dict[str, str] = {}
+    row_keys = ("rows", "items", "entries", "results")
+    cluster_keys = (
+        "id",
+        "sequence_cluster_id",
+        "cluster_id",
+        "uniref_cluster_id",
+        "sequence_family_id",
+        "representative_id",
+    )
+    for row_key in row_keys:
+        rows = sequence_clusters.get(row_key)
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if not isinstance(row, dict) or not isinstance(row.get("entry_id"), str):
+                continue
+            cluster_id = next(
+                (
+                    str(row[key])
+                    for key in cluster_keys
+                    if row.get(key) is not None and str(row.get(key))
+                ),
+                None,
+            )
+            if cluster_id:
+                cluster_by_entry[str(row["entry_id"])] = cluster_id
+    clusters = sequence_clusters.get("clusters")
+    if isinstance(clusters, dict):
+        for cluster_id, members in clusters.items():
+            for member in (members if isinstance(members, list) else []):
+                if isinstance(member, str):
+                    cluster_by_entry[member] = str(cluster_id)
+                elif isinstance(member, dict) and isinstance(member.get("entry_id"), str):
+                    cluster_by_entry[str(member["entry_id"])] = str(cluster_id)
+    elif isinstance(clusters, list):
+        for cluster in clusters:
+            if not isinstance(cluster, dict):
+                continue
+            cluster_id = next(
+                (
+                    str(cluster[key])
+                    for key in cluster_keys
+                    if cluster.get(key) is not None and str(cluster.get(key))
+                ),
+                None,
+            )
+            members = cluster.get("entry_ids") or cluster.get("members") or []
+            if not cluster_id or not isinstance(members, list):
+                continue
+            for member in members:
+                if isinstance(member, str):
+                    cluster_by_entry[member] = cluster_id
+                elif isinstance(member, dict) and isinstance(member.get("entry_id"), str):
+                    cluster_by_entry[str(member["entry_id"])] = cluster_id
+    return cluster_by_entry
 
 
 def build_family_propagation_guardrails(
@@ -4488,6 +5278,45 @@ def _provisional_unlabeled_decision(
             "floor, but current automation rules do not support a countable seed "
             "assignment.",
         ]
+        if counterevidence:
+            rationale_bits.append(
+                "Counterevidence: " + ", ".join(sorted(counterevidence)) + "."
+            )
+        if blockers:
+            rationale_bits.append("Review blockers: " + ", ".join(sorted(blockers)) + ".")
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "out_of_scope",
+            "fingerprint_id": None,
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": " ".join(rationale_bits),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
+
+    cofactor_sensitive_top1 = top1 in {
+        "cobalamin_radical_rearrangement",
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase",
+        "heme_peroxidase_oxidase",
+        "metal_dependent_hydrolase",
+    }
+    evidence_limited_negative = (
+        bool(blockers)
+        or bool(counterevidence)
+        or (cofactor_sensitive_top1 and cofactor_level in {"absent", "structure_only", "role_inferred"})
+    )
+    if top1_score < threshold and evidence_limited_negative:
+        rationale_bits = [
+            f"{entry_name} remains below the {threshold:.4f} abstention floor, "
+            "but it is not a clean countable out-of-scope negative.",
+        ]
+        if cofactor_sensitive_top1 and cofactor_level in {"absent", "structure_only", "role_inferred"}:
+            rationale_bits.append(
+                f"Selected-structure cofactor evidence for {top1} is {cofactor_level}."
+            )
         if counterevidence:
             rationale_bits.append(
                 "Counterevidence: " + ", ".join(sorted(counterevidence)) + "."

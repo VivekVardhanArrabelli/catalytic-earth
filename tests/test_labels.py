@@ -17,6 +17,7 @@ from catalytic_earth.labels import (
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
+    audit_label_scaling_quality,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_expert_review_export,
@@ -653,6 +654,97 @@ class LabelTests(unittest.TestCase):
         self.assertFalse(truncated_gates["gates"]["active_queue_retains_unlabeled_candidates"])
         self.assertIn("active_queue_retains_unlabeled_candidates", truncated_gates["blockers"])
 
+    def test_expert_review_export_includes_underrepresented_queue_families(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id=f"m_csa:{index}",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="Existing label for diversity export testing.",
+            )
+            for index in range(1, 9)
+        ]
+        queue = {
+            "metadata": {
+                "queued_count": 8,
+                "all_unlabeled_rows_retained": True,
+                "ranking_terms": [
+                    "uncertainty",
+                    "impact",
+                    "novelty",
+                    "hard_negative_value",
+                    "evidence_conflict",
+                    "family_boundary_value",
+                ],
+            },
+            "rows": [
+                {
+                    "entry_id": f"m_csa:{index}",
+                    "entry_name": f"hydrolase {index}",
+                    "rank": index,
+                    "top1_ontology_family": "hydrolysis",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                }
+                for index in range(1, 7)
+            ]
+            + [
+                {
+                    "entry_id": "m_csa:7",
+                    "entry_name": "flavin boundary",
+                    "rank": 7,
+                    "top1_ontology_family": "flavin_redox",
+                    "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+                },
+                {
+                    "entry_id": "m_csa:8",
+                    "entry_name": "heme boundary",
+                    "rank": 8,
+                    "top1_ontology_family": "heme_redox",
+                    "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                },
+            ]
+        }
+
+        export = build_expert_review_export(queue, labels, max_rows=3)
+
+        self.assertEqual(export["metadata"]["dominant_top1_ontology_family"], "hydrolysis")
+        self.assertEqual(export["metadata"]["diversity_added_count"], 2)
+        self.assertEqual(
+            [item["entry_id"] for item in export["review_items"]],
+            ["m_csa:1", "m_csa:2", "m_csa:3", "m_csa:7", "m_csa:8"],
+        )
+        self.assertEqual(
+            export["metadata"]["export_top1_ontology_family_counts"],
+            {"flavin_redox": 1, "heme_redox": 1, "hydrolysis": 3},
+        )
+        gates = check_label_factory_gates(
+            labels,
+            {
+                "metadata": {
+                    "promote_to_silver_count": 1,
+                    "abstention_or_review_count": 1,
+                }
+            },
+            {
+                "metadata": {
+                    "output_label_count": len(labels),
+                    "output_summary": {"by_tier": {"silver": 1}},
+                }
+            },
+            queue,
+            {
+                "metadata": {
+                    "control_count": 1,
+                    "axis_counts": {"ontology_family_boundary": 1},
+                }
+            },
+            export,
+            {"metadata": {"reported_count": 1, "source_guardrails": [{"source": "local_proxy"}]}},
+        )
+        self.assertTrue(gates["gates"]["expert_review_export_diversity_ready"])
+        self.assertEqual(gates["metadata"]["omitted_underrepresented_queue_entry_ids"], [])
+
     def test_label_factory_batch_summary_tracks_review_debt_and_queue_retention(self) -> None:
         acceptance_625 = {
             "metadata": {
@@ -705,6 +797,17 @@ class LabelTests(unittest.TestCase):
                 "all_unlabeled_rows_retained": False,
             }
         }
+        scaling_audit_650 = {
+            "metadata": {
+                "audit_recommendation": "promotion_quality_audit_clean",
+                "accepted_new_debt_count": 0,
+                "unclassified_new_review_debt_entry_ids": [],
+                "omitted_underrepresented_queue_entry_ids": [],
+                "issue_class_counts": {},
+            },
+            "blockers": [],
+            "review_warnings": ["sequence_cluster_artifact_missing_for_near_duplicate_audit"],
+        }
 
         summary = summarize_label_factory_batches(
             [
@@ -715,6 +818,9 @@ class LabelTests(unittest.TestCase):
             active_learning_queues=[
                 ("artifacts/v3_active_learning_review_queue_650.json", retained_queue)
             ],
+            scaling_quality_audits=[
+                ("artifacts/v3_label_scaling_quality_audit_650.json", scaling_audit_650)
+            ],
         )
 
         self.assertEqual(summary["metadata"]["latest_batch"], "650")
@@ -723,6 +829,14 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(summary["metadata"]["total_accepted_new_label_count"], 39)
         self.assertTrue(summary["metadata"]["all_zero_hard_negatives"])
         self.assertTrue(summary["metadata"]["all_active_queues_retain_unlabeled_candidates"])
+        self.assertEqual(summary["metadata"]["scaling_quality_audit_count"], 1)
+        self.assertTrue(summary["metadata"]["latest_scaling_quality_audit_present"])
+        self.assertTrue(summary["metadata"]["all_supplied_scaling_quality_audits_ready"])
+        self.assertEqual(
+            summary["metadata"]["latest_scaling_quality_review_warnings"],
+            ["sequence_cluster_artifact_missing_for_near_duplicate_audit"],
+        )
+        self.assertTrue(summary["rows"][-1]["scaling_quality_ready"])
 
         blocked = summarize_label_factory_batches(
             [("artifacts/v3_label_batch_acceptance_check_650.json", acceptance_650)],
@@ -735,6 +849,68 @@ class LabelTests(unittest.TestCase):
             blocked["blockers"][0]["blockers"],
             ["unlabeled_rows_omitted_from_active_queue"],
         )
+
+        blocked_audit = summarize_label_factory_batches(
+            [("artifacts/v3_label_batch_acceptance_check_650.json", acceptance_650)],
+            scaling_quality_audits=[
+                (
+                    "artifacts/v3_label_scaling_quality_audit_650.json",
+                    {
+                        "metadata": {
+                            "audit_recommendation": "do_not_promote_until_quality_repair",
+                            "accepted_new_debt_count": 1,
+                            "unclassified_new_review_debt_entry_ids": [],
+                            "omitted_underrepresented_queue_entry_ids": [],
+                            "issue_class_counts": {"text_leakage_risk": 1},
+                        },
+                        "blockers": ["accepted_new_labels_have_unresolved_review_debt"],
+                    },
+                )
+            ],
+        )
+        self.assertFalse(blocked_audit["rows"][0]["scaling_quality_ready"])
+        self.assertIn("scaling_quality_audit_not_ready", blocked_audit["blockers"][0]["blockers"])
+
+    def test_label_batch_acceptance_blocks_new_countable_review_gap(self) -> None:
+        baseline = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="Baseline label is already countable.",
+            )
+        ]
+        new_label = MechanismLabel(
+            entry_id="m_csa:2",
+            fingerprint_id="metal_dependent_hydrolase",
+            label_type="seed_fingerprint",
+            confidence="medium",
+            rationale="New label should be blocked by review-gap evidence.",
+        )
+        check = check_label_batch_acceptance(
+            baseline_labels=baseline,
+            review_state_labels=baseline + [new_label],
+            countable_labels=baseline + [new_label],
+            evaluation={"metadata": {"out_of_scope_false_non_abstentions": 0}},
+            hard_negatives={"metadata": {"hard_negative_count": 0, "near_miss_count": 0}},
+            in_scope_failures={"metadata": {"actionable_failure_count": 0}},
+            label_factory_gate={"metadata": {"automation_ready_for_next_label_batch": True}},
+            review_evidence_gaps={
+                "rows": [
+                    {
+                        "entry_id": "m_csa:2",
+                        "decision_action": "mark_needs_more_evidence",
+                        "gap_reasons": ["expected_cofactor_absent_from_structure"],
+                    }
+                ]
+            },
+        )
+
+        self.assertFalse(check["metadata"]["accepted_for_counting"])
+        self.assertEqual(check["metadata"]["accepted_new_label_entry_ids"], ["m_csa:2"])
+        self.assertEqual(check["metadata"]["accepted_review_gap_entry_ids"], ["m_csa:2"])
+        self.assertIn("accepted_labels_have_no_review_evidence_gaps", check["blockers"])
 
     def test_review_debt_summary_prioritizes_cofactor_and_boundary_gaps(self) -> None:
         gaps = {
@@ -899,6 +1075,127 @@ class LabelTests(unittest.TestCase):
         self.assertIn("preview_summary_matches_acceptance", mismatched["blockers"])
         self.assertIn("preview_summary_retains_unlabeled_candidates", mismatched["blockers"])
         self.assertEqual(mismatched["metadata"]["promotion_recommendation"], "do_not_promote")
+
+    def test_label_scaling_quality_audit_blocks_accepted_debt(self) -> None:
+        acceptance = {
+            "metadata": {
+                "method": "label_batch_acceptance_check",
+                "out_of_scope_false_non_abstentions": 0,
+                "actionable_in_scope_failure_count": 0,
+            }
+        }
+        readiness = {"metadata": {"promotion_recommendation": "review_before_promoting"}}
+        review_debt = {
+            "metadata": {
+                "method": "review_debt_summary",
+                "new_review_debt_entry_ids": ["m_csa:650", "m_csa:651"],
+            }
+        }
+        review_gaps = {
+            "metadata": {"method": "review_evidence_gap_analysis"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:650",
+                    "entry_name": "phospholipase A1",
+                    "decision_action": "mark_needs_more_evidence",
+                    "decision_review_status": "needs_expert_review",
+                    "coverage_status": "expected_structure_only",
+                    "gap_reasons": ["target_not_top1", "counterevidence_present"],
+                    "counterevidence_reasons": ["metal_supported_site_for_ser_his_seed"],
+                    "target_fingerprint_id": "ser_his_acid_hydrolase",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_score": 0.61,
+                    "mechanism_text_snippets": ["Ser-His hydrolase text with metal support."],
+                },
+                {
+                    "entry_id": "m_csa:651",
+                    "entry_name": "redox-like accepted control",
+                    "decision_action": "accept_label",
+                    "decision_review_status": "automation_curated",
+                    "coverage_status": "expected_absent_from_structure",
+                    "gap_reasons": [
+                        "top1_below_abstention_threshold",
+                        "expected_cofactor_absent_from_structure",
+                    ],
+                    "counterevidence_reasons": ["absent_flavin_context"],
+                    "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+                    "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+                    "top1_score": 0.25,
+                    "mechanism_text_snippets": [
+                        "Hydrolysis of a glycosidic bond is described without flavin evidence."
+                    ],
+                },
+            ],
+        }
+        queue = {
+            "metadata": {"all_unlabeled_rows_retained": True},
+            "rows": [
+                {"entry_id": "m_csa:650", "top1_ontology_family": "hydrolysis"},
+                {"entry_id": "m_csa:651", "top1_ontology_family": "flavin_redox"},
+            ],
+        }
+        guardrails = {
+            "metadata": {
+                "method": "family_propagation_guardrail_audit",
+                "blocker_counts": {"close_cross_family_top1_top2": 1},
+                "local_proxy_rule": "local proxies cannot promote above bronze",
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:650",
+                    "propagation_blockers": ["target_family_top1_family_mismatch"],
+                }
+            ],
+        }
+        hard_negatives = {"metadata": {"hard_negative_count": 0, "near_miss_count": 0}}
+        decision_batch = {
+            "review_items": [
+                {"entry_id": "m_csa:650", "decision": {"action": "mark_needs_more_evidence"}},
+                {"entry_id": "m_csa:651", "decision": {"action": "accept_label"}},
+            ]
+        }
+        structure_mapping = {
+            "metadata": {"issue_count": 1, "status_counts": {"structure_fetch_failed": 1}},
+            "rows": [{"entry_id": "m_csa:651", "status": "structure_fetch_failed"}],
+        }
+        sequence_clusters = {
+            "clusters": [
+                {
+                    "id": "cluster-a",
+                    "entry_ids": ["m_csa:650", "m_csa:651"],
+                }
+            ]
+        }
+
+        audit = audit_label_scaling_quality(
+            acceptance,
+            readiness,
+            review_debt,
+            review_gaps,
+            queue,
+            guardrails,
+            hard_negatives,
+            decision_batch=decision_batch,
+            structure_mapping=structure_mapping,
+            sequence_clusters=sequence_clusters,
+            batch_id="test_preview",
+        )
+
+        self.assertEqual(audit["metadata"]["audit_recommendation"], "do_not_promote_until_quality_repair")
+        self.assertEqual(audit["metadata"]["accepted_new_debt_entry_ids"], ["m_csa:651"])
+        self.assertEqual(audit["metadata"]["accepted_clean_label_entry_ids"], [])
+        self.assertIn("accepted_new_labels_without_review_debt", audit["blockers"])
+        self.assertIn("cofactor_family_ambiguity", audit["metadata"]["issue_class_counts"])
+        self.assertEqual(audit["metadata"]["near_duplicate_audit_status"], "observed")
+        self.assertIn("candidate_entries_share_sequence_clusters", audit["review_warnings"])
+        failure_modes = {row["id"]: row for row in audit["failure_modes"]}
+        self.assertEqual(failure_modes["sibling_mechanism_confusion"]["issue_count"], 1)
+        self.assertEqual(failure_modes["text_leakage_without_mechanistic_evidence"]["entry_ids"], ["m_csa:651"])
+        self.assertEqual(failure_modes["sequence_family_leakage"]["status"], "guardrail_active")
+        self.assertEqual(
+            failure_modes["overcounted_paralogs_or_near_duplicates"]["entry_ids"],
+            ["m_csa:650", "m_csa:651"],
+        )
 
     def test_provisional_review_batch_imports_without_expert_claim(self) -> None:
         labels = [
@@ -1363,6 +1660,63 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(decision["action"], "mark_needs_more_evidence")
         self.assertEqual(decision["label_type"], "out_of_scope")
         self.assertIn("non-abstaining boundary candidate", decision["rationale"])
+
+    def test_provisional_batch_defers_below_floor_evidence_limited_negative(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:653",
+                    "entry_name": "diphosphate phosphotransferase",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:653",
+                        "entry_name": "diphosphate phosphotransferase",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_score": 0.3642,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "absent",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "A phosphate transfer mechanism is stabilized by Mg2+."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+                {
+                    "entry_id": "m_csa:666",
+                    "entry_name": "clean out-of-scope control",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:666",
+                        "entry_name": "clean out-of-scope control",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+                        "top1_score": 0.2,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "not_required",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "No current seed fingerprint has enough retrieval support."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                },
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decisions = {
+            item["entry_id"]: item["decision"] for item in batch["review_items"]
+        }
+
+        self.assertEqual(decisions["m_csa:653"]["action"], "mark_needs_more_evidence")
+        self.assertEqual(decisions["m_csa:653"]["label_type"], "out_of_scope")
+        self.assertIn("not a clean countable out-of-scope negative", decisions["m_csa:653"]["rationale"])
+        self.assertEqual(decisions["m_csa:666"]["action"], "accept_label")
+        self.assertEqual(decisions["m_csa:666"]["label_type"], "out_of_scope")
 
     def test_provisional_batch_defers_ser_his_boundary_without_triad_text(self) -> None:
         review = {

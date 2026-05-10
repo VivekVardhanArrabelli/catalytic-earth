@@ -198,13 +198,16 @@ PYTHONPATH=src python -m catalytic_earth.cli check-label-batch-acceptance \
   --hard-negatives artifacts/v3_hard_negative_controls_650.json \
   --in-scope-failures artifacts/v3_in_scope_failure_analysis_650.json \
   --label-factory-gate artifacts/v3_label_factory_gate_check_650.json \
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_650.json \
   --out artifacts/v3_label_batch_acceptance_check_650.json
 ```
 
 The baseline count should be the countable registry size before the batch. For
 the accepted 650 batch this was `599 -> 618`, recorded in
 `artifacts/v3_label_batch_acceptance_check_650.json`. The prior accepted 625
-batch was `579 -> 599`.
+batch was `579 -> 599`. Supplying `--review-evidence-gaps` adds the
+counting-boundary guardrail that rejects any newly countable label still
+appearing in the review-gap artifact.
 
 Accepted batches are also aggregated by
 `artifacts/v3_label_factory_batch_summary.json`:
@@ -237,6 +240,22 @@ PYTHONPATH=src python -m catalytic_earth.cli summarize-label-factory-batches \
 
 The summary records accepted-batch counts, review debt, hard-negative status,
 factory gate status, and unlabeled queue retention across all accepted batches.
+For preview batches, also pass `--scaling-quality-audit`; the summary records
+audit readiness, accepted-label review-debt blockers, unclassified new
+review-debt rows, omitted underrepresented queue rows, and non-blocking audit
+warnings before the batch can be treated as promotion-ready.
+
+After the scaling-quality audit below exists, rerun the preview summary with
+the audit attached:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli summarize-label-factory-batches \
+  --acceptance artifacts/v3_label_batch_acceptance_check_675_preview.json \
+  --gate artifacts/v3_label_factory_gate_check_675_preview_batch.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_675_preview_batch.json \
+  --scaling-quality-audit artifacts/v3_label_scaling_quality_audit_675_preview.json \
+  --out artifacts/v3_label_factory_preview_summary_675.json
+```
 
 For unpromoted previews, run a promotion-readiness check before copying the
 preview countable labels into the canonical registry:
@@ -253,6 +272,35 @@ PYTHONPATH=src python -m catalytic_earth.cli check-label-preview-promotion \
 The readiness check requires the preview summary counts to match the acceptance
 artifact and requires explicit unlabeled-candidate queue retention before it can
 report `mechanically_ready`.
+
+The scaling-quality audit checks the failure modes required before promotion:
+ontology scope pressure, sibling mechanism confusion, family propagation across
+boundaries, sequence-family leakage guards, cofactor ambiguity, mixed evidence,
+reaction/substrate mismatches, active-site mapping gaps, hard-negative family
+concentration, active-learning queue chemistry concentration, and text-leakage
+risk.
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality \
+  --batch-id 675_preview \
+  --acceptance artifacts/v3_label_batch_acceptance_check_675_preview.json \
+  --readiness artifacts/v3_label_preview_promotion_readiness_675.json \
+  --review-debt artifacts/v3_review_debt_summary_675_preview.json \
+  --review-evidence-gaps artifacts/v3_review_evidence_gaps_675_preview.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_675_preview_batch.json \
+  --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_675_preview_batch.json \
+  --hard-negatives artifacts/v3_hard_negative_controls_675_preview_batch.json \
+  --decision-batch artifacts/v3_expert_review_decision_batch_675_preview.json \
+  --structure-mapping artifacts/v3_structure_mapping_issues_675.json \
+  --expert-review-export artifacts/v3_expert_review_export_675_preview_post_batch.json \
+  --out artifacts/v3_label_scaling_quality_audit_675_preview.json
+```
+
+When sequence-family or near-duplicate cluster evidence is available, add
+`--sequence-clusters`. Without it, the audit emits a specific
+`sequence_cluster_artifact_missing_for_near_duplicate_audit` warning so the
+paralog/near-duplicate check is not silently skipped before larger propagation
+batches.
 
 Bulk label expansion should proceed only in batches, and each batch must
 regenerate the factory audit, adversarial negatives, active-learning queue,
@@ -272,25 +320,35 @@ Current 650-queue gate state:
   including all 32 unlabeled post-batch candidates.
 - 100 adversarial negative controls are mined.
 - 56 expert-review items are exported from the post-650 review queue.
-- The 500, 525, 550, 575, 600, 625, and 650 decision batches accepted 143 new countable labels
-  beyond the 475-entry source slice. The canonical registry now contains
-  618 bronze automation-curated labels, while the review-state registry keeps
-  pending `needs_expert_review` placeholders separate from the countable
-  benchmark.
+- The 500, 525, 550, 575, 600, 625, and 650 decision batches accepted 143 new
+  countable labels beyond the 475-entry source slice. The canonical registry
+  now contains 618 bronze automation-curated labels, while the review-state
+  registry keeps pending `needs_expert_review` placeholders separate from the
+  countable benchmark.
 - A 675 preview batch is generated and preview-accepted, but it is not promoted
-  to the canonical registry until its decisions are reviewed. Its review-debt
-  summary ranks 61 evidence-gap rows, including 44 `needs_more_evidence`
-  decisions, 37 carried rows, 24 new rows, and full carried/new entry-id lists
-  plus next-action counts by debt status in metadata.
-  `artifacts/v3_label_factory_preview_summary_675.json` records the
-  preview's 18 countable additions, 44 pending review-state rows, 10/10 passing
-  gates, and 0 blocker metrics.
+  to the canonical registry until its decisions are reviewed. The preview was
+  quality-repaired so below-threshold evidence-limited negatives remain
+  review-state only. Its review-debt summary ranks 61 evidence-gap rows,
+  including 61 `needs_more_evidence` decisions, 37 carried rows, 24 new rows,
+  and full carried/new entry-id lists plus next-action counts by debt status in
+  metadata. `artifacts/v3_label_factory_preview_summary_675.json` records 1
+  clean countable addition (`m_csa:666`), 61 pending review-state rows, 11/11
+  passing gates, 1 attached scaling-quality audit with recommendation
+  `review_before_promoting`, and 0 blocker metrics.
 - `artifacts/v3_label_preview_promotion_readiness_675.json` separates
   mechanical acceptance from promotion. It is mechanically ready, but its
   recommendation is `review_before_promoting` because preview review debt rises
   from 53 to 61 rows and pending review rows remain. The readiness metadata
   also copies the new debt entry ids and next-action counts from the preview
   debt summary.
+- `artifacts/v3_label_scaling_quality_audit_675_preview.json` records the
+  failure-mode audit. It has 0 accepted labels with review debt and 0 hard
+  negatives. It observes hydrolysis-dominated queue composition, but the
+  diversity-aware review export retains all underrepresented ontology-family
+  rows, so the scaling-quality audit has 0 blockers. It still flags ontology
+  scope pressure, cofactor ambiguity, reaction/substrate mismatches, active-site
+  mapping gaps, and the missing sequence-cluster artifact needed for a stronger
+  paralog/near-duplicate audit as promotion-review issues.
 
 ## Automation Lock
 

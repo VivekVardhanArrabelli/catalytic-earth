@@ -66,17 +66,26 @@ pending, and the countable subset has 0 hard negatives, 0 near misses,
 The post-650 active-learning queue retains all 32 unlabeled candidate rows;
 the factory gate fails if a capped queue omits any unlabeled row. The batch
 summary reports 7/7 accepted batches with 0 blockers.
-The 675 preview would add 18 countable labels and leave 44 review-state
+The 675 preview initially exposed accepted out-of-scope rows that still carried
+review debt, so the provisional decision rule now defers below-threshold,
+evidence-limited negatives instead of counting them. The regenerated preview
+would add 1 clean countable label (`m_csa:666`) and leave 61 review-state
 decisions pending while preserving 0 hard negatives, 0 near misses,
 0 out-of-scope false non-abstentions, and 0 actionable in-scope failures. Its
-review-debt summary ranks 61 evidence-gap rows before any promotion decision.
-Its preview summary records 10/10 passing gates and 0 blockers, but promotion
-should still inspect the review-debt artifact first. The promotion-readiness
-check is mechanically ready but recommends `review_before_promoting` because
-review debt increases by 8 rows and needs-more-evidence decisions increase by
-7 rows relative to the accepted 650 state; the preview debt metadata lists all
-37 carried and 24 new debt entry ids. See
-`work/label_preview_675_notes.md` before any promotion.
+review-debt summary still ranks 61 evidence-gap rows before any promotion
+decision. Its preview summary records 11/11 passing gates, 1 attached
+scaling-quality audit, and 0 blockers, and
+`artifacts/v3_label_scaling_quality_audit_675_preview.json` records 0 accepted
+labels with review debt, and the diversity-aware review export retains all
+underrepresented ontology-family rows despite hydrolysis-dominated queue
+composition. The scaling-quality audit now also warns when no sequence-cluster
+artifact is attached for a stronger paralog/near-duplicate audit. Promotion
+should inspect the review-debt and scaling-quality artifacts first. The
+promotion-readiness check is mechanically ready but recommends
+`review_before_promoting` because review debt increases by 8 rows and
+needs-more-evidence decisions increase by 24 rows relative to the accepted 650
+state; the preview debt metadata lists all 37 carried and 24 new debt entry ids.
+See `work/label_preview_675_notes.md` before any promotion.
 
 Do not derive that countable subset by filtering the review-state registry: the
 review-state artifact intentionally marks several baseline boundary controls as

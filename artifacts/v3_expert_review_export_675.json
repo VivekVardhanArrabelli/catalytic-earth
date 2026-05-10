@@ -22,10 +22,26 @@
         "gold"
       ]
     },
-    "exported_count": 81,
+    "diversity_added_count": 14,
+    "diversity_inclusion_rule": "when one top1 ontology family covers at least 60% of the active queue, append all rows from non-dominant families so expert review does not collapse to one chemistry",
+    "dominant_top1_ontology_family": "hydrolysis",
+    "dominant_top1_ontology_family_fraction": 0.8452,
+    "export_top1_ontology_family_counts": {
+      "flavin_redox": 15,
+      "heme_redox": 10,
+      "hydrolysis": 61,
+      "plp_chemistry": 1
+    },
+    "exported_count": 87,
     "max_ranked_rows": 25,
     "method": "expert_review_export",
     "provenance_rule": "imports append review provenance and preserve existing evidence.sources",
+    "queue_top1_ontology_family_counts": {
+      "flavin_redox": 15,
+      "heme_redox": 10,
+      "hydrolysis": 142,
+      "plp_chemistry": 1
+    },
     "unlabeled_inclusion_rule": "append all unlabeled queue rows even when ranked below the export cutoff"
   },
   "review_items": [
@@ -1783,6 +1799,222 @@
       "rank": 27
     },
     {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:162",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Deoxyribonuclease (pyrimidine dimer) uses N-terminal nucleophilic glycosylase/lyase chemistry outside the current hydrolase and redox seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:162",
+      "entry_name": "deoxyribonuclease (pyrimidine dimer)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:162",
+        "entry_name": "deoxyribonuclease (pyrimidine dimer)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "<p>The glycosylase step proceeds by an SN2 mechanism. The neutral N-terminus(Thr2) performs a nucleophilic attack on ribose C1' of the 5'-thymine of the dimer. The susceptibility of C1' to nucleophilic attack is enhanced by a hydrogen bond between Glu23 and O4' of the ribose. The transition state..."
+        ],
+        "rank": 44,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.3743,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.7469,
+          "hard_negative_value": 1.1,
+          "impact": 0.568,
+          "novelty": 0.2917,
+          "uncertainty": 1.1677
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.399,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3348
+      },
+      "rank": 44
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:613",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 48,
+              "rationale": "deoxyribose-phosphate aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.3985, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "deoxyribose-phosphate aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.3985, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:613",
+      "entry_name": "deoxyribose-phosphate aldolase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:613",
+        "entry_name": "deoxyribose-phosphate aldolase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The reaction proceeds via initial nucleophilic attack by Lys 167 on acetaldehyde to form a Schiff base intermediate; deprotonation of the Lys 167 by Asp 102 facilitates this. Subsequent deprotonation of the C2 of the acetaldehyde by a Lys 201 activated water molecule (Wat29) results in the produc..."
+        ],
+        "rank": 48,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.3574,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.7909,
+          "hard_negative_value": 1.096,
+          "impact": 0.4908,
+          "novelty": 0.2917,
+          "uncertainty": 1.188
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.3985,
+        "top2_fingerprint_id": "plp_dependent_enzyme",
+        "top2_score": 0.3423
+      },
+      "rank": 48
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:230",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Porphobilinogen synthase uses lysine Schiff-base carbon-carbon condensation chemistry outside the current hydrolase and cofactor-redox seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:230",
+      "entry_name": "porphobilinogen synthase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:230",
+        "entry_name": "porphobilinogen synthase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Two key lysine residues are located close to one another in the active and play a coordinated role in the mechanism of porphobilinogen synthesis, via formation of two Schiff bases with the two substrates. First P-side ALA binds and forms a Schiff base intermediate between C4 and one active site l..."
+        ],
+        "rank": 56,
+        "readiness_blockers": [
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.2244,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.7496,
+          "hard_negative_value": 1.1,
+          "impact": 0.414,
+          "novelty": 0.2917,
+          "uncertainty": 1.1691
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.399,
+        "top2_fingerprint_id": "plp_dependent_enzyme",
+        "top2_score": 0.3353
+      },
+      "rank": 56
+    },
+    {
       "current_label": null,
       "decision": {
         "action": "no_decision",
@@ -1833,6 +2065,515 @@
         "top2_score": 0.329
       },
       "rank": 58
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:276",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Nitrate reductase uses molybdenum-centered oxygen-atom transfer with iron-sulfur electron transfer, outside the current local flavin and heme seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:276",
+      "entry_name": "nitrate reductase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "fe_s_single_electron_partial_flavin_context",
+          "molybdenum_center_without_flavin_context"
+        ],
+        "current_label_type": "out_of_scope",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:276",
+        "entry_name": "nitrate reductase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The nitrate oxyanion attacks the molybdenum coordination in a displacement reaction, eliminating the Cys152 sulfur which results in the formation of a disulfide bridge within the coordination sphere. The nitrate ligand undergoes heterolytic dissociation from molybdenum to form the nitrite product..."
+        ],
+        "rank": 62,
+        "readiness_blockers": [],
+        "recommended_action": "hold_bronze_boundary_review",
+        "review_score": 5.151,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.5429,
+          "hard_negative_value": 1.1048,
+          "impact": 0.6452,
+          "novelty": 0.2917,
+          "uncertainty": 1.0664
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.3996,
+        "top2_fingerprint_id": "ser_his_acid_hydrolase",
+        "top2_score": 0.2983
+      },
+      "rank": 62
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_monooxygenase",
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:669",
+      "entry_name": "carbamate kinase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:669",
+        "entry_name": "carbamate kinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Phosphoryl transfer from ATP to carbamate or from CP to ADP is proposed to occur via an in-line displacement reaction. The drawn out mechanism shows the formation of carbamate and ATP but the reverse reaction has the carbonyl on carbamate attacking the electrophilic phosphorous on gamma-phosphate..."
+        ],
+        "rank": 120,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 4.5121,
+        "review_scores": {
+          "evidence_conflict": 0.975,
+          "family_boundary_value": 0.8245,
+          "hard_negative_value": 0.0224,
+          "impact": 0.6006,
+          "novelty": 1.4481,
+          "uncertainty": 0.6415
+        },
+        "top1_fingerprint_id": "flavin_monooxygenase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2643,
+        "top2_fingerprint_id": "plp_dependent_enzyme",
+        "top2_score": 0.2142
+      },
+      "rank": 120
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:108",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "seed_fingerprint",
+        "rationale": "2,4-dienoyl-CoA reductase performs flavin-mediated electron transfer from NADPH toward the substrate, matching the flavin dehydrogenase or reductase seed.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "seed_fingerprint",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:108",
+      "entry_name": "2,4-dienoyl-CoA reductase (NADPH)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "fe_s_single_electron_partial_flavin_context"
+        ],
+        "current_label_type": "seed_fingerprint",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:108",
+        "entry_name": "2,4-dienoyl-CoA reductase (NADPH)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The reaction is initiated by hydride transfer from NADPH to FAD, which in turn transfers electrons, one at a time, to FMN via the 4Fe-4S cluster. The fully reduced FMN provides a hydride ion to the C5 atom of substrate, and Tyr and His are proposed to form a catalytic dyad that protonates the C4..."
+        ],
+        "rank": 125,
+        "readiness_blockers": [],
+        "recommended_action": "abstain_pending_evidence",
+        "review_score": 4.3772,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.8052,
+          "hard_negative_value": 0.0,
+          "impact": 0.6593,
+          "novelty": 0.2917,
+          "uncertainty": 1.121
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.4422,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3886
+      },
+      "rank": 125
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_monooxygenase",
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:675",
+      "entry_name": "glutaconyl-CoA decarboxylase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:675",
+        "entry_name": "glutaconyl-CoA decarboxylase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "In the first stage of the reaction, the decarboxylation of glutaconyl coA occurs spontaneously, forming an enolate intermediate stabilised by an oxyanion hole composed of Gly 194 and Val 151. Protonation of this enolate occurs with biotin acting as the general acid, resulting in the crotonyl CoA..."
+        ],
+        "rank": 134,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 3.9354,
+        "review_scores": {
+          "evidence_conflict": 0.975,
+          "family_boundary_value": 0.6655,
+          "hard_negative_value": 0.0,
+          "impact": 0.5063,
+          "novelty": 1.4481,
+          "uncertainty": 0.3405
+        },
+        "top1_fingerprint_id": "flavin_monooxygenase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2119,
+        "top2_fingerprint_id": "plp_dependent_enzyme",
+        "top2_score": 0.1329
+      },
+      "rank": 134
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:655",
+      "entry_name": "DNA-3-methyladenine glycosylase I",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:655",
+        "entry_name": "DNA-3-methyladenine glycosylase I",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The reaction proceeds via hydrolysis of the glycosidic bond by nucleophilic attack on C1' of the ribose sugar, freeing the base from the sugar phosphate backbone. As the breaking of the glycosidic bond results in a negative charge developing on the N9 of the base, the transition state is overall..."
+        ],
+        "rank": 136,
+        "readiness_blockers": [],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 3.8708,
+        "review_scores": {
+          "evidence_conflict": 0.675,
+          "family_boundary_value": 1.0703,
+          "hard_negative_value": 0.0,
+          "impact": 0.4335,
+          "novelty": 1.0917,
+          "uncertainty": 0.6003
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2247,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.2193
+      },
+      "rank": 136
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:353",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": "seed_fingerprint",
+        "rationale": "UDP-N-acetylenolpyruvylglucosamine reductase uses NADPH/FAD hydride transfer and substrate reduction, matching the broad flavin dehydrogenase or reductase seed.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_monooxygenase",
+        "label_type": "seed_fingerprint",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:353",
+      "entry_name": "UDP-N-acetylenolpyruvylglucosamine reductase (MurB)",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "current_label_type": "seed_fingerprint",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:353",
+        "entry_name": "UDP-N-acetylenolpyruvylglucosamine reductase (MurB)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The mechanism proceeds as follows: NADPH binds to the enzyme and hydride transfer of the 4-pro -S hydrogen of NADPH to N5 of an enzyme-bound flavin (FAD cofactor). Release of NADP+ is followed by the binding of UDP-GlcNAc to the enzyme active site. Hydride transfer from the reduced flavin to C3 o..."
+        ],
+        "rank": 141,
+        "readiness_blockers": [],
+        "recommended_action": "abstain_pending_evidence",
+        "review_score": 3.4528,
+        "review_scores": {
+          "evidence_conflict": 1.5,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.4522,
+          "novelty": 0.6481,
+          "uncertainty": 0.8525
+        },
+        "top1_fingerprint_id": "flavin_monooxygenase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2814,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.281
+      },
+      "rank": 141
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_monooxygenase",
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:677",
+        "entry_name": "pyridoxal 5'-phosphate synthase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The reaction involves the oxidation of PNP to PLP using the cofactor FMN. It proceeds through hydride transfer from the 4'Carbon to the N7 of FMN, with steric strain from Arg 197 acting to place the substrate and cofactor in correct orientation for this to occur. This forms an electron deficient..."
+        ],
+        "rank": 143,
+        "readiness_blockers": [
+          "geometry_status_not_ok",
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 3.2153,
+        "review_scores": {
+          "evidence_conflict": 0.975,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.2811,
+          "novelty": 1.4481,
+          "uncertainty": 0.5111
+        },
+        "top1_fingerprint_id": "flavin_monooxygenase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2296,
+        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top2_score": 0.185
+      },
+      "rank": 143
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "absent",
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:664",
+        "entry_name": "dihydroneopterin aldolase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The reaction is an aldol cleavage reaction similar to those catalysed by aldolases. Deprotonation of the 7C OH by Lys 100, assisted by Glu 22, results in an unstable enamine intermediate which collapses to form the products glycoaldehyde and deprotonated 6 hydroxymethyl dho which picks up a proto..."
+        ],
+        "rank": 144,
+        "readiness_blockers": [
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 3.0153,
+        "review_scores": {
+          "evidence_conflict": 0.675,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0704,
+          "impact": 0.3715,
+          "novelty": 1.0917,
+          "uncertainty": 0.8067
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2703,
+        "top2_fingerprint_id": "flavin_monooxygenase",
+        "top2_score": 0.2702
+      },
+      "rank": 144
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "silver"
+      },
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "queue_context": {
+        "abstain_threshold": 0.4115,
+        "cofactor_evidence_level": "ligand_supported",
+        "counterevidence_reasons": [],
+        "current_label_type": null,
+        "current_tier": null,
+        "entry_id": "m_csa:567",
+        "entry_name": "glucose oxidase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Crystallographic investigations have shown the flavin containing active site to be buried in a deep pocket. The binding of glucose to the free enzyme results in the expulsion of a water molecule and a proton from the active site. <p>In the reduction half reaction, simultaneous hydride and proton..."
+        ],
+        "rank": 167,
+        "readiness_blockers": [
+          "geometry_status_not_ok",
+          "fewer_than_three_resolved_residues"
+        ],
+        "recommended_action": "expert_label_decision_needed",
+        "review_score": 1.5231,
+        "review_scores": {
+          "evidence_conflict": 0.0,
+          "family_boundary_value": 0.0,
+          "hard_negative_value": 0.0,
+          "impact": 0.4314,
+          "novelty": 1.0917,
+          "uncertainty": 0.0
+        },
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.685,
+        "top2_fingerprint_id": "heme_peroxidase_oxidase",
+        "top2_score": 0.3052
+      },
+      "rank": 167
     },
     {
       "current_label": null,
@@ -2515,56 +3256,6 @@
         "action": "no_decision",
         "confidence": "medium",
         "evidence_score": null,
-        "fingerprint_id": "flavin_monooxygenase",
-        "label_type": null,
-        "rationale": null,
-        "review_status": "expert_reviewed",
-        "reviewer": null,
-        "tier": "silver"
-      },
-      "entry_id": "m_csa:669",
-      "entry_name": "carbamate kinase",
-      "queue_context": {
-        "abstain_threshold": 0.4115,
-        "cofactor_evidence_level": "absent",
-        "counterevidence_reasons": [
-          "absent_flavin_context",
-          "nad_only_or_nonflavin_context"
-        ],
-        "current_label_type": null,
-        "current_tier": null,
-        "entry_id": "m_csa:669",
-        "entry_name": "carbamate kinase",
-        "label_state": "unlabeled",
-        "mechanism_text_snippets": [
-          "Phosphoryl transfer from ATP to carbamate or from CP to ADP is proposed to occur via an in-line displacement reaction. The drawn out mechanism shows the formation of carbamate and ATP but the reverse reaction has the carbonyl on carbamate attacking the electrophilic phosphorous on gamma-phosphate..."
-        ],
-        "rank": 120,
-        "readiness_blockers": [],
-        "recommended_action": "expert_label_decision_needed",
-        "review_score": 4.5121,
-        "review_scores": {
-          "evidence_conflict": 0.975,
-          "family_boundary_value": 0.8245,
-          "hard_negative_value": 0.0224,
-          "impact": 0.6006,
-          "novelty": 1.4481,
-          "uncertainty": 0.6415
-        },
-        "top1_fingerprint_id": "flavin_monooxygenase",
-        "top1_ontology_family": "flavin_redox",
-        "top1_score": 0.2643,
-        "top2_fingerprint_id": "plp_dependent_enzyme",
-        "top2_score": 0.2142
-      },
-      "rank": 120
-    },
-    {
-      "current_label": null,
-      "decision": {
-        "action": "no_decision",
-        "confidence": "medium",
-        "evidence_score": null,
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "rationale": null,
@@ -3096,56 +3787,6 @@
         "action": "no_decision",
         "confidence": "medium",
         "evidence_score": null,
-        "fingerprint_id": "flavin_monooxygenase",
-        "label_type": null,
-        "rationale": null,
-        "review_status": "expert_reviewed",
-        "reviewer": null,
-        "tier": "silver"
-      },
-      "entry_id": "m_csa:675",
-      "entry_name": "glutaconyl-CoA decarboxylase",
-      "queue_context": {
-        "abstain_threshold": 0.4115,
-        "cofactor_evidence_level": "absent",
-        "counterevidence_reasons": [
-          "absent_flavin_context",
-          "nad_only_or_nonflavin_context"
-        ],
-        "current_label_type": null,
-        "current_tier": null,
-        "entry_id": "m_csa:675",
-        "entry_name": "glutaconyl-CoA decarboxylase",
-        "label_state": "unlabeled",
-        "mechanism_text_snippets": [
-          "In the first stage of the reaction, the decarboxylation of glutaconyl coA occurs spontaneously, forming an enolate intermediate stabilised by an oxyanion hole composed of Gly 194 and Val 151. Protonation of this enolate occurs with biotin acting as the general acid, resulting in the crotonyl CoA..."
-        ],
-        "rank": 134,
-        "readiness_blockers": [],
-        "recommended_action": "expert_label_decision_needed",
-        "review_score": 3.9354,
-        "review_scores": {
-          "evidence_conflict": 0.975,
-          "family_boundary_value": 0.6655,
-          "hard_negative_value": 0.0,
-          "impact": 0.5063,
-          "novelty": 1.4481,
-          "uncertainty": 0.3405
-        },
-        "top1_fingerprint_id": "flavin_monooxygenase",
-        "top1_ontology_family": "flavin_redox",
-        "top1_score": 0.2119,
-        "top2_fingerprint_id": "plp_dependent_enzyme",
-        "top2_score": 0.1329
-      },
-      "rank": 134
-    },
-    {
-      "current_label": null,
-      "decision": {
-        "action": "no_decision",
-        "confidence": "medium",
-        "evidence_score": null,
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": null,
         "rationale": null,
@@ -3188,55 +3829,6 @@
         "top2_score": 0.2573
       },
       "rank": 135
-    },
-    {
-      "current_label": null,
-      "decision": {
-        "action": "no_decision",
-        "confidence": "medium",
-        "evidence_score": null,
-        "fingerprint_id": "flavin_dehydrogenase_reductase",
-        "label_type": null,
-        "rationale": null,
-        "review_status": "expert_reviewed",
-        "reviewer": null,
-        "tier": "silver"
-      },
-      "entry_id": "m_csa:655",
-      "entry_name": "DNA-3-methyladenine glycosylase I",
-      "queue_context": {
-        "abstain_threshold": 0.4115,
-        "cofactor_evidence_level": "absent",
-        "counterevidence_reasons": [
-          "absent_flavin_context"
-        ],
-        "current_label_type": null,
-        "current_tier": null,
-        "entry_id": "m_csa:655",
-        "entry_name": "DNA-3-methyladenine glycosylase I",
-        "label_state": "unlabeled",
-        "mechanism_text_snippets": [
-          "The reaction proceeds via hydrolysis of the glycosidic bond by nucleophilic attack on C1' of the ribose sugar, freeing the base from the sugar phosphate backbone. As the breaking of the glycosidic bond results in a negative charge developing on the N9 of the base, the transition state is overall..."
-        ],
-        "rank": 136,
-        "readiness_blockers": [],
-        "recommended_action": "expert_label_decision_needed",
-        "review_score": 3.8708,
-        "review_scores": {
-          "evidence_conflict": 0.675,
-          "family_boundary_value": 1.0703,
-          "hard_negative_value": 0.0,
-          "impact": 0.4335,
-          "novelty": 1.0917,
-          "uncertainty": 0.6003
-        },
-        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-        "top1_ontology_family": "flavin_redox",
-        "top1_score": 0.2247,
-        "top2_fingerprint_id": "heme_peroxidase_oxidase",
-        "top2_score": 0.2193
-      },
-      "rank": 136
     },
     {
       "current_label": null,
@@ -3333,110 +3925,6 @@
         "top2_score": 0.1779
       },
       "rank": 142
-    },
-    {
-      "current_label": null,
-      "decision": {
-        "action": "no_decision",
-        "confidence": "medium",
-        "evidence_score": null,
-        "fingerprint_id": "flavin_monooxygenase",
-        "label_type": null,
-        "rationale": null,
-        "review_status": "expert_reviewed",
-        "reviewer": null,
-        "tier": "silver"
-      },
-      "entry_id": "m_csa:677",
-      "entry_name": "pyridoxal 5'-phosphate synthase",
-      "queue_context": {
-        "abstain_threshold": 0.4115,
-        "cofactor_evidence_level": "absent",
-        "counterevidence_reasons": [
-          "absent_flavin_context",
-          "nad_only_or_nonflavin_context"
-        ],
-        "current_label_type": null,
-        "current_tier": null,
-        "entry_id": "m_csa:677",
-        "entry_name": "pyridoxal 5'-phosphate synthase",
-        "label_state": "unlabeled",
-        "mechanism_text_snippets": [
-          "The reaction involves the oxidation of PNP to PLP using the cofactor FMN. It proceeds through hydride transfer from the 4'Carbon to the N7 of FMN, with steric strain from Arg 197 acting to place the substrate and cofactor in correct orientation for this to occur. This forms an electron deficient..."
-        ],
-        "rank": 143,
-        "readiness_blockers": [
-          "geometry_status_not_ok",
-          "fewer_than_three_resolved_residues"
-        ],
-        "recommended_action": "expert_label_decision_needed",
-        "review_score": 3.2153,
-        "review_scores": {
-          "evidence_conflict": 0.975,
-          "family_boundary_value": 0.0,
-          "hard_negative_value": 0.0,
-          "impact": 0.2811,
-          "novelty": 1.4481,
-          "uncertainty": 0.5111
-        },
-        "top1_fingerprint_id": "flavin_monooxygenase",
-        "top1_ontology_family": "flavin_redox",
-        "top1_score": 0.2296,
-        "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-        "top2_score": 0.185
-      },
-      "rank": 143
-    },
-    {
-      "current_label": null,
-      "decision": {
-        "action": "no_decision",
-        "confidence": "medium",
-        "evidence_score": null,
-        "fingerprint_id": "flavin_dehydrogenase_reductase",
-        "label_type": null,
-        "rationale": null,
-        "review_status": "expert_reviewed",
-        "reviewer": null,
-        "tier": "silver"
-      },
-      "entry_id": "m_csa:664",
-      "entry_name": "dihydroneopterin aldolase",
-      "queue_context": {
-        "abstain_threshold": 0.4115,
-        "cofactor_evidence_level": "absent",
-        "counterevidence_reasons": [
-          "absent_flavin_context"
-        ],
-        "current_label_type": null,
-        "current_tier": null,
-        "entry_id": "m_csa:664",
-        "entry_name": "dihydroneopterin aldolase",
-        "label_state": "unlabeled",
-        "mechanism_text_snippets": [
-          "The reaction is an aldol cleavage reaction similar to those catalysed by aldolases. Deprotonation of the 7C OH by Lys 100, assisted by Glu 22, results in an unstable enamine intermediate which collapses to form the products glycoaldehyde and deprotonated 6 hydroxymethyl dho which picks up a proto..."
-        ],
-        "rank": 144,
-        "readiness_blockers": [
-          "fewer_than_three_resolved_residues"
-        ],
-        "recommended_action": "expert_label_decision_needed",
-        "review_score": 3.0153,
-        "review_scores": {
-          "evidence_conflict": 0.675,
-          "family_boundary_value": 0.0,
-          "hard_negative_value": 0.0704,
-          "impact": 0.3715,
-          "novelty": 1.0917,
-          "uncertainty": 0.8067
-        },
-        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-        "top1_ontology_family": "flavin_redox",
-        "top1_score": 0.2703,
-        "top2_fingerprint_id": "flavin_monooxygenase",
-        "top2_score": 0.2702
-      },
-      "rank": 144
     },
     {
       "current_label": null,
@@ -4380,56 +4868,6 @@
         "top2_score": 0.264
       },
       "rank": 165
-    },
-    {
-      "current_label": null,
-      "decision": {
-        "action": "no_decision",
-        "confidence": "medium",
-        "evidence_score": null,
-        "fingerprint_id": "flavin_dehydrogenase_reductase",
-        "label_type": null,
-        "rationale": null,
-        "review_status": "expert_reviewed",
-        "reviewer": null,
-        "tier": "silver"
-      },
-      "entry_id": "m_csa:567",
-      "entry_name": "glucose oxidase",
-      "queue_context": {
-        "abstain_threshold": 0.4115,
-        "cofactor_evidence_level": "ligand_supported",
-        "counterevidence_reasons": [],
-        "current_label_type": null,
-        "current_tier": null,
-        "entry_id": "m_csa:567",
-        "entry_name": "glucose oxidase",
-        "label_state": "unlabeled",
-        "mechanism_text_snippets": [
-          "Crystallographic investigations have shown the flavin containing active site to be buried in a deep pocket. The binding of glucose to the free enzyme results in the expulsion of a water molecule and a proton from the active site. <p>In the reduction half reaction, simultaneous hydride and proton..."
-        ],
-        "rank": 167,
-        "readiness_blockers": [
-          "geometry_status_not_ok",
-          "fewer_than_three_resolved_residues"
-        ],
-        "recommended_action": "expert_label_decision_needed",
-        "review_score": 1.5231,
-        "review_scores": {
-          "evidence_conflict": 0.0,
-          "family_boundary_value": 0.0,
-          "hard_negative_value": 0.0,
-          "impact": 0.4314,
-          "novelty": 1.0917,
-          "uncertainty": 0.0
-        },
-        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-        "top1_ontology_family": "flavin_redox",
-        "top1_score": 0.685,
-        "top2_fingerprint_id": "heme_peroxidase_oxidase",
-        "top2_score": 0.3052
-      },
-      "rank": 167
     }
   ]
 }

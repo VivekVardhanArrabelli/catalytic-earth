@@ -1,0 +1,1105 @@
+{
+  "blockers": [],
+  "failure_modes": [
+    {
+      "entry_ids": [
+        "m_csa:653",
+        "m_csa:654",
+        "m_csa:655",
+        "m_csa:656",
+        "m_csa:657",
+        "m_csa:658",
+        "m_csa:659",
+        "m_csa:660",
+        "m_csa:661",
+        "m_csa:662",
+        "m_csa:663",
+        "m_csa:664",
+        "m_csa:665",
+        "m_csa:667",
+        "m_csa:668",
+        "m_csa:669",
+        "m_csa:670",
+        "m_csa:671",
+        "m_csa:672",
+        "m_csa:673",
+        "m_csa:674",
+        "m_csa:675",
+        "m_csa:676",
+        "m_csa:677"
+      ],
+      "evidence": {
+        "entry_ids": [
+          "m_csa:653",
+          "m_csa:654",
+          "m_csa:655",
+          "m_csa:656",
+          "m_csa:657",
+          "m_csa:658",
+          "m_csa:659",
+          "m_csa:660",
+          "m_csa:661",
+          "m_csa:662",
+          "m_csa:663",
+          "m_csa:664",
+          "m_csa:665",
+          "m_csa:667",
+          "m_csa:668",
+          "m_csa:669",
+          "m_csa:670",
+          "m_csa:671",
+          "m_csa:672",
+          "m_csa:673",
+          "m_csa:674",
+          "m_csa:675",
+          "m_csa:676",
+          "m_csa:677"
+        ],
+        "issue_class": "ontology_scope_pressure"
+      },
+      "id": "ontology_node_scope_pressure",
+      "issue_count": 24,
+      "status": "observed"
+    },
+    {
+      "entry_ids": [],
+      "evidence": {
+        "entry_ids": [],
+        "issue_class": "sibling_mechanism_confusion"
+      },
+      "id": "sibling_mechanism_confusion",
+      "issue_count": 0,
+      "status": "not_observed_in_new_review_debt"
+    },
+    {
+      "entry_ids": [
+        "m_csa:653",
+        "m_csa:655",
+        "m_csa:658",
+        "m_csa:659",
+        "m_csa:663",
+        "m_csa:670",
+        "m_csa:671",
+        "m_csa:673",
+        "m_csa:676"
+      ],
+      "evidence": {
+        "entry_ids": [
+          "m_csa:653",
+          "m_csa:655",
+          "m_csa:658",
+          "m_csa:659",
+          "m_csa:663",
+          "m_csa:670",
+          "m_csa:671",
+          "m_csa:673",
+          "m_csa:676"
+        ],
+        "guardrail_blocker_counts": {
+          "close_cross_family_top1_top2": 97,
+          "target_family_top1_family_mismatch": 1,
+          "top1_cofactor_absent": 101,
+          "top1_counterevidence_present": 127,
+          "unlabeled_candidate_requires_direct_review": 56
+        },
+        "issue_class": "family_propagation_boundary"
+      },
+      "id": "family_propagation_cross_boundary",
+      "issue_count": 9,
+      "status": "observed"
+    },
+    {
+      "entry_ids": [],
+      "evidence": {
+        "local_proxy_rule": "when UniRef, CATH, or InterPro evidence is unavailable, mechanism text, ligand/cofactor context, and pocket geometry can prioritize review but cannot promote beyond bronze by themselves",
+        "source_guardrails": [
+          {
+            "rule": "Family propagation requires shared mechanism family plus conserved catalytic role signatures; sequence cluster membership alone cannot promote labels above bronze.",
+            "source": "UniRef"
+          },
+          {
+            "rule": "Domain architecture can raise review priority but cannot promote across ontology families without reaction-center agreement.",
+            "source": "CATH"
+          },
+          {
+            "rule": "Family annotations must be treated as weak evidence when mechanism text or cofactor evidence conflicts with the seed fingerprint.",
+            "source": "InterPro"
+          },
+          {
+            "rule": "When UniRef/CATH/InterPro are unavailable, use entry name, M-CSA mechanism text, cofactor ligands, and pocket geometry as auditable local proxies; keep propagated labels bronze until direct evidence promotes them.",
+            "source": "local_proxy"
+          }
+        ]
+      },
+      "id": "sequence_family_leakage",
+      "issue_count": 0,
+      "status": "guardrail_active"
+    },
+    {
+      "entry_ids": [],
+      "evidence": {
+        "audited_entry_ids": [
+          "m_csa:653",
+          "m_csa:654",
+          "m_csa:655",
+          "m_csa:656",
+          "m_csa:657",
+          "m_csa:658",
+          "m_csa:659",
+          "m_csa:660",
+          "m_csa:661",
+          "m_csa:662",
+          "m_csa:663",
+          "m_csa:664",
+          "m_csa:665",
+          "m_csa:666",
+          "m_csa:667",
+          "m_csa:668",
+          "m_csa:669",
+          "m_csa:670",
+          "m_csa:671",
+          "m_csa:672",
+          "m_csa:673",
+          "m_csa:674",
+          "m_csa:675",
+          "m_csa:676",
+          "m_csa:677"
+        ],
+        "entry_to_sequence_cluster": {},
+        "overrepresented_sequence_cluster_counts": {},
+        "reason": "current local artifacts do not include sequence-cluster membership; keep this as an explicit audit gap before larger-scale propagation",
+        "sequence_cluster_missing_entry_count": null
+      },
+      "id": "overcounted_paralogs_or_near_duplicates",
+      "issue_count": 0,
+      "status": "not_assessed_no_sequence_cluster_artifact"
+    },
+    {
+      "entry_ids": [
+        "m_csa:653",
+        "m_csa:654",
+        "m_csa:655",
+        "m_csa:656",
+        "m_csa:657",
+        "m_csa:659",
+        "m_csa:662",
+        "m_csa:663",
+        "m_csa:664",
+        "m_csa:667",
+        "m_csa:669",
+        "m_csa:670",
+        "m_csa:671",
+        "m_csa:672",
+        "m_csa:673",
+        "m_csa:674",
+        "m_csa:675",
+        "m_csa:676",
+        "m_csa:677"
+      ],
+      "evidence": {
+        "entry_ids": [
+          "m_csa:653",
+          "m_csa:654",
+          "m_csa:655",
+          "m_csa:656",
+          "m_csa:657",
+          "m_csa:659",
+          "m_csa:662",
+          "m_csa:663",
+          "m_csa:664",
+          "m_csa:667",
+          "m_csa:669",
+          "m_csa:670",
+          "m_csa:671",
+          "m_csa:672",
+          "m_csa:673",
+          "m_csa:674",
+          "m_csa:675",
+          "m_csa:676",
+          "m_csa:677"
+        ],
+        "issue_class": "cofactor_family_ambiguity"
+      },
+      "id": "cofactor_family_ambiguity",
+      "issue_count": 19,
+      "status": "observed"
+    },
+    {
+      "entry_ids": [
+        "m_csa:677"
+      ],
+      "evidence": {
+        "entry_ids": [
+          "m_csa:677"
+        ],
+        "issue_class": "multi_domain_or_mixed_evidence"
+      },
+      "id": "multi_domain_or_mixed_evidence",
+      "issue_count": 1,
+      "status": "observed"
+    },
+    {
+      "entry_ids": [
+        "m_csa:653",
+        "m_csa:654",
+        "m_csa:655",
+        "m_csa:659",
+        "m_csa:660",
+        "m_csa:661",
+        "m_csa:662",
+        "m_csa:663",
+        "m_csa:665",
+        "m_csa:670",
+        "m_csa:671",
+        "m_csa:672",
+        "m_csa:673",
+        "m_csa:676"
+      ],
+      "evidence": {
+        "entry_ids": [
+          "m_csa:653",
+          "m_csa:654",
+          "m_csa:655",
+          "m_csa:659",
+          "m_csa:660",
+          "m_csa:661",
+          "m_csa:662",
+          "m_csa:663",
+          "m_csa:665",
+          "m_csa:670",
+          "m_csa:671",
+          "m_csa:672",
+          "m_csa:673",
+          "m_csa:676"
+        ],
+        "issue_class": "reaction_or_substrate_class_mismatch"
+      },
+      "id": "reaction_direction_or_substrate_class_mismatch",
+      "issue_count": 14,
+      "status": "observed"
+    },
+    {
+      "entry_ids": [
+        "m_csa:654",
+        "m_csa:659",
+        "m_csa:662",
+        "m_csa:664",
+        "m_csa:667",
+        "m_csa:677"
+      ],
+      "evidence": {
+        "entry_ids": [
+          "m_csa:654",
+          "m_csa:659",
+          "m_csa:662",
+          "m_csa:664",
+          "m_csa:667",
+          "m_csa:677"
+        ],
+        "issue_class": "active_site_mapping_gap",
+        "structure_mapping_issue_count": 19,
+        "structure_mapping_status_counts": {
+          "insufficient_resolved_residues": 16,
+          "no_structure_positions": 2,
+          "structure_fetch_failed": 1
+        }
+      },
+      "id": "active_site_residue_remapping_error",
+      "issue_count": 6,
+      "status": "observed"
+    },
+    {
+      "entry_ids": [],
+      "evidence": {
+        "entry_ids": [],
+        "issue_class": "structure_sequence_id_mismatch",
+        "structure_mapping_issue_count": 19,
+        "structure_mapping_status_counts": {
+          "insufficient_resolved_residues": 16,
+          "no_structure_positions": 2,
+          "structure_fetch_failed": 1
+        }
+      },
+      "id": "structure_sequence_id_mismatch",
+      "issue_count": 0,
+      "status": "not_observed_in_new_review_debt"
+    },
+    {
+      "entry_ids": [],
+      "evidence": {
+        "hard_negative_top1_fingerprint_counts": {},
+        "near_miss_top1_fingerprint_counts": {}
+      },
+      "id": "hard_negatives_concentrated_in_one_family",
+      "issue_count": 0,
+      "status": "not_observed_zero_hard_negatives"
+    },
+    {
+      "entry_ids": [],
+      "evidence": {
+        "active_queue_top1_ontology_family_counts": {
+          "flavin_redox": 15,
+          "heme_redox": 10,
+          "hydrolysis": 141,
+          "plp_chemistry": 1
+        },
+        "dominant_family": "hydrolysis",
+        "dominant_family_fraction": 0.8443,
+        "omitted_underrepresented_queue_entry_ids": [],
+        "underrepresented_queue_entry_count": 26
+      },
+      "id": "review_queue_collapse_to_one_chemistry",
+      "issue_count": 141,
+      "status": "observed"
+    },
+    {
+      "entry_ids": [],
+      "evidence": {
+        "entry_ids": [],
+        "issue_class": "text_leakage_risk"
+      },
+      "id": "text_leakage_without_mechanistic_evidence",
+      "issue_count": 0,
+      "status": "not_observed_in_new_review_debt"
+    }
+  ],
+  "gates": {
+    "accepted_new_labels_without_review_debt": true,
+    "active_queue_retains_unlabeled_candidates": true,
+    "family_guardrails_present": true,
+    "new_review_debt_rows_classified": true,
+    "review_export_retains_underrepresented_families": true,
+    "zero_actionable_in_scope_failures": true,
+    "zero_false_non_abstentions": true,
+    "zero_hard_negatives": true,
+    "zero_near_misses": true
+  },
+  "metadata": {
+    "accepted_clean_label_count": 1,
+    "accepted_clean_label_entry_ids": [
+      "m_csa:666"
+    ],
+    "accepted_new_debt_count": 0,
+    "accepted_new_debt_entry_ids": [],
+    "audit_recommendation": "review_before_promoting",
+    "audit_rule": "before promoting a preview batch, classify new ontology, family-propagation, cofactor, mapping, queue-composition, hard-negative, and text-leakage failure modes; accepted labels with unresolved review debt are not promotion-ready",
+    "batch_id": "675_preview",
+    "issue_class_counts": {
+      "active_site_mapping_gap": 6,
+      "cofactor_family_ambiguity": 19,
+      "family_propagation_boundary": 9,
+      "multi_domain_or_mixed_evidence": 1,
+      "ontology_scope_pressure": 24,
+      "reaction_or_substrate_class_mismatch": 14
+    },
+    "method": "label_scaling_quality_audit",
+    "near_duplicate_audit_status": "not_assessed_no_sequence_cluster_artifact",
+    "near_duplicate_entry_ids": [],
+    "new_review_debt_count": 24,
+    "new_review_debt_entry_ids": [
+      "m_csa:653",
+      "m_csa:654",
+      "m_csa:655",
+      "m_csa:656",
+      "m_csa:657",
+      "m_csa:658",
+      "m_csa:659",
+      "m_csa:660",
+      "m_csa:661",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:664",
+      "m_csa:665",
+      "m_csa:667",
+      "m_csa:668",
+      "m_csa:669",
+      "m_csa:670",
+      "m_csa:671",
+      "m_csa:672",
+      "m_csa:673",
+      "m_csa:674",
+      "m_csa:675",
+      "m_csa:676",
+      "m_csa:677"
+    ],
+    "omitted_underrepresented_queue_entry_ids": [],
+    "readiness_recommendation": "review_before_promoting",
+    "sequence_cluster_missing_entry_count": null,
+    "source_acceptance_method": "label_batch_acceptance_check",
+    "unclassified_new_review_debt_entry_ids": [],
+    "underrepresented_queue_entry_count": 26
+  },
+  "review_warnings": [
+    "active_learning_queue_concentrated_by_top1_family",
+    "new_review_debt_has_scaling_failure_modes",
+    "structure_mapping_issues_present",
+    "sequence_cluster_artifact_missing_for_near_duplicate_audit"
+  ],
+  "rows": [
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:653",
+      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "family_propagation_boundary",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3642
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "active_site_mapping_gap",
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3581
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:655",
+      "entry_name": "DNA-3-methyladenine glycosylase I",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_cofactor_absent",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "family_propagation_boundary",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.2247
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_structure_only",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:656",
+      "entry_name": "adenosinetriphosphatase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3503
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_structure_only",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "family_propagation_blockers": [
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5822
+    },
+    {
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "coverage_status": "not_required",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:658",
+      "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "family_propagation_boundary",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.311
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_cofactor_absent",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "active_site_mapping_gap",
+        "cofactor_family_ambiguity",
+        "family_propagation_boundary",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3294
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:660",
+      "entry_name": "superoxide reductase",
+      "family_propagation_blockers": [
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "issue_classes": [
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5981
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:661",
+      "entry_name": "arylsulfatase",
+      "family_propagation_blockers": [
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "issue_classes": [
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5818
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "active_site_mapping_gap",
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3263
+    },
+    {
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "coverage_status": "expected_structure_only",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_cofactor_absent",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "family_propagation_boundary",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.2601
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "active_site_mapping_gap",
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.2703
+    },
+    {
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "coverage_status": "all_expected_local",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:665",
+      "entry_name": "Formate-dependent phosphoribosylglycinamide formyltransferase",
+      "family_propagation_blockers": [
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3914
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:667",
+      "entry_name": "alpha-N-arabinofuranosidase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "active_site_mapping_gap",
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3767
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "all_expected_local",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:668",
+      "entry_name": "leishmanolysin",
+      "family_propagation_blockers": [
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "review_marked_needs_more_evidence"
+      ],
+      "issue_classes": [
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.5942
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:669",
+      "entry_name": "carbamate kinase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2643
+    },
+    {
+      "counterevidence_reasons": [
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "family_propagation_boundary",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3474
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "family_propagation_boundary",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3621
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_structure_only",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:672",
+      "entry_name": "protocatechuate 4,5-dioxygenase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3592
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:673",
+      "entry_name": "cellobiose dehydrogenase (acceptor)",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "family_propagation_boundary",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3702
+    },
+    {
+      "counterevidence_reasons": [],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:674",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.3718
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:675",
+      "entry_name": "glutaconyl-CoA decarboxylase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2119
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "coverage_status": "expected_absent_from_structure",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:676",
+      "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
+      "family_propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_cofactor_absent",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "cofactor_family_ambiguity",
+        "family_propagation_boundary",
+        "ontology_scope_pressure",
+        "reaction_or_substrate_class_mismatch"
+      ],
+      "structure_mapping_status": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.3517
+    },
+    {
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "coverage_status": "expected_structure_only",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "family_propagation_blockers": [
+        "top1_cofactor_absent",
+        "top1_counterevidence_present",
+        "unlabeled_candidate_requires_direct_review"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "issue_classes": [
+        "active_site_mapping_gap",
+        "cofactor_family_ambiguity",
+        "multi_domain_or_mixed_evidence",
+        "ontology_scope_pressure"
+      ],
+      "structure_mapping_status": "insufficient_resolved_residues",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_score": 0.2296
+    }
+  ]
+}

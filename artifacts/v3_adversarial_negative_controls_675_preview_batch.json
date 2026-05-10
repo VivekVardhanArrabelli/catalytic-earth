@@ -2,13 +2,13 @@
   "metadata": {
     "abstain_threshold": 0.4115,
     "axis_counts": {
-      "cofactor_mimic": 82,
-      "counterevidence_stress": 99,
+      "cofactor_mimic": 81,
+      "counterevidence_stress": 98,
       "mechanistic_coherence_mimic": 95,
-      "ontology_family_boundary": 50,
+      "ontology_family_boundary": 51,
       "threshold_boundary": 76
     },
-    "candidate_count": 483,
+    "candidate_count": 466,
     "control_count": 100,
     "max_rows": 100,
     "method": "adversarial_negative_control_mining",
@@ -8428,96 +8428,6 @@
     },
     {
       "abstain_threshold": 0.4115,
-      "adversarial_score": 2.738,
-      "cofactor_evidence_level": "ligand_supported",
-      "component_scores": {
-        "cofactor_context_score": 1.0,
-        "compactness_score": 0.69,
-        "counterevidence_penalty": 0.68,
-        "counterevidence_penalty_details": [
-          {
-            "penalty": 0.68,
-            "reason": "nucleotide_transfer_ligand_context"
-          }
-        ],
-        "counterevidence_reasons": [
-          "nucleotide_transfer_ligand_context"
-        ],
-        "mechanistic_coherence_score": 1.0,
-        "residue_match_fraction": 0.6667,
-        "role_match_fraction": 0.3333,
-        "substrate_pocket_score": 0.18
-      },
-      "context": {
-        "cofactor_families": [
-          "metal_ion"
-        ],
-        "entry_name": "Formate-dependent phosphoribosylglycinamide formyltransferase",
-        "ligand_codes": [
-          "ANP",
-          "GAR",
-          "MG"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The reaction proceeds via initial nucleophilic attack by the formate substrate on ATP, forming a pentavalent phosphate transition state, stabilised by Mg2+, Ser 160 and Gly 162 at the active site. This releases ADP and the formyl phosphate intermediate that characterises this reaction mechanism a..."
-        ],
-        "nearby_residue_count": 70,
-        "pdb_id": "1EZ1",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1286,
-          "charge_balance": 0.0286,
-          "hydrophobic_fraction": 0.3571,
-          "mean_min_distance_to_active_site": 5.2457,
-          "negative_fraction": 0.1143,
-          "polar_fraction": 0.2286,
-          "positive_fraction": 0.1429,
-          "sulfur_fraction": 0.0286
-        },
-        "residue_codes": [
-          "GLU",
-          "GLU",
-          "ARG",
-          "ASP",
-          "THR",
-          "SER",
-          "GLY"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_ligand_codes": [
-          "ANP",
-          "GAR",
-          "MG",
-          "MPO",
-          "NA",
-          "ACT"
-        ]
-      },
-      "control_axes": [
-        "cofactor_mimic",
-        "counterevidence_stress",
-        "mechanistic_coherence_mimic",
-        "threshold_boundary"
-      ],
-      "counterevidence_reasons": [
-        "nucleotide_transfer_ligand_context"
-      ],
-      "entry_id": "m_csa:665",
-      "entry_name": "Formate-dependent phosphoribosylglycinamide formyltransferase",
-      "label_rationale": "Formate-dependent phosphoribosylglycinamide formyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3914, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
-      "rank": 98,
-      "score_gap_to_abstain_threshold": 0.0201,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.3914,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.2661
-    },
-    {
-      "abstain_threshold": 0.4115,
       "adversarial_score": 2.7272,
       "cofactor_evidence_level": "not_required",
       "component_scores": {
@@ -8588,7 +8498,7 @@
       "entry_id": "m_csa:91",
       "entry_name": "pyrimidine-nucleoside phosphorylase",
       "label_rationale": "Pyrimidine-nucleoside phosphorylase performs phosphorolysis rather than the current hydrolysis seed mechanisms.",
-      "rank": 99,
+      "rank": 98,
       "score_gap_to_abstain_threshold": 0.0166,
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis",
@@ -8658,7 +8568,7 @@
       "entry_id": "m_csa:613",
       "entry_name": "deoxyribose-phosphate aldolase",
       "label_rationale": "deoxyribose-phosphate aldolase is provisionally outside the current seed fingerprints. Top retrieval flavin_dehydrogenase_reductase scored 0.3985, below the 0.4115 floor. Counterevidence: absent_flavin_context.",
-      "rank": 100,
+      "rank": 99,
       "score_gap_to_abstain_threshold": 0.013,
       "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top1_ontology_family": "flavin_redox",
@@ -8666,6 +8576,75 @@
       "top2_fingerprint_id": "plp_dependent_enzyme",
       "top2_ontology_family": "plp_chemistry",
       "top2_score": 0.3423
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "adversarial_score": 2.7184,
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.2,
+        "compactness_score": 0.9822,
+        "counterevidence_penalty": 1.0,
+        "counterevidence_penalty_details": [],
+        "counterevidence_reasons": [],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.0,
+        "substrate_pocket_score": 0.2535
+      },
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "phosphoribosylaminoimidazolecarboxamide formyltransferase",
+        "ligand_codes": [
+          "AMZ"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The cofactor which supplies the formyl group is N10-formyl-tetrahydrofolate (10-f-THF). During the reaction nucleophilic attack by the amino group of AICAR, facilitated by deprotonation by His 267, forms a tetrahedral intermediate, stabilised by Lys 266 and Asn 431. This collapses following proto..."
+        ],
+        "nearby_residue_count": 43,
+        "pdb_id": "1P4R",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1628,
+          "charge_balance": 0.0465,
+          "hydrophobic_fraction": 0.2558,
+          "mean_min_distance_to_active_site": 5.3902,
+          "negative_fraction": 0.0698,
+          "polar_fraction": 0.3953,
+          "positive_fraction": 0.1163,
+          "sulfur_fraction": 0.0698
+        },
+        "residue_codes": [
+          "LYS",
+          "HIS",
+          "HIS",
+          "ASN"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "AMZ",
+          "K",
+          "354",
+          "XMP"
+        ]
+      },
+      "control_axes": [
+        "mechanistic_coherence_mimic",
+        "ontology_family_boundary",
+        "threshold_boundary"
+      ],
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:646",
+      "entry_name": "phosphoribosylaminoimidazolecarboxamide formyltransferase",
+      "label_rationale": "phosphoribosylaminoimidazolecarboxamide formyltransferase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3859, below the 0.4115 floor.",
+      "rank": 100,
+      "score_gap_to_abstain_threshold": 0.0256,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3859,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3542
     }
   ]
 }
