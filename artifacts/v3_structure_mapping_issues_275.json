@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "geometry_entry_count": 274,
+    "issue_count": 3,
+    "label_type_counts": {
+      "out_of_scope": 3
+    },
+    "labeled_issue_count": 3,
+    "method": "structure_mapping_issue_analysis",
+    "missing_expected_code_counts": {},
+    "observed_code_at_missing_position_counts": {},
+    "status_counts": {
+      "insufficient_resolved_residues": 3
+    }
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:105",
+      "entry_name": "aldehyde dehydrogenase (FAD-independent)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The general reaction is attack of hydroxide on the aldehyde, while the terminal aldehyde hydride is transferred to the sulfido ligand of Mo. The mechanism proceeds as follows: <ol> <li>In the resting enzyme, moldybdenum is Mo(VI) and coordinated to molybdopterin and water, with oxo and sulfido li..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1VLB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:137",
+      "entry_name": "deacetoxycephalosporin-C synthase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "There are two half reactions that occur in the enzyme which are independent in as much as they can be uncoupled under certain conditions. In the oxidative half reaction the Fe (II) centre binds to dioxygen, acting as a nucleophile thus becoming oxidised to Fe (III). This creates a peroxide radica..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1UNB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:193",
+      "entry_name": "precorrin-8X methylmutase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "CobH is one of a few known enzymes that catalyse pericyclic reactions. His 43 protonates the nitrogen of the pyrrolenine C ring of precorrin-8x, which triggers a suprafacial [1,5]-sigmatropic rearrangement; the methyl group passes from C-11 to C-12 in a single concerted step, with the double bond..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1F2V",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    }
+  ]
+}

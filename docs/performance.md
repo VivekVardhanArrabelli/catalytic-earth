@@ -9,9 +9,9 @@ The V2/V3 scaffold should measure local runtime instead of relying on intuition.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli perf-suite \
-  --graph artifacts/v1_graph_225.json \
-  --geometry artifacts/v3_geometry_features_225.json \
-  --retrieval artifacts/v3_geometry_retrieval_225.json \
+  --graph artifacts/v1_graph_275.json \
+  --geometry artifacts/v3_geometry_features_275.json \
+  --retrieval artifacts/v3_geometry_retrieval_275.json \
   --iterations 5 \
   --out artifacts/perf_report.json
 ```
@@ -34,21 +34,21 @@ The suite currently measures:
 - auditing retrieval quality by seed fingerprint family
 - summarizing non-OK structure mappings and missing-residue diagnostics
 
-Latest 5-iteration mean timings on the current 225-entry local artifacts, using
-calibrated threshold `0.4145` for label evaluation:
+Latest 5-iteration mean timings on the current 275-entry local artifacts, using
+calibrated threshold `0.4115` for label evaluation:
 
-- load V1 graph: 31.686 ms
-- build V2 benchmark: 3.045 ms
-- run geometry retrieval: 70.038 ms
-- evaluate geometry labels: 0.274 ms
-- sweep abstention thresholds: 98.516 ms
-- analyze geometry score margins: 0.393 ms
-- build hard negative controls: 0.821 ms
-- analyze in-scope failures: 0.52 ms
-- analyze cofactor coverage: 0.55 ms
-- analyze cofactor abstention policy: 275.475 ms
-- analyze seed-family performance: 0.783 ms
-- analyze structure mapping issues: 0.027 ms
+- load V1 graph: 35.346 ms
+- build V2 benchmark: 3.909 ms
+- run geometry retrieval: 107.88 ms
+- evaluate geometry labels: 0.373 ms
+- sweep abstention thresholds: 139.265 ms
+- analyze geometry score margins: 0.444 ms
+- build hard negative controls: 0.963 ms
+- analyze in-scope failures: 0.559 ms
+- analyze cofactor coverage: 0.622 ms
+- analyze cofactor abstention policy: 345.878 ms
+- analyze seed-family performance: 0.846 ms
+- analyze structure mapping issues: 0.031 ms
 
 ## Boundary
 

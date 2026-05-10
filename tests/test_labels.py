@@ -32,7 +32,7 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 225)
+        self.assertEqual(len(labels), 275)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
@@ -76,6 +76,9 @@ class LabelTests(unittest.TestCase):
                 },
                 {
                     "entry_id": "m_csa:2",
+                    "entry_name": "out-of-scope example",
+                    "mechanism_text_count": 1,
+                    "mechanism_text_snippets": ["Out-of-scope mechanism sentence."],
                     "top_fingerprints": [
                         {"fingerprint_id": "ser_his_acid_hydrolase", "score": 0.2}
                     ],
@@ -88,6 +91,9 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(evaluation["metadata"]["in_scope_retention_rate"], 1.0)
         self.assertEqual(evaluation["metadata"]["out_of_scope_abstention_rate"], 1.0)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions"], 0)
+        out_scope_row = next(row for row in evaluation["rows"] if row["entry_id"] == "m_csa:2")
+        self.assertEqual(out_scope_row["context"]["entry_name"], "out-of-scope example")
+        self.assertEqual(out_scope_row["context"]["mechanism_text_count"], 1)
 
         sweep = sweep_abstention_thresholds(retrieval, labels, thresholds=[0.0, 0.7, 1.0])
         self.assertEqual(sweep["metadata"]["threshold_count"], 3)
@@ -138,6 +144,10 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(margins["limiting_in_scope_rows"][0]["entry_id"], "m_csa:1")
         self.assertEqual(margins["limiting_correct_in_scope_rows"][0]["entry_id"], "m_csa:1")
         self.assertEqual(margins["limiting_out_of_scope_rows"][0]["entry_id"], "m_csa:2")
+        self.assertEqual(
+            margins["limiting_out_of_scope_rows"][0]["context"]["entry_name"],
+            "out-of-scope example",
+        )
 
         controls = build_hard_negative_controls(retrieval, labels)
         self.assertEqual(controls["metadata"]["hard_negative_count"], 0)
@@ -192,6 +202,11 @@ class LabelTests(unittest.TestCase):
                     },
                     {
                         "entry_id": "m_csa:3",
+                        "entry_name": "candidate enzyme",
+                        "mechanism_text_count": 1,
+                        "mechanism_text_snippets": [
+                            "Candidate mechanism text for curator review."
+                        ],
                         "pdb_id": "1XYZ",
                         "status": "ok",
                         "resolved_residue_count": 3,
@@ -220,8 +235,19 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(expansion["metadata"]["ready_for_label_review_count"], 1)
         self.assertEqual(expansion["metadata"]["candidate_group_count"], 1)
         self.assertEqual(expansion["rows"][0]["entry_id"], "m_csa:3")
+        self.assertEqual(expansion["rows"][0]["entry_name"], "candidate enzyme")
+        self.assertEqual(expansion["rows"][0]["mechanism_text_count"], 1)
+        self.assertEqual(
+            expansion["rows"][0]["mechanism_text_snippets"],
+            ["Candidate mechanism text for curator review."],
+        )
         self.assertEqual(expansion["rows"][0]["readiness_blockers"], [])
         self.assertEqual(expansion["groups"][0]["ready_entry_ids"], ["m_csa:3"])
+        self.assertEqual(expansion["groups"][0]["ready_entries"][0]["entry_id"], "m_csa:3")
+        self.assertEqual(
+            expansion["groups"][0]["ready_entries"][0]["entry_name"],
+            "candidate enzyme",
+        )
 
         mapping_issues = analyze_structure_mapping_issues(
             {
@@ -229,8 +255,11 @@ class LabelTests(unittest.TestCase):
                     {"entry_id": "m_csa:1", "status": "ok"},
                     {
                         "entry_id": "m_csa:2",
+                        "entry_name": "partial mapping enzyme",
                         "pdb_id": "2XYZ",
                         "status": "partial",
+                        "mechanism_text_count": 1,
+                        "mechanism_text_snippets": ["Mechanism context for mapping triage."],
                         "resolved_residue_count": 1,
                         "missing_positions": 2,
                         "missing_position_details": [
@@ -263,6 +292,12 @@ class LabelTests(unittest.TestCase):
             1,
         )
         self.assertEqual(mapping_issues["rows"][0]["entry_id"], "m_csa:2")
+        self.assertEqual(mapping_issues["rows"][0]["entry_name"], "partial mapping enzyme")
+        self.assertEqual(mapping_issues["rows"][0]["mechanism_text_count"], 1)
+        self.assertEqual(
+            mapping_issues["rows"][0]["mechanism_text_snippets"],
+            ["Mechanism context for mapping triage."],
+        )
 
     def test_analyze_seed_family_performance(self) -> None:
         labels = [
@@ -518,6 +553,11 @@ class LabelTests(unittest.TestCase):
                 },
                 {
                     "entry_id": "m_csa:2",
+                    "entry_name": "missed flavin enzyme",
+                    "mechanism_text_count": 1,
+                    "mechanism_text_snippets": [
+                        "The flavin accepts a hydride before product release."
+                    ],
                     "ligand_context": {
                         "structure_ligand_codes": ["FAD"],
                         "structure_cofactor_families": ["flavin"],
@@ -571,6 +611,12 @@ class LabelTests(unittest.TestCase):
             "expected_structure_only",
         )
         self.assertEqual(analysis["rows"][0]["target_expected_cofactor_families"], ["flavin"])
+        self.assertEqual(analysis["rows"][0]["context"]["entry_name"], "missed flavin enzyme")
+        self.assertEqual(analysis["rows"][0]["context"]["mechanism_text_count"], 1)
+        self.assertIn(
+            "hydride",
+            analysis["rows"][0]["context"]["mechanism_text_snippets"][0],
+        )
         self.assertEqual(analysis["rows"][0]["context"]["structure_ligand_codes"], ["FAD"])
         self.assertEqual(
             analysis["rows"][0]["context"]["structure_cofactor_families"], ["flavin"]
@@ -635,6 +681,9 @@ class LabelTests(unittest.TestCase):
                 },
                 {
                     "entry_id": "m_csa:2",
+                    "entry_name": "flavin structure-only enzyme",
+                    "mechanism_text_count": 1,
+                    "mechanism_text_snippets": ["Flavin context is present but distal."],
                     "ligand_context": {
                         "cofactor_families": [],
                         "structure_cofactor_families": ["flavin"],
@@ -708,6 +757,8 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(flavin_row["coverage_status"], "expected_structure_only")
         self.assertEqual(flavin_row["nearest_expected_ligand_distance_angstrom"], 14.5)
         self.assertEqual(flavin_row["matching_structure_ligands"][0]["code"], "FAD")
+        self.assertEqual(flavin_row["context"]["entry_name"], "flavin structure-only enzyme")
+        self.assertIn("distal", flavin_row["context"]["mechanism_text_snippets"][0])
         self.assertTrue(flavin_row["abstained"])
 
     def test_analyze_cofactor_abstention_policy(self) -> None:

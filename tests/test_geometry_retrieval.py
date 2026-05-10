@@ -750,6 +750,184 @@ class GeometryRetrievalTests(unittest.TestCase):
             ],
         )
 
+    def test_role_inferred_metal_hydrolase_penalizes_structure_only_manganese_decarboxylase(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {
+                    "code": "ARG",
+                    "roles": ["electrostatic stabiliser", "hydrogen bond donor"],
+                },
+                {"code": "GLU", "roles": ["metal ligand", "proton donor"]},
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "GLU", "roles": ["metal ligand"]},
+            ],
+            cofactor_evidence="role_inferred",
+            ligand_context={
+                "ligand_codes": [],
+                "cofactor_families": [],
+                "structure_ligand_codes": ["MN", "TRS"],
+                "structure_cofactor_families": ["metal_ion"],
+            },
+            substrate_pocket_score_value=0.2,
+        )
+        self.assertEqual(assessment["penalty"], 0.68)
+        self.assertIn(
+            "structure_only_manganese_decarboxylase_context",
+            assessment["reasons"],
+        )
+
+    def test_metal_hydrolase_penalizes_nonheme_biopterin_hydroxylase_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "SER", "roles": ["hydrogen bond donor"]},
+                {"code": "GLU", "roles": ["metal ligand"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={
+                "ligand_codes": ["FE"],
+                "cofactor_families": ["metal_ion"],
+                "structure_ligand_codes": ["FE", "HBI"],
+                "structure_cofactor_families": ["metal_ion"],
+            },
+            substrate_pocket_score_value=0.14,
+            pocket_context={
+                "descriptors": {
+                    "aromatic_fraction": 0.28,
+                    "positive_fraction": 0.04,
+                }
+            },
+        )
+        self.assertEqual(assessment["penalty"], 0.64)
+        self.assertIn("nonheme_iron_biopterin_hydroxylase_context", assessment["reasons"])
+
+    def test_metal_hydrolase_penalizes_prenyl_carbocation_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "ASP", "roles": ["metal ligand"]},
+                {"code": "ASP", "roles": ["metal ligand"]},
+                {"code": "LYS", "roles": ["electrostatic stabiliser"]},
+            ],
+            cofactor_evidence="role_inferred",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "The diphosphate product remains associated while a carbocation "
+                "intermediate reacts with isopentenyl diphosphate."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.58)
+        self.assertIn("nonhydrolytic_prenyl_carbocation_text_context", assessment["reasons"])
+
+    def test_metal_hydrolase_penalizes_nad_redox_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "CYS", "roles": ["metal ligand"]},
+                {"code": "HIS", "roles": ["metal ligand", "proton relay"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["ZN", "NAD"], "cofactor_families": ["metal_ion", "nad"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "The alcohol substrate is oxidised by hydride transfer to NAD+."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.62)
+        self.assertIn("metal_bound_nad_redox_text_context", assessment["reasons"])
+
+    def test_metal_hydrolase_penalizes_nonhydrolytic_isomerase_lyase_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "ASP", "roles": ["metal ligand"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["MG"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "The cycloisomerase reaction proceeds through an enolate and "
+                "finishes with epimerisation of the bound substrate."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.62)
+        self.assertIn("nonhydrolytic_isomerase_lyase_text_context", assessment["reasons"])
+
+    def test_ser_his_hydrolase_penalizes_phosphoryl_transfer_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "ser_his_acid_hydrolase"},
+            residues=[
+                {"code": "SER", "roles": ["hydrogen bond donor"]},
+                {"code": "HIS", "roles": ["proton acceptor"]},
+                {"code": "ASP", "roles": ["nucleophile"]},
+            ],
+            cofactor_evidence="not_required",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "The phosphomutase mechanism forms a phosphorylated aspartate "
+                "and proceeds through a metaphosphate intermediate."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.55)
+        self.assertIn("ser_his_phosphoryl_transfer_text_context", assessment["reasons"])
+
+    def test_cobalamin_radical_penalizes_methylcobalamin_transfer_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "cobalamin_radical_rearrangement"},
+            residues=[{"code": "HIS", "roles": ["metal ligand"]}],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["COB"], "cofactor_families": ["cobalamin"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "Methylcobalamin catalysis uses heterolytic Co-C bond cleavage for methyl transfer."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.45)
+        self.assertIn(
+            "methylcobalamin_transfer_not_radical_rearrangement",
+            assessment["reasons"],
+        )
+
+    def test_metal_hydrolase_penalizes_methylcobalamin_transfer_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[{"code": "HIS", "roles": ["metal ligand"]}],
+            cofactor_evidence="role_inferred",
+            ligand_context={"ligand_codes": ["COB"], "cofactor_families": ["cobalamin"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "Methylcobalamin catalysis uses heterolytic Co-C bond cleavage for methyl transfer."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.45)
+        self.assertIn(
+            "methylcobalamin_transfer_context_for_metal_hydrolase",
+            assessment["reasons"],
+        )
+
+    def test_plp_seed_penalizes_non_plp_aldolase_schiff_base_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "plp_dependent_enzyme"},
+            residues=[
+                {"code": "LYS", "roles": ["covalently attached", "electron pair donor"]},
+                {"code": "ASP", "roles": ["hydrogen bond acceptor"]},
+            ],
+            cofactor_evidence="absent",
+            ligand_context={"ligand_codes": ["13P"], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+        )
+        self.assertEqual(assessment["penalty"], 0.60)
+        self.assertIn("non_plp_aldolase_schiff_base_context", assessment["reasons"])
+        self.assertIn("absent_plp_ligand_with_lysine_anchor", assessment["reasons"])
+
     def test_metal_hydrolase_penalizes_heme_only_context(self) -> None:
         self.assertLess(
             counterevidence_penalty(
@@ -999,8 +1177,13 @@ class GeometryRetrievalTests(unittest.TestCase):
                 "entries": [
                     {
                         "entry_id": "m_csa:1",
+                        "entry_name": "Example hydrolase",
                         "pdb_id": "1ABC",
                         "status": "ok",
+                        "mechanism_text_count": 1,
+                        "mechanism_text_snippets": [
+                            "Serine attacks the substrate in a compact acid-base site."
+                        ],
                         "resolved_residue_count": 3,
                         "residues": [
                             {"code": "SER", "roles": ["nucleophile"]},
@@ -1027,6 +1210,12 @@ class GeometryRetrievalTests(unittest.TestCase):
             top_k=3,
         )
         self.assertEqual(artifact["metadata"]["entry_count"], 1)
+        self.assertEqual(artifact["results"][0]["entry_name"], "Example hydrolase")
+        self.assertEqual(artifact["results"][0]["mechanism_text_count"], 1)
+        self.assertEqual(
+            artifact["results"][0]["mechanism_text_snippets"],
+            ["Serine attacks the substrate in a compact acid-base site."],
+        )
         self.assertEqual(len(artifact["results"][0]["top_fingerprints"]), 3)
 
 

@@ -1,0 +1,12 @@
+{
+  "groups": [],
+  "metadata": {
+    "candidate_count": 0,
+    "candidate_group_count": 0,
+    "geometry_entry_count": 274,
+    "labeled_entry_count": 275,
+    "method": "geometry_label_expansion_candidate_selection",
+    "ready_for_label_review_count": 0
+  },
+  "rows": []
+}

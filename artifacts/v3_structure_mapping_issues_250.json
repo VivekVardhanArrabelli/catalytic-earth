@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "geometry_entry_count": 249,
+    "issue_count": 3,
+    "label_type_counts": {
+      "out_of_scope": 3
+    },
+    "labeled_issue_count": 3,
+    "method": "structure_mapping_issue_analysis",
+    "missing_expected_code_counts": {},
+    "observed_code_at_missing_position_counts": {},
+    "status_counts": {
+      "insufficient_resolved_residues": 3
+    }
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:105",
+      "entry_name": null,
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1VLB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:137",
+      "entry_name": null,
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1UNB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:193",
+      "entry_name": null,
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1F2V",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    }
+  ]
+}

@@ -9,6 +9,7 @@
   "results": [
     {
       "entry_id": "m_csa:1",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -18,6 +19,8 @@
         "structure_ligand_codes": [],
         "structure_ligands": []
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1B73",
       "pocket_context": {
         "descriptors": {
@@ -750,6 +753,7 @@
     },
     {
       "entry_id": "m_csa:2",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -777,6 +781,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1BTL",
       "pocket_context": {
         "descriptors": {
@@ -1488,6 +1494,7 @@
     },
     {
       "entry_id": "m_csa:3",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "flavin"
@@ -1519,6 +1526,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1D4A",
       "pocket_context": {
         "descriptors": {
@@ -2069,6 +2078,7 @@
     },
     {
       "entry_id": "m_csa:4",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -2100,6 +2110,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1NIA",
       "pocket_context": {
         "descriptors": {
@@ -3174,6 +3186,7 @@
     },
     {
       "entry_id": "m_csa:5",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -3222,6 +3235,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1WHS",
       "pocket_context": {
         "descriptors": {
@@ -3930,6 +3945,7 @@
     },
     {
       "entry_id": "m_csa:6",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "flavin"
@@ -3996,6 +4012,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "2GH5",
       "pocket_context": {
         "descriptors": {
@@ -4777,6 +4795,7 @@
     },
     {
       "entry_id": "m_csa:7",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -4822,6 +4841,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "5ICD",
       "pocket_context": {
         "descriptors": {
@@ -5462,6 +5483,7 @@
     },
     {
       "entry_id": "m_csa:8",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -5521,6 +5543,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1QPR",
       "pocket_context": {
         "descriptors": {
@@ -6181,6 +6205,7 @@
     },
     {
       "entry_id": "m_csa:9",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion",
@@ -6305,6 +6330,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "5A1I",
       "pocket_context": {
         "descriptors": {
@@ -7409,6 +7436,7 @@
     },
     {
       "entry_id": "m_csa:10",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -7418,6 +7446,8 @@
         "structure_ligand_codes": [],
         "structure_ligands": []
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1MKB",
       "pocket_context": {
         "descriptors": {
@@ -8065,6 +8095,7 @@
     },
     {
       "entry_id": "m_csa:11",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -8110,6 +8141,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1QUM",
       "pocket_context": {
         "descriptors": {
@@ -9052,6 +9085,7 @@
     },
     {
       "entry_id": "m_csa:12",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -9079,6 +9113,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1OTH",
       "pocket_context": {
         "descriptors": {
@@ -9910,6 +9946,7 @@
     },
     {
       "entry_id": "m_csa:13",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -9937,6 +9974,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "2BBK",
       "pocket_context": {
         "descriptors": {
@@ -10755,6 +10794,7 @@
     },
     {
       "entry_id": "m_csa:14",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -10796,6 +10836,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1VNC",
       "pocket_context": {
         "descriptors": {
@@ -11615,6 +11657,7 @@
     },
     {
       "entry_id": "m_csa:15",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -11653,6 +11696,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1ZNB",
       "pocket_context": {
         "descriptors": {
@@ -12498,6 +12543,7 @@
     },
     {
       "entry_id": "m_csa:16",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -12536,6 +12582,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1BC2",
       "pocket_context": {
         "descriptors": {
@@ -13263,6 +13311,7 @@
     },
     {
       "entry_id": "m_csa:17",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -13304,6 +13353,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1RR6",
       "pocket_context": {
         "descriptors": {
@@ -14118,6 +14169,7 @@
     },
     {
       "entry_id": "m_csa:18",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -14145,6 +14197,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1JDW",
       "pocket_context": {
         "descriptors": {
@@ -14853,6 +14907,7 @@
     },
     {
       "entry_id": "m_csa:19",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -14908,6 +14963,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1DL2",
       "pocket_context": {
         "descriptors": {
@@ -15611,6 +15668,7 @@
     },
     {
       "entry_id": "m_csa:20",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "flavin"
@@ -15678,6 +15736,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1QJD",
       "pocket_context": {
         "descriptors": {
@@ -16507,6 +16567,7 @@
     },
     {
       "entry_id": "m_csa:21",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion",
@@ -16582,6 +16643,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1DO8",
       "pocket_context": {
         "descriptors": {
@@ -17486,6 +17549,7 @@
     },
     {
       "entry_id": "m_csa:22",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -17495,6 +17559,8 @@
         "structure_ligand_codes": [],
         "structure_ligands": []
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1B6B",
       "pocket_context": {
         "descriptors": {
@@ -18177,6 +18243,7 @@
     },
     {
       "entry_id": "m_csa:23",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "sam"
@@ -18215,6 +18282,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1XVA",
       "pocket_context": {
         "descriptors": {
@@ -18953,6 +19022,7 @@
     },
     {
       "entry_id": "m_csa:24",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -19003,6 +19073,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1NZY",
       "pocket_context": {
         "descriptors": {
@@ -19761,6 +19833,7 @@
     },
     {
       "entry_id": "m_csa:25",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -19788,6 +19861,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1NBA",
       "pocket_context": {
         "descriptors": {
@@ -20469,6 +20544,7 @@
     },
     {
       "entry_id": "m_csa:26",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -20478,6 +20554,8 @@
         "structure_ligand_codes": [],
         "structure_ligands": []
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1PTD",
       "pocket_context": {
         "descriptors": {
@@ -21171,6 +21249,7 @@
     },
     {
       "entry_id": "m_csa:27",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -21202,6 +21281,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1AH7",
       "pocket_context": {
         "descriptors": {
@@ -22118,6 +22199,7 @@
     },
     {
       "entry_id": "m_csa:28",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -22170,6 +22252,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1DJX",
       "pocket_context": {
         "descriptors": {
@@ -22869,6 +22953,7 @@
     },
     {
       "entry_id": "m_csa:29",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -22896,6 +22981,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1DJO",
       "pocket_context": {
         "descriptors": {
@@ -23671,6 +23758,7 @@
     },
     {
       "entry_id": "m_csa:30",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -23696,6 +23784,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "2PFL",
       "pocket_context": {
         "descriptors": {
@@ -24300,6 +24390,7 @@
     },
     {
       "entry_id": "m_csa:31",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -24341,6 +24432,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1LCB",
       "pocket_context": {
         "descriptors": {
@@ -25179,6 +25272,7 @@
     },
     {
       "entry_id": "m_csa:32",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -25206,6 +25300,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1QIN",
       "pocket_context": {
         "descriptors": {
@@ -25827,6 +25923,7 @@
     },
     {
       "entry_id": "m_csa:33",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -25845,6 +25942,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1JC5",
       "pocket_context": {
         "descriptors": {
@@ -26523,6 +26622,7 @@
     },
     {
       "entry_id": "m_csa:34",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -26557,6 +26657,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1MPY",
       "pocket_context": {
         "descriptors": {
@@ -27419,6 +27521,7 @@
     },
     {
       "entry_id": "m_csa:35",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -27471,6 +27574,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "2PHK",
       "pocket_context": {
         "descriptors": {
@@ -28039,6 +28144,7 @@
     },
     {
       "entry_id": "m_csa:36",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [],
         "distance_cutoff_angstrom": 6.0,
@@ -28066,6 +28172,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1QQ5",
       "pocket_context": {
         "descriptors": {
@@ -28956,6 +29064,7 @@
     },
     {
       "entry_id": "m_csa:37",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "heme"
@@ -28994,6 +29103,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "5COX",
       "pocket_context": {
         "descriptors": {
@@ -29792,6 +29903,7 @@
     },
     {
       "entry_id": "m_csa:38",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -29830,6 +29942,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "1FBX",
       "pocket_context": {
         "descriptors": {
@@ -30428,6 +30542,7 @@
     },
     {
       "entry_id": "m_csa:39",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -30473,6 +30588,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "2MAS",
       "pocket_context": {
         "descriptors": {
@@ -31287,6 +31404,7 @@
     },
     {
       "entry_id": "m_csa:40",
+      "entry_name": null,
       "ligand_context": {
         "cofactor_families": [
           "metal_ion"
@@ -31353,6 +31471,8 @@
           }
         ]
       },
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "pdb_id": "13PK",
       "pocket_context": {
         "descriptors": {

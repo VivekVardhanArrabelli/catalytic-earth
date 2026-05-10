@@ -155,6 +155,7 @@ def evaluate_geometry_retrieval(
                 "status": result.get("status"),
                 "resolved_residue_count": result.get("resolved_residue_count", 0),
                 "evaluable": evaluable,
+                "context": _retrieval_result_context(result),
                 "top1_correct": is_top1,
                 "top3_correct": is_top3,
                 "abstained": abstained,
@@ -551,6 +552,7 @@ def analyze_cofactor_coverage(
                 "status": result.get("status"),
                 "resolved_residue_count": result.get("resolved_residue_count", 0),
                 "evaluable": _is_geometry_evaluable(result),
+                "context": _retrieval_result_context(result),
             }
         )
 
@@ -1050,6 +1052,7 @@ def analyze_geometry_score_margins(
                 "resolved_residue_count": result.get("resolved_residue_count", 0),
                 "evaluable": _is_geometry_evaluable(result),
                 "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
+                "context": _retrieval_result_context(result),
                 "top1_correct": top1.get("fingerprint_id") == label.fingerprint_id
                 if label.fingerprint_id
                 else False,
@@ -1520,8 +1523,14 @@ def _retrieval_result_context(result: dict[str, Any]) -> dict[str, Any]:
     descriptors = pocket_context.get("descriptors", {})
     if not isinstance(descriptors, dict):
         descriptors = {}
+    mechanism_text_snippets = result.get("mechanism_text_snippets", [])
+    if not isinstance(mechanism_text_snippets, list):
+        mechanism_text_snippets = []
     return {
+        "entry_name": result.get("entry_name"),
         "pdb_id": result.get("pdb_id"),
+        "mechanism_text_count": int(result.get("mechanism_text_count", 0) or 0),
+        "mechanism_text_snippets": mechanism_text_snippets,
         "residue_codes": result.get("residue_codes", []),
         "ligand_codes": ligand_context.get("ligand_codes", []),
         "cofactor_families": ligand_context.get("cofactor_families", []),
@@ -2116,6 +2125,11 @@ def build_label_expansion_candidates(
         rows.append(
             {
                 "entry_id": entry_id,
+                "entry_name": entry.get("entry_name"),
+                "mechanism_text_count": int(entry.get("mechanism_text_count", 0) or 0),
+                "mechanism_text_snippets": entry.get("mechanism_text_snippets", [])
+                if isinstance(entry.get("mechanism_text_snippets"), list)
+                else [],
                 "pdb_id": entry.get("pdb_id"),
                 "status": entry.get("status"),
                 "resolved_residue_count": resolved_count,
@@ -2184,6 +2198,21 @@ def group_label_expansion_candidates(rows: list[dict[str, Any]]) -> list[dict[st
                 "readiness_blocker_counts": dict(sorted(blockers.items())),
                 "entry_ids": sorted(str(row.get("entry_id")) for row in group_rows),
                 "ready_entry_ids": sorted(str(row.get("entry_id")) for row in ready_rows),
+                "ready_entries": [
+                    {
+                        "entry_id": str(row.get("entry_id")),
+                        "entry_name": row.get("entry_name"),
+                        "top1_score": row.get("top1_score"),
+                        "mechanism_text_snippets": row.get("mechanism_text_snippets", []),
+                    }
+                    for row in sorted(
+                        ready_rows,
+                        key=lambda item: (
+                            str(item.get("entry_id")),
+                            str(item.get("entry_name") or ""),
+                        ),
+                    )
+                ],
             }
         )
     return sorted(
@@ -2212,8 +2241,13 @@ def analyze_structure_mapping_issues(
         rows.append(
             {
                 "entry_id": entry_id,
+                "entry_name": entry.get("entry_name"),
                 "pdb_id": entry.get("pdb_id"),
                 "status": status,
+                "mechanism_text_count": int(entry.get("mechanism_text_count", 0) or 0),
+                "mechanism_text_snippets": entry.get("mechanism_text_snippets", [])
+                if isinstance(entry.get("mechanism_text_snippets"), list)
+                else [],
                 "label_type": label.label_type if label else None,
                 "target_fingerprint_id": label.fingerprint_id if label else None,
                 "resolved_residue_count": entry.get("resolved_residue_count", 0),

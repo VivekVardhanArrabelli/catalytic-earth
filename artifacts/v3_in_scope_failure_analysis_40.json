@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "abstain_threshold": 0.411,
+    "abstain_threshold": 0.4115,
     "abstained_positive_count": 0,
     "actionable_failure_count": 0,
     "evaluated_in_scope_count": 12,

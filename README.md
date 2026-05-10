@@ -53,25 +53,25 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 225 entries, including all entries in the
-   current 225-entry source slice.
+8. Curated mechanism labels for 275 entries, including all entries in the
+   current 275-entry source slice.
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
     selection, in-scope failure analysis, cofactor coverage analysis,
     label-expansion candidate ranking, geometry slice summaries, and a local
     performance suite.
 
-The 20- through 225-entry evaluation slices are clean out-of-scope regression
+The 20- through 275-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
 under calibrated abstention. The 125-entry slice has 38 in-scope positives, 87
 out-of-scope controls, 124/125 evaluable active-site structures, threshold
 `0.4115`, and a positive score separation gap of `0.0308`.
 
-The current 225-label stress slice has 224 geometry entries, 221 evaluable
-active-site structures, 71 local active-site in-scope positives, 153 evaluated
+The current 275-label stress slice has 274 geometry entries, 271 evaluable
+active-site structures, 81 local active-site in-scope positives, 193 evaluated
 out-of-scope controls, 0 ready label-expansion candidates, 3 labeled
 out-of-scope structure-mapping issues, 0 hard negatives, and 0 near misses. Its
-calibrated threshold is `0.4145`; it retains 70/71 in-scope positives, abstains
+calibrated threshold is `0.4115`; it retains 80/81 in-scope positives, abstains
 on all evaluable out-of-scope controls, and leaves 1 evidence-limited in-scope
 abstention (`m_csa:132`). That selected `1LUC` structure lacks the expected
 flavin/NAD cofactor evidence, so the current actionable in-scope failure count
@@ -108,24 +108,24 @@ python -m catalytic_earth.cli write-v2-report --out docs/v2_report.md
 
 python -m catalytic_earth.cli label-summary --out artifacts/v3_label_summary.json
 
-python -m catalytic_earth.cli build-v1-graph --max-mcsa 225 --page-size 100 --out artifacts/v1_graph_225.json
-python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_225.json --out artifacts/v1_graph_summary_225.json
-python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_225.json --out artifacts/v2_benchmark_225.json
-python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_225.json --max-entries 225 --out artifacts/v3_geometry_features_225.json
-python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_225.json --out artifacts/v3_geometry_retrieval_225.json
-python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_225.json --out artifacts/v3_abstention_calibration_225.json
-python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_225.json --abstain-threshold 0.4145 --out artifacts/v3_geometry_label_eval_225.json
-python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_225.json --abstain-threshold 0.4145 --out artifacts/v3_geometry_failure_analysis_225.json
-python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_225.json --abstain-threshold 0.4145 --out artifacts/v3_in_scope_failure_analysis_225.json
-python -m catalytic_earth.cli analyze-cofactor-coverage --retrieval artifacts/v3_geometry_retrieval_225.json --abstain-threshold 0.4145 --out artifacts/v3_cofactor_coverage_225.json
-python -m catalytic_earth.cli analyze-cofactor-policy --retrieval artifacts/v3_geometry_retrieval_225.json --abstain-threshold 0.4145 --out artifacts/v3_cofactor_policy_225.json
-python -m catalytic_earth.cli analyze-seed-family-performance --retrieval artifacts/v3_geometry_retrieval_225.json --abstain-threshold 0.4145 --out artifacts/v3_seed_family_performance_225.json
-python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_225.json --out artifacts/v3_geometry_score_margins_225.json
-python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_225.json --out artifacts/v3_hard_negative_controls_225.json
-python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_225.json --retrieval artifacts/v3_geometry_retrieval_225.json --out artifacts/v3_label_expansion_candidates_225.json
-python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_225.json --out artifacts/v3_structure_mapping_issues_225.json
+python -m catalytic_earth.cli build-v1-graph --max-mcsa 275 --page-size 100 --out artifacts/v1_graph_275.json
+python -m catalytic_earth.cli graph-summary --graph artifacts/v1_graph_275.json --out artifacts/v1_graph_summary_275.json
+python -m catalytic_earth.cli build-v2-benchmark --graph artifacts/v1_graph_275.json --out artifacts/v2_benchmark_275.json
+python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_275.json --max-entries 275 --out artifacts/v3_geometry_features_275.json
+python -m catalytic_earth.cli run-geometry-retrieval --geometry artifacts/v3_geometry_features_275.json --out artifacts/v3_geometry_retrieval_275.json
+python -m catalytic_earth.cli calibrate-abstention --retrieval artifacts/v3_geometry_retrieval_275.json --out artifacts/v3_abstention_calibration_275.json
+python -m catalytic_earth.cli evaluate-geometry-labels --retrieval artifacts/v3_geometry_retrieval_275.json --abstain-threshold 0.4115 --out artifacts/v3_geometry_label_eval_275.json
+python -m catalytic_earth.cli analyze-geometry-failures --retrieval artifacts/v3_geometry_retrieval_275.json --abstain-threshold 0.4115 --out artifacts/v3_geometry_failure_analysis_275.json
+python -m catalytic_earth.cli analyze-in-scope-failures --retrieval artifacts/v3_geometry_retrieval_275.json --abstain-threshold 0.4115 --out artifacts/v3_in_scope_failure_analysis_275.json
+python -m catalytic_earth.cli analyze-cofactor-coverage --retrieval artifacts/v3_geometry_retrieval_275.json --abstain-threshold 0.4115 --out artifacts/v3_cofactor_coverage_275.json
+python -m catalytic_earth.cli analyze-cofactor-policy --retrieval artifacts/v3_geometry_retrieval_275.json --abstain-threshold 0.4115 --out artifacts/v3_cofactor_policy_275.json
+python -m catalytic_earth.cli analyze-seed-family-performance --retrieval artifacts/v3_geometry_retrieval_275.json --abstain-threshold 0.4115 --out artifacts/v3_seed_family_performance_275.json
+python -m catalytic_earth.cli analyze-geometry-score-margins --retrieval artifacts/v3_geometry_retrieval_275.json --out artifacts/v3_geometry_score_margins_275.json
+python -m catalytic_earth.cli build-hard-negative-controls --retrieval artifacts/v3_geometry_retrieval_275.json --out artifacts/v3_hard_negative_controls_275.json
+python -m catalytic_earth.cli build-label-expansion-candidates --geometry artifacts/v3_geometry_features_275.json --retrieval artifacts/v3_geometry_retrieval_275.json --out artifacts/v3_label_expansion_candidates_275.json
+python -m catalytic_earth.cli analyze-structure-mapping-issues --geometry artifacts/v3_geometry_features_275.json --out artifacts/v3_structure_mapping_issues_275.json
 python -m catalytic_earth.cli summarize-geometry-slices --artifact-dir artifacts --out artifacts/v3_geometry_slice_summary.json
-python -m catalytic_earth.cli perf-suite --graph artifacts/v1_graph_225.json --geometry artifacts/v3_geometry_features_225.json --retrieval artifacts/v3_geometry_retrieval_225.json --iterations 5 --out artifacts/perf_report.json
+python -m catalytic_earth.cli perf-suite --graph artifacts/v1_graph_275.json --geometry artifacts/v3_geometry_features_275.json --retrieval artifacts/v3_geometry_retrieval_275.json --iterations 5 --out artifacts/perf_report.json
 
 python -m catalytic_earth.cli log-work --stage post-v2 --task "example work entry" --minutes 1
 python -m catalytic_earth.cli progress-report --out work/status.md
@@ -167,8 +167,8 @@ Current timeline judgment:
 2. Next automation blocks: decide whether evidence-limited retained positives
    (`m_csa:41`, `m_csa:108`, `m_csa:160`) need a scoring penalty or remain
    audit-only flags while preserving 0 hard negatives and 0 out-of-scope false
-   non-abstentions across the 20- through 225-entry slices.
-3. Next serious milestone: expand beyond 225 labels or resolve the remaining
+   non-abstentions across the 20- through 275-entry slices.
+3. Next serious milestone: expand beyond 275 labels or resolve the remaining
    `m_csa:132` evidence-limited abstention by improving structure/cofactor
    evidence, while preserving the current hard-negative guardrails.
 4. Long-term impact path: expert-reviewed mechanism labels, learned

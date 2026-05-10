@@ -57,7 +57,7 @@ for expert review, not validated functions.
 - Post-V2 work has already added geometry-aware active-site retrieval, curated
   positive/out-of-scope mechanism labels, ligand/cofactor context, and
   substrate-pocket descriptors, plus cofactor coverage audit artifacts.
-- The current active benchmark is the 225-label geometry slice. It has 0 hard
+- The current active benchmark is the 275-label geometry slice. It has 0 hard
   negatives, 0 near misses, and 0 out-of-scope false non-abstentions at
   calibrated abstention, with 1 evidence-limited in-scope abstention and 0
   actionable in-scope failures after cofactor coverage and label-scope audit.

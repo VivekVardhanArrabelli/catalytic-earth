@@ -16,7 +16,10 @@
   "rows": [
     {
       "entry_id": "m_csa:105",
+      "entry_name": null,
       "label_type": "out_of_scope",
+      "mechanism_text_count": 0,
+      "mechanism_text_snippets": [],
       "missing_position_details": [],
       "missing_positions": 0,
       "pdb_id": "1VLB",

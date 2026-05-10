@@ -4910,7 +4910,7 @@
       0.08,
       0.1
     ],
-    "abstain_threshold": 0.411,
+    "abstain_threshold": 0.4115,
     "audit_evidence_limited_retained_positive_count": 1,
     "audit_evidence_limited_retained_positive_entry_ids": [
       "m_csa:41"
@@ -4918,7 +4918,7 @@
     "guardrail_passing_policy_count": 30,
     "lossless_decision_changing_policy_count": 0,
     "method": "cofactor_abstention_policy_sweep",
-    "minimum_evidence_limited_retained_margin": 0.1748,
+    "minimum_evidence_limited_retained_margin": 0.1743,
     "penalty_scope": "post-hoc score subtraction for top-k fingerprint hits whose expected cofactor families are absent from the selected structure or only outside the local active-site neighborhood",
     "policy_count": 30,
     "recommendation": "audit_only_or_separate_stratum",
@@ -5982,7 +5982,7 @@
   ],
   "rows": [
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:1",
@@ -6011,7 +6011,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:2",
@@ -6040,7 +6040,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:3",
@@ -6071,7 +6071,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:4",
@@ -6100,7 +6100,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:5",
@@ -6129,7 +6129,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:6",
@@ -6160,7 +6160,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:7",
@@ -6189,7 +6189,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:8",
@@ -6218,7 +6218,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:9",
@@ -6247,7 +6247,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:10",
@@ -6276,7 +6276,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:11",
@@ -6307,7 +6307,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:12",
@@ -6336,7 +6336,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "low",
       "entry_id": "m_csa:13",
@@ -6365,7 +6365,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:14",
@@ -6394,7 +6394,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:15",
@@ -6425,7 +6425,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:16",
@@ -6456,7 +6456,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:17",
@@ -6485,7 +6485,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:18",
@@ -6514,7 +6514,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:19",
@@ -6543,7 +6543,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:20",
@@ -6574,7 +6574,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:21",
@@ -6603,7 +6603,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:22",
@@ -6632,7 +6632,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:23",
@@ -6661,7 +6661,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "low",
       "entry_id": "m_csa:24",
@@ -6690,7 +6690,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "low",
       "entry_id": "m_csa:25",
@@ -6719,7 +6719,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:26",
@@ -6748,7 +6748,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:27",
@@ -6779,7 +6779,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:28",
@@ -6810,7 +6810,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:29",
@@ -6839,7 +6839,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:30",
@@ -6868,7 +6868,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:31",
@@ -6897,7 +6897,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:32",
@@ -6926,7 +6926,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:33",
@@ -6955,7 +6955,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:34",
@@ -6984,7 +6984,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:35",
@@ -7013,7 +7013,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:36",
@@ -7042,7 +7042,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:37",
@@ -7073,7 +7073,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:38",
@@ -7104,7 +7104,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:39",
@@ -7135,7 +7135,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:40",
@@ -7164,7 +7164,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:41",
@@ -7197,7 +7197,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:42",
@@ -7228,7 +7228,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:43",
@@ -7259,7 +7259,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:44",
@@ -7290,7 +7290,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:45",
@@ -7319,7 +7319,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:46",
@@ -7348,7 +7348,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:47",
@@ -7377,7 +7377,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:48",
@@ -7406,7 +7406,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:49",
@@ -7435,7 +7435,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.411,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:50",
@@ -7471,9 +7471,9 @@
       "already_below_threshold": false,
       "entry_id": "m_csa:41",
       "nearest_expected_ligand_distance_angstrom": null,
-      "penalty_must_exceed_margin_to_abstain": 0.1748,
+      "penalty_must_exceed_margin_to_abstain": 0.1743,
       "retained_positive": true,
-      "score_margin_to_abstain_threshold": 0.1748,
+      "score_margin_to_abstain_threshold": 0.1743,
       "target_base_score": 0.5858,
       "target_cofactor_coverage_status": "expected_absent_from_structure",
       "target_expected_cofactor_families": [

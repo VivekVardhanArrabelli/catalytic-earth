@@ -2,140 +2,140 @@
   "benchmarks": [
     {
       "iterations": 5,
-      "max_ms": 56.193,
-      "mean_ms": 31.686,
-      "min_ms": 23.892,
+      "max_ms": 50.653,
+      "mean_ms": 35.346,
+      "min_ms": 30.574,
       "name": "load_v1_graph",
       "result_summary": {
-        "edge_count": 11238,
-        "node_count": 10865,
-        "rhea_query_count": 220
+        "edge_count": 12635,
+        "node_count": 12306,
+        "rhea_query_count": 264
       }
     },
     {
       "iterations": 5,
-      "max_ms": 3.764,
-      "mean_ms": 3.045,
-      "min_ms": 2.67,
+      "max_ms": 4.83,
+      "mean_ms": 3.909,
+      "min_ms": 3.486,
       "name": "build_v2_benchmark",
       "result_summary": {
-        "record_count": 225
+        "record_count": 275
       }
     },
     {
       "iterations": 5,
-      "max_ms": 82.305,
-      "mean_ms": 70.038,
-      "min_ms": 66.733,
+      "max_ms": 119.826,
+      "mean_ms": 107.88,
+      "min_ms": 96.082,
       "name": "run_geometry_retrieval",
       "result_summary": {
-        "entry_count": 224,
+        "entry_count": 274,
         "fingerprint_count": 8
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.347,
-      "mean_ms": 0.274,
-      "min_ms": 0.25,
+      "max_ms": 0.513,
+      "mean_ms": 0.373,
+      "min_ms": 0.321,
       "name": "evaluate_geometry_labels",
       "result_summary": {
-        "evaluable_count": 221,
-        "evaluated_count": 224,
-        "in_scope_count": 71,
-        "in_scope_evaluable_count": 71,
+        "evaluable_count": 271,
+        "evaluated_count": 274,
+        "in_scope_count": 81,
+        "in_scope_evaluable_count": 81,
         "in_scope_not_evaluable_count": 0,
-        "in_scope_retention_rate": 0.9859,
-        "in_scope_retention_rate_evaluable": 0.9859,
+        "in_scope_retention_rate": 0.9877,
+        "in_scope_retention_rate_evaluable": 0.9877,
         "out_of_scope_abstention_rate": 1.0,
         "out_of_scope_abstention_rate_evaluable": 1.0,
-        "out_of_scope_count": 153,
-        "out_of_scope_evaluable_count": 150,
+        "out_of_scope_count": 193,
+        "out_of_scope_evaluable_count": 190,
         "out_of_scope_false_non_abstentions": 0,
         "out_of_scope_false_non_abstentions_evaluable": 0,
         "out_of_scope_not_evaluable_count": 3,
-        "top1_accuracy_in_scope": 0.9859,
-        "top3_accuracy_in_scope": 0.9859,
-        "top3_accuracy_in_scope_evaluable": 0.9859,
-        "top3_retained_accuracy_in_scope": 0.9859,
-        "top3_retained_accuracy_in_scope_evaluable": 0.9859
+        "top1_accuracy_in_scope": 0.9877,
+        "top3_accuracy_in_scope": 0.9877,
+        "top3_accuracy_in_scope_evaluable": 0.9877,
+        "top3_retained_accuracy_in_scope": 0.9877,
+        "top3_retained_accuracy_in_scope_evaluable": 0.9877
       }
     },
     {
       "iterations": 5,
-      "max_ms": 100.257,
-      "mean_ms": 98.516,
-      "min_ms": 97.527,
+      "max_ms": 145.457,
+      "mean_ms": 139.265,
+      "min_ms": 135.988,
       "name": "sweep_abstention_thresholds",
       "result_summary": {
-        "legacy_selected_threshold": 0.4145,
-        "selected_threshold": 0.4145,
-        "threshold_count": 392
+        "legacy_selected_threshold": 0.4115,
+        "selected_threshold": 0.4115,
+        "threshold_count": 467
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.405,
-      "mean_ms": 0.393,
-      "min_ms": 0.377,
+      "max_ms": 0.451,
+      "mean_ms": 0.444,
+      "min_ms": 0.434,
       "name": "analyze_geometry_score_margins",
       "result_summary": {
-        "correct_in_scope_evaluable_count": 70,
-        "correct_positive_score_separation_gap": 0.0101,
-        "evaluated_count": 224,
-        "in_scope_count": 71,
-        "in_scope_evaluable_count": 71,
-        "out_of_scope_count": 153,
-        "out_of_scope_evaluable_count": 150,
-        "score_margin_boundary_count": 130,
-        "score_separation_gap": -0.0223
+        "correct_in_scope_evaluable_count": 80,
+        "correct_positive_score_separation_gap": 0.0131,
+        "evaluated_count": 274,
+        "in_scope_count": 81,
+        "in_scope_evaluable_count": 81,
+        "out_of_scope_count": 193,
+        "out_of_scope_evaluable_count": 190,
+        "score_margin_boundary_count": 134,
+        "score_separation_gap": -0.0193
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.897,
-      "mean_ms": 0.821,
-      "min_ms": 0.769,
+      "max_ms": 1.038,
+      "mean_ms": 0.963,
+      "min_ms": 0.941,
       "name": "build_hard_negative_controls",
       "result_summary": {
-        "evaluable_out_of_scope_count": 150,
-        "evaluated_out_of_scope_count": 153,
+        "evaluable_out_of_scope_count": 190,
+        "evaluated_out_of_scope_count": 193,
         "hard_negative_count": 0,
         "near_miss_count": 0
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.64,
-      "mean_ms": 0.52,
-      "min_ms": 0.478,
+      "max_ms": 0.679,
+      "mean_ms": 0.559,
+      "min_ms": 0.52,
       "name": "analyze_in_scope_failures",
       "result_summary": {
         "abstained_positive_count": 1,
         "actionable_failure_count": 0,
-        "evaluated_in_scope_count": 71,
+        "evaluated_in_scope_count": 81,
         "evidence_limited_abstention_count": 1,
         "failure_count": 1,
-        "retained_in_scope_count": 70,
+        "retained_in_scope_count": 80,
         "target_absent_from_top_k_count": 0,
-        "top1_correct_count": 70,
+        "top1_correct_count": 80,
         "top1_mismatch_count": 1
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.58,
-      "mean_ms": 0.55,
-      "min_ms": 0.539,
+      "max_ms": 0.628,
+      "mean_ms": 0.622,
+      "min_ms": 0.614,
       "name": "analyze_cofactor_coverage",
       "result_summary": {
-        "evaluated_in_scope_count": 71,
+        "evaluated_in_scope_count": 81,
         "evidence_limited_abstained_count": 1,
         "evidence_limited_retained_count": 3,
         "expected_absent_abstained_count": 1,
         "expected_absent_count": 3,
         "expected_absent_retained_count": 2,
-        "local_supported_count": 62,
+        "local_supported_count": 70,
         "structure_only_abstained_count": 0,
         "structure_only_count": 1,
         "structure_only_retained_count": 1
@@ -143,9 +143,9 @@
     },
     {
       "iterations": 5,
-      "max_ms": 283.077,
-      "mean_ms": 275.475,
-      "min_ms": 266.767,
+      "max_ms": 355.086,
+      "mean_ms": 345.878,
+      "min_ms": 338.21,
       "name": "analyze_cofactor_abstention_policy",
       "result_summary": {
         "audit_evidence_limited_retained_positive_count": 3,
@@ -157,25 +157,25 @@
     },
     {
       "iterations": 5,
-      "max_ms": 0.825,
-      "mean_ms": 0.783,
-      "min_ms": 0.751,
+      "max_ms": 0.908,
+      "mean_ms": 0.846,
+      "min_ms": 0.815,
       "name": "analyze_seed_family_performance",
       "result_summary": {
         "in_scope_family_count": 7,
-        "largest_in_scope_family_count": 32,
+        "largest_in_scope_family_count": 35,
         "out_of_scope_retained_family_count": 0,
         "out_of_scope_top1_family_count": 6
       }
     },
     {
       "iterations": 5,
-      "max_ms": 0.059,
-      "mean_ms": 0.027,
-      "min_ms": 0.018,
+      "max_ms": 0.072,
+      "mean_ms": 0.031,
+      "min_ms": 0.019,
       "name": "analyze_structure_mapping_issues",
       "result_summary": {
-        "geometry_entry_count": 224,
+        "geometry_entry_count": 274,
         "issue_count": 3,
         "labeled_issue_count": 3
       }
@@ -183,15 +183,15 @@
   ],
   "metadata": {
     "inputs": {
-      "geometry_bytes": 4541259,
-      "geometry_path": "artifacts/v3_geometry_features_225.json",
-      "graph_bytes": 7496154,
-      "graph_path": "artifacts/v1_graph_225.json",
-      "retrieval_bytes": 4935403,
-      "retrieval_path": "artifacts/v3_geometry_retrieval_225.json"
+      "geometry_bytes": 5713804,
+      "geometry_path": "artifacts/v3_geometry_features_275.json",
+      "graph_bytes": 8556309,
+      "graph_path": "artifacts/v1_graph_275.json",
+      "retrieval_bytes": 6178455,
+      "retrieval_path": "artifacts/v3_geometry_retrieval_275.json"
     },
     "iterations": 5,
-    "selected_abstain_threshold": 0.4145,
+    "selected_abstain_threshold": 0.4115,
     "suite": "local_artifact_performance",
     "validation_boundary": "local wall-clock timing for existing artifacts; not a scalability benchmark"
   }

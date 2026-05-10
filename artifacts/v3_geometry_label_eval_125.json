@@ -13,22 +13,22 @@
       "by_confidence": {
         "high": 3,
         "low": 4,
-        "medium": 218
+        "medium": 268
       },
       "by_fingerprint": {
         "cobalamin_radical_rearrangement": 2,
-        "flavin_dehydrogenase_reductase": 20,
+        "flavin_dehydrogenase_reductase": 22,
         "flavin_monooxygenase": 2,
-        "heme_peroxidase_oxidase": 4,
-        "metal_dependent_hydrolase": 32,
-        "plp_dependent_enzyme": 6,
-        "ser_his_acid_hydrolase": 5
+        "heme_peroxidase_oxidase": 6,
+        "metal_dependent_hydrolase": 35,
+        "plp_dependent_enzyme": 7,
+        "ser_his_acid_hydrolase": 7
       },
       "by_type": {
-        "out_of_scope": 154,
-        "seed_fingerprint": 71
+        "out_of_scope": 194,
+        "seed_fingerprint": 81
       },
-      "label_count": 225
+      "label_count": 275
     },
     "method": "geometry_retrieval_against_curated_seed_labels",
     "out_of_scope_abstention_rate": 1.0,
@@ -51,6 +51,35 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 59,
+        "pdb_id": "1B73",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1017,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.5254,
+          "mean_min_distance_to_active_site": 5.3177,
+          "negative_fraction": 0.0339,
+          "polar_fraction": 0.1695,
+          "positive_fraction": 0.0339,
+          "sulfur_fraction": 0.0339
+        },
+        "residue_codes": [
+          "ASP",
+          "SER",
+          "CYS",
+          "CYS",
+          "HIS",
+          "GLU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:1",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -66,6 +95,34 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 50,
+        "pdb_id": "1MKB",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.18,
+          "charge_balance": -0.02,
+          "hydrophobic_fraction": 0.54,
+          "mean_min_distance_to_active_site": 5.1178,
+          "negative_fraction": 0.04,
+          "polar_fraction": 0.1,
+          "positive_fraction": 0.02,
+          "sulfur_fraction": 0.14
+        },
+        "residue_codes": [
+          "GLY",
+          "ASP",
+          "HIS",
+          "VAL",
+          "CYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:10",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -81,6 +138,33 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 62,
+        "pdb_id": "1A4S",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1774,
+          "charge_balance": 0.0161,
+          "hydrophobic_fraction": 0.2581,
+          "mean_min_distance_to_active_site": 5.5504,
+          "negative_fraction": 0.0484,
+          "polar_fraction": 0.2903,
+          "positive_fraction": 0.0645,
+          "sulfur_fraction": 0.0323
+        },
+        "residue_codes": [
+          "ASN",
+          "GLU",
+          "GLU",
+          "CYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:100",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -96,6 +180,39 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "MSE",
+          "AP2"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 39,
+        "pdb_id": "5FIT",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1282,
+          "charge_balance": 0.0513,
+          "hydrophobic_fraction": 0.4103,
+          "mean_min_distance_to_active_site": 5.1846,
+          "negative_fraction": 0.0769,
+          "polar_fraction": 0.2308,
+          "positive_fraction": 0.1282,
+          "sulfur_fraction": 0.0256
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "GLN",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "MSE",
+          "AP2"
+        ]
+      },
       "entry_id": "m_csa:101",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -111,6 +228,43 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FMN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 41,
+        "pdb_id": "1FCB",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0732,
+          "charge_balance": 0.0244,
+          "hydrophobic_fraction": 0.3659,
+          "mean_min_distance_to_active_site": 5.5081,
+          "negative_fraction": 0.0488,
+          "polar_fraction": 0.3415,
+          "positive_fraction": 0.0732,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "TYR",
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "flavin",
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "FMN",
+          "HEM",
+          "PYR"
+        ]
+      },
       "entry_id": "m_csa:102",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -126,6 +280,45 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD",
+          "CL"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 67,
+        "pdb_id": "1VAO",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2388,
+          "charge_balance": 0.0746,
+          "hydrophobic_fraction": 0.3582,
+          "mean_min_distance_to_active_site": 5.5065,
+          "negative_fraction": 0.0597,
+          "polar_fraction": 0.194,
+          "positive_fraction": 0.1343,
+          "sulfur_fraction": 0.0597
+        },
+        "residue_codes": [
+          "HIS",
+          "TYR",
+          "ARG",
+          "TYR",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "CL",
+          "ACT"
+        ]
+      },
       "entry_id": "m_csa:103",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -141,6 +334,47 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "CA",
+          "PQQ"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 71,
+        "pdb_id": "1C9U",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1268,
+          "charge_balance": -0.0282,
+          "hydrophobic_fraction": 0.2113,
+          "mean_min_distance_to_active_site": 5.0686,
+          "negative_fraction": 0.1127,
+          "polar_fraction": 0.3662,
+          "positive_fraction": 0.0845,
+          "sulfur_fraction": 0.0141
+        },
+        "residue_codes": [
+          "ARG",
+          "ALA",
+          "TYR",
+          "ASP",
+          "HIS",
+          "ASP",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "PQQ",
+          "GOL"
+        ]
+      },
       "entry_id": "m_csa:104",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -156,6 +390,41 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "PCD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 21,
+        "pdb_id": "1VLB",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1429,
+          "charge_balance": 0.0476,
+          "hydrophobic_fraction": 0.3333,
+          "mean_min_distance_to_active_site": 5.6505,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.1905,
+          "positive_fraction": 0.0476,
+          "sulfur_fraction": 0.0476
+        },
+        "residue_codes": [
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PCD",
+          "IPA",
+          "CL",
+          "FES",
+          "MG"
+        ]
+      },
       "entry_id": "m_csa:105",
       "evaluable": false,
       "label_type": "out_of_scope",
@@ -171,6 +440,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "TPP"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 76,
+        "pdb_id": "1W85",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1711,
+          "charge_balance": -0.0527,
+          "hydrophobic_fraction": 0.3289,
+          "mean_min_distance_to_active_site": 5.3664,
+          "negative_fraction": 0.1053,
+          "polar_fraction": 0.2368,
+          "positive_fraction": 0.0526,
+          "sulfur_fraction": 0.0526
+        },
+        "residue_codes": [
+          "GLU",
+          "HIS",
+          "ARG",
+          "HIS",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "TPP",
+          "MG",
+          "PEG",
+          "K"
+        ]
+      },
       "entry_id": "m_csa:106",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -186,6 +492,45 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "CUB",
+          "MCN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 59,
+        "pdb_id": "1N62",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1695,
+          "charge_balance": 0.0508,
+          "hydrophobic_fraction": 0.2881,
+          "mean_min_distance_to_active_site": 5.5218,
+          "negative_fraction": 0.0678,
+          "polar_fraction": 0.2203,
+          "positive_fraction": 0.1186,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "GLU",
+          "GLN",
+          "CYS",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "CUB",
+          "MCN",
+          "FES",
+          "FAD",
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:107",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -201,6 +546,50 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "fe_s_cluster"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "MDE",
+          "SF4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 61,
+        "pdb_id": "1PS9",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1148,
+          "charge_balance": -0.0164,
+          "hydrophobic_fraction": 0.3279,
+          "mean_min_distance_to_active_site": 5.2011,
+          "negative_fraction": 0.0984,
+          "polar_fraction": 0.2951,
+          "positive_fraction": 0.082,
+          "sulfur_fraction": 0.082
+        },
+        "residue_codes": [
+          "HIS",
+          "ARG",
+          "GLN",
+          "GLU",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin",
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "MDE",
+          "SF4",
+          "NAP",
+          "FAD",
+          "FMN",
+          "CL"
+        ]
+      },
       "entry_id": "m_csa:108",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -216,6 +605,50 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ORO",
+          "FMN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 61,
+        "pdb_id": "1D3G",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0656,
+          "charge_balance": 0.0492,
+          "hydrophobic_fraction": 0.377,
+          "mean_min_distance_to_active_site": 5.1943,
+          "negative_fraction": 0.0656,
+          "polar_fraction": 0.2623,
+          "positive_fraction": 0.1148,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "ASN",
+          "ASN",
+          "ASN",
+          "THR",
+          "PHE",
+          "LYS",
+          "SER"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "ORO",
+          "FMN",
+          "BRE",
+          "ACT",
+          "DDQ",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:109",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -231,6 +664,50 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "3DR",
+          "ZN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 82,
+        "pdb_id": "1QUM",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1341,
+          "charge_balance": 0.0244,
+          "hydrophobic_fraction": 0.4146,
+          "mean_min_distance_to_active_site": 4.8799,
+          "negative_fraction": 0.0488,
+          "polar_fraction": 0.2805,
+          "positive_fraction": 0.0732,
+          "sulfur_fraction": 0.0488
+        },
+        "residue_codes": [
+          "ARG",
+          "ASP",
+          "HIS",
+          "TYR",
+          "HIS",
+          "GLU",
+          "ASP",
+          "HIS",
+          "GLU",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "3DR",
+          "ZN"
+        ]
+      },
       "entry_id": "m_csa:11",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -246,6 +723,47 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "DAL",
+          "FAD",
+          "PER"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 40,
+        "pdb_id": "1C0P",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.225,
+          "charge_balance": -0.025,
+          "hydrophobic_fraction": 0.375,
+          "mean_min_distance_to_active_site": 5.3889,
+          "negative_fraction": 0.05,
+          "polar_fraction": 0.225,
+          "positive_fraction": 0.025,
+          "sulfur_fraction": 0.075
+        },
+        "residue_codes": [
+          "SER",
+          "GLN",
+          "ASN",
+          "ASN",
+          "SER"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "DAL",
+          "FAD",
+          "PER",
+          "GOL"
+        ]
+      },
       "entry_id": "m_csa:110",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -261,6 +779,50 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "AKG",
+          "FMN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 112,
+        "pdb_id": "1OFD",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0804,
+          "charge_balance": 0.0447,
+          "hydrophobic_fraction": 0.2946,
+          "mean_min_distance_to_active_site": 5.5035,
+          "negative_fraction": 0.0982,
+          "polar_fraction": 0.2679,
+          "positive_fraction": 0.1429,
+          "sulfur_fraction": 0.0446
+        },
+        "residue_codes": [
+          "ASN",
+          "CYS",
+          "ARG",
+          "CYS",
+          "GLY",
+          "GLU",
+          "GLN",
+          "LYS",
+          "GLN",
+          "PHE"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "AKG",
+          "FMN",
+          "F3S"
+        ]
+      },
       "entry_id": "m_csa:111",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -276,6 +838,44 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "NDP",
+          "MTX"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 68,
+        "pdb_id": "3DFR",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1912,
+          "charge_balance": 0.0883,
+          "hydrophobic_fraction": 0.3824,
+          "mean_min_distance_to_active_site": 4.8565,
+          "negative_fraction": 0.0882,
+          "polar_fraction": 0.2353,
+          "positive_fraction": 0.1765,
+          "sulfur_fraction": 0.0294
+        },
+        "residue_codes": [
+          "TRP",
+          "ASP",
+          "THR",
+          "LEU",
+          "LEU",
+          "LEU",
+          "LEU",
+          "PHE",
+          "LEU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "NDP",
+          "MTX"
+        ]
+      },
       "entry_id": "m_csa:112",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -291,6 +891,46 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 79,
+        "pdb_id": "2GB0",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2532,
+          "charge_balance": 0.076,
+          "hydrophobic_fraction": 0.3165,
+          "mean_min_distance_to_active_site": 5.3162,
+          "negative_fraction": 0.0253,
+          "polar_fraction": 0.2278,
+          "positive_fraction": 0.1013,
+          "sulfur_fraction": 0.0506
+        },
+        "residue_codes": [
+          "LYS",
+          "HIS",
+          "THR",
+          "LYS",
+          "CYS",
+          "ARG",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "CL",
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:113",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -306,6 +946,44 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FMN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 69,
+        "pdb_id": "2TMD",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2174,
+          "charge_balance": 0.0289,
+          "hydrophobic_fraction": 0.3913,
+          "mean_min_distance_to_active_site": 5.6561,
+          "negative_fraction": 0.0725,
+          "polar_fraction": 0.1884,
+          "positive_fraction": 0.1014,
+          "sulfur_fraction": 0.029
+        },
+        "residue_codes": [
+          "CYS",
+          "TYR",
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FMN",
+          "SF4",
+          "ADP"
+        ]
+      },
       "entry_id": "m_csa:114",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -321,6 +999,41 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 48,
+        "pdb_id": "1W1O",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2083,
+          "charge_balance": 0.0208,
+          "hydrophobic_fraction": 0.2917,
+          "mean_min_distance_to_active_site": 5.6166,
+          "negative_fraction": 0.0625,
+          "polar_fraction": 0.25,
+          "positive_fraction": 0.0833,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "HIS",
+          "ASP",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "NAG"
+        ]
+      },
       "entry_id": "m_csa:115",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -336,6 +1049,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "nad"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "NAP"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 49,
+        "pdb_id": "1HZZ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0816,
+          "charge_balance": -0.0204,
+          "hydrophobic_fraction": 0.5102,
+          "mean_min_distance_to_active_site": 5.3584,
+          "negative_fraction": 0.0612,
+          "polar_fraction": 0.2857,
+          "positive_fraction": 0.0408,
+          "sulfur_fraction": 0.0816
+        },
+        "residue_codes": [
+          "SER",
+          "ASP",
+          "ARG",
+          "ASP",
+          "GLN"
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "NAP",
+          "NAD"
+        ]
+      },
       "entry_id": "m_csa:116",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -351,6 +1101,45 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD",
+          "FMN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 55,
+        "pdb_id": "1AMO",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1818,
+          "charge_balance": 0.0728,
+          "hydrophobic_fraction": 0.4,
+          "mean_min_distance_to_active_site": 5.469,
+          "negative_fraction": 0.0545,
+          "polar_fraction": 0.2545,
+          "positive_fraction": 0.1273,
+          "sulfur_fraction": 0.0364
+        },
+        "residue_codes": [
+          "SER",
+          "CYS",
+          "TRP",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "flavin",
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "FMN",
+          "NAP"
+        ]
+      },
       "entry_id": "m_csa:117",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -366,6 +1155,37 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 59,
+        "pdb_id": "1WRR",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1186,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3559,
+          "mean_min_distance_to_active_site": 5.2596,
+          "negative_fraction": 0.0847,
+          "polar_fraction": 0.322,
+          "positive_fraction": 0.0847,
+          "sulfur_fraction": 0.0508
+        },
+        "residue_codes": [
+          "LYS",
+          "THR",
+          "HIS",
+          "ARG",
+          "GLN"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "UNC",
+          "SAC"
+        ]
+      },
       "entry_id": "m_csa:118",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -381,6 +1201,48 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "fe_s_cluster"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "TPP",
+          "CL",
+          "SF4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 69,
+        "pdb_id": "2C3M",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1159,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3478,
+          "mean_min_distance_to_active_site": 5.6167,
+          "negative_fraction": 0.058,
+          "polar_fraction": 0.3478,
+          "positive_fraction": 0.058,
+          "sulfur_fraction": 0.087
+        },
+        "residue_codes": [
+          "ASN",
+          "THR",
+          "GLU",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "TPP",
+          "CL",
+          "SF4",
+          "MG",
+          "CA"
+        ]
+      },
       "entry_id": "m_csa:119",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -396,6 +1258,39 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "PAO"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 74,
+        "pdb_id": "1OTH",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1351,
+          "charge_balance": 0.0135,
+          "hydrophobic_fraction": 0.4324,
+          "mean_min_distance_to_active_site": 5.3621,
+          "negative_fraction": 0.0946,
+          "polar_fraction": 0.2568,
+          "positive_fraction": 0.1081,
+          "sulfur_fraction": 0.027
+        },
+        "residue_codes": [
+          "HIS",
+          "GLN",
+          "ARG",
+          "ASP",
+          "CYS",
+          "ARG"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PAO"
+        ]
+      },
       "entry_id": "m_csa:12",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -411,6 +1306,45 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD",
+          "MPD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 58,
+        "pdb_id": "1ZP3",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1897,
+          "charge_balance": 0.0689,
+          "hydrophobic_fraction": 0.3621,
+          "mean_min_distance_to_active_site": 5.2641,
+          "negative_fraction": 0.069,
+          "polar_fraction": 0.2586,
+          "positive_fraction": 0.1379,
+          "sulfur_fraction": 0.0345
+        },
+        "residue_codes": [
+          "SER",
+          "PHE",
+          "GLU",
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "MPD",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:120",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -426,6 +1360,49 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "heme"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "MTE",
+          "MO",
+          "HEM"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 74,
+        "pdb_id": "1SOX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2297,
+          "charge_balance": 0.081,
+          "hydrophobic_fraction": 0.3919,
+          "mean_min_distance_to_active_site": 5.4193,
+          "negative_fraction": 0.0676,
+          "polar_fraction": 0.2027,
+          "positive_fraction": 0.1486,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "CYS",
+          "HIS",
+          "HIS",
+          "ARG",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "MTE",
+          "MO",
+          "HEM",
+          "SO4",
+          "GOL",
+          "EPE"
+        ]
+      },
       "entry_id": "m_csa:121",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -441,6 +1418,36 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 67,
+        "pdb_id": "1FVA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2239,
+          "charge_balance": 0.0448,
+          "hydrophobic_fraction": 0.2985,
+          "mean_min_distance_to_active_site": 4.9617,
+          "negative_fraction": 0.0746,
+          "polar_fraction": 0.194,
+          "positive_fraction": 0.1194,
+          "sulfur_fraction": 0.0448
+        },
+        "residue_codes": [
+          "CYS",
+          "ASP",
+          "TYR",
+          "CYS",
+          "GLU",
+          "TYR",
+          "CYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:122",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -456,6 +1463,50 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD",
+          "SF4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 106,
+        "pdb_id": "1JNR",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2453,
+          "charge_balance": -0.066,
+          "hydrophobic_fraction": 0.3019,
+          "mean_min_distance_to_active_site": 5.1708,
+          "negative_fraction": 0.1226,
+          "polar_fraction": 0.217,
+          "positive_fraction": 0.0566,
+          "sulfur_fraction": 0.0755
+        },
+        "residue_codes": [
+          "HIS",
+          "TRP",
+          "ASN",
+          "ASP",
+          "ARG",
+          "SER",
+          "TRP",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "SF4",
+          "GOL"
+        ]
+      },
       "entry_id": "m_csa:123",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -471,6 +1522,70 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "heme",
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "HEA",
+          "CU"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 173,
+        "pdb_id": "1V54",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2312,
+          "charge_balance": 0.0405,
+          "hydrophobic_fraction": 0.474,
+          "mean_min_distance_to_active_site": 5.4756,
+          "negative_fraction": 0.0231,
+          "polar_fraction": 0.2197,
+          "positive_fraction": 0.0636,
+          "sulfur_fraction": 0.0809
+        },
+        "residue_codes": [
+          "TRP",
+          "SER",
+          "HIS",
+          "ARG",
+          "THR",
+          "LYS",
+          "HIS",
+          "ASP",
+          "SER",
+          "SER",
+          "HIS",
+          "GLU",
+          "TYR",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "heme",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "HEA",
+          "CU",
+          "MG",
+          "PGV",
+          "PEK",
+          "CUA",
+          "PSC",
+          "CHD",
+          "NA",
+          "CDL",
+          "DMU",
+          "TGL",
+          "FME",
+          "TPO",
+          "ZN",
+          "UNX",
+          "SAC"
+        ]
+      },
       "entry_id": "m_csa:124",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -486,6 +1601,38 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 80,
+        "pdb_id": "1BT3",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.275,
+          "charge_balance": 0.025,
+          "hydrophobic_fraction": 0.3375,
+          "mean_min_distance_to_active_site": 5.1408,
+          "negative_fraction": 0.0375,
+          "polar_fraction": 0.2625,
+          "positive_fraction": 0.0625,
+          "sulfur_fraction": 0.0625
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "HIS",
+          "HIS",
+          "PHE",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "C2O"
+        ]
+      },
       "entry_id": "m_csa:125",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -501,6 +1648,39 @@
     {
       "abstained": true,
       "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "TRQ"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 74,
+        "pdb_id": "2BBK",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1351,
+          "charge_balance": 0.0676,
+          "hydrophobic_fraction": 0.4054,
+          "mean_min_distance_to_active_site": 5.4264,
+          "negative_fraction": 0.027,
+          "polar_fraction": 0.3514,
+          "positive_fraction": 0.0946,
+          "sulfur_fraction": 0.1081
+        },
+        "residue_codes": [
+          "ASP",
+          "TYR",
+          "THR",
+          "ASP",
+          "TRP",
+          "PHE"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "TRQ"
+        ]
+      },
       "entry_id": "m_csa:13",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -516,6 +1696,42 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "AZI",
+          "VO4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 69,
+        "pdb_id": "1VNC",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2319,
+          "charge_balance": -0.0579,
+          "hydrophobic_fraction": 0.3768,
+          "mean_min_distance_to_active_site": 5.3554,
+          "negative_fraction": 0.1159,
+          "polar_fraction": 0.1014,
+          "positive_fraction": 0.058,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "ARG",
+          "SER",
+          "HIS",
+          "ARG",
+          "HIS",
+          "GLY",
+          "LYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "AZI",
+          "VO4"
+        ]
+      },
       "entry_id": "m_csa:14",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -531,6 +1747,46 @@
     {
       "abstained": false,
       "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ZN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 71,
+        "pdb_id": "1ZNB",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1127,
+          "charge_balance": -0.0282,
+          "hydrophobic_fraction": 0.4225,
+          "mean_min_distance_to_active_site": 5.2271,
+          "negative_fraction": 0.0845,
+          "polar_fraction": 0.2254,
+          "positive_fraction": 0.0563,
+          "sulfur_fraction": 0.0423
+        },
+        "residue_codes": [
+          "ASP",
+          "CYS",
+          "ASN",
+          "HIS",
+          "HIS",
+          "HIS",
+          "HIS",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "NA"
+        ]
+      },
       "entry_id": "m_csa:15",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -546,6 +1802,43 @@
     {
       "abstained": false,
       "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ZN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 58,
+        "pdb_id": "1BC2",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0862,
+          "charge_balance": -0.0517,
+          "hydrophobic_fraction": 0.3621,
+          "mean_min_distance_to_active_site": 5.5111,
+          "negative_fraction": 0.1379,
+          "polar_fraction": 0.2414,
+          "positive_fraction": 0.0862,
+          "sulfur_fraction": 0.0172
+        },
+        "residue_codes": [
+          "ASP",
+          "ASN",
+          "HIS",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:16",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -561,6 +1854,46 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "IMH",
+          "PO4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 67,
+        "pdb_id": "1RR6",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0746,
+          "charge_balance": -0.0299,
+          "hydrophobic_fraction": 0.4328,
+          "mean_min_distance_to_active_site": 4.9233,
+          "negative_fraction": 0.0896,
+          "polar_fraction": 0.1493,
+          "positive_fraction": 0.0597,
+          "sulfur_fraction": 0.0448
+        },
+        "residue_codes": [
+          "HIS",
+          "GLU",
+          "ASN",
+          "SER",
+          "SER",
+          "TYR",
+          "HIS",
+          "ALA",
+          "SER",
+          "MET",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "IMH",
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:17",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -576,6 +1909,38 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "BME"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 56,
+        "pdb_id": "1JDW",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1786,
+          "charge_balance": 0.0178,
+          "hydrophobic_fraction": 0.4107,
+          "mean_min_distance_to_active_site": 5.0855,
+          "negative_fraction": 0.0536,
+          "polar_fraction": 0.25,
+          "positive_fraction": 0.0714,
+          "sulfur_fraction": 0.1071
+        },
+        "residue_codes": [
+          "ASP",
+          "ASP",
+          "CYS",
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "BME"
+        ]
+      },
       "entry_id": "m_csa:18",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -591,6 +1956,42 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 62,
+        "pdb_id": "1DL2",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1774,
+          "charge_balance": -0.0323,
+          "hydrophobic_fraction": 0.3387,
+          "mean_min_distance_to_active_site": 5.4031,
+          "negative_fraction": 0.1129,
+          "polar_fraction": 0.2742,
+          "positive_fraction": 0.0806,
+          "sulfur_fraction": 0.0645
+        },
+        "residue_codes": [
+          "GLU",
+          "ASP",
+          "ARG",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "GOL",
+          "CA",
+          "NAG",
+          "BMA",
+          "NDG",
+          "MAN"
+        ]
+      },
       "entry_id": "m_csa:19",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -606,6 +2007,40 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "SO4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 59,
+        "pdb_id": "1BTL",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0508,
+          "charge_balance": -0.0339,
+          "hydrophobic_fraction": 0.4915,
+          "mean_min_distance_to_active_site": 5.1679,
+          "negative_fraction": 0.1017,
+          "polar_fraction": 0.2034,
+          "positive_fraction": 0.0678,
+          "sulfur_fraction": 0.1186
+        },
+        "residue_codes": [
+          "SER",
+          "LYS",
+          "SER",
+          "GLU",
+          "LYS",
+          "ALA",
+          "SER"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:2",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -621,6 +2056,50 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "TEO",
+          "FAD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 73,
+        "pdb_id": "1QJD",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0685,
+          "charge_balance": 0.0137,
+          "hydrophobic_fraction": 0.4384,
+          "mean_min_distance_to_active_site": 5.27,
+          "negative_fraction": 0.0411,
+          "polar_fraction": 0.2466,
+          "positive_fraction": 0.0548,
+          "sulfur_fraction": 0.0548
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "ARG",
+          "ARG",
+          "HIS",
+          "GLU",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "flavin",
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "TEO",
+          "FAD",
+          "NA",
+          "HEC",
+          "GOL"
+        ]
+      },
       "entry_id": "m_csa:20",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -636,6 +2115,53 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion",
+          "nad"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "MSE",
+          "NAD",
+          "OXL",
+          "MN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 84,
+        "pdb_id": "1DO8",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1429,
+          "charge_balance": -0.0357,
+          "hydrophobic_fraction": 0.3929,
+          "mean_min_distance_to_active_site": 5.1976,
+          "negative_fraction": 0.0952,
+          "polar_fraction": 0.2024,
+          "positive_fraction": 0.0595,
+          "sulfur_fraction": 0.0119
+        },
+        "residue_codes": [
+          "ARG",
+          "LYS",
+          "ASN",
+          "TYR",
+          "ASP",
+          "ASP",
+          "ASP",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion",
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "MSE",
+          "NAD",
+          "OXL",
+          "MN"
+        ]
+      },
       "entry_id": "m_csa:21",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -651,6 +2177,34 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 54,
+        "pdb_id": "1B6B",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2222,
+          "charge_balance": 0.0555,
+          "hydrophobic_fraction": 0.4815,
+          "mean_min_distance_to_active_site": 5.1587,
+          "negative_fraction": 0.0556,
+          "polar_fraction": 0.2222,
+          "positive_fraction": 0.1111,
+          "sulfur_fraction": 0.0741
+        },
+        "residue_codes": [
+          "SER",
+          "TYR",
+          "LEU",
+          "HIS",
+          "LEU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:22",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -666,6 +2220,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "sam"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "SAM"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 61,
+        "pdb_id": "1XVA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2131,
+          "charge_balance": 0.0163,
+          "hydrophobic_fraction": 0.3115,
+          "mean_min_distance_to_active_site": 5.1485,
+          "negative_fraction": 0.1148,
+          "polar_fraction": 0.2787,
+          "positive_fraction": 0.1311,
+          "sulfur_fraction": 0.0328
+        },
+        "residue_codes": [
+          "HIS",
+          "TYR",
+          "TYR",
+          "GLY",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAM",
+          "ACT"
+        ]
+      },
       "entry_id": "m_csa:23",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -681,6 +2272,44 @@
     {
       "abstained": true,
       "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "BCA"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 65,
+        "pdb_id": "1NZY",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1385,
+          "charge_balance": 0.0615,
+          "hydrophobic_fraction": 0.4154,
+          "mean_min_distance_to_active_site": 5.0666,
+          "negative_fraction": 0.0462,
+          "polar_fraction": 0.2923,
+          "positive_fraction": 0.1077,
+          "sulfur_fraction": 0.0923
+        },
+        "residue_codes": [
+          "GLY",
+          "ALA",
+          "HIS",
+          "PHE",
+          "TRP",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "BCA",
+          "CA",
+          "EDO",
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:24",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -696,6 +2325,38 @@
     {
       "abstained": true,
       "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "SO4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 55,
+        "pdb_id": "1NBA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1636,
+          "charge_balance": 0.0546,
+          "hydrophobic_fraction": 0.3818,
+          "mean_min_distance_to_active_site": 5.2819,
+          "negative_fraction": 0.0545,
+          "polar_fraction": 0.2909,
+          "positive_fraction": 0.1091,
+          "sulfur_fraction": 0.0364
+        },
+        "residue_codes": [
+          "ASP",
+          "ALA",
+          "THR",
+          "LYS",
+          "CYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:25",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -711,6 +2372,34 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 54,
+        "pdb_id": "1PTD",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2037,
+          "charge_balance": 0.037,
+          "hydrophobic_fraction": 0.3519,
+          "mean_min_distance_to_active_site": 5.4082,
+          "negative_fraction": 0.0556,
+          "polar_fraction": 0.2407,
+          "positive_fraction": 0.0926,
+          "sulfur_fraction": 0.0185
+        },
+        "residue_codes": [
+          "HIS",
+          "ARG",
+          "ASP",
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:26",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -726,6 +2415,45 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ZN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 80,
+        "pdb_id": "1AH7",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2375,
+          "charge_balance": -0.025,
+          "hydrophobic_fraction": 0.325,
+          "mean_min_distance_to_active_site": 5.0643,
+          "negative_fraction": 0.075,
+          "polar_fraction": 0.25,
+          "positive_fraction": 0.05,
+          "sulfur_fraction": 0.0125
+        },
+        "residue_codes": [
+          "ASP",
+          "HIS",
+          "ASP",
+          "HIS",
+          "HIS",
+          "GLU",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN"
+        ]
+      },
       "entry_id": "m_csa:27",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -741,6 +2469,46 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "I3P",
+          "CA"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 53,
+        "pdb_id": "1DJX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2075,
+          "charge_balance": 0.0754,
+          "hydrophobic_fraction": 0.3019,
+          "mean_min_distance_to_active_site": 5.3685,
+          "negative_fraction": 0.0189,
+          "polar_fraction": 0.3585,
+          "positive_fraction": 0.0943,
+          "sulfur_fraction": 0.0943
+        },
+        "residue_codes": [
+          "GLU",
+          "HIS",
+          "GLU",
+          "HIS",
+          "ASN",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "I3P",
+          "CA",
+          "ACT"
+        ]
+      },
       "entry_id": "m_csa:28",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -756,6 +2524,39 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "CAB"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 68,
+        "pdb_id": "1DJO",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0441,
+          "charge_balance": 0.0147,
+          "hydrophobic_fraction": 0.3529,
+          "mean_min_distance_to_active_site": 5.2545,
+          "negative_fraction": 0.0882,
+          "polar_fraction": 0.3235,
+          "positive_fraction": 0.1029,
+          "sulfur_fraction": 0.0294
+        },
+        "residue_codes": [
+          "GLU",
+          "THR",
+          "TYR",
+          "THR",
+          "ASP",
+          "LYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "CAB"
+        ]
+      },
       "entry_id": "m_csa:29",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -771,6 +2572,40 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 39,
+        "pdb_id": "1D4A",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2564,
+          "charge_balance": 0.0257,
+          "hydrophobic_fraction": 0.2564,
+          "mean_min_distance_to_active_site": 5.3484,
+          "negative_fraction": 0.0256,
+          "polar_fraction": 0.3077,
+          "positive_fraction": 0.0513,
+          "sulfur_fraction": 0.0769
+        },
+        "residue_codes": [
+          "GLY",
+          "TYR",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD"
+        ]
+      },
       "entry_id": "m_csa:3",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -786,6 +2621,36 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 51,
+        "pdb_id": "2PFL",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1176,
+          "charge_balance": -0.0196,
+          "hydrophobic_fraction": 0.4314,
+          "mean_min_distance_to_active_site": 5.6589,
+          "negative_fraction": 0.098,
+          "polar_fraction": 0.2549,
+          "positive_fraction": 0.0784,
+          "sulfur_fraction": 0.0392
+        },
+        "residue_codes": [
+          "CYS",
+          "CYS",
+          "TRP",
+          "GLY"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "NA",
+          "CL"
+        ]
+      },
       "entry_id": "m_csa:30",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -801,6 +2666,41 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "DHF",
+          "TMP"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 76,
+        "pdb_id": "1LCB",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2763,
+          "charge_balance": 0.0395,
+          "hydrophobic_fraction": 0.3816,
+          "mean_min_distance_to_active_site": 5.1706,
+          "negative_fraction": 0.0526,
+          "polar_fraction": 0.2237,
+          "positive_fraction": 0.0921,
+          "sulfur_fraction": 0.0132
+        },
+        "residue_codes": [
+          "TRP",
+          "CYS",
+          "GLU",
+          "ARG",
+          "ASP",
+          "TYR"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "DHF",
+          "TMP"
+        ]
+      },
       "entry_id": "m_csa:31",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -816,6 +2716,38 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 44,
+        "pdb_id": "1QIN",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1591,
+          "charge_balance": 0.0909,
+          "hydrophobic_fraction": 0.5,
+          "mean_min_distance_to_active_site": 5.1853,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.1818,
+          "positive_fraction": 0.0909,
+          "sulfur_fraction": 0.0227
+        },
+        "residue_codes": [
+          "HIS",
+          "GLU",
+          "GLU",
+          "GLN"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "GIP"
+        ]
+      },
       "entry_id": "m_csa:32",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -831,6 +2763,36 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 50,
+        "pdb_id": "1JC5",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.18,
+          "charge_balance": 0.02,
+          "hydrophobic_fraction": 0.56,
+          "mean_min_distance_to_active_site": 5.0224,
+          "negative_fraction": 0.06,
+          "polar_fraction": 0.18,
+          "positive_fraction": 0.08,
+          "sulfur_fraction": 0.14
+        },
+        "residue_codes": [
+          "GLU",
+          "GLU",
+          "HIS",
+          "GLN",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:33",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -846,6 +2808,40 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "ACN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 74,
+        "pdb_id": "1MPY",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2297,
+          "charge_balance": 0.081,
+          "hydrophobic_fraction": 0.3784,
+          "mean_min_distance_to_active_site": 5.3871,
+          "negative_fraction": 0.0676,
+          "polar_fraction": 0.2297,
+          "positive_fraction": 0.1486,
+          "sulfur_fraction": 0.0405
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "HIS",
+          "TYR",
+          "HIS",
+          "GLU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "ACN",
+          "FE2"
+        ]
+      },
       "entry_id": "m_csa:34",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -861,6 +2857,45 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ATP",
+          "MN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 41,
+        "pdb_id": "2PHK",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1707,
+          "charge_balance": 0.0244,
+          "hydrophobic_fraction": 0.3902,
+          "mean_min_distance_to_active_site": 5.0986,
+          "negative_fraction": 0.0976,
+          "polar_fraction": 0.2195,
+          "positive_fraction": 0.122,
+          "sulfur_fraction": 0.0488
+        },
+        "residue_codes": [
+          "ASN",
+          "LYS",
+          "THR",
+          "ASP",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ATP",
+          "MN",
+          "GOL"
+        ]
+      },
       "entry_id": "m_csa:35",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -876,6 +2911,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "FMT"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 82,
+        "pdb_id": "1QQ5",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2073,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.4268,
+          "mean_min_distance_to_active_site": 5.1024,
+          "negative_fraction": 0.0976,
+          "polar_fraction": 0.1341,
+          "positive_fraction": 0.0976,
+          "sulfur_fraction": 0.0366
+        },
+        "residue_codes": [
+          "LYS",
+          "SER",
+          "ASP",
+          "THR",
+          "ARG",
+          "SER",
+          "ASN",
+          "PHE",
+          "ASP",
+          "ASN"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "FMT"
+        ]
+      },
       "entry_id": "m_csa:36",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -891,6 +2963,45 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "heme"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "HEM"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 67,
+        "pdb_id": "5COX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2985,
+          "charge_balance": 0.0746,
+          "hydrophobic_fraction": 0.403,
+          "mean_min_distance_to_active_site": 5.2024,
+          "negative_fraction": 0.0448,
+          "polar_fraction": 0.194,
+          "positive_fraction": 0.1194,
+          "sulfur_fraction": 0.0299
+        },
+        "residue_codes": [
+          "LEU",
+          "HIS",
+          "SER",
+          "TYR",
+          "GLN",
+          "HIS",
+          "GLY"
+        ],
+        "structure_cofactor_families": [
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "HEM",
+          "NAG"
+        ]
+      },
       "entry_id": "m_csa:37",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -906,6 +3017,45 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ZN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 38,
+        "pdb_id": "1FBX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0789,
+          "charge_balance": 0.0527,
+          "hydrophobic_fraction": 0.3684,
+          "mean_min_distance_to_active_site": 5.2591,
+          "negative_fraction": 0.0789,
+          "polar_fraction": 0.2895,
+          "positive_fraction": 0.1316,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "GLU",
+          "HIS",
+          "GLN",
+          "CYS",
+          "CYS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "CL"
+        ]
+      },
       "entry_id": "m_csa:38",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -921,6 +3071,47 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "CA",
+          "PIR"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 70,
+        "pdb_id": "2MAS",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0857,
+          "charge_balance": 0.0428,
+          "hydrophobic_fraction": 0.5429,
+          "mean_min_distance_to_active_site": 5.5504,
+          "negative_fraction": 0.0286,
+          "polar_fraction": 0.2,
+          "positive_fraction": 0.0714,
+          "sulfur_fraction": 0.0714
+        },
+        "residue_codes": [
+          "ASP",
+          "ASP",
+          "ASN",
+          "HIS",
+          "PHE",
+          "THR",
+          "ASN",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "PIR"
+        ]
+      },
       "entry_id": "m_csa:39",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -936,6 +3127,48 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "CU"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 98,
+        "pdb_id": "1NIA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1224,
+          "charge_balance": 0.0102,
+          "hydrophobic_fraction": 0.449,
+          "mean_min_distance_to_active_site": 5.2661,
+          "negative_fraction": 0.0612,
+          "polar_fraction": 0.2347,
+          "positive_fraction": 0.0714,
+          "sulfur_fraction": 0.0408
+        },
+        "residue_codes": [
+          "ASP",
+          "HIS",
+          "HIS",
+          "HIS",
+          "CYS",
+          "HIS",
+          "HIS",
+          "GLU",
+          "THR",
+          "HIS",
+          "MET"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CU"
+        ]
+      },
       "entry_id": "m_csa:4",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -951,6 +3184,46 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ADP",
+          "3PG",
+          "MG"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 52,
+        "pdb_id": "13PK",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0962,
+          "charge_balance": -0.0192,
+          "hydrophobic_fraction": 0.3462,
+          "mean_min_distance_to_active_site": 5.1989,
+          "negative_fraction": 0.1346,
+          "polar_fraction": 0.2115,
+          "positive_fraction": 0.1154,
+          "sulfur_fraction": 0.0385
+        },
+        "residue_codes": [
+          "GLY",
+          "GLY",
+          "LYS",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "3PG",
+          "MG",
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:40",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -966,6 +3239,38 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 60,
+        "pdb_id": "1DNK",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1333,
+          "charge_balance": 0.0334,
+          "hydrophobic_fraction": 0.3833,
+          "mean_min_distance_to_active_site": 5.103,
+          "negative_fraction": 0.0833,
+          "polar_fraction": 0.2333,
+          "positive_fraction": 0.1167,
+          "sulfur_fraction": 0.0333
+        },
+        "residue_codes": [
+          "ASP",
+          "GLU",
+          "TYR",
+          "GLU",
+          "HIS",
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "NAG"
+        ]
+      },
       "entry_id": "m_csa:41",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -981,6 +3286,42 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "MG"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 48,
+        "pdb_id": "1QL0",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1458,
+          "charge_balance": 0.0625,
+          "hydrophobic_fraction": 0.2708,
+          "mean_min_distance_to_active_site": 4.9128,
+          "negative_fraction": 0.1042,
+          "polar_fraction": 0.2708,
+          "positive_fraction": 0.1667,
+          "sulfur_fraction": 0.0208
+        },
+        "residue_codes": [
+          "HIS",
+          "ASN",
+          "GLU",
+          "ARG",
+          "ASN"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MG"
+        ]
+      },
       "entry_id": "m_csa:42",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -996,6 +3337,52 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ZN",
+          "PO4",
+          "FE"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 68,
+        "pdb_id": "4KBP",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2059,
+          "charge_balance": -0.0735,
+          "hydrophobic_fraction": 0.3235,
+          "mean_min_distance_to_active_site": 4.9319,
+          "negative_fraction": 0.1176,
+          "polar_fraction": 0.2206,
+          "positive_fraction": 0.0441,
+          "sulfur_fraction": 0.0588
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "HIS",
+          "ASP",
+          "HIS",
+          "HIS",
+          "ASN",
+          "ASP",
+          "TYR",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "PO4",
+          "FE",
+          "NAG"
+        ]
+      },
       "entry_id": "m_csa:43",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1011,6 +3398,53 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "PO4",
+          "ZN",
+          "MG"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 87,
+        "pdb_id": "1ALK",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0805,
+          "charge_balance": -0.046,
+          "hydrophobic_fraction": 0.4138,
+          "mean_min_distance_to_active_site": 4.8035,
+          "negative_fraction": 0.0805,
+          "polar_fraction": 0.3678,
+          "positive_fraction": 0.0345,
+          "sulfur_fraction": 0.0345
+        },
+        "residue_codes": [
+          "ARG",
+          "SER",
+          "LYS",
+          "ASP",
+          "THR",
+          "GLU",
+          "ASP",
+          "HIS",
+          "ASP",
+          "HIS",
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PO4",
+          "ZN",
+          "MG"
+        ]
+      },
       "entry_id": "m_csa:44",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1026,6 +3460,39 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 50,
+        "pdb_id": "1CDG",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.3,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.28,
+          "mean_min_distance_to_active_site": 5.4096,
+          "negative_fraction": 0.1,
+          "polar_fraction": 0.24,
+          "positive_fraction": 0.1,
+          "sulfur_fraction": 0.08
+        },
+        "residue_codes": [
+          "ASP",
+          "ARG",
+          "ASP",
+          "GLU",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "GLC"
+        ]
+      },
       "entry_id": "m_csa:45",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1041,6 +3508,41 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "sam"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "SAM"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 36,
+        "pdb_id": "2ADM",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1389,
+          "charge_balance": -0.0277,
+          "hydrophobic_fraction": 0.5278,
+          "mean_min_distance_to_active_site": 5.2686,
+          "negative_fraction": 0.0833,
+          "polar_fraction": 0.0833,
+          "positive_fraction": 0.0556,
+          "sulfur_fraction": 0.0278
+        },
+        "residue_codes": [
+          "ASN",
+          "TYR",
+          "PRO",
+          "PHE"
+        ],
+        "structure_cofactor_families": [
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAM"
+        ]
+      },
       "entry_id": "m_csa:46",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1056,6 +3558,41 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "WO4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 51,
+        "pdb_id": "1YTW",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0784,
+          "charge_balance": 0.0784,
+          "hydrophobic_fraction": 0.5294,
+          "mean_min_distance_to_active_site": 5.0179,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.2745,
+          "positive_fraction": 0.0784,
+          "sulfur_fraction": 0.098
+        },
+        "residue_codes": [
+          "HIS",
+          "ASP",
+          "CYS",
+          "ARG",
+          "THR",
+          "GLU",
+          "TRP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "WO4",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:47",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1071,6 +3608,42 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "IMU"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 64,
+        "pdb_id": "1BZY",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1406,
+          "charge_balance": 0.0625,
+          "hydrophobic_fraction": 0.4062,
+          "mean_min_distance_to_active_site": 5.3919,
+          "negative_fraction": 0.0781,
+          "polar_fraction": 0.1719,
+          "positive_fraction": 0.1406,
+          "sulfur_fraction": 0.0625
+        },
+        "residue_codes": [
+          "ASP",
+          "ARG",
+          "PHE",
+          "GLU",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "IMU",
+          "MG",
+          "POP"
+        ]
+      },
       "entry_id": "m_csa:48",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1086,6 +3659,39 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "PYR"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 68,
+        "pdb_id": "1PYA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0735,
+          "charge_balance": -0.0147,
+          "hydrophobic_fraction": 0.4265,
+          "mean_min_distance_to_active_site": 5.4605,
+          "negative_fraction": 0.0735,
+          "polar_fraction": 0.2941,
+          "positive_fraction": 0.0588,
+          "sulfur_fraction": 0.0735
+        },
+        "residue_codes": [
+          "PHE",
+          "GLU",
+          "ASP",
+          "SER",
+          "TYR",
+          "GLU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PYR"
+        ]
+      },
       "entry_id": "m_csa:49",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1101,6 +3707,41 @@
     {
       "abstained": false,
       "confidence": "high",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "ACY"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 58,
+        "pdb_id": "1WHS",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1897,
+          "charge_balance": -0.0517,
+          "hydrophobic_fraction": 0.3621,
+          "mean_min_distance_to_active_site": 5.5068,
+          "negative_fraction": 0.1034,
+          "polar_fraction": 0.2414,
+          "positive_fraction": 0.0517,
+          "sulfur_fraction": 0.0517
+        },
+        "residue_codes": [
+          "GLY",
+          "SER",
+          "TYR",
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "ACY",
+          "NAG",
+          "FUC",
+          "GOL"
+        ]
+      },
       "entry_id": "m_csa:5",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1116,6 +3757,39 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "U5P"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 75,
+        "pdb_id": "1DBT",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1067,
+          "charge_balance": 0.0266,
+          "hydrophobic_fraction": 0.5333,
+          "mean_min_distance_to_active_site": 5.3483,
+          "negative_fraction": 0.0667,
+          "polar_fraction": 0.2267,
+          "positive_fraction": 0.0933,
+          "sulfur_fraction": 0.0667
+        },
+        "residue_codes": [
+          "ASP",
+          "LYS",
+          "ARG",
+          "LYS",
+          "ASP",
+          "THR"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "U5P"
+        ]
+      },
       "entry_id": "m_csa:50",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1131,6 +3805,51 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ATP",
+          "MG",
+          "PYR",
+          "MN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 82,
+        "pdb_id": "1AQ2",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1829,
+          "charge_balance": -0.0244,
+          "hydrophobic_fraction": 0.2683,
+          "mean_min_distance_to_active_site": 5.2707,
+          "negative_fraction": 0.0854,
+          "polar_fraction": 0.3049,
+          "positive_fraction": 0.061,
+          "sulfur_fraction": 0.0976
+        },
+        "residue_codes": [
+          "ASP",
+          "ARG",
+          "HIS",
+          "LYS",
+          "LYS",
+          "SER",
+          "ARG",
+          "THR"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ATP",
+          "MG",
+          "PYR",
+          "MN"
+        ]
+      },
       "entry_id": "m_csa:51",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1146,6 +3865,48 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "PGH",
+          "NA",
+          "ZN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 53,
+        "pdb_id": "1B57",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1321,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3774,
+          "mean_min_distance_to_active_site": 5.2402,
+          "negative_fraction": 0.0943,
+          "polar_fraction": 0.283,
+          "positive_fraction": 0.0943,
+          "sulfur_fraction": 0.0566
+        },
+        "residue_codes": [
+          "GLU",
+          "ASN",
+          "ASP",
+          "HIS",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PGH",
+          "NA",
+          "ZN",
+          "CL"
+        ]
+      },
       "entry_id": "m_csa:52",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1161,6 +3922,49 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "GLV",
+          "MG",
+          "MSE"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 67,
+        "pdb_id": "1D8C",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1343,
+          "charge_balance": -0.0149,
+          "hydrophobic_fraction": 0.3134,
+          "mean_min_distance_to_active_site": 5.2803,
+          "negative_fraction": 0.1343,
+          "polar_fraction": 0.2239,
+          "positive_fraction": 0.1194,
+          "sulfur_fraction": 0.0299
+        },
+        "residue_codes": [
+          "ASP",
+          "GLU",
+          "ASP",
+          "GLU",
+          "ARG",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "GLV",
+          "MG",
+          "MSE",
+          "SOR",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:53",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1176,6 +3980,34 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 35,
+        "pdb_id": "1QFE",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1143,
+          "charge_balance": 0.0286,
+          "hydrophobic_fraction": 0.4857,
+          "mean_min_distance_to_active_site": 5.1001,
+          "negative_fraction": 0.0857,
+          "polar_fraction": 0.2,
+          "positive_fraction": 0.1143,
+          "sulfur_fraction": 0.1429
+        },
+        "residue_codes": [
+          "HIS",
+          "LYS",
+          "GLU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "DHS"
+        ]
+      },
       "entry_id": "m_csa:54",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1191,6 +4023,46 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "FA1",
+          "GOL"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 78,
+        "pdb_id": "1GU1",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1026,
+          "charge_balance": -0.0257,
+          "hydrophobic_fraction": 0.3974,
+          "mean_min_distance_to_active_site": 4.9294,
+          "negative_fraction": 0.1154,
+          "polar_fraction": 0.3077,
+          "positive_fraction": 0.0897,
+          "sulfur_fraction": 0.0128
+        },
+        "residue_codes": [
+          "ALA",
+          "GLU",
+          "PRO",
+          "ASN",
+          "ARG",
+          "TYR",
+          "HIS",
+          "ASN",
+          "ARG"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "FA1",
+          "GOL",
+          "TLA",
+          "TRS"
+        ]
+      },
       "entry_id": "m_csa:55",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1206,6 +4078,37 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 53,
+        "pdb_id": "1ZE1",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1132,
+          "charge_balance": -0.0189,
+          "hydrophobic_fraction": 0.3962,
+          "mean_min_distance_to_active_site": 5.2334,
+          "negative_fraction": 0.1132,
+          "polar_fraction": 0.2453,
+          "positive_fraction": 0.0943,
+          "sulfur_fraction": 0.0566
+        },
+        "residue_codes": [
+          "ASP",
+          "TYR",
+          "ASP",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MG"
+        ]
+      },
       "entry_id": "m_csa:56",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1221,6 +4124,53 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "CSD",
+          "CSO",
+          "FE",
+          "NO",
+          "DIO"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 54,
+        "pdb_id": "2AHJ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2037,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.4074,
+          "mean_min_distance_to_active_site": 5.4192,
+          "negative_fraction": 0.1111,
+          "polar_fraction": 0.1667,
+          "positive_fraction": 0.1111,
+          "sulfur_fraction": 0.037
+        },
+        "residue_codes": [
+          "CYS",
+          "SER",
+          "ARG",
+          "SER",
+          "TYR",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CSD",
+          "CSO",
+          "FE",
+          "NO",
+          "DIO",
+          "ZN",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:57",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1236,6 +4186,47 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "MG",
+          "DAD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 49,
+        "pdb_id": "1CJU",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1633,
+          "charge_balance": -0.0204,
+          "hydrophobic_fraction": 0.3673,
+          "mean_min_distance_to_active_site": 5.3098,
+          "negative_fraction": 0.0612,
+          "polar_fraction": 0.2245,
+          "positive_fraction": 0.0408,
+          "sulfur_fraction": 0.0612
+        },
+        "residue_codes": [
+          "ASP",
+          "ASP",
+          "ARG",
+          "LYS",
+          "ILE"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MG",
+          "DAD",
+          "FOK",
+          "GSP",
+          "CL"
+        ]
+      },
       "entry_id": "m_csa:58",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1251,6 +4242,52 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "nad"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "CRB",
+          "NAD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 104,
+        "pdb_id": "1DQS",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0769,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.4712,
+          "mean_min_distance_to_active_site": 5.0831,
+          "negative_fraction": 0.0865,
+          "polar_fraction": 0.1731,
+          "positive_fraction": 0.0865,
+          "sulfur_fraction": 0.0481
+        },
+        "residue_codes": [
+          "ARG",
+          "GLU",
+          "HIS",
+          "LYS",
+          "GLU",
+          "HIS",
+          "HIS",
+          "ASN",
+          "ARG",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion",
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "CRB",
+          "NAD",
+          "ZN",
+          "CL"
+        ]
+      },
       "entry_id": "m_csa:59",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1266,6 +4303,49 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD",
+          "ELI",
+          "GOL"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 67,
+        "pdb_id": "2GH5",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1194,
+          "charge_balance": 0.0149,
+          "hydrophobic_fraction": 0.5224,
+          "mean_min_distance_to_active_site": 5.1339,
+          "negative_fraction": 0.0299,
+          "polar_fraction": 0.209,
+          "positive_fraction": 0.0448,
+          "sulfur_fraction": 0.0896
+        },
+        "residue_codes": [
+          "HIS",
+          "GLU",
+          "TYR",
+          "CYS",
+          "CYS",
+          "LYS",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "ELI",
+          "GOL",
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:6",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1281,6 +4361,35 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 48,
+        "pdb_id": "1DEA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1667,
+          "charge_balance": 0.0416,
+          "hydrophobic_fraction": 0.3958,
+          "mean_min_distance_to_active_site": 5.3947,
+          "negative_fraction": 0.0417,
+          "polar_fraction": 0.2917,
+          "positive_fraction": 0.0833,
+          "sulfur_fraction": 0.0417
+        },
+        "residue_codes": [
+          "ASP",
+          "HIS",
+          "ASP",
+          "GLU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:60",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1296,6 +4405,37 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "OXP"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 40,
+        "pdb_id": "1BJP",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.05,
+          "charge_balance": 0.125,
+          "hydrophobic_fraction": 0.625,
+          "mean_min_distance_to_active_site": 5.0071,
+          "negative_fraction": 0.025,
+          "polar_fraction": 0.2,
+          "positive_fraction": 0.15,
+          "sulfur_fraction": 0.025
+        },
+        "residue_codes": [
+          "ARG",
+          "ARG",
+          "PHE",
+          "PRO"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "OXP"
+        ]
+      },
       "entry_id": "m_csa:61",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1311,6 +4451,46 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "cobalamin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "B12",
+          "DCA"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 69,
+        "pdb_id": "1REQ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1014,
+          "charge_balance": 0.0579,
+          "hydrophobic_fraction": 0.3188,
+          "mean_min_distance_to_active_site": 5.8009,
+          "negative_fraction": 0.058,
+          "polar_fraction": 0.3188,
+          "positive_fraction": 0.1159,
+          "sulfur_fraction": 0.029
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "TYR",
+          "ASP",
+          "TYR",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "cobalamin"
+        ],
+        "structure_ligand_codes": [
+          "B12",
+          "DCA",
+          "GOL"
+        ]
+      },
       "entry_id": "m_csa:62",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1326,6 +4506,42 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "cobalamin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "COB"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 58,
+        "pdb_id": "1CB7",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1552,
+          "charge_balance": 0.0172,
+          "hydrophobic_fraction": 0.2586,
+          "mean_min_distance_to_active_site": 5.2877,
+          "negative_fraction": 0.069,
+          "polar_fraction": 0.3621,
+          "positive_fraction": 0.0862,
+          "sulfur_fraction": 0.0345
+        },
+        "residue_codes": [
+          "HIS",
+          "GLU",
+          "ARG",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "cobalamin"
+        ],
+        "structure_ligand_codes": [
+          "COB",
+          "TAR"
+        ]
+      },
       "entry_id": "m_csa:63",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1341,6 +4557,35 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 57,
+        "pdb_id": "1D6M",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1053,
+          "charge_balance": 0.0176,
+          "hydrophobic_fraction": 0.4386,
+          "mean_min_distance_to_active_site": 5.3294,
+          "negative_fraction": 0.0877,
+          "polar_fraction": 0.3158,
+          "positive_fraction": 0.1053,
+          "sulfur_fraction": 0.0702
+        },
+        "residue_codes": [
+          "GLU",
+          "TYR",
+          "ARG",
+          "ASP",
+          "LYS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:64",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1356,6 +4601,50 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "GDP",
+          "HDA",
+          "NO3",
+          "IMP",
+          "MG"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 59,
+        "pdb_id": "1GIM",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0508,
+          "charge_balance": 0.0678,
+          "hydrophobic_fraction": 0.3051,
+          "mean_min_distance_to_active_site": 5.4765,
+          "negative_fraction": 0.1017,
+          "polar_fraction": 0.2881,
+          "positive_fraction": 0.1695,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "ASP",
+          "LYS",
+          "GLN",
+          "GLY",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "GDP",
+          "HDA",
+          "NO3",
+          "IMP",
+          "MG"
+        ]
+      },
       "entry_id": "m_csa:65",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1371,6 +4660,41 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "PLP"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 54,
+        "pdb_id": "1DAA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1111,
+          "charge_balance": 0.074,
+          "hydrophobic_fraction": 0.3704,
+          "mean_min_distance_to_active_site": 5.5368,
+          "negative_fraction": 0.0741,
+          "polar_fraction": 0.3148,
+          "positive_fraction": 0.1481,
+          "sulfur_fraction": 0.037
+        },
+        "residue_codes": [
+          "LYS",
+          "TYR",
+          "LEU",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP"
+        ]
+      },
       "entry_id": "m_csa:66",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1386,6 +4710,35 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 67,
+        "pdb_id": "1PJB",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0896,
+          "charge_balance": -0.0299,
+          "hydrophobic_fraction": 0.5224,
+          "mean_min_distance_to_active_site": 5.632,
+          "negative_fraction": 0.0896,
+          "polar_fraction": 0.1343,
+          "positive_fraction": 0.0597,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "HIS",
+          "TYR",
+          "LYS",
+          "GLU",
+          "ARG",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:67",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1401,6 +4754,43 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FAD",
+          "COS"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 60,
+        "pdb_id": "1IVH",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1167,
+          "charge_balance": 0.05,
+          "hydrophobic_fraction": 0.4833,
+          "mean_min_distance_to_active_site": 5.4186,
+          "negative_fraction": 0.0667,
+          "polar_fraction": 0.2,
+          "positive_fraction": 0.1167,
+          "sulfur_fraction": 0.0667
+        },
+        "residue_codes": [
+          "ARG",
+          "GLU",
+          "SER",
+          "MET"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "COS"
+        ]
+      },
       "entry_id": "m_csa:68",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1416,6 +4806,32 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 34,
+        "pdb_id": "1LXA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1471,
+          "charge_balance": 0.1471,
+          "hydrophobic_fraction": 0.2941,
+          "mean_min_distance_to_active_site": 5.4844,
+          "negative_fraction": 0.0588,
+          "polar_fraction": 0.4118,
+          "positive_fraction": 0.2059,
+          "sulfur_fraction": 0.0588
+        },
+        "residue_codes": [
+          "GLY",
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:69",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1431,6 +4847,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "MG",
+          "ICT"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 48,
+        "pdb_id": "5ICD",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0625,
+          "charge_balance": 0.0416,
+          "hydrophobic_fraction": 0.3958,
+          "mean_min_distance_to_active_site": 5.1585,
+          "negative_fraction": 0.1042,
+          "polar_fraction": 0.25,
+          "positive_fraction": 0.1458,
+          "sulfur_fraction": 0.0833
+        },
+        "residue_codes": [
+          "TYR",
+          "ASP",
+          "ASP",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MG",
+          "ICT"
+        ]
+      },
       "entry_id": "m_csa:7",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1446,6 +4899,36 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 46,
+        "pdb_id": "1EF8",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1087,
+          "charge_balance": -0.0435,
+          "hydrophobic_fraction": 0.5,
+          "mean_min_distance_to_active_site": 5.594,
+          "negative_fraction": 0.1087,
+          "polar_fraction": 0.1739,
+          "positive_fraction": 0.0652,
+          "sulfur_fraction": 0.0435
+        },
+        "residue_codes": [
+          "GLY",
+          "HIS",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "NI"
+        ]
+      },
       "entry_id": "m_csa:70",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1461,6 +4944,33 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 54,
+        "pdb_id": "1EUG",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1481,
+          "charge_balance": 0.0556,
+          "hydrophobic_fraction": 0.5,
+          "mean_min_distance_to_active_site": 5.6119,
+          "negative_fraction": 0.0185,
+          "polar_fraction": 0.2963,
+          "positive_fraction": 0.0741,
+          "sulfur_fraction": 0.0185
+        },
+        "residue_codes": [
+          "TYR",
+          "PHE",
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:71",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1476,6 +4986,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "SO4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 67,
+        "pdb_id": "2FUA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1343,
+          "charge_balance": 0.0597,
+          "hydrophobic_fraction": 0.4627,
+          "mean_min_distance_to_active_site": 5.3015,
+          "negative_fraction": 0.0448,
+          "polar_fraction": 0.2836,
+          "positive_fraction": 0.1045,
+          "sulfur_fraction": 0.0597
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "GLU",
+          "TYR",
+          "HIS",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "SO4",
+          "CO",
+          "BME"
+        ]
+      },
       "entry_id": "m_csa:72",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1491,6 +5038,36 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 44,
+        "pdb_id": "1DCO",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1136,
+          "charge_balance": 0.0455,
+          "hydrophobic_fraction": 0.4091,
+          "mean_min_distance_to_active_site": 5.1808,
+          "negative_fraction": 0.0909,
+          "polar_fraction": 0.2727,
+          "positive_fraction": 0.1364,
+          "sulfur_fraction": 0.0227
+        },
+        "residue_codes": [
+          "GLU",
+          "HIS",
+          "GLU",
+          "HIS",
+          "ASP",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:73",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1506,6 +5083,50 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ADP",
+          "DAA",
+          "MG"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 64,
+        "pdb_id": "1BS1",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.125,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.4375,
+          "mean_min_distance_to_active_site": 5.1288,
+          "negative_fraction": 0.0469,
+          "polar_fraction": 0.2344,
+          "positive_fraction": 0.0469,
+          "sulfur_fraction": 0.0156
+        },
+        "residue_codes": [
+          "THR",
+          "LYS",
+          "LYS",
+          "SER",
+          "ASP",
+          "THR",
+          "GLU",
+          "SER",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "DAA",
+          "MG"
+        ]
+      },
       "entry_id": "m_csa:74",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1521,6 +5142,42 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "AMP",
+          "ASN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 74,
+        "pdb_id": "12AS",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1216,
+          "charge_balance": 0.027,
+          "hydrophobic_fraction": 0.3919,
+          "mean_min_distance_to_active_site": 5.2298,
+          "negative_fraction": 0.1081,
+          "polar_fraction": 0.1892,
+          "positive_fraction": 0.1351,
+          "sulfur_fraction": 0.027
+        },
+        "residue_codes": [
+          "ASP",
+          "ARG",
+          "GLU",
+          "ASP",
+          "GLN",
+          "SER",
+          "SER"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "AMP",
+          "ASN"
+        ]
+      },
       "entry_id": "m_csa:75",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1536,6 +5193,34 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 37,
+        "pdb_id": "1A26",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2973,
+          "charge_balance": 0.1352,
+          "hydrophobic_fraction": 0.3514,
+          "mean_min_distance_to_active_site": 5.2046,
+          "negative_fraction": 0.027,
+          "polar_fraction": 0.2432,
+          "positive_fraction": 0.1622,
+          "sulfur_fraction": 0.0811
+        },
+        "residue_codes": [
+          "TYR",
+          "GLU",
+          "SER"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "CNA"
+        ]
+      },
       "entry_id": "m_csa:76",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1551,6 +5236,35 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 52,
+        "pdb_id": "1AFW",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0,
+          "charge_balance": -0.0192,
+          "hydrophobic_fraction": 0.4808,
+          "mean_min_distance_to_active_site": 5.1975,
+          "negative_fraction": 0.0577,
+          "polar_fraction": 0.25,
+          "positive_fraction": 0.0385,
+          "sulfur_fraction": 0.0577
+        },
+        "residue_codes": [
+          "HIS",
+          "CYS",
+          "GLY",
+          "CYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "MRD"
+        ]
+      },
       "entry_id": "m_csa:77",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1566,6 +5280,39 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "HAX"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 68,
+        "pdb_id": "1AL6",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1618,
+          "charge_balance": 0.1324,
+          "hydrophobic_fraction": 0.3824,
+          "mean_min_distance_to_active_site": 5.2647,
+          "negative_fraction": 0.0294,
+          "polar_fraction": 0.2941,
+          "positive_fraction": 0.1618,
+          "sulfur_fraction": 0.0294
+        },
+        "residue_codes": [
+          "ASP",
+          "SER",
+          "HIS",
+          "HIS",
+          "ARG"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "HAX",
+          "OAA"
+        ]
+      },
       "entry_id": "m_csa:78",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1581,6 +5328,36 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "DMD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 29,
+        "pdb_id": "1D0S",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0,
+          "charge_balance": -0.069,
+          "hydrophobic_fraction": 0.4828,
+          "mean_min_distance_to_active_site": 5.3517,
+          "negative_fraction": 0.069,
+          "polar_fraction": 0.2414,
+          "positive_fraction": 0.0,
+          "sulfur_fraction": 0.1724
+        },
+        "residue_codes": [
+          "GLU",
+          "GLU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "DMD",
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:79",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1596,6 +5373,46 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "PHT",
+          "PPC",
+          "MN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 53,
+        "pdb_id": "1QPR",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0566,
+          "charge_balance": -0.0189,
+          "hydrophobic_fraction": 0.434,
+          "mean_min_distance_to_active_site": 5.5957,
+          "negative_fraction": 0.1132,
+          "polar_fraction": 0.3208,
+          "positive_fraction": 0.0943,
+          "sulfur_fraction": 0.0189
+        },
+        "residue_codes": [
+          "GLU",
+          "LYS",
+          "ARG",
+          "LYS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PHT",
+          "PPC",
+          "MN"
+        ]
+      },
       "entry_id": "m_csa:8",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1611,6 +5428,35 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 46,
+        "pdb_id": "1C3C",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1087,
+          "charge_balance": 0.0435,
+          "hydrophobic_fraction": 0.3478,
+          "mean_min_distance_to_active_site": 5.5046,
+          "negative_fraction": 0.1304,
+          "polar_fraction": 0.2174,
+          "positive_fraction": 0.1739,
+          "sulfur_fraction": 0.0217
+        },
+        "residue_codes": [
+          "SER",
+          "LYS",
+          "GLU",
+          "HIS",
+          "THR",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
       "entry_id": "m_csa:80",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1626,6 +5472,41 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "TSA"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 68,
+        "pdb_id": "3CSM",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1176,
+          "charge_balance": -0.0148,
+          "hydrophobic_fraction": 0.4706,
+          "mean_min_distance_to_active_site": 4.7541,
+          "negative_fraction": 0.1324,
+          "polar_fraction": 0.1765,
+          "positive_fraction": 0.1176,
+          "sulfur_fraction": 0.0441
+        },
+        "residue_codes": [
+          "GLU",
+          "ARG",
+          "GLU",
+          "ARG",
+          "LYS",
+          "ASN",
+          "THR"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "TSA",
+          "TRP"
+        ]
+      },
       "entry_id": "m_csa:81",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1641,6 +5522,44 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "G6Q"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 96,
+        "pdb_id": "1JXA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.125,
+          "charge_balance": 0.0209,
+          "hydrophobic_fraction": 0.4167,
+          "mean_min_distance_to_active_site": 5.3321,
+          "negative_fraction": 0.0729,
+          "polar_fraction": 0.2708,
+          "positive_fraction": 0.0938,
+          "sulfur_fraction": 0.0104
+        },
+        "residue_codes": [
+          "TRP",
+          "ASN",
+          "HIS",
+          "GLU",
+          "CYS",
+          "GLY",
+          "ARG",
+          "CYS",
+          "GLU",
+          "LYS",
+          "LYS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "G6Q"
+        ]
+      },
       "entry_id": "m_csa:82",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1656,6 +5575,51 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "CA",
+          "LPE"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 64,
+        "pdb_id": "1L8S",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.125,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.2344,
+          "mean_min_distance_to_active_site": 5.0921,
+          "negative_fraction": 0.0781,
+          "polar_fraction": 0.4375,
+          "positive_fraction": 0.0781,
+          "sulfur_fraction": 0.1719
+        },
+        "residue_codes": [
+          "GLY",
+          "ASP",
+          "TYR",
+          "TYR",
+          "ASP",
+          "HIS",
+          "GLY",
+          "TYR",
+          "GLY"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "LPE",
+          "NA",
+          "PO4",
+          "ACT"
+        ]
+      },
       "entry_id": "m_csa:83",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1671,6 +5635,46 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "BIO",
+          "ZN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 47,
+        "pdb_id": "1B66",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1064,
+          "charge_balance": 0.0639,
+          "hydrophobic_fraction": 0.3191,
+          "mean_min_distance_to_active_site": 4.8991,
+          "negative_fraction": 0.0638,
+          "polar_fraction": 0.3617,
+          "positive_fraction": 0.1277,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "CYS",
+          "GLU",
+          "HIS",
+          "HIS",
+          "HIS",
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "BIO",
+          "ZN"
+        ]
+      },
       "entry_id": "m_csa:84",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1686,6 +5690,41 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "FMT"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 62,
+        "pdb_id": "1B93",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1129,
+          "charge_balance": 0.0161,
+          "hydrophobic_fraction": 0.5,
+          "mean_min_distance_to_active_site": 4.9712,
+          "negative_fraction": 0.0645,
+          "polar_fraction": 0.2097,
+          "positive_fraction": 0.0806,
+          "sulfur_fraction": 0.0645
+        },
+        "residue_codes": [
+          "ARG",
+          "HIS",
+          "ASP",
+          "ASP",
+          "HIS",
+          "ASP",
+          "GLY"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "FMT",
+          "PO4"
+        ]
+      },
       "entry_id": "m_csa:85",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1701,6 +5740,47 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "ADP",
+          "DAR"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 76,
+        "pdb_id": "1BG0",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1974,
+          "charge_balance": 0.1053,
+          "hydrophobic_fraction": 0.3421,
+          "mean_min_distance_to_active_site": 5.5701,
+          "negative_fraction": 0.0658,
+          "polar_fraction": 0.2632,
+          "positive_fraction": 0.1711,
+          "sulfur_fraction": 0.0526
+        },
+        "residue_codes": [
+          "GLU",
+          "ARG",
+          "ARG",
+          "CYS",
+          "THR",
+          "ARG",
+          "GLU",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "DAR",
+          "NO3",
+          "MG"
+        ]
+      },
       "entry_id": "m_csa:86",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1716,6 +5796,48 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "KCX",
+          "NI"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 91,
+        "pdb_id": "1FWJ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1209,
+          "charge_balance": 0.011,
+          "hydrophobic_fraction": 0.3407,
+          "mean_min_distance_to_active_site": 5.146,
+          "negative_fraction": 0.0769,
+          "polar_fraction": 0.3516,
+          "positive_fraction": 0.0879,
+          "sulfur_fraction": 0.0769
+        },
+        "residue_codes": [
+          "ARG",
+          "ASP",
+          "HIS",
+          "HIS",
+          "HIS",
+          "HIS",
+          "HIS",
+          "HIS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "KCX",
+          "NI"
+        ]
+      },
       "entry_id": "m_csa:87",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1731,6 +5853,50 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "ZN",
+          "U5P"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 58,
+        "pdb_id": "1HXQ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1897,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3966,
+          "mean_min_distance_to_active_site": 4.6843,
+          "negative_fraction": 0.069,
+          "polar_fraction": 0.2241,
+          "positive_fraction": 0.069,
+          "sulfur_fraction": 0.069
+        },
+        "residue_codes": [
+          "HIS",
+          "HIS",
+          "CYS",
+          "CYS",
+          "ASN",
+          "SER",
+          "HIS",
+          "GLN",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ZN",
+          "U5P",
+          "FE"
+        ]
+      },
       "entry_id": "m_csa:88",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1746,6 +5912,44 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 78,
+        "pdb_id": "1PS1",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1538,
+          "charge_balance": -0.077,
+          "hydrophobic_fraction": 0.3333,
+          "mean_min_distance_to_active_site": 4.7382,
+          "negative_fraction": 0.1667,
+          "polar_fraction": 0.2051,
+          "positive_fraction": 0.0897,
+          "sulfur_fraction": 0.0513
+        },
+        "residue_codes": [
+          "ARG",
+          "PHE",
+          "ARG",
+          "LYS",
+          "ASP",
+          "SER",
+          "GLU",
+          "ARG",
+          "ASN",
+          "TRP",
+          "HIS",
+          "ASP",
+          "PHE"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "PBM"
+        ]
+      },
       "entry_id": "m_csa:89",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1761,6 +5965,66 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion",
+          "sam"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "SAM",
+          "ADN",
+          "K",
+          "MET",
+          "PPK",
+          "MG"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 107,
+        "pdb_id": "5A1I",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0748,
+          "charge_balance": -0.0281,
+          "hydrophobic_fraction": 0.3925,
+          "mean_min_distance_to_active_site": 4.8509,
+          "negative_fraction": 0.0935,
+          "polar_fraction": 0.2617,
+          "positive_fraction": 0.0654,
+          "sulfur_fraction": 0.0374
+        },
+        "residue_codes": [
+          "GLU",
+          "LYS",
+          "LYS",
+          "LYS",
+          "GLU",
+          "ASP",
+          "LYS",
+          "HIS",
+          "ASP",
+          "LYS",
+          "PHE",
+          "ASP",
+          "ALA",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion",
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAM",
+          "ADN",
+          "K",
+          "MET",
+          "PPK",
+          "MG",
+          "PG4",
+          "PEG",
+          "EDO"
+        ]
+      },
       "entry_id": "m_csa:9",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1776,6 +6040,51 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "nad"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "NAD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 115,
+        "pdb_id": "1B3R",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1217,
+          "charge_balance": -0.0434,
+          "hydrophobic_fraction": 0.3043,
+          "mean_min_distance_to_active_site": 4.9663,
+          "negative_fraction": 0.1217,
+          "polar_fraction": 0.2957,
+          "positive_fraction": 0.0783,
+          "sulfur_fraction": 0.087
+        },
+        "residue_codes": [
+          "SER",
+          "HIS",
+          "GLU",
+          "SER",
+          "ASN",
+          "HIS",
+          "GLN",
+          "SER",
+          "HIS",
+          "ASP",
+          "LYS",
+          "ASP",
+          "ASN",
+          "CYS"
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "NAD"
+        ]
+      },
       "entry_id": "m_csa:90",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1791,6 +6100,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "PO4"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 61,
+        "pdb_id": "1BRW",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0328,
+          "charge_balance": 0.0164,
+          "hydrophobic_fraction": 0.541,
+          "mean_min_distance_to_active_site": 5.2473,
+          "negative_fraction": 0.0656,
+          "polar_fraction": 0.2459,
+          "positive_fraction": 0.082,
+          "sulfur_fraction": 0.082
+        },
+        "residue_codes": [
+          "ASP",
+          "ARG",
+          "HIS",
+          "SER",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PO4",
+          "MES",
+          "CA",
+          "URA"
+        ]
+      },
       "entry_id": "m_csa:91",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1806,6 +6152,47 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "nad"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "UDX",
+          "NAD"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 66,
+        "pdb_id": "1DLI",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1364,
+          "charge_balance": 0.0151,
+          "hydrophobic_fraction": 0.4242,
+          "mean_min_distance_to_active_site": 5.2333,
+          "negative_fraction": 0.1061,
+          "polar_fraction": 0.1818,
+          "positive_fraction": 0.1212,
+          "sulfur_fraction": 0.0152
+        },
+        "residue_codes": [
+          "LYS",
+          "CYS",
+          "ASP",
+          "GLU",
+          "THR",
+          "ASN"
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "UDX",
+          "NAD",
+          "GOL",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:92",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1821,6 +6208,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "nad"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "NAP"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 49,
+        "pdb_id": "1DQA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0612,
+          "charge_balance": 0.0408,
+          "hydrophobic_fraction": 0.3265,
+          "mean_min_distance_to_active_site": 5.4511,
+          "negative_fraction": 0.0612,
+          "polar_fraction": 0.4082,
+          "positive_fraction": 0.102,
+          "sulfur_fraction": 0.0816
+        },
+        "residue_codes": [
+          "GLU",
+          "HIS",
+          "LYS",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ],
+        "structure_ligand_codes": [
+          "NAP",
+          "COA",
+          "MAH"
+        ]
+      },
       "entry_id": "m_csa:93",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1836,6 +6260,38 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "ACT"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 46,
+        "pdb_id": "1WAB",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1957,
+          "charge_balance": 0.0652,
+          "hydrophobic_fraction": 0.3478,
+          "mean_min_distance_to_active_site": 5.5073,
+          "negative_fraction": 0.0652,
+          "polar_fraction": 0.3043,
+          "positive_fraction": 0.1304,
+          "sulfur_fraction": 0.0435
+        },
+        "residue_codes": [
+          "SER",
+          "GLY",
+          "ASN",
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "ACT"
+        ]
+      },
       "entry_id": "m_csa:94",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1851,6 +6307,43 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "MN",
+          "FOC"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 43,
+        "pdb_id": "1FUI",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1395,
+          "charge_balance": 0.0233,
+          "hydrophobic_fraction": 0.3256,
+          "mean_min_distance_to_active_site": 5.4,
+          "negative_fraction": 0.0465,
+          "polar_fraction": 0.3488,
+          "positive_fraction": 0.0698,
+          "sulfur_fraction": 0.0465
+        },
+        "residue_codes": [
+          "GLU",
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "MN",
+          "FOC",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:95",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1866,6 +6359,36 @@
     {
       "abstained": true,
       "confidence": "low",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": null,
+        "ligand_codes": [
+          "CMS"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 43,
+        "pdb_id": "1CHM",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.3023,
+          "charge_balance": 0.0465,
+          "hydrophobic_fraction": 0.2093,
+          "mean_min_distance_to_active_site": 5.6547,
+          "negative_fraction": 0.093,
+          "polar_fraction": 0.3721,
+          "positive_fraction": 0.1395,
+          "sulfur_fraction": 0.0698
+        },
+        "residue_codes": [
+          "GLU",
+          "HIS",
+          "GLU"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "CMS"
+        ]
+      },
       "entry_id": "m_csa:96",
       "evaluable": true,
       "label_type": "out_of_scope",
@@ -1881,6 +6404,43 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "DHZ",
+          "ZN"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 34,
+        "pdb_id": "1CTT",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0882,
+          "charge_balance": 0.0588,
+          "hydrophobic_fraction": 0.5,
+          "mean_min_distance_to_active_site": 5.1866,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.3235,
+          "positive_fraction": 0.0588,
+          "sulfur_fraction": 0.0588
+        },
+        "residue_codes": [
+          "CYS",
+          "HIS",
+          "GLU",
+          "CYS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "DHZ",
+          "ZN"
+        ]
+      },
       "entry_id": "m_csa:97",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1896,6 +6456,47 @@
     {
       "abstained": false,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "FE",
+          "2PE"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 59,
+        "pdb_id": "1BSZ",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0847,
+          "charge_balance": 0.0339,
+          "hydrophobic_fraction": 0.5254,
+          "mean_min_distance_to_active_site": 5.1092,
+          "negative_fraction": 0.1186,
+          "polar_fraction": 0.1356,
+          "positive_fraction": 0.1525,
+          "sulfur_fraction": 0.0678
+        },
+        "residue_codes": [
+          "GLN",
+          "GLY",
+          "CYS",
+          "GLU",
+          "HIS",
+          "HIS",
+          "LEU"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "FE",
+          "2PE",
+          "SO4"
+        ]
+      },
       "entry_id": "m_csa:98",
       "evaluable": true,
       "label_type": "seed_fingerprint",
@@ -1911,6 +6512,42 @@
     {
       "abstained": true,
       "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": null,
+        "ligand_codes": [
+          "PQQ",
+          "CA"
+        ],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
+        "nearby_residue_count": 46,
+        "pdb_id": "1G72",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1739,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3043,
+          "mean_min_distance_to_active_site": 5.6609,
+          "negative_fraction": 0.0435,
+          "polar_fraction": 0.2391,
+          "positive_fraction": 0.0435,
+          "sulfur_fraction": 0.1087
+        },
+        "residue_codes": [
+          "ASP",
+          "ASN",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "PQQ",
+          "CA"
+        ]
+      },
       "entry_id": "m_csa:99",
       "evaluable": true,
       "label_type": "out_of_scope",

@@ -208,6 +208,16 @@ class StructureTests(unittest.TestCase):
         graph = {
             "nodes": [
                 {
+                    "id": "m_csa:1",
+                    "type": "m_csa_entry",
+                    "name": "Example hydrolase",
+                },
+                {
+                    "id": "m_csa:1:mechanism:1",
+                    "type": "mechanism_text",
+                    "text": "A concise mechanism sentence that helps label review.",
+                },
+                {
                     "id": "m_csa:1:residue:1",
                     "type": "catalytic_residue",
                     "roles": ["acid"],
@@ -232,6 +242,12 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(features["metadata"]["entries_with_structure_ligands"], 1)
         self.assertEqual(features["metadata"]["entries_with_structure_inferred_cofactors"], 1)
         self.assertEqual(features["metadata"]["entries_with_pocket_context"], 1)
+        self.assertEqual(features["entries"][0]["entry_name"], "Example hydrolase")
+        self.assertEqual(features["entries"][0]["mechanism_text_count"], 1)
+        self.assertEqual(
+            features["entries"][0]["mechanism_text_snippets"],
+            ["A concise mechanism sentence that helps label review."],
+        )
         self.assertEqual(features["entries"][0]["resolved_residue_count"], 2)
         self.assertEqual(features["entries"][0]["missing_position_details"], [])
         self.assertEqual(features["entries"][0]["ligand_context"]["ligand_codes"], ["HEM"])

@@ -260,7 +260,7 @@
     }
   ],
   "metadata": {
-    "abstain_threshold": 0.4145,
+    "abstain_threshold": 0.4115,
     "in_scope_family_count": 7,
     "largest_in_scope_family": "metal_dependent_hydrolase",
     "largest_in_scope_family_count": 32,
@@ -273,14 +273,14 @@
   },
   "out_of_scope_top1_families": [
     {
-      "abstained_count": 97,
+      "abstained_count": 96,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
         "absent": 45,
-        "ligand_supported": 34,
+        "ligand_supported": 33,
         "role_inferred": 19
       },
-      "count": 98,
+      "count": 97,
       "entry_ids": [
         "m_csa:2",
         "m_csa:7",
@@ -347,7 +347,6 @@
         "m_csa:128",
         "m_csa:129",
         "m_csa:130",
-        "m_csa:134",
         "m_csa:135",
         "m_csa:136",
         "m_csa:138",
@@ -381,21 +380,21 @@
         "m_csa:223",
         "m_csa:224"
       ],
-      "evaluable_count": 97,
+      "evaluable_count": 96,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "metal_dependent_hydrolase",
-      "max_top1_score": 0.4144,
-      "mean_top1_score": 0.3789,
+      "max_top1_score": 0.4114,
+      "mean_top1_score": 0.3785,
       "min_top1_score": 0.26
     },
     {
-      "abstained_count": 19,
+      "abstained_count": 20,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "not_required": 19
+        "not_required": 20
       },
-      "count": 19,
+      "count": 20,
       "entry_ids": [
         "m_csa:1",
         "m_csa:17",
@@ -408,6 +407,7 @@
         "m_csa:80",
         "m_csa:90",
         "m_csa:91",
+        "m_csa:134",
         "m_csa:150",
         "m_csa:191",
         "m_csa:201",
@@ -417,22 +417,22 @@
         "m_csa:220",
         "m_csa:225"
       ],
-      "evaluable_count": 19,
+      "evaluable_count": 20,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "ser_his_acid_hydrolase",
       "max_top1_score": 0.4059,
-      "mean_top1_score": 0.3657,
+      "mean_top1_score": 0.3673,
       "min_top1_score": 0.2285
     },
     {
-      "abstained_count": 17,
+      "abstained_count": 18,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 17,
+        "absent": 18,
         "ligand_supported": 1
       },
-      "count": 18,
+      "count": 19,
       "entry_ids": [
         "m_csa:4",
         "m_csa:10",
@@ -451,14 +451,15 @@
         "m_csa:193",
         "m_csa:214",
         "m_csa:219",
-        "m_csa:221"
+        "m_csa:221",
+        "m_csa:222"
       ],
-      "evaluable_count": 17,
+      "evaluable_count": 18,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "heme_peroxidase_oxidase",
       "max_top1_score": 0.4109,
-      "mean_top1_score": 0.3598,
+      "mean_top1_score": 0.3619,
       "min_top1_score": 0.3031
     },
     {
@@ -512,22 +513,21 @@
       "min_top1_score": 0.2638
     },
     {
-      "abstained_count": 2,
+      "abstained_count": 1,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 2
+        "absent": 1
       },
-      "count": 2,
+      "count": 1,
       "entry_ids": [
-        "m_csa:82",
-        "m_csa:222"
+        "m_csa:82"
       ],
-      "evaluable_count": 2,
+      "evaluable_count": 1,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "plp_dependent_enzyme",
-      "max_top1_score": 0.4138,
-      "mean_top1_score": 0.4066,
+      "max_top1_score": 0.3994,
+      "mean_top1_score": 0.3994,
       "min_top1_score": 0.3994
     }
   ]

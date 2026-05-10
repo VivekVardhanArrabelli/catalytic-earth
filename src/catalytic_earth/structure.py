@@ -138,6 +138,7 @@ def build_geometry_features(
         raise ValueError("max_entries must be positive")
 
     nodes = graph.get("nodes", [])
+    entry_context_by_id = _entry_context_by_id(nodes)
     residue_nodes = [node for node in nodes if node.get("type") == "catalytic_residue"]
     residues_by_entry: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for node in residue_nodes:
@@ -155,6 +156,7 @@ def build_geometry_features(
             entry_features.append(
                 {
                     "entry_id": entry_id,
+                    **entry_context_by_id.get(entry_id, {}),
                     "status": "no_structure_positions",
                     "residue_count": len(residues),
                     "pdb_id": None,
@@ -184,6 +186,7 @@ def build_geometry_features(
             entry_features.append(
                 {
                     "entry_id": entry_id,
+                    **entry_context_by_id.get(entry_id, {}),
                     "status": "structure_fetch_failed",
                     "pdb_id": pdb_id,
                     "error": str(exc),
@@ -237,6 +240,7 @@ def build_geometry_features(
         entry_features.append(
             {
                 "entry_id": entry_id,
+                **entry_context_by_id.get(entry_id, {}),
                 "status": "ok" if len(resolved) >= 2 else "insufficient_resolved_residues",
                 "pdb_id": pdb_id,
                 "residue_count": len(residues),
@@ -681,6 +685,41 @@ def _entry_id_from_residue_node(node_id: str) -> str | None:
     if ":residue:" not in node_id:
         return None
     return node_id.split(":residue:", 1)[0]
+
+
+def _entry_context_by_id(nodes: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    contexts: dict[str, dict[str, Any]] = {}
+    mechanism_texts_by_entry: dict[str, list[str]] = defaultdict(list)
+    for node in nodes:
+        node_id = str(node.get("id", ""))
+        if node.get("type") == "m_csa_entry":
+            name = node.get("name")
+            if isinstance(name, str) and name:
+                contexts.setdefault(node_id, {})["entry_name"] = name
+        elif node.get("type") == "mechanism_text":
+            entry_id = _entry_id_from_mechanism_node(node_id)
+            text = node.get("text")
+            if entry_id and isinstance(text, str) and text.strip():
+                mechanism_texts_by_entry[entry_id].append(_mechanism_text_snippet(text))
+
+    for entry_id, snippets in mechanism_texts_by_entry.items():
+        context = contexts.setdefault(entry_id, {})
+        context["mechanism_text_count"] = len(snippets)
+        context["mechanism_text_snippets"] = snippets[:3]
+    return contexts
+
+
+def _entry_id_from_mechanism_node(node_id: str) -> str | None:
+    if ":mechanism:" not in node_id:
+        return None
+    return node_id.split(":mechanism:", 1)[0]
+
+
+def _mechanism_text_snippet(text: str, limit: int = 300) -> str:
+    cleaned = " ".join(text.replace("\r", " ").replace("\n", " ").split())
+    if len(cleaned) <= limit:
+        return cleaned
+    return cleaned[: limit - 3].rstrip() + "..."
 
 
 def _entry_sort_key(entry_id: str) -> tuple[str, int, str]:

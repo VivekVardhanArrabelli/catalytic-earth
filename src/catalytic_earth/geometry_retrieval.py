@@ -91,8 +91,11 @@ def run_geometry_retrieval(
         results.append(
             {
                 "entry_id": entry.get("entry_id"),
+                "entry_name": entry.get("entry_name"),
                 "pdb_id": entry.get("pdb_id"),
                 "status": entry.get("status"),
+                "mechanism_text_count": entry.get("mechanism_text_count", 0),
+                "mechanism_text_snippets": entry.get("mechanism_text_snippets", []),
                 "resolved_residue_count": entry.get("resolved_residue_count", 0),
                 "residue_codes": [
                     _canonical_code(residue.get("code"))
@@ -170,6 +173,7 @@ def score_entry_against_fingerprint(
         substrate_pocket_score_value=substrate_pocket,
         pocket_context=entry.get("pocket_context"),
         compactness_score_value=compactness,
+        mechanism_text_snippets=_entry_mechanism_context(entry),
     )
     raw_score = (
         0.35 * residue_match_fraction
@@ -463,6 +467,7 @@ def counterevidence_penalty(
     substrate_pocket_score_value: float,
     pocket_context: dict[str, Any] | None = None,
     compactness_score_value: float | None = None,
+    mechanism_text_snippets: list[str] | None = None,
 ) -> float:
     return counterevidence_assessment(
         fingerprint=fingerprint,
@@ -472,6 +477,7 @@ def counterevidence_penalty(
         substrate_pocket_score_value=substrate_pocket_score_value,
         pocket_context=pocket_context,
         compactness_score_value=compactness_score_value,
+        mechanism_text_snippets=mechanism_text_snippets,
     )["penalty"]
 
 
@@ -483,6 +489,7 @@ def counterevidence_assessment(
     substrate_pocket_score_value: float,
     pocket_context: dict[str, Any] | None = None,
     compactness_score_value: float | None = None,
+    mechanism_text_snippets: list[str] | None = None,
 ) -> dict[str, Any]:
     fingerprint_id = str(fingerprint.get("id", ""))
     residue_roles = {
@@ -493,6 +500,9 @@ def counterevidence_assessment(
     }
     ligand_families = _ligand_cofactor_families(ligand_context)
     ligand_codes = _ligand_codes(ligand_context)
+    structure_ligand_families = _structure_ligand_cofactor_families(ligand_context)
+    structure_ligand_codes = _structure_ligand_codes(ligand_context)
+    mechanism_text = _joined_mechanism_text(mechanism_text_snippets)
     penalty = 1.0
     reasons: list[str] = []
     penalty_details: list[dict[str, Any]] = []
@@ -539,10 +549,20 @@ def counterevidence_assessment(
             apply(0.68, "role_inferred_metal_covalent_cleavage_roles")
         if cofactor_evidence == "role_inferred" and _has_radical_transfer_role(residues):
             apply(0.68, "role_inferred_metal_radical_transfer_roles")
+        if (
+            cofactor_evidence == "role_inferred"
+            and "metal_ion" in structure_ligand_families
+            and "metal_ion" not in ligand_families
+            and "MN" in structure_ligand_codes
+            and _has_manganese_decarboxylase_signature(residues)
+        ):
+            apply(0.68, "structure_only_manganese_decarboxylase_context")
         if "heme" in ligand_families and "metal_ion" not in ligand_families:
             apply(0.75, "heme_only_context_for_metal_hydrolase")
         if "cobalamin" in ligand_families and "metal_ion" not in ligand_families:
             apply(0.80, "cobalamin_only_context_for_metal_hydrolase")
+        if _has_methylcobalamin_transfer_text_context(mechanism_text):
+            apply(0.45, "methylcobalamin_transfer_context_for_metal_hydrolase")
         if (
             cofactor_evidence == "ligand_supported"
             and "metal_ion" in ligand_families
@@ -551,6 +571,8 @@ def counterevidence_assessment(
             apply(0.70, "ligand_supported_metal_without_metal_ligand_roles")
         if ligand_codes & NUCLEOTIDE_TRANSFER_LIGAND_CODES:
             apply(0.68, "nucleotide_transfer_ligand_context")
+        if _has_nad_redox_text_context(mechanism_text):
+            apply(0.62, "metal_bound_nad_redox_text_context")
         if "sam" in ligand_families:
             apply(0.72, "sam_ligand_context")
         if "fe_s_cluster" in ligand_families and "metal_ion" not in ligand_families:
@@ -561,6 +583,10 @@ def counterevidence_assessment(
             apply(0.68, "biotin_carboxyltransfer_mixed_metal_context")
         if ligand_codes & METAL_HYDROLASE_REDOX_LIGAND_CODES:
             apply(0.68, "metal_redox_ligand_context")
+        if _has_prenyl_carbocation_text_context(mechanism_text):
+            apply(0.58, "nonhydrolytic_prenyl_carbocation_text_context")
+        if _has_nonhydrolytic_isomerase_lyase_text_context(mechanism_text):
+            apply(0.62, "nonhydrolytic_isomerase_lyase_text_context")
         if (
             cofactor_evidence == "ligand_supported"
             and substrate_pocket_score_value < 0.18
@@ -569,6 +595,13 @@ def counterevidence_assessment(
             and _has_aromatic_oxygenase_pocket(pocket_context)
         ):
             apply(0.70, "nonheme_iron_aromatic_low_pocket_without_water_activation")
+        if (
+            cofactor_evidence == "ligand_supported"
+            and "FE" in ligand_codes
+            and "HBI" in structure_ligand_codes
+            and _has_aromatic_oxygenase_pocket(pocket_context)
+        ):
+            apply(0.64, "nonheme_iron_biopterin_hydroxylase_context")
         if (
             cofactor_evidence == "ligand_supported"
             and substrate_pocket_score_value < 0.10
@@ -593,6 +626,8 @@ def counterevidence_assessment(
             apply(0.70, "ser_his_seed_missing_triad_coherence")
         if "electrophile" in residue_roles and "nucleofuge" not in residue_roles:
             apply(0.45, "ser_his_nonhydrolytic_electrophile_without_leaving_group")
+        if _has_phosphoryl_transfer_text_context(mechanism_text):
+            apply(0.55, "ser_his_phosphoryl_transfer_text_context")
         return result()
 
     if fingerprint_id == "heme_peroxidase_oxidase":
@@ -604,6 +639,8 @@ def counterevidence_assessment(
 
     if fingerprint_id == "plp_dependent_enzyme":
         if cofactor_evidence == "absent":
+            if _has_plp_lysine_anchor(residues) and "13P" in ligand_codes:
+                apply(0.60, "non_plp_aldolase_schiff_base_context")
             if _has_plp_lysine_anchor(residues):
                 apply(0.75, "absent_plp_ligand_with_lysine_anchor")
             else:
@@ -611,6 +648,8 @@ def counterevidence_assessment(
         return result()
 
     if fingerprint_id == "cobalamin_radical_rearrangement":
+        if _has_methylcobalamin_transfer_text_context(mechanism_text):
+            apply(0.45, "methylcobalamin_transfer_not_radical_rearrangement")
         if cofactor_evidence == "absent":
             apply(0.25, "absent_cobalamin_context")
         return result()
@@ -803,6 +842,26 @@ def _ligand_codes(ligand_context: dict[str, Any] | None) -> set[str]:
     }
 
 
+def _structure_ligand_cofactor_families(ligand_context: dict[str, Any] | None) -> set[str]:
+    families: set[str] = set()
+    if isinstance(ligand_context, dict):
+        for value in ligand_context.get("structure_cofactor_families", []):
+            normalized = _normalize_cofactor_family(str(value))
+            if normalized:
+                families.add(normalized)
+    return families
+
+
+def _structure_ligand_codes(ligand_context: dict[str, Any] | None) -> set[str]:
+    if not isinstance(ligand_context, dict):
+        return set()
+    return {
+        str(value).strip().upper()
+        for value in ligand_context.get("structure_ligand_codes", [])
+        if isinstance(value, str) and value.strip()
+    }
+
+
 def _role_implied_cofactor_families(residue_roles: set[str]) -> set[str]:
     families: set[str] = set()
     role_text = " ".join(residue_roles)
@@ -815,6 +874,97 @@ def _role_implied_cofactor_families(residue_roles: set[str]) -> set[str]:
     if "metal ligand" in role_text:
         families.add("metal_ion")
     return families
+
+
+def _joined_mechanism_text(snippets: list[str] | None) -> str:
+    if not isinstance(snippets, list):
+        return ""
+    return " ".join(str(item).lower() for item in snippets if isinstance(item, str))
+
+
+def _entry_mechanism_context(entry: dict[str, Any]) -> list[str]:
+    snippets: list[str] = []
+    entry_name = entry.get("entry_name")
+    if isinstance(entry_name, str) and entry_name:
+        snippets.append(entry_name)
+    mechanism_snippets = entry.get("mechanism_text_snippets")
+    if isinstance(mechanism_snippets, list):
+        snippets.extend(item for item in mechanism_snippets if isinstance(item, str))
+    return snippets
+
+
+def _has_prenyl_carbocation_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_diphosphate_context = "diphosphate" in mechanism_text or "pyrophosphate" in mechanism_text
+    has_carbocation_context = any(
+        term in mechanism_text
+        for term in (
+            "carbocation",
+            "heterolysis",
+            "cyclisation",
+            "cyclization",
+            "farnesyl",
+            "geranyl",
+            "terpene",
+            "isopentenyl",
+        )
+    )
+    return has_diphosphate_context and has_carbocation_context
+
+
+def _has_nad_redox_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_nad = "nad" in mechanism_text
+    has_redox = any(term in mechanism_text for term in ("hydride", "oxidise", "oxidize", "reduction"))
+    return has_nad and has_redox
+
+
+def _has_nonhydrolytic_isomerase_lyase_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    hydrolysis_terms = ("hydrolysis", "hydrolyses", "hydrolyzes", "hydrolysing", "hydrolyzing")
+    if any(term in mechanism_text for term in hydrolysis_terms):
+        return False
+    return any(
+        term in mechanism_text
+        for term in (
+            "isomerase",
+            "isomerisation",
+            "isomerization",
+            "epimerase",
+            "epimerisation",
+            "epimerization",
+            "lyase",
+            "cycloisomerase",
+            "retroaldol",
+            "aldol",
+            "claisen condensation",
+        )
+    )
+
+
+def _has_phosphoryl_transfer_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    hydrolysis_terms = ("hydrolysis", "hydrolyses", "hydrolyzes", "hydrolysing", "hydrolyzing")
+    if any(term in mechanism_text for term in hydrolysis_terms):
+        return False
+    return any(
+        term in mechanism_text
+        for term in ("metaphosphate", "phosphorylated", "phosphoryl transfer", "phosphomutase")
+    )
+
+
+def _has_methylcobalamin_transfer_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    if "methylcobalamin" in mechanism_text:
+        return True
+    if "heterolytic" in mechanism_text and "adenosylcobalamin" not in mechanism_text:
+        return True
+    return False
 
 
 def _cofactor_family(cofactor: str) -> str:
@@ -927,6 +1077,25 @@ def _has_radical_transfer_role(residues: list[dict[str, Any]]) -> bool:
         for role in residue.get("roles", [])
         if isinstance(role, str)
     )
+
+
+def _has_manganese_decarboxylase_signature(residues: list[dict[str, Any]]) -> bool:
+    metal_ligand_count = sum(
+        1 for residue in residues if _residue_has_any_role(residue, {"metal ligand"})
+    )
+    has_arginine_stabilizer = any(
+        _canonical_code(residue.get("code")) == "ARG"
+        and _residue_has_any_role(
+            residue,
+            {"electrostatic stabiliser", "electrostatic stabilizer", "hydrogen bond donor"},
+        )
+        for residue in residues
+    )
+    has_hydrolytic_covalent_roles = any(
+        _residue_has_any_role(residue, {"nucleophile", "nucleofuge", "covalently attached"})
+        for residue in residues
+    )
+    return metal_ligand_count >= 4 and has_arginine_stabilizer and not has_hydrolytic_covalent_roles
 
 
 def _has_aromatic_oxygenase_pocket(pocket_context: dict[str, Any] | None) -> bool:

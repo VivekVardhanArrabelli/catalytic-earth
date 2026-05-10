@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "abstain_threshold": 0.4145,
+    "abstain_threshold": 0.4115,
     "abstained_positive_count": 1,
     "actionable_failure_count": 0,
     "evaluated_in_scope_count": 71,
@@ -30,11 +30,14 @@
   },
   "rows": [
     {
-      "abstain_threshold": 0.4145,
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "context": {
         "cofactor_families": [],
+        "entry_name": null,
         "ligand_codes": [],
+        "mechanism_text_count": 0,
+        "mechanism_text_snippets": [],
         "nearby_residue_count": 74,
         "pdb_id": "1LUC",
         "pocket_descriptors": {
