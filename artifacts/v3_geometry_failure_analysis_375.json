@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "abstain_threshold": 0.4115,
+    "category_counts": {},
+    "evaluated_out_of_scope_entries": 276,
+    "false_non_abstentions": 0,
+    "max_false_non_abstention_score": null,
+    "method": "out_of_scope_failure_pattern_analysis",
+    "out_of_scope_abstention_rate": 1.0,
+    "recommended_threshold_for_zero_current_false_non_abstentions": 0.4115
+  },
+  "rows": []
+}

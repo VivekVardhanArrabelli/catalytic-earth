@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "abstain_threshold": 0.4115,
+    "abstain_threshold": 0.411,
     "coverage_status_counts": {
       "all_expected_local": 11,
       "not_required": 1

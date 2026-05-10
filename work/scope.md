@@ -95,9 +95,10 @@ Post-V2 quality work has started:
 - nearby ligand/cofactor context from mmCIF non-polymer atoms
 - geometry artifacts for 20-entry regression, 30-entry, 40-entry, 50-entry,
   60-entry, 75-entry, 100-entry, 125-entry, 150-entry, 175-entry, 200-entry,
-  225-entry, 250-entry, and 275-entry slices
+  225-entry, 250-entry, 275-entry, 300-entry, 325-entry, 350-entry, and
+  375-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for all 275 entries in the current source slice
+- curated seed mechanism labels for all 375 entries in the current source slice
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
 - hard-negative controls, in-scope failure analysis, label-expansion candidate
@@ -150,14 +151,15 @@ Current expectation:
   active-site retrieval and curated mechanism labels
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
-  100-, 125-, 150-, 175-, 200-, 225-, 250-, and 275-entry slices; all 100
-  regression geometry entries are evaluable, and the 275-entry slice has 271/274 geometry
-  entries evaluable
-- curated labels now cover 275 entries, with 81 local active-site
-  seed-fingerprint positives in the 275-entry geometry evaluation and 194 total
+  100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, and
+  375-entry slices; all 100 regression geometry entries are evaluable, and the
+  375-entry slice has 367/374 geometry entries evaluable
+- curated labels now cover 375 entries, with 98 local active-site
+  seed-fingerprint positives in the 375-entry geometry evaluation and 277 total
   out-of-scope labels
-- the current 275-entry label queue is empty after adding provisional labels
-  for entries 226-275
+- the current 375-entry label queue is empty after adding provisional labels
+  for entries 276-375; a 400-entry candidate queue has been generated with 25
+  unlabeled rows and 22 ready label-review candidates
 - strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
   the 38 in-scope positives in the 125-entry slice at the current zero-false
   threshold
@@ -169,22 +171,23 @@ Current expectation:
 - adaptive abstention thresholds now use observed score boundaries; the
   20-entry regression slice has a zero-false threshold that retains all 7
   in-scope positives
-- all slices from 20 through 275 currently have 0 hard negatives, 0 near misses,
+- all slices from 20 through 375 currently have 0 hard negatives, 0 near misses,
   and 0 out-of-scope false non-abstentions at the current calibrated thresholds
-- the 275-entry expansion slice retains 80/81 in-scope positives, has 1
-  evidence-limited in-scope abstention, and has a 0.0131 correct-positive
+- the 375-entry expansion slice retains 95/98 in-scope positives, has 3
+  evidence-limited in-scope abstentions, and has a 0.0131 correct-positive
   separation gap; the actionable in-scope failure count is 0 after separating
-  selected-structure cofactor absence from scorer failures
+  selected-structure cofactor gaps from scorer failures
 - the 20-, 30-, 40-, 50-, 60-, 75-, and 100-entry structure-mapping issue
   reports currently have 0 non-OK mappings after auth/label residue-number
   fallback; the 125-entry report has 1 labeled out-of-scope
-  insufficient-residue issue, the 150- and 175-entry reports each have 2, and
-  the 200-, 225-, 250-, and 275-entry reports each have 3
-- next bottleneck is either expanding beyond 275 labels or resolving the
-  remaining `m_csa:132` evidence-limited abstention, while ensuring
-  evidence-limited retained positives (`m_csa:41`, `m_csa:108`, and
-  `m_csa:160`) remain audit-visible and preserving the zero-hard-negative
-  guardrail
+  insufficient-residue issue, the 150- and 175-entry reports each have 2, the
+  200-, 225-, 250-, 275-, and 300-entry reports each have 3, and the 325-,
+  350-, and 375-entry reports have 4, 5, and 7 respectively
+- next bottleneck is curating the generated 400-entry queue or resolving the
+  evidence-limited abstentions (`m_csa:132`, `m_csa:353`, and `m_csa:372`),
+  while ensuring evidence-limited retained positives (`m_csa:41`,
+  `m_csa:108`, and `m_csa:160`) remain audit-visible and preserving the
+  zero-hard-negative guardrail
 - local performance is now measured for current artifacts; full-source
   scalability remains unmeasured
 

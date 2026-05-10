@@ -563,6 +563,8 @@ def counterevidence_assessment(
             apply(0.80, "cobalamin_only_context_for_metal_hydrolase")
         if _has_methylcobalamin_transfer_text_context(mechanism_text):
             apply(0.45, "methylcobalamin_transfer_context_for_metal_hydrolase")
+        if _has_zinc_methyltransfer_text_context(mechanism_text):
+            apply(0.55, "zinc_methyltransfer_not_hydrolysis")
         if (
             cofactor_evidence == "ligand_supported"
             and "metal_ion" in ligand_families
@@ -587,6 +589,10 @@ def counterevidence_assessment(
             apply(0.58, "nonhydrolytic_prenyl_carbocation_text_context")
         if _has_nonhydrolytic_isomerase_lyase_text_context(mechanism_text):
             apply(0.62, "nonhydrolytic_isomerase_lyase_text_context")
+        if _has_nonhydrolytic_hydratase_dehydratase_text_context(mechanism_text):
+            apply(0.62, "nonhydrolytic_hydratase_dehydratase_text_context")
+        if _has_alpha_ketoglutarate_hydroxylation_text_context(mechanism_text):
+            apply(0.55, "nonhydrolytic_alpha_ketoglutarate_hydroxylation")
         if (
             cofactor_evidence == "ligand_supported"
             and substrate_pocket_score_value < 0.18
@@ -628,6 +634,8 @@ def counterevidence_assessment(
             apply(0.45, "ser_his_nonhydrolytic_electrophile_without_leaving_group")
         if _has_phosphoryl_transfer_text_context(mechanism_text):
             apply(0.55, "ser_his_phosphoryl_transfer_text_context")
+        if _has_ser_his_acyl_transfer_text_context(mechanism_text):
+            apply(0.55, "ser_his_acyl_transfer_not_hydrolysis")
         return result()
 
     if fingerprint_id == "heme_peroxidase_oxidase":
@@ -635,6 +643,8 @@ def counterevidence_assessment(
             apply(0.65, "absent_heme_context")
         if "heme" in ligand_families and ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES:
             apply(0.63, "molybdenum_center_heme_context")
+        if _has_heme_dehydratase_text_context(mechanism_text):
+            apply(0.55, "heme_dehydratase_not_peroxidase_oxidase")
         return result()
 
     if fingerprint_id == "plp_dependent_enzyme":
@@ -661,6 +671,11 @@ def counterevidence_assessment(
             apply(0.60, "nad_only_or_nonflavin_context")
         if (
             cofactor_evidence == "ligand_supported"
+            and _has_tpp_carboligation_text_context(mechanism_text)
+        ):
+            apply(0.45, "thiamine_carboligation_not_flavin_oxygenation")
+        if (
+            cofactor_evidence == "ligand_supported"
             and "nad" not in ligand_families
             and not ligand_codes & FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES
         ):
@@ -668,6 +683,16 @@ def counterevidence_assessment(
         return result()
 
     if fingerprint_id == "flavin_dehydrogenase_reductase":
+        if (
+            cofactor_evidence == "ligand_supported"
+            and _has_tpp_carboligation_text_context(mechanism_text)
+        ):
+            apply(0.45, "thiamine_carboligation_not_local_flavin_redox")
+        if (
+            cofactor_evidence == "ligand_supported"
+            and _has_flavin_mutase_text_context(mechanism_text)
+        ):
+            apply(0.55, "flavin_mutase_not_dehydrogenase_reductase")
         if (
             cofactor_evidence == "ligand_supported"
             and "flavin" in ligand_families
@@ -945,6 +970,30 @@ def _has_nonhydrolytic_isomerase_lyase_text_context(mechanism_text: str) -> bool
     )
 
 
+def _has_nonhydrolytic_hydratase_dehydratase_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    hydrolysis_terms = ("hydrolysis", "hydrolyses", "hydrolyzes", "hydrolysing", "hydrolyzing")
+    if any(term in mechanism_text for term in hydrolysis_terms):
+        return False
+    if any(
+        term in mechanism_text
+        for term in ("carbonate dehydratase", "carbonic anhydrase", "carbon dioxide", "bicarbonate")
+    ):
+        return False
+    return any(
+        term in mechanism_text
+        for term in (
+            "hydratase",
+            "dehydratase",
+            "dehydration",
+            "hydration",
+            "inter-conversion",
+            "interconversion",
+        )
+    )
+
+
 def _has_phosphoryl_transfer_text_context(mechanism_text: str) -> bool:
     if not mechanism_text:
         return False
@@ -955,6 +1004,80 @@ def _has_phosphoryl_transfer_text_context(mechanism_text: str) -> bool:
         term in mechanism_text
         for term in ("metaphosphate", "phosphorylated", "phosphoryl transfer", "phosphomutase")
     )
+
+
+def _has_ser_his_acyl_transfer_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    hydrolysis_terms = ("hydrolysis", "hydrolyses", "hydrolyzes", "hydrolysing", "hydrolyzing")
+    if any(term in mechanism_text for term in hydrolysis_terms):
+        return False
+    return any(
+        term in mechanism_text
+        for term in ("transacylase", "acyl carrier protein", "acyl transfer")
+    )
+
+
+def _has_tpp_carboligation_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_tpp = (
+        "thiamine diphosphate" in mechanism_text
+        or "thiamine-diphosphate" in mechanism_text
+        or "tpp" in mechanism_text
+    )
+    has_carbon_transfer = any(
+        term in mechanism_text
+        for term in (
+            "acetolactate",
+            "carboligation",
+            "carbon-carbon condensation",
+            "2-acetolactate",
+        )
+    )
+    return has_tpp and has_carbon_transfer
+
+
+def _has_zinc_methyltransfer_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_zinc = "zinc" in mechanism_text
+    has_methyl_transfer = any(
+        term in mechanism_text
+        for term in (
+            "methyltransferase",
+            "methyl acceptor",
+            "alkyl transfer",
+            "methyl transfer",
+        )
+    )
+    return has_zinc and has_methyl_transfer
+
+
+def _has_alpha_ketoglutarate_hydroxylation_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_hydroxylation = "hydroxylation" in mechanism_text or "hydroxylates" in mechanism_text
+    has_demethylase = "demethylase" in mechanism_text or "demethylated" in mechanism_text
+    has_akg = "alpha-ketoglutarate" in mechanism_text or "2-oxoglutarate" in mechanism_text
+    return has_hydroxylation and has_demethylase and has_akg
+
+
+def _has_heme_dehydratase_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_heme = "heme" in mechanism_text
+    has_dehydration = "dehydratase" in mechanism_text or "dehydration" in mechanism_text
+    return has_heme and has_dehydration
+
+
+def _has_flavin_mutase_text_context(mechanism_text: str) -> bool:
+    if not mechanism_text:
+        return False
+    has_flavin = "fad" in mechanism_text or "flavin" in mechanism_text
+    has_mutase = "mutase" in mechanism_text or "udp-galactopyranose" in mechanism_text
+    has_glycosyl = "udp-galp" in mechanism_text or "loss of udp" in mechanism_text
+    return has_flavin and has_mutase and has_glycosyl
 
 
 def _has_methylcobalamin_transfer_text_context(mechanism_text: str) -> bool:

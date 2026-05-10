@@ -161,7 +161,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ROOT / "artifacts" / "v3_structure_mapping_issues_200.json"
         )
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 275)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 65)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 135)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -190,7 +190,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_225.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_225.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 275)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 71)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 153)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -228,7 +228,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_250.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_250.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 275)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 78)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 171)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -264,7 +264,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_275.json")
         retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_275.json")
 
-        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 275)
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
         self.assertEqual(evaluation["metadata"]["in_scope_count"], 81)
         self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 193)
         self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
@@ -306,6 +306,42 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             "flavin_dehydrogenase_reductase",
         )
         self.assertGreaterEqual(flavin_reductase["top_fingerprints"][0]["score"], 0.4145)
+
+    def test_375_entry_geometry_artifacts_clear_expanded_stress_slice(self) -> None:
+        evaluation = _load_json(ROOT / "artifacts" / "v3_geometry_label_eval_375.json")
+        hard_negatives = _load_json(ROOT / "artifacts" / "v3_hard_negative_controls_375.json")
+        in_scope_failures = _load_json(
+            ROOT / "artifacts" / "v3_in_scope_failure_analysis_375.json"
+        )
+        cofactor_coverage = _load_json(ROOT / "artifacts" / "v3_cofactor_coverage_375.json")
+        retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_375.json")
+
+        self.assertEqual(evaluation["metadata"]["label_summary"]["label_count"], 375)
+        self.assertEqual(evaluation["metadata"]["in_scope_count"], 98)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_count"], 276)
+        self.assertEqual(evaluation["metadata"]["out_of_scope_false_non_abstentions_evaluable"], 0)
+        self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["failure_count"], 3)
+        self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["evidence_limited_abstention_count"], 3)
+        self.assertEqual(
+            cofactor_coverage["metadata"]["evidence_limited_abstained_entry_ids"],
+            ["m_csa:132", "m_csa:353", "m_csa:372"],
+        )
+        aldoxime_dehydratase = next(
+            row for row in retrieval["results"] if row["entry_id"] == "m_csa:361"
+        )
+        heme_hit = next(
+            item
+            for item in aldoxime_dehydratase["top_fingerprints"]
+            if item["fingerprint_id"] == "heme_peroxidase_oxidase"
+        )
+        self.assertIn(
+            "heme_dehydratase_not_peroxidase_oxidase",
+            heme_hit["counterevidence_reasons"],
+        )
+        self.assertLess(heme_hit["score"], 0.4145)
 
 
 def _load_json(path: Path) -> dict:

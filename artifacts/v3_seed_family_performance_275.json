@@ -283,14 +283,14 @@
   },
   "out_of_scope_top1_families": [
     {
-      "abstained_count": 106,
+      "abstained_count": 104,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 47,
+        "absent": 45,
         "ligand_supported": 37,
         "role_inferred": 23
       },
-      "count": 107,
+      "count": 105,
       "entry_ids": [
         "m_csa:2",
         "m_csa:7",
@@ -317,7 +317,6 @@
         "m_csa:51",
         "m_csa:52",
         "m_csa:53",
-        "m_csa:55",
         "m_csa:56",
         "m_csa:58",
         "m_csa:59",
@@ -328,7 +327,6 @@
         "m_csa:69",
         "m_csa:70",
         "m_csa:72",
-        "m_csa:73",
         "m_csa:74",
         "m_csa:75",
         "m_csa:76",
@@ -400,22 +398,22 @@
         "m_csa:271",
         "m_csa:273"
       ],
-      "evaluable_count": 106,
+      "evaluable_count": 104,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "metal_dependent_hydrolase",
       "max_top1_score": 0.4114,
-      "mean_top1_score": 0.3718,
+      "mean_top1_score": 0.3719,
       "min_top1_score": 0.26
     },
     {
-      "abstained_count": 35,
+      "abstained_count": 37,
       "abstention_rate_evaluable": 1.0,
       "cofactor_evidence_counts": {
-        "absent": 35,
+        "absent": 37,
         "ligand_supported": 1
       },
-      "count": 36,
+      "count": 38,
       "entry_ids": [
         "m_csa:4",
         "m_csa:10",
@@ -423,7 +421,9 @@
         "m_csa:26",
         "m_csa:49",
         "m_csa:54",
+        "m_csa:55",
         "m_csa:57",
+        "m_csa:73",
         "m_csa:86",
         "m_csa:92",
         "m_csa:93",
@@ -454,12 +454,12 @@
         "m_csa:265",
         "m_csa:267"
       ],
-      "evaluable_count": 35,
+      "evaluable_count": 37,
       "false_non_abstention_count": 0,
       "false_non_abstention_entry_ids": [],
       "fingerprint_id": "heme_peroxidase_oxidase",
       "max_top1_score": 0.4109,
-      "mean_top1_score": 0.3557,
+      "mean_top1_score": 0.3551,
       "min_top1_score": 0.3031
     },
     {

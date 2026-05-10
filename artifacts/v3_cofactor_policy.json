@@ -1110,7 +1110,7 @@
       0.08,
       0.1
     ],
-    "abstain_threshold": 0.4115,
+    "abstain_threshold": 0.4104,
     "audit_evidence_limited_retained_positive_count": 0,
     "audit_evidence_limited_retained_positive_entry_ids": [],
     "guardrail_passing_policy_count": 30,
@@ -1957,7 +1957,7 @@
   ],
   "rows": [
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:1",
@@ -1986,7 +1986,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:2",
@@ -2015,7 +2015,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:3",
@@ -2046,7 +2046,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:4",
@@ -2075,7 +2075,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:5",
@@ -2104,7 +2104,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:6",
@@ -2135,7 +2135,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:7",
@@ -2164,7 +2164,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:8",
@@ -2193,7 +2193,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:9",
@@ -2222,7 +2222,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:10",
@@ -2251,7 +2251,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:11",
@@ -2282,7 +2282,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:12",
@@ -2311,7 +2311,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "low",
       "entry_id": "m_csa:13",
@@ -2340,7 +2340,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:14",
@@ -2369,7 +2369,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:15",
@@ -2400,7 +2400,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": false,
       "confidence": "high",
       "entry_id": "m_csa:16",
@@ -2431,7 +2431,7 @@
       "top3_correct": true
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:17",
@@ -2460,7 +2460,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:18",
@@ -2489,7 +2489,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": true,
       "confidence": "medium",
       "entry_id": "m_csa:19",
@@ -2518,7 +2518,7 @@
       "top3_correct": false
     },
     {
-      "abstain_threshold": 0.4115,
+      "abstain_threshold": 0.4104,
       "abstained": false,
       "confidence": "medium",
       "entry_id": "m_csa:20",

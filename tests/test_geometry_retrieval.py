@@ -860,6 +860,66 @@ class GeometryRetrievalTests(unittest.TestCase):
         self.assertEqual(assessment["penalty"], 0.62)
         self.assertIn("nonhydrolytic_isomerase_lyase_text_context", assessment["reasons"])
 
+    def test_metal_hydrolase_penalizes_nonhydrolytic_hydratase_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "GLU", "roles": ["metal ligand", "proton acceptor"]},
+                {"code": "LYS", "roles": ["electrostatic stabiliser"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["MG"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "Phosphopyruvate hydratase performs reversible dehydration and hydration "
+                "during inter-conversion of 2-PGA and PEP."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.62)
+        self.assertIn(
+            "nonhydrolytic_hydratase_dehydratase_text_context",
+            assessment["reasons"],
+        )
+        carbonate_dehydratase = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "GLU", "roles": ["proton acceptor"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["ZN"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "Carbonate dehydratase uses zinc-bound hydroxide to attack carbon dioxide, "
+                "forming bicarbonate before water is deprotonated."
+            ],
+        )
+        self.assertNotIn(
+            "nonhydrolytic_hydratase_dehydratase_text_context",
+            carbonate_dehydratase["reasons"],
+        )
+
+    def test_metal_hydrolase_penalizes_alpha_ketoglutarate_hydroxylation_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "HIS", "roles": ["metal ligand"]},
+                {"code": "ASP", "roles": ["metal ligand"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["NI"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "JmjC demethylase catalyses alpha-ketoglutarate-dependent hydroxylation "
+                "to form demethylated lysine and formaldehyde."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.55)
+        self.assertIn(
+            "nonhydrolytic_alpha_ketoglutarate_hydroxylation",
+            assessment["reasons"],
+        )
+
     def test_ser_his_hydrolase_penalizes_phosphoryl_transfer_text_context(self) -> None:
         assessment = counterevidence_assessment(
             fingerprint={"id": "ser_his_acid_hydrolase"},
@@ -878,6 +938,83 @@ class GeometryRetrievalTests(unittest.TestCase):
         )
         self.assertEqual(assessment["penalty"], 0.55)
         self.assertIn("ser_his_phosphoryl_transfer_text_context", assessment["reasons"])
+
+    def test_ser_his_hydrolase_penalizes_acyl_transfer_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "ser_his_acid_hydrolase"},
+            residues=[
+                {"code": "SER", "roles": ["nucleophile", "covalently attached"]},
+                {"code": "HIS", "roles": ["proton acceptor", "proton donor"]},
+                {"code": "GLN", "roles": ["hydrogen bond donor"]},
+            ],
+            cofactor_evidence="not_required",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.8,
+            mechanism_text_snippets=[
+                "Malonyl-CoA-acyl carrier protein transacylase performs acyl transfer "
+                "through a tetrahedral intermediate."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.55)
+        self.assertIn("ser_his_acyl_transfer_not_hydrolysis", assessment["reasons"])
+
+    def test_flavin_dehydrogenase_penalizes_tpp_carboligation_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "flavin_dehydrogenase_reductase"},
+            residues=[
+                {"code": "GLU", "roles": ["proton acceptor"]},
+                {"code": "PHE", "roles": ["steric role"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["FAD"], "cofactor_families": ["flavin"]},
+            substrate_pocket_score_value=0.5,
+            mechanism_text_snippets=[
+                "Acetolactate synthase uses thiamine diphosphate carboligation "
+                "before any indirect FAD/O2 cycle."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.45)
+        self.assertIn(
+            "thiamine_carboligation_not_local_flavin_redox",
+            assessment["reasons"],
+        )
+
+    def test_flavin_monooxygenase_penalizes_tpp_carboligation_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "flavin_monooxygenase"},
+            residues=[
+                {"code": "GLN", "roles": ["hydrogen bond donor"]},
+                {"code": "LYS", "roles": ["electrostatic stabiliser"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["FAD"], "cofactor_families": ["flavin"]},
+            substrate_pocket_score_value=0.5,
+            mechanism_text_snippets=[
+                "Acetolactate synthase uses thiamine diphosphate carbon-carbon condensation."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.45)
+        self.assertIn(
+            "thiamine_carboligation_not_flavin_oxygenation",
+            assessment["reasons"],
+        )
+
+    def test_metal_hydrolase_penalizes_zinc_methyltransfer_text_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "CYS", "roles": ["metal ligand"]},
+                {"code": "CYS", "roles": ["metal ligand"]},
+            ],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["ZN"], "cofactor_families": ["metal_ion"]},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=[
+                "The zinc ion stabilises the methyl acceptor thiolate for methyl transfer."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.55)
+        self.assertIn("zinc_methyltransfer_not_hydrolysis", assessment["reasons"])
 
     def test_cobalamin_radical_penalizes_methylcobalamin_transfer_text_context(self) -> None:
         assessment = counterevidence_assessment(
@@ -1080,6 +1217,34 @@ class GeometryRetrievalTests(unittest.TestCase):
         )
         self.assertEqual(fe_s_only["penalty"], 0.63)
         self.assertIn("fe_s_single_electron_partial_flavin_context", fe_s_only["reasons"])
+
+    def test_flavin_dehydrogenase_penalizes_flavin_mutase_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "flavin_dehydrogenase_reductase"},
+            residues=[{"code": "ARG", "roles": ["electrostatic stabiliser"]}],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["FAD"], "cofactor_families": ["flavin"]},
+            substrate_pocket_score_value=0.5,
+            mechanism_text_snippets=[
+                "UDP-galactopyranose mutase uses reduced FAD with UDP-Galp and loss of UDP."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.55)
+        self.assertIn("flavin_mutase_not_dehydrogenase_reductase", assessment["reasons"])
+
+    def test_heme_fingerprint_penalizes_heme_dehydratase_context(self) -> None:
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "heme_peroxidase_oxidase"},
+            residues=[{"code": "HIS", "roles": ["metal ligand"]}],
+            cofactor_evidence="ligand_supported",
+            ligand_context={"ligand_codes": ["HEM"], "cofactor_families": ["heme"]},
+            substrate_pocket_score_value=0.5,
+            mechanism_text_snippets=[
+                "A heme-bound aldoxime dehydratase carries out a dehydration reaction."
+            ],
+        )
+        self.assertEqual(assessment["penalty"], 0.55)
+        self.assertIn("heme_dehydratase_not_peroxidase_oxidase", assessment["reasons"])
 
     def test_flavin_monooxygenase_penalizes_nad_only_context(self) -> None:
         self.assertLess(
