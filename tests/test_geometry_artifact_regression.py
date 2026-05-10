@@ -580,6 +580,9 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         acceptance_675 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_675.json")
         acceptance_700 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_700.json")
+        batch_summary = _load_json(
+            ROOT / "artifacts" / "v3_label_factory_batch_summary.json"
+        )
         preview_summary_675 = _load_json(
             ROOT / "artifacts" / "v3_label_factory_preview_summary_675.json"
         )
@@ -626,6 +629,16 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         reaction_mismatch_700 = _load_json(
             ROOT / "artifacts" / "v3_reaction_substrate_mismatch_audit_700.json"
+        )
+        reaction_mismatch_export_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_reaction_substrate_mismatch_review_export_700.json"
+        )
+        reaction_mismatch_decision_batch_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_reaction_substrate_mismatch_decision_batch_700.json"
         )
         sequence_clusters_675 = _load_json(
             ROOT / "artifacts" / "v3_sequence_cluster_proxy_675.json"
@@ -708,6 +721,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "accepted_reaction_substrate_mismatch_entry_ids"
             ],
             [],
+        )
+        self.assertTrue(
+            batch_summary["metadata"][
+                "latest_reaction_substrate_mismatch_review_export_present"
+            ]
+        )
+        self.assertEqual(
+            batch_summary["metadata"][
+                "latest_reaction_substrate_mismatch_review_export_missing_count"
+            ],
+            0,
+        )
+        latest_batch_summary = batch_summary["rows"][-1]
+        self.assertEqual(
+            latest_batch_summary[
+                "family_guardrail_reaction_substrate_mismatch_count"
+            ],
+            24,
+        )
+        self.assertTrue(
+            latest_batch_summary["reaction_substrate_mismatch_review_export_present"]
+        )
+        self.assertEqual(
+            latest_batch_summary[
+                "reaction_substrate_mismatch_review_export_missing_count"
+            ],
+            0,
         )
         self.assertEqual(preview_summary_675["metadata"]["blocker_count"], 0)
         self.assertTrue(preview_summary_675["metadata"]["all_active_queues_retain_unlabeled_candidates"])
@@ -1216,6 +1256,72 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(active_queue_700["metadata"]["total_unlabeled_candidate_count"], 76)
         self.assertEqual(active_queue_700["metadata"]["score_totals"]["reaction_substrate_mismatch_value"], 23.4)
         self.assertEqual(expert_export_700["metadata"]["exported_count"], 182)
+        self.assertEqual(
+            reaction_mismatch_export_700["metadata"]["method"],
+            "reaction_substrate_mismatch_review_export",
+        )
+        self.assertEqual(reaction_mismatch_export_700["metadata"]["exported_count"], 24)
+        self.assertEqual(
+            reaction_mismatch_export_700["metadata"]["label_state_counts"],
+            {"labeled": 17, "unlabeled": 7},
+        )
+        self.assertEqual(
+            reaction_mismatch_export_700["metadata"]["current_label_type_counts"],
+            {"out_of_scope": 17, "unlabeled": 7},
+        )
+        self.assertEqual(
+            reaction_mismatch_export_700["metadata"]["labeled_seed_mismatch_count"],
+            0,
+        )
+        self.assertTrue(
+            reaction_mismatch_decision_batch_700["metadata"][
+                "reaction_substrate_mismatch_review_only"
+            ]
+        )
+        self.assertEqual(
+            reaction_mismatch_decision_batch_700["metadata"]["decision_counts"],
+            {"no_decision": 24},
+        )
+        self.assertTrue(
+            reaction_mismatch_export_700["metadata"][
+                "all_reaction_audit_mismatches_exported"
+            ]
+        )
+        self.assertTrue(
+            reaction_mismatch_export_700["metadata"][
+                "all_family_guardrail_mismatches_exported"
+            ]
+        )
+        self.assertEqual(
+            reaction_mismatch_export_700["metadata"]["recommended_path"],
+            "expert_reaction_substrate_review_before_ontology_split",
+        )
+        self.assertEqual(
+            reaction_mismatch_export_700["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertTrue(
+            scaling_quality_700["gates"][
+                "reaction_substrate_mismatch_review_export_retains_mismatch_lanes"
+            ]
+        )
+        self.assertTrue(
+            scaling_quality_700["metadata"][
+                "reaction_substrate_mismatch_review_export_present"
+            ]
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "reaction_substrate_mismatch_review_export_missing_entry_ids"
+            ],
+            [],
+        )
+        self.assertTrue(
+            all(
+                item["mismatch_context"]["countable_label_candidate"] is False
+                for item in reaction_mismatch_export_700["review_items"]
+            )
+        )
         self.assertEqual(gate_550["blockers"], [])
         self.assertEqual(gate_575["blockers"], [])
         self.assertEqual(gate_600["blockers"], [])

@@ -104,9 +104,10 @@ Label scaling is now gated by the label factory rather than raw queue size. The
 current 700 factory audit proposes 79 bronze-to-silver promotions, flags 112
 abstention/review rows, mines 100 adversarial negative controls from 466
 out-of-scope candidates, exports 182 expert-review items from the post-700
-review queue, and passes the 700-slice gate check. The active-learning gate now
-also fails if unlabeled candidate rows are truncated by the queue limit and the
-queue prioritizes reaction/substrate mismatch risks for review.
+review queue, and passes the 12-check 700-slice gate. The gate now also fails
+if unlabeled candidate rows are truncated by the queue limit or if
+family-guardrail reaction/substrate mismatch lanes lack a dedicated review
+export.
 `artifacts/v3_label_batch_acceptance_check_700.json` records that the latest
 accepted batch added 5 labels for counting while 81 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
@@ -137,8 +138,14 @@ to expert reaction/substrate review, while keeping all three under a strict
 non-countable remap guardrail. `artifacts/v3_reaction_substrate_mismatch_audit_700.json`
 flags 18 active-queue hydrolase-top1 rows with kinase or ATP phosphoryl-transfer
 text for expert reaction/substrate review. The 700 family-propagation guardrail
-now retains all 24 hydrolase-top1 reaction/substrate mismatch blockers, split
+retains all 24 hydrolase-top1 reaction/substrate mismatch blockers, split
 between 17 labeled propagation blocks and 7 unlabeled pending-review blocks.
+`artifacts/v3_reaction_substrate_mismatch_review_export_700.json` now carries
+all 24 lanes together, defers any new ontology family rule until expert review,
+and `artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json` keeps
+all 24 as `no_decision` so automation cannot count them. Countable import
+requires explicit expert review plus a non-`needs_more_evidence`
+reaction/substrate resolution for this export type.
 See
 `docs/label_factory.md`.
 

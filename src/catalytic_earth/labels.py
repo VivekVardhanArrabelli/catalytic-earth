@@ -2877,6 +2877,10 @@ def build_provisional_review_decision_batch(
             for item in batch.get("review_items", [])
             if isinstance(item, dict) and item.get("entry_id") in requested_entry_ids
         ]
+    review_source_method = review_artifact.get("metadata", {}).get("method")
+    reaction_mismatch_review_only = (
+        review_source_method == "reaction_substrate_mismatch_review_export"
+    )
     decision_counts: Counter = Counter()
     decision_entry_ids: dict[str, list[str]] = {}
     selected_boundary_controls = 0
@@ -2890,7 +2894,17 @@ def build_provisional_review_decision_batch(
         if not isinstance(decision, dict):
             decision = {}
             item["decision"] = decision
-        if item.get("current_label") is None:
+        if reaction_mismatch_review_only or isinstance(item.get("mismatch_context"), dict):
+            item["decision"] = {
+                **decision,
+                "action": "no_decision",
+                "reviewer": None,
+                "rationale": None,
+                "evidence_score": None,
+                "review_status": "expert_reviewed",
+                "reaction_substrate_resolution": "needs_more_evidence",
+            }
+        elif item.get("current_label") is None:
             item["decision"] = _provisional_unlabeled_decision(
                 item,
                 queue_context,
@@ -2911,7 +2925,7 @@ def build_provisional_review_decision_batch(
     metadata.update(
         {
             "method": "provisional_label_review_decision_batch",
-            "source_method": review_artifact.get("metadata", {}).get("method"),
+            "source_method": review_source_method,
             "batch_id": batch_id,
             "reviewer": reviewer,
             "selected_entry_ids": sorted(requested_entry_ids),
@@ -2929,6 +2943,7 @@ def build_provisional_review_decision_batch(
                 for action, entry_ids in sorted(decision_entry_ids.items())
             },
             "boundary_control_decisions": selected_boundary_controls,
+            "reaction_substrate_mismatch_review_only": reaction_mismatch_review_only,
             "policy": (
                 "Automation-curated batch decisions stay bronze and are imported "
                 "as automation_curated or needs_expert_review records, not gold "
@@ -3001,6 +3016,7 @@ def check_label_factory_gates(
     adversarial_negatives: dict[str, Any],
     expert_review_export: dict[str, Any],
     family_propagation_guardrails: dict[str, Any] | None = None,
+    reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     ontology = load_mechanism_ontology()
     required_terms = {
@@ -3050,6 +3066,50 @@ def check_label_factory_gates(
     )
     export_diversity_ready = (
         dominant_queue_fraction < 0.6 or not omitted_underrepresented_entry_ids
+    )
+    family_meta = (family_propagation_guardrails or {}).get("metadata", {})
+    family_mismatch_entry_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in (family_propagation_guardrails or {}).get("rows", [])
+        if isinstance(row, dict) and row.get("reaction_substrate_mismatch_reasons")
+    )
+    family_mismatch_count = max(
+        int(family_meta.get("reaction_substrate_mismatch_count", 0) or 0),
+        len(family_mismatch_entry_ids),
+    )
+    mismatch_export_meta = (reaction_substrate_mismatch_review_export or {}).get(
+        "metadata", {}
+    )
+    mismatch_export_present = (
+        mismatch_export_meta.get("method")
+        == "reaction_substrate_mismatch_review_export"
+    )
+    mismatch_export_labeled_seed_count = int(
+        mismatch_export_meta.get("labeled_seed_mismatch_count", 0) or 0
+    )
+    mismatch_export_entry_ids = _sorted_entry_ids(
+        mismatch_export_meta.get("exported_entry_ids", [])
+    )
+    if reaction_substrate_mismatch_review_export and not mismatch_export_entry_ids:
+        mismatch_export_entry_ids = _sorted_entry_ids(
+            item.get("entry_id")
+            for item in reaction_substrate_mismatch_review_export.get(
+                "review_items", []
+            )
+            if isinstance(item, dict)
+        )
+    missing_mismatch_export_entry_ids = _sorted_entry_ids(
+        set(family_mismatch_entry_ids) - set(mismatch_export_entry_ids)
+    )
+    mismatch_export_ready = (
+        family_mismatch_count == 0
+        or (
+            mismatch_export_present
+            and int(mismatch_export_meta.get("exported_count", 0) or 0)
+            >= family_mismatch_count
+            and not missing_mismatch_export_entry_ids
+            and mismatch_export_labeled_seed_count == 0
+        )
     )
     gates = {
         "label_schema_explicit": all(
@@ -3102,10 +3162,11 @@ def check_label_factory_gates(
         "expert_review_export_diversity_ready": export_diversity_ready,
         "family_propagation_guardrails_ready": (
             isinstance(family_propagation_guardrails, dict)
-            and int(family_propagation_guardrails.get("metadata", {}).get("reported_count", 0))
+            and int(family_meta.get("reported_count", 0))
             > 0
-            and bool(family_propagation_guardrails.get("metadata", {}).get("source_guardrails"))
+            and bool(family_meta.get("source_guardrails"))
         ),
+        "reaction_substrate_mismatch_review_export_ready": mismatch_export_ready,
     }
     blockers = [name for name, passed in gates.items() if not passed]
     return {
@@ -3121,6 +3182,22 @@ def check_label_factory_gates(
             "dominant_active_queue_family_fraction": round(dominant_queue_fraction, 4),
             "underrepresented_queue_entry_count": len(underrepresented_queue_entry_ids),
             "omitted_underrepresented_queue_entry_ids": omitted_underrepresented_entry_ids,
+            "family_guardrail_reaction_substrate_mismatch_count": family_mismatch_count,
+            "family_guardrail_reaction_substrate_mismatch_entry_ids": (
+                family_mismatch_entry_ids
+            ),
+            "reaction_substrate_mismatch_review_export_present": (
+                mismatch_export_present
+            ),
+            "reaction_substrate_mismatch_review_export_entry_ids": (
+                mismatch_export_entry_ids
+            ),
+            "reaction_substrate_mismatch_review_export_missing_entry_ids": (
+                missing_mismatch_export_entry_ids
+            ),
+            "reaction_substrate_mismatch_review_export_labeled_seed_mismatch_count": (
+                mismatch_export_labeled_seed_count
+            ),
             "bulk_scaling_rule": (
                 "new labels may be added in batches only after this gate check "
                 "passes and the generated batch artifacts are regenerated"
@@ -3347,6 +3424,20 @@ def summarize_label_factory_batches(
             ),
             "gate_count": gate_meta.get("gate_count"),
             "passed_gate_count": gate_meta.get("passed_gate_count"),
+            "family_guardrail_reaction_substrate_mismatch_count": gate_meta.get(
+                "family_guardrail_reaction_substrate_mismatch_count"
+            ),
+            "reaction_substrate_mismatch_review_export_present": gate_meta.get(
+                "reaction_substrate_mismatch_review_export_present"
+            ),
+            "reaction_substrate_mismatch_review_export_missing_count": len(
+                gate_meta.get(
+                    "reaction_substrate_mismatch_review_export_missing_entry_ids",
+                )
+                or []
+            )
+            if gate_meta
+            else None,
             "active_queue_unlabeled_count": queue_meta.get("total_unlabeled_candidate_count"),
             "active_queue_unlabeled_omitted": queue_meta.get("unlabeled_omitted_by_max_rows"),
             "active_queue_all_unlabeled_retained": queue_meta.get("all_unlabeled_rows_retained"),
@@ -3392,6 +3483,12 @@ def summarize_label_factory_batches(
             "latest_batch": latest.get("batch"),
             "latest_countable_label_count": latest.get("countable_label_count", 0),
             "latest_pending_review_count": latest.get("pending_review_count", 0),
+            "latest_reaction_substrate_mismatch_review_export_present": latest.get(
+                "reaction_substrate_mismatch_review_export_present"
+            ),
+            "latest_reaction_substrate_mismatch_review_export_missing_count": latest.get(
+                "reaction_substrate_mismatch_review_export_missing_count"
+            ),
             "all_batches_accepted_for_counting": all(
                 row["accepted_for_counting"] for row in rows
             )
@@ -5170,6 +5267,230 @@ def audit_reaction_substrate_mismatches(
     }
 
 
+def build_reaction_substrate_mismatch_review_export(
+    *,
+    reaction_substrate_mismatch_audit: dict[str, Any],
+    family_propagation_guardrails: dict[str, Any],
+    labels: list[MechanismLabel],
+) -> dict[str, Any]:
+    """Build a dedicated expert-review export for reaction/substrate mismatches."""
+    labels_by_entry = {label.entry_id: label for label in labels}
+    audit_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in reaction_substrate_mismatch_audit.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    guardrail_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in family_propagation_guardrails.get("rows", [])
+        if isinstance(row, dict)
+        and isinstance(row.get("entry_id"), str)
+        and row.get("reaction_substrate_mismatch_reasons")
+    }
+    entry_ids = _sorted_entry_ids(
+        set(audit_rows_by_entry) | set(guardrail_rows_by_entry)
+    )
+
+    context_rows: list[dict[str, Any]] = []
+    for entry_id in entry_ids:
+        audit_row = audit_rows_by_entry.get(entry_id, {})
+        guardrail_row = guardrail_rows_by_entry.get(entry_id, {})
+        label = labels_by_entry.get(entry_id)
+        mismatch_reasons = _sorted_strings(
+            _sorted_strings(audit_row.get("mismatch_reasons", []))
+            + _sorted_strings(
+                guardrail_row.get("reaction_substrate_mismatch_reasons", [])
+            )
+        )
+        source_artifacts = set(_sorted_strings(audit_row.get("source_artifacts", [])))
+        if audit_row:
+            source_artifacts.add("reaction_substrate_mismatch_audit")
+        if guardrail_row:
+            source_artifacts.add("family_propagation_guardrails")
+        label_state = (
+            guardrail_row.get("label_state")
+            or audit_row.get("label_state")
+            or ("labeled" if label else "unlabeled")
+        )
+        top1_fingerprint_id = (
+            guardrail_row.get("top1_fingerprint_id")
+            or audit_row.get("top1_fingerprint_id")
+        )
+        top1_ontology_family = (
+            guardrail_row.get("top1_ontology_family")
+            or audit_row.get("top1_ontology_family")
+            or (
+                fingerprint_family(str(top1_fingerprint_id))
+                if top1_fingerprint_id
+                else None
+            )
+        )
+        current_label_type = (
+            label.label_type
+            if label
+            else guardrail_row.get("current_label_type")
+            or audit_row.get("current_label_type")
+        )
+        context_rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": guardrail_row.get("entry_name")
+                or audit_row.get("entry_name"),
+                "resolution_lane": (
+                    "labeled_propagation_block_review"
+                    if label_state == "labeled"
+                    else "unlabeled_pending_review"
+                ),
+                "label_state": label_state,
+                "current_label_type": current_label_type,
+                "current_fingerprint_id": label.fingerprint_id if label else None,
+                "current_review_status": label.review_status if label else None,
+                "current_tier": label.tier if label else None,
+                "target_fingerprint_id": guardrail_row.get("target_fingerprint_id")
+                or audit_row.get("target_fingerprint_id"),
+                "target_ontology_family": guardrail_row.get("target_ontology_family"),
+                "top1_fingerprint_id": top1_fingerprint_id,
+                "top1_ontology_family": top1_ontology_family,
+                "top1_score": guardrail_row.get("top1_score")
+                if guardrail_row.get("top1_score") is not None
+                else audit_row.get("top1_score"),
+                "propagation_decision": guardrail_row.get("propagation_decision"),
+                "propagation_blockers": _sorted_strings(
+                    guardrail_row.get("propagation_blockers", [])
+                ),
+                "mismatch_reasons": mismatch_reasons,
+                "source_artifacts": sorted(source_artifacts),
+                "source_recommended_action": audit_row.get("source_recommended_action"),
+                "recommended_action": "expert_reaction_substrate_review",
+                "recommended_resolution": (
+                    "expert_review_before_ontology_split_or_countable_label"
+                ),
+                "mechanism_text_snippets": guardrail_row.get("mechanism_text_snippets")
+                or audit_row.get("mechanism_text_snippets", []),
+                "countable_label_candidate": False,
+                "review_policy": (
+                    "route both labeled and unlabeled reaction/substrate mismatch "
+                    "lanes to expert review before adding an ontology-family rule "
+                    "or accepting more countable labels"
+                ),
+            }
+        )
+
+    label_state_counts = Counter(str(row.get("label_state")) for row in context_rows)
+    current_label_type_counts = Counter(
+        str(row.get("current_label_type") or "unlabeled") for row in context_rows
+    )
+    labeled_seed_mismatch_entry_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in context_rows
+        if row.get("label_state") == "labeled"
+        and row.get("current_label_type") != "out_of_scope"
+    )
+    reason_counts = Counter(
+        reason for row in context_rows for reason in row.get("mismatch_reasons", [])
+    )
+    top1_counts = Counter(
+        str(row.get("top1_fingerprint_id"))
+        for row in context_rows
+        if row.get("top1_fingerprint_id")
+    )
+    audit_entry_ids = _sorted_entry_ids(audit_rows_by_entry)
+    guardrail_entry_ids = _sorted_entry_ids(guardrail_rows_by_entry)
+    export_entry_ids = _sorted_entry_ids(row.get("entry_id") for row in context_rows)
+    return {
+        "metadata": {
+            "method": "reaction_substrate_mismatch_review_export",
+            "source_audit_method": reaction_substrate_mismatch_audit.get(
+                "metadata", {}
+            ).get("method"),
+            "source_family_guardrail_method": family_propagation_guardrails.get(
+                "metadata", {}
+            ).get("method"),
+            "exported_count": len(context_rows),
+            "exported_entry_ids": export_entry_ids,
+            "reaction_audit_mismatch_count": len(audit_entry_ids),
+            "reaction_audit_mismatch_entry_ids": audit_entry_ids,
+            "family_guardrail_mismatch_count": len(guardrail_entry_ids),
+            "family_guardrail_mismatch_entry_ids": guardrail_entry_ids,
+            "all_reaction_audit_mismatches_exported": set(audit_entry_ids).issubset(
+                set(export_entry_ids)
+            ),
+            "all_family_guardrail_mismatches_exported": set(
+                guardrail_entry_ids
+            ).issubset(set(export_entry_ids)),
+            "label_state_counts": dict(sorted(label_state_counts.items())),
+            "current_label_type_counts": dict(
+                sorted(current_label_type_counts.items())
+            ),
+            "labeled_seed_mismatch_count": len(labeled_seed_mismatch_entry_ids),
+            "labeled_seed_mismatch_entry_ids": labeled_seed_mismatch_entry_ids,
+            "mismatch_reason_counts": dict(sorted(reason_counts.items())),
+            "top1_fingerprint_counts": dict(sorted(top1_counts.items())),
+            "countable_label_candidate_count": 0,
+            "ontology_rule_decision": "defer_new_family_rule_until_expert_review",
+            "recommended_path": "expert_reaction_substrate_review_before_ontology_split",
+            "decision_schema": {
+                "action": [
+                    "accept_label",
+                    "mark_needs_more_evidence",
+                    "reject_label",
+                    "no_decision",
+                ],
+                "reaction_substrate_resolution": [
+                    "confirm_current_label_or_out_of_scope",
+                    "assign_existing_fingerprint",
+                    "requires_new_ontology_family",
+                    "needs_more_evidence",
+                ],
+                "review_status": [
+                    "expert_reviewed",
+                    "needs_expert_review",
+                ],
+            },
+            "review_rule": (
+                "keyword-level kinase or ATP phosphoryl-transfer mismatch is "
+                "not enough to create a new ontology family or count a label; "
+                "export every mismatch lane for expert reaction/substrate review"
+            ),
+            "countable_import_rule": (
+                "accepted mismatch-export rows must be explicitly expert_reviewed "
+                "and carry a non-needs_more_evidence reaction/substrate resolution "
+                "before import-countable-label-review can count them"
+            ),
+        },
+        "review_items": [
+            {
+                "rank": index,
+                "entry_id": row["entry_id"],
+                "entry_name": row.get("entry_name"),
+                "current_label": labels_by_entry[row["entry_id"]].to_dict()
+                if row["entry_id"] in labels_by_entry
+                else None,
+                "mismatch_context": row,
+                "review_question": (
+                    "Does this entry represent kinase, ATP phosphoryl-transfer, "
+                    "or another non-hydrolytic reaction class that should remain "
+                    "out of scope, use an existing seed fingerprint, or require "
+                    "a new ontology family before any countable label is accepted?"
+                ),
+                "decision": {
+                    "action": "no_decision",
+                    "label_type": row.get("current_label_type"),
+                    "fingerprint_id": row.get("current_fingerprint_id"),
+                    "tier": row.get("current_tier") or "bronze",
+                    "confidence": "medium",
+                    "reviewer": None,
+                    "rationale": None,
+                    "evidence_score": None,
+                    "review_status": "expert_reviewed",
+                    "reaction_substrate_resolution": "needs_more_evidence",
+                },
+            }
+            for index, row in enumerate(context_rows, start=1)
+        ],
+    }
+
+
 def _remap_local_reaction_substrate_mismatch_reasons(
     *,
     entry_name: str,
@@ -5869,6 +6190,7 @@ def audit_label_scaling_quality(
     alternate_structure_scan: dict[str, Any] | None = None,
     remap_local_lead_audit: dict[str, Any] | None = None,
     reaction_substrate_mismatch_audit: dict[str, Any] | None = None,
+    reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
     batch_id: str | None = None,
 ) -> dict[str, Any]:
     acceptance_meta = acceptance.get("metadata", {})
@@ -5880,6 +6202,9 @@ def audit_label_scaling_quality(
     alternate_scan_meta = (alternate_structure_scan or {}).get("metadata", {})
     remap_local_meta = (remap_local_lead_audit or {}).get("metadata", {})
     reaction_mismatch_meta = (reaction_substrate_mismatch_audit or {}).get("metadata", {})
+    reaction_mismatch_export_meta = (
+        reaction_substrate_mismatch_review_export or {}
+    ).get("metadata", {})
     new_debt_ids = sorted(
         (
             str(entry_id)
@@ -6166,8 +6491,45 @@ def audit_label_scaling_quality(
     reaction_mismatch_audit_entry_ids = _sorted_entry_ids(
         reaction_mismatch_meta.get("mismatch_entry_ids", [])
     )
+    family_reaction_mismatch_entry_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in family_propagation_guardrails.get("rows", [])
+        if isinstance(row, dict) and row.get("reaction_substrate_mismatch_reasons")
+    )
+    expected_reaction_mismatch_review_entry_ids = _sorted_entry_ids(
+        set(reaction_mismatch_audit_entry_ids)
+        | set(family_reaction_mismatch_entry_ids)
+    )
+    reaction_mismatch_review_export_present = (
+        reaction_mismatch_export_meta.get("method")
+        == "reaction_substrate_mismatch_review_export"
+    )
+    reaction_mismatch_review_export_entry_ids = _sorted_entry_ids(
+        reaction_mismatch_export_meta.get("exported_entry_ids", [])
+    )
+    if reaction_substrate_mismatch_review_export and not reaction_mismatch_review_export_entry_ids:
+        reaction_mismatch_review_export_entry_ids = _sorted_entry_ids(
+            item.get("entry_id")
+            for item in reaction_substrate_mismatch_review_export.get(
+                "review_items", []
+            )
+            if isinstance(item, dict)
+        )
+    reaction_mismatch_review_export_missing_entry_ids = _sorted_entry_ids(
+        set(expected_reaction_mismatch_review_entry_ids)
+        - set(reaction_mismatch_review_export_entry_ids)
+    )
+    if reaction_mismatch_review_export_present:
+        gates["reaction_substrate_mismatch_review_export_retains_mismatch_lanes"] = (
+            not reaction_mismatch_review_export_missing_entry_ids
+        )
+        blockers = [name for name, passed in gates.items() if not passed]
     if reaction_mismatch_audit_entry_ids:
         review_warnings.append("reaction_substrate_mismatch_audit_hits")
+    if expected_reaction_mismatch_review_entry_ids and not reaction_mismatch_review_export_present:
+        review_warnings.append("reaction_substrate_mismatch_review_export_missing")
+    elif reaction_mismatch_review_export_missing_entry_ids:
+        review_warnings.append("reaction_substrate_mismatch_review_export_incomplete")
 
     reaction_failure_mode = _scaling_failure_mode_summary(
         "reaction_direction_or_substrate_class_mismatch",
@@ -6438,6 +6800,21 @@ def audit_label_scaling_quality(
             ),
             "reaction_substrate_mismatch_audit_count": int(
                 reaction_mismatch_meta.get("mismatch_count", 0) or 0
+            ),
+            "reaction_substrate_mismatch_review_export_present": (
+                reaction_mismatch_review_export_present
+            ),
+            "reaction_substrate_mismatch_review_export_entry_ids": (
+                reaction_mismatch_review_export_entry_ids
+            ),
+            "reaction_substrate_mismatch_review_export_missing_entry_ids": (
+                reaction_mismatch_review_export_missing_entry_ids
+            ),
+            "expected_reaction_substrate_mismatch_review_entry_ids": (
+                expected_reaction_mismatch_review_entry_ids
+            ),
+            "reaction_substrate_mismatch_review_export_recommended_path": (
+                reaction_mismatch_export_meta.get("recommended_path")
             ),
             "issue_class_counts": dict(sorted(issue_class_counts.items())),
             "audit_rule": (
@@ -6858,15 +7235,27 @@ def import_countable_review_decisions(
     review_artifact: dict[str, Any],
 ) -> list[MechanismLabel]:
     countable_review = deepcopy(review_artifact)
+    reaction_mismatch_review_only = (
+        review_artifact.get("metadata", {}).get("method")
+        == "reaction_substrate_mismatch_review_export"
+    )
     for item in countable_review.get("review_items", []):
         if not isinstance(item, dict):
             continue
         decision = item.get("decision", {})
         if not isinstance(decision, dict):
             continue
+        reaction_resolution = decision.get("reaction_substrate_resolution")
         if (
             decision.get("action") != "accept_label"
             or decision.get("review_status", "expert_reviewed") not in COUNTABLE_REVIEW_STATUSES
+            or (
+                reaction_mismatch_review_only
+                and (
+                    decision.get("review_status") != "expert_reviewed"
+                    or reaction_resolution in {None, "needs_more_evidence"}
+                )
+            )
         ):
             item["decision"] = {**decision, "action": "no_decision"}
     return import_expert_review_decisions(labels, countable_review)

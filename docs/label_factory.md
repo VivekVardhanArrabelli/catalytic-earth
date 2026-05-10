@@ -112,6 +112,10 @@ registry copy while preserving existing evidence sources and appending review
 provenance. `import-countable-label-review` applies only accepted countable
 decisions, preserving the existing baseline labels and leaving pending-review
 items out of the benchmark registry.
+For reaction/substrate mismatch exports, countable import is stricter:
+accepted rows must be explicitly `expert_reviewed` and have a
+non-`needs_more_evidence` reaction/substrate resolution before they can enter a
+countable registry.
 
 Do not build a countable batch by simply filtering a review-state registry:
 that would remove baseline labels temporarily marked `needs_expert_review` for
@@ -236,6 +240,18 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-reaction-substrate-mismatches
   --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
   --active-learning-queue artifacts/v3_active_learning_review_queue_700.json \
   --out artifacts/v3_reaction_substrate_mismatch_audit_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-reaction-substrate-mismatch-review-export \
+  --reaction-substrate-mismatch-audit artifacts/v3_reaction_substrate_mismatch_audit_700.json \
+  --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700.json \
+  --labels data/registries/curated_mechanism_labels.json \
+  --out artifacts/v3_reaction_substrate_mismatch_review_export_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-review-decision-batch \
+  --review artifacts/v3_reaction_substrate_mismatch_review_export_700.json \
+  --batch-id 700_reaction_substrate_mismatch_review \
+  --reviewer automation_label_factory \
+  --out artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json
 ```
 
 ```bash
@@ -280,6 +296,21 @@ PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates \
   --expert-review-export artifacts/v3_expert_review_export_650_post_batch.json \
   --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_650.json \
   --out artifacts/v3_label_factory_gate_check_650.json
+```
+
+When family guardrails report reaction/substrate mismatch lanes, pass the
+dedicated mismatch export as well. The accepted 700 gate uses:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates \
+  --label-factory-audit artifacts/v3_label_factory_audit_700.json \
+  --applied-label-factory artifacts/v3_label_factory_applied_labels_700.json \
+  --active-learning-queue artifacts/v3_active_learning_review_queue_700.json \
+  --adversarial-negatives artifacts/v3_adversarial_negative_controls_700.json \
+  --expert-review-export artifacts/v3_expert_review_export_700_post_batch.json \
+  --family-propagation-guardrails artifacts/v3_family_propagation_guardrails_700.json \
+  --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json \
+  --out artifacts/v3_label_factory_gate_check_700.json
 ```
 
 For a decision batch, also verify the countable subset:
@@ -350,7 +381,9 @@ factory gate status, and unlabeled queue retention across all accepted batches.
 For preview batches, also pass `--scaling-quality-audit`; the summary records
 audit readiness, accepted-label review-debt blockers, unclassified new
 review-debt rows, omitted underrepresented queue rows, and non-blocking audit
-warnings before the batch can be treated as promotion-ready.
+warnings before the batch can be treated as promotion-ready. The current 700
+summary also carries whether every family-guardrail reaction/substrate mismatch
+lane is present in the dedicated mismatch export.
 
 After the scaling-quality audit below exists, rerun the preview summary with
 the audit attached:
@@ -404,6 +437,7 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality \
   --alternate-structure-scan artifacts/v3_review_debt_alternate_structure_scan_700.json \
   --remap-local-lead-audit artifacts/v3_review_debt_remap_local_lead_audit_700.json \
   --reaction-substrate-mismatch-audit artifacts/v3_reaction_substrate_mismatch_audit_700.json \
+  --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json \
   --out artifacts/v3_label_scaling_quality_audit_700_preview.json
 ```
 
@@ -428,11 +462,12 @@ tests before its labels are counted.
 
 Current 700-queue gate state:
 
-- 11/11 gate checks pass.
+- 12/12 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
-  family-propagation guardrails ready, and unlabeled queue retention ready.
+  family-propagation guardrails ready, mismatch review export ready, and
+  unlabeled queue retention ready.
 - 79 bronze-to-silver promotions are proposed in the applied-label artifact
   after the accepted 700 batch.
 - 188 rows are queued for active-learning review after the accepted 700 batch,
@@ -442,6 +477,10 @@ Current 700-queue gate state:
   `reaction_substrate_mismatch` blockers, including 14 priority-retained rows
   beyond `max_rows`, split into 17 labeled propagation blocks and 7 unlabeled
   pending-review blocks.
+- The dedicated reaction/substrate mismatch export carries all 24 lanes, records
+  17 current out-of-scope labels plus 7 unlabeled rows, defers new ontology
+  family creation until expert review, and keeps its generated decision batch at
+  24 `no_decision` items.
 - 100 adversarial negative controls are mined.
 - 182 expert-review items are exported from the post-700 review queue.
 - The 500, 525, 550, 575, 600, 625, 650, 675, and 700 decision batches

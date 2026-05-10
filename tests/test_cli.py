@@ -717,6 +717,166 @@ class CliTests(unittest.TestCase):
             self.assertEqual(audit["metadata"]["mismatch_entry_ids"], ["m_csa:655"])
             self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
 
+    def test_build_reaction_substrate_mismatch_review_export_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            labels = root / "labels.json"
+            reaction_audit = root / "reaction_mismatch.json"
+            family_guardrails = root / "family_guardrails.json"
+            out = root / "reaction_mismatch_review_export.json"
+            labels.write_text(
+                json.dumps(
+                    [
+                        {
+                            "entry_id": "m_csa:655",
+                            "fingerprint_id": None,
+                            "label_type": "out_of_scope",
+                            "confidence": "medium",
+                            "rationale": "kinase boundary control kept outside the seed set",
+                            "tier": "bronze",
+                            "review_status": "automation_curated",
+                            "evidence_score": 0.65,
+                            "evidence": {"sources": ["test"]},
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            reaction_audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "reaction_substrate_mismatch_audit"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:655",
+                                "entry_name": "glucokinase-like lead",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "mismatch_reasons": ["kinase_name_with_hydrolase_top1"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            family_guardrails.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "family_propagation_guardrail_audit"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:655",
+                                "entry_name": "glucokinase-like lead",
+                                "label_state": "labeled",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "reaction_substrate_mismatch_reasons": [
+                                    "kinase_name_with_hydrolase_top1"
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:656",
+                                "entry_name": "pending ribokinase",
+                                "label_state": "unlabeled",
+                                "top1_fingerprint_id": "metal_dependent_hydrolase",
+                                "reaction_substrate_mismatch_reasons": [
+                                    "kinase_name_with_hydrolase_top1"
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-reaction-substrate-mismatch-review-export",
+                    "--reaction-substrate-mismatch-audit",
+                    str(reaction_audit),
+                    "--family-propagation-guardrails",
+                    str(family_guardrails),
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            export = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(export["metadata"]["exported_count"], 2)
+            self.assertTrue(export["metadata"]["all_family_guardrail_mismatches_exported"])
+            self.assertEqual(
+                export["metadata"]["recommended_path"],
+                "expert_reaction_substrate_review_before_ontology_split",
+            )
+
+    def test_import_countable_review_rejects_automation_mismatch_accepts(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            labels = root / "labels.json"
+            review = root / "mismatch_review.json"
+            out = root / "countable_labels.json"
+            labels.write_text("[]", encoding="utf-8")
+            review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "reaction_substrate_mismatch_review_export"
+                        },
+                        "review_items": [
+                            {
+                                "entry_id": "m_csa:656",
+                                "entry_name": "pending ribokinase",
+                                "decision": {
+                                    "action": "accept_label",
+                                    "label_type": "seed_fingerprint",
+                                    "fingerprint_id": "metal_dependent_hydrolase",
+                                    "tier": "bronze",
+                                    "confidence": "medium",
+                                    "reviewer": "automation_label_factory",
+                                    "rationale": (
+                                        "Automation must not count mismatch "
+                                        "review rows without expert resolution."
+                                    ),
+                                    "evidence_score": 0.65,
+                                    "review_status": "automation_curated",
+                                    "reaction_substrate_resolution": "needs_more_evidence",
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "import-countable-label-review",
+                    "--review",
+                    str(review),
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertEqual(json.loads(out.read_text(encoding="utf-8")), [])
+
     def test_check_label_preview_promotion_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

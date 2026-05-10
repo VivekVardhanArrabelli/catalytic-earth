@@ -126,6 +126,15 @@ ATP phosphoryl-transfer text, keeps all 18 non-countable, and feeds a
 queue. The accepted 700 batch still has 0 accepted reaction/substrate mismatch
 rows.
 
+`artifacts/v3_reaction_substrate_mismatch_review_export_700.json` now carries
+the full family-guardrail mismatch surface: all 24 hydrolase-top1
+reaction/substrate mismatch lanes, split into 17 current out-of-scope labels
+and 7 unlabeled pending-review rows. The export records 0 labeled seed
+mismatches, defers any kinase/phosphoryl-transfer ontology-family split until
+expert reaction/substrate review, and feeds the 12th 700 factory gate.
+`artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json` keeps all
+24 review items as `no_decision`, so automation cannot count or reject them.
+
 ## Remaining-Time Plan 2026-05-10T19:01Z
 
 The assigned remap-local audit is complete early, with countable labels still

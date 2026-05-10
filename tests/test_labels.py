@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import deepcopy
 import sys
 import unittest
 from pathlib import Path
@@ -29,6 +30,7 @@ from catalytic_earth.labels import (
     build_label_expansion_candidates,
     build_label_factory_audit,
     build_provisional_review_decision_batch,
+    build_reaction_substrate_mismatch_review_export,
     check_label_batch_acceptance,
     check_label_factory_gates,
     check_label_preview_promotion_readiness,
@@ -1733,6 +1735,261 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertIn(
             "atp_phosphoryl_transfer_text_with_hydrolase_top1",
             audit["rows"][0]["mismatch_reasons"],
+        )
+
+    def test_reaction_substrate_mismatch_review_export_keeps_lanes_together(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:655",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="kinase boundary control kept outside the seed set",
+            )
+        ]
+        reaction_audit = {
+            "metadata": {"method": "reaction_substrate_mismatch_audit"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:655",
+                    "entry_name": "glucokinase-like labeled control",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "mismatch_reasons": ["kinase_name_with_hydrolase_top1"],
+                    "mechanism_text_snippets": ["Glucose attacks ATP."],
+                }
+            ],
+        }
+        family_guardrails = {
+            "metadata": {"method": "family_propagation_guardrail_audit"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:655",
+                    "entry_name": "glucokinase-like labeled control",
+                    "label_state": "labeled",
+                    "current_label_type": "out_of_scope",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_ontology_family": "hydrolysis",
+                    "propagation_decision": "block_family_propagation",
+                    "propagation_blockers": ["reaction_substrate_mismatch"],
+                    "reaction_substrate_mismatch_reasons": [
+                        "kinase_name_with_hydrolase_top1"
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:656",
+                    "entry_name": "pending ribokinase",
+                    "label_state": "unlabeled",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_ontology_family": "hydrolysis",
+                    "propagation_decision": "block_propagation_pending_review",
+                    "propagation_blockers": [
+                        "unlabeled_candidate_requires_direct_review",
+                        "reaction_substrate_mismatch",
+                    ],
+                    "reaction_substrate_mismatch_reasons": [
+                        "kinase_name_with_hydrolase_top1",
+                        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+                    ],
+                },
+            ],
+        }
+
+        export = build_reaction_substrate_mismatch_review_export(
+            reaction_substrate_mismatch_audit=reaction_audit,
+            family_propagation_guardrails=family_guardrails,
+            labels=labels,
+        )
+
+        self.assertEqual(
+            export["metadata"]["method"],
+            "reaction_substrate_mismatch_review_export",
+        )
+        self.assertEqual(export["metadata"]["exported_count"], 2)
+        self.assertTrue(export["metadata"]["all_reaction_audit_mismatches_exported"])
+        self.assertTrue(export["metadata"]["all_family_guardrail_mismatches_exported"])
+        self.assertEqual(
+            export["metadata"]["label_state_counts"],
+            {"labeled": 1, "unlabeled": 1},
+        )
+        self.assertEqual(
+            export["metadata"]["current_label_type_counts"],
+            {"out_of_scope": 1, "unlabeled": 1},
+        )
+        self.assertEqual(export["metadata"]["labeled_seed_mismatch_count"], 0)
+        self.assertEqual(
+            export["metadata"]["recommended_path"],
+            "expert_reaction_substrate_review_before_ontology_split",
+        )
+        self.assertEqual(export["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            [item["entry_id"] for item in export["review_items"]],
+            ["m_csa:655", "m_csa:656"],
+        )
+        self.assertIsNotNone(export["review_items"][0]["current_label"])
+        self.assertEqual(
+            export["review_items"][1]["mismatch_context"]["resolution_lane"],
+            "unlabeled_pending_review",
+        )
+        self.assertFalse(
+            any(
+                item["mismatch_context"]["countable_label_candidate"]
+                for item in export["review_items"]
+            )
+        )
+        batch = build_provisional_review_decision_batch(export)
+        self.assertTrue(batch["metadata"]["reaction_substrate_mismatch_review_only"])
+        self.assertEqual(batch["metadata"]["decision_counts"], {"no_decision": 2})
+        self.assertTrue(
+            all(
+                item["decision"]["action"] == "no_decision"
+                for item in batch["review_items"]
+            )
+        )
+        unsafe_countable = deepcopy(export)
+        unsafe_countable["review_items"][1]["decision"] = {
+            "action": "accept_label",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": "automation_label_factory",
+            "rationale": "Automation must not count mismatch review rows without expert resolution.",
+            "evidence_score": 0.65,
+            "review_status": "automation_curated",
+            "reaction_substrate_resolution": "needs_more_evidence",
+        }
+        imported = import_countable_review_decisions(labels, unsafe_countable)
+        self.assertNotIn("m_csa:656", {label.entry_id for label in imported})
+
+    def test_factory_gate_requires_mismatch_review_export_when_guardrails_find_lanes(
+        self,
+    ) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:655",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="medium",
+                rationale="kinase boundary control kept outside the seed set",
+            )
+        ]
+        queue = {
+            "metadata": {
+                "queued_count": 1,
+                "all_unlabeled_rows_retained": True,
+                "ranking_terms": [
+                    "uncertainty",
+                    "impact",
+                    "novelty",
+                    "hard_negative_value",
+                    "evidence_conflict",
+                    "family_boundary_value",
+                    "reaction_substrate_mismatch_value",
+                ],
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:655",
+                    "top1_ontology_family": "hydrolysis",
+                }
+            ],
+        }
+        family_guardrails = {
+            "metadata": {
+                "method": "family_propagation_guardrail_audit",
+                "reported_count": 2,
+                "source_guardrails": [{"source": "local_proxy"}],
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:655",
+                    "entry_name": "glucokinase-like labeled control",
+                    "label_state": "labeled",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "reaction_substrate_mismatch_reasons": [
+                        "kinase_name_with_hydrolase_top1"
+                    ],
+                },
+                {
+                    "entry_id": "m_csa:656",
+                    "entry_name": "pending ribokinase",
+                    "label_state": "unlabeled",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "reaction_substrate_mismatch_reasons": [
+                        "kinase_name_with_hydrolase_top1"
+                    ],
+                },
+            ],
+        }
+        gate_without_export = check_label_factory_gates(
+            labels,
+            {"metadata": {"promote_to_silver_count": 1, "abstention_or_review_count": 1}},
+            {
+                "metadata": {
+                    "output_label_count": len(labels),
+                    "output_summary": {"by_tier": {"silver": 1}},
+                }
+            },
+            queue,
+            {"metadata": {"control_count": 1, "axis_counts": {"ontology_family_boundary": 1}}},
+            {"metadata": {"exported_count": 1}, "review_items": [{"entry_id": "m_csa:655"}]},
+            family_propagation_guardrails=family_guardrails,
+        )
+        self.assertFalse(
+            gate_without_export["gates"][
+                "reaction_substrate_mismatch_review_export_ready"
+            ]
+        )
+        self.assertIn(
+            "reaction_substrate_mismatch_review_export_ready",
+            gate_without_export["blockers"],
+        )
+        self.assertEqual(
+            gate_without_export["metadata"][
+                "family_guardrail_reaction_substrate_mismatch_count"
+            ],
+            2,
+        )
+
+        mismatch_export = build_reaction_substrate_mismatch_review_export(
+            reaction_substrate_mismatch_audit={
+                "metadata": {"method": "reaction_substrate_mismatch_audit"},
+                "rows": [],
+            },
+            family_propagation_guardrails=family_guardrails,
+            labels=labels,
+        )
+        gate_with_export = check_label_factory_gates(
+            labels,
+            {"metadata": {"promote_to_silver_count": 1, "abstention_or_review_count": 1}},
+            {
+                "metadata": {
+                    "output_label_count": len(labels),
+                    "output_summary": {"by_tier": {"silver": 1}},
+                }
+            },
+            queue,
+            {"metadata": {"control_count": 1, "axis_counts": {"ontology_family_boundary": 1}}},
+            {"metadata": {"exported_count": 1}, "review_items": [{"entry_id": "m_csa:655"}]},
+            family_propagation_guardrails=family_guardrails,
+            reaction_substrate_mismatch_review_export=mismatch_export,
+        )
+        self.assertTrue(
+            gate_with_export["gates"][
+                "reaction_substrate_mismatch_review_export_ready"
+            ]
+        )
+        self.assertEqual(
+            gate_with_export["metadata"][
+                "reaction_substrate_mismatch_review_export_missing_entry_ids"
+            ],
+            [],
+        )
+        self.assertEqual(
+            gate_with_export["metadata"][
+                "reaction_substrate_mismatch_review_export_labeled_seed_mismatch_count"
+            ],
+            0,
         )
 
     def test_preview_promotion_readiness_warns_on_new_review_debt(self) -> None:

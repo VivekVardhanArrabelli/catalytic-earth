@@ -33,6 +33,7 @@ from .labels import (
     build_label_expansion_candidates,
     build_label_factory_audit,
     build_provisional_review_decision_batch,
+    build_reaction_substrate_mismatch_review_export,
     check_label_batch_acceptance,
     check_label_factory_gates,
     check_label_preview_promotion_readiness,
@@ -879,6 +880,26 @@ def cmd_audit_reaction_substrate_mismatches(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_reaction_substrate_mismatch_review_export(args: argparse.Namespace) -> int:
+    with Path(args.reaction_substrate_mismatch_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        reaction_mismatch_audit = json.load(handle)
+    with Path(args.family_propagation_guardrails).open("r", encoding="utf-8") as handle:
+        family_guardrails = json.load(handle)
+    export = build_reaction_substrate_mismatch_review_export(
+        reaction_substrate_mismatch_audit=reaction_mismatch_audit,
+        family_propagation_guardrails=family_guardrails,
+        labels=load_labels(Path(args.labels)),
+    )
+    write_json(Path(args.out), export)
+    print(
+        "Wrote reaction/substrate mismatch review export to "
+        f"{args.out} ({export['metadata']['exported_count']} items)"
+    )
+    return 0
+
+
 def cmd_check_label_preview_promotion(args: argparse.Namespace) -> int:
     with Path(args.preview_acceptance).open("r", encoding="utf-8") as handle:
         acceptance = json.load(handle)
@@ -949,6 +970,12 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             reaction_mismatch_audit = json.load(handle)
+    reaction_mismatch_review_export = None
+    if args.reaction_substrate_mismatch_review_export:
+        with Path(args.reaction_substrate_mismatch_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            reaction_mismatch_review_export = json.load(handle)
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -964,6 +991,7 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         alternate_structure_scan=alternate_structure_scan,
         remap_local_lead_audit=remap_local_lead_audit,
         reaction_substrate_mismatch_audit=reaction_mismatch_audit,
+        reaction_substrate_mismatch_review_export=reaction_mismatch_review_export,
         batch_id=args.batch_id,
     )
     write_json(Path(args.out), audit)
@@ -987,6 +1015,12 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
         review_export = json.load(handle)
     with Path(args.family_propagation_guardrails).open("r", encoding="utf-8") as handle:
         family_guardrails = json.load(handle)
+    mismatch_review_export = None
+    if args.reaction_substrate_mismatch_review_export:
+        with Path(args.reaction_substrate_mismatch_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            mismatch_review_export = json.load(handle)
     gates = check_label_factory_gates(
         load_labels(Path(args.labels)),
         factory,
@@ -995,6 +1029,7 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
         adversarial,
         review_export,
         family_propagation_guardrails=family_guardrails,
+        reaction_substrate_mismatch_review_export=mismatch_review_export,
     )
     write_json(Path(args.out), gates)
     print(
@@ -1579,6 +1614,7 @@ def build_parser() -> argparse.ArgumentParser:
     gate_check.add_argument("--adversarial-negatives", default="artifacts/v3_adversarial_negative_controls_475.json")
     gate_check.add_argument("--expert-review-export", default="artifacts/v3_expert_review_export_500.json")
     gate_check.add_argument("--family-propagation-guardrails", default="artifacts/v3_family_propagation_guardrails_500.json")
+    gate_check.add_argument("--reaction-substrate-mismatch-review-export", default=None)
     gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
     gate_check.set_defaults(func=cmd_check_label_factory_gates)
 
@@ -1778,6 +1814,30 @@ def build_parser() -> argparse.ArgumentParser:
     )
     reaction_mismatch.set_defaults(func=cmd_audit_reaction_substrate_mismatches)
 
+    reaction_mismatch_export = subparsers.add_parser(
+        "build-reaction-substrate-mismatch-review-export",
+        help="export all reaction/substrate mismatch lanes for expert review",
+    )
+    reaction_mismatch_export.add_argument(
+        "--reaction-substrate-mismatch-audit",
+        default="artifacts/v3_reaction_substrate_mismatch_audit.json",
+    )
+    reaction_mismatch_export.add_argument(
+        "--family-propagation-guardrails",
+        default="artifacts/v3_family_propagation_guardrails.json",
+    )
+    reaction_mismatch_export.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    reaction_mismatch_export.add_argument(
+        "--out",
+        default="artifacts/v3_reaction_substrate_mismatch_review_export.json",
+    )
+    reaction_mismatch_export.set_defaults(
+        func=cmd_build_reaction_substrate_mismatch_review_export
+    )
+
     preview_promotion = subparsers.add_parser(
         "check-label-preview-promotion",
         help="separate mechanical preview acceptance from promotion readiness",
@@ -1841,6 +1901,10 @@ def build_parser() -> argparse.ArgumentParser:
     scaling_quality.add_argument("--alternate-structure-scan", default=None)
     scaling_quality.add_argument("--remap-local-lead-audit", default=None)
     scaling_quality.add_argument("--reaction-substrate-mismatch-audit", default=None)
+    scaling_quality.add_argument(
+        "--reaction-substrate-mismatch-review-export",
+        default=None,
+    )
     scaling_quality.add_argument(
         "--out",
         default="artifacts/v3_label_scaling_quality_audit.json",

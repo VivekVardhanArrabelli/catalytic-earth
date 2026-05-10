@@ -62,6 +62,8 @@ that structure-wide cofactor-family hits still lack local active-site support.
 - `artifacts/v3_review_debt_alternate_structure_scan_700.json`
 - `artifacts/v3_review_debt_remap_local_lead_audit_700.json`
 - `artifacts/v3_reaction_substrate_mismatch_audit_700.json`
+- `artifacts/v3_reaction_substrate_mismatch_review_export_700.json`
+- `artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json`
 - `artifacts/v3_family_propagation_guardrails_700.json`
 - `artifacts/v3_label_scaling_quality_audit_700_preview.json`
 - `artifacts/v3_sequence_cluster_proxy_700.json`
@@ -70,7 +72,7 @@ Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 11/11 factory checks pass on the 624-label countable
+Current gate state: 12/12 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional
 labels were accepted for counting in the 700 batch, 81 review-state decisions
 remain pending, and the countable subset has 0 hard negatives, 0 near misses,
@@ -81,7 +83,13 @@ includes reaction/substrate mismatch ranking, and the 700 mismatch audit routes
 18 hydrolase-top1 kinase or ATP phosphoryl-transfer rows to expert review. The
 700 family-propagation guardrail separately retains 24 reaction/substrate
 mismatch blockers, including 14 rows kept beyond `max_rows`; these split into
-17 labeled propagation blocks and 7 unlabeled pending-review blocks. The batch
+17 labeled propagation blocks and 7 unlabeled pending-review blocks. The
+dedicated mismatch review export now carries all 24 lanes together, records
+17 current out-of-scope labels plus 7 unlabeled rows, defers any new ontology
+family rule until expert review, and the generated decision batch preserves all
+24 as `no_decision`. Countable review import also refuses accepted
+reaction/substrate mismatch rows unless they are explicitly expert-reviewed and
+carry a non-`needs_more_evidence` reaction/substrate resolution. The batch
 summary reports 9/9 accepted batches with 0 blockers.
 The 675 preview initially exposed accepted out-of-scope rows that still carried
 review debt, so the provisional decision rule now defers below-threshold,
@@ -112,6 +120,15 @@ expected-family hits for `m_csa:679`, `m_csa:696`, and `m_csa:698`, but 0 local
 active-site expected-family hits, so those rows remain review-only. The full
 plan also records 69 review-debt rows with alternate PDBs but no alternate-PDB
 M-CSA residue-position support.
+
+Remaining-time plan from the 2026-05-10 reaction-mismatch repair run: after
+the dedicated mismatch export and gate wiring were in place, keep count growth
+stopped and use the remaining productive window to make the export
+expert-only, regenerate the 700 gate/scaling/batch artifacts, and document the
+new 12th gate before handoff. Completed: the export is no-decision only, the
+countable import path now requires explicit expert reaction/substrate
+resolution for mismatch-export accepts, and the committed 700 gate/scaling
+artifacts retain all 24 mismatch lanes with 0 missing entries.
 
 Do not derive that countable subset by filtering the review-state registry: the
 review-state artifact intentionally marks several baseline boundary controls as

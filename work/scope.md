@@ -173,11 +173,15 @@ Current expectation:
   bronze-to-silver promotions, flags 112 abstention/review rows, mines 100
   adversarial negative controls, exports 182 expert-review items from the
   current ranked review cutoff plus all unlabeled candidates from the 700
-  review queue, and passes the label-factory gate check; the active-learning
-  queue now includes a reaction/substrate mismatch ranking term, and the 700
-  family-propagation guardrail blocks 24 reported rows on the same mismatch
-  signal with priority retention beyond `max_rows` (17 labeled propagation
-  blocks and 7 unlabeled pending-review blocks)
+  review queue, and passes the 12-check label-factory gate; the
+  active-learning queue now includes a reaction/substrate mismatch ranking
+  term, and the 700 family-propagation guardrail blocks 24 reported rows on
+  the same mismatch signal with priority retention beyond `max_rows` (17
+  labeled propagation blocks and 7 unlabeled pending-review blocks). The
+  dedicated mismatch review export carries all 24 lanes, confirms the labeled
+  lane is currently out-of-scope rather than seed-labeled, defers new ontology
+  family creation until expert review, and the generated decision batch leaves
+  all 24 as `no_decision`
 - review-debt triage now ranks 81 evidence-gap rows from the 700 review pass,
   with 81 `needs_more_evidence` decisions, 61 carried rows, 20 new rows, and
   next-action counts split by debt status
@@ -225,7 +229,8 @@ Current expectation:
   remap-local audit routes `m_csa:577` and `m_csa:641` to expert family-boundary
   review and `m_csa:592` to expert reaction/substrate review. The reaction
   mismatch audit flags 18 active-queue hydrolase-top1 rows with kinase or ATP
-  phosphoryl-transfer text, and all remain non-countable. The alternate path is
+  phosphoryl-transfer text, while the dedicated mismatch export covers all 24
+  family-guardrail lanes and all remain non-countable. The alternate path is
   resolving
   review-state/evidence-limited rows
   (`m_csa:494`, `m_csa:510`, `m_csa:529`, `m_csa:534`, `m_csa:650`,
