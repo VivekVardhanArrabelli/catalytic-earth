@@ -30,6 +30,7 @@ from .labels import (
     audit_reaction_substrate_mismatches,
     audit_sequence_similarity_failure_sets,
     audit_review_debt_remap_local_leads,
+    audit_structure_selection_holo_preference,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_expert_label_decision_local_evidence_review_export,
@@ -1073,6 +1074,28 @@ def cmd_audit_review_debt_remap_local_leads(args: argparse.Namespace) -> int:
     print(
         "Wrote review debt remap-local lead audit to "
         f"{args.out} ({audit['metadata']['audited_entry_count']} entries)"
+    )
+    return 0
+
+
+def cmd_audit_structure_selection_holo_preference(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.alternate_structure_scan).open("r", encoding="utf-8") as handle:
+        scan = json.load(handle)
+    audit = audit_structure_selection_holo_preference(
+        scan,
+        min_usable_residue_positions=args.min_usable_residue_positions,
+        prefer_mcsa_explicit_over_remap=args.prefer_mcsa_explicit_over_remap,
+    )
+    write_json(Path(args.out), audit)
+    meta = audit["metadata"]
+    print(
+        "Wrote structure-selection holo-preference audit to "
+        f"{args.out} ({meta['audited_entry_count']} entries; "
+        f"{meta['swap_recommended_count']} swap recommendations, "
+        f"{meta['already_holo_entry_count']} already holo, "
+        f"{meta['no_holo_alternate_entry_count']} no holo alternate)"
     )
     return 0
 
@@ -2316,6 +2339,43 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_review_debt_remap_local_lead_audit.json",
     )
     remap_local_audit.set_defaults(func=cmd_audit_review_debt_remap_local_leads)
+
+    holo_preference = subparsers.add_parser(
+        "audit-structure-selection-holo-preference",
+        help=(
+            "recommend reselecting the canonical reference PDB when the "
+            "selected structure is apo for the expected cofactor family while "
+            "a holo alternate exists"
+        ),
+    )
+    holo_preference.add_argument(
+        "--alternate-structure-scan",
+        default="artifacts/v3_review_debt_alternate_structure_scan.json",
+    )
+    holo_preference.add_argument(
+        "--min-usable-residue-positions",
+        type=int,
+        default=1,
+        help="minimum usable residue positions required on the recommended PDB",
+    )
+    holo_preference.add_argument(
+        "--prefer-mcsa-explicit-over-remap",
+        dest="prefer_mcsa_explicit_over_remap",
+        action="store_true",
+        default=True,
+        help="prefer alternates with mcsa_explicit residue positions over remapped ones (default)",
+    )
+    holo_preference.add_argument(
+        "--no-prefer-mcsa-explicit-over-remap",
+        dest="prefer_mcsa_explicit_over_remap",
+        action="store_false",
+        help="treat mcsa_explicit and remap-sourced positions equally",
+    )
+    holo_preference.add_argument(
+        "--out",
+        default="artifacts/v3_structure_selection_holo_preference_audit.json",
+    )
+    holo_preference.set_defaults(func=cmd_audit_structure_selection_holo_preference)
 
     structure_selection = subparsers.add_parser(
         "summarize-review-debt-structure-selection-candidates",

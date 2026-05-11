@@ -7090,6 +7090,220 @@ def audit_review_debt_remap_local_leads(
     }
 
 
+def audit_structure_selection_holo_preference(
+    alternate_structure_scan: dict[str, Any],
+    *,
+    min_usable_residue_positions: int = 1,
+    prefer_mcsa_explicit_over_remap: bool = True,
+) -> dict[str, Any]:
+    """Recommend reselecting the canonical reference PDB when the currently
+    selected structure is apo for an expected cofactor family while at least
+    one alternate PDB carries the family locally at the active site.
+
+    Source data: a v3_review_debt_alternate_structure_scan_*.json artifact
+    (per-entry list of candidate PDBs with local cofactor evidence). No
+    network calls; no geometry-feature mutation. Recommendations are advisory
+    and must be applied by a separate structure-reselection step, followed by
+    geometry-feature regeneration for the affected entries.
+
+    Decision rule: swap when (a) the selected structure lacks the expected
+    cofactor family at the active site, (b) at least one alternate PDB has
+    the expected family locally with usable residue positions >=
+    min_usable_residue_positions, and (c) selection tiebreak prefers
+    mcsa_explicit residue source over conservative remap when
+    prefer_mcsa_explicit_over_remap=True.
+    """
+    rows: list[dict[str, Any]] = []
+    swap_recommended_ids: list[str] = []
+    already_holo_ids: list[str] = []
+    no_holo_alternate_ids: list[str] = []
+    no_expected_families_ids: list[str] = []
+    residue_position_source_counts: dict[str, int] = {}
+
+    for raw_row in alternate_structure_scan.get("rows", []):
+        if not isinstance(raw_row, dict):
+            continue
+        entry_id = raw_row.get("entry_id")
+        if not isinstance(entry_id, str):
+            continue
+
+        expected_families = set(
+            _sorted_strings(raw_row.get("expected_cofactor_families", []))
+        )
+        current_selected_pdb_id = raw_row.get("selected_pdb_id")
+        selected_active_site_has_expected_family = bool(
+            raw_row.get("selected_active_site_has_expected_family")
+        )
+        selected_structure_has_expected_family = bool(
+            raw_row.get("selected_structure_has_expected_family")
+        )
+
+        out_row: dict[str, Any] = {
+            "entry_id": entry_id,
+            "entry_name": raw_row.get("entry_name"),
+            "expected_cofactor_families": sorted(expected_families),
+            "current_selected_pdb_id": current_selected_pdb_id,
+            "selected_active_site_has_expected_family": (
+                selected_active_site_has_expected_family
+            ),
+            "selected_structure_has_expected_family": (
+                selected_structure_has_expected_family
+            ),
+            "recommendation": "no_swap_no_holo_alternate",
+            "recommendation_rationale": "",
+            "recommended_pdb_id": None,
+            "recommended_pdb_local_expected_family_hits": [],
+            "recommended_pdb_local_ligand_codes": [],
+            "recommended_pdb_local_resolved_residue_count": 0,
+            "recommended_pdb_usable_residue_position_count": 0,
+            "recommended_pdb_residue_position_source": None,
+            "alternative_holo_candidate_count": 0,
+            "alternative_holo_candidate_pdb_ids": [],
+        }
+
+        if not expected_families:
+            out_row["recommendation"] = "no_swap_missing_expected_families"
+            out_row["recommendation_rationale"] = (
+                "Entry has no expected_cofactor_families recorded; nothing to prefer."
+            )
+            no_expected_families_ids.append(entry_id)
+            rows.append(out_row)
+            continue
+
+        if selected_active_site_has_expected_family:
+            out_row["recommendation"] = "no_swap_already_holo"
+            out_row["recommendation_rationale"] = (
+                f"Selected PDB {current_selected_pdb_id} already has expected "
+                "cofactor family at active site; no swap needed."
+            )
+            already_holo_ids.append(entry_id)
+            rows.append(out_row)
+            continue
+
+        structure_hits = raw_row.get("structure_hits") or []
+        holo_candidates: list[dict[str, Any]] = []
+        for hit in structure_hits:
+            if not isinstance(hit, dict):
+                continue
+            if hit.get("is_selected_structure"):
+                continue
+            hit_families = set(
+                _sorted_strings(hit.get("local_expected_family_hits", []))
+            )
+            if not hit_families & expected_families:
+                continue
+            usable_positions = int(hit.get("usable_residue_position_count", 0) or 0)
+            if usable_positions < min_usable_residue_positions:
+                continue
+            holo_candidates.append(hit)
+
+        out_row["alternative_holo_candidate_count"] = len(holo_candidates)
+        out_row["alternative_holo_candidate_pdb_ids"] = sorted(
+            str(h.get("pdb_id", "")) for h in holo_candidates if h.get("pdb_id")
+        )
+
+        if not holo_candidates:
+            out_row["recommendation"] = "no_swap_no_holo_alternate"
+            out_row["recommendation_rationale"] = (
+                f"Selected PDB {current_selected_pdb_id} lacks expected cofactor "
+                f"family {sorted(expected_families)} at active site, and no "
+                "scanned alternate PDB provides it with sufficient residue "
+                "support."
+            )
+            no_holo_alternate_ids.append(entry_id)
+            rows.append(out_row)
+            continue
+
+        def _candidate_sort_key(hit: dict[str, Any]) -> tuple[int, int, int, str]:
+            source = str(hit.get("residue_position_source") or "")
+            local_resolved = int(hit.get("local_resolved_residue_count", 0) or 0)
+            usable = int(hit.get("usable_residue_position_count", 0) or 0)
+            pdb_id = str(hit.get("pdb_id") or "")
+            if prefer_mcsa_explicit_over_remap:
+                source_rank = 0 if source == "mcsa_explicit" else 1
+                return (source_rank, -local_resolved, -usable, pdb_id)
+            return (0, -local_resolved, -usable, pdb_id)
+
+        best = sorted(holo_candidates, key=_candidate_sort_key)[0]
+        best_pdb = str(best.get("pdb_id") or "")
+        best_source = str(best.get("residue_position_source") or "")
+        local_hits = _sorted_strings(best.get("local_expected_family_hits", []))
+        local_ligands = _sorted_strings(best.get("local_ligand_codes", []))
+        local_resolved = int(best.get("local_resolved_residue_count", 0) or 0)
+        usable = int(best.get("usable_residue_position_count", 0) or 0)
+        source_key = best_source or "unspecified"
+        residue_position_source_counts[source_key] = (
+            residue_position_source_counts.get(source_key, 0) + 1
+        )
+        swap_recommended_ids.append(entry_id)
+        out_row.update(
+            {
+                "recommendation": "swap_selected_structure",
+                "recommended_pdb_id": best_pdb,
+                "recommended_pdb_local_expected_family_hits": local_hits,
+                "recommended_pdb_local_ligand_codes": local_ligands,
+                "recommended_pdb_local_resolved_residue_count": local_resolved,
+                "recommended_pdb_usable_residue_position_count": usable,
+                "recommended_pdb_residue_position_source": best_source or None,
+                "recommendation_rationale": (
+                    f"Selected PDB {current_selected_pdb_id} is apo for "
+                    f"expected cofactor family {sorted(expected_families)} at "
+                    f"active site. Alternate {best_pdb} carries local "
+                    f"expected_family_hits={local_hits} with {usable} usable "
+                    f"residue positions via {source_key} mapping. Recommend "
+                    f"swapping the canonical reference structure to {best_pdb} "
+                    "and regenerating geometry features for this entry."
+                ),
+            }
+        )
+        rows.append(out_row)
+
+    rows.sort(key=lambda row: _entry_id_sort_key(str(row.get("entry_id", ""))))
+
+    return {
+        "metadata": {
+            "method": "structure_selection_holo_preference_audit",
+            "source_method": str(
+                (alternate_structure_scan.get("metadata") or {}).get("method")
+                or "review_debt_alternate_structure_scan"
+            ),
+            "min_usable_residue_positions": min_usable_residue_positions,
+            "prefer_mcsa_explicit_over_remap": prefer_mcsa_explicit_over_remap,
+            "audited_entry_count": len(rows),
+            "swap_recommended_count": len(swap_recommended_ids),
+            "swap_recommended_entry_ids": sorted(
+                swap_recommended_ids, key=_entry_id_sort_key
+            ),
+            "already_holo_entry_count": len(already_holo_ids),
+            "already_holo_entry_ids": sorted(already_holo_ids, key=_entry_id_sort_key),
+            "no_holo_alternate_entry_count": len(no_holo_alternate_ids),
+            "no_holo_alternate_entry_ids": sorted(
+                no_holo_alternate_ids, key=_entry_id_sort_key
+            ),
+            "no_expected_cofactor_families_entry_count": len(no_expected_families_ids),
+            "no_expected_cofactor_families_entry_ids": sorted(
+                no_expected_families_ids, key=_entry_id_sort_key
+            ),
+            "swap_residue_position_source_counts": dict(
+                sorted(residue_position_source_counts.items())
+            ),
+            "decision_rule": (
+                "Recommend swapping the canonical reference PDB to a scanned "
+                "alternate when (a) the selected structure lacks the expected "
+                "cofactor family at the active site, (b) at least one alternate "
+                "PDB has the expected family locally with usable residue "
+                "positions >= min_usable_residue_positions, and (c) selection "
+                "tiebreak prefers mcsa_explicit residue source over conservative "
+                "remap when prefer_mcsa_explicit_over_remap=True. "
+                "Recommendations are advisory; applying them requires "
+                "regenerating geometry features and dependent label/audit "
+                "artifacts for the affected entries."
+            ),
+        },
+        "rows": rows,
+    }
+
+
 def summarize_review_debt_structure_selection_candidates(
     remap_local_lead_audit: dict[str, Any],
     alternate_structure_scan: dict[str, Any],

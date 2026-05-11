@@ -26,6 +26,7 @@ from catalytic_earth.labels import (
     audit_reaction_substrate_mismatches,
     audit_sequence_similarity_failure_sets,
     audit_review_debt_remap_local_leads,
+    audit_structure_selection_holo_preference,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
     build_expert_label_decision_local_evidence_review_export,
@@ -1643,6 +1644,271 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             "atp_phosphoryl_transfer_text_with_hydrolase_top1",
             audit["rows"][2]["reaction_substrate_mismatch_reasons"],
         )
+
+    def test_holo_preference_recommends_swap_when_apo_selected_with_holo_alternate(
+        self,
+    ) -> None:
+        scan = {
+            "metadata": {"method": "review_debt_alternate_structure_scan_bounded"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:577",
+                    "entry_name": "inositol-phosphate phosphatase",
+                    "expected_cofactor_families": ["metal_ion"],
+                    "selected_pdb_id": "1IMA",
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "structure_hits": [
+                        {
+                            "pdb_id": "1IMA",
+                            "is_selected_structure": True,
+                            "local_expected_family_hits": [],
+                            "local_ligand_codes": ["GD", "IPD"],
+                            "local_resolved_residue_count": 6,
+                            "usable_residue_position_count": 6,
+                            "residue_position_source": "mcsa_explicit",
+                        },
+                        {
+                            "pdb_id": "1AWB",
+                            "is_selected_structure": False,
+                            "local_expected_family_hits": ["metal_ion"],
+                            "local_ligand_codes": ["CA", "IPD"],
+                            "local_resolved_residue_count": 6,
+                            "usable_residue_position_count": 6,
+                            "residue_position_source": "selected_position_remap",
+                        },
+                        {
+                            "pdb_id": "4AS4",
+                            "is_selected_structure": False,
+                            "local_expected_family_hits": ["metal_ion"],
+                            "local_ligand_codes": ["MG"],
+                            "local_resolved_residue_count": 5,
+                            "usable_residue_position_count": 5,
+                            "residue_position_source": "selected_position_remap",
+                        },
+                    ],
+                }
+            ],
+        }
+        audit = audit_structure_selection_holo_preference(scan)
+        meta = audit["metadata"]
+        self.assertEqual(meta["method"], "structure_selection_holo_preference_audit")
+        self.assertEqual(meta["swap_recommended_count"], 1)
+        self.assertEqual(meta["swap_recommended_entry_ids"], ["m_csa:577"])
+        self.assertEqual(meta["already_holo_entry_count"], 0)
+        self.assertEqual(meta["no_holo_alternate_entry_count"], 0)
+        row = audit["rows"][0]
+        self.assertEqual(row["recommendation"], "swap_selected_structure")
+        # 1AWB beats 4AS4 on local_resolved_residue_count tiebreak (6 > 5)
+        self.assertEqual(row["recommended_pdb_id"], "1AWB")
+        self.assertEqual(
+            row["recommended_pdb_local_expected_family_hits"], ["metal_ion"]
+        )
+        self.assertEqual(row["alternative_holo_candidate_count"], 2)
+        self.assertEqual(
+            row["alternative_holo_candidate_pdb_ids"], ["1AWB", "4AS4"]
+        )
+
+    def test_holo_preference_no_swap_when_already_holo(self) -> None:
+        scan = {
+            "metadata": {"method": "review_debt_alternate_structure_scan_bounded"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:600",
+                    "entry_name": "test enzyme",
+                    "expected_cofactor_families": ["metal_ion"],
+                    "selected_pdb_id": "2BBB",
+                    "selected_active_site_has_expected_family": True,
+                    "selected_structure_has_expected_family": True,
+                    "structure_hits": [
+                        {
+                            "pdb_id": "2BBB",
+                            "is_selected_structure": True,
+                            "local_expected_family_hits": ["metal_ion"],
+                            "local_ligand_codes": ["ZN"],
+                            "local_resolved_residue_count": 4,
+                            "usable_residue_position_count": 4,
+                            "residue_position_source": "mcsa_explicit",
+                        },
+                    ],
+                }
+            ],
+        }
+        audit = audit_structure_selection_holo_preference(scan)
+        self.assertEqual(audit["metadata"]["swap_recommended_count"], 0)
+        self.assertEqual(audit["metadata"]["already_holo_entry_count"], 1)
+        self.assertEqual(audit["rows"][0]["recommendation"], "no_swap_already_holo")
+        self.assertIsNone(audit["rows"][0]["recommended_pdb_id"])
+
+    def test_holo_preference_no_swap_when_no_holo_alternate(self) -> None:
+        scan = {
+            "metadata": {"method": "review_debt_alternate_structure_scan_bounded"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:610",
+                    "entry_name": "all-apo enzyme",
+                    "expected_cofactor_families": ["metal_ion"],
+                    "selected_pdb_id": "3CCC",
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "structure_hits": [
+                        {
+                            "pdb_id": "3CCC",
+                            "is_selected_structure": True,
+                            "local_expected_family_hits": [],
+                            "local_ligand_codes": [],
+                            "local_resolved_residue_count": 4,
+                            "usable_residue_position_count": 4,
+                            "residue_position_source": "mcsa_explicit",
+                        },
+                        {
+                            "pdb_id": "3DDD",
+                            "is_selected_structure": False,
+                            "local_expected_family_hits": [],
+                            "local_ligand_codes": [],
+                            "local_resolved_residue_count": 4,
+                            "usable_residue_position_count": 4,
+                            "residue_position_source": "selected_position_remap",
+                        },
+                    ],
+                }
+            ],
+        }
+        audit = audit_structure_selection_holo_preference(scan)
+        self.assertEqual(audit["metadata"]["swap_recommended_count"], 0)
+        self.assertEqual(audit["metadata"]["no_holo_alternate_entry_count"], 1)
+        self.assertEqual(
+            audit["rows"][0]["recommendation"], "no_swap_no_holo_alternate"
+        )
+
+    def test_holo_preference_no_swap_when_expected_families_missing(self) -> None:
+        scan = {
+            "metadata": {"method": "review_debt_alternate_structure_scan_bounded"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:620",
+                    "entry_name": "no-cofactor enzyme",
+                    "expected_cofactor_families": [],
+                    "selected_pdb_id": "4EEE",
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "structure_hits": [],
+                }
+            ],
+        }
+        audit = audit_structure_selection_holo_preference(scan)
+        self.assertEqual(
+            audit["metadata"]["no_expected_cofactor_families_entry_count"], 1
+        )
+        self.assertEqual(
+            audit["rows"][0]["recommendation"],
+            "no_swap_missing_expected_families",
+        )
+
+    def test_holo_preference_prefers_mcsa_explicit_over_remap_when_flag_true(
+        self,
+    ) -> None:
+        scan = {
+            "metadata": {"method": "review_debt_alternate_structure_scan_bounded"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:630",
+                    "entry_name": "tied candidates enzyme",
+                    "expected_cofactor_families": ["metal_ion"],
+                    "selected_pdb_id": "5FFF",
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "structure_hits": [
+                        {
+                            "pdb_id": "5FFF",
+                            "is_selected_structure": True,
+                            "local_expected_family_hits": [],
+                            "local_resolved_residue_count": 4,
+                            "usable_residue_position_count": 4,
+                            "residue_position_source": "mcsa_explicit",
+                        },
+                        {
+                            "pdb_id": "5GGG",
+                            "is_selected_structure": False,
+                            "local_expected_family_hits": ["metal_ion"],
+                            "local_resolved_residue_count": 4,
+                            "usable_residue_position_count": 4,
+                            "residue_position_source": "selected_position_remap",
+                        },
+                        {
+                            "pdb_id": "5HHH",
+                            "is_selected_structure": False,
+                            "local_expected_family_hits": ["metal_ion"],
+                            "local_resolved_residue_count": 4,
+                            "usable_residue_position_count": 4,
+                            "residue_position_source": "mcsa_explicit",
+                        },
+                    ],
+                }
+            ],
+        }
+        # default flag True → 5HHH (mcsa_explicit) wins despite alphabetic tie
+        audit_default = audit_structure_selection_holo_preference(scan)
+        self.assertEqual(
+            audit_default["rows"][0]["recommended_pdb_id"], "5HHH"
+        )
+        # flag False → alphabetic tiebreak → 5GGG wins
+        audit_flat = audit_structure_selection_holo_preference(
+            scan, prefer_mcsa_explicit_over_remap=False
+        )
+        self.assertEqual(audit_flat["rows"][0]["recommended_pdb_id"], "5GGG")
+
+    def test_holo_preference_min_residue_positions_filter(self) -> None:
+        scan = {
+            "metadata": {"method": "review_debt_alternate_structure_scan_bounded"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:640",
+                    "entry_name": "tiny-mapping enzyme",
+                    "expected_cofactor_families": ["metal_ion"],
+                    "selected_pdb_id": "6III",
+                    "selected_active_site_has_expected_family": False,
+                    "selected_structure_has_expected_family": False,
+                    "structure_hits": [
+                        {
+                            "pdb_id": "6III",
+                            "is_selected_structure": True,
+                            "local_expected_family_hits": [],
+                            "local_resolved_residue_count": 6,
+                            "usable_residue_position_count": 6,
+                            "residue_position_source": "mcsa_explicit",
+                        },
+                        {
+                            "pdb_id": "6JJJ",
+                            "is_selected_structure": False,
+                            "local_expected_family_hits": ["metal_ion"],
+                            "local_resolved_residue_count": 1,
+                            "usable_residue_position_count": 1,
+                            "residue_position_source": "selected_position_remap",
+                        },
+                    ],
+                }
+            ],
+        }
+        # Threshold 1 → swap recommended
+        audit_loose = audit_structure_selection_holo_preference(
+            scan, min_usable_residue_positions=1
+        )
+        self.assertEqual(audit_loose["metadata"]["swap_recommended_count"], 1)
+        # Threshold 4 → no swap (alternate has only 1 usable position)
+        audit_strict = audit_structure_selection_holo_preference(
+            scan, min_usable_residue_positions=4
+        )
+        self.assertEqual(audit_strict["metadata"]["swap_recommended_count"], 0)
+        self.assertEqual(
+            audit_strict["metadata"]["no_holo_alternate_entry_count"], 1
+        )
+
+    def test_holo_preference_handles_empty_scan(self) -> None:
+        audit = audit_structure_selection_holo_preference({"rows": []})
+        self.assertEqual(audit["metadata"]["audited_entry_count"], 0)
+        self.assertEqual(audit["metadata"]["swap_recommended_count"], 0)
+        self.assertEqual(audit["rows"], [])
 
     def test_review_debt_structure_selection_candidates_remain_review_only(self) -> None:
         remap_local_audit = {
