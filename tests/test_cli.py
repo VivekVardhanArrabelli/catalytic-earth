@@ -829,6 +829,9 @@ class CliTests(unittest.TestCase):
             out = root / "expert_label_decision_export.json"
             repair_out = root / "expert_label_decision_repair.json"
             guardrail_out = root / "expert_label_decision_repair_guardrail.json"
+            local_gap_out = root / "expert_label_decision_local_gap.json"
+            local_gap_export_out = root / "expert_label_decision_local_gap_export.json"
+            local_gap_plan_out = root / "expert_label_decision_local_gap_plan.json"
             labels.write_text(
                 json.dumps(
                     [
@@ -1083,6 +1086,86 @@ class CliTests(unittest.TestCase):
                 "active_site_mapping_or_structure_gap_unresolved",
                 guardrail["rows"][0]["non_countable_blockers"],
             )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-expert-label-decision-local-evidence-gaps",
+                    "--expert-label-decision-repair-guardrail-audit",
+                    str(guardrail_out),
+                    "--expert-label-decision-repair-candidates",
+                    str(repair_out),
+                    "--out",
+                    str(local_gap_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            local_gap = json.loads(local_gap_out.read_text(encoding="utf-8"))
+            self.assertTrue(local_gap["metadata"]["audit_ready"])
+            self.assertEqual(local_gap["metadata"]["audited_entry_count"], 1)
+            self.assertEqual(
+                local_gap["metadata"]["countable_label_candidate_count"], 0
+            )
+            self.assertIn(
+                "scanned_structures_without_local_expected_family_hit",
+                local_gap["rows"][0]["local_evidence_gap_classes"],
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-expert-label-decision-local-evidence-review-export",
+                    "--expert-label-decision-local-evidence-gap-audit",
+                    str(local_gap_out),
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(local_gap_export_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            local_gap_export = json.loads(
+                local_gap_export_out.read_text(encoding="utf-8")
+            )
+            self.assertTrue(local_gap_export["metadata"]["export_ready"])
+            self.assertEqual(local_gap_export["metadata"]["decision_counts"], {"no_decision": 1})
+            self.assertEqual(
+                local_gap_export["metadata"]["countable_label_candidate_count"], 0
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "summarize-expert-label-decision-local-evidence-repair-plan",
+                    "--expert-label-decision-local-evidence-gap-audit",
+                    str(local_gap_out),
+                    "--expert-label-decision-local-evidence-review-export",
+                    str(local_gap_export_out),
+                    "--out",
+                    str(local_gap_plan_out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            local_gap_plan = json.loads(
+                local_gap_plan_out.read_text(encoding="utf-8")
+            )
+            self.assertTrue(local_gap_plan["metadata"]["repair_plan_ready"])
+            self.assertEqual(local_gap_plan["metadata"]["planned_entry_count"], 1)
 
     def test_import_countable_review_rejects_automation_mismatch_accepts(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -1150,6 +1233,7 @@ class CliTests(unittest.TestCase):
             root = Path(tmpdir)
             queue = root / "queue.json"
             repair = root / "repair.json"
+            local_gap = root / "local_gap.json"
             out = root / "ontology_gap.json"
             queue.write_text(
                 json.dumps(
@@ -1189,6 +1273,27 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            local_gap.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "expert_label_decision_local_evidence_gap_audit"
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:655",
+                                "local_evidence_gap_classes": [
+                                    "reaction_substrate_mismatch_review_required"
+                                ],
+                                "recommended_next_action": (
+                                    "route_to_reaction_substrate_expert_review"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -1200,6 +1305,8 @@ class CliTests(unittest.TestCase):
                     str(queue),
                     "--expert-label-decision-repair-candidates",
                     str(repair),
+                    "--expert-label-decision-local-evidence-gap-audit",
+                    str(local_gap),
                     "--out",
                     str(out),
                 ],
@@ -1212,7 +1319,14 @@ class CliTests(unittest.TestCase):
             audit = json.loads(out.read_text(encoding="utf-8"))
             self.assertEqual(audit["metadata"]["candidate_scope_signal_count"], 1)
             self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+            self.assertEqual(
+                audit["metadata"]["local_evidence_gap_context_entry_count"], 1
+            )
             self.assertIn("transferase_phosphoryl", audit["rows"][0]["scope_signals"])
+            self.assertIn(
+                "local_evidence_gap_unresolved",
+                audit["rows"][0]["ontology_update_blockers"],
+            )
 
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -1526,6 +1640,8 @@ class CliTests(unittest.TestCase):
             expert_label_export = root / "expert_label_export.json"
             expert_label_repair = root / "expert_label_repair.json"
             expert_label_repair_guardrail = root / "expert_label_repair_guardrail.json"
+            expert_label_local_gap = root / "expert_label_local_gap.json"
+            expert_label_local_export = root / "expert_label_local_export.json"
             out = root / "audit.json"
             acceptance.write_text(
                 json.dumps(
@@ -1728,6 +1844,42 @@ class CliTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            expert_label_local_gap.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "expert_label_decision_local_evidence_gap_audit",
+                            "audit_ready": True,
+                            "priority_rows_accounted_for": True,
+                            "priority_repair_row_count": 1,
+                            "audited_entry_count": 1,
+                            "missing_priority_entry_ids": [],
+                            "countable_label_candidate_count": 0,
+                            "local_evidence_gap_class_counts": {
+                                "selected_structure_residue_support_shortfall": 1
+                            },
+                        },
+                        "rows": [{"entry_id": "m_csa:650"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            expert_label_local_export.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "expert_label_decision_local_evidence_review_export",
+                            "export_ready": True,
+                            "all_source_rows_exported": True,
+                            "exported_count": 1,
+                            "countable_label_candidate_count": 0,
+                            "decision_counts": {"no_decision": 1},
+                        },
+                        "review_items": [{"entry_id": "m_csa:650"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             subprocess.run(
                 [
@@ -1769,6 +1921,10 @@ class CliTests(unittest.TestCase):
                     str(expert_label_repair),
                     "--expert-label-decision-repair-guardrail-audit",
                     str(expert_label_repair_guardrail),
+                    "--expert-label-decision-local-evidence-gap-audit",
+                    str(expert_label_local_gap),
+                    "--expert-label-decision-local-evidence-review-export",
+                    str(expert_label_local_export),
                     "--out",
                     str(out),
                 ],
@@ -1796,11 +1952,29 @@ class CliTests(unittest.TestCase):
                     "expert_label_decision_repair_candidates_cover_review_only_lanes"
                 ]
             )
+            self.assertTrue(
+                audit["gates"]["expert_label_decision_local_evidence_gaps_audited"]
+            )
+            self.assertTrue(
+                audit["gates"][
+                    "expert_label_decision_local_evidence_review_export_ready"
+                ]
+            )
             self.assertEqual(
                 audit["metadata"][
                     "expert_label_decision_repair_candidates_missing_entry_ids"
                 ],
                 [],
+            )
+            self.assertTrue(
+                audit["metadata"][
+                    "expert_label_decision_local_evidence_gap_audit_present"
+                ]
+            )
+            self.assertTrue(
+                audit["metadata"][
+                    "expert_label_decision_local_evidence_review_export_present"
+                ]
             )
             self.assertIn("alternate_structure_hits_lack_local_support", audit["review_warnings"])
             self.assertIn("remap_local_leads_require_strict_guardrail", audit["review_warnings"])

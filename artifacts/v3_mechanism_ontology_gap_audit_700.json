@@ -2,7 +2,7 @@
   "metadata": {
     "candidate_scope_signal_count": 115,
     "countable_label_candidate_count": 0,
-    "emitted_row_count": 80,
+    "emitted_row_count": 89,
     "existing_ontology_families": [
       "flavin_redox",
       "heme_redox",
@@ -10,9 +10,26 @@
       "plp_chemistry",
       "radical_rearrangement"
     ],
+    "local_evidence_gap_class_counts": {
+      "alternate_structures_lack_explicit_residue_positions": 12,
+      "counterevidence_boundary_unresolved": 10,
+      "local_evidence_review_only_not_countable": 2,
+      "not_scanned_or_no_alternate_context": 5,
+      "reaction_substrate_mismatch_review_required": 4,
+      "scanned_structures_without_local_expected_family_hit": 9,
+      "scanned_without_local_expected_family_evidence": 6,
+      "selected_structure_residue_support_shortfall": 12,
+      "single_structure_no_alternate_context": 4,
+      "strict_conservative_remap_guardrail": 2,
+      "structure_wide_hit_without_local_support": 3,
+      "structure_wide_or_nonlocal_evidence_only": 3,
+      "text_leakage_or_nonlocal_evidence_risk": 6
+    },
+    "local_evidence_gap_context_entry_count": 16,
+    "local_evidence_gap_context_source_method": "expert_label_decision_local_evidence_gap_audit",
     "max_rows": 80,
     "method": "mechanism_ontology_gap_audit",
-    "omitted_by_max_rows": 35,
+    "omitted_by_max_rows": 26,
     "ontology_update_blocker_counts": {
       "active_site_mapping_or_structure_gap": 12,
       "cofactor_family_ambiguity": 30,
@@ -20,10 +37,12 @@
       "expert_label_decision_required": 36,
       "external_expert_review_required": 115,
       "keyword_only_scope_signal": 115,
+      "local_evidence_gap_unresolved": 16,
       "reaction_substrate_mismatch_review_required": 18,
       "text_leakage_or_nonlocal_evidence_risk": 6
     },
     "ontology_update_ready": false,
+    "priority_local_evidence_gap_added_count": 9,
     "recommended_path": "prioritize transferase, lyase, isomerase, and long-tail redox examples for expert-reviewed seed ontology expansion",
     "review_only_rule": "scope signals from names, text, and review queues are ontology pressure only; they cannot create countable labels or new families without local mechanism evidence and expert review",
     "scope_signal_counts": {
@@ -40,6 +59,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:603",
       "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -64,6 +85,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:246",
       "entry_name": "receptor protein-tyrosine kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -87,6 +110,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:35",
       "entry_name": "phosphorylase kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -109,6 +134,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:498",
       "entry_name": "glutathione synthase (eukaryotic)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -131,6 +158,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:365",
       "entry_name": "Phosphofructokinase I",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -153,6 +182,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:151",
       "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -176,6 +207,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:640",
       "entry_name": "kanamycin kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -199,6 +232,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:588",
       "entry_name": "thymidine kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -221,6 +256,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:541",
       "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -243,6 +280,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:637",
       "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -265,6 +304,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:51",
       "entry_name": "phosphoenolpyruvate carboxykinase (ATP)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal",
@@ -288,6 +329,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:670",
       "entry_name": "hydroxymethylpyrimidine kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "counterevidence_boundary",
@@ -319,12 +362,22 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:643",
       "entry_name": "acetate kinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "reaction_substrate_mismatch_review_required",
+        "scanned_structures_without_local_expected_family_hit",
+        "scanned_without_local_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "counterevidence_boundary",
         "expert_label_decision_required",
         "external_expert_review_required",
         "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
         "reaction_substrate_mismatch_review_required",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
@@ -352,6 +405,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:696",
       "entry_name": "hexokinase (type I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "expert_label_decision_required",
@@ -380,12 +435,20 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:654",
       "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "local_evidence_gap_classes": [
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
       "ontology_update_blockers": [
         "active_site_mapping_or_structure_gap",
         "cofactor_family_ambiguity",
         "expert_label_decision_required",
         "external_expert_review_required",
         "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [
@@ -410,6 +473,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:663",
       "entry_name": "ribokinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "counterevidence_boundary",
@@ -442,12 +507,21 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:662",
       "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "reaction_substrate_mismatch_review_required",
+        "scanned_structures_without_local_expected_family_hit",
+        "scanned_without_local_expected_family_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
       "ontology_update_blockers": [
         "active_site_mapping_or_structure_gap",
         "cofactor_family_ambiguity",
         "expert_label_decision_required",
         "external_expert_review_required",
         "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [
@@ -472,12 +546,22 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:592",
       "entry_name": "glucokinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "local_evidence_review_only_not_countable",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall",
+        "strict_conservative_remap_guardrail",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
       "ontology_update_blockers": [
         "active_site_mapping_or_structure_gap",
         "cofactor_family_ambiguity",
         "expert_label_decision_required",
         "external_expert_review_required",
         "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
         "reaction_substrate_mismatch_review_required",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
@@ -505,6 +589,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:13",
       "entry_name": "amine dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -524,6 +610,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:4",
       "entry_name": "nitrite reductase (copper type)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -543,6 +631,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:140",
       "entry_name": "ribonucleoside-triphosphate reductase (class II)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -562,6 +652,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:222",
       "entry_name": "fructose-bisphosphate aldolase (Class I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -581,6 +673,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:54",
       "entry_name": "3-dehydroquinate dehydratase (type I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -600,6 +694,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:121",
       "entry_name": "sulfite oxidase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -619,6 +715,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:135",
       "entry_name": "peptidylglycine monooxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -638,6 +736,15 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:553",
       "entry_name": "N-acetylneuraminate lyase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "scanned_structures_without_local_expected_family_hit",
+        "scanned_without_local_expected_family_evidence",
+        "selected_structure_residue_support_shortfall",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
       "ontology_update_blockers": [
         "active_site_mapping_or_structure_gap",
         "cofactor_family_ambiguity",
@@ -645,6 +752,7 @@
         "expert_label_decision_required",
         "external_expert_review_required",
         "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
       "quality_risk_flags": [
@@ -668,6 +776,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:144",
       "entry_name": "arsenite oxidase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -687,6 +797,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:361",
       "entry_name": "aldoxime dehydratase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -706,6 +818,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:278",
       "entry_name": "plastoquinol-plastocyanin reductase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -725,6 +839,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:220",
       "entry_name": "benzoylformate decarboxylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -744,6 +860,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:130",
       "entry_name": "naphthalene 1,2-dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -763,6 +881,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:212",
       "entry_name": "nitrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -782,6 +902,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:217",
       "entry_name": "(S)-hydroxynitrile lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -801,6 +923,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:104",
       "entry_name": "quinoprotein glucose dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -820,6 +944,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:185",
       "entry_name": "8-oxoguanine DNA-glycosylase (type-1 OGG1 family)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -839,6 +965,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:17",
       "entry_name": "purine-nucleoside phosphorylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -858,6 +986,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:352",
       "entry_name": "phosphoglucomutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -877,6 +1007,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:91",
       "entry_name": "pyrimidine-nucleoside phosphorylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -896,6 +1028,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:336",
       "entry_name": "L-3-hydroxyacyl-CoA dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -915,6 +1049,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:65",
       "entry_name": "adenylosuccinate synthase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -934,6 +1070,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:324",
       "entry_name": "triosephosphate isomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -953,6 +1091,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:107",
       "entry_name": "aerobic carbon monoxide dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -972,6 +1112,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:182",
       "entry_name": "methylisocitrate lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -991,6 +1133,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:231",
       "entry_name": "oxalate decarboxylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1010,6 +1154,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:547",
       "entry_name": "homogentisate 1,2-dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1029,6 +1175,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:138",
       "entry_name": "superoxide dismutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1048,6 +1196,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:537",
       "entry_name": "glutamine synthetase (type I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1067,6 +1217,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:359",
       "entry_name": "lactoglutathione lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1086,6 +1238,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:34",
       "entry_name": "catechol 2,3-dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1105,6 +1259,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:33",
       "entry_name": "methylmalonyl-CoA epimerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1124,6 +1280,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:206",
       "entry_name": "beta-phosphoglucomutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1144,6 +1302,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:64",
       "entry_name": "DNA topoisomerase (type III)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1163,6 +1323,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:684",
       "entry_name": "mannuronate-specific alginate lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "counterevidence_boundary",
@@ -1189,6 +1351,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:162",
       "entry_name": "deoxyribonuclease (pyrimidine dimer)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1208,6 +1372,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:52",
       "entry_name": "fructose-bisphosphate aldolase (Class II)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1227,6 +1393,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:7",
       "entry_name": "isocitrate dehydrogenase (NADP+)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1246,6 +1414,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:645",
       "entry_name": "rhamnulose-1-phosphate aldolase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1265,6 +1435,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:613",
       "entry_name": "deoxyribose-phosphate aldolase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1284,6 +1456,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:451",
       "entry_name": "glucarate dehydratase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1303,6 +1477,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:32",
       "entry_name": "lactoylglutathione lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1322,6 +1498,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:187",
       "entry_name": "mandelate racemase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1341,6 +1519,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:95",
       "entry_name": "L-fucose isomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1360,6 +1540,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:652",
       "entry_name": "4-hydroxy-2-oxovalerate aldolase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1379,6 +1561,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:377",
       "entry_name": "N-succinylamino acid racemase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1398,6 +1582,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:680",
       "entry_name": "ribose-5-phosphate isomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "counterevidence_boundary",
@@ -1424,6 +1610,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:134",
       "entry_name": "tyrosine 3-monooxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1443,13 +1631,21 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:659",
       "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
       "ontology_update_blockers": [
         "active_site_mapping_or_structure_gap",
         "cofactor_family_ambiguity",
         "counterevidence_boundary",
         "expert_label_decision_required",
         "external_expert_review_required",
-        "keyword_only_scope_signal"
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
       ],
       "quality_risk_flags": [
         "active_site_mapping_or_structure_gap",
@@ -1471,6 +1667,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:276",
       "entry_name": "nitrate reductase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1490,6 +1688,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:534",
       "entry_name": "myosin ATPase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "counterevidence_boundary",
         "expert_label_decision_required",
@@ -1515,6 +1715,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:273",
       "entry_name": "L-ribulose-5-phosphate 4-epimerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1534,6 +1736,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:129",
       "entry_name": "taurine dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1553,6 +1757,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:125",
       "entry_name": "catechol oxidase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1572,6 +1778,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:673",
       "entry_name": "cellobiose dehydrogenase (acceptor)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "expert_label_decision_required",
@@ -1596,6 +1804,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:194",
       "entry_name": "phosphomannomutase/ phosphoglucomutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1615,6 +1825,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:270",
       "entry_name": "ribulose-phosphate 3-epimerase (cytoplasmic)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1634,12 +1846,22 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:510",
       "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "scanned_structures_without_local_expected_family_hit",
+        "structure_wide_hit_without_local_support",
+        "structure_wide_or_nonlocal_evidence_only",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "counterevidence_boundary",
         "expert_label_decision_required",
         "external_expert_review_required",
         "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
       "quality_risk_flags": [
@@ -1662,6 +1884,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:503",
       "entry_name": "galactarate dehydratase (type III)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1681,6 +1905,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:653",
       "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "cofactor_family_ambiguity",
         "expert_label_decision_required",
@@ -1705,6 +1931,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:225",
       "entry_name": "adenosylmethionine decarboxylase (prokaryotic)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1724,6 +1952,8 @@
       "countable_label_candidate": false,
       "entry_id": "m_csa:229",
       "entry_name": "pantoate-beta-alanine ligase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
       "ontology_update_blockers": [
         "external_expert_review_required",
         "keyword_only_scope_signal"
@@ -1738,6 +1968,330 @@
       ],
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:691",
+      "entry_name": "histone-lysine N-methyltransferase (Suvar3-9 subfamily)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "scanned_structures_without_local_expected_family_hit",
+        "scanned_without_local_expected_family_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 127,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "local_evidence_review_only_not_countable",
+        "strict_conservative_remap_guardrail",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 142,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:698",
+      "entry_name": "xanthine dehydrogenase (bacterial)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "scanned_structures_without_local_expected_family_hit",
+        "selected_structure_residue_support_shortfall",
+        "structure_wide_hit_without_local_support",
+        "structure_wide_or_nonlocal_evidence_only"
+      ],
+      "local_evidence_gap_recommended_action": "inspect_active_site_mapping_or_structure_selection",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 148,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:701",
+      "entry_name": "dimethylsulfoxide reductase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 152,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 157,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "scanned_structures_without_local_expected_family_hit",
+        "scanned_without_local_expected_family_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 162,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:690",
+      "entry_name": "dextranase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "scanned_structures_without_local_expected_family_hit",
+        "scanned_without_local_expected_family_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion",
+        "substrate_class_boundary"
+      ],
+      "rank": 165,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:572",
+      "entry_name": "catalase (manganese dependent)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "scanned_structures_without_local_expected_family_hit",
+        "structure_wide_hit_without_local_support",
+        "structure_wide_or_nonlocal_evidence_only",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "inspect_active_site_mapping_or_structure_selection",
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 175,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "rank": 187,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
     }
   ]
 }

@@ -80,7 +80,7 @@ Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 15/15 factory checks pass on the 624-label countable
+Current gate state: 17/17 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional
 labels were accepted for counting in the 700 batch, 81 review-state decisions
 remain pending, and the countable subset has 0 hard negatives, 0 near misses,
@@ -117,6 +117,12 @@ scope-pressure rows, the learned-retrieval manifest defines 562 eligible rows
 for a future representation path while preserving heuristic controls, and the
 sequence-similarity failure-set audit keeps the 2 exact-reference duplicate
 clusters as non-countable propagation controls.
+The local-evidence gap audit and review export now cover all 21 priority
+repair lanes as review-only/no-decision items, and countable import refuses
+accepted decisions from that export type. The local-evidence repair plan keeps
+all rows non-countable and prioritizes 4 reaction/substrate expert-review
+lanes, 3 explicit alternate-residue-position sourcing lanes, 3 active-site
+mapping or structure-selection lanes, and 11 family-boundary review lanes.
 The 675 preview initially exposed accepted out-of-scope rows that still carried
 review debt, so the provisional decision rule now defers below-threshold,
 evidence-limited negatives instead of counting them. The regenerated preview

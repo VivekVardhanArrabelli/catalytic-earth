@@ -23,6 +23,7 @@ from .labels import (
     analyze_review_evidence_gaps,
     analyze_review_debt_remediation,
     analyze_structure_mapping_issues,
+    audit_expert_label_decision_local_evidence_gaps,
     audit_expert_label_decision_repair_guardrails,
     audit_label_scaling_quality,
     audit_mechanism_ontology_gaps,
@@ -31,6 +32,7 @@ from .labels import (
     audit_review_debt_remap_local_leads,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
+    build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
     build_expert_review_export,
     build_family_propagation_guardrails,
@@ -53,6 +55,7 @@ from .labels import (
     migrate_label_registry_records,
     scan_review_debt_alternate_structures,
     summarize_expert_label_decision_repair_candidates,
+    summarize_expert_label_decision_local_evidence_repair_plan,
     summarize_label_factory_batches,
     summarize_review_debt,
     summarize_review_debt_remap_leads,
@@ -732,6 +735,75 @@ def cmd_audit_expert_label_decision_repair_guardrails(
     return 0
 
 
+def cmd_audit_expert_label_decision_local_evidence_gaps(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.expert_label_decision_repair_guardrail_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        repair_guardrail_audit = json.load(handle)
+    repair_candidates = None
+    if args.expert_label_decision_repair_candidates:
+        with Path(args.expert_label_decision_repair_candidates).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            repair_candidates = json.load(handle)
+    audit = audit_expert_label_decision_local_evidence_gaps(
+        repair_guardrail_audit,
+        expert_label_decision_repair_candidates=repair_candidates,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote expert-label decision local-evidence gap audit to "
+        f"{args.out} ({audit['metadata']['audited_entry_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_expert_label_decision_local_evidence_review_export(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.expert_label_decision_local_evidence_gap_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        local_gap_audit = json.load(handle)
+    export = build_expert_label_decision_local_evidence_review_export(
+        local_gap_audit,
+        load_labels(Path(args.labels)),
+    )
+    write_json(Path(args.out), export)
+    print(
+        "Wrote expert-label local-evidence review export to "
+        f"{args.out} ({export['metadata']['exported_count']} items)"
+    )
+    return 0
+
+
+def cmd_summarize_expert_label_decision_local_evidence_repair_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.expert_label_decision_local_evidence_gap_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        local_gap_audit = json.load(handle)
+    review_export = None
+    if args.expert_label_decision_local_evidence_review_export:
+        with Path(args.expert_label_decision_local_evidence_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            review_export = json.load(handle)
+    plan = summarize_expert_label_decision_local_evidence_repair_plan(
+        local_gap_audit,
+        local_evidence_review_export=review_export,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote expert-label local-evidence repair plan to "
+        f"{args.out} ({plan['metadata']['planned_entry_count']} rows)"
+    )
+    return 0
+
+
 def cmd_audit_mechanism_ontology_gaps(args: argparse.Namespace) -> int:
     with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
         queue = json.load(handle)
@@ -747,10 +819,17 @@ def cmd_audit_mechanism_ontology_gaps(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             family_guardrails = json.load(handle)
+    local_gap_audit = None
+    if args.expert_label_decision_local_evidence_gap_audit:
+        with Path(args.expert_label_decision_local_evidence_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            local_gap_audit = json.load(handle)
     audit = audit_mechanism_ontology_gaps(
         queue,
         expert_label_decision_repair_candidates=repair_candidates,
         family_propagation_guardrails=family_guardrails,
+        expert_label_decision_local_evidence_gap_audit=local_gap_audit,
         max_rows=args.max_rows,
     )
     write_json(Path(args.out), audit)
@@ -1157,6 +1236,18 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             expert_label_decision_repair_guardrail_audit = json.load(handle)
+    expert_label_decision_local_evidence_gap_audit = None
+    if args.expert_label_decision_local_evidence_gap_audit:
+        with Path(args.expert_label_decision_local_evidence_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_decision_local_evidence_gap_audit = json.load(handle)
+    expert_label_decision_local_evidence_review_export = None
+    if args.expert_label_decision_local_evidence_review_export:
+        with Path(args.expert_label_decision_local_evidence_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_decision_local_evidence_review_export = json.load(handle)
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -1179,6 +1270,12 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         ),
         expert_label_decision_repair_guardrail_audit=(
             expert_label_decision_repair_guardrail_audit
+        ),
+        expert_label_decision_local_evidence_gap_audit=(
+            expert_label_decision_local_evidence_gap_audit
+        ),
+        expert_label_decision_local_evidence_review_export=(
+            expert_label_decision_local_evidence_review_export
         ),
         batch_id=args.batch_id,
     )
@@ -1227,6 +1324,18 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             expert_label_repair_guardrail_audit = json.load(handle)
+    expert_label_local_evidence_gap_audit = None
+    if args.expert_label_decision_local_evidence_gap_audit:
+        with Path(args.expert_label_decision_local_evidence_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_local_evidence_gap_audit = json.load(handle)
+    expert_label_local_evidence_review_export = None
+    if args.expert_label_decision_local_evidence_review_export:
+        with Path(args.expert_label_decision_local_evidence_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_local_evidence_review_export = json.load(handle)
     gates = check_label_factory_gates(
         load_labels(Path(args.labels)),
         factory,
@@ -1240,6 +1349,12 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
         expert_label_decision_repair_candidates=expert_label_repair_candidates,
         expert_label_decision_repair_guardrail_audit=(
             expert_label_repair_guardrail_audit
+        ),
+        expert_label_decision_local_evidence_gap_audit=(
+            expert_label_local_evidence_gap_audit
+        ),
+        expert_label_decision_local_evidence_review_export=(
+            expert_label_local_evidence_review_export
         ),
     )
     write_json(Path(args.out), gates)
@@ -1844,6 +1959,72 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_expert_label_decision_repair_guardrails
     )
 
+    expert_label_decision_local_gaps = subparsers.add_parser(
+        "audit-expert-label-decision-local-evidence-gaps",
+        help="classify local-evidence gaps in priority expert-label repair lanes",
+    )
+    expert_label_decision_local_gaps.add_argument(
+        "--expert-label-decision-repair-guardrail-audit",
+        default="artifacts/v3_expert_label_decision_repair_guardrail_audit.json",
+    )
+    expert_label_decision_local_gaps.add_argument(
+        "--expert-label-decision-repair-candidates",
+        default=None,
+    )
+    expert_label_decision_local_gaps.add_argument(
+        "--out",
+        default="artifacts/v3_expert_label_decision_local_evidence_gap_audit.json",
+    )
+    expert_label_decision_local_gaps.set_defaults(
+        func=cmd_audit_expert_label_decision_local_evidence_gaps
+    )
+
+    expert_label_decision_local_export = subparsers.add_parser(
+        "build-expert-label-decision-local-evidence-review-export",
+        help="export priority expert-label local-evidence gaps for review",
+    )
+    expert_label_decision_local_export.add_argument(
+        "--expert-label-decision-local-evidence-gap-audit",
+        default="artifacts/v3_expert_label_decision_local_evidence_gap_audit.json",
+    )
+    expert_label_decision_local_export.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    expert_label_decision_local_export.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_expert_label_decision_local_evidence_review_export.json"
+        ),
+    )
+    expert_label_decision_local_export.set_defaults(
+        func=cmd_build_expert_label_decision_local_evidence_review_export
+    )
+
+    expert_label_decision_local_plan = subparsers.add_parser(
+        "summarize-expert-label-decision-local-evidence-repair-plan",
+        help="prioritize non-countable local-evidence repair lanes",
+    )
+    expert_label_decision_local_plan.add_argument(
+        "--expert-label-decision-local-evidence-gap-audit",
+        default="artifacts/v3_expert_label_decision_local_evidence_gap_audit.json",
+    )
+    expert_label_decision_local_plan.add_argument(
+        "--expert-label-decision-local-evidence-review-export",
+        default=None,
+    )
+    expert_label_decision_local_plan.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_expert_label_decision_local_evidence_repair_plan.json"
+        ),
+    )
+    expert_label_decision_local_plan.set_defaults(
+        func=cmd_summarize_expert_label_decision_local_evidence_repair_plan
+    )
+
     ontology_gap_audit = subparsers.add_parser(
         "audit-mechanism-ontology-gaps",
         help="summarize review-only mechanism scope pressure beyond current ontology",
@@ -1858,6 +2039,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     ontology_gap_audit.add_argument(
         "--family-propagation-guardrails",
+        default=None,
+    )
+    ontology_gap_audit.add_argument(
+        "--expert-label-decision-local-evidence-gap-audit",
         default=None,
     )
     ontology_gap_audit.add_argument("--max-rows", type=int, default=60)
@@ -1964,6 +2149,8 @@ def build_parser() -> argparse.ArgumentParser:
     gate_check.add_argument("--expert-label-decision-review-export", default=None)
     gate_check.add_argument("--expert-label-decision-repair-candidates", default=None)
     gate_check.add_argument("--expert-label-decision-repair-guardrail-audit", default=None)
+    gate_check.add_argument("--expert-label-decision-local-evidence-gap-audit", default=None)
+    gate_check.add_argument("--expert-label-decision-local-evidence-review-export", default=None)
     gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
     gate_check.set_defaults(func=cmd_check_label_factory_gates)
 
@@ -2264,6 +2451,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     scaling_quality.add_argument(
         "--expert-label-decision-repair-guardrail-audit",
+        default=None,
+    )
+    scaling_quality.add_argument(
+        "--expert-label-decision-local-evidence-gap-audit",
+        default=None,
+    )
+    scaling_quality.add_argument(
+        "--expert-label-decision-local-evidence-review-export",
         default=None,
     )
     scaling_quality.add_argument(

@@ -546,14 +546,15 @@ tests before its labels are counted.
 
 Current 700-queue gate state:
 
-- 15/15 gate checks pass.
+- 17/17 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
   family-propagation guardrails ready, mismatch review export ready,
   expert-label decision review export ready, expert-label decision repair
-  candidates ready, expert-label decision repair guardrails ready, and
-  unlabeled queue retention ready.
+  candidates ready, expert-label decision repair guardrails ready,
+  expert-label local-evidence gap audit ready, expert-label local-evidence
+  review export ready, and unlabeled queue retention ready.
 - 79 bronze-to-silver promotions are proposed in the applied-label artifact
   after the accepted 700 batch.
 - 188 rows are queued for active-learning review after the accepted 700 batch,
@@ -576,8 +577,14 @@ Current 700-queue gate state:
   candidates, provide a full 76-row companion table, and record complete bucket
   counts while keeping every row non-countable.
 - The expert-label repair guardrail audit covers 21 priority repair lanes,
-  keeps 3 conservative-remap local evidence leads review-only, and makes the
-  latest accepted-700 factory gate 15/15.
+  keeps 3 conservative-remap local evidence leads review-only.
+- The local-evidence gap audit/export covers those 21 priority lanes, emits
+  21 review-only/no-decision items, and the local-evidence repair plan
+  prioritizes them into 4 reaction/substrate expert-review lanes, 3 explicit
+  alternate-residue-position sourcing lanes, 3 active-site mapping or
+  structure-selection lanes, and 11 family-boundary review lanes. These
+  artifacts make the latest accepted-700 factory gate 17/17 without making any
+  row countable.
 - `artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115
   non-countable ontology-scope pressure rows, and
   `artifacts/v3_learned_retrieval_manifest_700.json` defines a future learned

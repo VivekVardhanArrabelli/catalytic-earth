@@ -19,6 +19,7 @@ from catalytic_earth.labels import (
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
+    audit_expert_label_decision_local_evidence_gaps,
     audit_expert_label_decision_repair_guardrails,
     audit_label_scaling_quality,
     audit_mechanism_ontology_gaps,
@@ -27,6 +28,7 @@ from catalytic_earth.labels import (
     audit_review_debt_remap_local_leads,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
+    build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
     build_expert_review_export,
     build_family_propagation_guardrails,
@@ -52,6 +54,7 @@ from catalytic_earth.labels import (
     migrate_label_record,
     scan_review_debt_alternate_structures,
     summarize_expert_label_decision_repair_candidates,
+    summarize_expert_label_decision_local_evidence_repair_plan,
     select_threshold,
     summarize_label_factory_batches,
     summarize_review_debt,
@@ -2405,6 +2408,418 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             rows["m_csa:692"]["non_countable_blockers"],
         )
 
+    def test_expert_label_decision_local_evidence_gap_audit_classifies_repair_lanes(
+        self,
+    ) -> None:
+        guardrail = {
+            "metadata": {
+                "method": "expert_label_decision_repair_guardrail_audit",
+                "priority_repair_entry_ids": ["m_csa:577", "m_csa:692"],
+                "missing_local_mechanistic_evidence_entry_ids": ["m_csa:692"],
+                "local_expected_family_evidence_review_only_entry_ids": ["m_csa:577"],
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:577",
+                    "entry_name": "remap lead",
+                    "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+                    "quality_risk_flags": [
+                        "text_leakage_or_nonlocal_evidence_risk"
+                    ],
+                    "local_mechanistic_evidence_status": (
+                        "local_expected_family_evidence_from_conservative_remap_review_only"
+                    ),
+                    "selected_pdb_id": "1IMA",
+                    "selected_pdb_residue_position_count": 6,
+                    "alternate_pdb_with_residue_positions_count": 0,
+                    "local_expected_family_hit_count": 2,
+                    "structure_wide_expected_family_hit_count": 4,
+                    "strict_remap_guardrail": True,
+                    "non_countable_blockers": [
+                        "strict_conservative_remap_guardrail",
+                        "external_expert_decision_required",
+                    ],
+                    "counterevidence_reasons": ["role_inferred_metal_low_pocket_support"],
+                    "reaction_substrate_mismatch_reasons": [],
+                    "countable_label_candidate": False,
+                },
+                {
+                    "entry_id": "m_csa:692",
+                    "entry_name": "mapping gap",
+                    "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+                    "quality_risk_flags": [
+                        "active_site_mapping_or_structure_gap",
+                        "cofactor_family_ambiguity",
+                    ],
+                    "local_mechanistic_evidence_status": (
+                        "no_local_expected_family_evidence"
+                    ),
+                    "selected_pdb_id": "1DL5",
+                    "selected_pdb_residue_position_count": 1,
+                    "alternate_pdb_with_residue_positions_count": 0,
+                    "local_expected_family_hit_count": 0,
+                    "structure_wide_expected_family_hit_count": 0,
+                    "strict_remap_guardrail": False,
+                    "non_countable_blockers": [
+                        "active_site_mapping_or_structure_gap_unresolved",
+                        "external_expert_decision_required",
+                    ],
+                    "counterevidence_reasons": [],
+                    "reaction_substrate_mismatch_reasons": [],
+                    "countable_label_candidate": False,
+                },
+            ],
+        }
+        repair = {
+            "metadata": {"method": "expert_label_decision_repair_candidate_summary"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:577",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_ontology_family": "hydrolysis",
+                    "top1_score": 0.61,
+                    "cofactor_evidence_level": "ligand_supported",
+                    "review_debt_remediation_context": {
+                        "candidate_pdb_structure_count": 3,
+                        "alternate_pdb_count": 2,
+                    },
+                    "alternate_structure_scan_context": {
+                        "scan_outcome": "alternate_structure_has_expected_cofactor_candidate",
+                        "scanned_structure_count": 3,
+                        "local_expected_family_hit_count": 2,
+                        "structure_wide_expected_family_hit_count": 4,
+                    },
+                },
+                {
+                    "entry_id": "m_csa:692",
+                    "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+                    "top1_ontology_family": "flavin_redox",
+                    "top1_score": 0.37,
+                    "cofactor_evidence_level": "absent",
+                    "review_debt_remediation_context": {
+                        "candidate_pdb_structure_count": 1,
+                        "alternate_pdb_count": 0,
+                    },
+                    "alternate_structure_scan_context": {
+                        "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+                        "scanned_structure_count": 1,
+                        "local_expected_family_hit_count": 0,
+                        "structure_wide_expected_family_hit_count": 0,
+                    },
+                },
+            ],
+        }
+
+        audit = audit_expert_label_decision_local_evidence_gaps(
+            guardrail,
+            expert_label_decision_repair_candidates=repair,
+        )
+
+        self.assertEqual(
+            audit["metadata"]["method"],
+            "expert_label_decision_local_evidence_gap_audit",
+        )
+        self.assertTrue(audit["metadata"]["audit_ready"])
+        self.assertTrue(audit["metadata"]["priority_rows_accounted_for"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(audit["metadata"]["repair_ready_for_count_growth"])
+        self.assertEqual(
+            audit["metadata"][
+                "selected_structure_residue_support_shortfall_entry_ids"
+            ],
+            ["m_csa:692"],
+        )
+        self.assertEqual(
+            audit["metadata"]["single_structure_no_alternate_context_entry_ids"],
+            ["m_csa:692"],
+        )
+        rows = {row["entry_id"]: row for row in audit["rows"]}
+        self.assertIn(
+            "strict_conservative_remap_guardrail",
+            rows["m_csa:577"]["local_evidence_gap_classes"],
+        )
+        self.assertIn(
+            "scanned_structures_without_local_expected_family_hit",
+            rows["m_csa:692"]["local_evidence_gap_classes"],
+        )
+        self.assertEqual(
+            rows["m_csa:692"]["recommended_next_action"],
+            "source_external_cofactor_or_structure_evidence",
+        )
+
+    def test_label_factory_gate_requires_local_evidence_gap_audit_for_priority_repairs(
+        self,
+    ) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id="metal_dependent_hydrolase",
+                label_type="seed_fingerprint",
+                confidence="high",
+                rationale="Countable seed label used to exercise factory gates.",
+            )
+        ]
+        queue = {
+            "metadata": {
+                "queued_count": 1,
+                "all_unlabeled_rows_retained": True,
+                "ranking_terms": [
+                    "uncertainty",
+                    "impact",
+                    "novelty",
+                    "hard_negative_value",
+                    "evidence_conflict",
+                    "family_boundary_value",
+                    "reaction_substrate_mismatch_value",
+                ],
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:650",
+                    "recommended_action": "expert_label_decision_needed",
+                    "top1_ontology_family": "hydrolysis",
+                }
+            ],
+        }
+        expert_export = {
+            "metadata": {
+                "method": "expert_label_decision_review_export",
+                "exported_count": 1,
+                "exported_entry_ids": ["m_csa:650"],
+                "countable_label_candidate_count": 0,
+                "decision_counts": {"no_decision": 1},
+                "export_ready": True,
+            },
+            "review_items": [{"entry_id": "m_csa:650"}],
+        }
+        repair = {
+            "metadata": {
+                "method": "expert_label_decision_repair_candidate_summary",
+                "candidate_count": 1,
+                "candidate_entry_ids": ["m_csa:650"],
+                "countable_label_candidate_count": 0,
+            },
+            "rows": [{"entry_id": "m_csa:650"}],
+        }
+        repair_guardrail = {
+            "metadata": {
+                "method": "expert_label_decision_repair_guardrail_audit",
+                "guardrail_ready": True,
+                "all_priority_lanes_non_countable": True,
+                "priority_repair_row_count": 1,
+                "countable_label_candidate_count": 0,
+            },
+            "rows": [{"entry_id": "m_csa:650"}],
+        }
+        common_args = dict(
+            labels=labels,
+            label_factory_audit={
+                "metadata": {"promote_to_silver_count": 1, "abstention_or_review_count": 1}
+            },
+            applied_label_factory={
+                "metadata": {
+                    "output_label_count": len(labels),
+                    "output_summary": {"by_tier": {"silver": 1}},
+                }
+            },
+            active_learning_queue=queue,
+            adversarial_negatives={
+                "metadata": {
+                    "control_count": 1,
+                    "axis_counts": {"ontology_family_boundary": 1},
+                }
+            },
+            expert_review_export={
+                "metadata": {"exported_count": 1},
+                "review_items": [{"entry_id": "m_csa:650"}],
+            },
+            family_propagation_guardrails={
+                "metadata": {
+                    "reported_count": 1,
+                    "source_guardrails": [{"source": "local_proxy"}],
+                },
+                "rows": [],
+            },
+            expert_label_decision_review_export=expert_export,
+            expert_label_decision_repair_candidates=repair,
+            expert_label_decision_repair_guardrail_audit=repair_guardrail,
+        )
+
+        without_gap_audit = check_label_factory_gates(**common_args)
+        self.assertFalse(
+            without_gap_audit["gates"][
+                "expert_label_decision_local_evidence_gaps_audited"
+            ]
+        )
+        self.assertIn(
+            "expert_label_decision_local_evidence_gaps_audited",
+            without_gap_audit["blockers"],
+        )
+
+        with_gap_audit = check_label_factory_gates(
+            **common_args,
+            expert_label_decision_local_evidence_gap_audit={
+                "metadata": {
+                    "method": "expert_label_decision_local_evidence_gap_audit",
+                    "audit_ready": True,
+                    "priority_rows_accounted_for": True,
+                    "audited_entry_count": 1,
+                    "missing_priority_entry_ids": [],
+                    "countable_label_candidate_count": 0,
+                },
+                "rows": [{"entry_id": "m_csa:650"}],
+            },
+        )
+        self.assertTrue(
+            with_gap_audit["gates"][
+                "expert_label_decision_local_evidence_gaps_audited"
+            ]
+        )
+        self.assertFalse(
+            with_gap_audit["gates"][
+                "expert_label_decision_local_evidence_review_export_ready"
+            ]
+        )
+
+        with_gap_export = check_label_factory_gates(
+            **common_args,
+            expert_label_decision_local_evidence_gap_audit={
+                "metadata": {
+                    "method": "expert_label_decision_local_evidence_gap_audit",
+                    "audit_ready": True,
+                    "priority_rows_accounted_for": True,
+                    "audited_entry_count": 1,
+                    "missing_priority_entry_ids": [],
+                    "countable_label_candidate_count": 0,
+                },
+                "rows": [{"entry_id": "m_csa:650"}],
+            },
+            expert_label_decision_local_evidence_review_export={
+                "metadata": {
+                    "method": "expert_label_decision_local_evidence_review_export",
+                    "export_ready": True,
+                    "all_source_rows_exported": True,
+                    "exported_count": 1,
+                    "countable_label_candidate_count": 0,
+                    "decision_counts": {"no_decision": 1},
+                },
+                "review_items": [{"entry_id": "m_csa:650"}],
+            },
+        )
+        self.assertTrue(
+            with_gap_export["gates"][
+                "expert_label_decision_local_evidence_review_export_ready"
+            ]
+        )
+        self.assertTrue(
+            with_gap_export["metadata"]["automation_ready_for_next_label_batch"]
+        )
+
+    def test_local_evidence_gap_review_export_stays_no_decision(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:654",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="high",
+                rationale="Existing out-of-scope control.",
+            )
+        ]
+        local_gap_audit = {
+            "metadata": {
+                "method": "expert_label_decision_local_evidence_gap_audit",
+                "audit_ready": True,
+                "audited_entry_count": 2,
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:654",
+                    "entry_name": "single structure kinase",
+                    "local_evidence_gap_classes": [
+                        "single_structure_no_alternate_context",
+                        "reaction_substrate_mismatch_review_required",
+                    ],
+                    "recommended_next_action": (
+                        "route_to_reaction_substrate_expert_review"
+                    ),
+                    "countable_label_candidate": False,
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                },
+                {
+                    "entry_id": "m_csa:659",
+                    "entry_name": "single structure heme gap",
+                    "local_evidence_gap_classes": [
+                        "single_structure_no_alternate_context",
+                        "counterevidence_boundary_unresolved",
+                    ],
+                    "recommended_next_action": "route_to_family_boundary_expert_review",
+                    "countable_label_candidate": False,
+                    "top1_fingerprint_id": "heme_peroxidase",
+                },
+            ],
+        }
+
+        export = build_expert_label_decision_local_evidence_review_export(
+            local_gap_audit,
+            labels,
+        )
+        self.assertEqual(
+            export["metadata"]["method"],
+            "expert_label_decision_local_evidence_review_export",
+        )
+        self.assertTrue(export["metadata"]["export_ready"])
+        self.assertEqual(export["metadata"]["exported_count"], 2)
+        self.assertEqual(export["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(export["metadata"]["decision_counts"], {"no_decision": 2})
+        self.assertIn(
+            "reaction or substrate",
+            export["review_items"][0]["review_question"],
+        )
+
+        batch = build_provisional_review_decision_batch(export)
+        self.assertTrue(batch["metadata"]["local_evidence_gap_review_only"])
+        self.assertEqual(batch["metadata"]["decision_counts"], {"no_decision": 2})
+        self.assertEqual(
+            {
+                item["decision"]["local_evidence_resolution"]
+                for item in batch["review_items"]
+            },
+            {"needs_more_evidence"},
+        )
+        unsafe_countable = deepcopy(export)
+        unsafe_countable["review_items"][1]["decision"] = {
+            "action": "accept_label",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "heme_peroxidase",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": "automation_label_factory",
+            "rationale": "Automation must not count local-evidence review rows.",
+            "evidence_score": 0.65,
+            "review_status": "automation_curated",
+            "local_evidence_resolution": "confirms_local_mechanistic_evidence",
+        }
+        countable = import_countable_review_decisions(labels, unsafe_countable)
+        self.assertEqual([label.entry_id for label in countable], ["m_csa:654"])
+
+        plan = summarize_expert_label_decision_local_evidence_repair_plan(
+            local_gap_audit,
+            local_evidence_review_export=export,
+        )
+        self.assertTrue(plan["metadata"]["repair_plan_ready"])
+        self.assertEqual(plan["metadata"]["planned_entry_count"], 2)
+        self.assertEqual(
+            plan["metadata"]["repair_lane_counts"][
+                "expert_reaction_substrate_review"
+            ],
+            1,
+        )
+        self.assertTrue(plan["metadata"]["all_planned_rows_review_exported"])
+        self.assertEqual(
+            [row["repair_lane"] for row in plan["rows"]],
+            ["expert_reaction_substrate_review", "expert_family_boundary_review"],
+        )
+
     def test_mechanism_ontology_gap_audit_is_review_only(self) -> None:
         queue = {
             "rows": [
@@ -2452,6 +2867,32 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         audit = audit_mechanism_ontology_gaps(
             queue,
             expert_label_decision_repair_candidates=repair,
+            expert_label_decision_local_evidence_gap_audit={
+                "metadata": {
+                    "method": "expert_label_decision_local_evidence_gap_audit"
+                },
+                "rows": [
+                    {
+                        "entry_id": "m_csa:655",
+                        "local_evidence_gap_classes": [
+                            "reaction_substrate_mismatch_review_required",
+                            "selected_structure_residue_support_shortfall",
+                        ],
+                        "recommended_next_action": (
+                            "route_to_reaction_substrate_expert_review"
+                        ),
+                    },
+                    {
+                        "entry_id": "m_csa:777",
+                        "local_evidence_gap_classes": [
+                            "local_evidence_review_only_not_countable"
+                        ],
+                        "recommended_next_action": (
+                            "keep_local_evidence_review_only_until_expert_resolution"
+                        ),
+                    }
+                ],
+            },
             max_rows=0,
         )
 
@@ -2468,7 +2909,42 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             "reaction_substrate_mismatch_review_required",
             rows["m_csa:655"]["ontology_update_blockers"],
         )
+        self.assertIn(
+            "local_evidence_gap_unresolved",
+            rows["m_csa:655"]["ontology_update_blockers"],
+        )
+        self.assertEqual(
+            audit["metadata"]["local_evidence_gap_context_entry_count"], 2
+        )
+        self.assertEqual(
+            audit["metadata"]["local_evidence_gap_class_counts"][
+                "selected_structure_residue_support_shortfall"
+            ],
+            1,
+        )
         self.assertFalse(rows["m_csa:655"]["countable_label_candidate"])
+
+        capped = audit_mechanism_ontology_gaps(
+            queue,
+            expert_label_decision_repair_candidates=repair,
+            expert_label_decision_local_evidence_gap_audit={
+                "metadata": {
+                    "method": "expert_label_decision_local_evidence_gap_audit"
+                },
+                "rows": [
+                    {
+                        "entry_id": "m_csa:777",
+                        "local_evidence_gap_classes": [
+                            "local_evidence_review_only_not_countable"
+                        ],
+                    }
+                ],
+            },
+            max_rows=1,
+        )
+        self.assertEqual(capped["metadata"]["priority_local_evidence_gap_added_count"], 1)
+        self.assertEqual(capped["metadata"]["emitted_row_count"], 2)
+        self.assertIn("m_csa:777", [row["entry_id"] for row in capped["rows"]])
 
     def test_sequence_similarity_failure_sets_track_mixed_clusters(self) -> None:
         clusters = {
@@ -2778,6 +3254,32 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             },
             "rows": [{"entry_id": "m_csa:650", "countable_label_candidate": False}],
         }
+        expert_label_decision_local_gap = {
+            "metadata": {
+                "method": "expert_label_decision_local_evidence_gap_audit",
+                "audit_ready": True,
+                "priority_rows_accounted_for": True,
+                "priority_repair_row_count": 1,
+                "audited_entry_count": 1,
+                "missing_priority_entry_ids": [],
+                "countable_label_candidate_count": 0,
+                "local_evidence_gap_class_counts": {
+                    "selected_structure_residue_support_shortfall": 1
+                },
+            },
+            "rows": [{"entry_id": "m_csa:650", "countable_label_candidate": False}],
+        }
+        expert_label_decision_local_export = {
+            "metadata": {
+                "method": "expert_label_decision_local_evidence_review_export",
+                "export_ready": True,
+                "all_source_rows_exported": True,
+                "exported_count": 1,
+                "countable_label_candidate_count": 0,
+                "decision_counts": {"no_decision": 1},
+            },
+            "review_items": [{"entry_id": "m_csa:650"}],
+        }
 
         audit = audit_label_scaling_quality(
             acceptance,
@@ -2797,6 +3299,12 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             expert_label_decision_repair_candidates=expert_label_decision_repair,
             expert_label_decision_repair_guardrail_audit=(
                 expert_label_decision_repair_guardrail
+            ),
+            expert_label_decision_local_evidence_gap_audit=(
+                expert_label_decision_local_gap
+            ),
+            expert_label_decision_local_evidence_review_export=(
+                expert_label_decision_local_export
             ),
             batch_id="test_preview",
         )
@@ -2860,6 +3368,9 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
                 "expert_label_decision_repair_guardrail_keeps_priority_lanes_non_countable"
             ]
         )
+        self.assertTrue(
+            audit["gates"]["expert_label_decision_local_evidence_gaps_audited"]
+        )
         self.assertEqual(
             audit["metadata"][
                 "expert_label_decision_repair_candidates_missing_entry_ids"
@@ -2869,6 +3380,21 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertEqual(
             audit["metadata"]["remap_local_lead_audit_strict_guardrail_entry_ids"],
             ["m_csa:650"],
+        )
+        self.assertTrue(
+            audit["metadata"][
+                "expert_label_decision_local_evidence_gap_audit_present"
+            ]
+        )
+        self.assertTrue(
+            audit["gates"][
+                "expert_label_decision_local_evidence_review_export_ready"
+            ]
+        )
+        self.assertTrue(
+            audit["metadata"][
+                "expert_label_decision_local_evidence_review_export_present"
+            ]
         )
         failure_modes = {row["id"]: row for row in audit["failure_modes"]}
         self.assertEqual(failure_modes["sibling_mechanism_confusion"]["issue_count"], 1)
@@ -2909,6 +3435,11 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertTrue(
             failure_modes["expert_label_decision_review_only_debt"]["evidence"][
                 "repair_guardrail_audit_present"
+            ]
+        )
+        self.assertTrue(
+            failure_modes["expert_label_decision_review_only_debt"]["evidence"][
+                "local_evidence_gap_audit_present"
             ]
         )
 

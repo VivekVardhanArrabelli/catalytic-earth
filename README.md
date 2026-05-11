@@ -108,13 +108,15 @@ abstention/review rows, mines 100 adversarial negative controls from 466
 out-of-scope candidates, exports 182 expert-review items from the post-700
 review queue, exports all 76 active `expert_label_decision_needed` rows as
 review-only no-decision items, generates a non-countable repair-candidate plan
-and priority repair guardrail audit for those 76 rows, and passes the 15-check
-700-slice gate. The gate now also
+and priority repair guardrail audit for those 76 rows, audits/exports the 21
+priority local-evidence gap lanes as review-only items, emits a local-evidence
+repair plan, and passes the 17-check 700-slice gate. The gate now also
 fails if unlabeled candidate rows are truncated by the queue limit, if
 family-guardrail reaction/substrate mismatch lanes lack a dedicated review
 export, if expert-label decision rows are not explicitly routed as non-countable
 external-review items, or if those rows lack a complete non-countable repair
-candidate summary and repair guardrail audit.
+candidate summary, repair guardrail audit, local-evidence gap audit, and
+local-evidence review export.
 `artifacts/v3_label_batch_acceptance_check_700.json` records that the latest
 accepted batch added 5 labels for counting while 81 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
@@ -128,6 +130,11 @@ labels with review debt and 0 near-duplicate hits among audited rows. See
 `work/expert_label_decision_review_700_notes.md` for the clean label profiles,
 the top evidence gaps, the expert-decision review-only profile, and the
 prioritized non-countable repair buckets.
+`artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
+prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
+expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,
+3 active-site mapping or structure-selection lanes, and 11 family-boundary
+review lanes; all remain non-countable.
 The latest non-countable repair artifacts add three discovery-facing controls:
 `artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115 ontology
 scope-pressure rows without creating new families,

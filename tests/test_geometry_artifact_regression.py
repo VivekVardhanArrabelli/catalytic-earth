@@ -665,6 +665,26 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             / "artifacts"
             / "v3_expert_label_decision_repair_guardrail_audit_700.json"
         )
+        expert_label_decision_local_gap_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_expert_label_decision_local_evidence_gap_audit_700.json"
+        )
+        expert_label_decision_local_export_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_expert_label_decision_local_evidence_review_export_700.json"
+        )
+        expert_label_decision_local_batch_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_expert_label_decision_local_evidence_decision_batch_700.json"
+        )
+        expert_label_decision_local_plan_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_expert_label_decision_local_evidence_repair_plan_700.json"
+        )
         ontology_gap_audit_700 = _load_json(
             ROOT / "artifacts" / "v3_mechanism_ontology_gap_audit_700.json"
         )
@@ -866,6 +886,38 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             latest_batch_summary[
                 "expert_label_decision_repair_guardrail_audit_present"
             ]
+        )
+        self.assertTrue(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_gap_audit_present"
+            ]
+        )
+        self.assertTrue(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_gap_audit_ready"
+            ]
+        )
+        self.assertEqual(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_gap_audit_missing_count"
+            ],
+            0,
+        )
+        self.assertTrue(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_review_export_present"
+            ]
+        )
+        self.assertTrue(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_review_export_ready"
+            ]
+        )
+        self.assertEqual(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_review_export_exported_count"
+            ],
+            21,
         )
         self.assertEqual(preview_summary_675["metadata"]["blocker_count"], 0)
         self.assertTrue(preview_summary_675["metadata"]["all_active_queues_retain_unlabeled_candidates"])
@@ -1361,14 +1413,24 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(gate_650["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_675["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_700["metadata"]["automation_ready_for_next_label_batch"])
-        self.assertEqual(gate_700["metadata"]["gate_count"], 15)
-        self.assertEqual(gate_700["metadata"]["passed_gate_count"], 15)
+        self.assertEqual(gate_700["metadata"]["gate_count"], 17)
+        self.assertEqual(gate_700["metadata"]["passed_gate_count"], 17)
         self.assertTrue(gate_700["gates"]["expert_label_decision_review_export_ready"])
         self.assertTrue(
             gate_700["gates"]["expert_label_decision_repair_candidates_ready"]
         )
         self.assertTrue(
             gate_700["gates"]["expert_label_decision_repair_guardrails_ready"]
+        )
+        self.assertTrue(
+            gate_700["gates"][
+                "expert_label_decision_local_evidence_gaps_audited"
+            ]
+        )
+        self.assertTrue(
+            gate_700["gates"][
+                "expert_label_decision_local_evidence_review_export_ready"
+            ]
         )
         self.assertEqual(
             gate_700["metadata"]["active_queue_expert_label_decision_count"],
@@ -1394,6 +1456,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             gate_700["metadata"][
                 "expert_label_decision_repair_guardrail_priority_repair_row_count"
+            ],
+            21,
+        )
+        self.assertTrue(
+            gate_700["metadata"][
+                "expert_label_decision_local_evidence_gap_audit_present"
+            ]
+        )
+        self.assertTrue(
+            gate_700["metadata"][
+                "expert_label_decision_local_evidence_gap_audit_ready"
+            ]
+        )
+        self.assertEqual(
+            gate_700["metadata"][
+                "expert_label_decision_local_evidence_gap_audit_audited_entry_count"
+            ],
+            21,
+        )
+        self.assertTrue(
+            gate_700["metadata"][
+                "expert_label_decision_local_evidence_review_export_present"
+            ]
+        )
+        self.assertEqual(
+            gate_700["metadata"][
+                "expert_label_decision_local_evidence_review_export_exported_count"
             ],
             21,
         )
@@ -1472,6 +1561,52 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             expert_label_decision_batch_700["metadata"]["decision_counts"],
             {"no_decision": 76},
+        )
+        self.assertEqual(
+            expert_label_decision_local_export_700["metadata"]["method"],
+            "expert_label_decision_local_evidence_review_export",
+        )
+        self.assertTrue(
+            expert_label_decision_local_export_700["metadata"]["export_ready"]
+        )
+        self.assertEqual(
+            expert_label_decision_local_export_700["metadata"]["exported_count"],
+            21,
+        )
+        self.assertEqual(
+            expert_label_decision_local_export_700["metadata"]["decision_counts"],
+            {"no_decision": 21},
+        )
+        self.assertTrue(
+            expert_label_decision_local_batch_700["metadata"][
+                "local_evidence_gap_review_only"
+            ]
+        )
+        self.assertEqual(
+            expert_label_decision_local_batch_700["metadata"]["decision_counts"],
+            {"no_decision": 21},
+        )
+        self.assertTrue(
+            expert_label_decision_local_plan_700["metadata"]["repair_plan_ready"]
+        )
+        self.assertEqual(
+            expert_label_decision_local_plan_700["metadata"]["planned_entry_count"],
+            21,
+        )
+        self.assertEqual(
+            expert_label_decision_local_plan_700["metadata"]["repair_lane_counts"][
+                "expert_reaction_substrate_review"
+            ],
+            4,
+        )
+        self.assertTrue(
+            expert_label_decision_local_plan_700["metadata"][
+                "all_planned_rows_review_exported"
+            ]
+        )
+        self.assertEqual(
+            expert_label_decision_local_plan_700["rows"][0]["entry_id"],
+            "m_csa:592",
         )
         self.assertEqual(
             expert_label_decision_repair_700["metadata"]["candidate_count"],
@@ -1560,6 +1695,48 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             0,
         )
         self.assertEqual(
+            expert_label_decision_local_gap_700["metadata"]["method"],
+            "expert_label_decision_local_evidence_gap_audit",
+        )
+        self.assertTrue(expert_label_decision_local_gap_700["metadata"]["audit_ready"])
+        self.assertEqual(
+            expert_label_decision_local_gap_700["metadata"]["audited_entry_count"],
+            21,
+        )
+        self.assertEqual(
+            expert_label_decision_local_gap_700["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            expert_label_decision_local_gap_700["metadata"][
+                "selected_structure_residue_support_shortfall_entry_ids"
+            ],
+            [
+                "m_csa:553",
+                "m_csa:567",
+                "m_csa:592",
+                "m_csa:654",
+                "m_csa:659",
+                "m_csa:662",
+                "m_csa:664",
+                "m_csa:667",
+                "m_csa:677",
+                "m_csa:690",
+                "m_csa:691",
+                "m_csa:692",
+                "m_csa:698",
+                "m_csa:701",
+            ],
+        )
+        self.assertEqual(
+            expert_label_decision_local_gap_700["metadata"][
+                "single_structure_no_alternate_context_entry_ids"
+            ],
+            ["m_csa:654", "m_csa:659", "m_csa:692", "m_csa:701"],
+        )
+        self.assertEqual(
             ontology_gap_audit_700["metadata"]["method"],
             "mechanism_ontology_gap_audit",
         )
@@ -1573,6 +1750,24 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "transferase_phosphoryl"
             ],
             30,
+        )
+        self.assertEqual(
+            ontology_gap_audit_700["metadata"][
+                "local_evidence_gap_context_entry_count"
+            ],
+            16,
+        )
+        self.assertEqual(
+            ontology_gap_audit_700["metadata"]["local_evidence_gap_class_counts"][
+                "single_structure_no_alternate_context"
+            ],
+            4,
+        )
+        self.assertEqual(
+            ontology_gap_audit_700["metadata"][
+                "priority_local_evidence_gap_added_count"
+            ],
+            9,
         )
         self.assertIn(
             "hydrolysis",
@@ -1741,12 +1936,48 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             0,
         )
+        self.assertTrue(
+            scaling_quality_700["gates"][
+                "expert_label_decision_local_evidence_gaps_audited"
+            ]
+        )
+        self.assertTrue(
+            scaling_quality_700["gates"][
+                "expert_label_decision_local_evidence_review_export_ready"
+            ]
+        )
+        self.assertTrue(
+            scaling_quality_700["metadata"][
+                "expert_label_decision_local_evidence_gap_audit_present"
+            ]
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "expert_label_decision_local_evidence_gap_audit_audited_entry_count"
+            ],
+            21,
+        )
+        self.assertTrue(
+            scaling_quality_700["metadata"][
+                "expert_label_decision_local_evidence_review_export_present"
+            ]
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "expert_label_decision_local_evidence_review_export_exported_count"
+            ],
+            21,
+        )
         self.assertIn(
             "expert_label_decision_rows_require_external_review",
             scaling_quality_700["review_warnings"],
         )
         self.assertIn(
             "expert_label_decision_priority_repair_lanes_review_only",
+            scaling_quality_700["review_warnings"],
+        )
+        self.assertIn(
+            "expert_label_decision_local_evidence_gaps_remain_review_only",
             scaling_quality_700["review_warnings"],
         )
         self.assertTrue(

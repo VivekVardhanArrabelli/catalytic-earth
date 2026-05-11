@@ -175,8 +175,9 @@ Current expectation:
   current ranked review cutoff plus all unlabeled candidates from the 700
   review queue, exports all 76 active `expert_label_decision_needed` rows as
   review-only no-decision items, generates a complete non-countable repair
-  candidate summary and repair guardrail audit for those rows, and passes the
-  15-check label-factory gate; the
+  candidate summary and repair guardrail audit for those rows, audits and
+  exports the 21 priority local-evidence gap lanes as review-only items, emits
+  a local-evidence repair plan, and passes the 17-check label-factory gate; the
   active-learning queue now includes a reaction/substrate mismatch ranking
   term, and the 700 family-propagation guardrail blocks 24 reported rows on
   the same mismatch signal with priority retention beyond `max_rows` (17
@@ -189,7 +190,11 @@ Current expectation:
   ambiguity, counterevidence boundaries, active-site mapping gaps, and
   nonlocal/text-leakage risk. The repair guardrail audit covers 21 priority
   lanes, keeps 3 conservative-remap local evidence leads review-only, and
-  records 0 countable candidates
+  records 0 countable candidates. The local-evidence repair plan prioritizes
+  the 21 lanes into 4 reaction/substrate expert-review lanes, 3 explicit
+  alternate-residue-position sourcing lanes, 3 active-site mapping or
+  structure-selection lanes, and 11 family-boundary review lanes, all
+  non-countable
 - review-debt triage now ranks 81 evidence-gap rows from the 700 review pass,
   with 81 `needs_more_evidence` decisions, 61 carried rows, 20 new rows, and
   next-action counts split by debt status

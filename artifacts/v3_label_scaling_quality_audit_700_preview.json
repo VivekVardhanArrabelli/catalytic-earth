@@ -591,6 +591,30 @@
           "m_csa:701",
           "m_csa:702"
         ],
+        "local_evidence_gap_audit_present": true,
+        "local_evidence_gap_audit_ready": true,
+        "local_evidence_gap_audited_entry_count": 21,
+        "local_evidence_gap_class_counts": {
+          "alternate_structures_lack_explicit_residue_positions": 17,
+          "counterevidence_boundary_unresolved": 12,
+          "local_evidence_review_only_not_countable": 3,
+          "not_scanned_or_no_alternate_context": 6,
+          "reaction_substrate_mismatch_review_required": 4,
+          "scanned_structures_without_local_expected_family_hit": 12,
+          "scanned_without_local_expected_family_evidence": 8,
+          "selected_structure_residue_support_shortfall": 14,
+          "single_structure_no_alternate_context": 4,
+          "strict_conservative_remap_guardrail": 3,
+          "structure_wide_hit_without_local_support": 4,
+          "structure_wide_or_nonlocal_evidence_only": 4,
+          "text_leakage_or_nonlocal_evidence_risk": 9
+        },
+        "local_evidence_gap_countable_label_candidate_count": 0,
+        "local_evidence_gap_missing_entry_ids": [],
+        "local_evidence_review_export_countable_label_candidate_count": 0,
+        "local_evidence_review_export_exported_count": 21,
+        "local_evidence_review_export_present": true,
+        "local_evidence_review_export_ready": true,
         "missing_entry_ids": [],
         "quality_risk_flag_counts": {
           "active_site_mapping_or_structure_gap": 14,
@@ -722,6 +746,8 @@
   "gates": {
     "accepted_new_labels_without_review_debt": true,
     "active_queue_retains_unlabeled_candidates": true,
+    "expert_label_decision_local_evidence_gaps_audited": true,
+    "expert_label_decision_local_evidence_review_export_ready": true,
     "expert_label_decision_repair_candidates_cover_review_only_lanes": true,
     "expert_label_decision_repair_guardrail_keeps_priority_lanes_non_countable": true,
     "expert_label_decision_review_export_retains_review_only_lanes": true,
@@ -897,6 +923,34 @@
       "m_csa:670",
       "m_csa:696"
     ],
+    "expert_label_decision_local_evidence_gap_audit_audited_entry_count": 21,
+    "expert_label_decision_local_evidence_gap_audit_countable_label_candidate_count": 0,
+    "expert_label_decision_local_evidence_gap_audit_missing_entry_ids": [],
+    "expert_label_decision_local_evidence_gap_audit_present": true,
+    "expert_label_decision_local_evidence_gap_audit_ready": true,
+    "expert_label_decision_local_evidence_gap_class_counts": {
+      "alternate_structures_lack_explicit_residue_positions": 17,
+      "counterevidence_boundary_unresolved": 12,
+      "local_evidence_review_only_not_countable": 3,
+      "not_scanned_or_no_alternate_context": 6,
+      "reaction_substrate_mismatch_review_required": 4,
+      "scanned_structures_without_local_expected_family_hit": 12,
+      "scanned_without_local_expected_family_evidence": 8,
+      "selected_structure_residue_support_shortfall": 14,
+      "single_structure_no_alternate_context": 4,
+      "strict_conservative_remap_guardrail": 3,
+      "structure_wide_hit_without_local_support": 4,
+      "structure_wide_or_nonlocal_evidence_only": 4,
+      "text_leakage_or_nonlocal_evidence_risk": 9
+    },
+    "expert_label_decision_local_evidence_review_export_all_source_rows_exported": true,
+    "expert_label_decision_local_evidence_review_export_countable_label_candidate_count": 0,
+    "expert_label_decision_local_evidence_review_export_decision_counts": {
+      "no_decision": 21
+    },
+    "expert_label_decision_local_evidence_review_export_exported_count": 21,
+    "expert_label_decision_local_evidence_review_export_present": true,
+    "expert_label_decision_local_evidence_review_export_ready": true,
     "expert_label_decision_repair_bucket_counts": {
       "active_site_mapping_or_structure_gap_repair": 14,
       "cofactor_evidence_repair": 30,
@@ -1208,7 +1262,8 @@
     "remap_local_leads_require_strict_guardrail",
     "reaction_substrate_mismatch_audit_hits",
     "expert_label_decision_rows_require_external_review",
-    "expert_label_decision_priority_repair_lanes_review_only"
+    "expert_label_decision_priority_repair_lanes_review_only",
+    "expert_label_decision_local_evidence_gaps_remain_review_only"
   ],
   "rows": [
     {
