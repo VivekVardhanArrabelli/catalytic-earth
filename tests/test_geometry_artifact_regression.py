@@ -1560,7 +1560,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             expert_label_decision_batch_700["metadata"]["decision_counts"],
-            {"no_decision": 76},
+            {"mark_needs_more_evidence": 66, "reject_label": 10},
         )
         self.assertEqual(
             expert_label_decision_local_export_700["metadata"]["method"],
@@ -1584,7 +1584,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             expert_label_decision_local_batch_700["metadata"]["decision_counts"],
-            {"no_decision": 21},
+            {"mark_needs_more_evidence": 14, "reject_label": 7},
         )
         self.assertTrue(
             expert_label_decision_local_plan_700["metadata"]["repair_plan_ready"]
@@ -1829,7 +1829,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             reaction_mismatch_decision_batch_700["metadata"]["decision_counts"],
-            {"no_decision": 24},
+            {"reject_label": 17, "accept_label": 7},
         )
         self.assertTrue(
             reaction_mismatch_export_700["metadata"][

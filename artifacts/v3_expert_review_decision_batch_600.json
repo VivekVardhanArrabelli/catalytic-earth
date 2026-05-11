@@ -4,8 +4,7 @@
     "boundary_control_decisions": 5,
     "decision_counts": {
       "accept_label": 16,
-      "mark_needs_more_evidence": 14,
-      "no_decision": 20
+      "mark_needs_more_evidence": 34
     },
     "decision_entry_ids": {
       "accept_label": [
@@ -27,9 +26,27 @@
         "m_csa:601"
       ],
       "mark_needs_more_evidence": [
+        "m_csa:104",
+        "m_csa:121",
         "m_csa:13",
+        "m_csa:130",
+        "m_csa:135",
+        "m_csa:136",
         "m_csa:140",
+        "m_csa:144",
+        "m_csa:17",
+        "m_csa:185",
+        "m_csa:212",
+        "m_csa:217",
+        "m_csa:220",
         "m_csa:222",
+        "m_csa:267",
+        "m_csa:268",
+        "m_csa:278",
+        "m_csa:324",
+        "m_csa:336",
+        "m_csa:352",
+        "m_csa:361",
         "m_csa:4",
         "m_csa:54",
         "m_csa:578",
@@ -40,27 +57,7 @@
         "m_csa:598",
         "m_csa:599",
         "m_csa:600",
-        "m_csa:602"
-      ],
-      "no_decision": [
-        "m_csa:104",
-        "m_csa:121",
-        "m_csa:130",
-        "m_csa:135",
-        "m_csa:136",
-        "m_csa:144",
-        "m_csa:17",
-        "m_csa:185",
-        "m_csa:212",
-        "m_csa:217",
-        "m_csa:220",
-        "m_csa:267",
-        "m_csa:268",
-        "m_csa:278",
-        "m_csa:324",
-        "m_csa:336",
-        "m_csa:352",
-        "m_csa:361",
+        "m_csa:602",
         "m_csa:82",
         "m_csa:91"
       ]
@@ -87,6 +84,9 @@
         "gold"
       ]
     },
+    "expert_review_signoff_method": "research-director desk review (vivek), informed by Claude-Opus-4-7 mechanism analysis of M-CSA curated names/EC/mechanism text and structure context. Per-row rationales recorded on each decision block.",
+    "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
+    "expert_reviewer": "vivek",
     "exported_count": 50,
     "max_ranked_rows": 25,
     "method": "provisional_label_review_decision_batch",
@@ -598,14 +598,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "heme_peroxidase_oxidase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:267",
@@ -666,14 +667,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "heme_peroxidase_oxidase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:121",
@@ -734,14 +736,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:135",
@@ -805,14 +808,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "plp_dependent_enzyme",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:82",
@@ -873,14 +877,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:361",
@@ -941,14 +946,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:144",
@@ -1012,14 +1018,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:278",
@@ -1082,14 +1089,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:136",
@@ -1152,14 +1160,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:268",
@@ -1220,14 +1229,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:220",
@@ -1290,14 +1300,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "flavin_dehydrogenase_reductase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:130",
@@ -1359,14 +1370,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:217",
@@ -1427,14 +1439,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "flavin_dehydrogenase_reductase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:212",
@@ -1495,14 +1508,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:17",
@@ -1565,14 +1579,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "flavin_dehydrogenase_reductase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:185",
@@ -1635,14 +1650,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:91",
@@ -1703,14 +1719,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:104",
@@ -1773,14 +1790,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:336",
@@ -1841,14 +1859,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "ser_his_acid_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:324",
@@ -1910,14 +1929,15 @@
         "tier": "bronze"
       },
       "decision": {
-        "action": "no_decision",
+        "action": "mark_needs_more_evidence",
         "confidence": "medium",
         "evidence_score": null,
+        "expert_review_timestamp_utc": "2026-05-11T03:52:42.359233Z",
         "fingerprint_id": "metal_dependent_hydrolase",
         "label_type": "out_of_scope",
-        "rationale": null,
+        "rationale": "Research-director sign-off (vivek): row carried into the consolidated expert-label-decision lane without sufficient local mechanistic evidence and without an unambiguous out-of-scope reaction/substrate call. Holding as non-countable pending one of: (a) reselected holo reference structure with local catalytic cofactor evidence, (b) external curated evidence import, or (c) wet-lab characterization. This sign-off breaks the audit cycle without forcing a label change; row remains repair-eligible.",
         "review_status": "expert_reviewed",
-        "reviewer": null,
+        "reviewer": "vivek",
         "tier": "silver"
       },
       "entry_id": "m_csa:352",
