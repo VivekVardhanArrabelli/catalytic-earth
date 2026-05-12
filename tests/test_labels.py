@@ -2134,6 +2134,21 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         }
         imported = import_countable_review_decisions(labels, unsafe_countable)
         self.assertNotIn("m_csa:656", {label.entry_id for label in imported})
+        reviewed_batch = deepcopy(batch)
+        reviewed_batch["review_items"][1]["decision"] = {
+            "action": "accept_label",
+            "label_type": "out_of_scope",
+            "fingerprint_id": None,
+            "tier": "bronze",
+            "confidence": "high",
+            "reviewer": "test_reviewer",
+            "rationale": "Expert reviewed as out of scope, but this batch is still review-only.",
+            "evidence_score": None,
+            "review_status": "expert_reviewed",
+            "reaction_substrate_resolution": "confirm_current_label_or_out_of_scope",
+        }
+        imported = import_countable_review_decisions(labels, reviewed_batch)
+        self.assertNotIn("m_csa:656", {label.entry_id for label in imported})
 
     def test_factory_gate_requires_mismatch_review_export_when_guardrails_find_lanes(
         self,

@@ -28,6 +28,7 @@ from .labels import (
     audit_label_scaling_quality,
     audit_mechanism_ontology_gaps,
     audit_reaction_substrate_mismatches,
+    audit_review_only_import_safety,
     audit_sequence_similarity_failure_sets,
     audit_review_debt_remap_local_leads,
     audit_structure_selection_holo_preference,
@@ -40,6 +41,7 @@ from .labels import (
     build_hard_negative_controls,
     build_label_expansion_candidates,
     build_label_factory_audit,
+    build_explicit_alternate_residue_position_requests,
     build_provisional_review_decision_batch,
     build_reaction_substrate_mismatch_review_export,
     check_label_batch_acceptance,
@@ -55,6 +57,7 @@ from .labels import (
     load_labels,
     migrate_label_registry_records,
     scan_review_debt_alternate_structures,
+    resolve_expert_label_decision_local_evidence_repair_lanes,
     summarize_expert_label_decision_repair_candidates,
     summarize_expert_label_decision_local_evidence_repair_plan,
     summarize_label_factory_batches,
@@ -805,6 +808,86 @@ def cmd_summarize_expert_label_decision_local_evidence_repair_plan(
     return 0
 
 
+def cmd_resolve_expert_label_decision_local_evidence_repair_lanes(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.expert_label_decision_local_evidence_repair_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        repair_plan = json.load(handle)
+    local_gap_audit = None
+    if args.expert_label_decision_local_evidence_gap_audit:
+        with Path(args.expert_label_decision_local_evidence_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            local_gap_audit = json.load(handle)
+    local_review_export = None
+    if args.expert_label_decision_local_evidence_review_export:
+        with Path(args.expert_label_decision_local_evidence_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            local_review_export = json.load(handle)
+    mismatch_export = None
+    if args.reaction_substrate_mismatch_review_export:
+        with Path(args.reaction_substrate_mismatch_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            mismatch_export = json.load(handle)
+    mismatch_decision_batch = None
+    if args.reaction_substrate_mismatch_decision_batch:
+        with Path(args.reaction_substrate_mismatch_decision_batch).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            mismatch_decision_batch = json.load(handle)
+    entry_ids = (
+        [part.strip() for part in args.entry_ids.split(",") if part.strip()]
+        if args.entry_ids
+        else None
+    )
+    resolution = resolve_expert_label_decision_local_evidence_repair_lanes(
+        repair_plan,
+        local_evidence_gap_audit=local_gap_audit,
+        local_evidence_review_export=local_review_export,
+        reaction_substrate_mismatch_review_export=mismatch_export,
+        reaction_substrate_mismatch_decision_batch=mismatch_decision_batch,
+        entry_ids=entry_ids,
+    )
+    write_json(Path(args.out), resolution)
+    print(
+        "Wrote expert-label local-evidence repair-lane resolution to "
+        f"{args.out} ({resolution['metadata']['resolved_entry_count']} resolved)"
+    )
+    return 0
+
+
+def cmd_build_explicit_alternate_residue_position_requests(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.expert_label_decision_local_evidence_repair_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        repair_plan = json.load(handle)
+    remediation = None
+    if args.review_debt_remediation:
+        with Path(args.review_debt_remediation).open("r", encoding="utf-8") as handle:
+            remediation = json.load(handle)
+    graph = None
+    if args.graph:
+        with Path(args.graph).open("r", encoding="utf-8") as handle:
+            graph = json.load(handle)
+    requests = build_explicit_alternate_residue_position_requests(
+        repair_plan,
+        review_debt_remediation=remediation,
+        graph=graph,
+    )
+    write_json(Path(args.out), requests)
+    print(
+        "Wrote alternate residue-position sourcing requests to "
+        f"{args.out} ({requests['metadata']['request_count']} requests)"
+    )
+    return 0
+
+
 def cmd_audit_mechanism_ontology_gaps(args: argparse.Namespace) -> int:
     with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
         queue = json.load(handle)
@@ -900,6 +983,19 @@ def cmd_import_countable_label_review(args: argparse.Namespace) -> int:
     imported = import_countable_review_decisions(load_labels(Path(args.labels)), review)
     write_label_registry(Path(args.out), [label.to_dict() for label in imported])
     print(f"Wrote countable imported label registry to {args.out} ({len(imported)} labels)")
+    return 0
+
+
+def cmd_audit_review_only_import_safety(args: argparse.Namespace) -> int:
+    audit = audit_review_only_import_safety(
+        load_labels(Path(args.labels)),
+        _load_named_json_artifacts(args.review),
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote review-only import safety audit to "
+        f"{args.out} (safe={audit['metadata']['countable_import_safe']})"
+    )
     return 0
 
 
@@ -1271,6 +1367,24 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             expert_label_decision_local_evidence_review_export = json.load(handle)
+    expert_label_decision_local_evidence_repair_resolution = None
+    if args.expert_label_decision_local_evidence_repair_resolution:
+        with Path(args.expert_label_decision_local_evidence_repair_resolution).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_decision_local_evidence_repair_resolution = json.load(handle)
+    alternate_residue_requests = None
+    if args.explicit_alternate_residue_position_requests:
+        with Path(args.explicit_alternate_residue_position_requests).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            alternate_residue_requests = json.load(handle)
+    review_only_import_safety = None
+    if args.review_only_import_safety_audit:
+        with Path(args.review_only_import_safety_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            review_only_import_safety = json.load(handle)
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -1300,6 +1414,11 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         expert_label_decision_local_evidence_review_export=(
             expert_label_decision_local_evidence_review_export
         ),
+        expert_label_decision_local_evidence_repair_resolution=(
+            expert_label_decision_local_evidence_repair_resolution
+        ),
+        explicit_alternate_residue_position_requests=alternate_residue_requests,
+        review_only_import_safety_audit=review_only_import_safety,
         batch_id=args.batch_id,
     )
     write_json(Path(args.out), audit)
@@ -1359,6 +1478,24 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             expert_label_local_evidence_review_export = json.load(handle)
+    expert_label_local_evidence_repair_resolution = None
+    if args.expert_label_decision_local_evidence_repair_resolution:
+        with Path(args.expert_label_decision_local_evidence_repair_resolution).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            expert_label_local_evidence_repair_resolution = json.load(handle)
+    alternate_residue_requests = None
+    if args.explicit_alternate_residue_position_requests:
+        with Path(args.explicit_alternate_residue_position_requests).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            alternate_residue_requests = json.load(handle)
+    review_only_import_safety = None
+    if args.review_only_import_safety_audit:
+        with Path(args.review_only_import_safety_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            review_only_import_safety = json.load(handle)
     gates = check_label_factory_gates(
         load_labels(Path(args.labels)),
         factory,
@@ -1379,6 +1516,11 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
         expert_label_decision_local_evidence_review_export=(
             expert_label_local_evidence_review_export
         ),
+        expert_label_decision_local_evidence_repair_resolution=(
+            expert_label_local_evidence_repair_resolution
+        ),
+        explicit_alternate_residue_position_requests=alternate_residue_requests,
+        review_only_import_safety_audit=review_only_import_safety,
     )
     write_json(Path(args.out), gates)
     print(
@@ -2048,6 +2190,75 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_summarize_expert_label_decision_local_evidence_repair_plan
     )
 
+    expert_label_decision_local_resolution = subparsers.add_parser(
+        "resolve-expert-label-decision-local-evidence-repair-lanes",
+        help=(
+            "resolve non-countable local-evidence repair lanes with external "
+            "reaction/substrate decisions"
+        ),
+    )
+    expert_label_decision_local_resolution.add_argument(
+        "--expert-label-decision-local-evidence-repair-plan",
+        default=(
+            "artifacts/"
+            "v3_expert_label_decision_local_evidence_repair_plan.json"
+        ),
+    )
+    expert_label_decision_local_resolution.add_argument(
+        "--expert-label-decision-local-evidence-gap-audit",
+        default=None,
+    )
+    expert_label_decision_local_resolution.add_argument(
+        "--expert-label-decision-local-evidence-review-export",
+        default=None,
+    )
+    expert_label_decision_local_resolution.add_argument(
+        "--reaction-substrate-mismatch-review-export",
+        default=None,
+    )
+    expert_label_decision_local_resolution.add_argument(
+        "--reaction-substrate-mismatch-decision-batch",
+        default=None,
+    )
+    expert_label_decision_local_resolution.add_argument("--entry-ids", default=None)
+    expert_label_decision_local_resolution.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_expert_label_decision_local_evidence_repair_resolution.json"
+        ),
+    )
+    expert_label_decision_local_resolution.set_defaults(
+        func=cmd_resolve_expert_label_decision_local_evidence_repair_lanes
+    )
+
+    alternate_residue_requests = subparsers.add_parser(
+        "build-explicit-alternate-residue-position-requests",
+        help="build non-countable requests for alternate-PDB residue positions",
+    )
+    alternate_residue_requests.add_argument(
+        "--expert-label-decision-local-evidence-repair-plan",
+        default=(
+            "artifacts/"
+            "v3_expert_label_decision_local_evidence_repair_plan.json"
+        ),
+    )
+    alternate_residue_requests.add_argument(
+        "--review-debt-remediation",
+        default=None,
+    )
+    alternate_residue_requests.add_argument("--graph", default=None)
+    alternate_residue_requests.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_explicit_alternate_residue_position_requests.json"
+        ),
+    )
+    alternate_residue_requests.set_defaults(
+        func=cmd_build_explicit_alternate_residue_position_requests
+    )
+
     ontology_gap_audit = subparsers.add_parser(
         "audit-mechanism-ontology-gaps",
         help="summarize review-only mechanism scope pressure beyond current ontology",
@@ -2140,6 +2351,28 @@ def build_parser() -> argparse.ArgumentParser:
     countable_review_import.add_argument("--out", default="artifacts/v3_countable_imported_labels.json")
     countable_review_import.set_defaults(func=cmd_import_countable_label_review)
 
+    review_only_import_safety = subparsers.add_parser(
+        "audit-review-only-import-safety",
+        help="verify review-only decision artifacts do not add countable labels",
+    )
+    review_only_import_safety.add_argument(
+        "--review",
+        action="append",
+        required=True,
+        help="review or decision artifact to audit; repeatable",
+    )
+    review_only_import_safety.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    review_only_import_safety.add_argument(
+        "--out",
+        default="artifacts/v3_review_only_import_safety_audit.json",
+    )
+    review_only_import_safety.set_defaults(
+        func=cmd_audit_review_only_import_safety
+    )
+
     decision_batch = subparsers.add_parser(
         "build-review-decision-batch",
         help="fill an expert-review export copy with provisional label-factory decisions",
@@ -2174,6 +2407,9 @@ def build_parser() -> argparse.ArgumentParser:
     gate_check.add_argument("--expert-label-decision-repair-guardrail-audit", default=None)
     gate_check.add_argument("--expert-label-decision-local-evidence-gap-audit", default=None)
     gate_check.add_argument("--expert-label-decision-local-evidence-review-export", default=None)
+    gate_check.add_argument("--expert-label-decision-local-evidence-repair-resolution", default=None)
+    gate_check.add_argument("--explicit-alternate-residue-position-requests", default=None)
+    gate_check.add_argument("--review-only-import-safety-audit", default=None)
     gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
     gate_check.set_defaults(func=cmd_check_label_factory_gates)
 
@@ -2521,6 +2757,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--expert-label-decision-local-evidence-review-export",
         default=None,
     )
+    scaling_quality.add_argument(
+        "--expert-label-decision-local-evidence-repair-resolution",
+        default=None,
+    )
+    scaling_quality.add_argument(
+        "--explicit-alternate-residue-position-requests",
+        default=None,
+    )
+    scaling_quality.add_argument("--review-only-import-safety-audit", default=None)
     scaling_quality.add_argument(
         "--out",
         default="artifacts/v3_label_scaling_quality_audit.json",

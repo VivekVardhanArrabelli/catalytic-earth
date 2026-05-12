@@ -685,6 +685,19 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             / "artifacts"
             / "v3_expert_label_decision_local_evidence_repair_plan_700.json"
         )
+        expert_label_decision_local_resolution_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_expert_label_decision_local_evidence_repair_resolution_700.json"
+        )
+        alternate_residue_requests_700 = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_explicit_alternate_residue_position_requests_700.json"
+        )
+        review_only_import_safety_700 = _load_json(
+            ROOT / "artifacts" / "v3_review_only_import_safety_audit_700.json"
+        )
         ontology_gap_audit_700 = _load_json(
             ROOT / "artifacts" / "v3_mechanism_ontology_gap_audit_700.json"
         )
@@ -919,6 +932,47 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             21,
         )
+        self.assertTrue(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_repair_resolution_present"
+            ]
+        )
+        self.assertTrue(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_repair_resolution_ready"
+            ]
+        )
+        self.assertEqual(
+            latest_batch_summary[
+                "expert_label_decision_local_evidence_repair_resolution_resolved_entry_count"
+            ],
+            4,
+        )
+        self.assertTrue(
+            latest_batch_summary[
+                "explicit_alternate_residue_position_requests_present"
+            ]
+        )
+        self.assertTrue(
+            latest_batch_summary[
+                "explicit_alternate_residue_position_requests_ready"
+            ]
+        )
+        self.assertEqual(
+            latest_batch_summary[
+                "explicit_alternate_residue_position_requests_count"
+            ],
+            3,
+        )
+        self.assertTrue(
+            latest_batch_summary["review_only_import_safety_audit_present"]
+        )
+        self.assertEqual(
+            latest_batch_summary[
+                "review_only_import_safety_audit_total_new_countable_label_count"
+            ],
+            0,
+        )
         self.assertEqual(preview_summary_675["metadata"]["blocker_count"], 0)
         self.assertTrue(preview_summary_675["metadata"]["all_active_queues_retain_unlabeled_candidates"])
         self.assertEqual(preview_summary_675["metadata"]["scaling_quality_audit_count"], 1)
@@ -1106,6 +1160,34 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "remap_local_lead_audit_expert_reaction_substrate_review_entry_ids"
             ],
             ["m_csa:592"],
+        )
+        self.assertTrue(
+            scaling_quality_700["metadata"][
+                "expert_label_decision_local_evidence_repair_resolution_present"
+            ]
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "expert_label_decision_local_evidence_repair_resolution_resolved_entry_ids"
+            ],
+            ["m_csa:592", "m_csa:643", "m_csa:654", "m_csa:662"],
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "explicit_alternate_residue_position_request_entry_ids"
+            ],
+            ["m_csa:567", "m_csa:578", "m_csa:667"],
+        )
+        self.assertTrue(
+            scaling_quality_700["metadata"][
+                "review_only_import_safety_audit_present"
+            ]
+        )
+        self.assertEqual(
+            scaling_quality_700["metadata"][
+                "review_only_import_safety_audit_total_new_countable_label_count"
+            ],
+            0,
         )
         self.assertIn(
             "remap_local_leads_require_strict_guardrail",
@@ -1413,8 +1495,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(gate_650["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_675["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_700["metadata"]["automation_ready_for_next_label_batch"])
-        self.assertEqual(gate_700["metadata"]["gate_count"], 17)
-        self.assertEqual(gate_700["metadata"]["passed_gate_count"], 17)
+        self.assertEqual(gate_700["metadata"]["gate_count"], 20)
+        self.assertEqual(gate_700["metadata"]["passed_gate_count"], 20)
         self.assertTrue(gate_700["gates"]["expert_label_decision_review_export_ready"])
         self.assertTrue(
             gate_700["gates"]["expert_label_decision_repair_candidates_ready"]
@@ -1485,6 +1567,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "expert_label_decision_local_evidence_review_export_exported_count"
             ],
             21,
+        )
+        self.assertTrue(
+            gate_700["gates"][
+                "expert_label_decision_local_evidence_repair_resolution_ready"
+            ]
+        )
+        self.assertEqual(
+            gate_700["metadata"][
+                "expert_label_decision_local_evidence_repair_resolution_resolved_entry_ids"
+            ],
+            ["m_csa:592", "m_csa:643", "m_csa:654", "m_csa:662"],
+        )
+        self.assertTrue(
+            gate_700["gates"]["explicit_alternate_residue_position_requests_ready"]
+        )
+        self.assertEqual(
+            gate_700["metadata"][
+                "explicit_alternate_residue_position_request_entry_ids"
+            ],
+            ["m_csa:567", "m_csa:578", "m_csa:667"],
+        )
+        self.assertTrue(gate_700["gates"]["review_only_import_safety_audit_ready"])
+        self.assertEqual(
+            gate_700["metadata"][
+                "review_only_import_safety_audit_total_new_countable_label_count"
+            ],
+            0,
         )
         self.assertIn(
             "reaction_substrate_mismatch_value",
@@ -1607,6 +1716,67 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             expert_label_decision_local_plan_700["rows"][0]["entry_id"],
             "m_csa:592",
+        )
+        self.assertEqual(
+            expert_label_decision_local_resolution_700["metadata"]["method"],
+            "expert_label_decision_local_evidence_repair_resolution",
+        )
+        self.assertTrue(
+            expert_label_decision_local_resolution_700["metadata"]["resolution_ready"]
+        )
+        self.assertEqual(
+            expert_label_decision_local_resolution_700["metadata"][
+                "resolved_entry_ids"
+            ],
+            ["m_csa:592", "m_csa:643", "m_csa:654", "m_csa:662"],
+        )
+        self.assertEqual(
+            expert_label_decision_local_resolution_700["metadata"][
+                "remaining_open_entry_count"
+            ],
+            17,
+        )
+        self.assertEqual(
+            expert_label_decision_local_resolution_700["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            alternate_residue_requests_700["metadata"]["method"],
+            "explicit_alternate_residue_position_sourcing_requests",
+        )
+        self.assertTrue(
+            alternate_residue_requests_700["metadata"]["sourcing_request_ready"]
+        )
+        self.assertEqual(
+            alternate_residue_requests_700["metadata"]["request_entry_ids"],
+            ["m_csa:567", "m_csa:578", "m_csa:667"],
+        )
+        self.assertEqual(
+            alternate_residue_requests_700["metadata"][
+                "candidate_alternate_structure_count"
+            ],
+            34,
+        )
+        self.assertEqual(
+            alternate_residue_requests_700["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertTrue(
+            review_only_import_safety_700["metadata"]["countable_import_safe"]
+        )
+        self.assertEqual(
+            review_only_import_safety_700["metadata"][
+                "total_new_countable_label_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            review_only_import_safety_700["metadata"]["review_only_artifact_count"],
+            3,
         )
         self.assertEqual(
             expert_label_decision_repair_700["metadata"]["candidate_count"],

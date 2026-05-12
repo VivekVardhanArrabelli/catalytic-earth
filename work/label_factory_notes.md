@@ -80,7 +80,7 @@ Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 17/17 factory checks pass on the 624-label countable
+Current gate state: 20/20 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional
 labels were accepted for counting in the 700 batch, 81 review-state decisions
 remain pending, and the countable subset has 0 hard negatives, 0 near misses,
@@ -95,12 +95,14 @@ mismatch blockers, including 14 rows kept beyond `max_rows`; these split into
 dedicated mismatch review export now carries all 24 lanes together, records
 17 current out-of-scope labels plus 7 unlabeled rows, defers any new ontology
 family rule until expert review, and the generated decision batch preserves all
-24 as `no_decision`. The expert-label decision repair-candidate summary now
-covers all 76 active expert-decision rows with 0 countable candidates, so the
-gate also fails if that non-countable repair plan is incomplete. Countable
-review import also refuses accepted
-reaction/substrate mismatch rows unless they are explicitly expert-reviewed and
-carry a non-`needs_more_evidence` reaction/substrate resolution. The batch
+24 lanes through a review-only decision batch; reviewed out-of-scope repairs
+remain non-countable and countable import refuses the artifact. The
+expert-label decision repair-candidate summary now covers all 76 active
+expert-decision rows with 0 countable candidates, so the gate also fails if
+that non-countable repair plan is incomplete. Countable review import also
+refuses accepted reaction/substrate mismatch rows unless they are explicitly
+expert-reviewed, carry a non-`needs_more_evidence` reaction/substrate
+resolution, and do not come from a review-only decision artifact. The batch
 summary reports 9/9 accepted batches with 0 blockers. The dedicated
 expert-label decision export now carries all 76 active-queue
 `expert_label_decision_needed` rows as review-only `no_decision` items, records
@@ -123,6 +125,14 @@ accepted decisions from that export type. The local-evidence repair plan keeps
 all rows non-countable and prioritizes 4 reaction/substrate expert-review
 lanes, 3 explicit alternate-residue-position sourcing lanes, 3 active-site
 mapping or structure-selection lanes, and 11 family-boundary review lanes.
+The follow-up local-evidence repair resolution artifact consumes the existing
+reviewed reaction/substrate mismatch decision batch and closes `m_csa:592`,
+`m_csa:643`, `m_csa:654`, and `m_csa:662` as reviewed out-of-scope repair
+lanes while keeping them non-countable. The explicit alternate residue-position
+request artifact now makes `m_csa:567`, `m_csa:578`, and `m_csa:667`
+sourceable across 34 alternate PDB structures. The review-only import-safety
+audit covers the mismatch, expert-label decision, and local-evidence decision
+batches and confirms they add 0 countable labels through countable import.
 The 675 preview initially exposed accepted out-of-scope rows that still carried
 review debt, so the provisional decision rule now defers below-threshold,
 evidence-limited negatives instead of counting them. The regenerated preview

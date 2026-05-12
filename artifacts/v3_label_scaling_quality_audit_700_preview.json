@@ -513,6 +513,16 @@
       "evidence": {
         "countable_label_candidate_count": 0,
         "expert_label_decision_review_export_present": true,
+        "explicit_alternate_residue_position_request_entry_ids": [
+          "m_csa:567",
+          "m_csa:578",
+          "m_csa:667"
+        ],
+        "explicit_alternate_residue_position_requests_count": 3,
+        "explicit_alternate_residue_position_requests_countable_label_candidate_count": 0,
+        "explicit_alternate_residue_position_requests_expected_count": 3,
+        "explicit_alternate_residue_position_requests_present": true,
+        "explicit_alternate_residue_position_requests_ready": true,
         "exported_entry_ids": [
           "m_csa:494",
           "m_csa:510",
@@ -611,6 +621,17 @@
         },
         "local_evidence_gap_countable_label_candidate_count": 0,
         "local_evidence_gap_missing_entry_ids": [],
+        "local_evidence_repair_resolution_countable_label_candidate_count": 0,
+        "local_evidence_repair_resolution_present": true,
+        "local_evidence_repair_resolution_ready": true,
+        "local_evidence_repair_resolution_remaining_open_entry_count": 17,
+        "local_evidence_repair_resolution_resolved_entry_count": 4,
+        "local_evidence_repair_resolution_resolved_entry_ids": [
+          "m_csa:592",
+          "m_csa:643",
+          "m_csa:654",
+          "m_csa:662"
+        ],
         "local_evidence_review_export_countable_label_candidate_count": 0,
         "local_evidence_review_export_exported_count": 21,
         "local_evidence_review_export_present": true,
@@ -726,6 +747,11 @@
         ],
         "repair_guardrail_priority_repair_row_count": 21,
         "repair_missing_entry_ids": [],
+        "review_only_import_safety_audit_artifact_count": 3,
+        "review_only_import_safety_audit_present": true,
+        "review_only_import_safety_audit_ready": true,
+        "review_only_import_safety_audit_total_new_countable_label_count": 0,
+        "review_only_import_safety_audit_unsafe_artifacts": [],
         "review_only_rule": "active-queue expert-label decisions are context exports only; automation leaves them as no_decision and countable import must not add benchmark labels without external expert resolution"
       },
       "id": "expert_label_decision_review_only_debt",
@@ -747,15 +773,18 @@
     "accepted_new_labels_without_review_debt": true,
     "active_queue_retains_unlabeled_candidates": true,
     "expert_label_decision_local_evidence_gaps_audited": true,
+    "expert_label_decision_local_evidence_repair_resolution_ready": true,
     "expert_label_decision_local_evidence_review_export_ready": true,
     "expert_label_decision_repair_candidates_cover_review_only_lanes": true,
     "expert_label_decision_repair_guardrail_keeps_priority_lanes_non_countable": true,
     "expert_label_decision_review_export_retains_review_only_lanes": true,
+    "explicit_alternate_residue_position_requests_ready": true,
     "family_guardrails_present": true,
     "new_review_debt_rows_classified": true,
     "reaction_substrate_mismatch_review_export_retains_mismatch_lanes": true,
     "remap_local_leads_remain_review_only": true,
     "review_export_retains_underrepresented_families": true,
+    "review_only_import_safety_audit_ready": true,
     "zero_actionable_in_scope_failures": true,
     "zero_false_non_abstentions": true,
     "zero_hard_negatives": true,
@@ -943,6 +972,17 @@
       "structure_wide_or_nonlocal_evidence_only": 4,
       "text_leakage_or_nonlocal_evidence_risk": 9
     },
+    "expert_label_decision_local_evidence_repair_resolution_countable_label_candidate_count": 0,
+    "expert_label_decision_local_evidence_repair_resolution_present": true,
+    "expert_label_decision_local_evidence_repair_resolution_ready": true,
+    "expert_label_decision_local_evidence_repair_resolution_remaining_open_entry_count": 17,
+    "expert_label_decision_local_evidence_repair_resolution_resolved_entry_count": 4,
+    "expert_label_decision_local_evidence_repair_resolution_resolved_entry_ids": [
+      "m_csa:592",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:662"
+    ],
     "expert_label_decision_local_evidence_review_export_all_source_rows_exported": true,
     "expert_label_decision_local_evidence_review_export_countable_label_candidate_count": 0,
     "expert_label_decision_local_evidence_review_export_decision_counts": {
@@ -1138,6 +1178,16 @@
       "substrate_class_boundary": 7,
       "text_leakage_or_nonlocal_evidence_risk": 9
     },
+    "explicit_alternate_residue_position_request_entry_ids": [
+      "m_csa:567",
+      "m_csa:578",
+      "m_csa:667"
+    ],
+    "explicit_alternate_residue_position_requests_count": 3,
+    "explicit_alternate_residue_position_requests_countable_label_candidate_count": 0,
+    "explicit_alternate_residue_position_requests_expected_count": 3,
+    "explicit_alternate_residue_position_requests_present": true,
+    "explicit_alternate_residue_position_requests_ready": true,
     "family_guardrail_reaction_substrate_mismatch_count": 24,
     "family_guardrail_reaction_substrate_mismatch_label_state_counts": {
       "labeled": 17,
@@ -1249,6 +1299,11 @@
       "m_csa:592",
       "m_csa:641"
     ],
+    "review_only_import_safety_audit_artifact_count": 3,
+    "review_only_import_safety_audit_present": true,
+    "review_only_import_safety_audit_ready": true,
+    "review_only_import_safety_audit_total_new_countable_label_count": 0,
+    "review_only_import_safety_audit_unsafe_artifacts": [],
     "sequence_cluster_missing_entry_count": 0,
     "source_acceptance_method": "label_batch_acceptance_check",
     "unclassified_new_review_debt_entry_ids": [],

@@ -7,17 +7,20 @@
     "applied_label_actions_ready": true,
     "demotion_or_abstention_demonstrated": true,
     "expert_label_decision_local_evidence_gaps_audited": true,
+    "expert_label_decision_local_evidence_repair_resolution_ready": true,
     "expert_label_decision_local_evidence_review_export_ready": true,
     "expert_label_decision_repair_candidates_ready": true,
     "expert_label_decision_repair_guardrails_ready": true,
     "expert_label_decision_review_export_ready": true,
     "expert_review_export_diversity_ready": true,
     "expert_review_export_ready": true,
+    "explicit_alternate_residue_position_requests_ready": true,
     "family_propagation_guardrails_ready": true,
     "label_schema_explicit": true,
     "ontology_loaded": true,
     "promotion_demonstrated": true,
-    "reaction_substrate_mismatch_review_export_ready": true
+    "reaction_substrate_mismatch_review_export_ready": true,
+    "review_only_import_safety_audit_ready": true
   },
   "metadata": {
     "active_queue_expert_label_decision_count": 76,
@@ -123,6 +126,17 @@
       "structure_wide_or_nonlocal_evidence_only": 4,
       "text_leakage_or_nonlocal_evidence_risk": 9
     },
+    "expert_label_decision_local_evidence_repair_resolution_countable_label_candidate_count": 0,
+    "expert_label_decision_local_evidence_repair_resolution_present": true,
+    "expert_label_decision_local_evidence_repair_resolution_ready": true,
+    "expert_label_decision_local_evidence_repair_resolution_remaining_open_entry_count": 17,
+    "expert_label_decision_local_evidence_repair_resolution_resolved_entry_count": 4,
+    "expert_label_decision_local_evidence_repair_resolution_resolved_entry_ids": [
+      "m_csa:592",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:662"
+    ],
     "expert_label_decision_local_evidence_review_export_all_source_rows_exported": true,
     "expert_label_decision_local_evidence_review_export_countable_label_candidate_count": 0,
     "expert_label_decision_local_evidence_review_export_decision_counts": {
@@ -300,6 +314,16 @@
     ],
     "expert_label_decision_review_export_missing_entry_ids": [],
     "expert_label_decision_review_export_present": true,
+    "explicit_alternate_residue_position_request_entry_ids": [
+      "m_csa:567",
+      "m_csa:578",
+      "m_csa:667"
+    ],
+    "explicit_alternate_residue_position_requests_count": 3,
+    "explicit_alternate_residue_position_requests_countable_label_candidate_count": 0,
+    "explicit_alternate_residue_position_requests_expected_count": 3,
+    "explicit_alternate_residue_position_requests_present": true,
+    "explicit_alternate_residue_position_requests_ready": true,
     "family_guardrail_reaction_substrate_mismatch_count": 24,
     "family_guardrail_reaction_substrate_mismatch_entry_ids": [
       "m_csa:35",
@@ -327,11 +351,11 @@
       "m_csa:670",
       "m_csa:696"
     ],
-    "gate_count": 17,
+    "gate_count": 20,
     "label_count": 624,
     "method": "label_factory_gate_check",
     "omitted_underrepresented_queue_entry_ids": [],
-    "passed_gate_count": 17,
+    "passed_gate_count": 20,
     "reaction_substrate_mismatch_review_export_entry_ids": [
       "m_csa:35",
       "m_csa:51",
@@ -361,6 +385,11 @@
     "reaction_substrate_mismatch_review_export_labeled_seed_mismatch_count": 0,
     "reaction_substrate_mismatch_review_export_missing_entry_ids": [],
     "reaction_substrate_mismatch_review_export_present": true,
+    "review_only_import_safety_audit_artifact_count": 3,
+    "review_only_import_safety_audit_present": true,
+    "review_only_import_safety_audit_ready": true,
+    "review_only_import_safety_audit_total_new_countable_label_count": 0,
+    "review_only_import_safety_audit_unsafe_artifacts": [],
     "underrepresented_queue_entry_count": 33
   }
 }

@@ -249,6 +249,269 @@ class CliTests(unittest.TestCase):
             )
             self.assertTrue(summary["rows"][0]["scaling_quality_ready"])
 
+    def test_resolve_local_evidence_repair_lanes_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            plan = root / "plan.json"
+            gap = root / "gap.json"
+            local_export = root / "local_export.json"
+            mismatch_export = root / "mismatch_export.json"
+            mismatch_batch = root / "mismatch_batch.json"
+            out = root / "resolution.json"
+            plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "expert_label_decision_local_evidence_repair_plan",
+                            "planned_entry_count": 2,
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "entry_name": "kinase lane",
+                                "repair_lane": "expert_reaction_substrate_review",
+                                "recommended_next_action": (
+                                    "route_to_reaction_substrate_expert_review"
+                                ),
+                                "local_evidence_gap_classes": [
+                                    "reaction_substrate_mismatch_review_required"
+                                ],
+                                "non_countable_blockers": [
+                                    "reaction_substrate_mismatch_review_required"
+                                ],
+                            },
+                            {
+                                "entry_id": "m_csa:2",
+                                "entry_name": "mapping lane",
+                                "repair_lane": (
+                                    "source_explicit_alternate_structure_residue_positions"
+                                ),
+                                "recommended_next_action": (
+                                    "source_explicit_alternate_structure_residue_positions"
+                                ),
+                                "local_evidence_gap_classes": [
+                                    "alternate_structures_lack_explicit_residue_positions"
+                                ],
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gap.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "expert_label_decision_local_evidence_gap_audit"
+                            )
+                        },
+                        "rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            local_export.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "expert_label_decision_local_evidence_review_export"
+                            )
+                        },
+                        "review_items": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "decision": {
+                                    "action": "no_decision",
+                                    "local_evidence_resolution": "needs_more_evidence",
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mismatch_export.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "reaction_substrate_mismatch_review_export",
+                            "exported_entry_ids": ["m_csa:1"],
+                        },
+                        "review_items": [{"entry_id": "m_csa:1"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mismatch_batch.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "provisional_label_review_decision_batch"
+                        },
+                        "review_items": [
+                            {
+                                "entry_id": "m_csa:1",
+                                "decision": {
+                                    "action": "accept_label",
+                                    "label_type": "out_of_scope",
+                                    "review_status": "expert_reviewed",
+                                    "reviewer": "tester",
+                                    "reaction_substrate_resolution": (
+                                        "confirm_current_label_or_out_of_scope"
+                                    ),
+                                    "rationale": "Reviewed as a kinase boundary lane.",
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "resolve-expert-label-decision-local-evidence-repair-lanes",
+                    "--expert-label-decision-local-evidence-repair-plan",
+                    str(plan),
+                    "--expert-label-decision-local-evidence-gap-audit",
+                    str(gap),
+                    "--expert-label-decision-local-evidence-review-export",
+                    str(local_export),
+                    "--reaction-substrate-mismatch-review-export",
+                    str(mismatch_export),
+                    "--reaction-substrate-mismatch-decision-batch",
+                    str(mismatch_batch),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            resolution = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(resolution["metadata"]["resolution_ready"])
+            self.assertEqual(resolution["metadata"]["resolved_entry_ids"], ["m_csa:1"])
+            self.assertEqual(
+                resolution["metadata"]["remaining_open_entry_ids"], ["m_csa:2"]
+            )
+            self.assertEqual(
+                resolution["metadata"]["countable_label_candidate_count"], 0
+            )
+
+    def test_build_explicit_alternate_residue_position_requests_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            plan = root / "plan.json"
+            remediation = root / "remediation.json"
+            graph = root / "graph.json"
+            out = root / "requests.json"
+            plan.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "expert_label_decision_local_evidence_repair_plan"
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:7",
+                                "entry_name": "alternate residue lane",
+                                "repair_lane": (
+                                    "source_explicit_alternate_structure_residue_positions"
+                                ),
+                                "recommended_next_action": (
+                                    "source_explicit_alternate_structure_residue_positions"
+                                ),
+                                "selected_pdb_id": "1AAA",
+                                "selected_pdb_residue_position_count": 1,
+                                "alternate_pdb_count": 2,
+                                "alternate_pdb_with_residue_positions_count": 0,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            remediation.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "review_debt_remediation"},
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:7",
+                                "candidate_pdb_structure_ids": [
+                                    "1AAA",
+                                    "2BBB",
+                                    "3CCC",
+                                ],
+                                "alternate_pdb_ids": ["2BBB", "3CCC"],
+                                "expected_cofactor_families": ["metal_ion"],
+                                "gap_reasons": ["review_marked_needs_more_evidence"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            graph.write_text(
+                json.dumps(
+                    {
+                        "nodes": [
+                            {
+                                "id": "m_csa:7",
+                                "type": "m_csa_entry",
+                                "reference_uniprot_id": "P00007",
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "source": "m_csa:7",
+                                "target": "ec:1.2.3.4",
+                                "predicate": "has_ec",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-explicit-alternate-residue-position-requests",
+                    "--expert-label-decision-local-evidence-repair-plan",
+                    str(plan),
+                    "--review-debt-remediation",
+                    str(remediation),
+                    "--graph",
+                    str(graph),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            requests = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(requests["metadata"]["sourcing_request_ready"])
+            self.assertEqual(requests["metadata"]["request_entry_ids"], ["m_csa:7"])
+            self.assertEqual(
+                requests["metadata"]["candidate_alternate_structure_count"], 2
+            )
+            self.assertEqual(requests["rows"][0]["reference_uniprot_id"], "P00007")
+            self.assertEqual(requests["rows"][0]["ec_ids"], ["ec:1.2.3.4"])
+            self.assertFalse(requests["rows"][0]["countable_label_candidate"])
+
     def test_summarize_review_debt_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -1227,6 +1490,75 @@ class CliTests(unittest.TestCase):
             )
 
             self.assertEqual(json.loads(out.read_text(encoding="utf-8")), [])
+
+    def test_audit_review_only_import_safety_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            labels = root / "labels.json"
+            review = root / "review_only_batch.json"
+            out = root / "import_safety.json"
+            labels.write_text("[]", encoding="utf-8")
+            review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "provisional_label_review_decision_batch",
+                            "source_method": "reaction_substrate_mismatch_review_export",
+                            "reaction_substrate_mismatch_review_only": True,
+                            "decision_counts": {"accept_label": 1},
+                        },
+                        "review_items": [
+                            {
+                                "entry_id": "m_csa:656",
+                                "entry_name": "pending ribokinase",
+                                "decision": {
+                                    "action": "accept_label",
+                                    "label_type": "out_of_scope",
+                                    "fingerprint_id": None,
+                                    "tier": "bronze",
+                                    "confidence": "high",
+                                    "reviewer": "test_reviewer",
+                                    "rationale": "Reviewed but still review-only.",
+                                    "evidence_score": None,
+                                    "review_status": "expert_reviewed",
+                                    "reaction_substrate_resolution": (
+                                        "confirm_current_label_or_out_of_scope"
+                                    ),
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-review-only-import-safety",
+                    "--review",
+                    str(review),
+                    "--labels",
+                    str(labels),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(audit["metadata"]["countable_import_safe"])
+            self.assertEqual(audit["metadata"]["total_new_countable_label_count"], 0)
+            self.assertTrue(
+                audit["rows"][0]["review_only_flags"][
+                    "reaction_substrate_mismatch_review_only"
+                ]
+            )
 
     def test_audit_mechanism_ontology_gaps_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

@@ -8,11 +8,14 @@ countable.
 
 Label-quality gates remain good enough for repair and discovery-path work, but
 not for count growth. Evidence: `artifacts/v3_label_factory_gate_check_700.json`
-passes 17/17 gates after adding the local-evidence gap audit and review export;
+passes 20/20 gates after adding the local-evidence gap audit/export, repair
+resolution, alternate residue-position sourcing requests, and review-only
+import-safety audit;
 hard negatives, near misses, out-of-scope false non-abstentions, actionable
 in-scope failures, accepted labels with review debt, expert-decision countable
 candidates, repair guardrail countable candidates, local-evidence gap countable
-candidates, and local-evidence review export countable candidates are all 0.
+candidates, local-evidence review export countable candidates, and review-only
+import new countable labels are all 0.
 The blocker remains the 81 review-state decisions and 21 priority
 expert-decision repair lanes.
 
@@ -67,6 +70,45 @@ repair plan is ready and sorts the lanes into:
 - 3 explicit alternate-structure residue-position sourcing lanes.
 - 3 active-site mapping or structure-selection inspection lanes.
 - 11 family-boundary expert-review lanes.
+
+## Repair-Lane Resolution And Sourcing Requests
+
+Artifacts:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli resolve-expert-label-decision-local-evidence-repair-lanes \
+  --expert-label-decision-local-evidence-repair-plan artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json \
+  --expert-label-decision-local-evidence-gap-audit artifacts/v3_expert_label_decision_local_evidence_gap_audit_700.json \
+  --expert-label-decision-local-evidence-review-export artifacts/v3_expert_label_decision_local_evidence_review_export_700.json \
+  --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json \
+  --reaction-substrate-mismatch-decision-batch artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json \
+  --out artifacts/v3_expert_label_decision_local_evidence_repair_resolution_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-explicit-alternate-residue-position-requests \
+  --expert-label-decision-local-evidence-repair-plan artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json \
+  --review-debt-remediation artifacts/v3_review_debt_remediation_700_all.json \
+  --graph artifacts/v1_graph_700.json \
+  --out artifacts/v3_explicit_alternate_residue_position_requests_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
+  --labels data/registries/curated_mechanism_labels.json \
+  --review artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json \
+  --review artifacts/v3_expert_label_decision_decision_batch_700.json \
+  --review artifacts/v3_expert_label_decision_local_evidence_decision_batch_700.json \
+  --out artifacts/v3_review_only_import_safety_audit_700.json
+```
+
+Current summary:
+
+- 4 reaction/substrate local-evidence repair lanes are closed as reviewed
+  out-of-scope repair-only rows: `m_csa:592`, `m_csa:643`, `m_csa:654`, and
+  `m_csa:662`.
+- 17 local-evidence repair lanes remain open, including the 3 explicit
+  alternate-residue-position sourcing lanes and 11 family-boundary lanes.
+- 3 explicit alternate residue-position requests are ready for `m_csa:567`,
+  `m_csa:578`, and `m_csa:667`, covering 34 alternate PDB structures.
+- The review-only import-safety audit covers 3 decision artifacts and confirms
+  0 new countable labels.
 
 The top prioritized repair rows are:
 

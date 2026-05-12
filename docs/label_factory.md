@@ -546,7 +546,7 @@ tests before its labels are counted.
 
 Current 700-queue gate state:
 
-- 17/17 gate checks pass.
+- 20/20 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
@@ -554,7 +554,9 @@ Current 700-queue gate state:
   expert-label decision review export ready, expert-label decision repair
   candidates ready, expert-label decision repair guardrails ready,
   expert-label local-evidence gap audit ready, expert-label local-evidence
-  review export ready, and unlabeled queue retention ready.
+  review export ready, expert-label local-evidence repair resolution ready,
+  explicit alternate residue-position sourcing requests ready, review-only
+  import safety ready, and unlabeled queue retention ready.
 - 79 bronze-to-silver promotions are proposed in the applied-label artifact
   after the accepted 700 batch.
 - 188 rows are queued for active-learning review after the accepted 700 batch,
@@ -565,9 +567,11 @@ Current 700-queue gate state:
   beyond `max_rows`, split into 17 labeled propagation blocks and 7 unlabeled
   pending-review blocks.
 - The dedicated reaction/substrate mismatch export carries all 24 lanes, records
-  17 current out-of-scope labels plus 7 unlabeled rows, defers new ontology
-  family creation until expert review, and keeps its generated decision batch at
-  24 `no_decision` items.
+  17 current out-of-scope labels plus 7 unlabeled rows, and defers new
+  ontology family creation until expert review. The current reviewed decision
+  batch keeps the artifact review-only, routes 7 unlabeled rows to reviewed
+  out-of-scope decisions, rejects 17 current out-of-scope controls, and is
+  prevented from adding countable labels by the import-safety audit.
 - The dedicated expert-label decision export carries all 76 active-queue
   `expert_label_decision_needed` rows as `no_decision`, records 0 countable
   label candidates, confirms that its 7 reaction/substrate mismatch rows are
@@ -583,8 +587,17 @@ Current 700-queue gate state:
   prioritizes them into 4 reaction/substrate expert-review lanes, 3 explicit
   alternate-residue-position sourcing lanes, 3 active-site mapping or
   structure-selection lanes, and 11 family-boundary review lanes. These
-  artifacts make the latest accepted-700 factory gate 17/17 without making any
-  row countable.
+  artifacts now feed `v3_expert_label_decision_local_evidence_repair_resolution_700.json`,
+  which closes the 4 reaction/substrate lanes as reviewed out-of-scope
+  repair-only rows, plus
+  `v3_explicit_alternate_residue_position_requests_700.json`, which requests
+  explicit alternate-PDB residue positions for `m_csa:567`, `m_csa:578`, and
+  `m_csa:667` across 34 alternate PDB structures. The latest accepted-700
+  factory gate is 20/20 without making any row countable.
+- `artifacts/v3_review_only_import_safety_audit_700.json` audits the
+  reaction/substrate mismatch, expert-label decision, and local-evidence
+  decision batches and confirms countable import adds 0 labels from those
+  review-only artifacts.
 - `artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115
   non-countable ontology-scope pressure rows, and
   `artifacts/v3_learned_retrieval_manifest_700.json` defines a future learned

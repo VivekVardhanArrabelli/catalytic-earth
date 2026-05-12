@@ -110,13 +110,19 @@ review queue, exports all 76 active `expert_label_decision_needed` rows as
 review-only no-decision items, generates a non-countable repair-candidate plan
 and priority repair guardrail audit for those 76 rows, audits/exports the 21
 priority local-evidence gap lanes as review-only items, emits a local-evidence
-repair plan, and passes the 17-check 700-slice gate. The gate now also
+repair plan, resolves the 4 reviewed reaction/substrate local-evidence lanes
+as non-countable out-of-scope repair closures, exports concrete alternate
+residue-position sourcing requests for `m_csa:567`, `m_csa:578`, and
+`m_csa:667`, verifies review-only import safety, and passes the 20-check
+700-slice gate. The gate now also
 fails if unlabeled candidate rows are truncated by the queue limit, if
 family-guardrail reaction/substrate mismatch lanes lack a dedicated review
 export, if expert-label decision rows are not explicitly routed as non-countable
 external-review items, or if those rows lack a complete non-countable repair
 candidate summary, repair guardrail audit, local-evidence gap audit, and
-local-evidence review export.
+local-evidence review export; it also requires the local-evidence repair
+resolution, alternate residue-position sourcing requests, and review-only
+import-safety audit to remain non-countable.
 `artifacts/v3_label_batch_acceptance_check_700.json` records that the latest
 accepted batch added 5 labels for counting while 81 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
@@ -134,7 +140,13 @@ prioritized non-countable repair buckets.
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,
 3 active-site mapping or structure-selection lanes, and 11 family-boundary
-review lanes; all remain non-countable.
+review lanes. `artifacts/v3_expert_label_decision_local_evidence_repair_resolution_700.json`
+closes the 4 reaction/substrate lanes as reviewed out-of-scope repair debt
+without adding countable labels; `artifacts/v3_explicit_alternate_residue_position_requests_700.json`
+turns the 3 alternate-residue lanes into sourceable evidence requests across
+34 alternate PDB structures; and
+`artifacts/v3_review_only_import_safety_audit_700.json` confirms the
+review-only decision artifacts add 0 countable labels.
 The latest non-countable repair artifacts add three discovery-facing controls:
 `artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115 ontology
 scope-pressure rows without creating new families,
@@ -165,10 +177,11 @@ retains all 24 hydrolase-top1 reaction/substrate mismatch blockers, split
 between 17 labeled propagation blocks and 7 unlabeled pending-review blocks.
 `artifacts/v3_reaction_substrate_mismatch_review_export_700.json` now carries
 all 24 lanes together, defers any new ontology family rule until expert review,
-and `artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json` keeps
-all 24 as `no_decision` so automation cannot count them. Countable import
-requires explicit expert review plus a non-`needs_more_evidence`
-reaction/substrate resolution for this export type.
+and `artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json` remains
+review-only while routing the 7 unlabeled rows to reviewed out-of-scope repair
+decisions and rejecting 17 current controls. Countable import now refuses
+review-only artifacts even when they carry reviewed repair decisions, so these
+lanes cannot enter the benchmark.
 See
 `docs/label_factory.md`.
 

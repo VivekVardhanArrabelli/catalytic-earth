@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 45
-- Measured elapsed time: 1624.2 minutes (27.07 hours)
+- Entries: 46
+- Measured elapsed time: 1689.0 minutes (28.15 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,6 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - ops: 13.4 measured minutes (0.22 hours)
 - post-v2: 1610.8 measured minutes (26.85 hours)
+- v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
 - v0: 55 estimated minutes (0.92 hours)
@@ -21,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 470
-- Evidence references logged: 361
+- Artifact references logged: 475
+- Evidence references logged: 367
 
 ## Recent Entries
-
-### 2026-05-10T16:41:45.028412+00:00 - post-v2
-
-- Task: Accept clean 675 and 700 label batches
-- Time mode: measured
-- Measured minutes: 51.007
-- Started: 2026-05-10T15:50:25.653408+00:00
-- Ended: 2026-05-10T16:41:26.094989+00:00
-- Artifacts: data/registries/curated_mechanism_labels.json, src/catalytic_earth/graph.py, src/catalytic_earth/geometry_reports.py, src/catalytic_earth/cli.py, artifacts/v3_label_batch_acceptance_check_675.json, artifacts/v3_label_batch_acceptance_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_sequence_cluster_proxy_700.json, artifacts/v3_geometry_slice_summary.json, work/label_preview_700_notes.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: 154 unit tests passed, validate passed, git diff check passed, 624 countable labels, 675 accepted m_csa:666, 700 accepted m_csa:686 m_csa:688 m_csa:694 m_csa:697 m_csa:699, 81 review-state rows remain pending, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, sequence-cluster audits report 0 missing assignments and 0 near-duplicate hits
-- Notes: Documentation checked and updated across README, docs/label_factory.md, work/scope.md, work/handoff.md, and status inputs.
 
 ### 2026-05-10T17:43:34.382296+00:00 - post-v2
 
@@ -113,6 +103,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_expert_label_decision_local_evidence_gap_audit_700.json, artifacts/v3_expert_label_decision_local_evidence_review_export_700.json, artifacts/v3_expert_label_decision_local_evidence_decision_batch_700.json, artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json, artifacts/v3_label_factory_gate_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_label_factory_batch_summary.json, artifacts/v3_mechanism_ontology_gap_audit_700.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_factory_notes.md, work/expert_label_decision_local_evidence_gap_700_notes.md
 - Evidence: 185 unit tests passed, validate passed, git diff check passed, compileall passed, AST parse passed, JSON artifact parse passed, local-evidence artifact consistency passed, 17/17 label-factory gates passed, 21 local-evidence repair lanes audited and exported as no_decision, 0 local-evidence countable candidates, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 50- and 200-iteration local perf checks completed in tmp
 - Notes: Recovered stale dirty lock work; countable labels remain 624; no 725+ tranche opened.
+
+### 2026-05-12T14:55:38.247895+00:00 - v3
+
+- Task: Resolve 700 review-only repair lanes
+- Time mode: measured
+- Measured minutes: 64.763
+- Started: 2026-05-12T13:48:24.348833+00:00
+- Ended: 2026-05-12T14:53:10.134729+00:00
+- Artifacts: artifacts/v3_expert_label_decision_local_evidence_repair_resolution_700.json, artifacts/v3_explicit_alternate_residue_position_requests_700.json, artifacts/v3_review_only_import_safety_audit_700.json, artifacts/v3_label_factory_gate_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json
+- Evidence: 195 unit tests passed, validate passed, git diff --check passed, compileall passed, 20/20 label-factory gates passed, 624 countable labels unchanged
+- Notes: Closed four reviewed reaction/substrate local-evidence repair lanes as non-countable out-of-scope repair rows, exported three alternate residue-position sourcing requests, and added review-only import-safety auditing so review-only decisions cannot inflate countable labels.
 
 ## Expectation Updates
 

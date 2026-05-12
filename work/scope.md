@@ -155,6 +155,13 @@ Current expectation:
 - v2 scaffold: complete
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
+- immediate scientific-expansion priority: use the expert-reviewed
+  ATP/phosphoryl-transfer mismatch lane to aggressively expand the
+  fingerprint-family ontology with ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK,
+  PfkA, PfkB, and GHMP before reopening count growth
+- after those nine fingerprint-family targets are implemented with
+  ontology records, guardrails, tests, artifacts, and documentation, return to
+  factory-gated label scaling toward 10k while preserving quality gates
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
@@ -177,20 +184,25 @@ Current expectation:
   review-only no-decision items, generates a complete non-countable repair
   candidate summary and repair guardrail audit for those rows, audits and
   exports the 21 priority local-evidence gap lanes as review-only items, emits
-  a local-evidence repair plan, and passes the 17-check label-factory gate; the
+  a local-evidence repair plan, resolves 4 reviewed reaction/substrate
+  local-evidence lanes as non-countable out-of-scope repair rows, exports
+  explicit alternate residue-position sourcing requests for 3 lanes, verifies
+  review-only import safety, and passes the 20-check label-factory gate; the
   active-learning queue now includes a reaction/substrate mismatch ranking
   term, and the 700 family-propagation guardrail blocks 24 reported rows on
   the same mismatch signal with priority retention beyond `max_rows` (17
   labeled propagation blocks and 7 unlabeled pending-review blocks). The
   dedicated mismatch review export carries all 24 lanes, confirms the labeled
   lane is currently out-of-scope rather than seed-labeled, defers new ontology
-  family creation until expert review, and the generated decision batch leaves
-  all 24 as `no_decision`. The expert-label decision export records 0 countable
-  candidates, 0 missing export rows, and risk flags dominated by cofactor-family
-  ambiguity, counterevidence boundaries, active-site mapping gaps, and
-  nonlocal/text-leakage risk. The repair guardrail audit covers 21 priority
-  lanes, keeps 3 conservative-remap local evidence leads review-only, and
-  records 0 countable candidates. The local-evidence repair plan prioritizes
+  family creation until expert review, and the review-only import-safety audit
+  prevents the reviewed mismatch, expert-decision, and local-evidence decision
+  artifacts from adding countable labels. The expert-label decision export
+  records 0 countable candidates, 0 missing export rows, and risk flags
+  dominated by cofactor-family ambiguity, counterevidence boundaries,
+  active-site mapping gaps, and nonlocal/text-leakage risk. The repair
+  guardrail audit covers 21 priority lanes, keeps 3 conservative-remap local
+  evidence leads review-only, and records 0 countable candidates. The
+  local-evidence repair plan prioritizes
   the 21 lanes into 4 reaction/substrate expert-review lanes, 3 explicit
   alternate-residue-position sourcing lanes, 3 active-site mapping or
   structure-selection lanes, and 11 family-boundary review lanes, all
