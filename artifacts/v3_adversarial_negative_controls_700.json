@@ -1,7 +1,17 @@
 {
   "metadata": {
     "abstain_threshold": 0.4115,
+    "atp_phosphoryl_transfer_family_boundary_count": 8,
+    "atp_phosphoryl_transfer_family_counts": {
+      "atp_grasp": 1,
+      "dnk": 1,
+      "epk": 3,
+      "ghkl": 1,
+      "ndk": 1,
+      "pfka": 1
+    },
     "axis_counts": {
+      "atp_phosphoryl_transfer_family_boundary": 8,
       "cofactor_mimic": 82,
       "counterevidence_stress": 99,
       "mechanistic_coherence_mimic": 95,
@@ -12,12 +22,14 @@
     "control_count": 100,
     "max_rows": 100,
     "method": "adversarial_negative_control_mining",
-    "selection_rule": "rank out-of-scope entries that stress ontology boundaries, cofactor mimics, counterevidence, close top1/top2 families, and abstention-threshold proximity"
+    "selection_rule": "rank out-of-scope entries that stress ontology boundaries, cofactor mimics, counterevidence, close top1/top2 families, ATP/phosphoryl-transfer family boundaries, and abstention-threshold proximity"
   },
   "rows": [
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.3572,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -110,6 +122,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.3292,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.0,
@@ -183,6 +197,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.3192,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.0,
@@ -256,6 +272,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.3096,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.0,
@@ -335,6 +353,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.3088,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -446,6 +466,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.306,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -535,6 +557,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2648,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.0,
@@ -623,6 +647,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2476,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -717,6 +743,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2428,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.0,
@@ -796,6 +824,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2392,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.0,
@@ -870,6 +900,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2372,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -954,6 +986,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2372,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -1043,6 +1077,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2316,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.15,
@@ -1126,6 +1162,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2296,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -1222,6 +1260,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2196,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.0,
@@ -1298,6 +1338,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.2108,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -1387,6 +1429,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.184,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.35,
@@ -1478,6 +1522,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.184,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -1575,6 +1621,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.162,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 0.6667,
@@ -1660,6 +1708,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1604,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -1744,6 +1794,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1576,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -1839,6 +1891,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1524,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -1922,6 +1976,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1516,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2006,6 +2062,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1516,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2090,6 +2148,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1516,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2174,6 +2234,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1464,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2272,6 +2334,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1012,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2352,6 +2416,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.1004,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2431,6 +2497,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0944,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2516,6 +2584,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0924,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2602,6 +2672,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0884,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2694,6 +2766,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0832,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2793,6 +2867,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.082,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2898,6 +2974,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0808,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -2988,6 +3066,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0724,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3073,6 +3153,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0688,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3166,6 +3248,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.062,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3252,6 +3336,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.06,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3341,6 +3427,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0332,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3429,6 +3517,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0312,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3517,6 +3607,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0044,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3607,6 +3699,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.0028,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3694,6 +3788,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 3.002,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3774,6 +3870,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9928,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3863,6 +3961,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9912,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -3956,6 +4056,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9908,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4058,6 +4160,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.988,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4145,6 +4249,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9828,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4234,6 +4340,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9756,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4327,6 +4435,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9708,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4416,6 +4526,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9696,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4504,6 +4616,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.968,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4589,6 +4703,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9648,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4675,6 +4791,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9604,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4769,6 +4887,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.958,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4855,6 +4975,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9532,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4938,6 +5060,20 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.95,
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ghkl",
+        "family_name": "GHKL/Bergerat ATP-binding kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ghkl",
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -4997,6 +5133,7 @@
         ]
       },
       "control_axes": [
+        "atp_phosphoryl_transfer_family_boundary",
         "cofactor_mimic",
         "counterevidence_stress",
         "mechanistic_coherence_mimic",
@@ -5020,6 +5157,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9484,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5113,6 +5252,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9432,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5198,6 +5339,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9392,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5290,6 +5433,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9328,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5383,6 +5528,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9244,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5470,6 +5617,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9208,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "not_required",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5548,6 +5697,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9124,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5636,6 +5787,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9116,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5721,6 +5874,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.9084,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5811,6 +5966,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8984,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5893,6 +6050,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8928,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -5987,6 +6146,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8836,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "not_required",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6062,6 +6223,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8816,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6149,6 +6312,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8804,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6232,6 +6397,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8772,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6335,6 +6502,19 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8748,
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6396,6 +6576,7 @@
         ]
       },
       "control_axes": [
+        "atp_phosphoryl_transfer_family_boundary",
         "cofactor_mimic",
         "counterevidence_stress",
         "mechanistic_coherence_mimic",
@@ -6419,6 +6600,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8732,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6501,6 +6684,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8724,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6588,6 +6773,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8648,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6670,6 +6857,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.864,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "not_required",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6751,6 +6940,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8624,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6835,6 +7026,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8612,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -6920,6 +7113,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8588,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7010,6 +7205,20 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.852,
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7070,6 +7279,7 @@
         ]
       },
       "control_axes": [
+        "atp_phosphoryl_transfer_family_boundary",
         "cofactor_mimic",
         "counterevidence_stress",
         "mechanistic_coherence_mimic",
@@ -7093,6 +7303,20 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8452,
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7154,6 +7378,7 @@
         ]
       },
       "control_axes": [
+        "atp_phosphoryl_transfer_family_boundary",
         "cofactor_mimic",
         "counterevidence_stress",
         "mechanistic_coherence_mimic",
@@ -7177,6 +7402,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.844,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7272,6 +7499,19 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8416,
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ndk",
+        "family_name": "Nucleoside diphosphate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ndk",
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7326,6 +7566,7 @@
         ]
       },
       "control_axes": [
+        "atp_phosphoryl_transfer_family_boundary",
         "cofactor_mimic",
         "counterevidence_stress",
         "mechanistic_coherence_mimic",
@@ -7349,6 +7590,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8408,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7432,6 +7675,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8336,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7514,6 +7759,19 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.822,
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "atp_grasp",
+        "family_name": "ATP-grasp ligases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "atp_grasp",
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7582,6 +7840,7 @@
         ]
       },
       "control_axes": [
+        "atp_phosphoryl_transfer_family_boundary",
         "cofactor_mimic",
         "counterevidence_stress",
         "mechanistic_coherence_mimic",
@@ -7605,6 +7864,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8192,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7688,6 +7949,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.818,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.35,
@@ -7785,6 +8048,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8176,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7867,6 +8132,19 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.8112,
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "pfka",
+        "family_name": "PfkA-fold phosphofructokinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "pfka",
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -7931,6 +8209,7 @@
         ]
       },
       "control_axes": [
+        "atp_phosphoryl_transfer_family_boundary",
         "cofactor_mimic",
         "counterevidence_stress",
         "mechanistic_coherence_mimic",
@@ -7954,6 +8233,19 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.794,
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "dnk",
+        "family_name": "Deoxynucleoside kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "dnk",
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -8012,6 +8304,7 @@
         ]
       },
       "control_axes": [
+        "atp_phosphoryl_transfer_family_boundary",
         "cofactor_mimic",
         "counterevidence_stress",
         "mechanistic_coherence_mimic",
@@ -8035,6 +8328,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.7724,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "not_required",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -8113,6 +8408,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.7672,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "not_required",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -8193,6 +8490,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.7576,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -8282,6 +8581,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.7568,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "ligand_supported",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -8372,6 +8673,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.7432,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "role_inferred",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -8453,6 +8756,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.74,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.2,
@@ -8514,6 +8819,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.7272,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "not_required",
       "component_scores": {
         "cofactor_context_score": 1.0,
@@ -8595,6 +8902,8 @@
     {
       "abstain_threshold": 0.4115,
       "adversarial_score": 2.7212,
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "cofactor_evidence_level": "absent",
       "component_scores": {
         "cofactor_context_score": 0.0,

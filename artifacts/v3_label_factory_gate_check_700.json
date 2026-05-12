@@ -5,6 +5,7 @@
     "active_queue_retains_unlabeled_candidates": true,
     "adversarial_negatives_mined": true,
     "applied_label_actions_ready": true,
+    "atp_phosphoryl_transfer_family_expansion_ready": true,
     "demotion_or_abstention_demonstrated": true,
     "expert_label_decision_local_evidence_gaps_audited": true,
     "expert_label_decision_local_evidence_repair_resolution_ready": true,
@@ -102,6 +103,21 @@
       "m_csa:701",
       "m_csa:702"
     ],
+    "atp_phosphoryl_transfer_family_expansion_countable_label_candidate_count": 0,
+    "atp_phosphoryl_transfer_family_expansion_mapped_family_ids": [
+      "askha",
+      "atp_grasp",
+      "dnk",
+      "epk",
+      "ghkl",
+      "ghmp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "atp_phosphoryl_transfer_family_expansion_present": true,
+    "atp_phosphoryl_transfer_family_expansion_ready": true,
+    "atp_phosphoryl_transfer_family_expansion_unmapped_family_ids": [],
     "automation_ready_for_next_label_batch": true,
     "bulk_scaling_rule": "new labels may be added in batches only after this gate check passes and the generated batch artifacts are regenerated",
     "dominant_active_queue_family": "hydrolysis",
@@ -351,11 +367,11 @@
       "m_csa:670",
       "m_csa:696"
     ],
-    "gate_count": 20,
+    "gate_count": 21,
     "label_count": 624,
     "method": "label_factory_gate_check",
     "omitted_underrepresented_queue_entry_ids": [],
-    "passed_gate_count": 20,
+    "passed_gate_count": 21,
     "reaction_substrate_mismatch_review_export_entry_ids": [
       "m_csa:35",
       "m_csa:51",

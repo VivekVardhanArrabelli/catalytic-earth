@@ -19,6 +19,143 @@
       ]
     },
     {
+      "id": "atp_phosphoryl_transfer",
+      "name": "ATP-dependent phosphoryl transfer",
+      "parent_id": "mechanism",
+      "fingerprint_ids": [],
+      "scope_note": "Parent family for expert-reviewed ATP phosphoryl-transfer and ATP-coupled phospho-intermediate lanes surfaced by reaction/substrate mismatch review. This family is ontology boundary evidence only until a row has direct local mechanistic support and a countable seed fingerprint.",
+      "child_family_ids": [
+        "epk",
+        "askha",
+        "atp_grasp",
+        "ghkl",
+        "dnk",
+        "ndk",
+        "pfka",
+        "pfkb",
+        "ghmp"
+      ],
+      "sibling_ids": [
+        "hydrolysis",
+        "plp_chemistry",
+        "radical_rearrangement",
+        "flavin_redox",
+        "heme_redox"
+      ],
+      "family_boundary_guardrails": [
+        "Do not collapse ATP/Mg2+ phosphoryl-transfer or phospho-intermediate chemistry into metal hydrolase labels solely because ATP-bound Mg2+ or metal coordination is present.",
+        "Keep family assignments review-only unless local reaction-center evidence supports phosphoryl transfer and countable-import gates explicitly allow the label."
+      ]
+    },
+    {
+      "id": "epk",
+      "name": "ePK-fold protein and ePK-like kinases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "Protein, lipid, and ePK-like antibiotic-resistance kinases using ATP gamma-phosphoryl transfer to hydroxyl acceptors. Includes ePK/RTK/MAPK-family and ePK-related lanes; excludes GHKL histidine kinases and ASKHA/Pfk sugar kinases.",
+      "sibling_ids": ["askha", "atp_grasp", "ghkl", "dnk", "ndk", "pfka", "pfkb", "ghmp"],
+      "family_boundary_guardrails": [
+        "Treat ATP-bound Mg2+ as phosphoryl-transfer cofactor evidence, not as metal-hydrolase catalytic evidence.",
+        "Do not propagate from ePK-like names into countable labels without local acceptor-hydroxyl and ATP gamma-phosphate evidence."
+      ]
+    },
+    {
+      "id": "askha",
+      "name": "ASKHA sugar and acetate kinases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "Actin-like/ASKHA kinases including hexokinase/glucokinase and acetate kinase lanes with ATP gamma-phosphoryl transfer to sugar hydroxyls or carboxylates.",
+      "sibling_ids": ["epk", "atp_grasp", "ghkl", "dnk", "ndk", "pfka", "pfkb", "ghmp"],
+      "family_boundary_guardrails": [
+        "Keep hexokinase/glucokinase/acetate kinase review lanes out of hydrolase labels even when Mg2+ is local.",
+        "Do not merge ASKHA sugar kinases with PfkA, PfkB, or GHMP solely by ATP wording."
+      ]
+    },
+    {
+      "id": "atp_grasp",
+      "name": "ATP-grasp ligases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "ATP-grasp ligases that form acyl-phosphate or related phosphorylated intermediates before ligation. This is ATP-coupled transfer/ligation chemistry, not hydrolytic bond cleavage.",
+      "sibling_ids": ["epk", "askha", "ghkl", "dnk", "ndk", "pfka", "pfkb", "ghmp"],
+      "family_boundary_guardrails": [
+        "Do not count ATP-grasp rows as hydrolases because a phospho-intermediate later collapses.",
+        "Require ligase/phospho-intermediate context before mapping ATP-grasp boundary rows."
+      ]
+    },
+    {
+      "id": "ghkl",
+      "name": "GHKL/Bergerat ATP-binding kinases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "Bergerat/GHKL ATP-binding kinases such as histidine kinases and pyruvate dehydrogenase kinase lanes. Kept separate from ePK and hydrolase chemistry.",
+      "sibling_ids": ["epk", "askha", "atp_grasp", "dnk", "ndk", "pfka", "pfkb", "ghmp"],
+      "family_boundary_guardrails": [
+        "Do not propagate ePK rules into GHKL histidine-kinase or PDK lanes.",
+        "Local ATP/Mg2+ support must be interpreted as GHKL transfer evidence only with matching family context."
+      ]
+    },
+    {
+      "id": "dnk",
+      "name": "Deoxynucleoside kinases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "dNK-fold nucleoside kinases that transfer ATP gamma-phosphate to deoxynucleoside 5-prime hydroxyl acceptors. Kept separate from NDK phosphohistidine exchange.",
+      "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "ndk", "pfka", "pfkb", "ghmp"],
+      "family_boundary_guardrails": [
+        "Do not merge dNK substrate hydroxyl phosphorylation with NDK ping-pong phosphohistidine chemistry.",
+        "Keep dNK lanes review-only until substrate-class and local phosphoryl-transfer evidence are explicit."
+      ]
+    },
+    {
+      "id": "ndk",
+      "name": "Nucleoside diphosphate kinases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "NDK-family nucleotide phosphate-transfer lanes using a phosphohistidine intermediate to exchange phosphate between nucleotides.",
+      "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "dnk", "pfka", "pfkb", "ghmp"],
+      "family_boundary_guardrails": [
+        "Do not propagate NDK phosphohistidine chemistry into dNK substrate-hydroxyl phosphorylation.",
+        "Do not treat nucleotide phosphate transfer as metal hydrolase chemistry based on Mg2+ alone."
+      ]
+    },
+    {
+      "id": "pfka",
+      "name": "PfkA-fold phosphofructokinases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "PfkA-fold phosphofructokinase lanes transferring ATP gamma-phosphate to fructose-6-phosphate. Kept separate from PfkB ribokinase-like folds and ASKHA hexokinases.",
+      "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "dnk", "ndk", "pfkb", "ghmp"],
+      "family_boundary_guardrails": [
+        "Do not infer PfkA from generic sugar kinase text without phosphofructokinase/PfkA evidence.",
+        "PfkA lanes remain hydrolase boundary controls until countable seed evidence is added."
+      ]
+    },
+    {
+      "id": "pfkb",
+      "name": "PfkB/ribokinase-family kinases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "Ribokinase/PfkB-superfamily lanes including ribokinase and hydroxymethylpyrimidine kinase, transferring ATP gamma-phosphate to small-molecule hydroxyl acceptors.",
+      "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "dnk", "ndk", "pfka", "ghmp"],
+      "family_boundary_guardrails": [
+        "Do not collapse PfkB/ribokinase lanes into PfkA or ASKHA solely by sugar-kinase wording.",
+        "Keep PfkB family evidence review-only when local active-site support is incomplete."
+      ]
+    },
+    {
+      "id": "ghmp",
+      "name": "GHMP-superfamily kinases",
+      "parent_id": "atp_phosphoryl_transfer",
+      "fingerprint_ids": [],
+      "scope_note": "GHMP-superfamily kinase lanes such as CDP-ME kinase, mevalonate-family kinase chemistry, and related ATP gamma-phosphoryl transfers. Kept separate from ASKHA, PfkA, and PfkB sugar kinases.",
+      "sibling_ids": ["epk", "askha", "atp_grasp", "ghkl", "dnk", "ndk", "pfka", "pfkb"],
+      "family_boundary_guardrails": [
+        "Do not identify GHMP from ATP text alone; require GHMP-family or substrate-class evidence.",
+        "Do not count GHMP rows as hydrolases when ATP/Mg2+ is the local cofactor context."
+      ]
+    },
+    {
       "id": "plp_chemistry",
       "name": "Pyridoxal-phosphate chemistry",
       "parent_id": "mechanism",

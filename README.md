@@ -67,8 +67,8 @@ The repository currently contains:
     including reaction/substrate mismatch blockers,
     expert-review export/import, review-debt triage, repair guardrail audits,
     ontology-gap and sequence-similarity failure controls, learned-retrieval
-    manifest pathing, batch summary with scaling-quality audit attachment, and a
-    scaling gate.
+    manifest pathing, expert-reviewed ATP/phosphoryl-transfer family expansion,
+    batch summary with scaling-quality audit attachment, and a scaling gate.
 
 The 20- through 700-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
@@ -113,8 +113,9 @@ priority local-evidence gap lanes as review-only items, emits a local-evidence
 repair plan, resolves the 4 reviewed reaction/substrate local-evidence lanes
 as non-countable out-of-scope repair closures, exports concrete alternate
 residue-position sourcing requests for `m_csa:567`, `m_csa:578`, and
-`m_csa:667`, verifies review-only import safety, and passes the 20-check
-700-slice gate. The gate now also
+`m_csa:667`, verifies review-only import safety, maps expert-reviewed
+ATP/phosphoryl-transfer mismatch lanes to nine concrete fingerprint families,
+and passes the 21-check 700-slice gate. The gate now also
 fails if unlabeled candidate rows are truncated by the queue limit, if
 family-guardrail reaction/substrate mismatch lanes lack a dedicated review
 export, if expert-label decision rows are not explicitly routed as non-countable
@@ -122,7 +123,9 @@ external-review items, or if those rows lack a complete non-countable repair
 candidate summary, repair guardrail audit, local-evidence gap audit, and
 local-evidence review export; it also requires the local-evidence repair
 resolution, alternate residue-position sourcing requests, and review-only
-import-safety audit to remain non-countable.
+import-safety audit to remain non-countable, and requires the
+ATP/phosphoryl-transfer family expansion artifact to be guardrail-clean when
+attached.
 `artifacts/v3_label_batch_acceptance_check_700.json` records that the latest
 accepted batch added 5 labels for counting while 81 review-state decisions
 remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
@@ -147,7 +150,7 @@ turns the 3 alternate-residue lanes into sourceable evidence requests across
 34 alternate PDB structures; and
 `artifacts/v3_review_only_import_safety_audit_700.json` confirms the
 review-only decision artifacts add 0 countable labels.
-The latest non-countable repair artifacts add three discovery-facing controls:
+The latest non-countable repair artifacts add discovery-facing controls:
 `artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115 ontology
 scope-pressure rows without creating new families,
 `artifacts/v3_learned_retrieval_manifest_700.json` defines a future learned
@@ -176,13 +179,18 @@ text for expert reaction/substrate review. The 700 family-propagation guardrail
 retains all 24 hydrolase-top1 reaction/substrate mismatch blockers, split
 between 17 labeled propagation blocks and 7 unlabeled pending-review blocks.
 `artifacts/v3_reaction_substrate_mismatch_review_export_700.json` now carries
-all 24 lanes together. Expert review makes this the next ontology-expansion
-target: add conservative fingerprint-family records for ePK, ASKHA, ATP-grasp,
-GHKL, dNK, NDK, PfkA, PfkB, and GHMP before reopening count growth. The current
-decision batch remains review-only while routing the 7 unlabeled rows to
-reviewed out-of-scope repair decisions and rejecting 17 current controls.
-Countable import refuses review-only artifacts even when they carry reviewed
-repair decisions, so these lanes cannot enter the benchmark.
+all 24 lanes together.
+`artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json` implements the
+expert-reviewed ontology expansion for ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK,
+PfkA, PfkB, and GHMP. It maps 20 expert-supported mismatch lanes to those
+families, records 4 non-target hints for future work, and keeps
+`countable_label_candidate_count=0`. The current decision batch remains
+review-only while routing the 7 unlabeled rows to reviewed out-of-scope repair
+decisions and rejecting 17 current controls. Countable import refuses
+review-only artifacts even when they carry reviewed repair decisions, so these
+lanes cannot enter the benchmark. With the nine-family expansion guardrail-clean,
+the next bounded work item is resuming factory-gated label scaling toward the
+725 tranche while preserving the same quality gates.
 See
 `docs/label_factory.md`.
 
@@ -284,15 +292,16 @@ Current timeline judgment:
    performance checks.
 2. Current automation blocks: keep using the label factory for every new
    tranche. The 700 slice is accepted only for its clean countable labels; 81
-   review-state rows remain outside the benchmark. Each batch must
-   pass promotion/demotion, adversarial-negative,
-   active-learning, expert-review export/import, family-propagation,
+   review-state rows remain outside the benchmark. Each batch must pass
+   promotion/demotion, adversarial-negative, active-learning, expert-review
+   export/import, family-propagation, ATP/phosphoryl-transfer family-boundary,
    validation, and test gates before labels count toward the benchmark.
-3. Next serious milestone: repair the 81-row accepted-700 review-debt surface
-   or resolve the evidence-limited abstentions (`m_csa:132`, `m_csa:353`,
-   `m_csa:372`, and `m_csa:430`) by improving local structure/cofactor
-   evidence, while preserving the current hard-negative guardrails. Only then
-   reopen count growth beyond 624 countable labels.
+3. Next serious milestone: resume bounded factory-gated scaling toward the 725
+   tranche from the accepted 700 state now that the nine ATP/phosphoryl-transfer
+   families are implemented and guardrail-clean. Stop count growth if the next
+   gate exposes new review debt, ontology/family propagation drift, hard
+   negatives, out-of-scope false non-abstentions, or actionable in-scope
+   failures.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that
    are credible enough for external labs to prioritize.

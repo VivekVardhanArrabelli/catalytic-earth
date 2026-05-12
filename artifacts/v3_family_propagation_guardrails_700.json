@@ -1,7 +1,20 @@
 {
   "metadata": {
+    "atp_phosphoryl_transfer_family_boundary_count": 20,
+    "atp_phosphoryl_transfer_family_counts": {
+      "askha": 4,
+      "atp_grasp": 2,
+      "dnk": 2,
+      "epk": 5,
+      "ghkl": 2,
+      "ghmp": 1,
+      "ndk": 1,
+      "pfka": 1,
+      "pfkb": 2
+    },
     "audited_count": 552,
     "blocker_counts": {
+      "atp_phosphoryl_transfer_family_boundary": 20,
       "close_cross_family_top1_top2": 89,
       "reaction_substrate_mismatch": 24,
       "target_family_top1_family_mismatch": 1,
@@ -51,6 +64,8 @@
   },
   "rows": [
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:494",
@@ -83,6 +98,8 @@
       "top2_score": 0.3792
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:510",
@@ -113,6 +130,8 @@
       "top2_score": 0.3492
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:529",
@@ -145,6 +164,8 @@
       "top2_score": 0.3181
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:534",
@@ -181,6 +202,8 @@
       "top2_score": 0.2792
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:553",
@@ -213,6 +236,8 @@
       "top2_score": 0.399
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:558",
@@ -243,6 +268,8 @@
       "top2_score": 0.2999
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:559",
@@ -276,6 +303,8 @@
       "top2_score": 0.3489
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:564",
@@ -307,6 +336,8 @@
       "top2_score": 0.3444
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:577",
@@ -337,6 +368,8 @@
       "top2_score": 0.281
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:591",
@@ -372,6 +405,20 @@
       "top2_score": 0.363
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "askha",
+        "family_name": "ASKHA sugar and acetate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "askha",
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:592",
@@ -387,6 +434,7 @@
         "Asp 100 acts as a general base to remove a proton from the O6 hydroxyl group of glucose, which can then attack the gamma phosphorous of ATP. Simultaneously, Lys 169 acts as an acid catalyst, protonating the gamma phosphate's O3. There is then subsequent proton transfer from Asp205 to Lys169 so th..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "unlabeled_candidate_requires_direct_review"
       ],
@@ -405,6 +453,8 @@
       "top2_score": 0.264
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:597",
@@ -435,6 +485,8 @@
       "top2_score": 0.3068
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:624",
@@ -465,6 +517,8 @@
       "top2_score": 0.3725
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:641",
@@ -495,6 +549,8 @@
       "top2_score": 0.3571
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:642",
@@ -529,6 +585,19 @@
       "top2_score": 0.2786
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "askha",
+        "family_name": "ASKHA sugar and acetate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "askha",
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:643",
@@ -544,6 +613,7 @@
         "The proposed mechanism is an in-line single displacement reaction where the acetate acts as the nucleophile to attack the gamma phosphate of ATP, resulting in acetyl phosphate and ADP. For this reaction to take place, a magnesium ion, His180, Arg241 and Arg91 are important in stabilising the reac..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present",
         "unlabeled_candidate_requires_direct_review"
@@ -562,6 +632,8 @@
       "top2_score": 0.2943
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:644",
@@ -593,6 +665,8 @@
       "top2_score": 0.3524
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:653",
@@ -624,6 +698,19 @@
       "top2_score": 0.3371
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ghmp",
+        "family_name": "GHMP-superfamily kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ghmp",
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:654",
@@ -639,6 +726,7 @@
         "The catalysis is most likely to follow an associative in-line mechanism to form a pentacovalent intermediate. Asp141 acts as a base to deprotonate the hydroxyl group of CDP-ME to promote its nucleophilic attack on the terminal phosphate of ATP. Lys10 stabilises the transition state by interacting..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_cofactor_absent",
         "unlabeled_candidate_requires_direct_review"
@@ -657,6 +745,8 @@
       "top2_score": 0.278
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:655",
@@ -691,6 +781,8 @@
       "top2_score": 0.2193
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:656",
@@ -723,6 +815,8 @@
       "top2_score": 0.1779
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:658",
@@ -754,6 +848,8 @@
       "top2_score": 0.2769
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:659",
@@ -789,6 +885,19 @@
       "top2_score": 0.329
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:662",
@@ -804,6 +913,7 @@
         "Asp278 acts as a base to deprotonate the 4-hydroxyl group of inositol ring. The negatively charged oxygen atom of the hydroxyl group acts as a nucleophile and directly attack the terminal-phosphate of ATP. The product is formed via a SN2 mechanism. Mg2+ and Lys150 which coordinates with alpha-pho..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_cofactor_absent",
         "unlabeled_candidate_requires_direct_review"
@@ -822,6 +932,20 @@
       "top2_score": 0.2573
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "pfkb",
+        "family_name": "PfkB/ribokinase-family kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "pfkb",
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:663",
@@ -839,6 +963,7 @@
         "Asp255 acts as a base to deprotonate the O5'-hydroxyl group of ribose. The negatively charged O5' atom then makes a direct nucleophilic attack on the gamma-phosphate group of ATP in an in-line mechanism. An anion hole formed by backbone amide group of residues 252-255 (Ala252, Ala253, Gly254, Asp..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "close_cross_family_top1_top2",
         "reaction_substrate_mismatch",
         "top1_cofactor_absent",
@@ -860,6 +985,8 @@
       "top2_score": 0.2594
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:664",
@@ -891,6 +1018,8 @@
       "top2_score": 0.2702
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:665",
@@ -925,6 +1054,8 @@
       "top2_score": 0.2661
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:667",
@@ -955,6 +1086,8 @@
       "top2_score": 0.296
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:669",
@@ -986,6 +1119,19 @@
       "top2_score": 0.2142
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "pfkb",
+        "family_name": "PfkB/ribokinase-family kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "pfkb",
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:670",
@@ -1001,6 +1147,7 @@
         "HMPP kinase catalyses an SN2 type in line displacement reaction where the substrate acts as the nucleophile to attack the gamma phosphate of ATP, forming a pentavalent phosphate transition state. This is stabilised by Mg2+and Lys 176 at the active site, and collapses to release the end products...."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "close_cross_family_top1_top2",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present",
@@ -1020,6 +1167,8 @@
       "top2_score": 0.303
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:671",
@@ -1051,6 +1200,8 @@
       "top2_score": 0.3509
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:672",
@@ -1083,6 +1234,8 @@
       "top2_score": 0.2952
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:673",
@@ -1115,6 +1268,8 @@
       "top2_score": 0.3512
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:674",
@@ -1145,6 +1300,8 @@
       "top2_score": 0.278
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:675",
@@ -1176,6 +1333,8 @@
       "top2_score": 0.1329
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:676",
@@ -1208,6 +1367,8 @@
       "top2_score": 0.351
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:677",
@@ -1242,6 +1403,8 @@
       "top2_score": 0.185
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:678",
@@ -1274,6 +1437,8 @@
       "top2_score": 0.3205
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:679",
@@ -1304,6 +1469,8 @@
       "top2_score": 0.3742
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:680",
@@ -1336,6 +1503,8 @@
       "top2_score": 0.3404
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:681",
@@ -1366,6 +1535,8 @@
       "top2_score": 0.3123
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:682",
@@ -1396,6 +1567,8 @@
       "top2_score": 0.303
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:684",
@@ -1428,6 +1601,8 @@
       "top2_score": 0.3367
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:687",
@@ -1462,6 +1637,8 @@
       "top2_score": 0.351
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:689",
@@ -1496,6 +1673,8 @@
       "top2_score": 0.2771
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:690",
@@ -1527,6 +1706,8 @@
       "top2_score": 0.2163
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:691",
@@ -1561,6 +1742,8 @@
       "top2_score": 0.2694
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:692",
@@ -1597,6 +1780,8 @@
       "top2_score": 0.1362
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:693",
@@ -1628,6 +1813,8 @@
       "top2_score": 0.3437
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:695",
@@ -1658,6 +1845,19 @@
       "top2_score": 0.2609
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "askha",
+        "family_name": "ASKHA sugar and acetate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "askha",
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:696",
@@ -1673,6 +1873,7 @@
         "The 6-hydroxyl group of Glucose is 3A from the gamma-phosphorus atom and oriented for an in-line displacement reaction. Asp657 is a catalytic base. It abstracts a proton from the 6-hydroxyl group, activating the oxygen which then attacks the gamma-phosphorous. This leads to lysis of the phosphodi..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_cofactor_absent",
         "unlabeled_candidate_requires_direct_review"
@@ -1691,6 +1892,8 @@
       "top2_score": 0.2699
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:698",
@@ -1725,6 +1928,8 @@
       "top2_score": 0.2696
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:700",
@@ -1756,6 +1961,8 @@
       "top2_score": 0.3496
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:701",
@@ -1790,6 +1997,8 @@
       "top2_score": 0.2136
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:702",
@@ -1823,6 +2032,8 @@
       "top2_score": 0.328
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:567",
@@ -1856,6 +2067,8 @@
       "top2_score": 0.3052
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:568",
@@ -1890,6 +2103,8 @@
       "top2_score": 0.3633
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:572",
@@ -1921,6 +2136,8 @@
       "top2_score": 0.3491
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:578",
@@ -1952,6 +2169,8 @@
       "top2_score": 0.3293
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:596",
@@ -1985,6 +2204,8 @@
       "top2_score": 0.2981
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:598",
@@ -2014,6 +2235,8 @@
       "top2_score": 0.3747
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:599",
@@ -2045,6 +2268,8 @@
       "top2_score": 0.3766
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:600",
@@ -2078,6 +2303,8 @@
       "top2_score": 0.301
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:602",
@@ -2107,6 +2334,8 @@
       "top2_score": 0.3702
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:611",
@@ -2140,6 +2369,8 @@
       "top2_score": 0.3382
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:623",
@@ -2173,6 +2404,8 @@
       "top2_score": 0.3014
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:626",
@@ -2206,6 +2439,8 @@
       "top2_score": 0.3509
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:632",
@@ -2239,6 +2474,8 @@
       "top2_score": 0.2246
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:636",
@@ -2272,6 +2509,8 @@
       "top2_score": 0.4065
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:650",
@@ -2305,6 +2544,8 @@
       "top2_score": 0.4596
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:657",
@@ -2336,6 +2577,8 @@
       "top2_score": 0.345
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:660",
@@ -2369,6 +2612,8 @@
       "top2_score": 0.3655
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:661",
@@ -2402,6 +2647,8 @@
       "top2_score": 0.3518
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:668",
@@ -2435,6 +2682,8 @@
       "top2_score": 0.3052
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:683",
@@ -2468,6 +2717,8 @@
       "top2_score": 0.3404
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
       "entry_id": "m_csa:685",
@@ -2501,6 +2752,8 @@
       "top2_score": 0.3522
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:1",
@@ -2530,6 +2783,8 @@
       "top2_score": 0.3401
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:2",
@@ -2561,6 +2816,8 @@
       "top2_score": 0.3409
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:4",
@@ -2597,6 +2854,8 @@
       "top2_score": 0.3929
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:7",
@@ -2633,6 +2892,8 @@
       "top2_score": 0.3332
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:8",
@@ -2666,6 +2927,8 @@
       "top2_score": 0.2658
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:9",
@@ -2701,6 +2964,8 @@
       "top2_score": 0.3332
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:10",
@@ -2732,6 +2997,8 @@
       "top2_score": 0.346
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:12",
@@ -2763,6 +3030,8 @@
       "top2_score": 0.3449
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:13",
@@ -2795,6 +3064,8 @@
       "top2_score": 0.3948
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:14",
@@ -2824,6 +3095,8 @@
       "top2_score": 0.3296
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:17",
@@ -2855,6 +3128,8 @@
       "top2_score": 0.3362
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:18",
@@ -2884,6 +3159,8 @@
       "top2_score": 0.3738
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:19",
@@ -2916,6 +3193,8 @@
       "top2_score": 0.2605
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:21",
@@ -2952,6 +3231,8 @@
       "top2_score": 0.3358
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:22",
@@ -2982,6 +3263,8 @@
       "top2_score": 0.3486
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:23",
@@ -3017,6 +3300,8 @@
       "top2_score": 0.278
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:24",
@@ -3049,6 +3334,8 @@
       "top2_score": 0.353
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:25",
@@ -3079,6 +3366,8 @@
       "top2_score": 0.3567
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:26",
@@ -3110,6 +3399,8 @@
       "top2_score": 0.351
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:29",
@@ -3140,6 +3431,8 @@
       "top2_score": 0.342
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:30",
@@ -3170,6 +3463,8 @@
       "top2_score": 0.233
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:31",
@@ -3201,6 +3496,8 @@
       "top2_score": 0.3418
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:32",
@@ -3233,6 +3530,8 @@
       "top2_score": 0.3573
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:33",
@@ -3263,6 +3562,8 @@
       "top2_score": 0.3572
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:34",
@@ -3293,6 +3594,19 @@
       "top2_score": 0.3457
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:35",
@@ -3312,6 +3626,7 @@
         "Asp149 deprotonates the protein substrate hydroxyl group, initiating nucleophilic attack upon the gamma-phosphate of ATP in a substitution reaction that eliminates ADP. The phosphorylated protein deprotonates Asp149 [PMID:10545198]."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -3329,6 +3644,8 @@
       "top2_score": 0.2848
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:36",
@@ -3359,6 +3676,8 @@
       "top2_score": 0.3438
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:39",
@@ -3394,6 +3713,8 @@
       "top2_score": 0.3448
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:40",
@@ -3428,6 +3749,8 @@
       "top2_score": 0.2228
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:45",
@@ -3459,6 +3782,8 @@
       "top2_score": 0.3609
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:46",
@@ -3493,6 +3818,8 @@
       "top2_score": 0.2629
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:47",
@@ -3523,6 +3850,8 @@
       "top2_score": 0.3555
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:48",
@@ -3555,6 +3884,8 @@
       "top2_score": 0.3388
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:49",
@@ -3586,6 +3917,8 @@
       "top2_score": 0.3439
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:50",
@@ -3618,6 +3951,8 @@
       "top2_score": 0.2646
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:51",
@@ -3655,6 +3990,8 @@
       "top2_score": 0.3827
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:52",
@@ -3689,6 +4026,8 @@
       "top2_score": 0.3492
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:53",
@@ -3723,6 +4062,8 @@
       "top2_score": 0.2683
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:54",
@@ -3754,6 +4095,8 @@
       "top2_score": 0.3977
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:55",
@@ -3785,6 +4128,8 @@
       "top2_score": 0.3369
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:56",
@@ -3820,6 +4165,8 @@
       "top2_score": 0.3426
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:57",
@@ -3856,6 +4203,8 @@
       "top2_score": 0.3445
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:58",
@@ -3889,6 +4238,8 @@
       "top2_score": 0.2641
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:59",
@@ -3924,6 +4275,8 @@
       "top2_score": 0.339
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:60",
@@ -3955,6 +4308,8 @@
       "top2_score": 0.3511
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:61",
@@ -3985,6 +4340,8 @@
       "top2_score": 0.2601
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:64",
@@ -4015,6 +4372,8 @@
       "top2_score": 0.3525
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:65",
@@ -4048,6 +4407,8 @@
       "top2_score": 0.351
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:67",
@@ -4078,6 +4439,8 @@
       "top2_score": 0.3427
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:69",
@@ -4108,6 +4471,8 @@
       "top2_score": 0.356
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:70",
@@ -4139,6 +4504,8 @@
       "top2_score": 0.2983
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:71",
@@ -4170,6 +4537,8 @@
       "top2_score": 0.3642
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:72",
@@ -4202,6 +4571,8 @@
       "top2_score": 0.3093
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:73",
@@ -4233,6 +4604,8 @@
       "top2_score": 0.3459
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:74",
@@ -4266,6 +4639,8 @@
       "top2_score": 0.2868
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:75",
@@ -4295,6 +4670,8 @@
       "top2_score": 0.2691
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:76",
@@ -4325,6 +4702,8 @@
       "top2_score": 0.3556
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:77",
@@ -4354,6 +4733,8 @@
       "top2_score": 0.3735
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:78",
@@ -4383,6 +4764,8 @@
       "top2_score": 0.3592
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:79",
@@ -4413,6 +4796,8 @@
       "top2_score": 0.2228
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:80",
@@ -4442,6 +4827,8 @@
       "top2_score": 0.3144
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:81",
@@ -4471,6 +4858,8 @@
       "top2_score": 0.2629
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:82",
@@ -4502,6 +4891,8 @@
       "top2_score": 0.3815
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:84",
@@ -4535,6 +4926,8 @@
       "top2_score": 0.341
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:85",
@@ -4565,6 +4958,8 @@
       "top2_score": 0.3494
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:86",
@@ -4598,6 +4993,8 @@
       "top2_score": 0.3343
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:88",
@@ -4631,6 +5028,8 @@
       "top2_score": 0.3755
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:89",
@@ -4661,6 +5060,8 @@
       "top2_score": 0.3267
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:90",
@@ -4694,6 +5095,8 @@
       "top2_score": 0.3545
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:91",
@@ -4726,6 +5129,8 @@
       "top2_score": 0.3474
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:92",
@@ -4762,6 +5167,8 @@
       "top2_score": 0.3493
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:93",
@@ -4799,6 +5206,8 @@
       "top2_score": 0.3403
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:95",
@@ -4834,6 +5243,8 @@
       "top2_score": 0.3477
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:96",
@@ -4864,6 +5275,8 @@
       "top2_score": 0.3483
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:99",
@@ -4898,6 +5311,8 @@
       "top2_score": 0.2787
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:100",
@@ -4929,6 +5344,8 @@
       "top2_score": 0.3416
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:101",
@@ -4958,6 +5375,8 @@
       "top2_score": 0.3763
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:104",
@@ -4993,6 +5412,8 @@
       "top2_score": 0.3346
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:105",
@@ -5025,6 +5446,8 @@
       "top2_score": 0.2733
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:106",
@@ -5058,6 +5481,8 @@
       "top2_score": 0.3232
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:107",
@@ -5091,6 +5516,8 @@
       "top2_score": 0.347
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "seed_fingerprint",
       "current_tier": "bronze",
       "entry_id": "m_csa:108",
@@ -5127,6 +5554,8 @@
       "top2_score": 0.3886
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:112",
@@ -5156,6 +5585,8 @@
       "top2_score": 0.2721
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:116",
@@ -5190,6 +5621,8 @@
       "top2_score": 0.277
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:118",
@@ -5221,6 +5654,8 @@
       "top2_score": 0.303
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:119",
@@ -5256,6 +5691,8 @@
       "top2_score": 0.2636
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:121",
@@ -5290,6 +5727,8 @@
       "top2_score": 0.3714
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:122",
@@ -5321,6 +5760,8 @@
       "top2_score": 0.3396
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:125",
@@ -5350,6 +5791,8 @@
       "top2_score": 0.2976
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:126",
@@ -5384,6 +5827,8 @@
       "top2_score": 0.4046
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:127",
@@ -5419,6 +5864,8 @@
       "top2_score": 0.3355
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:128",
@@ -5448,6 +5895,8 @@
       "top2_score": 0.2826
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:129",
@@ -5477,6 +5926,8 @@
       "top2_score": 0.3043
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:130",
@@ -5514,6 +5965,8 @@
       "top2_score": 0.3723
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "seed_fingerprint",
       "current_tier": "bronze",
       "entry_id": "m_csa:132",
@@ -5548,6 +6001,8 @@
       "top2_score": 0.3424
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:134",
@@ -5581,6 +6036,8 @@
       "top2_score": 0.3063
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:135",
@@ -5617,6 +6074,8 @@
       "top2_score": 0.3796
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:136",
@@ -5647,6 +6106,8 @@
       "top2_score": 0.3881
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:137",
@@ -5677,6 +6138,8 @@
       "top2_score": 0.1093
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:138",
@@ -5710,6 +6173,8 @@
       "top2_score": 0.3464
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:139",
@@ -5745,6 +6210,8 @@
       "top2_score": 0.2677
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:140",
@@ -5776,6 +6243,8 @@
       "top2_score": 0.399
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "seed_fingerprint",
       "current_tier": "bronze",
       "entry_id": "m_csa:141",
@@ -5811,6 +6280,8 @@
       "top2_score": 0.7494
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:143",
@@ -5840,6 +6311,8 @@
       "top2_score": 0.3224
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:144",
@@ -5875,6 +6348,8 @@
       "top2_score": 0.3952
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:145",
@@ -5905,6 +6380,8 @@
       "top2_score": 0.3021
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:146",
@@ -5940,6 +6417,8 @@
       "top2_score": 0.3479
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:148",
@@ -5971,6 +6450,8 @@
       "top2_score": 0.3263
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:149",
@@ -6000,6 +6481,8 @@
       "top2_score": 0.3608
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:150",
@@ -6032,6 +6515,8 @@
       "top2_score": 0.3489
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:151",
@@ -6069,6 +6554,8 @@
       "top2_score": 0.2802
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:152",
@@ -6099,6 +6586,8 @@
       "top2_score": 0.3354
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:153",
@@ -6130,6 +6619,8 @@
       "top2_score": 0.2724
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:154",
@@ -6160,6 +6651,8 @@
       "top2_score": 0.3573
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:155",
@@ -6190,6 +6683,8 @@
       "top2_score": 0.3176
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:156",
@@ -6224,6 +6719,8 @@
       "top2_score": 0.331
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "seed_fingerprint",
       "current_tier": "bronze",
       "entry_id": "m_csa:160",
@@ -6253,6 +6750,8 @@
       "top2_score": 0.3521
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:162",
@@ -6283,6 +6782,8 @@
       "top2_score": 0.3348
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:164",
@@ -6313,6 +6814,8 @@
       "top2_score": 0.3496
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:174",
@@ -6343,6 +6846,8 @@
       "top2_score": 0.3497
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:175",
@@ -6372,6 +6877,8 @@
       "top2_score": 0.281
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:177",
@@ -6406,6 +6913,8 @@
       "top2_score": 0.3444
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:178",
@@ -6439,6 +6948,8 @@
       "top2_score": 0.2617
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:179",
@@ -6471,6 +6982,20 @@
       "top2_score": 0.2666
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:246",
@@ -6491,6 +7016,7 @@
         "This entry represents the associative (S<sub>N</sub>2-type) mechanism. Here Asp1132 deprotonates the substrate Tyr hydroxide, activating it for nucleophilic attack on the gamma phosphate of ATP, which forms a pentavalent transition state. The transition state is stabilised by hydrogen bonding to..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -6509,6 +7035,19 @@
       "top2_score": 0.281
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:282",
@@ -6526,6 +7065,7 @@
         "The serine residue of the protein substrate attacks the terminal, pentavalent phosphorous of ATP. Asp194 abstracts a proton from the phospho-serine residue. Asp194 relays the proton to ADP, regenerating the active site."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_cofactor_absent"
       ],
@@ -6543,6 +7083,8 @@
       "top2_score": 0.1821
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:299",
@@ -6575,6 +7117,19 @@
       "top2_score": 0.3318
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "atp_grasp",
+        "family_name": "ATP-grasp ligases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "atp_grasp",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:310",
@@ -6592,6 +7147,7 @@
         "The D-lactate substrate attacks the terminal phosphate of ATP in a concerted mechanism to form ADP and phosphorylated D-lactate. D-alanine attacks the alpha phosphate of the D-lactate phosphate adduct, forming a tetrahedral intermediate. The tetrahedral intermediate collapses, eliminating inorgan..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_cofactor_absent"
       ],
@@ -6609,6 +7165,19 @@
       "top2_score": 0.295
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ghkl",
+        "family_name": "GHKL/Bergerat ATP-binding kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ghkl",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:327",
@@ -6628,6 +7197,7 @@
         "This kinase first phosphorylates His45, the phosphate group is then passed on to the nucleophilic Asp of the CheY substrate."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -6645,6 +7215,19 @@
       "top2_score": 0.2148
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "pfka",
+        "family_name": "PfkA-fold phosphofructokinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "pfka",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:365",
@@ -6664,6 +7247,7 @@
         "Asp128 is proposed to act as a base, abstracting a proton from 1-OH of 6-phosphofructose. This increases the nucleophilicity of the functional group which then attacks at the gamma phosphate of ATP in an SN2 reaction, forming 1,6-bisphosphate fructose and ADP."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -6681,6 +7265,19 @@
       "top2_score": 0.2759
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "atp_grasp",
+        "family_name": "ATP-grasp ligases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "atp_grasp",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:498",
@@ -6700,6 +7297,7 @@
         "Although this protein shares very little similarity to the prokaryotic enzyme (MACiE 199), the reaction is thought to proceed in a similar manner with two successive transfer reactions. Firstly, it transfers the gamma-phosphate group of ATP to the C-terminal carboxylate of the second substrate, g..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -6717,6 +7315,8 @@
       "top2_score": 0.2836
     },
     {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:541",
@@ -6753,6 +7353,19 @@
       "top2_score": 0.2831
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "dnk",
+        "family_name": "Deoxynucleoside kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "dnk",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:588",
@@ -6768,6 +7381,7 @@
         "The catalytic mechanism proceeds as follows: Glu83 acts as a general base to activate the acceptor group, 5'-hydroxyl group of thymidine. The activated acceptor group makes a nucleophilic attack on the transferred group, gamma-phosphate of ATP. During the transition state, the transferred group a..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -6785,6 +7399,20 @@
       "top2_score": 0.2642
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ghkl",
+        "family_name": "GHKL/Bergerat ATP-binding kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ghkl",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:603",
@@ -6804,6 +7432,7 @@
         "One proposed mechanism is a general base mechanism. Glu251 deprotonates the targeted serine residue of the pyruvate dehydrogenase E1 subunit and promotes its nucleophilic attack on the terminal phosphate of ATP. His247 polarises Glu243 to allow deprotonation. Magnesium ion coordinated to Asp help..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -6822,6 +7451,19 @@
       "top2_score": 0.3101
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "dnk",
+        "family_name": "Deoxynucleoside kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "dnk",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:615",
@@ -6837,6 +7479,7 @@
         "Activation of the 5'-OH of the deoxyribose by deprotonation with Glu 70 allows a nucleophilic attack of the gamma-phosphate of the phosphate donor. Arg 142 as well as the magnesium cation stabilise the trigonal bypyrimidal transition state formed in the reaction. The magnesium ion will coordinate..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_cofactor_absent"
       ],
@@ -6854,6 +7497,19 @@
       "top2_score": 0.2828
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ndk",
+        "family_name": "Nucleoside diphosphate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ndk",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:637",
@@ -6871,6 +7527,7 @@
         "In line nucleophilic attack from the dNMP on the gamma phosphate of ATP seems the most likely mechanism for the reaction. This proceeds via a pentavalent phosphate transition state, stabilised by catalytic residues Arg68, His 206 and a catalytic Mg2+ ion whose location in the enzyme has not been..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -6888,6 +7545,20 @@
       "top2_score": 0.2768
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:640",
@@ -6907,6 +7578,7 @@
         "Nucleophilic attack on the gamma phosphate of ATP by the 3' or 5' OH group of the substrate allows formation of a pentavalent phosphate transition state which collapses to release the products. In order to accelerate this the deprotonation of the OH group is accomplished by Asp 190 and the transi..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_counterevidence_present"
       ],
@@ -6925,6 +7597,19 @@
       "top2_score": 0.2794
     },
     {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "askha",
+        "family_name": "ASKHA sugar and acetate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "askha",
       "current_label_type": "out_of_scope",
       "current_tier": "bronze",
       "entry_id": "m_csa:651",
@@ -6940,6 +7625,7 @@
         "The reaction proceeds via an SN2 mechanism with the 6C OH of the glucose acting as a nucleophile, due to deprotonation by Asp 211, to attack the gamma phosphate of ATP. In doing so the position of glucose in the binding site changes to bring it within optimum hydrogen bonding distance of Ser 158,..."
       ],
       "propagation_blockers": [
+        "atp_phosphoryl_transfer_family_boundary",
         "reaction_substrate_mismatch",
         "top1_cofactor_absent"
       ],

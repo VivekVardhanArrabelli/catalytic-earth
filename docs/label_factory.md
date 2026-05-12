@@ -56,14 +56,16 @@ PYTHONPATH=src python -m catalytic_earth.cli apply-label-factory-actions \
 
 ## Mechanism Ontology
 
-`data/registries/mechanism_ontology.json` maps seed fingerprints into mechanism
-families:
+`data/registries/mechanism_ontology.json` maps seed fingerprints and
+review-backed family boundaries into mechanism families:
 
 - hydrolysis
 - PLP chemistry
 - radical rearrangement
 - flavin redox
 - heme redox
+- ATP-dependent phosphoryl transfer, with child family records for ePK, ASKHA,
+  ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP
 
 `build-family-propagation-guardrails` audits where family propagation is blocked
 across UniRef/CATH/InterPro-style evidence or the current local proxies
@@ -71,17 +73,21 @@ available in this repo: M-CSA mechanism text, ligand/cofactor context, and
 pocket geometry. Local proxies can prioritize review but cannot promote labels
 above bronze without direct evidence. The 700 guardrail now treats hydrolase-top1
 rows with kinase or ATP phosphoryl-transfer text as `reaction_substrate_mismatch`
-propagation blockers before any label can count, and always retains those
-blocker rows even when they rank below the normal `max_rows` cutoff.
+propagation blockers before any label can count, always retains those blocker
+rows even when they rank below the normal `max_rows` cutoff, and records
+`atp_phosphoryl_transfer_family_boundary` when a conservative family mapping is
+available.
 
-Expert review turns that ATP/phosphoryl-transfer mismatch lane into the next
-ontology-expansion target. Add durable fingerprint-family records for ePK,
-ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP with conservative scope
-notes, parent/sibling relationships, boundary evidence, adversarial negatives,
-review exports, and tests. These families should route reviewed mismatch lanes
-without making unsupported rows countable. Once the nine-family expansion is
-implemented, tested, documented, and guardrail-clean, resume factory-gated label
-scaling toward 10k.
+The expert-reviewed ATP/phosphoryl-transfer lane has been expanded into durable
+family records for ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP.
+`artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json` maps 20
+expert-supported mismatch lanes across all nine families, retains 4 non-target
+expert hints for future ontology work, and keeps every mapped row
+non-countable. The family expansion is boundary evidence for routing,
+active-learning priority, adversarial negatives, and factory gates; it is not a
+new countable seed-fingerprint label source. With this expansion tested,
+documented, and gate-clean, the next bounded project step is resuming
+factory-gated label scaling toward 10k.
 
 ## Active Learning Queue
 
@@ -93,13 +99,15 @@ scaling toward 10k.
 - hard-negative value
 - evidence conflict
 - family-boundary value
+- ATP/phosphoryl-transfer family-boundary value
 
 The queue includes unlabeled tranche candidates plus labeled entries whose
 current evidence needs review. After the accepted 700 batch, the current queue
 artifact is `artifacts/v3_active_learning_review_queue_700.json`: it retains
 all 76 unlabeled post-batch candidate rows in addition to labeled review rows
-and includes a `reaction_substrate_mismatch_value` ranking term for kinase or
-ATP phosphoryl-transfer text with hydrolase top hits.
+and includes `reaction_substrate_mismatch_value` plus
+`atp_phosphoryl_family_boundary_value` ranking terms for kinase or ATP
+phosphoryl-transfer text with hydrolase top hits.
 The gate fails if a queue limit truncates unlabeled candidates, so label
 expansion cannot silently skip lower-ranked unlabeled rows.
 
@@ -401,6 +409,12 @@ PYTHONPATH=src python -m catalytic_earth.cli check-label-factory-gates \
   --expert-label-decision-review-export artifacts/v3_expert_label_decision_review_export_700.json \
   --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700.json \
   --expert-label-decision-repair-guardrail-audit artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json \
+  --expert-label-decision-local-evidence-gap-audit artifacts/v3_expert_label_decision_local_evidence_gap_audit_700.json \
+  --expert-label-decision-local-evidence-review-export artifacts/v3_expert_label_decision_local_evidence_review_export_700.json \
+  --expert-label-decision-local-evidence-repair-resolution artifacts/v3_expert_label_decision_local_evidence_repair_resolution_700.json \
+  --explicit-alternate-residue-position-requests artifacts/v3_explicit_alternate_residue_position_requests_700.json \
+  --review-only-import-safety-audit artifacts/v3_review_only_import_safety_audit_700.json \
+  --atp-phosphoryl-transfer-family-expansion artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json \
   --out artifacts/v3_label_factory_gate_check_700.json
 ```
 
@@ -531,6 +545,13 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality \
   --reaction-substrate-mismatch-review-export artifacts/v3_reaction_substrate_mismatch_review_export_700.json \
   --expert-label-decision-review-export artifacts/v3_expert_label_decision_review_export_700.json \
   --expert-label-decision-repair-candidates artifacts/v3_expert_label_decision_repair_candidates_700.json \
+  --expert-label-decision-repair-guardrail-audit artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json \
+  --expert-label-decision-local-evidence-gap-audit artifacts/v3_expert_label_decision_local_evidence_gap_audit_700.json \
+  --expert-label-decision-local-evidence-review-export artifacts/v3_expert_label_decision_local_evidence_review_export_700.json \
+  --expert-label-decision-local-evidence-repair-resolution artifacts/v3_expert_label_decision_local_evidence_repair_resolution_700.json \
+  --explicit-alternate-residue-position-requests artifacts/v3_explicit_alternate_residue_position_requests_700.json \
+  --review-only-import-safety-audit artifacts/v3_review_only_import_safety_audit_700.json \
+  --atp-phosphoryl-transfer-family-expansion artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json \
   --out artifacts/v3_label_scaling_quality_audit_700_preview.json
 ```
 
@@ -555,7 +576,7 @@ tests before its labels are counted.
 
 Current 700-queue gate state:
 
-- 20/20 gate checks pass.
+- 21/21 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
@@ -565,7 +586,8 @@ Current 700-queue gate state:
   expert-label local-evidence gap audit ready, expert-label local-evidence
   review export ready, expert-label local-evidence repair resolution ready,
   explicit alternate residue-position sourcing requests ready, review-only
-  import safety ready, and unlabeled queue retention ready.
+  import safety ready, ATP/phosphoryl-transfer family expansion ready, and
+  unlabeled queue retention ready.
 - 79 bronze-to-silver promotions are proposed in the applied-label artifact
   after the accepted 700 batch.
 - 188 rows are queued for active-learning review after the accepted 700 batch,
@@ -576,12 +598,17 @@ Current 700-queue gate state:
   beyond `max_rows`, split into 17 labeled propagation blocks and 7 unlabeled
   pending-review blocks.
 - The dedicated reaction/substrate mismatch export carries all 24 lanes, records
-  17 current out-of-scope labels plus 7 unlabeled rows, and now drives the
+  17 current out-of-scope labels plus 7 unlabeled rows, and now feeds the
   expert-reviewed nine-family ontology expansion: ePK, ASKHA, ATP-grasp, GHKL,
   dNK, NDK, PfkA, PfkB, and GHMP. The current reviewed decision batch keeps the
   artifact review-only, routes 7 unlabeled rows to reviewed out-of-scope
   decisions, rejects 17 current out-of-scope controls, and is prevented from
   adding countable labels by the import-safety audit.
+- `artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json` maps 20
+  expert-supported lanes across all nine ATP/phosphoryl-transfer families,
+  records 4 non-target expert hints, has 0 unsupported family mappings, and
+  keeps `countable_label_candidate_count=0`; it is gate evidence for family
+  boundaries, not label-count evidence.
 - The dedicated expert-label decision export carries all 76 active-queue
   `expert_label_decision_needed` rows as `no_decision`, records 0 countable
   label candidates, confirms that its 7 reaction/substrate mismatch rows are
@@ -603,7 +630,7 @@ Current 700-queue gate state:
   `v3_explicit_alternate_residue_position_requests_700.json`, which requests
   explicit alternate-PDB residue positions for `m_csa:567`, `m_csa:578`, and
   `m_csa:667` across 34 alternate PDB structures. The latest accepted-700
-  factory gate is 20/20 without making any row countable.
+  factory gate is 21/21 without making any row countable.
 - `artifacts/v3_review_only_import_safety_audit_700.json` audits the
   reaction/substrate mismatch, expert-label decision, and local-evidence
   decision batches and confirms countable import adds 0 labels from those
@@ -647,8 +674,10 @@ Current 700-queue gate state:
   deferred rows. The attached alternate-structure scan adds a separate warning
   for structure-wide expected-family hits that still lack local active-site
   support, and it now exposes conservative residue-position remap coverage for
-  alternate PDBs. The all-debt remap lead summary keeps local-hit carried-debt
-  rows review-only rather than making them countable.
+  alternate PDBs. The ATP/phosphoryl-transfer family expansion is ready and
+  contributes 0 countable label candidates. The all-debt remap lead summary
+  keeps local-hit carried-debt rows review-only rather than making them
+  countable.
 
 ## Automation Lock
 

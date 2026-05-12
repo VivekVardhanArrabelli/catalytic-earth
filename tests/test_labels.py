@@ -29,6 +29,7 @@ from catalytic_earth.labels import (
     audit_structure_selection_holo_preference,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
+    build_atp_phosphoryl_transfer_family_expansion,
     build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
     build_expert_review_export,
@@ -3226,6 +3227,105 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertEqual(capped["metadata"]["priority_local_evidence_gap_added_count"], 1)
         self.assertEqual(capped["metadata"]["emitted_row_count"], 2)
         self.assertIn("m_csa:777", [row["entry_id"] for row in capped["rows"]])
+
+    def test_atp_phosphoryl_transfer_family_expansion_maps_expert_hints_review_only(
+        self,
+    ) -> None:
+        target_rows = [
+            ("m_csa:35", "phosphorylase kinase", "ePK"),
+            ("m_csa:592", "glucokinase", "ASKHA"),
+            ("m_csa:498", "glutathione synthase", "ATP-grasp"),
+            ("m_csa:603", "pyruvate dehydrogenase kinase", "GHKL"),
+            ("m_csa:588", "thymidine kinase", "dNK"),
+            ("m_csa:637", "nucleoside-diphosphate kinase", "NDK"),
+            ("m_csa:365", "Phosphofructokinase I", "PfkA"),
+            ("m_csa:663", "ribokinase", "PfkB"),
+            ("m_csa:654", "CDP-ME kinase", "GHMP"),
+            ("m_csa:151", "pteridine diphosphokinase", "HPPK"),
+        ]
+        decision_batch = {
+            "review_items": [
+                {
+                    "entry_id": entry_id,
+                    "entry_name": name,
+                    "mismatch_context": {
+                        "entry_id": entry_id,
+                        "entry_name": name,
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_ontology_family": "hydrolysis",
+                        "mismatch_reasons": [
+                            "kinase_name_with_hydrolase_top1"
+                        ],
+                    },
+                    "decision": {
+                        "action": "reject_label",
+                        "label_type": "out_of_scope",
+                        "review_status": "expert_reviewed",
+                        "reviewer": "test_reviewer",
+                        "reaction_substrate_resolution": (
+                            "confirm_current_label_or_out_of_scope"
+                        ),
+                        "future_fingerprint_family_hint": hint,
+                    },
+                }
+                for entry_id, name, hint in target_rows
+            ]
+        }
+
+        expansion = build_atp_phosphoryl_transfer_family_expansion(
+            reaction_substrate_mismatch_decision_batch=decision_batch,
+            reaction_substrate_mismatch_review_export={"review_items": []},
+            family_propagation_guardrails={"rows": []},
+            active_learning_queue={"metadata": {}, "rows": []},
+            adversarial_negatives={"metadata": {}, "rows": []},
+        )
+
+        self.assertTrue(expansion["metadata"]["boundary_guardrail_ready"])
+        self.assertEqual(
+            expansion["metadata"]["mapped_required_family_ids"],
+            ["askha", "atp_grasp", "dnk", "epk", "ghkl", "ghmp", "ndk", "pfka", "pfkb"],
+        )
+        self.assertEqual(expansion["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(expansion["metadata"]["non_target_expert_hint_count"], 1)
+        rows = {row["entry_id"]: row for row in expansion["rows"]}
+        self.assertEqual(rows["m_csa:35"]["family_id"], "epk")
+        self.assertIn(
+            "review_only_reaction_substrate_mismatch_lane",
+            rows["m_csa:35"]["non_countable_blockers"],
+        )
+        self.assertFalse(rows["m_csa:35"]["countable_label_candidate"])
+
+    def test_atp_family_expansion_keeps_unsupported_mapping_non_countable(self) -> None:
+        expansion = build_atp_phosphoryl_transfer_family_expansion(
+            reaction_substrate_mismatch_decision_batch={
+                "review_items": [
+                    {
+                        "entry_id": "m_csa:588",
+                        "entry_name": "thymidine kinase",
+                        "mismatch_context": {
+                            "top1_fingerprint_id": "metal_dependent_hydrolase",
+                            "mismatch_reasons": ["kinase_name_with_hydrolase_top1"],
+                        },
+                        "decision": {
+                            "action": "no_decision",
+                            "label_type": "out_of_scope",
+                            "review_status": "needs_expert_review",
+                            "reaction_substrate_resolution": "needs_more_evidence",
+                            "future_fingerprint_family_hint": "dNK",
+                        },
+                    }
+                ]
+            }
+        )
+
+        self.assertFalse(expansion["metadata"]["boundary_guardrail_ready"])
+        self.assertEqual(expansion["metadata"]["unsupported_mapping_count"], 1)
+        self.assertEqual(expansion["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(expansion["rows"][0]["countable_label_candidate"])
+        self.assertIn(
+            "family_mapping_not_expert_supported",
+            expansion["rows"][0]["non_countable_blockers"],
+        )
 
     def test_sequence_similarity_failure_sets_track_mixed_clusters(self) -> None:
         clusters = {

@@ -6,18 +6,21 @@ countable.
 
 ## Operational Confidence Call
 
-Label-quality gates remain good enough for repair and discovery-path work, but
-not for count growth. Evidence: `artifacts/v3_label_factory_gate_check_700.json`
-passes 20/20 gates after adding the local-evidence gap audit/export, repair
-resolution, alternate residue-position sourcing requests, and review-only
-import-safety audit;
+Label-quality gates remain good enough for bounded factory-gated count growth
+after the ATP/phosphoryl-transfer family expansion, while all review-only lanes
+stay outside the benchmark. Evidence:
+`artifacts/v3_label_factory_gate_check_700.json` passes 21/21 gates after
+adding the local-evidence gap audit/export, repair resolution, alternate
+residue-position sourcing requests, review-only import-safety audit, and
+ATP/phosphoryl-transfer family expansion;
 hard negatives, near misses, out-of-scope false non-abstentions, actionable
 in-scope failures, accepted labels with review debt, expert-decision countable
 candidates, repair guardrail countable candidates, local-evidence gap countable
 candidates, local-evidence review export countable candidates, and review-only
 import new countable labels are all 0.
-The blocker remains the 81 review-state decisions and 21 priority
-expert-decision repair lanes.
+The remaining 81 review-state decisions and 21 priority expert-decision repair
+lanes are non-countable repair surfaces, not blockers to opening the next
+bounded gate-clean tranche.
 
 ## New Local-Evidence Gap Audit
 

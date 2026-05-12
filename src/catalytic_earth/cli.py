@@ -34,6 +34,7 @@ from .labels import (
     audit_structure_selection_holo_preference,
     build_active_learning_review_queue,
     build_adversarial_negative_controls,
+    build_atp_phosphoryl_transfer_family_expansion,
     build_expert_label_decision_local_evidence_review_export,
     build_expert_label_decision_review_export,
     build_expert_review_export,
@@ -924,6 +925,46 @@ def cmd_audit_mechanism_ontology_gaps(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_atp_phosphoryl_transfer_family_expansion(args: argparse.Namespace) -> int:
+    with Path(args.reaction_substrate_mismatch_decision_batch).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        decision_batch = json.load(handle)
+    mismatch_export = None
+    if args.reaction_substrate_mismatch_review_export:
+        with Path(args.reaction_substrate_mismatch_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            mismatch_export = json.load(handle)
+    family_guardrails = None
+    if args.family_propagation_guardrails:
+        with Path(args.family_propagation_guardrails).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            family_guardrails = json.load(handle)
+    active_queue = None
+    if args.active_learning_queue:
+        with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+            active_queue = json.load(handle)
+    adversarial_negatives = None
+    if args.adversarial_negatives:
+        with Path(args.adversarial_negatives).open("r", encoding="utf-8") as handle:
+            adversarial_negatives = json.load(handle)
+    expansion = build_atp_phosphoryl_transfer_family_expansion(
+        reaction_substrate_mismatch_decision_batch=decision_batch,
+        reaction_substrate_mismatch_review_export=mismatch_export,
+        family_propagation_guardrails=family_guardrails,
+        active_learning_queue=active_queue,
+        adversarial_negatives=adversarial_negatives,
+    )
+    write_json(Path(args.out), expansion)
+    print(
+        "Wrote ATP/phosphoryl-transfer family expansion to "
+        f"{args.out} (ready={expansion['metadata']['boundary_guardrail_ready']})"
+    )
+    return 0
+
+
 def cmd_build_learned_retrieval_manifest(args: argparse.Namespace) -> int:
     with Path(args.geometry).open("r", encoding="utf-8") as handle:
         geometry = json.load(handle)
@@ -1385,6 +1426,12 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             review_only_import_safety = json.load(handle)
+    atp_family_expansion = None
+    if args.atp_phosphoryl_transfer_family_expansion:
+        with Path(args.atp_phosphoryl_transfer_family_expansion).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            atp_family_expansion = json.load(handle)
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -1419,6 +1466,7 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         ),
         explicit_alternate_residue_position_requests=alternate_residue_requests,
         review_only_import_safety_audit=review_only_import_safety,
+        atp_phosphoryl_transfer_family_expansion=atp_family_expansion,
         batch_id=args.batch_id,
     )
     write_json(Path(args.out), audit)
@@ -1496,6 +1544,12 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             review_only_import_safety = json.load(handle)
+    atp_family_expansion = None
+    if args.atp_phosphoryl_transfer_family_expansion:
+        with Path(args.atp_phosphoryl_transfer_family_expansion).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            atp_family_expansion = json.load(handle)
     gates = check_label_factory_gates(
         load_labels(Path(args.labels)),
         factory,
@@ -1521,6 +1575,7 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
         ),
         explicit_alternate_residue_position_requests=alternate_residue_requests,
         review_only_import_safety_audit=review_only_import_safety,
+        atp_phosphoryl_transfer_family_expansion=atp_family_expansion,
     )
     write_json(Path(args.out), gates)
     print(
@@ -2286,6 +2341,29 @@ def build_parser() -> argparse.ArgumentParser:
     )
     ontology_gap_audit.set_defaults(func=cmd_audit_mechanism_ontology_gaps)
 
+    atp_family_expansion = subparsers.add_parser(
+        "build-atp-phosphoryl-transfer-family-expansion",
+        help="map expert-reviewed ATP/phosphoryl-transfer mismatch lanes to ontology families",
+    )
+    atp_family_expansion.add_argument(
+        "--reaction-substrate-mismatch-decision-batch",
+        default="artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json",
+    )
+    atp_family_expansion.add_argument(
+        "--reaction-substrate-mismatch-review-export",
+        default=None,
+    )
+    atp_family_expansion.add_argument("--family-propagation-guardrails", default=None)
+    atp_family_expansion.add_argument("--active-learning-queue", default=None)
+    atp_family_expansion.add_argument("--adversarial-negatives", default=None)
+    atp_family_expansion.add_argument(
+        "--out",
+        default="artifacts/v3_atp_phosphoryl_transfer_family_expansion.json",
+    )
+    atp_family_expansion.set_defaults(
+        func=cmd_build_atp_phosphoryl_transfer_family_expansion
+    )
+
     learned_retrieval_manifest = subparsers.add_parser(
         "build-learned-retrieval-manifest",
         help="build a representation-learning interface with heuristic controls",
@@ -2410,6 +2488,7 @@ def build_parser() -> argparse.ArgumentParser:
     gate_check.add_argument("--expert-label-decision-local-evidence-repair-resolution", default=None)
     gate_check.add_argument("--explicit-alternate-residue-position-requests", default=None)
     gate_check.add_argument("--review-only-import-safety-audit", default=None)
+    gate_check.add_argument("--atp-phosphoryl-transfer-family-expansion", default=None)
     gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
     gate_check.set_defaults(func=cmd_check_label_factory_gates)
 
@@ -2766,6 +2845,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     scaling_quality.add_argument("--review-only-import-safety-audit", default=None)
+    scaling_quality.add_argument("--atp-phosphoryl-transfer-family-expansion", default=None)
     scaling_quality.add_argument(
         "--out",
         default="artifacts/v3_label_scaling_quality_audit.json",

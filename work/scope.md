@@ -155,13 +155,15 @@ Current expectation:
 - v2 scaffold: complete
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
-- immediate scientific-expansion priority: use the expert-reviewed
-  ATP/phosphoryl-transfer mismatch lane to aggressively expand the
-  fingerprint-family ontology with ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK,
-  PfkA, PfkB, and GHMP before reopening count growth
-- after those nine fingerprint-family targets are implemented with
-  ontology records, guardrails, tests, artifacts, and documentation, return to
-  factory-gated label scaling toward 10k while preserving quality gates
+- immediate scientific-expansion priority completed: the expert-reviewed
+  ATP/phosphoryl-transfer mismatch lane now has durable fingerprint-family
+  ontology coverage for ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and
+  GHMP, wired through guardrails, review exports, active learning, adversarial
+  negatives, gates, tests, artifacts, and documentation
+- return to factory-gated label scaling toward 10k while preserving quality
+  gates; the next bounded tranche should start from the accepted 700 state and
+  treat the ATP/phosphoryl-transfer family expansion as boundary evidence, not
+  countable label evidence
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
@@ -187,17 +189,20 @@ Current expectation:
   a local-evidence repair plan, resolves 4 reviewed reaction/substrate
   local-evidence lanes as non-countable out-of-scope repair rows, exports
   explicit alternate residue-position sourcing requests for 3 lanes, verifies
-  review-only import safety, and passes the 20-check label-factory gate; the
+  review-only import safety, attaches the ATP/phosphoryl-transfer family
+  expansion gate, and passes the 21-check label-factory gate; the
   active-learning queue now includes a reaction/substrate mismatch ranking
   term, and the 700 family-propagation guardrail blocks 24 reported rows on
   the same mismatch signal with priority retention beyond `max_rows` (17
   labeled propagation blocks and 7 unlabeled pending-review blocks). The
   dedicated mismatch review export carries all 24 lanes, confirms the labeled
-  lane is currently out-of-scope rather than seed-labeled, now drives the
-  expert-reviewed ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP
-  fingerprint-family ontology expansion, and the review-only import-safety
-  audit prevents the reviewed mismatch, expert-decision, and local-evidence
-  decision artifacts from adding countable labels. The expert-label decision export
+  lane is currently out-of-scope rather than seed-labeled, and feeds the
+  expert-reviewed ATP/phosphoryl-transfer family expansion. The expansion
+  artifact maps 20 supported lanes across all nine target families, records
+  4 non-target expert hints and 0 unsupported family mappings, and keeps
+  `countable_label_candidate_count=0`. The review-only import-safety audit
+  prevents the reviewed mismatch, expert-decision, and local-evidence decision
+  artifacts from adding countable labels. The expert-label decision export
   records 0 countable candidates, 0 missing export rows, and risk flags
   dominated by cofactor-family ambiguity, counterevidence boundaries,
   active-site mapping gaps, and nonlocal/text-leakage risk. The repair
@@ -236,8 +241,9 @@ Current expectation:
   350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-,
   650-, 675-, and 700-entry reports have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10, 11,
   11, 15, 17, 17, and 19 respectively
-- next bottleneck is reviewing the accepted 700 factory state and its 81-row
-  review-debt plus scaling-quality audit before any further tranche. The
+- next bottleneck is opening the next bounded factory-gated tranche from the
+  accepted 700 state while continuing to monitor the 81-row review-debt plus
+  scaling-quality audit surface. The
   accepted clean labels are `m_csa:686`, `m_csa:688`, `m_csa:694`,
   `m_csa:697`, and `m_csa:699`; the other 81 review-state rows
   remain outside the benchmark. The 700 scaling-quality audit observes
@@ -256,8 +262,11 @@ Current expectation:
   review and `m_csa:592` to expert reaction/substrate review. The reaction
   mismatch audit flags 18 active-queue hydrolase-top1 rows with kinase or ATP
   phosphoryl-transfer text, while the dedicated mismatch export covers all 24
-  family-guardrail lanes and all remain non-countable. The mechanism ontology
-  gap audit records 115 review-only scope-pressure rows, the learned-retrieval
+  family-guardrail lanes and all remain non-countable. The ATP/phosphoryl
+  transfer expansion now maps 20 supported lanes across ePK, ASKHA, ATP-grasp,
+  GHKL, dNK, NDK, PfkA, PfkB, and GHMP and is ready for label-count growth
+  after the gate. The mechanism ontology gap audit records 115 review-only
+  scope-pressure rows, the learned-retrieval
   manifest exposes 562 eligible rows for future representation work with
   heuristic controls, and the sequence-similarity failure-set audit keeps the 2
   exact-reference duplicate clusters as non-countable propagation controls. The

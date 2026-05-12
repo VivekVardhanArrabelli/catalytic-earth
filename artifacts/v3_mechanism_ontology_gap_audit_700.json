@@ -4,9 +4,19 @@
     "countable_label_candidate_count": 0,
     "emitted_row_count": 89,
     "existing_ontology_families": [
+      "askha",
+      "atp_grasp",
+      "atp_phosphoryl_transfer",
+      "dnk",
+      "epk",
       "flavin_redox",
+      "ghkl",
+      "ghmp",
       "heme_redox",
       "hydrolysis",
+      "ndk",
+      "pfka",
+      "pfkb",
       "plp_chemistry",
       "radical_rearrangement"
     ],
@@ -57,32 +67,6 @@
   "rows": [
     {
       "countable_label_candidate": false,
-      "entry_id": "m_csa:603",
-      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
-      "local_evidence_gap_classes": [],
-      "local_evidence_gap_recommended_action": null,
-      "ontology_update_blockers": [
-        "external_expert_review_required",
-        "keyword_only_scope_signal",
-        "reaction_substrate_mismatch_review_required"
-      ],
-      "quality_risk_flags": [],
-      "rank": 1,
-      "reaction_substrate_mismatch_reasons": [
-        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
-        "kinase_name_with_hydrolase_top1"
-      ],
-      "recommended_action": "hold_bronze_boundary_review",
-      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
-      "scope_signals": [
-        "transferase_phosphoryl",
-        "oxidoreductase_long_tail"
-      ],
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis"
-    },
-    {
-      "countable_label_candidate": false,
       "entry_id": "m_csa:246",
       "entry_name": "receptor protein-tyrosine kinase",
       "local_evidence_gap_classes": [],
@@ -93,7 +77,7 @@
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [],
-      "rank": 2,
+      "rank": 1,
       "reaction_substrate_mismatch_reasons": [
         "atp_phosphoryl_transfer_text_with_hydrolase_top1",
         "kinase_name_with_hydrolase_top1"
@@ -118,7 +102,7 @@
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [],
-      "rank": 3,
+      "rank": 2,
       "reaction_substrate_mismatch_reasons": [
         "kinase_name_with_hydrolase_top1"
       ],
@@ -142,7 +126,7 @@
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [],
-      "rank": 5,
+      "rank": 3,
       "reaction_substrate_mismatch_reasons": [
         "atp_phosphoryl_transfer_text_with_hydrolase_top1"
       ],
@@ -166,33 +150,8 @@
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [],
-      "rank": 7,
+      "rank": 4,
       "reaction_substrate_mismatch_reasons": [
-        "kinase_name_with_hydrolase_top1"
-      ],
-      "recommended_action": "hold_bronze_boundary_review",
-      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
-      "scope_signals": [
-        "transferase_phosphoryl"
-      ],
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis"
-    },
-    {
-      "countable_label_candidate": false,
-      "entry_id": "m_csa:151",
-      "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
-      "local_evidence_gap_classes": [],
-      "local_evidence_gap_recommended_action": null,
-      "ontology_update_blockers": [
-        "external_expert_review_required",
-        "keyword_only_scope_signal",
-        "reaction_substrate_mismatch_review_required"
-      ],
-      "quality_risk_flags": [],
-      "rank": 8,
-      "reaction_substrate_mismatch_reasons": [
-        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
         "kinase_name_with_hydrolase_top1"
       ],
       "recommended_action": "hold_bronze_boundary_review",
@@ -215,7 +174,7 @@
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [],
-      "rank": 10,
+      "rank": 5,
       "reaction_substrate_mismatch_reasons": [
         "atp_phosphoryl_transfer_text_with_hydrolase_top1",
         "kinase_name_with_hydrolase_top1"
@@ -240,33 +199,9 @@
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [],
-      "rank": 11,
+      "rank": 6,
       "reaction_substrate_mismatch_reasons": [
         "kinase_name_with_hydrolase_top1"
-      ],
-      "recommended_action": "hold_bronze_boundary_review",
-      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
-      "scope_signals": [
-        "transferase_phosphoryl"
-      ],
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis"
-    },
-    {
-      "countable_label_candidate": false,
-      "entry_id": "m_csa:541",
-      "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
-      "local_evidence_gap_classes": [],
-      "local_evidence_gap_recommended_action": null,
-      "ontology_update_blockers": [
-        "external_expert_review_required",
-        "keyword_only_scope_signal",
-        "reaction_substrate_mismatch_review_required"
-      ],
-      "quality_risk_flags": [],
-      "rank": 12,
-      "reaction_substrate_mismatch_reasons": [
-        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
       ],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -288,33 +223,8 @@
         "reaction_substrate_mismatch_review_required"
       ],
       "quality_risk_flags": [],
-      "rank": 13,
+      "rank": 7,
       "reaction_substrate_mismatch_reasons": [
-        "kinase_name_with_hydrolase_top1"
-      ],
-      "recommended_action": "hold_bronze_boundary_review",
-      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
-      "scope_signals": [
-        "transferase_phosphoryl"
-      ],
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis"
-    },
-    {
-      "countable_label_candidate": false,
-      "entry_id": "m_csa:51",
-      "entry_name": "phosphoenolpyruvate carboxykinase (ATP)",
-      "local_evidence_gap_classes": [],
-      "local_evidence_gap_recommended_action": null,
-      "ontology_update_blockers": [
-        "external_expert_review_required",
-        "keyword_only_scope_signal",
-        "reaction_substrate_mismatch_review_required"
-      ],
-      "quality_risk_flags": [],
-      "rank": 15,
-      "reaction_substrate_mismatch_reasons": [
-        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
         "kinase_name_with_hydrolase_top1"
       ],
       "recommended_action": "hold_bronze_boundary_review",
@@ -346,7 +256,7 @@
         "reaction_substrate_mismatch",
         "substrate_class_boundary"
       ],
-      "rank": 26,
+      "rank": 8,
       "reaction_substrate_mismatch_reasons": [
         "kinase_name_with_hydrolase_top1"
       ],
@@ -389,7 +299,7 @@
         "substrate_class_boundary",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
-      "rank": 27,
+      "rank": 9,
       "reaction_substrate_mismatch_reasons": [
         "kinase_name_with_hydrolase_top1"
       ],
@@ -419,7 +329,7 @@
         "external_expert_decision_required",
         "reaction_substrate_mismatch"
       ],
-      "rank": 47,
+      "rank": 10,
       "reaction_substrate_mismatch_reasons": [
         "kinase_name_with_hydrolase_top1"
       ],
@@ -457,7 +367,7 @@
         "external_expert_decision_required",
         "reaction_substrate_mismatch"
       ],
-      "rank": 48,
+      "rank": 11,
       "reaction_substrate_mismatch_reasons": [
         "kinase_name_with_hydrolase_top1"
       ],
@@ -490,7 +400,7 @@
         "reaction_substrate_mismatch",
         "substrate_class_boundary"
       ],
-      "rank": 62,
+      "rank": 12,
       "reaction_substrate_mismatch_reasons": [
         "atp_phosphoryl_transfer_text_with_hydrolase_top1",
         "kinase_name_with_hydrolase_top1"
@@ -530,11 +440,111 @@
         "external_expert_decision_required",
         "reaction_substrate_mismatch"
       ],
-      "rank": 81,
+      "rank": 13,
       "reaction_substrate_mismatch_reasons": [
         "kinase_name_with_hydrolase_top1"
       ],
       "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 14,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl",
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:151",
+      "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 17,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:541",
+      "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 19,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:51",
+      "entry_name": "phosphoenolpyruvate carboxykinase (ATP)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 21,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
       "scope_signals": [
         "transferase_phosphoryl"
@@ -572,7 +582,7 @@
         "reaction_substrate_mismatch",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
-      "rank": 163,
+      "rank": 145,
       "reaction_substrate_mismatch_reasons": [
         "atp_phosphoryl_transfer_text_with_hydrolase_top1",
         "kinase_name_with_hydrolase_top1"
@@ -596,7 +606,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 4,
+      "rank": 15,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -617,7 +627,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 6,
+      "rank": 16,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -638,7 +648,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 9,
+      "rank": 18,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -659,7 +669,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 14,
+      "rank": 20,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -680,7 +690,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 16,
+      "rank": 22,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -701,7 +711,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 18,
+      "rank": 24,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -722,7 +732,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 19,
+      "rank": 25,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -762,7 +772,7 @@
         "external_expert_decision_required",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
-      "rank": 21,
+      "rank": 27,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "expert_label_decision_needed",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -783,7 +793,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 22,
+      "rank": 28,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -804,7 +814,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 23,
+      "rank": 29,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -825,7 +835,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 24,
+      "rank": 30,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -846,7 +856,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 29,
+      "rank": 33,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -867,7 +877,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 30,
+      "rank": 34,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -888,7 +898,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 31,
+      "rank": 35,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -909,7 +919,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 32,
+      "rank": 36,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -930,7 +940,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 33,
+      "rank": 37,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -951,7 +961,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 34,
+      "rank": 38,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -972,7 +982,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 35,
+      "rank": 39,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -993,7 +1003,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 36,
+      "rank": 40,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1014,7 +1024,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 37,
+      "rank": 41,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1035,7 +1045,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 38,
+      "rank": 42,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1056,7 +1066,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 40,
+      "rank": 44,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1077,7 +1087,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 41,
+      "rank": 45,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1098,7 +1108,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 43,
+      "rank": 47,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1119,7 +1129,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 44,
+      "rank": 48,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1140,7 +1150,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 45,
+      "rank": 49,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1161,7 +1171,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 46,
+      "rank": 50,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1182,7 +1192,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 49,
+      "rank": 51,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1203,7 +1213,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 51,
+      "rank": 53,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1224,7 +1234,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 52,
+      "rank": 54,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1245,7 +1255,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 53,
+      "rank": 55,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1266,7 +1276,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 56,
+      "rank": 58,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1287,7 +1297,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 57,
+      "rank": 59,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1309,7 +1319,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 58,
+      "rank": 60,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1337,7 +1347,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 60,
+      "rank": 62,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "expert_label_decision_needed",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1358,7 +1368,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 63,
+      "rank": 64,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1379,7 +1389,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 64,
+      "rank": 65,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1400,7 +1410,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 65,
+      "rank": 66,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1421,7 +1431,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 66,
+      "rank": 67,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1442,7 +1452,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 67,
+      "rank": 68,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1463,7 +1473,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 68,
+      "rank": 69,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1484,7 +1494,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 69,
+      "rank": 70,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1505,7 +1515,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 70,
+      "rank": 71,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1526,7 +1536,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 71,
+      "rank": 72,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1547,7 +1557,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 73,
+      "rank": 74,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1568,7 +1578,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 74,
+      "rank": 75,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_need_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1596,7 +1606,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 75,
+      "rank": 76,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "expert_label_decision_needed",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -1617,7 +1627,7 @@
         "keyword_only_scope_signal"
       ],
       "quality_risk_flags": [],
-      "rank": 80,
+      "rank": 81,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "hold_bronze_boundary_review",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -2068,7 +2078,7 @@
         "cofactor_family_ambiguity",
         "external_expert_decision_required"
       ],
-      "rank": 148,
+      "rank": 149,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "expert_label_decision_needed",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -2104,7 +2114,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 152,
+      "rank": 153,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "expert_label_decision_needed",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -2140,7 +2150,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 157,
+      "rank": 158,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "expert_label_decision_needed",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
@@ -2178,7 +2188,7 @@
         "external_expert_decision_required",
         "sibling_mechanism_confusion"
       ],
-      "rank": 162,
+      "rank": 163,
       "reaction_substrate_mismatch_reasons": [],
       "recommended_action": "expert_label_decision_needed",
       "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",

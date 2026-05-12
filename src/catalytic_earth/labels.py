@@ -54,6 +54,133 @@ CONFIDENCE_EVIDENCE_SCORES = {
     "medium": 0.65,
     "low": 0.4,
 }
+ATP_PHOSPHORYL_PARENT_FAMILY_ID = "atp_phosphoryl_transfer"
+ATP_PHOSPHORYL_TRANSFER_FAMILY_IDS = (
+    "epk",
+    "askha",
+    "atp_grasp",
+    "ghkl",
+    "dnk",
+    "ndk",
+    "pfka",
+    "pfkb",
+    "ghmp",
+)
+ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES = {
+    "epk": "ePK-fold protein and ePK-like kinases",
+    "askha": "ASKHA sugar and acetate kinases",
+    "atp_grasp": "ATP-grasp ligases",
+    "ghkl": "GHKL/Bergerat ATP-binding kinases",
+    "dnk": "Deoxynucleoside kinases",
+    "ndk": "Nucleoside diphosphate kinases",
+    "pfka": "PfkA-fold phosphofructokinases",
+    "pfkb": "PfkB/ribokinase-family kinases",
+    "ghmp": "GHMP-superfamily kinases",
+}
+ATP_PHOSPHORYL_FAMILY_HINT_ALIASES = {
+    "epk": "epk",
+    "epk-fold": "epk",
+    "rtk": "epk",
+    "askha": "askha",
+    "hexokinase": "askha",
+    "atp-grasp": "atp_grasp",
+    "atp grasp": "atp_grasp",
+    "ghkl": "ghkl",
+    "bergerat": "ghkl",
+    "dnk": "dnk",
+    "deoxynucleoside": "dnk",
+    "ndk": "ndk",
+    "nucleoside-diphosphate": "ndk",
+    "pfka": "pfka",
+    "pfkb": "pfkb",
+    "ribokinase": "pfkb",
+    "ghmp": "ghmp",
+}
+ATP_PHOSPHORYL_FAMILY_TEXT_PATTERNS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    (
+        "ghkl",
+        (
+            "protein histidine kinase",
+            "histidine kinase",
+            "chea",
+            "pyruvate dehydrogenase",
+            "pyruvate dehydrogenase kinase",
+            "bergerat",
+            "ghkl",
+        ),
+    ),
+    (
+        "atp_grasp",
+        (
+            "atp-grasp",
+            "atp grasp",
+            "glutathione synthase",
+            "d-alanine-(r)-lactate ligase",
+            "d-alanine-d-lactate ligase",
+        ),
+    ),
+    (
+        "askha",
+        ("glucokinase", "hexokinase", "acetate kinase", "acka", "askha"),
+    ),
+    (
+        "dnk",
+        (
+            "thymidine kinase",
+            "deoxyguanosine kinase",
+            "deoxynucleoside kinase",
+            "dnk",
+        ),
+    ),
+    (
+        "ndk",
+        (
+            "nucleoside-diphosphate kinase",
+            "nucleoside diphosphate kinase",
+            "(deoxy)nucleoside-phosphate kinase",
+            "nucleoside-phosphate kinase",
+            "ndk",
+        ),
+    ),
+    ("pfka", ("phosphofructokinase i", "pfka", "pfk-a")),
+    (
+        "pfkb",
+        (
+            "ribokinase",
+            "hydroxymethylpyrimidine kinase",
+            "thid",
+            "pfkb",
+            "pfk-b",
+        ),
+    ),
+    (
+        "ghmp",
+        (
+            "4-(cytidine 5'-diphospho)-2-c-methyl-d-erythritol kinase",
+            "cdp-me kinase",
+            "ispE".lower(),
+            "ghmp",
+        ),
+    ),
+    (
+        "epk",
+        (
+            "phosphorylase kinase",
+            "protein-tyrosine kinase",
+            "receptor protein-tyrosine kinase",
+            "mitogen-activated protein kinase kinase",
+            "map2k",
+            "mapkk",
+            "kanamycin kinase",
+            "aminoglycoside",
+            "phosphatidylinositol-5-phosphate 4-kinase",
+            "phosphatidylinositol",
+            "pip5k",
+            "epk",
+            "protein kinase",
+        ),
+    ),
+)
 
 
 @dataclass(frozen=True)
@@ -2574,6 +2701,12 @@ def build_active_learning_review_queue(
             or entry.get("mechanism_text_snippets", []),
             top1_fingerprint_id=top1_id,
         )
+        atp_family_assignment = _atp_phosphoryl_transfer_family_assignment(
+            entry_name=result.get("entry_name") or entry.get("entry_name") or "",
+            mechanism_text_snippets=result.get("mechanism_text_snippets")
+            or entry.get("mechanism_text_snippets", []),
+            top1_fingerprint_id=top1_id,
+        )
         scores = _active_learning_scores(
             entry=entry,
             result=result,
@@ -2585,6 +2718,7 @@ def build_active_learning_review_queue(
             abstain_threshold=abstain_threshold,
             ontology=ontology,
             reaction_substrate_mismatch_reasons=reaction_mismatch_reasons,
+            atp_phosphoryl_transfer_family_assignment=atp_family_assignment,
         )
         queue_rows.append(
             {
@@ -2607,6 +2741,10 @@ def build_active_learning_review_queue(
                     {"component_scores": _fingerprint_component_scores(top1)}
                 ),
                 "reaction_substrate_mismatch_reasons": reaction_mismatch_reasons,
+                "atp_phosphoryl_transfer_family": atp_family_assignment,
+                "atp_phosphoryl_transfer_family_id": _atp_family_id_from_assignment(
+                    atp_family_assignment
+                ),
                 "review_scores": scores,
                 "review_score": round(sum(scores.values()), 4),
                 "mechanism_text_snippets": result.get("mechanism_text_snippets")
@@ -2631,6 +2769,11 @@ def build_active_learning_review_queue(
         for row in ranked_rows
         if row.get("reaction_substrate_mismatch_reasons")
     )
+    atp_family_counts = Counter(
+        str(row.get("atp_phosphoryl_transfer_family_id"))
+        for row in ranked_rows
+        if row.get("atp_phosphoryl_transfer_family_id")
+    )
     score_totals = Counter()
     for row in ranked_rows:
         for key, value in row["review_scores"].items():
@@ -2650,6 +2793,7 @@ def build_active_learning_review_queue(
                 "evidence_conflict",
                 "family_boundary_value",
                 "reaction_substrate_mismatch_value",
+                "atp_phosphoryl_family_boundary_value",
             ],
             "score_totals": dict(sorted((key, round(value, 4)) for key, value in score_totals.items())),
             "unlabeled_count": sum(1 for row in ranked_rows if row["label_state"] == "unlabeled"),
@@ -2660,6 +2804,12 @@ def build_active_learning_review_queue(
             "all_unlabeled_rows_retained": omitted_unlabeled_count == 0,
             "reaction_substrate_mismatch_count": len(reaction_mismatch_entry_ids),
             "reaction_substrate_mismatch_entry_ids": reaction_mismatch_entry_ids,
+            "atp_phosphoryl_transfer_family_counts": dict(
+                sorted(atp_family_counts.items())
+            ),
+            "atp_phosphoryl_transfer_family_boundary_count": sum(
+                atp_family_counts.values()
+            ),
             "labeled_review_count": sum(1 for row in ranked_rows if row["label_state"] == "labeled"),
         },
         "rows": ranked_rows,
@@ -2692,6 +2842,11 @@ def build_adversarial_negative_controls(
         counterevidence = _counterevidence_reasons_from_row(
             {"component_scores": _fingerprint_component_scores(top1)}
         )
+        atp_family_assignment = _atp_phosphoryl_transfer_family_assignment(
+            entry_name=result.get("entry_name") or "",
+            mechanism_text_snippets=result.get("mechanism_text_snippets", []),
+            top1_fingerprint_id=top1.get("fingerprint_id"),
+        )
         control_axes = _adversarial_negative_axes(
             top1=top1,
             top1_score=top1_score,
@@ -2701,6 +2856,10 @@ def build_adversarial_negative_controls(
             counterevidence=counterevidence,
             abstain_threshold=abstain_threshold,
         )
+        if atp_family_assignment is not None:
+            control_axes = sorted(
+                set([*control_axes, "atp_phosphoryl_transfer_family_boundary"])
+            )
         if not control_axes:
             continue
         adversarial_score = _adversarial_negative_score(
@@ -2723,6 +2882,10 @@ def build_adversarial_negative_controls(
                 "score_gap_to_abstain_threshold": round(abstain_threshold - top1_score, 4),
                 "cofactor_evidence_level": top1.get("cofactor_evidence_level"),
                 "control_axes": control_axes,
+                "atp_phosphoryl_transfer_family": atp_family_assignment,
+                "atp_phosphoryl_transfer_family_id": _atp_family_id_from_assignment(
+                    atp_family_assignment
+                ),
                 "adversarial_score": adversarial_score,
                 "counterevidence_reasons": counterevidence,
                 "component_scores": _fingerprint_component_scores(top1),
@@ -2737,6 +2900,11 @@ def build_adversarial_negative_controls(
     for index, row in enumerate(ranked_rows, start=1):
         row["rank"] = index
     axis_counts = Counter(axis for row in ranked_rows for axis in row["control_axes"])
+    atp_family_counts = Counter(
+        str(row.get("atp_phosphoryl_transfer_family_id"))
+        for row in ranked_rows
+        if row.get("atp_phosphoryl_transfer_family_id")
+    )
     return {
         "metadata": {
             "method": "adversarial_negative_control_mining",
@@ -2745,10 +2913,16 @@ def build_adversarial_negative_controls(
             "max_rows": max_rows,
             "abstain_threshold": abstain_threshold,
             "axis_counts": dict(sorted(axis_counts.items())),
+            "atp_phosphoryl_transfer_family_counts": dict(
+                sorted(atp_family_counts.items())
+            ),
+            "atp_phosphoryl_transfer_family_boundary_count": sum(
+                atp_family_counts.values()
+            ),
             "selection_rule": (
                 "rank out-of-scope entries that stress ontology boundaries, "
                 "cofactor mimics, counterevidence, close top1/top2 families, "
-                "and abstention-threshold proximity"
+                "ATP/phosphoryl-transfer family boundaries, and abstention-threshold proximity"
             ),
         },
         "rows": ranked_rows,
@@ -4830,6 +5004,317 @@ def _ontology_gap_scope_signals(text: str) -> list[str]:
     return signals
 
 
+def build_atp_phosphoryl_transfer_family_expansion(
+    *,
+    reaction_substrate_mismatch_decision_batch: dict[str, Any],
+    reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
+    family_propagation_guardrails: dict[str, Any] | None = None,
+    active_learning_queue: dict[str, Any] | None = None,
+    adversarial_negatives: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Materialize expert-reviewed ATP/phosphoryl-transfer family boundaries."""
+    ontology = load_mechanism_ontology()
+    family_records = {
+        str(family.get("id")): family
+        for family in ontology.get("families", [])
+        if isinstance(family, dict) and isinstance(family.get("id"), str)
+    }
+    target_family_records = [
+        _atp_target_family_record(family_id, family_records.get(family_id, {}))
+        for family_id in ATP_PHOSPHORYL_TRANSFER_FAMILY_IDS
+    ]
+    all_required_families_present = all(
+        row["present_in_ontology"] for row in target_family_records
+    )
+    all_required_families_have_scope_notes = all(
+        row["has_scope_note"] for row in target_family_records
+    )
+    all_required_family_relationships_declared = all(
+        row["has_parent_or_sibling_relationship"] for row in target_family_records
+    )
+
+    export_context_by_entry = _review_export_context_by_entry(
+        reaction_substrate_mismatch_review_export
+    )
+    family_guardrail_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (family_propagation_guardrails or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    queue_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (active_learning_queue or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    adversarial_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (adversarial_negatives or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    rows: list[dict[str, Any]] = []
+    non_target_hint_rows: list[dict[str, Any]] = []
+    for item in reaction_substrate_mismatch_decision_batch.get("review_items", []):
+        if not isinstance(item, dict) or not isinstance(item.get("entry_id"), str):
+            continue
+        entry_id = str(item["entry_id"])
+        decision = item.get("decision", {})
+        if not isinstance(decision, dict):
+            decision = {}
+        context = item.get("mismatch_context", {})
+        if not isinstance(context, dict):
+            context = {}
+        export_context = export_context_by_entry.get(entry_id, {})
+        family_guardrail = family_guardrail_by_entry.get(entry_id, {})
+        queue_row = queue_by_entry.get(entry_id, {})
+        future_hint = decision.get("future_fingerprint_family_hint")
+        assignment = _atp_phosphoryl_transfer_family_assignment(
+            entry_name=(
+                item.get("entry_name")
+                or context.get("entry_name")
+                or export_context.get("entry_name")
+                or queue_row.get("entry_name")
+                or family_guardrail.get("entry_name")
+                or ""
+            ),
+            mechanism_text_snippets=(
+                context.get("mechanism_text_snippets")
+                or export_context.get("mechanism_text_snippets")
+                or queue_row.get("mechanism_text_snippets")
+                or family_guardrail.get("mechanism_text_snippets")
+                or []
+            ),
+            top1_fingerprint_id=(
+                context.get("top1_fingerprint_id")
+                or export_context.get("top1_fingerprint_id")
+                or queue_row.get("top1_fingerprint_id")
+                or family_guardrail.get("top1_fingerprint_id")
+            ),
+            future_family_hint=future_hint,
+            require_mismatch_signal=False,
+        )
+        if assignment is None:
+            if future_hint:
+                non_target_hint_rows.append(
+                    {
+                        "entry_id": entry_id,
+                        "entry_name": item.get("entry_name")
+                        or context.get("entry_name"),
+                        "future_fingerprint_family_hint": future_hint,
+                        "decision_action": decision.get("action"),
+                        "countable_label_candidate": False,
+                        "non_target_rule": (
+                            "expert hints outside the nine prioritized families "
+                            "are retained as future ontology pressure, not mapped "
+                            "or counted in this expansion"
+                        ),
+                    }
+                )
+            continue
+        family_id = str(assignment["family_id"])
+        decision_action = str(decision.get("action") or "no_decision")
+        reaction_resolution = str(
+            decision.get("reaction_substrate_resolution") or "needs_more_evidence"
+        )
+        expert_supported = (
+            decision.get("review_status") == "expert_reviewed"
+            and reaction_resolution != "needs_more_evidence"
+            and bool(decision.get("reviewer"))
+            and bool(future_hint)
+        )
+        countable_label_candidate = False
+        non_countable_blockers = {
+            "review_only_reaction_substrate_mismatch_lane",
+            "not_seed_fingerprint_training_label",
+        }
+        if decision_action == "reject_label":
+            non_countable_blockers.add("expert_rejected_current_label_candidate")
+        if decision.get("label_type") == "out_of_scope":
+            non_countable_blockers.add("expert_confirmed_out_of_scope_boundary")
+        if not expert_supported:
+            non_countable_blockers.add("family_mapping_not_expert_supported")
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": item.get("entry_name")
+                or context.get("entry_name")
+                or export_context.get("entry_name"),
+                "family_id": family_id,
+                "family_name": assignment["family_name"],
+                "parent_family_id": assignment["parent_family_id"],
+                "support_level": (
+                    "expert_review_supported_family_boundary"
+                    if expert_supported
+                    else "review_only_family_hint_without_expert_resolution"
+                    if future_hint
+                    else assignment["support_level"]
+                ),
+                "evidence_sources": assignment["evidence_sources"],
+                "future_fingerprint_family_hint": future_hint,
+                "decision_action": decision_action,
+                "decision_label_type": decision.get("label_type"),
+                "decision_review_status": decision.get("review_status"),
+                "reaction_substrate_resolution": reaction_resolution,
+                "reviewer": decision.get("reviewer"),
+                "top1_fingerprint_id": context.get("top1_fingerprint_id")
+                or export_context.get("top1_fingerprint_id")
+                or queue_row.get("top1_fingerprint_id")
+                or family_guardrail.get("top1_fingerprint_id"),
+                "top1_ontology_family": context.get("top1_ontology_family")
+                or export_context.get("top1_ontology_family")
+                or queue_row.get("top1_ontology_family")
+                or family_guardrail.get("top1_ontology_family"),
+                "propagation_blockers": _sorted_strings(
+                    family_guardrail.get("propagation_blockers", [])
+                ),
+                "mismatch_reasons": _sorted_strings(
+                    context.get("mismatch_reasons", [])
+                    or export_context.get("mismatch_reasons", [])
+                    or family_guardrail.get("reaction_substrate_mismatch_reasons", [])
+                    or queue_row.get("reaction_substrate_mismatch_reasons", [])
+                ),
+                "active_learning_rank": queue_row.get("rank"),
+                "adversarial_control_axes": _sorted_strings(
+                    adversarial_by_entry.get(entry_id, {}).get("control_axes", [])
+                ),
+                "countable_label_candidate": countable_label_candidate,
+                "non_countable_blockers": sorted(non_countable_blockers),
+                "review_policy": (
+                    "Family assignment is a first-class ontology boundary for "
+                    "routing and adversarial controls, but does not create a "
+                    "countable label from review-only mismatch artifacts."
+                ),
+            }
+        )
+
+    mapped_required_family_ids = sorted({row["family_id"] for row in rows})
+    unmapped_required_family_ids = sorted(
+        set(ATP_PHOSPHORYL_TRANSFER_FAMILY_IDS) - set(mapped_required_family_ids)
+    )
+    supported_rows = [
+        row
+        for row in rows
+        if row["support_level"] == "expert_review_supported_family_boundary"
+    ]
+    unsupported_rows = [
+        row
+        for row in rows
+        if row["support_level"] != "expert_review_supported_family_boundary"
+    ]
+    family_counts = Counter(row["family_id"] for row in rows)
+    decision_counts = Counter(row["decision_action"] for row in rows)
+    countable_label_candidate_count = sum(
+        1 for row in rows if row["countable_label_candidate"]
+    )
+    boundary_guardrail_ready = (
+        all_required_families_present
+        and all_required_families_have_scope_notes
+        and all_required_family_relationships_declared
+        and not unmapped_required_family_ids
+        and not countable_label_candidate_count
+        and not unsupported_rows
+    )
+    return {
+        "metadata": {
+            "method": "atp_phosphoryl_transfer_family_expansion",
+            "ontology_version": ontology.get("version"),
+            "parent_family_id": ATP_PHOSPHORYL_PARENT_FAMILY_ID,
+            "required_family_ids": list(ATP_PHOSPHORYL_TRANSFER_FAMILY_IDS),
+            "required_family_count": len(ATP_PHOSPHORYL_TRANSFER_FAMILY_IDS),
+            "ontology_target_family_count": len(target_family_records),
+            "all_required_families_present": all_required_families_present,
+            "all_required_families_have_scope_notes": (
+                all_required_families_have_scope_notes
+            ),
+            "all_required_family_relationships_declared": (
+                all_required_family_relationships_declared
+            ),
+            "mapped_required_family_ids": mapped_required_family_ids,
+            "unmapped_required_family_ids": unmapped_required_family_ids,
+            "all_required_families_have_supported_mappings": (
+                not unmapped_required_family_ids and not unsupported_rows
+            ),
+            "supported_mapping_count": len(supported_rows),
+            "unsupported_mapping_count": len(unsupported_rows),
+            "non_target_expert_hint_count": len(non_target_hint_rows),
+            "family_counts": dict(sorted(family_counts.items())),
+            "decision_action_counts": dict(sorted(decision_counts.items())),
+            "countable_label_candidate_count": countable_label_candidate_count,
+            "boundary_guardrail_ready": boundary_guardrail_ready,
+            "ready_for_label_count_growth_after_gate": boundary_guardrail_ready,
+            "active_queue_family_boundary_count": int(
+                (active_learning_queue or {})
+                .get("metadata", {})
+                .get("atp_phosphoryl_transfer_family_boundary_count", 0)
+                or 0
+            ),
+            "family_guardrail_family_boundary_count": int(
+                (family_propagation_guardrails or {})
+                .get("metadata", {})
+                .get("atp_phosphoryl_transfer_family_boundary_count", 0)
+                or 0
+            ),
+            "adversarial_negative_family_boundary_count": int(
+                (adversarial_negatives or {})
+                .get("metadata", {})
+                .get("atp_phosphoryl_transfer_family_boundary_count", 0)
+                or 0
+            ),
+            "review_only_rule": (
+                "Expert-reviewed future-family hints map reaction/substrate "
+                "mismatch lanes to ontology families, but all mapped rows remain "
+                "non-countable boundary evidence unless a separate countable "
+                "label-review path clears the factory gates."
+            ),
+        },
+        "target_families": target_family_records,
+        "rows": sorted(
+            rows,
+            key=lambda row: (row["family_id"], _entry_id_sort_key(row["entry_id"])),
+        ),
+        "non_target_expert_hint_rows": sorted(
+            non_target_hint_rows,
+            key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+        ),
+    }
+
+
+def _atp_target_family_record(
+    family_id: str,
+    family: dict[str, Any],
+) -> dict[str, Any]:
+    sibling_ids = _sorted_strings(family.get("sibling_ids", []))
+    parent_id = family.get("parent_id")
+    scope_note = family.get("scope_note")
+    return {
+        "id": family_id,
+        "name": family.get("name") or ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES[family_id],
+        "present_in_ontology": bool(family),
+        "parent_id": parent_id,
+        "scope_note": scope_note,
+        "has_scope_note": isinstance(scope_note, str) and len(scope_note) >= 40,
+        "sibling_ids": sibling_ids,
+        "has_parent_or_sibling_relationship": (
+            parent_id == ATP_PHOSPHORYL_PARENT_FAMILY_ID or bool(sibling_ids)
+        ),
+        "family_boundary_guardrails": _sorted_strings(
+            family.get("family_boundary_guardrails", [])
+        ),
+    }
+
+
+def _review_export_context_by_entry(
+    review_export: dict[str, Any] | None,
+) -> dict[str, dict[str, Any]]:
+    contexts: dict[str, dict[str, Any]] = {}
+    for item in (review_export or {}).get("review_items", []):
+        if not isinstance(item, dict) or not isinstance(item.get("entry_id"), str):
+            continue
+        context = item.get("mismatch_context", {})
+        contexts[str(item["entry_id"])] = context if isinstance(context, dict) else {}
+    return contexts
+
+
 def audit_sequence_similarity_failure_sets(
     sequence_clusters: dict[str, Any],
     labels: list[MechanismLabel],
@@ -5126,6 +5611,7 @@ def check_label_factory_gates(
     expert_label_decision_local_evidence_repair_resolution: dict[str, Any] | None = None,
     explicit_alternate_residue_position_requests: dict[str, Any] | None = None,
     review_only_import_safety_audit: dict[str, Any] | None = None,
+    atp_phosphoryl_transfer_family_expansion: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     ontology = load_mechanism_ontology()
     required_terms = {
@@ -5476,6 +5962,36 @@ def check_label_factory_gates(
             and import_safety_new_count == 0
         )
     )
+    atp_family_expansion_meta = (
+        atp_phosphoryl_transfer_family_expansion or {}
+    ).get("metadata", {})
+    atp_family_expansion_present = (
+        atp_family_expansion_meta.get("method")
+        == "atp_phosphoryl_transfer_family_expansion"
+    )
+    atp_family_expansion_countable_count = int(
+        atp_family_expansion_meta.get("countable_label_candidate_count", 0) or 0
+    )
+    atp_family_expansion_ready = (
+        not atp_phosphoryl_transfer_family_expansion
+        or (
+            atp_family_expansion_present
+            and bool(atp_family_expansion_meta.get("boundary_guardrail_ready"))
+            and bool(atp_family_expansion_meta.get("all_required_families_present"))
+            and bool(
+                atp_family_expansion_meta.get(
+                    "all_required_families_have_scope_notes"
+                )
+            )
+            and bool(
+                atp_family_expansion_meta.get(
+                    "all_required_family_relationships_declared"
+                )
+            )
+            and not atp_family_expansion_meta.get("unmapped_required_family_ids", [])
+            and atp_family_expansion_countable_count == 0
+        )
+    )
     gates = {
         "label_schema_explicit": all(
             label.tier in LABEL_TIERS
@@ -5556,6 +6072,10 @@ def check_label_factory_gates(
         )
     if review_only_import_safety_audit is not None:
         gates["review_only_import_safety_audit_ready"] = import_safety_ready
+    if atp_phosphoryl_transfer_family_expansion is not None:
+        gates["atp_phosphoryl_transfer_family_expansion_ready"] = (
+            atp_family_expansion_ready
+        )
     blockers = [name for name, passed in gates.items() if not passed]
     return {
         "metadata": {
@@ -5732,6 +6252,21 @@ def check_label_factory_gates(
             ),
             "review_only_import_safety_audit_unsafe_artifacts": (
                 import_safety_meta.get("unsafe_artifacts", [])
+            ),
+            "atp_phosphoryl_transfer_family_expansion_present": (
+                atp_family_expansion_present
+            ),
+            "atp_phosphoryl_transfer_family_expansion_ready": (
+                atp_family_expansion_ready
+            ),
+            "atp_phosphoryl_transfer_family_expansion_mapped_family_ids": (
+                atp_family_expansion_meta.get("mapped_required_family_ids", [])
+            ),
+            "atp_phosphoryl_transfer_family_expansion_unmapped_family_ids": (
+                atp_family_expansion_meta.get("unmapped_required_family_ids", [])
+            ),
+            "atp_phosphoryl_transfer_family_expansion_countable_label_candidate_count": (
+                atp_family_expansion_countable_count
             ),
             "bulk_scaling_rule": (
                 "new labels may be added in batches only after this gate check "
@@ -8191,6 +8726,11 @@ def audit_reaction_substrate_mismatches(
         )
         if not reasons:
             continue
+        atp_family_assignment = _atp_phosphoryl_transfer_family_assignment(
+            entry_name=row.get("entry_name", ""),
+            mechanism_text_snippets=row.get("mechanism_text_snippets", []),
+            top1_fingerprint_id=row.get("top1_fingerprint_id"),
+        )
         rows.append(
             {
                 "entry_id": entry_id,
@@ -8209,6 +8749,10 @@ def audit_reaction_substrate_mismatches(
                 "label_state": row.get("label_state"),
                 "current_label_type": row.get("current_label_type"),
                 "mismatch_reasons": reasons,
+                "atp_phosphoryl_transfer_family": atp_family_assignment,
+                "atp_phosphoryl_transfer_family_id": _atp_family_id_from_assignment(
+                    atp_family_assignment
+                ),
                 "mechanism_text_snippets": row.get("mechanism_text_snippets", []),
                 "countable_label_candidate": False,
                 "review_policy": (
@@ -8223,6 +8767,11 @@ def audit_reaction_substrate_mismatches(
         reason for row in rows for reason in row.get("mismatch_reasons", [])
     )
     top1_counts = Counter(str(row.get("top1_fingerprint_id")) for row in rows)
+    atp_family_counts = Counter(
+        str(row.get("atp_phosphoryl_transfer_family_id"))
+        for row in rows
+        if row.get("atp_phosphoryl_transfer_family_id")
+    )
     return {
         "metadata": {
             "method": "reaction_substrate_mismatch_audit",
@@ -8230,6 +8779,12 @@ def audit_reaction_substrate_mismatches(
             "mismatch_entry_ids": _sorted_entry_ids(row.get("entry_id") for row in rows),
             "mismatch_reason_counts": dict(sorted(reason_counts.items())),
             "top1_fingerprint_counts": dict(sorted(top1_counts.items())),
+            "atp_phosphoryl_transfer_family_counts": dict(
+                sorted(atp_family_counts.items())
+            ),
+            "atp_phosphoryl_transfer_family_boundary_count": sum(
+                atp_family_counts.values()
+            ),
             "countable_label_candidate_count": 0,
             "review_rule": (
                 "keyword-level reaction/substrate mismatch signals are review "
@@ -8299,6 +8854,20 @@ def build_reaction_substrate_mismatch_review_export(
                 else None
             )
         )
+        atp_family_assignment = (
+            guardrail_row.get("atp_phosphoryl_transfer_family")
+            if isinstance(guardrail_row.get("atp_phosphoryl_transfer_family"), dict)
+            else audit_row.get("atp_phosphoryl_transfer_family")
+            if isinstance(audit_row.get("atp_phosphoryl_transfer_family"), dict)
+            else _atp_phosphoryl_transfer_family_assignment(
+                entry_name=guardrail_row.get("entry_name")
+                or audit_row.get("entry_name")
+                or "",
+                mechanism_text_snippets=guardrail_row.get("mechanism_text_snippets")
+                or audit_row.get("mechanism_text_snippets", []),
+                top1_fingerprint_id=top1_fingerprint_id,
+            )
+        )
         current_label_type = (
             label.label_type
             if label
@@ -8333,6 +8902,10 @@ def build_reaction_substrate_mismatch_review_export(
                     guardrail_row.get("propagation_blockers", [])
                 ),
                 "mismatch_reasons": mismatch_reasons,
+                "atp_phosphoryl_transfer_family": atp_family_assignment,
+                "atp_phosphoryl_transfer_family_id": _atp_family_id_from_assignment(
+                    atp_family_assignment
+                ),
                 "source_artifacts": sorted(source_artifacts),
                 "source_recommended_action": audit_row.get("source_recommended_action"),
                 "recommended_action": "expert_reaction_substrate_review",
@@ -8368,6 +8941,11 @@ def build_reaction_substrate_mismatch_review_export(
         for row in context_rows
         if row.get("top1_fingerprint_id")
     )
+    atp_family_counts = Counter(
+        str(row.get("atp_phosphoryl_transfer_family_id"))
+        for row in context_rows
+        if row.get("atp_phosphoryl_transfer_family_id")
+    )
     audit_entry_ids = _sorted_entry_ids(audit_rows_by_entry)
     guardrail_entry_ids = _sorted_entry_ids(guardrail_rows_by_entry)
     export_entry_ids = _sorted_entry_ids(row.get("entry_id") for row in context_rows)
@@ -8400,6 +8978,12 @@ def build_reaction_substrate_mismatch_review_export(
             "labeled_seed_mismatch_entry_ids": labeled_seed_mismatch_entry_ids,
             "mismatch_reason_counts": dict(sorted(reason_counts.items())),
             "top1_fingerprint_counts": dict(sorted(top1_counts.items())),
+            "atp_phosphoryl_transfer_family_counts": dict(
+                sorted(atp_family_counts.items())
+            ),
+            "atp_phosphoryl_transfer_family_boundary_count": sum(
+                atp_family_counts.values()
+            ),
             "countable_label_candidate_count": 0,
             "ontology_rule_decision": "defer_new_family_rule_until_expert_review",
             "recommended_path": "expert_reaction_substrate_review_before_ontology_split",
@@ -8508,6 +9092,88 @@ def _remap_local_reaction_substrate_mismatch_reasons(
     if atp_phosphoryl_context and transfer_language and not hydrolysis_language:
         reasons.append("atp_phosphoryl_transfer_text_with_hydrolase_top1")
     return reasons
+
+
+def _normalize_atp_phosphoryl_family_hint(value: Any) -> str | None:
+    text = str(value or "").strip().lower()
+    if not text:
+        return None
+    normalized = re.sub(r"[^a-z0-9]+", " ", text).strip()
+    compact = normalized.replace(" ", "")
+    for alias, family_id in ATP_PHOSPHORYL_FAMILY_HINT_ALIASES.items():
+        alias_normalized = re.sub(r"[^a-z0-9]+", " ", alias.lower()).strip()
+        if alias_normalized and alias_normalized in normalized:
+            return family_id
+        if alias_normalized.replace(" ", "") and alias_normalized.replace(" ", "") in compact:
+            return family_id
+    return None
+
+
+def _atp_phosphoryl_transfer_family_assignment(
+    *,
+    entry_name: Any = "",
+    mechanism_text_snippets: Any = None,
+    top1_fingerprint_id: Any = None,
+    future_family_hint: Any = None,
+    require_mismatch_signal: bool = True,
+) -> dict[str, Any] | None:
+    """Conservatively map ATP/phosphoryl-transfer review lanes to target families."""
+    hint_family_id = _normalize_atp_phosphoryl_family_hint(future_family_hint)
+    if hint_family_id:
+        return _atp_family_assignment_row(
+            family_id=hint_family_id,
+            evidence_sources=["expert_review_future_fingerprint_family_hint"],
+            support_level="expert_review_supported_family_boundary",
+        )
+
+    snippets = _sorted_strings(mechanism_text_snippets or [])
+    mismatch_reasons = _remap_local_reaction_substrate_mismatch_reasons(
+        entry_name=str(entry_name or ""),
+        mechanism_text_snippets=snippets,
+        top1_fingerprint_id=top1_fingerprint_id,
+    )
+    if require_mismatch_signal and not mismatch_reasons:
+        return None
+    text = " ".join([str(entry_name or ""), *snippets]).lower()
+    for family_id, patterns in ATP_PHOSPHORYL_FAMILY_TEXT_PATTERNS:
+        if any(pattern in text for pattern in patterns):
+            return _atp_family_assignment_row(
+                family_id=family_id,
+                evidence_sources=[
+                    "reaction_substrate_mismatch_text_signature",
+                    *mismatch_reasons,
+                ],
+                support_level="review_lane_text_signature_only",
+            )
+    return None
+
+
+def _atp_family_assignment_row(
+    *,
+    family_id: str,
+    evidence_sources: list[str],
+    support_level: str,
+) -> dict[str, Any]:
+    return {
+        "family_id": family_id,
+        "family_name": ATP_PHOSPHORYL_TRANSFER_FAMILY_NAMES[family_id],
+        "parent_family_id": ATP_PHOSPHORYL_PARENT_FAMILY_ID,
+        "support_level": support_level,
+        "evidence_sources": _sorted_strings(evidence_sources),
+        "countable_label_candidate": False,
+        "review_rule": (
+            "ATP/phosphoryl-transfer family mapping is ontology boundary "
+            "evidence only; unsupported rows stay review-only and cannot be "
+            "counted as hydrolase labels."
+        ),
+    }
+
+
+def _atp_family_id_from_assignment(assignment: dict[str, Any] | None) -> str | None:
+    if not isinstance(assignment, dict):
+        return None
+    family_id = assignment.get("family_id")
+    return str(family_id) if isinstance(family_id, str) and family_id else None
 
 
 def _ligand_codes_matching_families(
@@ -9173,6 +9839,7 @@ def audit_label_scaling_quality(
     expert_label_decision_local_evidence_repair_resolution: dict[str, Any] | None = None,
     explicit_alternate_residue_position_requests: dict[str, Any] | None = None,
     review_only_import_safety_audit: dict[str, Any] | None = None,
+    atp_phosphoryl_transfer_family_expansion: dict[str, Any] | None = None,
     batch_id: str | None = None,
 ) -> dict[str, Any]:
     acceptance_meta = acceptance.get("metadata", {})
@@ -9209,6 +9876,9 @@ def audit_label_scaling_quality(
         explicit_alternate_residue_position_requests or {}
     ).get("metadata", {})
     import_safety_meta = (review_only_import_safety_audit or {}).get("metadata", {})
+    atp_family_expansion_meta = (
+        atp_phosphoryl_transfer_family_expansion or {}
+    ).get("metadata", {})
     new_debt_ids = sorted(
         (
             str(entry_id)
@@ -9678,6 +10348,33 @@ def audit_label_scaling_quality(
     import_safety_new_count = int(
         import_safety_meta.get("total_new_countable_label_count", 0) or 0
     )
+    atp_family_expansion_present = (
+        atp_family_expansion_meta.get("method")
+        == "atp_phosphoryl_transfer_family_expansion"
+    )
+    atp_family_expansion_countable_count = int(
+        atp_family_expansion_meta.get("countable_label_candidate_count", 0) or 0
+    )
+    atp_family_expansion_ready = (
+        not atp_phosphoryl_transfer_family_expansion
+        or (
+            atp_family_expansion_present
+            and bool(atp_family_expansion_meta.get("boundary_guardrail_ready"))
+            and bool(atp_family_expansion_meta.get("all_required_families_present"))
+            and bool(
+                atp_family_expansion_meta.get(
+                    "all_required_family_relationships_declared"
+                )
+            )
+            and bool(
+                atp_family_expansion_meta.get(
+                    "all_required_families_have_scope_notes"
+                )
+            )
+            and not atp_family_expansion_meta.get("unmapped_required_family_ids", [])
+            and atp_family_expansion_countable_count == 0
+        )
+    )
     local_gap_action_counts = expert_label_decision_local_gap_meta.get(
         "recommended_action_counts", {}
     )
@@ -9786,6 +10483,10 @@ def audit_label_scaling_quality(
                 and bool(import_safety_meta.get("countable_import_safe"))
                 and import_safety_new_count == 0
             )
+        if atp_phosphoryl_transfer_family_expansion is not None:
+            gates["atp_phosphoryl_transfer_family_expansion_ready"] = (
+                atp_family_expansion_ready
+            )
         blockers = [name for name, passed in gates.items() if not passed]
     if active_expert_label_decision_entry_ids and not expert_label_decision_export_present:
         review_warnings.append("expert_label_decision_review_export_missing")
@@ -9864,6 +10565,13 @@ def audit_label_scaling_quality(
         review_warnings.append("review_only_import_safety_audit_missing")
     elif import_safety_new_count:
         review_warnings.append("review_only_import_safety_audit_found_countable_growth")
+    if (
+        atp_phosphoryl_transfer_family_expansion is not None
+        and not atp_family_expansion_present
+    ):
+        review_warnings.append("atp_phosphoryl_transfer_family_expansion_missing")
+    elif atp_phosphoryl_transfer_family_expansion is not None and not atp_family_expansion_ready:
+        review_warnings.append("atp_phosphoryl_transfer_family_expansion_not_ready")
 
     reaction_failure_mode = _scaling_failure_mode_summary(
         "reaction_direction_or_substrate_class_mismatch",
@@ -9962,6 +10670,44 @@ def audit_label_scaling_quality(
             "not_observed_in_new_review_debt",
         ),
         reaction_failure_mode,
+        {
+            "id": "atp_phosphoryl_transfer_family_boundary",
+            "status": "guardrail_clean"
+            if atp_family_expansion_ready
+            else "not_assessed"
+            if atp_phosphoryl_transfer_family_expansion is None
+            else "observed_needs_repair",
+            "issue_count": len(
+                atp_family_expansion_meta.get("mapped_required_family_ids", [])
+                or []
+            )
+            if atp_family_expansion_ready
+            else int(
+                atp_family_expansion_meta.get("unsupported_mapping_count", 0) or 0
+            ),
+            "entry_ids": [
+                str(row.get("entry_id"))
+                for row in (atp_phosphoryl_transfer_family_expansion or {}).get(
+                    "rows", []
+                )
+                if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+            ],
+            "evidence": {
+                "expansion_present": atp_family_expansion_present,
+                "mapped_required_family_ids": atp_family_expansion_meta.get(
+                    "mapped_required_family_ids", []
+                ),
+                "unmapped_required_family_ids": atp_family_expansion_meta.get(
+                    "unmapped_required_family_ids", []
+                ),
+                "countable_label_candidate_count": (
+                    atp_family_expansion_countable_count
+                ),
+                "boundary_guardrail_ready": atp_family_expansion_meta.get(
+                    "boundary_guardrail_ready"
+                ),
+            },
+        },
         _scaling_failure_mode_summary(
             "active_site_residue_remapping_error",
             issue_rows,
@@ -10443,6 +11189,21 @@ def audit_label_scaling_quality(
             "review_only_import_safety_audit_unsafe_artifacts": (
                 import_safety_meta.get("unsafe_artifacts", [])
             ),
+            "atp_phosphoryl_transfer_family_expansion_present": (
+                atp_family_expansion_present
+            ),
+            "atp_phosphoryl_transfer_family_expansion_ready": (
+                atp_family_expansion_ready
+            ),
+            "atp_phosphoryl_transfer_family_expansion_mapped_family_ids": (
+                atp_family_expansion_meta.get("mapped_required_family_ids", [])
+            ),
+            "atp_phosphoryl_transfer_family_expansion_unmapped_family_ids": (
+                atp_family_expansion_meta.get("unmapped_required_family_ids", [])
+            ),
+            "atp_phosphoryl_transfer_family_expansion_countable_label_candidate_count": (
+                atp_family_expansion_countable_count
+            ),
             "issue_class_counts": dict(sorted(issue_class_counts.items())),
             "audit_rule": (
                 "before promoting a preview batch, classify new ontology, "
@@ -10679,6 +11440,11 @@ def build_family_propagation_guardrails(
             mechanism_text_snippets=mechanism_text_snippets,
             top1_fingerprint_id=top1_id,
         )
+        atp_family_assignment = _atp_phosphoryl_transfer_family_assignment(
+            entry_name=entry_name,
+            mechanism_text_snippets=mechanism_text_snippets,
+            top1_fingerprint_id=top1_id,
+        )
         target_family = fingerprint_family(label.fingerprint_id, ontology) if label else None
         top1_family = fingerprint_family(str(top1_id), ontology)
         top2_family = fingerprint_family(str(top2_id), ontology) if top2 else None
@@ -10690,6 +11456,7 @@ def build_family_propagation_guardrails(
             top1_family=top1_family,
             top2_family=top2_family,
             reaction_substrate_mismatch_reasons=reaction_mismatch_reasons,
+            atp_phosphoryl_transfer_family_assignment=atp_family_assignment,
         )
         decision = _family_propagation_decision(label, blockers)
         if label and decision == "direct_label_no_propagation_issue":
@@ -10712,6 +11479,10 @@ def build_family_propagation_guardrails(
                 "propagation_decision": decision,
                 "propagation_blockers": blockers,
                 "reaction_substrate_mismatch_reasons": reaction_mismatch_reasons,
+                "atp_phosphoryl_transfer_family": atp_family_assignment,
+                "atp_phosphoryl_transfer_family_id": _atp_family_id_from_assignment(
+                    atp_family_assignment
+                ),
                 "local_proxy_evidence": {
                     "mechanism_text_count": int(
                         result.get("mechanism_text_count", entry.get("mechanism_text_count", 0)) or 0
@@ -10765,6 +11536,11 @@ def build_family_propagation_guardrails(
         for row in ranked_rows
         if row.get("reaction_substrate_mismatch_reasons")
     )
+    atp_family_counts = Counter(
+        str(row.get("atp_phosphoryl_transfer_family_id"))
+        for row in ranked_rows
+        if row.get("atp_phosphoryl_transfer_family_id")
+    )
     return {
         "metadata": {
             "method": "family_propagation_guardrail_audit",
@@ -10787,6 +11563,12 @@ def build_family_propagation_guardrails(
             ),
             "reaction_substrate_mismatch_label_state_counts": dict(
                 sorted(reaction_mismatch_label_state_counts.items())
+            ),
+            "atp_phosphoryl_transfer_family_counts": dict(
+                sorted(atp_family_counts.items())
+            ),
+            "atp_phosphoryl_transfer_family_boundary_count": sum(
+                atp_family_counts.values()
             ),
             "source_guardrails": ontology.get("propagation_guardrails", []),
             "local_proxy_rule": (
@@ -11161,6 +11943,7 @@ def _active_learning_scores(
     abstain_threshold: float,
     ontology: dict[str, Any],
     reaction_substrate_mismatch_reasons: list[str] | None = None,
+    atp_phosphoryl_transfer_family_assignment: dict[str, Any] | None = None,
 ) -> dict[str, float]:
     top = result.get("top_fingerprints", [])
     top1 = top[0] if top else {}
@@ -11198,6 +11981,9 @@ def _active_learning_scores(
     if label and label.fingerprint_id and top1_family != fingerprint_family(label.fingerprint_id, ontology):
         family_boundary_value = max(family_boundary_value, 0.8)
     reaction_substrate_mismatch_value = 1.0 if reaction_substrate_mismatch_reasons else 0.0
+    atp_family_boundary_value = (
+        1.0 if atp_phosphoryl_transfer_family_assignment is not None else 0.0
+    )
     return {
         "uncertainty": round(1.4 * uncertainty, 4),
         "impact": round(1.1 * impact, 4),
@@ -11207,6 +11993,9 @@ def _active_learning_scores(
         "family_boundary_value": round(1.1 * family_boundary_value, 4),
         "reaction_substrate_mismatch_value": round(
             1.3 * reaction_substrate_mismatch_value, 4
+        ),
+        "atp_phosphoryl_family_boundary_value": round(
+            1.25 * atp_family_boundary_value, 4
         ),
     }
 
@@ -11841,6 +12630,7 @@ def _family_propagation_blockers(
     top1_family: str | None,
     top2_family: str | None,
     reaction_substrate_mismatch_reasons: list[str] | None = None,
+    atp_phosphoryl_transfer_family_assignment: dict[str, Any] | None = None,
 ) -> list[str]:
     blockers: list[str] = []
     if label and target_family and top1_family and target_family != top1_family:
@@ -11856,6 +12646,8 @@ def _family_propagation_blockers(
         blockers.append("top1_counterevidence_present")
     if reaction_substrate_mismatch_reasons:
         blockers.append("reaction_substrate_mismatch")
+    if atp_phosphoryl_transfer_family_assignment is not None:
+        blockers.append("atp_phosphoryl_transfer_family_boundary")
     if not label:
         blockers.append("unlabeled_candidate_requires_direct_review")
     return sorted(set(blockers))

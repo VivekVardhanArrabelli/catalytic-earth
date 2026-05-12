@@ -1660,6 +1660,93 @@ class CliTests(unittest.TestCase):
                 audit["rows"][0]["ontology_update_blockers"],
             )
 
+    def test_build_atp_phosphoryl_transfer_family_expansion_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            decision_batch = root / "mismatch_decisions.json"
+            out = root / "atp_families.json"
+            hints = [
+                ("m_csa:35", "phosphorylase kinase", "ePK"),
+                ("m_csa:592", "glucokinase", "ASKHA"),
+                ("m_csa:498", "glutathione synthase", "ATP-grasp"),
+                ("m_csa:603", "pyruvate dehydrogenase kinase", "GHKL"),
+                ("m_csa:588", "thymidine kinase", "dNK"),
+                ("m_csa:637", "nucleoside-diphosphate kinase", "NDK"),
+                ("m_csa:365", "Phosphofructokinase I", "PfkA"),
+                ("m_csa:663", "ribokinase", "PfkB"),
+                ("m_csa:654", "CDP-ME kinase", "GHMP"),
+            ]
+            decision_batch.write_text(
+                json.dumps(
+                    {
+                        "review_items": [
+                            {
+                                "entry_id": entry_id,
+                                "entry_name": name,
+                                "mismatch_context": {
+                                    "entry_id": entry_id,
+                                    "entry_name": name,
+                                    "top1_fingerprint_id": (
+                                        "metal_dependent_hydrolase"
+                                    ),
+                                    "top1_ontology_family": "hydrolysis",
+                                    "mismatch_reasons": [
+                                        "kinase_name_with_hydrolase_top1"
+                                    ],
+                                },
+                                "decision": {
+                                    "action": "reject_label",
+                                    "label_type": "out_of_scope",
+                                    "review_status": "expert_reviewed",
+                                    "reviewer": "test_reviewer",
+                                    "reaction_substrate_resolution": (
+                                        "confirm_current_label_or_out_of_scope"
+                                    ),
+                                    "future_fingerprint_family_hint": hint,
+                                },
+                            }
+                            for entry_id, name, hint in hints
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-atp-phosphoryl-transfer-family-expansion",
+                    "--reaction-substrate-mismatch-decision-batch",
+                    str(decision_batch),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            expansion = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(expansion["metadata"]["boundary_guardrail_ready"])
+            self.assertEqual(expansion["metadata"]["countable_label_candidate_count"], 0)
+            self.assertEqual(
+                expansion["metadata"]["mapped_required_family_ids"],
+                [
+                    "askha",
+                    "atp_grasp",
+                    "dnk",
+                    "epk",
+                    "ghkl",
+                    "ghmp",
+                    "ndk",
+                    "pfka",
+                    "pfkb",
+                ],
+            )
+
     def test_build_learned_retrieval_manifest_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

@@ -1495,8 +1495,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertTrue(gate_650["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_675["metadata"]["automation_ready_for_next_label_batch"])
         self.assertTrue(gate_700["metadata"]["automation_ready_for_next_label_batch"])
-        self.assertEqual(gate_700["metadata"]["gate_count"], 20)
-        self.assertEqual(gate_700["metadata"]["passed_gate_count"], 20)
+        self.assertEqual(gate_700["metadata"]["gate_count"], 21)
+        self.assertEqual(gate_700["metadata"]["passed_gate_count"], 21)
         self.assertTrue(gate_700["gates"]["expert_label_decision_review_export_ready"])
         self.assertTrue(
             gate_700["gates"]["expert_label_decision_repair_candidates_ready"]
@@ -1595,9 +1595,30 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             ],
             0,
         )
+        self.assertTrue(
+            gate_700["gates"][
+                "atp_phosphoryl_transfer_family_expansion_ready"
+            ]
+        )
+        self.assertEqual(
+            gate_700["metadata"][
+                "atp_phosphoryl_transfer_family_expansion_mapped_family_ids"
+            ],
+            ["askha", "atp_grasp", "dnk", "epk", "ghkl", "ghmp", "ndk", "pfka", "pfkb"],
+        )
         self.assertIn(
             "reaction_substrate_mismatch_value",
             active_queue_700["metadata"]["ranking_terms"],
+        )
+        self.assertIn(
+            "atp_phosphoryl_family_boundary_value",
+            active_queue_700["metadata"]["ranking_terms"],
+        )
+        self.assertEqual(
+            active_queue_700["metadata"][
+                "atp_phosphoryl_transfer_family_boundary_count"
+            ],
+            15,
         )
         self.assertEqual(
             family_guardrails_700["metadata"]["reaction_substrate_mismatch_count"],
@@ -1610,6 +1631,12 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(
             family_guardrails_700["metadata"]["blocker_counts"]["reaction_substrate_mismatch"],
             24,
+        )
+        self.assertEqual(
+            family_guardrails_700["metadata"]["blocker_counts"][
+                "atp_phosphoryl_transfer_family_boundary"
+            ],
+            20,
         )
         self.assertEqual(
             family_guardrails_700["metadata"][

@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 47
-- Measured elapsed time: 1691.8 minutes (28.20 hours)
+- Entries: 48
+- Measured elapsed time: 1742.6 minutes (29.04 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1613.7 measured minutes (26.89 hours)
+- post-v2: 1664.5 measured minutes (27.74 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 481
-- Evidence references logged: 372
+- Artifact references logged: 486
+- Evidence references logged: 376
 
 ## Recent Entries
-
-### 2026-05-10T18:46:18.139775+00:00 - post-v2
-
-- Task: Add alternate-PDB remap review leads
-- Time mode: measured
-- Measured minutes: 52.7
-- Started: 2026-05-10T17:53:25Z
-- Ended: 2026-05-10T18:46:07Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_review_debt_alternate_structure_scan_700.json, artifacts/v3_review_debt_alternate_structure_scan_700_all_bounded.json, artifacts/v3_review_debt_remap_leads_700_all_bounded.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, tests/test_labels.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, README.md, docs/label_factory.md, work/label_preview_700_notes.md, work/handoff.md, work/scope.md
-- Evidence: 162 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, focused 700 scan remapped 63 alternate-PDB structures, all-debt scan covered 46 review-debt scan candidates and 739 PDB structures, 0 scan fetch failures, 3 review-only local expected-family remap leads, 44 remap leads kept non-countable, 0 hard negatives or count growth introduced, 10-iteration local perf check completed in tmp
-- Notes: Documentation checked and updated across README, docs/label_factory.md, work/scope.md, work/handoff.md, work/label_preview_700_notes.md, and status inputs; normal measured run.
 
 ### 2026-05-10T19:48:49.955298+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 195 unit tests passed, validate passed, automation prompt updated to prioritize nine-family ontology expansion, expert review now treated as available, guardrails remain non-countable before count growth
 - Notes: Follow-up after active automation run 6d15811; docs corrected stale defer-until-expert-review language.
 
+### 2026-05-12T16:42:24.970333+00:00 - post-v2
+
+- Task: Implement ATP phosphoryl-transfer family expansion
+- Time mode: measured
+- Measured minutes: 50.817
+- Started: 2026-05-12T15:50:29Z
+- Ended: 2026-05-12T16:41:18Z
+- Artifacts: artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json, artifacts/v3_label_factory_gate_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_active_learning_review_queue_700.json, artifacts/v3_family_propagation_guardrails_700.json
+- Evidence: 198 tests passed, validate passed, 21/21 label factory gate, 0 countable candidates from ATP family expansion
+- Notes: Added ePK ASKHA ATP-grasp GHKL dNK NDK PfkA PfkB GHMP ontology family layer and wired review/gate artifacts without count growth.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -163,6 +163,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T23:56:45.965586+00:00: Next run should reduce expert-label repair debt or harden local-evidence checks before opening any 725+ tranche.
 - 2026-05-11T03:12:54.274263+00:00: Next bottleneck is resolving one local-evidence repair lane from the 21-row plan before count growth.
 - 2026-05-12T15:04:26.275853+00:00: After prioritized scientific expansion is implemented and guardrail-clean, agents should resume factory-gated label expansion while preserving label quality and import-safety controls.
+- 2026-05-12T16:42:24.970333+00:00: Keep ATP families as boundary evidence; stop scaling if next gate exposes quality drift.
 
 ## Scope Adjustments
 
@@ -211,3 +212,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-10T23:56:45.965586+00:00: 700 scaling remains at 624 countable labels; this run added repair guardrails and discovery-facing controls instead of count growth because review debt remains the limiting gate.
 - 2026-05-11T03:12:54.274263+00:00: 700 factory gate now requires local-evidence gap audit and review-only export before count growth.
 - 2026-05-12T15:04:26.275853+00:00: Expert-reviewed ATP/phosphoryl-transfer mismatch lanes now drive aggressive fingerprint-family ontology expansion for ePK ASKHA ATP-grasp GHKL dNK NDK PfkA PfkB and GHMP before returning to 10k gated label scaling.
+- 2026-05-12T16:42:24.970333+00:00: Nine-family ATP/phosphoryl-transfer expansion is complete; next bounded work can resume factory-gated scaling toward 725.

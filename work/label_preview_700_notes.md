@@ -152,12 +152,14 @@ rows.
 the full family-guardrail mismatch surface: all 24 hydrolase-top1
 reaction/substrate mismatch lanes, split into 17 current out-of-scope labels
 and 7 unlabeled pending-review rows. The export records 0 labeled seed
-mismatches and feeds the 12th 700 factory gate. Expert reaction/substrate
-review is now available, so the next expansion target is a conservative
-fingerprint-family ontology split for ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK,
-PfkA, PfkB, and GHMP before reopening count growth.
-`artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json` keeps all
-24 review items as `no_decision`, so automation cannot count or reject them.
+mismatches and feeds the 700 factory gate. The follow-up
+`artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json` implements the
+conservative fingerprint-family ontology split for ePK, ASKHA, ATP-grasp,
+GHKL, dNK, NDK, PfkA, PfkB, and GHMP, maps 20 supported lanes, and keeps
+`countable_label_candidate_count=0`.
+`artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json` keeps the
+review lane non-countable; automation cannot count or reject those rows through
+the mismatch artifact.
 
 ## Remaining-Time Plan 2026-05-10T19:01Z
 

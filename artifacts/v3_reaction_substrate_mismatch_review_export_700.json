@@ -2,6 +2,18 @@
   "metadata": {
     "all_family_guardrail_mismatches_exported": true,
     "all_reaction_audit_mismatches_exported": true,
+    "atp_phosphoryl_transfer_family_boundary_count": 20,
+    "atp_phosphoryl_transfer_family_counts": {
+      "askha": 4,
+      "atp_grasp": 2,
+      "dnk": 2,
+      "epk": 5,
+      "ghkl": 2,
+      "ghmp": 1,
+      "ndk": 1,
+      "pfka": 1,
+      "pfkb": 2
+    },
     "countable_import_rule": "accepted mismatch-export rows must be explicitly expert_reviewed and carry a non-needs_more_evidence reaction/substrate resolution before import-countable-label-review can count them",
     "countable_label_candidate_count": 0,
     "current_label_type_counts": {
@@ -158,6 +170,19 @@
       "entry_id": "m_csa:35",
       "entry_name": "phosphorylase kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -173,6 +198,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -232,6 +258,8 @@
       "entry_id": "m_csa:51",
       "entry_name": "phosphoenolpyruvate carboxykinase (ATP)",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -307,6 +335,8 @@
       "entry_id": "m_csa:151",
       "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -382,6 +412,20 @@
       "entry_id": "m_csa:246",
       "entry_name": "receptor protein-tyrosine kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -399,6 +443,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -458,6 +503,19 @@
       "entry_id": "m_csa:282",
       "entry_name": "mitogen-activated protein kinase kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -473,6 +531,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_cofactor_absent"
         ],
@@ -530,6 +589,8 @@
       "entry_id": "m_csa:299",
       "entry_name": "pantetheine-phosphate adenylyltransferase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -602,6 +663,19 @@
       "entry_id": "m_csa:310",
       "entry_name": "D-alanine-(R)-lactate ligase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "atp_grasp",
+          "family_name": "ATP-grasp ligases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "atp_grasp",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -617,6 +691,7 @@
           "atp_phosphoryl_transfer_text_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_cofactor_absent"
         ],
@@ -674,6 +749,19 @@
       "entry_id": "m_csa:327",
       "entry_name": "protein histidine kinase (CheA)",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "ghkl",
+          "family_name": "GHKL/Bergerat ATP-binding kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "ghkl",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -689,6 +777,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -746,6 +835,19 @@
       "entry_id": "m_csa:365",
       "entry_name": "Phosphofructokinase I",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "pfka",
+          "family_name": "PfkA-fold phosphofructokinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "pfka",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -761,6 +863,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -830,6 +933,19 @@
       "entry_id": "m_csa:498",
       "entry_name": "glutathione synthase (eukaryotic)",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "atp_grasp",
+          "family_name": "ATP-grasp ligases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "atp_grasp",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -845,6 +961,7 @@
           "atp_phosphoryl_transfer_text_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -914,6 +1031,8 @@
       "entry_id": "m_csa:541",
       "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -998,6 +1117,19 @@
       "entry_id": "m_csa:588",
       "entry_name": "thymidine kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "dnk",
+          "family_name": "Deoxynucleoside kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "dnk",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -1013,6 +1145,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -1053,6 +1186,20 @@
       "entry_id": "m_csa:592",
       "entry_name": "glucokinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "askha",
+          "family_name": "ASKHA sugar and acetate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "askha",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": null,
@@ -1069,6 +1216,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "unlabeled_candidate_requires_direct_review"
         ],
@@ -1139,6 +1287,20 @@
       "entry_id": "m_csa:603",
       "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "ghkl",
+          "family_name": "GHKL/Bergerat ATP-binding kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "ghkl",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -1155,6 +1317,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -1224,6 +1387,19 @@
       "entry_id": "m_csa:615",
       "entry_name": "deoxyguanosine kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "dnk",
+          "family_name": "Deoxynucleoside kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "dnk",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -1239,6 +1415,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_cofactor_absent"
         ],
@@ -1306,6 +1483,19 @@
       "entry_id": "m_csa:637",
       "entry_name": "(deoxy)nucleoside-phosphate kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "ndk",
+          "family_name": "Nucleoside diphosphate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "ndk",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -1321,6 +1511,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -1390,6 +1581,20 @@
       "entry_id": "m_csa:640",
       "entry_name": "kanamycin kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -1406,6 +1611,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present"
         ],
@@ -1446,6 +1652,19 @@
       "entry_id": "m_csa:643",
       "entry_name": "acetate kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "askha",
+          "family_name": "ASKHA sugar and acetate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "askha",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": null,
@@ -1461,6 +1680,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present",
           "unlabeled_candidate_requires_direct_review"
@@ -1532,6 +1752,19 @@
       "entry_id": "m_csa:651",
       "entry_name": "hexokinase (type II)",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "askha",
+          "family_name": "ASKHA sugar and acetate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "askha",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": "out_of_scope",
@@ -1547,6 +1780,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_cofactor_absent"
         ],
@@ -1585,6 +1819,19 @@
       "entry_id": "m_csa:654",
       "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "ghmp",
+          "family_name": "GHMP-superfamily kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "ghmp",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": null,
@@ -1600,6 +1847,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_cofactor_absent",
           "unlabeled_candidate_requires_direct_review"
@@ -1642,6 +1890,19 @@
       "entry_id": "m_csa:662",
       "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": null,
@@ -1657,6 +1918,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_cofactor_absent",
           "unlabeled_candidate_requires_direct_review"
@@ -1699,6 +1961,20 @@
       "entry_id": "m_csa:663",
       "entry_name": "ribokinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "pfkb",
+          "family_name": "PfkB/ribokinase-family kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "pfkb",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": null,
@@ -1715,6 +1991,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "close_cross_family_top1_top2",
           "reaction_substrate_mismatch",
           "top1_cofactor_absent",
@@ -1759,6 +2036,19 @@
       "entry_id": "m_csa:670",
       "entry_name": "hydroxymethylpyrimidine kinase",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "pfkb",
+          "family_name": "PfkB/ribokinase-family kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "pfkb",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": null,
@@ -1774,6 +2064,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "close_cross_family_top1_top2",
           "reaction_substrate_mismatch",
           "top1_counterevidence_present",
@@ -1817,6 +2108,19 @@
       "entry_id": "m_csa:696",
       "entry_name": "hexokinase (type I)",
       "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "askha",
+          "family_name": "ASKHA sugar and acetate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "askha",
         "countable_label_candidate": false,
         "current_fingerprint_id": null,
         "current_label_type": null,
@@ -1832,6 +2136,7 @@
           "kinase_name_with_hydrolase_top1"
         ],
         "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
           "reaction_substrate_mismatch",
           "top1_cofactor_absent",
           "unlabeled_candidate_requires_direct_review"

@@ -340,6 +340,50 @@
     },
     {
       "entry_ids": [
+        "m_csa:592",
+        "m_csa:643",
+        "m_csa:651",
+        "m_csa:696",
+        "m_csa:310",
+        "m_csa:498",
+        "m_csa:588",
+        "m_csa:615",
+        "m_csa:35",
+        "m_csa:246",
+        "m_csa:282",
+        "m_csa:640",
+        "m_csa:662",
+        "m_csa:327",
+        "m_csa:603",
+        "m_csa:654",
+        "m_csa:637",
+        "m_csa:365",
+        "m_csa:663",
+        "m_csa:670"
+      ],
+      "evidence": {
+        "boundary_guardrail_ready": true,
+        "countable_label_candidate_count": 0,
+        "expansion_present": true,
+        "mapped_required_family_ids": [
+          "askha",
+          "atp_grasp",
+          "dnk",
+          "epk",
+          "ghkl",
+          "ghmp",
+          "ndk",
+          "pfka",
+          "pfkb"
+        ],
+        "unmapped_required_family_ids": []
+      },
+      "id": "atp_phosphoryl_transfer_family_boundary",
+      "issue_count": 9,
+      "status": "guardrail_clean"
+    },
+    {
+      "entry_ids": [
         "m_csa:690",
         "m_csa:691",
         "m_csa:692",
@@ -772,6 +816,7 @@
   "gates": {
     "accepted_new_labels_without_review_debt": true,
     "active_queue_retains_unlabeled_candidates": true,
+    "atp_phosphoryl_transfer_family_expansion_ready": true,
     "expert_label_decision_local_evidence_gaps_audited": true,
     "expert_label_decision_local_evidence_repair_resolution_ready": true,
     "expert_label_decision_local_evidence_review_export_ready": true,
@@ -923,6 +968,21 @@
       "m_csa:696",
       "m_csa:698"
     ],
+    "atp_phosphoryl_transfer_family_expansion_countable_label_candidate_count": 0,
+    "atp_phosphoryl_transfer_family_expansion_mapped_family_ids": [
+      "askha",
+      "atp_grasp",
+      "dnk",
+      "epk",
+      "ghkl",
+      "ghmp",
+      "ndk",
+      "pfka",
+      "pfkb"
+    ],
+    "atp_phosphoryl_transfer_family_expansion_present": true,
+    "atp_phosphoryl_transfer_family_expansion_ready": true,
+    "atp_phosphoryl_transfer_family_expansion_unmapped_family_ids": [],
     "audit_recommendation": "review_before_promoting",
     "audit_rule": "before promoting a preview batch, classify new ontology, family-propagation, cofactor, mapping, queue-composition, hard-negative, and text-leakage failure modes; accepted labels with unresolved review debt are not promotion-ready",
     "batch_id": "700_preview",
