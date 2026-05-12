@@ -1,9 +1,9 @@
-# 750 Label-Factory Preview Notes
+# 750 Label-Factory Notes
 
-## Preview Countable Candidates
+## Accepted Countable Labels
 
-The 750-entry preview generated seven clean automation-curated bronze candidates
-without promoting them into the canonical registry:
+The 750-entry gated pass accepted seven clean automation-curated bronze labels
+into the canonical registry:
 
 - `m_csa:728`
 - `m_csa:733`
@@ -13,11 +13,11 @@ without promoting them into the canonical registry:
 - `m_csa:742`
 - `m_csa:750`
 
-`artifacts/v3_label_batch_acceptance_check_750_preview.json` records the
-preview as mechanically acceptable with 0 hard negatives, 0 near misses, 0
+`artifacts/v3_label_batch_acceptance_check_750.json` records the
+batch as accepted for counting with 0 hard negatives, 0 near misses, 0
 out-of-scope false non-abstentions, 0 actionable in-scope failures, and 0
-accepted review-gap labels. If promoted later, the countable registry would
-move from 630 to 637 labels.
+accepted review-gap labels. The countable registry moved from 630 to 637
+labels.
 
 ## Review Debt
 
@@ -28,17 +28,15 @@ review-debt rows are `m_csa:729`, `m_csa:730`, `m_csa:731`, `m_csa:732`,
 `m_csa:749`, `m_csa:751`, and `m_csa:752`.
 
 `artifacts/v3_label_scaling_quality_audit_750_preview.json` classifies all
-new-debt rows and recommends `review_before_promoting`. The dominant failure
-classes are ontology scope pressure, cofactor-family ambiguity,
+new-debt rows. `artifacts/v3_accepted_review_debt_deferral_audit_750.json`
+explicitly defers all 118 review-state rows, including those 18 new rows, with
+0 countable candidates and 0 accepted-label overlap. The dominant failure
+classes remain ontology scope pressure, cofactor-family ambiguity,
 family-propagation boundaries, reaction/substrate mismatch, active-site mapping
 gaps, and multi-domain or mixed-evidence rows.
 
 ## Current Gate State
 
-`artifacts/v3_label_factory_gate_check_750_preview.json` passes 19/19 preview
-gates after retaining all 120 expert-label decision rows in the repair-candidate
-table. This is a preview gate only. Do not copy
-`artifacts/v3_countable_labels_batch_750_preview.json` into
-`data/registries/curated_mechanism_labels.json` until the 18 new review-debt
-rows are repaired or explicitly deferred and the promotion decision is
-documented.
+`artifacts/v3_label_factory_gate_check_750.json` passes 20/20 gates after
+retaining all 113 post-batch expert-label decision rows in the repair-candidate
+table. Do not open 775 unless this gate and the 750 deferral audit remain clean.

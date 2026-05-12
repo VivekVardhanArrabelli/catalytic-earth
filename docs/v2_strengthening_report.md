@@ -12,9 +12,9 @@ The V2 scaffold was strengthened in several ways:
    before giving full triad evidence.
 4. Abstention calibration now reports the tradeoff between zero out-of-scope
    false non-abstentions and retained in-scope positives.
-5. Curated labels now cover 624 countable entries: the full 475-entry source
-   slice plus 149 factory-accepted labels from the 500-, 525-, 550-, 575-,
-   600-, 625-, 650-, 675-, and 700-entry queues, with geometry
+5. Curated labels now cover 637 countable entries: the full 475-entry source
+   slice plus 162 factory-accepted labels from the 500-, 525-, 550-, 575-,
+   600-, 625-, 650-, 675-, 700-, 725-, and 750-entry queues, with geometry
    evaluability tracked separately from label availability.
 6. mmCIF structure parsing now resolves catalytic residue positions through
    both `auth_*` and `label_*` numbering namespaces.
@@ -140,7 +140,7 @@ What is now better:
 - hard negative controls are explicit instead of hidden in aggregate metrics
 - near-miss controls now expose out-of-scope rows just below the positive score
   floor; the current 700-entry countable slice has no near misses
-- curated labels cover 624 countable entries
+- curated labels cover 637 countable entries
 - structure-mapping blockers are now summarized as a first-class artifact and
   currently report 0 non-OK mappings on the 100-entry slice, 1 labeled
   out-of-scope issue on the 125-entry slice, 2 on the 150- and 175-entry
@@ -163,7 +163,7 @@ What is now better:
 
 What remains weak:
 
-- the curated label set is still provisional despite covering 624 countable
+- the curated label set is still provisional despite covering 637 countable
   entries; bronze/silver factory tiers are not expert validation
 - the 700-entry countable slice still has 4 in-scope positives that are
   abstained because the selected structures lack expected local or

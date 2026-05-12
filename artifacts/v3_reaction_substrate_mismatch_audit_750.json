@@ -62,8 +62,8 @@
       "atp_phosphoryl_transfer_family_id": "epk",
       "countable_label_candidate": false,
       "current_label_type": "out_of_scope",
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:35",
       "entry_name": "phosphorylase kinase",
       "label_state": "labeled",
@@ -77,10 +77,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "hold_bronze_boundary_review",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.4069
@@ -160,8 +161,8 @@
       "atp_phosphoryl_transfer_family_id": "epk",
       "countable_label_candidate": false,
       "current_label_type": "out_of_scope",
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:246",
       "entry_name": "receptor protein-tyrosine kinase",
       "label_state": "labeled",
@@ -177,10 +178,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "hold_bronze_boundary_review",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.4033
@@ -201,8 +203,8 @@
       "atp_phosphoryl_transfer_family_id": "pfka",
       "countable_label_candidate": false,
       "current_label_type": "out_of_scope",
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:365",
       "entry_name": "Phosphofructokinase I",
       "label_state": "labeled",
@@ -216,10 +218,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "hold_bronze_boundary_review",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.3999
@@ -240,8 +243,8 @@
       "atp_phosphoryl_transfer_family_id": "atp_grasp",
       "countable_label_candidate": false,
       "current_label_type": "out_of_scope",
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:498",
       "entry_name": "glutathione synthase (eukaryotic)",
       "label_state": "labeled",
@@ -255,10 +258,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "hold_bronze_boundary_review",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.3949
@@ -347,8 +351,8 @@
       "atp_phosphoryl_transfer_family_id": "askha",
       "countable_label_candidate": false,
       "current_label_type": null,
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:592",
       "entry_name": "glucokinase",
       "label_state": "unlabeled",
@@ -363,10 +367,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "expert_label_decision_needed",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.5769
@@ -388,8 +393,8 @@
       "atp_phosphoryl_transfer_family_id": "ghkl",
       "countable_label_candidate": false,
       "current_label_type": "out_of_scope",
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:603",
       "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
       "label_state": "labeled",
@@ -404,10 +409,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "hold_bronze_boundary_review",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.4004
@@ -508,8 +514,8 @@
       "atp_phosphoryl_transfer_family_id": "askha",
       "countable_label_candidate": false,
       "current_label_type": null,
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:643",
       "entry_name": "acetate kinase",
       "label_state": "unlabeled",
@@ -523,10 +529,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "expert_label_decision_needed",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.4227
@@ -547,8 +554,8 @@
       "atp_phosphoryl_transfer_family_id": "ghmp",
       "countable_label_candidate": false,
       "current_label_type": null,
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:654",
       "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
       "label_state": "unlabeled",
@@ -562,10 +569,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "expert_label_decision_needed",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.3581
@@ -586,8 +594,8 @@
       "atp_phosphoryl_transfer_family_id": "epk",
       "countable_label_candidate": false,
       "current_label_type": null,
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:662",
       "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
       "label_state": "unlabeled",
@@ -601,10 +609,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "expert_label_decision_needed",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.3263
@@ -626,8 +635,8 @@
       "atp_phosphoryl_transfer_family_id": "pfkb",
       "countable_label_candidate": false,
       "current_label_type": null,
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:663",
       "entry_name": "ribokinase",
       "label_state": "unlabeled",
@@ -642,10 +651,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "expert_label_decision_needed",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.2601
@@ -666,8 +676,8 @@
       "atp_phosphoryl_transfer_family_id": "pfkb",
       "countable_label_candidate": false,
       "current_label_type": null,
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:670",
       "entry_name": "hydroxymethylpyrimidine kinase",
       "label_state": "unlabeled",
@@ -681,10 +691,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "expert_label_decision_needed",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.3474
@@ -705,8 +716,8 @@
       "atp_phosphoryl_transfer_family_id": "askha",
       "countable_label_candidate": false,
       "current_label_type": null,
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:696",
       "entry_name": "hexokinase (type I)",
       "label_state": "unlabeled",
@@ -720,10 +731,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "expert_label_decision_needed",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.3559
@@ -744,8 +756,8 @@
       "atp_phosphoryl_transfer_family_id": "pfkb",
       "countable_label_candidate": false,
       "current_label_type": null,
-      "decision_action": null,
-      "decision_review_status": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
       "entry_id": "m_csa:751",
       "entry_name": "CDP-diacylglycerol diphosphatase",
       "label_state": "unlabeled",
@@ -759,10 +771,11 @@
       "recommended_action": "expert_reaction_substrate_review",
       "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
       "source_artifacts": [
-        "active_learning_queue"
+        "active_learning_queue",
+        "review_evidence_gaps"
       ],
       "source_recommended_action": "expert_label_decision_needed",
-      "target_fingerprint_id": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
       "top1_fingerprint_id": "metal_dependent_hydrolase",
       "top1_ontology_family": "hydrolysis",
       "top1_score": 0.3789

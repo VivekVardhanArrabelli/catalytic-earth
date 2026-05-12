@@ -334,7 +334,7 @@
     },
     {
       "cofactor_evidence_level": "ligand_supported",
-      "count": 26,
+      "count": 25,
       "entry_ids": [
         "m_csa:534",
         "m_csa:568",
@@ -360,11 +360,10 @@
         "m_csa:720",
         "m_csa:722",
         "m_csa:738",
-        "m_csa:740",
         "m_csa:741"
       ],
       "max_top1_score": 0.6085,
-      "mean_top1_score": 0.544,
+      "mean_top1_score": 0.5418,
       "min_top1_score": 0.3654,
       "readiness_blocker_counts": {
         "top1_score_at_least_0_4": 4
@@ -566,14 +565,6 @@
           "top1_score": 0.5895
         },
         {
-          "entry_id": "m_csa:740",
-          "entry_name": "arylesterase",
-          "mechanism_text_snippets": [
-            "His 115 acts as a general base by deprotonating a water molecule, activating it for nucleophilic attack on the substrate ester carbonyl. His 134 acts as a 'proton shuttle' to take a proton away from His 115, thereby increasing its basicity. A negatively charged, tetrahedral intermediate is formed..."
-          ],
-          "top1_score": 0.5986
-        },
-        {
           "entry_id": "m_csa:741",
           "entry_name": "histidinol dehydrogenase",
           "mechanism_text_snippets": [
@@ -607,10 +598,9 @@
         "m_csa:720",
         "m_csa:722",
         "m_csa:738",
-        "m_csa:740",
         "m_csa:741"
       ],
-      "ready_for_label_review_count": 26,
+      "ready_for_label_review_count": 25,
       "top1_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
@@ -754,124 +744,6 @@
       "top1_fingerprint_id": "metal_dependent_hydrolase"
     },
     {
-      "cofactor_evidence_level": "not_required",
-      "count": 10,
-      "entry_ids": [
-        "m_csa:494",
-        "m_csa:598",
-        "m_csa:599",
-        "m_csa:602",
-        "m_csa:658",
-        "m_csa:707",
-        "m_csa:728",
-        "m_csa:733",
-        "m_csa:744",
-        "m_csa:747"
-      ],
-      "max_top1_score": 0.9052,
-      "mean_top1_score": 0.6145,
-      "min_top1_score": 0.2655,
-      "readiness_blocker_counts": {
-        "top1_score_at_least_0_4": 4
-      },
-      "ready_entries": [
-        {
-          "entry_id": "m_csa:494",
-          "entry_name": "propanediol dehydratase",
-          "mechanism_text_snippets": [
-            "The radical mechanism involves binding of 1,2-propanediol to the enzyme to induce homolytic cleavage of the Co-C5' bond of the coenzyme to form cob(II)alamin and the adenosyl radical. Hydrogen abstraction from the substrate follows producing a substrate generated radical and 5'-deoxyadenosine. Re..."
-          ],
-          "top1_score": 0.3828
-        },
-        {
-          "entry_id": "m_csa:598",
-          "entry_name": "streptopain",
-          "mechanism_text_snippets": [
-            "Cys 47 acts as the nucleophile for initial attack on the peptide substrate. The tetrahedral intermediate then collapses on protonation of the leaving group by His 195. This leaves an acyl-enzyme intermediate which is hydrolysed by an activated water molecule to complete the reaction."
-          ],
-          "top1_score": 0.6004
-        },
-        {
-          "entry_id": "m_csa:599",
-          "entry_name": "dipeptidase E",
-          "mechanism_text_snippets": [
-            "Nucleophilic attack by activated Ser120 on peptide bond. Protonation of leaving group by His157. Transition state stabilisation by oxyanion hole (Ala121 and Gly88 main chain amides); hydrolysis of acyl enzyme intermediate by His157 activated water molecule."
-          ],
-          "top1_score": 0.8182
-        },
-        {
-          "entry_id": "m_csa:602",
-          "entry_name": "6-deoxyerythronolide-B synthase",
-          "mechanism_text_snippets": [
-            "The catalytic triad consists of Asp169, His259 and Ser142. His259, stabilised by Asp-169, acts as a base that deprotonates Ser-142, as it attacks the ACP6-bound thioester substrate, to yield an acyl-O-serine intermediate. The NH of Ala-143 may serve as the oxyanion stabilising residue. The enzyme..."
-          ],
-          "top1_score": 0.9052
-        },
-        {
-          "entry_id": "m_csa:658",
-          "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
-          "mechanism_text_snippets": [
-            "Glu136 protonates the glycosidic oxygen while Glu246 acts as a nucleophilic to attack the anomeric carbon to form a covalent enzyme-substrate intermediate. The deprotonated Glu136 then activates a water molecule to hydrolyse the covalent enzyme-substrate intermediate. Arg45 hydrogen bonds with Gl..."
-          ],
-          "top1_score": 0.311
-        },
-        {
-          "entry_id": "m_csa:707",
-          "entry_name": "arginine decarboxylase",
-          "mechanism_text_snippets": [
-            "The mechanism of action for the decarboxylation is similar to that of pyridoxal 5'-phosphate-dependent enzymes. However, unlike PLP-dependent enzymes, where PLP forms an internal aldimine with the epsilon-amino group of a specific lysyl residue in the resting enzyme, the carbonyl group of the pyr..."
-          ],
-          "top1_score": 0.2655
-        },
-        {
-          "entry_id": "m_csa:728",
-          "entry_name": "myristoyl-ACP-specific thioesterase",
-          "mechanism_text_snippets": [
-            "Enzymatic hydrolysis of the thioester bond proceeds using the catalytic triad of Ser 114, Asp 211, and His 241. His 241 activates Ser 114 as a nucleophile by abstracting a proton from the serine hydroxyl as the carbonyl carbon of the substrate is attacked by the nucleophile. His 241 is stabilised..."
-          ],
-          "top1_score": 0.9001
-        },
-        {
-          "entry_id": "m_csa:733",
-          "entry_name": "esterase",
-          "mechanism_text_snippets": [
-            "His256 deprotonates Ser97 and is stabilised by Asp227. Ser97 is then involved in nucleophilic attack on the carbonyl carbon of D-MALTI. The resulting tetrahedral oxyanion is stabilised by hydrogen bonds to the backbone amines of Trp31 and Thr98, which together form the oxyanion hole. The intermed..."
-          ],
-          "top1_score": 0.8885
-        },
-        {
-          "entry_id": "m_csa:744",
-          "entry_name": "GyrA intein (Class 1 intein)",
-          "mechanism_text_snippets": [
-            "After synthesis of a nascent protein an internal protein domain (termmed the intein) is excised from the precursor and the two external polypeptides (termed exteins) are ligated together through a peptide bond. Catalysis begins with cleavage of the N-extein-intein peptide bond by nucleophilic att..."
-          ],
-          "top1_score": 0.7001
-        },
-        {
-          "entry_id": "m_csa:747",
-          "entry_name": "gamma-glutamyl hydrolase",
-          "mechanism_text_snippets": [
-            "His220 activates Cys110 by abstracting a proton. The nucleophilic Cys110 attacks the gamma-carbonyl carbon of the of the susceptible Glu-Glu bond in the poly-gamma-glutamate substrate, forming a tetrahedral intermediate with an oxyanion. The carbonyl C-N bond is cleaved, forming the thioester int..."
-          ],
-          "top1_score": 0.3732
-        }
-      ],
-      "ready_entry_ids": [
-        "m_csa:494",
-        "m_csa:598",
-        "m_csa:599",
-        "m_csa:602",
-        "m_csa:658",
-        "m_csa:707",
-        "m_csa:728",
-        "m_csa:733",
-        "m_csa:744",
-        "m_csa:747"
-      ],
-      "ready_for_label_review_count": 10,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase"
-    },
-    {
       "cofactor_evidence_level": "absent",
       "count": 11,
       "entry_ids": [
@@ -974,6 +846,104 @@
       ],
       "ready_for_label_review_count": 8,
       "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "count": 8,
+      "entry_ids": [
+        "m_csa:494",
+        "m_csa:598",
+        "m_csa:599",
+        "m_csa:602",
+        "m_csa:658",
+        "m_csa:707",
+        "m_csa:744",
+        "m_csa:747"
+      ],
+      "max_top1_score": 0.9052,
+      "mean_top1_score": 0.5445,
+      "min_top1_score": 0.2655,
+      "readiness_blocker_counts": {
+        "top1_score_at_least_0_4": 4
+      },
+      "ready_entries": [
+        {
+          "entry_id": "m_csa:494",
+          "entry_name": "propanediol dehydratase",
+          "mechanism_text_snippets": [
+            "The radical mechanism involves binding of 1,2-propanediol to the enzyme to induce homolytic cleavage of the Co-C5' bond of the coenzyme to form cob(II)alamin and the adenosyl radical. Hydrogen abstraction from the substrate follows producing a substrate generated radical and 5'-deoxyadenosine. Re..."
+          ],
+          "top1_score": 0.3828
+        },
+        {
+          "entry_id": "m_csa:598",
+          "entry_name": "streptopain",
+          "mechanism_text_snippets": [
+            "Cys 47 acts as the nucleophile for initial attack on the peptide substrate. The tetrahedral intermediate then collapses on protonation of the leaving group by His 195. This leaves an acyl-enzyme intermediate which is hydrolysed by an activated water molecule to complete the reaction."
+          ],
+          "top1_score": 0.6004
+        },
+        {
+          "entry_id": "m_csa:599",
+          "entry_name": "dipeptidase E",
+          "mechanism_text_snippets": [
+            "Nucleophilic attack by activated Ser120 on peptide bond. Protonation of leaving group by His157. Transition state stabilisation by oxyanion hole (Ala121 and Gly88 main chain amides); hydrolysis of acyl enzyme intermediate by His157 activated water molecule."
+          ],
+          "top1_score": 0.8182
+        },
+        {
+          "entry_id": "m_csa:602",
+          "entry_name": "6-deoxyerythronolide-B synthase",
+          "mechanism_text_snippets": [
+            "The catalytic triad consists of Asp169, His259 and Ser142. His259, stabilised by Asp-169, acts as a base that deprotonates Ser-142, as it attacks the ACP6-bound thioester substrate, to yield an acyl-O-serine intermediate. The NH of Ala-143 may serve as the oxyanion stabilising residue. The enzyme..."
+          ],
+          "top1_score": 0.9052
+        },
+        {
+          "entry_id": "m_csa:658",
+          "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
+          "mechanism_text_snippets": [
+            "Glu136 protonates the glycosidic oxygen while Glu246 acts as a nucleophilic to attack the anomeric carbon to form a covalent enzyme-substrate intermediate. The deprotonated Glu136 then activates a water molecule to hydrolyse the covalent enzyme-substrate intermediate. Arg45 hydrogen bonds with Gl..."
+          ],
+          "top1_score": 0.311
+        },
+        {
+          "entry_id": "m_csa:707",
+          "entry_name": "arginine decarboxylase",
+          "mechanism_text_snippets": [
+            "The mechanism of action for the decarboxylation is similar to that of pyridoxal 5'-phosphate-dependent enzymes. However, unlike PLP-dependent enzymes, where PLP forms an internal aldimine with the epsilon-amino group of a specific lysyl residue in the resting enzyme, the carbonyl group of the pyr..."
+          ],
+          "top1_score": 0.2655
+        },
+        {
+          "entry_id": "m_csa:744",
+          "entry_name": "GyrA intein (Class 1 intein)",
+          "mechanism_text_snippets": [
+            "After synthesis of a nascent protein an internal protein domain (termmed the intein) is excised from the precursor and the two external polypeptides (termed exteins) are ligated together through a peptide bond. Catalysis begins with cleavage of the N-extein-intein peptide bond by nucleophilic att..."
+          ],
+          "top1_score": 0.7001
+        },
+        {
+          "entry_id": "m_csa:747",
+          "entry_name": "gamma-glutamyl hydrolase",
+          "mechanism_text_snippets": [
+            "His220 activates Cys110 by abstracting a proton. The nucleophilic Cys110 attacks the gamma-carbonyl carbon of the of the susceptible Glu-Glu bond in the poly-gamma-glutamate substrate, forming a tetrahedral intermediate with an oxyanion. The carbonyl C-N bond is cleaved, forming the thioester int..."
+          ],
+          "top1_score": 0.3732
+        }
+      ],
+      "ready_entry_ids": [
+        "m_csa:494",
+        "m_csa:598",
+        "m_csa:599",
+        "m_csa:602",
+        "m_csa:658",
+        "m_csa:707",
+        "m_csa:744",
+        "m_csa:747"
+      ],
+      "ready_for_label_review_count": 8,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
     },
     {
       "cofactor_evidence_level": "absent",
@@ -1154,57 +1124,14 @@
     },
     {
       "cofactor_evidence_level": "ligand_supported",
-      "count": 3,
-      "entry_ids": [
-        "m_csa:567",
-        "m_csa:739",
-        "m_csa:750"
-      ],
-      "max_top1_score": 0.7525,
-      "mean_top1_score": 0.73,
-      "min_top1_score": 0.685,
-      "readiness_blocker_counts": {
-        "has_pairwise_geometry": 1,
-        "resolved_at_least_three_residues": 1,
-        "status_ok": 1
-      },
-      "ready_entries": [
-        {
-          "entry_id": "m_csa:739",
-          "entry_name": "L-aspartate oxidase",
-          "mechanism_text_snippets": [
-            "<p>Arg 290 acts as a base by deprotonating C3 of L-aspartate. Arg 386 and His 351 stabilise the negative charge on the O4 oxygen atoms. FAD then accepts a hydride from C2 of L-aspartate (and most likely then accepts a proton from the solvent to form FADH2.)</p> <p>If fumarate is used as the elect...",
-            "Kinetic isotope effect experimental data argue against the succinate dehydrogenase-like mechanism for aspartate oxidation and for a concerted mechanism. The mechanism proposal shown here involves Glu121 may act as a base to deprotonate the amino group of L-aspartate, followed by hydride transfer..."
-          ],
-          "top1_score": 0.7525
-        },
-        {
-          "entry_id": "m_csa:750",
-          "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
-          "mechanism_text_snippets": [
-            "4-BUDH utilises an oxidised FAD quinone to carry out radical formation. This lowers the pKa of the C3 hydrogen, thus activating the usually unreactive C3-H bond. His 292 acts as a general base to enolise 4-hydroxybutanoyl-CoA by abstraction of the C2-proR-hydrogen. FAD removes an electron from th..."
-          ],
-          "top1_score": 0.7524
-        }
-      ],
-      "ready_entry_ids": [
-        "m_csa:739",
-        "m_csa:750"
-      ],
-      "ready_for_label_review_count": 2,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "count": 3,
+      "count": 2,
       "entry_ids": [
         "m_csa:713",
-        "m_csa:737",
-        "m_csa:742"
+        "m_csa:737"
       ],
       "max_top1_score": 0.6525,
-      "mean_top1_score": 0.6071,
-      "min_top1_score": 0.5764,
+      "mean_top1_score": 0.6224,
+      "min_top1_score": 0.5923,
       "readiness_blocker_counts": {
         "has_pairwise_geometry": 1,
         "resolved_at_least_three_residues": 1,
@@ -1218,57 +1145,41 @@
             "The substrate Lys displaces Lys 144 from PLP with a standard transaldimination reaction. Adenosylcobalamin (AdoCbl) homolytically cleaves to form Ado-CH2 radical. Ado-CH2 radical accepts a proton and an electron from the substrate Lys delta carbon. A three membered ring is formed between the delt..."
           ],
           "top1_score": 0.5923
-        },
-        {
-          "entry_id": "m_csa:742",
-          "entry_name": "kynureninase",
-          "mechanism_text_snippets": [
-            "Lys 227 binds PLP to Kynureninase. Electrophilicity of PLP is enhanced through close contact with Asp 201 which aids protonation of the pyridine ring. Phe 129 is Pi-stacked on top of the pyridine ring of PLP, stabilising the cofactor.The phosphate of PLPis protonated by Tyr226 which then accepts..."
-          ],
-          "top1_score": 0.5764
         }
       ],
       "ready_entry_ids": [
-        "m_csa:737",
-        "m_csa:742"
+        "m_csa:737"
       ],
-      "ready_for_label_review_count": 2,
+      "ready_for_label_review_count": 1,
       "top1_fingerprint_id": "plp_dependent_enzyme"
     },
     {
       "cofactor_evidence_level": "ligand_supported",
       "count": 1,
       "entry_ids": [
-        "m_csa:735"
+        "m_csa:567"
       ],
-      "max_top1_score": 0.7008,
-      "mean_top1_score": 0.7008,
-      "min_top1_score": 0.7008,
-      "readiness_blocker_counts": {},
-      "ready_entries": [
-        {
-          "entry_id": "m_csa:735",
-          "entry_name": "cytochrome-c oxidase (BA3 type)",
-          "mechanism_text_snippets": [
-            "<p>The ba3-type COX has a copper CuA centre (comprising two copper ions), a haem b, and a redox active binuclear centre comprising CuB and a haem As3 iron. Tyr 237 is near CuB and haem As3, and has a low pKa due to a covalent bond with His 233. In the resting (oxidised or O) state, the haem As3 c..."
-          ],
-          "top1_score": 0.7008
-        }
-      ],
-      "ready_entry_ids": [
-        "m_csa:735"
-      ],
-      "ready_for_label_review_count": 1,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+      "max_top1_score": 0.685,
+      "mean_top1_score": 0.685,
+      "min_top1_score": 0.685,
+      "readiness_blocker_counts": {
+        "has_pairwise_geometry": 1,
+        "resolved_at_least_three_residues": 1,
+        "status_ok": 1
+      },
+      "ready_entries": [],
+      "ready_entry_ids": [],
+      "ready_for_label_review_count": 0,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
     }
   ],
   "metadata": {
-    "candidate_count": 120,
-    "candidate_group_count": 11,
+    "candidate_count": 113,
+    "candidate_group_count": 10,
     "geometry_entry_count": 749,
-    "labeled_entry_count": 630,
+    "labeled_entry_count": 637,
     "method": "geometry_label_expansion_candidate_selection",
-    "ready_for_label_review_count": 102
+    "ready_for_label_review_count": 95
   },
   "rows": [
     {
@@ -2125,90 +2036,6 @@
       "top1_score": 0.5888
     },
     {
-      "cofactor_evidence_level": "not_required",
-      "cofactor_families": [],
-      "entry_id": "m_csa:728",
-      "entry_name": "myristoyl-ACP-specific thioesterase",
-      "has_pairwise_geometry": true,
-      "has_pocket_context": true,
-      "mechanism_text_count": 1,
-      "mechanism_text_snippets": [
-        "Enzymatic hydrolysis of the thioester bond proceeds using the catalytic triad of Ser 114, Asp 211, and His 241. His 241 activates Ser 114 as a nucleophile by abstracting a proton from the serine hydroxyl as the carbonyl carbon of the substrate is attacked by the nucleophile. His 241 is stabilised..."
-      ],
-      "mechanistic_coherence_score": 1.0,
-      "pdb_id": "1THT",
-      "readiness_blockers": [],
-      "readiness_checks": {
-        "has_pairwise_geometry": true,
-        "has_pocket_context": true,
-        "resolved_at_least_three_residues": true,
-        "status_ok": true,
-        "top1_score_at_least_0_4": true
-      },
-      "readiness_score": 5,
-      "resolved_residue_count": 3,
-      "status": "ok",
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.9001
-    },
-    {
-      "cofactor_evidence_level": "not_required",
-      "cofactor_families": [],
-      "entry_id": "m_csa:733",
-      "entry_name": "esterase",
-      "has_pairwise_geometry": true,
-      "has_pocket_context": true,
-      "mechanism_text_count": 1,
-      "mechanism_text_snippets": [
-        "His256 deprotonates Ser97 and is stabilised by Asp227. Ser97 is then involved in nucleophilic attack on the carbonyl carbon of D-MALTI. The resulting tetrahedral oxyanion is stabilised by hydrogen bonds to the backbone amines of Trp31 and Thr98, which together form the oxyanion hole. The intermed..."
-      ],
-      "mechanistic_coherence_score": 1.0,
-      "pdb_id": "1ZOI",
-      "readiness_blockers": [],
-      "readiness_checks": {
-        "has_pairwise_geometry": true,
-        "has_pocket_context": true,
-        "resolved_at_least_three_residues": true,
-        "status_ok": true,
-        "top1_score_at_least_0_4": true
-      },
-      "readiness_score": 5,
-      "resolved_residue_count": 6,
-      "status": "ok",
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_score": 0.8885
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "cofactor_families": [
-        "heme",
-        "metal_ion"
-      ],
-      "entry_id": "m_csa:735",
-      "entry_name": "cytochrome-c oxidase (BA3 type)",
-      "has_pairwise_geometry": true,
-      "has_pocket_context": true,
-      "mechanism_text_count": 1,
-      "mechanism_text_snippets": [
-        "<p>The ba3-type COX has a copper CuA centre (comprising two copper ions), a haem b, and a redox active binuclear centre comprising CuB and a haem As3 iron. Tyr 237 is near CuB and haem As3, and has a low pKa due to a covalent bond with His 233. In the resting (oxidised or O) state, the haem As3 c..."
-      ],
-      "mechanistic_coherence_score": 1.0,
-      "pdb_id": "1EHK",
-      "readiness_blockers": [],
-      "readiness_checks": {
-        "has_pairwise_geometry": true,
-        "has_pocket_context": true,
-        "resolved_at_least_three_residues": true,
-        "status_ok": true,
-        "top1_score_at_least_0_4": true
-      },
-      "readiness_score": 5,
-      "resolved_residue_count": 9,
-      "status": "ok",
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_score": 0.7008
-    },
-    {
       "cofactor_evidence_level": "ligand_supported",
       "cofactor_families": [
         "plp"
@@ -2267,94 +2094,6 @@
       "top1_score": 0.5895
     },
     {
-      "cofactor_evidence_level": "ligand_supported",
-      "cofactor_families": [
-        "flavin"
-      ],
-      "entry_id": "m_csa:739",
-      "entry_name": "L-aspartate oxidase",
-      "has_pairwise_geometry": true,
-      "has_pocket_context": true,
-      "mechanism_text_count": 2,
-      "mechanism_text_snippets": [
-        "<p>Arg 290 acts as a base by deprotonating C3 of L-aspartate. Arg 386 and His 351 stabilise the negative charge on the O4 oxygen atoms. FAD then accepts a hydride from C2 of L-aspartate (and most likely then accepts a proton from the solvent to form FADH2.)</p> <p>If fumarate is used as the elect...",
-        "Kinetic isotope effect experimental data argue against the succinate dehydrogenase-like mechanism for aspartate oxidation and for a concerted mechanism. The mechanism proposal shown here involves Glu121 may act as a base to deprotonate the amino group of L-aspartate, followed by hydride transfer..."
-      ],
-      "mechanistic_coherence_score": 1.0,
-      "pdb_id": "1KNP",
-      "readiness_blockers": [],
-      "readiness_checks": {
-        "has_pairwise_geometry": true,
-        "has_pocket_context": true,
-        "resolved_at_least_three_residues": true,
-        "status_ok": true,
-        "top1_score_at_least_0_4": true
-      },
-      "readiness_score": 5,
-      "resolved_residue_count": 5,
-      "status": "ok",
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.7525
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "cofactor_families": [
-        "metal_ion"
-      ],
-      "entry_id": "m_csa:740",
-      "entry_name": "arylesterase",
-      "has_pairwise_geometry": true,
-      "has_pocket_context": true,
-      "mechanism_text_count": 1,
-      "mechanism_text_snippets": [
-        "His 115 acts as a general base by deprotonating a water molecule, activating it for nucleophilic attack on the substrate ester carbonyl. His 134 acts as a 'proton shuttle' to take a proton away from His 115, thereby increasing its basicity. A negatively charged, tetrahedral intermediate is formed..."
-      ],
-      "mechanistic_coherence_score": 1.0,
-      "pdb_id": "1V04",
-      "readiness_blockers": [],
-      "readiness_checks": {
-        "has_pairwise_geometry": true,
-        "has_pocket_context": true,
-        "resolved_at_least_three_residues": true,
-        "status_ok": true,
-        "top1_score_at_least_0_4": true
-      },
-      "readiness_score": 5,
-      "resolved_residue_count": 7,
-      "status": "ok",
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_score": 0.5986
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "cofactor_families": [
-        "plp"
-      ],
-      "entry_id": "m_csa:742",
-      "entry_name": "kynureninase",
-      "has_pairwise_geometry": true,
-      "has_pocket_context": true,
-      "mechanism_text_count": 1,
-      "mechanism_text_snippets": [
-        "Lys 227 binds PLP to Kynureninase. Electrophilicity of PLP is enhanced through close contact with Asp 201 which aids protonation of the pyridine ring. Phe 129 is Pi-stacked on top of the pyridine ring of PLP, stabilising the cofactor.The phosphate of PLPis protonated by Tyr226 which then accepts..."
-      ],
-      "mechanistic_coherence_score": 1.0,
-      "pdb_id": "1QZ9",
-      "readiness_blockers": [],
-      "readiness_checks": {
-        "has_pairwise_geometry": true,
-        "has_pocket_context": true,
-        "resolved_at_least_three_residues": true,
-        "status_ok": true,
-        "top1_score_at_least_0_4": true
-      },
-      "readiness_score": 5,
-      "resolved_residue_count": 5,
-      "status": "ok",
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_score": 0.5764
-    },
-    {
       "cofactor_evidence_level": "role_inferred",
       "cofactor_families": [],
       "entry_id": "m_csa:743",
@@ -2408,36 +2147,6 @@
       "status": "ok",
       "top1_fingerprint_id": "ser_his_acid_hydrolase",
       "top1_score": 0.7001
-    },
-    {
-      "cofactor_evidence_level": "ligand_supported",
-      "cofactor_families": [
-        "fe_s_cluster",
-        "flavin"
-      ],
-      "entry_id": "m_csa:750",
-      "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
-      "has_pairwise_geometry": true,
-      "has_pocket_context": true,
-      "mechanism_text_count": 1,
-      "mechanism_text_snippets": [
-        "4-BUDH utilises an oxidised FAD quinone to carry out radical formation. This lowers the pKa of the C3 hydrogen, thus activating the usually unreactive C3-H bond. His 292 acts as a general base to enolise 4-hydroxybutanoyl-CoA by abstraction of the C2-proR-hydrogen. FAD removes an electron from th..."
-      ],
-      "mechanistic_coherence_score": 1.0,
-      "pdb_id": "1U8V",
-      "readiness_blockers": [],
-      "readiness_checks": {
-        "has_pairwise_geometry": true,
-        "has_pocket_context": true,
-        "resolved_at_least_three_residues": true,
-        "status_ok": true,
-        "top1_score_at_least_0_4": true
-      },
-      "readiness_score": 5,
-      "resolved_residue_count": 8,
-      "status": "ok",
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_score": 0.7524
     },
     {
       "cofactor_evidence_level": "not_required",

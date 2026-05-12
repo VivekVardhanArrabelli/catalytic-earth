@@ -17413,6 +17413,276 @@
       "rationale": "phosphoserine phosphatase is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5955 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "review_status": "automation_curated",
       "tier": "bronze"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:728",
+      "evidence": {
+        "cofactor_evidence_level": "not_required",
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 225,
+            "rationale": "myristoyl-ACP-specific thioesterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.9001 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7895,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "ser_his_acid_hydrolase",
+            "target_score": 0.9001,
+            "top1_fingerprint_id": "ser_his_acid_hydrolase",
+            "top1_score": 0.9001
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.9001,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.7895,
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "rationale": "myristoyl-ACP-specific thioesterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.9001 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+      "review_status": "automation_curated",
+      "tier": "silver"
+    },
+    {
+      "confidence": "medium",
+      "entry_id": "m_csa:733",
+      "evidence": {
+        "cofactor_evidence_level": "not_required",
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 199,
+            "rationale": "esterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8885 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7843,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "ser_his_acid_hydrolase",
+            "target_score": 0.8885,
+            "top1_fingerprint_id": "ser_his_acid_hydrolase",
+            "top1_score": 0.8885
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.8885,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.7843,
+      "fingerprint_id": "ser_his_acid_hydrolase",
+      "label_type": "seed_fingerprint",
+      "rationale": "esterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8885 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+      "review_status": "automation_curated",
+      "tier": "silver"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "m_csa:735",
+      "evidence": {
+        "cofactor_evidence_level": "all_expected_local",
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 196,
+            "rationale": "cytochrome-c oxidase (BA3 type) is provisionally assigned to heme_peroxidase_oxidase: retrieval score 0.7008 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7174,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "heme_peroxidase_oxidase",
+            "target_score": 0.7008,
+            "top1_fingerprint_id": "heme_peroxidase_oxidase",
+            "top1_score": 0.7008
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.7008,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.72,
+      "fingerprint_id": "heme_peroxidase_oxidase",
+      "label_type": "seed_fingerprint",
+      "rationale": "cytochrome-c oxidase (BA3 type) is provisionally assigned to heme_peroxidase_oxidase: retrieval score 0.7008 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "review_status": "automation_curated",
+      "tier": "silver"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "m_csa:739",
+      "evidence": {
+        "cofactor_evidence_level": "all_expected_local",
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 197,
+            "rationale": "L-aspartate oxidase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.7525 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7406,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "target_score": 0.7525,
+            "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "top1_score": 0.7525
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.7525,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.7406,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "rationale": "L-aspartate oxidase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.7525 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "review_status": "automation_curated",
+      "tier": "silver"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "m_csa:740",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 224,
+            "rationale": "arylesterase is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5986 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.72,
+      "fingerprint_id": "metal_dependent_hydrolase",
+      "label_type": "seed_fingerprint",
+      "rationale": "arylesterase is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5986 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "m_csa:742",
+      "evidence": {
+        "cofactor_evidence_level": null,
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 194,
+            "rationale": "kynureninase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5764 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": null,
+        "sources": [
+          "label_factory_review_import"
+        ]
+      },
+      "evidence_score": 0.72,
+      "fingerprint_id": "plp_dependent_enzyme",
+      "label_type": "seed_fingerprint",
+      "rationale": "kynureninase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5764 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "review_status": "automation_curated",
+      "tier": "bronze"
+    },
+    {
+      "confidence": "high",
+      "entry_id": "m_csa:750",
+      "evidence": {
+        "cofactor_evidence_level": "all_expected_local",
+        "conflicts": [],
+        "expert_reviews": [
+          {
+            "action": "accept_label",
+            "queue_rank": 209,
+            "rationale": "4-hydroxybutanoyl-CoA dehydratase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.7524 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+            "review_status": "automation_curated",
+            "reviewer": "automation_label_factory",
+            "source": "label_factory_review_import"
+          }
+        ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7406,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "target_score": 0.7524,
+            "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+            "top1_score": 0.7524
+          }
+        ],
+        "migration": "label_factory_v1_default",
+        "notes": [],
+        "retrieval_score": 0.7524,
+        "sources": [
+          "label_factory_review_import",
+          "label_factory_audit"
+        ]
+      },
+      "evidence_score": 0.7406,
+      "fingerprint_id": "flavin_dehydrogenase_reductase",
+      "label_type": "seed_fingerprint",
+      "rationale": "4-hydroxybutanoyl-CoA dehydratase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.7524 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "review_status": "automation_curated",
+      "tier": "silver"
     }
   ],
   "metadata": {
@@ -17420,42 +17690,42 @@
       "abstain_pending_evidence": 9,
       "hold_bronze_boundary_review": 83,
       "hold_bronze_need_review": 20,
-      "hold_current_tier": 434,
-      "promote_to_silver": 83
+      "hold_current_tier": 436,
+      "promote_to_silver": 88
     },
-    "input_label_count": 630,
+    "input_label_count": 637,
     "method": "apply_label_factory_actions",
-    "output_label_count": 630,
+    "output_label_count": 637,
     "output_summary": {
       "by_confidence": {
-        "high": 36,
+        "high": 41,
         "low": 36,
-        "medium": 558
+        "medium": 560
       },
       "by_fingerprint": {
         "cobalamin_radical_rearrangement": 2,
-        "flavin_dehydrogenase_reductase": 36,
+        "flavin_dehydrogenase_reductase": 38,
         "flavin_monooxygenase": 2,
-        "heme_peroxidase_oxidase": 14,
-        "metal_dependent_hydrolase": 57,
-        "plp_dependent_enzyme": 21,
+        "heme_peroxidase_oxidase": 15,
+        "metal_dependent_hydrolase": 58,
+        "plp_dependent_enzyme": 22,
         "radical_sam_enzyme": 1,
-        "ser_his_acid_hydrolase": 30
+        "ser_his_acid_hydrolase": 32
       },
       "by_review_status": {
-        "automation_curated": 518,
+        "automation_curated": 525,
         "needs_expert_review": 112
       },
       "by_tier": {
-        "bronze": 547,
-        "silver": 83
+        "bronze": 549,
+        "silver": 88
       },
       "by_type": {
         "out_of_scope": 467,
-        "seed_fingerprint": 163
+        "seed_fingerprint": 170
       },
-      "label_count": 630,
-      "mean_evidence_score": 0.6511
+      "label_count": 637,
+      "mean_evidence_score": 0.6521
     }
   }
 }

@@ -12,19 +12,19 @@
       "pfka": 1,
       "pfkb": 3
     },
-    "audited_count": 596,
+    "audited_count": 589,
     "blocker_counts": {
       "atp_phosphoryl_transfer_family_boundary": 21,
-      "close_cross_family_top1_top2": 81,
+      "close_cross_family_top1_top2": 84,
       "reaction_substrate_mismatch": 25,
-      "top1_cofactor_absent": 113,
-      "top1_counterevidence_present": 115,
-      "unlabeled_candidate_requires_direct_review": 120
+      "top1_cofactor_absent": 117,
+      "top1_counterevidence_present": 121,
+      "unlabeled_candidate_requires_direct_review": 113
     },
     "decision_counts": {
-      "block_family_propagation": 95,
+      "block_family_propagation": 102,
       "block_propagation_pending_review": 83,
-      "bronze_review_only": 37
+      "bronze_review_only": 30
     },
     "local_proxy_rule": "when UniRef, CATH, or InterPro evidence is unavailable, mechanism text, ligand/cofactor context, pocket geometry, and reaction/substrate mismatch signals can prioritize or block propagation but cannot promote beyond bronze by themselves",
     "max_rows": 200,
@@ -3905,105 +3905,6 @@
       "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
-      "entry_id": "m_csa:728",
-      "entry_name": "myristoyl-ACP-specific thioesterase",
-      "label_state": "unlabeled",
-      "local_proxy_evidence": {
-        "mechanism_text_count": 1,
-        "nearby_residue_count": 32,
-        "proximal_cofactor_families": [],
-        "structure_cofactor_families": []
-      },
-      "mechanism_text_snippets": [
-        "Enzymatic hydrolysis of the thioester bond proceeds using the catalytic triad of Ser 114, Asp 211, and His 241. His 241 activates Ser 114 as a nucleophile by abstracting a proton from the serine hydroxyl as the carbonyl carbon of the substrate is attacked by the nucleophile. His 241 is stabilised..."
-      ],
-      "propagation_blockers": [
-        "unlabeled_candidate_requires_direct_review"
-      ],
-      "propagation_decision": "bronze_review_only",
-      "reaction_substrate_mismatch_reasons": [],
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.9001,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_ontology_family": "hydrolysis",
-      "top2_score": 0.3782
-    },
-    {
-      "atp_phosphoryl_transfer_family": null,
-      "atp_phosphoryl_transfer_family_id": null,
-      "current_label_type": null,
-      "current_tier": null,
-      "entry_id": "m_csa:733",
-      "entry_name": "esterase",
-      "label_state": "unlabeled",
-      "local_proxy_evidence": {
-        "mechanism_text_count": 1,
-        "nearby_residue_count": 59,
-        "proximal_cofactor_families": [],
-        "structure_cofactor_families": []
-      },
-      "mechanism_text_snippets": [
-        "His256 deprotonates Ser97 and is stabilised by Asp227. Ser97 is then involved in nucleophilic attack on the carbonyl carbon of D-MALTI. The resulting tetrahedral oxyanion is stabilised by hydrogen bonds to the backbone amines of Trp31 and Thr98, which together form the oxyanion hole. The intermed..."
-      ],
-      "propagation_blockers": [
-        "unlabeled_candidate_requires_direct_review"
-      ],
-      "propagation_decision": "bronze_review_only",
-      "reaction_substrate_mismatch_reasons": [],
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.8885,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_ontology_family": "hydrolysis",
-      "top2_score": 0.3694
-    },
-    {
-      "atp_phosphoryl_transfer_family": null,
-      "atp_phosphoryl_transfer_family_id": null,
-      "current_label_type": null,
-      "current_tier": null,
-      "entry_id": "m_csa:735",
-      "entry_name": "cytochrome-c oxidase (BA3 type)",
-      "label_state": "unlabeled",
-      "local_proxy_evidence": {
-        "mechanism_text_count": 1,
-        "nearby_residue_count": 99,
-        "proximal_cofactor_families": [
-          "heme",
-          "metal_ion"
-        ],
-        "structure_cofactor_families": [
-          "heme",
-          "metal_ion"
-        ]
-      },
-      "mechanism_text_snippets": [
-        "<p>The ba3-type COX has a copper CuA centre (comprising two copper ions), a haem b, and a redox active binuclear centre comprising CuB and a haem As3 iron. Tyr 237 is near CuB and haem As3, and has a low pKa due to a covalent bond with His 233. In the resting (oxidised or O) state, the haem As3 c..."
-      ],
-      "propagation_blockers": [
-        "unlabeled_candidate_requires_direct_review"
-      ],
-      "propagation_decision": "bronze_review_only",
-      "reaction_substrate_mismatch_reasons": [],
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_ontology_family": "heme_redox",
-      "top1_score": 0.7008,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.3296
-    },
-    {
-      "atp_phosphoryl_transfer_family": null,
-      "atp_phosphoryl_transfer_family_id": null,
-      "current_label_type": null,
-      "current_tier": null,
       "entry_id": "m_csa:737",
       "entry_name": "beta-lysine 5,6-aminomutase",
       "label_state": "unlabeled",
@@ -4075,112 +3976,6 @@
       "atp_phosphoryl_transfer_family_id": null,
       "current_label_type": null,
       "current_tier": null,
-      "entry_id": "m_csa:739",
-      "entry_name": "L-aspartate oxidase",
-      "label_state": "unlabeled",
-      "local_proxy_evidence": {
-        "mechanism_text_count": 2,
-        "nearby_residue_count": 66,
-        "proximal_cofactor_families": [
-          "flavin"
-        ],
-        "structure_cofactor_families": [
-          "flavin"
-        ]
-      },
-      "mechanism_text_snippets": [
-        "<p>Arg 290 acts as a base by deprotonating C3 of L-aspartate. Arg 386 and His 351 stabilise the negative charge on the O4 oxygen atoms. FAD then accepts a hydride from C2 of L-aspartate (and most likely then accepts a proton from the solvent to form FADH2.)</p> <p>If fumarate is used as the elect...",
-        "Kinetic isotope effect experimental data argue against the succinate dehydrogenase-like mechanism for aspartate oxidation and for a concerted mechanism. The mechanism proposal shown here involves Glu121 may act as a base to deprotonate the amino group of L-aspartate, followed by hydride transfer..."
-      ],
-      "propagation_blockers": [
-        "unlabeled_candidate_requires_direct_review"
-      ],
-      "propagation_decision": "bronze_review_only",
-      "reaction_substrate_mismatch_reasons": [],
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.7525,
-      "top2_fingerprint_id": "flavin_monooxygenase",
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.4358
-    },
-    {
-      "atp_phosphoryl_transfer_family": null,
-      "atp_phosphoryl_transfer_family_id": null,
-      "current_label_type": null,
-      "current_tier": null,
-      "entry_id": "m_csa:740",
-      "entry_name": "arylesterase",
-      "label_state": "unlabeled",
-      "local_proxy_evidence": {
-        "mechanism_text_count": 1,
-        "nearby_residue_count": 71,
-        "proximal_cofactor_families": [
-          "metal_ion"
-        ],
-        "structure_cofactor_families": [
-          "metal_ion"
-        ]
-      },
-      "mechanism_text_snippets": [
-        "His 115 acts as a general base by deprotonating a water molecule, activating it for nucleophilic attack on the substrate ester carbonyl. His 134 acts as a 'proton shuttle' to take a proton away from His 115, thereby increasing its basicity. A negatively charged, tetrahedral intermediate is formed..."
-      ],
-      "propagation_blockers": [
-        "unlabeled_candidate_requires_direct_review"
-      ],
-      "propagation_decision": "bronze_review_only",
-      "reaction_substrate_mismatch_reasons": [],
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.5986,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3503
-    },
-    {
-      "atp_phosphoryl_transfer_family": null,
-      "atp_phosphoryl_transfer_family_id": null,
-      "current_label_type": null,
-      "current_tier": null,
-      "entry_id": "m_csa:742",
-      "entry_name": "kynureninase",
-      "label_state": "unlabeled",
-      "local_proxy_evidence": {
-        "mechanism_text_count": 1,
-        "nearby_residue_count": 80,
-        "proximal_cofactor_families": [
-          "plp"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ]
-      },
-      "mechanism_text_snippets": [
-        "Lys 227 binds PLP to Kynureninase. Electrophilicity of PLP is enhanced through close contact with Asp 201 which aids protonation of the pyridine ring. Phe 129 is Pi-stacked on top of the pyridine ring of PLP, stabilising the cofactor.The phosphate of PLPis protonated by Tyr226 which then accepts..."
-      ],
-      "propagation_blockers": [
-        "unlabeled_candidate_requires_direct_review"
-      ],
-      "propagation_decision": "bronze_review_only",
-      "reaction_substrate_mismatch_reasons": [],
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5764,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3901
-    },
-    {
-      "atp_phosphoryl_transfer_family": null,
-      "atp_phosphoryl_transfer_family_id": null,
-      "current_label_type": null,
-      "current_tier": null,
       "entry_id": "m_csa:743",
       "entry_name": "quercetin 2,3-dioxygenase",
       "label_state": "unlabeled",
@@ -4240,43 +4035,6 @@
       "top2_fingerprint_id": "metal_dependent_hydrolase",
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.3682
-    },
-    {
-      "atp_phosphoryl_transfer_family": null,
-      "atp_phosphoryl_transfer_family_id": null,
-      "current_label_type": null,
-      "current_tier": null,
-      "entry_id": "m_csa:750",
-      "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
-      "label_state": "unlabeled",
-      "local_proxy_evidence": {
-        "mechanism_text_count": 1,
-        "nearby_residue_count": 85,
-        "proximal_cofactor_families": [
-          "fe_s_cluster",
-          "flavin"
-        ],
-        "structure_cofactor_families": [
-          "fe_s_cluster",
-          "flavin"
-        ]
-      },
-      "mechanism_text_snippets": [
-        "4-BUDH utilises an oxidised FAD quinone to carry out radical formation. This lowers the pKa of the C3 hydrogen, thus activating the usually unreactive C3-H bond. His 292 acts as a general base to enolise 4-hydroxybutanoyl-CoA by abstraction of the C2-proR-hydrogen. FAD removes an electron from th..."
-      ],
-      "propagation_blockers": [
-        "unlabeled_candidate_requires_direct_review"
-      ],
-      "propagation_decision": "bronze_review_only",
-      "reaction_substrate_mismatch_reasons": [],
-      "target_fingerprint_id": null,
-      "target_ontology_family": null,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.7524,
-      "top2_fingerprint_id": "flavin_monooxygenase",
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.4274
     },
     {
       "atp_phosphoryl_transfer_family": null,
@@ -7006,6 +6764,252 @@
       "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.3232
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:107",
+      "entry_name": "aerobic carbon monoxide dehydrogenase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 2,
+        "nearby_residue_count": 59,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "In this proposal, the reaction proceeds via a stable C-S intermediate. <br/><br/> This mechanism starts in the oxidized Mo(VI)-Cu(I) state. The substrate carbon monoxide (CO) reaches the cluster through the substrate channel. CO coordinates to the copper (I) centre. This activates the CO and allo...",
+        "Proposed catalytic cycle for CODH that avoids formation of a stable C-S bonded intermediate. <br/><br/> This mechanism starts in the oxidized Mo(VI)-Cu(I) state. The substrate carbon monoxide (CO) reaches the cluster through the substrate channel. CO coordinates to the copper (I) centre. This act..."
+      ],
+      "propagation_blockers": [
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3996,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.347
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "current_label_type": "seed_fingerprint",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:108",
+      "entry_name": "2,4-dienoyl-CoA reductase (NADPH)",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 61,
+        "proximal_cofactor_families": [
+          "fe_s_cluster"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin",
+          "nad"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "The reaction is initiated by hydride transfer from NADPH to FAD, which in turn transfers electrons, one at a time, to FMN via the 4Fe-4S cluster. The fully reduced FMN provides a hydride ion to the C5 atom of substrate, and Tyr and His are proposed to form a catalytic dyad that protonates the C4..."
+      ],
+      "propagation_blockers": [
+        "top1_cofactor_absent",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "target_ontology_family": "flavin_redox",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.4422,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3886
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:112",
+      "entry_name": "dihydrofolate reductase (bacterial)",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 68,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": []
+      },
+      "mechanism_text_snippets": [
+        "This mechanism proceeds in a single step in which the hydride ion is added to C6 with concomitant protonation of the N5 from a conserved water molecule. The active site residues are responsible for maintaining the steric placement of the substrates and Asp26, shown to be critical to the mechanism..."
+      ],
+      "propagation_blockers": [
+        "top1_cofactor_absent"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3546,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2721
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:116",
+      "entry_name": "NAD(P)+ transhydrogenase (AB-specific)",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 49,
+        "proximal_cofactor_families": [
+          "nad"
+        ],
+        "structure_cofactor_families": [
+          "nad"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "The translocation of the proton from outside the membrane to the inside causes a conformational rearrangement within all domains such that Arg127 of domain I is positioned to stabilise NADH in the proximal position. This allows NADH and NADP+ to align correctly and hydride transfer occurs between..."
+      ],
+      "propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.3044,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.277
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:118",
+      "entry_name": "urate oxidase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 59,
+        "proximal_cofactor_families": [],
+        "structure_cofactor_families": []
+      },
+      "mechanism_text_snippets": [
+        "Urate oxidase catalyses the first step of the oxidation of uric acid. This reaction is followed by several uncatalysed steps to give allantoin. There is no prosthetic group or metal ion present in the catalytic reaction. Most of the enzyme's catalytic activity results from isolating its substrate..."
+      ],
+      "propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_cofactor_absent",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.3031,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.303
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:119",
+      "entry_name": "pyruvate:ferredoxin oxidoreducatse",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 69,
+        "proximal_cofactor_families": [
+          "fe_s_cluster"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "The catalytic mechanism of PDC for the most part follows the principles of catalytic mechanisms of other TPP-dependent enzymes: carbonyl addition of pyruvate to the reactive C2 atom of the cofactor thiazolium ring yields the intermediate 2-(2-lactyl)-TDP (LTDP). The subsequent release of carbon d..."
+      ],
+      "propagation_blockers": [
+        "top1_cofactor_absent",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2638,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.2636
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "current_label_type": "out_of_scope",
+      "current_tier": "bronze",
+      "entry_id": "m_csa:121",
+      "entry_name": "sulfite oxidase",
+      "label_state": "labeled",
+      "local_proxy_evidence": {
+        "mechanism_text_count": 1,
+        "nearby_residue_count": 74,
+        "proximal_cofactor_families": [
+          "heme"
+        ],
+        "structure_cofactor_families": [
+          "heme"
+        ]
+      },
+      "mechanism_text_snippets": [
+        "This protein requires both Heme and a molybdenum (VI) centre to be catalytically active. The sulfite substrate initiates a nucleophilic attack on one of the oxo ligands of the Mo(VI) centre, reducing the Mo to +4. This forms the sulfate product, which is displaced from the active site by water. D..."
+      ],
+      "propagation_blockers": [
+        "close_cross_family_top1_top2",
+        "top1_counterevidence_present"
+      ],
+      "propagation_decision": "block_family_propagation",
+      "reaction_substrate_mismatch_reasons": [],
+      "target_fingerprint_id": null,
+      "target_ontology_family": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.4109,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.3714
     },
     {
       "atp_phosphoryl_transfer_family": null,

@@ -2,12 +2,12 @@
 
 ## Current Plan
 
-The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, and 700-slice
+The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, and 750-slice
 label-factory batches have been processed through countable import and
-acceptance checks. The canonical registry has 624 countable labels. Do not
-open another tranche until the accepted-700 review-debt surface is repaired:
-81 rows remain `needs_more_evidence`, and the latest remediation artifacts show
-that structure-wide cofactor-family hits still lack local active-site support.
+acceptance checks. The canonical registry has 637 countable labels. Open the
+next tranche only as a bounded gated 775 preview; 118 rows remain
+`needs_more_evidence` and are explicitly non-countable under the 750 deferral
+audit.
 
 ## Current Generated Artifacts
 

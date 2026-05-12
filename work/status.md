@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 50
-- Measured elapsed time: 1858.3 minutes (30.97 hours)
+- Entries: 51
+- Measured elapsed time: 1878.2 minutes (31.30 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1780.2 measured minutes (29.67 hours)
+- post-v2: 1800.1 measured minutes (30.00 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 493
-- Evidence references logged: 390
+- Artifact references logged: 500
+- Evidence references logged: 401
 
 ## Recent Entries
-
-### 2026-05-10T22:51:19.534178+00:00 - post-v2
-
-- Task: Gate expert-label decision repair lanes
-- Time mode: measured
-- Measured minutes: 50.85
-- Started: 2026-05-10T21:59:58Z
-- Ended: 2026-05-10T22:50:49Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_expert_label_decision_review_export_700.json, artifacts/v3_expert_label_decision_decision_batch_700.json, artifacts/v3_expert_label_decision_repair_candidates_700.json, artifacts/v3_expert_label_decision_repair_candidates_700_all.json, artifacts/v3_label_factory_gate_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_label_factory_batch_summary.json, tests/test_labels.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_factory_notes.md, work/label_preview_700_notes.md, work/expert_label_decision_review_700_notes.md
-- Evidence: 175 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, 76 expert-label decision rows exported as no_decision, 0 expert-decision countable candidates, 76 repair candidates with full all-row table, 14/14 label-factory gates passed, scaling-quality audit covers expert repair gate, 50-iteration local perf check completed in tmp
-- Notes: Documentation checked and updated; normal measured locked run with 50 minutes productive work before wrap-up.
 
 ### 2026-05-10T23:56:45.965586+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures
 - Notes: Normal locked measured run. Canonical labels remain 630; 750 is preview-only until new review debt is repaired or explicitly deferred.
 
+### 2026-05-12T20:14:45.382801+00:00 - post-v2
+
+- Task: Accept gated 750 label batch
+- Time mode: measured
+- Measured minutes: 19.9
+- Started: 2026-05-12T19:54:22Z
+- Ended: 2026-05-12T20:14:16Z
+- Artifacts: data/registries/curated_mechanism_labels.json, artifacts/v3_label_batch_acceptance_check_750.json, artifacts/v3_label_factory_gate_check_750.json, artifacts/v3_accepted_review_debt_deferral_audit_750.json, artifacts/v3_label_factory_batch_summary.json, artifacts/v3_geometry_label_eval_750.json, work/label_preview_750_notes.md
+- Evidence: 200 unit tests passed, validate passed, git diff --check passed, compileall passed, 20/20 label-factory gates passed, 637 countable labels, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 118 review-state rows explicitly deferred
+- Notes: Normal locked measured run. Seven clean 750 labels accepted; 118 review-state rows remain non-countable.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -166,6 +166,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T16:42:24.970333+00:00: Keep ATP families as boundary evidence; stop scaling if next gate exposes quality drift.
 - 2026-05-12T17:48:03.708741+00:00: Next run should repair or explicitly defer the accepted-725 review-debt surface before blind 750 scaling.
 - 2026-05-12T18:52:33.655337+00:00: Next run should repair or explicitly defer the 18 new 750-preview review-debt rows before promoting seven clean candidates.
+- 2026-05-12T20:14:45.382801+00:00: 750 review debt can be explicitly deferred without weakening countable-label gates; resume bounded scaling toward 1,000 labels.
 
 ## Scope Adjustments
 
@@ -217,3 +218,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T16:42:24.970333+00:00: Nine-family ATP/phosphoryl-transfer expansion is complete; next bounded work can resume factory-gated scaling toward 725.
 - 2026-05-12T17:48:03.708741+00:00: Accepted 725 as the latest gated countable slice: 630 countable labels and 100 review-state rows kept non-countable.
 - 2026-05-12T18:52:33.655337+00:00: Accepted-725 review debt is explicitly deferred; 750 preview is open but not canonical.
+- 2026-05-12T20:14:45.382801+00:00: Accepted 750 as latest gated countable slice; next bounded work is a 775 preview only while the 750 post-batch gate stays clean.

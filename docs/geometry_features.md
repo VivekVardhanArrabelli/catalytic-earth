@@ -260,19 +260,19 @@ smallest retained evidence-limited margin is now `0.013`.
 
 ## Label Expansion Queue
 
-The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, and 700-entry source
-slices have been processed through the label factory. The 700-entry batch is
+The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, and 750-entry
+source slices have been processed through the label factory. The 750-entry batch is
 resolved only for clean countable labels because every batch candidate has an
 accept, reject, or needs-more-evidence decision:
 
-- geometry entries in expansion artifact: 700
-- countable curated labels: 624
-- evaluated labeled rows: 623
-- evaluable labeled active-site structures: 607
-- post-batch unlabeled queue rows retained: 64
+- geometry entries in expansion artifact: 749
+- countable curated labels: 637
+- evaluated labeled rows: 636
+- evaluable labeled active-site structures: 620
+- post-batch unlabeled queue rows retained: 113
 - review notes: `work/label_factory_notes.md`
-- active-learning review queue: `artifacts/v3_active_learning_review_queue_700.json`
-- expert-review export: `artifacts/v3_expert_review_export_700_post_batch.json`
+- active-learning review queue: `artifacts/v3_active_learning_review_queue_750.json`
+- expert-review export: `artifacts/v3_expert_review_export_750_post_batch.json`
 - factory gate check: `artifacts/v3_label_factory_gate_check_700.json`
 
 `m_csa:494` remains non-countable by design until local cobalamin evidence or

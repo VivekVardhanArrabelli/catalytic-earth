@@ -3,7 +3,7 @@
     "active_site_mapping_or_structure_gap_row_count": 20,
     "all_priority_lanes_non_countable": true,
     "audit_recommendation": "continue_repair_before_count_growth",
-    "candidate_count": 120,
+    "candidate_count": 113,
     "countable_label_candidate_count": 0,
     "full_table_input": true,
     "guardrail_ready": true,

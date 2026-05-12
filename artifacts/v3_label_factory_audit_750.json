@@ -6,24 +6,24 @@
       "abstain_pending_evidence": 9,
       "hold_bronze_boundary_review": 83,
       "hold_bronze_need_review": 20,
-      "hold_current_tier": 434,
-      "promote_to_silver": 83
+      "hold_current_tier": 436,
+      "promote_to_silver": 88
     },
     "demote_to_bronze_count": 0,
     "demotion_rule": "silver/gold labels demote to bronze, or bronze labels stay review-only, when retrieval counterevidence, abstention, top-family mismatch, or out-of-scope false non-abstention is present",
-    "evaluated_label_count": 629,
+    "evaluated_label_count": 636,
     "hard_negative_evidence_entry_count": 100,
-    "label_count": 630,
+    "label_count": 637,
     "method": "label_factory_promotion_demotion_audit",
-    "promote_to_silver_count": 83,
+    "promote_to_silver_count": 88,
     "promotion_rule": "bronze labels promote to silver when retrieval agrees with the label, the score clears the abstention threshold, and no evidence-limiting cofactor or counterevidence conflict is present",
     "target_tier_counts": {
-      "bronze": 546,
-      "silver": 83
+      "bronze": 548,
+      "silver": 88
     },
     "tier_transition_counts": {
-      "bronze->bronze": 546,
-      "bronze->silver": 83
+      "bronze->bronze": 548,
+      "bronze->silver": 88
     }
   },
   "rows": [
@@ -34597,6 +34597,373 @@
     },
     {
       "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "not_required",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "myristoyl-ACP-specific thioesterase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Enzymatic hydrolysis of the thioester bond proceeds using the catalytic triad of Ser 114, Asp 211, and His 241. His 241 activates Ser 114 as a nucleophile by abstracting a proton from the serine hydroxyl as the carbonyl carbon of the substrate is attacked by the nucleophile. His 241 is stabilised..."
+        ],
+        "nearby_residue_count": 32,
+        "pdb_id": "1THT",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.125,
+          "charge_balance": -0.0313,
+          "hydrophobic_fraction": 0.375,
+          "mean_min_distance_to_active_site": 5.2167,
+          "negative_fraction": 0.0938,
+          "polar_fraction": 0.2812,
+          "positive_fraction": 0.0625,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "ASP",
+          "SER",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:728",
+      "entry_name": "myristoyl-ACP-specific thioesterase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [],
+      "factory_evidence_score": 0.7895,
+      "hard_negative_evidence": [],
+      "label_rationale": "myristoyl-ACP-specific thioesterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.9001 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.67,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_ontology_family": "hydrolysis",
+      "target_rank": 1,
+      "target_score": 0.9001,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.9001,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_gap": 0.5219,
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.3782
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "not_required",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "esterase",
+        "ligand_codes": [],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "His256 deprotonates Ser97 and is stabilised by Asp227. Ser97 is then involved in nucleophilic attack on the carbonyl carbon of D-MALTI. The resulting tetrahedral oxyanion is stabilised by hydrogen bonds to the backbone amines of Trp31 and Thr98, which together form the oxyanion hole. The intermed..."
+        ],
+        "nearby_residue_count": 59,
+        "pdb_id": "1ZOI",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2881,
+          "charge_balance": 0.0848,
+          "hydrophobic_fraction": 0.3559,
+          "mean_min_distance_to_active_site": 5.2706,
+          "negative_fraction": 0.0508,
+          "polar_fraction": 0.1864,
+          "positive_fraction": 0.1356,
+          "sulfur_fraction": 0.0678
+        },
+        "residue_codes": [
+          "HIS",
+          "THR",
+          "SER",
+          "ALA",
+          "TRP",
+          "ASP"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": []
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:733",
+      "entry_name": "esterase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [],
+      "factory_evidence_score": 0.7843,
+      "hard_negative_evidence": [],
+      "label_rationale": "esterase is provisionally assigned to ser_his_acid_hydrolase: retrieval score 0.8885 clears the 0.4115 floor and mechanism text supports a Ser-His-Asp/Glu hydrolase triad.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.67,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "target_ontology_family": "hydrolysis",
+      "target_rank": 1,
+      "target_score": 0.8885,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.8885,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_gap": 0.5191,
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.3694
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "heme",
+          "metal_ion"
+        ],
+        "entry_name": "cytochrome-c oxidase (BA3 type)",
+        "ligand_codes": [
+          "HEM",
+          "CU",
+          "HAS",
+          "CUA"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "<p>The ba3-type COX has a copper CuA centre (comprising two copper ions), a haem b, and a redox active binuclear centre comprising CuB and a haem As3 iron. Tyr 237 is near CuB and haem As3, and has a low pKa due to a covalent bond with His 233. In the resting (oxidised or O) state, the haem As3 c..."
+        ],
+        "nearby_residue_count": 99,
+        "pdb_id": "1EHK",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2626,
+          "charge_balance": 0.0606,
+          "hydrophobic_fraction": 0.404,
+          "mean_min_distance_to_active_site": 5.4149,
+          "negative_fraction": 0.0101,
+          "polar_fraction": 0.2525,
+          "positive_fraction": 0.0707,
+          "sulfur_fraction": 0.0606
+        },
+        "residue_codes": [
+          "HIS",
+          "TYR",
+          "HIS",
+          "PHE",
+          "HIS",
+          "ARG",
+          "ARG",
+          "PHE",
+          "PHE"
+        ],
+        "structure_cofactor_families": [
+          "heme",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "HEM",
+          "CU",
+          "HAS",
+          "CUA",
+          "BNG"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:735",
+      "entry_name": "cytochrome-c oxidase (BA3 type)",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "heme"
+      ],
+      "factory_evidence_score": 0.7174,
+      "hard_negative_evidence": [],
+      "label_rationale": "cytochrome-c oxidase (BA3 type) is provisionally assigned to heme_peroxidase_oxidase: retrieval score 0.7008 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "target_ontology_family": "heme_redox",
+      "target_rank": 1,
+      "target_score": 0.7008,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.7008,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_gap": 0.3712,
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.3296
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "flavin"
+        ],
+        "entry_name": "L-aspartate oxidase",
+        "ligand_codes": [
+          "FAD"
+        ],
+        "mechanism_text_count": 2,
+        "mechanism_text_snippets": [
+          "<p>Arg 290 acts as a base by deprotonating C3 of L-aspartate. Arg 386 and His 351 stabilise the negative charge on the O4 oxygen atoms. FAD then accepts a hydride from C2 of L-aspartate (and most likely then accepts a proton from the solvent to form FADH2.)</p> <p>If fumarate is used as the elect...",
+          "Kinetic isotope effect experimental data argue against the succinate dehydrogenase-like mechanism for aspartate oxidation and for a concerted mechanism. The mechanism proposal shown here involves Glu121 may act as a base to deprotonate the amino group of L-aspartate, followed by hydride transfer..."
+        ],
+        "nearby_residue_count": 66,
+        "pdb_id": "1KNP",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1212,
+          "charge_balance": 0.0303,
+          "hydrophobic_fraction": 0.3788,
+          "mean_min_distance_to_active_site": 5.3248,
+          "negative_fraction": 0.0758,
+          "polar_fraction": 0.3333,
+          "positive_fraction": 0.1061,
+          "sulfur_fraction": 0.0455
+        },
+        "residue_codes": [
+          "GLU",
+          "HIS",
+          "LEU",
+          "ARG",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "FAD",
+          "SIN",
+          "NA"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:739",
+      "entry_name": "L-aspartate oxidase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "flavin"
+      ],
+      "factory_evidence_score": 0.7406,
+      "hard_negative_evidence": [],
+      "label_rationale": "L-aspartate oxidase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.7525 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "target_ontology_family": "flavin_redox",
+      "target_rank": 1,
+      "target_score": 0.7525,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.7525,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_gap": 0.3167,
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.4358
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+        "ligand_codes": [
+          "SF4",
+          "FAD"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "4-BUDH utilises an oxidised FAD quinone to carry out radical formation. This lowers the pKa of the C3 hydrogen, thus activating the usually unreactive C3-H bond. His 292 acts as a general base to enolise 4-hydroxybutanoyl-CoA by abstraction of the C2-proR-hydrogen. FAD removes an electron from th..."
+        ],
+        "nearby_residue_count": 85,
+        "pdb_id": "1U8V",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1176,
+          "charge_balance": 0.0941,
+          "hydrophobic_fraction": 0.3294,
+          "mean_min_distance_to_active_site": 5.1471,
+          "negative_fraction": 0.0353,
+          "polar_fraction": 0.2471,
+          "positive_fraction": 0.1294,
+          "sulfur_fraction": 0.0706
+        },
+        "residue_codes": [
+          "TYR",
+          "GLU",
+          "GLU",
+          "THR",
+          "CYS",
+          "CYS",
+          "CYS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "flavin"
+        ],
+        "structure_ligand_codes": [
+          "SF4",
+          "FAD"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:750",
+      "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "flavin"
+      ],
+      "factory_evidence_score": 0.7406,
+      "hard_negative_evidence": [],
+      "label_rationale": "4-hydroxybutanoyl-CoA dehydratase is provisionally assigned to flavin_dehydrogenase_reductase: retrieval score 0.7524 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "target_ontology_family": "flavin_redox",
+      "target_rank": 1,
+      "target_score": 0.7524,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.7524,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_gap": 0.325,
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.4274
+    },
+    {
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "cofactor_coverage_status": null,
       "confidence": "medium",
@@ -48109,6 +48476,159 @@
       "top2_gap": 0.246,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.3495
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": "arylesterase",
+        "ligand_codes": [
+          "CA",
+          "PO4"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "His 115 acts as a general base by deprotonating a water molecule, activating it for nucleophilic attack on the substrate ester carbonyl. His 134 acts as a 'proton shuttle' to take a proton away from His 115, thereby increasing its basicity. A negatively charged, tetrahedral intermediate is formed..."
+        ],
+        "nearby_residue_count": 71,
+        "pdb_id": "1V04",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1127,
+          "charge_balance": -0.0141,
+          "hydrophobic_fraction": 0.3662,
+          "mean_min_distance_to_active_site": 5.1493,
+          "negative_fraction": 0.0845,
+          "polar_fraction": 0.338,
+          "positive_fraction": 0.0704,
+          "sulfur_fraction": 0.0141
+        },
+        "residue_codes": [
+          "GLU",
+          "ASN",
+          "ASP",
+          "ASN",
+          "ASN",
+          "HIS",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "CA",
+          "PO4"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:740",
+      "entry_name": "arylesterase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "factory_evidence_score": 0.6714,
+      "hard_negative_evidence": [],
+      "label_rationale": "arylesterase is provisionally assigned to metal_dependent_hydrolase: retrieval score 0.5986 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "bronze",
+      "recommended_action": "hold_current_tier",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 9,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "target_ontology_family": "hydrolysis",
+      "target_rank": 1,
+      "target_score": 0.5986,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5986,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_gap": 0.2483,
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3503
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "kynureninase",
+        "ligand_codes": [
+          "PLP",
+          "P3G"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Lys 227 binds PLP to Kynureninase. Electrophilicity of PLP is enhanced through close contact with Asp 201 which aids protonation of the pyridine ring. Phe 129 is Pi-stacked on top of the pyridine ring of PLP, stabilising the cofactor.The phosphate of PLPis protonated by Tyr226 which then accepts..."
+        ],
+        "nearby_residue_count": 80,
+        "pdb_id": "1QZ9",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2125,
+          "charge_balance": 0.0125,
+          "hydrophobic_fraction": 0.35,
+          "mean_min_distance_to_active_site": 5.2601,
+          "negative_fraction": 0.05,
+          "polar_fraction": 0.275,
+          "positive_fraction": 0.0625,
+          "sulfur_fraction": 0.05
+        },
+        "residue_codes": [
+          "TYR",
+          "ARG",
+          "PHE",
+          "ASP",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP",
+          "P3G",
+          "CL"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:742",
+      "entry_name": "kynureninase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6614,
+      "hard_negative_evidence": [],
+      "label_rationale": "kynureninase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5764 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "bronze",
+      "recommended_action": "hold_current_tier",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 9,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.5764,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.5764,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_gap": 0.1863,
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3901
     }
   ]
 }

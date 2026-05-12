@@ -476,9 +476,9 @@ class GeometryReportTests(unittest.TestCase):
         self.assertEqual(row_725["ready_label_candidate_count"], 85)
         row_750 = summary["rows"][-1]
         self.assertEqual(row_750["slice"], "750")
-        self.assertEqual(row_750["evaluated_count"], 629)
-        self.assertEqual(row_750["evaluable_count"], 613)
-        self.assertEqual(row_750["in_scope_count"], 163)
+        self.assertEqual(row_750["evaluated_count"], 636)
+        self.assertEqual(row_750["evaluable_count"], 620)
+        self.assertEqual(row_750["in_scope_count"], 170)
         self.assertEqual(row_750["out_of_scope_count"], 466)
         self.assertEqual(row_750["hard_negative_count"], 0)
         self.assertEqual(row_750["near_miss_count"], 0)
@@ -488,7 +488,7 @@ class GeometryReportTests(unittest.TestCase):
         self.assertEqual(row_750["mapping_issue_count"], 23)
         self.assertEqual(row_750["largest_seed_family"], "metal_dependent_hydrolase")
         self.assertEqual(row_750["largest_seed_family_count"], 57)
-        self.assertEqual(row_750["ready_label_candidate_count"], 102)
+        self.assertEqual(row_750["ready_label_candidate_count"], 95)
 
 
 if __name__ == "__main__":

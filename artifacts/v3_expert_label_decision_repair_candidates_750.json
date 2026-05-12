@@ -2,7 +2,7 @@
   "metadata": {
     "all_candidates_retained": true,
     "alternate_structure_scan_context_linked_count": 0,
-    "candidate_count": 120,
+    "candidate_count": 113,
     "candidate_entry_ids": [
       "m_csa:494",
       "m_csa:510",
@@ -99,21 +99,15 @@
       "m_csa:724",
       "m_csa:725",
       "m_csa:726",
-      "m_csa:728",
       "m_csa:729",
       "m_csa:730",
       "m_csa:731",
       "m_csa:732",
-      "m_csa:733",
       "m_csa:734",
-      "m_csa:735",
       "m_csa:736",
       "m_csa:737",
       "m_csa:738",
-      "m_csa:739",
-      "m_csa:740",
       "m_csa:741",
-      "m_csa:742",
       "m_csa:743",
       "m_csa:744",
       "m_csa:745",
@@ -121,12 +115,11 @@
       "m_csa:747",
       "m_csa:748",
       "m_csa:749",
-      "m_csa:750",
       "m_csa:751",
       "m_csa:752"
     ],
     "countable_label_candidate_count": 0,
-    "emitted_row_count": 120,
+    "emitted_row_count": 113,
     "max_rows": 160,
     "method": "expert_label_decision_repair_candidate_summary",
     "omitted_by_max_rows": 0,
@@ -134,7 +127,7 @@
       "active_site_mapping_or_structure_gap": 20,
       "cofactor_family_ambiguity": 74,
       "counterevidence_boundary": 47,
-      "external_expert_decision_required": 120,
+      "external_expert_decision_required": 113,
       "reaction_substrate_mismatch": 8,
       "ser_his_metal_boundary": 2,
       "sibling_mechanism_confusion": 15,
@@ -145,7 +138,7 @@
     "repair_bucket_counts": {
       "active_site_mapping_or_structure_gap_repair": 20,
       "cofactor_evidence_repair": 48,
-      "external_expert_label_decision": 40,
+      "external_expert_label_decision": 33,
       "ser_his_metal_boundary_review": 1,
       "sibling_mechanism_boundary_review": 3,
       "text_leakage_or_nonlocal_evidence_guardrail": 8
@@ -291,7 +284,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 141,
+      "rank": 142,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [
         "fewer_than_three_resolved_residues"
@@ -348,7 +341,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 149,
+      "rank": 150,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [
         "geometry_status_not_ok",
@@ -709,7 +702,7 @@
         "active_site_mapping_or_structure_gap",
         "external_expert_decision_required"
       ],
-      "rank": 229,
+      "rank": 222,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [
         "geometry_status_not_ok",
@@ -736,7 +729,7 @@
         "active_site_mapping_or_structure_gap",
         "external_expert_decision_required"
       ],
-      "rank": 231,
+      "rank": 224,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [
         "geometry_status_not_ok",
@@ -880,7 +873,7 @@
         "external_expert_decision_required",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
-      "rank": 200,
+      "rank": 196,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
@@ -905,7 +898,7 @@
         "external_expert_decision_required",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
-      "rank": 208,
+      "rank": 203,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
@@ -930,7 +923,7 @@
         "external_expert_decision_required",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
-      "rank": 211,
+      "rank": 206,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
@@ -955,7 +948,7 @@
         "external_expert_decision_required",
         "text_leakage_or_nonlocal_evidence_risk"
       ],
-      "rank": 213,
+      "rank": 208,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
@@ -1099,7 +1092,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 48,
+      "rank": 49,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
@@ -1153,7 +1146,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 63,
+      "rank": 64,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
@@ -1180,7 +1173,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 66,
+      "rank": 67,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
@@ -1207,7 +1200,7 @@
         "counterevidence_boundary",
         "external_expert_decision_required"
       ],
-      "rank": 74,
+      "rank": 76,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
@@ -1576,7 +1569,7 @@
         "cofactor_family_ambiguity",
         "external_expert_decision_required"
       ],
-      "rank": 139,
+      "rank": 138,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
@@ -1600,7 +1593,7 @@
         "cofactor_family_ambiguity",
         "external_expert_decision_required"
       ],
-      "rank": 142,
+      "rank": 141,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
@@ -1700,7 +1693,7 @@
         "cofactor_family_ambiguity",
         "external_expert_decision_required"
       ],
-      "rank": 150,
+      "rank": 149,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
@@ -2220,7 +2213,7 @@
         "external_expert_decision_required",
         "ser_his_metal_boundary"
       ],
-      "rank": 203,
+      "rank": 199,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "keep Ser-His versus metal-hydrolase boundary rows in review",
@@ -2514,7 +2507,7 @@
         "external_expert_decision_required",
         "substrate_class_boundary"
       ],
-      "rank": 155,
+      "rank": 154,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2584,35 +2577,12 @@
       "cofactor_evidence_level": "ligand_supported",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
-      "entry_id": "m_csa:742",
-      "entry_name": "kynureninase",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 194,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5764,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_score": 0.3901
-    },
-    {
-      "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "ligand_supported",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
       "entry_id": "m_csa:568",
       "entry_name": "lipopolysaccharide 3-alpha-galactosyltransferase",
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 195,
+      "rank": 194,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2630,58 +2600,12 @@
       "cofactor_evidence_level": "ligand_supported",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
-      "entry_id": "m_csa:735",
-      "entry_name": "cytochrome-c oxidase (BA3 type)",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 196,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "heme_peroxidase_oxidase",
-      "top1_ontology_family": "heme_redox",
-      "top1_score": 0.7008,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_score": 0.3296
-    },
-    {
-      "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "ligand_supported",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
-      "entry_id": "m_csa:739",
-      "entry_name": "L-aspartate oxidase",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 197,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.7525,
-      "top2_fingerprint_id": "flavin_monooxygenase",
-      "top2_score": 0.4358
-    },
-    {
-      "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "ligand_supported",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
       "entry_id": "m_csa:738",
       "entry_name": "phosphoglycerate mutase (2,3-bisphosphoglycerate-independent)",
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 198,
+      "rank": 195,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2699,35 +2623,12 @@
       "cofactor_evidence_level": "not_required",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
-      "entry_id": "m_csa:733",
-      "entry_name": "esterase",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 199,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.8885,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_score": 0.3694
-    },
-    {
-      "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "not_required",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
       "entry_id": "m_csa:599",
       "entry_name": "dipeptidase E",
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 201,
+      "rank": 197,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2750,7 +2651,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 202,
+      "rank": 198,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2773,7 +2674,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 204,
+      "rank": 200,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2788,29 +2689,6 @@
     },
     {
       "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "not_required",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
-      "entry_id": "m_csa:744",
-      "entry_name": "GyrA intein (Class 1 intein)",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 205,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.7001,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_score": 0.3682
-    },
-    {
-      "alternate_structure_scan_context": null,
       "cofactor_evidence_level": "ligand_supported",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
@@ -2819,7 +2697,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 206,
+      "rank": 201,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2837,12 +2715,35 @@
       "cofactor_evidence_level": "not_required",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
+      "entry_id": "m_csa:744",
+      "entry_name": "GyrA intein (Class 1 intein)",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 202,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": null,
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.7001,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_score": 0.3682
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "not_required",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
       "entry_id": "m_csa:602",
       "entry_name": "6-deoxyerythronolide-B synthase",
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 207,
+      "rank": 204,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2860,35 +2761,12 @@
       "cofactor_evidence_level": "ligand_supported",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
-      "entry_id": "m_csa:750",
-      "entry_name": "4-hydroxybutanoyl-CoA dehydratase",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 209,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top1_ontology_family": "flavin_redox",
-      "top1_score": 0.7524,
-      "top2_fingerprint_id": "flavin_monooxygenase",
-      "top2_score": 0.4274
-    },
-    {
-      "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "ligand_supported",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
       "entry_id": "m_csa:661",
       "entry_name": "arylsulfatase",
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 210,
+      "rank": 205,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2911,7 +2789,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 212,
+      "rank": 207,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2934,7 +2812,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 214,
+      "rank": 209,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2957,7 +2835,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 215,
+      "rank": 210,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -2980,7 +2858,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 216,
+      "rank": 211,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3003,7 +2881,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 217,
+      "rank": 212,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3026,7 +2904,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 218,
+      "rank": 213,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3041,29 +2919,6 @@
     },
     {
       "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "not_required",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
-      "entry_id": "m_csa:598",
-      "entry_name": "streptopain",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 219,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.6004,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_score": 0.3747
-    },
-    {
-      "alternate_structure_scan_context": null,
       "cofactor_evidence_level": "ligand_supported",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
@@ -3072,7 +2927,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 220,
+      "rank": 214,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3095,7 +2950,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 221,
+      "rank": 215,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3118,7 +2973,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 222,
+      "rank": 216,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3133,6 +2988,29 @@
     },
     {
       "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "not_required",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:598",
+      "entry_name": "streptopain",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 217,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": null,
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.6004,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_score": 0.3747
+    },
+    {
+      "alternate_structure_scan_context": null,
       "cofactor_evidence_level": "ligand_supported",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
@@ -3141,7 +3019,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 223,
+      "rank": 218,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3159,58 +3037,12 @@
       "cofactor_evidence_level": "ligand_supported",
       "countable_label_candidate": false,
       "counterevidence_reasons": [],
-      "entry_id": "m_csa:740",
-      "entry_name": "arylesterase",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 224,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "metal_dependent_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.5986,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_score": 0.3503
-    },
-    {
-      "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "not_required",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
-      "entry_id": "m_csa:728",
-      "entry_name": "myristoyl-ACP-specific thioesterase",
-      "quality_risk_flags": [
-        "external_expert_decision_required"
-      ],
-      "rank": 225,
-      "reaction_substrate_mismatch_reasons": [],
-      "readiness_blockers": [],
-      "recommended_next_action": "external expert label decision required",
-      "repair_bucket": "external_expert_label_decision",
-      "review_debt_remediation_context": null,
-      "structure_mapping_status": null,
-      "top1_fingerprint_id": "ser_his_acid_hydrolase",
-      "top1_ontology_family": "hydrolysis",
-      "top1_score": 0.9001,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_score": 0.3782
-    },
-    {
-      "alternate_structure_scan_context": null,
-      "cofactor_evidence_level": "ligand_supported",
-      "countable_label_candidate": false,
-      "counterevidence_reasons": [],
       "entry_id": "m_csa:685",
       "entry_name": "anthocyanidin synthase",
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 226,
+      "rank": 219,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3233,7 +3065,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 227,
+      "rank": 220,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",
@@ -3256,7 +3088,7 @@
       "quality_risk_flags": [
         "external_expert_decision_required"
       ],
-      "rank": 228,
+      "rank": 221,
       "reaction_substrate_mismatch_reasons": [],
       "readiness_blockers": [],
       "recommended_next_action": "external expert label decision required",

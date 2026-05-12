@@ -98,9 +98,9 @@ Post-V2 quality work has started:
   225-entry, 250-entry, 275-entry, 300-entry, 325-entry, 350-entry, 375-entry,
   400-entry, 425-entry, 450-entry, 475-entry, 500-entry, 525-entry, 550-entry,
   575-entry, 600-entry, 625-entry, 650-entry, 675-entry, 700-entry, 725-entry,
-  and 750-entry preview slices
+  and 750-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for 630 countable entries, with pending
+- curated seed mechanism labels for 637 countable entries, with pending
   review-state evidence gaps kept outside the countable registry
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
@@ -162,26 +162,24 @@ Current expectation:
   GHMP, wired through guardrails, review exports, active learning, adversarial
   negatives, gates, tests, artifacts, and documentation
 - return to factory-gated label scaling toward 10k while preserving quality
-  gates; the accepted 725 state now has 630 countable labels, its 100
+  gates; the accepted 750 state now has 637 countable labels, its 118
   review-state rows have an explicit non-countable deferral audit, and the
-  750 preview should not be promoted until its 18 new review-debt rows are
-  repaired or explicitly deferred
+  next bounded tranche should start as a gated 775 preview
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
   400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-,
   725-entry slices, and a 750-entry preview slice; all 100 regression geometry
-  entries are evaluable, the 725-entry countable slice has 613/629 labeled rows
-  evaluable, and the 750 preview has 749 geometry entries with 726 pairwise
-  geometry records
-- curated labels now cover 630 entries, with 163 local active-site
-  seed-fingerprint positives in the 725-entry geometry evaluation and 467 total
+  entries are evaluable, the 750-entry countable slice has 620/636 labeled rows
+  evaluable and 749 geometry entries with 726 pairwise geometry records
+- curated labels now cover 637 entries, with 170 local active-site
+  seed-fingerprint positives in the 750-entry geometry evaluation and 467 total
   out-of-scope labels; every label has explicit tier, review status,
   confidence, evidence score, and evidence provenance fields
-- the 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, and 725-entry
+- the 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, and 750-entry
   queues have been processed through the label factory; accepted batches added
-  155 labels beyond the 475-entry source slice and left 100 review-state
-  decisions pending after the 725 batch
+  162 labels beyond the 475-entry source slice and left 118 review-state
+  decisions pending after the 750 batch
 - label scaling is now gated by the factory: the current 725 audit proposes 83
   bronze-to-silver promotions, flags 112 abstention/review rows, mines 100
   adversarial negative controls, exports 174 expert-review items from the
@@ -205,11 +203,9 @@ Current expectation:
   artifacts from adding countable labels. The expert-label decision export
   records 0 countable candidates, and the repair/local-evidence artifacts keep
   all priority lanes non-countable
-- review-debt triage now ranks 100 evidence-gap rows from the 725 review pass,
-  with 100 `needs_more_evidence` decisions, 76 carried rows, 24 new rows, and
-  next-action counts split by debt status; the 750 preview raises review debt
-  to 118 rows, including 18 new rows that are classified but not yet repaired
-  or explicitly deferred
+- review-debt triage now ranks 118 evidence-gap rows from the 750 review pass,
+  with 118 `needs_more_evidence` decisions, 100 carried rows, 18 new rows, and
+  explicit non-countable deferral coverage for every row
 - strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
   the 38 in-scope positives in the 125-entry slice at the current zero-false
   threshold
@@ -221,7 +217,7 @@ Current expectation:
 - adaptive abstention thresholds now use observed score boundaries; the
   20-entry regression slice has a zero-false threshold that retains all 7
   in-scope positives
-- all countable slices from 20 through 725 currently have 0 hard negatives,
+- all countable slices from 20 through 750 currently have 0 hard negatives,
   0 near misses, and 0 out-of-scope false non-abstentions at the current
   calibrated thresholds
 - the 725-entry countable slice retains 159/163 in-scope positives, has 4
@@ -235,16 +231,13 @@ Current expectation:
   200-, 225-, 250-, 275-, and 300-entry reports each have 3, and the 325-,
   350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-,
   650-, 675-, 700-, and 725-entry reports have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10,
-  11, 11, 15, 17, 17, 19, and 21 respectively; the 750 preview report has 23
+  11, 11, 15, 17, 17, 19, and 21 respectively; the 750 report has 23
   issues
-- next bottleneck is repairing or explicitly deferring the 18 new 750-preview
-  review-debt rows before promotion. The accepted 725 clean labels are
-  `m_csa:705`, `m_csa:709`, `m_csa:714`, `m_csa:716`, `m_csa:723`, and
-  `m_csa:727`; the other 100 725 review-state rows remain outside the
-  benchmark and now have an explicit deferral audit. The 750 preview clean
-  candidates are `m_csa:728`, `m_csa:733`, `m_csa:735`, `m_csa:739`,
-  `m_csa:740`, `m_csa:742`, and `m_csa:750`, but they are not canonical yet
-  because the 750 scaling-quality audit recommends review before promotion.
+- next bottleneck is opening a 775 preview without weakening the 750 gate. The
+  accepted 750 clean labels are `m_csa:728`, `m_csa:733`, `m_csa:735`,
+  `m_csa:739`, `m_csa:740`, `m_csa:742`, and `m_csa:750`; the other 118
+  review-state rows remain outside the benchmark and now have an explicit
+  deferral audit.
   The 725 scaling-quality audit observes
   ontology scope pressure, family-propagation boundaries, cofactor ambiguity,
   reaction/substrate mismatches, active-site mapping gaps, and active-learning
