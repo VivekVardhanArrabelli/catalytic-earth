@@ -11,12 +11,12 @@ baselines to geometry-aware active-site retrieval and label-factory quality
 automation. Geometry artifacts now cover
 20-, 30-, 40-, 50-, 60-, 75-, 100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-,
 300-, 325-, 350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-,
-600-, 625-, 650-, 675-, and 700-entry curated slices. The 500-entry and larger
+600-, 625-, 650-, 675-, 700-, and 725-entry curated slices. The 500-entry and larger
 slices are countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-624 countable labels. Review-state registries preserve pending
+630 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -134,10 +134,20 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   review export mapping, family-propagation blockers, active-learning priority,
   adversarial negatives, gate checks, scaling-quality audit, regression tests,
   and documentation while keeping every mapped row non-countable.
+- Accepted the gated 725-entry label-factory batch. The batch added
+  `m_csa:705`, `m_csa:709`, `m_csa:714`, `m_csa:716`, `m_csa:723`, and
+  `m_csa:727` as clean countable labels, raising the canonical registry to 630
+  labels while leaving 100 review-state rows non-countable.
+- Added accepted-725 review-only repair artifacts: expert-label decision export
+  for 95 rows, 25-row local-evidence gap audit/export/repair plan, 8 explicit
+  alternate residue-position requests, review-only import-safety audit, focused
+  alternate-structure scan, remap-local audit for `m_csa:712`, ontology-gap
+  audit, learned-retrieval manifest, sequence-similarity failure-set audit, and
+  scaling-quality audit.
 
 ## Current Metrics
 
-- Curated label registry: 624 bronze automation-curated labels, with 157
+- Curated label registry: 630 bronze automation-curated labels, with 163
   seed-fingerprint positives and 467 out-of-scope labels.
 - 20-entry slice: threshold `0.4104`, 20/20 evaluable, 7/7 in-scope positives
   retained, 0 false non-abstentions, 0 hard negatives.
@@ -184,6 +194,11 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   non-abstentions, 0 hard negatives, 0 near misses, 4 evidence-limited
   in-scope abstentions, and 64 ready label candidates after accepting the five
   clean 700 labels.
+- 725-entry countable slice: threshold `0.4115`, 613/629 evaluated labeled
+  rows evaluable, 159/163 in-scope positives retained, 0 false
+  non-abstentions, 0 hard negatives, 0 near misses, 4 evidence-limited
+  in-scope abstentions, and 85 ready label candidates before accepting six
+  clean 725 labels.
 - Evidence-limited abstentions remain `m_csa:132`, `m_csa:353`, `m_csa:372`,
   and `m_csa:430`.
 - Retained evidence-limited positives remain `m_csa:41`, `m_csa:108`,
@@ -194,21 +209,35 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   evidence-limited retained positives without losing retained positives.
 - The closest below-floor out-of-scope control is still `m_csa:65`, a
   metal-dependent hydrolase hit `0.0131` below the correct-positive floor.
-- Label factory at 700: 79 bronze-to-silver promotions proposed, 188 active
-  learning review rows queued, 100 adversarial negatives mined, 182
-  expert-review export items generated, 76 active expert-label decision rows
-  routed through a review-only export, complete repair-candidate summary, and
-  priority repair guardrail audit, complete local-evidence gap audit/export,
-  repair resolution, alternate residue-position sourcing requests, review-only
-  import-safety audit, ATP/phosphoryl-transfer family expansion, and 21/21
-  gate checks passing.
-- Label batch summary: 9/9 accepted batches, 0 blockers, 0 hard negatives,
+- Label factory at 725: 83 bronze-to-silver promotions proposed, 207 active
+  learning review rows queued, 100 adversarial negatives mined, 174
+  expert-review export items generated, 95 active expert-label decision rows
+  routed through a review-only export, complete repair-candidate summary,
+  priority repair guardrail audit, complete 25-row local-evidence gap
+  audit/export, repair plan, 8 alternate residue-position sourcing requests,
+  review-only import-safety audit, ATP/phosphoryl-transfer family expansion,
+  and 20/20 gate checks passing.
+- Label batch summary: 10/10 accepted batches, 0 blockers, 0 hard negatives,
   0 near misses, 0 false non-abstentions, 0 actionable in-scope failures, and
   all active queues retained their unlabeled candidates.
-- Latest accepted batch acceptance: 5 additional labels accepted for counting,
-  81 review-state decisions pending, 624 countable labels, 0 hard negatives,
+- Latest accepted batch acceptance: 6 additional labels accepted for counting,
+  100 review-state decisions pending, 630 countable labels, 0 hard negatives,
   0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable
   in-scope failures.
+- 725 post-batch review surface: all 95 unlabeled candidates are retained in a
+  207-row active-learning queue; 95 expert-label decision rows are exported as
+  review-only no-decision items; 25 priority local-evidence lanes are audited
+  and exported with 0 countable candidates; 8 alternate residue-position
+  requests are explicit; 24 reaction/substrate mismatch lanes remain
+  non-countable; the scaling-quality audit classifies all 24 new review-debt
+  rows and leaves 0 unclassified.
+- 725 discovery controls: the mechanism ontology gap audit records 121
+  review-only scope-pressure rows, the learned-retrieval manifest stages 568
+  eligible rows with the heuristic baseline as control, and the
+  sequence-similarity failure-set audit keeps 2 duplicate clusters as
+  non-countable controls.
+- Historical accepted-700 repair context remains below because the 725 repair
+  artifacts build on those same review-only lanes.
 - 700 post-batch active-learning queue: all 76 unlabeled candidates are
   retained; no unlabeled rows are omitted by the queue limit. The queue now
   includes `reaction_substrate_mismatch_value` and ranks 18 kinase or ATP
@@ -339,58 +368,56 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch
 
 ## Next Agent Start Here
 
-Start from the accepted 700 state. Do not reopen the accepted 675/700 clean
-label decisions unless a regression appears. The canonical registry has 624
-countable labels; the latest accepted labels are `m_csa:686`, `m_csa:688`,
-`m_csa:694`, `m_csa:697`, and `m_csa:699`.
+Start from the accepted 725 state. Do not reopen the accepted 675/700/725 clean
+label decisions unless a regression appears. The canonical registry has 630
+countable labels; the latest accepted labels are `m_csa:705`, `m_csa:709`,
+`m_csa:714`, `m_csa:716`, `m_csa:723`, and `m_csa:727`.
 
-Label-quality confidence call for this run: operationally good enough to do
-bounded count growth again, with strict gates. Evidence: the 700 factory gate
-passes 21/21 checks; there are 0 hard negatives, 0 near misses, 0
-out-of-scope false non-abstentions, 0 actionable in-scope failures, 0 accepted
-labels with review debt, 0 expert-decision countable candidates, 0
-repair-guardrail countable candidates, 0 local-evidence gap countable
-candidates, 0 local-evidence review export countable candidates, 0
-review-only import count growth, 0 explicit alternate-residue sourcing
-countable candidates, and the ATP/phosphoryl-transfer family expansion maps
-all nine target families with 0 unsupported mappings and 0 countable label
-candidates. Four reaction/substrate local-evidence repair lanes are closed as
-reviewed out-of-scope repair-only rows; remaining review-only lanes stay
-outside the benchmark.
+Label-quality confidence call for the 2026-05-12T11:51:27-05:00 run: yes, the
+gates were operationally good enough to accept a bounded 725 batch, and the
+accepted labels stayed clean. Evidence: full tests and `validate` passed at
+run start, the final 725 label-factory gate passes 20/20 checks, hard
+negatives remain 0, near misses remain 0, out-of-scope false non-abstentions
+remain 0, actionable in-scope failures remain 0, accepted labels with review
+debt remain 0, accepted reaction/substrate mismatch labels remain 0,
+review-only import growth remains 0, and the nine-family ATP/phosphoryl
+transfer expansion remains guardrail-clean with 0 countable label candidates.
+This is an operational scaling decision, not a claim of biological truth.
 
-Next bounded task: resume factory-gated label scaling from 700 toward the 725
-tranche. Treat `artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json`
-as required family-boundary gate evidence, not as a label source. Build the
-next candidate/gate artifacts in a bounded batch, run the full label-factory
-gate and scaling-quality audit, and count only labels that pass acceptance
-with clean evidence. Stop count growth immediately if the 725 gate exposes
-hard negatives, out-of-scope false non-abstentions, actionable in-scope
-failures, unsupported ATP-family mapping, ontology scope drift, family
-propagation crossing mechanism boundaries, near-duplicate leakage, or accepted
-labels carrying review debt.
+Next bounded task: repair or explicitly defer the accepted-725 review-debt
+surface before opening a blind 750 tranche. The 725 batch is accepted, but it
+raised pending review-state rows to 100 and added warnings for local-evidence
+gap lanes, alternate-structure hits without local support, and a strict
+remap-local family-boundary lead at `m_csa:712`. Keep those rows non-countable
+unless later evidence clears their gap reasons and the label-factory gate
+passes.
 
 Start with:
-`artifacts/v3_label_factory_gate_check_700.json`,
-`artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json`,
-`artifacts/v3_label_scaling_quality_audit_700_preview.json`,
-`artifacts/v3_label_factory_batch_summary.json`,
-`artifacts/v3_active_learning_review_queue_700.json`,
-`artifacts/v3_family_propagation_guardrails_700.json`,
-`artifacts/v3_adversarial_negative_controls_700.json`,
-`artifacts/v3_reaction_substrate_mismatch_review_export_700.json`,
-`artifacts/v3_expert_label_decision_repair_guardrail_audit_700.json`,
-`artifacts/v3_review_only_import_safety_audit_700.json`, and
-`work/atp_phosphoryl_transfer_family_expansion_700_notes.md`.
+`artifacts/v3_label_factory_gate_check_725.json`,
+`artifacts/v3_label_batch_acceptance_check_725.json`,
+`artifacts/v3_label_scaling_quality_audit_725_preview.json`,
+`artifacts/v3_review_debt_summary_725_preview.json`,
+`artifacts/v3_review_debt_alternate_structure_scan_725_preview.json`,
+`artifacts/v3_review_debt_remap_local_lead_audit_725_preview.json`,
+`artifacts/v3_expert_label_decision_local_evidence_gap_audit_725.json`,
+`artifacts/v3_expert_label_decision_local_evidence_repair_plan_725.json`,
+`artifacts/v3_explicit_alternate_residue_position_requests_725.json`,
+`artifacts/v3_review_only_import_safety_audit_725.json`,
+`artifacts/v3_mechanism_ontology_gap_audit_725.json`,
+`artifacts/v3_learned_retrieval_manifest_725.json`,
+`artifacts/v3_sequence_similarity_failure_sets_725.json`,
+`artifacts/v3_label_factory_batch_summary.json`, and
+`work/label_preview_725_notes.md`.
 
 Highest-value options:
 
-1. Open the 725 preview/acceptance path with the same bounded-batch factory
-   gates and reject any labels carrying review/deferred evidence.
-2. If a 725 gate fails, add the smallest durable artifact/test/rule that
-   detects the new failure class before accepting more labels.
-3. Keep monitoring the accepted-700 review-debt surface and evidence-limited
-   abstentions (`m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`) as
-   non-countable repair opportunities.
+1. Resolve or explicitly defer the 25 accepted-725 local-evidence repair lanes,
+   especially the strict remap-local lead `m_csa:712`.
+2. Complete a bounded alternate-structure scan for the remaining 725 new-debt
+   candidates if the current 12-row preview leaves unresolved structure hits.
+3. If the 725 repair surface remains guardrail-clean, open the 750
+   preview/acceptance path with the same bounded-batch factory gates and reject
+   any labels carrying review/deferred evidence.
 4. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
    do not collapse these families into generic hydrolase or metal-hydrolase
    labels.
@@ -416,6 +443,28 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-12T11:51:27-05:00
+- ENDED_AT: 2026-05-12T12:47:20-05:00
+- Measured elapsed time: 55.883 minutes
+- Documentation checked and updated across README, docs/label_factory.md,
+  work/scope.md, work/handoff.md, work/status.md inputs, and
+  work/label_preview_725_notes.md before status regeneration.
+- Normal locked run from the accepted 700 state first made an evidence-based
+  confidence call, then accepted the bounded 725 label-factory batch with 6
+  clean countable labels and 100 review-state rows kept outside the benchmark.
+- The 725 gate passes 20/20 checks and records 0 hard negatives, 0 near misses,
+  0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 0
+  accepted review-gap labels, 0 accepted reaction/substrate mismatch labels,
+  and 0 review-only import count growth.
+- Remaining-time plan executed before wrap-up: after accepting 725, added
+  review-only repair controls for 95 expert-label decision rows, 25
+  local-evidence lanes, 8 alternate residue-position requests, a focused
+  alternate-structure scan, strict remap-local audit for `m_csa:712`,
+  ontology-gap audit, learned-retrieval manifest, sequence-similarity failure
+  controls, regression tests, and documentation. Next run should repair or
+  explicitly defer the accepted-725 review-debt surface before blind 750
+  scaling.
 
 - STARTED_AT: 2026-05-12T15:50:29Z
 - ENDED_AT: 2026-05-12T16:41:18Z

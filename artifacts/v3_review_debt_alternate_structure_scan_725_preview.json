@@ -1,0 +1,4371 @@
+{
+  "metadata": {
+    "all_candidate_structures_scanned": false,
+    "alternate_pdb_remapped_residue_position_entry_ids": [
+      "m_csa:704",
+      "m_csa:708",
+      "m_csa:711",
+      "m_csa:712",
+      "m_csa:717",
+      "m_csa:718",
+      "m_csa:724",
+      "m_csa:726"
+    ],
+    "alternate_pdb_remapped_residue_position_structure_count": 17,
+    "alternate_pdb_without_usable_residue_position_entry_count": 4,
+    "alternate_pdb_without_usable_residue_position_entry_ids": [
+      "m_csa:703",
+      "m_csa:715",
+      "m_csa:719",
+      "m_csa:725"
+    ],
+    "candidate_entry_count": 12,
+    "expected_family_hit_entry_ids": [
+      "m_csa:712",
+      "m_csa:718",
+      "m_csa:724"
+    ],
+    "fetch_failure_count": 0,
+    "fetch_failures": [],
+    "local_expected_family_hit_entry_ids": [
+      "m_csa:712"
+    ],
+    "local_expected_family_hit_from_remap_entry_ids": [
+      "m_csa:712"
+    ],
+    "max_entries": 12,
+    "max_structures_per_entry": 40,
+    "method": "review_debt_alternate_structure_scan",
+    "remapped_residue_position_entry_ids": [
+      "m_csa:704",
+      "m_csa:708",
+      "m_csa:711",
+      "m_csa:712",
+      "m_csa:717",
+      "m_csa:718",
+      "m_csa:724",
+      "m_csa:726"
+    ],
+    "remapped_residue_position_structure_count": 17,
+    "residue_position_remap_basis_counts": {
+      "same_chain_residue_id": 15,
+      "unique_residue_id_code_remap": 2
+    },
+    "residue_position_remap_warning_counts": {
+      "ambiguous_or_missing_unique_residue_id_code_remap": 111,
+      "ambiguous_same_residue_id_chain_remap": 2,
+      "no_conservative_residue_position_remap": 111,
+      "reference_positions_span_multiple_chains": 43
+    },
+    "scan_outcome_counts": {
+      "alternate_structure_has_expected_cofactor_candidate": 3,
+      "no_expected_cofactor_in_scanned_structures": 8,
+      "no_hit_in_scanned_structures_continue_scan": 1
+    },
+    "scan_rule": "bounded structure-wide ligand scan for selected high-priority review-debt rows; hits are cofactor-source evidence for review, not countable label acceptance",
+    "scanned_entry_count": 12,
+    "scanned_structure_count": 140,
+    "source_method": "review_debt_remediation_plan",
+    "structure_wide_hit_without_local_support_entry_ids": [
+      "m_csa:718",
+      "m_csa:724"
+    ],
+    "unscanned_candidate_entry_count": 0,
+    "unscanned_structure_count": 137
+  },
+  "rows": [
+    {
+      "alternate_pdb_with_remapped_positions_count": 1,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 7,
+      "entry_id": "m_csa:711",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NADP+)",
+      "expected_cofactor_families": [
+        "heme"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+      "scanned_pdb_ids": [
+        "2ESD",
+        "1EUH",
+        "1QI1",
+        "1QI6",
+        "2EUH",
+        "2ID2",
+        "2QE0"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1EUH": 0,
+        "1QI1": 0,
+        "1QI6": 0,
+        "2ESD": 0,
+        "2EUH": 0,
+        "2ID2": 0,
+        "2QE0": 3
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1EUH": 0,
+        "1QI1": 0,
+        "1QI6": 0,
+        "2ESD": 3,
+        "2EUH": 0,
+        "2ID2": 0,
+        "2QE0": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1EUH": 0,
+        "1QI1": 0,
+        "1QI6": 0,
+        "2ESD": 3,
+        "2EUH": 0,
+        "2ID2": 0,
+        "2QE0": 3
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "2ESD",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "G3H",
+            "NAP"
+          ],
+          "local_cofactor_families": [
+            "nad"
+          ],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "G3H",
+            "NAP"
+          ],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "2ESD",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 3,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 3
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1EUH",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "G3H",
+            "G3P",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1QI1",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1QI6",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2EUH",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2ID2",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "G3H",
+            "NAP"
+          ],
+          "local_cofactor_families": [
+            "nad"
+          ],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "G3H",
+            "NAP"
+          ],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "2QE0",
+          "remapped_residue_position_count": 3,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 4,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 12,
+      "entry_id": "m_csa:726",
+      "entry_name": "peptide amidase",
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+      "scanned_pdb_ids": [
+        "1OCL",
+        "1O9N",
+        "1O9O",
+        "1O9P",
+        "1O9Q",
+        "1OBI",
+        "1OBJ",
+        "1OBK",
+        "1OBL",
+        "1OCH",
+        "1OCK",
+        "1OCM"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1O9N": 0,
+        "1O9O": 0,
+        "1O9P": 0,
+        "1O9Q": 0,
+        "1OBI": 8,
+        "1OBJ": 0,
+        "1OBK": 0,
+        "1OBL": 8,
+        "1OCH": 0,
+        "1OCK": 8,
+        "1OCL": 0,
+        "1OCM": 8
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1O9N": 0,
+        "1O9O": 0,
+        "1O9P": 0,
+        "1O9Q": 0,
+        "1OBI": 0,
+        "1OBJ": 0,
+        "1OBK": 0,
+        "1OBL": 0,
+        "1OCH": 0,
+        "1OCK": 0,
+        "1OCL": 8,
+        "1OCM": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1O9N": 0,
+        "1O9O": 0,
+        "1O9P": 0,
+        "1O9Q": 0,
+        "1OBI": 8,
+        "1OBJ": 0,
+        "1OBK": 0,
+        "1OBL": 8,
+        "1OCH": 0,
+        "1OCK": 8,
+        "1OCL": 8,
+        "1OCM": 8
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1OCL",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "MLA"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MLA"
+          ],
+          "local_resolved_residue_count": 8,
+          "pdb_id": "1OCL",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 8,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 8
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1O9N",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MLM"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1O9O",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MLA"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1O9P",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CSO"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1O9Q",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 8,
+          "pdb_id": "1OBI",
+          "remapped_residue_position_count": 8,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 8
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1OBJ",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1OBK",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MLA"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MLA"
+          ],
+          "local_resolved_residue_count": 8,
+          "pdb_id": "1OBL",
+          "remapped_residue_position_count": 8,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 8
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CSD"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1OCH",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 8,
+          "pdb_id": "1OCK",
+          "remapped_residue_position_count": 8,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 8
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "POP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "POP"
+          ],
+          "local_resolved_residue_count": 8,
+          "pdb_id": "1OCM",
+          "remapped_residue_position_count": 8,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 8
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 4,
+      "entry_id": "m_csa:703",
+      "entry_name": "peptide chain release factor N5-glutamine methyltransferase",
+      "expected_cofactor_families": [
+        "flavin",
+        "nad"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+      "scanned_pdb_ids": [
+        "1VQ1",
+        "1NV8",
+        "1NV9",
+        "1SG9"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1NV8": 0,
+        "1NV9": 0,
+        "1SG9": 0,
+        "1VQ1": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1NV8": 0,
+        "1NV9": 0,
+        "1SG9": 0,
+        "1VQ1": 3
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1NV8": 0,
+        "1NV9": 0,
+        "1SG9": 0,
+        "1VQ1": 3
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1VQ1",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [
+            "sam"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "MSE",
+            "SAM"
+          ],
+          "local_cofactor_families": [
+            "sam"
+          ],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MSE",
+            "SAM"
+          ],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "1VQ1",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 3,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 3
+        },
+        {
+          "cofactor_families": [
+            "sam"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MEQ",
+            "SAM"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1NV8",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "sam"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "SAH"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1NV9",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "sam"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "GLN",
+            "SAM"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1SG9",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 2,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 5,
+      "entry_id": "m_csa:708",
+      "entry_name": "phenylalanine ammonia-lyase",
+      "expected_cofactor_families": [
+        "heme"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+      "scanned_pdb_ids": [
+        "1W27",
+        "6F6T",
+        "6H2O",
+        "6HQF",
+        "6RGS"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1W27": 0,
+        "6F6T": 3,
+        "6H2O": 0,
+        "6HQF": 3,
+        "6RGS": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1W27": 3,
+        "6F6T": 0,
+        "6H2O": 0,
+        "6HQF": 0,
+        "6RGS": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1W27": 3,
+        "6F6T": 3,
+        "6H2O": 0,
+        "6HQF": 3,
+        "6RGS": 0
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1W27",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "DTT",
+            "MDO"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "1W27",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 3,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 3
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CV2",
+            "MDO"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "6F6T",
+          "remapped_residue_position_count": 3,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MDO"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "6H2O",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MDO",
+            "PPH"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "6HQF",
+          "remapped_residue_position_count": 3,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "K3Z",
+            "MDO"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "6RGS",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 1,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 2,
+      "entry_id": "m_csa:717",
+      "entry_name": "ornithine cyclodeaminase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+      "scanned_pdb_ids": [
+        "1X7D",
+        "1U7H"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1U7H": 2,
+        "1X7D": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1U7H": 0,
+        "1X7D": 2
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1U7H": 2,
+        "1X7D": 2
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1X7D",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "MES",
+            "MPD",
+            "MSE",
+            "NA",
+            "NAD",
+            "ORN"
+          ],
+          "local_cofactor_families": [
+            "nad"
+          ],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MSE",
+            "NA",
+            "NAD",
+            "ORN"
+          ],
+          "local_resolved_residue_count": 2,
+          "pdb_id": "1X7D",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 2,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 2
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MPD",
+            "MSE",
+            "NA",
+            "NAD"
+          ],
+          "local_cofactor_families": [
+            "nad"
+          ],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MSE",
+            "NA",
+            "NAD"
+          ],
+          "local_resolved_residue_count": 2,
+          "pdb_id": "1U7H",
+          "remapped_residue_position_count": 2,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 3,
+      "entry_id": "m_csa:719",
+      "entry_name": "prostaglandin-D synthase",
+      "expected_cofactor_families": [
+        "flavin"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+      "scanned_pdb_ids": [
+        "1PD2",
+        "5Y9Z",
+        "6N69"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1PD2": 0,
+        "5Y9Z": 0,
+        "6N69": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1PD2": 3,
+        "5Y9Z": 0,
+        "6N69": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1PD2": 3,
+        "5Y9Z": 0,
+        "6N69": 0
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1PD2",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "GSH"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "GSH"
+          ],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "1PD2",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 3,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 3
+        },
+        {
+          "cofactor_families": [
+            "metal_ion"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "DIO",
+            "EDO",
+            "GOL",
+            "GSH",
+            "MG",
+            "PGE"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "5Y9Z",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "ambiguous_same_residue_id_chain_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "GSH",
+            "KDV"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "6N69",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "ambiguous_same_residue_id_chain_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 1,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": true,
+      "candidate_pdb_count": 2,
+      "entry_id": "m_csa:712",
+      "entry_name": "S-(hydroxymethyl)glutathione synthase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_active_site_expected_family_observed": true,
+      "local_active_site_expected_family_observed_from_remap": true,
+      "remediation_bucket": "local_mapping_or_structure_selection_review",
+      "scan_outcome": "alternate_structure_has_expected_cofactor_candidate",
+      "scanned_pdb_ids": [
+        "1XA8",
+        "1X6M"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1X6M": 3,
+        "1XA8": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1X6M": 0,
+        "1XA8": 3
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1X6M": 3,
+        "1XA8": 3
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1XA8",
+      "selected_structure_expected_family_observed": true,
+      "selected_structure_has_expected_family": true,
+      "structure_hits": [
+        {
+          "cofactor_families": [
+            "metal_ion"
+          ],
+          "expected_family_hits": [
+            "metal_ion"
+          ],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "GOL",
+            "GSH",
+            "SO4",
+            "ZN"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "GSH"
+          ],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "1XA8",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 3,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 3
+        },
+        {
+          "cofactor_families": [
+            "metal_ion"
+          ],
+          "expected_family_hits": [
+            "metal_ion"
+          ],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "GOL",
+            "SO4",
+            "ZN"
+          ],
+          "local_cofactor_families": [
+            "metal_ion"
+          ],
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "ZN"
+          ],
+          "local_resolved_residue_count": 3,
+          "pdb_id": "1X6M",
+          "remapped_residue_position_count": 3,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 177,
+      "entry_id": "m_csa:725",
+      "entry_name": "aldehyde reductase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_hit_in_scanned_structures_continue_scan",
+      "scanned_pdb_ids": [
+        "2ACU",
+        "1ABN",
+        "1ADS",
+        "1AZ1",
+        "1AZ2",
+        "1EF3",
+        "1EL3",
+        "1IEI",
+        "1MAR",
+        "1PWL",
+        "1PWM",
+        "1T40",
+        "1T41",
+        "1US0",
+        "1X96",
+        "1X97",
+        "1X98",
+        "1XGD",
+        "1Z3N",
+        "1Z89",
+        "1Z8A",
+        "2ACQ",
+        "2ACR",
+        "2ACS",
+        "2AGT",
+        "2DUX",
+        "2DUZ",
+        "2DV0",
+        "2F2K",
+        "2FZ8",
+        "2FZ9",
+        "2FZB",
+        "2FZD",
+        "2HV5",
+        "2HVN",
+        "2HVO",
+        "2I16",
+        "2I17",
+        "2IKG",
+        "2IKH"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1ABN": 0,
+        "1ADS": 0,
+        "1AZ1": 0,
+        "1AZ2": 0,
+        "1EF3": 0,
+        "1EL3": 0,
+        "1IEI": 0,
+        "1MAR": 0,
+        "1PWL": 0,
+        "1PWM": 0,
+        "1T40": 0,
+        "1T41": 0,
+        "1US0": 0,
+        "1X96": 0,
+        "1X97": 0,
+        "1X98": 0,
+        "1XGD": 0,
+        "1Z3N": 0,
+        "1Z89": 0,
+        "1Z8A": 0,
+        "2ACQ": 0,
+        "2ACR": 0,
+        "2ACS": 0,
+        "2ACU": 0,
+        "2AGT": 0,
+        "2DUX": 0,
+        "2DUZ": 0,
+        "2DV0": 0,
+        "2F2K": 0,
+        "2FZ8": 0,
+        "2FZ9": 0,
+        "2FZB": 0,
+        "2FZD": 0,
+        "2HV5": 0,
+        "2HVN": 0,
+        "2HVO": 0,
+        "2I16": 0,
+        "2I17": 0,
+        "2IKG": 0,
+        "2IKH": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1ABN": 0,
+        "1ADS": 0,
+        "1AZ1": 0,
+        "1AZ2": 0,
+        "1EF3": 0,
+        "1EL3": 0,
+        "1IEI": 0,
+        "1MAR": 0,
+        "1PWL": 0,
+        "1PWM": 0,
+        "1T40": 0,
+        "1T41": 0,
+        "1US0": 0,
+        "1X96": 0,
+        "1X97": 0,
+        "1X98": 0,
+        "1XGD": 0,
+        "1Z3N": 0,
+        "1Z89": 0,
+        "1Z8A": 0,
+        "2ACQ": 0,
+        "2ACR": 0,
+        "2ACS": 0,
+        "2ACU": 4,
+        "2AGT": 0,
+        "2DUX": 0,
+        "2DUZ": 0,
+        "2DV0": 0,
+        "2F2K": 0,
+        "2FZ8": 0,
+        "2FZ9": 0,
+        "2FZB": 0,
+        "2FZD": 0,
+        "2HV5": 0,
+        "2HVN": 0,
+        "2HVO": 0,
+        "2I16": 0,
+        "2I17": 0,
+        "2IKG": 0,
+        "2IKH": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1ABN": 0,
+        "1ADS": 0,
+        "1AZ1": 0,
+        "1AZ2": 0,
+        "1EF3": 0,
+        "1EL3": 0,
+        "1IEI": 0,
+        "1MAR": 0,
+        "1PWL": 0,
+        "1PWM": 0,
+        "1T40": 0,
+        "1T41": 0,
+        "1US0": 0,
+        "1X96": 0,
+        "1X97": 0,
+        "1X98": 0,
+        "1XGD": 0,
+        "1Z3N": 0,
+        "1Z89": 0,
+        "1Z8A": 0,
+        "2ACQ": 0,
+        "2ACR": 0,
+        "2ACS": 0,
+        "2ACU": 4,
+        "2AGT": 0,
+        "2DUX": 0,
+        "2DUZ": 0,
+        "2DV0": 0,
+        "2F2K": 0,
+        "2FZ8": 0,
+        "2FZ9": 0,
+        "2FZB": 0,
+        "2FZD": 0,
+        "2HV5": 0,
+        "2HVN": 0,
+        "2HVO": 0,
+        "2I16": 0,
+        "2I17": 0,
+        "2IKG": 0,
+        "2IKH": 0
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "2ACU",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "CIT",
+            "NAP"
+          ],
+          "local_cofactor_families": [
+            "nad"
+          ],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "CIT",
+            "NAP"
+          ],
+          "local_resolved_residue_count": 4,
+          "pdb_id": "2ACU",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 4,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 4
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NDP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1ABN",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1ADS",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "ALR",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1AZ1",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CIT",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1AZ2",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "FID",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1EF3",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "I84",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1EL3",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZES"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1IEI",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1MAR",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "BFI",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1PWL",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CL",
+            "FID",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1PWM",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "ID5",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1T40",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "ID5",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1T41",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CIT",
+            "LDT",
+            "NDP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1US0",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CIT",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1X96",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "FIR",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1X97",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CIT",
+            "FIS",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1X98",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1XGD",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "3NA",
+            "NDP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1Z3N",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "62P",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1Z89",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "62P",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1Z8A",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "G6P",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2ACQ",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CAC",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2ACR",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CIT",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2ACS",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CIT",
+            "CL",
+            "FID",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2AGT",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2DUX",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2DUZ",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2DV0",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NDP",
+            "TGG"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2F2K",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2FZ8",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2FZ9",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "TOL"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2FZB",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "TOL"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2FZD",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2HV5",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2HVN",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NAP",
+            "ZST"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2HVO",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CIT",
+            "LDT",
+            "NDP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2I16",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CIT",
+            "LDT",
+            "NDP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2I17",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "BTO",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2IKG",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "nad"
+          ],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "LIT",
+            "NAP"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2IKH",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "unscanned_pdb_ids": [
+        "2IKI",
+        "2IKJ",
+        "2INE",
+        "2INZ",
+        "2IPW",
+        "2IQ0",
+        "2IQD",
+        "2IS7",
+        "2ISF",
+        "2J8T",
+        "2NVC",
+        "2NVD",
+        "2PD5",
+        "2PD9",
+        "2PDB",
+        "2PDC",
+        "2PDF",
+        "2PDG",
+        "2PDH",
+        "2PDI",
+        "2PDJ",
+        "2PDK",
+        "2PDL",
+        "2PDM",
+        "2PDN",
+        "2PDP",
+        "2PDQ",
+        "2PDU",
+        "2PDW",
+        "2PDX",
+        "2PDY",
+        "2PEV",
+        "2PF8",
+        "2PFH",
+        "2PZN",
+        "2QXW",
+        "2R24",
+        "3BCJ",
+        "3DN5",
+        "3G5E",
+        "3GHR",
+        "3GHS",
+        "3GHT",
+        "3GHU",
+        "3LBO",
+        "3LD5",
+        "3LEN",
+        "3LEP",
+        "3LQG",
+        "3LQL",
+        "3LZ3",
+        "3LZ5",
+        "3M0I",
+        "3M4H",
+        "3M64",
+        "3MB9",
+        "3MC5",
+        "3ONB",
+        "3ONC",
+        "3P2V",
+        "3Q65",
+        "3Q67",
+        "3RX2",
+        "3RX3",
+        "3RX4",
+        "3S3G",
+        "3T42",
+        "3U2C",
+        "3V35",
+        "3V36",
+        "4GCA",
+        "4GQ0",
+        "4IGS",
+        "4JIR",
+        "4LAU",
+        "4LAZ",
+        "4LB3",
+        "4LB4",
+        "4LBR",
+        "4LBS",
+        "4NKC",
+        "4PR4",
+        "4PRR",
+        "4PRT",
+        "4PUU",
+        "4PUW",
+        "4Q7B",
+        "4QBX",
+        "4QR6",
+        "4QX4",
+        "4QXI",
+        "4RPQ",
+        "4XZH",
+        "4XZI",
+        "4YS1",
+        "4YU1",
+        "5HA7",
+        "5OU0",
+        "5OUJ",
+        "5OUK",
+        "6F7R",
+        "6F81",
+        "6F82",
+        "6F84",
+        "6F8O",
+        "6SYW",
+        "6T27",
+        "6T3P",
+        "6T5G",
+        "6T7Q",
+        "6TD8",
+        "6TUC",
+        "6TUF",
+        "6TXP",
+        "6XUM",
+        "6Y03",
+        "6Y1P",
+        "8A4N",
+        "8AE9",
+        "8AQG",
+        "8AQP",
+        "8AUU",
+        "8B34",
+        "8B3N",
+        "8B3R",
+        "8B66",
+        "8BJL",
+        "8CNF",
+        "8CNP",
+        "8FH5",
+        "8FH6",
+        "8FH7",
+        "8FH8",
+        "8FH9",
+        "8OZ2",
+        "8P2R",
+        "9FB3"
+      ]
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 1,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": true,
+      "candidate_pdb_count": 11,
+      "entry_id": "m_csa:724",
+      "entry_name": "repressor LexA",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "alternate_structure_has_expected_cofactor_candidate",
+      "scanned_pdb_ids": [
+        "1JHF",
+        "1JHC",
+        "1JHE",
+        "1JHH",
+        "1LEA",
+        "1LEB",
+        "3JSO",
+        "3JSP",
+        "3K3R",
+        "7B5G",
+        "8TRG"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1JHC": 0,
+        "1JHE": 0,
+        "1JHF": 0,
+        "1JHH": 0,
+        "1LEA": 0,
+        "1LEB": 0,
+        "3JSO": 0,
+        "3JSP": 0,
+        "3K3R": 0,
+        "7B5G": 5,
+        "8TRG": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1JHC": 0,
+        "1JHE": 0,
+        "1JHF": 5,
+        "1JHH": 0,
+        "1LEA": 0,
+        "1LEB": 0,
+        "3JSO": 0,
+        "3JSP": 0,
+        "3K3R": 0,
+        "7B5G": 0,
+        "8TRG": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1JHC": 0,
+        "1JHE": 0,
+        "1JHF": 5,
+        "1JHH": 0,
+        "1LEA": 0,
+        "1LEB": 0,
+        "3JSO": 0,
+        "3JSP": 0,
+        "3K3R": 0,
+        "7B5G": 5,
+        "8TRG": 0
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1JHF",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 5,
+          "pdb_id": "1JHF",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 5,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 5
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1JHC",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1JHE",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1JHH",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1LEA",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1LEB",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "3JSO",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "3JSP",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "3K3R",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "EDO"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 5,
+          "pdb_id": "7B5G",
+          "remapped_residue_position_count": 5,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "cofactor_families": [
+            "metal_ion"
+          ],
+          "expected_family_hits": [
+            "metal_ion"
+          ],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "AGS",
+            "MG"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "8TRG",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 4,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 12,
+      "entry_id": "m_csa:704",
+      "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+      "scanned_pdb_ids": [
+        "1C4T",
+        "1BAL",
+        "1BBL",
+        "1E2O",
+        "1PMR",
+        "1SCZ",
+        "1W4H",
+        "2BTG",
+        "2BTH",
+        "2WXC",
+        "6PBR",
+        "9DZ8"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1BAL": 0,
+        "1BBL": 0,
+        "1C4T": 0,
+        "1E2O": 2,
+        "1PMR": 0,
+        "1SCZ": 2,
+        "1W4H": 0,
+        "2BTG": 0,
+        "2BTH": 0,
+        "2WXC": 0,
+        "6PBR": 2,
+        "9DZ8": 2
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1BAL": 0,
+        "1BBL": 0,
+        "1C4T": 2,
+        "1E2O": 0,
+        "1PMR": 0,
+        "1SCZ": 0,
+        "1W4H": 0,
+        "2BTG": 0,
+        "2BTH": 0,
+        "2WXC": 0,
+        "6PBR": 0,
+        "9DZ8": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1BAL": 0,
+        "1BBL": 0,
+        "1C4T": 2,
+        "1E2O": 2,
+        "1PMR": 0,
+        "1SCZ": 2,
+        "1W4H": 0,
+        "2BTG": 0,
+        "2BTH": 0,
+        "2WXC": 0,
+        "6PBR": 2,
+        "9DZ8": 2
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1C4T",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 2,
+          "pdb_id": "1C4T",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 2,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 2
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1BAL",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1BBL",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 2,
+          "pdb_id": "1E2O",
+          "remapped_residue_position_count": 2,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "unique_residue_id_code_remap",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1PMR",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 2,
+          "pdb_id": "1SCZ",
+          "remapped_residue_position_count": 2,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "unique_residue_id_code_remap",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1W4H",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2BTG",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2BTH",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2WXC",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "NA"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 2,
+          "pdb_id": "6PBR",
+          "remapped_residue_position_count": 2,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 2,
+          "pdb_id": "9DZ8",
+          "remapped_residue_position_count": 2,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": false,
+      "candidate_pdb_count": 2,
+      "entry_id": "m_csa:715",
+      "entry_name": "protein-methionine-S-oxide reductase (MsrB)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "no_expected_cofactor_in_scanned_structures",
+      "scanned_pdb_ids": [
+        "1L1D",
+        "2H30"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1L1D": 0,
+        "2H30": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1L1D": 6,
+        "2H30": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1L1D": 6,
+        "2H30": 0
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "1L1D",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "CAC",
+            "MSE"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 6,
+          "pdb_id": "1L1D",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 6,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 6
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MSE"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2H30",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "unscanned_pdb_ids": []
+    },
+    {
+      "alternate_pdb_with_remapped_positions_count": 3,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "alternate_structure_expected_family_observed": true,
+      "candidate_pdb_count": 40,
+      "entry_id": "m_csa:718",
+      "entry_name": "caspase-1",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_active_site_expected_family_observed": false,
+      "local_active_site_expected_family_observed_from_remap": false,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "scan_outcome": "alternate_structure_has_expected_cofactor_candidate",
+      "scanned_pdb_ids": [
+        "2FQQ",
+        "1BMQ",
+        "1IBC",
+        "1ICE",
+        "1RWK",
+        "1RWM",
+        "1RWN",
+        "1RWO",
+        "1RWP",
+        "1RWV",
+        "1RWW",
+        "1RWX",
+        "1SC1",
+        "1SC3",
+        "1SC4",
+        "2H48",
+        "2H4W",
+        "2H4Y",
+        "2H51",
+        "2H54",
+        "2HBQ",
+        "2HBR",
+        "2HBY",
+        "2HBZ",
+        "3D6F",
+        "3D6H",
+        "3D6M",
+        "3E4C",
+        "3NS7",
+        "5FNA",
+        "5MMV",
+        "5MTK",
+        "6BZ9",
+        "6F6R",
+        "6KN0",
+        "6PZP",
+        "6VIE",
+        "7KEU",
+        "8SV1",
+        "8WRA"
+      ],
+      "scanned_pdb_remapped_residue_position_counts": {
+        "1BMQ": 0,
+        "1IBC": 0,
+        "1ICE": 0,
+        "1RWK": 0,
+        "1RWM": 0,
+        "1RWN": 0,
+        "1RWO": 0,
+        "1RWP": 0,
+        "1RWV": 0,
+        "1RWW": 0,
+        "1RWX": 0,
+        "1SC1": 6,
+        "1SC3": 6,
+        "1SC4": 6,
+        "2FQQ": 0,
+        "2H48": 0,
+        "2H4W": 0,
+        "2H4Y": 0,
+        "2H51": 0,
+        "2H54": 0,
+        "2HBQ": 0,
+        "2HBR": 0,
+        "2HBY": 0,
+        "2HBZ": 0,
+        "3D6F": 0,
+        "3D6H": 0,
+        "3D6M": 0,
+        "3E4C": 0,
+        "3NS7": 0,
+        "5FNA": 0,
+        "5MMV": 0,
+        "5MTK": 0,
+        "6BZ9": 0,
+        "6F6R": 0,
+        "6KN0": 0,
+        "6PZP": 0,
+        "6VIE": 0,
+        "7KEU": 0,
+        "8SV1": 0,
+        "8WRA": 0
+      },
+      "scanned_pdb_residue_position_counts": {
+        "1BMQ": 0,
+        "1IBC": 0,
+        "1ICE": 0,
+        "1RWK": 0,
+        "1RWM": 0,
+        "1RWN": 0,
+        "1RWO": 0,
+        "1RWP": 0,
+        "1RWV": 0,
+        "1RWW": 0,
+        "1RWX": 0,
+        "1SC1": 0,
+        "1SC3": 0,
+        "1SC4": 0,
+        "2FQQ": 6,
+        "2H48": 0,
+        "2H4W": 0,
+        "2H4Y": 0,
+        "2H51": 0,
+        "2H54": 0,
+        "2HBQ": 0,
+        "2HBR": 0,
+        "2HBY": 0,
+        "2HBZ": 0,
+        "3D6F": 0,
+        "3D6H": 0,
+        "3D6M": 0,
+        "3E4C": 0,
+        "3NS7": 0,
+        "5FNA": 0,
+        "5MMV": 0,
+        "5MTK": 0,
+        "6BZ9": 0,
+        "6F6R": 0,
+        "6KN0": 0,
+        "6PZP": 0,
+        "6VIE": 0,
+        "7KEU": 0,
+        "8SV1": 0,
+        "8WRA": 0
+      },
+      "scanned_pdb_usable_residue_position_counts": {
+        "1BMQ": 0,
+        "1IBC": 0,
+        "1ICE": 0,
+        "1RWK": 0,
+        "1RWM": 0,
+        "1RWN": 0,
+        "1RWO": 0,
+        "1RWP": 0,
+        "1RWV": 0,
+        "1RWW": 0,
+        "1RWX": 0,
+        "1SC1": 6,
+        "1SC3": 6,
+        "1SC4": 6,
+        "2FQQ": 6,
+        "2H48": 0,
+        "2H4W": 0,
+        "2H4Y": 0,
+        "2H51": 0,
+        "2H54": 0,
+        "2HBQ": 0,
+        "2HBR": 0,
+        "2HBY": 0,
+        "2HBZ": 0,
+        "3D6F": 0,
+        "3D6H": 0,
+        "3D6M": 0,
+        "3E4C": 0,
+        "3NS7": 0,
+        "5FNA": 0,
+        "5MMV": 0,
+        "5MTK": 0,
+        "6BZ9": 0,
+        "6F6R": 0,
+        "6KN0": 0,
+        "6PZP": 0,
+        "6VIE": 0,
+        "7KEU": 0,
+        "8SV1": 0,
+        "8WRA": 0
+      },
+      "selected_active_site_has_expected_family": false,
+      "selected_pdb_id": "2FQQ",
+      "selected_structure_expected_family_observed": false,
+      "selected_structure_has_expected_family": false,
+      "structure_hits": [
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": true,
+          "ligand_codes": [
+            "F1G"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 6,
+          "pdb_id": "2FQQ",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 6,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 6
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MNO"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1BMQ",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "ACE",
+            "ASA"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1IBC",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "ACE",
+            "ASA"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1ICE",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "158"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1RWK",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "Q2Y"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1RWM",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "4QB"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1RWN",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "BTH"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1RWO",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "HQC"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1RWP",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "5PH"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1RWV",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "OQB"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1RWW",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "YBH"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "1RWX",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CL"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 6,
+          "pdb_id": "1SC1",
+          "remapped_residue_position_count": 6,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MLI"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MLI"
+          ],
+          "local_resolved_residue_count": 6,
+          "pdb_id": "1SC3",
+          "remapped_residue_position_count": 6,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 6,
+          "pdb_id": "1SC4",
+          "remapped_residue_position_count": 6,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_remap_warnings": [],
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2H48",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2H4W",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2H4Y",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2H51",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2H54",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2HBQ",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2HBR",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2HBY",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "2HBZ",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "3D6F",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "3D6H",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CF0",
+            "PHQ"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "3D6M",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [
+            "metal_ion"
+          ],
+          "expected_family_hits": [
+            "metal_ion"
+          ],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "MG"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "3E4C",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "3NS"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "3NS7",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "5FNA",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "WE0"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "5MMV",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "N7N"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "5MTK",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "0QE",
+            "ACE",
+            "PEG"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "6BZ9",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "CVE",
+            "SO4"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "6F6R",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "6KN0",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "P7S"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "6PZP",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "6VIE",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "7KEU",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "8SV1",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        },
+        {
+          "cofactor_families": [],
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "ligand_codes": [
+            "EDO"
+          ],
+          "local_cofactor_families": [],
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "local_resolved_residue_count": 0,
+          "pdb_id": "8WRA",
+          "remapped_residue_position_count": 0,
+          "residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_remap_warnings": [
+            "ambiguous_or_missing_unique_residue_id_code_remap",
+            "no_conservative_residue_position_remap",
+            "reference_positions_span_multiple_chains"
+          ],
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "unscanned_pdb_ids": []
+    }
+  ]
+}

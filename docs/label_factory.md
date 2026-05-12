@@ -38,11 +38,11 @@ Current slice artifact:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-label-factory-audit \
-  --retrieval artifacts/v3_geometry_retrieval_700.json \
-  --hard-negatives artifacts/v3_hard_negative_controls_700.json \
-  --adversarial-negatives artifacts/v3_adversarial_negative_controls_700.json \
+  --retrieval artifacts/v3_geometry_retrieval_725.json \
+  --hard-negatives artifacts/v3_hard_negative_controls_725.json \
+  --adversarial-negatives artifacts/v3_adversarial_negative_controls_725.json \
   --abstain-threshold 0.4115 \
-  --out artifacts/v3_label_factory_audit_700.json
+  --out artifacts/v3_label_factory_audit_725.json
 ```
 
 `apply-label-factory-actions` materializes those recommendations into a registry
@@ -50,8 +50,8 @@ artifact for review without overwriting the curated registry:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli apply-label-factory-actions \
-  --label-factory-audit artifacts/v3_label_factory_audit_700.json \
-  --out artifacts/v3_label_factory_applied_labels_700.json
+  --label-factory-audit artifacts/v3_label_factory_audit_725.json \
+  --out artifacts/v3_label_factory_applied_labels_725.json
 ```
 
 ## Mechanism Ontology
@@ -71,10 +71,11 @@ review-backed family boundaries into mechanism families:
 across UniRef/CATH/InterPro-style evidence or the current local proxies
 available in this repo: M-CSA mechanism text, ligand/cofactor context, and
 pocket geometry. Local proxies can prioritize review but cannot promote labels
-above bronze without direct evidence. The 700 guardrail now treats hydrolase-top1
-rows with kinase or ATP phosphoryl-transfer text as `reaction_substrate_mismatch`
-propagation blockers before any label can count, always retains those blocker
-rows even when they rank below the normal `max_rows` cutoff, and records
+above bronze without direct evidence. The 700 and 725 guardrails treat
+hydrolase-top1 rows with kinase or ATP phosphoryl-transfer text as
+`reaction_substrate_mismatch` propagation blockers before any label can count,
+retain those blocker rows even when they rank below the normal `max_rows`
+cutoff, and record
 `atp_phosphoryl_transfer_family_boundary` when a conservative family mapping is
 available.
 
@@ -86,8 +87,9 @@ expert hints for future ontology work, and keeps every mapped row
 non-countable. The family expansion is boundary evidence for routing,
 active-learning priority, adversarial negatives, and factory gates; it is not a
 new countable seed-fingerprint label source. With this expansion tested,
-documented, and gate-clean, the next bounded project step is resuming
-factory-gated label scaling toward 10k.
+documented, and gate-clean, the project resumed scaling through the accepted
+725 batch; the next bounded step is repairing or explicitly deferring the 725
+review-debt warnings before blind 750 growth.
 
 ## Active Learning Queue
 
@@ -102,9 +104,9 @@ factory-gated label scaling toward 10k.
 - ATP/phosphoryl-transfer family-boundary value
 
 The queue includes unlabeled tranche candidates plus labeled entries whose
-current evidence needs review. After the accepted 700 batch, the current queue
-artifact is `artifacts/v3_active_learning_review_queue_700.json`: it retains
-all 76 unlabeled post-batch candidate rows in addition to labeled review rows
+current evidence needs review. After the accepted 725 batch, the current queue
+artifact is `artifacts/v3_active_learning_review_queue_725.json`: it retains
+all 95 unlabeled post-batch candidate rows in addition to labeled review rows
 and includes `reaction_substrate_mismatch_value` plus
 `atp_phosphoryl_family_boundary_value` ranking terms for kinase or ATP
 phosphoryl-transfer text with hydrolase top hits.
@@ -574,9 +576,9 @@ regenerate the factory audit, adversarial negatives, active-learning queue,
 expert export/import artifacts, family-propagation guardrails, validation, and
 tests before its labels are counted.
 
-Current 700-queue gate state:
+Current 725-queue gate state:
 
-- 21/21 gate checks pass.
+- 20/20 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
@@ -584,100 +586,77 @@ Current 700-queue gate state:
   expert-label decision review export ready, expert-label decision repair
   candidates ready, expert-label decision repair guardrails ready,
   expert-label local-evidence gap audit ready, expert-label local-evidence
-  review export ready, expert-label local-evidence repair resolution ready,
-  explicit alternate residue-position sourcing requests ready, review-only
-  import safety ready, ATP/phosphoryl-transfer family expansion ready, and
-  unlabeled queue retention ready.
-- 79 bronze-to-silver promotions are proposed in the applied-label artifact
-  after the accepted 700 batch.
-- 188 rows are queued for active-learning review after the accepted 700 batch,
-  including all 76 unlabeled post-batch candidates; 18 queued rows carry the
+  review export ready, explicit alternate residue-position sourcing requests
+  ready, review-only import safety ready, ATP/phosphoryl-transfer family
+  expansion ready, and unlabeled queue retention ready.
+- 83 bronze-to-silver promotions are proposed in the applied-label artifact
+  after the accepted 725 batch.
+- 207 rows are queued for active-learning review after the accepted 725 batch,
+  including all 95 unlabeled post-batch candidates; 18 queued rows carry the
   reaction/substrate mismatch review signal.
-- The 700 family-propagation guardrail reports 24
-  `reaction_substrate_mismatch` blockers, including 14 priority-retained rows
-  beyond `max_rows`, split into 17 labeled propagation blocks and 7 unlabeled
-  pending-review blocks.
-- The dedicated reaction/substrate mismatch export carries all 24 lanes, records
-  17 current out-of-scope labels plus 7 unlabeled rows, and now feeds the
-  expert-reviewed nine-family ontology expansion: ePK, ASKHA, ATP-grasp, GHKL,
-  dNK, NDK, PfkA, PfkB, and GHMP. The current reviewed decision batch keeps the
-  artifact review-only, routes 7 unlabeled rows to reviewed out-of-scope
-  decisions, rejects 17 current out-of-scope controls, and is prevented from
-  adding countable labels by the import-safety audit.
-- `artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json` maps 20
-  expert-supported lanes across all nine ATP/phosphoryl-transfer families,
-  records 4 non-target expert hints, has 0 unsupported family mappings, and
-  keeps `countable_label_candidate_count=0`; it is gate evidence for family
-  boundaries, not label-count evidence.
-- The dedicated expert-label decision export carries all 76 active-queue
+- The 725 family-propagation guardrail reports 24
+  `reaction_substrate_mismatch` blockers and keeps ATP/phosphoryl-transfer
+  boundary rows separate from generic hydrolase or metal-hydrolase labels.
+- The dedicated reaction/substrate mismatch export carries all 24 lanes and
+  remains review-only. The attached nine-family ontology expansion maps
+  expert-supported lanes across ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA,
+  PfkB, and GHMP with 0 countable label candidates.
+- The dedicated expert-label decision export carries all 95 active-queue
   `expert_label_decision_needed` rows as `no_decision`, records 0 countable
-  label candidates, confirms that its 7 reaction/substrate mismatch rows are
-  already covered by the mismatch export, and feeds the scaling-quality audit
-  as an `expert_label_decision_review_only_debt` failure-mode surface.
-- The expert-label repair-candidate summaries rank the first 30 evidence-repair
-  candidates, provide a full 76-row companion table, and record complete bucket
-  counts while keeping every row non-countable.
-- The expert-label repair guardrail audit covers 21 priority repair lanes,
-  keeps 3 conservative-remap local evidence leads review-only.
-- The local-evidence gap audit/export covers those 21 priority lanes, emits
-  21 review-only/no-decision items, and the local-evidence repair plan
-  prioritizes them into 4 reaction/substrate expert-review lanes, 3 explicit
-  alternate-residue-position sourcing lanes, 3 active-site mapping or
-  structure-selection lanes, and 11 family-boundary review lanes. These
-  artifacts now feed `v3_expert_label_decision_local_evidence_repair_resolution_700.json`,
-  which closes the 4 reaction/substrate lanes as reviewed out-of-scope
-  repair-only rows, plus
-  `v3_explicit_alternate_residue_position_requests_700.json`, which requests
-  explicit alternate-PDB residue positions for `m_csa:567`, `m_csa:578`, and
-  `m_csa:667` across 34 alternate PDB structures. The latest accepted-700
-  factory gate is 21/21 without making any row countable.
-- `artifacts/v3_review_only_import_safety_audit_700.json` audits the
+  label candidates, and feeds the scaling-quality audit as an
+  `expert_label_decision_review_only_debt` failure-mode surface.
+- The expert-label repair-candidate and repair-guardrail artifacts cover the
+  95 expert-label decision rows and 25 priority repair rows while keeping every
+  row non-countable.
+- The local-evidence gap audit/export covers those 25 priority lanes, emits 25
+  review-only/no-decision items, and records 0 countable candidates. The
+  accepted-725 gate intentionally does not require local-evidence repair
+  resolution yet, so the next run should repair or explicitly defer these lanes
+  before blind 750 growth.
+- `artifacts/v3_review_only_import_safety_audit_725.json` audits the
   reaction/substrate mismatch, expert-label decision, and local-evidence
   decision batches and confirms countable import adds 0 labels from those
   review-only artifacts.
-- `artifacts/v3_mechanism_ontology_gap_audit_700.json` records 115
-  non-countable ontology-scope pressure rows, and
-  `artifacts/v3_learned_retrieval_manifest_700.json` defines a future learned
-  representation interface with 562 eligible rows while preserving the
+- `artifacts/v3_explicit_alternate_residue_position_requests_725.json` exports
+  8 concrete alternate residue-position requests across 73 candidate alternate
+  structures and keeps `countable_label_candidate_count=0`.
+- `artifacts/v3_mechanism_ontology_gap_audit_725.json` records 121
+  non-countable ontology-scope pressure rows, led by transferase/phosphoryl,
+  oxidoreductase long-tail, lyase, isomerase, glycan, and methyl-transfer
+  signals. It recommends expert-reviewed ontology expansion rather than
+  keyword-only labels.
+- `artifacts/v3_learned_retrieval_manifest_725.json` defines a future learned
+  representation interface with 568 eligible rows while preserving the
   heuristic retrieval baseline as the control.
-- `artifacts/v3_sequence_similarity_failure_sets_700.json` keeps the 2
+- `artifacts/v3_sequence_similarity_failure_sets_725.json` keeps the 2
   exact-reference duplicate clusters as sequence-similarity failure controls
   before any propagation or learned split.
-- 100 adversarial negative controls are mined.
-- 182 expert-review items are exported from the post-700 review queue.
-- The 500, 525, 550, 575, 600, 625, 650, 675, and 700 decision batches
-  accepted 149 new countable labels beyond the 475-entry source slice. The
-  canonical registry now contains 624 bronze automation-curated labels, while
+- 100 adversarial negative controls are mined, including ATP/phosphoryl-transfer
+  family-boundary controls.
+- 174 expert-review items are exported from the post-725 review queue.
+- The 500, 525, 550, 575, 600, 625, 650, 675, 700, and 725 decision batches
+  accepted 155 new countable labels beyond the 475-entry source slice. The
+  canonical registry now contains 630 bronze automation-curated labels, while
   the review-state registry keeps pending `needs_expert_review` placeholders
   separate from the countable benchmark.
-- The 675 and 700 clean-label passes were promoted only for labels with no
-  review-gap reasons. `m_csa:666` was accepted at 675, and `m_csa:686`,
-  `m_csa:688`, `m_csa:694`, `m_csa:697`, and `m_csa:699` were accepted at
-  700. The 700 review-debt summary ranks 81 evidence-gap rows, including 61
-  carried rows and 20 new rows. Pending review-state rows remain outside the
-  countable benchmark.
-- `artifacts/v3_label_preview_promotion_readiness_700.json` separates
-  mechanical acceptance from promotion. It is mechanically ready, but its
-  recommendation is `review_before_promoting` because preview review debt rises
-  from 61 to 81 rows and pending review rows remain. The readiness metadata
-  also copies the new debt entry ids and next-action counts from the preview
-  debt summary.
-- `artifacts/v3_label_scaling_quality_audit_675_preview.json` records the
-  675 failure-mode audit, and
-  `artifacts/v3_label_scaling_quality_audit_700_preview.json` records the 700
-  failure-mode audit. Both have 0 accepted labels with review debt and 0 hard
-  negatives. Both attach sequence-cluster proxy artifacts and report no
-  near-duplicate hits among audited rows. The 700 audit still flags ontology
-  scope pressure, family-propagation boundaries, cofactor ambiguity,
-  reaction/substrate mismatches, active-site mapping gaps, and
-  hydrolysis-dominated queue composition as promotion-review issues for
-  deferred rows. The attached alternate-structure scan adds a separate warning
-  for structure-wide expected-family hits that still lack local active-site
-  support, and it now exposes conservative residue-position remap coverage for
-  alternate PDBs. The ATP/phosphoryl-transfer family expansion is ready and
-  contributes 0 countable label candidates. The all-debt remap lead summary
-  keeps local-hit carried-debt rows review-only rather than making them
-  countable.
+- The 725 clean-label pass accepted `m_csa:705`, `m_csa:709`, `m_csa:714`,
+  `m_csa:716`, `m_csa:723`, and `m_csa:727`. The 725 review-debt summary ranks
+  100 evidence-gap rows, including 76 carried rows and 24 new rows. Pending
+  review-state rows remain outside the countable benchmark.
+- `artifacts/v3_label_scaling_quality_audit_725_preview.json` records the 725
+  failure-mode audit. It has 0 accepted labels with review debt, 0 hard
+  negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable
+  in-scope failures, and 0 unclassified new review-debt rows. It still warns
+  about active-learning queue concentration, new review-debt failure modes,
+  structure-mapping issues, reaction/substrate mismatch hits, expert-label
+  decision review-only rows, local-evidence gaps, alternate-structure hits
+  without local support, and strict remap-local guardrails.
+- `artifacts/v3_review_debt_alternate_structure_scan_725_preview.json` scans 12
+  candidate new-debt rows across 140 structures with 0 fetch failures. It finds
+  expected-family hits for `m_csa:712`, `m_csa:718`, and `m_csa:724`, but only
+  `m_csa:712` has local support from a conservative remap. The companion
+  remap-local audit routes `m_csa:712` to expert family-boundary review and
+  keeps it non-countable under a strict remap guardrail.
 
 ## Automation Lock
 

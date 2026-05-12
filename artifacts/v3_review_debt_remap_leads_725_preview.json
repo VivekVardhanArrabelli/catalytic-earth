@@ -1,0 +1,658 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "lead_count": 8,
+    "lead_type_counts": {
+      "local_expected_family_hit_from_remap": 1,
+      "remapped_positions_without_expected_family_hit": 5,
+      "structure_wide_hit_without_local_support": 2
+    },
+    "local_expected_family_hit_entry_ids": [
+      "m_csa:712"
+    ],
+    "local_expected_family_hit_from_remap_entry_ids": [
+      "m_csa:712"
+    ],
+    "method": "review_debt_remap_lead_summary",
+    "review_rule": "remapped local cofactor evidence can prioritize review but cannot make a label countable without review import, evidence-gap clearance, and label-factory gate acceptance",
+    "source_scan_method": "review_debt_alternate_structure_scan"
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "coverage_status": "expected_structure_only",
+      "debt_status": "new",
+      "entry_id": "m_csa:712",
+      "entry_name": "S-(hydroxymethyl)glutathione synthase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "hit_summaries": [
+        {
+          "expected_family_hits": [
+            "metal_ion"
+          ],
+          "is_selected_structure": true,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "GSH"
+          ],
+          "pdb_id": "1XA8",
+          "remapped_residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_source": "mcsa_explicit",
+          "usable_residue_position_count": 3
+        },
+        {
+          "expected_family_hits": [
+            "metal_ion"
+          ],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [
+            "metal_ion"
+          ],
+          "local_ligand_codes": [
+            "ZN"
+          ],
+          "pdb_id": "1X6M",
+          "remapped_residue_position_count": 3,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        }
+      ],
+      "lead_type": "local_expected_family_hit_from_remap",
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_expected_family_hit_from_remap_pdb_ids": [
+        "1X6M"
+      ],
+      "local_expected_family_hit_pdb_ids": [
+        "1X6M"
+      ],
+      "local_expected_ligand_codes": [
+        "ZN"
+      ],
+      "local_ligand_codes": [
+        "ZN"
+      ],
+      "recommended_next_action": "verify_remapped_local_evidence_before_review_import",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 1
+      },
+      "remapped_residue_position_pdb_ids": [
+        "1X6M"
+      ],
+      "remapped_residue_position_structure_count": 1,
+      "remediation_bucket": "local_mapping_or_structure_selection_review",
+      "review_policy": "alternate-structure remaps and ligand hits are review-only; do not count labels until review import and factory gates clear unresolved evidence gaps",
+      "structure_expected_ligand_codes": [
+        "ZN"
+      ],
+      "structure_ligand_codes": [
+        "GOL",
+        "GSH",
+        "SO4",
+        "ZN"
+      ],
+      "structure_wide_hit_without_local_support_pdb_ids": [
+        "1XA8"
+      ]
+    },
+    {
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "entry_id": "m_csa:718",
+      "entry_name": "caspase-1",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "hit_summaries": [
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "1SC1",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MLI"
+          ],
+          "pdb_id": "1SC3",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "1SC4",
+          "remapped_residue_position_count": 6,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 6
+        },
+        {
+          "expected_family_hits": [
+            "metal_ion"
+          ],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "3E4C",
+          "remapped_residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "lead_type": "structure_wide_hit_without_local_support",
+      "local_cofactor_families": [],
+      "local_expected_family_hit_from_remap_pdb_ids": [],
+      "local_expected_family_hit_pdb_ids": [],
+      "local_expected_ligand_codes": [],
+      "local_ligand_codes": [],
+      "recommended_next_action": "inspect_active_site_mapping_or_structure_selection",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 3
+      },
+      "remapped_residue_position_pdb_ids": [
+        "1SC1",
+        "1SC3",
+        "1SC4"
+      ],
+      "remapped_residue_position_structure_count": 3,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "review_policy": "alternate-structure remaps and ligand hits are review-only; do not count labels until review import and factory gates clear unresolved evidence gaps",
+      "structure_expected_ligand_codes": [
+        "MG"
+      ],
+      "structure_ligand_codes": [
+        "0QE",
+        "158",
+        "3NS",
+        "4QB",
+        "5PH",
+        "ACE",
+        "ASA",
+        "BTH",
+        "CF0",
+        "CL",
+        "CVE",
+        "EDO",
+        "F1G",
+        "HQC",
+        "MG",
+        "MLI",
+        "MNO",
+        "N7N",
+        "OQB",
+        "P7S",
+        "PEG",
+        "PHQ",
+        "Q2Y",
+        "SO4",
+        "WE0",
+        "YBH"
+      ],
+      "structure_wide_hit_without_local_support_pdb_ids": [
+        "3E4C"
+      ]
+    },
+    {
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "entry_id": "m_csa:724",
+      "entry_name": "repressor LexA",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "hit_summaries": [
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "7B5G",
+          "remapped_residue_position_count": 5,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 5
+        },
+        {
+          "expected_family_hits": [
+            "metal_ion"
+          ],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "8TRG",
+          "remapped_residue_position_count": 0,
+          "residue_position_remap_basis": null,
+          "residue_position_source": "none",
+          "usable_residue_position_count": 0
+        }
+      ],
+      "lead_type": "structure_wide_hit_without_local_support",
+      "local_cofactor_families": [],
+      "local_expected_family_hit_from_remap_pdb_ids": [],
+      "local_expected_family_hit_pdb_ids": [],
+      "local_expected_ligand_codes": [],
+      "local_ligand_codes": [],
+      "recommended_next_action": "inspect_active_site_mapping_or_structure_selection",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 1
+      },
+      "remapped_residue_position_pdb_ids": [
+        "7B5G"
+      ],
+      "remapped_residue_position_structure_count": 1,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "review_policy": "alternate-structure remaps and ligand hits are review-only; do not count labels until review import and factory gates clear unresolved evidence gaps",
+      "structure_expected_ligand_codes": [
+        "MG"
+      ],
+      "structure_ligand_codes": [
+        "AGS",
+        "EDO",
+        "MG",
+        "SO4"
+      ],
+      "structure_wide_hit_without_local_support_pdb_ids": [
+        "8TRG"
+      ]
+    },
+    {
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "entry_id": "m_csa:704",
+      "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "hit_summaries": [
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "1E2O",
+          "remapped_residue_position_count": 2,
+          "residue_position_remap_basis": "unique_residue_id_code_remap",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "1SCZ",
+          "remapped_residue_position_count": 2,
+          "residue_position_remap_basis": "unique_residue_id_code_remap",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "6PBR",
+          "remapped_residue_position_count": 2,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "9DZ8",
+          "remapped_residue_position_count": 2,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        }
+      ],
+      "lead_type": "remapped_positions_without_expected_family_hit",
+      "local_cofactor_families": [],
+      "local_expected_family_hit_from_remap_pdb_ids": [],
+      "local_expected_family_hit_pdb_ids": [],
+      "local_expected_ligand_codes": [],
+      "local_ligand_codes": [],
+      "recommended_next_action": "use_remapped_positions_for_next_local_evidence_scan",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 2,
+        "unique_residue_id_code_remap": 2
+      },
+      "remapped_residue_position_pdb_ids": [
+        "1E2O",
+        "1SCZ",
+        "6PBR",
+        "9DZ8"
+      ],
+      "remapped_residue_position_structure_count": 4,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "review_policy": "alternate-structure remaps and ligand hits are review-only; do not count labels until review import and factory gates clear unresolved evidence gaps",
+      "structure_expected_ligand_codes": [],
+      "structure_ligand_codes": [
+        "NA",
+        "SO4"
+      ],
+      "structure_wide_hit_without_local_support_pdb_ids": []
+    },
+    {
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "entry_id": "m_csa:708",
+      "entry_name": "phenylalanine ammonia-lyase",
+      "expected_cofactor_families": [
+        "heme"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "hit_summaries": [
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "6F6T",
+          "remapped_residue_position_count": 3,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "6HQF",
+          "remapped_residue_position_count": 3,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        }
+      ],
+      "lead_type": "remapped_positions_without_expected_family_hit",
+      "local_cofactor_families": [],
+      "local_expected_family_hit_from_remap_pdb_ids": [],
+      "local_expected_family_hit_pdb_ids": [],
+      "local_expected_ligand_codes": [],
+      "local_ligand_codes": [],
+      "recommended_next_action": "use_remapped_positions_for_next_local_evidence_scan",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 2
+      },
+      "remapped_residue_position_pdb_ids": [
+        "6F6T",
+        "6HQF"
+      ],
+      "remapped_residue_position_structure_count": 2,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "review_policy": "alternate-structure remaps and ligand hits are review-only; do not count labels until review import and factory gates clear unresolved evidence gaps",
+      "structure_expected_ligand_codes": [],
+      "structure_ligand_codes": [
+        "CV2",
+        "DTT",
+        "K3Z",
+        "MDO",
+        "PPH"
+      ],
+      "structure_wide_hit_without_local_support_pdb_ids": []
+    },
+    {
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "entry_id": "m_csa:711",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NADP+)",
+      "expected_cofactor_families": [
+        "heme"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "hit_summaries": [
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "G3H",
+            "NAP"
+          ],
+          "pdb_id": "2QE0",
+          "remapped_residue_position_count": 3,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 3
+        }
+      ],
+      "lead_type": "remapped_positions_without_expected_family_hit",
+      "local_cofactor_families": [],
+      "local_expected_family_hit_from_remap_pdb_ids": [],
+      "local_expected_family_hit_pdb_ids": [],
+      "local_expected_ligand_codes": [],
+      "local_ligand_codes": [],
+      "recommended_next_action": "use_remapped_positions_for_next_local_evidence_scan",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 1
+      },
+      "remapped_residue_position_pdb_ids": [
+        "2QE0"
+      ],
+      "remapped_residue_position_structure_count": 1,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "review_policy": "alternate-structure remaps and ligand hits are review-only; do not count labels until review import and factory gates clear unresolved evidence gaps",
+      "structure_expected_ligand_codes": [],
+      "structure_ligand_codes": [
+        "G3H",
+        "G3P",
+        "NAP",
+        "SO4"
+      ],
+      "structure_wide_hit_without_local_support_pdb_ids": []
+    },
+    {
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "entry_id": "m_csa:717",
+      "entry_name": "ornithine cyclodeaminase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "hit_summaries": [
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MSE",
+            "NA",
+            "NAD"
+          ],
+          "pdb_id": "1U7H",
+          "remapped_residue_position_count": 2,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 2
+        }
+      ],
+      "lead_type": "remapped_positions_without_expected_family_hit",
+      "local_cofactor_families": [],
+      "local_expected_family_hit_from_remap_pdb_ids": [],
+      "local_expected_family_hit_pdb_ids": [],
+      "local_expected_ligand_codes": [],
+      "local_ligand_codes": [],
+      "recommended_next_action": "use_remapped_positions_for_next_local_evidence_scan",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 1
+      },
+      "remapped_residue_position_pdb_ids": [
+        "1U7H"
+      ],
+      "remapped_residue_position_structure_count": 1,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "review_policy": "alternate-structure remaps and ligand hits are review-only; do not count labels until review import and factory gates clear unresolved evidence gaps",
+      "structure_expected_ligand_codes": [],
+      "structure_ligand_codes": [
+        "MES",
+        "MPD",
+        "MSE",
+        "NA",
+        "NAD",
+        "ORN"
+      ],
+      "structure_wide_hit_without_local_support_pdb_ids": []
+    },
+    {
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "entry_id": "m_csa:726",
+      "entry_name": "peptide amidase",
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "hit_summaries": [
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "1OBI",
+          "remapped_residue_position_count": 8,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 8
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "MLA"
+          ],
+          "pdb_id": "1OBL",
+          "remapped_residue_position_count": 8,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 8
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [],
+          "pdb_id": "1OCK",
+          "remapped_residue_position_count": 8,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 8
+        },
+        {
+          "expected_family_hits": [],
+          "is_selected_structure": false,
+          "local_expected_family_hits": [],
+          "local_ligand_codes": [
+            "POP"
+          ],
+          "pdb_id": "1OCM",
+          "remapped_residue_position_count": 8,
+          "residue_position_remap_basis": "same_chain_residue_id",
+          "residue_position_source": "selected_position_remap",
+          "usable_residue_position_count": 8
+        }
+      ],
+      "lead_type": "remapped_positions_without_expected_family_hit",
+      "local_cofactor_families": [],
+      "local_expected_family_hit_from_remap_pdb_ids": [],
+      "local_expected_family_hit_pdb_ids": [],
+      "local_expected_ligand_codes": [],
+      "local_ligand_codes": [],
+      "recommended_next_action": "use_remapped_positions_for_next_local_evidence_scan",
+      "remap_basis_counts": {
+        "same_chain_residue_id": 4
+      },
+      "remapped_residue_position_pdb_ids": [
+        "1OBI",
+        "1OBL",
+        "1OCK",
+        "1OCM"
+      ],
+      "remapped_residue_position_structure_count": 4,
+      "remediation_bucket": "alternate_pdb_ligand_scan",
+      "review_policy": "alternate-structure remaps and ligand hits are review-only; do not count labels until review import and factory gates clear unresolved evidence gaps",
+      "structure_expected_ligand_codes": [],
+      "structure_ligand_codes": [
+        "CSD",
+        "CSO",
+        "MLA",
+        "MLM",
+        "POP"
+      ],
+      "structure_wide_hit_without_local_support_pdb_ids": []
+    }
+  ]
+}

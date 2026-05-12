@@ -1,0 +1,3281 @@
+{
+  "metadata": {
+    "all_candidates_retained": true,
+    "alternate_structure_scan_context_linked_count": 0,
+    "candidate_count": 95,
+    "candidate_entry_ids": [
+      "m_csa:494",
+      "m_csa:510",
+      "m_csa:529",
+      "m_csa:534",
+      "m_csa:553",
+      "m_csa:558",
+      "m_csa:559",
+      "m_csa:564",
+      "m_csa:567",
+      "m_csa:568",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:591",
+      "m_csa:592",
+      "m_csa:596",
+      "m_csa:597",
+      "m_csa:598",
+      "m_csa:599",
+      "m_csa:600",
+      "m_csa:602",
+      "m_csa:611",
+      "m_csa:623",
+      "m_csa:624",
+      "m_csa:626",
+      "m_csa:632",
+      "m_csa:636",
+      "m_csa:641",
+      "m_csa:642",
+      "m_csa:643",
+      "m_csa:644",
+      "m_csa:650",
+      "m_csa:653",
+      "m_csa:654",
+      "m_csa:655",
+      "m_csa:656",
+      "m_csa:657",
+      "m_csa:658",
+      "m_csa:659",
+      "m_csa:660",
+      "m_csa:661",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:664",
+      "m_csa:665",
+      "m_csa:667",
+      "m_csa:668",
+      "m_csa:669",
+      "m_csa:670",
+      "m_csa:671",
+      "m_csa:672",
+      "m_csa:673",
+      "m_csa:674",
+      "m_csa:675",
+      "m_csa:676",
+      "m_csa:677",
+      "m_csa:678",
+      "m_csa:679",
+      "m_csa:680",
+      "m_csa:681",
+      "m_csa:682",
+      "m_csa:683",
+      "m_csa:684",
+      "m_csa:685",
+      "m_csa:687",
+      "m_csa:689",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:693",
+      "m_csa:695",
+      "m_csa:696",
+      "m_csa:698",
+      "m_csa:700",
+      "m_csa:701",
+      "m_csa:702",
+      "m_csa:703",
+      "m_csa:704",
+      "m_csa:706",
+      "m_csa:707",
+      "m_csa:708",
+      "m_csa:710",
+      "m_csa:711",
+      "m_csa:712",
+      "m_csa:713",
+      "m_csa:715",
+      "m_csa:717",
+      "m_csa:718",
+      "m_csa:719",
+      "m_csa:720",
+      "m_csa:721",
+      "m_csa:722",
+      "m_csa:724",
+      "m_csa:725",
+      "m_csa:726"
+    ],
+    "countable_label_candidate_count": 0,
+    "emitted_row_count": 95,
+    "max_rows": 120,
+    "method": "expert_label_decision_repair_candidate_summary",
+    "omitted_by_max_rows": 0,
+    "quality_risk_flag_counts": {
+      "active_site_mapping_or_structure_gap": 18,
+      "cofactor_family_ambiguity": 62,
+      "counterevidence_boundary": 38,
+      "external_expert_decision_required": 95,
+      "reaction_substrate_mismatch": 7,
+      "ser_his_metal_boundary": 2,
+      "sibling_mechanism_confusion": 11,
+      "substrate_class_boundary": 8,
+      "text_leakage_or_nonlocal_evidence_risk": 9
+    },
+    "remediation_context_linked_count": 95,
+    "repair_bucket_counts": {
+      "active_site_mapping_or_structure_gap_repair": 18,
+      "cofactor_evidence_repair": 39,
+      "external_expert_label_decision": 28,
+      "ser_his_metal_boundary_review": 1,
+      "sibling_mechanism_boundary_review": 2,
+      "text_leakage_or_nonlocal_evidence_guardrail": 7
+    },
+    "review_only_rule": "repair candidates identify evidence work only; they do not accept, reject, or count expert-label decision rows",
+    "source_method": "expert_label_decision_review_export",
+    "structure_mapping_context_linked_count": 5
+  },
+  "rows": [
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 12,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "external_cofactor_source_review",
+        "selected_pdb_id": "1OJ4",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3581,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.278
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 14,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 25,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 26,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1BO1",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3263,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_score": 0.2573
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:553",
+      "entry_name": "N-acetylneuraminate lyase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 28,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 22,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 23,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1FDY",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.4135,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.399
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 86,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "external_cofactor_source_review",
+        "selected_pdb_id": "1K82",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.3294,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.329
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:691",
+      "entry_name": "histone-lysine N-methyltransferase (Suvar3-9 subfamily)",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 134,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 52,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 53,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1PEG",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.3409,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.2694
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:704",
+      "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 139,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 11,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 12,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1C4T",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3362,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3337
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 154,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 34,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 35,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "3IDH",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5769,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.264
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:698",
+      "entry_name": "xanthine dehydrogenase (bacterial)",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 159,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 5,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 6,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1JRP",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3441,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_score": 0.2696
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:701",
+      "entry_name": "dimethylsulfoxide reductase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 163,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "external_cofactor_source_review",
+        "selected_pdb_id": "1EU1",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.2263,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.2136
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:667",
+      "entry_name": "alpha-N-arabinofuranosidase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 166,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 5,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 6,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1PZ3",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3767,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.296
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 167,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "geometry_status_not_ok",
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 3,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 4,
+        "remediation_bucket": "active_site_mapping_repair",
+        "selected_pdb_id": "1YON",
+        "selected_pdb_residue_position_count": 1
+      },
+      "structure_mapping_status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.233,
+      "top2_fingerprint_id": "plp_dependent_enzyme",
+      "top2_score": 0.225
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 169,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "geometry_status_not_ok",
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "active_site_mapping_repair",
+        "selected_pdb_id": "1DL5",
+        "selected_pdb_residue_position_count": 1
+      },
+      "structure_mapping_status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2367,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.1362
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 174,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "geometry_status_not_ok",
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 8,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 9,
+        "remediation_bucket": "active_site_mapping_repair",
+        "selected_pdb_id": "1G79",
+        "selected_pdb_residue_position_count": 1
+      },
+      "structure_mapping_status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2296,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.185
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 175,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 11,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 12,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "2DHN",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2703,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_score": 0.2702
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "entry_id": "m_csa:690",
+      "entry_name": "dextranase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion",
+        "substrate_class_boundary"
+      ],
+      "rank": 177,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1OGO",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.2221,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.2163
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "metal_bound_nad_redox_text_context"
+      ],
+      "entry_id": "m_csa:717",
+      "entry_name": "ornithine cyclodeaminase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 178,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1X7D",
+        "selected_pdb_residue_position_count": 2
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.2223,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.2142
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:713",
+      "entry_name": "cystathionine beta-synthase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "rank": 204,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "geometry_status_not_ok",
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 18,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 19,
+        "remediation_bucket": "active_site_mapping_repair",
+        "selected_pdb_id": "1M54",
+        "selected_pdb_residue_position_count": 1
+      },
+      "structure_mapping_status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.6525,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.351
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "rank": 206,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "geometry_status_not_ok",
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "inspect selected structure mapping, residue resolution, and alternate PDB support before any label decision",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 5,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 6,
+        "remediation_bucket": "active_site_mapping_repair",
+        "selected_pdb_id": "1GAL",
+        "selected_pdb_residue_position_count": 1
+      },
+      "structure_mapping_status": "insufficient_resolved_residues",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.685,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3052
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 10,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [],
+      "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1G99",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4227,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.2943
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 100,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 65,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 66,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1BIX",
+        "selected_pdb_residue_position_count": 8
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4208,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3492
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 106,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 31,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 32,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1PWV",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4261,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3571
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 151,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 12,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 13,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1IMA",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4288,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.281
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:578",
+      "entry_name": "ferrochelatase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 181,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 24,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 25,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1HRK",
+        "selected_pdb_residue_position_count": 9
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5632,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3293
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 188,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 3,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 4,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1HR6",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5822,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.345
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:572",
+      "entry_name": "catalase (manganese dependent)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 190,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "require local mechanistic evidence; do not count text-only or nonlocal support",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1O9I",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5861,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3491
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary"
+      ],
+      "rank": 9,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1JXH",
+        "selected_pdb_residue_position_count": 7
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3474,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.303
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 11,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 9,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 10,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1DGK",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3559,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_score": 0.2699
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary"
+      ],
+      "rank": 13,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 4,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 5,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1RK2",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.2601,
+      "top2_fingerprint_id": "plp_dependent_enzyme",
+      "top2_score": 0.2594
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:676",
+      "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 47,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "external_cofactor_source_review",
+        "selected_pdb_id": "1B65",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.3517,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.351
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:687",
+      "entry_name": "deoxyhypusine synthase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 61,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 20,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 21,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1ROZ",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.3548,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.351
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:684",
+      "entry_name": "mannuronate-specific alginate lyase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 64,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "remediation_bucket": "external_cofactor_source_review",
+        "selected_pdb_id": "1QAZ",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.3441,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.3367
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:711",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NADP+)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 72,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 6,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 7,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "2ESD",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.3489,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.3479
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:680",
+      "entry_name": "ribose-5-phosphate isomerase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 78,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1NN4",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.3408,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3404
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:673",
+      "entry_name": "cellobiose dehydrogenase (acceptor)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 91,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 5,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 6,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1KDG",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3702,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3512
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 93,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1FO6",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3621,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3509
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:644",
+      "entry_name": "limonene-1,2-epoxide hydrolase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 94,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 23,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 24,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1NWW",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3572,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3524
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:725",
+      "entry_name": "aldehyde reductase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 95,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 176,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 177,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "2ACU",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3702,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.354
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:724",
+      "entry_name": "repressor LexA",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 96,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 10,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 11,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1JHF",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3633,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.3465
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:559",
+      "entry_name": "cellulase (GH9)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 104,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 3,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 4,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1JS4",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3608,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3489
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:653",
+      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 105,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1KZH",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3642,
+      "top2_fingerprint_id": "plp_dependent_enzyme",
+      "top2_score": 0.3371
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:700",
+      "entry_name": "deoxycytidylate 5-hydroxymethyltransferase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 112,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 5,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 6,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1B5D",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3638,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3496
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:693",
+      "entry_name": "ribonuclease 4",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 116,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "2RNF",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3617,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3437
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:564",
+      "entry_name": "ribonuclease V",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 117,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 56,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 57,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1A4Y",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3594,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3444
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:597",
+      "entry_name": "ubiquitinyl hydrolase 1 (peptidase C12 type)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 127,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 4,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 5,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1UCH",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3647,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3068
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:558",
+      "entry_name": "non-specific acid phosphatases (class A)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 135,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1D2T",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3703,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.2999
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:682",
+      "entry_name": "cathepsin H",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 137,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "8PCH",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3809,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.303
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:702",
+      "entry_name": "uroporphyrinogen-III C-methyltransferase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 138,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 14,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 15,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1PJQ",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3294,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.328
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:669",
+      "entry_name": "carbamate kinase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 140,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "external_cofactor_source_review",
+        "selected_pdb_id": "1B7B",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2643,
+      "top2_fingerprint_id": "plp_dependent_enzyme",
+      "top2_score": 0.2142
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:672",
+      "entry_name": "protocatechuate 4,5-dioxygenase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 142,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1BOU",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3592,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.2952
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:719",
+      "entry_name": "prostaglandin-D synthase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 143,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1PD2",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2911,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.291
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:708",
+      "entry_name": "phenylalanine ammonia-lyase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 144,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 4,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 5,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1W27",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox",
+      "top1_score": 0.2991,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.233
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:674",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 148,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 5,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 6,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1UF7",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3718,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_score": 0.278
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "role_inferred",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_aromatic_positive_pocket",
+        "role_inferred_metal_covalent_cleavage_roles",
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:712",
+      "entry_name": "S-(hydroxymethyl)glutathione synthase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 149,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1XA8",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.332,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.2334
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:718",
+      "entry_name": "caspase-1",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 150,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 39,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 40,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "2FQQ",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3848,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3698
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:624",
+      "entry_name": "bleomycin hydrolase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 152,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 8,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 9,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1GCB",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3788,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3725
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:679",
+      "entry_name": "adenain",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 153,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 5,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 6,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1NLN",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3758,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3742
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:715",
+      "entry_name": "protein-methionine-S-oxide reductase (MsrB)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 155,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1L1D",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3653,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3532
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:695",
+      "entry_name": "purine-nucleoside phosphorylase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 156,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 9,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 10,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "2BSX",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3359,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_score": 0.2609
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:681",
+      "entry_name": "pectinesterase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 160,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "external_cofactor_source_review",
+        "selected_pdb_id": "1GQ8",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3747,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3123
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:529",
+      "entry_name": "phospholipase A2 (group group IVA)",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "ser_his_metal_boundary"
+      ],
+      "rank": 161,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1CJY",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3707,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3181
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:675",
+      "entry_name": "glutaconyl-CoA decarboxylase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 162,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "external_cofactor_source_review",
+        "selected_pdb_id": "1PIX",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2119,
+      "top2_fingerprint_id": "plp_dependent_enzyme",
+      "top2_score": 0.1329
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:655",
+      "entry_name": "DNA-3-methyladenine glycosylase I",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 164,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1P7M",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2247,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.2193
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:703",
+      "entry_name": "peptide chain release factor N5-glutamine methyltransferase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 168,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 3,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 4,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1VQ1",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox",
+      "top1_score": 0.2744,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.2249
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:656",
+      "entry_name": "adenosinetriphosphatase",
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 173,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "inspect local cofactor evidence and counterevidence before review",
+      "repair_bucket": "cofactor_evidence_repair",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 41,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 42,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1KAZ",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3503,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.1779
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:650",
+      "entry_name": "phospholipase A1",
+      "quality_risk_flags": [
+        "external_expert_decision_required",
+        "ser_his_metal_boundary"
+      ],
+      "rank": 183,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep Ser-His versus metal-hydrolase boundary rows in review",
+      "repair_bucket": "ser_his_metal_boundary_review",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 7,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 8,
+        "remediation_bucket": "expert_family_boundary_review",
+        "selected_pdb_id": "1QD6",
+        "selected_pdb_residue_position_count": 7
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.6085,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.4596
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "not_required",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "metal_ligand_rich_site_for_ser_his_seed",
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "entry_id": "m_csa:494",
+      "entry_name": "propanediol dehydratase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 130,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "compare sibling mechanism evidence before external review",
+      "repair_bucket": "sibling_mechanism_boundary_review",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 12,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 13,
+        "remediation_bucket": "local_mapping_or_structure_selection_review",
+        "selected_pdb_id": "1DIO",
+        "selected_pdb_residue_position_count": 7
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3828,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_score": 0.3792
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "not_required",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "entry_id": "m_csa:707",
+      "entry_name": "arginine decarboxylase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 179,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "compare sibling mechanism evidence before external review",
+      "repair_bucket": "sibling_mechanism_boundary_review",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 4,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 5,
+        "remediation_bucket": "expert_family_boundary_review",
+        "selected_pdb_id": "1MT1",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.2655,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_score": 0.2384
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_plp_ligand_without_lysine_anchor"
+      ],
+      "entry_id": "m_csa:726",
+      "entry_name": "peptide amidase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 76,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 11,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 12,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1OCL",
+        "selected_pdb_residue_position_count": 8
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.3438,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3169
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ligand_supported_metal_hydrophobic_low_pocket_support"
+      ],
+      "entry_id": "m_csa:591",
+      "entry_name": "stromelysin 1",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 82,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 43,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 44,
+        "remediation_bucket": "expert_family_boundary_review",
+        "selected_pdb_id": "1HFS",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4117,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.363
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "absent",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_plp_ligand_without_lysine_anchor"
+      ],
+      "entry_id": "m_csa:678",
+      "entry_name": "HslU---HslV peptidase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 84,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 15,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 16,
+        "remediation_bucket": "alternate_pdb_ligand_scan",
+        "selected_pdb_id": "1HT1",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.3408,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3205
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "metal_redox_ligand_context",
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:534",
+      "entry_name": "myosin ATPase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 87,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 48,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 49,
+        "remediation_bucket": "expert_family_boundary_review",
+        "selected_pdb_id": "1VOM",
+        "selected_pdb_residue_position_count": 8
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4115,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.2792
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:642",
+      "entry_name": "vesicle-fusing ATPase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 141,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 37,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 38,
+        "remediation_bucket": "expert_family_boundary_review",
+        "selected_pdb_id": "1NSF",
+        "selected_pdb_residue_position_count": 8
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3985,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.2786
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context"
+      ],
+      "entry_id": "m_csa:665",
+      "entry_name": "Formate-dependent phosphoribosylglycinamide formyltransferase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 146,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 6,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 7,
+        "remediation_bucket": "expert_family_boundary_review",
+        "selected_pdb_id": "1EZ1",
+        "selected_pdb_residue_position_count": 7
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3914,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.2661
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "nonhydrolytic_hydratase_dehydratase_text_context"
+      ],
+      "entry_id": "m_csa:689",
+      "entry_name": "o-succinylbenzoate synthase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 147,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 3,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 4,
+        "remediation_bucket": "expert_family_boundary_review",
+        "selected_pdb_id": "1R6W",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3654,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_score": 0.2771
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "not_required",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "entry_id": "m_csa:658",
+      "entry_name": "arabinogalactan endo-1,4-beta-galactosidase",
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 157,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "expert_family_boundary_review",
+        "selected_pdb_id": "1FHL",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.311,
+      "top2_fingerprint_id": "flavin_monooxygenase",
+      "top2_score": 0.2769
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:568",
+      "entry_name": "lipopolysaccharide 3-alpha-galactosyltransferase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 180,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1GA8",
+        "selected_pdb_residue_position_count": 8
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5672,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3633
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "not_required",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:599",
+      "entry_name": "dipeptidase E",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 182,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 3,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 4,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1FY2",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.8182,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_score": 0.3766
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:683",
+      "entry_name": "3,4-dihydroxy-2-butanone-4-phosphate synthase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 184,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 4,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 5,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1K4L",
+        "selected_pdb_residue_position_count": 8
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5742,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3404
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:611",
+      "entry_name": "5'-nucleotidase (bacterial)",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 185,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 8,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 9,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1USH",
+        "selected_pdb_residue_position_count": 12
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5782,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3382
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "not_required",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:602",
+      "entry_name": "6-deoxyerythronolide-B synthase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 186,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 13,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 14,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1KEZ",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.9052,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_score": 0.3702
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:661",
+      "entry_name": "arylsulfatase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 187,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 6,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 7,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1HDH",
+        "selected_pdb_residue_position_count": 10
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5818,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3518
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:710",
+      "entry_name": "cytosine deaminase (bacterial)",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 189,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 11,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 12,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1RA0",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5851,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3483
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:706",
+      "entry_name": "D-Ala-D-Ala dipeptidase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 191,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 1,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 2,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1R44",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5879,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3528
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:722",
+      "entry_name": "acetolactate synthase (catabolic)",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 192,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 5,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 6,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1OZH",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5888,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.2228
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:626",
+      "entry_name": "bontoxilysin",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 193,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 33,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 34,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1EPW",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5901,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3509
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:623",
+      "entry_name": "neprilysin",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 194,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 15,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 16,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1R1J",
+        "selected_pdb_residue_position_count": 7
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5927,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3014
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:720",
+      "entry_name": "creatininase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 195,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 11,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 12,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1J2U",
+        "selected_pdb_residue_position_count": 7
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5931,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.352
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "not_required",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:598",
+      "entry_name": "streptopain",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 196,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 7,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 8,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1DKI",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.6004,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_score": 0.3747
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:600",
+      "entry_name": "methane monooxygenase (soluble)",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 197,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 16,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 17,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1MHY",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5933,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.301
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:596",
+      "entry_name": "deuterolysin",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 198,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1EB6",
+        "selected_pdb_residue_position_count": 5
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5936,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.2981
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:636",
+      "entry_name": "cytosine deaminase (yeast)",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 199,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 13,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 14,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1UAQ",
+        "selected_pdb_residue_position_count": 6
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5993,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.4065
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:660",
+      "entry_name": "superoxide reductase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 200,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 2,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 3,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1DO6",
+        "selected_pdb_residue_position_count": 7
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5981,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.3655
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:685",
+      "entry_name": "anthocyanidin synthase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 201,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 3,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 4,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1GP5",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5868,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3522
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:668",
+      "entry_name": "leishmanolysin",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 202,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 1,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1LML",
+        "selected_pdb_residue_position_count": 4
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5942,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_score": 0.3052
+    },
+    {
+      "alternate_structure_scan_context": null,
+      "cofactor_evidence_level": "ligand_supported",
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:632",
+      "entry_name": "DNA nucleotidylexotransferase",
+      "quality_risk_flags": [
+        "external_expert_decision_required"
+      ],
+      "rank": 203,
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "external expert label decision required",
+      "repair_bucket": "external_expert_label_decision",
+      "review_debt_remediation_context": {
+        "alternate_pdb_count": 38,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "candidate_pdb_structure_count": 39,
+        "remediation_bucket": "expert_label_decision",
+        "selected_pdb_id": "1JMS",
+        "selected_pdb_residue_position_count": 3
+      },
+      "structure_mapping_status": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5958,
+      "top2_fingerprint_id": "ser_his_acid_hydrolase",
+      "top2_score": 0.2246
+    }
+  ]
+}

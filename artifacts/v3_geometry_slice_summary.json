@@ -8,7 +8,7 @@
     "closest_below_floor_entry_id": "m_csa:65",
     "closest_below_floor_slice": "175",
     "closest_below_floor_top1_fingerprint_id": "metal_dependent_hydrolase",
-    "largest_slice": "700",
+    "largest_slice": "725",
     "max_actionable_in_scope_failure_count": 0,
     "max_cofactor_evidence_limited_retained_count": 5,
     "max_cofactor_expected_absent_count": 6,
@@ -18,7 +18,7 @@
     "minimum_below_floor_score_gap": 0.0131,
     "minimum_evidence_limited_retained_margin": 0.013,
     "minimum_near_miss_score_gap_to_floor": null,
-    "slice_count": 31,
+    "slice_count": 32,
     "slices_recommending_audit_only_cofactor_policy": [
       "20",
       "30",
@@ -50,7 +50,8 @@
       "625",
       "650",
       "675",
-      "700"
+      "700",
+      "725"
     ],
     "slices_with_absent_expected_cofactors": [
       "50",
@@ -80,7 +81,8 @@
       "625",
       "650",
       "675",
-      "700"
+      "700",
+      "725"
     ],
     "slices_with_in_scope_failures": [
       "150",
@@ -105,7 +107,8 @@
       "625",
       "650",
       "675",
-      "700"
+      "700",
+      "725"
     ],
     "slices_with_limited_retained_cofactor_evidence": [
       "50",
@@ -135,12 +138,13 @@
       "625",
       "650",
       "675",
-      "700"
+      "700",
+      "725"
     ],
     "slices_with_lossless_cofactor_penalty": [],
     "slices_with_near_misses": [],
     "total_actionable_in_scope_failure_count": 0,
-    "total_in_scope_failure_count": 62,
+    "total_in_scope_failure_count": 66,
     "validation_boundary": "artifact summary only; depends on curated labels and generated JSON inputs"
   },
   "rows": [
@@ -1877,6 +1881,62 @@
       "strict_threshold_exists": false,
       "top1_accuracy_in_scope_evaluable": 0.9808,
       "top3_accuracy_in_scope_evaluable": 0.9936,
+      "weakest_retained_seed_family": "flavin_monooxygenase",
+      "weakest_retained_seed_family_accuracy": 0.5
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "actionable_in_scope_failure_count": 0,
+      "closest_below_floor_entry_id": "m_csa:65",
+      "closest_below_floor_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "closest_near_miss_entry_id": null,
+      "closest_near_miss_score": null,
+      "closest_near_miss_score_gap_to_floor": null,
+      "closest_near_miss_top1_fingerprint_id": null,
+      "cofactor_evidence_limited_abstained_count": 4,
+      "cofactor_evidence_limited_retained_count": 5,
+      "cofactor_expected_absent_abstained_count": 3,
+      "cofactor_expected_absent_count": 6,
+      "cofactor_expected_absent_retained_count": 3,
+      "cofactor_local_supported_count": 120,
+      "cofactor_policy_audit_evidence_limited_retained_positive_count": 5,
+      "cofactor_policy_guardrail_passing_policy_count": 8,
+      "cofactor_policy_lossless_decision_changing_policy_count": 0,
+      "cofactor_policy_minimum_evidence_limited_retained_margin": 0.013,
+      "cofactor_policy_recommendation": "audit_only_or_separate_stratum",
+      "cofactor_structure_only_count": 3,
+      "cofactor_structure_only_retained_count": 2,
+      "correct_positive_score_separation_gap": 0.0131,
+      "entries_with_inferred_cofactors": 282,
+      "entries_with_proximal_ligands": 503,
+      "entries_with_structure_inferred_cofactors": 387,
+      "entries_with_structure_ligands": 625,
+      "evaluable_count": 613,
+      "evaluated_count": 629,
+      "evidence_limited_abstention_count": 4,
+      "hard_negative_count": 0,
+      "in_scope_count": 163,
+      "in_scope_failure_count": 4,
+      "in_scope_retention_rate_evaluable": 0.9815,
+      "label_candidate_count": 101,
+      "labeled_mapping_issue_count": 16,
+      "largest_seed_family": "metal_dependent_hydrolase",
+      "largest_seed_family_count": 55,
+      "mapping_issue_count": 21,
+      "minimum_below_floor_score_gap": 0.0131,
+      "near_miss_cofactor_evidence_counts": {},
+      "near_miss_count": 0,
+      "near_miss_top1_fingerprint_counts": {},
+      "out_of_scope_count": 466,
+      "out_of_scope_false_non_abstentions_evaluable": 0,
+      "out_of_scope_retained_seed_family_count": 0,
+      "ready_label_candidate_count": 85,
+      "score_separation_gap": -0.13,
+      "seed_family_count": 8,
+      "slice": "725",
+      "strict_threshold_exists": false,
+      "top1_accuracy_in_scope_evaluable": 0.9815,
+      "top3_accuracy_in_scope_evaluable": 0.9938,
       "weakest_retained_seed_family": "flavin_monooxygenase",
       "weakest_retained_seed_family_accuracy": 0.5
     }
