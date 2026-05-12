@@ -193,10 +193,11 @@ Current expectation:
   the same mismatch signal with priority retention beyond `max_rows` (17
   labeled propagation blocks and 7 unlabeled pending-review blocks). The
   dedicated mismatch review export carries all 24 lanes, confirms the labeled
-  lane is currently out-of-scope rather than seed-labeled, defers new ontology
-  family creation until expert review, and the review-only import-safety audit
-  prevents the reviewed mismatch, expert-decision, and local-evidence decision
-  artifacts from adding countable labels. The expert-label decision export
+  lane is currently out-of-scope rather than seed-labeled, now drives the
+  expert-reviewed ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP
+  fingerprint-family ontology expansion, and the review-only import-safety
+  audit prevents the reviewed mismatch, expert-decision, and local-evidence
+  decision artifacts from adding countable labels. The expert-label decision export
   records 0 countable candidates, 0 missing export rows, and risk flags
   dominated by cofactor-family ambiguity, counterevidence boundaries,
   active-site mapping gaps, and nonlocal/text-leakage risk. The repair

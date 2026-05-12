@@ -74,6 +74,15 @@ rows with kinase or ATP phosphoryl-transfer text as `reaction_substrate_mismatch
 propagation blockers before any label can count, and always retains those
 blocker rows even when they rank below the normal `max_rows` cutoff.
 
+Expert review turns that ATP/phosphoryl-transfer mismatch lane into the next
+ontology-expansion target. Add durable fingerprint-family records for ePK,
+ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP with conservative scope
+notes, parent/sibling relationships, boundary evidence, adversarial negatives,
+review exports, and tests. These families should route reviewed mismatch lanes
+without making unsupported rows countable. Once the nine-family expansion is
+implemented, tested, documented, and guardrail-clean, resume factory-gated label
+scaling toward 10k.
+
 ## Active Learning Queue
 
 `build-active-learning-queue` ranks entries by:
@@ -567,11 +576,12 @@ Current 700-queue gate state:
   beyond `max_rows`, split into 17 labeled propagation blocks and 7 unlabeled
   pending-review blocks.
 - The dedicated reaction/substrate mismatch export carries all 24 lanes, records
-  17 current out-of-scope labels plus 7 unlabeled rows, and defers new
-  ontology family creation until expert review. The current reviewed decision
-  batch keeps the artifact review-only, routes 7 unlabeled rows to reviewed
-  out-of-scope decisions, rejects 17 current out-of-scope controls, and is
-  prevented from adding countable labels by the import-safety audit.
+  17 current out-of-scope labels plus 7 unlabeled rows, and now drives the
+  expert-reviewed nine-family ontology expansion: ePK, ASKHA, ATP-grasp, GHKL,
+  dNK, NDK, PfkA, PfkB, and GHMP. The current reviewed decision batch keeps the
+  artifact review-only, routes 7 unlabeled rows to reviewed out-of-scope
+  decisions, rejects 17 current out-of-scope controls, and is prevented from
+  adding countable labels by the import-safety audit.
 - The dedicated expert-label decision export carries all 76 active-queue
   `expert_label_decision_needed` rows as `no_decision`, records 0 countable
   label candidates, confirms that its 7 reaction/substrate mismatch rows are

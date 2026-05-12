@@ -93,9 +93,10 @@ includes reaction/substrate mismatch ranking, and the 700 mismatch audit routes
 mismatch blockers, including 14 rows kept beyond `max_rows`; these split into
 17 labeled propagation blocks and 7 unlabeled pending-review blocks. The
 dedicated mismatch review export now carries all 24 lanes together, records
-17 current out-of-scope labels plus 7 unlabeled rows, defers any new ontology
-family rule until expert review, and the generated decision batch preserves all
-24 lanes through a review-only decision batch; reviewed out-of-scope repairs
+17 current out-of-scope labels plus 7 unlabeled rows, and now drives the
+expert-reviewed nine-family ontology expansion: ePK, ASKHA, ATP-grasp, GHKL,
+dNK, NDK, PfkA, PfkB, and GHMP. The generated decision batch preserves all 24
+lanes through a review-only decision batch; reviewed out-of-scope repairs
 remain non-countable and countable import refuses the artifact. The
 expert-label decision repair-candidate summary now covers all 76 active
 expert-decision rows with 0 countable candidates, so the gate also fails if

@@ -176,12 +176,13 @@ text for expert reaction/substrate review. The 700 family-propagation guardrail
 retains all 24 hydrolase-top1 reaction/substrate mismatch blockers, split
 between 17 labeled propagation blocks and 7 unlabeled pending-review blocks.
 `artifacts/v3_reaction_substrate_mismatch_review_export_700.json` now carries
-all 24 lanes together, defers any new ontology family rule until expert review,
-and `artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json` remains
-review-only while routing the 7 unlabeled rows to reviewed out-of-scope repair
-decisions and rejecting 17 current controls. Countable import now refuses
-review-only artifacts even when they carry reviewed repair decisions, so these
-lanes cannot enter the benchmark.
+all 24 lanes together. Expert review makes this the next ontology-expansion
+target: add conservative fingerprint-family records for ePK, ASKHA, ATP-grasp,
+GHKL, dNK, NDK, PfkA, PfkB, and GHMP before reopening count growth. The current
+decision batch remains review-only while routing the 7 unlabeled rows to
+reviewed out-of-scope repair decisions and rejecting 17 current controls.
+Countable import refuses review-only artifacts even when they carry reviewed
+repair decisions, so these lanes cannot enter the benchmark.
 See
 `docs/label_factory.md`.
 

@@ -281,10 +281,11 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - 700 reaction/substrate mismatch review export: all 24 family-guardrail lanes
   are exported together, split into 17 current out-of-scope labels and 7
   unlabeled pending-review rows. The export records 0 labeled seed mismatches,
-  defers any kinase/phosphoryl-transfer ontology-family split until expert
-  review, and its current review-only decision batch routes the 7 unlabeled
-  rows to reviewed out-of-scope repair decisions, rejects 17 current controls,
-  and adds 0 countable labels.
+  and now supplies the expert-reviewed pressure surface for the ePK, ASKHA,
+  ATP-grasp, GHKL, dNK, NDK, PfkA, PfkB, and GHMP ontology expansion. Its
+  current review-only decision batch routes the 7 unlabeled rows to reviewed
+  out-of-scope repair decisions, rejects 17 current controls, and adds 0
+  countable labels.
 - Structure mapping: 19 total mapping issues at 700.
 - Local performance was regenerated on 700 artifacts in `artifacts/perf_report.json`.
 
