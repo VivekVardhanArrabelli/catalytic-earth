@@ -11712,6 +11712,8 @@ def _label_scaling_issue_classes(
         or coverage_status in COFACTOR_EVIDENCE_LIMITED_STATUSES
     ):
         issue_classes.add("text_leakage_risk")
+    if decision_action == "mark_needs_more_evidence" and counterevidence:
+        issue_classes.add("text_leakage_risk")
     return sorted(issue_classes)
 
 
@@ -12630,6 +12632,23 @@ def _provisional_unlabeled_decision(
                 f"control at {top1_score:.4f};{boundary_context} Keep this "
                 "candidate in expert review rather than counting it as either "
                 "a seed label or a safe out-of-scope negative."
+            ),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
+    if ser_his_hydrolase_hint and counterevidence:
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "ser_his_acid_hydrolase",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} has Ser-His hydrolase mechanism text and retrieval "
+                f"support at {top1_score:.4f}, but counterevidence remains: "
+                f"{', '.join(sorted(counterevidence))}. Keep this candidate in "
+                "expert review before counting it."
             ),
             "evidence_score": 0.55,
             "review_status": "needs_expert_review",

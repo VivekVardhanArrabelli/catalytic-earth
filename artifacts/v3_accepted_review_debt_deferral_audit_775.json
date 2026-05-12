@@ -1,0 +1,4612 @@
+{
+  "metadata": {
+    "accepted_new_label_entry_ids": [
+      "m_csa:754",
+      "m_csa:758",
+      "m_csa:759",
+      "m_csa:762",
+      "m_csa:776"
+    ],
+    "accepted_review_debt_overlap_count": 0,
+    "accepted_review_debt_overlap_entry_ids": [],
+    "countable_label_candidate_count": 0,
+    "deferral_action_counts": {
+      "local_evidence_review_export_no_decision": 38,
+      "priority_local_evidence_gap_audited": 38,
+      "repair_lane:collect_local_mechanistic_evidence_before_count_growth": 16,
+      "repair_lane:expert_family_boundary_review": 17,
+      "repair_lane:expert_reaction_substrate_review": 5,
+      "review_debt_deferred:inspect_alternate_structure_or_cofactor_source": 49,
+      "review_debt_deferred:review_debt_metadata_only_defer": 48,
+      "review_debt_deferred:verify_local_cofactor_or_active_site_mapping": 3
+    },
+    "deferral_ready": true,
+    "deferral_rule": "accepted clean labels must not overlap review debt; all review debt remains non-countable until later evidence and factory gates explicitly clear it",
+    "deferral_status_counts": {
+      "deferred_priority_local_evidence_review": 38,
+      "deferred_review_debt": 100
+    },
+    "deferred_entry_count": 138,
+    "deferred_entry_ids": [
+      "m_csa:35",
+      "m_csa:246",
+      "m_csa:365",
+      "m_csa:494",
+      "m_csa:498",
+      "m_csa:510",
+      "m_csa:529",
+      "m_csa:534",
+      "m_csa:553",
+      "m_csa:558",
+      "m_csa:559",
+      "m_csa:564",
+      "m_csa:567",
+      "m_csa:568",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:591",
+      "m_csa:592",
+      "m_csa:596",
+      "m_csa:597",
+      "m_csa:598",
+      "m_csa:599",
+      "m_csa:600",
+      "m_csa:602",
+      "m_csa:603",
+      "m_csa:611",
+      "m_csa:623",
+      "m_csa:624",
+      "m_csa:626",
+      "m_csa:632",
+      "m_csa:636",
+      "m_csa:641",
+      "m_csa:642",
+      "m_csa:643",
+      "m_csa:644",
+      "m_csa:650",
+      "m_csa:653",
+      "m_csa:654",
+      "m_csa:655",
+      "m_csa:656",
+      "m_csa:657",
+      "m_csa:658",
+      "m_csa:659",
+      "m_csa:660",
+      "m_csa:661",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:664",
+      "m_csa:665",
+      "m_csa:667",
+      "m_csa:668",
+      "m_csa:669",
+      "m_csa:670",
+      "m_csa:671",
+      "m_csa:672",
+      "m_csa:673",
+      "m_csa:674",
+      "m_csa:675",
+      "m_csa:676",
+      "m_csa:677",
+      "m_csa:678",
+      "m_csa:679",
+      "m_csa:680",
+      "m_csa:681",
+      "m_csa:682",
+      "m_csa:683",
+      "m_csa:684",
+      "m_csa:685",
+      "m_csa:687",
+      "m_csa:689",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:693",
+      "m_csa:695",
+      "m_csa:696",
+      "m_csa:698",
+      "m_csa:700",
+      "m_csa:701",
+      "m_csa:702",
+      "m_csa:703",
+      "m_csa:704",
+      "m_csa:706",
+      "m_csa:707",
+      "m_csa:708",
+      "m_csa:710",
+      "m_csa:711",
+      "m_csa:712",
+      "m_csa:713",
+      "m_csa:715",
+      "m_csa:717",
+      "m_csa:718",
+      "m_csa:719",
+      "m_csa:720",
+      "m_csa:721",
+      "m_csa:722",
+      "m_csa:724",
+      "m_csa:725",
+      "m_csa:726",
+      "m_csa:729",
+      "m_csa:730",
+      "m_csa:731",
+      "m_csa:732",
+      "m_csa:734",
+      "m_csa:736",
+      "m_csa:737",
+      "m_csa:738",
+      "m_csa:741",
+      "m_csa:743",
+      "m_csa:744",
+      "m_csa:745",
+      "m_csa:746",
+      "m_csa:747",
+      "m_csa:748",
+      "m_csa:749",
+      "m_csa:751",
+      "m_csa:752",
+      "m_csa:753",
+      "m_csa:755",
+      "m_csa:756",
+      "m_csa:757",
+      "m_csa:760",
+      "m_csa:761",
+      "m_csa:763",
+      "m_csa:764",
+      "m_csa:765",
+      "m_csa:766",
+      "m_csa:767",
+      "m_csa:768",
+      "m_csa:769",
+      "m_csa:770",
+      "m_csa:771",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:774",
+      "m_csa:775",
+      "m_csa:777"
+    ],
+    "explicit_alternate_residue_position_request_count": 0,
+    "explicit_alternate_residue_position_request_entry_ids": [],
+    "local_evidence_gap_audited_entry_count": 38,
+    "local_evidence_gap_audited_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721",
+      "m_csa:730",
+      "m_csa:743",
+      "m_csa:749",
+      "m_csa:753",
+      "m_csa:757",
+      "m_csa:765",
+      "m_csa:766",
+      "m_csa:769",
+      "m_csa:770",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:775",
+      "m_csa:777"
+    ],
+    "local_evidence_repair_plan_entry_count": 38,
+    "local_evidence_repair_plan_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721",
+      "m_csa:730",
+      "m_csa:743",
+      "m_csa:749",
+      "m_csa:753",
+      "m_csa:757",
+      "m_csa:765",
+      "m_csa:766",
+      "m_csa:769",
+      "m_csa:770",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:775",
+      "m_csa:777"
+    ],
+    "local_evidence_repair_resolution_resolved_entry_count": 0,
+    "local_evidence_repair_resolution_resolved_entry_ids": [],
+    "local_evidence_review_export_entry_count": 38,
+    "local_evidence_review_export_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721",
+      "m_csa:730",
+      "m_csa:743",
+      "m_csa:749",
+      "m_csa:753",
+      "m_csa:757",
+      "m_csa:765",
+      "m_csa:766",
+      "m_csa:769",
+      "m_csa:770",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:775",
+      "m_csa:777"
+    ],
+    "local_expected_family_hit_from_remap_entry_ids": [],
+    "metadata_only_review_debt_entry_count": 63,
+    "metadata_only_review_debt_entry_ids": [
+      "m_csa:35",
+      "m_csa:246",
+      "m_csa:365",
+      "m_csa:498",
+      "m_csa:529",
+      "m_csa:534",
+      "m_csa:559",
+      "m_csa:567",
+      "m_csa:568",
+      "m_csa:572",
+      "m_csa:578",
+      "m_csa:591",
+      "m_csa:592",
+      "m_csa:596",
+      "m_csa:598",
+      "m_csa:599",
+      "m_csa:600",
+      "m_csa:602",
+      "m_csa:603",
+      "m_csa:611",
+      "m_csa:623",
+      "m_csa:626",
+      "m_csa:632",
+      "m_csa:636",
+      "m_csa:642",
+      "m_csa:650",
+      "m_csa:656",
+      "m_csa:657",
+      "m_csa:658",
+      "m_csa:660",
+      "m_csa:661",
+      "m_csa:665",
+      "m_csa:668",
+      "m_csa:672",
+      "m_csa:683",
+      "m_csa:685",
+      "m_csa:689",
+      "m_csa:698",
+      "m_csa:706",
+      "m_csa:707",
+      "m_csa:710",
+      "m_csa:713",
+      "m_csa:720",
+      "m_csa:722",
+      "m_csa:732",
+      "m_csa:737",
+      "m_csa:738",
+      "m_csa:741",
+      "m_csa:743",
+      "m_csa:744",
+      "m_csa:747",
+      "m_csa:749",
+      "m_csa:753",
+      "m_csa:755",
+      "m_csa:760",
+      "m_csa:763",
+      "m_csa:766",
+      "m_csa:768",
+      "m_csa:770",
+      "m_csa:771",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:777"
+    ],
+    "method": "accepted_review_debt_deferral_audit",
+    "missing_review_debt_row_entry_ids": [],
+    "new_review_debt_count": 20,
+    "new_review_debt_entry_ids": [
+      "m_csa:753",
+      "m_csa:755",
+      "m_csa:756",
+      "m_csa:757",
+      "m_csa:760",
+      "m_csa:761",
+      "m_csa:763",
+      "m_csa:764",
+      "m_csa:765",
+      "m_csa:766",
+      "m_csa:767",
+      "m_csa:768",
+      "m_csa:769",
+      "m_csa:770",
+      "m_csa:771",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:774",
+      "m_csa:775",
+      "m_csa:777"
+    ],
+    "remap_family_boundary_review_entry_ids": [],
+    "remap_reaction_substrate_review_entry_ids": [],
+    "review_debt_count": 138,
+    "review_only_import_safety_ready": true,
+    "review_only_import_safety_total_new_countable_label_count": 0,
+    "source_acceptance_method": "label_batch_acceptance_check",
+    "source_review_debt_method": "review_debt_summary",
+    "source_scaling_quality_method": "label_scaling_quality_audit",
+    "strict_remap_guardrail_entry_ids": [],
+    "structure_wide_hit_without_local_support_entry_ids": [],
+    "unclassified_new_review_debt_entry_ids": []
+  },
+  "rows": [
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:35",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:246",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:365",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_structure_only",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:verify_local_cofactor_or_active_site_mapping"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:494",
+      "entry_name": "propanediol dehydratase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "target_not_top1",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "target_not_top1",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
+      "repair_lane": null,
+      "target_fingerprint_id": "cobalamin_radical_rearrangement",
+      "top1_fingerprint_id": "ser_his_acid_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:498",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:529",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:534",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:553",
+      "entry_name": "N-acetylneuraminate lyase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:558",
+      "entry_name": "non-specific acid phosphatases (class A)",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:559",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:564",
+      "entry_name": "ribonuclease V",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:567",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:568",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:572",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:578",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:591",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_reaction_substrate_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:592",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "expert_reaction_substrate_review",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:596",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:597",
+      "entry_name": "ubiquitinyl hydrolase 1 (peptidase C12 type)",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:598",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:599",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:600",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:602",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:603",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:611",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:623",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:624",
+      "entry_name": "bleomycin hydrolase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:626",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:632",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:636",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:642",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_reaction_substrate_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "reaction_substrate_mismatch_review_required",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_reaction_substrate_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:644",
+      "entry_name": "limonene-1,2-epoxide hydrolase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:650",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:653",
+      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_reaction_substrate_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_reaction_substrate_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:655",
+      "entry_name": "DNA-3-methyladenine glycosylase I",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:656",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:657",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:658",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:660",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:661",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_reaction_substrate_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_reaction_substrate_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_structure_only",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:verify_local_cofactor_or_active_site_mapping"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:665",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:667",
+      "entry_name": "alpha-N-arabinofuranosidase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:668",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:669",
+      "entry_name": "carbamate kinase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "top1_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:671",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:672",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:673",
+      "entry_name": "cellobiose dehydrogenase (acceptor)",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:674",
+      "entry_name": "N-carbamoyl-D-amino-acid hydrolase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:675",
+      "entry_name": "glutaconyl-CoA decarboxylase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "top1_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:676",
+      "entry_name": "D-stereospecific aminopeptidase (peptidase S58 family)",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_structure_only",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "top1_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:678",
+      "entry_name": "HslU---HslV peptidase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "top1_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:679",
+      "entry_name": "adenain",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:680",
+      "entry_name": "ribose-5-phosphate isomerase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:681",
+      "entry_name": "pectinesterase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:682",
+      "entry_name": "cathepsin H",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:683",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:684",
+      "entry_name": "mannuronate-specific alginate lyase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:685",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:687",
+      "entry_name": "deoxyhypusine synthase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:689",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:690",
+      "entry_name": "dextranase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:691",
+      "entry_name": "histone-lysine N-methyltransferase (Suvar3-9 subfamily)",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "top1_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:693",
+      "entry_name": "ribonuclease 4",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:695",
+      "entry_name": "purine-nucleoside phosphorylase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:698",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:700",
+      "entry_name": "deoxycytidylate 5-hydroxymethyltransferase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:701",
+      "entry_name": "dimethylsulfoxide reductase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:702",
+      "entry_name": "uroporphyrinogen-III C-methyltransferase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:703",
+      "entry_name": "peptide chain release factor N5-glutamine methyltransferase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_monooxygenase",
+      "top1_fingerprint_id": "flavin_monooxygenase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:704",
+      "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:706",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:707",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:708",
+      "entry_name": "phenylalanine ammonia-lyase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:710",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:711",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NADP+)",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_structure_only",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:verify_local_cofactor_or_active_site_mapping"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:712",
+      "entry_name": "S-(hydroxymethyl)glutathione synthase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_not_local",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "verify_local_cofactor_or_active_site_mapping",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:713",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:715",
+      "entry_name": "protein-methionine-S-oxide reductase (MsrB)",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:717",
+      "entry_name": "ornithine cyclodeaminase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:718",
+      "entry_name": "caspase-1",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:719",
+      "entry_name": "prostaglandin-D synthase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:720",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:722",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:724",
+      "entry_name": "repressor LexA",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:725",
+      "entry_name": "aldehyde reductase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:726",
+      "entry_name": "peptide amidase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "top1_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:729",
+      "entry_name": "protein-glutamate methylesterase (CheD)",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:730",
+      "entry_name": "threonine synthase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:731",
+      "entry_name": "fatty acid amide hydrolase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "top1_fingerprint_id": "plp_dependent_enzyme"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:732",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:734",
+      "entry_name": "protein disulfide oxidoreductase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:736",
+      "entry_name": "mannose-6-phosphate isomerase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:737",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:738",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:741",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:743",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:744",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:745",
+      "entry_name": "DNA topoisomerase (ATP-hydrolysing)",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:746",
+      "entry_name": "L-peptidase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:747",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:748",
+      "entry_name": "D-aminoacyl-tRNA deacylase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "carried",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:749",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "carried",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:752",
+      "entry_name": "dihydrofolate reductase (type II)",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:753",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:755",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:756",
+      "entry_name": "protein kinase C",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "not_required",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_reaction_substrate_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "review_marked_needs_more_evidence",
+        "target_not_top1"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "reaction_substrate_mismatch_review_required",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "target_not_top1",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "expert_family_boundary_review",
+      "repair_lane": "expert_reaction_substrate_review",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:760",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:761",
+      "entry_name": "protein-glutamine gamma-glutamyltransferase (bacterial)",
+      "gap_reasons": [
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:763",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:764",
+      "entry_name": "glucosylceramidase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:765",
+      "entry_name": "3-dehydro-L-gulonate 2-dehydrogenase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_fingerprint_id": "heme_peroxidase_oxidase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:766",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:767",
+      "entry_name": "biotin synthase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:768",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:769",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:770",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "review_debt_deferred:review_debt_metadata_only_defer"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:771",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "not_in_countable_label_registry",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": null,
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:772",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:773",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "review_debt_deferred:inspect_alternate_structure_or_cofactor_source"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_review_debt",
+      "entry_id": "m_csa:774",
+      "entry_name": "lysozyme (glycosyl hydrolase 25 family)",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "not_in_countable_label_registry",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": null,
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": "expected_absent_from_structure",
+      "debt_status": "new",
+      "decision_action": "mark_needs_more_evidence",
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:expert_family_boundary_review"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:775",
+      "entry_name": "shikimate dehydrogenase",
+      "gap_reasons": [
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "counterevidence_present",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_marked_needs_more_evidence",
+        "review_state_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "recommended_next_action": "inspect_alternate_structure_or_cofactor_source",
+      "repair_lane": "expert_family_boundary_review",
+      "target_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase"
+    },
+    {
+      "accepted_clean_label_overlap": false,
+      "countable_label_candidate": false,
+      "coverage_status": null,
+      "debt_status": "new",
+      "decision_action": null,
+      "deferral_actions": [
+        "local_evidence_review_export_no_decision",
+        "priority_local_evidence_gap_audited",
+        "repair_lane:collect_local_mechanistic_evidence_before_count_growth"
+      ],
+      "deferral_policy": "review-debt rows stay non-countable until evidence removes their gap reasons and a separate countable import plus label factory gate accepts them",
+      "deferral_status": "deferred_priority_local_evidence_review",
+      "entry_id": "m_csa:777",
+      "entry_name": null,
+      "gap_reasons": [
+        "review_debt_summary_row_table_capped"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "not_in_countable_label_registry",
+        "readiness_blockers_unresolved",
+        "review_debt_summary_row_table_capped",
+        "review_state_needs_more_evidence"
+      ],
+      "recommended_next_action": "review_debt_metadata_only_defer",
+      "repair_lane": "collect_local_mechanistic_evidence_before_count_growth",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": null
+    }
+  ]
+}

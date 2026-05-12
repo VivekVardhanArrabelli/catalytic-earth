@@ -2,11 +2,11 @@
 
 ## Current Plan
 
-The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, and 750-slice
-label-factory batches have been processed through countable import and
-acceptance checks. The canonical registry has 637 countable labels. Open the
-next tranche only as a bounded gated 775 preview; 118 rows remain
-`needs_more_evidence` and are explicitly non-countable under the 750 deferral
+The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, and
+775-slice label-factory batches have been processed through countable import
+and acceptance checks. The canonical registry has 642 countable labels. Open
+the next tranche only as a bounded gated 800 preview; 138 rows remain
+`needs_more_evidence` and are explicitly non-countable under the 775 deferral
 audit.
 
 ## Current Generated Artifacts
@@ -80,7 +80,21 @@ Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 20/20 factory checks pass on the 624-label countable
+Current gate state: 20/20 factory checks pass on the 642-label countable
+registry. The latest accepted batch-acceptance check passes: 5 additional
+labels were accepted for counting in the 775 batch (`m_csa:754`, `m_csa:758`,
+`m_csa:759`, `m_csa:762`, and `m_csa:776`), 138 review-state decisions remain
+pending, and the countable subset has 0 hard negatives, 0 near misses,
+0 out-of-scope false non-abstentions, and 0 actionable in-scope failures.
+`m_csa:771` is a regression guardrail row: Ser-His hydrolase text with
+counterevidence now remains `needs_more_evidence` and is classified as a
+text-leakage risk. The 775 active-learning queue retains all 133
+expert-label decision rows, the 775 deferral audit keeps every review-state row
+non-countable, and the batch summary reports 12/12 accepted batches with
+0 blockers. The next tranche is a bounded gated 800 preview only while these
+775 gates remain clean.
+
+Historical 700 gate state: 20/20 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional
 labels were accepted for counting in the 700 batch, 81 review-state decisions
 remain pending, and the countable subset has 0 hard negatives, 0 near misses,

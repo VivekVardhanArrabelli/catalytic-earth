@@ -70,12 +70,12 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 637)
+        self.assertEqual(len(labels), 642)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
-        self.assertEqual(summary["by_tier"]["bronze"], 637)
-        self.assertEqual(summary["by_review_status"]["automation_curated"], 637)
+        self.assertEqual(summary["by_tier"]["bronze"], 642)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 642)
         self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:
@@ -104,6 +104,38 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(migrated["review_status"], "automation_curated")
         self.assertEqual(migrated["evidence_score"], 0.65)
         self.assertEqual(migrated["evidence"]["sources"], ["curator_rationale"])
+
+    def test_ser_his_counterevidence_blocks_provisional_counting(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:771",
+                    "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+                    "current_label": None,
+                    "queue_context": {
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "not_required",
+                        "counterevidence_reasons": [
+                            "ser_his_seed_missing_triad_coherence"
+                        ],
+                        "mechanism_text_snippets": [
+                            "The active site contains a Ser, Asp, His catalytic triad."
+                        ],
+                        "readiness_blockers": [],
+                        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+                        "top1_score": 0.4385,
+                    },
+                }
+            ],
+        }
+
+        batch = build_provisional_review_decision_batch(review)
+        decision = batch["review_items"][0]["decision"]
+
+        self.assertEqual(decision["action"], "mark_needs_more_evidence")
+        self.assertEqual(decision["fingerprint_id"], "ser_his_acid_hydrolase")
+        self.assertIn("counterevidence remains", decision["rationale"])
 
     def test_evaluate_geometry_retrieval(self) -> None:
         labels = [
@@ -3891,7 +3923,10 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             ],
             ["m_csa:650", "m_csa:651"],
         )
-        self.assertEqual(failure_modes["text_leakage_without_mechanistic_evidence"]["entry_ids"], ["m_csa:651"])
+        self.assertEqual(
+            failure_modes["text_leakage_without_mechanistic_evidence"]["entry_ids"],
+            ["m_csa:650", "m_csa:651"],
+        )
         self.assertEqual(failure_modes["sequence_family_leakage"]["status"], "guardrail_active")
         self.assertEqual(
             failure_modes["overcounted_paralogs_or_near_duplicates"]["entry_ids"],
@@ -3923,6 +3958,55 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
                 "local_evidence_gap_audit_present"
             ]
         )
+
+    def test_scaling_audit_classifies_counterevidence_deferrals(self) -> None:
+        audit = audit_label_scaling_quality(
+            {
+                "metadata": {
+                    "method": "label_batch_acceptance_check",
+                    "out_of_scope_false_non_abstentions": 0,
+                    "actionable_in_scope_failure_count": 0,
+                }
+            },
+            {"metadata": {"promotion_recommendation": "review_before_promoting"}},
+            {
+                "metadata": {
+                    "method": "review_debt_summary",
+                    "new_review_debt_entry_ids": ["m_csa:771"],
+                }
+            },
+            {
+                "metadata": {"method": "review_evidence_gap_analysis"},
+                "rows": [
+                    {
+                        "entry_id": "m_csa:771",
+                        "entry_name": "2-hydroxymuconate-semialdehyde hydrolase",
+                        "decision_action": "mark_needs_more_evidence",
+                        "decision_review_status": "needs_expert_review",
+                        "coverage_status": "not_required",
+                        "gap_reasons": [
+                            "counterevidence_present",
+                            "review_marked_needs_more_evidence",
+                        ],
+                        "counterevidence_reasons": [
+                            "ser_his_seed_missing_triad_coherence"
+                        ],
+                        "target_fingerprint_id": "ser_his_acid_hydrolase",
+                        "top1_fingerprint_id": "ser_his_acid_hydrolase",
+                        "top1_score": 0.4385,
+                        "mechanism_text_snippets": [
+                            "Ser-His-Asp catalytic triad text with weak role coherence."
+                        ],
+                    }
+                ],
+            },
+            {"metadata": {"all_unlabeled_rows_retained": True}, "rows": []},
+            {"metadata": {"method": "family_propagation_guardrail_audit"}, "rows": []},
+            {"metadata": {"hard_negative_count": 0, "near_miss_count": 0}},
+        )
+
+        self.assertIn("text_leakage_risk", audit["rows"][0]["issue_classes"])
+        self.assertEqual(audit["metadata"]["unclassified_new_review_debt_entry_ids"], [])
 
     def test_provisional_review_batch_imports_without_expert_claim(self) -> None:
         labels = [
@@ -4226,7 +4310,7 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertEqual(decision["fingerprint_id"], "ser_his_acid_hydrolase")
         self.assertIn("top retrieval favored metal_dependent_hydrolase", decision["rationale"])
 
-    def test_provisional_batch_accepts_ser_his_hydrolase_text_despite_counterevidence(self) -> None:
+    def test_provisional_batch_defers_ser_his_hydrolase_text_with_counterevidence(self) -> None:
         review = {
             "metadata": {"method": "expert_review_export"},
             "review_items": [
@@ -4256,10 +4340,10 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         }
         batch = build_provisional_review_decision_batch(review)
         decision = batch["review_items"][0]["decision"]
-        self.assertEqual(decision["action"], "accept_label")
+        self.assertEqual(decision["action"], "mark_needs_more_evidence")
         self.assertEqual(decision["label_type"], "seed_fingerprint")
         self.assertEqual(decision["fingerprint_id"], "ser_his_acid_hydrolase")
-        self.assertIn("Ser-His-Asp/Glu hydrolase triad", decision["rationale"])
+        self.assertIn("counterevidence remains", decision["rationale"])
 
     def test_provisional_batch_does_not_count_metal_transferase_as_hydrolase(self) -> None:
         review = {

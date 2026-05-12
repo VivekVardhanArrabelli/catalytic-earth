@@ -1,0 +1,241 @@
+{
+  "benchmarks": [
+    {
+      "iterations": 50,
+      "max_ms": 233.214,
+      "mean_ms": 82.559,
+      "min_ms": 71.153,
+      "name": "load_v1_graph",
+      "result_summary": {
+        "edge_count": 26879,
+        "node_count": 26098,
+        "rhea_query_count": 688
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 83.349,
+      "mean_ms": 17.29,
+      "min_ms": 9.804,
+      "name": "build_v2_benchmark",
+      "result_summary": {
+        "record_count": 775
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 354.969,
+      "mean_ms": 295.45,
+      "min_ms": 252.4,
+      "name": "run_geometry_retrieval",
+      "result_summary": {
+        "entry_count": 774,
+        "fingerprint_count": 8
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 1.847,
+      "mean_ms": 1.299,
+      "min_ms": 1.205,
+      "name": "evaluate_geometry_labels",
+      "result_summary": {
+        "evaluable_count": 625,
+        "evaluated_count": 641,
+        "in_scope_count": 175,
+        "in_scope_evaluable_count": 174,
+        "in_scope_not_evaluable_count": 1,
+        "in_scope_retention_rate": 0.9771,
+        "in_scope_retention_rate_evaluable": 0.9828,
+        "out_of_scope_abstention_rate": 1.0,
+        "out_of_scope_abstention_rate_evaluable": 1.0,
+        "out_of_scope_count": 466,
+        "out_of_scope_evaluable_count": 451,
+        "out_of_scope_false_non_abstentions": 0,
+        "out_of_scope_false_non_abstentions_evaluable": 0,
+        "out_of_scope_not_evaluable_count": 15,
+        "top1_accuracy_in_scope": 0.9771,
+        "top3_accuracy_in_scope": 0.9943,
+        "top3_accuracy_in_scope_evaluable": 0.9943,
+        "top3_retained_accuracy_in_scope": 0.9771,
+        "top3_retained_accuracy_in_scope_evaluable": 0.9828
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 1367.022,
+      "mean_ms": 1283.487,
+      "min_ms": 1258.505,
+      "name": "sweep_abstention_thresholds",
+      "result_summary": {
+        "legacy_selected_threshold": 0.4115,
+        "selected_threshold": 0.4115,
+        "threshold_count": 973
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 2.226,
+      "mean_ms": 1.772,
+      "min_ms": 1.631,
+      "name": "analyze_geometry_score_margins",
+      "result_summary": {
+        "correct_in_scope_evaluable_count": 171,
+        "correct_positive_score_separation_gap": 0.0131,
+        "evaluated_count": 641,
+        "in_scope_count": 175,
+        "in_scope_evaluable_count": 174,
+        "out_of_scope_count": 466,
+        "out_of_scope_evaluable_count": 451,
+        "score_margin_boundary_count": 508,
+        "score_separation_gap": -0.13
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 78.863,
+      "mean_ms": 4.621,
+      "min_ms": 2.936,
+      "name": "build_hard_negative_controls",
+      "result_summary": {
+        "evaluable_out_of_scope_count": 451,
+        "evaluated_out_of_scope_count": 466,
+        "hard_negative_count": 0,
+        "near_miss_count": 0
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 82.183,
+      "mean_ms": 7.23,
+      "min_ms": 5.458,
+      "name": "build_adversarial_negative_controls",
+      "result_summary": {
+        "atp_phosphoryl_transfer_family_boundary_count": 8,
+        "candidate_count": 466,
+        "control_count": 100
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 85.478,
+      "mean_ms": 11.47,
+      "min_ms": 8.003,
+      "name": "build_label_factory_audit",
+      "result_summary": {
+        "abstention_or_review_count": 112,
+        "demote_to_bronze_count": 0,
+        "evaluated_label_count": 641,
+        "hard_negative_evidence_entry_count": 100,
+        "label_count": 642,
+        "promote_to_silver_count": 91
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 6.951,
+      "mean_ms": 5.916,
+      "min_ms": 5.658,
+      "name": "build_active_learning_review_queue",
+      "result_summary": {
+        "atp_phosphoryl_transfer_family_boundary_count": 18,
+        "candidate_count": 245,
+        "labeled_review_count": 73,
+        "queued_count": 100,
+        "reaction_substrate_mismatch_count": 21,
+        "total_unlabeled_candidate_count": 133,
+        "unlabeled_count": 27
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 1.229,
+      "mean_ms": 0.961,
+      "min_ms": 0.908,
+      "name": "analyze_in_scope_failures",
+      "result_summary": {
+        "abstained_positive_count": 4,
+        "actionable_failure_count": 0,
+        "evaluated_in_scope_count": 175,
+        "evidence_limited_abstention_count": 4,
+        "failure_count": 4,
+        "retained_in_scope_count": 171,
+        "target_absent_from_top_k_count": 0,
+        "top1_correct_count": 171,
+        "top1_mismatch_count": 4
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 1.535,
+      "mean_ms": 1.303,
+      "min_ms": 1.237,
+      "name": "analyze_cofactor_coverage",
+      "result_summary": {
+        "evaluated_in_scope_count": 175,
+        "evidence_limited_abstained_count": 4,
+        "evidence_limited_retained_count": 5,
+        "expected_absent_abstained_count": 3,
+        "expected_absent_count": 6,
+        "expected_absent_retained_count": 3,
+        "local_supported_count": 133,
+        "structure_only_abstained_count": 1,
+        "structure_only_count": 3,
+        "structure_only_retained_count": 2
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 1693.667,
+      "mean_ms": 1625.668,
+      "min_ms": 1528.376,
+      "name": "analyze_cofactor_abstention_policy",
+      "result_summary": {
+        "audit_evidence_limited_retained_positive_count": 5,
+        "guardrail_passing_policy_count": 8,
+        "lossless_decision_changing_policy_count": 0,
+        "policy_count": 30,
+        "recommendation": "audit_only_or_separate_stratum"
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 2.511,
+      "mean_ms": 1.737,
+      "min_ms": 1.619,
+      "name": "analyze_seed_family_performance",
+      "result_summary": {
+        "in_scope_family_count": 8,
+        "largest_in_scope_family_count": 59,
+        "out_of_scope_retained_family_count": 0,
+        "out_of_scope_top1_family_count": 6
+      }
+    },
+    {
+      "iterations": 50,
+      "max_ms": 0.204,
+      "mean_ms": 0.07,
+      "min_ms": 0.062,
+      "name": "analyze_structure_mapping_issues",
+      "result_summary": {
+        "geometry_entry_count": 774,
+        "issue_count": 27,
+        "labeled_issue_count": 16
+      }
+    }
+  ],
+  "metadata": {
+    "inputs": {
+      "geometry_bytes": 14273070,
+      "geometry_path": "artifacts/v3_geometry_features_775.json",
+      "graph_bytes": 18633860,
+      "graph_path": "artifacts/v1_graph_775.json",
+      "retrieval_bytes": 16257062,
+      "retrieval_path": "artifacts/v3_geometry_retrieval_775.json"
+    },
+    "iterations": 50,
+    "selected_abstain_threshold": 0.4115,
+    "suite": "local_artifact_performance",
+    "validation_boundary": "local wall-clock timing for existing artifacts; not a scalability benchmark"
+  }
+}
