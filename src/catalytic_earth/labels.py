@@ -4793,6 +4793,339 @@ def build_explicit_alternate_residue_position_requests(
     }
 
 
+def audit_accepted_review_debt_deferrals(
+    review_debt: dict[str, Any],
+    acceptance: dict[str, Any],
+    *,
+    scaling_quality_audit: dict[str, Any] | None = None,
+    local_evidence_gap_audit: dict[str, Any] | None = None,
+    local_evidence_review_export: dict[str, Any] | None = None,
+    local_evidence_repair_plan: dict[str, Any] | None = None,
+    local_evidence_repair_resolution: dict[str, Any] | None = None,
+    explicit_alternate_residue_position_requests: dict[str, Any] | None = None,
+    remap_local_lead_audit: dict[str, Any] | None = None,
+    review_only_import_safety_audit: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Confirm accepted-batch review-debt rows are explicitly non-countable."""
+    review_debt_meta = review_debt.get("metadata", {})
+    acceptance_meta = acceptance.get("metadata", {})
+    scaling_meta = (scaling_quality_audit or {}).get("metadata", {})
+    local_gap_meta = (local_evidence_gap_audit or {}).get("metadata", {})
+    local_export_meta = (local_evidence_review_export or {}).get("metadata", {})
+    plan_meta = (local_evidence_repair_plan or {}).get("metadata", {})
+    resolution_meta = (local_evidence_repair_resolution or {}).get("metadata", {})
+    alternate_meta = (
+        explicit_alternate_residue_position_requests or {}
+    ).get("metadata", {})
+    remap_meta = (remap_local_lead_audit or {}).get("metadata", {})
+    import_safety_meta = (review_only_import_safety_audit or {}).get("metadata", {})
+
+    accepted_entry_ids = _sorted_entry_ids(
+        acceptance_meta.get("accepted_new_label_entry_ids", [])
+    )
+    review_debt_entry_ids = _sorted_entry_ids(
+        review_debt_meta.get("review_debt_entry_ids", [])
+    )
+    if not review_debt_entry_ids:
+        review_debt_entry_ids = _sorted_entry_ids(
+            row.get("entry_id")
+            for row in review_debt.get("rows", [])
+            if isinstance(row, dict)
+        )
+    review_debt_id_set = set(review_debt_entry_ids)
+    accepted_review_debt_overlap_ids = _sorted_entry_ids(
+        set(accepted_entry_ids) & review_debt_id_set
+    )
+
+    local_gap_entry_ids = _sorted_entry_ids(
+        local_gap_meta.get("audited_entry_ids", [])
+    )
+    if local_evidence_gap_audit and not local_gap_entry_ids:
+        local_gap_entry_ids = _sorted_entry_ids(
+            row.get("entry_id")
+            for row in local_evidence_gap_audit.get("rows", [])
+            if isinstance(row, dict)
+        )
+    local_export_entry_ids = _sorted_entry_ids(
+        local_export_meta.get("exported_entry_ids", [])
+    )
+    if local_evidence_review_export and not local_export_entry_ids:
+        local_export_entry_ids = _sorted_entry_ids(
+            item.get("entry_id")
+            for item in local_evidence_review_export.get("review_items", [])
+            if isinstance(item, dict)
+        )
+    plan_entry_ids = _sorted_entry_ids(plan_meta.get("planned_entry_ids", []))
+    if local_evidence_repair_plan and not plan_entry_ids:
+        plan_entry_ids = _sorted_entry_ids(
+            row.get("entry_id")
+            for row in local_evidence_repair_plan.get("rows", [])
+            if isinstance(row, dict)
+        )
+    resolved_entry_ids = _sorted_entry_ids(
+        resolution_meta.get("resolved_entry_ids", [])
+    )
+    resolution_target_entry_ids = _sorted_entry_ids(
+        resolution_meta.get("target_entry_ids", [])
+    )
+    alternate_request_entry_ids = _sorted_entry_ids(
+        alternate_meta.get("request_entry_ids", [])
+    )
+    remap_strict_entry_ids = _sorted_entry_ids(
+        remap_meta.get("strict_remap_guardrail_entry_ids", [])
+    )
+    remap_family_review_entry_ids = _sorted_entry_ids(
+        remap_meta.get("expert_family_boundary_review_entry_ids", [])
+    )
+    remap_reaction_review_entry_ids = _sorted_entry_ids(
+        remap_meta.get("expert_reaction_substrate_review_entry_ids", [])
+    )
+    structure_wide_without_local_ids = _sorted_entry_ids(
+        scaling_meta.get(
+            "alternate_structure_scan_structure_wide_hit_without_local_support_entry_ids",
+            [],
+        )
+    )
+    local_hit_from_remap_ids = _sorted_entry_ids(
+        scaling_meta.get(
+            "alternate_structure_scan_local_expected_family_hit_from_remap_entry_ids",
+            [],
+        )
+    )
+    unclassified_new_debt_ids = _sorted_entry_ids(
+        scaling_meta.get("unclassified_new_review_debt_entry_ids", [])
+    )
+
+    local_gap_set = set(local_gap_entry_ids)
+    local_export_set = set(local_export_entry_ids)
+    plan_set = set(plan_entry_ids)
+    resolved_set = set(resolved_entry_ids)
+    resolution_target_set = set(resolution_target_entry_ids)
+    alternate_request_set = set(alternate_request_entry_ids)
+    remap_strict_set = set(remap_strict_entry_ids)
+    structure_wide_without_local_set = set(structure_wide_without_local_ids)
+    local_hit_from_remap_set = set(local_hit_from_remap_ids)
+
+    plan_by_entry = {
+        str(row.get("entry_id")): row
+        for row in (local_evidence_repair_plan or {}).get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    review_debt_rows_by_entry = {
+        str(row.get("entry_id")): row
+        for row in review_debt.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+    for entry_id in review_debt_entry_ids:
+        if entry_id not in review_debt_rows_by_entry:
+            review_debt_rows_by_entry[entry_id] = {
+                "entry_id": entry_id,
+                "debt_status": (
+                    "new"
+                    if entry_id
+                    in set(review_debt_meta.get("new_review_debt_entry_ids", []))
+                    else "carried"
+                ),
+                "recommended_next_action": "review_debt_metadata_only_defer",
+                "gap_reasons": ["review_debt_summary_row_table_capped"],
+            }
+
+    rows: list[dict[str, Any]] = []
+    for debt_row in sorted(
+        review_debt_rows_by_entry.values(),
+        key=lambda row: _entry_id_sort_key(str(row.get("entry_id"))),
+    ):
+        entry_id = str(debt_row["entry_id"])
+        plan_row = plan_by_entry.get(entry_id, {})
+        deferral_actions: set[str] = set()
+        if entry_id in local_gap_set:
+            deferral_actions.add("priority_local_evidence_gap_audited")
+        if entry_id in local_export_set:
+            deferral_actions.add("local_evidence_review_export_no_decision")
+        if entry_id in plan_set:
+            repair_lane = str(plan_row.get("repair_lane") or "unclassified")
+            deferral_actions.add(f"repair_lane:{repair_lane}")
+        if entry_id in resolved_set:
+            deferral_actions.add("local_evidence_repair_lane_closed_review_only")
+        elif entry_id in resolution_target_set:
+            deferral_actions.add("local_evidence_repair_lane_still_deferred")
+        if entry_id in alternate_request_set:
+            deferral_actions.add("explicit_alternate_residue_position_request")
+        if entry_id in remap_strict_set:
+            deferral_actions.add("strict_remap_guardrail_deferred")
+        if entry_id in structure_wide_without_local_set:
+            deferral_actions.add("structure_wide_hit_without_local_support_deferred")
+        if entry_id in local_hit_from_remap_set:
+            deferral_actions.add("conservative_remap_local_hit_requires_review")
+        if not deferral_actions:
+            action = str(debt_row.get("recommended_next_action") or "review_debt")
+            deferral_actions.add(f"review_debt_deferred:{action}")
+
+        if entry_id in accepted_review_debt_overlap_ids:
+            deferral_status = "invalid_accepted_label_overlap"
+        elif entry_id in resolved_set:
+            deferral_status = "closed_non_countable_review_resolution"
+        elif entry_id in remap_strict_set:
+            deferral_status = "deferred_strict_remap_family_boundary_review"
+        elif entry_id in alternate_request_set:
+            deferral_status = "deferred_explicit_alternate_residue_positions"
+        elif entry_id in local_gap_set:
+            deferral_status = "deferred_priority_local_evidence_review"
+        elif entry_id in structure_wide_without_local_set:
+            deferral_status = "deferred_structure_wide_only_evidence"
+        else:
+            deferral_status = "deferred_review_debt"
+
+        rows.append(
+            {
+                "entry_id": entry_id,
+                "entry_name": debt_row.get("entry_name"),
+                "debt_status": debt_row.get("debt_status"),
+                "recommended_next_action": debt_row.get("recommended_next_action"),
+                "decision_action": debt_row.get("decision_action"),
+                "target_fingerprint_id": debt_row.get("target_fingerprint_id"),
+                "top1_fingerprint_id": debt_row.get("top1_fingerprint_id"),
+                "coverage_status": debt_row.get("coverage_status"),
+                "gap_reasons": _sorted_strings(debt_row.get("gap_reasons", [])),
+                "countable_label_candidate": False,
+                "accepted_clean_label_overlap": (
+                    entry_id in accepted_review_debt_overlap_ids
+                ),
+                "deferral_status": deferral_status,
+                "deferral_actions": sorted(deferral_actions),
+                "repair_lane": plan_row.get("repair_lane"),
+                "non_countable_blockers": _sorted_strings(
+                    [
+                        "review_state_needs_more_evidence",
+                        "not_in_countable_label_registry",
+                        *debt_row.get("gap_reasons", []),
+                        *plan_row.get("non_countable_blockers", []),
+                    ]
+                ),
+                "deferral_policy": (
+                    "review-debt rows stay non-countable until evidence removes "
+                    "their gap reasons and a separate countable import plus label "
+                    "factory gate accepts them"
+                ),
+            }
+        )
+
+    missing_review_debt_row_ids = _sorted_entry_ids(
+        review_debt_id_set
+        - {
+            str(row.get("entry_id"))
+            for row in rows
+            if isinstance(row.get("entry_id"), str)
+        }
+    )
+    deferral_status_counts = Counter(str(row.get("deferral_status")) for row in rows)
+    deferral_action_counts = Counter(
+        action for row in rows for action in row.get("deferral_actions", [])
+    )
+    countable_candidate_count = sum(
+        1 for row in rows if row.get("countable_label_candidate") is not False
+    )
+    import_safety_ready = (
+        not review_only_import_safety_audit
+        or (
+            import_safety_meta.get("method") == "review_only_import_safety_audit"
+            and bool(import_safety_meta.get("countable_import_safe"))
+            and int(import_safety_meta.get("total_new_countable_label_count", 0) or 0)
+            == 0
+        )
+    )
+    deferral_ready = (
+        review_debt_meta.get("method") == "review_debt_summary"
+        and bool(review_debt_entry_ids)
+        and not accepted_review_debt_overlap_ids
+        and not missing_review_debt_row_ids
+        and countable_candidate_count == 0
+        and not unclassified_new_debt_ids
+        and import_safety_ready
+    )
+    return {
+        "metadata": {
+            "method": "accepted_review_debt_deferral_audit",
+            "source_review_debt_method": review_debt_meta.get("method"),
+            "source_acceptance_method": acceptance_meta.get("method"),
+            "source_scaling_quality_method": scaling_meta.get("method"),
+            "review_debt_count": len(review_debt_entry_ids),
+            "deferred_entry_count": len(rows),
+            "deferred_entry_ids": _sorted_entry_ids(
+                row.get("entry_id") for row in rows
+            ),
+            "new_review_debt_count": int(
+                review_debt_meta.get("new_review_debt_count", 0) or 0
+            ),
+            "new_review_debt_entry_ids": _sorted_entry_ids(
+                review_debt_meta.get("new_review_debt_entry_ids", [])
+            ),
+            "accepted_new_label_entry_ids": accepted_entry_ids,
+            "accepted_review_debt_overlap_count": len(
+                accepted_review_debt_overlap_ids
+            ),
+            "accepted_review_debt_overlap_entry_ids": (
+                accepted_review_debt_overlap_ids
+            ),
+            "missing_review_debt_row_entry_ids": missing_review_debt_row_ids,
+            "metadata_only_review_debt_entry_count": sum(
+                1
+                for row in rows
+                if "review_debt_summary_row_table_capped"
+                in row.get("gap_reasons", [])
+            ),
+            "metadata_only_review_debt_entry_ids": _sorted_entry_ids(
+                row.get("entry_id")
+                for row in rows
+                if "review_debt_summary_row_table_capped"
+                in row.get("gap_reasons", [])
+            ),
+            "unclassified_new_review_debt_entry_ids": unclassified_new_debt_ids,
+            "local_evidence_gap_audited_entry_count": len(local_gap_entry_ids),
+            "local_evidence_gap_audited_entry_ids": local_gap_entry_ids,
+            "local_evidence_review_export_entry_count": len(local_export_entry_ids),
+            "local_evidence_review_export_entry_ids": local_export_entry_ids,
+            "local_evidence_repair_plan_entry_count": len(plan_entry_ids),
+            "local_evidence_repair_plan_entry_ids": plan_entry_ids,
+            "local_evidence_repair_resolution_resolved_entry_count": len(
+                resolved_entry_ids
+            ),
+            "local_evidence_repair_resolution_resolved_entry_ids": (
+                resolved_entry_ids
+            ),
+            "explicit_alternate_residue_position_request_count": len(
+                alternate_request_entry_ids
+            ),
+            "explicit_alternate_residue_position_request_entry_ids": (
+                alternate_request_entry_ids
+            ),
+            "strict_remap_guardrail_entry_ids": remap_strict_entry_ids,
+            "remap_family_boundary_review_entry_ids": remap_family_review_entry_ids,
+            "remap_reaction_substrate_review_entry_ids": (
+                remap_reaction_review_entry_ids
+            ),
+            "structure_wide_hit_without_local_support_entry_ids": (
+                structure_wide_without_local_ids
+            ),
+            "local_expected_family_hit_from_remap_entry_ids": local_hit_from_remap_ids,
+            "review_only_import_safety_ready": import_safety_ready,
+            "review_only_import_safety_total_new_countable_label_count": int(
+                import_safety_meta.get("total_new_countable_label_count", 0) or 0
+            ),
+            "deferral_status_counts": dict(sorted(deferral_status_counts.items())),
+            "deferral_action_counts": dict(sorted(deferral_action_counts.items())),
+            "countable_label_candidate_count": countable_candidate_count,
+            "deferral_ready": deferral_ready,
+            "deferral_rule": (
+                "accepted clean labels must not overlap review debt; all review "
+                "debt remains non-countable until later evidence and factory "
+                "gates explicitly clear it"
+            ),
+        },
+        "rows": rows,
+    }
+
+
 ONTOLOGY_GAP_PATTERNS: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
         "transferase_phosphoryl",
@@ -5612,6 +5945,7 @@ def check_label_factory_gates(
     explicit_alternate_residue_position_requests: dict[str, Any] | None = None,
     review_only_import_safety_audit: dict[str, Any] | None = None,
     atp_phosphoryl_transfer_family_expansion: dict[str, Any] | None = None,
+    accepted_review_debt_deferral_audit: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     ontology = load_mechanism_ontology()
     required_terms = {
@@ -5992,6 +6326,25 @@ def check_label_factory_gates(
             and atp_family_expansion_countable_count == 0
         )
     )
+    deferral_meta = (accepted_review_debt_deferral_audit or {}).get("metadata", {})
+    deferral_present = (
+        deferral_meta.get("method") == "accepted_review_debt_deferral_audit"
+    )
+    deferral_countable_count = int(
+        deferral_meta.get("countable_label_candidate_count", 0) or 0
+    )
+    deferral_overlap_count = int(
+        deferral_meta.get("accepted_review_debt_overlap_count", 0) or 0
+    )
+    deferral_ready = (
+        not accepted_review_debt_deferral_audit
+        or (
+            deferral_present
+            and bool(deferral_meta.get("deferral_ready"))
+            and deferral_countable_count == 0
+            and deferral_overlap_count == 0
+        )
+    )
     gates = {
         "label_schema_explicit": all(
             label.tier in LABEL_TIERS
@@ -6076,6 +6429,8 @@ def check_label_factory_gates(
         gates["atp_phosphoryl_transfer_family_expansion_ready"] = (
             atp_family_expansion_ready
         )
+    if accepted_review_debt_deferral_audit is not None:
+        gates["accepted_review_debt_deferral_audit_ready"] = deferral_ready
     blockers = [name for name, passed in gates.items() if not passed]
     return {
         "metadata": {
@@ -6267,6 +6622,29 @@ def check_label_factory_gates(
             ),
             "atp_phosphoryl_transfer_family_expansion_countable_label_candidate_count": (
                 atp_family_expansion_countable_count
+            ),
+            "accepted_review_debt_deferral_audit_present": deferral_present,
+            "accepted_review_debt_deferral_audit_ready": (
+                deferral_meta.get("deferral_ready")
+            ),
+            "accepted_review_debt_deferral_audit_deferred_entry_count": (
+                deferral_meta.get("deferred_entry_count")
+            ),
+            "accepted_review_debt_deferral_audit_countable_label_candidate_count": (
+                deferral_countable_count
+            ),
+            "accepted_review_debt_deferral_audit_accepted_overlap_count": (
+                deferral_overlap_count
+            ),
+            "accepted_review_debt_deferral_audit_strict_remap_guardrail_entry_ids": (
+                _sorted_entry_ids(
+                    deferral_meta.get("strict_remap_guardrail_entry_ids", [])
+                )
+            ),
+            "accepted_review_debt_deferral_audit_unclassified_new_review_debt_entry_ids": (
+                _sorted_entry_ids(
+                    deferral_meta.get("unclassified_new_review_debt_entry_ids", [])
+                )
             ),
             "bulk_scaling_rule": (
                 "new labels may be added in batches only after this gate check "
@@ -6643,6 +7021,27 @@ def summarize_label_factory_batches(
                     "review_only_import_safety_audit_total_new_countable_label_count"
                 )
             ),
+            "accepted_review_debt_deferral_audit_present": gate_meta.get(
+                "accepted_review_debt_deferral_audit_present"
+            ),
+            "accepted_review_debt_deferral_audit_ready": gate_meta.get(
+                "accepted_review_debt_deferral_audit_ready"
+            ),
+            "accepted_review_debt_deferral_audit_deferred_entry_count": (
+                gate_meta.get(
+                    "accepted_review_debt_deferral_audit_deferred_entry_count"
+                )
+            ),
+            "accepted_review_debt_deferral_audit_countable_label_candidate_count": (
+                gate_meta.get(
+                    "accepted_review_debt_deferral_audit_countable_label_candidate_count"
+                )
+            ),
+            "accepted_review_debt_deferral_audit_accepted_overlap_count": (
+                gate_meta.get(
+                    "accepted_review_debt_deferral_audit_accepted_overlap_count"
+                )
+            ),
             "active_queue_unlabeled_count": queue_meta.get("total_unlabeled_candidate_count"),
             "active_queue_unlabeled_omitted": queue_meta.get("unlabeled_omitted_by_max_rows"),
             "active_queue_all_unlabeled_retained": queue_meta.get("all_unlabeled_rows_retained"),
@@ -6783,6 +7182,21 @@ def summarize_label_factory_batches(
             ),
             "latest_review_only_import_safety_audit_total_new_countable_label_count": latest.get(
                 "review_only_import_safety_audit_total_new_countable_label_count"
+            ),
+            "latest_accepted_review_debt_deferral_audit_present": latest.get(
+                "accepted_review_debt_deferral_audit_present"
+            ),
+            "latest_accepted_review_debt_deferral_audit_ready": latest.get(
+                "accepted_review_debt_deferral_audit_ready"
+            ),
+            "latest_accepted_review_debt_deferral_audit_deferred_entry_count": latest.get(
+                "accepted_review_debt_deferral_audit_deferred_entry_count"
+            ),
+            "latest_accepted_review_debt_deferral_audit_countable_label_candidate_count": latest.get(
+                "accepted_review_debt_deferral_audit_countable_label_candidate_count"
+            ),
+            "latest_accepted_review_debt_deferral_audit_accepted_overlap_count": latest.get(
+                "accepted_review_debt_deferral_audit_accepted_overlap_count"
             ),
             "all_batches_accepted_for_counting": all(
                 row["accepted_for_counting"] for row in rows

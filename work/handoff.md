@@ -144,6 +144,14 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   alternate-structure scan, remap-local audit for `m_csa:712`, ontology-gap
   audit, learned-retrieval manifest, sequence-similarity failure-set audit, and
   scaling-quality audit.
+- Added `artifacts/v3_accepted_review_debt_deferral_audit_725.json`, which
+  explicitly defers all 100 accepted-725 review-state rows with 0 countable
+  candidates and upgrades the 725 gate to 21/21 checks.
+- Opened a bounded 750 preview without promoting the canonical registry. The
+  preview generated fresh graph/geometry/retrieval/factory artifacts, passes a
+  19/19 preview gate, and identifies seven mechanically clean candidates, but
+  scaling-quality audit recommends review before promotion because 18 new
+  review-debt rows appeared.
 
 ## Current Metrics
 
@@ -224,6 +232,17 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   100 review-state decisions pending, 630 countable labels, 0 hard negatives,
   0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable
   in-scope failures.
+- Accepted-725 deferral audit: all 100 review-state rows explicitly remain
+  non-countable, with 45 metadata-only rows carried from the capped review-debt
+  table, strict remap-family-boundary deferral for `m_csa:712`,
+  structure-wide-only evidence deferrals for `m_csa:718` and `m_csa:724`, and
+  0 accepted-label overlap.
+- 750 preview: 749 geometry entries, 726 with pairwise geometry, 19/19 preview
+  gate checks passing, 7 mechanically clean preview candidates, 118
+  review-state rows, 18 new review-debt rows classified, 0 hard negatives,
+  0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable
+  in-scope failures. The canonical countable registry remains 630 until the
+  750 promotion decision is made.
 - 725 post-batch review surface: all 95 unlabeled candidates are retained in a
   207-row active-learning queue; 95 expert-label decision rows are exported as
   review-only no-decision items; 25 priority local-evidence lanes are audited
@@ -368,56 +387,58 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch
 
 ## Next Agent Start Here
 
-Start from the accepted 725 state. Do not reopen the accepted 675/700/725 clean
-label decisions unless a regression appears. The canonical registry has 630
-countable labels; the latest accepted labels are `m_csa:705`, `m_csa:709`,
-`m_csa:714`, `m_csa:716`, `m_csa:723`, and `m_csa:727`.
+Start from the accepted 725 state plus the unpromoted 750 preview. Do not copy
+`artifacts/v3_countable_labels_batch_750_preview.json` into the canonical
+registry yet. The canonical registry still has 630 countable labels; the latest
+canonical accepted labels remain `m_csa:705`, `m_csa:709`, `m_csa:714`,
+`m_csa:716`, `m_csa:723`, and `m_csa:727`.
 
-Label-quality confidence call for the 2026-05-12T11:51:27-05:00 run: yes, the
-gates were operationally good enough to accept a bounded 725 batch, and the
-accepted labels stayed clean. Evidence: full tests and `validate` passed at
-run start, the final 725 label-factory gate passes 20/20 checks, hard
-negatives remain 0, near misses remain 0, out-of-scope false non-abstentions
-remain 0, actionable in-scope failures remain 0, accepted labels with review
-debt remain 0, accepted reaction/substrate mismatch labels remain 0,
-review-only import growth remains 0, and the nine-family ATP/phosphoryl
-transfer expansion remains guardrail-clean with 0 countable label candidates.
-This is an operational scaling decision, not a claim of biological truth.
+Label-quality confidence call for the 2026-05-12T17:51:49Z run: yes, current
+quality gates are good enough to spend this run on the accepted-725
+review-debt repair/deferral surface rather than label-quality repair. Evidence:
+baseline `validate` and 198 unit tests passed at run start, the current 725
+gate passed 20/20 checks at run start and now passes 21/21 checks with
+accepted-review-debt deferral attached, hard negatives remain 0, near misses remain 0,
+out-of-scope false non-abstentions remain 0, actionable in-scope failures
+remain 0, accepted labels with review debt remain 0, review-only import growth
+remains 0, and the ATP/phosphoryl-transfer family expansion remains
+guardrail-clean with 0 countable label candidates. This is an operational
+workflow decision, not a claim of biological truth.
 
-Next bounded task: repair or explicitly defer the accepted-725 review-debt
-surface before opening a blind 750 tranche. The 725 batch is accepted, but it
-raised pending review-state rows to 100 and added warnings for local-evidence
-gap lanes, alternate-structure hits without local support, and a strict
-remap-local family-boundary lead at `m_csa:712`. Keep those rows non-countable
-unless later evidence clears their gap reasons and the label-factory gate
-passes.
+This run explicitly deferred the accepted-725 review-debt surface and opened a
+bounded 750 preview. The 750 preview gate passes 19/19 and the preview has seven
+mechanically clean countable candidates: `m_csa:728`, `m_csa:733`, `m_csa:735`,
+`m_csa:739`, `m_csa:740`, `m_csa:742`, and `m_csa:750`. Do not promote them
+yet: the 750 scaling-quality audit recommends `review_before_promoting` because
+18 new review-debt rows appeared and need repair or explicit deferral.
 
 Start with:
+`artifacts/v3_accepted_review_debt_deferral_audit_725.json`,
 `artifacts/v3_label_factory_gate_check_725.json`,
-`artifacts/v3_label_batch_acceptance_check_725.json`,
-`artifacts/v3_label_scaling_quality_audit_725_preview.json`,
-`artifacts/v3_review_debt_summary_725_preview.json`,
-`artifacts/v3_review_debt_alternate_structure_scan_725_preview.json`,
-`artifacts/v3_review_debt_remap_local_lead_audit_725_preview.json`,
-`artifacts/v3_expert_label_decision_local_evidence_gap_audit_725.json`,
-`artifacts/v3_expert_label_decision_local_evidence_repair_plan_725.json`,
-`artifacts/v3_explicit_alternate_residue_position_requests_725.json`,
-`artifacts/v3_review_only_import_safety_audit_725.json`,
-`artifacts/v3_mechanism_ontology_gap_audit_725.json`,
-`artifacts/v3_learned_retrieval_manifest_725.json`,
-`artifacts/v3_sequence_similarity_failure_sets_725.json`,
+`artifacts/v3_label_batch_acceptance_check_750_preview.json`,
+`artifacts/v3_label_factory_gate_check_750_preview.json`,
+`artifacts/v3_label_scaling_quality_audit_750_preview.json`,
+`artifacts/v3_review_debt_summary_750_preview.json`,
+`artifacts/v3_expert_label_decision_local_evidence_gap_audit_750.json`,
+`artifacts/v3_expert_label_decision_local_evidence_repair_plan_750.json`,
+`artifacts/v3_mechanism_ontology_gap_audit_750.json`,
+`artifacts/v3_learned_retrieval_manifest_750.json`,
+`artifacts/v3_sequence_similarity_failure_sets_750.json`,
+`artifacts/v3_label_factory_preview_summary_750.json`,
 `artifacts/v3_label_factory_batch_summary.json`, and
-`work/label_preview_725_notes.md`.
+`work/label_preview_750_notes.md`.
 
 Highest-value options:
 
-1. Resolve or explicitly defer the 25 accepted-725 local-evidence repair lanes,
-   especially the strict remap-local lead `m_csa:712`.
-2. Complete a bounded alternate-structure scan for the remaining 725 new-debt
-   candidates if the current 12-row preview leaves unresolved structure hits.
-3. If the 725 repair surface remains guardrail-clean, open the 750
-   preview/acceptance path with the same bounded-batch factory gates and reject
-   any labels carrying review/deferred evidence.
+1. Repair or explicitly defer the 18 new 750-preview review-debt rows:
+   `m_csa:729`, `m_csa:730`, `m_csa:731`, `m_csa:732`, `m_csa:734`,
+   `m_csa:736`, `m_csa:737`, `m_csa:738`, `m_csa:741`, `m_csa:743`,
+   `m_csa:744`, `m_csa:745`, `m_csa:746`, `m_csa:747`, `m_csa:748`,
+   `m_csa:749`, `m_csa:751`, and `m_csa:752`.
+2. If the 750 review-debt surface remains guardrail-clean after repair/deferral,
+   decide whether to promote the seven clean 750 candidates into the canonical
+   registry and regenerate accepted-batch summary/status.
+3. Do not open 775 until the 750 promotion decision is explicit.
 4. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
    do not collapse these families into generic hydrolase or metal-hydrolase
    labels.
@@ -443,6 +464,26 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-12T17:51:49Z
+- ENDED_AT: 2026-05-12T18:51:39Z
+- Measured elapsed time: 59.833 minutes
+- Documentation checked and updated across README, docs/label_factory.md,
+  work/scope.md, work/handoff.md, work/status.md inputs, and
+  work/label_preview_750_notes.md before status regeneration.
+- Normal locked run from the accepted 725 state first made an evidence-based
+  confidence call, then added an accepted-725 review-debt deferral audit with
+  100 non-countable rows and upgraded the 725 gate to 21/21 checks.
+- Remaining-time plan executed before wrap-up: after the 725 deferral audit was
+  clean, opened a bounded 750 preview. The 750 preview generated graph,
+  geometry, retrieval, label-factory, review export, acceptance, scaling-quality,
+  ontology-gap, learned-retrieval, and sequence-similarity artifacts. It found
+  7 mechanically clean candidates and a 19/19 preview gate, but promotion is
+  deferred because 18 new review-debt rows require repair or explicit deferral.
+- Final verification passed: `git diff --check`, `jq empty` over regenerated
+  JSON artifacts, `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `PYTHONPATH=src python -m unittest discover -s tests` with 200 tests, and
+  `PYTHONPATH=src python -m compileall -q src tests`.
 
 - STARTED_AT: 2026-05-12T11:51:27-05:00
 - ENDED_AT: 2026-05-12T12:47:20-05:00

@@ -1,0 +1,1394 @@
+{
+  "metadata": {
+    "all_resolved_rows_non_countable": true,
+    "countable_label_candidate_count": 0,
+    "method": "expert_label_decision_local_evidence_repair_resolution",
+    "planned_entry_count": 25,
+    "reaction_substrate_review_resolved_entry_ids": [],
+    "remaining_open_entry_count": 25,
+    "remaining_open_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721"
+    ],
+    "remaining_repair_lane_counts": {
+      "expert_family_boundary_review": 13,
+      "expert_reaction_substrate_review": 4,
+      "source_explicit_alternate_structure_residue_positions": 8
+    },
+    "resolution_ready": false,
+    "resolution_status_counts": {
+      "unresolved": 25
+    },
+    "resolved_decision_action_counts": {},
+    "resolved_entry_count": 0,
+    "resolved_entry_ids": [],
+    "resolved_label_type_counts": {},
+    "resolved_repair_lane_counts": {},
+    "review_only_rule": "resolved repair lanes stay non-countable until a separate countable import, local-evidence check, and label-factory gate explicitly accept them",
+    "source_gap_audit_method": "expert_label_decision_local_evidence_gap_audit",
+    "source_local_evidence_review_export_method": "expert_label_decision_local_evidence_review_export",
+    "source_plan_method": "expert_label_decision_local_evidence_repair_plan",
+    "source_reaction_substrate_mismatch_decision_batch_method": "provisional_label_review_decision_batch",
+    "source_reaction_substrate_mismatch_review_export_method": "reaction_substrate_mismatch_review_export",
+    "target_entry_count": 25,
+    "target_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721"
+    ],
+    "target_missing_entry_ids": [],
+    "unresolved_entry_count": 25,
+    "unresolved_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721"
+    ],
+    "unresolved_reason_counts": {
+      "missing_external_reaction_substrate_resolution": 4,
+      "repair_lane_not_reaction_substrate_review": 21
+    }
+  },
+  "rows": [
+    {
+      "alternate_pdb_count": 65,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 66,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1BIX",
+      "selected_pdb_residue_position_count": 8,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 22,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 23,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:553",
+      "entry_name": "N-acetylneuraminate lyase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1FDY",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "repair_priority": 1,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1GAL",
+      "selected_pdb_residue_position_count": 1,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 2,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 3,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:572",
+      "entry_name": "catalase (manganese dependent)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "repair_priority": 1,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1O9I",
+      "selected_pdb_residue_position_count": 6,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 12,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 13,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1IMA",
+      "selected_pdb_residue_position_count": 6,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 24,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 25,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:578",
+      "entry_name": "ferrochelatase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "repair_priority": 1,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1HRK",
+      "selected_pdb_residue_position_count": 9,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 34,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 35,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": true,
+      "recommended_next_action": "route_to_reaction_substrate_expert_review",
+      "repair_lane": "expert_reaction_substrate_review",
+      "repair_priority": 0,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "3IDH",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "missing_external_reaction_substrate_resolution"
+      ]
+    },
+    {
+      "alternate_pdb_count": 31,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 32,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1PWV",
+      "selected_pdb_residue_position_count": 5,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 2,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 3,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": true,
+      "recommended_next_action": "route_to_reaction_substrate_expert_review",
+      "repair_lane": "expert_reaction_substrate_review",
+      "repair_priority": 0,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1G99",
+      "selected_pdb_residue_position_count": 5,
+      "targeted": true,
+      "unresolved_reasons": [
+        "missing_external_reaction_substrate_resolution"
+      ]
+    },
+    {
+      "alternate_pdb_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 1,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "local_evidence_gap_classes": [
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": true,
+      "recommended_next_action": "route_to_reaction_substrate_expert_review",
+      "repair_lane": "expert_reaction_substrate_review",
+      "repair_priority": 0,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1OJ4",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "missing_external_reaction_substrate_resolution"
+      ]
+    },
+    {
+      "alternate_pdb_count": 3,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 4,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "repair_priority": 1,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1HR6",
+      "selected_pdb_residue_position_count": 5,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 1,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1K82",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 25,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 26,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": true,
+      "recommended_next_action": "route_to_reaction_substrate_expert_review",
+      "repair_lane": "expert_reaction_substrate_review",
+      "repair_priority": 0,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1BO1",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "missing_external_reaction_substrate_resolution"
+      ]
+    },
+    {
+      "alternate_pdb_count": 11,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 12,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "2DHN",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:667",
+      "entry_name": "alpha-N-arabinofuranosidase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "repair_priority": 1,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1PZ3",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 8,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 9,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1G79",
+      "selected_pdb_residue_position_count": 1,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 1,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 2,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:690",
+      "entry_name": "dextranase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1OGO",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 52,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 53,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:691",
+      "entry_name": "histone-lysine N-methyltransferase (Suvar3-9 subfamily)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1PEG",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 1,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1DL5",
+      "selected_pdb_residue_position_count": 1,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:698",
+      "entry_name": "xanthine dehydrogenase (bacterial)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "repair_priority": 1,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1JRP",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 0,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 1,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:701",
+      "entry_name": "dimethylsulfoxide reductase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1EU1",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 11,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 12,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:704",
+      "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "repair_priority": 1,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1C4T",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 18,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 19,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:713",
+      "entry_name": "cystathionine beta-synthase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "repair_priority": 1,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1M54",
+      "selected_pdb_residue_position_count": 1,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 1,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 2,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:717",
+      "entry_name": "ornithine cyclodeaminase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1X7D",
+      "selected_pdb_residue_position_count": 2,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    },
+    {
+      "alternate_pdb_count": 3,
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 4,
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_repair_lane_status": "open",
+      "local_evidence_review_export_decision": {
+        "action": "no_decision",
+        "local_evidence_resolution": "needs_more_evidence",
+        "reviewer": null
+      },
+      "local_expected_family_hit_count": 0,
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "reaction_substrate_decision": {
+        "action": "no_decision",
+        "expert_review_timestamp_utc": null,
+        "fingerprint_id": null,
+        "future_fingerprint_family_hint": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": null,
+        "reviewer": null
+      },
+      "reaction_substrate_mismatch_exported": false,
+      "recommended_next_action": "route_to_family_boundary_expert_review",
+      "repair_lane": "expert_family_boundary_review",
+      "repair_priority": 4,
+      "resolution_policy": "external reaction/substrate review can close the local-evidence repair lane as review-only debt, but this artifact never promotes labels or makes rows countable",
+      "resolution_status": "unresolved",
+      "selected_pdb_id": "1YON",
+      "selected_pdb_residue_position_count": 1,
+      "targeted": true,
+      "unresolved_reasons": [
+        "repair_lane_not_reaction_substrate_review"
+      ]
+    }
+  ]
+}

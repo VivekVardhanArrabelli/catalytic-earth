@@ -1560,6 +1560,105 @@ class CliTests(unittest.TestCase):
                 ]
             )
 
+    def test_audit_accepted_review_debt_deferrals_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            review_debt = root / "review_debt.json"
+            acceptance = root / "acceptance.json"
+            remap = root / "remap.json"
+            import_safety = root / "import_safety.json"
+            out = root / "deferrals.json"
+            review_debt.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_summary",
+                            "review_debt_entry_ids": ["m_csa:712"],
+                            "new_review_debt_entry_ids": ["m_csa:712"],
+                        },
+                        "rows": [
+                            {
+                                "entry_id": "m_csa:712",
+                                "entry_name": "strict remap local lead",
+                                "debt_status": "new",
+                                "recommended_next_action": (
+                                    "expert_family_boundary_review"
+                                ),
+                                "decision_action": "mark_needs_more_evidence",
+                                "gap_reasons": ["review_marked_needs_more_evidence"],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            acceptance.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "label_batch_acceptance_check",
+                            "accepted_new_label_entry_ids": ["m_csa:705"],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            remap.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_debt_remap_local_lead_audit",
+                            "strict_remap_guardrail_entry_ids": ["m_csa:712"],
+                            "expert_family_boundary_review_entry_ids": ["m_csa:712"],
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            import_safety.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "review_only_import_safety_audit",
+                            "countable_import_safe": True,
+                            "total_new_countable_label_count": 0,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-accepted-review-debt-deferrals",
+                    "--review-debt",
+                    str(review_debt),
+                    "--acceptance",
+                    str(acceptance),
+                    "--remap-local-lead-audit",
+                    str(remap),
+                    "--review-only-import-safety-audit",
+                    str(import_safety),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            audit = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(audit["metadata"]["deferral_ready"])
+            self.assertEqual(audit["metadata"]["deferred_entry_count"], 1)
+            self.assertEqual(
+                audit["rows"][0]["deferral_status"],
+                "deferred_strict_remap_family_boundary_review",
+            )
+
     def test_audit_mechanism_ontology_gaps_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -3019,7 +3118,7 @@ class CliTests(unittest.TestCase):
             self.assertGreaterEqual(len(json.loads(imported_labels.read_text())), 475)
             self.assertLessEqual(len(json.loads(countable_labels.read_text())), len(json.loads(imported_labels.read_text())))
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "725")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "750")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

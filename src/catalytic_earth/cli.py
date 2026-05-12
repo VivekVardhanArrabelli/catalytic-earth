@@ -24,6 +24,7 @@ from .labels import (
     analyze_review_debt_remediation,
     analyze_structure_mapping_issues,
     audit_expert_label_decision_local_evidence_gaps,
+    audit_accepted_review_debt_deferrals,
     audit_expert_label_decision_repair_guardrails,
     audit_label_scaling_quality,
     audit_mechanism_ontology_gaps,
@@ -889,6 +890,77 @@ def cmd_build_explicit_alternate_residue_position_requests(
     return 0
 
 
+def cmd_audit_accepted_review_debt_deferrals(args: argparse.Namespace) -> int:
+    with Path(args.review_debt).open("r", encoding="utf-8") as handle:
+        review_debt = json.load(handle)
+    with Path(args.acceptance).open("r", encoding="utf-8") as handle:
+        acceptance = json.load(handle)
+    scaling_quality = None
+    if args.scaling_quality_audit:
+        with Path(args.scaling_quality_audit).open("r", encoding="utf-8") as handle:
+            scaling_quality = json.load(handle)
+    local_gap = None
+    if args.expert_label_decision_local_evidence_gap_audit:
+        with Path(args.expert_label_decision_local_evidence_gap_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            local_gap = json.load(handle)
+    local_export = None
+    if args.expert_label_decision_local_evidence_review_export:
+        with Path(args.expert_label_decision_local_evidence_review_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            local_export = json.load(handle)
+    repair_plan = None
+    if args.expert_label_decision_local_evidence_repair_plan:
+        with Path(args.expert_label_decision_local_evidence_repair_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            repair_plan = json.load(handle)
+    repair_resolution = None
+    if args.expert_label_decision_local_evidence_repair_resolution:
+        with Path(args.expert_label_decision_local_evidence_repair_resolution).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            repair_resolution = json.load(handle)
+    alternate_requests = None
+    if args.explicit_alternate_residue_position_requests:
+        with Path(args.explicit_alternate_residue_position_requests).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            alternate_requests = json.load(handle)
+    remap_local_audit = None
+    if args.remap_local_lead_audit:
+        with Path(args.remap_local_lead_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            remap_local_audit = json.load(handle)
+    import_safety = None
+    if args.review_only_import_safety_audit:
+        with Path(args.review_only_import_safety_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            import_safety = json.load(handle)
+    audit = audit_accepted_review_debt_deferrals(
+        review_debt,
+        acceptance,
+        scaling_quality_audit=scaling_quality,
+        local_evidence_gap_audit=local_gap,
+        local_evidence_review_export=local_export,
+        local_evidence_repair_plan=repair_plan,
+        local_evidence_repair_resolution=repair_resolution,
+        explicit_alternate_residue_position_requests=alternate_requests,
+        remap_local_lead_audit=remap_local_audit,
+        review_only_import_safety_audit=import_safety,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote accepted review-debt deferral audit to "
+        f"{args.out} ({audit['metadata']['deferred_entry_count']} deferred)"
+    )
+    return 0
+
+
 def cmd_audit_mechanism_ontology_gaps(args: argparse.Namespace) -> int:
     with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
         queue = json.load(handle)
@@ -1550,6 +1622,12 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             atp_family_expansion = json.load(handle)
+    review_debt_deferral = None
+    if args.accepted_review_debt_deferral_audit:
+        with Path(args.accepted_review_debt_deferral_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            review_debt_deferral = json.load(handle)
     gates = check_label_factory_gates(
         load_labels(Path(args.labels)),
         factory,
@@ -1576,6 +1654,7 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
         explicit_alternate_residue_position_requests=alternate_residue_requests,
         review_only_import_safety_audit=review_only_import_safety,
         atp_phosphoryl_transfer_family_expansion=atp_family_expansion,
+        accepted_review_debt_deferral_audit=review_debt_deferral,
     )
     write_json(Path(args.out), gates)
     print(
@@ -2314,6 +2393,52 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_explicit_alternate_residue_position_requests
     )
 
+    review_debt_deferrals = subparsers.add_parser(
+        "audit-accepted-review-debt-deferrals",
+        help="confirm accepted-batch review-debt rows remain explicitly non-countable",
+    )
+    review_debt_deferrals.add_argument(
+        "--review-debt",
+        default="artifacts/v3_review_debt_summary_preview.json",
+    )
+    review_debt_deferrals.add_argument(
+        "--acceptance",
+        default="artifacts/v3_label_batch_acceptance_check.json",
+    )
+    review_debt_deferrals.add_argument("--scaling-quality-audit", default=None)
+    review_debt_deferrals.add_argument(
+        "--expert-label-decision-local-evidence-gap-audit",
+        default=None,
+    )
+    review_debt_deferrals.add_argument(
+        "--expert-label-decision-local-evidence-review-export",
+        default=None,
+    )
+    review_debt_deferrals.add_argument(
+        "--expert-label-decision-local-evidence-repair-plan",
+        default=None,
+    )
+    review_debt_deferrals.add_argument(
+        "--expert-label-decision-local-evidence-repair-resolution",
+        default=None,
+    )
+    review_debt_deferrals.add_argument(
+        "--explicit-alternate-residue-position-requests",
+        default=None,
+    )
+    review_debt_deferrals.add_argument("--remap-local-lead-audit", default=None)
+    review_debt_deferrals.add_argument(
+        "--review-only-import-safety-audit",
+        default=None,
+    )
+    review_debt_deferrals.add_argument(
+        "--out",
+        default="artifacts/v3_accepted_review_debt_deferral_audit.json",
+    )
+    review_debt_deferrals.set_defaults(
+        func=cmd_audit_accepted_review_debt_deferrals
+    )
+
     ontology_gap_audit = subparsers.add_parser(
         "audit-mechanism-ontology-gaps",
         help="summarize review-only mechanism scope pressure beyond current ontology",
@@ -2489,6 +2614,7 @@ def build_parser() -> argparse.ArgumentParser:
     gate_check.add_argument("--explicit-alternate-residue-position-requests", default=None)
     gate_check.add_argument("--review-only-import-safety-audit", default=None)
     gate_check.add_argument("--atp-phosphoryl-transfer-family-expansion", default=None)
+    gate_check.add_argument("--accepted-review-debt-deferral-audit", default=None)
     gate_check.add_argument("--out", default="artifacts/v3_label_factory_gate_check.json")
     gate_check.set_defaults(func=cmd_check_label_factory_gates)
 

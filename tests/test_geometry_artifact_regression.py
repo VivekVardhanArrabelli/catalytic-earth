@@ -734,6 +734,22 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         gate_650 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_650.json")
         gate_675 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_675.json")
         gate_700 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_700.json")
+        gate_725 = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_725.json")
+        review_debt_deferral_725 = _load_json(
+            ROOT / "artifacts" / "v3_accepted_review_debt_deferral_audit_725.json"
+        )
+        acceptance_750_preview = _load_json(
+            ROOT / "artifacts" / "v3_label_batch_acceptance_check_750_preview.json"
+        )
+        gate_750_preview = _load_json(
+            ROOT / "artifacts" / "v3_label_factory_gate_check_750_preview.json"
+        )
+        scaling_quality_750 = _load_json(
+            ROOT / "artifacts" / "v3_label_scaling_quality_audit_750_preview.json"
+        )
+        preview_summary_750 = _load_json(
+            ROOT / "artifacts" / "v3_label_factory_preview_summary_750.json"
+        )
         family_guardrails_700 = _load_json(
             ROOT / "artifacts" / "v3_family_propagation_guardrails_700.json"
         )
@@ -905,6 +921,95 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
                 "review_only_import_safety_audit_total_new_countable_label_count"
             ],
             0,
+        )
+        self.assertTrue(
+            latest_batch_summary[
+                "accepted_review_debt_deferral_audit_present"
+            ]
+        )
+        self.assertTrue(
+            latest_batch_summary["accepted_review_debt_deferral_audit_ready"]
+        )
+        self.assertEqual(
+            latest_batch_summary[
+                "accepted_review_debt_deferral_audit_deferred_entry_count"
+            ],
+            100,
+        )
+        self.assertEqual(
+            latest_batch_summary[
+                "accepted_review_debt_deferral_audit_countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertTrue(
+            gate_725["metadata"]["accepted_review_debt_deferral_audit_ready"]
+        )
+        self.assertEqual(gate_725["metadata"]["gate_count"], 21)
+        self.assertEqual(gate_725["metadata"]["passed_gate_count"], 21)
+        self.assertEqual(
+            gate_725["metadata"][
+                "accepted_review_debt_deferral_audit_strict_remap_guardrail_entry_ids"
+            ],
+            ["m_csa:712"],
+        )
+        self.assertTrue(review_debt_deferral_725["metadata"]["deferral_ready"])
+        self.assertEqual(
+            review_debt_deferral_725["metadata"]["deferred_entry_count"], 100
+        )
+        self.assertEqual(
+            review_debt_deferral_725["metadata"]["metadata_only_review_debt_entry_count"],
+            45,
+        )
+        self.assertEqual(
+            review_debt_deferral_725["metadata"][
+                "structure_wide_hit_without_local_support_entry_ids"
+            ],
+            ["m_csa:718", "m_csa:724"],
+        )
+        self.assertTrue(acceptance_750_preview["metadata"]["accepted_for_counting"])
+        self.assertEqual(
+            acceptance_750_preview["metadata"]["accepted_new_label_count"], 7
+        )
+        self.assertEqual(
+            acceptance_750_preview["metadata"]["accepted_new_label_entry_ids"],
+            [
+                "m_csa:728",
+                "m_csa:733",
+                "m_csa:735",
+                "m_csa:739",
+                "m_csa:740",
+                "m_csa:742",
+                "m_csa:750",
+            ],
+        )
+        self.assertEqual(acceptance_750_preview["metadata"]["countable_label_count"], 637)
+        self.assertEqual(acceptance_750_preview["metadata"]["pending_review_count"], 118)
+        self.assertEqual(acceptance_750_preview["metadata"]["accepted_review_gap_count"], 0)
+        self.assertEqual(gate_750_preview["metadata"]["gate_count"], 19)
+        self.assertEqual(gate_750_preview["metadata"]["passed_gate_count"], 19)
+        self.assertTrue(
+            gate_750_preview["metadata"]["automation_ready_for_next_label_batch"]
+        )
+        self.assertEqual(
+            gate_750_preview["metadata"]["active_queue_expert_label_decision_count"],
+            120,
+        )
+        self.assertEqual(
+            scaling_quality_750["metadata"]["new_review_debt_count"], 18
+        )
+        self.assertEqual(
+            scaling_quality_750["metadata"]["unclassified_new_review_debt_entry_ids"],
+            [],
+        )
+        self.assertEqual(
+            scaling_quality_750["metadata"]["audit_recommendation"],
+            "review_before_promoting",
+        )
+        self.assertTrue(
+            preview_summary_750["metadata"][
+                "all_supplied_scaling_quality_audits_ready"
+            ]
         )
         self.assertEqual(
             batch_700_summary[

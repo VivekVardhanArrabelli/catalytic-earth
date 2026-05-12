@@ -19,6 +19,7 @@ from catalytic_earth.labels import (
     analyze_seed_family_performance,
     analyze_out_of_scope_failures,
     analyze_structure_mapping_issues,
+    audit_accepted_review_debt_deferrals,
     audit_expert_label_decision_local_evidence_gaps,
     audit_expert_label_decision_repair_guardrails,
     audit_label_scaling_quality,
@@ -3100,6 +3101,105 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertEqual(
             [row["repair_lane"] for row in plan["rows"]],
             ["expert_reaction_substrate_review", "expert_family_boundary_review"],
+        )
+
+    def test_accepted_review_debt_deferral_audit_keeps_rows_non_countable(self) -> None:
+        review_debt = {
+            "metadata": {
+                "method": "review_debt_summary",
+                "review_debt_entry_ids": ["m_csa:712", "m_csa:718"],
+                "new_review_debt_count": 2,
+                "new_review_debt_entry_ids": ["m_csa:712", "m_csa:718"],
+            },
+            "rows": [
+                {
+                    "entry_id": "m_csa:712",
+                    "entry_name": "strict remap local lead",
+                    "debt_status": "new",
+                    "decision_action": "mark_needs_more_evidence",
+                    "recommended_next_action": "expert_family_boundary_review",
+                    "gap_reasons": ["review_marked_needs_more_evidence"],
+                    "target_fingerprint_id": "metal_dependent_hydrolase",
+                    "top1_fingerprint_id": "metal_dependent_hydrolase",
+                },
+                {
+                    "entry_id": "m_csa:718",
+                    "entry_name": "structure wide only lead",
+                    "debt_status": "new",
+                    "decision_action": "mark_needs_more_evidence",
+                    "recommended_next_action": (
+                        "inspect_alternate_structure_or_cofactor_source"
+                    ),
+                    "gap_reasons": ["expected_cofactor_not_local"],
+                    "target_fingerprint_id": "heme_peroxidase_oxidase",
+                    "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                },
+            ],
+        }
+        acceptance = {
+            "metadata": {
+                "method": "label_batch_acceptance_check",
+                "accepted_new_label_entry_ids": ["m_csa:705"],
+            }
+        }
+        audit = audit_accepted_review_debt_deferrals(
+            review_debt,
+            acceptance,
+            scaling_quality_audit={
+                "metadata": {
+                    "method": "label_scaling_quality_audit",
+                    "unclassified_new_review_debt_entry_ids": [],
+                    "alternate_structure_scan_structure_wide_hit_without_local_support_entry_ids": [
+                        "m_csa:718"
+                    ],
+                    "alternate_structure_scan_local_expected_family_hit_from_remap_entry_ids": [
+                        "m_csa:712"
+                    ],
+                }
+            },
+            local_evidence_gap_audit={
+                "metadata": {
+                    "method": "expert_label_decision_local_evidence_gap_audit",
+                    "audited_entry_ids": ["m_csa:712"],
+                },
+                "rows": [{"entry_id": "m_csa:712"}],
+            },
+            local_evidence_review_export={
+                "metadata": {
+                    "method": "expert_label_decision_local_evidence_review_export",
+                    "exported_entry_ids": ["m_csa:712"],
+                },
+                "review_items": [{"entry_id": "m_csa:712"}],
+            },
+            remap_local_lead_audit={
+                "metadata": {
+                    "method": "review_debt_remap_local_lead_audit",
+                    "strict_remap_guardrail_entry_ids": ["m_csa:712"],
+                    "expert_family_boundary_review_entry_ids": ["m_csa:712"],
+                }
+            },
+            review_only_import_safety_audit={
+                "metadata": {
+                    "method": "review_only_import_safety_audit",
+                    "countable_import_safe": True,
+                    "total_new_countable_label_count": 0,
+                }
+            },
+        )
+        self.assertTrue(audit["metadata"]["deferral_ready"])
+        self.assertEqual(audit["metadata"]["accepted_review_debt_overlap_count"], 0)
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            audit["metadata"]["strict_remap_guardrail_entry_ids"], ["m_csa:712"]
+        )
+        statuses = {row["entry_id"]: row["deferral_status"] for row in audit["rows"]}
+        self.assertEqual(
+            statuses["m_csa:712"],
+            "deferred_strict_remap_family_boundary_review",
+        )
+        self.assertEqual(
+            statuses["m_csa:718"],
+            "deferred_structure_wide_only_evidence",
         )
 
     def test_mechanism_ontology_gap_audit_is_review_only(self) -> None:

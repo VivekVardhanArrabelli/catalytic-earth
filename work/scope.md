@@ -97,8 +97,8 @@ Post-V2 quality work has started:
   60-entry, 75-entry, 100-entry, 125-entry, 150-entry, 175-entry, 200-entry,
   225-entry, 250-entry, 275-entry, 300-entry, 325-entry, 350-entry, 375-entry,
   400-entry, 425-entry, 450-entry, 475-entry, 500-entry, 525-entry, 550-entry,
-  575-entry, 600-entry, 625-entry, 650-entry, 675-entry, 700-entry, and
-  725-entry slices
+  575-entry, 600-entry, 625-entry, 650-entry, 675-entry, 700-entry, 725-entry,
+  and 750-entry preview slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
 - curated seed mechanism labels for 630 countable entries, with pending
   review-state evidence gaps kept outside the countable registry
@@ -162,15 +162,18 @@ Current expectation:
   GHMP, wired through guardrails, review exports, active learning, adversarial
   negatives, gates, tests, artifacts, and documentation
 - return to factory-gated label scaling toward 10k while preserving quality
-  gates; the accepted 725 state now has 630 countable labels and the next
-  bounded work should repair or explicitly defer the new 725 review-debt
-  warnings before a blind 750 tranche
+  gates; the accepted 725 state now has 630 countable labels, its 100
+  review-state rows have an explicit non-countable deferral audit, and the
+  750 preview should not be promoted until its 18 new review-debt rows are
+  repaired or explicitly deferred
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
   400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-,
-  and 725-entry slices; all 100 regression geometry entries are evaluable, and
-  the 725-entry countable slice has 613/629 labeled rows evaluable
+  725-entry slices, and a 750-entry preview slice; all 100 regression geometry
+  entries are evaluable, the 725-entry countable slice has 613/629 labeled rows
+  evaluable, and the 750 preview has 749 geometry entries with 726 pairwise
+  geometry records
 - curated labels now cover 630 entries, with 163 local active-site
   seed-fingerprint positives in the 725-entry geometry evaluation and 467 total
   out-of-scope labels; every label has explicit tier, review status,
@@ -189,8 +192,9 @@ Current expectation:
   exports the 25 priority local-evidence gap lanes as review-only items, emits
   a local-evidence repair plan, exports explicit alternate residue-position
   sourcing requests for 8 lanes, verifies review-only import safety, attaches
-  the ATP/phosphoryl-transfer family expansion gate, and passes the 20-check
-  label-factory gate. The active-learning queue now includes reaction/substrate
+  the ATP/phosphoryl-transfer family expansion gate, attaches the accepted-725
+  review-debt deferral audit, and passes the 21-check label-factory gate. The
+  active-learning queue now includes reaction/substrate
   mismatch and ATP-family boundary ranking terms, and the 725
   family-propagation guardrail blocks 24 reported rows on the same mismatch
   signal. The dedicated mismatch review export carries all 24 lanes and feeds
@@ -203,7 +207,9 @@ Current expectation:
   all priority lanes non-countable
 - review-debt triage now ranks 100 evidence-gap rows from the 725 review pass,
   with 100 `needs_more_evidence` decisions, 76 carried rows, 24 new rows, and
-  next-action counts split by debt status
+  next-action counts split by debt status; the 750 preview raises review debt
+  to 118 rows, including 18 new rows that are classified but not yet repaired
+  or explicitly deferred
 - strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
   the 38 in-scope positives in the 125-entry slice at the current zero-false
   threshold
@@ -229,12 +235,17 @@ Current expectation:
   200-, 225-, 250-, 275-, and 300-entry reports each have 3, and the 325-,
   350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-,
   650-, 675-, 700-, and 725-entry reports have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10,
-  11, 11, 15, 17, 17, 19, and 21 respectively
-- next bottleneck is repairing or explicitly deferring the accepted-725
-  review-debt surface before opening a blind 750 tranche. The
-  accepted clean labels are `m_csa:705`, `m_csa:709`, `m_csa:714`,
-  `m_csa:716`, `m_csa:723`, and `m_csa:727`; the other 100 review-state rows
-  remain outside the benchmark. The 725 scaling-quality audit observes
+  11, 11, 15, 17, 17, 19, and 21 respectively; the 750 preview report has 23
+  issues
+- next bottleneck is repairing or explicitly deferring the 18 new 750-preview
+  review-debt rows before promotion. The accepted 725 clean labels are
+  `m_csa:705`, `m_csa:709`, `m_csa:714`, `m_csa:716`, `m_csa:723`, and
+  `m_csa:727`; the other 100 725 review-state rows remain outside the
+  benchmark and now have an explicit deferral audit. The 750 preview clean
+  candidates are `m_csa:728`, `m_csa:733`, `m_csa:735`, `m_csa:739`,
+  `m_csa:740`, `m_csa:742`, and `m_csa:750`, but they are not canonical yet
+  because the 750 scaling-quality audit recommends review before promotion.
+  The 725 scaling-quality audit observes
   ontology scope pressure, family-propagation boundaries, cofactor ambiguity,
   reaction/substrate mismatches, active-site mapping gaps, and active-learning
   queue concentration in deferred rows, while the sequence-cluster proxy reports

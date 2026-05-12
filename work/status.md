@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 49
-- Measured elapsed time: 1798.5 minutes (29.98 hours)
+- Entries: 50
+- Measured elapsed time: 1858.3 minutes (30.97 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1720.4 measured minutes (28.67 hours)
+- post-v2: 1780.2 measured minutes (29.67 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 492
-- Evidence references logged: 386
+- Artifact references logged: 493
+- Evidence references logged: 390
 
 ## Recent Entries
-
-### 2026-05-10T20:50:01.204415+00:00 - post-v2
-
-- Task: Gate reaction mismatch review export
-- Time mode: measured
-- Measured minutes: 53.117
-- Started: 2026-05-10T19:56:24Z
-- Ended: 2026-05-10T20:49:31Z
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_reaction_substrate_mismatch_review_export_700.json, artifacts/v3_reaction_substrate_mismatch_decision_batch_700.json, artifacts/v3_label_factory_gate_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_label_factory_batch_summary.json, tests/test_labels.py, tests/test_cli.py, tests/test_geometry_artifact_regression.py, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_factory_notes.md, work/label_preview_700_notes.md
-- Evidence: 173 unit tests passed, validate passed, git diff check passed, 624 countable labels unchanged, 24 reaction/substrate mismatch lanes exported, 17 current out-of-scope mismatch labels, 7 unlabeled pending-review mismatch rows, 0 labeled seed mismatches, 24 no_decision mismatch decisions, 12/12 label-factory gates passed, 50-iteration local perf check completed in tmp
-- Notes: Documentation checked and updated across README, docs/label_factory.md, work/scope.md, work/handoff.md, work/label_factory_notes.md, and work/label_preview_700_notes.md; normal measured locked run.
 
 ### 2026-05-10T22:51:19.534178+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 198 unit tests passed after stale assertions were repaired, validate passed, git diff --check passed, compileall passed, 20/20 label-factory gates passed, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 0 accepted review-gap labels
 - Notes: Normal locked measured run. Six clean labels accepted; review-only repair controls added for 725 expert-label decision, local-evidence, alternate-structure, ontology-gap, learned-retrieval, and sequence-similarity lanes.
 
+### 2026-05-12T18:52:33.655337+00:00 - post-v2
+
+- Task: Defer 725 review debt and open 750 preview
+- Time mode: measured
+- Measured minutes: 59.833
+- Started: 2026-05-12T17:51:49Z
+- Ended: 2026-05-12T18:51:39Z
+- Artifacts: tests/test_geometry_reports.py
+- Evidence: 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures
+- Notes: Normal locked measured run. Canonical labels remain 630; 750 is preview-only until new review debt is repaired or explicitly deferred.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -165,6 +165,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T15:04:26.275853+00:00: After prioritized scientific expansion is implemented and guardrail-clean, agents should resume factory-gated label expansion while preserving label quality and import-safety controls.
 - 2026-05-12T16:42:24.970333+00:00: Keep ATP families as boundary evidence; stop scaling if next gate exposes quality drift.
 - 2026-05-12T17:48:03.708741+00:00: Next run should repair or explicitly defer the accepted-725 review-debt surface before blind 750 scaling.
+- 2026-05-12T18:52:33.655337+00:00: Next run should repair or explicitly defer the 18 new 750-preview review-debt rows before promoting seven clean candidates.
 
 ## Scope Adjustments
 
@@ -215,3 +216,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T15:04:26.275853+00:00: Expert-reviewed ATP/phosphoryl-transfer mismatch lanes now drive aggressive fingerprint-family ontology expansion for ePK ASKHA ATP-grasp GHKL dNK NDK PfkA PfkB and GHMP before returning to 10k gated label scaling.
 - 2026-05-12T16:42:24.970333+00:00: Nine-family ATP/phosphoryl-transfer expansion is complete; next bounded work can resume factory-gated scaling toward 725.
 - 2026-05-12T17:48:03.708741+00:00: Accepted 725 as the latest gated countable slice: 630 countable labels and 100 review-state rows kept non-countable.
+- 2026-05-12T18:52:33.655337+00:00: Accepted-725 review debt is explicitly deferred; 750 preview is open but not canonical.

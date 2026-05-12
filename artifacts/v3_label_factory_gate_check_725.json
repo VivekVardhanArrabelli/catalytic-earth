@@ -1,6 +1,7 @@
 {
   "blockers": [],
   "gates": {
+    "accepted_review_debt_deferral_audit_ready": true,
     "active_queue_ranked": true,
     "active_queue_retains_unlabeled_candidates": true,
     "adversarial_negatives_mined": true,
@@ -23,6 +24,15 @@
     "review_only_import_safety_audit_ready": true
   },
   "metadata": {
+    "accepted_review_debt_deferral_audit_accepted_overlap_count": 0,
+    "accepted_review_debt_deferral_audit_countable_label_candidate_count": 0,
+    "accepted_review_debt_deferral_audit_deferred_entry_count": 100,
+    "accepted_review_debt_deferral_audit_present": true,
+    "accepted_review_debt_deferral_audit_ready": true,
+    "accepted_review_debt_deferral_audit_strict_remap_guardrail_entry_ids": [
+      "m_csa:712"
+    ],
+    "accepted_review_debt_deferral_audit_unclassified_new_review_debt_entry_ids": [],
     "active_queue_expert_label_decision_count": 95,
     "active_queue_expert_label_decision_entry_ids": [
       "m_csa:494",
@@ -417,11 +427,11 @@
       "m_csa:670",
       "m_csa:696"
     ],
-    "gate_count": 20,
+    "gate_count": 21,
     "label_count": 630,
     "method": "label_factory_gate_check",
     "omitted_underrepresented_queue_entry_ids": [],
-    "passed_gate_count": 20,
+    "passed_gate_count": 21,
     "reaction_substrate_mismatch_review_export_entry_ids": [
       "m_csa:35",
       "m_csa:51",

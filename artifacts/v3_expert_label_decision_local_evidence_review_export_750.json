@@ -1,0 +1,1808 @@
+{
+  "metadata": {
+    "all_source_rows_exported": true,
+    "countable_label_candidate_count": 0,
+    "decision_counts": {
+      "no_decision": 28
+    },
+    "decision_schema": {
+      "action": [
+        "accept_label",
+        "mark_needs_more_evidence",
+        "reject_label",
+        "no_decision"
+      ],
+      "local_evidence_resolution": [
+        "confirms_local_mechanistic_evidence",
+        "requires_alternate_structure_mapping",
+        "requires_family_boundary_review",
+        "requires_reaction_substrate_review",
+        "needs_more_evidence"
+      ],
+      "review_status": [
+        "expert_reviewed",
+        "needs_expert_review"
+      ]
+    },
+    "export_ready": true,
+    "exported_count": 28,
+    "exported_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721",
+      "m_csa:730",
+      "m_csa:743",
+      "m_csa:749"
+    ],
+    "local_evidence_gap_class_counts": {
+      "counterevidence_boundary_unresolved": 15,
+      "not_scanned_or_no_alternate_context": 28,
+      "reaction_substrate_mismatch_review_required": 4,
+      "selected_structure_residue_support_shortfall": 28,
+      "text_leakage_or_nonlocal_evidence_risk": 10
+    },
+    "method": "expert_label_decision_local_evidence_review_export",
+    "recommended_action_counts": {
+      "repair_selected_structure_residue_mapping": 10,
+      "route_to_family_boundary_expert_review": 14,
+      "route_to_reaction_substrate_expert_review": 4
+    },
+    "review_only_rule": "local-evidence gap exports are expert-review context only; automation keeps all rows as no_decision and cannot count them without explicit local evidence, review resolution, and factory gate acceptance",
+    "source_audited_entry_count": 28,
+    "source_method": "expert_label_decision_local_evidence_gap_audit"
+  },
+  "review_items": [
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "entry_id": "m_csa:510",
+        "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4208
+      },
+      "rank": 1,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:553",
+      "entry_name": "N-acetylneuraminate lyase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "entry_id": "m_csa:553",
+        "entry_name": "N-acetylneuraminate lyase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.4135
+      },
+      "rank": 2,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "ligand_supported",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:567",
+        "entry_name": "glucose oxidase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.685
+      },
+      "rank": 3,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:572",
+      "entry_name": "catalase (manganese dependent)",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:572",
+        "entry_name": "catalase (manganese dependent)",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.5861
+      },
+      "rank": 4,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "entry_id": "m_csa:577",
+        "entry_name": "inositol-phosphate phosphatase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4288
+      },
+      "rank": 5,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:578",
+      "entry_name": "ferrochelatase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:578",
+        "entry_name": "ferrochelatase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.5632
+      },
+      "rank": 6,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:592",
+        "entry_name": "glucokinase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "reaction_substrate_mismatch_review_required",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "reaction_substrate_mismatch_review_required",
+          "readiness_blockers_unresolved",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required",
+          "reaction_substrate_mismatch",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "recommended_next_action": "route_to_reaction_substrate_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.5769
+      },
+      "rank": 7,
+      "review_question": "Does reaction or substrate evidence support the current family, an existing alternate fingerprint, or a new ontology family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "entry_id": "m_csa:641",
+        "entry_name": "anthrax lethal factor endopeptidase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4261
+      },
+      "rank": 8,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "role_inferred_metal_missing_water_activation_role"
+        ],
+        "entry_id": "m_csa:643",
+        "entry_name": "acetate kinase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "reaction_substrate_mismatch_review_required",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "reaction_substrate_mismatch_review_required",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "reaction_substrate_mismatch",
+          "substrate_class_boundary",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "recommended_next_action": "route_to_reaction_substrate_expert_review",
+        "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4227
+      },
+      "rank": 9,
+      "review_question": "Does reaction or substrate evidence support the current family, an existing alternate fingerprint, or a new ontology family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:654",
+        "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "reaction_substrate_mismatch_review_required",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "reaction_substrate_mismatch_review_required",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required",
+          "reaction_substrate_mismatch"
+        ],
+        "reaction_substrate_mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "recommended_next_action": "route_to_reaction_substrate_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3581
+      },
+      "rank": 10,
+      "review_question": "Does reaction or substrate evidence support the current family, an existing alternate fingerprint, or a new ontology family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:657",
+        "entry_name": "mitochondrial processing peptidase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.5822
+      },
+      "rank": 11,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "entry_id": "m_csa:659",
+        "entry_name": "DNA-formamidopyrimidine glycosylase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.3294
+      },
+      "rank": 12,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:662",
+        "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "reaction_substrate_mismatch_review_required",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "reaction_substrate_mismatch_review_required",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required",
+          "reaction_substrate_mismatch"
+        ],
+        "reaction_substrate_mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "recommended_next_action": "route_to_reaction_substrate_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3263
+      },
+      "rank": 13,
+      "review_question": "Does reaction or substrate evidence support the current family, an existing alternate fingerprint, or a new ontology family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "entry_id": "m_csa:664",
+        "entry_name": "dihydroneopterin aldolase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "sibling_mechanism_confusion"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2703
+      },
+      "rank": 14,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:667",
+      "entry_name": "alpha-N-arabinofuranosidase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:667",
+        "entry_name": "alpha-N-arabinofuranosidase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3767
+      },
+      "rank": 15,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_monooxygenase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "entry_id": "m_csa:677",
+        "entry_name": "pyridoxal 5'-phosphate synthase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "sibling_mechanism_confusion"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "flavin_monooxygenase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2296
+      },
+      "rank": 16,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:690",
+      "entry_name": "dextranase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "glycosidase_not_metal_hydrolase_seed"
+        ],
+        "entry_id": "m_csa:690",
+        "entry_name": "dextranase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "sibling_mechanism_confusion",
+          "substrate_class_boundary"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.2221
+      },
+      "rank": 17,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:691",
+      "entry_name": "histone-lysine N-methyltransferase (Suvar3-9 subfamily)",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "entry_id": "m_csa:691",
+        "entry_name": "histone-lysine N-methyltransferase (Suvar3-9 subfamily)",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.3409
+      },
+      "rank": 18,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_monooxygenase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_flavin_context",
+          "nad_only_or_nonflavin_context"
+        ],
+        "entry_id": "m_csa:692",
+        "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "flavin_monooxygenase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.2367
+      },
+      "rank": 19,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:698",
+      "entry_name": "xanthine dehydrogenase (bacterial)",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:698",
+        "entry_name": "xanthine dehydrogenase (bacterial)",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3441
+      },
+      "rank": 20,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "heme_peroxidase_oxidase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:701",
+      "entry_name": "dimethylsulfoxide reductase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_heme_context"
+        ],
+        "entry_id": "m_csa:701",
+        "entry_name": "dimethylsulfoxide reductase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_ontology_family": "heme_redox",
+        "top1_score": 0.2263
+      },
+      "rank": 21,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:704",
+      "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:704",
+        "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3362
+      },
+      "rank": 22,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "plp_dependent_enzyme",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:713",
+      "entry_name": "cystathionine beta-synthase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "ligand_supported",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:713",
+        "entry_name": "cystathionine beta-synthase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "plp_dependent_enzyme",
+        "top1_ontology_family": "plp_chemistry",
+        "top1_score": 0.6525
+      },
+      "rank": 23,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:717",
+      "entry_name": "ornithine cyclodeaminase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "metal_bound_nad_redox_text_context"
+        ],
+        "entry_id": "m_csa:717",
+        "entry_name": "ornithine cyclodeaminase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required",
+          "sibling_mechanism_confusion"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.2223
+      },
+      "rank": 24,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "entry_id": "m_csa:721",
+        "entry_name": "2-dehydropantoate 2-reductase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.233
+      },
+      "rank": 25,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "flavin_dehydrogenase_reductase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:730",
+      "entry_name": "threonine synthase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [
+          "absent_flavin_context"
+        ],
+        "entry_id": "m_csa:730",
+        "entry_name": "threonine synthase",
+        "local_evidence_gap_classes": [
+          "counterevidence_boundary_unresolved",
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "counterevidence_boundary_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "counterevidence_boundary",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "route_to_family_boundary_expert_review",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_ontology_family": "flavin_redox",
+        "top1_score": 0.351
+      },
+      "rank": 26,
+      "review_question": "Does the counterevidence cross a mechanism-family boundary, or can the row stay as review-only support for the current family?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:743",
+      "entry_name": "quercetin 2,3-dioxygenase",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "role_inferred",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:743",
+        "entry_name": "quercetin 2,3-dioxygenase",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "text_leakage_or_nonlocal_evidence_risk_unresolved"
+        ],
+        "quality_risk_flags": [
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required",
+          "text_leakage_or_nonlocal_evidence_risk"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.5926
+      },
+      "rank": 27,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": "metal_dependent_hydrolase",
+        "label_type": null,
+        "local_evidence_resolution": "needs_more_evidence",
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:749",
+      "entry_name": "cytochrome-c peroxidase (di-heme type)",
+      "local_evidence_gap_context": {
+        "alternate_pdb_count": 0,
+        "alternate_pdb_with_residue_positions_count": 0,
+        "alternate_structure_scan_outcome": null,
+        "alternate_structure_scanned_structure_count": 0,
+        "candidate_pdb_structure_count": 0,
+        "cofactor_evidence_level": "absent",
+        "countable_label_candidate": false,
+        "counterevidence_reasons": [],
+        "entry_id": "m_csa:749",
+        "entry_name": "cytochrome-c peroxidase (di-heme type)",
+        "local_evidence_gap_classes": [
+          "not_scanned_or_no_alternate_context",
+          "selected_structure_residue_support_shortfall"
+        ],
+        "local_expected_family_hit_count": 0,
+        "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+        "non_countable_blockers": [
+          "active_site_mapping_or_structure_gap_unresolved",
+          "external_expert_decision_required",
+          "missing_local_active_site_expected_family_evidence",
+          "readiness_blockers_unresolved"
+        ],
+        "quality_risk_flags": [
+          "active_site_mapping_or_structure_gap",
+          "cofactor_family_ambiguity",
+          "external_expert_decision_required"
+        ],
+        "reaction_substrate_mismatch_reasons": [],
+        "recommended_next_action": "repair_selected_structure_residue_mapping",
+        "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+        "review_policy": "local-evidence gap rows are evidence-repair work only; they cannot become countable labels without explicit local mechanistic evidence, external review resolution, and a passing label-factory gate",
+        "selected_pdb_id": null,
+        "selected_pdb_residue_position_count": 0,
+        "structure_wide_expected_family_hit_count": 0,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.2933
+      },
+      "rank": 28,
+      "review_question": "What local mechanistic evidence is required before this row can leave review-only repair debt?"
+    }
+  ]
+}

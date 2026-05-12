@@ -88,8 +88,9 @@ non-countable. The family expansion is boundary evidence for routing,
 active-learning priority, adversarial negatives, and factory gates; it is not a
 new countable seed-fingerprint label source. With this expansion tested,
 documented, and gate-clean, the project resumed scaling through the accepted
-725 batch; the next bounded step is repairing or explicitly deferring the 725
-review-debt warnings before blind 750 growth.
+725 batch. The accepted-725 review-debt surface is now explicitly deferred by
+`artifacts/v3_accepted_review_debt_deferral_audit_725.json`, so the project
+opened a bounded 750 preview without promoting the canonical registry.
 
 ## Active Learning Queue
 
@@ -609,10 +610,13 @@ Current 725-queue gate state:
   95 expert-label decision rows and 25 priority repair rows while keeping every
   row non-countable.
 - The local-evidence gap audit/export covers those 25 priority lanes, emits 25
-  review-only/no-decision items, and records 0 countable candidates. The
-  accepted-725 gate intentionally does not require local-evidence repair
-  resolution yet, so the next run should repair or explicitly defer these lanes
-  before blind 750 growth.
+  review-only/no-decision items, and records 0 countable candidates.
+- `artifacts/v3_accepted_review_debt_deferral_audit_725.json` explicitly
+  defers all 100 accepted-725 review-state rows, keeps 0 countable candidates,
+  carries 45 metadata-only rows from the capped review-debt table, routes
+  `m_csa:712` as a strict remap-family-boundary deferral, and keeps
+  `m_csa:718` and `m_csa:724` as structure-wide-only evidence. The accepted-725
+  gate is now 21/21 with this deferral artifact attached.
 - `artifacts/v3_review_only_import_safety_audit_725.json` audits the
   reaction/substrate mismatch, expert-label decision, and local-evidence
   decision batches and confirms countable import adds 0 labels from those
@@ -657,6 +661,14 @@ Current 725-queue gate state:
   `m_csa:712` has local support from a conservative remap. The companion
   remap-local audit routes `m_csa:712` to expert family-boundary review and
   keeps it non-countable under a strict remap guardrail.
+- The 750 preview generated fresh graph, geometry, retrieval, review-queue,
+  gate, acceptance, scaling-quality, ontology-gap, learned-retrieval, and
+  sequence-similarity artifacts. `artifacts/v3_label_batch_acceptance_check_750_preview.json`
+  records 7 mechanically clean countable candidates, but
+  `artifacts/v3_label_scaling_quality_audit_750_preview.json` records 18 new
+  review-debt rows and recommends `review_before_promoting`. The canonical
+  registry remains at 630 labels until those rows are repaired or explicitly
+  deferred.
 
 ## Automation Lock
 

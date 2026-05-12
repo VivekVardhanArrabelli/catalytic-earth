@@ -99,8 +99,8 @@ evidence gap because B12 evidence is structure-wide only. The 675, 700, and
 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0
 actionable in-scope failures. See
 `work/label_queue_500_notes.md`, `work/label_queue_525_notes.md`,
-`work/label_queue_550_notes.md`, `work/label_factory_notes.md`, and
-`work/label_preview_725_notes.md`.
+`work/label_queue_550_notes.md`, `work/label_factory_notes.md`,
+`work/label_preview_725_notes.md`, and `work/label_preview_750_notes.md`.
 
 Label scaling is now gated by the label factory rather than raw queue size. The
 current 725 factory audit proposes 83 bronze-to-silver promotions, flags 112
@@ -113,7 +113,9 @@ priority local-evidence gap lanes as review-only items, emits a local-evidence
 repair plan, exports 8 explicit alternate residue-position sourcing requests,
 verifies review-only import safety, maps expert-reviewed
 ATP/phosphoryl-transfer mismatch lanes to nine concrete fingerprint families,
-and passes the 20-check 725-slice gate. The gate also
+and passes the 21-check 725-slice gate after the accepted-review-debt deferral
+audit confirms all 100 accepted-725 review-state rows remain non-countable.
+The gate also
 fails if unlabeled candidate rows are truncated by the queue limit, if
 family-guardrail reaction/substrate mismatch lanes lack a dedicated review
 export, if expert-label decision rows are not explicitly routed as non-countable
@@ -125,8 +127,11 @@ and requires the
 ATP/phosphoryl-transfer family expansion artifact to be guardrail-clean when
 attached.
 `artifacts/v3_label_batch_acceptance_check_725.json` records that the latest
-accepted batch added 6 labels for counting while 100 review-state decisions
-remain pending. `artifacts/v3_label_factory_batch_summary.json` aggregates the
+canonical accepted batch added 6 labels for counting while 100 review-state
+decisions remain pending. `artifacts/v3_accepted_review_debt_deferral_audit_725.json`
+explicitly defers those 100 rows, including strict remap-family-boundary
+handling for `m_csa:712` and structure-wide-only handling for `m_csa:718` and
+`m_csa:724`. `artifacts/v3_label_factory_batch_summary.json` aggregates the
 accepted batch history and confirms 10/10 accepted batches remain
 guardrail-clean. `artifacts/v3_review_debt_summary_725_preview.json`
 prioritizes 100 current evidence-gap rows for the accepted 725 state. The 675,
@@ -199,8 +204,17 @@ review-only while routing the 7 unlabeled rows to reviewed out-of-scope repair
 decisions and rejecting 17 controls. Countable import refuses
 review-only artifacts even when they carry reviewed repair decisions, so these
 lanes cannot enter the benchmark. With the 725 batch accepted, the next bounded
-work item is repairing or explicitly deferring the accepted-725 review-debt
+work item was to repair or explicitly defer the accepted-725 review-debt
 surface before blind 750 scaling.
+
+The 750 preview is now open but not promoted. It generated seven mechanically
+clean countable candidates (`m_csa:728`, `m_csa:733`, `m_csa:735`, `m_csa:739`,
+`m_csa:740`, `m_csa:742`, and `m_csa:750`) and a 19/19 preview gate, but it
+also raised review-state debt to 118 rows with 18 new review-debt rows.
+`artifacts/v3_label_scaling_quality_audit_750_preview.json` classifies all new
+review debt and recommends review before promotion. The canonical registry
+therefore remains at 630 countable labels until that 750 review-debt surface is
+repaired or explicitly deferred.
 See
 `docs/label_factory.md`.
 
@@ -302,17 +316,18 @@ Current timeline judgment:
    performance checks.
 2. Current automation blocks: keep using the label factory for every new
    tranche. The 725 slice is accepted only for its clean countable labels; 100
-   review-state rows remain outside the benchmark. Each batch must pass
+   review-state rows remain outside the benchmark and now have an explicit
+   non-countable deferral audit. The 750 slice is previewed but not promoted:
+   seven clean candidates are available, while 18 new review-debt rows must be
+   handled first. Each batch must pass
    promotion/demotion, adversarial-negative, active-learning, expert-review
    export/import, family-propagation, ATP/phosphoryl-transfer family-boundary,
    validation, and test gates before labels count toward the benchmark.
-3. Next serious milestone: repair and audit the new accepted-725 review-debt
-   surface before opening a blind 750 tranche; then resume bounded
-   factory-gated scaling toward 10k once the 725 warnings remain
-   guardrail-clean. Stop count growth if the next
-   gate exposes new review debt, ontology/family propagation drift, hard
-   negatives, out-of-scope false non-abstentions, or actionable in-scope
-   failures.
+3. Next serious milestone: repair or explicitly defer the 18 new 750-preview
+   review-debt rows before promoting the seven clean 750 candidates or opening
+   another tranche. Stop count growth if the next gate exposes review debt,
+   ontology/family propagation drift, hard negatives, out-of-scope false
+   non-abstentions, or actionable in-scope failures.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that
    are credible enough for external labs to prioritize.
