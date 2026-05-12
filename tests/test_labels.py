@@ -70,12 +70,12 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 642)
+        self.assertEqual(len(labels), 652)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
-        self.assertEqual(summary["by_tier"]["bronze"], 642)
-        self.assertEqual(summary["by_review_status"]["automation_curated"], 642)
+        self.assertEqual(summary["by_tier"]["bronze"], 652)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 652)
         self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:
@@ -4404,6 +4404,39 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
             decisions["m_csa:577"]["fingerprint_id"],
             "metal_dependent_hydrolase",
         )
+
+    def test_provisional_batch_defers_role_inferred_metal_hydrolase(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:836",
+                    "entry_name": "exodeoxyribonuclease (lambda-induced)",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:836",
+                        "entry_name": "exodeoxyribonuclease (lambda-induced)",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        "top1_score": 0.58,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "role_inferred",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "A three-metal dissociative hydrolysis mechanism activates water to cleave phosphate."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                }
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decision = batch["review_items"][0]["decision"]
+
+        self.assertEqual(decision["action"], "mark_needs_more_evidence")
+        self.assertEqual(decision["fingerprint_id"], "metal_dependent_hydrolase")
+        self.assertIn("rather than local ligand support", decision["rationale"])
 
     def test_provisional_batch_defers_seed_label_with_structural_blockers(self) -> None:
         review = {

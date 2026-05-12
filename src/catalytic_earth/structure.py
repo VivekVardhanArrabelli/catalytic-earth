@@ -134,6 +134,7 @@ def build_geometry_features(
     graph: dict[str, Any],
     max_entries: int = 20,
     cif_fetcher=fetch_pdb_cif,
+    reuse_features: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if max_entries < 1:
         raise ValueError("max_entries must be positive")
@@ -148,9 +149,20 @@ def build_geometry_features(
             residues_by_entry[entry_id].append(node)
 
     cif_cache: dict[str, list[dict[str, Any]]] = {}
+    reusable_entries = {
+        str(entry.get("entry_id")): entry
+        for entry in (reuse_features or {}).get("entries", [])
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+    reused_entry_count = 0
     entry_features: list[dict[str, Any]] = []
 
     for entry_id in sorted(residues_by_entry, key=_entry_sort_key)[:max_entries]:
+        if entry_id in reusable_entries:
+            entry_features.append(reusable_entries[entry_id])
+            reused_entry_count += 1
+            continue
+
         residues = residues_by_entry[entry_id]
         positions_by_pdb = _positions_by_pdb(residues)
         if not positions_by_pdb:
@@ -261,6 +273,7 @@ def build_geometry_features(
             "input_graph": summarize_graph(graph),
             "max_entries": max_entries,
             "entry_count": len(entry_features),
+            "reused_entry_count": reused_entry_count,
             "entries_with_pairwise_geometry": sum(
                 1 for entry in entry_features if entry.get("pairwise_distances_angstrom")
             ),
@@ -299,8 +312,19 @@ def write_geometry_features(
     graph_path: Path,
     out_path: Path,
     max_entries: int = 20,
+    reuse_existing_path: Path | None = None,
 ) -> dict[str, Any]:
-    features = build_geometry_features(load_graph(graph_path), max_entries=max_entries)
+    reuse_features = None
+    if reuse_existing_path is not None:
+        import json
+
+        with reuse_existing_path.open("r", encoding="utf-8") as handle:
+            reuse_features = json.load(handle)
+    features = build_geometry_features(
+        load_graph(graph_path),
+        max_entries=max_entries,
+        reuse_features=reuse_features,
+    )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(_json_dumps(features), encoding="utf-8")
     return features

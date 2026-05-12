@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 52
-- Measured elapsed time: 1929.1 minutes (32.15 hours)
+- Entries: 53
+- Measured elapsed time: 1991.2 minutes (33.19 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1851.0 measured minutes (30.85 hours)
+- post-v2: 1913.0 measured minutes (31.88 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 510
-- Evidence references logged: 414
+- Artifact references logged: 522
+- Evidence references logged: 428
 
 ## Recent Entries
-
-### 2026-05-11T03:12:54.274263+00:00 - post-v2
-
-- Task: Gate expert-label local-evidence repair lanes
-- Time mode: measured
-- Measured minutes: 50.95
-- Started: 2026-05-10T21:21:25-05:00
-- Ended: 2026-05-10T22:12:22-05:00
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, artifacts/v3_expert_label_decision_local_evidence_gap_audit_700.json, artifacts/v3_expert_label_decision_local_evidence_review_export_700.json, artifacts/v3_expert_label_decision_local_evidence_decision_batch_700.json, artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json, artifacts/v3_label_factory_gate_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_label_factory_batch_summary.json, artifacts/v3_mechanism_ontology_gap_audit_700.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_factory_notes.md, work/expert_label_decision_local_evidence_gap_700_notes.md
-- Evidence: 185 unit tests passed, validate passed, git diff check passed, compileall passed, AST parse passed, JSON artifact parse passed, local-evidence artifact consistency passed, 17/17 label-factory gates passed, 21 local-evidence repair lanes audited and exported as no_decision, 0 local-evidence countable candidates, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 50- and 200-iteration local perf checks completed in tmp
-- Notes: Recovered stale dirty lock work; countable labels remain 624; no 725+ tranche opened.
 
 ### 2026-05-12T14:55:38.247895+00:00 - v3
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 202 unit tests passed, validate passed, git diff --check passed, JSON artifact parse passed, 20/20 775 label-factory gates passed, 642 countable labels, 5 accepted 775 labels, 138 review-state rows explicitly deferred, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, m_csa:771 counterevidence deferral covered
 - Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; m_csa:771 Ser-His counterevidence now stays non-countable.
 
+### 2026-05-12T22:58:26.440004+00:00 - post-v2
+
+- Task: Accept gated 800-850 label batches
+- Time mode: measured
+- Measured minutes: 62.067
+- Started: 2026-05-12T16:56:09-05:00
+- Ended: 2026-05-12T17:58:13-05:00
+- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, data/registries/curated_mechanism_labels.json, artifacts/v3_label_batch_acceptance_check_850.json, artifacts/v3_label_factory_gate_check_850.json, artifacts/v3_accepted_review_debt_deferral_audit_850.json, artifacts/v3_label_scaling_quality_audit_850_preview.json, artifacts/v3_label_factory_batch_summary.json, artifacts/v3_geometry_features_850.json, artifacts/perf_report_850.json, work/label_preview_850_notes.md
+- Evidence: 205 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 20/20 850 label-factory gates passed, 652 countable labels, 3 accepted 850 labels, 203 review-state rows explicitly deferred, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, m_csa:836 role-inferred metal-hydrolase deferral covered
+- Notes: Normal locked measured run. Accepted 800, 825, and 850 gated batches; repaired role-inferred metal-hydrolase promotion; documentation checked and updated.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -168,6 +168,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T18:52:33.655337+00:00: Next run should repair or explicitly defer the 18 new 750-preview review-debt rows before promoting seven clean candidates.
 - 2026-05-12T20:14:45.382801+00:00: 750 review debt can be explicitly deferred without weakening countable-label gates; resume bounded scaling toward 1,000 labels.
 - 2026-05-12T21:46:07.698000+00:00: Countable registry is 642 labels; the label factory remains below the 1000-label milestone and should continue bounded batches with quality repair on any gate failure.
+- 2026-05-12T22:58:26.440004+00:00: Countable registry is 652 labels; next bounded work is an 875 preview while post-850 gate stays clean.
 
 ## Scope Adjustments
 
@@ -221,3 +222,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T18:52:33.655337+00:00: Accepted-725 review debt is explicitly deferred; 750 preview is open but not canonical.
 - 2026-05-12T20:14:45.382801+00:00: Accepted 750 as latest gated countable slice; next bounded work is a 775 preview only while the 750 post-batch gate stays clean.
 - 2026-05-12T21:46:07.698000+00:00: Accepted 775 as latest gated countable slice; next bounded work is an 800 preview only while the 775 post-batch gate stays clean.
+- 2026-05-12T22:58:26.440004+00:00: Accepted 850 as latest gated countable slice; geometry row reuse added for tranche scaling.

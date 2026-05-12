@@ -12636,6 +12636,27 @@ def _provisional_unlabeled_decision(
             "evidence_score": 0.55,
             "review_status": "needs_expert_review",
         }
+    if (
+        top1 == "metal_dependent_hydrolase"
+        and top1_score >= threshold
+        and cofactor_level != "ligand_supported"
+    ):
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "seed_fingerprint",
+            "fingerprint_id": "metal_dependent_hydrolase",
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} has metal-dependent hydrolase retrieval support "
+                f"at {top1_score:.4f}, but the current review context reports "
+                f"{cofactor_level} metal evidence rather than local ligand support; "
+                "keep this candidate in expert review before counting it."
+            ),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
     if ser_his_hydrolase_hint and counterevidence:
         return {
             "action": "mark_needs_more_evidence",

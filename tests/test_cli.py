@@ -73,6 +73,75 @@ class CliTests(unittest.TestCase):
             self.assertEqual(clusters["metadata"]["duplicate_cluster_count"], 1)
             self.assertEqual(clusters["duplicate_clusters"][0]["entry_count"], 2)
 
+    def test_build_geometry_features_reuse_existing_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            graph = root / "graph.json"
+            reuse = root / "reuse.json"
+            out = root / "geometry.json"
+            reused_row = {
+                "entry_id": "m_csa:1",
+                "status": "ok",
+                "pairwise_distances_angstrom": [{"distance": 1.0}],
+                "ligand_context": {
+                    "proximal_ligands": [],
+                    "cofactor_families": [],
+                    "structure_ligands": [],
+                    "structure_cofactor_families": [],
+                },
+                "pocket_context": {"nearby_residue_count": 0},
+            }
+            graph.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"builder": "test"},
+                        "nodes": [
+                            {
+                                "id": "m_csa:1:residue:1",
+                                "type": "catalytic_residue",
+                                "roles": ["acid"],
+                                "structure_positions": [
+                                    {
+                                        "pdb_id": "1ABC",
+                                        "chain_name": "A",
+                                        "code": "ASP",
+                                        "resid": 7,
+                                    }
+                                ],
+                            }
+                        ],
+                        "edges": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            reuse.write_text(json.dumps({"entries": [reused_row]}), encoding="utf-8")
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-geometry-features",
+                    "--graph",
+                    str(graph),
+                    "--max-entries",
+                    "1",
+                    "--reuse-existing",
+                    str(reuse),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            geometry = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(geometry["metadata"]["reused_entry_count"], 1)
+            self.assertEqual(geometry["entries"], [reused_row])
+
     def test_filter_countable_labels_requires_explicit_lossy_filter(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             labels = Path(tmpdir) / "labels.json"
@@ -3118,7 +3187,7 @@ class CliTests(unittest.TestCase):
             self.assertGreaterEqual(len(json.loads(imported_labels.read_text())), 475)
             self.assertLessEqual(len(json.loads(countable_labels.read_text())), len(json.loads(imported_labels.read_text())))
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "775")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "850")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 

@@ -333,6 +333,7 @@ def cmd_build_geometry_features(args: argparse.Namespace) -> int:
         graph_path=Path(args.graph),
         out_path=Path(args.out),
         max_entries=args.max_entries,
+        reuse_existing_path=Path(args.reuse_existing) if args.reuse_existing else None,
     )
     print(
         "Wrote geometry features to "
@@ -1971,6 +1972,11 @@ def build_parser() -> argparse.ArgumentParser:
     )
     geometry.add_argument("--graph", default="artifacts/v1_graph.json")
     geometry.add_argument("--max-entries", type=int, default=20)
+    geometry.add_argument(
+        "--reuse-existing",
+        default=None,
+        help="reuse matching entry rows from an existing geometry artifact",
+    )
     geometry.add_argument("--out", default="artifacts/v3_geometry_features.json")
     geometry.set_defaults(func=cmd_build_geometry_features)
 

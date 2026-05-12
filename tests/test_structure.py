@@ -305,6 +305,69 @@ class StructureTests(unittest.TestCase):
             ["m_csa:1", "m_csa:2", "m_csa:10"],
         )
 
+    def test_build_geometry_features_reuses_existing_rows(self) -> None:
+        graph = {"nodes": [], "edges": []}
+        for entry_id in ["m_csa:1", "m_csa:2"]:
+            graph["nodes"].extend(
+                [
+                    {
+                        "id": f"{entry_id}:residue:1",
+                        "type": "catalytic_residue",
+                        "roles": ["acid"],
+                        "structure_positions": [
+                            {
+                                "pdb_id": "1ABC",
+                                "chain_name": "A",
+                                "code": "ASP",
+                                "resid": 7,
+                            }
+                        ],
+                    },
+                    {
+                        "id": f"{entry_id}:residue:2",
+                        "type": "catalytic_residue",
+                        "roles": ["nucleophile"],
+                        "structure_positions": [
+                            {
+                                "pdb_id": "1ABC",
+                                "chain_name": "A",
+                                "code": "CYS",
+                                "resid": 70,
+                            }
+                        ],
+                    },
+                ]
+            )
+        reused_row = {
+            "entry_id": "m_csa:1",
+            "status": "ok",
+            "pairwise_distances_angstrom": [{"distance": 1.0}],
+            "ligand_context": {
+                "proximal_ligands": [],
+                "cofactor_families": [],
+                "structure_ligands": [],
+                "structure_cofactor_families": [],
+            },
+            "pocket_context": {"nearby_residue_count": 0},
+        }
+        fetched: list[str] = []
+
+        def fetcher(pdb_id: str) -> str:
+            fetched.append(pdb_id)
+            return SAMPLE_CIF
+
+        features = build_geometry_features(
+            graph,
+            max_entries=2,
+            cif_fetcher=fetcher,
+            reuse_features={"entries": [reused_row]},
+        )
+
+        self.assertEqual(features["metadata"]["reused_entry_count"], 1)
+        self.assertEqual([entry["entry_id"] for entry in features["entries"]], ["m_csa:1", "m_csa:2"])
+        self.assertEqual(features["entries"][0], reused_row)
+        self.assertEqual(fetched, ["1ABC"])
+
 
 if __name__ == "__main__":
     unittest.main()

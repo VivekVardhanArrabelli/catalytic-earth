@@ -11,12 +11,13 @@ baselines to geometry-aware active-site retrieval and label-factory quality
 automation. Geometry artifacts now cover
 20-, 30-, 40-, 50-, 60-, 75-, 100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-,
 300-, 325-, 350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-,
-600-, 625-, 650-, 675-, 700-, 725-, 750-, and 775-entry curated slices. The 500-entry and larger
+600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-, 800-, 825-, and 850-entry
+curated slices. The 500-entry and larger
 slices are countable only through the label-factory batch checks.
 
 Curated seed labels live in
 `data/registries/curated_mechanism_labels.json`. The registry currently covers
-642 countable labels. Review-state registries preserve pending
+652 countable labels. Review-state registries preserve pending
 `needs_expert_review` rows separately so unresolved evidence gaps do not count
 as benchmark labels.
 
@@ -162,10 +163,19 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - Tightened the provisional Ser-His hydrolase path so `m_csa:771`-style
   Ser-His text with counterevidence remains `needs_more_evidence` and is
   classified as a text-leakage risk rather than counted.
+- Accepted the gated 800-, 825-, and 850-entry label-factory batches. The
+  batches added ten clean countable labels total, raising the canonical
+  registry to 652 labels while leaving 203 review-state rows non-countable.
+- Added geometry-feature row reuse through `build-geometry-features
+  --reuse-existing` so bounded tranches can reuse unchanged geometry rows
+  instead of rebuilding every prior entry.
+- Tightened provisional metal-hydrolase promotion so `m_csa:836`-style
+  role-inferred metal-hydrolase candidates without local ligand support remain
+  `needs_more_evidence` rather than counted.
 
 ## Current Metrics
 
-- Curated label registry: 642 bronze automation-curated labels, with 175
+- Curated label registry: 652 bronze automation-curated labels, with 185
   seed-fingerprint positives and 467 out-of-scope labels.
 - 20-entry slice: threshold `0.4104`, 20/20 evaluable, 7/7 in-scope positives
   retained, 0 false non-abstentions, 0 hard negatives.
@@ -227,6 +237,19 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   non-abstentions, 0 hard negatives, 0 near misses, 4 evidence-limited
   in-scope abstentions, and 113 ready label candidates after accepting five
   clean 775 labels.
+- 800-entry countable slice: threshold `0.4115`, 629/645 evaluated labeled
+  rows evaluable, 175/179 in-scope positives retained, 0 false
+  non-abstentions, 0 hard negatives, 0 near misses, and 4 evidence-limited
+  in-scope abstentions after accepting four clean 800 labels.
+- 825-entry countable slice: threshold `0.4115`, 632/648 evaluated labeled
+  rows evaluable, 178/182 in-scope positives retained, 0 false
+  non-abstentions, 0 hard negatives, 0 near misses, and 4 evidence-limited
+  in-scope abstentions after accepting three clean 825 labels.
+- 850-entry countable slice: threshold `0.4115`, 635/651 evaluated labeled
+  rows evaluable, 181/185 in-scope positives retained, 0 false
+  non-abstentions, 0 hard negatives, 0 near misses, 4 evidence-limited
+  in-scope abstentions, and 97 bronze-to-silver promotion candidates after
+  accepting three clean 850 labels.
 - Evidence-limited abstentions remain `m_csa:132`, `m_csa:353`, `m_csa:372`,
   and `m_csa:430`.
 - Retained evidence-limited positives remain `m_csa:41`, `m_csa:108`,
@@ -237,24 +260,24 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   evidence-limited retained positives without losing retained positives.
 - The closest below-floor out-of-scope control is still `m_csa:65`, a
   metal-dependent hydrolase hit `0.0131` below the correct-positive floor.
-- Label factory at 775: 91 bronze-to-silver promotions proposed, 245 active
-  learning review rows queued, 100 adversarial negatives mined, 161 post-775
-  expert-review export items generated, 133 active expert-label decision rows
+- Label factory at 850: 97 bronze-to-silver promotions proposed, 310 active
+  learning review rows queued, 100 adversarial negatives mined, 229 post-850
+  expert-review export items generated, 198 active expert-label decision rows
   routed through a review-only export, complete repair-candidate summary,
-  priority repair guardrail audit, complete 38-row local-evidence gap
+  priority repair guardrail audit, complete 56-row local-evidence gap
   audit/export, repair plan, review-only import-safety audit,
   ATP/phosphoryl-transfer family expansion, and 20/20 gate checks passing.
-- Label batch summary: 12/12 accepted batches, 0 blockers, 0 hard negatives,
+- Label batch summary: 15/15 accepted batches, 0 blockers, 0 hard negatives,
   0 near misses, 0 false non-abstentions, 0 actionable in-scope failures, and
   all active queues retained their unlabeled candidates.
-- Latest accepted batch acceptance: 5 additional labels accepted for counting,
-  138 review-state decisions pending, 642 countable labels, 0 hard negatives,
+- Latest accepted batch acceptance: 3 additional labels accepted for counting,
+  203 review-state decisions pending, 652 countable labels, 0 hard negatives,
   0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable
   in-scope failures.
-- Accepted-775 deferral audit: all 138 review-state rows explicitly remain
-  non-countable, with 48 metadata-only rows carried from the capped review-debt
-  table, 38 priority local-evidence rows audited/exported, 20 new
-  775-preview review-debt rows classified and deferred, and 0 accepted-label
+- Accepted-850 deferral audit: all 203 review-state rows explicitly remain
+  non-countable, with 83 metadata-only rows carried from the capped review-debt
+  table, 56 priority local-evidence rows audited/exported, 22 new
+  850-preview review-debt rows classified and deferred, and 0 accepted-label
   overlap.
 - 725 post-batch review surface: all 95 unlabeled candidates are retained in a
   207-row active-learning queue; 95 expert-label decision rows are exported as
@@ -400,26 +423,27 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch
 
 ## Next Agent Start Here
 
-Start from the accepted 775 state. The canonical registry has 642 countable
-labels; the latest accepted labels are `m_csa:754`, `m_csa:758`, `m_csa:759`,
-`m_csa:762`, and `m_csa:776`.
+Start from the accepted 850 state. The canonical registry has 652 countable
+labels; the latest accepted labels are `m_csa:837`, `m_csa:839`, and
+`m_csa:852`.
 
-This run accepted 775 after explicitly deferring all 138 review-state rows.
-`artifacts/v3_accepted_review_debt_deferral_audit_775.json` covers the 20 new
-775-preview review-debt rows and keeps every deferred row non-countable.
-`artifacts/v3_label_factory_batch_summary.json` now reports 12/12 accepted
-batches, latest batch `775`, 642 countable labels, 138 pending review-state
-rows, and 0 blockers. `m_csa:771` is the new counterevidence regression case:
-Ser-His hydrolase text with missing triad coherence remains
-`needs_more_evidence` and is classified as text-leakage risk.
+This run accepted 800, 825, and 850 after explicitly deferring every
+review-state row at each tranche. `artifacts/v3_accepted_review_debt_deferral_audit_850.json`
+covers the 22 new 850-preview review-debt rows and keeps all 203 deferred rows
+non-countable. `artifacts/v3_label_factory_batch_summary.json` now reports
+15/15 accepted batches, latest batch `850`, 652 countable labels, 203 pending
+review-state rows, and 0 blockers. `m_csa:836` is the current guardrail
+regression case: role-inferred metal-hydrolase evidence without local ligand
+support remains `needs_more_evidence` and is not counted.
 
 Label-quality confidence call at handoff for the next run: yes, current quality
-gates are good enough to open a bounded 800 preview if the post-775 gate still
-passes. Evidence: 775 gate passes 20/20 checks, accepted-review-debt overlap is
-0, hard negatives remain 0, near misses remain 0, out-of-scope false
+gates are good enough to open a bounded 875 preview if the post-850 gate still
+passes. Evidence: the 850 gate passes 20/20 checks, accepted-review-debt
+overlap is 0, hard negatives remain 0, near misses remain 0, out-of-scope false
 non-abstentions remain 0, actionable in-scope failures remain 0, review-only
-import growth remains 0, 133 expert-label decision rows are retained in
-review-only artifacts, and the ATP/phosphoryl-transfer family expansion remains
+import growth remains 0, 198 expert-label decision rows are retained in
+review-only artifacts, the 56 priority local-evidence gap rows remain
+non-countable, and the ATP/phosphoryl-transfer family expansion remains
 guardrail-clean with 0 countable label candidates. This is an operational
 workflow decision, not a claim of biological truth.
 
@@ -445,37 +469,58 @@ countable label candidates. This is an operational workflow decision, not a
 claim of biological truth.
 
 Start with:
-`artifacts/v3_label_batch_acceptance_check_775.json`,
-`artifacts/v3_label_factory_gate_check_775.json`,
-`artifacts/v3_accepted_review_debt_deferral_audit_775.json`,
-`artifacts/v3_label_scaling_quality_audit_775_preview.json`,
-`artifacts/v3_review_debt_summary_775_preview.json`,
-`artifacts/v3_active_learning_review_queue_775.json`,
-`artifacts/v3_expert_label_decision_review_export_775.json`,
-`artifacts/v3_expert_label_decision_repair_candidates_775.json`,
-`artifacts/v3_expert_label_decision_local_evidence_gap_audit_775.json`,
-`artifacts/v3_expert_label_decision_local_evidence_repair_plan_775.json`,
-`artifacts/v3_mechanism_ontology_gap_audit_775.json`,
-`artifacts/v3_learned_retrieval_manifest_775.json`,
-`artifacts/v3_sequence_similarity_failure_sets_775.json`,
+`artifacts/v3_label_batch_acceptance_check_850.json`,
+`artifacts/v3_label_factory_gate_check_850.json`,
+`artifacts/v3_accepted_review_debt_deferral_audit_850.json`,
+`artifacts/v3_label_scaling_quality_audit_850_preview.json`,
+`artifacts/v3_review_debt_summary_850_preview.json`,
+`artifacts/v3_active_learning_review_queue_850.json`,
+`artifacts/v3_expert_label_decision_review_export_850.json`,
+`artifacts/v3_expert_label_decision_repair_candidates_850.json`,
+`artifacts/v3_expert_label_decision_local_evidence_gap_audit_850.json`,
+`artifacts/v3_expert_label_decision_local_evidence_repair_plan_850.json`,
+`artifacts/v3_mechanism_ontology_gap_audit_850.json`,
+`artifacts/v3_learned_retrieval_manifest_850.json`,
+`artifacts/v3_sequence_similarity_failure_sets_850.json`,
+`artifacts/v3_geometry_features_850.json`,
 `artifacts/v3_label_factory_batch_summary.json`, and
-`work/label_preview_775_notes.md`.
+`work/label_preview_850_notes.md`.
 
 Highest-value options:
 
-1. Open a bounded 800 preview toward the 1,000-label milestone only if the 775
+1. Open a bounded 875 preview toward the 1,000-label milestone only if the 850
    post-batch gate remains clean.
-2. Run the full label-factory gate before any 800 promotion: review/confidence
+2. Reuse prior geometry rows with `build-geometry-features --reuse-existing
+   artifacts/v3_geometry_features_850.json` when generating the 875 geometry
+   artifact, then run retrieval and all downstream gates.
+3. Run the full label-factory gate before any 875 promotion: review/confidence
    evidence validation, promotion/demotion checks, ontology/family guardrails,
    active-learning queue, adversarial negatives, expert-review artifacts,
    abstention calibration, hard-negative checks, in-scope failure analysis,
    tests, validate, and docs/status updates.
-3. If the 800 preview adds review debt or exposes ontology/family-propagation
+4. If the 875 preview adds review debt or exposes ontology/family-propagation
    drift, stop count growth and repair or explicitly defer that surface before
    promotion.
-4. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
+5. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
    do not collapse these families into generic hydrolase or metal-hydrolase
    labels.
+
+Label-quality confidence call for the 2026-05-12T16:56:09-05:00 run: yes,
+current quality gates are good enough to open a bounded 800 preview. Evidence
+at run start: `validate` and 202 unit tests passed, the accepted-775 gate
+passes 20/20 checks, the accepted-775 review-debt deferral audit keeps all 138
+review-state rows non-countable with 0 accepted-label overlap, hard negatives
+remain 0, near misses remain 0, out-of-scope false non-abstentions remain 0,
+actionable in-scope failures remain 0, review-only import growth remains 0,
+and the ATP/phosphoryl-transfer family expansion remains guardrail-clean with
+0 countable label candidates. This is an operational workflow decision, not a
+claim of biological truth.
+
+Remaining-time plan for the 2026-05-12T16:56:09-05:00 run: after accepting
+the clean 800 batch, use the remaining productive window to remove a scaling
+bottleneck exposed by the run by adding geometry-artifact row reuse, verify it
+against the real 800 graph, then open the next bounded tranche only if the
+post-800 gate remains clean and the wrap-up window is still protected.
 
 Keep `m_csa:650` and `m_csa:771` in review unless explicit local mechanism
 evidence resolves their counterevidence; they are regression cases for
@@ -506,6 +551,32 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-12T16:56:09-05:00
+- ENDED_AT: 2026-05-12T17:58:13-05:00
+- Measured elapsed time: 62.067 minutes
+- Documentation checked and updated across README, docs/label_factory.md,
+  docs/geometry_features.md, docs/performance.md,
+  docs/v2_strengthening_report.md, docs/v2_report.md, work/scope.md,
+  work/handoff.md, work/status.md inputs, work/label_factory_notes.md, and
+  work/label_preview_850_notes.md before status regeneration.
+- Normal locked run from the accepted 775 state first made an evidence-based
+  confidence call, then accepted the bounded 800, 825, and 850 batches.
+- The 850 gate passes 20/20 checks and records 0 hard negatives, 0 near misses,
+  0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 0
+  accepted review-gap labels, 0 accepted reaction/substrate mismatch labels,
+  and 0 review-only import count growth.
+- The canonical registry now has 652 labels. All 203 accepted-850 review-state
+  rows remain non-countable under
+  `artifacts/v3_accepted_review_debt_deferral_audit_850.json`, including the
+  22 new 850-preview review-debt rows. `m_csa:836` is explicitly deferred as
+  role-inferred metal-hydrolase evidence without local ligand support rather
+  than counted.
+- Final verification passed: `git diff --check`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `PYTHONPATH=src python -m unittest discover -s tests` with 205 tests,
+  `PYTHONPATH=src python -m compileall -q src tests`, and `jq empty` across
+  JSON artifacts.
 
 - STARTED_AT: 2026-05-12T20:55:05Z
 - ENDED_AT: 2026-05-12T21:45:56Z

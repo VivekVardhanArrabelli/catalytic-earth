@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "cluster_source": "reference_uniprot_exact_set",
+    "countable_label_candidate_count": 0,
+    "duplicate_cluster_count": 2,
+    "input_cluster_count": 822,
+    "method": "sequence_similarity_failure_set_audit",
+    "review_only_rule": "exact-reference clusters are failure-set controls; they do not propagate labels without mechanism evidence",
+    "risk_flag_counts": {
+      "active_queue_cluster_member": 1,
+      "duplicate_cluster_control": 1
+    }
+  },
+  "rows": [
+    {
+      "active_queue_recommended_action_counts": {},
+      "cluster_source": "reference_uniprot_exact_set",
+      "countable_label_candidate": false,
+      "entry_ids": [
+        "m_csa:389",
+        "m_csa:458"
+      ],
+      "fingerprint_counts": {
+        "out_of_scope": 2
+      },
+      "label_type_counts": {
+        "out_of_scope": 2
+      },
+      "recommended_next_action": "keep as sequence-similarity failure control before any family propagation or learned retrieval split",
+      "risk_flags": [
+        "duplicate_cluster_control"
+      ],
+      "sequence_cluster_id": "uniprot:P11586",
+      "top1_ontology_family_counts": {}
+    },
+    {
+      "active_queue_recommended_action_counts": {
+        "hold_bronze_boundary_review": 3
+      },
+      "cluster_source": "reference_uniprot_exact_set",
+      "countable_label_candidate": false,
+      "entry_ids": [
+        "m_csa:373",
+        "m_csa:374",
+        "m_csa:386"
+      ],
+      "fingerprint_counts": {
+        "out_of_scope": 3
+      },
+      "label_type_counts": {
+        "out_of_scope": 3
+      },
+      "recommended_next_action": "keep as sequence-similarity failure control before any family propagation or learned retrieval split",
+      "risk_flags": [
+        "active_queue_cluster_member"
+      ],
+      "sequence_cluster_id": "uniprot:P81701",
+      "top1_ontology_family_counts": {
+        "hydrolysis": 3
+      }
+    }
+  ]
+}
