@@ -130,14 +130,21 @@ Current review-only external artifacts:
   targets for the same selected 10. It carries 79 review-only targets, all 10
   sequence-search packets, 3 active-site sourcing packets, and no missing
   required source packets; it is source-packet consolidation only.
+- `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` turns the
+  selected 10 into per-candidate review dossiers. Seven have explicit UniProt
+  active-site feature support, all 10 have Rhea reaction context, four have
+  representation-sample rows, and all 10 still carry import blockers. The
+  artifact is review-only and creates 0 countable candidates.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
   checkpoints, then 45/45 after sequence-alignment verification and the
   active-site sourcing queue. The current gate now passes 60/60 after the source
   exports, active-site sourcing resolution, representation-backend sample, and
-  blocker matrix; the extra gate validates candidate lineage across high-fan-in
-  external artifacts. It is still not
+  blocker matrix. It validates both candidate lineage across high-fan-in
+  external artifacts and artifact-path lineage across all 61 supplied gate
+  inputs, failing fast on mixed-slice paths or payload-declared slice
+  contradictions. It is still not
   ready for label import.
 
 Sequence-similarity guardrail details:

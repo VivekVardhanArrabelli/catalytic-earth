@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from collections import Counter
 from typing import Any, Callable
 from urllib.request import Request, urlopen
@@ -42,6 +43,17 @@ REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "scope_signal",
     "source_target",
     "text",
+)
+_EXTERNAL_TRANSFER_ARTIFACT_SLICE_RE = re.compile(
+    r"_(\d+)(?=(?:_[A-Za-z0-9]+)*\.json$)"
+)
+_EXTERNAL_TRANSFER_PAYLOAD_LINEAGE_KEYS = (
+    "slice_id",
+    "source_slice_id",
+    "target_slice_id",
+    "label_slice_id",
+    "batch_id",
+    "label_batch_id",
 )
 
 
@@ -6145,6 +6157,329 @@ def build_external_source_pilot_evidence_packet(
     }
 
 
+def build_external_source_pilot_evidence_dossiers(
+    *,
+    pilot_evidence_packet: dict[str, Any],
+    active_site_evidence_sample: dict[str, Any],
+    active_site_sourcing_resolution: dict[str, Any],
+    reaction_evidence_sample: dict[str, Any],
+    sequence_alignment_verification: dict[str, Any],
+    representation_backend_sample: dict[str, Any],
+    heuristic_control_scores: dict[str, Any],
+    structure_mapping_sample: dict[str, Any],
+    transfer_blocker_matrix: dict[str, Any],
+    external_import_readiness_audit: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Assemble per-candidate review dossiers for the selected external pilot."""
+
+    active_site_features = _external_rows_by_accession(active_site_evidence_sample)
+    active_site_sourcing = _external_first_row_by_accession(
+        active_site_sourcing_resolution
+    )
+    reactions = _external_rows_by_accession(reaction_evidence_sample)
+    alignments = _external_rows_by_accession(sequence_alignment_verification)
+    representation = _external_first_row_by_accession(representation_backend_sample)
+    heuristic = _external_first_row_by_accession(heuristic_control_scores)
+    structure = _external_first_row_by_accession(structure_mapping_sample)
+    matrix = _external_first_row_by_accession(transfer_blocker_matrix)
+    readiness = _external_first_row_by_accession(external_import_readiness_audit or {})
+
+    rows: list[dict[str, Any]] = []
+    for packet_row in pilot_evidence_packet.get("rows", []) or []:
+        if not isinstance(packet_row, dict):
+            continue
+        accession = _normalize_accession(packet_row.get("accession"))
+        if not accession:
+            continue
+        active_rows = active_site_features.get(accession, [])
+        reaction_rows = reactions.get(accession, [])
+        alignment_rows = alignments.get(accession, [])
+        matrix_row = matrix.get(accession, {})
+        readiness_row = readiness.get(accession, {})
+        representation_row = representation.get(accession, {})
+        heuristic_row = heuristic.get(accession, {})
+        structure_row = structure.get(accession, {})
+        sourcing_row = active_site_sourcing.get(accession, {})
+        blockers = _external_pilot_dossier_blockers(
+            packet_row=packet_row,
+            matrix_row=matrix_row,
+            readiness_row=readiness_row,
+            representation_row=representation_row,
+            sourcing_row=sourcing_row,
+            alignment_rows=alignment_rows,
+        )
+        row = {
+            "rank": packet_row.get("rank"),
+            "accession": accession,
+            "entry_id": packet_row.get("entry_id") or f"uniprot:{accession}",
+            "protein_name": packet_row.get("protein_name"),
+            "lane_id": packet_row.get("lane_id"),
+            "countable_label_candidate": False,
+            "ready_for_label_import": False,
+            "review_status": "external_pilot_evidence_dossier_review_only",
+            "pilot_priority_score": packet_row.get("pilot_priority_score"),
+            "prioritized_action": matrix_row.get("prioritized_action")
+            or packet_row.get("prioritized_action"),
+            "readiness_status": readiness_row.get("readiness_status")
+            or matrix_row.get("readiness_status")
+            or packet_row.get("readiness_status"),
+            "active_site_evidence": _external_pilot_active_site_summary(
+                feature_rows=active_rows,
+                sourcing_row=sourcing_row,
+            ),
+            "reaction_evidence": _external_pilot_reaction_summary(reaction_rows),
+            "sequence_evidence": _external_pilot_sequence_summary(
+                packet_row=packet_row,
+                alignment_rows=alignment_rows,
+            ),
+            "structure_mapping": _external_pilot_structure_summary(structure_row),
+            "heuristic_control": _external_pilot_heuristic_summary(heuristic_row),
+            "representation_control": _external_pilot_representation_summary(
+                representation_row
+            ),
+            "remaining_blockers": blockers,
+            "evidence_dossier_status": (
+                "blocked_before_import" if blockers else "ready_for_review_decision"
+            ),
+        }
+        rows.append(row)
+
+    active_site_ready_count = sum(
+        1
+        for row in rows
+        if row["active_site_evidence"]["explicit_active_site_feature_count"] > 0
+    )
+    reaction_context_count = sum(
+        1 for row in rows if row["reaction_evidence"]["reaction_record_count"] > 0
+    )
+    representation_sample_count = sum(
+        1
+        for row in rows
+        if row["representation_control"]["backend_status"] not in (None, "missing")
+    )
+    return {
+        "metadata": {
+            "method": "external_source_pilot_evidence_dossier",
+            "blocker_removed": "external_pilot_per_candidate_evidence_dossier_assembly",
+            "review_policy": {
+                "semantics": "review_only_non_countable",
+                "expert_review_status": "no_decision",
+                "countable_import_rule": (
+                    "external candidates require explicit active-site evidence, "
+                    "specific reaction or mechanism review, complete sequence "
+                    "near-duplicate controls, leakage-safe representation "
+                    "controls, review decisions, and full label-factory gates"
+                ),
+            },
+            "source_pilot_evidence_packet_method": pilot_evidence_packet.get(
+                "metadata", {}
+            ).get("method"),
+            "source_transfer_blocker_matrix_method": transfer_blocker_matrix.get(
+                "metadata", {}
+            ).get("method"),
+            "candidate_count": len(rows),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "review_only": True,
+            "active_site_feature_supported_candidate_count": active_site_ready_count,
+            "reaction_context_candidate_count": reaction_context_count,
+            "representation_sample_candidate_count": representation_sample_count,
+            "candidate_with_remaining_blocker_count": sum(
+                1 for row in rows if row["remaining_blockers"]
+            ),
+            "selected_accessions": [row["accession"] for row in rows],
+        },
+        "rows": sorted(rows, key=lambda row: (int(row.get("rank") or 9999), row["accession"])),
+        "warnings": [
+            (
+                "dossiers assemble existing review evidence only; they do not "
+                "complete expert decisions or authorize countable import"
+            )
+        ],
+    }
+
+
+def _external_rows_by_accession(artifact: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+    rows_by_accession: dict[str, list[dict[str, Any]]] = {}
+    for row in _external_artifact_candidate_rows(artifact):
+        accession = _external_row_accession(row)
+        if accession:
+            rows_by_accession.setdefault(accession, []).append(row)
+    return rows_by_accession
+
+
+def _external_first_row_by_accession(artifact: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    return {
+        accession: rows[0]
+        for accession, rows in _external_rows_by_accession(artifact).items()
+        if rows
+    }
+
+
+def _external_row_accession(row: dict[str, Any]) -> str:
+    accession = _normalize_accession(row.get("accession"))
+    if not accession and isinstance(row.get("external_source_context"), dict):
+        accession = _normalize_accession(
+            row.get("external_source_context", {}).get("accession")
+        )
+    if not accession:
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id.startswith("uniprot:"):
+            accession = _normalize_accession(entry_id.split(":", 1)[1])
+    return accession
+
+
+def _external_pilot_active_site_summary(
+    *,
+    feature_rows: list[dict[str, Any]],
+    sourcing_row: dict[str, Any],
+) -> dict[str, Any]:
+    active_rows = [
+        row
+        for row in feature_rows
+        if str(row.get("feature_type") or "").lower() == "active site"
+    ]
+    binding_rows = [
+        row
+        for row in feature_rows
+        if str(row.get("feature_type") or "").lower() == "binding site"
+    ]
+    return {
+        "explicit_active_site_feature_count": len(active_rows),
+        "binding_site_feature_count": len(binding_rows)
+        or int(sourcing_row.get("binding_site_feature_count", 0) or 0),
+        "sourcing_status": sourcing_row.get("active_site_source_status"),
+        "sourced_active_site_position_count": len(
+            sourcing_row.get("sourced_active_site_positions", []) or []
+        ),
+        "source_task": sourcing_row.get("source_task"),
+        "feature_positions": [
+            {
+                "begin": row.get("begin"),
+                "end": row.get("end"),
+                "description": row.get("description"),
+                "evidence": row.get("evidence", []),
+            }
+            for row in active_rows[:5]
+        ],
+    }
+
+
+def _external_pilot_reaction_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    specific_rows = [
+        row for row in rows if row.get("ec_specificity") == "specific"
+    ]
+    broad_rows = [
+        row for row in rows if row.get("ec_specificity") != "specific"
+    ]
+    return {
+        "reaction_record_count": len(rows),
+        "specific_reaction_record_count": len(specific_rows),
+        "broad_or_incomplete_reaction_record_count": len(broad_rows),
+        "ec_numbers": sorted({str(row.get("ec_number")) for row in rows if row.get("ec_number")}),
+        "rhea_ids": sorted({str(row.get("rhea_id")) for row in rows if row.get("rhea_id")})[:8],
+        "sample_equations": [row.get("equation") for row in specific_rows[:3] if row.get("equation")],
+    }
+
+
+def _external_pilot_sequence_summary(
+    *,
+    packet_row: dict[str, Any],
+    alignment_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
+    sequence_packet = packet_row.get("sequence_search", {}) or {}
+    alert_rows = [
+        row
+        for row in alignment_rows
+        if row.get("verification_status")
+        in {
+            "alignment_exact_reference_holdout",
+            "alignment_near_duplicate_candidate_holdout",
+        }
+    ]
+    top_rows = sorted(
+        alignment_rows,
+        key=lambda row: (
+            -float(row.get("alignment_identity", 0.0) or 0.0),
+            str(row.get("reference_accession") or ""),
+        ),
+    )[:3]
+    return {
+        "search_task": sequence_packet.get("search_task"),
+        "decision_status": sequence_packet.get("decision_status"),
+        "alignment_checked_pair_count": len(alignment_rows),
+        "alignment_alert_count": len(alert_rows),
+        "top_alignment_hits": [
+            {
+                "reference_accession": row.get("reference_accession"),
+                "alignment_identity": row.get("alignment_identity"),
+                "length_coverage": row.get("length_coverage"),
+                "verification_status": row.get("verification_status"),
+                "matched_m_csa_entry_ids": row.get("matched_m_csa_entry_ids", []),
+            }
+            for row in top_rows
+        ],
+    }
+
+
+def _external_pilot_structure_summary(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "status": row.get("status") or "not_mapped_for_heuristic_control",
+        "structure_id": row.get("structure_id"),
+        "structure_source": row.get("structure_source"),
+        "resolved_residue_count": int(row.get("resolved_residue_count", 0) or 0),
+        "missing_active_site_positions": row.get("missing_active_site_positions", []),
+    }
+
+
+def _external_pilot_heuristic_summary(row: dict[str, Any]) -> dict[str, Any]:
+    top = [
+        item for item in (row.get("top_fingerprints", []) or []) if isinstance(item, dict)
+    ]
+    top1 = top[0] if top else {}
+    return {
+        "scored": bool(top),
+        "top1_fingerprint_id": top1.get("fingerprint_id"),
+        "top1_score": top1.get("score"),
+        "scope_top1_mismatch": row.get("scope_top1_mismatch"),
+    }
+
+
+def _external_pilot_representation_summary(row: dict[str, Any]) -> dict[str, Any]:
+    nearest = row.get("nearest_reference", {}) if isinstance(row, dict) else {}
+    if not isinstance(nearest, dict):
+        nearest = {}
+    return {
+        "backend_status": row.get("backend_status") or "missing",
+        "embedding_status": row.get("embedding_status"),
+        "top_embedding_cosine": row.get("top_embedding_cosine"),
+        "comparison_status": row.get("comparison_status"),
+        "nearest_reference_accession": nearest.get("reference_accession"),
+        "nearest_reference_entry_id": nearest.get("entry_id"),
+        "blockers": row.get("blockers", []) if isinstance(row, dict) else [],
+    }
+
+
+def _external_pilot_dossier_blockers(
+    *,
+    packet_row: dict[str, Any],
+    matrix_row: dict[str, Any],
+    readiness_row: dict[str, Any],
+    representation_row: dict[str, Any],
+    sourcing_row: dict[str, Any],
+    alignment_rows: list[dict[str, Any]],
+) -> list[str]:
+    blockers: set[str] = set()
+    for row in (packet_row, matrix_row, readiness_row, representation_row, sourcing_row):
+        for blocker in row.get("blockers", []) or []:
+            blockers.add(str(blocker))
+    if not alignment_rows:
+        blockers.add("complete_near_duplicate_sequence_search_not_completed")
+    if representation_row.get("backend_status") in (None, "missing"):
+        blockers.add("representation_backend_sample_missing_for_candidate")
+    return sorted(blockers)
+
+
 def _external_pilot_candidate_selection_blockers(
     *,
     blockers: list[str],
@@ -6213,6 +6548,163 @@ def _external_transfer_candidate_lineage(
         "unexpected_accessions": unexpected_accessions,
         "missing_accessions": missing_accessions,
         "count_mismatch_artifacts": sorted(count_mismatch_artifacts),
+        "blockers": blockers,
+        "guardrail_clean": not blockers,
+    }
+
+
+def validate_external_transfer_artifact_path_lineage(
+    artifact_paths: dict[str, str | None],
+    loaded_artifacts: dict[str, dict[str, Any] | None] | None = None,
+    *,
+    fail_fast: bool = False,
+) -> dict[str, Any]:
+    """Validate that high-fan-in external-transfer inputs share one slice lineage."""
+
+    path_slice_ids: dict[str, int] = {}
+    payload_slice_ids: dict[str, dict[str, int]] = {}
+    payload_methods: dict[str, str] = {}
+    artifact_paths_present: dict[str, str] = {}
+    missing_slice_id_artifacts: list[str] = []
+    conflicting_payload_artifacts: dict[str, dict[str, int]] = {}
+    payload_path_mismatch_artifacts: dict[str, dict[str, int]] = {}
+    slice_members: dict[int, set[str]] = {}
+
+    for artifact_name, path in artifact_paths.items():
+        if not path:
+            continue
+        path_string = str(path)
+        artifact_paths_present[artifact_name] = path_string
+        path_slice_id = _infer_external_transfer_slice_id(path_string)
+        if path_slice_id is not None:
+            path_slice_ids[artifact_name] = path_slice_id
+            slice_members.setdefault(path_slice_id, set()).add(artifact_name)
+
+        artifact = (loaded_artifacts or {}).get(artifact_name)
+        payload_lineage = (
+            _external_transfer_payload_lineage(artifact)
+            if isinstance(artifact, dict)
+            else {}
+        )
+        if isinstance(artifact, dict):
+            metadata = artifact.get("metadata", {})
+            if isinstance(metadata, dict) and isinstance(metadata.get("method"), str):
+                payload_methods[artifact_name] = str(metadata["method"])
+        if payload_lineage:
+            payload_slice_ids[artifact_name] = dict(sorted(payload_lineage.items()))
+            payload_values = set(payload_lineage.values())
+            if len(payload_values) > 1:
+                conflicting_payload_artifacts[artifact_name] = dict(
+                    sorted(payload_lineage.items())
+                )
+            else:
+                payload_slice_id = next(iter(payload_values))
+                if path_slice_id is None:
+                    slice_members.setdefault(payload_slice_id, set()).add(
+                        artifact_name
+                    )
+                elif payload_slice_id != path_slice_id:
+                    payload_path_mismatch_artifacts[artifact_name] = {
+                        "path_slice_id": path_slice_id,
+                        "payload_slice_id": payload_slice_id,
+                    }
+        elif path_slice_id is None:
+            missing_slice_id_artifacts.append(artifact_name)
+
+    blockers: list[str] = []
+    if len(slice_members) > 1:
+        blockers.append("external_transfer_artifact_path_slice_mismatch")
+    if conflicting_payload_artifacts:
+        blockers.append("external_transfer_artifact_payload_conflicting_slice_ids")
+    if payload_path_mismatch_artifacts:
+        blockers.append("external_transfer_artifact_payload_path_slice_mismatch")
+
+    lineage = {
+        "method": "external_transfer_artifact_path_lineage_validation",
+        "slice_id": next(iter(slice_members), None) if len(slice_members) == 1 else None,
+        "artifact_paths": dict(sorted(artifact_paths_present.items())),
+        "path_slice_ids": dict(sorted(path_slice_ids.items())),
+        "payload_slice_ids": dict(sorted(payload_slice_ids.items())),
+        "payload_methods": dict(sorted(payload_methods.items())),
+        "missing_slice_id_artifacts": sorted(missing_slice_id_artifacts),
+        "conflicting_payload_artifacts": dict(
+            sorted(conflicting_payload_artifacts.items())
+        ),
+        "payload_path_mismatch_artifacts": dict(
+            sorted(payload_path_mismatch_artifacts.items())
+        ),
+        "slice_members": {
+            str(slice_id): sorted(names)
+            for slice_id, names in sorted(slice_members.items())
+        },
+        "blockers": blockers,
+        "guardrail_clean": not blockers,
+    }
+    if fail_fast and blockers:
+        details = "; ".join(
+            f"{slice_id}: {', '.join(sorted(names))}"
+            for slice_id, names in sorted(slice_members.items())
+        )
+        raise ValueError(
+            "mismatched external transfer artifact lineage: "
+            f"{', '.join(blockers)}"
+            + (f" ({details})" if details else "")
+        )
+    return lineage
+
+
+def _infer_external_transfer_slice_id(path: str | None) -> int | None:
+    if not path:
+        return None
+    matches = _EXTERNAL_TRANSFER_ARTIFACT_SLICE_RE.findall(str(path).split("/")[-1])
+    return int(matches[-1]) if matches else None
+
+
+def _external_transfer_payload_lineage(
+    artifact: dict[str, Any],
+) -> dict[str, int]:
+    metadata = artifact.get("metadata", {})
+    if not isinstance(metadata, dict):
+        return {}
+    lineage: dict[str, int] = {}
+    for key in _EXTERNAL_TRANSFER_PAYLOAD_LINEAGE_KEYS:
+        parsed = _parse_external_transfer_lineage_int(metadata.get(key))
+        if parsed is not None:
+            lineage[f"metadata.{key}"] = parsed
+    artifact_lineage = metadata.get("artifact_lineage")
+    if isinstance(artifact_lineage, dict):
+        for key in _EXTERNAL_TRANSFER_PAYLOAD_LINEAGE_KEYS:
+            parsed = _parse_external_transfer_lineage_int(artifact_lineage.get(key))
+            if parsed is not None:
+                lineage[f"metadata.artifact_lineage.{key}"] = parsed
+    return lineage
+
+
+def _parse_external_transfer_lineage_int(value: Any) -> int | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, str):
+        match = re.match(r"^(\d+)(?:\D|$)", value.strip())
+        if match:
+            return int(match.group(1))
+    return None
+
+
+def _merge_external_transfer_lineage(
+    candidate_lineage: dict[str, Any],
+    artifact_path_lineage: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if not artifact_path_lineage:
+        return candidate_lineage
+    blockers = sorted(
+        set(candidate_lineage.get("blockers", []))
+        | set(artifact_path_lineage.get("blockers", []))
+    )
+    return {
+        **candidate_lineage,
+        "artifact_path_lineage": artifact_path_lineage,
         "blockers": blockers,
         "guardrail_clean": not blockers,
     }
@@ -6373,46 +6865,52 @@ def check_external_source_transfer_gates(
     pilot_candidate_priority: dict[str, Any] | None = None,
     pilot_review_decision_export: dict[str, Any] | None = None,
     pilot_evidence_packet: dict[str, Any] | None = None,
+    pilot_evidence_dossiers: dict[str, Any] | None = None,
     binding_context_repair_plan: dict[str, Any] | None = None,
     binding_context_repair_plan_audit: dict[str, Any] | None = None,
     binding_context_mapping_sample: dict[str, Any] | None = None,
     binding_context_mapping_sample_audit: dict[str, Any] | None = None,
     sequence_holdout_audit: dict[str, Any] | None = None,
+    artifact_path_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Gate external-source transfer artifacts before future label import work."""
-    candidate_lineage = _external_transfer_candidate_lineage(
-        candidate_manifest,
-        {
-            "evidence_plan": evidence_plan,
-            "evidence_request_export": evidence_request_export,
-            "active_site_evidence_queue": active_site_evidence_queue,
-            "active_site_evidence_sample": active_site_evidence_sample,
-            "heuristic_control_queue": heuristic_control_queue,
-            "structure_mapping_plan": structure_mapping_plan,
-            "structure_mapping_sample": structure_mapping_sample,
-            "heuristic_control_scores": heuristic_control_scores,
-            "external_control_repair_plan": external_control_repair_plan,
-            "reaction_evidence_sample": reaction_evidence_sample,
-            "representation_control_manifest": representation_control_manifest,
-            "representation_control_comparison": representation_control_comparison,
-            "representation_backend_plan": representation_backend_plan,
-            "representation_backend_sample": representation_backend_sample,
-            "active_site_gap_source_requests": active_site_gap_source_requests,
-            "sequence_neighborhood_plan": sequence_neighborhood_plan,
-            "sequence_neighborhood_sample": sequence_neighborhood_sample,
-            "sequence_alignment_verification": sequence_alignment_verification,
-            "sequence_search_export": sequence_search_export,
-            "external_import_readiness_audit": external_import_readiness_audit,
-            "active_site_sourcing_queue": active_site_sourcing_queue,
-            "active_site_sourcing_export": active_site_sourcing_export,
-            "active_site_sourcing_resolution": active_site_sourcing_resolution,
-            "transfer_blocker_matrix": transfer_blocker_matrix,
-            "pilot_candidate_priority": pilot_candidate_priority,
-            "pilot_review_decision_export": pilot_review_decision_export,
-            "pilot_evidence_packet": pilot_evidence_packet,
-            "binding_context_repair_plan": binding_context_repair_plan,
-            "binding_context_mapping_sample": binding_context_mapping_sample,
-        },
+    candidate_lineage = _merge_external_transfer_lineage(
+        _external_transfer_candidate_lineage(
+            candidate_manifest,
+            {
+                "evidence_plan": evidence_plan,
+                "evidence_request_export": evidence_request_export,
+                "active_site_evidence_queue": active_site_evidence_queue,
+                "active_site_evidence_sample": active_site_evidence_sample,
+                "heuristic_control_queue": heuristic_control_queue,
+                "structure_mapping_plan": structure_mapping_plan,
+                "structure_mapping_sample": structure_mapping_sample,
+                "heuristic_control_scores": heuristic_control_scores,
+                "external_control_repair_plan": external_control_repair_plan,
+                "reaction_evidence_sample": reaction_evidence_sample,
+                "representation_control_manifest": representation_control_manifest,
+                "representation_control_comparison": representation_control_comparison,
+                "representation_backend_plan": representation_backend_plan,
+                "representation_backend_sample": representation_backend_sample,
+                "active_site_gap_source_requests": active_site_gap_source_requests,
+                "sequence_neighborhood_plan": sequence_neighborhood_plan,
+                "sequence_neighborhood_sample": sequence_neighborhood_sample,
+                "sequence_alignment_verification": sequence_alignment_verification,
+                "sequence_search_export": sequence_search_export,
+                "external_import_readiness_audit": external_import_readiness_audit,
+                "active_site_sourcing_queue": active_site_sourcing_queue,
+                "active_site_sourcing_export": active_site_sourcing_export,
+                "active_site_sourcing_resolution": active_site_sourcing_resolution,
+                "transfer_blocker_matrix": transfer_blocker_matrix,
+                "pilot_candidate_priority": pilot_candidate_priority,
+                "pilot_review_decision_export": pilot_review_decision_export,
+                "pilot_evidence_packet": pilot_evidence_packet,
+                "pilot_evidence_dossiers": pilot_evidence_dossiers,
+                "binding_context_repair_plan": binding_context_repair_plan,
+                "binding_context_mapping_sample": binding_context_mapping_sample,
+            },
+        ),
+        artifact_path_lineage,
     )
     gates = {
         "external_transfer_candidate_lineage_consistent": bool(

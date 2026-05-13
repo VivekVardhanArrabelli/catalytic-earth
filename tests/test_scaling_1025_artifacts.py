@@ -323,6 +323,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_evidence_packet_1025.json"
         )
+        pilot_evidence_dossiers = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_evidence_dossiers_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -1264,6 +1269,31 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 for row in pilot_evidence_packet["rows"]
             )
         )
+        self.assertEqual(
+            pilot_evidence_dossiers["metadata"]["blocker_removed"],
+            "external_pilot_per_candidate_evidence_dossier_assembly",
+        )
+        self.assertEqual(pilot_evidence_dossiers["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            pilot_evidence_dossiers["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertFalse(
+            pilot_evidence_dossiers["metadata"]["ready_for_label_import"]
+        )
+        self.assertEqual(
+            pilot_evidence_dossiers["metadata"]["candidate_with_remaining_blocker_count"],
+            10,
+        )
+        self.assertTrue(
+            all(
+                row["review_status"]
+                == "external_pilot_evidence_dossier_review_only"
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                and row["reaction_evidence"]["reaction_record_count"] > 0
+                for row in pilot_evidence_dossiers["rows"]
+            )
+        )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
             external_import_safety["metadata"]["total_new_countable_label_count"], 0
@@ -1285,6 +1315,17 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertTrue(
             external_transfer_gate["metadata"]["artifact_lineage"]["guardrail_clean"]
         )
+        self.assertTrue(
+            external_transfer_gate["metadata"]["artifact_lineage"][
+                "artifact_path_lineage"
+            ]["guardrail_clean"]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["artifact_lineage"][
+                "artifact_path_lineage"
+            ]["slice_id"],
+            1025,
+        )
         self.assertIn(
             "pilot_candidate_priority",
             external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
@@ -1295,6 +1336,10 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertIn(
             "pilot_evidence_packet",
+            external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
+        )
+        self.assertIn(
+            "pilot_evidence_dossiers",
             external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
         )
         self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])

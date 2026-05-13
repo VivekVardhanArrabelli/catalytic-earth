@@ -160,13 +160,15 @@ Priority blockers:
   lineage check. A matrix built from a stale or mismatched manifest fails with
   `external_transfer_blocker_matrix_candidate_lineage_mismatch` instead of
   passing because high-level candidate counts happen to match.
-- The external transfer gate now performs its own candidate-lineage check across
-  high-fan-in external artifacts. Evidence plans, review exports, sequence
+- The external transfer gate now performs its own candidate-lineage and
+  artifact-path lineage checks across high-fan-in external artifacts. Evidence plans, review exports, sequence
   controls, active-site sourcing packets, representation samples, and blocker
   matrices fail the gate if they carry accessions outside the candidate manifest
   or claim full 30-row coverage while silently dropping manifest rows. The
   current lineage check also includes the pilot-priority, no-decision pilot
-  review export, and pilot evidence-packet artifacts.
+  review export, pilot evidence-packet, and pilot evidence-dossier artifacts,
+  and fails fast if supplied artifact paths mix source slices such as 1,000 and
+  1,025.
 - `artifacts/v3_external_source_pilot_candidate_priority_1025.json` ranks the
   30 external candidates for a bounded review pilot. It selects 10
   non-countable candidates across the external lanes, defers 5 exact-holdout or
@@ -187,6 +189,11 @@ Priority blockers:
   sourcing packets, 0 missing required source packets, and
   `guardrail_clean=true`; it removes only the source-packet consolidation
   blocker and does not authorize import.
+- `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` assembles
+  the same 10 selected rows into per-candidate review dossiers. It records 7
+  candidates with explicit UniProt active-site feature support, all 10 with
+  Rhea reaction context, 4 with representation-sample rows, and 10 with
+  remaining blockers; it is review-only and does not authorize import.
 
 ## Artifacts
 
@@ -561,6 +568,19 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidenc
   --max-rows 10 \
   --out artifacts/v3_external_source_pilot_evidence_packet_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidence-dossiers \
+  --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \
+  --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
+  --active-site-sourcing-resolution artifacts/v3_external_source_active_site_sourcing_resolution_1025.json \
+  --reaction-evidence-sample artifacts/v3_external_source_reaction_evidence_sample_1025.json \
+  --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
+  --representation-backend-sample artifacts/v3_external_source_representation_backend_sample_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --structure-mapping-sample artifacts/v3_external_source_structure_mapping_sample_1025.json \
+  --transfer-blocker-matrix artifacts/v3_external_source_transfer_blocker_matrix_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --out artifacts/v3_external_source_pilot_evidence_dossiers_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
   --labels data/registries/curated_mechanism_labels.json \
   --review artifacts/v3_external_source_evidence_request_export_1025.json \
@@ -622,6 +642,7 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --pilot-candidate-priority artifacts/v3_external_source_pilot_candidate_priority_1025.json \
   --pilot-review-decision-export artifacts/v3_external_source_pilot_review_decision_export_1025.json \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \
+  --pilot-evidence-dossiers artifacts/v3_external_source_pilot_evidence_dossiers_1025.json \
   --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
   --binding-context-repair-plan-audit artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json \
   --binding-context-mapping-sample artifacts/v3_external_source_binding_context_mapping_sample_1025.json \
@@ -638,6 +659,12 @@ and then passes OOD calibration, sequence-similarity failure controls, review
 exports, decision artifacts, heuristic control comparison, and the full
 label-factory gate. The current gate only authorizes review-only evidence
 collection.
+
+The transfer gate now checks both row-level candidate lineage and artifact-path
+lineage. Current 1,025 artifacts share a clean path-inferred slice across 61
+supplied artifacts, and the CLI fails fast if a future gate invocation mixes
+1,000 and 1,025 artifacts or if payload-declared slice metadata contradicts the
+artifact path.
 
 Do not import external candidates directly into
 `data/registries/curated_mechanism_labels.json`. The first safe external-source

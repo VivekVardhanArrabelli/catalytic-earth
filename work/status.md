@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 71
-- Measured elapsed time: 2725.1 minutes (45.42 hours)
+- Entries: 72
+- Measured elapsed time: 2750.9 minutes (45.85 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 104.1 measured minutes (1.73 hours)
+- post-mcsa-spof-hardening: 129.9 measured minutes (2.16 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -23,21 +23,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 756
-- Evidence references logged: 624
+- Artifact references logged: 766
+- Evidence references logged: 632
 
 ## Recent Entries
-
-### 2026-05-13T12:05:19.086868+00:00 - post-v2
-
-- Task: Harden external active-site and representation controls
-- Time mode: measured
-- Measured minutes: 50.2
-- Started: 2026-05-13T11:14:12Z
-- Ended: 2026-05-13T12:04:24Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_active_site_sourcing_resolution_1025.json, artifacts/v3_external_source_active_site_sourcing_resolution_audit_1025.json, artifacts/v3_external_source_representation_backend_sample_1025.json, artifacts/v3_external_source_representation_backend_sample_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md, work/label_factory_notes.md
-- Evidence: 268 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, CLI help checks passed, 59/59 external transfer gates, 10 active-site sourcing resolution rows, 0 explicit active-site residue sources, 12 deterministic k-mer representation sample rows, 1 representation near-duplicate holdout, 30-row blocker matrix integrates active-site resolution and representation sample statuses, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
 
 ### 2026-05-13T12:55:17.737175+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 285 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, label-factory payload slice mismatch regression, pilot evidence packet 10 candidates and 79 source targets, external gate 60/60 with pilot evidence lineage, 0 countable external labels, 0 import-ready external labels
 - Notes: Normal locked SPOF-hardening run. Counterevidence and selected-PDB SPOFs were already addressed; this run hardened label-factory artifact lineage against payload/path contradictions and consolidated pilot source packets without count growth or external import.
 
+### 2026-05-13T17:47:33.256358+00:00 - post-mcsa-spof-hardening
+
+- Task: Harden external lineage and pilot evidence dossiers
+- Time mode: measured
+- Measured minutes: 25.817
+- Started: 2026-05-13T17:21:43.990559Z
+- Ended: 2026-05-13T17:47:33Z
+- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_transfer_gate_check_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, README.md, docs/external_source_transfer.md, work/handoff.md, work/external_source_transfer_1025_notes.md
+- Evidence: 287 unit tests passed, validate passed, compileall passed, git diff --check passed, external gate 60/60 with artifact-path lineage, pilot dossiers 10 review-only candidates, 0 countable external labels, 0 import-ready external labels
+- Notes: Normal locked SPOF/pilot-hardening run. No M-CSA count growth or external import; docs checked and updated.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -178,6 +178,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T06:58:30.872167+00:00: External transfer remains non-countable; next bounded work should source active-site evidence for 10 gaps, disambiguate 3 broad-EC rows, and prototype representation controls for 12 mapped controls.
 - 2026-05-13T12:55:17.737175+00:00: The next useful milestone is pilot import readiness for named external candidates, not a higher external-transfer gate count.
 - 2026-05-13T13:02:54.457092+00:00: The next run should implement holdout/generalization evaluation first; external pilot work resumes after that signal or in parallel only when directly unblocking import readiness.
+- 2026-05-13T17:47:33.256358+00:00: External pilot now has per-candidate review dossiers; next work should fill decisions and missing evidence, not add generic gates.
 
 ## Scope Adjustments
 
@@ -248,3 +249,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T14:08:28.620965+00:00: External transfer remains non-countable; next pilot readiness work should use the holdout metrics and learned-vs-heuristic disagreements to rank candidates before active-site source review, complete sequence search, selected-PDB override repairs, and full factory gates.
 - 2026-05-13T16:04:03.062604+00:00: External pilot now has leakage-provenance ranking and no-decision review packets; next work should fill active-site and sequence evidence for selected candidates, not increase M-CSA-only count.
 - 2026-05-13T16:37:11.331979+00:00: External pilot packets now have consolidated review-only source targets; next work should fill evidence decisions, not increase M-CSA count.
+- 2026-05-13T17:47:33.256358+00:00: External transfer gate now fails fast on mixed-slice artifact paths across supplied gate artifacts.

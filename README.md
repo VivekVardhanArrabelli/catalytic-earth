@@ -181,8 +181,9 @@ sequence-neighborhood controls, sequence-alignment verification,
 sequence-search export, import-readiness audit, active-site sourcing queue/export,
 active-site sourcing resolution, representation-backend plan/sample, a
 candidate blocker matrix, a 10-row external pilot candidate priority worklist,
-a consolidated pilot evidence packet, and a 60/60 external transfer gate with
-candidate lineage validation. The
+a consolidated pilot evidence packet, 10 per-candidate pilot evidence
+dossiers, and a 60/60 external transfer gate with candidate and artifact-path
+lineage validation. The
 evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
@@ -234,13 +235,20 @@ removes the packet-scaffolding blocker without authorizing import.
 79 source targets for the same 10 rows, including all 10 sequence-search
 packets and 3 active-site sourcing packets, while keeping every row review-only
 and non-countable.
+`artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` assembles
+the selected 10 rows into review-only per-candidate dossiers: 7 currently have
+explicit UniProt active-site feature support, all 10 have Rhea reaction
+context, 4 have representation-sample rows, and all 10 still carry import
+blockers.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
-only, not label import. The full Rhea reaction-context pass covers all 30
-external candidates with 64 reaction records, flags 16 broad-EC context rows,
-and remains review-only. See
+only, not label import. Its lineage metadata now records a clean 1,025 slice
+across 61 supplied external artifacts and fails fast on mixed-slice artifact
+paths or payload-declared slice contradictions. The full Rhea reaction-context pass
+covers all 30 external candidates with 64 reaction records, flags 16 broad-EC
+context rows, and remains review-only. See
 `docs/external_source_transfer.md` for the guarded command sequence.
 `artifacts/v3_sequence_distance_holdout_eval_1000.json` and
 `artifacts/v3_sequence_distance_holdout_eval_1025.json` now report the first

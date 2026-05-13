@@ -54,6 +54,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_heuristic_control_scores,
     build_external_source_pilot_candidate_priority,
     build_external_source_pilot_evidence_packet,
+    build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_review_decision_export,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
@@ -70,6 +71,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
     check_external_source_transfer_gates,
+    validate_external_transfer_artifact_path_lineage,
 )
 
 
@@ -4632,6 +4634,208 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             export["review_items"][0]["decision"]["external_source_resolution"],
             "needs_more_evidence",
         )
+
+    def test_external_transfer_artifact_lineage_rejects_mismatched_slices(
+        self,
+    ) -> None:
+        lineage = validate_external_transfer_artifact_path_lineage(
+            {
+                "candidate_manifest": (
+                    "artifacts/v3_external_source_candidate_manifest_1025.json"
+                ),
+                "evidence_plan": (
+                    "artifacts/v3_external_source_evidence_plan_1000.json"
+                ),
+                "pilot_evidence_packet": (
+                    "artifacts/v3_external_source_pilot_evidence_packet_1025.json"
+                ),
+            },
+            {
+                "candidate_manifest": {
+                    "metadata": {
+                        "method": "external_source_candidate_manifest",
+                        "source_slice_id": 1025,
+                    }
+                },
+                "evidence_plan": {
+                    "metadata": {
+                        "method": "external_source_evidence_plan",
+                        "source_slice_id": 1000,
+                    }
+                },
+                "pilot_evidence_packet": {
+                    "metadata": {
+                        "method": "external_source_pilot_evidence_packet",
+                        "source_slice_id": 1025,
+                    }
+                },
+            },
+        )
+
+        self.assertFalse(lineage["guardrail_clean"])
+        self.assertIn(
+            "external_transfer_artifact_path_slice_mismatch",
+            lineage["blockers"],
+        )
+        self.assertEqual(lineage["path_slice_ids"]["evidence_plan"], 1000)
+        with self.assertRaisesRegex(
+            ValueError,
+            "mismatched external transfer artifact lineage",
+        ):
+            validate_external_transfer_artifact_path_lineage(
+                {
+                    "candidate_manifest": (
+                        "artifacts/v3_external_source_candidate_manifest_1025.json"
+                    ),
+                    "evidence_plan": (
+                        "artifacts/v3_external_source_evidence_plan_1000.json"
+                    ),
+                },
+                fail_fast=True,
+            )
+
+    def test_external_pilot_evidence_dossiers_are_review_only(self) -> None:
+        dossiers = build_external_source_pilot_evidence_dossiers(
+            pilot_evidence_packet={
+                "metadata": {"method": "external_source_pilot_evidence_packet"},
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P12345",
+                        "entry_id": "uniprot:P12345",
+                        "protein_name": "Pilot enzyme",
+                        "lane_id": "external_source:lyase",
+                        "pilot_priority_score": 88.0,
+                        "blockers": ["complete_near_duplicate_search_required"],
+                        "sequence_search": {
+                            "search_task": "run_complete_uniref_search",
+                            "decision_status": "no_decision",
+                        },
+                    }
+                ],
+            },
+            active_site_evidence_sample={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "feature_type": "Active site",
+                        "begin": 42,
+                        "end": 42,
+                        "description": "Nucleophile",
+                        "evidence": [{"source": "PubMed", "id": "1"}],
+                    }
+                ]
+            },
+            active_site_sourcing_resolution={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "active_site_source_status": (
+                            "explicit_uniprot_active_site_positions_found"
+                        ),
+                        "sourced_active_site_positions": [42],
+                        "source_task": "curate_active_site_positions",
+                        "blockers": ["external_review_decision_artifact_not_built"],
+                    }
+                ]
+            },
+            reaction_evidence_sample={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "ec_number": "4.2.1.1",
+                        "ec_specificity": "specific",
+                        "rhea_id": "RHEA:1",
+                        "equation": "A = B",
+                    }
+                ]
+            },
+            sequence_alignment_verification={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "reference_accession": "Q99999",
+                        "alignment_identity": 0.2,
+                        "length_coverage": 0.9,
+                        "verification_status": "alignment_no_near_duplicate_signal",
+                    }
+                ]
+            },
+            representation_backend_sample={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "backend_status": "learned_representation_sample_complete",
+                        "embedding_status": "computed_review_only",
+                        "top_embedding_cosine": 0.7,
+                        "nearest_reference": {"entry_id": "m_csa:1"},
+                    }
+                ]
+            },
+            heuristic_control_scores={
+                "results": [
+                    {
+                        "entry_id": "uniprot:P12345",
+                        "scope_top1_mismatch": False,
+                        "top_fingerprints": [
+                            {"fingerprint_id": "flavin_dehydrogenase_reductase", "score": 0.5}
+                        ],
+                    }
+                ]
+            },
+            structure_mapping_sample={
+                "entries": [
+                    {
+                        "accession": "P12345",
+                        "status": "mapped",
+                        "structure_id": "AF-P12345-F1",
+                        "resolved_residue_count": 2,
+                    }
+                ]
+            },
+            transfer_blocker_matrix={
+                "metadata": {"method": "external_source_transfer_blocker_matrix"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "prioritized_action": "complete_near_duplicate_sequence_search",
+                        "readiness_status": "blocked_by_sequence_search",
+                        "blockers": ["full_label_factory_gate_not_run"],
+                    }
+                ],
+            },
+            external_import_readiness_audit={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "readiness_status": "blocked_by_sequence_search",
+                        "blockers": ["external_review_decision_artifact_not_built"],
+                    }
+                ]
+            },
+        )
+
+        self.assertFalse(dossiers["metadata"]["ready_for_label_import"])
+        self.assertEqual(dossiers["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            dossiers["metadata"]["blocker_removed"],
+            "external_pilot_per_candidate_evidence_dossier_assembly",
+        )
+        self.assertEqual(
+            dossiers["metadata"]["review_policy"]["semantics"],
+            "review_only_non_countable",
+        )
+        row = dossiers["rows"][0]
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertEqual(
+            row["review_status"], "external_pilot_evidence_dossier_review_only"
+        )
+        self.assertEqual(
+            row["active_site_evidence"]["explicit_active_site_feature_count"], 1
+        )
+        self.assertEqual(row["reaction_evidence"]["reaction_record_count"], 1)
+        self.assertEqual(row["sequence_evidence"]["alignment_checked_pair_count"], 1)
+        self.assertIn("full_label_factory_gate_not_run", row["remaining_blockers"])
 
     def test_external_transfer_gate_requires_review_only_artifacts(self) -> None:
         gates = check_external_source_transfer_gates(

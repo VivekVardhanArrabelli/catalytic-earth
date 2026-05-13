@@ -261,6 +261,19 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   learned-vs-heuristic disagreement rows. The existing 12-row deterministic
   k-mer sample remains the baseline/proxy control, and heuristic geometry
   retrieval remains attached as the required baseline.
+- Hardened external transfer artifact graph consistency for the 1,025 pilot
+  path. `check-external-source-transfer-gates` now validates artifact-path
+  lineage across all 61 supplied external artifacts, records the clean
+  1,025 lineage under
+  `artifacts/v3_external_source_transfer_gate_check_1025.json`, and fails fast
+  on mixed-slice paths or payload-declared slice contradictions before a gate
+  artifact can silently pass.
+- Added `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` as a
+  review-only per-candidate evidence dossier for the 10 selected external
+  pilot rows. It records active-site feature support, active-site sourcing
+  status, Rhea reaction context, sequence alignment checks, structure mapping,
+  heuristic control results, representation controls, and remaining blockers
+  without making any row countable or import-ready.
 
 ## Current Metrics
 
@@ -551,7 +564,7 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current SPOF status after the 2026-05-13T10:19:12-05:00 run: counterevidence
+Current SPOF status after the 2026-05-13T17:21:43Z run: counterevidence
 maintainability is handled at the code level. `geometry_retrieval.py` uses a
 versioned declarative `COUNTEREVIDENCE_POLICY` with typed shared inputs,
 rule-level provenance, backwards-compatible reason/detail fields, and explicit
@@ -570,7 +583,9 @@ fingerprint ids, or source-target identifiers appear as predictive feature
 sources. Artifact consistency hardening exists in the external blocker matrix
 audit, which rejects candidate-manifest lineage mismatches, and in the external
 transfer gate, which now validates candidate accessions across high-fan-in
-external artifacts before passing the 60/60 review-only gate.
+external artifacts plus artifact-path slice lineage across all 61 supplied
+external artifacts before passing the 60/60 review-only gate. The gate CLI
+fails fast on mixed 1,000/1,025 paths or payload-declared slice contradictions.
 
 This run removed the selected-PDB single-point blocker in bounded form. The new
 `build-selected-pdb-overrides` command produces
@@ -600,27 +615,36 @@ consolidates 79 source targets for those selected rows: all 10 sequence-search
 packets plus 3 active-site sourcing packets. It is guardrail-clean, has 0
 missing required source packets, and keeps every row review-only, non-countable,
 and not import-ready.
+This run then added
+`artifacts/v3_external_source_pilot_evidence_dossiers_1025.json`, which
+assembles the same selected 10 into per-candidate review dossiers. Seven have
+explicit UniProt active-site feature support, all 10 have Rhea reaction
+context, four have representation-sample rows, and all 10 still carry import
+blockers. The dossier artifact removes only the pilot evidence-assembly
+blocker; it does not authorize external import.
 
 Next ordered worklist:
 
-1. Continue artifact graph consistency checks beyond the external blocker matrix
-   and label-factory gate CLI. The label gate now rejects both path slice
-   mismatches and payload-declared slice/batch contradictions, but other
-   high-fan-in audits should still fail fast on source slice, graph id, and
-   lineage mismatches with negative regression coverage.
+1. Treat external transfer artifact-path lineage as handled for the current
+   1,025 gate: row-level candidate lineage, path-inferred slice lineage, and
+   payload-declared slice contradictions now fail before the gate can silently
+   pass. Continue artifact graph consistency only where new code evidence shows
+   another high-fan-in audit can mix source slice, graph id, label batch, or
+   artifact lineage without a negative regression.
 2. Sequence/fold-distance holdout evaluation is implemented and pinned by
    regression tests. Treat the current artifacts as a proxy-only generalization
    signal, not as proof of <=30% sequence identity or <0.7 TM-score behavior.
-   The 2026-05-13T10:19:12-05:00 run checked for `foldseek`, `mmseqs`,
-   `mmseqs2`, `blastp`, and `diamond`; none were available on PATH. Re-run
+   The 2026-05-13T17:21:43Z run checked for `foldseek`, `mmseqs`, `blastp`,
+   and `diamond`; none were available on PATH. Re-run
    with Foldseek/MMseqs2/
    BLAST/DIAMOND or an equivalent local clustering backend if it becomes
    available.
 3. Use the learned representation backend path, pilot priority artifact,
-   no-decision review export, and pilot evidence packet for reviewer work. A
-   12-row ESM-2 sample is computed and review-only; the next work is to fill
-   evidence decisions from the consolidated source targets while preserving
-   heuristic geometry retrieval as the baseline.
+   no-decision review export, pilot evidence packet, and pilot evidence
+   dossiers for reviewer work. A 12-row ESM-2 sample is computed and
+   review-only; the next work is to fill evidence decisions from the
+   per-candidate dossier/source-target rows while preserving heuristic geometry
+   retrieval as the baseline.
 4. Reviewer policy and schema typing are lower priority unless code evidence
    exposes new ambiguity in countable vs review-only imports or high-fan-in
    artifact schemas.
@@ -963,6 +987,27 @@ regression test. The same run added a review-only pilot evidence packet for
 the 10 selected external candidates, consolidating 79 source targets with 0
 missing sequence packets and 0 missing required active-site packets while
 keeping `ready_for_label_import=false`.
+
+Label-quality confidence call for the 2026-05-13T17:21:43Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair, no
+for external-source import, no for new scientific generalization artifacts, and
+yes for SPOF hardening. Evidence at run start: 285 unit tests passed,
+`validate` passed with 679 curated labels, the 1,025 preview still added 0
+clean countable labels, the source-scale audit still limited exposed M-CSA
+records to 1,003, proxy sequence/fold holdout and ESM-2 representation samples
+already existed, and no Foldseek, MMseqs2, BLAST, or DIAMOND executable was
+available on PATH. The active code evidence was an artifact-graph consistency
+gap: the external transfer gate checked row accessions but did not fail fast on
+mixed source-slice artifact paths. This run added
+`validate_external_transfer_artifact_path_lineage`, wired it into the gate CLI
+with fail-fast behavior, regenerated
+`artifacts/v3_external_source_transfer_gate_check_1025.json` with clean
+`artifact_path_lineage.slice_id=1025` across 61 inputs, and pinned a negative
+mixed-slice regression test. Remaining time went to the first external pilot
+evidence-dossier artifact, which joins current active-site, reaction, sequence,
+structure, heuristic, representation, and blocker evidence for the 10 selected
+candidates while keeping all rows review-only. No countable labels or
+import-ready external rows were created.
 
 Label-quality confidence call for the 2026-05-13T14:17:40Z run: no for
 additional M-CSA-only count growth, no for external-source import, no for new

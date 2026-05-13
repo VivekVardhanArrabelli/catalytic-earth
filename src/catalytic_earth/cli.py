@@ -127,6 +127,7 @@ from .transfer_scope import (
     build_external_source_heuristic_control_scores,
     build_external_source_pilot_candidate_priority,
     build_external_source_pilot_evidence_packet,
+    build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_review_decision_export,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
@@ -143,6 +144,7 @@ from .transfer_scope import (
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
     check_external_source_transfer_gates,
+    validate_external_transfer_artifact_path_lineage,
 )
 from .v2 import (
     build_mechanism_benchmark,
@@ -1738,6 +1740,59 @@ def cmd_build_external_source_pilot_evidence_packet(args: argparse.Namespace) ->
     return 0
 
 
+def cmd_build_external_source_pilot_evidence_dossiers(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.pilot_evidence_packet).open("r", encoding="utf-8") as handle:
+        pilot_evidence_packet = json.load(handle)
+    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+        active_site_evidence_sample = json.load(handle)
+    with Path(args.active_site_sourcing_resolution).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        active_site_sourcing_resolution = json.load(handle)
+    with Path(args.reaction_evidence_sample).open("r", encoding="utf-8") as handle:
+        reaction_evidence_sample = json.load(handle)
+    with Path(args.sequence_alignment_verification).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        sequence_alignment_verification = json.load(handle)
+    with Path(args.representation_backend_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        representation_backend_sample = json.load(handle)
+    with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
+        heuristic_control_scores = json.load(handle)
+    with Path(args.structure_mapping_sample).open("r", encoding="utf-8") as handle:
+        structure_mapping_sample = json.load(handle)
+    with Path(args.transfer_blocker_matrix).open("r", encoding="utf-8") as handle:
+        transfer_blocker_matrix = json.load(handle)
+    external_import_readiness_audit = None
+    if args.external_import_readiness_audit:
+        with Path(args.external_import_readiness_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            external_import_readiness_audit = json.load(handle)
+    dossiers = build_external_source_pilot_evidence_dossiers(
+        pilot_evidence_packet=pilot_evidence_packet,
+        active_site_evidence_sample=active_site_evidence_sample,
+        active_site_sourcing_resolution=active_site_sourcing_resolution,
+        reaction_evidence_sample=reaction_evidence_sample,
+        sequence_alignment_verification=sequence_alignment_verification,
+        representation_backend_sample=representation_backend_sample,
+        heuristic_control_scores=heuristic_control_scores,
+        structure_mapping_sample=structure_mapping_sample,
+        transfer_blocker_matrix=transfer_blocker_matrix,
+        external_import_readiness_audit=external_import_readiness_audit,
+    )
+    write_json(Path(args.out), dossiers)
+    print(
+        "Wrote external source pilot evidence dossiers to "
+        f"{args.out} ({dossiers['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
 def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
         transfer_manifest = json.load(handle)
@@ -2015,6 +2070,12 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             pilot_evidence_packet = json.load(handle)
+    pilot_evidence_dossiers = None
+    if args.pilot_evidence_dossiers:
+        with Path(args.pilot_evidence_dossiers).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            pilot_evidence_dossiers = json.load(handle)
     binding_context_repair_plan = None
     if args.binding_context_repair_plan:
         with Path(args.binding_context_repair_plan).open(
@@ -2043,6 +2104,77 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     if args.sequence_holdout_audit:
         with Path(args.sequence_holdout_audit).open("r", encoding="utf-8") as handle:
             sequence_holdout_audit = json.load(handle)
+    artifact_names = (
+        "transfer_manifest",
+        "query_manifest",
+        "ood_calibration_plan",
+        "candidate_sample_audit",
+        "candidate_manifest",
+        "candidate_manifest_audit",
+        "lane_balance_audit",
+        "evidence_plan",
+        "evidence_request_export",
+        "review_only_import_safety_audit",
+        "active_site_evidence_queue",
+        "active_site_evidence_sample",
+        "active_site_evidence_sample_audit",
+        "heuristic_control_queue",
+        "heuristic_control_queue_audit",
+        "structure_mapping_plan",
+        "structure_mapping_plan_audit",
+        "structure_mapping_sample",
+        "structure_mapping_sample_audit",
+        "heuristic_control_scores",
+        "heuristic_control_scores_audit",
+        "external_failure_mode_audit",
+        "external_control_repair_plan",
+        "external_control_repair_plan_audit",
+        "reaction_evidence_sample",
+        "reaction_evidence_sample_audit",
+        "representation_control_manifest",
+        "representation_control_manifest_audit",
+        "representation_control_comparison",
+        "representation_control_comparison_audit",
+        "representation_backend_plan",
+        "representation_backend_plan_audit",
+        "representation_backend_sample",
+        "representation_backend_sample_audit",
+        "broad_ec_disambiguation_audit",
+        "active_site_gap_source_requests",
+        "sequence_neighborhood_plan",
+        "sequence_neighborhood_sample",
+        "sequence_neighborhood_sample_audit",
+        "sequence_alignment_verification",
+        "sequence_alignment_verification_audit",
+        "sequence_search_export",
+        "sequence_search_export_audit",
+        "external_import_readiness_audit",
+        "active_site_sourcing_queue",
+        "active_site_sourcing_queue_audit",
+        "active_site_sourcing_export",
+        "active_site_sourcing_export_audit",
+        "active_site_sourcing_resolution",
+        "active_site_sourcing_resolution_audit",
+        "transfer_blocker_matrix",
+        "transfer_blocker_matrix_audit",
+        "pilot_candidate_priority",
+        "pilot_review_decision_export",
+        "pilot_evidence_packet",
+        "pilot_evidence_dossiers",
+        "binding_context_repair_plan",
+        "binding_context_repair_plan_audit",
+        "binding_context_mapping_sample",
+        "binding_context_mapping_sample_audit",
+        "sequence_holdout_audit",
+    )
+    artifact_paths = {name: getattr(args, name) for name in artifact_names}
+    local_payloads = locals()
+    artifact_payloads = {name: local_payloads[name] for name in artifact_names}
+    artifact_path_lineage = validate_external_transfer_artifact_path_lineage(
+        artifact_paths,
+        artifact_payloads,
+        fail_fast=True,
+    )
     gates = check_external_source_transfer_gates(
         transfer_manifest=transfer_manifest,
         query_manifest=query_manifest,
@@ -2099,11 +2231,13 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         pilot_candidate_priority=pilot_candidate_priority,
         pilot_review_decision_export=pilot_review_decision_export,
         pilot_evidence_packet=pilot_evidence_packet,
+        pilot_evidence_dossiers=pilot_evidence_dossiers,
         binding_context_repair_plan=binding_context_repair_plan,
         binding_context_repair_plan_audit=binding_context_repair_plan_audit,
         binding_context_mapping_sample=binding_context_mapping_sample,
         binding_context_mapping_sample_audit=binding_context_mapping_sample_audit,
         sequence_holdout_audit=sequence_holdout_audit,
+        artifact_path_lineage=artifact_path_lineage,
     )
     write_json(Path(args.out), gates)
     print(
@@ -5119,6 +5253,58 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_external_source_pilot_evidence_packet
     )
 
+    external_pilot_dossiers = subparsers.add_parser(
+        "build-external-source-pilot-evidence-dossiers",
+        help="assemble per-candidate review evidence dossiers for selected pilot rows",
+    )
+    external_pilot_dossiers.add_argument(
+        "--pilot-evidence-packet",
+        default="artifacts/v3_external_source_pilot_evidence_packet.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--active-site-evidence-sample",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--active-site-sourcing-resolution",
+        default="artifacts/v3_external_source_active_site_sourcing_resolution.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--reaction-evidence-sample",
+        default="artifacts/v3_external_source_reaction_evidence_sample.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--sequence-alignment-verification",
+        default="artifacts/v3_external_source_sequence_alignment_verification.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--representation-backend-sample",
+        default="artifacts/v3_external_source_representation_backend_sample.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--structure-mapping-sample",
+        default="artifacts/v3_external_source_structure_mapping_sample.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--transfer-blocker-matrix",
+        default="artifacts/v3_external_source_transfer_blocker_matrix.json",
+    )
+    external_pilot_dossiers.add_argument(
+        "--external-import-readiness-audit",
+        default=None,
+    )
+    external_pilot_dossiers.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_pilot_evidence_dossiers.json",
+    )
+    external_pilot_dossiers.set_defaults(
+        func=cmd_build_external_source_pilot_evidence_dossiers
+    )
+
     external_transfer_gate = subparsers.add_parser(
         "check-external-source-transfer-gates",
         help="gate review-only external-source transfer artifacts before import work",
@@ -5341,6 +5527,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--pilot-evidence-packet",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--pilot-evidence-dossiers",
         default=None,
     )
     external_transfer_gate.add_argument(
