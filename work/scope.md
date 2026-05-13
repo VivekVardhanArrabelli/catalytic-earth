@@ -223,8 +223,9 @@ Current expectation:
   label-factory gate has a typed `LabelFactoryGateInputs.v1` contract and a
   table-driven CLI artifact loader so future gate inputs do not keep growing as
   one-off branches. The gate CLI now validates non-exempt artifact slice
-  lineage before loading high-fan-in inputs and writes the lineage metadata into
-  the gate artifact.
+  lineage plus payload-declared slice/batch metadata, fails on contradictions,
+  and writes lineage metadata, payload methods, and payload digests into the
+  gate artifact.
 - artifact-lineage hardening has started: the external transfer blocker matrix
   audit now compares row accessions and candidate-manifest source method against
   the candidate manifest and fails on stale or mismatched matrix inputs. The
@@ -245,6 +246,9 @@ Current expectation:
   holdout and near-duplicate rows, and keeps 0 countable or import-ready rows.
   `artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
   those rows as no-decision review packets with 0 completed decisions.
+  `artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
+  79 review-only source targets for the same candidates, including all 10
+  sequence-search packets and 3 active-site sourcing packets.
 - review-debt triage now ranks 326 evidence-gap rows from the 1000 review pass,
   with 326 `needs_more_evidence` decisions, 305 carried rows, 21 new rows, and
   explicit non-countable deferral coverage for every row
@@ -331,7 +335,8 @@ Current expectation:
   sample statuses directly, the pilot-priority artifact selects 10
   non-countable candidates and defers 5 holdout or near-duplicate rows, the
   pilot review-decision export keeps 10 selected rows as no-decision packets,
-  and 0 external labels are countable.
+  the pilot evidence packet consolidates 79 source targets for review, and 0
+  external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

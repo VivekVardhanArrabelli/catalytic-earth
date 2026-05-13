@@ -558,7 +558,10 @@ rule-level provenance, backwards-compatible reason/detail fields, and explicit
 mechanism-text leakage flags. `check_label_factory_gates` accepts the typed
 `LabelFactoryGateInputs.v1` contract, the CLI loads gate artifacts through a
 table-driven map, and non-exempt label-factory gate inputs now get slice-lineage
-validation before loading. Text-leakage protection is also present for the
+validation plus payload-declared slice/batch checks. The current 1,000 gate
+artifact also records payload methods and short payload digests, and a negative
+regression test rejects a renamed or stale artifact whose payload slice metadata
+contradicts the path lineage. Text-leakage protection is also present for the
 external representation sample: sequence embeddings and length coverage are the
 only predictive feature sources, while heuristic fingerprint ids, matched M-CSA
 reference ids, and source scope signals carry explicit review/holdout leakage
@@ -591,13 +594,20 @@ mechanism text, EC/Rhea identifiers, source labels, and target labels are not
 priority-scoring evidence. The companion
 `artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
 those 10 rows as no-decision review packets with 0 completed decisions.
+This run then added
+`artifacts/v3_external_source_pilot_evidence_packet_1025.json`, which
+consolidates 79 source targets for those selected rows: all 10 sequence-search
+packets plus 3 active-site sourcing packets. It is guardrail-clean, has 0
+missing required source packets, and keeps every row review-only, non-countable,
+and not import-ready.
 
 Next ordered worklist:
 
 1. Continue artifact graph consistency checks beyond the external blocker matrix
-   and label-factory gate CLI: source slice, graph id, and lineage mismatches
-   should fail fast in other high-fan-in gates and audits. Include negative
-   regression tests with mismatched slice inputs.
+   and label-factory gate CLI. The label gate now rejects both path slice
+   mismatches and payload-declared slice/batch contradictions, but other
+   high-fan-in audits should still fail fast on source slice, graph id, and
+   lineage mismatches with negative regression coverage.
 2. Sequence/fold-distance holdout evaluation is implemented and pinned by
    regression tests. Treat the current artifacts as a proxy-only generalization
    signal, not as proof of <=30% sequence identity or <0.7 TM-score behavior.
@@ -606,10 +616,10 @@ Next ordered worklist:
    with Foldseek/MMseqs2/
    BLAST/DIAMOND or an equivalent local clustering backend if it becomes
    available.
-3. Use the learned representation backend path, pilot priority artifact, and
-   no-decision review export for reviewer work. A 12-row ESM-2 sample is
-   computed and review-only; the next work is to fill evidence gaps and
-   representation repairs for the 10 selected candidates while preserving
+3. Use the learned representation backend path, pilot priority artifact,
+   no-decision review export, and pilot evidence packet for reviewer work. A
+   12-row ESM-2 sample is computed and review-only; the next work is to fill
+   evidence decisions from the consolidated source targets while preserving
    heuristic geometry retrieval as the baseline.
 4. Reviewer policy and schema typing are lower priority unless code evidence
    exposes new ambiguity in countable vs review-only imports or high-fan-in
@@ -642,10 +652,10 @@ Priority blockers to remove:
    rows in `artifacts/v3_external_source_sequence_search_export_1025.json`.
    Exact-reference overlaps and high-similarity rows stay holdout controls, not
    labels.
-3. Use the computed ESM-2 representation sample and the new pilot-priority
-   artifact to prepare representation repair or reviewer decisions for the 10
-   selected candidates. Preserve heuristic geometry retrieval as the required
-   control baseline.
+3. Use the computed ESM-2 representation sample, the pilot-priority artifact,
+   and the consolidated pilot evidence packet to prepare representation repair
+   or reviewer decisions for the 10 selected candidates. Preserve heuristic
+   geometry retrieval as the required control baseline.
 4. Advance the 10 selected pilot candidates toward explicit active-site
    evidence, specific reaction evidence, clean sequence holdout status, clean
    structure mapping, non-collapsed heuristic/representation behavior, and no
@@ -919,16 +929,40 @@ failures. The same run extended external transfer artifact-lineage hardening:
 `check_external_source_transfer_gates` now validates candidate accessions across
 high-fan-in external artifacts and the gate artifact passes 60/60 with
 `metadata.artifact_lineage.guardrail_clean=true`, including the pilot priority
-and review-decision export artifacts. The pilot-priority artifact selects 10
-review-only candidates, defers 5 holdout or near-duplicate rows, and keeps all
-selected rows non-countable and not import-ready. The review-decision export
-artifact creates 10 no-decision packets with 0 completed decisions.
+review-decision export, and pilot evidence-packet artifacts. The pilot-priority
+artifact selects 10 review-only candidates, defers 5 holdout or near-duplicate
+rows, and keeps all selected rows non-countable and not import-ready. The
+review-decision export artifact creates 10 no-decision packets with 0 completed
+decisions.
 
 Wrap-up verification for the same run: 283 unit tests passed, `validate`
 passed with 679 curated labels, `compileall` passed, `git diff --check` passed,
 JSON artifact parsing passed for the selected-PDB, pilot-priority, pilot review
 export, and external transfer gate artifacts, and CLI smoke coverage now pins
-the new pilot priority and review-decision export commands.
+the new pilot priority and review-decision export commands. The later
+2026-05-13T11:20:13-05:00 run added the pilot evidence-packet command and
+included that artifact in external transfer candidate-lineage validation.
+
+Label-quality confidence call for the 2026-05-13T11:20:13-05:00 run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair, no
+for external-source import, no for new scientific generalization artifacts, and
+yes for SPOF hardening.
+Evidence at run start: 283 unit tests passed, `validate` passed with 679
+curated labels, the 1,025 preview still added 0 clean countable labels, the
+source-scale audit still limited exposed M-CSA records to 1,003, the proxy
+sequence/fold holdout and 12-row ESM-2 representation sample already existed,
+and the selected-PDB override path was already applied for `m_csa:577` and
+`m_csa:641`. The code evidence for the active SPOF was that label-factory
+gate lineage validation still trusted path-inferred slice ids whenever payload
+lineage was absent or contradicted the filename. This run hardened that path:
+`cmd_check_label_factory_gates` now loads gate artifacts before lineage
+validation, rejects payload-declared slice/batch metadata that conflicts with
+path lineage, records payload methods and short digests in
+`metadata.artifact_lineage`, and pins the failure with a negative CLI
+regression test. The same run added a review-only pilot evidence packet for
+the 10 selected external candidates, consolidating 79 source targets with 0
+missing sequence packets and 0 missing required active-site packets while
+keeping `ready_for_label_import=false`.
 
 Label-quality confidence call for the 2026-05-13T14:17:40Z run: no for
 additional M-CSA-only count growth, no for external-source import, no for new

@@ -181,7 +181,8 @@ sequence-neighborhood controls, sequence-alignment verification,
 sequence-search export, import-readiness audit, active-site sourcing queue/export,
 active-site sourcing resolution, representation-backend plan/sample, a
 candidate blocker matrix, a 10-row external pilot candidate priority worklist,
-and a 60/60 external transfer gate with candidate lineage validation. The
+a consolidated pilot evidence packet, and a 60/60 external transfer gate with
+candidate lineage validation. The
 evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
@@ -229,6 +230,10 @@ source labels, and target labels are excluded from priority scoring.
 `artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
 those 10 rows as no-decision review packets with 0 completed decisions, so it
 removes the packet-scaffolding blocker without authorizing import.
+`artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
+79 source targets for the same 10 rows, including all 10 sequence-search
+packets and 3 active-site sourcing packets, while keeping every row review-only
+and non-countable.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
@@ -329,11 +334,12 @@ review-debt rows remain explicitly non-countable under
 holdout and first 12-row ESM-2 representation sample are now in place. The
 first SPOF hardening pass also refactored counterevidence and gate inputs. The
 label-factory gate now records validated artifact lineage and fails on
-non-exempt slice mismatches before reading high-fan-in inputs. The external
-pilot ranking and no-decision review export artifacts are now built; the next
-bounded work item is filling evidence gaps for those packets, especially
-active-site sources and complete near-duplicate sequence evidence, not M-CSA-only
-count growth or label import.
+non-exempt slice mismatches, including payload-declared slice or batch metadata
+that contradicts path lineage, while recording payload methods and digests.
+The external pilot ranking, no-decision review export, and evidence-packet
+artifacts are now built; the next bounded work item is filling the packet
+decisions with active-site sources and complete near-duplicate sequence
+evidence, not M-CSA-only count growth or label import.
 See
 `docs/label_factory.md`.
 

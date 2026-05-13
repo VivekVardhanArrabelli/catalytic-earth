@@ -126,6 +126,10 @@ Current review-only external artifacts:
   It is packet scaffolding only; active-site evidence, sequence search,
   representation controls, reviewed decisions, and full gates still block
   import.
+- `artifacts/v3_external_source_pilot_evidence_packet_1025.json` joins source
+  targets for the same selected 10. It carries 79 review-only targets, all 10
+  sequence-search packets, 3 active-site sourcing packets, and no missing
+  required source packets; it is source-packet consolidation only.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate

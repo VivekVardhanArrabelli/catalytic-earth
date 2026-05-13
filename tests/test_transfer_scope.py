@@ -53,6 +53,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_heuristic_control_queue,
     build_external_source_heuristic_control_scores,
     build_external_source_pilot_candidate_priority,
+    build_external_source_pilot_evidence_packet,
     build_external_source_pilot_review_decision_export,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
@@ -4051,6 +4052,98 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             item["review_requirements"],
         )
 
+    def test_external_source_pilot_evidence_packet_consolidates_source_targets(
+        self,
+    ) -> None:
+        priority = {
+            "metadata": {"method": "external_source_pilot_candidate_priority"},
+            "rows": [
+                {
+                    "accession": "PGOOD1",
+                    "active_site_sourcing": {
+                        "source_task": (
+                            "curate_active_site_positions_from_mapped_binding_context"
+                        )
+                    },
+                    "blockers": ["complete_near_duplicate_search_required"],
+                    "entry_id": "uniprot:PGOOD1",
+                    "lane_id": "external_source:lane_a",
+                    "pilot_priority_score": 92.0,
+                    "pilot_selection_status": "selected_for_review_pilot",
+                    "representation_backend": {
+                        "sample_backend_status": (
+                            "learned_representation_sample_complete"
+                        )
+                    },
+                },
+                {
+                    "accession": "PDEFER",
+                    "pilot_selection_status": "deferred_by_holdout_or_near_duplicate",
+                },
+            ],
+        }
+        active_site_export = {
+            "metadata": {"method": "external_source_active_site_sourcing_export"},
+            "rows": [
+                {
+                    "accession": "PGOOD1",
+                    "review_status": "active_site_sourcing_export_review_only",
+                    "source_task": "curate_active_site_positions_from_mapped_binding_context",
+                    "source_targets": [
+                        {
+                            "source_type": "PDB",
+                            "source_id": "1ABC",
+                            "url": "https://www.rcsb.org/structure/1ABC",
+                        }
+                    ],
+                }
+            ],
+        }
+        sequence_export = {
+            "metadata": {"method": "external_source_sequence_search_export"},
+            "rows": [
+                {
+                    "accession": "PGOOD1",
+                    "review_status": "sequence_search_export_review_only",
+                    "source_targets": [
+                        {
+                            "source_type": "UniRef",
+                            "source_id": "PGOOD1",
+                            "url": "https://www.uniprot.org/uniref?query=PGOOD1",
+                        }
+                    ],
+                }
+            ],
+        }
+
+        packet = build_external_source_pilot_evidence_packet(
+            pilot_candidate_priority=priority,
+            active_site_sourcing_export=active_site_export,
+            sequence_search_export=sequence_export,
+        )
+
+        self.assertEqual(
+            packet["metadata"]["method"],
+            "external_source_pilot_evidence_packet",
+        )
+        self.assertEqual(
+            packet["metadata"]["blocker_removed"],
+            "external_pilot_source_packet_consolidation",
+        )
+        self.assertTrue(packet["metadata"]["guardrail_clean"])
+        self.assertEqual(packet["metadata"]["candidate_count"], 1)
+        self.assertEqual(packet["metadata"]["source_target_count"], 2)
+        self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(packet["metadata"]["ready_for_label_import"])
+        row = packet["rows"][0]
+        self.assertEqual(row["accession"], "PGOOD1")
+        self.assertEqual(
+            {target["evidence_track"] for target in row["source_targets"]},
+            {"active_site", "sequence_search"},
+        )
+        self.assertFalse(row["countable_label_candidate"])
+        self.assertFalse(row["ready_for_label_import"])
+
     def test_external_transfer_blocker_matrix_audit_rejects_missing_integrated_rows(
         self,
     ) -> None:
@@ -4872,6 +4965,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "metadata": {"candidate_count": 1},
                 "review_items": [{"accession": "Q99999"}],
             },
+            pilot_evidence_packet={
+                "metadata": {"candidate_count": 1},
+                "rows": [{"accession": "Q88888"}],
+            },
         )
 
         self.assertFalse(
@@ -4885,6 +4982,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             lineage["unexpected_accessions"]["pilot_review_decision_export"],
             ["Q99999"],
+        )
+        self.assertEqual(
+            lineage["unexpected_accessions"]["pilot_evidence_packet"],
+            ["Q88888"],
         )
         self.assertEqual(lineage["missing_accessions"]["evidence_plan"], ["P12345"])
 

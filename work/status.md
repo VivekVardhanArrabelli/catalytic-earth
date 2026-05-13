@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 70
-- Measured elapsed time: 2708.1 minutes (45.14 hours)
+- Entries: 71
+- Measured elapsed time: 2725.1 minutes (45.42 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 87.1 measured minutes (1.45 hours)
+- post-mcsa-spof-hardening: 104.1 measured minutes (1.73 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -23,21 +23,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 740
-- Evidence references logged: 614
+- Artifact references logged: 756
+- Evidence references logged: 624
 
 ## Recent Entries
-
-### 2026-05-13T11:04:16.318492+00:00 - post-v2
-
-- Task: Harden external transfer blocker exports
-- Time mode: measured
-- Measured minutes: 51.083
-- Started: 2026-05-13T10:12:41Z
-- Ended: 2026-05-13T11:03:46Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_active_site_sourcing_export_1025.json, artifacts/v3_external_source_active_site_sourcing_export_audit_1025.json, artifacts/v3_external_source_sequence_search_export_1025.json, artifacts/v3_external_source_sequence_search_export_audit_1025.json, artifacts/v3_external_source_representation_backend_plan_1025.json, artifacts/v3_external_source_representation_backend_plan_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md, work/label_factory_notes.md
-- Evidence: 265 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, CLI help checks passed, 53/53 external transfer gates, 10 active-site source-review packets, 28 near-duplicate sequence search requests, 12 representation backend plans with embeddings absent, 30-row blocker matrix with no action/lane collapse, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
 
 ### 2026-05-13T12:05:19.086868+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/structure.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_labels.py, tests/test_structure.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, artifacts/v3_selected_pdb_override_plan_700.json, artifacts/v3_geometry_features_1000_selected_pdb_override.json, artifacts/v3_external_source_pilot_candidate_priority_1025.json, artifacts/v3_external_source_pilot_review_decision_export_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
 - Evidence: 283 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, 60/60 external transfer gate with pilot artifact lineage, 10 review-only pilot candidates, 10 no-decision pilot review packets, 2 selected-PDB overrides applied, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 0 countable external labels, 0 import-ready external labels
 - Notes: Normal locked measured SPOF-hardening run. Documentation checked and updated; no count growth or external import.
+
+### 2026-05-13T16:37:11.331979+00:00 - post-mcsa-spof-hardening
+
+- Task: Harden label lineage and pilot evidence packets
+- Time mode: measured
+- Measured minutes: 16.967
+- Started: 2026-05-13T11:20:13-05:00
+- Ended: 2026-05-13T11:37:11-05:00
+- Artifacts: src/catalytic_earth/cli.py, src/catalytic_earth/transfer_scope.py, tests/test_cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_label_factory_gate_check_1000.json, artifacts/v3_external_source_pilot_evidence_packet_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, work/external_source_control_repair_1025_notes.md, work/label_preview_1025_notes.md
+- Evidence: 285 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, label-factory payload slice mismatch regression, pilot evidence packet 10 candidates and 79 source targets, external gate 60/60 with pilot evidence lineage, 0 countable external labels, 0 import-ready external labels
+- Notes: Normal locked SPOF-hardening run. Counterevidence and selected-PDB SPOFs were already addressed; this run hardened label-factory artifact lineage against payload/path contradictions and consolidated pilot source packets without count growth or external import.
 
 ## Expectation Updates
 
@@ -247,3 +247,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T13:02:54.457092+00:00: Agent work is now instruction-only redirected toward sequence/fold-distance holdout evaluation before external import or further abstract gates.
 - 2026-05-13T14:08:28.620965+00:00: External transfer remains non-countable; next pilot readiness work should use the holdout metrics and learned-vs-heuristic disagreements to rank candidates before active-site source review, complete sequence search, selected-PDB override repairs, and full factory gates.
 - 2026-05-13T16:04:03.062604+00:00: External pilot now has leakage-provenance ranking and no-decision review packets; next work should fill active-site and sequence evidence for selected candidates, not increase M-CSA-only count.
+- 2026-05-13T16:37:11.331979+00:00: External pilot packets now have consolidated review-only source targets; next work should fill evidence decisions, not increase M-CSA count.

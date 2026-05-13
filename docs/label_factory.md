@@ -49,12 +49,13 @@ The label-factory gate also has a typed input contract:
 `LabelFactoryGateInputs.v1`. The CLI loads required and optional gate artifacts
 through a table-driven artifact map before calling `check_label_factory_gates`,
 which keeps future gate inputs from becoming another one-off argument cascade.
-The same path validates high-fan-in artifact lineage before loading the JSON:
-all non-exempt gate inputs must share a compatible slice id, and
+The same path validates high-fan-in artifact lineage from path and payload
+metadata: all non-exempt gate inputs must share a compatible slice id, payload
+slice/batch declarations must not contradict the path lineage, and
 `artifacts/v3_label_factory_gate_check_1000.json` now records the validated
-lineage under `metadata.artifact_lineage`. The only current exemption is the
-historical ATP-family boundary-control artifact, which remains review/scope
-context rather than a count-growth input.
+lineage plus payload methods and short digests under `metadata.artifact_lineage`.
+The only current exemption is the historical ATP-family boundary-control
+artifact, which remains review/scope context rather than a count-growth input.
 
 Current slice artifact:
 

@@ -1,0 +1,3117 @@
+{
+  "metadata": {
+    "active_site_sourcing_packet_count": 3,
+    "blocker_removed": "external_pilot_source_packet_consolidation",
+    "blockers": [],
+    "candidate_count": 10,
+    "countable_label_candidate_count": 0,
+    "guardrail_clean": true,
+    "max_rows": 10,
+    "method": "external_source_pilot_evidence_packet",
+    "missing_required_active_site_export_accessions": [],
+    "missing_sequence_export_accessions": [],
+    "ready_for_label_import": false,
+    "review_only": true,
+    "selected_accessions": [
+      "O14756",
+      "P06746",
+      "C9JRZ8",
+      "P55263",
+      "P34949",
+      "Q9BXD5",
+      "Q6NSJ0",
+      "O60568",
+      "O95050",
+      "P51580"
+    ],
+    "sequence_search_packet_count": 10,
+    "source_active_site_sourcing_export_method": "external_source_active_site_sourcing_export",
+    "source_pilot_candidate_priority_method": "external_source_pilot_candidate_priority",
+    "source_sequence_search_export_method": "external_source_sequence_search_export",
+    "source_target_count": 79,
+    "source_target_type_counts": {
+      "AlphaFoldDB": 3,
+      "PDB": 13,
+      "PROSITE-ProRule": 1,
+      "PubMed": 1,
+      "Rhea": 8,
+      "UniProtKB": 43,
+      "UniRef": 10
+    }
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "representation_backend_not_selected"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pilot_priority_score": 92.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+      "rank": 1,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P0A6C1",
+        "sample_top_embedding_cosine": 0.7852,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "O14756",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:O14756",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:oxidoreductase_long_tail",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "oxidoreductase_long_tail",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "O14756",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/O14756/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "O14756",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=O14756"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:11"
+            ],
+            "near_duplicate_score": 0.0852,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P0A6C1",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P0A6C1/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:315"
+            ],
+            "near_duplicate_score": 0.0852,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P14604",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P14604/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:595"
+            ],
+            "near_duplicate_score": 0.0852,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P15369",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P15369/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "O14756",
+            "external_length": 317,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.8991,
+            "matched_m_csa_entry_ids": [
+              "m_csa:11"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0852,
+            "positional_identity": 0.0947,
+            "reference_accession": "P0A6C1",
+            "reference_length": 285,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "O14756",
+            "external_length": 317,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9148,
+            "matched_m_csa_entry_ids": [
+              "m_csa:315"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0852,
+            "positional_identity": 0.0931,
+            "reference_accession": "P14604",
+            "reference_length": 290,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "O14756",
+            "external_length": 317,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.8202,
+            "matched_m_csa_entry_ids": [
+              "m_csa:595"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0852,
+            "positional_identity": 0.1038,
+            "reference_accession": "P15369",
+            "reference_length": 260,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "O14756",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O14756/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "O14756",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=O14756"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:11"
+          ],
+          "near_duplicate_score": 0.0852,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P0A6C1",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P0A6C1/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:315"
+          ],
+          "near_duplicate_score": 0.0852,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P14604",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P14604/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:595"
+          ],
+          "near_duplicate_score": 0.0852,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P15369",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P15369/entry"
+        }
+      ]
+    },
+    {
+      "accession": "P06746",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06746",
+      "lane_id": "external_source:lyase",
+      "pilot_priority_score": 82.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+      "rank": 2,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "P06746",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:P06746",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:lyase",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "lyase",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "P06746",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P06746/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "P06746",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=P06746"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:521"
+            ],
+            "near_duplicate_score": 0.0919,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P31116",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P31116/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:353"
+            ],
+            "near_duplicate_score": 0.0906,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P08373",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P08373/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:536"
+            ],
+            "near_duplicate_score": 0.0857,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P26239",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P26239/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "P06746",
+            "external_length": 335,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9331,
+            "matched_m_csa_entry_ids": [
+              "m_csa:521"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0919,
+            "positional_identity": 0.0985,
+            "reference_accession": "P31116",
+            "reference_length": 359,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "P06746",
+            "external_length": 335,
+            "kmer_jaccard": 0.0015,
+            "length_coverage": 0.9795,
+            "matched_m_csa_entry_ids": [
+              "m_csa:353"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0906,
+            "positional_identity": 0.0925,
+            "reference_accession": "P08373",
+            "reference_length": 342,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "P06746",
+            "external_length": 335,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9571,
+            "matched_m_csa_entry_ids": [
+              "m_csa:536"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0857,
+            "positional_identity": 0.0896,
+            "reference_accession": "P26239",
+            "reference_length": 350,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "P06746",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P06746/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "P06746",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=P06746"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:521"
+          ],
+          "near_duplicate_score": 0.0919,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P31116",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P31116/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:353"
+          ],
+          "near_duplicate_score": 0.0906,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P08373",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P08373/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:536"
+          ],
+          "near_duplicate_score": 0.0857,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P26239",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P26239/entry"
+        }
+      ]
+    },
+    {
+      "accession": "C9JRZ8",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:C9JRZ8",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pilot_priority_score": 82.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+      "rank": 3,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "C9JRZ8",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:C9JRZ8",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:oxidoreductase_long_tail",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "oxidoreductase_long_tail",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "C9JRZ8",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/C9JRZ8/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "C9JRZ8",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=C9JRZ8"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:106"
+            ],
+            "near_duplicate_score": 0.0923,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P21874",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P21874/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:405"
+            ],
+            "near_duplicate_score": 0.0918,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P0A786",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P0A786/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:66"
+            ],
+            "near_duplicate_score": 0.0918,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P19938",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P19938/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "C9JRZ8",
+            "external_length": 316,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9723,
+            "matched_m_csa_entry_ids": [
+              "m_csa:106"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0923,
+            "positional_identity": 0.0949,
+            "reference_accession": "P21874",
+            "reference_length": 325,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "C9JRZ8",
+            "external_length": 316,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9842,
+            "matched_m_csa_entry_ids": [
+              "m_csa:405"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0918,
+            "positional_identity": 0.0932,
+            "reference_accession": "P0A786",
+            "reference_length": 311,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "C9JRZ8",
+            "external_length": 316,
+            "kmer_jaccard": 0.0017,
+            "length_coverage": 0.8956,
+            "matched_m_csa_entry_ids": [
+              "m_csa:66"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0918,
+            "positional_identity": 0.1025,
+            "reference_accession": "P19938",
+            "reference_length": 283,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "C9JRZ8",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/C9JRZ8/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "C9JRZ8",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=C9JRZ8"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:106"
+          ],
+          "near_duplicate_score": 0.0923,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P21874",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P21874/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:405"
+          ],
+          "near_duplicate_score": 0.0918,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P0A786",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P0A786/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:66"
+          ],
+          "near_duplicate_score": 0.0918,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P19938",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P19938/entry"
+        }
+      ]
+    },
+    {
+      "accession": "P55263",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P55263",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "pilot_priority_score": 82.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "rank": 4,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "P55263",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:P55263",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:transferase_phosphoryl",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "transferase_phosphoryl",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "P55263",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P55263/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "P55263",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=P55263"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:445"
+            ],
+            "near_duplicate_score": 0.0856,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P53608",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P53608/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:536"
+            ],
+            "near_duplicate_score": 0.0829,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P26239",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P26239/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:209"
+            ],
+            "near_duplicate_score": 0.0826,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "Q9TVW2",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/Q9TVW2/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "P55263",
+            "external_length": 362,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.826,
+            "matched_m_csa_entry_ids": [
+              "m_csa:445"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0856,
+            "positional_identity": 0.1037,
+            "reference_accession": "P53608",
+            "reference_length": 299,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "P55263",
+            "external_length": 362,
+            "kmer_jaccard": 0.0014,
+            "length_coverage": 0.9669,
+            "matched_m_csa_entry_ids": [
+              "m_csa:536"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0829,
+            "positional_identity": 0.0857,
+            "reference_accession": "P26239",
+            "reference_length": 350,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "P55263",
+            "external_length": 362,
+            "kmer_jaccard": 0.0273,
+            "length_coverage": 0.9972,
+            "matched_m_csa_entry_ids": [
+              "m_csa:209"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0826,
+            "positional_identity": 0.0829,
+            "reference_accession": "Q9TVW2",
+            "reference_length": 363,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "P55263",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P55263/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "P55263",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=P55263"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:445"
+          ],
+          "near_duplicate_score": 0.0856,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P53608",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P53608/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:536"
+          ],
+          "near_duplicate_score": 0.0829,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P26239",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P26239/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:209"
+          ],
+          "near_duplicate_score": 0.0826,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "Q9TVW2",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9TVW2/entry"
+        }
+      ]
+    },
+    {
+      "accession": "P34949",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_scope_top1_mismatch"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P34949",
+      "lane_id": "external_source:isomerase",
+      "pilot_priority_score": 80.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+      "rank": 5,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P0A6D3",
+        "sample_top_embedding_cosine": 0.9199,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "P34949",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:P34949",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:isomerase",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "isomerase",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "P34949",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P34949/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "P34949",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=P34949"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:457"
+            ],
+            "near_duplicate_score": 0.0913,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P0A6D3",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P0A6D3/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:282"
+            ],
+            "near_duplicate_score": 0.0898,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P36507",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P36507/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:317"
+            ],
+            "near_duplicate_score": 0.0868,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P14900",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P14900/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "P34949",
+            "external_length": 423,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9906,
+            "matched_m_csa_entry_ids": [
+              "m_csa:457"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0913,
+            "positional_identity": 0.0922,
+            "reference_accession": "P0A6D3",
+            "reference_length": 427,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "P34949",
+            "external_length": 423,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9456,
+            "matched_m_csa_entry_ids": [
+              "m_csa:282"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0898,
+            "positional_identity": 0.095,
+            "reference_accession": "P36507",
+            "reference_length": 400,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "P34949",
+            "external_length": 423,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9658,
+            "matched_m_csa_entry_ids": [
+              "m_csa:317"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0868,
+            "positional_identity": 0.0898,
+            "reference_accession": "P14900",
+            "reference_length": 438,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "P34949",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P34949/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "P34949",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=P34949"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:457"
+          ],
+          "near_duplicate_score": 0.0913,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P0A6D3",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P0A6D3/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:282"
+          ],
+          "near_duplicate_score": 0.0898,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P36507",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P36507/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:317"
+          ],
+          "near_duplicate_score": 0.0868,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P14900",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P14900/entry"
+        }
+      ]
+    },
+    {
+      "accession": "Q9BXD5",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_scope_top1_mismatch"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BXD5",
+      "lane_id": "external_source:lyase",
+      "pilot_priority_score": 80.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "rank": 6,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P11708",
+        "sample_top_embedding_cosine": 0.8619,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "Q9BXD5",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:Q9BXD5",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:lyase",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "lyase",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "Q9BXD5",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/Q9BXD5/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "Q9BXD5",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=Q9BXD5"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:526"
+            ],
+            "near_duplicate_score": 0.1048,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P11708",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P11708/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:342"
+            ],
+            "near_duplicate_score": 0.0917,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "Q62651",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/Q62651/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:856"
+            ],
+            "near_duplicate_score": 0.09,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P21327",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P21327/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "Q9BXD5",
+            "external_length": 320,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9581,
+            "matched_m_csa_entry_ids": [
+              "m_csa:526"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.1048,
+            "positional_identity": 0.1094,
+            "reference_accession": "P11708",
+            "reference_length": 334,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "Q9BXD5",
+            "external_length": 320,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9786,
+            "matched_m_csa_entry_ids": [
+              "m_csa:342"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0917,
+            "positional_identity": 0.0938,
+            "reference_accession": "Q62651",
+            "reference_length": 327,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "Q9BXD5",
+            "external_length": 320,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.8,
+            "matched_m_csa_entry_ids": [
+              "m_csa:856"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.09,
+            "positional_identity": 0.1125,
+            "reference_accession": "P21327",
+            "reference_length": 400,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "Q9BXD5",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q9BXD5/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "Q9BXD5",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=Q9BXD5"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:526"
+          ],
+          "near_duplicate_score": 0.1048,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P11708",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P11708/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:342"
+          ],
+          "near_duplicate_score": 0.0917,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "Q62651",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q62651/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:856"
+          ],
+          "near_duplicate_score": 0.09,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P21327",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P21327/entry"
+        }
+      ]
+    },
+    {
+      "accession": "Q6NSJ0",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "representation_backend_not_selected",
+        "representation_control_proxy_boundary_case_requires_glycan_hydrolase_split"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q6NSJ0",
+      "lane_id": "external_source:glycan_chemistry",
+      "pilot_priority_score": 78.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "rank": 7,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P0ABI8",
+        "sample_top_embedding_cosine": 0.8958,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "Q6NSJ0",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:Q6NSJ0",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:glycan_chemistry",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "glycan_chemistry",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "Q6NSJ0",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/Q6NSJ0/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "Q6NSJ0",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=Q6NSJ0"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:539"
+            ],
+            "near_duplicate_score": 0.0803,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P27002",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P27002/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:289"
+            ],
+            "near_duplicate_score": 0.0784,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P07342",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P07342/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:714"
+            ],
+            "near_duplicate_score": 0.0784,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P0ABI8",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P0ABI8/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "Q6NSJ0",
+            "external_length": 714,
+            "kmer_jaccard": 0.0007,
+            "length_coverage": 0.9096,
+            "matched_m_csa_entry_ids": [
+              "m_csa:539"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0803,
+            "positional_identity": 0.0882,
+            "reference_accession": "P27002",
+            "reference_length": 785,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "Q6NSJ0",
+            "external_length": 714,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9622,
+            "matched_m_csa_entry_ids": [
+              "m_csa:289"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0784,
+            "positional_identity": 0.0815,
+            "reference_accession": "P07342",
+            "reference_length": 687,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "Q6NSJ0",
+            "external_length": 714,
+            "kmer_jaccard": 0.0007,
+            "length_coverage": 0.9286,
+            "matched_m_csa_entry_ids": [
+              "m_csa:714"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0784,
+            "positional_identity": 0.0845,
+            "reference_accession": "P0ABI8",
+            "reference_length": 663,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "Q6NSJ0",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q6NSJ0/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "Q6NSJ0",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=Q6NSJ0"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:539"
+          ],
+          "near_duplicate_score": 0.0803,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P27002",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P27002/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:289"
+          ],
+          "near_duplicate_score": 0.0784,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P07342",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P07342/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:714"
+          ],
+          "near_duplicate_score": 0.0784,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P0ABI8",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P0ABI8/entry"
+        }
+      ]
+    },
+    {
+      "accession": "O60568",
+      "active_site_sourcing": {
+        "accession": "O60568",
+        "active_site_gap_request_status": "binding_context_mapped_ready_for_active_site_sourcing",
+        "binding_context": {
+          "binding_feature_count": 13,
+          "binding_positions": [
+            {
+              "begin": 44,
+              "end": 46,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:58223",
+              "ligand_name": "UDP"
+            },
+            {
+              "begin": 112,
+              "end": 114,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:58223",
+              "ligand_name": "UDP"
+            },
+            {
+              "begin": 112,
+              "end": 112,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)"
+            },
+            {
+              "begin": 115,
+              "end": 115,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)"
+            },
+            {
+              "begin": 253,
+              "end": 253,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:29035",
+              "ligand_name": "Mn(2+)"
+            },
+            {
+              "begin": 256,
+              "end": 259,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:58223",
+              "ligand_name": "UDP"
+            },
+            {
+              "begin": 599,
+              "end": 599,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:16810",
+              "ligand_name": "2-oxoglutarate"
+            },
+            {
+              "begin": 656,
+              "end": 656,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:16810",
+              "ligand_name": "2-oxoglutarate"
+            },
+            {
+              "begin": 667,
+              "end": 667,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000255",
+                  "id": "PRU00805",
+                  "source": "PROSITE-ProRule"
+                },
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation"
+            },
+            {
+              "begin": 669,
+              "end": 669,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000255",
+                  "id": "PRU00805",
+                  "source": "PROSITE-ProRule"
+                },
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation"
+            },
+            {
+              "begin": 676,
+              "end": 676,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:16810",
+              "ligand_name": "2-oxoglutarate"
+            },
+            {
+              "begin": 719,
+              "end": 719,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000255",
+                  "id": "PRU00805",
+                  "source": "PROSITE-ProRule"
+                },
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:24875",
+              "ligand_name": "Fe cation"
+            },
+            {
+              "begin": 729,
+              "end": 729,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000269",
+                  "id": "30089812",
+                  "source": "PubMed"
+                },
+                {
+                  "evidence_code": "ECO:0007744",
+                  "id": "6FXY",
+                  "source": "PDB"
+                }
+              ],
+              "ligand_id": "ChEBI:CHEBI:16810",
+              "ligand_name": "2-oxoglutarate"
+            }
+          ],
+          "evidence_references": [
+            {
+              "id": "30089812",
+              "ligand_name": "UDP",
+              "source": "PubMed"
+            },
+            {
+              "id": "6FXY",
+              "ligand_name": "UDP",
+              "source": "PDB"
+            },
+            {
+              "id": "30089812",
+              "ligand_name": "Mn(2+)",
+              "source": "PubMed"
+            },
+            {
+              "id": "6FXY",
+              "ligand_name": "Mn(2+)",
+              "source": "PDB"
+            },
+            {
+              "id": "30089812",
+              "ligand_name": "2-oxoglutarate",
+              "source": "PubMed"
+            },
+            {
+              "id": "6FXY",
+              "ligand_name": "2-oxoglutarate",
+              "source": "PDB"
+            },
+            {
+              "id": "PRU00805",
+              "ligand_name": "Fe cation",
+              "source": "PROSITE-ProRule"
+            },
+            {
+              "id": "30089812",
+              "ligand_name": "Fe cation",
+              "source": "PubMed"
+            },
+            {
+              "id": "6FXY",
+              "ligand_name": "Fe cation",
+              "source": "PDB"
+            }
+          ],
+          "mapped_binding_position_count": 13
+        },
+        "blockers": [
+          "explicit_active_site_residue_sources_not_collected",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sourced_active_site_positions": []
+        },
+        "entry_id": "uniprot:O60568",
+        "lane_id": "external_source:glycan_chemistry",
+        "priority_score": 25.0,
+        "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "reaction_context": {
+          "broad_or_incomplete_ec_numbers": [],
+          "entry_id": "uniprot:O60568",
+          "has_broad_ec_context": false,
+          "has_reaction_context": true,
+          "has_specific_reaction_context": true,
+          "reaction_record_count": 3,
+          "rhea_ids": [
+            "RHEA:12576",
+            "RHEA:12637",
+            "RHEA:16569"
+          ],
+          "specific_ec_numbers": [
+            "1.14.11.4",
+            "2.4.1.50",
+            "2.4.1.66"
+          ]
+        },
+        "ready_for_label_import": false,
+        "review_status": "active_site_sourcing_export_review_only",
+        "scope_signal": "glycan_chemistry",
+        "sequence_alignment_status": "alignment_no_near_duplicate_signal",
+        "source_targets": [
+          {
+            "purpose": "inspect feature table, catalytic activity, and evidence links",
+            "source_id": "O60568",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/O60568/entry"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6FXK",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6FXK"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6FXM",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6FXM"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6FXR",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6FXR"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6FXT",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6FXT"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6FXX",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6FXX"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6FXY",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6FXY"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6TE3",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6TE3"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6TEC",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6TEC"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6TES",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6TES"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "6TEU",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/6TEU"
+          },
+          {
+            "purpose": "map sourced residue positions after curated evidence exists",
+            "source_id": "O60568",
+            "source_type": "AlphaFoldDB",
+            "url": "https://alphafold.ebi.ac.uk/entry/O60568"
+          },
+          {
+            "ligand_name": "UDP",
+            "purpose": "inspect binding-context source for catalytic residue evidence",
+            "source_id": "30089812",
+            "source_type": "PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/30089812/"
+          },
+          {
+            "ligand_name": "Fe cation",
+            "purpose": "inspect binding-context source for catalytic residue evidence",
+            "source_id": "PRU00805",
+            "source_type": "PROSITE-ProRule"
+          },
+          {
+            "purpose": "check reaction context only; not active-site residue evidence",
+            "source_id": "RHEA:12576",
+            "source_type": "Rhea",
+            "url": "https://www.rhea-db.org/rhea/12576"
+          },
+          {
+            "purpose": "check reaction context only; not active-site residue evidence",
+            "source_id": "RHEA:12637",
+            "source_type": "Rhea",
+            "url": "https://www.rhea-db.org/rhea/12637"
+          },
+          {
+            "purpose": "check reaction context only; not active-site residue evidence",
+            "source_id": "RHEA:16569",
+            "source_type": "Rhea",
+            "url": "https://www.rhea-db.org/rhea/16569"
+          }
+        ],
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "specific_ec_numbers": [
+          "1.14.11.4",
+          "2.4.1.50",
+          "2.4.1.66"
+        ]
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O60568",
+      "lane_id": "external_source:glycan_chemistry",
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "rank": 8,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "O60568",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:O60568",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:glycan_chemistry",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "glycan_chemistry",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "O60568",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/O60568/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "O60568",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=O60568"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:149"
+            ],
+            "near_duplicate_score": 0.0718,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P00488",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P00488/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:380"
+            ],
+            "near_duplicate_score": 0.0691,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P42790",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P42790/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:581"
+            ],
+            "near_duplicate_score": 0.0691,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "Q50925",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/Q50925/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "O60568",
+            "external_length": 738,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9919,
+            "matched_m_csa_entry_ids": [
+              "m_csa:149"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0718,
+            "positional_identity": 0.0724,
+            "reference_accession": "P00488",
+            "reference_length": 732,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "O60568",
+            "external_length": 738,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.7954,
+            "matched_m_csa_entry_ids": [
+              "m_csa:380"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0691,
+            "positional_identity": 0.0869,
+            "reference_accession": "P42790",
+            "reference_length": 587,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "O60568",
+            "external_length": 738,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.7724,
+            "matched_m_csa_entry_ids": [
+              "m_csa:581"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0691,
+            "positional_identity": 0.0895,
+            "reference_accession": "Q50925",
+            "reference_length": 570,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "O60568",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O60568/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "O60568",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=O60568"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:149"
+          ],
+          "near_duplicate_score": 0.0718,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P00488",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P00488/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:380"
+          ],
+          "near_duplicate_score": 0.0691,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P42790",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P42790/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:581"
+          ],
+          "near_duplicate_score": 0.0691,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "Q50925",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/Q50925/entry"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect feature table, catalytic activity, and evidence links",
+          "source_id": "O60568",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O60568/entry"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6FXK",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6FXK"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6FXM",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6FXM"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6FXR",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6FXR"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6FXT",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6FXT"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6FXX",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6FXX"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6FXY",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6FXY"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6TE3",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6TE3"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6TEC",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6TEC"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6TES",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6TES"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "6TEU",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/6TEU"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "map sourced residue positions after curated evidence exists",
+          "source_id": "O60568",
+          "source_type": "AlphaFoldDB",
+          "url": "https://alphafold.ebi.ac.uk/entry/O60568"
+        },
+        {
+          "evidence_track": "active_site",
+          "ligand_name": "UDP",
+          "purpose": "inspect binding-context source for catalytic residue evidence",
+          "source_id": "30089812",
+          "source_type": "PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30089812/"
+        },
+        {
+          "evidence_track": "active_site",
+          "ligand_name": "Fe cation",
+          "purpose": "inspect binding-context source for catalytic residue evidence",
+          "source_id": "PRU00805",
+          "source_type": "PROSITE-ProRule"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "check reaction context only; not active-site residue evidence",
+          "source_id": "RHEA:12576",
+          "source_type": "Rhea",
+          "url": "https://www.rhea-db.org/rhea/12576"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "check reaction context only; not active-site residue evidence",
+          "source_id": "RHEA:12637",
+          "source_type": "Rhea",
+          "url": "https://www.rhea-db.org/rhea/12637"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "check reaction context only; not active-site residue evidence",
+          "source_id": "RHEA:16569",
+          "source_type": "Rhea",
+          "url": "https://www.rhea-db.org/rhea/16569"
+        }
+      ]
+    },
+    {
+      "accession": "O95050",
+      "active_site_sourcing": {
+        "accession": "O95050",
+        "active_site_gap_request_status": "binding_context_mapped_ready_for_active_site_sourcing",
+        "binding_context": {
+          "binding_feature_count": 8,
+          "binding_positions": [
+            {
+              "begin": 20,
+              "end": 20,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 25,
+              "end": 25,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 63,
+              "end": 63,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 69,
+              "end": 69,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 85,
+              "end": 87,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 90,
+              "end": 90,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 142,
+              "end": 143,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 163,
+              "end": 163,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            }
+          ],
+          "evidence_references": [],
+          "mapped_binding_position_count": 8
+        },
+        "blockers": [
+          "explicit_active_site_residue_sources_not_collected",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sourced_active_site_positions": []
+        },
+        "entry_id": "uniprot:O95050",
+        "lane_id": "external_source:transferase_methyl",
+        "priority_score": 18.0,
+        "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "reaction_context": {
+          "broad_or_incomplete_ec_numbers": [],
+          "entry_id": "uniprot:O95050",
+          "has_broad_ec_context": false,
+          "has_reaction_context": true,
+          "has_specific_reaction_context": true,
+          "reaction_record_count": 3,
+          "rhea_ids": [
+            "RHEA:19613",
+            "RHEA:23136",
+            "RHEA:53924"
+          ],
+          "specific_ec_numbers": [
+            "2.1.1.49",
+            "2.1.1.96"
+          ]
+        },
+        "ready_for_label_import": false,
+        "review_status": "active_site_sourcing_export_review_only",
+        "scope_signal": "transferase_methyl",
+        "sequence_alignment_status": "alignment_no_near_duplicate_signal",
+        "source_targets": [
+          {
+            "purpose": "inspect feature table, catalytic activity, and evidence links",
+            "source_id": "O95050",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/O95050/entry"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "2A14",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/2A14"
+          },
+          {
+            "purpose": "map sourced residue positions after curated evidence exists",
+            "source_id": "O95050",
+            "source_type": "AlphaFoldDB",
+            "url": "https://alphafold.ebi.ac.uk/entry/O95050"
+          },
+          {
+            "purpose": "check reaction context only; not active-site residue evidence",
+            "source_id": "RHEA:19613",
+            "source_type": "Rhea",
+            "url": "https://www.rhea-db.org/rhea/19613"
+          },
+          {
+            "purpose": "check reaction context only; not active-site residue evidence",
+            "source_id": "RHEA:23136",
+            "source_type": "Rhea",
+            "url": "https://www.rhea-db.org/rhea/23136"
+          },
+          {
+            "purpose": "check reaction context only; not active-site residue evidence",
+            "source_id": "RHEA:53924",
+            "source_type": "Rhea",
+            "url": "https://www.rhea-db.org/rhea/53924"
+          }
+        ],
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "specific_ec_numbers": [
+          "2.1.1.49",
+          "2.1.1.96"
+        ]
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95050",
+      "lane_id": "external_source:transferase_methyl",
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+      "rank": 9,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "O95050",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:O95050",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:transferase_methyl",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "transferase_methyl",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "O95050",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/O95050/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "O95050",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=O95050"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:216"
+            ],
+            "near_duplicate_score": 0.1065,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P00918",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P00918/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:324"
+            ],
+            "near_duplicate_score": 0.0951,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P00940",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P00940/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:795"
+            ],
+            "near_duplicate_score": 0.0951,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P71119",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P71119/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "O95050",
+            "external_length": 263,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9886,
+            "matched_m_csa_entry_ids": [
+              "m_csa:216"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.1065,
+            "positional_identity": 0.1077,
+            "reference_accession": "P00918",
+            "reference_length": 260,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "O95050",
+            "external_length": 263,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.943,
+            "matched_m_csa_entry_ids": [
+              "m_csa:324"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0951,
+            "positional_identity": 0.1008,
+            "reference_accession": "P00940",
+            "reference_length": 248,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "O95050",
+            "external_length": 263,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.8175,
+            "matched_m_csa_entry_ids": [
+              "m_csa:795"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0951,
+            "positional_identity": 0.1163,
+            "reference_accession": "P71119",
+            "reference_length": 215,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "O95050",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O95050/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "O95050",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=O95050"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:216"
+          ],
+          "near_duplicate_score": 0.1065,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P00918",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P00918/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:324"
+          ],
+          "near_duplicate_score": 0.0951,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P00940",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P00940/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:795"
+          ],
+          "near_duplicate_score": 0.0951,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P71119",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P71119/entry"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect feature table, catalytic activity, and evidence links",
+          "source_id": "O95050",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O95050/entry"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "2A14",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/2A14"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "map sourced residue positions after curated evidence exists",
+          "source_id": "O95050",
+          "source_type": "AlphaFoldDB",
+          "url": "https://alphafold.ebi.ac.uk/entry/O95050"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "check reaction context only; not active-site residue evidence",
+          "source_id": "RHEA:19613",
+          "source_type": "Rhea",
+          "url": "https://www.rhea-db.org/rhea/19613"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "check reaction context only; not active-site residue evidence",
+          "source_id": "RHEA:23136",
+          "source_type": "Rhea",
+          "url": "https://www.rhea-db.org/rhea/23136"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "check reaction context only; not active-site residue evidence",
+          "source_id": "RHEA:53924",
+          "source_type": "Rhea",
+          "url": "https://www.rhea-db.org/rhea/53924"
+        }
+      ]
+    },
+    {
+      "accession": "P51580",
+      "active_site_sourcing": {
+        "accession": "P51580",
+        "active_site_gap_request_status": "binding_context_mapped_ready_for_active_site_sourcing",
+        "binding_context": {
+          "binding_feature_count": 6,
+          "binding_positions": [
+            {
+              "begin": 29,
+              "end": 40,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 40,
+              "end": 40,
+              "evidence": [
+                {
+                  "evidence_code": "ECO:0000250",
+                  "id": null,
+                  "source": null
+                }
+              ],
+              "ligand_id": null,
+              "ligand_name": "substrate"
+            },
+            {
+              "begin": 69,
+              "end": 69,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 90,
+              "end": 90,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 134,
+              "end": 135,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            },
+            {
+              "begin": 152,
+              "end": 152,
+              "evidence": [],
+              "ligand_id": "ChEBI:CHEBI:59789",
+              "ligand_name": "S-adenosyl-L-methionine"
+            }
+          ],
+          "evidence_references": [],
+          "mapped_binding_position_count": 6
+        },
+        "blockers": [
+          "explicit_active_site_residue_sources_not_collected",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sourced_active_site_positions": []
+        },
+        "entry_id": "uniprot:P51580",
+        "lane_id": "external_source:transferase_methyl",
+        "priority_score": 16.0,
+        "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "reaction_context": {
+          "broad_or_incomplete_ec_numbers": [],
+          "entry_id": "uniprot:P51580",
+          "has_broad_ec_context": false,
+          "has_reaction_context": true,
+          "has_specific_reaction_context": true,
+          "reaction_record_count": 2,
+          "rhea_ids": [
+            "RHEA:12609",
+            "RHEA:56580"
+          ],
+          "specific_ec_numbers": [
+            "2.1.1.67"
+          ]
+        },
+        "ready_for_label_import": false,
+        "review_status": "active_site_sourcing_export_review_only",
+        "scope_signal": "transferase_methyl",
+        "sequence_alignment_status": "alignment_no_near_duplicate_signal",
+        "source_targets": [
+          {
+            "purpose": "inspect feature table, catalytic activity, and evidence links",
+            "source_id": "P51580",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P51580/entry"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "2BZG",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/2BZG"
+          },
+          {
+            "purpose": "inspect structure evidence for catalytic residue positions",
+            "source_id": "2H11",
+            "source_type": "PDB",
+            "url": "https://www.rcsb.org/structure/2H11"
+          },
+          {
+            "purpose": "map sourced residue positions after curated evidence exists",
+            "source_id": "P51580",
+            "source_type": "AlphaFoldDB",
+            "url": "https://alphafold.ebi.ac.uk/entry/P51580"
+          },
+          {
+            "purpose": "check reaction context only; not active-site residue evidence",
+            "source_id": "RHEA:12609",
+            "source_type": "Rhea",
+            "url": "https://www.rhea-db.org/rhea/12609"
+          },
+          {
+            "purpose": "check reaction context only; not active-site residue evidence",
+            "source_id": "RHEA:56580",
+            "source_type": "Rhea",
+            "url": "https://www.rhea-db.org/rhea/56580"
+          }
+        ],
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "specific_ec_numbers": [
+          "2.1.1.67"
+        ]
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P51580",
+      "lane_id": "external_source:transferase_methyl",
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+      "rank": 10,
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_requirements": [
+        "curated_active_site_residue_evidence",
+        "specific_reaction_or_mechanism_evidence",
+        "complete_near_duplicate_sequence_search",
+        "leakage_safe_representation_control",
+        "review_decision",
+        "full_label_factory_gate"
+      ],
+      "review_status": "external_pilot_evidence_packet_review_only",
+      "sequence_search": {
+        "accession": "P51580",
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "blockers": [
+          "complete_near_duplicate_reference_search_not_completed",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "countable_label_candidate": false,
+        "decision": {
+          "decision_status": "no_decision",
+          "rationale": "",
+          "reviewed_at": "",
+          "reviewer": "",
+          "sequence_search_result": ""
+        },
+        "entry_id": "uniprot:P51580",
+        "holdout_status": "requires_near_duplicate_search",
+        "lane_id": "external_source:transferase_methyl",
+        "matched_m_csa_entry_ids": [],
+        "plan_status": "near_duplicate_search_required_before_import",
+        "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+        "ready_for_label_import": false,
+        "review_status": "sequence_search_export_review_only",
+        "scope_signal": "transferase_methyl",
+        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_targets": [
+          {
+            "purpose": "inspect candidate sequence and cross-references",
+            "source_id": "P51580",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P51580/entry"
+          },
+          {
+            "purpose": "complete near-duplicate family search before import",
+            "source_id": "P51580",
+            "source_type": "UniRef",
+            "url": "https://www.uniprot.org/uniref?query=P51580"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:188"
+            ],
+            "near_duplicate_score": 0.0888,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P09147",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P09147/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:335"
+            ],
+            "near_duplicate_score": 0.0857,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "O58403",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/O58403/entry"
+          },
+          {
+            "matched_m_csa_entry_ids": [
+              "m_csa:206"
+            ],
+            "near_duplicate_score": 0.0857,
+            "purpose": "inspect bounded-screen top hit as a sequence control",
+            "source_id": "P71447",
+            "source_type": "UniProtKB",
+            "url": "https://www.uniprot.org/uniprotkb/P71447/entry"
+          }
+        ],
+        "top_matches": [
+          {
+            "external_accession": "P51580",
+            "external_length": 245,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.7249,
+            "matched_m_csa_entry_ids": [
+              "m_csa:188"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0888,
+            "positional_identity": 0.1224,
+            "reference_accession": "P09147",
+            "reference_length": 338,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "P51580",
+            "external_length": 245,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.9306,
+            "matched_m_csa_entry_ids": [
+              "m_csa:335"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0857,
+            "positional_identity": 0.0921,
+            "reference_accession": "O58403",
+            "reference_length": 228,
+            "review_status": "sequence_similarity_screen_review_only"
+          },
+          {
+            "external_accession": "P51580",
+            "external_length": 245,
+            "kmer_jaccard": 0.0,
+            "length_coverage": 0.902,
+            "matched_m_csa_entry_ids": [
+              "m_csa:206"
+            ],
+            "near_duplicate_alert": false,
+            "near_duplicate_score": 0.0857,
+            "positional_identity": 0.095,
+            "reference_accession": "P71447",
+            "reference_length": 221,
+            "review_status": "sequence_similarity_screen_review_only"
+          }
+        ]
+      },
+      "source_targets": [
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "inspect candidate sequence and cross-references",
+          "source_id": "P51580",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P51580/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "purpose": "complete near-duplicate family search before import",
+          "source_id": "P51580",
+          "source_type": "UniRef",
+          "url": "https://www.uniprot.org/uniref?query=P51580"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:188"
+          ],
+          "near_duplicate_score": 0.0888,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P09147",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P09147/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:335"
+          ],
+          "near_duplicate_score": 0.0857,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "O58403",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/O58403/entry"
+        },
+        {
+          "evidence_track": "sequence_search",
+          "matched_m_csa_entry_ids": [
+            "m_csa:206"
+          ],
+          "near_duplicate_score": 0.0857,
+          "purpose": "inspect bounded-screen top hit as a sequence control",
+          "source_id": "P71447",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P71447/entry"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect feature table, catalytic activity, and evidence links",
+          "source_id": "P51580",
+          "source_type": "UniProtKB",
+          "url": "https://www.uniprot.org/uniprotkb/P51580/entry"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "2BZG",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/2BZG"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "inspect structure evidence for catalytic residue positions",
+          "source_id": "2H11",
+          "source_type": "PDB",
+          "url": "https://www.rcsb.org/structure/2H11"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "map sourced residue positions after curated evidence exists",
+          "source_id": "P51580",
+          "source_type": "AlphaFoldDB",
+          "url": "https://alphafold.ebi.ac.uk/entry/P51580"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "check reaction context only; not active-site residue evidence",
+          "source_id": "RHEA:12609",
+          "source_type": "Rhea",
+          "url": "https://www.rhea-db.org/rhea/12609"
+        },
+        {
+          "evidence_track": "active_site",
+          "purpose": "check reaction context only; not active-site residue evidence",
+          "source_id": "RHEA:56580",
+          "source_type": "Rhea",
+          "url": "https://www.rhea-db.org/rhea/56580"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    "pilot evidence packets consolidate source targets only; they do not complete review decisions or authorize countable import"
+  ]
+}

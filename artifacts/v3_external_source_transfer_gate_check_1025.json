@@ -98,6 +98,7 @@
         "heuristic_control_queue",
         "heuristic_control_scores",
         "pilot_candidate_priority",
+        "pilot_evidence_packet",
         "pilot_review_decision_export",
         "reaction_evidence_sample",
         "representation_backend_plan",

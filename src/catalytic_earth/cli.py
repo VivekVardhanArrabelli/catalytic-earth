@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
@@ -125,6 +126,7 @@ from .transfer_scope import (
     build_external_source_heuristic_control_queue,
     build_external_source_heuristic_control_scores,
     build_external_source_pilot_candidate_priority,
+    build_external_source_pilot_evidence_packet,
     build_external_source_pilot_review_decision_export,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
@@ -186,11 +188,63 @@ def _infer_label_factory_gate_slice_id(path: str | None) -> int | None:
     return int(matches[-1]) if matches else None
 
 
+_LABEL_FACTORY_GATE_PAYLOAD_SLICE_KEYS = (
+    "slice_id",
+    "source_slice_id",
+    "target_slice_id",
+    "label_slice_id",
+)
+_LABEL_FACTORY_GATE_PAYLOAD_BATCH_KEYS = ("batch_id", "label_batch_id")
+
+
+def _parse_label_factory_payload_lineage_int(value: Any) -> int | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, str):
+        match = re.match(r"^(\d+)(?:\D|$)", value.strip())
+        if match:
+            return int(match.group(1))
+    return None
+
+
+def _label_factory_gate_payload_lineage(artifact: dict[str, Any]) -> dict[str, int]:
+    metadata = artifact.get("metadata", {})
+    if not isinstance(metadata, dict):
+        return {}
+
+    lineage: dict[str, int] = {}
+    for key in _LABEL_FACTORY_GATE_PAYLOAD_SLICE_KEYS:
+        parsed = _parse_label_factory_payload_lineage_int(metadata.get(key))
+        if parsed is not None:
+            lineage[f"metadata.{key}"] = parsed
+    for key in _LABEL_FACTORY_GATE_PAYLOAD_BATCH_KEYS:
+        parsed = _parse_label_factory_payload_lineage_int(metadata.get(key))
+        if parsed is not None:
+            lineage[f"metadata.{key}"] = parsed
+
+    artifact_lineage = metadata.get("artifact_lineage")
+    if isinstance(artifact_lineage, dict):
+        parsed = _parse_label_factory_payload_lineage_int(
+            artifact_lineage.get("slice_id")
+        )
+        if parsed is not None:
+            lineage["metadata.artifact_lineage.slice_id"] = parsed
+    return lineage
+
+
+def _label_factory_gate_payload_digest(artifact: dict[str, Any]) -> str:
+    serialized = json.dumps(artifact, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(serialized.encode("utf-8")).hexdigest()[:16]
+
+
 def _validate_label_factory_gate_cli_lineage(
     *,
     labels_path: str,
     required_artifacts: dict[str, str],
     optional_artifacts: dict[str, str | None],
+    loaded_artifacts: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     artifact_paths: dict[str, str] = {
         field_name: str(path)
@@ -200,29 +254,70 @@ def _validate_label_factory_gate_cli_lineage(
         }.items()
     }
     artifact_slice_ids: dict[str, int] = {}
+    payload_slice_ids: dict[str, dict[str, int]] = {}
+    payload_digests: dict[str, str] = {}
+    payload_methods: dict[str, str] = {}
     missing_slice_id_artifacts: list[str] = []
     exempted_artifacts: dict[str, dict[str, Any]] = {}
-    slice_members: dict[int, list[str]] = {}
+    slice_members: dict[int, set[str]] = {}
 
     for field_name, path in artifact_paths.items():
         slice_id = _infer_label_factory_gate_slice_id(path)
+        artifact = (loaded_artifacts or {}).get(field_name)
+        payload_lineage: dict[str, int] = {}
+        payload_slice_id: int | None = None
+        if artifact is not None:
+            metadata = artifact.get("metadata", {})
+            if isinstance(metadata, dict) and isinstance(metadata.get("method"), str):
+                payload_methods[field_name] = str(metadata["method"])
+            payload_digests[field_name] = _label_factory_gate_payload_digest(artifact)
+            payload_lineage = _label_factory_gate_payload_lineage(artifact)
+            if payload_lineage:
+                payload_slice_ids[field_name] = dict(sorted(payload_lineage.items()))
+                payload_values = set(payload_lineage.values())
+                if len(payload_values) > 1:
+                    details = ", ".join(
+                        f"{key}={value}"
+                        for key, value in sorted(payload_lineage.items())
+                    )
+                    raise ValueError(
+                        "mismatched label-factory gate artifact lineage: "
+                        f"{field_name} payload declares conflicting slice ids: "
+                        f"{details}"
+                    )
+                payload_slice_id = next(iter(payload_values))
         if field_name in _LABEL_FACTORY_GATE_LINEAGE_EXEMPTIONS:
             exempted_artifacts[field_name] = {
                 "path": path,
                 "slice_id": slice_id,
+                "payload_slice_ids": payload_lineage,
                 "reason": _LABEL_FACTORY_GATE_LINEAGE_EXEMPTIONS[field_name],
             }
             continue
+        if (
+            payload_slice_id is not None
+            and slice_id is not None
+            and payload_slice_id != slice_id
+        ):
+            raise ValueError(
+                "mismatched label-factory gate artifact lineage: "
+                f"{field_name} payload slice id {payload_slice_id} conflicts "
+                f"with path slice id {slice_id}"
+            )
         if slice_id is None:
-            missing_slice_id_artifacts.append(field_name)
-            continue
-        artifact_slice_ids[field_name] = slice_id
-        slice_members.setdefault(slice_id, []).append(field_name)
+            if payload_slice_id is None:
+                missing_slice_id_artifacts.append(field_name)
+                continue
+            artifact_slice_ids[field_name] = payload_slice_id
+            slice_members.setdefault(payload_slice_id, set()).add(field_name)
+        else:
+            artifact_slice_ids[field_name] = slice_id
+            slice_members.setdefault(slice_id, set()).add(field_name)
 
     labels_slice_id = _infer_label_factory_gate_slice_id(labels_path)
     if labels_slice_id is not None:
         artifact_slice_ids["labels"] = labels_slice_id
-        slice_members.setdefault(labels_slice_id, []).append("labels")
+        slice_members.setdefault(labels_slice_id, set()).add("labels")
 
     if len(slice_members) > 1:
         details = "; ".join(
@@ -238,6 +333,9 @@ def _validate_label_factory_gate_cli_lineage(
         "method": "label_factory_gate_cli_lineage_validation",
         "slice_id": next(iter(slice_members), None),
         "artifact_slice_ids": dict(sorted(artifact_slice_ids.items())),
+        "payload_slice_ids": dict(sorted(payload_slice_ids.items())),
+        "payload_methods": dict(sorted(payload_methods.items())),
+        "payload_digests": dict(sorted(payload_digests.items())),
         "artifact_paths": dict(sorted(artifact_paths.items())),
         "missing_slice_id_artifacts": sorted(missing_slice_id_artifacts),
         "exempted_artifacts": dict(sorted(exempted_artifacts.items())),
@@ -1619,6 +1717,27 @@ def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_external_source_pilot_evidence_packet(args: argparse.Namespace) -> int:
+    with Path(args.pilot_candidate_priority).open("r", encoding="utf-8") as handle:
+        pilot_candidate_priority = json.load(handle)
+    with Path(args.active_site_sourcing_export).open("r", encoding="utf-8") as handle:
+        active_site_sourcing_export = json.load(handle)
+    with Path(args.sequence_search_export).open("r", encoding="utf-8") as handle:
+        sequence_search_export = json.load(handle)
+    packet = build_external_source_pilot_evidence_packet(
+        pilot_candidate_priority=pilot_candidate_priority,
+        active_site_sourcing_export=active_site_sourcing_export,
+        sequence_search_export=sequence_search_export,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), packet)
+    print(
+        "Wrote external source pilot evidence packet to "
+        f"{args.out} ({packet['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
 def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
         transfer_manifest = json.load(handle)
@@ -1890,6 +2009,12 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             pilot_review_decision_export = json.load(handle)
+    pilot_evidence_packet = None
+    if args.pilot_evidence_packet:
+        with Path(args.pilot_evidence_packet).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            pilot_evidence_packet = json.load(handle)
     binding_context_repair_plan = None
     if args.binding_context_repair_plan:
         with Path(args.binding_context_repair_plan).open(
@@ -1973,6 +2098,7 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         transfer_blocker_matrix_audit=transfer_blocker_matrix_audit,
         pilot_candidate_priority=pilot_candidate_priority,
         pilot_review_decision_export=pilot_review_decision_export,
+        pilot_evidence_packet=pilot_evidence_packet,
         binding_context_repair_plan=binding_context_repair_plan,
         binding_context_repair_plan_audit=binding_context_repair_plan_audit,
         binding_context_mapping_sample=binding_context_mapping_sample,
@@ -3395,11 +3521,6 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
             args.accepted_review_debt_deferral_audit
         ),
     }
-    artifact_lineage = _validate_label_factory_gate_cli_lineage(
-        labels_path=args.labels,
-        required_artifacts=required_artifacts,
-        optional_artifacts=optional_artifacts,
-    )
     gate_artifacts = {
         field_name: read_json_object(Path(path))
         for field_name, path in required_artifacts.items()
@@ -3410,6 +3531,12 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
             for field_name, path in optional_artifacts.items()
             if path
         }
+    )
+    artifact_lineage = _validate_label_factory_gate_cli_lineage(
+        labels_path=args.labels,
+        required_artifacts=required_artifacts,
+        optional_artifacts=optional_artifacts,
+        loaded_artifacts=gate_artifacts,
     )
     gates = check_label_factory_gates(
         LabelFactoryGateInputs(
@@ -4967,6 +5094,31 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_external_source_pilot_review_decision_export
     )
 
+    external_pilot_evidence_packet = subparsers.add_parser(
+        "build-external-source-pilot-evidence-packet",
+        help="join source targets for selected external pilot rows",
+    )
+    external_pilot_evidence_packet.add_argument(
+        "--pilot-candidate-priority",
+        default="artifacts/v3_external_source_pilot_candidate_priority.json",
+    )
+    external_pilot_evidence_packet.add_argument(
+        "--active-site-sourcing-export",
+        default="artifacts/v3_external_source_active_site_sourcing_export.json",
+    )
+    external_pilot_evidence_packet.add_argument(
+        "--sequence-search-export",
+        default="artifacts/v3_external_source_sequence_search_export.json",
+    )
+    external_pilot_evidence_packet.add_argument("--max-rows", type=int, default=10)
+    external_pilot_evidence_packet.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_pilot_evidence_packet.json",
+    )
+    external_pilot_evidence_packet.set_defaults(
+        func=cmd_build_external_source_pilot_evidence_packet
+    )
+
     external_transfer_gate = subparsers.add_parser(
         "check-external-source-transfer-gates",
         help="gate review-only external-source transfer artifacts before import work",
@@ -5185,6 +5337,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--pilot-review-decision-export",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--pilot-evidence-packet",
         default=None,
     )
     external_transfer_gate.add_argument(

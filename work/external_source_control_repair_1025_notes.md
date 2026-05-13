@@ -4,8 +4,9 @@ The 1,025 external-source path remains review-only and non-countable. The
 current repair surface covers heuristic collapse, representation-control
 comparison, broad-EC disambiguation, active-site gap sourcing/export,
 active-site sourcing resolution, sequence-search export, representation-backend
-planning/sample, a candidate blocker matrix, candidate-lineage validation, and
-a review-only pilot priority worklist plus no-decision review packet export.
+planning/sample, a candidate blocker matrix, candidate-lineage validation, a
+review-only pilot priority worklist, no-decision review packet export, and a
+consolidated pilot evidence packet.
 
 ## Current Gate
 
@@ -17,6 +18,9 @@ a review-only pilot priority worklist plus no-decision review packet export.
   non-countable review candidates and defers holdout or near-duplicate rows.
 - `artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
   those rows as no-decision packets with 0 completed decisions.
+- `artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
+  79 source targets for those rows, with all 10 sequence-search packets and 3
+  active-site sourcing packets carried forward.
 - Canonical countable labels remain 679.
 
 ## Expanded Controls

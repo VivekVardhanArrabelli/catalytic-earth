@@ -58,7 +58,8 @@ bounded sequence-neighborhood screen and import-readiness audit, and pass the
 60/60 external-transfer gate for review-only evidence collection with
 sequence-search export, active-site sourcing export/resolution,
 representation-backend planning/sample, a candidate blocker matrix, lineage-
-checked pilot priority, and no-decision pilot review packets. The
+checked pilot priority, no-decision pilot review packets, and a consolidated
+79-target pilot evidence packet. The
 active-site sourcing resolution finds 0 explicit active-site residue sources in
 the 10 gap rows, the deterministic k-mer baseline flags one representation
 near-duplicate holdout, and the canonical ESM-2 representation sample flags

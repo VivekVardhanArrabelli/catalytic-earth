@@ -394,12 +394,50 @@
       "exempted_artifacts": {
         "atp_phosphoryl_transfer_family_expansion": {
           "path": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+          "payload_slice_ids": {},
           "reason": "historical ATP-family boundary-control artifact; it is ontology scope context and may predate the current label-factory slice",
           "slice_id": 700
         }
       },
       "method": "label_factory_gate_cli_lineage_validation",
       "missing_slice_id_artifacts": [],
+      "payload_digests": {
+        "accepted_review_debt_deferral_audit": "9a019049a3c60459",
+        "active_learning_queue": "83251130d7946a4d",
+        "adversarial_negatives": "89531624917982fd",
+        "applied_label_factory": "79c23d4bcd915e01",
+        "atp_phosphoryl_transfer_family_expansion": "b667724ce029f738",
+        "expert_label_decision_local_evidence_gap_audit": "c854cbe2e23580d3",
+        "expert_label_decision_local_evidence_review_export": "594f0522b334598a",
+        "expert_label_decision_repair_candidates": "16afe2e6ba58255e",
+        "expert_label_decision_repair_guardrail_audit": "99c00b9b6b68a90a",
+        "expert_label_decision_review_export": "c0e95df119b4182f",
+        "expert_review_export": "5e6c1464af3e9111",
+        "explicit_alternate_residue_position_requests": "e910fc766f308272",
+        "family_propagation_guardrails": "8418fc08fc917ebe",
+        "label_factory_audit": "62e4fd9b6c262eed",
+        "reaction_substrate_mismatch_review_export": "53ac924afa44a436",
+        "review_only_import_safety_audit": "476785f2c2e25756"
+      },
+      "payload_methods": {
+        "accepted_review_debt_deferral_audit": "accepted_review_debt_deferral_audit",
+        "active_learning_queue": "active_learning_label_review_queue",
+        "adversarial_negatives": "adversarial_negative_control_mining",
+        "applied_label_factory": "apply_label_factory_actions",
+        "atp_phosphoryl_transfer_family_expansion": "atp_phosphoryl_transfer_family_expansion",
+        "expert_label_decision_local_evidence_gap_audit": "expert_label_decision_local_evidence_gap_audit",
+        "expert_label_decision_local_evidence_review_export": "expert_label_decision_local_evidence_review_export",
+        "expert_label_decision_repair_candidates": "expert_label_decision_repair_candidate_summary",
+        "expert_label_decision_repair_guardrail_audit": "expert_label_decision_repair_guardrail_audit",
+        "expert_label_decision_review_export": "expert_label_decision_review_export",
+        "expert_review_export": "expert_review_export",
+        "explicit_alternate_residue_position_requests": "explicit_alternate_residue_position_sourcing_requests",
+        "family_propagation_guardrails": "family_propagation_guardrail_audit",
+        "label_factory_audit": "label_factory_promotion_demotion_audit",
+        "reaction_substrate_mismatch_review_export": "reaction_substrate_mismatch_review_export",
+        "review_only_import_safety_audit": "review_only_import_safety_audit"
+      },
+      "payload_slice_ids": {},
       "slice_id": 1000
     },
     "atp_phosphoryl_transfer_family_expansion_countable_label_candidate_count": 0,

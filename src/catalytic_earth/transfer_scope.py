@@ -5978,6 +5978,173 @@ def build_external_source_pilot_review_decision_export(
     }
 
 
+def build_external_source_pilot_evidence_packet(
+    *,
+    pilot_candidate_priority: dict[str, Any],
+    active_site_sourcing_export: dict[str, Any],
+    sequence_search_export: dict[str, Any],
+    max_rows: int = 10,
+) -> dict[str, Any]:
+    """Join source-review targets for the selected external pilot rows."""
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    selected_rows = [
+        row
+        for row in pilot_candidate_priority.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("pilot_selection_status") == "selected_for_review_pilot"
+    ][:max_rows]
+    active_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in active_site_sourcing_export.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    sequence_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in sequence_search_export.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+
+    rows: list[dict[str, Any]] = []
+    missing_sequence_accessions: list[str] = []
+    missing_required_active_site_accessions: list[str] = []
+    source_type_counts: Counter[str] = Counter()
+    active_site_packet_count = 0
+    sequence_packet_count = 0
+    target_count = 0
+
+    for rank, priority_row in enumerate(selected_rows, start=1):
+        accession = _normalize_accession(priority_row.get("accession"))
+        active_row = active_by_accession.get(accession)
+        sequence_row = sequence_by_accession.get(accession)
+        active_site_context = priority_row.get("active_site_sourcing", {}) or {}
+        active_site_task = str(active_site_context.get("source_task") or "")
+        requires_active_site_packet = (
+            active_site_task
+            and active_site_task != "not_active_site_sourcing_row"
+        )
+        if sequence_row is None:
+            missing_sequence_accessions.append(accession)
+        if requires_active_site_packet and active_row is None:
+            missing_required_active_site_accessions.append(accession)
+
+        source_targets: list[dict[str, Any]] = []
+        for target in (sequence_row or {}).get("source_targets", []) or []:
+            if isinstance(target, dict):
+                source_targets.append({**target, "evidence_track": "sequence_search"})
+        for target in (active_row or {}).get("source_targets", []) or []:
+            if isinstance(target, dict):
+                source_targets.append({**target, "evidence_track": "active_site"})
+
+        for target in source_targets:
+            source_type_counts[str(target.get("source_type") or "unknown")] += 1
+        target_count += len(source_targets)
+        if active_row is not None:
+            active_site_packet_count += 1
+        if sequence_row is not None:
+            sequence_packet_count += 1
+
+        row_blockers = sorted(
+            {
+                str(blocker)
+                for blocker in priority_row.get("blockers", []) or []
+                if blocker
+            }
+        )
+        if sequence_row is None:
+            row_blockers.append("selected_pilot_sequence_packet_missing")
+        if requires_active_site_packet and active_row is None:
+            row_blockers.append("selected_pilot_active_site_packet_missing")
+
+        rows.append(
+            {
+                "accession": accession,
+                "active_site_sourcing": active_row
+                or active_site_context
+                or {"source_task": "not_active_site_sourcing_row"},
+                "blockers": sorted(set(row_blockers)),
+                "countable_label_candidate": False,
+                "entry_id": priority_row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": priority_row.get("lane_id"),
+                "pilot_priority_score": priority_row.get("pilot_priority_score"),
+                "pilot_selection_status": priority_row.get("pilot_selection_status"),
+                "protein_name": priority_row.get("protein_name"),
+                "rank": rank,
+                "ready_for_label_import": False,
+                "representation_backend": priority_row.get(
+                    "representation_backend", {}
+                ),
+                "review_status": "external_pilot_evidence_packet_review_only",
+                "review_requirements": [
+                    "curated_active_site_residue_evidence",
+                    "specific_reaction_or_mechanism_evidence",
+                    "complete_near_duplicate_sequence_search",
+                    "leakage_safe_representation_control",
+                    "review_decision",
+                    "full_label_factory_gate",
+                ],
+                "sequence_search": sequence_row
+                or priority_row.get("sequence_search", {}),
+                "source_targets": source_targets,
+            }
+        )
+
+    guardrail_clean = (
+        not missing_sequence_accessions
+        and not missing_required_active_site_accessions
+        and all(row.get("source_targets") for row in rows)
+        and all(not row.get("countable_label_candidate") for row in rows)
+        and all(not row.get("ready_for_label_import") for row in rows)
+    )
+    blockers: list[str] = []
+    if missing_sequence_accessions:
+        blockers.append("selected_pilot_sequence_packets_missing")
+    if missing_required_active_site_accessions:
+        blockers.append("selected_pilot_active_site_packets_missing")
+    if any(not row.get("source_targets") for row in rows):
+        blockers.append("selected_pilot_source_targets_missing")
+
+    return {
+        "metadata": {
+            "method": "external_source_pilot_evidence_packet",
+            "source_pilot_candidate_priority_method": (
+                pilot_candidate_priority.get("metadata", {}).get("method")
+            ),
+            "source_active_site_sourcing_export_method": (
+                active_site_sourcing_export.get("metadata", {}).get("method")
+            ),
+            "source_sequence_search_export_method": (
+                sequence_search_export.get("metadata", {}).get("method")
+            ),
+            "blocker_removed": "external_pilot_source_packet_consolidation",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "active_site_sourcing_packet_count": active_site_packet_count,
+            "sequence_search_packet_count": sequence_packet_count,
+            "source_target_count": target_count,
+            "source_target_type_counts": dict(sorted(source_type_counts.items())),
+            "missing_sequence_export_accessions": sorted(missing_sequence_accessions),
+            "missing_required_active_site_export_accessions": sorted(
+                missing_required_active_site_accessions
+            ),
+            "guardrail_clean": guardrail_clean,
+            "blockers": blockers,
+            "review_only": True,
+        },
+        "rows": rows,
+        "warnings": [
+            (
+                "pilot evidence packets consolidate source targets only; they do "
+                "not complete review decisions or authorize countable import"
+            )
+        ],
+    }
+
+
 def _external_pilot_candidate_selection_blockers(
     *,
     blockers: list[str],
@@ -6205,6 +6372,7 @@ def check_external_source_transfer_gates(
     transfer_blocker_matrix_audit: dict[str, Any] | None = None,
     pilot_candidate_priority: dict[str, Any] | None = None,
     pilot_review_decision_export: dict[str, Any] | None = None,
+    pilot_evidence_packet: dict[str, Any] | None = None,
     binding_context_repair_plan: dict[str, Any] | None = None,
     binding_context_repair_plan_audit: dict[str, Any] | None = None,
     binding_context_mapping_sample: dict[str, Any] | None = None,
@@ -6241,6 +6409,7 @@ def check_external_source_transfer_gates(
             "transfer_blocker_matrix": transfer_blocker_matrix,
             "pilot_candidate_priority": pilot_candidate_priority,
             "pilot_review_decision_export": pilot_review_decision_export,
+            "pilot_evidence_packet": pilot_evidence_packet,
             "binding_context_repair_plan": binding_context_repair_plan,
             "binding_context_mapping_sample": binding_context_mapping_sample,
         },

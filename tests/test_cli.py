@@ -50,6 +50,51 @@ class CliTests(unittest.TestCase):
                     optional_artifacts=optional,
                 )
 
+    def test_label_factory_gate_cli_lineage_rejects_payload_slice_mismatch(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            required = {
+                "label_factory_audit": str(root / "v3_label_factory_audit_1000.json"),
+                "applied_label_factory": str(
+                    root / "v3_label_factory_applied_labels_1000.json"
+                ),
+                "active_learning_queue": str(
+                    root / "v3_active_learning_review_queue_1000.json"
+                ),
+                "adversarial_negatives": str(
+                    root / "v3_adversarial_negative_controls_1000.json"
+                ),
+                "expert_review_export": str(
+                    root / "v3_expert_review_export_1000_post_batch.json"
+                ),
+                "family_propagation_guardrails": str(
+                    root / "v3_family_propagation_guardrails_1000.json"
+                ),
+            }
+            loaded_artifacts = {
+                field_name: {
+                    "metadata": {
+                        "method": field_name,
+                        "slice_id": 1000,
+                    }
+                }
+                for field_name in required
+            }
+            loaded_artifacts["active_learning_queue"]["metadata"]["slice_id"] = 975
+
+            with self.assertRaisesRegex(
+                ValueError,
+                "payload slice id 975 conflicts with path slice id 1000",
+            ):
+                _validate_label_factory_gate_cli_lineage(
+                    labels_path=str(root / "curated_mechanism_labels.json"),
+                    required_artifacts=required,
+                    optional_artifacts={},
+                    loaded_artifacts=loaded_artifacts,
+                )
+
     def test_validate_command(self) -> None:
         result = subprocess.run(
             [sys.executable, "-m", "catalytic_earth.cli", "validate"],

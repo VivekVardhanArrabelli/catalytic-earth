@@ -318,6 +318,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_review_decision_export_1025.json"
         )
+        pilot_evidence_packet = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_evidence_packet_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -1213,6 +1218,52 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 for row in pilot_review_export["review_items"]
             )
         )
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["method"],
+            "external_source_pilot_evidence_packet",
+        )
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["blocker_removed"],
+            "external_pilot_source_packet_consolidation",
+        )
+        self.assertTrue(pilot_evidence_packet["metadata"]["guardrail_clean"])
+        self.assertEqual(pilot_evidence_packet["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["selected_accessions"],
+            pilot_priority["metadata"]["selected_accessions"],
+        )
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["sequence_search_packet_count"], 10
+        )
+        self.assertGreaterEqual(
+            pilot_evidence_packet["metadata"]["active_site_sourcing_packet_count"], 1
+        )
+        self.assertGreater(
+            pilot_evidence_packet["metadata"]["source_target_count"], 0
+        )
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["missing_sequence_export_accessions"],
+            [],
+        )
+        self.assertEqual(
+            pilot_evidence_packet["metadata"][
+                "missing_required_active_site_export_accessions"
+            ],
+            [],
+        )
+        self.assertFalse(pilot_evidence_packet["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertTrue(
+            all(
+                row["review_status"] == "external_pilot_evidence_packet_review_only"
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                and row["source_targets"]
+                for row in pilot_evidence_packet["rows"]
+            )
+        )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
             external_import_safety["metadata"]["total_new_countable_label_count"], 0
@@ -1240,6 +1291,10 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertIn(
             "pilot_review_decision_export",
+            external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
+        )
+        self.assertIn(
+            "pilot_evidence_packet",
             external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
         )
         self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])

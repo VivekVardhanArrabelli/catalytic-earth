@@ -165,8 +165,8 @@ Priority blockers:
   controls, active-site sourcing packets, representation samples, and blocker
   matrices fail the gate if they carry accessions outside the candidate manifest
   or claim full 30-row coverage while silently dropping manifest rows. The
-  current lineage check also includes the pilot-priority and no-decision pilot
-  review export artifacts.
+  current lineage check also includes the pilot-priority, no-decision pilot
+  review export, and pilot evidence-packet artifacts.
 - `artifacts/v3_external_source_pilot_candidate_priority_1025.json` ranks the
   30 external candidates for a bounded review pilot. It selects 10
   non-countable candidates across the external lanes, defers 5 exact-holdout or
@@ -181,6 +181,12 @@ Priority blockers:
   those 10 selected rows as no-decision review packets. It records 0 completed
   decisions, 0 countable candidates, and `ready_for_label_import=false`; the
   artifact removes only the review-packet scaffolding blocker.
+- `artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
+  sequence-search and active-site source targets for the same 10 selected rows.
+  It records 79 source targets, all 10 sequence-search packets, 3 active-site
+  sourcing packets, 0 missing required source packets, and
+  `guardrail_clean=true`; it removes only the source-packet consolidation
+  blocker and does not authorize import.
 
 ## Artifacts
 
@@ -548,6 +554,13 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-review-
   --max-rows 10 \
   --out artifacts/v3_external_source_pilot_review_decision_export_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidence-packet \
+  --pilot-candidate-priority artifacts/v3_external_source_pilot_candidate_priority_1025.json \
+  --active-site-sourcing-export artifacts/v3_external_source_active_site_sourcing_export_1025.json \
+  --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
+  --max-rows 10 \
+  --out artifacts/v3_external_source_pilot_evidence_packet_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
   --labels data/registries/curated_mechanism_labels.json \
   --review artifacts/v3_external_source_evidence_request_export_1025.json \
@@ -608,6 +621,7 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --transfer-blocker-matrix-audit artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json \
   --pilot-candidate-priority artifacts/v3_external_source_pilot_candidate_priority_1025.json \
   --pilot-review-decision-export artifacts/v3_external_source_pilot_review_decision_export_1025.json \
+  --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \
   --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
   --binding-context-repair-plan-audit artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json \
   --binding-context-mapping-sample artifacts/v3_external_source_binding_context_mapping_sample_1025.json \
