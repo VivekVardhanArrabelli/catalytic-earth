@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 64
-- Measured elapsed time: 2565.4 minutes (42.76 hours)
+- Entries: 65
+- Measured elapsed time: 2567.6 minutes (42.79 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 2487.3 measured minutes (41.45 hours)
+- post-v2: 2489.5 measured minutes (41.49 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 684
-- Evidence references logged: 559
+- Artifact references logged: 686
+- Evidence references logged: 565
 
 ## Recent Entries
-
-### 2026-05-13T04:55:52.608228+00:00 - post-v2
-
-- Task: Harden external-source transfer gates
-- Time mode: measured
-- Measured minutes: 50.883
-- Started: 2026-05-13T04:04:36Z
-- Ended: 2026-05-13T04:55:29Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, src/catalytic_earth/labels.py, artifacts/v3_external_source_candidate_manifest_1025.json, artifacts/v3_external_source_evidence_plan_1025.json, artifacts/v3_external_source_active_site_evidence_queue_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, docs/external_source_transfer.md, work/handoff.md
-- Evidence: 230 unit tests passed, validate passed, git diff check passed, 11/11 external transfer gates, 0 countable external labels, 25 active-site evidence queue rows, 5 deferred external rows
-- Notes: Documentation checked and updated during wrap-up; external-source transfer remains gated review-only work.
 
 ### 2026-05-13T05:57:24.579339+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 268 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, CLI help checks passed, 59/59 external transfer gates, 10 active-site sourcing resolution rows, 0 explicit active-site residue sources, 12 deterministic k-mer representation sample rows, 1 representation near-duplicate holdout, 30-row blocker matrix integrates active-site resolution and representation sample statuses, 0 countable external labels, 0 import-ready external labels
 - Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
 
+### 2026-05-13T12:55:17.737175+00:00 - post-v2
+
+- Task: Direct external pilot handoff
+- Time mode: measured
+- Measured minutes: 2.2
+- Started: 2026-05-13T12:52:58Z
+- Ended: 2026-05-13T12:55:10Z
+- Artifacts: work/handoff.md, docs/external_source_transfer.md
+- Evidence: 268 unit tests passed, validate passed, git diff --check passed, automation prompt updated, no abstract gates unless directly unblocking external pilot, 5-10 candidate external pilot is next target
+- Notes: User requested concrete agent instructions after the 1,025 source-limit pivot.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -175,6 +175,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T04:55:52.608228+00:00: Next bounded work should use the active-site evidence queue for external candidates while keeping all external rows non-countable.
 - 2026-05-13T05:57:24.579339+00:00: External transfer remains review-only; repair active-site feature gaps and heuristic metal-hydrolase collapse before any label import.
 - 2026-05-13T06:58:30.872167+00:00: External transfer remains non-countable; next bounded work should source active-site evidence for 10 gaps, disambiguate 3 broad-EC rows, and prototype representation controls for 12 mapped controls.
+- 2026-05-13T12:55:17.737175+00:00: The next useful milestone is pilot import readiness for named external candidates, not a higher external-transfer gate count.
 
 ## Scope Adjustments
 
@@ -240,3 +241,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T10:03:45+00:00: External transfer remains non-countable; next import readiness depends on sourcing explicit active-site evidence, completing near-duplicate sequence search, and replacing feature-proxy representation controls before any external decision.
 - 2026-05-13T11:04:16.318492+00:00: External transfer remains non-countable; next import readiness depends on sourcing explicit active-site evidence, completing near-duplicate sequence search, and running real representation controls before any external decision.
 - 2026-05-13T12:05:19.086868+00:00: External transfer remains non-countable; next import readiness depends on primary literature/PDB active-site source review, complete near-duplicate sequence search, and replacing deterministic k-mer controls with real learned or structure-language representation controls before any external decision.
+- 2026-05-13T12:55:17.737175+00:00: Post-M-CSA work now prioritizes a 5-10 candidate external-source pilot over additional abstract transfer gates or M-CSA-only tranche growth.

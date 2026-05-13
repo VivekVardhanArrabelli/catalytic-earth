@@ -30,6 +30,32 @@ import.
   or incomplete EC context, defers three broad-only candidates for specific
   reaction disambiguation, and exports a review-only active-site evidence queue
   with 25 ready candidates and five deferred candidates.
+
+## Immediate Pilot Direction
+
+The next phase is a small external-source import pilot, not more abstract gate
+accumulation. New gates or audits should be added only when they directly
+remove one blocker to pilot import readiness.
+
+Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
+sample. Keep every external row review-only until active-site, reaction,
+sequence, representation, review, and full label-factory gates pass.
+
+Priority blockers:
+
+- source explicit catalytic or active-site residue evidence for the 10
+  active-site-feature gap rows;
+- complete real near-duplicate or UniRef-style sequence searches for the 28
+  rows that still require sequence search;
+- replace deterministic k-mer proxy controls with a real learned or
+  structure-language representation backend, or a clearly executable backend
+  interface with a small computed sample;
+- rank the 30 candidates and select 5-10 pilot candidates with explicit
+  active-site evidence, specific reaction evidence, clean sequence holdout
+  status, clean structure mapping, non-collapsed retrieval/representation
+  behavior, and no broad-EC ambiguity;
+- export review decisions for those pilot candidates before any countable
+  import attempt.
 - The active-site evidence pass now samples all 25 ready candidates from
   UniProtKB feature records. It finds active-site features for 15 candidates,
   leaves 10 candidates as active-site-feature gaps, and keeps all rows

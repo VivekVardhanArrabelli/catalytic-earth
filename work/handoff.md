@@ -506,6 +506,50 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch
 
 ## Next Agent Start Here
 
+Concrete user direction for the next runs: stop adding abstract gates unless
+they directly unblock the first external-source import pilot. The 1,025
+checkpoint already proved the key strategic point: M-CSA-only count growth is
+source-limited, while external-source import is not yet ready. The next
+valuable work is not a larger gate count; it is a small, evidence-backed
+external pilot.
+
+Immediate target: build toward a 5-10 candidate external-source pilot from the
+existing 30-row UniProtKB/Swiss-Prot sample. Keep every external row
+review-only until active-site, reaction, sequence, representation, review, and
+full label-factory gates pass. Do not open another M-CSA-only tranche such as
+1,050 as normal progress.
+
+Priority blockers to remove:
+
+1. Source explicit catalytic or active-site residue evidence for the 10
+   active-site-feature gap rows using
+   `artifacts/v3_external_source_active_site_sourcing_export_1025.json`.
+   Binding context and Rhea context are useful, but they do not replace
+   catalytic active-site evidence.
+2. Complete real near-duplicate or UniRef-style sequence searches for the 28
+   rows in `artifacts/v3_external_source_sequence_search_export_1025.json`.
+   Exact-reference overlaps and high-similarity rows stay holdout controls, not
+   labels.
+3. Replace deterministic k-mer proxy controls with a real learned or
+   structure-language representation backend, or a clearly executable backend
+   interface with a small computed sample. Preserve heuristic geometry
+   retrieval as the required control baseline.
+4. Rank the 30 external candidates for pilot readiness and choose 5-10 with
+   explicit active-site evidence, specific reaction evidence, clean sequence
+   holdout status, clean structure mapping, non-collapsed
+   heuristic/representation behavior, and no broad-EC ambiguity.
+5. Produce a review decision export for the pilot candidates. Keep decisions
+   review-only first. Attempt countable import only for candidates that pass
+   active-site, reaction, sequence, representation, review, and full factory
+   gates.
+
+Definition of done for this pivot: 5-10 named external candidates have
+per-row evidence dossiers covering active-site residues, reaction/mechanism
+evidence, structure mapping, sequence holdout/near-duplicate status, heuristic
+retrieval control, representation control, and remaining blockers. If no
+candidate is import-ready, the output should be a ranked blocker list for the
+pilot, not more generic audit machinery.
+
 Start from the accepted 1,000 state plus the non-promoted 1,025 preview. The
 canonical registry remains at 679 countable labels; the latest accepted labels
 are still `m_csa:978`, `m_csa:988`, `m_csa:990`, and `m_csa:994`.
