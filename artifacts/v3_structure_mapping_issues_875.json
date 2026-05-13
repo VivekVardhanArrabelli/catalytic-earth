@@ -1,0 +1,486 @@
+{
+  "metadata": {
+    "geometry_entry_count": 874,
+    "issue_count": 31,
+    "label_type_counts": {
+      "out_of_scope": 15,
+      "seed_fingerprint": 1,
+      "unlabeled": 15
+    },
+    "labeled_issue_count": 16,
+    "method": "structure_mapping_issue_analysis",
+    "missing_expected_code_counts": {},
+    "observed_code_at_missing_position_counts": {},
+    "status_counts": {
+      "insufficient_resolved_residues": 29,
+      "no_structure_positions": 2
+    }
+  },
+  "rows": [
+    {
+      "entry_id": "m_csa:105",
+      "entry_name": "aldehyde dehydrogenase (FAD-independent)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The general reaction is attack of hydroxide on the aldehyde, while the terminal aldehyde hydride is transferred to the sulfido ligand of Mo. The mechanism proceeds as follows: <ol> <li>In the resting enzyme, moldybdenum is Mo(VI) and coordinated to molybdopterin and water, with oxo and sulfido li..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1VLB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:137",
+      "entry_name": "deacetoxycephalosporin-C synthase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "There are two half reactions that occur in the enzyme which are independent in as much as they can be uncoupled under certain conditions. In the oxidative half reaction the Fe (II) centre binds to dioxygen, acting as a nucleophile thus becoming oxidised to Fe (III). This creates a peroxide radica..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1UNB",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:193",
+      "entry_name": "precorrin-8X methylmutase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "CobH is one of a few known enzymes that catalyse pericyclic reactions. His 43 protonates the nitrogen of the pyrrolenine C ring of precorrin-8x, which triggers a suprafacial [1,5]-sigmatropic rearrangement; the methyl group passes from C-11 to C-12 in a single concerted step, with the double bond..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1F2V",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:318",
+      "entry_name": "glutamate-tRNA ligase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction occurs in two steps, the first reaction of which only occurs in the presence of the bound cognate tRNA molecule. First, in-line nucleophilic attack from the alpha carboxylate oxygen from glutamate on the alpha phosphate of ATP forms glutamylAMP and releases PPi. In this reaction a pe..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1J09",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:327",
+      "entry_name": "protein histidine kinase (CheA)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "This kinase first phosphorylates His45, the phosphate group is then passed on to the nucleophilic Asp of the CheY substrate."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1I58",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:360",
+      "entry_name": "strictosidine synthase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The enzyme catalyses the biological equivalent of the Pictet-Spengler reaction, a reaction used to form synthetic equivalents of indole alkaloids of pharmaceutical interest."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "2FP8",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:372",
+      "entry_name": "NikJ, nikkomycin biosynthesis protein P1",
+      "label_type": "seed_fingerprint",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "SAM is activated by the [Fe4S4]-AdoMet cluster to produce the methionine substrate and the 5'-deoxyadenosyl radical (5'-dA). The 5'-dA abstracts a hydrogen atom from the substrate, which then undergoes rearrangement to form the second ring structure. This then abstracts a hydrogen atom from Cys19..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 4,
+      "pdb_id": null,
+      "resolved_residue_count": 0,
+      "status": "no_structure_positions",
+      "target_fingerprint_id": "radical_sam_enzyme"
+    },
+    {
+      "entry_id": "m_csa:501",
+      "entry_name": "alcohol dehydrogenase (class V)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Specifics of the mechanism are not yet known, save via homology to other zinc-dependent alcohol dehydrogenases. It is likely that Lys52 acts as the general acid/base in the unique catalytic triad."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 10,
+      "pdb_id": null,
+      "resolved_residue_count": 0,
+      "status": "no_structure_positions",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:531",
+      "entry_name": "L-carnitine CoA-transferase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "By analogy with Formyl-CoA transferase, Asp 169 is nucleophilic and attacks the carbonyl carbon of the crotonobetainyl-CoA thioester group. This displaces the coenzyme A thiolate. CoAS- then displaces the coronobetainyl intermediate on Asp169. Carnitine enters the active site and the carboxylate..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1XVT",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:536",
+      "entry_name": "magnesium chelatase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Binding of the porphyrin.BChlH complex and the Magnesium triggers the release of the ATP binding site of the BChI subunit which is able to hydrolyse ATP. The hydrolysis of ATP proceeds via the nucleophilic attack of a water molecule on the gamma phosphate, to form a pentavalent transition state s..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1G8P",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Crystallographic investigations have shown the flavin containing active site to be buried in a deep pocket. The binding of glucose to the free enzyme results in the expulsion of a water molecule and a proton from the active site. <p>In the reduction half reaction, simultaneous hydride and proton..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1GAL",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:604",
+      "entry_name": "[ribulose-bisphosphate carboxylase]-lysine N-methyltransferase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The ionised form of Tyr 287 deprotonates the -NH3+ group of Lys 14 (on the large subunit of Rubisco). The resulting Lys-NH2 group can then attack the methyl group of the AdoMet sulphonium cation. It is proposed that the pKa of Tyr 287 is depressed (so allowing it to be present in the ionised form..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1MLV",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:610",
+      "entry_name": "precorrin-2 dehydrogenase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "NAD-dependent dehydrogenation occurs by Asp 141 functioning as a catalytic general base to abstract a proton from the pyrrole nitrogen of ring C with concomitant hydride transfer from the prochiral bridge carbon to the nicotinamide ring of NAD. During ferrochelation Asp 141 again acts as a genera..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1KYQ",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:618",
+      "entry_name": "saccharopine dehydrogenase (NADP+, L-glutamate-forming)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "In the forward reaction from glutamate and alpha-aminoadipic-delta-semialdehyde to saccharopine, first, the amino nitrogen atom of the glutamate acts as a nucleophile to attack the carbon atom of the aldehyde group of alpha-aminoadipate-delta-semialdehyde, resulting in the formation of carbinoami..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1E5Q",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:620",
+      "entry_name": "enoyl-[acyl-carrier-protein] reductase (NADPH, B-specific)",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The proposed mechanism is based on analogy with the prokaryotic enoyl thioester reductases such as InhA. A hydride is transferred from NADPH to the beta position of the alpha-beta unsaturated carbonyl substrate (Michael addition) to give an enol(ate) intermediate. The hydroxy group of Tyr 79 acts..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1GUF",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:628",
+      "entry_name": "small GTPase superfamily, ARF type",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "GTP hydrolysis is achieved through the activation of a conserved water molecule W13 in the active site by Gln 70. The water molecule thus can act as a nucleophile to attack the gamma phosphate of GTP, releasing GDP and Pi. This reaction passes through a pentavalent phosphate intermediate which is..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1KSJ",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:649",
+      "entry_name": "maltose phosphorylase",
+      "label_type": "out_of_scope",
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "By analogy to the catalytic domain of glucoamylase, Glu487 of MP acts as an acid to protonate the glycosidic bond oxygen and one of the phosphate oxygen performs a nucleophilic attack at the C1 anomeric carbon of the substrate to yield glucose-1-phosphate and glucose. As this reaction is reversib..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1H54",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction involves the oxidation of PNP to PLP using the cofactor FMN. It proceeds through hydride transfer from the 4'Carbon to the N7 of FMN, with steric strain from Arg 197 acting to place the substrate and cofactor in correct orientation for this to occur. This forms an electron deficient..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1G79",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "PIMT catalyses the transfer of a methyl group from S-adenosyl-L-methionine (SAM) to the alpha-carboxylate side chain of the isoaspartyl residue. Through this transfer, the isoaspartyl group becomes activated for conversion back to the succinimide via a nonenzymatic attack of the nitrogen lone pai..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1DL5",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:713",
+      "entry_name": "cystathionine beta-synthase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "On addition of the first substrate, L-Ser, a transaldimination reaction takes place. The internal aldimine, formed by PLP bound to the enzyme via the amino acid residue Lys119, is converted into an external aldimine by replacing Lys with L-Ser. Following the binding of the second substrate, L-Hcy..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1M54",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The pro-S hydride of NADPH is transferred to the si face of the C2 carbonyl of ketopantoate. The developing alkoxide is protonated by Lys176 to form pantoate. Asn98 stabilises the active conformation of Lys176 and promotes the dissociation of NADP+."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1YON",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:730",
+      "entry_name": "threonine synthase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The catalytic cycle starts with a transaldimination reaction. Lys124 which is initially bound to the PLP cofactor is replaced by OPHS forming the external aldimine. Lys124 catalyses the abstraction of the C-alpha proton of the substrate and its transfer to the PLP C4' position. Next, Lys124 stere..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1KL7",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:749",
+      "entry_name": "cytochrome-c peroxidase (di-heme type)",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The mechanism is not yet clearly understood, but a mechanism using a oxo-ferryl intermediate is consistent with spectroscopic, mutagenic and structural evidence. LP heme is the peroxidatic heme, and HP heme is the route of electron transfer from the cytochromes to the LP heme. Trp 94 is likely to..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1NML",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:765",
+      "entry_name": "3-dehydro-L-gulonate 2-dehydrogenase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "His 44 protonates the oxygen attached to C2 of the substrate. NADH is the source of a hydride, which nucleophilically attacks C2 of the substrate to give the product, and NAD+. The proposed mechanism is based on the crystal structure only."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1S20",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:769",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction takes place via an SN1 mechanism. Cleavage of the NC1-NN1 glycosidic bond in NAD+ takes place. Glu 553 stabilises the positive charge on the oxacarbenium intermediate. NE2 atom of the diphthamide residue of eEF2 nucleophilically attacks the NC1 atom on the oxacarbenium ion. The produ..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1ZM2",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:772",
+      "entry_name": "phosphopantothenate-cysteine ligase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "Much of the catalytic role of PPC synthase is due to the binding of substrates in the correct positions for reaction. The first half of the reaction attaches CMP onto phosphopantothenate. The carboxylate group of pantothenate is nucleophilic and attacks the alpha-phosphate of CTP (probably activa..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1U7U",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:773",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The enzyme transfers the ADP-ribosyl group transfer, from NAD to a diphthamide (modified histidine) residue of EF-2. The mechanism is essentially migration of an electrophilic ribooxacarbenium group, from the nicotinamide moiety of NAD to the imidazole group of diphthamide in EF-2. Glu 148 stabil..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1TOX",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:809",
+      "entry_name": "polyamine oxidase (propane-1,3-diamine-forming)",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The reaction is believed to proceed through nucleophilic attack from the amino group, deprotonated by Glu 62, on the C4a of FAD. This leads to a covalent adduct which collapses, assisted by proton transfer from the alpha carbon to the N5 of FAD via a water molecule, to give the product imine."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1B5Q",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:811",
+      "entry_name": "UDP-N-acetylglucosamine pyrophosphorylase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The mechanism of the transfer of UDP to N acetylglucosamine-1-phosphate proceeds via nucleophilic attack from the phosphate oxygen of the phosphate moiety on the alpha phosphate producing a pentavalent phosphate transition state. This is stabilised by Mg2+ at the active site and Arg 18, and colla..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1HV9",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:813",
+      "entry_name": "branched-chain-amino-acid transaminase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The mechanism of branched-chain amino acid aminotransferase has a double substrate recognition component for the reversibility of this enzyme. The substrate approaches, and the C4' of PLP, activated by protonation of the Schiff base, is nucleophilically attacked by the substrate alpha-amino group..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "1IYD",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    },
+    {
+      "entry_id": "m_csa:861",
+      "entry_name": "D-galactarolactone isomerase",
+      "label_type": null,
+      "mechanism_text_count": 1,
+      "mechanism_text_snippets": [
+        "The substrate undergoes auto-catalytic formation of the oxygen bridge, activated by Asn240. The formed oxyanion then collapses to form the five membered ring. The modest rate enhancement over the non-enzymatic reaction is thought to come from the preferential binding of the boat conformer of the..."
+      ],
+      "missing_position_details": [],
+      "missing_positions": 0,
+      "pdb_id": "4MUP",
+      "resolved_residue_count": 1,
+      "status": "insufficient_resolved_residues",
+      "target_fingerprint_id": null
+    }
+  ]
+}

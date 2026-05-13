@@ -40,8 +40,8 @@ class GeometryReportTests(unittest.TestCase):
 
     def test_summarize_geometry_slices(self) -> None:
         summary = summarize_geometry_slices(ROOT / "artifacts")
-        self.assertEqual(summary["metadata"]["slice_count"], 37)
-        self.assertEqual(summary["metadata"]["largest_slice"], "850")
+        self.assertEqual(summary["metadata"]["slice_count"], 41)
+        self.assertEqual(summary["metadata"]["largest_slice"], "950")
         self.assertTrue(summary["metadata"]["all_zero_hard_negatives"])
         self.assertTrue(summary["metadata"]["all_zero_false_non_abstentions"])
         self.assertFalse(summary["metadata"]["all_zero_in_scope_failures"])
@@ -79,10 +79,14 @@ class GeometryReportTests(unittest.TestCase):
                 "800",
                 "825",
                 "850",
+                "875",
+                "900",
+                "925",
+                "950",
             ],
         )
         self.assertEqual(summary["metadata"]["max_in_scope_failure_count"], 4)
-        self.assertEqual(summary["metadata"]["total_in_scope_failure_count"], 86)
+        self.assertEqual(summary["metadata"]["total_in_scope_failure_count"], 102)
         self.assertEqual(summary["metadata"]["max_actionable_in_scope_failure_count"], 0)
         self.assertEqual(summary["metadata"]["total_actionable_in_scope_failure_count"], 0)
         self.assertEqual(summary["metadata"]["max_cofactor_expected_absent_count"], 6)
@@ -508,21 +512,21 @@ class GeometryReportTests(unittest.TestCase):
         self.assertEqual(row_775["largest_seed_family"], "metal_dependent_hydrolase")
         self.assertEqual(row_775["largest_seed_family_count"], 58)
         self.assertEqual(row_775["ready_label_candidate_count"], 113)
-        row_850 = summary["rows"][-1]
-        self.assertEqual(row_850["slice"], "850")
-        self.assertEqual(row_850["evaluated_count"], 651)
-        self.assertEqual(row_850["evaluable_count"], 635)
-        self.assertEqual(row_850["in_scope_count"], 185)
-        self.assertEqual(row_850["out_of_scope_count"], 466)
-        self.assertEqual(row_850["hard_negative_count"], 0)
-        self.assertEqual(row_850["near_miss_count"], 0)
-        self.assertEqual(row_850["in_scope_failure_count"], 4)
-        self.assertEqual(row_850["actionable_in_scope_failure_count"], 0)
-        self.assertEqual(row_850["cofactor_expected_absent_count"], 6)
-        self.assertEqual(row_850["mapping_issue_count"], 30)
-        self.assertEqual(row_850["largest_seed_family"], "metal_dependent_hydrolase")
-        self.assertEqual(row_850["largest_seed_family_count"], 63)
-        self.assertEqual(row_850["ready_label_candidate_count"], 162)
+        row_950 = summary["rows"][-1]
+        self.assertEqual(row_950["slice"], "950")
+        self.assertEqual(row_950["evaluated_count"], 672)
+        self.assertEqual(row_950["evaluable_count"], 656)
+        self.assertEqual(row_950["in_scope_count"], 206)
+        self.assertEqual(row_950["out_of_scope_count"], 466)
+        self.assertEqual(row_950["hard_negative_count"], 0)
+        self.assertEqual(row_950["near_miss_count"], 0)
+        self.assertEqual(row_950["in_scope_failure_count"], 4)
+        self.assertEqual(row_950["actionable_in_scope_failure_count"], 0)
+        self.assertEqual(row_950["cofactor_expected_absent_count"], 6)
+        self.assertEqual(row_950["mapping_issue_count"], 38)
+        self.assertEqual(row_950["largest_seed_family"], "metal_dependent_hydrolase")
+        self.assertEqual(row_950["largest_seed_family_count"], 65)
+        self.assertEqual(row_950["ready_label_candidate_count"], 217)
 
 
 if __name__ == "__main__":

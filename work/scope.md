@@ -98,9 +98,10 @@ Post-V2 quality work has started:
   225-entry, 250-entry, 275-entry, 300-entry, 325-entry, 350-entry, 375-entry,
   400-entry, 425-entry, 450-entry, 475-entry, 500-entry, 525-entry, 550-entry,
   575-entry, 600-entry, 625-entry, 650-entry, 675-entry, 700-entry, 725-entry,
-  750-entry, 775-entry, 800-entry, 825-entry, and 850-entry slices
+  750-entry, 775-entry, 800-entry, 825-entry, 850-entry, 875-entry,
+  900-entry, 925-entry, and 950-entry slices
 - auth-vs-label mmCIF residue-number fallback for structure mapping
-- curated seed mechanism labels for 652 countable entries, with pending
+- curated seed mechanism labels for 673 countable entries, with pending
   review-state evidence gaps kept outside the countable registry
 - geometry retrieval evaluation against curated labels
 - calibrated abstention threshold sweep
@@ -162,40 +163,42 @@ Current expectation:
   GHMP, wired through guardrails, review exports, active learning, adversarial
   negatives, gates, tests, artifacts, and documentation
 - return to factory-gated label scaling toward 10k while preserving quality
-  gates; the accepted 850 state now has 652 countable labels, its 203
+  gates; the accepted 950 state now has 673 countable labels, its 282
   review-state rows have an explicit non-countable deferral audit, and the
-  next bounded tranche should start as a gated 875 preview
+  next bounded tranche should start as a gated 975 preview
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
   400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-,
-  725-, 750-, 775-, 800-, 825-, and 850-entry slices; all 100 regression
-  geometry entries are evaluable, the 850-entry countable slice has 635/651
-  labeled rows evaluable and 849 geometry entries with 819 pairwise geometry
+  725-, 750-, 775-, 800-, 825-, 850-, 875-, 900-, 925-, and 950-entry slices;
+  all 100 regression geometry entries are evaluable, the 950-entry countable
+  slice has 656/672 labeled rows evaluable and 949 geometry entries with 911
+  pairwise geometry
   records
-- curated labels now cover 652 entries, with 185 local active-site
-  seed-fingerprint positives in the 850-entry geometry evaluation and 467 total
+- curated labels now cover 673 entries, with 206 local active-site
+  seed-fingerprint positives in the 950-entry geometry evaluation and 467 total
   out-of-scope labels; every label has explicit tier, review status,
   confidence, evidence score, and evidence provenance fields
 - the 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
-  800-, 825-, and 850-entry queues have been processed through the label
-  factory; accepted batches added 177 labels beyond the 475-entry source slice
-  and left 203 review-state decisions pending after the 850 batch
-- label scaling is now gated by the factory: the current 850 audit proposes 97
-  bronze-to-silver promotions, flags 112 abstention/review rows, mines 100
-  adversarial negative controls, exports 229 expert-review items from the
-  current ranked review cutoff plus all unlabeled candidates from the 850
-  review queue, exports all 198 active `expert_label_decision_needed` rows as
+  800-, 825-, 850-, 875-, 900-, 925-, and 950-entry queues have been processed
+  through the label factory; accepted batches added 198 labels beyond the
+  475-entry source slice and left 282 review-state decisions pending after the
+  950 batch
+- label scaling is now gated by the factory: the current 950 audit proposes 111
+  bronze-to-silver promotions, flags 127 abstention/review rows, mines 100
+  adversarial negative controls, exports 311 expert-review items from the
+  current ranked review cutoff plus all unlabeled candidates from the 950
+  review queue, exports all 277 active `expert_label_decision_needed` rows as
   review-only no-decision items, generates a complete non-countable repair
   candidate summary and repair guardrail audit for those rows, audits and
-  exports the 56 priority local-evidence gap lanes as review-only items, emits
+  exports the 84 priority local-evidence gap lanes as review-only items, emits
   a local-evidence repair plan, verifies review-only import safety, attaches
-  the ATP/phosphoryl-transfer family expansion gate, attaches the accepted-850
-  review-debt deferral audit, and passes the 20-check label-factory gate. The
+  the ATP/phosphoryl-transfer family expansion gate, attaches the accepted-950
+  review-debt deferral audit, and passes the 21-check label-factory gate. The
   active-learning queue now includes reaction/substrate
-  mismatch and ATP-family boundary ranking terms, and the 850
-  family-propagation guardrail blocks 29 reported rows on the same mismatch
-  signal. The dedicated mismatch review export carries all 29 lanes and feeds
+  mismatch and ATP-family boundary ranking terms, and the 950
+  family-propagation guardrail blocks 30 reported rows on the same mismatch
+  signal. The dedicated mismatch review export carries all 30 lanes and feeds
   the expert-reviewed ATP/phosphoryl-transfer family expansion. The expansion
   artifact maps supported lanes across all nine target families and keeps
   `countable_label_candidate_count=0`. The review-only import-safety audit
@@ -203,8 +206,8 @@ Current expectation:
   artifacts from adding countable labels. The expert-label decision export
   records 0 countable candidates, and the repair/local-evidence artifacts keep
   all priority lanes non-countable
-- review-debt triage now ranks 203 evidence-gap rows from the 850 review pass,
-  with 203 `needs_more_evidence` decisions, 181 carried rows, 22 new rows, and
+- review-debt triage now ranks 282 evidence-gap rows from the 950 review pass,
+  with 282 `needs_more_evidence` decisions, 263 carried rows, 19 new rows, and
   explicit non-countable deferral coverage for every row
 - strengthened geometry scoring reaches top1/top3/retained accuracy of 1.0 on
   the 38 in-scope positives in the 125-entry slice at the current zero-false
@@ -217,7 +220,7 @@ Current expectation:
 - adaptive abstention thresholds now use observed score boundaries; the
   20-entry regression slice has a zero-false threshold that retains all 7
   in-scope positives
-- all countable slices from 20 through 850 currently have 0 hard negatives,
+- all countable slices from 20 through 950 currently have 0 hard negatives,
   0 near misses, and 0 out-of-scope false non-abstentions at the current
   calibrated thresholds
 - the 725-entry countable slice retains 159/163 in-scope positives, has 4
@@ -233,11 +236,12 @@ Current expectation:
   650-, 675-, 700-, and 725-entry reports have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10,
   11, 11, 15, 17, 17, 19, and 21 respectively; the 750 report has 23
   issues
-- next bottleneck is opening an 875 preview without weakening the 850 gate. The
-  accepted 850 clean labels are `m_csa:837`, `m_csa:839`, and `m_csa:852`;
-  the other 203 review-state rows remain outside the benchmark and now have an
-  explicit deferral audit. `m_csa:836` is the current regression row for
-  role-inferred metal-hydrolase evidence without local ligand support.
+- next bottleneck is opening a 975 preview without weakening the 950 gate. The
+  accepted 950 clean labels are `m_csa:933`, `m_csa:935`, `m_csa:937`,
+  `m_csa:941`, `m_csa:942`, and `m_csa:944`; the other 282 review-state rows
+  remain outside the benchmark and now have an explicit deferral audit.
+  `m_csa:865` is the current scaling-quality regression row for
+  external-review-only PLP evidence that should stay non-countable.
   The 725 scaling-quality audit observes
   ontology scope pressure, family-propagation boundaries, cofactor ambiguity,
   reaction/substrate mismatches, active-site mapping gaps, and active-learning

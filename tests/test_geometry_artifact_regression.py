@@ -13,8 +13,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
     def test_label_summary_artifact_matches_curated_registry(self) -> None:
         summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
 
-        self.assertEqual(summary["label_count"], 652)
-        self.assertEqual(summary["by_type"]["seed_fingerprint"], 185)
+        self.assertEqual(summary["label_count"], 673)
+        self.assertEqual(summary["by_type"]["seed_fingerprint"], 206)
         self.assertEqual(summary["by_type"]["out_of_scope"], 467)
 
     def test_125_entry_geometry_artifacts_remain_clean(self) -> None:
@@ -542,8 +542,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         gate = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_500.json")
 
-        self.assertEqual(label_summary["by_tier"], {"bronze": 652})
-        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 652})
+        self.assertEqual(label_summary["by_tier"], {"bronze": 673})
+        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 673})
         self.assertEqual(audit["metadata"]["promote_to_silver_count"], 63)
         self.assertEqual(audit["metadata"]["abstention_or_review_count"], 101)
         self.assertEqual(audit["metadata"]["hard_negative_evidence_entry_count"], 100)
@@ -848,7 +848,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             batch_summary["metadata"][
                 "latest_active_queue_expert_label_decision_count"
             ],
-            198,
+            277,
         )
         self.assertEqual(
             batch_summary["metadata"][
@@ -888,7 +888,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             batch_summary["metadata"][
                 "latest_expert_label_decision_repair_guardrail_priority_repair_row_count"
             ],
-            56,
+            84,
         )
         self.assertEqual(
             batch_summary["metadata"][
@@ -898,27 +898,27 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         latest_batch_summary = batch_summary["rows"][-1]
         batch_700_summary = next(row for row in batch_summary["rows"] if row["batch"] == "700")
-        self.assertEqual(latest_batch_summary["batch"], "850")
-        self.assertEqual(latest_batch_summary["countable_label_count"], 652)
-        self.assertEqual(latest_batch_summary["accepted_new_label_count"], 3)
-        self.assertEqual(latest_batch_summary["active_queue_expert_label_decision_count"], 198)
-        self.assertEqual(latest_batch_summary["expert_label_decision_repair_guardrail_priority_repair_row_count"], 56)
+        self.assertEqual(latest_batch_summary["batch"], "950")
+        self.assertEqual(latest_batch_summary["countable_label_count"], 673)
+        self.assertEqual(latest_batch_summary["accepted_new_label_count"], 6)
+        self.assertEqual(latest_batch_summary["active_queue_expert_label_decision_count"], 277)
+        self.assertEqual(latest_batch_summary["expert_label_decision_repair_guardrail_priority_repair_row_count"], 84)
         self.assertTrue(latest_batch_summary["expert_label_decision_local_evidence_gap_audit_ready"])
         self.assertEqual(
             latest_batch_summary["expert_label_decision_local_evidence_review_export_exported_count"],
-            56,
+            84,
         )
         self.assertFalse(
             latest_batch_summary[
                 "expert_label_decision_local_evidence_repair_resolution_present"
             ]
         )
-        self.assertFalse(
+        self.assertTrue(
             latest_batch_summary["explicit_alternate_residue_position_requests_present"]
         )
         self.assertEqual(
             latest_batch_summary["explicit_alternate_residue_position_requests_count"],
-            0,
+            32,
         )
         self.assertTrue(latest_batch_summary["review_only_import_safety_audit_present"])
         self.assertEqual(
@@ -939,7 +939,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             latest_batch_summary[
                 "accepted_review_debt_deferral_audit_deferred_entry_count"
             ],
-            203,
+            282,
         )
         self.assertEqual(
             latest_batch_summary[

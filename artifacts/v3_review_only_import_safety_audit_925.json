@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "artifact_count": 3,
+    "countable_import_safe": true,
+    "method": "review_only_import_safety_audit",
+    "review_only_artifact_count": 3,
+    "total_new_countable_label_count": 0,
+    "unsafe_artifact_count": 0,
+    "unsafe_artifacts": []
+  },
+  "rows": [
+    {
+      "artifact": "v3_reaction_substrate_mismatch_decision_batch_925.json",
+      "baseline_label_count": 667,
+      "countable_import_label_count": 667,
+      "countable_import_safe": true,
+      "decision_counts": {
+        "no_decision": 30
+      },
+      "method": "provisional_label_review_decision_batch",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": true
+      },
+      "review_only_rule": "review-only artifacts must not add benchmark labels through countable import",
+      "source_method": "reaction_substrate_mismatch_review_export"
+    },
+    {
+      "artifact": "v3_expert_label_decision_decision_batch_925.json",
+      "baseline_label_count": 667,
+      "countable_import_label_count": 667,
+      "countable_import_safe": true,
+      "decision_counts": {
+        "no_decision": 258
+      },
+      "method": "provisional_label_review_decision_batch",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": true,
+        "local_evidence_gap_review_only": false,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": "review-only artifacts must not add benchmark labels through countable import",
+      "source_method": "expert_label_decision_review_export"
+    },
+    {
+      "artifact": "v3_expert_label_decision_local_evidence_decision_batch_925.json",
+      "baseline_label_count": 667,
+      "countable_import_label_count": 667,
+      "countable_import_safe": true,
+      "decision_counts": {
+        "no_decision": 79
+      },
+      "method": "provisional_label_review_decision_batch",
+      "new_countable_entry_ids": [],
+      "new_countable_label_count": 0,
+      "review_only_flags": {
+        "expert_label_decision_review_only": false,
+        "local_evidence_gap_review_only": true,
+        "reaction_substrate_mismatch_review_only": false
+      },
+      "review_only_rule": "review-only artifacts must not add benchmark labels through countable import",
+      "source_method": "expert_label_decision_local_evidence_review_export"
+    }
+  ]
+}

@@ -11714,6 +11714,12 @@ def _label_scaling_issue_classes(
         issue_classes.add("text_leakage_risk")
     if decision_action == "mark_needs_more_evidence" and counterevidence:
         issue_classes.add("text_leakage_risk")
+    if (
+        decision_action == "mark_needs_more_evidence"
+        and "review_marked_needs_more_evidence" in gap_reasons
+        and not issue_classes
+    ):
+        issue_classes.add("expert_review_decision_needed")
     return sorted(issue_classes)
 
 

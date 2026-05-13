@@ -88,8 +88,8 @@ non-countable. The family expansion is boundary evidence for routing,
 active-learning priority, adversarial negatives, and factory gates; it is not a
 new countable seed-fingerprint label source. With this expansion tested,
 documented, and gate-clean, the project resumed scaling through the accepted
-850 batch. The accepted-850 review-debt surface is now explicitly deferred by
-`artifacts/v3_accepted_review_debt_deferral_audit_850.json`.
+950 batch. The accepted-950 review-debt surface is now explicitly deferred by
+`artifacts/v3_accepted_review_debt_deferral_audit_950.json`.
 
 ## Active Learning Queue
 
@@ -104,9 +104,9 @@ documented, and gate-clean, the project resumed scaling through the accepted
 - ATP/phosphoryl-transfer family-boundary value
 
 The queue includes unlabeled tranche candidates plus labeled entries whose
-current evidence needs review. After the accepted 850 batch, the current queue
-artifact is `artifacts/v3_active_learning_review_queue_850.json`: it retains
-all 198 expert-label decision rows in addition to labeled review rows and
+current evidence needs review. After the accepted 950 batch, the current queue
+artifact is `artifacts/v3_active_learning_review_queue_950.json`: it retains
+all 277 expert-label decision rows in addition to labeled review rows and
 includes `reaction_substrate_mismatch_value` plus
 `atp_phosphoryl_family_boundary_value` ranking terms for kinase or ATP
 phosphoryl-transfer text with hydrolase top hits.
@@ -488,7 +488,7 @@ factory gate status, and unlabeled queue retention across all accepted batches.
 For preview batches, also pass `--scaling-quality-audit`; the summary records
 audit readiness, accepted-label review-debt blockers, unclassified new
 review-debt rows, omitted underrepresented queue rows, and non-blocking audit
-warnings before the batch can be treated as promotion-ready. The current 850
+warnings before the batch can be treated as promotion-ready. The current 950
 summary also carries whether every family-guardrail reaction/substrate mismatch
 lane is present in the dedicated mismatch export.
 
@@ -576,9 +576,9 @@ regenerate the factory audit, adversarial negatives, active-learning queue,
 expert export/import artifacts, family-propagation guardrails, validation, and
 tests before its labels are counted.
 
-Current 850-queue gate state:
+Current 950-queue gate state:
 
-- 20/20 gate checks pass.
+- 21/21 gate checks pass.
 - Passing gates: explicit label schema, ontology loaded, promotion
   demonstrated, demotion/abstention demonstrated, applied label actions ready,
   adversarial negatives mined, active queue ranked, expert-review export ready,
@@ -589,61 +589,59 @@ Current 850-queue gate state:
   review export ready, review-only import safety ready, ATP/phosphoryl-transfer
   family expansion ready, accepted-review-debt deferral ready, scaling-quality
   audit attached, and unlabeled queue retention ready.
-- 97 bronze-to-silver promotions are proposed in the applied-label artifact
-  after the accepted 850 batch.
-- 310 rows are queued for active-learning review after the accepted 850 batch,
-  including all 198 expert-label decision rows; 23 queued rows carry the
+- 111 bronze-to-silver promotions are proposed in the applied-label artifact
+  after the accepted 950 batch.
+- 389 rows are queued for active-learning review after the accepted 950 batch,
+  including all 277 expert-label decision rows; 24 queued rows carry the
   reaction/substrate mismatch review signal.
-- The 850 family-propagation guardrail reports 29
+- The 950 family-propagation guardrail reports 30
   `reaction_substrate_mismatch` blockers and keeps ATP/phosphoryl-transfer
   boundary rows separate from generic hydrolase or metal-hydrolase labels.
-- The dedicated reaction/substrate mismatch export carries all 29 lanes and
+- The dedicated reaction/substrate mismatch export carries all 30 lanes and
   remains review-only. The attached nine-family ontology expansion maps
   expert-supported lanes across ePK, ASKHA, ATP-grasp, GHKL, dNK, NDK, PfkA,
   PfkB, and GHMP with 0 countable label candidates.
-- The dedicated expert-label decision export carries all 198 active-queue
+- The dedicated expert-label decision export carries all 277 active-queue
   `expert_label_decision_needed` rows as `no_decision`, records 0 countable
   label candidates, and feeds the scaling-quality audit as an
   `expert_label_decision_review_only_debt` failure-mode surface.
 - The expert-label repair-candidate and repair-guardrail artifacts cover the
-  198 expert-label decision rows and 56 priority repair rows while keeping every
+  277 expert-label decision rows and 84 priority repair rows while keeping every
   row non-countable.
-- The local-evidence gap audit/export covers those 56 priority lanes, emits 56
+- The local-evidence gap audit/export covers those 84 priority lanes, emits 84
   review-only/no-decision items, and records 0 countable candidates.
-- `artifacts/v3_accepted_review_debt_deferral_audit_850.json` explicitly
-  defers all 203 accepted-850 review-state rows, keeps 0 countable candidates,
-  and covers all 22 new 850-preview review-debt rows. The accepted-850 gate is
-  now 20/20 with this deferral artifact attached.
-- `artifacts/v3_review_only_import_safety_audit_850.json` audits the
+- `artifacts/v3_accepted_review_debt_deferral_audit_950.json` explicitly
+  defers all 282 accepted-950 review-state rows, keeps 0 countable candidates,
+  and covers all 19 new 950-preview review-debt rows. The accepted-950 gate is
+  now 21/21 with this deferral artifact attached.
+- `artifacts/v3_review_only_import_safety_audit_950.json` audits the
   reaction/substrate mismatch, expert-label decision, and local-evidence
   decision batches and confirms countable import adds 0 labels from those
   review-only artifacts.
-- `artifacts/v3_mechanism_ontology_gap_audit_850.json` records 159
+- `artifacts/v3_mechanism_ontology_gap_audit_950.json` records 200
   non-countable ontology-scope pressure rows. It recommends expert-reviewed
   ontology expansion rather than keyword-only labels.
-- `artifacts/v3_learned_retrieval_manifest_850.json` defines a future learned
-  representation interface with 590 eligible rows while preserving the
+- `artifacts/v3_learned_retrieval_manifest_950.json` defines a future learned
+  representation interface with 611 eligible rows while preserving the
   heuristic retrieval baseline as the control.
-- `artifacts/v3_sequence_similarity_failure_sets_850.json` keeps the 2
+- `artifacts/v3_sequence_similarity_failure_sets_950.json` keeps the 3
   exact-reference duplicate clusters as sequence-similarity failure controls
   before any propagation or learned split.
 - 100 adversarial negative controls are mined, including ATP/phosphoryl-transfer
   family-boundary controls.
-- 229 expert-review items are exported from the post-850 review queue.
+- 311 expert-review items are exported from the post-950 review queue.
 - The 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775, 800, 825, and
-  850 decision batches accepted 177 new countable labels beyond the 475-entry
-  source slice. The canonical registry now contains 652 bronze
+  850, 875, 900, 925, and 950 decision batches accepted 198 new countable
+  labels beyond the 475-entry source slice. The canonical registry now contains
+  673 bronze
   automation-curated labels, while the review-state registry keeps pending
   `needs_expert_review` placeholders separate from the countable benchmark.
-- The 850 batch is now accepted for its 3 clean countable labels:
-  `m_csa:837`, `m_csa:839`, and `m_csa:852`.
-  `artifacts/v3_accepted_review_debt_deferral_audit_850.json` explicitly
-  defers all 203 review-state rows, including the 22 new 850-preview
-  review-debt rows, with 0 countable candidates. `m_csa:836` is the current
-  cofactor-evidence guardrail regression row: a role-inferred metal-hydrolase
-  candidate without local ligand support remains `needs_more_evidence` and is
-  not counted. The canonical registry now has 652 labels and the 850 gate
-  passes 20/20.
+- The 950 batch is now accepted for its 6 clean countable labels:
+  `m_csa:933`, `m_csa:935`, `m_csa:937`, `m_csa:941`, `m_csa:942`, and
+  `m_csa:944`. `artifacts/v3_accepted_review_debt_deferral_audit_950.json`
+  explicitly defers all 282 review-state rows, including the 19 new
+  950-preview review-debt rows, with 0 countable candidates. The canonical
+  registry now has 673 labels and the 950 gate passes 21/21.
 
 ## Automation Lock
 

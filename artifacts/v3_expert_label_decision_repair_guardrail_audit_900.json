@@ -1,0 +1,2481 @@
+{
+  "metadata": {
+    "active_site_mapping_or_structure_gap_row_count": 57,
+    "all_priority_lanes_non_countable": true,
+    "audit_recommendation": "continue_repair_before_count_growth",
+    "candidate_count": 237,
+    "countable_label_candidate_count": 0,
+    "full_table_input": true,
+    "guardrail_ready": true,
+    "local_expected_family_evidence_review_only_count": 0,
+    "local_expected_family_evidence_review_only_entry_ids": [],
+    "method": "expert_label_decision_repair_guardrail_audit",
+    "missing_local_mechanistic_evidence_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721",
+      "m_csa:730",
+      "m_csa:743",
+      "m_csa:749",
+      "m_csa:753",
+      "m_csa:757",
+      "m_csa:765",
+      "m_csa:766",
+      "m_csa:769",
+      "m_csa:770",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:775",
+      "m_csa:777",
+      "m_csa:778",
+      "m_csa:783",
+      "m_csa:785",
+      "m_csa:790",
+      "m_csa:797",
+      "m_csa:801",
+      "m_csa:802",
+      "m_csa:804",
+      "m_csa:809",
+      "m_csa:811",
+      "m_csa:813",
+      "m_csa:824",
+      "m_csa:827",
+      "m_csa:831",
+      "m_csa:834",
+      "m_csa:836",
+      "m_csa:849",
+      "m_csa:851",
+      "m_csa:861",
+      "m_csa:865",
+      "m_csa:868",
+      "m_csa:873",
+      "m_csa:877",
+      "m_csa:882",
+      "m_csa:886",
+      "m_csa:887",
+      "m_csa:888",
+      "m_csa:892",
+      "m_csa:893",
+      "m_csa:894",
+      "m_csa:897",
+      "m_csa:899"
+    ],
+    "non_countable_blocker_counts": {
+      "active_site_mapping_or_structure_gap_unresolved": 57,
+      "counterevidence_boundary_unresolved": 37,
+      "external_expert_decision_required": 70,
+      "insufficient_selected_structure_residue_support": 55,
+      "missing_local_active_site_expected_family_evidence": 54,
+      "reaction_substrate_mismatch_review_required": 6,
+      "readiness_blockers_unresolved": 57,
+      "text_leakage_or_nonlocal_evidence_risk_unresolved": 15
+    },
+    "priority_repair_entry_ids": [
+      "m_csa:510",
+      "m_csa:553",
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:577",
+      "m_csa:578",
+      "m_csa:592",
+      "m_csa:641",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:657",
+      "m_csa:659",
+      "m_csa:662",
+      "m_csa:664",
+      "m_csa:667",
+      "m_csa:677",
+      "m_csa:690",
+      "m_csa:691",
+      "m_csa:692",
+      "m_csa:698",
+      "m_csa:701",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:717",
+      "m_csa:721",
+      "m_csa:730",
+      "m_csa:743",
+      "m_csa:749",
+      "m_csa:753",
+      "m_csa:757",
+      "m_csa:765",
+      "m_csa:766",
+      "m_csa:769",
+      "m_csa:770",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:775",
+      "m_csa:777",
+      "m_csa:778",
+      "m_csa:783",
+      "m_csa:785",
+      "m_csa:790",
+      "m_csa:797",
+      "m_csa:801",
+      "m_csa:802",
+      "m_csa:804",
+      "m_csa:809",
+      "m_csa:811",
+      "m_csa:813",
+      "m_csa:824",
+      "m_csa:827",
+      "m_csa:831",
+      "m_csa:834",
+      "m_csa:836",
+      "m_csa:849",
+      "m_csa:851",
+      "m_csa:861",
+      "m_csa:865",
+      "m_csa:868",
+      "m_csa:873",
+      "m_csa:877",
+      "m_csa:882",
+      "m_csa:886",
+      "m_csa:887",
+      "m_csa:888",
+      "m_csa:892",
+      "m_csa:893",
+      "m_csa:894",
+      "m_csa:897",
+      "m_csa:899"
+    ],
+    "priority_repair_row_count": 70,
+    "review_only_rule": "priority expert-label repair lanes stay non-countable unless local mechanistic evidence is explicit and external expert resolution removes review blockers",
+    "source_method": "expert_label_decision_repair_candidate_summary",
+    "strict_remap_guardrail_entry_ids": [],
+    "structure_wide_only_evidence_entry_ids": [],
+    "text_leakage_or_nonlocal_evidence_risk_row_count": 15
+  },
+  "rows": [
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1OJ4",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1BO1",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:553",
+      "entry_name": "N-acetylneuraminate lyase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1FDY",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "nucleotide_transfer_ligand_context",
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:778",
+      "entry_name": "homoserine kinase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary"
+      ],
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1FWK",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:834",
+      "entry_name": "double-stranded uracil-DNA glycosylase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "3UFJ",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:785",
+      "entry_name": "phosphoglycerate dehydrogenase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1PSD",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1K82",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:777",
+      "entry_name": "aspartate transaminase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1AAM",
+      "selected_pdb_residue_position_count": 3,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:783",
+      "entry_name": "glycerol-3-phosphate O-acyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1K30",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:873",
+      "entry_name": "orotate phosphoribosyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1ORO",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:765",
+      "entry_name": "3-dehydro-L-gulonate 2-dehydrogenase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1S20",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:691",
+      "entry_name": "histone-lysine N-methyltransferase (Suvar3-9 subfamily)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1PEG",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:704",
+      "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1C4T",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:894",
+      "entry_name": "trimethylamine-N-oxide reductase (cytochrome c)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1TMO",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:882",
+      "entry_name": "RNA-3'-phosphate cyclase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1QMH",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:730",
+      "entry_name": "threonine synthase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1KL7",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:766",
+      "entry_name": "formyltetrahydrofolate dehydrogenase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1S3I",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:888",
+      "entry_name": "8-oxoguanine DNA-glycosylase (Nth/MutY family)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "2ABK",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "readiness_blockers_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "3IDH",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:804",
+      "entry_name": "glutamyl-tRNA reductase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1GPJ",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "glycosidase_not_metal_hydrolase_seed",
+        "ligand_supported_metal_without_metal_ligand_roles"
+      ],
+      "entry_id": "m_csa:802",
+      "entry_name": "adenine phosphoribosyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1L1R",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:698",
+      "entry_name": "xanthine dehydrogenase (bacterial)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1JRP",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:775",
+      "entry_name": "shikimate dehydrogenase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "2CY0",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "entry_id": "m_csa:824",
+      "entry_name": "mono-ADP-ribosyltransferase C3",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1G24",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:893",
+      "entry_name": "medium-chain acyl-CoA dehydrogenase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "3MDD",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_heme_context"
+      ],
+      "entry_id": "m_csa:701",
+      "entry_name": "dimethylsulfoxide reductase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1EU1",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:667",
+      "entry_name": "alpha-N-arabinofuranosidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1PZ3",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1YON",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:887",
+      "entry_name": "glutamate formimidoyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1QD1",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1DL5",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:851",
+      "entry_name": "glutathione peroxidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1GP1",
+      "selected_pdb_residue_position_count": 3,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "entry_id": "m_csa:769",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1ZM2",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:813",
+      "entry_name": "branched-chain-amino-acid transaminase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1IYD",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:809",
+      "entry_name": "polyamine oxidase (propane-1,3-diamine-forming)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1B5Q",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:868",
+      "entry_name": "glucose-fructose oxidoreductase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1OFG",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:773",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1TOX",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:677",
+      "entry_name": "pyridoxal 5'-phosphate synthase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1G79",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:811",
+      "entry_name": "UDP-N-acetylglucosamine pyrophosphorylase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1HV9",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context",
+        "nad_only_or_nonflavin_context"
+      ],
+      "entry_id": "m_csa:861",
+      "entry_name": "D-galactarolactone isomerase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "4MUP",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:753",
+      "entry_name": "imidazole glycerol phosphate synthase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "2A0N",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "absent_flavin_context"
+      ],
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "2DHN",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:772",
+      "entry_name": "phosphopantothenate-cysteine ligase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1U7U",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "entry_id": "m_csa:827",
+      "entry_name": "fructan beta-fructosidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1Y9M",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 1,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "entry_id": "m_csa:899",
+      "entry_name": "beta-N-acetylhexosaminidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion",
+        "substrate_class_boundary"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1QBA",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "entry_id": "m_csa:831",
+      "entry_name": "glucan 1,3-beta-glucosidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1CZ1",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "entry_id": "m_csa:690",
+      "entry_name": "dextranase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion",
+        "substrate_class_boundary"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1OGO",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "metal_bound_nad_redox_text_context"
+      ],
+      "entry_id": "m_csa:717",
+      "entry_name": "ornithine cyclodeaminase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1X7D",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "glycosidase_not_metal_hydrolase_seed"
+      ],
+      "entry_id": "m_csa:790",
+      "entry_name": "glucan 1,3-beta-glucosidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion",
+        "substrate_class_boundary"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1EX1",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:749",
+      "entry_name": "cytochrome-c peroxidase (di-heme type)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1NML",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:865",
+      "entry_name": "cysteine synthase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1OAS",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "ser_his_seed_missing_triad_coherence"
+      ],
+      "entry_id": "m_csa:877",
+      "entry_name": "6-phospho-beta-galactosidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1PBG",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:770",
+      "entry_name": "alpha-1,3-mannosyl-glycoprotein 2-beta-N-acetylglucosaminyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1FOA",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:801",
+      "entry_name": "galactosylgalactosylxylosylprotein 3-beta-glucuronosyltransferase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1KWS",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:886",
+      "entry_name": "threonine ammonia-lyase (biosynthetic)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1TDJ",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:713",
+      "entry_name": "cystathionine beta-synthase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1M54",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:892",
+      "entry_name": "dihydroorotate dehydrogenase (fumarate)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "2DOR",
+      "selected_pdb_residue_position_count": 2,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [
+        "fewer_than_three_resolved_residues",
+        "geometry_status_not_ok"
+      ],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "active_site_mapping_or_structure_gap_repair",
+      "selected_pdb_id": "1GAL",
+      "selected_pdb_residue_position_count": 1,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1G99",
+      "selected_pdb_residue_position_count": 5,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1STC",
+      "selected_pdb_residue_position_count": 5,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1BIX",
+      "selected_pdb_residue_position_count": 8,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1PWV",
+      "selected_pdb_residue_position_count": 5,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1IMA",
+      "selected_pdb_residue_position_count": 6,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_missing_water_activation_role"
+      ],
+      "entry_id": "m_csa:849",
+      "entry_name": "Ca(II)-transporting ATPase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1SU4",
+      "selected_pdb_residue_position_count": 3,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [
+        "role_inferred_metal_low_pocket_support"
+      ],
+      "entry_id": "m_csa:897",
+      "entry_name": "type II site-specific deoxyribonuclease PvuII",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "counterevidence_boundary_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1PVI",
+      "selected_pdb_residue_position_count": 3,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:836",
+      "entry_name": "exodeoxyribonuclease (lambda-induced)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1AVQ",
+      "selected_pdb_residue_position_count": 6,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:578",
+      "entry_name": "ferrochelatase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1HRK",
+      "selected_pdb_residue_position_count": 9,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:797",
+      "entry_name": "ribulose-bisphosphate carboxylase (type II)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1RBA",
+      "selected_pdb_residue_position_count": 8,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:743",
+      "entry_name": "quercetin 2,3-dioxygenase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1GQG",
+      "selected_pdb_residue_position_count": 4,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1HR6",
+      "selected_pdb_residue_position_count": 5,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    },
+    {
+      "alternate_pdb_with_residue_positions_count": 0,
+      "countable_label_candidate": false,
+      "counterevidence_reasons": [],
+      "entry_id": "m_csa:572",
+      "entry_name": "catalase (manganese dependent)",
+      "local_expected_family_hit_count": 0,
+      "local_mechanistic_evidence_status": "not_scanned_or_no_alternate_context",
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "reaction_substrate_mismatch_reasons": [],
+      "readiness_blockers": [],
+      "recommended_next_action": "keep as review-only evidence repair; require local mechanistic evidence plus external expert resolution before any countable import",
+      "repair_bucket": "text_leakage_or_nonlocal_evidence_guardrail",
+      "selected_pdb_id": "1O9I",
+      "selected_pdb_residue_position_count": 6,
+      "strict_remap_guardrail": false,
+      "structure_wide_expected_family_hit_count": 0
+    }
+  ]
+}

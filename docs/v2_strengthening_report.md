@@ -12,11 +12,11 @@ The V2 scaffold was strengthened in several ways:
    before giving full triad evidence.
 4. Abstention calibration now reports the tradeoff between zero out-of-scope
    false non-abstentions and retained in-scope positives.
-5. Curated labels now cover 652 countable entries: the full 475-entry source
-   slice plus 177 factory-accepted labels from the 500-, 525-, 550-, 575-,
-   600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-, 800-, 825-, and 850-entry
-   queues, with geometry evaluability tracked separately from label
-   availability.
+5. Curated labels now cover 673 countable entries: the full 475-entry source
+   slice plus 198 factory-accepted labels from the 500-, 525-, 550-, 575-,
+   600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-, 800-, 825-, 850-, 875-,
+   900-, 925-, and 950-entry queues, with geometry evaluability tracked
+   separately from label availability.
 6. mmCIF structure parsing now resolves catalytic residue positions through
    both `auth_*` and `label_*` numbering namespaces.
 7. The repo now has local performance checks, in-scope failure analysis,
@@ -32,7 +32,7 @@ The V2 scaffold was strengthened in several ways:
 Current artifact:
 
 ```text
-artifacts/v3_geometry_label_eval_850.json
+artifacts/v3_geometry_label_eval_950.json
 ```
 
 Current measured result on the 20-entry regression slice:
@@ -64,20 +64,20 @@ artifacts/v3_hard_negative_controls_125.json
 artifacts/v3_label_expansion_candidates_125.json
 ```
 
-The 850-entry countable geometry stress slice is intentionally harder: 185
-in-scope positives, 466 evaluated out-of-scope controls, 635 evaluable
-active-site structures, and 30 structure-mapping issues. Its calibrated
-zero-false threshold is 0.4115, which retains 181/185 in-scope positives
-(`0.9784`) and reports 0 hard negatives plus 0 near misses. The
+The 950-entry countable geometry stress slice is intentionally harder: 206
+in-scope positives, 466 evaluated out-of-scope controls, 656 evaluable
+active-site structures, and 38 structure-mapping issues. Its calibrated
+zero-false threshold is 0.4115, which retains 202/206 in-scope positives
+(`0.9806`) and reports 0 hard negatives plus 0 near misses. The
 remaining in-scope failures are `m_csa:132`, `m_csa:353`, `m_csa:372`, and
 `m_csa:430`; all are evidence-limited abstentions tied to selected-structure
 cofactor gaps, so the current actionable in-scope failure count is 0.
 
 The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
-800-, 825-, and 850-entry candidate queues have been processed through the
-label factory. The accepted countable subsets added 177 labels beyond the
-475-entry slice and leave 203 accepted-850 review-state rows outside the
-benchmark until local
+800-, 825-, 850-, 875-, 900-, 925-, and 950-entry candidate queues have been
+processed through the label factory. The accepted countable subsets added 198
+labels beyond the 475-entry slice and leave 282 accepted-950 review-state rows
+outside the benchmark until local
 evidence gaps are repaired.
 
 The label-factory slice adds `artifacts/v3_label_factory_audit_500.json`,
@@ -86,11 +86,11 @@ The label-factory slice adds `artifacts/v3_label_factory_audit_500.json`,
 `artifacts/v3_active_learning_review_queue_500.json`,
 `artifacts/v3_expert_review_export_500.json`,
 `artifacts/v3_family_propagation_guardrails_500.json`, and
-`artifacts/v3_label_factory_gate_check_500.json`; the accepted 850 artifacts
-carry the same workflow forward at `*_850.json`. The current gate passes for
-the 652-label countable registry, and
-`artifacts/v3_label_batch_acceptance_check_850.json` records the latest
-accepted 850-slice batch. Review-debt remediation artifacts now separate
+`artifacts/v3_label_factory_gate_check_500.json`; the accepted 950 artifacts
+carry the same workflow forward at `*_950.json`. The current gate passes for
+the 673-label countable registry, and
+`artifacts/v3_label_batch_acceptance_check_950.json` records the latest
+accepted 950-slice batch. Review-debt remediation artifacts now separate
 structure-wide alternate-PDB cofactor hits from local active-site support before
 any further count growth.
 
@@ -99,7 +99,7 @@ any further count growth.
 Current artifact:
 
 ```text
-artifacts/perf_report_850.json
+artifacts/perf_report_950.json
 ```
 
 The suite is local-only and avoids network calls. It measures the current graph,
@@ -108,23 +108,23 @@ hard-negative selection, in-scope failure analysis, cofactor coverage, cofactor
 policy sweeps, seed-family audits, and structure-mapping diagnostics on existing
 artifacts.
 
-Latest 20-iteration mean timings on the 850-entry artifacts:
+Latest 5-iteration mean timings on the 950-entry artifacts:
 
-- load V1 graph: 94.207 ms
-- build V2 benchmark: 21.462 ms
-- run geometry retrieval: 333.059 ms
-- evaluate geometry labels: 1.396 ms
-- sweep abstention thresholds: 1336.194 ms
-- analyze geometry score margins: 1.740 ms
-- build hard negative controls: 3.154 ms
-- build adversarial negative controls: 10.199 ms
-- build label-factory audit: 8.512 ms
-- build active-learning review queue: 11.548 ms
-- analyze in-scope failures: 1.031 ms
-- analyze cofactor coverage: 1.362 ms
-- analyze cofactor abstention policy: 1830.086 ms
-- analyze seed-family performance: 1.822 ms
-- analyze structure mapping issues: 0.082 ms
+- load V1 graph: 108.511 ms
+- build V2 benchmark: 14.298 ms
+- run geometry retrieval: 360.688 ms
+- evaluate geometry labels: 1.496 ms
+- sweep abstention thresholds: 1414.655 ms
+- analyze geometry score margins: 1.924 ms
+- build hard negative controls: 3.216 ms
+- build adversarial negative controls: 5.728 ms
+- build label-factory audit: 26.859 ms
+- build active-learning review queue: 8.737 ms
+- analyze in-scope failures: 1.178 ms
+- analyze cofactor coverage: 1.493 ms
+- analyze cofactor abstention policy: 1911.291 ms
+- analyze seed-family performance: 2.010 ms
+- analyze structure mapping issues: 0.113 ms
 
 ## Interpretation
 
@@ -142,8 +142,8 @@ What is now better:
 - substrate-pocket context now contributes to ranking
 - hard negative controls are explicit instead of hidden in aggregate metrics
 - near-miss controls now expose out-of-scope rows just below the positive score
-  floor; the current 850-entry countable slice has no near misses
-- curated labels cover 652 countable entries
+  floor; the current 950-entry countable slice has no near misses
+- curated labels cover 673 countable entries
 - structure-mapping blockers are now summarized as a first-class artifact and
   currently report 0 non-OK mappings on the 100-entry slice, 1 labeled
   out-of-scope issue on the 125-entry slice, 2 on the 150- and 175-entry
@@ -153,13 +153,15 @@ What is now better:
   550-entry slice, 11 on the 575- and 600-entry slices, 15 on the 625-entry
   slice, 17 on the 650- and 675-entry slices, 19 on the 700-entry slice, 21 on
   the 725-entry slice, 23 on the 750-entry slice, 27 on the 775-entry slice,
-  and 30 on the 850-entry slice
-- the current 850-entry label queue is explicit; the accepted 850 batch is
-  resolved only for 3 clean labels, and the post-batch active-learning queue
-  retains all 198 expert-label decision rows while 203 review-state rows remain
+  28 on the 800-entry slice, 29 on the 825-entry slice, 30 on the
+  850-entry slice, 31 on the 875-entry slice, 33 on the 900-entry slice,
+  34 on the 925-entry slice, and 38 on the 950-entry slice
+- the current 950-entry label queue is explicit; the accepted 950 batch is
+  resolved only for 6 clean labels, and the post-batch active-learning queue
+  retains all 277 expert-label decision rows while 282 review-state rows remain
   non-countable; the queue continues to prioritize reaction/substrate mismatch
   review rows with kinase or ATP phosphoryl-transfer text, while
-  family-propagation guardrails retain 29 related propagation blockers
+  family-propagation guardrails retain 30 related propagation blockers
 - cofactor coverage now separates local support, structure-only support, and
   expected cofactors absent from the selected structure
 - cofactor policy sweeps recommend audit-only handling for evidence-limited
@@ -168,9 +170,9 @@ What is now better:
 
 What remains weak:
 
-- the curated label set is still provisional despite covering 652 countable
+- the curated label set is still provisional despite covering 673 countable
   entries; bronze/silver factory tiers are not expert validation
-- the 850-entry countable slice still has 4 in-scope positives that are
+- the 950-entry countable slice still has 4 in-scope positives that are
   abstained because the selected structures lack expected local or
   structure-wide cofactor context
 - ligand/cofactor context is only a simple nearby-ligand heuristic

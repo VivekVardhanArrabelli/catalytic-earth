@@ -53,8 +53,8 @@ The repository currently contains:
 5. Nearby ligand/cofactor context from non-polymer mmCIF records.
 6. Structure-wide ligand inventory for cofactor coverage audits.
 7. Substrate-pocket descriptor extraction from nearby protein residues.
-8. Curated mechanism labels for 652 entries: all entries in the 475-entry
-   source slice plus accepted, factory-gated labels through the 850-entry
+8. Curated mechanism labels for 673 entries: all entries in the 475-entry
+   source slice plus accepted, factory-gated labels through the 950-entry
    candidate queue.
 9. Auth-vs-label mmCIF residue-number fallback for cleaner structure mapping.
 10. Retrieval evaluation, abstention threshold calibration, hard-negative
@@ -70,14 +70,14 @@ The repository currently contains:
     manifest pathing, expert-reviewed ATP/phosphoryl-transfer family expansion,
     batch summary with scaling-quality audit attachment, and a scaling gate.
 
-The 20- through 850-entry evaluation slices are clean out-of-scope regression
+The 20- through 950-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
 under calibrated abstention. The 125-entry slice has 38 in-scope positives, 87
 out-of-scope controls, 124/125 evaluable active-site structures, threshold
 `0.4115`, and a positive score separation gap of `0.0308`.
 
-The current 850-entry countable stress slice has 635 evaluable active-site
-structures among 651 evaluated labeled rows, 185 in-scope labels, 466
+The current 950-entry countable stress slice has 656 evaluable active-site
+structures among 672 evaluated labeled rows, 206 in-scope labels, 466
 evaluated out-of-scope controls, 30 structure-mapping issues, 0 hard negatives,
 and 0 near misses. Its calibrated threshold is `0.4115`; it retains 181/185
 current in-scope positives, abstains on all evaluable out-of-scope controls,
@@ -92,30 +92,30 @@ evidence-limited positives: `m_csa:41`, `m_csa:108`, `m_csa:160`,
 `m_csa:446`, and `m_csa:486`.
 
 The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
-800-, 825-, and 850-entry candidate
+800-, 825-, 850-, 875-, 900-, 925-, and 950-entry candidate
 queues have been processed through the label factory. `m_csa:494` is
 intentionally preserved as a non-countable `needs_expert_review` cobalamin
 evidence gap because B12 evidence is structure-wide only. The 675, 700, 725,
-750, 775, 800, 825, and 850 batches accepted 34 additional clean countable
+750, 775, 800, 825, 850, 875, 900, 925, and 950 batches accepted 55 additional clean countable
 labels while preserving 0 hard negatives, 0 near misses, 0 out-of-scope false
 non-abstentions, and 0 actionable in-scope failures. See
 `work/label_queue_500_notes.md`, `work/label_queue_525_notes.md`,
 `work/label_queue_550_notes.md`, `work/label_factory_notes.md`,
-`work/label_preview_725_notes.md`, `work/label_preview_750_notes.md`, and
-`work/label_preview_850_notes.md`.
+`work/label_preview_725_notes.md`, `work/label_preview_750_notes.md`,
+`work/label_preview_850_notes.md`, and `work/label_preview_950_notes.md`.
 
 Label scaling is now gated by the label factory rather than raw queue size. The
-current 850 factory audit proposes 97 bronze-to-silver promotions, flags 112
-abstention/review rows, mines 100 adversarial negative controls from 466
-out-of-scope candidates, exports 229 review items from the post-850 review
-queue, exports all 198 active `expert_label_decision_needed` rows as
+current 950 factory audit proposes 111 bronze-to-silver promotions, flags
+127 abstention/review rows, mines 100 adversarial negative controls from 466
+out-of-scope candidates, exports 311 review items from the post-950 review
+queue, exports all 277 active `expert_label_decision_needed` rows as
 review-only no-decision items, generates a non-countable repair-candidate plan
-and priority repair guardrail audit for those 198 rows, audits/exports the 56
+and priority repair guardrail audit for those 277 rows, audits/exports the 84
 priority local-evidence gap lanes as review-only items, emits a local-evidence
 repair plan, verifies review-only import safety, maps expert-reviewed
 ATP/phosphoryl-transfer mismatch lanes to nine concrete fingerprint families,
-and passes the 20-check 850-slice gate after the accepted-review-debt deferral
-audit confirms all 203 accepted-850 review-state rows remain non-countable.
+and passes the 21-check 950-slice gate after the accepted-review-debt deferral
+audit confirms all 282 accepted-950 review-state rows remain non-countable.
 The gate also
 fails if unlabeled candidate rows are truncated by the queue limit, if
 family-guardrail reaction/substrate mismatch lanes lack a dedicated review
@@ -127,22 +127,23 @@ sourcing requests and review-only import-safety audit to remain non-countable,
 and requires the
 ATP/phosphoryl-transfer family expansion artifact to be guardrail-clean when
 attached.
-`artifacts/v3_label_batch_acceptance_check_850.json` records that the latest
-canonical accepted batch added 3 labels for counting while 203 review-state
-decisions remain pending. `artifacts/v3_accepted_review_debt_deferral_audit_850.json`
-explicitly defers those 203 rows, including the 22 new 850-preview review-debt
+`artifacts/v3_label_batch_acceptance_check_950.json` records that the latest
+canonical accepted batch added 6 labels for counting while 282 review-state
+decisions remain pending. `artifacts/v3_accepted_review_debt_deferral_audit_950.json`
+explicitly defers those 282 rows, including the 19 new 950-preview review-debt
 rows. `artifacts/v3_label_factory_batch_summary.json` aggregates the accepted
-batch history and confirms 15/15 accepted batches remain guardrail-clean.
-`artifacts/v3_review_debt_summary_850_preview.json` prioritizes current
-evidence-gap rows for the accepted 850 state. The 675, 700, 725, 750, 775, 800,
-825, and 850
+batch history and confirms 19/19 accepted batches remain guardrail-clean.
+`artifacts/v3_review_debt_summary_950_preview.json` prioritizes current
+evidence-gap rows for the accepted 950 state. The 675, 700, 725, 750, 775, 800,
+825, 850, 875, 900, 925, and 950
 scaling-quality audits keep pending evidence gaps outside the
 benchmark, classify new debt rows, and attach graph-derived sequence-cluster
 proxy artifacts; all report 0 accepted labels with review debt and 0
 near-duplicate hits among audited rows. See
 `work/label_preview_675_notes.md`, `work/label_preview_700_notes.md`,
 `work/label_preview_725_notes.md`, `work/label_preview_750_notes.md`,
-`work/label_preview_775_notes.md`, `work/label_preview_850_notes.md`, and
+`work/label_preview_775_notes.md`, `work/label_preview_850_notes.md`,
+`work/label_preview_950_notes.md`, and
 `work/expert_label_decision_review_700_notes.md` for the clean label profiles,
 the top evidence gaps, the expert-decision review-only profile, and the
 prioritized non-countable repair buckets.
@@ -207,14 +208,13 @@ decisions and rejecting 17 controls. Countable import refuses
 review-only artifacts even when they carry reviewed repair decisions, so these
 lanes cannot enter the benchmark.
 
-The 800, 825, and 850 batches accepted ten clean automation-curated bronze
-labels. The latest 850 batch accepted `m_csa:837`, `m_csa:839`, and
-`m_csa:852`; the 22 new 850-preview review-debt rows remain explicitly
-non-countable under `artifacts/v3_accepted_review_debt_deferral_audit_850.json`.
-`m_csa:836` is the new cofactor-evidence regression case: role-inferred
-metal-hydrolase evidence without local ligand support is deferred as
-`needs_more_evidence` rather than counted. The next bounded work item is a
-gated 875 preview only if the 850 post-batch gate stays clean.
+The 875, 900, 925, and 950 batches accepted 21 clean automation-curated bronze
+labels after the accepted 850 state. The latest 950 batch accepted
+`m_csa:933`, `m_csa:935`, `m_csa:937`, `m_csa:941`, `m_csa:942`, and
+`m_csa:944`; the 19 new 950-preview review-debt rows remain explicitly
+non-countable under `artifacts/v3_accepted_review_debt_deferral_audit_950.json`.
+The next bounded work item is a gated 975 preview only if the 950 post-batch
+gate stays clean.
 See
 `docs/label_factory.md`.
 
@@ -282,7 +282,7 @@ For bounded tranche scaling after an accepted geometry slice, reuse unchanged
 geometry rows instead of rebuilding every prior entry:
 
 ```bash
-python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_875.json --max-entries 875 --reuse-existing artifacts/v3_geometry_features_850.json --out artifacts/v3_geometry_features_875.json
+python -m catalytic_earth.cli build-geometry-features --graph artifacts/v1_graph_975.json --max-entries 975 --reuse-existing artifacts/v3_geometry_features_950.json --out artifacts/v3_geometry_features_975.json
 ```
 
 The commands currently operate on curated seed registries in `data/registries/`.
@@ -322,14 +322,14 @@ Current timeline judgment:
    active-site geometry, ligand/cofactor context, labels, calibration, and
    performance checks.
 2. Current automation blocks: keep using the label factory for every new
-   tranche. The 850 slice is accepted only for its clean countable labels; 203
+   tranche. The 950 slice is accepted only for its clean countable labels; 282
    review-state rows remain outside the benchmark and now have an explicit
    non-countable deferral audit. Each batch must pass
    promotion/demotion, adversarial-negative, active-learning, expert-review
    export/import, family-propagation, ATP/phosphoryl-transfer family-boundary,
    validation, and test gates before labels count toward the benchmark.
 3. Next serious milestone: open the next bounded gated tranche toward 1,000
-   labels, starting with an 875 preview, only while the 850 post-batch gate stays
+   labels, starting with a 975 preview, only while the 950 post-batch gate stays
    clean. Stop count growth if the next gate exposes review debt,
    ontology/family propagation drift, hard negatives, out-of-scope false
    non-abstentions, or actionable in-scope failures.

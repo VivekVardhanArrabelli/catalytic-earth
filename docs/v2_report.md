@@ -57,8 +57,8 @@ for expert review, not validated functions.
 - Post-V2 work has already added geometry-aware active-site retrieval, curated
   positive/out-of-scope mechanism labels, ligand/cofactor context, and
   substrate-pocket descriptors, plus cofactor coverage audit artifacts.
-- The current active benchmark is the 652-label countable geometry slice within
-  the 850-entry source artifact. It has 0 hard negatives, 0 near misses, and
+- The current active benchmark is the 673-label countable geometry slice within
+  the 950-entry source artifact. It has 0 hard negatives, 0 near misses, and
   0 out-of-scope false non-abstentions at calibrated abstention, with
   4 evidence-limited in-scope abstentions
   (`m_csa:132`, `m_csa:353`, `m_csa:372`, and `m_csa:430`) and 0 actionable
@@ -67,8 +67,9 @@ for expert review, not validated functions.
   `m_csa:160`, `m_csa:446`, and `m_csa:486`.
 - The 500-entry label-expansion queue has been processed through the label
   factory, and the 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-,
-  750-, 775-, 800-, 825-, and 850-entry queues were accepted as gated batches.
-  The countable registry now has 652 labels, while 203 accepted-850
+  750-, 775-, 800-, 825-, 850-, 875-, 900-, 925-, and 950-entry queues were
+  accepted as gated batches. The countable registry now has 673 labels, while
+  282 accepted-950
   review-state rows remain non-countable
   evidence gaps. Future additions must pass the label-factory gate before any
   new labels count in the benchmark.

@@ -1,0 +1,4642 @@
+{
+  "metadata": {
+    "candidate_scope_signal_count": 184,
+    "countable_label_candidate_count": 0,
+    "emitted_row_count": 172,
+    "existing_ontology_families": [
+      "askha",
+      "atp_grasp",
+      "atp_phosphoryl_transfer",
+      "dnk",
+      "epk",
+      "flavin_redox",
+      "ghkl",
+      "ghmp",
+      "heme_redox",
+      "hydrolysis",
+      "ndk",
+      "pfka",
+      "pfkb",
+      "plp_chemistry",
+      "radical_rearrangement"
+    ],
+    "local_evidence_gap_class_counts": {
+      "alternate_structures_lack_explicit_residue_positions": 27,
+      "counterevidence_boundary_unresolved": 23,
+      "not_scanned_or_no_alternate_context": 36,
+      "reaction_substrate_mismatch_review_required": 6,
+      "selected_structure_residue_support_shortfall": 29,
+      "single_structure_no_alternate_context": 9,
+      "text_leakage_or_nonlocal_evidence_risk": 8
+    },
+    "local_evidence_gap_context_entry_count": 36,
+    "local_evidence_gap_context_source_method": "expert_label_decision_local_evidence_gap_audit",
+    "max_rows": 160,
+    "method": "mechanism_ontology_gap_audit",
+    "omitted_by_max_rows": 12,
+    "ontology_update_blocker_counts": {
+      "active_site_mapping_or_structure_gap": 30,
+      "cofactor_family_ambiguity": 75,
+      "counterevidence_boundary": 69,
+      "expert_label_decision_required": 105,
+      "external_expert_review_required": 184,
+      "keyword_only_scope_signal": 184,
+      "local_evidence_gap_unresolved": 36,
+      "reaction_substrate_mismatch_review_required": 24,
+      "text_leakage_or_nonlocal_evidence_risk": 8
+    },
+    "ontology_update_ready": false,
+    "priority_local_evidence_gap_added_count": 12,
+    "recommended_path": "prioritize transferase, lyase, isomerase, and long-tail redox examples for expert-reviewed seed ontology expansion",
+    "review_only_rule": "scope signals from names, text, and review queues are ontology pressure only; they cannot create countable labels or new families without local mechanism evidence and expert review",
+    "scope_signal_counts": {
+      "glycan_chemistry": 12,
+      "isomerase": 23,
+      "lyase": 25,
+      "oxidoreductase_long_tail": 66,
+      "transferase_methyl": 7,
+      "transferase_phosphoryl": 54
+    }
+  },
+  "rows": [
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 1,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl",
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 2,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 3,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:498",
+      "entry_name": "glutathione synthase (eukaryotic)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 4,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:365",
+      "entry_name": "Phosphofructokinase I",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 5,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 6,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:588",
+      "entry_name": "thymidine kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 7,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:637",
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 8,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary"
+      ],
+      "rank": 9,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 10,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:756",
+      "entry_name": "protein kinase C",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 11,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 12,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary"
+      ],
+      "rank": 13,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 14,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "local_evidence_gap_classes": [
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 15,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary"
+      ],
+      "rank": 16,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 17,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 19,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:151",
+      "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 21,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:541",
+      "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 23,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:51",
+      "entry_name": "phosphoenolpyruvate carboxykinase (ATP)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [],
+      "rank": 24,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:778",
+      "entry_name": "homoserine kinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "substrate_class_boundary"
+      ],
+      "rank": 33,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "reaction_substrate_mismatch_review_required",
+        "selected_structure_residue_support_shortfall",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_reaction_substrate_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "reaction_substrate_mismatch_review_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 236,
+      "reaction_substrate_mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:863",
+      "entry_name": "phosphoenolpyruvate carboxykinase (GTP)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "reaction_substrate_mismatch_review_required"
+      ],
+      "quality_risk_flags": [
+        "external_expert_decision_required",
+        "reaction_substrate_mismatch"
+      ],
+      "rank": 286,
+      "reaction_substrate_mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:13",
+      "entry_name": "amine dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 18,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:4",
+      "entry_name": "nitrite reductase (copper type)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 20,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:140",
+      "entry_name": "ribonucleoside-triphosphate reductase (class II)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 22,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:222",
+      "entry_name": "fructose-bisphosphate aldolase (Class I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 25,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:54",
+      "entry_name": "3-dehydroquinate dehydratase (type I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 26,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:135",
+      "entry_name": "peptidylglycine monooxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 28,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:121",
+      "entry_name": "sulfite oxidase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 29,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:144",
+      "entry_name": "arsenite oxidase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 31,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:553",
+      "entry_name": "N-acetylneuraminate lyase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 32,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:361",
+      "entry_name": "aldoxime dehydratase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 34,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:278",
+      "entry_name": "plastoquinol-plastocyanin reductase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 35,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:130",
+      "entry_name": "naphthalene 1,2-dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 37,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:220",
+      "entry_name": "benzoylformate decarboxylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 39,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:212",
+      "entry_name": "nitrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 41,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:217",
+      "entry_name": "(S)-hydroxynitrile lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 42,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:104",
+      "entry_name": "quinoprotein glucose dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 43,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:185",
+      "entry_name": "8-oxoguanine DNA-glycosylase (type-1 OGG1 family)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 44,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:352",
+      "entry_name": "phosphoglucomutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 45,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:65",
+      "entry_name": "adenylosuccinate synthase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 47,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:17",
+      "entry_name": "purine-nucleoside phosphorylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 48,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:91",
+      "entry_name": "pyrimidine-nucleoside phosphorylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 49,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:336",
+      "entry_name": "L-3-hydroxyacyl-CoA dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 50,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:107",
+      "entry_name": "aerobic carbon monoxide dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 51,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:324",
+      "entry_name": "triosephosphate isomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 52,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:182",
+      "entry_name": "methylisocitrate lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 53,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:792",
+      "entry_name": "protein disulfide oxidoreductase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 54,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:231",
+      "entry_name": "oxalate decarboxylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 56,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:547",
+      "entry_name": "homogentisate 1,2-dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 57,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:138",
+      "entry_name": "superoxide dismutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 58,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:537",
+      "entry_name": "glutamine synthetase (type I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 60,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:359",
+      "entry_name": "lactoglutathione lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 61,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:34",
+      "entry_name": "catechol 2,3-dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 62,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:33",
+      "entry_name": "methylmalonyl-CoA epimerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 65,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:206",
+      "entry_name": "beta-phosphoglucomutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 66,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl",
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:64",
+      "entry_name": "DNA topoisomerase (type III)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 67,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:842",
+      "entry_name": "glucose-6-phosphate isomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 68,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:736",
+      "entry_name": "mannose-6-phosphate isomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 69,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:52",
+      "entry_name": "fructose-bisphosphate aldolase (Class II)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 72,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:162",
+      "entry_name": "deoxyribonuclease (pyrimidine dimer)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 73,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:684",
+      "entry_name": "mannuronate-specific alginate lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 74,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:7",
+      "entry_name": "isocitrate dehydrogenase (NADP+)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 75,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:645",
+      "entry_name": "rhamnulose-1-phosphate aldolase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 76,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:451",
+      "entry_name": "glucarate dehydratase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 77,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:834",
+      "entry_name": "double-stranded uracil-DNA glycosylase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 78,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:613",
+      "entry_name": "deoxyribose-phosphate aldolase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 79,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:32",
+      "entry_name": "lactoylglutathione lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 80,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:187",
+      "entry_name": "mandelate racemase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 81,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:891",
+      "entry_name": "Tetrahydroxynaphthalene reductase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 82,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:95",
+      "entry_name": "L-fucose isomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 83,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:711",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (NADP+)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 85,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:652",
+      "entry_name": "4-hydroxy-2-oxovalerate aldolase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 86,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:787",
+      "entry_name": "uridine phosphorylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 88,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:785",
+      "entry_name": "phosphoglycerate dehydrogenase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 89,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:377",
+      "entry_name": "N-succinylamino acid racemase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 92,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:680",
+      "entry_name": "ribose-5-phosphate isomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 94,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:134",
+      "entry_name": "tyrosine 3-monooxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 100,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:276",
+      "entry_name": "nitrate reductase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 101,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:659",
+      "entry_name": "DNA-formamidopyrimidine glycosylase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 103,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:534",
+      "entry_name": "myosin ATPase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 105,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:273",
+      "entry_name": "L-ribulose-5-phosphate 4-epimerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 106,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:807",
+      "entry_name": "adenine DNA glycosylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 107,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:129",
+      "entry_name": "taurine dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 110,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:125",
+      "entry_name": "catechol oxidase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 112,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:673",
+      "entry_name": "cellobiose dehydrogenase (acceptor)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 114,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:194",
+      "entry_name": "phosphomannomutase/ phosphoglucomutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 115,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:725",
+      "entry_name": "aldehyde reductase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 118,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:880",
+      "entry_name": "mannose-6-phosphate isomerase (type I)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 120,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:270",
+      "entry_name": "ribulose-phosphate 3-epimerase (cytoplasmic)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 122,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:510",
+      "entry_name": "8-oxoguanine DNA-glycosylase (ExoA family)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 125,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:741",
+      "entry_name": "histidinol dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 126,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:843",
+      "entry_name": "glucose-6-phosphate dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 128,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:503",
+      "entry_name": "galactarate dehydratase (type III)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 129,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_need_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:653",
+      "entry_name": "diphosphate---fructose-6-phosphate 1-phosphotransferase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 132,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:99",
+      "entry_name": "methanol dehydrogenase (cytochrome c)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 137,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:225",
+      "entry_name": "adenosylmethionine decarboxylase (prokaryotic)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 139,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:229",
+      "entry_name": "pantoate-beta-alanine ligase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 141,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:700",
+      "entry_name": "deoxycytidylate 5-hydroxymethyltransferase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 142,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:768",
+      "entry_name": "Renilla-luciferin 2-monooxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 145,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:562",
+      "entry_name": "formate dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 146,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:779",
+      "entry_name": "plus-end-directed kinesin ATPase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 150,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:199",
+      "entry_name": "glutathione synthase (prokaryotic)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 156,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:848",
+      "entry_name": "L-cysteine/cystine lyase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 157,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:846",
+      "entry_name": "2-dehydro-3-deoxyglucarate aldolase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 158,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:734",
+      "entry_name": "protein disulfide oxidoreductase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 159,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:875",
+      "entry_name": "levansucrase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 161,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:803",
+      "entry_name": "aldehyde dehydrogenase (NAD+) (class 2)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 162,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:799",
+      "entry_name": "arsenite-transporting ATPase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 163,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:271",
+      "entry_name": "phosphoenolpyruvate mutase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 164,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl",
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:132",
+      "entry_name": "alkanal monooxygenase (FMN-linked)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 165,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "abstain_pending_evidence",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:858",
+      "entry_name": "indanol dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 170,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:373",
+      "entry_name": "Vanadium-dependent bromoperoxidase (organic sulfide oxidation)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 171,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:374",
+      "entry_name": "Vanadium-dependent bromoperoxidase (organic molecule bromination)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 172,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:386",
+      "entry_name": "Vanadium-dependent bromoperoxidase (HOBr Formation)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 173,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:902",
+      "entry_name": "NAD-dependent formate dehydrogenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 174,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:864",
+      "entry_name": "primary-amine oxidase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 176,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:883",
+      "entry_name": "D-alanine---D-alanine ligase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 178,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:765",
+      "entry_name": "3-dehydro-L-gulonate 2-dehydrogenase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 180,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:494",
+      "entry_name": "propanediol dehydratase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 183,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:14",
+      "entry_name": "chloride peroxidase (vanadate dependent)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 186,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:691",
+      "entry_name": "histone-lysine N-methyltransferase (Suvar3-9 subfamily)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 191,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:702",
+      "entry_name": "uroporphyrinogen-III C-methyltransferase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 193,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:885",
+      "entry_name": "Serine-tRNA ligase (archaeal)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 195,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:669",
+      "entry_name": "carbamate kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 196,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:898",
+      "entry_name": "23S rRNA (adenine2085-N6)-dimethyltransferase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 197,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:884",
+      "entry_name": "serine---tRNA ligase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 198,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:642",
+      "entry_name": "vesicle-fusing ATPase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 199,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:894",
+      "entry_name": "trimethylamine-N-oxide reductase (cytochrome c)",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 200,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:872",
+      "entry_name": "type I protein arginine methyltransferase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 201,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:672",
+      "entry_name": "protocatechuate 4,5-dioxygenase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 202,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:766",
+      "entry_name": "formyltetrahydrofolate dehydrogenase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 206,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:889",
+      "entry_name": "phosphogluconate dehydrogenase (decarboxylating)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 207,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:833",
+      "entry_name": "DNA helicase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 209,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:108",
+      "entry_name": "2,4-dienoyl-CoA reductase (NADPH)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 213,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "abstain_pending_evidence",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:876",
+      "entry_name": "UDP-N-acetylmuramate---L-alanine ligase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "substrate_class_boundary"
+      ],
+      "rank": 214,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:888",
+      "entry_name": "8-oxoguanine DNA-glycosylase (Nth/MutY family)",
+      "local_evidence_gap_classes": [
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "source_external_cofactor_or_structure_evidence",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 218,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:745",
+      "entry_name": "DNA topoisomerase (ATP-hydrolysing)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 223,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:890",
+      "entry_name": "ketol-acid reductoisomerase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 225,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:896",
+      "entry_name": "pectate lyase C (polysaccharide lyase 1 family)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 227,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 229,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:780",
+      "entry_name": "DNA helicase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 233,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:870",
+      "entry_name": "acetylglutamate kinase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 238,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:715",
+      "entry_name": "protein-methionine-S-oxide reductase (MsrB)",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 239,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:810",
+      "entry_name": "fructose-2,6-bisphosphate 2-phosphatase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 241,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:804",
+      "entry_name": "glutamyl-tRNA reductase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 243,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:695",
+      "entry_name": "purine-nucleoside phosphorylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 245,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:160",
+      "entry_name": "exodeoxyribonuclease III",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 246,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "abstain_pending_evidence",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:698",
+      "entry_name": "xanthine dehydrogenase (bacterial)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 251,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:775",
+      "entry_name": "shikimate dehydrogenase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 252,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:893",
+      "entry_name": "medium-chain acyl-CoA dehydrogenase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "rank": 256,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:675",
+      "entry_name": "glutaconyl-CoA decarboxylase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 259,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:701",
+      "entry_name": "dimethylsulfoxide reductase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 260,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_ontology_family": "heme_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:655",
+      "entry_name": "DNA-3-methyladenine glycosylase I",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 261,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:200",
+      "entry_name": "NAD+ synthase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [],
+      "rank": 262,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "hold_bronze_boundary_review",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:721",
+      "entry_name": "2-dehydropantoate 2-reductase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 264,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:703",
+      "entry_name": "peptide chain release factor N5-glutamine methyltransferase",
+      "local_evidence_gap_classes": [],
+      "local_evidence_gap_recommended_action": null,
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 267,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:692",
+      "entry_name": "protein-L-isoaspartate(D-aspartate) O-methyltransferase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 269,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_methyl"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:851",
+      "entry_name": "glutathione peroxidase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 271,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:809",
+      "entry_name": "polyamine oxidase (propane-1,3-diamine-forming)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "rank": 279,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:868",
+      "entry_name": "glucose-fructose oxidoreductase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 281,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:811",
+      "entry_name": "UDP-N-acetylglucosamine pyrophosphorylase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 285,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "transferase_phosphoryl"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:861",
+      "entry_name": "D-galactarolactone isomerase",
+      "local_evidence_gap_classes": [
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall",
+        "single_structure_no_alternate_context"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required"
+      ],
+      "rank": 288,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "isomerase"
+      ],
+      "top1_fingerprint_id": "flavin_monooxygenase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:664",
+      "entry_name": "dihydroneopterin aldolase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion"
+      ],
+      "rank": 290,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "lyase"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:690",
+      "entry_name": "dextranase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "counterevidence_boundary_unresolved",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "route_to_family_boundary_expert_review",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "counterevidence_boundary",
+        "external_expert_decision_required",
+        "sibling_mechanism_confusion",
+        "substrate_class_boundary"
+      ],
+      "rank": 299,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "glycan_chemistry"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:749",
+      "entry_name": "cytochrome-c peroxidase (di-heme type)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required"
+      ],
+      "rank": 303,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:743",
+      "entry_name": "quercetin 2,3-dioxygenase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 318,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:572",
+      "entry_name": "catalase (manganese dependent)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "cofactor_family_ambiguity",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "quality_risk_flags": [
+        "cofactor_family_ambiguity",
+        "external_expert_decision_required",
+        "text_leakage_or_nonlocal_evidence_risk"
+      ],
+      "rank": 326,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:892",
+      "entry_name": "dihydroorotate dehydrogenase (fumarate)",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "rank": 346,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    },
+    {
+      "countable_label_candidate": false,
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "local_evidence_gap_classes": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "not_scanned_or_no_alternate_context",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "local_evidence_gap_recommended_action": "source_explicit_alternate_structure_residue_positions",
+      "ontology_update_blockers": [
+        "active_site_mapping_or_structure_gap",
+        "expert_label_decision_required",
+        "external_expert_review_required",
+        "keyword_only_scope_signal",
+        "local_evidence_gap_unresolved"
+      ],
+      "quality_risk_flags": [
+        "active_site_mapping_or_structure_gap",
+        "external_expert_decision_required"
+      ],
+      "rank": 348,
+      "reaction_substrate_mismatch_reasons": [],
+      "recommended_action": "expert_label_decision_needed",
+      "recommended_next_action": "collect local mechanistic evidence and expert-reviewed examples before adding or splitting ontology families",
+      "scope_signals": [
+        "oxidoreductase_long_tail"
+      ],
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_ontology_family": "flavin_redox"
+    }
+  ]
+}

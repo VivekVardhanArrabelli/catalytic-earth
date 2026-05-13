@@ -255,20 +255,37 @@ Current slices:
   labeled rows evaluable, 181/185 in-scope positives retained, 0 out-of-scope
   false non-abstentions, 0 hard negatives, 0 near misses, and 4
   evidence-limited in-scope abstentions.
+- 875-entry countable stress slice: threshold 0.4115, 642/658 evaluated
+  labeled rows evaluable, 188/192 in-scope positives retained, 0 out-of-scope
+  false non-abstentions, 0 hard negatives, 0 near misses, and 4
+  evidence-limited in-scope abstentions.
+- 900-entry countable stress slice: threshold 0.4115, 646/662 evaluated
+  labeled rows evaluable, 192/196 in-scope positives retained, 0 out-of-scope
+  false non-abstentions, 0 hard negatives, 0 near misses, and 4
+  evidence-limited in-scope abstentions.
+- 925-entry countable stress slice: threshold 0.4115, 650/666 evaluated
+  labeled rows evaluable, 196/200 in-scope positives retained, 0 out-of-scope
+  false non-abstentions, 0 hard negatives, 0 near misses, and 4
+  evidence-limited in-scope abstentions.
+- 950-entry countable stress slice: threshold 0.4115, 656/672 evaluated
+  labeled rows evaluable, 202/206 in-scope positives retained, 0 out-of-scope
+  false non-abstentions, 0 hard negatives, 0 near misses, and 4
+  evidence-limited in-scope abstentions.
 
 `artifacts/v3_geometry_slice_summary.json` summarizes the 20-, 30-, 40-, 50-,
 60-, 75-, 100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-,
 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-, 650-,
-675-, 700-, 725-, 750-, 775-, 800-, 825-, and 850-entry slices. It
+675-, 700-, 725-, 750-, 775-, 800-, 825-, 850-, 875-, 900-, 925-, and
+950-entry slices. It
 currently reports zero hard negatives, zero near misses, and zero out-of-scope
 false non-abstentions across all slices. Total in-scope failures across slice
-rows are 86, max in any slice is 4, and the actionable in-scope failure count
+rows are 102, max in any slice is 4, and the actionable in-scope failure count
 is 0 after separating selected-structure cofactor gaps from scorer failures.
 
-`artifacts/v3_cofactor_coverage_850.json` tracks expected cofactor coverage for
-in-scope labels. In the 850-entry countable slice, 141/185 in-scope positives
+`artifacts/v3_cofactor_coverage_950.json` tracks expected cofactor coverage for
+in-scope labels. In the 950-entry countable slice, 157/206 in-scope positives
 have local or partial local cofactor support, 3 have expected cofactor support
-only elsewhere in the selected structure, 35 require no cofactor, and 6 lack
+only elsewhere in the selected structure, 40 require no cofactor, and 6 lack
 expected structure-wide cofactor evidence. Of the 6 absent-expected-cofactor
 rows, 3 are retained and 3 are abstained. The coverage metadata exposes
 `evidence_limited_retained_entry_ids`, currently `m_csa:41`, `m_csa:108`,
@@ -276,7 +293,7 @@ rows, 3 are retained and 3 are abstained. The coverage metadata exposes
 separately from clean local cofactor matches without changing the abstention
 threshold.
 
-`artifacts/v3_cofactor_policy_850.json` sweeps small post-hoc penalties for
+`artifacts/v3_cofactor_policy_950.json` sweeps small post-hoc penalties for
 absent or structure-only cofactor evidence. It recommends
 `audit_only_or_separate_stratum` because no tested policy reduces
 evidence-limited retained positives without losing retained positives. The
@@ -285,20 +302,20 @@ smallest retained evidence-limited margin is now `0.013`.
 ## Label Expansion Queue
 
 The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
-800-, 825-, and 850-entry source slices have been processed through the label
-factory. The 850-entry batch is
+800-, 825-, 850-, 875-, 900-, 925-, and 950-entry source slices have been
+processed through the label factory. The 950-entry batch is
 resolved only for clean countable labels because every batch candidate has an
 accept, reject, or needs-more-evidence decision:
 
-- geometry entries in expansion artifact: 849
-- countable curated labels: 652
-- evaluated labeled rows: 651
-- evaluable labeled active-site structures: 635
-- post-batch unlabeled queue rows retained: 198
+- geometry entries in expansion artifact: 949
+- countable curated labels: 673
+- evaluated labeled rows: 672
+- evaluable labeled active-site structures: 656
+- post-batch expert-label decision rows retained: 277
 - review notes: `work/label_factory_notes.md`
-- active-learning review queue: `artifacts/v3_active_learning_review_queue_850.json`
-- expert-review export: `artifacts/v3_expert_review_export_850_preview_post_batch.json`
-- factory gate check: `artifacts/v3_label_factory_gate_check_850.json`
+- active-learning review queue: `artifacts/v3_active_learning_review_queue_950.json`
+- expert-review export: `artifacts/v3_expert_review_export_950_preview_post_batch.json`
+- factory gate check: `artifacts/v3_label_factory_gate_check_950.json`
 
 `m_csa:494` remains non-countable by design until local cobalamin evidence or
 expert review resolves the structure-wide-only B12 gap.
@@ -310,16 +327,17 @@ residue positions against both mmCIF `auth_*` and `label_*` numbering. The
 175-entry slices each have 2 labeled out-of-scope mapping issues; the 200-,
 225-, 250-, 275-, and 300-entry slices each have 3 labeled out-of-scope mapping
 issues; the 325-, 350-, 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-,
-575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-, 800-, 825-, and
-850-entry slices have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10, 11, 11, 15, 17, 17,
-19, 21, 23, 27, 28, 29, and 30 mapping issues respectively.
+575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-, 800-, 825-, 850-,
+875-, 900-, 925-, and 950-entry slices have 4, 5, 7, 7, 7, 7, 7, 8, 8, 10,
+11, 11, 15, 17, 17, 19, 21, 23, 27, 28, 29, 30, 31, 33, 34, and 38 mapping
+issues respectively.
 
 ## Curated Seed Labels
 
-`data/registries/curated_mechanism_labels.json` provides 652 provisional labels,
-covering all entries in the 475-entry source slice plus 177 accepted labels from
+`data/registries/curated_mechanism_labels.json` provides 673 provisional labels,
+covering all entries in the 475-entry source slice plus 198 accepted labels from
 the 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
-800-, 825-, and 850-entry queues. Labels now carry explicit
+800-, 825-, 850-, 875-, 900-, 925-, and 950-entry queues. Labels now carry explicit
 `tier`, `review_status`, `confidence`, `evidence_score`, and `evidence`
 provenance fields. Labels are intentionally conservative:
 

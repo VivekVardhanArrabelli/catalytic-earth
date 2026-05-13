@@ -2251,7 +2251,7 @@ class CliTests(unittest.TestCase):
                     {
                         "metadata": {
                             "method": "review_debt_summary",
-                            "new_review_debt_entry_ids": ["m_csa:651"],
+                            "new_review_debt_entry_ids": ["m_csa:651", "m_csa:652"],
                         }
                     }
                 ),
@@ -2272,6 +2272,19 @@ class CliTests(unittest.TestCase):
                                 "target_fingerprint_id": "heme_peroxidase_oxidase",
                                 "top1_fingerprint_id": "heme_peroxidase_oxidase",
                                 "mechanism_text_snippets": ["Hydrolysis text without heme evidence."],
+                            },
+                            {
+                                "entry_id": "m_csa:652",
+                                "entry_name": "decision-only PLP review",
+                                "decision_action": "mark_needs_more_evidence",
+                                "coverage_status": "all_expected_local",
+                                "gap_reasons": ["review_marked_needs_more_evidence"],
+                                "counterevidence_reasons": [],
+                                "target_fingerprint_id": "plp_dependent_enzyme",
+                                "top1_fingerprint_id": "plp_dependent_enzyme",
+                                "mechanism_text_snippets": [
+                                    "PLP support is local, but external review is still required."
+                                ],
                             }
                         ],
                     }
@@ -2291,6 +2304,10 @@ class CliTests(unittest.TestCase):
                             {
                                 "entry_id": "m_csa:651",
                                 "top1_ontology_family": "heme_redox",
+                            },
+                            {
+                                "entry_id": "m_csa:652",
+                                "top1_ontology_family": "plp_chemistry",
                             },
                         ],
                     }
@@ -2334,6 +2351,10 @@ class CliTests(unittest.TestCase):
                             {
                                 "entry_id": "m_csa:651",
                                 "sequence_cluster_id": "cluster-cli",
+                            },
+                            {
+                                "entry_id": "m_csa:652",
+                                "sequence_cluster_id": "cluster-cli-2",
                             }
                         ]
                     }
@@ -2524,6 +2545,11 @@ class CliTests(unittest.TestCase):
             audit = json.loads(out.read_text(encoding="utf-8"))
             self.assertEqual(audit["metadata"]["batch_id"], "test_preview")
             self.assertEqual(audit["metadata"]["accepted_new_debt_entry_ids"], ["m_csa:651"])
+            self.assertEqual(audit["metadata"]["unclassified_new_review_debt_entry_ids"], [])
+            self.assertEqual(
+                audit["metadata"]["issue_class_counts"]["expert_review_decision_needed"],
+                1,
+            )
             self.assertIn("accepted_new_labels_without_review_debt", audit["blockers"])
             self.assertEqual(
                 audit["metadata"]["near_duplicate_audit_status"],
@@ -3187,7 +3213,7 @@ class CliTests(unittest.TestCase):
             self.assertGreaterEqual(len(json.loads(imported_labels.read_text())), 475)
             self.assertLessEqual(len(json.loads(countable_labels.read_text())), len(json.loads(imported_labels.read_text())))
             self.assertIn("status_counts", json.loads(mapping_issues.read_text())["metadata"])
-            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "850")
+            self.assertEqual(json.loads(slice_summary.read_text())["metadata"]["largest_slice"], "950")
             self.assertGreater(json.loads(calibration.read_text())["metadata"]["threshold_count"], 21)
 
 
