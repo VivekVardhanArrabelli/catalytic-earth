@@ -143,9 +143,10 @@ Current review-only external artifacts:
   checkpoints, then 45/45 after sequence-alignment verification and the
   active-site sourcing queue. The current gate now passes 64/64 after the source
   exports, active-site sourcing resolution, representation-backend sample,
-  blocker matrix, and pilot review-only safeguards. It validates both candidate
+  blocker matrix, and pilot review-only safeguards. It uses the typed
+  `ExternalSourceTransferGateInputs.v1` contract, validates both candidate
   lineage across high-fan-in external artifacts and artifact-path lineage across
-  all supplied gate inputs, failing fast on mixed-slice paths,
+  all supplied gate inputs, and fails fast on mixed-slice paths,
   payload-declared slice contradictions, or pilot artifacts that stop being
   review-only/no-decision work products. It is still not ready for label import.
 

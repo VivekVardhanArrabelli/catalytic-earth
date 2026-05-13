@@ -161,7 +161,12 @@ Priority blockers:
   `external_transfer_blocker_matrix_candidate_lineage_mismatch` instead of
   passing because high-level candidate counts happen to match.
 - The external transfer gate now performs its own candidate-lineage and
-  artifact-path lineage checks across high-fan-in external artifacts. Evidence plans, review exports, sequence
+  artifact-path lineage checks across high-fan-in external artifacts through
+  `ExternalSourceTransferGateInputs.v1` plus a shared candidate-lineage
+  artifact registry. The CLI command builds that typed contract from its
+  artifact map before calling the gate, avoiding another one-off keyword
+  cascade, and the contract rejects non-object artifact payloads before gate
+  checks run. Evidence plans, review exports, sequence
   controls, active-site sourcing packets, representation samples, and blocker
   matrices fail the gate if they carry accessions outside the candidate manifest
   or claim full 30-row coverage while silently dropping manifest rows. The

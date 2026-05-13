@@ -1319,6 +1319,10 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertEqual(external_transfer_gate["blockers"], [])
         self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 64)
         self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 64)
+        self.assertEqual(
+            external_transfer_gate["metadata"]["gate_input_contract"],
+            "ExternalSourceTransferGateInputs.v1",
+        )
         self.assertTrue(
             external_transfer_gate["gates"][
                 "external_transfer_candidate_lineage_consistent"

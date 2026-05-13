@@ -230,7 +230,10 @@ Current expectation:
   audit now compares row accessions and candidate-manifest source method against
   the candidate manifest and fails on stale or mismatched matrix inputs. The
   external transfer gate now also validates candidate lineage across high-fan-in
-  external artifacts and fails on unexpected accessions, missing full-coverage
+  external artifacts through `ExternalSourceTransferGateInputs.v1` and a
+  shared candidate-lineage artifact registry. The CLI command now builds that
+  typed contract from the artifact map before calling the gate, then fails on
+  non-object artifact payloads, unexpected accessions, missing full-coverage
   manifest rows, per-artifact candidate-count drift, or pilot artifacts that
   stop being review-only/no-decision work products.
 - selected-PDB single-point mitigation now has a general override path with

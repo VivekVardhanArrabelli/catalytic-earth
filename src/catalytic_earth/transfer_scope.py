@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 from collections import Counter
+from dataclasses import dataclass
 from typing import Any, Callable
 from urllib.request import Request, urlopen
 
@@ -52,6 +53,51 @@ REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "source_target",
     "text",
 )
+EXTERNAL_TRANSFER_GATE_INPUT_CONTRACT = "ExternalSourceTransferGateInputs.v1"
+EXTERNAL_TRANSFER_GATE_REQUIRED_FIELDS = (
+    "transfer_manifest",
+    "query_manifest",
+    "ood_calibration_plan",
+    "candidate_sample_audit",
+    "candidate_manifest",
+    "candidate_manifest_audit",
+    "lane_balance_audit",
+    "evidence_plan",
+    "evidence_request_export",
+    "review_only_import_safety_audit",
+)
+EXTERNAL_TRANSFER_CANDIDATE_LINEAGE_FIELDS = (
+    "evidence_plan",
+    "evidence_request_export",
+    "active_site_evidence_queue",
+    "active_site_evidence_sample",
+    "heuristic_control_queue",
+    "structure_mapping_plan",
+    "structure_mapping_sample",
+    "heuristic_control_scores",
+    "external_control_repair_plan",
+    "reaction_evidence_sample",
+    "representation_control_manifest",
+    "representation_control_comparison",
+    "representation_backend_plan",
+    "representation_backend_sample",
+    "active_site_gap_source_requests",
+    "sequence_neighborhood_plan",
+    "sequence_neighborhood_sample",
+    "sequence_alignment_verification",
+    "sequence_search_export",
+    "external_import_readiness_audit",
+    "active_site_sourcing_queue",
+    "active_site_sourcing_export",
+    "active_site_sourcing_resolution",
+    "transfer_blocker_matrix",
+    "pilot_candidate_priority",
+    "pilot_review_decision_export",
+    "pilot_evidence_packet",
+    "pilot_evidence_dossiers",
+    "binding_context_repair_plan",
+    "binding_context_mapping_sample",
+)
 _EXTERNAL_TRANSFER_ARTIFACT_SLICE_RE = re.compile(
     r"_(\d+)(?=(?:_[A-Za-z0-9]+)*\.json$)"
 )
@@ -63,6 +109,113 @@ _EXTERNAL_TRANSFER_PAYLOAD_LINEAGE_KEYS = (
     "batch_id",
     "label_batch_id",
 )
+
+
+@dataclass(frozen=True)
+class ExternalSourceTransferGateInputs:
+    transfer_manifest: dict[str, Any]
+    query_manifest: dict[str, Any]
+    ood_calibration_plan: dict[str, Any]
+    candidate_sample_audit: dict[str, Any]
+    candidate_manifest: dict[str, Any]
+    candidate_manifest_audit: dict[str, Any]
+    lane_balance_audit: dict[str, Any]
+    evidence_plan: dict[str, Any]
+    evidence_request_export: dict[str, Any]
+    review_only_import_safety_audit: dict[str, Any]
+    active_site_evidence_queue: dict[str, Any] | None = None
+    active_site_evidence_sample: dict[str, Any] | None = None
+    active_site_evidence_sample_audit: dict[str, Any] | None = None
+    heuristic_control_queue: dict[str, Any] | None = None
+    heuristic_control_queue_audit: dict[str, Any] | None = None
+    structure_mapping_plan: dict[str, Any] | None = None
+    structure_mapping_plan_audit: dict[str, Any] | None = None
+    structure_mapping_sample: dict[str, Any] | None = None
+    structure_mapping_sample_audit: dict[str, Any] | None = None
+    heuristic_control_scores: dict[str, Any] | None = None
+    heuristic_control_scores_audit: dict[str, Any] | None = None
+    external_failure_mode_audit: dict[str, Any] | None = None
+    external_control_repair_plan: dict[str, Any] | None = None
+    external_control_repair_plan_audit: dict[str, Any] | None = None
+    reaction_evidence_sample: dict[str, Any] | None = None
+    reaction_evidence_sample_audit: dict[str, Any] | None = None
+    representation_control_manifest: dict[str, Any] | None = None
+    representation_control_manifest_audit: dict[str, Any] | None = None
+    representation_control_comparison: dict[str, Any] | None = None
+    representation_control_comparison_audit: dict[str, Any] | None = None
+    representation_backend_plan: dict[str, Any] | None = None
+    representation_backend_plan_audit: dict[str, Any] | None = None
+    representation_backend_sample: dict[str, Any] | None = None
+    representation_backend_sample_audit: dict[str, Any] | None = None
+    broad_ec_disambiguation_audit: dict[str, Any] | None = None
+    active_site_gap_source_requests: dict[str, Any] | None = None
+    sequence_neighborhood_plan: dict[str, Any] | None = None
+    sequence_neighborhood_sample: dict[str, Any] | None = None
+    sequence_neighborhood_sample_audit: dict[str, Any] | None = None
+    sequence_alignment_verification: dict[str, Any] | None = None
+    sequence_alignment_verification_audit: dict[str, Any] | None = None
+    sequence_search_export: dict[str, Any] | None = None
+    sequence_search_export_audit: dict[str, Any] | None = None
+    external_import_readiness_audit: dict[str, Any] | None = None
+    active_site_sourcing_queue: dict[str, Any] | None = None
+    active_site_sourcing_queue_audit: dict[str, Any] | None = None
+    active_site_sourcing_export: dict[str, Any] | None = None
+    active_site_sourcing_export_audit: dict[str, Any] | None = None
+    active_site_sourcing_resolution: dict[str, Any] | None = None
+    active_site_sourcing_resolution_audit: dict[str, Any] | None = None
+    transfer_blocker_matrix: dict[str, Any] | None = None
+    transfer_blocker_matrix_audit: dict[str, Any] | None = None
+    pilot_candidate_priority: dict[str, Any] | None = None
+    pilot_review_decision_export: dict[str, Any] | None = None
+    pilot_evidence_packet: dict[str, Any] | None = None
+    pilot_evidence_dossiers: dict[str, Any] | None = None
+    binding_context_repair_plan: dict[str, Any] | None = None
+    binding_context_repair_plan_audit: dict[str, Any] | None = None
+    binding_context_mapping_sample: dict[str, Any] | None = None
+    binding_context_mapping_sample_audit: dict[str, Any] | None = None
+    sequence_holdout_audit: dict[str, Any] | None = None
+    artifact_path_lineage: dict[str, Any] | None = None
+
+    def candidate_lineage_artifacts(self) -> dict[str, dict[str, Any] | None]:
+        return {
+            field_name: getattr(self, field_name)
+            for field_name in EXTERNAL_TRANSFER_CANDIDATE_LINEAGE_FIELDS
+        }
+
+
+def validate_external_source_transfer_gate_inputs(
+    gate_inputs: ExternalSourceTransferGateInputs,
+) -> None:
+    required_non_objects = sorted(
+        field_name
+        for field_name in EXTERNAL_TRANSFER_GATE_REQUIRED_FIELDS
+        if not isinstance(getattr(gate_inputs, field_name), dict)
+    )
+    optional_non_objects = sorted(
+        field_name
+        for field_name in ExternalSourceTransferGateInputs.__dataclass_fields__
+        if field_name not in EXTERNAL_TRANSFER_GATE_REQUIRED_FIELDS
+        and field_name != "artifact_path_lineage"
+        and getattr(gate_inputs, field_name) is not None
+        and not isinstance(getattr(gate_inputs, field_name), dict)
+    )
+    if required_non_objects:
+        raise ValueError(
+            "external transfer gate required inputs must be JSON objects: "
+            + ", ".join(required_non_objects)
+        )
+    if optional_non_objects:
+        raise ValueError(
+            "external transfer gate optional inputs must be JSON objects when present: "
+            + ", ".join(optional_non_objects)
+        )
+    if (
+        gate_inputs.artifact_path_lineage is not None
+        and not isinstance(gate_inputs.artifact_path_lineage, dict)
+    ):
+        raise ValueError(
+            "external transfer gate artifact_path_lineage must be a JSON object"
+        )
 
 
 def build_external_source_transfer_manifest(
@@ -7031,18 +7184,45 @@ def _external_pilot_review_only_gate_checks(
     return gates
 
 
+def _coerce_external_source_transfer_gate_inputs(
+    gate_inputs: ExternalSourceTransferGateInputs | None,
+    **kwargs: dict[str, Any] | None,
+) -> ExternalSourceTransferGateInputs:
+    if gate_inputs is not None:
+        if any(value is not None for value in kwargs.values()):
+            raise ValueError(
+                "external transfer gate accepts either "
+                f"{EXTERNAL_TRANSFER_GATE_INPUT_CONTRACT} or keyword artifacts, not both"
+            )
+        validate_external_source_transfer_gate_inputs(gate_inputs)
+        return gate_inputs
+    missing = sorted(
+        field_name
+        for field_name in EXTERNAL_TRANSFER_GATE_REQUIRED_FIELDS
+        if kwargs.get(field_name) is None
+    )
+    if missing:
+        raise ValueError(
+            "missing external transfer gate inputs: " + ", ".join(missing)
+        )
+    coerced = ExternalSourceTransferGateInputs(**kwargs)  # type: ignore[arg-type]
+    validate_external_source_transfer_gate_inputs(coerced)
+    return coerced
+
+
 def check_external_source_transfer_gates(
+    gate_inputs: ExternalSourceTransferGateInputs | None = None,
     *,
-    transfer_manifest: dict[str, Any],
-    query_manifest: dict[str, Any],
-    ood_calibration_plan: dict[str, Any],
-    candidate_sample_audit: dict[str, Any],
-    candidate_manifest: dict[str, Any],
-    candidate_manifest_audit: dict[str, Any],
-    lane_balance_audit: dict[str, Any],
-    evidence_plan: dict[str, Any],
-    evidence_request_export: dict[str, Any],
-    review_only_import_safety_audit: dict[str, Any],
+    transfer_manifest: dict[str, Any] | None = None,
+    query_manifest: dict[str, Any] | None = None,
+    ood_calibration_plan: dict[str, Any] | None = None,
+    candidate_sample_audit: dict[str, Any] | None = None,
+    candidate_manifest: dict[str, Any] | None = None,
+    candidate_manifest_audit: dict[str, Any] | None = None,
+    lane_balance_audit: dict[str, Any] | None = None,
+    evidence_plan: dict[str, Any] | None = None,
+    evidence_request_export: dict[str, Any] | None = None,
+    review_only_import_safety_audit: dict[str, Any] | None = None,
     active_site_evidence_queue: dict[str, Any] | None = None,
     active_site_evidence_sample: dict[str, Any] | None = None,
     active_site_evidence_sample_audit: dict[str, Any] | None = None,
@@ -7097,41 +7277,149 @@ def check_external_source_transfer_gates(
     artifact_path_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Gate external-source transfer artifacts before future label import work."""
+    gate_inputs = _coerce_external_source_transfer_gate_inputs(
+        gate_inputs,
+        transfer_manifest=transfer_manifest,
+        query_manifest=query_manifest,
+        ood_calibration_plan=ood_calibration_plan,
+        candidate_sample_audit=candidate_sample_audit,
+        candidate_manifest=candidate_manifest,
+        candidate_manifest_audit=candidate_manifest_audit,
+        lane_balance_audit=lane_balance_audit,
+        evidence_plan=evidence_plan,
+        evidence_request_export=evidence_request_export,
+        review_only_import_safety_audit=review_only_import_safety_audit,
+        active_site_evidence_queue=active_site_evidence_queue,
+        active_site_evidence_sample=active_site_evidence_sample,
+        active_site_evidence_sample_audit=active_site_evidence_sample_audit,
+        heuristic_control_queue=heuristic_control_queue,
+        heuristic_control_queue_audit=heuristic_control_queue_audit,
+        structure_mapping_plan=structure_mapping_plan,
+        structure_mapping_plan_audit=structure_mapping_plan_audit,
+        structure_mapping_sample=structure_mapping_sample,
+        structure_mapping_sample_audit=structure_mapping_sample_audit,
+        heuristic_control_scores=heuristic_control_scores,
+        heuristic_control_scores_audit=heuristic_control_scores_audit,
+        external_failure_mode_audit=external_failure_mode_audit,
+        external_control_repair_plan=external_control_repair_plan,
+        external_control_repair_plan_audit=external_control_repair_plan_audit,
+        reaction_evidence_sample=reaction_evidence_sample,
+        reaction_evidence_sample_audit=reaction_evidence_sample_audit,
+        representation_control_manifest=representation_control_manifest,
+        representation_control_manifest_audit=representation_control_manifest_audit,
+        representation_control_comparison=representation_control_comparison,
+        representation_control_comparison_audit=representation_control_comparison_audit,
+        representation_backend_plan=representation_backend_plan,
+        representation_backend_plan_audit=representation_backend_plan_audit,
+        representation_backend_sample=representation_backend_sample,
+        representation_backend_sample_audit=representation_backend_sample_audit,
+        broad_ec_disambiguation_audit=broad_ec_disambiguation_audit,
+        active_site_gap_source_requests=active_site_gap_source_requests,
+        sequence_neighborhood_plan=sequence_neighborhood_plan,
+        sequence_neighborhood_sample=sequence_neighborhood_sample,
+        sequence_neighborhood_sample_audit=sequence_neighborhood_sample_audit,
+        sequence_alignment_verification=sequence_alignment_verification,
+        sequence_alignment_verification_audit=sequence_alignment_verification_audit,
+        sequence_search_export=sequence_search_export,
+        sequence_search_export_audit=sequence_search_export_audit,
+        external_import_readiness_audit=external_import_readiness_audit,
+        active_site_sourcing_queue=active_site_sourcing_queue,
+        active_site_sourcing_queue_audit=active_site_sourcing_queue_audit,
+        active_site_sourcing_export=active_site_sourcing_export,
+        active_site_sourcing_export_audit=active_site_sourcing_export_audit,
+        active_site_sourcing_resolution=active_site_sourcing_resolution,
+        active_site_sourcing_resolution_audit=active_site_sourcing_resolution_audit,
+        transfer_blocker_matrix=transfer_blocker_matrix,
+        transfer_blocker_matrix_audit=transfer_blocker_matrix_audit,
+        pilot_candidate_priority=pilot_candidate_priority,
+        pilot_review_decision_export=pilot_review_decision_export,
+        pilot_evidence_packet=pilot_evidence_packet,
+        pilot_evidence_dossiers=pilot_evidence_dossiers,
+        binding_context_repair_plan=binding_context_repair_plan,
+        binding_context_repair_plan_audit=binding_context_repair_plan_audit,
+        binding_context_mapping_sample=binding_context_mapping_sample,
+        binding_context_mapping_sample_audit=binding_context_mapping_sample_audit,
+        sequence_holdout_audit=sequence_holdout_audit,
+        artifact_path_lineage=artifact_path_lineage,
+    )
+    transfer_manifest = gate_inputs.transfer_manifest
+    query_manifest = gate_inputs.query_manifest
+    ood_calibration_plan = gate_inputs.ood_calibration_plan
+    candidate_sample_audit = gate_inputs.candidate_sample_audit
+    candidate_manifest = gate_inputs.candidate_manifest
+    candidate_manifest_audit = gate_inputs.candidate_manifest_audit
+    lane_balance_audit = gate_inputs.lane_balance_audit
+    evidence_plan = gate_inputs.evidence_plan
+    evidence_request_export = gate_inputs.evidence_request_export
+    review_only_import_safety_audit = gate_inputs.review_only_import_safety_audit
+    active_site_evidence_queue = gate_inputs.active_site_evidence_queue
+    active_site_evidence_sample = gate_inputs.active_site_evidence_sample
+    active_site_evidence_sample_audit = gate_inputs.active_site_evidence_sample_audit
+    heuristic_control_queue = gate_inputs.heuristic_control_queue
+    heuristic_control_queue_audit = gate_inputs.heuristic_control_queue_audit
+    structure_mapping_plan = gate_inputs.structure_mapping_plan
+    structure_mapping_plan_audit = gate_inputs.structure_mapping_plan_audit
+    structure_mapping_sample = gate_inputs.structure_mapping_sample
+    structure_mapping_sample_audit = gate_inputs.structure_mapping_sample_audit
+    heuristic_control_scores = gate_inputs.heuristic_control_scores
+    heuristic_control_scores_audit = gate_inputs.heuristic_control_scores_audit
+    external_failure_mode_audit = gate_inputs.external_failure_mode_audit
+    external_control_repair_plan = gate_inputs.external_control_repair_plan
+    external_control_repair_plan_audit = gate_inputs.external_control_repair_plan_audit
+    reaction_evidence_sample = gate_inputs.reaction_evidence_sample
+    reaction_evidence_sample_audit = gate_inputs.reaction_evidence_sample_audit
+    representation_control_manifest = gate_inputs.representation_control_manifest
+    representation_control_manifest_audit = (
+        gate_inputs.representation_control_manifest_audit
+    )
+    representation_control_comparison = gate_inputs.representation_control_comparison
+    representation_control_comparison_audit = (
+        gate_inputs.representation_control_comparison_audit
+    )
+    representation_backend_plan = gate_inputs.representation_backend_plan
+    representation_backend_plan_audit = gate_inputs.representation_backend_plan_audit
+    representation_backend_sample = gate_inputs.representation_backend_sample
+    representation_backend_sample_audit = (
+        gate_inputs.representation_backend_sample_audit
+    )
+    broad_ec_disambiguation_audit = gate_inputs.broad_ec_disambiguation_audit
+    active_site_gap_source_requests = gate_inputs.active_site_gap_source_requests
+    sequence_neighborhood_plan = gate_inputs.sequence_neighborhood_plan
+    sequence_neighborhood_sample = gate_inputs.sequence_neighborhood_sample
+    sequence_neighborhood_sample_audit = gate_inputs.sequence_neighborhood_sample_audit
+    sequence_alignment_verification = gate_inputs.sequence_alignment_verification
+    sequence_alignment_verification_audit = (
+        gate_inputs.sequence_alignment_verification_audit
+    )
+    sequence_search_export = gate_inputs.sequence_search_export
+    sequence_search_export_audit = gate_inputs.sequence_search_export_audit
+    external_import_readiness_audit = gate_inputs.external_import_readiness_audit
+    active_site_sourcing_queue = gate_inputs.active_site_sourcing_queue
+    active_site_sourcing_queue_audit = gate_inputs.active_site_sourcing_queue_audit
+    active_site_sourcing_export = gate_inputs.active_site_sourcing_export
+    active_site_sourcing_export_audit = gate_inputs.active_site_sourcing_export_audit
+    active_site_sourcing_resolution = gate_inputs.active_site_sourcing_resolution
+    active_site_sourcing_resolution_audit = (
+        gate_inputs.active_site_sourcing_resolution_audit
+    )
+    transfer_blocker_matrix = gate_inputs.transfer_blocker_matrix
+    transfer_blocker_matrix_audit = gate_inputs.transfer_blocker_matrix_audit
+    pilot_candidate_priority = gate_inputs.pilot_candidate_priority
+    pilot_review_decision_export = gate_inputs.pilot_review_decision_export
+    pilot_evidence_packet = gate_inputs.pilot_evidence_packet
+    pilot_evidence_dossiers = gate_inputs.pilot_evidence_dossiers
+    binding_context_repair_plan = gate_inputs.binding_context_repair_plan
+    binding_context_repair_plan_audit = gate_inputs.binding_context_repair_plan_audit
+    binding_context_mapping_sample = gate_inputs.binding_context_mapping_sample
+    binding_context_mapping_sample_audit = (
+        gate_inputs.binding_context_mapping_sample_audit
+    )
+    sequence_holdout_audit = gate_inputs.sequence_holdout_audit
+    artifact_path_lineage = gate_inputs.artifact_path_lineage
     candidate_lineage = _merge_external_transfer_lineage(
         _external_transfer_candidate_lineage(
             candidate_manifest,
-            {
-                "evidence_plan": evidence_plan,
-                "evidence_request_export": evidence_request_export,
-                "active_site_evidence_queue": active_site_evidence_queue,
-                "active_site_evidence_sample": active_site_evidence_sample,
-                "heuristic_control_queue": heuristic_control_queue,
-                "structure_mapping_plan": structure_mapping_plan,
-                "structure_mapping_sample": structure_mapping_sample,
-                "heuristic_control_scores": heuristic_control_scores,
-                "external_control_repair_plan": external_control_repair_plan,
-                "reaction_evidence_sample": reaction_evidence_sample,
-                "representation_control_manifest": representation_control_manifest,
-                "representation_control_comparison": representation_control_comparison,
-                "representation_backend_plan": representation_backend_plan,
-                "representation_backend_sample": representation_backend_sample,
-                "active_site_gap_source_requests": active_site_gap_source_requests,
-                "sequence_neighborhood_plan": sequence_neighborhood_plan,
-                "sequence_neighborhood_sample": sequence_neighborhood_sample,
-                "sequence_alignment_verification": sequence_alignment_verification,
-                "sequence_search_export": sequence_search_export,
-                "external_import_readiness_audit": external_import_readiness_audit,
-                "active_site_sourcing_queue": active_site_sourcing_queue,
-                "active_site_sourcing_export": active_site_sourcing_export,
-                "active_site_sourcing_resolution": active_site_sourcing_resolution,
-                "transfer_blocker_matrix": transfer_blocker_matrix,
-                "pilot_candidate_priority": pilot_candidate_priority,
-                "pilot_review_decision_export": pilot_review_decision_export,
-                "pilot_evidence_packet": pilot_evidence_packet,
-                "pilot_evidence_dossiers": pilot_evidence_dossiers,
-                "binding_context_repair_plan": binding_context_repair_plan,
-                "binding_context_mapping_sample": binding_context_mapping_sample,
-            },
+            gate_inputs.candidate_lineage_artifacts(),
         ),
         artifact_path_lineage,
     )
@@ -8124,6 +8412,7 @@ def check_external_source_transfer_gates(
     return {
         "metadata": {
             "method": "external_source_transfer_gate_check",
+            "gate_input_contract": EXTERNAL_TRANSFER_GATE_INPUT_CONTRACT,
             "artifact_lineage": candidate_lineage,
             "gate_count": len(gates),
             "passed_gate_count": sum(1 for passed in gates.values() if passed),

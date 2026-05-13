@@ -346,6 +346,12 @@ first SPOF hardening pass also refactored counterevidence and gate inputs. The
 label-factory gate now records validated artifact lineage and fails on
 non-exempt slice mismatches, including payload-declared slice or batch metadata
 that contradicts path lineage, while recording payload methods and digests.
+The external transfer gate now also exposes a typed
+`ExternalSourceTransferGateInputs.v1` contract and a shared candidate-lineage
+artifact registry so the high-fan-in pilot gate does not keep accreting
+one-off lineage branches; the CLI gate command builds that contract from its
+artifact map instead of passing another long keyword cascade into the gate, and
+the contract rejects non-object artifact payloads at the gate boundary.
 The external pilot ranking, no-decision review export, and evidence-packet
 artifacts are now built; the next bounded work item is filling the packet
 decisions with active-site sources and complete near-duplicate sequence

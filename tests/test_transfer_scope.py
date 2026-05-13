@@ -71,6 +71,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_transfer_manifest,
     build_external_source_transfer_blocker_matrix,
     check_external_source_transfer_gates,
+    ExternalSourceTransferGateInputs,
     validate_external_transfer_artifact_path_lineage,
 )
 
@@ -4769,6 +4770,55 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 fail_fast=True,
             )
 
+    def test_external_transfer_gate_accepts_typed_input_contract(self) -> None:
+        gate_inputs = ExternalSourceTransferGateInputs(
+            **_base_external_transfer_gate_inputs()
+        )
+
+        gates = check_external_source_transfer_gates(gate_inputs)
+
+        self.assertEqual(
+            gates["metadata"]["gate_input_contract"],
+            "ExternalSourceTransferGateInputs.v1",
+        )
+        self.assertTrue(
+            gates["metadata"]["artifact_lineage"]["guardrail_clean"]
+        )
+        self.assertIn(
+            "evidence_plan",
+            gates["metadata"]["artifact_lineage"]["checked_artifacts"],
+        )
+        with self.assertRaisesRegex(
+            ValueError,
+            "ExternalSourceTransferGateInputs.v1 or keyword artifacts",
+        ):
+            check_external_source_transfer_gates(
+                gate_inputs,
+                **_base_external_transfer_gate_inputs(),
+            )
+        missing_required = _base_external_transfer_gate_inputs()
+        del missing_required["evidence_plan"]
+        with self.assertRaisesRegex(
+            ValueError,
+            "missing external transfer gate inputs: evidence_plan",
+        ):
+            check_external_source_transfer_gates(**missing_required)
+        wrong_required_type = _base_external_transfer_gate_inputs()
+        wrong_required_type["candidate_manifest"] = []
+        with self.assertRaisesRegex(
+            ValueError,
+            "required inputs must be JSON objects: candidate_manifest",
+        ):
+            check_external_source_transfer_gates(**wrong_required_type)
+        with self.assertRaisesRegex(
+            ValueError,
+            "optional inputs must be JSON objects when present: pilot_evidence_packet",
+        ):
+            check_external_source_transfer_gates(
+                **_base_external_transfer_gate_inputs(),
+                pilot_evidence_packet=[],
+            )
+
     def test_external_pilot_evidence_dossiers_are_review_only(self) -> None:
         dossiers = build_external_source_pilot_evidence_dossiers(
             pilot_evidence_packet={
@@ -6082,6 +6132,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 evidence_export_payload["metadata"]["external_source_review_only"]
             )
             self.assertEqual(gate_payload["blockers"], [])
+            self.assertEqual(
+                gate_payload["metadata"]["gate_input_contract"],
+                "ExternalSourceTransferGateInputs.v1",
+            )
             self.assertTrue(
                 gate_payload["gates"]["active_site_evidence_queue_review_only"]
             )

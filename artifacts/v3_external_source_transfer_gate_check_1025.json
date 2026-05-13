@@ -419,6 +419,7 @@
     "external_transfer_blocker_matrix_representation_sample_count": 12,
     "external_transfer_blocker_matrix_sequence_count": 30,
     "gate_count": 64,
+    "gate_input_contract": "ExternalSourceTransferGateInputs.v1",
     "heuristic_control_deferred_candidate_count": 13,
     "heuristic_control_ready_candidate_count": 12,
     "heuristic_control_required": true,
