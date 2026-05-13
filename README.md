@@ -164,7 +164,8 @@ candidate manifest, evidence plan/export, review-only import-safety audit,
 active-site feature sampling, structure-mapping and heuristic-control
 prototypes, failure-mode audit, control-repair artifacts, representation-control
 comparison, broad-EC disambiguation, active-site gap source requests,
-sequence-neighborhood controls, import-readiness audit, and a 41/41 external
+sequence-neighborhood controls, sequence-alignment verification,
+import-readiness audit, active-site sourcing queue, and a 45/45 external
 transfer gate. The evidence plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
 review-only active-site evidence queue with 25 ready candidates. The active-site
@@ -185,10 +186,13 @@ requesting near-duplicate search for the other 28 candidates. The bounded
 sequence screen fetches all 30 external sequences plus 733 current countable
 M-CSA reference sequences and finds 0 high-similarity alerts under the current
 unaligned screen, but complete near-duplicate search remains required. The
+bounded sequence-alignment verification checks 90 top-hit pairs, confirms the
+two exact-reference holdouts, and keeps every row non-countable. The
 import-readiness audit keeps 0 rows import-ready while summarizing 10
 active-site gaps, 2 exact sequence holdouts, 28 complete near-duplicate search
 requirements, 9 heuristic scope/top1 mismatches, and 29 representation-control
-issues. Two sample
+issues, while the active-site sourcing queue prioritizes the 10 active-site
+gaps into 7 mapped-binding-context rows and 3 primary-source rows. Two sample
 candidates overlap existing M-CSA reference accessions and are routed to sequence-holdout controls;
 the lane-balance audit confirms six evenly represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
@@ -264,7 +268,7 @@ the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
 1,025 preview is open but not promoted; the next bounded work item is
-repairing review-only external-source controls behind the 41/41 transfer gate,
+repairing review-only external-source controls behind the 45/45 transfer gate,
 not M-CSA-only count growth or label import.
 See
 `docs/label_factory.md`.

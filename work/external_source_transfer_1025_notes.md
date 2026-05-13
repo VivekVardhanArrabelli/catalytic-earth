@@ -76,18 +76,25 @@ Current review-only external artifacts:
   alerts under the current unaligned screen, retains the 2 exact-reference
   holdouts, and keeps complete near-duplicate search as a mandatory future
   control.
+- `artifacts/v3_external_source_sequence_alignment_verification_1025.json`
+  verifies the top 90 sequence-neighborhood pairs with bounded global
+  edit-identity checks. It confirms `O15527` and `P42126` as alignment-level
+  exact holdouts, records 88 no-signal pairs, and keeps complete search
+  mandatory.
 - `artifacts/v3_external_source_import_readiness_audit_1025.json` aggregates
   candidate-level blockers: 10 active-site gaps, 2 sequence holdouts, 28
   complete near-duplicate search requirements, 9 heuristic scope/top1
   mismatches, and 29 representation-control issues. It marks 0 rows ready for
   label import.
+- `artifacts/v3_external_source_active_site_sourcing_queue_1025.json` converts
+  the 10 active-site gaps into a prioritized non-countable sourcing queue: 7
+  mapped-binding-context rows and 3 primary active-site source rows.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
-  pass; the current gate passes 38/38 after representation comparison,
-  broad-EC disambiguation, active-site gap source requests, and
-  sequence-neighborhood controls, and now passes 41/41 after the sequence
-  screen and import-readiness audit. It is still not ready for label
-  import.
+  pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
+  checkpoints. The current gate now passes 45/45 after sequence-alignment
+  verification and the active-site sourcing queue. It is still not ready for
+  label import.
 
 Sequence-similarity guardrail details:
 
@@ -101,6 +108,9 @@ Sequence-similarity guardrail details:
 - `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json` is a
   bounded sequence screen only, not a final homology search. Absence of a
   high-similarity hit in that artifact must not be used as import evidence.
+- `artifacts/v3_external_source_sequence_alignment_verification_1025.json`
+  checks only bounded top hits; it confirms the two exact-reference holdouts
+  but does not replace full near-duplicate or UniRef-style search.
 
 Reaction-context details:
 
@@ -125,6 +135,8 @@ Sequence-holdout details:
 
 Next bounded work should keep repairing external-control weaknesses before any
 external label decision: source explicit catalytic residues for the 10
-active-site-feature gaps, run near-duplicate sequence searches for 28 rows, or
+active-site-feature gaps prioritized by
+`artifacts/v3_external_source_active_site_sourcing_queue_1025.json`, run
+near-duplicate sequence searches for 28 rows, or
 replace the feature-proxy representation comparison with real learned or
 structure-language controls.

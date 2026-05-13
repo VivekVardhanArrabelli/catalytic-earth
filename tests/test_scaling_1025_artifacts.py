@@ -225,10 +225,30 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_sequence_neighborhood_sample_audit_1025.json"
         )
+        sequence_alignment = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_sequence_alignment_verification_1025.json"
+        )
+        sequence_alignment_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_sequence_alignment_verification_audit_1025.json"
+        )
         import_readiness = _load_json(
             ROOT
             / "artifacts"
             / "v3_external_source_import_readiness_audit_1025.json"
+        )
+        active_site_sourcing = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_active_site_sourcing_queue_1025.json"
+        )
+        active_site_sourcing_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_active_site_sourcing_queue_audit_1025.json"
         )
         external_import_safety = _load_json(
             ROOT
@@ -763,6 +783,34 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertTrue(
             sequence_neighborhood_sample_audit["metadata"]["guardrail_clean"]
         )
+        self.assertFalse(sequence_alignment["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            sequence_alignment["metadata"][
+                "complete_near_duplicate_search_required"
+            ]
+        )
+        self.assertEqual(
+            sequence_alignment["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(sequence_alignment["metadata"]["candidate_count"], 30)
+        self.assertEqual(sequence_alignment["metadata"]["verified_pair_count"], 90)
+        self.assertEqual(
+            sequence_alignment["metadata"]["alignment_alert_candidate_count"], 2
+        )
+        self.assertEqual(
+            sequence_alignment["metadata"]["verification_status_counts"],
+            {
+                "alignment_near_duplicate_candidate_holdout": 2,
+                "alignment_no_near_duplicate_signal": 88,
+            },
+        )
+        self.assertTrue(sequence_alignment_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            sequence_alignment_audit["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
         self.assertTrue(import_readiness["metadata"]["guardrail_clean"])
         self.assertFalse(import_readiness["metadata"]["ready_for_label_import"])
         self.assertEqual(
@@ -772,11 +820,35 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertEqual(import_readiness["metadata"]["candidate_count"], 30)
         self.assertEqual(import_readiness["metadata"]["active_site_gap_count"], 10)
         self.assertEqual(
+            import_readiness["metadata"]["sequence_holdout_or_search_count"], 30
+        )
+        self.assertEqual(
+            import_readiness["metadata"]["sequence_alignment_alert_count"], 2
+        )
+        self.assertEqual(
+            import_readiness["metadata"]["sequence_alignment_incomplete_count"], 0
+        )
+        self.assertEqual(
             import_readiness["metadata"]["heuristic_scope_mismatch_count"], 9
         )
         self.assertEqual(
             import_readiness["metadata"]["representation_control_issue_count"], 29
         )
+        self.assertFalse(active_site_sourcing["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            active_site_sourcing["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(active_site_sourcing["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            active_site_sourcing["metadata"]["ready_sourcing_candidate_count"], 7
+        )
+        self.assertEqual(
+            active_site_sourcing["metadata"]["text_source_candidate_count"], 3
+        )
+        self.assertEqual(
+            active_site_sourcing["metadata"]["sequence_holdout_deferred_count"], 0
+        )
+        self.assertTrue(active_site_sourcing_audit["metadata"]["guardrail_clean"])
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
             external_import_safety["metadata"]["total_new_countable_label_count"], 0
@@ -788,8 +860,8 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 41)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 41)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 45)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 45)
         self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])
         self.assertTrue(
             external_transfer_gate["metadata"][
@@ -988,6 +1060,34 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertTrue(
             external_transfer_gate["gates"][
+                "sequence_alignment_verification_review_only"
+            ]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "sequence_alignment_verification_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "sequence_alignment_verified_pair_count"
+            ],
+            90,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "sequence_alignment_alert_candidate_count"
+            ],
+            2,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "sequence_alignment_deferred_pair_count"
+            ],
+            0,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
                 "external_import_readiness_audit_blocks_label_import"
             ]
         )
@@ -996,6 +1096,32 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "external_import_readiness_candidate_count"
             ],
             30,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["active_site_sourcing_queue_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "active_site_sourcing_queue_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "active_site_sourcing_queue_candidate_count"
+            ],
+            10,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "active_site_sourcing_ready_candidate_count"
+            ],
+            7,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "active_site_sourcing_text_source_candidate_count"
+            ],
+            3,
         )
         self.assertTrue(
             external_transfer_gate["gates"]["binding_context_repair_plan_review_only"]

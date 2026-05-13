@@ -77,6 +77,7 @@ from .sources import build_source_ledger, load_sources
 from .structure import write_geometry_features
 from .transfer_scope import (
     audit_external_source_active_site_evidence_sample,
+    audit_external_source_active_site_sourcing_queue,
     audit_external_source_binding_context_mapping_sample,
     audit_external_source_binding_context_repair_plan,
     audit_external_source_broad_ec_disambiguation,
@@ -89,6 +90,7 @@ from .transfer_scope import (
     audit_external_source_reaction_evidence_sample,
     audit_external_source_representation_control_comparison,
     audit_external_source_representation_control_manifest,
+    audit_external_source_sequence_alignment_verification,
     audit_external_source_sequence_holdouts,
     audit_external_source_sequence_neighborhood_sample,
     audit_external_source_structure_mapping_plan,
@@ -97,6 +99,7 @@ from .transfer_scope import (
     audit_external_source_import_readiness,
     build_external_ood_calibration_plan,
     build_external_source_active_site_gap_source_requests,
+    build_external_source_active_site_sourcing_queue,
     build_external_source_binding_context_mapping_sample,
     build_external_source_binding_context_repair_plan,
     build_external_source_candidate_manifest,
@@ -114,6 +117,7 @@ from .transfer_scope import (
     build_external_source_reaction_evidence_sample,
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
+    build_external_source_sequence_alignment_verification,
     build_external_source_sequence_neighborhood_plan,
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
@@ -1040,6 +1044,95 @@ def cmd_audit_external_source_sequence_neighborhood_sample(
     return 0
 
 
+def cmd_build_external_source_sequence_alignment_verification(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_neighborhood_sample).open("r", encoding="utf-8") as handle:
+        sequence_neighborhood_sample = json.load(handle)
+    verification = build_external_source_sequence_alignment_verification(
+        sequence_neighborhood_sample=sequence_neighborhood_sample,
+        top_k=args.top_k,
+        max_pairs=args.max_pairs,
+        max_alignment_cells=args.max_alignment_cells,
+    )
+    write_json(Path(args.out), verification)
+    print(
+        "Wrote external source sequence alignment verification to "
+        f"{args.out} ({verification['metadata']['verified_pair_count']} pairs)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_sequence_alignment_verification(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_alignment_verification).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        sequence_alignment_verification = json.load(handle)
+    audit = audit_external_source_sequence_alignment_verification(
+        sequence_alignment_verification
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source sequence alignment verification audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_active_site_sourcing_queue(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_gap_source_requests).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        active_site_gap_source_requests = json.load(handle)
+    with Path(args.external_import_readiness_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        external_import_readiness_audit = json.load(handle)
+    sequence_alignment_verification = None
+    if args.sequence_alignment_verification:
+        with Path(args.sequence_alignment_verification).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_alignment_verification = json.load(handle)
+    queue = build_external_source_active_site_sourcing_queue(
+        active_site_gap_source_requests=active_site_gap_source_requests,
+        external_import_readiness_audit=external_import_readiness_audit,
+        sequence_alignment_verification=sequence_alignment_verification,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote external source active-site sourcing queue to "
+        f"{args.out} ({queue['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_active_site_sourcing_queue(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_sourcing_queue).open("r", encoding="utf-8") as handle:
+        active_site_sourcing_queue = json.load(handle)
+    with Path(args.external_import_readiness_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        external_import_readiness_audit = json.load(handle)
+    audit = audit_external_source_active_site_sourcing_queue(
+        active_site_sourcing_queue=active_site_sourcing_queue,
+        external_import_readiness_audit=external_import_readiness_audit,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source active-site sourcing queue audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
     with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
         candidate_manifest = json.load(handle)
@@ -1059,6 +1152,12 @@ def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
         "r", encoding="utf-8"
     ) as handle:
         sequence_neighborhood_sample = json.load(handle)
+    sequence_alignment_verification = None
+    if args.sequence_alignment_verification:
+        with Path(args.sequence_alignment_verification).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_alignment_verification = json.load(handle)
     audit = audit_external_source_import_readiness(
         candidate_manifest=candidate_manifest,
         active_site_evidence_sample=active_site_evidence_sample,
@@ -1066,6 +1165,7 @@ def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
         representation_control_comparison=representation_control_comparison,
         active_site_gap_source_requests=active_site_gap_source_requests,
         sequence_neighborhood_sample=sequence_neighborhood_sample,
+        sequence_alignment_verification=sequence_alignment_verification,
         max_rows=args.max_rows,
     )
     write_json(Path(args.out), audit)
@@ -1233,12 +1333,36 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             sequence_neighborhood_sample_audit = json.load(handle)
+    sequence_alignment_verification = None
+    if args.sequence_alignment_verification:
+        with Path(args.sequence_alignment_verification).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_alignment_verification = json.load(handle)
+    sequence_alignment_verification_audit = None
+    if args.sequence_alignment_verification_audit:
+        with Path(args.sequence_alignment_verification_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_alignment_verification_audit = json.load(handle)
     external_import_readiness_audit = None
     if args.external_import_readiness_audit:
         with Path(args.external_import_readiness_audit).open(
             "r", encoding="utf-8"
         ) as handle:
             external_import_readiness_audit = json.load(handle)
+    active_site_sourcing_queue = None
+    if args.active_site_sourcing_queue:
+        with Path(args.active_site_sourcing_queue).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_sourcing_queue = json.load(handle)
+    active_site_sourcing_queue_audit = None
+    if args.active_site_sourcing_queue_audit:
+        with Path(args.active_site_sourcing_queue_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_sourcing_queue_audit = json.load(handle)
     binding_context_repair_plan = None
     if args.binding_context_repair_plan:
         with Path(args.binding_context_repair_plan).open(
@@ -1303,7 +1427,11 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         sequence_neighborhood_plan=sequence_neighborhood_plan,
         sequence_neighborhood_sample=sequence_neighborhood_sample,
         sequence_neighborhood_sample_audit=sequence_neighborhood_sample_audit,
+        sequence_alignment_verification=sequence_alignment_verification,
+        sequence_alignment_verification_audit=sequence_alignment_verification_audit,
         external_import_readiness_audit=external_import_readiness_audit,
+        active_site_sourcing_queue=active_site_sourcing_queue,
+        active_site_sourcing_queue_audit=active_site_sourcing_queue_audit,
         binding_context_repair_plan=binding_context_repair_plan,
         binding_context_repair_plan_audit=binding_context_repair_plan_audit,
         binding_context_mapping_sample=binding_context_mapping_sample,
@@ -3812,6 +3940,46 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_sequence_neighborhood_sample
     )
 
+    external_sequence_alignment = subparsers.add_parser(
+        "build-external-source-sequence-alignment-verification",
+        help="verify sequence-neighborhood top hits with bounded alignments",
+    )
+    external_sequence_alignment.add_argument(
+        "--sequence-neighborhood-sample",
+        default="artifacts/v3_external_source_sequence_neighborhood_sample.json",
+    )
+    external_sequence_alignment.add_argument("--top-k", type=int, default=3)
+    external_sequence_alignment.add_argument("--max-pairs", type=int, default=120)
+    external_sequence_alignment.add_argument(
+        "--max-alignment-cells", type=int, default=1500000
+    )
+    external_sequence_alignment.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_sequence_alignment_verification.json",
+    )
+    external_sequence_alignment.set_defaults(
+        func=cmd_build_external_source_sequence_alignment_verification
+    )
+
+    external_sequence_alignment_audit = subparsers.add_parser(
+        "audit-external-source-sequence-alignment-verification",
+        help="verify bounded sequence-alignment checks remain review-only",
+    )
+    external_sequence_alignment_audit.add_argument(
+        "--sequence-alignment-verification",
+        default="artifacts/v3_external_source_sequence_alignment_verification.json",
+    )
+    external_sequence_alignment_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_sequence_alignment_verification_audit.json"
+        ),
+    )
+    external_sequence_alignment_audit.set_defaults(
+        func=cmd_audit_external_source_sequence_alignment_verification
+    )
+
     external_import_readiness = subparsers.add_parser(
         "audit-external-source-import-readiness",
         help="summarize remaining review-only blockers before external label import",
@@ -3840,6 +4008,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--sequence-neighborhood-sample",
         default="artifacts/v3_external_source_sequence_neighborhood_sample.json",
     )
+    external_import_readiness.add_argument(
+        "--sequence-alignment-verification",
+        default=None,
+    )
     external_import_readiness.add_argument("--max-rows", type=int, default=100)
     external_import_readiness.add_argument(
         "--out",
@@ -3847,6 +4019,54 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_import_readiness.set_defaults(
         func=cmd_audit_external_source_import_readiness
+    )
+
+    external_active_site_sourcing = subparsers.add_parser(
+        "build-external-source-active-site-sourcing-queue",
+        help="prioritize review-only active-site sourcing for external gaps",
+    )
+    external_active_site_sourcing.add_argument(
+        "--active-site-gap-source-requests",
+        default="artifacts/v3_external_source_active_site_gap_source_requests.json",
+    )
+    external_active_site_sourcing.add_argument(
+        "--external-import-readiness-audit",
+        default="artifacts/v3_external_source_import_readiness_audit.json",
+    )
+    external_active_site_sourcing.add_argument(
+        "--sequence-alignment-verification",
+        default=None,
+    )
+    external_active_site_sourcing.add_argument("--max-rows", type=int, default=100)
+    external_active_site_sourcing.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_active_site_sourcing_queue.json",
+    )
+    external_active_site_sourcing.set_defaults(
+        func=cmd_build_external_source_active_site_sourcing_queue
+    )
+
+    external_active_site_sourcing_audit = subparsers.add_parser(
+        "audit-external-source-active-site-sourcing-queue",
+        help="verify external active-site sourcing queues remain review-only",
+    )
+    external_active_site_sourcing_audit.add_argument(
+        "--active-site-sourcing-queue",
+        default="artifacts/v3_external_source_active_site_sourcing_queue.json",
+    )
+    external_active_site_sourcing_audit.add_argument(
+        "--external-import-readiness-audit",
+        default="artifacts/v3_external_source_import_readiness_audit.json",
+    )
+    external_active_site_sourcing_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_active_site_sourcing_queue_audit.json"
+        ),
+    )
+    external_active_site_sourcing_audit.set_defaults(
+        func=cmd_audit_external_source_active_site_sourcing_queue
     )
 
     external_transfer_gate = subparsers.add_parser(
@@ -3994,7 +4214,23 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     external_transfer_gate.add_argument(
+        "--sequence-alignment-verification",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--sequence-alignment-verification-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
         "--external-import-readiness-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-sourcing-queue",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-sourcing-queue-audit",
         default=None,
     )
     external_transfer_gate.add_argument(

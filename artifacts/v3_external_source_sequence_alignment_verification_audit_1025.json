@@ -1,0 +1,20 @@
+{
+  "blockers": [],
+  "metadata": {
+    "alignment_alert_candidate_count": 2,
+    "alignment_deferred_pair_count": 0,
+    "candidate_count": 30,
+    "complete_near_duplicate_search_required": true,
+    "countable_label_candidate_count": 0,
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "method": "external_source_sequence_alignment_verification_audit",
+    "missing_sequence_pair_count": 0,
+    "missing_status_row_count": 0,
+    "ready_for_label_import": false,
+    "verified_pair_count": 90
+  },
+  "warnings": [
+    "sequence alignment verification is review-only and cannot authorize external label import"
+  ]
+}

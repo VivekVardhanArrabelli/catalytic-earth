@@ -9,6 +9,7 @@ from pathlib import Path
 
 from catalytic_earth.transfer_scope import (
     audit_external_source_active_site_evidence_sample,
+    audit_external_source_active_site_sourcing_queue,
     audit_external_source_binding_context_mapping_sample,
     audit_external_source_binding_context_repair_plan,
     audit_external_source_broad_ec_disambiguation,
@@ -22,6 +23,7 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_reaction_evidence_sample,
     audit_external_source_representation_control_comparison,
     audit_external_source_representation_control_manifest,
+    audit_external_source_sequence_alignment_verification,
     audit_external_source_sequence_holdouts,
     audit_external_source_sequence_neighborhood_sample,
     audit_external_source_structure_mapping_plan,
@@ -29,6 +31,7 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_control_repair_plan,
     build_external_ood_calibration_plan,
     build_external_source_active_site_gap_source_requests,
+    build_external_source_active_site_sourcing_queue,
     build_external_source_binding_context_mapping_sample,
     build_external_source_binding_context_repair_plan,
     build_external_source_active_site_evidence_queue,
@@ -46,6 +49,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_reaction_evidence_sample,
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
+    build_external_source_sequence_alignment_verification,
     build_external_source_sequence_neighborhood_plan,
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
@@ -1731,6 +1735,34 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                         "countable_label_candidate_count": 0,
                     }
                 },
+                sequence_alignment_verification={
+                    "metadata": {
+                        "ready_for_label_import": False,
+                        "complete_near_duplicate_search_required": True,
+                        "countable_label_candidate_count": 0,
+                        "candidate_count": 1,
+                        "verified_pair_count": 1,
+                        "alignment_alert_candidate_count": 1,
+                        "alignment_deferred_pair_count": 0,
+                    },
+                    "rows": [
+                        {
+                            "countable_label_candidate": False,
+                            "ready_for_label_import": False,
+                            "verification_status": (
+                                "alignment_near_duplicate_candidate_holdout"
+                            ),
+                        }
+                    ],
+                },
+                sequence_alignment_verification_audit={
+                    "metadata": {
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "complete_near_duplicate_search_required": True,
+                        "countable_label_candidate_count": 0,
+                    }
+                },
                 external_import_readiness_audit={
                     "metadata": {
                         "guardrail_clean": True,
@@ -1740,6 +1772,29 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                         "candidate_count": 1,
                         "active_site_gap_count": 1,
                         "representation_control_issue_count": 1,
+                    }
+                },
+                active_site_sourcing_queue={
+                    "metadata": {
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
+                        "candidate_count": 1,
+                        "ready_sourcing_candidate_count": 1,
+                        "text_source_candidate_count": 0,
+                    },
+                    "rows": [
+                        {
+                            "countable_label_candidate": False,
+                            "queue_status": "ready_for_curated_active_site_sourcing",
+                            "ready_for_label_import": False,
+                        }
+                    ],
+                },
+                active_site_sourcing_queue_audit={
+                    "metadata": {
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
                     }
                 },
                 binding_context_repair_plan={
@@ -1870,12 +1925,40 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 1,
             )
             self.assertTrue(
+                gates["gates"]["sequence_alignment_verification_review_only"]
+            )
+            self.assertTrue(
+                gates["gates"][
+                    "sequence_alignment_verification_audit_guardrail_clean"
+                ]
+            )
+            self.assertEqual(
+                gates["metadata"]["sequence_alignment_verified_pair_count"], 1
+            )
+            self.assertEqual(
+                gates["metadata"]["sequence_alignment_alert_candidate_count"], 1
+            )
+            self.assertTrue(
                 gates["gates"][
                     "external_import_readiness_audit_blocks_label_import"
                 ]
             )
             self.assertEqual(
                 gates["metadata"]["external_import_readiness_candidate_count"], 1
+            )
+            self.assertTrue(
+                gates["gates"]["active_site_sourcing_queue_review_only"]
+            )
+            self.assertTrue(
+                gates["gates"][
+                    "active_site_sourcing_queue_audit_guardrail_clean"
+                ]
+            )
+            self.assertEqual(
+                gates["metadata"]["active_site_sourcing_queue_candidate_count"], 1
+            )
+            self.assertEqual(
+                gates["metadata"]["active_site_sourcing_ready_candidate_count"], 1
             )
             self.assertTrue(gates["gates"]["binding_context_repair_plan_review_only"])
             self.assertTrue(
@@ -2383,6 +2466,96 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         self.assertFalse(requests["rows"][0]["countable_label_candidate"])
 
+    def test_external_active_site_sourcing_queue_prioritizes_gap_rows(self) -> None:
+        queue = build_external_source_active_site_sourcing_queue(
+            active_site_gap_source_requests={
+                "metadata": {
+                    "method": "external_source_active_site_gap_source_requests"
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "binding_evidence_reference_count": 2,
+                        "mapped_binding_position_count": 4,
+                        "request_status": (
+                            "binding_context_mapped_ready_for_active_site_sourcing"
+                        ),
+                    },
+                    {
+                        "accession": "P22222",
+                        "request_status": (
+                            "reaction_text_only_needs_curated_residue_source"
+                        ),
+                    },
+                ],
+            },
+            external_import_readiness_audit={
+                "metadata": {
+                    "method": "external_source_import_readiness_audit",
+                    "active_site_gap_count": 2,
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "readiness_status": "blocked_by_active_site_sourcing",
+                    },
+                    {
+                        "accession": "P22222",
+                        "readiness_status": "blocked_by_active_site_sourcing",
+                    },
+                ],
+            },
+        )
+        audit = audit_external_source_active_site_sourcing_queue(
+            active_site_sourcing_queue=queue,
+            external_import_readiness_audit={
+                "metadata": {"active_site_gap_count": 2},
+                "rows": [],
+            },
+        )
+
+        self.assertFalse(queue["metadata"]["ready_for_label_import"])
+        self.assertEqual(queue["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(queue["metadata"]["candidate_count"], 2)
+        self.assertEqual(queue["metadata"]["ready_sourcing_candidate_count"], 1)
+        self.assertEqual(queue["metadata"]["text_source_candidate_count"], 1)
+        self.assertEqual(
+            queue["rows"][0]["queue_status"],
+            "ready_for_curated_active_site_sourcing",
+        )
+        self.assertFalse(queue["rows"][0]["countable_label_candidate"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+
+        truncated = build_external_source_active_site_sourcing_queue(
+            active_site_gap_source_requests={
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "mapped_binding_position_count": 4,
+                        "request_status": (
+                            "binding_context_mapped_ready_for_active_site_sourcing"
+                        ),
+                    },
+                    {
+                        "accession": "P22222",
+                        "request_status": (
+                            "reaction_text_only_needs_curated_residue_source"
+                        ),
+                    },
+                ]
+            },
+            external_import_readiness_audit={
+                "metadata": {"active_site_gap_count": 2},
+                "rows": [],
+            },
+            max_rows=1,
+        )
+        self.assertEqual(truncated["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            truncated["metadata"]["queue_status_counts"],
+            {"ready_for_curated_active_site_sourcing": 1},
+        )
+
     def test_external_sequence_neighborhood_plan_is_review_only(self) -> None:
         plan = build_external_source_sequence_neighborhood_plan(
             candidate_manifest={
@@ -2523,6 +2696,104 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "sequence_neighborhood_rows_marked_ready_for_import", audit["blockers"]
         )
 
+    def test_external_sequence_alignment_verification_is_review_only(self) -> None:
+        verification = build_external_source_sequence_alignment_verification(
+            sequence_neighborhood_sample={
+                "metadata": {
+                    "method": "external_source_sequence_neighborhood_sample"
+                },
+                "top_hit_rows": [
+                    {
+                        "accession": "P22222",
+                        "reference_accession": "P11111",
+                        "matched_m_csa_entry_ids": ["m_csa:1"],
+                        "near_duplicate_alert": False,
+                        "near_duplicate_score": 0.72,
+                    }
+                ],
+            },
+            fetcher=lambda accessions: {
+                "metadata": {"source": "unit_test_fetcher"},
+                "records": [
+                    {
+                        "accession": "P11111",
+                        "sequence": "M" + "A" * 40 + "GGGG",
+                    },
+                    {
+                        "accession": "P22222",
+                        "sequence": "M" + "A" * 40 + "GGGA",
+                    },
+                ],
+            },
+        )
+        audit = audit_external_source_sequence_alignment_verification(verification)
+
+        self.assertFalse(verification["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            verification["metadata"]["complete_near_duplicate_search_required"]
+        )
+        self.assertEqual(verification["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(verification["metadata"]["verified_pair_count"], 1)
+        self.assertEqual(verification["metadata"]["alignment_alert_candidate_count"], 1)
+        self.assertEqual(
+            verification["rows"][0]["verification_status"],
+            "alignment_near_duplicate_candidate_holdout",
+        )
+        self.assertFalse(verification["rows"][0]["countable_label_candidate"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+
+        deferred = build_external_source_sequence_alignment_verification(
+            sequence_neighborhood_sample={
+                "top_hit_rows": [
+                    {
+                        "accession": "P22222",
+                        "reference_accession": "P11111",
+                    }
+                ],
+            },
+            max_alignment_cells=10,
+            fetcher=lambda accessions: {
+                "metadata": {"source": "unit_test_fetcher"},
+                "records": [
+                    {"accession": "P11111", "sequence": "M" + "A" * 40},
+                    {"accession": "P22222", "sequence": "M" + "A" * 40},
+                ],
+            },
+        )
+        self.assertEqual(
+            deferred["rows"][0]["verification_status"],
+            "alignment_deferred_pair_too_large",
+        )
+        self.assertEqual(deferred["metadata"]["alignment_deferred_pair_count"], 1)
+
+    def test_external_sequence_alignment_audit_blocks_import_rows(self) -> None:
+        audit = audit_external_source_sequence_alignment_verification(
+            {
+                "metadata": {
+                    "complete_near_duplicate_search_required": True,
+                    "candidate_count": 1,
+                    "verified_pair_count": 1,
+                },
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "countable_label_candidate": True,
+                        "ready_for_label_import": True,
+                        "verification_status": (
+                            "alignment_near_duplicate_candidate_holdout"
+                        ),
+                    }
+                ],
+            }
+        )
+
+        self.assertFalse(audit["metadata"]["guardrail_clean"])
+        self.assertIn("sequence_alignment_rows_marked_countable", audit["blockers"])
+        self.assertIn(
+            "sequence_alignment_rows_marked_ready_for_import", audit["blockers"]
+        )
+
     def test_external_import_readiness_audit_prioritizes_remaining_blockers(
         self,
     ) -> None:
@@ -2599,6 +2870,16 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                     },
                 ]
             },
+            sequence_alignment_verification={
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "verification_status": (
+                            "alignment_near_duplicate_candidate_holdout"
+                        ),
+                    }
+                ]
+            },
         )
 
         self.assertFalse(audit["metadata"]["ready_for_label_import"])
@@ -2608,11 +2889,16 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(audit["metadata"]["active_site_gap_count"], 1)
         self.assertEqual(audit["metadata"]["heuristic_scope_mismatch_count"], 1)
         self.assertEqual(audit["metadata"]["representation_control_issue_count"], 2)
+        self.assertEqual(audit["metadata"]["sequence_alignment_alert_count"], 1)
         self.assertEqual(
             audit["rows"][0]["readiness_status"], "blocked_by_heuristic_control"
         )
         self.assertEqual(
             audit["rows"][1]["readiness_status"], "blocked_by_sequence_holdout"
+        )
+        self.assertEqual(
+            audit["rows"][1]["sequence_alignment_status"],
+            "alignment_near_duplicate_candidate_holdout",
         )
         self.assertFalse(audit["rows"][0]["countable_label_candidate"])
 
@@ -3554,10 +3840,15 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             binding_repair = root / "binding_repair.json"
             binding_mapping = root / "binding_mapping.json"
             active_site_requests = root / "active_site_requests.json"
+            import_readiness = root / "import_readiness.json"
+            active_site_sourcing = root / "active_site_sourcing.json"
+            active_site_sourcing_audit = root / "active_site_sourcing_audit.json"
             broad_ec_audit = root / "broad_ec_audit.json"
             candidate_manifest = root / "candidate_manifest.json"
             sequence_holdout = root / "sequence_holdout.json"
             sequence_plan = root / "sequence_plan.json"
+            sequence_alignment = root / "sequence_alignment.json"
+            sequence_alignment_audit = root / "sequence_alignment_audit.json"
 
             representation_manifest.write_text(
                 json.dumps(
@@ -3722,6 +4013,47 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 ),
                 encoding="utf-8",
             )
+            sequence_alignment.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "complete_near_duplicate_search_required": True,
+                            "candidate_count": 1,
+                            "verified_pair_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "accession": "P11111",
+                                "countable_label_candidate": False,
+                                "ready_for_label_import": False,
+                                "verification_status": (
+                                    "alignment_no_near_duplicate_signal"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            import_readiness.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_import_readiness_audit",
+                            "active_site_gap_count": 1,
+                        },
+                        "rows": [
+                            {
+                                "accession": "P11111",
+                                "readiness_status": (
+                                    "blocked_by_active_site_sourcing"
+                                ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             base_cmd = [sys.executable, "-m", "catalytic_earth.cli"]
             env = {"PYTHONPATH": str(ROOT / "src")}
@@ -3812,6 +4144,57 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 capture_output=True,
                 text=True,
             )
+            subprocess.run(
+                base_cmd
+                + [
+                    "audit-external-source-sequence-alignment-verification",
+                    "--sequence-alignment-verification",
+                    str(sequence_alignment),
+                    "--out",
+                    str(sequence_alignment_audit),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
+                    "build-external-source-active-site-sourcing-queue",
+                    "--active-site-gap-source-requests",
+                    str(active_site_requests),
+                    "--external-import-readiness-audit",
+                    str(import_readiness),
+                    "--sequence-alignment-verification",
+                    str(sequence_alignment),
+                    "--out",
+                    str(active_site_sourcing),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
+                    "audit-external-source-active-site-sourcing-queue",
+                    "--active-site-sourcing-queue",
+                    str(active_site_sourcing),
+                    "--external-import-readiness-audit",
+                    str(import_readiness),
+                    "--out",
+                    str(active_site_sourcing_audit),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
 
             comparison_payload = json.loads(
                 representation_comparison.read_text(encoding="utf-8")
@@ -3824,6 +4207,15 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             )
             broad_ec_payload = json.loads(broad_ec_audit.read_text(encoding="utf-8"))
             sequence_payload = json.loads(sequence_plan.read_text(encoding="utf-8"))
+            sequence_alignment_payload = json.loads(
+                sequence_alignment_audit.read_text(encoding="utf-8")
+            )
+            active_site_sourcing_payload = json.loads(
+                active_site_sourcing.read_text(encoding="utf-8")
+            )
+            active_site_sourcing_audit_payload = json.loads(
+                active_site_sourcing_audit.read_text(encoding="utf-8")
+            )
 
             self.assertEqual(comparison_payload["metadata"]["candidate_count"], 1)
             self.assertTrue(comparison_audit_payload["metadata"]["guardrail_clean"])
@@ -3833,4 +4225,13 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             self.assertEqual(
                 sequence_payload["metadata"]["near_duplicate_search_request_count"],
                 1,
+            )
+            self.assertTrue(
+                sequence_alignment_payload["metadata"]["guardrail_clean"]
+            )
+            self.assertEqual(
+                active_site_sourcing_payload["metadata"]["candidate_count"], 1
+            )
+            self.assertTrue(
+                active_site_sourcing_audit_payload["metadata"]["guardrail_clean"]
             )

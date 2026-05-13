@@ -55,7 +55,7 @@ carry sampled PDB/AlphaFold structure references into the evidence export, queue
 UniProtKB active-site features, map all 12 heuristic-ready AlphaFold controls,
 score the mapped controls with the current heuristic retrieval path, add a
 bounded sequence-neighborhood screen and import-readiness audit, and pass the
-41/41 external-transfer gate for review-only evidence collection.
+45/45 external-transfer gate for review-only evidence collection.
 Two sample accessions (`O15527` and `P42126`) overlap existing M-CSA reference
 accessions and are routed to holdout controls. The lane-balance audit is clean:
 six lanes each contribute five candidates, so the initial review sample has not
@@ -81,9 +81,13 @@ mapped candidates to `metal_dependent_hydrolase` top1 with 9 scope/top1
 mismatches; and the sequence-neighborhood plan still requires near-duplicate
 search for 28 rows. The bounded sequence screen finds 0 high-similarity alerts
 against 733 current countable M-CSA reference sequences but still requires
-complete near-duplicate search before import. The import-readiness audit keeps
+complete near-duplicate search before import. The bounded alignment check
+verifies 90 top-hit pairs and confirms the 2 exact-reference holdouts while
+remaining non-countable. The import-readiness audit keeps
 0 rows import-ready and records 10 active-site gaps, 9 heuristic scope/top1
-mismatches, and 29 representation-control issues. The control-repair plan
+mismatches, and 29 representation-control issues. The active-site sourcing
+queue prioritizes the 10 active-site gaps into 7 mapped-binding-context rows
+and 3 primary-source rows. The control-repair plan
 records 25 non-countable repair rows, the representation comparison exposes 12
 mapped controls for future learned or structure-language comparison, and the
 binding-context mapping sample maps 7/7 active-site-gap rows as repair context

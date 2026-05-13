@@ -74,12 +74,17 @@ import.
   sequence-neighborhood screen fetches all 30 external sequences and 733
   current countable M-CSA reference sequences, finds 0 high-similarity alerts
   under the current unaligned screen, and still requires complete
-  near-duplicate or UniRef-style search before import.
+  near-duplicate or UniRef-style search before import. The bounded top-hit
+  alignment verification checks 90 sequence-neighborhood pairs, confirms the
+  two exact-reference holdouts by alignment, finds 88 no-signal top-hit pairs,
+  and keeps complete sequence search mandatory.
 - The import-readiness audit aggregates the current blockers by candidate: 10
   active-site gaps, 2 exact sequence holdouts, 28 complete near-duplicate
   search requirements, 9 heuristic scope/top1 mismatches, and 29
-  representation-control issues. The external transfer gate passes 41/41
-  review-only checks and remains not ready for label import.
+  representation-control issues. The active-site sourcing queue turns the 10
+  active-site gaps into 7 mapped-binding-context sourcing rows and 3
+  primary-source rows. The external transfer gate passes 45/45 review-only
+  checks and remains not ready for label import.
 
 ## Artifacts
 
@@ -282,6 +287,16 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-neig
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
   --out artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-sequence-alignment-verification \
+  --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --top-k 3 \
+  --max-pairs 120 \
+  --out artifacts/v3_external_source_sequence_alignment_verification_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-alignment-verification \
+  --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
+  --out artifacts/v3_external_source_sequence_alignment_verification_audit_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-reaction-evidence-sample \
   --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
   --max-candidates 30 \
@@ -314,7 +329,19 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-import-readin
   --representation-control-comparison artifacts/v3_external_source_representation_control_comparison_1025.json \
   --active-site-gap-source-requests artifacts/v3_external_source_active_site_gap_source_requests_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
   --out artifacts/v3_external_source_import_readiness_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-active-site-sourcing-queue \
+  --active-site-gap-source-requests artifacts/v3_external_source_active_site_gap_source_requests_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
+  --out artifacts/v3_external_source_active_site_sourcing_queue_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-active-site-sourcing-queue \
+  --active-site-sourcing-queue artifacts/v3_external_source_active_site_sourcing_queue_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --out artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
   --labels data/registries/curated_mechanism_labels.json \
@@ -357,7 +384,11 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --sequence-neighborhood-plan artifacts/v3_external_source_sequence_neighborhood_plan_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
   --sequence-neighborhood-sample-audit artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json \
+  --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
+  --sequence-alignment-verification-audit artifacts/v3_external_source_sequence_alignment_verification_audit_1025.json \
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --active-site-sourcing-queue artifacts/v3_external_source_active_site_sourcing_queue_1025.json \
+  --active-site-sourcing-queue-audit artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json \
   --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
   --binding-context-repair-plan-audit artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json \
   --binding-context-mapping-sample artifacts/v3_external_source_binding_context_mapping_sample_1025.json \

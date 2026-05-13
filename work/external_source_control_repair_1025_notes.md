@@ -7,7 +7,7 @@ neighborhood controls.
 
 ## Current Gate
 
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 41/41
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 45/45
   review-only checks.
 - `countable_label_candidate_count` remains 0.
 - `ready_for_label_import` remains false.
@@ -47,6 +47,9 @@ neighborhood controls.
 - `artifacts/v3_external_source_active_site_gap_source_requests_1025.json`
   turns all 10 active-site-feature gaps into source requests: 7 have mapped
   binding context and 3 need curated active-site or catalytic-residue sources.
+- `artifacts/v3_external_source_active_site_sourcing_queue_1025.json`
+  prioritizes those 10 gaps into 7 mapped-binding-context sourcing rows and 3
+  primary active-site source rows, all non-countable.
 
 ## Reaction And Sequence Controls
 
@@ -71,6 +74,10 @@ neighborhood controls.
   sequences. It records 0 high-similarity hits in the bounded unaligned screen,
   retains the 2 exact-reference holdouts, and keeps full near-duplicate or
   UniRef-style search as required before import.
+- `artifacts/v3_external_source_sequence_alignment_verification_1025.json`
+  checks the top 90 sequence-neighborhood pairs, confirms the two
+  exact-reference holdouts by alignment, records 88 no-signal pairs, and
+  remains a bounded review-only control.
 
 ## Import Readiness
 
@@ -78,7 +85,8 @@ neighborhood controls.
   external rows non-countable and import-blocked.
 - The readiness audit records 10 active-site-gap rows, 2 sequence holdouts, 28
   rows still requiring complete near-duplicate search, 9 heuristic scope/top1
-  mismatches, and 29 representation-control issues.
+  mismatches, 29 representation-control issues, and 2 alignment-confirmed
+  sequence holdouts.
 - Readiness buckets are: 10 blocked by active-site sourcing, 11 blocked by
   heuristic controls, 6 blocked by representation controls, 2 blocked by
   sequence holdouts, and 1 blocked by sequence search.
@@ -93,7 +101,7 @@ Do not import external labels yet. The next bounded work should either:
 
 - source explicit catalytic or active-site residue evidence for the 10
   active-site feature gaps using
-  `artifacts/v3_external_source_active_site_gap_source_requests_1025.json`; or
+  `artifacts/v3_external_source_active_site_sourcing_queue_1025.json`; or
 - run/attach real near-duplicate sequence searches for the 28
   `near_duplicate_search_required_before_import` rows; or
 - replace the feature-proxy representation comparison with a real learned or

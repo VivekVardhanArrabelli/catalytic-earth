@@ -250,8 +250,9 @@ Current expectation:
   mapping, heuristic-control scoring, failure-mode audit, control-repair
   artifacts, representation-control comparison, broad-EC disambiguation,
   active-site gap source requests, sequence-neighborhood controls, bounded
-  sequence-neighborhood screening, import-readiness audit, and 41/41 transfer
-  gate; 2 exact-reference overlaps are routed to holdout controls, the
+  sequence-neighborhood screening, bounded sequence-alignment verification,
+  import-readiness audit, active-site sourcing queue, and 45/45 transfer gate;
+  2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
   full Rhea reaction-context sample collects 64 review-only reaction records
   across all 30 external candidates while flagging 16 broad-EC context rows,
@@ -268,10 +269,13 @@ Current expectation:
   covers all 10 active-site gaps, the sequence-neighborhood plan requests
   near-duplicate search for 28 rows, the bounded sequence screen checks all 30
   external sequences against 733 current countable M-CSA reference sequences
-  with 0 high-similarity alerts, the import-readiness audit records 0
+  with 0 high-similarity alerts, bounded alignment verification checks 90
+  top-hit pairs and confirms the two exact-reference holdouts, the
+  import-readiness audit records 0
   import-ready rows plus 10 active-site gaps, 9 heuristic scope/top1
-  mismatches, and 29 representation-control issues, and 0 external labels are
-  countable.
+  mismatches, and 29 representation-control issues, the active-site sourcing
+  queue prioritizes 7 mapped-binding-context rows and 3 primary-source rows,
+  and 0 external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is
