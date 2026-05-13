@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 72
-- Measured elapsed time: 2750.9 minutes (45.85 hours)
+- Entries: 73
+- Measured elapsed time: 2772.4 minutes (46.21 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 129.9 measured minutes (2.16 hours)
+- post-mcsa-spof-hardening: 151.4 measured minutes (2.52 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -23,21 +23,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 766
-- Evidence references logged: 632
+- Artifact references logged: 779
+- Evidence references logged: 645
 
 ## Recent Entries
-
-### 2026-05-13T12:55:17.737175+00:00 - post-v2
-
-- Task: Direct external pilot handoff
-- Time mode: measured
-- Measured minutes: 2.2
-- Started: 2026-05-13T12:52:58Z
-- Ended: 2026-05-13T12:55:10Z
-- Artifacts: work/handoff.md, docs/external_source_transfer.md
-- Evidence: 268 unit tests passed, validate passed, git diff --check passed, automation prompt updated, no abstract gates unless directly unblocking external pilot, 5-10 candidate external pilot is next target
-- Notes: User requested concrete agent instructions after the 1,025 source-limit pivot.
 
 ### 2026-05-13T13:02:54.457092+00:00 - post-v2
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 287 unit tests passed, validate passed, compileall passed, git diff --check passed, external gate 60/60 with artifact-path lineage, pilot dossiers 10 review-only candidates, 0 countable external labels, 0 import-ready external labels
 - Notes: Normal locked SPOF/pilot-hardening run. No M-CSA count growth or external import; docs checked and updated.
 
+### 2026-05-13T18:44:44.009443+00:00 - post-mcsa-spof-hardening
+
+- Task: Harden external pilot review-only gates
+- Time mode: measured
+- Measured minutes: 21.533
+- Started: 2026-05-13T18:23:11Z
+- Ended: 2026-05-13T18:44:43Z
+- Artifacts: src/catalytic_earth/transfer_scope.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, work/external_source_control_repair_1025_notes.md, work/label_preview_1025_notes.md
+- Evidence: 289 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, external gate 64/64 with pilot review-only safeguards, 10 pilot candidates, 0 completed pilot decisions, 79 pilot source targets, 3 local explicit-active-site evidence blockers, 0 countable external labels, 0 import-ready external labels, foldseek/mmseqs/blastp/diamond absent on PATH
+- Notes: Normal locked SPOF-hardening run. Documentation checked and updated; no M-CSA count growth or external import.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -179,6 +179,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T12:55:17.737175+00:00: The next useful milestone is pilot import readiness for named external candidates, not a higher external-transfer gate count.
 - 2026-05-13T13:02:54.457092+00:00: The next run should implement holdout/generalization evaluation first; external pilot work resumes after that signal or in parallel only when directly unblocking import readiness.
 - 2026-05-13T17:47:33.256358+00:00: External pilot now has per-candidate review dossiers; next work should fill decisions and missing evidence, not add generic gates.
+- 2026-05-13T18:44:44.009443+00:00: External pilot import remains blocked; next work should fill real active-site and sequence evidence decisions rather than expanding gate count.
 
 ## Scope Adjustments
 
@@ -250,3 +251,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T16:04:03.062604+00:00: External pilot now has leakage-provenance ranking and no-decision review packets; next work should fill active-site and sequence evidence for selected candidates, not increase M-CSA-only count.
 - 2026-05-13T16:37:11.331979+00:00: External pilot packets now have consolidated review-only source targets; next work should fill evidence decisions, not increase M-CSA count.
 - 2026-05-13T17:47:33.256358+00:00: External transfer gate now fails fast on mixed-slice artifact paths across supplied gate artifacts.
+- 2026-05-13T18:44:44.009443+00:00: External pilot review-decision path now fails if selected rows are ineligible, pilot decisions are completed prematurely, required review prerequisites are missing, or pilot dossier evidence blockers are stale.

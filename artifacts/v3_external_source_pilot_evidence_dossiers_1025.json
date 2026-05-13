@@ -5,7 +5,13 @@
     "candidate_count": 10,
     "candidate_with_remaining_blocker_count": 10,
     "countable_label_candidate_count": 0,
+    "local_evidence_blocker_counts": {
+      "pilot_explicit_active_site_evidence_missing": 3
+    },
     "method": "external_source_pilot_evidence_dossier",
+    "pilot_explicit_active_site_evidence_missing_count": 3,
+    "pilot_sequence_near_duplicate_alert_count": 0,
+    "pilot_specific_reaction_context_missing_count": 0,
     "reaction_context_candidate_count": 10,
     "ready_for_label_import": false,
     "representation_sample_candidate_count": 4,
@@ -971,6 +977,7 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
+        "pilot_explicit_active_site_evidence_missing",
         "representation_backend_plan_missing_or_not_eligible",
         "representation_backend_sample_missing_for_candidate",
         "representation_control_not_compared"
@@ -1083,6 +1090,7 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
+        "pilot_explicit_active_site_evidence_missing",
         "representation_backend_plan_missing_or_not_eligible",
         "representation_backend_sample_missing_for_candidate",
         "representation_control_not_compared"
@@ -1192,6 +1200,7 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
+        "pilot_explicit_active_site_evidence_missing",
         "representation_backend_plan_missing_or_not_eligible",
         "representation_backend_sample_missing_for_candidate",
         "representation_control_not_compared"

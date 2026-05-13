@@ -564,7 +564,7 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current SPOF status after the 2026-05-13T17:21:43Z run: counterevidence
+Current SPOF status after the 2026-05-13T18:23:11Z run: counterevidence
 maintainability is handled at the code level. `geometry_retrieval.py` uses a
 versioned declarative `COUNTEREVIDENCE_POLICY` with typed shared inputs,
 rule-level provenance, backwards-compatible reason/detail fields, and explicit
@@ -583,9 +583,11 @@ fingerprint ids, or source-target identifiers appear as predictive feature
 sources. Artifact consistency hardening exists in the external blocker matrix
 audit, which rejects candidate-manifest lineage mismatches, and in the external
 transfer gate, which now validates candidate accessions across high-fan-in
-external artifacts plus artifact-path slice lineage across all 61 supplied
-external artifacts before passing the 60/60 review-only gate. The gate CLI
-fails fast on mixed 1,000/1,025 paths or payload-declared slice contradictions.
+external artifacts, artifact-path slice lineage across supplied external
+artifacts, and pilot review-only/no-decision semantics before passing the
+64/64 review-only gate. The gate CLI fails fast on mixed 1,000/1,025 paths,
+payload-declared slice contradictions, or pilot artifacts that stop being
+non-countable review work products.
 
 This run removed the selected-PDB single-point blocker in bounded form. The new
 `build-selected-pdb-overrides` command produces
@@ -621,20 +623,62 @@ assembles the same selected 10 into per-candidate review dossiers. Seven have
 explicit UniProt active-site feature support, all 10 have Rhea reaction
 context, four have representation-sample rows, and all 10 still carry import
 blockers. The dossier artifact removes only the pilot evidence-assembly
-blocker; it does not authorize external import.
+blocker; it does not authorize external import. Dossier assembly now also adds
+local evidence-completeness blockers, so selected rows missing explicit
+active-site evidence (`O60568`, `O95050`, and `P51580` in the current pilot)
+stay blocked even if an upstream blocker matrix goes stale.
+
+Latest run added a direct external-pilot SPOF safeguard rather than another
+count-growth gate. `check_external_source_transfer_gates` now has four
+pilot-specific checks: priority rows must remain leakage-safe and review-only,
+pilot review-decision exports must stay no-decision with 0 completed decisions,
+pilot evidence packets must stay guardrail-clean review packets with source
+targets, and pilot dossiers must remain non-countable evidence summaries. The
+same code path now adds local dossier blockers for missing explicit active-site
+evidence, missing specific reaction context, and near-duplicate sequence
+alerts. The pilot gate logic lives in a focused helper rather than another
+large branch cascade inside the external transfer gate. A negative regression
+test fails a completed pilot decision, and the regenerated
+`artifacts/v3_external_source_transfer_gate_check_1025.json` records 64/64
+passing checks with 10 selected pilot candidates, 0 completed pilot decisions,
+79 source targets, and 10 dossier rows that still carry import blockers. The
+dossier metadata now records 3 local explicit-active-site evidence blockers and
+0 missing-specific-reaction blockers for the current selected pilot rows.
+
+Label-quality confidence call for the 2026-05-13T18:23:11Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair, no
+for external-source import, no for new scientific generalization artifacts, and
+yes for SPOF hardening.
+Evidence at run start: 287 unit tests passed, `validate` passed with 679
+curated labels, the latest docs and artifacts already contained the proxy
+sequence/fold-distance holdout plus the 12-row ESM-2 representation sample, and
+the current 1,025 state remained review-only with 0 countable/import-ready
+external rows. During the run, `foldseek`, `mmseqs`, `blastp`, and `diamond`
+were absent on PATH, so real sequence/fold separation remained blocked. The
+run therefore hardened the external pilot review-decision SPOF and kept M-CSA
+count growth and external import stopped.
+
+Remaining-time plan executed in the same run: after the review-decision gate
+safeguard passed, use the remaining bounded window to make the pilot dossier
+path less dependent on stale upstream blockers. That added local active-site,
+reaction-context, and sequence-alert blockers, summarized those blockers in
+dossier metadata, centralized the pilot import review-requirement list, and
+made the gate require selected pilot rows to be eligible and blocker-free.
 
 Next ordered worklist:
 
 1. Treat external transfer artifact-path lineage as handled for the current
    1,025 gate: row-level candidate lineage, path-inferred slice lineage, and
    payload-declared slice contradictions now fail before the gate can silently
-   pass. Continue artifact graph consistency only where new code evidence shows
-   another high-fan-in audit can mix source slice, graph id, label batch, or
-   artifact lineage without a negative regression.
+   pass, and pilot priority/review/evidence/dossier artifacts now fail if they
+   stop being review-only/no-decision work products. Continue artifact graph
+   consistency only where new code evidence shows another high-fan-in audit can
+   mix source slice, graph id, label batch, or artifact lineage without a
+   negative regression.
 2. Sequence/fold-distance holdout evaluation is implemented and pinned by
    regression tests. Treat the current artifacts as a proxy-only generalization
    signal, not as proof of <=30% sequence identity or <0.7 TM-score behavior.
-   The 2026-05-13T17:21:43Z run checked for `foldseek`, `mmseqs`, `blastp`,
+   The 2026-05-13T18:23:11Z run checked for `foldseek`, `mmseqs`, `blastp`,
    and `diamond`; none were available on PATH. Re-run
    with Foldseek/MMseqs2/
    BLAST/DIAMOND or an equivalent local clustering backend if it becomes
@@ -771,7 +815,7 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` keep
-`countable_label_candidate_count=0` and pass a 60/60 review-only transfer gate.
+`countable_label_candidate_count=0` and pass a 64/64 review-only transfer gate.
 The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
 query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
 to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC

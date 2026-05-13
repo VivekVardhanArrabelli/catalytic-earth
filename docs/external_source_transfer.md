@@ -141,7 +141,7 @@ Priority blockers:
   tasks, 18 require near-duplicate sequence search, and 2 stay sequence
   holdouts. Its dominant next-action fraction is 0.6000 and dominant lane
   fraction is 0.1667, so the queue has not collapsed to one action or chemistry
-  lane. The external transfer gate passes 60/60 review-only checks and remains
+  lane. The external transfer gate passes 64/64 review-only checks and remains
   not ready for label import.
 - The learned representation backend path now has a computed 12-row ESM-2
   sample in `artifacts/v3_external_source_representation_backend_sample_1025.json`
@@ -168,7 +168,8 @@ Priority blockers:
   current lineage check also includes the pilot-priority, no-decision pilot
   review export, pilot evidence-packet, and pilot evidence-dossier artifacts,
   and fails fast if supplied artifact paths mix source slices such as 1,000 and
-  1,025.
+  1,025. It also fails if those pilot artifacts stop being review-only,
+  non-countable, no-decision work products.
 - `artifacts/v3_external_source_pilot_candidate_priority_1025.json` ranks the
   30 external candidates for a bounded review pilot. It selects 10
   non-countable candidates across the external lanes, defers 5 exact-holdout or
@@ -193,7 +194,12 @@ Priority blockers:
   the same 10 selected rows into per-candidate review dossiers. It records 7
   candidates with explicit UniProt active-site feature support, all 10 with
   Rhea reaction context, 4 with representation-sample rows, and 10 with
-  remaining blockers; it is review-only and does not authorize import.
+  remaining blockers; it is review-only and does not authorize import. Dossier
+  assembly now adds local blockers for missing explicit active-site evidence,
+  missing specific reaction context, and near-duplicate sequence alerts instead
+  of relying only on upstream blocker lists. The current selected pilot has 3
+  local explicit-active-site evidence blockers and 0 missing-specific-reaction
+  blockers.
 
 ## Artifacts
 

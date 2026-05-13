@@ -55,11 +55,11 @@ carry sampled PDB/AlphaFold structure references into the evidence export, queue
 UniProtKB active-site features, map all 12 heuristic-ready AlphaFold controls,
 score the mapped controls with the current heuristic retrieval path, add a
 bounded sequence-neighborhood screen and import-readiness audit, and pass the
-60/60 external-transfer gate for review-only evidence collection with
+64/64 external-transfer gate for review-only evidence collection with
 sequence-search export, active-site sourcing export/resolution,
 representation-backend planning/sample, a candidate blocker matrix, lineage-
-checked pilot priority, no-decision pilot review packets, and a consolidated
-79-target pilot evidence packet. The
+checked pilot priority, no-decision pilot review packets, a consolidated
+79-target pilot evidence packet, and review-only dossier safeguards. The
 active-site sourcing resolution finds 0 explicit active-site residue sources in
 the 10 gap rows, the deterministic k-mer baseline flags one representation
 near-duplicate holdout, and the canonical ESM-2 representation sample flags

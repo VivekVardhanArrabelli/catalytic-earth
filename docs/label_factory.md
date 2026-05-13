@@ -758,7 +758,7 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  60/60 external transfer gate for evidence collection, pass the lane-balance
+  64/64 external transfer gate for evidence collection, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
   resolve 0 explicit active-site residue sources across the 10 gap rows, map

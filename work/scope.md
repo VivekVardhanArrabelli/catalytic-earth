@@ -231,7 +231,8 @@ Current expectation:
   the candidate manifest and fails on stale or mismatched matrix inputs. The
   external transfer gate now also validates candidate lineage across high-fan-in
   external artifacts and fails on unexpected accessions, missing full-coverage
-  manifest rows, or per-artifact candidate-count drift.
+  manifest rows, per-artifact candidate-count drift, or pilot artifacts that
+  stop being review-only/no-decision work products.
 - selected-PDB single-point mitigation now has a general override path with
   provenance. `artifacts/v3_selected_pdb_override_plan_700.json` applies the
   holo-preference action path for `m_csa:577` and `m_csa:641`, keeps
@@ -295,7 +296,7 @@ Current expectation:
   sequence-neighborhood screening, bounded sequence-alignment verification,
   sequence-search export, import-readiness audit, active-site sourcing
   queue/export/resolution, representation-backend plan/sample, transfer blocker
-  matrix, and 60/60
+  matrix, and 64/64
   transfer gate;
   2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a

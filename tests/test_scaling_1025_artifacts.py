@@ -1284,6 +1284,18 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             pilot_evidence_dossiers["metadata"]["candidate_with_remaining_blocker_count"],
             10,
         )
+        self.assertEqual(
+            pilot_evidence_dossiers["metadata"][
+                "pilot_explicit_active_site_evidence_missing_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            pilot_evidence_dossiers["metadata"][
+                "pilot_specific_reaction_context_missing_count"
+            ],
+            0,
+        )
         self.assertTrue(
             all(
                 row["review_status"]
@@ -1305,12 +1317,46 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 60)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 60)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 64)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 64)
         self.assertTrue(
             external_transfer_gate["gates"][
                 "external_transfer_candidate_lineage_consistent"
             ]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "external_pilot_candidate_priority_review_only"
+            ]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "external_pilot_review_decision_export_no_decision"
+            ]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["external_pilot_evidence_packet_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "external_pilot_evidence_dossiers_review_only"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["external_pilot_selected_candidate_count"],
+            10,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "external_pilot_review_completed_decision_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "external_pilot_evidence_packet_source_target_count"
+            ],
+            79,
         )
         self.assertTrue(
             external_transfer_gate["metadata"]["artifact_lineage"]["guardrail_clean"]

@@ -78,6 +78,81 @@ from catalytic_earth.transfer_scope import (
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def _base_external_transfer_gate_inputs() -> dict:
+    return {
+        "transfer_manifest": {
+            "metadata": {
+                "ready_for_label_import": False,
+                "countable_label_candidate_count": 0,
+            }
+        },
+        "query_manifest": {
+            "metadata": {
+                "ready_for_label_import": False,
+                "countable_label_candidate_count": 0,
+            }
+        },
+        "ood_calibration_plan": {
+            "metadata": {
+                "ready_for_label_import": False,
+                "requires_heuristic_control": True,
+            }
+        },
+        "candidate_sample_audit": {
+            "metadata": {
+                "guardrail_clean": True,
+                "countable_label_candidate_count": 0,
+            }
+        },
+        "candidate_manifest": {
+            "metadata": {
+                "ready_for_label_import": False,
+                "countable_label_candidate_count": 0,
+                "candidate_count": 1,
+                "heuristic_control_required": True,
+            },
+            "rows": [{"accession": "P12345"}],
+        },
+        "candidate_manifest_audit": {
+            "metadata": {
+                "guardrail_clean": True,
+                "countable_label_candidate_count": 0,
+            }
+        },
+        "lane_balance_audit": {
+            "metadata": {
+                "guardrail_clean": True,
+                "countable_label_candidate_count": 0,
+                "lane_count": 1,
+                "dominant_lane_fraction": 1.0,
+            }
+        },
+        "evidence_plan": {
+            "metadata": {
+                "ready_for_label_import": False,
+                "ready_for_evidence_collection": True,
+                "countable_label_candidate_count": 0,
+                "candidate_count": 1,
+                "exact_reference_overlap_holdout_count": 0,
+            },
+            "rows": [{"accession": "P12345"}],
+        },
+        "evidence_request_export": {
+            "metadata": {
+                "external_source_review_only": True,
+                "countable_label_candidate_count": 0,
+            },
+            "review_items": [{"accession": "P12345"}],
+        },
+        "review_only_import_safety_audit": {
+            "metadata": {
+                "countable_import_safe": True,
+                "total_new_countable_label_count": 0,
+            }
+        },
+    }
+
+
 class ExternalSourceTransferManifestTests(unittest.TestCase):
     def test_manifest_keeps_transfer_scope_non_countable(self) -> None:
         manifest = build_external_source_transfer_manifest(
@@ -4836,6 +4911,310 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(row["reaction_evidence"]["reaction_record_count"], 1)
         self.assertEqual(row["sequence_evidence"]["alignment_checked_pair_count"], 1)
         self.assertIn("full_label_factory_gate_not_run", row["remaining_blockers"])
+
+    def test_external_pilot_evidence_dossiers_add_local_evidence_blockers(
+        self,
+    ) -> None:
+        dossiers = build_external_source_pilot_evidence_dossiers(
+            pilot_evidence_packet={
+                "metadata": {"method": "external_source_pilot_evidence_packet"},
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P12345",
+                        "entry_id": "uniprot:P12345",
+                        "lane_id": "external_source:lyase",
+                        "sequence_search": {"decision_status": "no_decision"},
+                    }
+                ],
+            },
+            active_site_evidence_sample={"rows": []},
+            active_site_sourcing_resolution={"rows": [{"accession": "P12345"}]},
+            reaction_evidence_sample={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "ec_number": "4.2.-.-",
+                        "ec_specificity": "broad_or_incomplete",
+                    }
+                ]
+            },
+            sequence_alignment_verification={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "verification_status": "alignment_near_duplicate_candidate_holdout",
+                    }
+                ]
+            },
+            representation_backend_sample={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "backend_status": "learned_representation_sample_complete",
+                    }
+                ]
+            },
+            heuristic_control_scores={"results": []},
+            structure_mapping_sample={"entries": []},
+            transfer_blocker_matrix={"rows": [{"accession": "P12345"}]},
+            external_import_readiness_audit={"rows": [{"accession": "P12345"}]},
+        )
+
+        blockers = dossiers["rows"][0]["remaining_blockers"]
+        self.assertIn("pilot_explicit_active_site_evidence_missing", blockers)
+        self.assertIn("pilot_specific_reaction_context_missing", blockers)
+        self.assertIn("pilot_sequence_near_duplicate_alert_present", blockers)
+        self.assertEqual(
+            dossiers["metadata"]["local_evidence_blocker_counts"],
+            {
+                "pilot_explicit_active_site_evidence_missing": 1,
+                "pilot_sequence_near_duplicate_alert_present": 1,
+                "pilot_specific_reaction_context_missing": 1,
+            },
+        )
+
+    def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
+        self,
+    ) -> None:
+        pilot_candidate_priority = {
+            "metadata": {
+                "method": "external_source_pilot_candidate_priority",
+                "ready_for_label_import": False,
+                "countable_label_candidate_count": 0,
+                "candidate_count": 1,
+                "selected_candidate_count": 1,
+                "max_candidates": 10,
+                "max_per_lane": 1,
+                "leakage_policy": {
+                    "text_or_label_fields_used_for_priority": False,
+                },
+            },
+            "rows": [
+                {
+                    "accession": "P12345",
+                    "entry_id": "uniprot:P12345",
+                    "lane_id": "external_source:lyase",
+                    "pilot_selection_status": "selected_for_review_pilot",
+                    "eligible_for_review_pilot": True,
+                    "pilot_priority_blockers": [],
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "review_status": "external_pilot_candidate_priority_review_only",
+                    "leakage_provenance": {
+                        "text_or_label_fields_used_for_priority": False,
+                    },
+                }
+            ],
+        }
+        pilot_review_decision_export = {
+            "metadata": {
+                "method": "external_source_pilot_review_decision_export",
+                "ready_for_label_import": False,
+                "review_only": True,
+                "countable_label_candidate_count": 0,
+                "candidate_count": 1,
+                "completed_decision_count": 0,
+                "decision_status_counts": {"no_decision": 1},
+            },
+            "review_items": [
+                {
+                    "accession": "P12345",
+                    "entry_id": "uniprot:P12345",
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "review_requirements": [
+                        "curated_active_site_residue_evidence",
+                        "specific_reaction_or_mechanism_evidence",
+                        "complete_near_duplicate_sequence_search",
+                        "leakage_safe_representation_control",
+                        "review_decision",
+                        "full_label_factory_gate",
+                    ],
+                    "decision": {
+                        "decision_status": "no_decision",
+                        "ready_for_label_import": False,
+                    },
+                }
+            ],
+        }
+        pilot_evidence_packet = {
+            "metadata": {
+                "method": "external_source_pilot_evidence_packet",
+                "ready_for_label_import": False,
+                "review_only": True,
+                "guardrail_clean": True,
+                "countable_label_candidate_count": 0,
+                "candidate_count": 1,
+                "sequence_search_packet_count": 1,
+                "source_target_count": 1,
+                "missing_sequence_export_accessions": [],
+                "missing_required_active_site_export_accessions": [],
+            },
+            "rows": [
+                {
+                    "accession": "P12345",
+                    "entry_id": "uniprot:P12345",
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "review_status": "external_pilot_evidence_packet_review_only",
+                    "review_requirements": [
+                        "curated_active_site_residue_evidence",
+                        "specific_reaction_or_mechanism_evidence",
+                        "complete_near_duplicate_sequence_search",
+                        "leakage_safe_representation_control",
+                        "review_decision",
+                        "full_label_factory_gate",
+                    ],
+                    "source_targets": [{"source": "UniProtKB", "id": "P12345"}],
+                    "sequence_search": {
+                        "decision": {"decision_status": "no_decision"},
+                    },
+                }
+            ],
+        }
+        pilot_evidence_dossiers = {
+            "metadata": {
+                "method": "external_source_pilot_evidence_dossier",
+                "ready_for_label_import": False,
+                "review_only": True,
+                "countable_label_candidate_count": 0,
+                "candidate_count": 1,
+                "candidate_with_remaining_blocker_count": 1,
+            },
+            "rows": [
+                {
+                    "accession": "P12345",
+                    "entry_id": "uniprot:P12345",
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "review_status": "external_pilot_evidence_dossier_review_only",
+                    "evidence_dossier_status": "blocked_before_import",
+                    "active_site_evidence": {"explicit_active_site_feature_count": 1},
+                    "reaction_evidence": {"reaction_record_count": 1},
+                    "sequence_evidence": {"alignment_checked_pair_count": 1},
+                    "representation_control": {
+                        "backend_status": "learned_representation_sample_complete",
+                    },
+                }
+            ],
+        }
+
+        gates = check_external_source_transfer_gates(
+            **_base_external_transfer_gate_inputs(),
+            pilot_candidate_priority=pilot_candidate_priority,
+            pilot_review_decision_export=pilot_review_decision_export,
+            pilot_evidence_packet=pilot_evidence_packet,
+            pilot_evidence_dossiers=pilot_evidence_dossiers,
+        )
+
+        self.assertEqual(gates["blockers"], [])
+        self.assertTrue(
+            gates["gates"]["external_pilot_candidate_priority_review_only"]
+        )
+        self.assertTrue(
+            gates["gates"]["external_pilot_review_decision_export_no_decision"]
+        )
+        self.assertTrue(gates["gates"]["external_pilot_evidence_packet_review_only"])
+        self.assertTrue(
+            gates["gates"]["external_pilot_evidence_dossiers_review_only"]
+        )
+        self.assertEqual(gates["metadata"]["external_pilot_selected_candidate_count"], 1)
+        self.assertEqual(
+            gates["metadata"]["external_pilot_review_completed_decision_count"],
+            0,
+        )
+
+        blocked_gates = check_external_source_transfer_gates(
+            **_base_external_transfer_gate_inputs(),
+            pilot_candidate_priority=pilot_candidate_priority,
+            pilot_review_decision_export={
+                "metadata": {
+                    **pilot_review_decision_export["metadata"],
+                    "completed_decision_count": 1,
+                    "decision_status_counts": {"accept": 1},
+                },
+                "review_items": [
+                    {
+                        "accession": "P12345",
+                        "entry_id": "uniprot:P12345",
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": True,
+                        "decision": {
+                            "decision_status": "accept",
+                            "ready_for_label_import": True,
+                        },
+                    }
+                ],
+            },
+            pilot_evidence_packet=pilot_evidence_packet,
+            pilot_evidence_dossiers=pilot_evidence_dossiers,
+        )
+
+        self.assertFalse(
+            blocked_gates["gates"][
+                "external_pilot_review_decision_export_no_decision"
+            ]
+        )
+        self.assertIn(
+            "external_pilot_review_decision_export_no_decision",
+            blocked_gates["blockers"],
+        )
+
+        missing_requirement_gates = check_external_source_transfer_gates(
+            **_base_external_transfer_gate_inputs(),
+            pilot_candidate_priority=pilot_candidate_priority,
+            pilot_review_decision_export={
+                "metadata": pilot_review_decision_export["metadata"],
+                "review_items": [
+                    {
+                        **pilot_review_decision_export["review_items"][0],
+                        "review_requirements": [
+                            "curated_active_site_residue_evidence",
+                            "specific_reaction_or_mechanism_evidence",
+                        ],
+                    }
+                ],
+            },
+            pilot_evidence_packet=pilot_evidence_packet,
+            pilot_evidence_dossiers=pilot_evidence_dossiers,
+        )
+
+        self.assertFalse(
+            missing_requirement_gates["gates"][
+                "external_pilot_review_decision_export_no_decision"
+            ]
+        )
+        self.assertIn(
+            "external_pilot_review_decision_export_no_decision",
+            missing_requirement_gates["blockers"],
+        )
+
+        ineligible_priority = {
+            "metadata": pilot_candidate_priority["metadata"],
+            "rows": [
+                {
+                    **pilot_candidate_priority["rows"][0],
+                    "eligible_for_review_pilot": False,
+                    "pilot_priority_blockers": ["exact_sequence_holdout"],
+                }
+            ],
+        }
+        ineligible_gates = check_external_source_transfer_gates(
+            **_base_external_transfer_gate_inputs(),
+            pilot_candidate_priority=ineligible_priority,
+            pilot_review_decision_export=pilot_review_decision_export,
+            pilot_evidence_packet=pilot_evidence_packet,
+            pilot_evidence_dossiers=pilot_evidence_dossiers,
+        )
+
+        self.assertFalse(
+            ineligible_gates["gates"]["external_pilot_candidate_priority_review_only"]
+        )
+        self.assertIn(
+            "external_pilot_candidate_priority_review_only",
+            ineligible_gates["blockers"],
+        )
 
     def test_external_transfer_gate_requires_review_only_artifacts(self) -> None:
         gates = check_external_source_transfer_gates(

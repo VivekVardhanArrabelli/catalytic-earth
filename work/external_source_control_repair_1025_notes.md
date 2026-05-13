@@ -6,11 +6,11 @@ comparison, broad-EC disambiguation, active-site gap sourcing/export,
 active-site sourcing resolution, sequence-search export, representation-backend
 planning/sample, a candidate blocker matrix, candidate-lineage validation, a
 review-only pilot priority worklist, no-decision review packet export, and a
-consolidated pilot evidence packet.
+consolidated pilot evidence packet with review-only dossier safeguards.
 
 ## Current Gate
 
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 60/60
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 64/64
   review-only checks.
 - `countable_label_candidate_count` remains 0.
 - `ready_for_label_import` remains false.

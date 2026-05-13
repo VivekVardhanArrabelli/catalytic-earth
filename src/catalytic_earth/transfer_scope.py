@@ -32,6 +32,14 @@ REPRESENTATION_REVIEW_CONTEXT_FIELDS = (
     "scope_signal",
     "sequence_search_task",
 )
+EXTERNAL_PILOT_IMPORT_REVIEW_REQUIREMENTS = (
+    "curated_active_site_residue_evidence",
+    "specific_reaction_or_mechanism_evidence",
+    "complete_near_duplicate_sequence_search",
+    "leakage_safe_representation_control",
+    "review_decision",
+    "full_label_factory_gate",
+)
 REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
     "accession",
     "ec",
@@ -5952,14 +5960,9 @@ def build_external_source_pilot_review_decision_export(
                 "rank": rank,
                 "ready_for_label_import": False,
                 "representation_backend": row.get("representation_backend", {}),
-                "review_requirements": [
-                    "curated_active_site_residue_evidence",
-                    "specific_reaction_or_mechanism_evidence",
-                    "complete_near_duplicate_sequence_search",
-                    "leakage_safe_representation_control",
-                    "review_decision",
-                    "full_label_factory_gate",
-                ],
+                "review_requirements": list(
+                    EXTERNAL_PILOT_IMPORT_REVIEW_REQUIREMENTS
+                ),
                 "review_status": "external_pilot_review_decision_no_decision",
                 "sequence_search": row.get("sequence_search", {}),
             }
@@ -6088,14 +6091,9 @@ def build_external_source_pilot_evidence_packet(
                     "representation_backend", {}
                 ),
                 "review_status": "external_pilot_evidence_packet_review_only",
-                "review_requirements": [
-                    "curated_active_site_residue_evidence",
-                    "specific_reaction_or_mechanism_evidence",
-                    "complete_near_duplicate_sequence_search",
-                    "leakage_safe_representation_control",
-                    "review_decision",
-                    "full_label_factory_gate",
-                ],
+                "review_requirements": list(
+                    EXTERNAL_PILOT_IMPORT_REVIEW_REQUIREMENTS
+                ),
                 "sequence_search": sequence_row
                 or priority_row.get("sequence_search", {}),
                 "source_targets": source_targets,
@@ -6202,6 +6200,8 @@ def build_external_source_pilot_evidence_dossiers(
         sourcing_row = active_site_sourcing.get(accession, {})
         blockers = _external_pilot_dossier_blockers(
             packet_row=packet_row,
+            active_site_rows=active_rows,
+            reaction_rows=reaction_rows,
             matrix_row=matrix_row,
             readiness_row=readiness_row,
             representation_row=representation_row,
@@ -6257,6 +6257,12 @@ def build_external_source_pilot_evidence_dossiers(
         for row in rows
         if row["representation_control"]["backend_status"] not in (None, "missing")
     )
+    local_blocker_counts = Counter(
+        blocker
+        for row in rows
+        for blocker in row["remaining_blockers"]
+        if blocker.startswith("pilot_")
+    )
     return {
         "metadata": {
             "method": "external_source_pilot_evidence_dossier",
@@ -6286,6 +6292,16 @@ def build_external_source_pilot_evidence_dossiers(
             "representation_sample_candidate_count": representation_sample_count,
             "candidate_with_remaining_blocker_count": sum(
                 1 for row in rows if row["remaining_blockers"]
+            ),
+            "local_evidence_blocker_counts": dict(sorted(local_blocker_counts.items())),
+            "pilot_explicit_active_site_evidence_missing_count": local_blocker_counts.get(
+                "pilot_explicit_active_site_evidence_missing", 0
+            ),
+            "pilot_specific_reaction_context_missing_count": local_blocker_counts.get(
+                "pilot_specific_reaction_context_missing", 0
+            ),
+            "pilot_sequence_near_duplicate_alert_count": local_blocker_counts.get(
+                "pilot_sequence_near_duplicate_alert_present", 0
             ),
             "selected_accessions": [row["accession"] for row in rows],
         },
@@ -6463,6 +6479,8 @@ def _external_pilot_representation_summary(row: dict[str, Any]) -> dict[str, Any
 def _external_pilot_dossier_blockers(
     *,
     packet_row: dict[str, Any],
+    active_site_rows: list[dict[str, Any]],
+    reaction_rows: list[dict[str, Any]],
     matrix_row: dict[str, Any],
     readiness_row: dict[str, Any],
     representation_row: dict[str, Any],
@@ -6473,8 +6491,26 @@ def _external_pilot_dossier_blockers(
     for row in (packet_row, matrix_row, readiness_row, representation_row, sourcing_row):
         for blocker in row.get("blockers", []) or []:
             blockers.add(str(blocker))
+    explicit_active_site_count = sum(
+        1
+        for row in active_site_rows
+        if str(row.get("feature_type") or "").lower() == "active site"
+    ) + len(sourcing_row.get("sourced_active_site_positions", []) or [])
+    if explicit_active_site_count == 0:
+        blockers.add("pilot_explicit_active_site_evidence_missing")
+    if not any(row.get("ec_specificity") == "specific" for row in reaction_rows):
+        blockers.add("pilot_specific_reaction_context_missing")
     if not alignment_rows:
         blockers.add("complete_near_duplicate_sequence_search_not_completed")
+    if any(
+        row.get("verification_status")
+        in {
+            "alignment_exact_reference_holdout",
+            "alignment_near_duplicate_candidate_holdout",
+        }
+        for row in alignment_rows
+    ):
+        blockers.add("pilot_sequence_near_duplicate_alert_present")
     if representation_row.get("backend_status") in (None, "missing"):
         blockers.add("representation_backend_sample_missing_for_candidate")
     return sorted(blockers)
@@ -6806,6 +6842,193 @@ def _external_pilot_candidate_rationale(
         f"sequence_status={sequence.get('alignment_status')}; "
         f"representation_status={representation.get('sample_backend_status')}"
     )
+
+
+def _external_pilot_review_only_gate_checks(
+    *,
+    pilot_candidate_priority: dict[str, Any] | None,
+    pilot_review_decision_export: dict[str, Any] | None,
+    pilot_evidence_packet: dict[str, Any] | None,
+    pilot_evidence_dossiers: dict[str, Any] | None,
+) -> dict[str, bool]:
+    """Validate pilot artifacts without authorizing import or count growth."""
+
+    gates: dict[str, bool] = {}
+    if pilot_candidate_priority is not None:
+        priority_meta = pilot_candidate_priority.get("metadata", {})
+        priority_rows = _external_artifact_candidate_rows(pilot_candidate_priority)
+        selected_rows = [
+            row
+            for row in priority_rows
+            if row.get("pilot_selection_status") == "selected_for_review_pilot"
+        ]
+        max_candidates = int(
+            priority_meta.get("max_candidates", len(selected_rows)) or 0
+        )
+        max_per_lane = int(
+            priority_meta.get("max_per_lane", len(selected_rows)) or 0
+        )
+        selected_lane_counts: dict[str, int] = {}
+        for row in selected_rows:
+            lane_id = str(row.get("lane_id") or "")
+            selected_lane_counts[lane_id] = selected_lane_counts.get(lane_id, 0) + 1
+        leakage_policy = priority_meta.get("leakage_policy", {})
+        if not isinstance(leakage_policy, dict):
+            leakage_policy = {}
+        gates["external_pilot_candidate_priority_review_only"] = (
+            priority_meta.get("ready_for_label_import") is False
+            and priority_meta.get("countable_label_candidate_count") == 0
+            and int(priority_meta.get("selected_candidate_count", 0) or 0)
+            == len(selected_rows)
+            and len(selected_rows) > 0
+            and len(selected_rows) <= max_candidates
+            and all(count <= max_per_lane for count in selected_lane_counts.values())
+            and leakage_policy.get("text_or_label_fields_used_for_priority")
+            is False
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in selected_rows
+            )
+            and all(row.get("ready_for_label_import") is False for row in selected_rows)
+            and all(row.get("eligible_for_review_pilot") is True for row in selected_rows)
+            and all(not row.get("pilot_priority_blockers") for row in selected_rows)
+            and all(
+                row.get("review_status")
+                == "external_pilot_candidate_priority_review_only"
+                for row in selected_rows
+            )
+            and all(
+                (row.get("leakage_provenance") or {}).get(
+                    "text_or_label_fields_used_for_priority"
+                )
+                is False
+                for row in selected_rows
+            )
+        )
+    if pilot_review_decision_export is not None:
+        review_meta = pilot_review_decision_export.get("metadata", {})
+        review_items = _external_artifact_candidate_rows(pilot_review_decision_export)
+        expected_review_count = (
+            pilot_candidate_priority.get("metadata", {}).get("selected_candidate_count")
+            if pilot_candidate_priority is not None
+            else len(review_items)
+        )
+        gates["external_pilot_review_decision_export_no_decision"] = (
+            review_meta.get("ready_for_label_import") is False
+            and review_meta.get("review_only") is True
+            and review_meta.get("countable_label_candidate_count") == 0
+            and review_meta.get("completed_decision_count") == 0
+            and int(review_meta.get("candidate_count", 0) or 0) == len(review_items)
+            and int(review_meta.get("candidate_count", 0) or 0)
+            == int(expected_review_count or 0)
+            and len(review_items) > 0
+            and review_meta.get("decision_status_counts", {}).get("no_decision")
+            == len(review_items)
+            and all(
+                row.get("countable_label_candidate") is False for row in review_items
+            )
+            and all(row.get("ready_for_label_import") is False for row in review_items)
+            and all(
+                (row.get("decision") or {}).get("decision_status") == "no_decision"
+                for row in review_items
+            )
+            and all(
+                (row.get("decision") or {}).get("ready_for_label_import") is False
+                for row in review_items
+            )
+            and all(
+                set(EXTERNAL_PILOT_IMPORT_REVIEW_REQUIREMENTS)
+                <= set(row.get("review_requirements", []) or [])
+                for row in review_items
+            )
+        )
+    if pilot_evidence_packet is not None:
+        packet_meta = pilot_evidence_packet.get("metadata", {})
+        packet_rows = _external_artifact_candidate_rows(pilot_evidence_packet)
+        expected_packet_count = (
+            pilot_review_decision_export.get("metadata", {}).get("candidate_count")
+            if pilot_review_decision_export is not None
+            else (
+                pilot_candidate_priority.get("metadata", {}).get(
+                    "selected_candidate_count"
+                )
+                if pilot_candidate_priority is not None
+                else len(packet_rows)
+            )
+        )
+        gates["external_pilot_evidence_packet_review_only"] = (
+            packet_meta.get("ready_for_label_import") is False
+            and packet_meta.get("review_only") is True
+            and packet_meta.get("guardrail_clean") is True
+            and packet_meta.get("countable_label_candidate_count") == 0
+            and int(packet_meta.get("candidate_count", 0) or 0) == len(packet_rows)
+            and int(packet_meta.get("candidate_count", 0) or 0)
+            == int(expected_packet_count or 0)
+            and len(packet_rows) > 0
+            and int(packet_meta.get("sequence_search_packet_count", 0) or 0)
+            == len(packet_rows)
+            and int(packet_meta.get("source_target_count", 0) or 0) > 0
+            and not packet_meta.get("missing_sequence_export_accessions")
+            and not packet_meta.get("missing_required_active_site_export_accessions")
+            and all(
+                row.get("countable_label_candidate") is False for row in packet_rows
+            )
+            and all(row.get("ready_for_label_import") is False for row in packet_rows)
+            and all(
+                row.get("review_status")
+                == "external_pilot_evidence_packet_review_only"
+                for row in packet_rows
+            )
+            and all(row.get("source_targets") for row in packet_rows)
+            and all(
+                row.get("sequence_search", {})
+                .get("decision", {})
+                .get("decision_status")
+                == "no_decision"
+                for row in packet_rows
+            )
+            and all(
+                set(EXTERNAL_PILOT_IMPORT_REVIEW_REQUIREMENTS)
+                <= set(row.get("review_requirements", []) or [])
+                for row in packet_rows
+            )
+        )
+    if pilot_evidence_dossiers is not None:
+        dossier_meta = pilot_evidence_dossiers.get("metadata", {})
+        dossier_rows = _external_artifact_candidate_rows(pilot_evidence_dossiers)
+        expected_dossier_count = (
+            pilot_evidence_packet.get("metadata", {}).get("candidate_count")
+            if pilot_evidence_packet is not None
+            else len(dossier_rows)
+        )
+        gates["external_pilot_evidence_dossiers_review_only"] = (
+            dossier_meta.get("ready_for_label_import") is False
+            and dossier_meta.get("review_only") is True
+            and dossier_meta.get("countable_label_candidate_count") == 0
+            and int(dossier_meta.get("candidate_count", 0) or 0) == len(dossier_rows)
+            and int(dossier_meta.get("candidate_count", 0) or 0)
+            == int(expected_dossier_count or 0)
+            and len(dossier_rows) > 0
+            and all(
+                row.get("countable_label_candidate") is False for row in dossier_rows
+            )
+            and all(row.get("ready_for_label_import") is False for row in dossier_rows)
+            and all(
+                row.get("review_status")
+                == "external_pilot_evidence_dossier_review_only"
+                for row in dossier_rows
+            )
+            and all(row.get("active_site_evidence") for row in dossier_rows)
+            and all(row.get("reaction_evidence") for row in dossier_rows)
+            and all(row.get("sequence_evidence") for row in dossier_rows)
+            and all(row.get("representation_control") for row in dossier_rows)
+            and all(
+                row.get("evidence_dossier_status")
+                in {"blocked_before_import", "ready_for_review_decision"}
+                for row in dossier_rows
+            )
+        )
+    return gates
 
 
 def check_external_source_transfer_gates(
@@ -7832,6 +8055,14 @@ def check_external_source_transfer_gates(
             and matrix_audit_meta.get("completed_active_site_decision_count") == 0
             and matrix_audit_meta.get("completed_sequence_decision_count") == 0
         )
+    gates.update(
+        _external_pilot_review_only_gate_checks(
+            pilot_candidate_priority=pilot_candidate_priority,
+            pilot_review_decision_export=pilot_review_decision_export,
+            pilot_evidence_packet=pilot_evidence_packet,
+            pilot_evidence_dossiers=pilot_evidence_dossiers,
+        )
+    )
     if binding_context_repair_plan is not None:
         binding_meta = binding_context_repair_plan.get("metadata", {})
         binding_rows = [
@@ -8366,6 +8597,32 @@ def check_external_source_transfer_gates(
                     )
                 )
                 if transfer_blocker_matrix_audit is not None
+                else 0
+            ),
+            "external_pilot_selected_candidate_count": (
+                pilot_candidate_priority.get("metadata", {}).get(
+                    "selected_candidate_count", 0
+                )
+                if pilot_candidate_priority is not None
+                else 0
+            ),
+            "external_pilot_review_completed_decision_count": (
+                pilot_review_decision_export.get("metadata", {}).get(
+                    "completed_decision_count", 0
+                )
+                if pilot_review_decision_export is not None
+                else 0
+            ),
+            "external_pilot_evidence_packet_source_target_count": (
+                pilot_evidence_packet.get("metadata", {}).get("source_target_count", 0)
+                if pilot_evidence_packet is not None
+                else 0
+            ),
+            "external_pilot_dossier_remaining_blocker_count": (
+                pilot_evidence_dossiers.get("metadata", {}).get(
+                    "candidate_with_remaining_blocker_count", 0
+                )
+                if pilot_evidence_dossiers is not None
                 else 0
             ),
             "binding_context_ready_candidate_count": (

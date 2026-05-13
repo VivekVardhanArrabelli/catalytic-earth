@@ -182,8 +182,8 @@ sequence-search export, import-readiness audit, active-site sourcing queue/expor
 active-site sourcing resolution, representation-backend plan/sample, a
 candidate blocker matrix, a 10-row external pilot candidate priority worklist,
 a consolidated pilot evidence packet, 10 per-candidate pilot evidence
-dossiers, and a 60/60 external transfer gate with candidate and artifact-path
-lineage validation. The
+dossiers, and a 64/64 external transfer gate with candidate, artifact-path, and
+pilot review-only decision validation. The
 evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
@@ -239,7 +239,9 @@ and non-countable.
 the selected 10 rows into review-only per-candidate dossiers: 7 currently have
 explicit UniProt active-site feature support, all 10 have Rhea reaction
 context, 4 have representation-sample rows, and all 10 still carry import
-blockers.
+blockers. The dossier assembly now adds local evidence-completeness blockers
+itself; the 3 selected rows without explicit active-site evidence are flagged,
+and no selected row is missing specific reaction context.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All

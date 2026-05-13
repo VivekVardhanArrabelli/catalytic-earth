@@ -134,18 +134,20 @@ Current review-only external artifacts:
   selected 10 into per-candidate review dossiers. Seven have explicit UniProt
   active-site feature support, all 10 have Rhea reaction context, four have
   representation-sample rows, and all 10 still carry import blockers. The
-  artifact is review-only and creates 0 countable candidates.
+  artifact is review-only and creates 0 countable candidates. The latest
+  assembly also adds local evidence-completeness blockers, including explicit
+  active-site-evidence blockers for `O60568`, `O95050`, and `P51580`.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
   checkpoints, then 45/45 after sequence-alignment verification and the
-  active-site sourcing queue. The current gate now passes 60/60 after the source
-  exports, active-site sourcing resolution, representation-backend sample, and
-  blocker matrix. It validates both candidate lineage across high-fan-in
-  external artifacts and artifact-path lineage across all 61 supplied gate
-  inputs, failing fast on mixed-slice paths or payload-declared slice
-  contradictions. It is still not
-  ready for label import.
+  active-site sourcing queue. The current gate now passes 64/64 after the source
+  exports, active-site sourcing resolution, representation-backend sample,
+  blocker matrix, and pilot review-only safeguards. It validates both candidate
+  lineage across high-fan-in external artifacts and artifact-path lineage across
+  all supplied gate inputs, failing fast on mixed-slice paths,
+  payload-declared slice contradictions, or pilot artifacts that stop being
+  review-only/no-decision work products. It is still not ready for label import.
 
 Sequence-similarity guardrail details:
 
