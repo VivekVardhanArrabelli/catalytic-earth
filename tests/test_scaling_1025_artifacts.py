@@ -73,6 +73,46 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         sample_audit = _load_json(
             ROOT / "artifacts" / "v3_external_source_candidate_sample_audit_1025.json"
         )
+        candidate_manifest = _load_json(
+            ROOT / "artifacts" / "v3_external_source_candidate_manifest_1025.json"
+        )
+        candidate_manifest_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_candidate_manifest_audit_1025.json"
+        )
+        evidence_plan = _load_json(
+            ROOT / "artifacts" / "v3_external_source_evidence_plan_1025.json"
+        )
+        evidence_export = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_evidence_request_export_1025.json"
+        )
+        active_site_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_active_site_evidence_queue_1025.json"
+        )
+        external_import_safety = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_review_only_import_safety_audit_1025.json"
+        )
+        external_transfer_gate = _load_json(
+            ROOT / "artifacts" / "v3_external_source_transfer_gate_check_1025.json"
+        )
+        reaction_evidence = _load_json(
+            ROOT / "artifacts" / "v3_external_source_reaction_evidence_sample_1025.json"
+        )
+        reaction_evidence_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_reaction_evidence_sample_audit_1025.json"
+        )
+        lane_balance = _load_json(
+            ROOT / "artifacts" / "v3_external_source_lane_balance_audit_1025.json"
+        )
 
         self.assertTrue(source_limit["metadata"]["source_limit_reached"])
         self.assertEqual(source_limit["metadata"]["observed_source_entries"], 1003)
@@ -103,6 +143,207 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertTrue(sample_audit["metadata"]["guardrail_clean"])
         self.assertEqual(sample_audit["metadata"]["countable_label_candidate_count"], 0)
         self.assertEqual(sample_audit["blockers"], [])
+        self.assertFalse(candidate_manifest["metadata"]["ready_for_label_import"])
+        self.assertTrue(candidate_manifest["metadata"]["ready_for_external_review"])
+        self.assertEqual(
+            candidate_manifest["metadata"]["candidate_count"],
+            sample["metadata"]["candidate_count"],
+        )
+        self.assertEqual(
+            candidate_manifest["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertTrue(candidate_manifest["metadata"]["heuristic_control_required"])
+        self.assertEqual(candidate_manifest["metadata"]["missing_ood_lane_count"], 0)
+        self.assertEqual(candidate_manifest["metadata"]["duplicate_accession_count"], 0)
+        self.assertEqual(candidate_manifest["metadata"]["structure_supported_count"], 30)
+        self.assertEqual(candidate_manifest["metadata"]["exact_reference_overlap_count"], 2)
+        exact_overlap_rows = {
+            row["accession"]: row["external_source_controls"][
+                "sequence_similarity_control"
+            ]["matched_m_csa_entry_ids"]
+            for row in candidate_manifest["rows"]
+            if row["external_source_controls"]["sequence_similarity_control"][
+                "exact_reference_overlap"
+            ]
+        }
+        self.assertEqual(
+            exact_overlap_rows,
+            {"O15527": ["m_csa:185"], "P42126": ["m_csa:341"]},
+        )
+        self.assertEqual(
+            candidate_manifest["metadata"]["sequence_failure_set_overlap_count"], 0
+        )
+        self.assertTrue(candidate_manifest_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            candidate_manifest_audit["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(
+            candidate_manifest_audit["metadata"]["import_ready_row_count"], 0
+        )
+        self.assertEqual(candidate_manifest_audit["blockers"], [])
+        self.assertFalse(evidence_plan["metadata"]["ready_for_label_import"])
+        self.assertTrue(evidence_plan["metadata"]["ready_for_evidence_collection"])
+        self.assertEqual(evidence_plan["metadata"]["candidate_count"], 30)
+        self.assertEqual(
+            evidence_plan["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["active_site_evidence_required_count"], 30
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["exact_reference_overlap_holdout_count"], 2
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["broad_or_incomplete_ec_candidate_count"], 7
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["broad_or_incomplete_ec_only_candidate_count"],
+            3,
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["broad_or_incomplete_ec_numbers"],
+            [
+                "1.1.1.-",
+                "1.11.1.-",
+                "1.8.-.-",
+                "2.1.1.-",
+                "2.7.1.-",
+                "3.2.2.-",
+                "4.2.99.-",
+            ],
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["next_action_counts"][
+                "collect_active_site_and_mechanism_evidence"
+            ],
+            25,
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["next_action_counts"][
+                "resolve_broad_or_incomplete_ec_before_active_site_mapping"
+            ],
+            3,
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["next_action_counts"][
+                "route_exact_reference_overlap_to_holdout_control"
+            ],
+            2,
+        )
+        self.assertEqual(
+            evidence_plan["metadata"]["required_evidence_counts"][
+                "specific_reaction_disambiguation_for_broad_ec"
+            ],
+            7,
+        )
+        self.assertTrue(evidence_export["metadata"]["external_source_review_only"])
+        self.assertFalse(evidence_export["metadata"]["ready_for_label_import"])
+        self.assertEqual(evidence_export["metadata"]["exported_count"], 30)
+        self.assertEqual(
+            evidence_export["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            evidence_export["metadata"]["decision_counts"], {"no_decision": 30}
+        )
+        self.assertFalse(active_site_queue["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            active_site_queue["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(active_site_queue["metadata"]["candidate_count"], 30)
+        self.assertEqual(active_site_queue["metadata"]["ready_candidate_count"], 25)
+        self.assertEqual(active_site_queue["metadata"]["deferred_candidate_count"], 5)
+        self.assertEqual(
+            active_site_queue["metadata"]["queue_status_counts"],
+            {
+                "defer_broad_ec_disambiguation": 3,
+                "defer_exact_reference_overlap_holdout": 2,
+                "ready_for_active_site_evidence": 25,
+            },
+        )
+        self.assertTrue(
+            all(
+                row["countable_label_candidate"] is False
+                for row in active_site_queue["rows"]
+            )
+        )
+        self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
+        self.assertEqual(
+            external_import_safety["metadata"]["total_new_countable_label_count"], 0
+        )
+        self.assertEqual(
+            external_import_safety["rows"][0]["review_only_flags"][
+                "external_source_review_only"
+            ],
+            True,
+        )
+        self.assertEqual(external_transfer_gate["blockers"], [])
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 11)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 11)
+        self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            external_transfer_gate["metadata"][
+                "ready_for_external_evidence_collection"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["active_site_ready_candidate_count"],
+            25,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["active_site_deferred_candidate_count"],
+            5,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["active_site_evidence_queue_review_only"]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(external_transfer_gate["metadata"]["external_lane_count"], 6)
+        self.assertEqual(
+            external_transfer_gate["metadata"]["external_dominant_lane_fraction"],
+            0.1667,
+        )
+        self.assertFalse(reaction_evidence["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            reaction_evidence["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(reaction_evidence["metadata"]["candidate_count"], 6)
+        self.assertEqual(
+            reaction_evidence["metadata"]["candidate_with_reaction_context_count"], 6
+        )
+        self.assertEqual(
+            reaction_evidence["metadata"]["broad_or_incomplete_ec_count"], 3
+        )
+        self.assertEqual(
+            reaction_evidence["metadata"]["broad_or_incomplete_ec_numbers"],
+            ["1.1.1.-", "1.11.1.-", "1.8.-.-"],
+        )
+        self.assertEqual(reaction_evidence["metadata"]["fetch_failure_count"], 0)
+        self.assertGreater(reaction_evidence["metadata"]["reaction_record_count"], 0)
+        self.assertTrue(
+            all(
+                row["evidence_status"] == "reaction_context_only"
+                and row["countable_label_candidate"] is False
+                for row in reaction_evidence["rows"]
+            )
+        )
+        self.assertTrue(reaction_evidence_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            reaction_evidence_audit["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(
+            reaction_evidence_audit["metadata"]["broad_ec_context_row_count"], 6
+        )
+        self.assertEqual(reaction_evidence_audit["blockers"], [])
+        self.assertTrue(lane_balance["metadata"]["guardrail_clean"])
+        self.assertEqual(lane_balance["metadata"]["lane_count"], 6)
+        self.assertEqual(lane_balance["metadata"]["dominant_lane_fraction"], 0.1667)
+        self.assertEqual(lane_balance["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(lane_balance["blockers"], [])
 
 
 def _load_json(path: Path) -> dict:

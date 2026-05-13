@@ -104,8 +104,9 @@ The M-CSA-only label-factory path is now a seed benchmark, not the whole atlas.
 The accepted 1,000 state has 679 countable labels, and the 1,025 preview adds 0
 new countable labels while exposing 1,003 observed M-CSA source records. Scaling
 toward 10,000 labels now requires an external-source transfer method, starting
-with review-only UniProtKB/Swiss-Prot candidate manifests, OOD calibration,
-sequence-similarity failure controls, and the existing heuristic retrieval
-baseline as a control. None of those external-source artifacts can count as
-benchmark labels until they pass the label factory through an explicit decision
-artifact.
+with review-only UniProtKB/Swiss-Prot candidate manifests, lane-balance audits,
+evidence requests, active-site evidence queues, OOD calibration,
+sequence-similarity failure controls, Rhea reaction context, and the existing
+heuristic retrieval baseline as a control.
+None of those external-source artifacts can count as benchmark labels until
+they pass the label factory through an explicit decision artifact.

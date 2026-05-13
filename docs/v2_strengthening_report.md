@@ -170,7 +170,9 @@ What is now better:
 - local performance is measured and reproducible
 - the 1,025 preview exposes source-scale limits without weakening label gates:
   it adds 0 countable labels, keeps all 329 review-state rows non-countable,
-  and shifts next work to external-source transfer with OOD controls
+  and shifts next work to external-source transfer with OOD controls; the first
+  30 external candidates now pass an 11/11 review-only transfer gate for evidence
+  collection while remaining blocked from label import
 
 What remains weak:
 
@@ -184,4 +186,5 @@ What remains weak:
 - local performance does not measure full-database scalability
 - M-CSA-only tranche growth cannot reach the 10,000-label target; external
   UniProtKB/Swiss-Prot transfer is now a separate review-only methodology
-  until calibrated and factory-gated
+  until calibrated, compared against heuristic retrieval controls, and
+  factory-gated

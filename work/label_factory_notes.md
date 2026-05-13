@@ -9,7 +9,10 @@ canonical registry has 679 countable labels. The bounded 1,025 preview is
 cleanly non-promotable with 0 accepted labels; 329 rows remain
 `needs_more_evidence` and are explicitly non-countable under the 1,025 preview
 deferral audit. Next work should build the external-source transfer path rather
-than opening another M-CSA-only tranche.
+than opening another M-CSA-only tranche. The current external path is
+review-only: candidate manifest, lane-balance audit, evidence plan/export,
+active-site evidence queue, import-safety audit, 11/11 transfer gate, and
+bounded Rhea reaction context all keep `countable_label_candidate_count=0`.
 
 ## Current Generated Artifacts
 
@@ -137,9 +140,15 @@ so the next scaling step is external-source transfer rather than another
 M-CSA-only batch. `artifacts/v3_external_source_transfer_manifest_1025.json`,
 `artifacts/v3_external_source_query_manifest_1025.json`,
 `artifacts/v3_external_ood_calibration_plan_1025.json`,
-`artifacts/v3_external_source_candidate_sample_1025.json`, and
-`artifacts/v3_external_source_candidate_sample_audit_1025.json` are review-only
-discovery artifacts with 0 countable label candidates.
+`artifacts/v3_external_source_candidate_sample_1025.json`,
+`artifacts/v3_external_source_candidate_sample_audit_1025.json`,
+`artifacts/v3_external_source_candidate_manifest_1025.json`,
+`artifacts/v3_external_source_lane_balance_audit_1025.json`,
+`artifacts/v3_external_source_evidence_plan_1025.json`,
+`artifacts/v3_external_source_evidence_request_export_1025.json`,
+`artifacts/v3_external_source_transfer_gate_check_1025.json`, and
+`artifacts/v3_external_source_reaction_evidence_sample_1025.json` are
+review-only discovery artifacts with 0 countable label candidates.
 
 Historical 700 gate state: 20/20 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional

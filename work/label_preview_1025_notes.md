@@ -26,13 +26,35 @@ External-source transfer remains review-only. The new artifacts
 `artifacts/v3_external_source_transfer_manifest_1025.json`,
 `artifacts/v3_external_source_query_manifest_1025.json`,
 `artifacts/v3_external_ood_calibration_plan_1025.json`,
-`artifacts/v3_external_source_candidate_sample_1025.json`, and
-`artifacts/v3_external_source_candidate_sample_audit_1025.json` define a
-bounded UniProtKB/Swiss-Prot transfer path, draft six ontology-pressure query
-lanes, fetch a 30-row read-only candidate sample, and verify that every row is
-non-countable. These artifacts are discovery-facing scaffolds only; they do not
-create benchmark labels.
+`artifacts/v3_external_source_candidate_sample_1025.json`,
+`artifacts/v3_external_source_candidate_sample_audit_1025.json`,
+`artifacts/v3_external_source_candidate_manifest_1025.json`,
+`artifacts/v3_external_source_candidate_manifest_audit_1025.json`,
+`artifacts/v3_external_source_evidence_plan_1025.json`,
+`artifacts/v3_external_source_evidence_request_export_1025.json`,
+`artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
+`artifacts/v3_external_source_transfer_gate_check_1025.json` define a bounded
+UniProtKB/Swiss-Prot transfer path, draft six ontology-pressure query lanes,
+fetch a 30-row read-only candidate sample, attach OOD and exact-reference
+sequence controls, request active-site/mechanism/heuristic-control evidence,
+carry sampled PDB/AlphaFold structure references into the evidence export, queue
+25 review-only active-site evidence rows while deferring five rows, and pass the
+11/11 external-transfer gate for review-only evidence collection.
+Two sample accessions (`O15527` and `P42126`) overlap existing M-CSA reference
+accessions and are routed to holdout controls. The lane-balance audit is clean:
+six lanes each contribute five candidates, so the initial review sample has not
+collapsed to one chemistry. These artifacts are
+discovery-facing scaffolds only; they do not create benchmark labels.
+`artifacts/v3_external_source_reaction_evidence_sample_1025.json` then fetches
+Rhea reaction context for the first six external candidates, yielding 22
+reaction records with 0 fetch failures; its guardrail audit is clean, and
+those rows remain `reaction_context_only` and non-countable because no
+active-site mapping or heuristic-control score exists. The audit also flags
+three broad or incomplete EC queries (`1.1.1.-`, `1.11.1.-`, and `1.8.-.-`) as
+review-only context, not specific mechanism evidence.
 
-Next bounded work: implement the external-source transfer path as a gated,
-review-only candidate manifest with OOD calibration and sequence-similarity
-failure controls before any countable external labels can be imported.
+Next bounded work: collect or prototype the external-source active-site and
+mechanism evidence requested by the active-site evidence queue, resolve
+broad-only EC rows separately, then compare any resulting candidate evidence
+against heuristic geometry retrieval as the required control before any
+countable external labels can be imported.

@@ -660,10 +660,26 @@ Current 1,025-preview state:
 - `artifacts/v3_external_source_transfer_manifest_1025.json`,
   `artifacts/v3_external_source_query_manifest_1025.json`,
   `artifacts/v3_external_ood_calibration_plan_1025.json`,
-  `artifacts/v3_external_source_candidate_sample_1025.json`, and
-  `artifacts/v3_external_source_candidate_sample_audit_1025.json` scope a
+  `artifacts/v3_external_source_candidate_sample_1025.json`,
+  `artifacts/v3_external_source_candidate_sample_audit_1025.json`,
+  `artifacts/v3_external_source_candidate_manifest_1025.json`,
+  `artifacts/v3_external_source_candidate_manifest_audit_1025.json`,
+  `artifacts/v3_external_source_lane_balance_audit_1025.json`,
+  `artifacts/v3_external_source_evidence_plan_1025.json`,
+  `artifacts/v3_external_source_evidence_request_export_1025.json`,
+  `artifacts/v3_external_source_active_site_evidence_queue_1025.json`,
+  `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
+  `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
-  candidates and must not be imported as labels.
+  candidates, route two exact-reference overlaps to holdout controls, pass the
+  11/11 external transfer gate for evidence collection, pass the lane-balance
+  audit across six query lanes, queue 25 review-only active-site evidence rows,
+  defer five rows, and must not be imported as labels.
+  `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
+  adds bounded Rhea reaction context for six candidates while keeping every row
+  non-countable and unmapped to active-site evidence; its companion guardrail
+  audit is clean and flags three broad/incomplete EC queries as review-only
+  context.
 
 ## Automation Lock
 

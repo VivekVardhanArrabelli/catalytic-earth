@@ -76,8 +76,9 @@ for expert review, not validated functions.
 - The 1,025 preview has been processed but not promoted: it adds 0 countable
   labels, keeps 329 review-state rows non-countable, and shows the current
   M-CSA-only source slice has 1,003 records. The next scaling method is
-  external-source transfer with OOD calibration and sequence-similarity
-  controls, not blind M-CSA tranche growth.
+  external-source transfer with OOD calibration, sequence-similarity controls,
+  balanced review-only candidate lanes, evidence requests, and heuristic
+  retrieval controls, not blind M-CSA tranche growth.
 - Label-factory artifacts now provide bronze/silver/gold label schema,
   promotion/demotion audit, adversarial negative controls, active-learning
   review ranking, family-propagation guardrails, and expert-review

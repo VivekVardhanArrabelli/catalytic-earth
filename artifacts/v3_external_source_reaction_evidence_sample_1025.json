@@ -1,0 +1,402 @@
+{
+  "blockers": [
+    "reaction_context_not_mapped_to_candidate_active_site",
+    "heuristic_control_scores_not_computed",
+    "external_decision_artifact_not_built",
+    "not_label_factory_gated"
+  ],
+  "candidate_summaries": [
+    {
+      "accession": "A2RUC4",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.14.11.42"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "A5PLL7",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.14.19.77"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "C9JRZ8",
+      "broad_or_incomplete_ec_numbers": [
+        "1.1.1.-"
+      ],
+      "ec_numbers": [
+        "1.1.1.-",
+        "1.1.1.216",
+        "1.1.1.300",
+        "1.1.1.54",
+        "1.1.1.64"
+      ],
+      "reaction_record_count": 6
+    },
+    {
+      "accession": "O14756",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.1.1.105",
+        "1.1.1.209",
+        "1.1.1.239",
+        "1.1.1.53",
+        "1.1.1.62"
+      ],
+      "reaction_record_count": 9
+    },
+    {
+      "accession": "O15247",
+      "broad_or_incomplete_ec_numbers": [
+        "1.11.1.-",
+        "1.8.-.-"
+      ],
+      "ec_numbers": [
+        "1.11.1.-",
+        "1.8.-.-"
+      ],
+      "reaction_record_count": 4
+    },
+    {
+      "accession": "Q969G6",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.1.26"
+      ],
+      "reaction_record_count": 1
+    }
+  ],
+  "fetch_failures": [],
+  "metadata": {
+    "broad_or_incomplete_ec_count": 3,
+    "broad_or_incomplete_ec_numbers": [
+      "1.1.1.-",
+      "1.11.1.-",
+      "1.8.-.-"
+    ],
+    "candidate_count": 6,
+    "candidate_with_reaction_context_count": 6,
+    "countable_label_candidate_count": 0,
+    "fetch_failure_count": 0,
+    "max_candidates": 6,
+    "max_reactions_per_ec": 2,
+    "method": "external_source_reaction_evidence_sample",
+    "queried_ec_count": 15,
+    "reaction_record_count": 22,
+    "ready_for_label_import": false,
+    "review_only_rule": "Rhea reaction context is evidence to review; it is not active-site mapping and cannot create countable labels"
+  },
+  "rows": [
+    {
+      "accession": "A2RUC4",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.11.42",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:A2RUC4",
+      "equation": "7-[(3S)-3-amino-3-carboxypropyl]wyosine(37) in tRNA(Phe) + 2-oxoglutarate + O2 = 7-(2-hydroxy-3-amino-3-carboxypropyl)wyosine(37) in tRNA(Phe) + succinate + CO2",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:37899",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "A5PLL7",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.19.77",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:A5PLL7",
+      "equation": "a 1-(1,2-saturated alkyl)-2-acyl-sn-glycero-3-phosphoethanolamine + 2 Fe(II)-[cytochrome b5] + O2 + 2 H(+) = a 1-O-(1Z-alkenyl)-2-acyl-sn-glycero-3-phosphoethanolamine + 2 Fe(III)-[cytochrome b5] + 2 H2O",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:22956",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "cyclohexanol + NAD(+) = cyclohexanone + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10044",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "(2R)-hydroxy-4-methylpentanoate + NAD(+) = 4-methyl-2-oxopentanoate + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10052",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.216",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "(2E,6E)-farnesol + NADP(+) = (2E,6E)-farnesal + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14697",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.300",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "all-trans-retinol + NADP(+) = all-trans-retinal + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:25033",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.54",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "allyl alcohol + NADP(+) = acrolein + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12168",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.64",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:C9JRZ8",
+      "equation": "testosterone + NADP(+) = androst-4-ene-3,17-dione + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14981",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.105",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "all-trans-retinol + NAD(+) = all-trans-retinal + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:21284",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.105",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "all-trans-retinol--[retinol-binding protein] + NAD(+) = all-trans-retinal--[retinol-binding protein] + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:48488",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.209",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "androsterone + NADP(+) = 5alpha-androstan-3,17-dione + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:20377",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.209",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "androsterone + NAD(+) = 5alpha-androstan-3,17-dione + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:20381",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.239",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "testosterone + NAD(+) = androst-4-ene-3,17-dione + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14929",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.53",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "androstan-3alpha,17beta-diol + NAD(+) = 17beta-hydroxyandrostanone + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:22400",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.53",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "5alpha-androstane-3alpha,17beta-diol + NAD(+) = 17beta-hydroxy-5alpha-androstan-3-one + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:42004",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.62",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "17beta-estradiol + NAD(+) = estrone + NADH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24612",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "ec_number": "1.1.1.62",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O14756",
+      "equation": "17beta-estradiol + NADP(+) = estrone + NADPH + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24616",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "ec_number": "1.11.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15247",
+      "equation": "(S)-2-hydroxypropylphosphonate + H2O2 = (1R,2S)-epoxypropylphosphonate + 2 H2O",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10808",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "ec_number": "1.11.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15247",
+      "equation": "H2O2 + NADPH + H(+) = NADP(+) + 2 H2O",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:15173",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "ec_number": "1.8.-.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15247",
+      "equation": "6-decylubiquinone + 2 thiosulfate = 6-decylubiquinol + tetrathionate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10936",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "ec_number": "1.8.-.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15247",
+      "equation": "L,L-homocystine + 2 glutathione = 2 L-homocysteine + glutathione disulfide",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:11464",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.26",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q969G6",
+      "equation": "riboflavin + ATP = FMN + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:14357",
+      "scope_signal": "transferase_phosphoryl"
+    }
+  ]
+}

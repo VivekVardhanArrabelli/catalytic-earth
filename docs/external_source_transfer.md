@@ -16,6 +16,28 @@ import.
   countable label candidates.
 - The first read-only external sample has 30 candidates across six query lanes,
   0 fetch failures, and a clean non-countable guardrail audit.
+- The external candidate manifest attaches OOD controls, heuristic-control
+  requirements, and exact-reference sequence-cluster controls to those 30
+  candidates. Two candidates (`O15527` and `P42126`) overlap existing M-CSA
+  reference accessions and are routed to holdout controls, not count growth.
+  The lane-balance audit is clean: six lanes have five candidates each, so the
+  first external sample has not collapsed to one chemistry.
+- The external evidence plan/export requests active-site residue evidence,
+  curated mechanism/reaction evidence, structure mapping, OOD assignment,
+  sequence holdout checks, heuristic retrieval controls, review decisions, and
+  full factory gates for every candidate while carrying the sampled PDB and
+  AlphaFold structure references forward. It flags seven candidates with broad
+  or incomplete EC context, defers three broad-only candidates for specific
+  reaction disambiguation, and exports a review-only active-site evidence queue
+  with 25 ready candidates and five deferred candidates. The external transfer
+  gate passes 11/11 checks for review-only evidence collection and remains not
+  ready for label import.
+- The first bounded reaction-context pass queries Rhea for six external
+  candidates, finds 22 reaction records with 0 fetch failures, and keeps every
+  row `reaction_context_only` and non-countable because no active-site mapping
+  or heuristic control has been computed. Its guardrail audit is clean and
+  explicitly flags three broad or incomplete EC queries (`1.1.1.-`,
+  `1.11.1.-`, and `1.8.-.-`) as review-only context.
 
 ## Artifacts
 
@@ -59,16 +81,80 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-candidate-sam
 PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-candidate-sample \
   --candidate-sample artifacts/v3_external_source_candidate_sample_1025.json \
   --out artifacts/v3_external_source_candidate_sample_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-candidate-manifest \
+  --candidate-sample artifacts/v3_external_source_candidate_sample_1025.json \
+  --ood-calibration-plan artifacts/v3_external_ood_calibration_plan_1025.json \
+  --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json \
+  --sequence-similarity-failure-sets artifacts/v3_sequence_similarity_failure_sets_1025.json \
+  --transfer-manifest artifacts/v3_external_source_transfer_manifest_1025.json \
+  --out artifacts/v3_external_source_candidate_manifest_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-candidate-manifest \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --out artifacts/v3_external_source_candidate_manifest_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-lane-balance \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --min-lanes 3 \
+  --max-dominant-lane-fraction 0.6 \
+  --out artifacts/v3_external_source_lane_balance_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-evidence-plan \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --candidate-manifest-audit artifacts/v3_external_source_candidate_manifest_audit_1025.json \
+  --out artifacts/v3_external_source_evidence_plan_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-evidence-request-export \
+  --evidence-plan artifacts/v3_external_source_evidence_plan_1025.json \
+  --max-rows 50 \
+  --out artifacts/v3_external_source_evidence_request_export_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-active-site-evidence-queue \
+  --evidence-plan artifacts/v3_external_source_evidence_plan_1025.json \
+  --max-rows 50 \
+  --out artifacts/v3_external_source_active_site_evidence_queue_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
+  --labels data/registries/curated_mechanism_labels.json \
+  --review artifacts/v3_external_source_evidence_request_export_1025.json \
+  --out artifacts/v3_external_source_review_only_import_safety_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gates \
+  --transfer-manifest artifacts/v3_external_source_transfer_manifest_1025.json \
+  --query-manifest artifacts/v3_external_source_query_manifest_1025.json \
+  --ood-calibration-plan artifacts/v3_external_ood_calibration_plan_1025.json \
+  --candidate-sample-audit artifacts/v3_external_source_candidate_sample_audit_1025.json \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --candidate-manifest-audit artifacts/v3_external_source_candidate_manifest_audit_1025.json \
+  --lane-balance-audit artifacts/v3_external_source_lane_balance_audit_1025.json \
+  --evidence-plan artifacts/v3_external_source_evidence_plan_1025.json \
+  --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
+  --review-only-import-safety-audit artifacts/v3_external_source_review_only_import_safety_audit_1025.json \
+  --active-site-evidence-queue artifacts/v3_external_source_active_site_evidence_queue_1025.json \
+  --out artifacts/v3_external_source_transfer_gate_check_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-reaction-evidence-sample \
+  --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
+  --max-candidates 6 \
+  --max-reactions-per-ec 2 \
+  --out artifacts/v3_external_source_reaction_evidence_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-reaction-evidence-sample \
+  --reaction-evidence-sample artifacts/v3_external_source_reaction_evidence_sample_1025.json \
+  --out artifacts/v3_external_source_reaction_evidence_sample_audit_1025.json
 ```
 
 ## Guardrails
 
 External-source artifacts are not label registries. They must remain
-non-countable until a future run builds explicit external candidate evidence,
-OOD calibration, sequence-similarity failure controls, review exports, decision
-artifacts, and the full label-factory gate.
+non-countable until a future run builds explicit external candidate evidence
+and then passes OOD calibration, sequence-similarity failure controls, review
+exports, decision artifacts, heuristic control comparison, and the full
+label-factory gate. The current gate only authorizes review-only evidence
+collection.
 
 Do not import external candidates directly into
 `data/registries/curated_mechanism_labels.json`. The first safe external-source
-milestone is a review-only candidate manifest that can fail cleanly without
-changing the benchmark label count.
+milestone is a review-only candidate manifest and evidence-request export that
+can fail cleanly without changing the benchmark label count.

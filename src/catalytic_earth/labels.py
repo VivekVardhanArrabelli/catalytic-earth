@@ -5774,6 +5774,9 @@ def build_provisional_review_decision_batch(
     local_evidence_gap_review_only = (
         review_source_method == "expert_label_decision_local_evidence_review_export"
     )
+    external_source_review_only = (
+        review_source_method == "external_source_evidence_request_export"
+    )
     decision_counts: Counter = Counter()
     decision_entry_ids: dict[str, list[str]] = {}
     selected_boundary_controls = 0
@@ -5821,6 +5824,18 @@ def build_provisional_review_decision_batch(
                 "review_status": "expert_reviewed",
                 "local_evidence_resolution": "needs_more_evidence",
             }
+        elif external_source_review_only or isinstance(
+            item.get("external_source_context"), dict
+        ):
+            item["decision"] = {
+                **decision,
+                "action": "no_decision",
+                "reviewer": None,
+                "rationale": None,
+                "evidence_score": None,
+                "review_status": "expert_reviewed",
+                "external_source_resolution": "needs_more_evidence",
+            }
         elif item.get("current_label") is None:
             item["decision"] = _provisional_unlabeled_decision(
                 item,
@@ -5863,6 +5878,7 @@ def build_provisional_review_decision_batch(
             "reaction_substrate_mismatch_review_only": reaction_mismatch_review_only,
             "expert_label_decision_review_only": expert_label_decision_review_only,
             "local_evidence_gap_review_only": local_evidence_gap_review_only,
+            "external_source_review_only": external_source_review_only,
             "policy": (
                 "Automation-curated batch decisions stay bronze and are imported "
                 "as automation_curated or needs_expert_review records, not gold "
@@ -12085,6 +12101,11 @@ def import_countable_review_decisions(
         == "expert_label_decision_local_evidence_review_export"
         or bool(review_meta.get("local_evidence_gap_review_only"))
     )
+    external_source_review_only = (
+        review_meta.get("method") == "external_source_evidence_request_export"
+        or review_meta.get("source_method") == "external_source_evidence_request_export"
+        or bool(review_meta.get("external_source_review_only"))
+    )
     for item in countable_review.get("review_items", []):
         if not isinstance(item, dict):
             continue
@@ -12097,6 +12118,7 @@ def import_countable_review_decisions(
             or decision.get("review_status", "expert_reviewed") not in COUNTABLE_REVIEW_STATUSES
             or expert_label_decision_review_only
             or local_evidence_gap_review_only
+            or external_source_review_only
             or (
                 reaction_mismatch_review_only
                 and (
@@ -12141,6 +12163,12 @@ def audit_review_only_import_safety(
             == "expert_label_decision_local_evidence_review_export"
             or metadata.get("source_method")
             == "expert_label_decision_local_evidence_review_export",
+            "external_source_review_only": bool(
+                metadata.get("external_source_review_only")
+            )
+            or metadata.get("method") == "external_source_evidence_request_export"
+            or metadata.get("source_method")
+            == "external_source_evidence_request_export",
         }
         is_review_only = any(review_only_flags.values())
         rows.append(

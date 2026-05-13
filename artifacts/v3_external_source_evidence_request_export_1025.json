@@ -1,0 +1,2480 @@
+{
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "decision_counts": {
+      "no_decision": 30
+    },
+    "decision_schema": {
+      "action": [
+        "no_decision"
+      ],
+      "external_source_resolution": [
+        "needs_more_evidence"
+      ]
+    },
+    "exact_reference_overlap_holdout_count": 2,
+    "exported_count": 30,
+    "external_source_review_only": true,
+    "max_rows": 50,
+    "method": "external_source_evidence_request_export",
+    "omitted_by_max_rows": 0,
+    "ready_for_label_import": false,
+    "review_only_rule": "external evidence requests collect active-site and OOD evidence only; they cannot add benchmark labels through countable import",
+    "source_method": "external_source_evidence_plan"
+  },
+  "review_items": [
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:A2RUC4",
+      "entry_name": "A2RUC4",
+      "external_source_context": {
+        "accession": "A2RUC4",
+        "alphafold_ids": [
+          "A2RUC4"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "1.14.11.42"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:oxidoreductase_long_tail",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "3AL5",
+          "3AL6"
+        ],
+        "protein_name": "tRNA wybutosine-synthesizing protein 5 (hTYW5) (tRNA yW-synthesizing protein 5) (EC 1.14.11.42) (tRNA(Phe) (7-(3-amino-3-carboxypropyl)wyosine(37)-C(2))-hydroxylase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "oxidoreductase_long_tail",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "1.14.11.42"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 1,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:A5PLL7",
+      "entry_name": "A5PLL7",
+      "external_source_context": {
+        "accession": "A5PLL7",
+        "alphafold_ids": [
+          "A5PLL7"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "1.14.19.77"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:oxidoreductase_long_tail",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [],
+        "protein_name": "Plasmanylethanolamine desaturase 1 (EC 1.14.19.77) (Transmembrane protein 189)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "oxidoreductase_long_tail",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "1.14.19.77"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 2,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:C9JRZ8",
+      "entry_name": "C9JRZ8",
+      "external_source_context": {
+        "accession": "C9JRZ8",
+        "alphafold_ids": [
+          "C9JRZ8"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "1.1.1.-"
+        ],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "1.1.1.-",
+          "1.1.1.216",
+          "1.1.1.300",
+          "1.1.1.54",
+          "1.1.1.64"
+        ],
+        "ec_specificity_bucket": "specific_and_broad_ec_context",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:oxidoreductase_long_tail",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [],
+        "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate",
+          "specific_reaction_disambiguation_for_broad_ec"
+        ],
+        "scope_signal": "oxidoreductase_long_tail",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "1.1.1.216",
+          "1.1.1.300",
+          "1.1.1.54",
+          "1.1.1.64"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 3,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:O14756",
+      "entry_name": "O14756",
+      "external_source_context": {
+        "accession": "O14756",
+        "alphafold_ids": [
+          "O14756"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "1.1.1.105",
+          "1.1.1.209",
+          "1.1.1.239",
+          "1.1.1.53",
+          "1.1.1.62"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:oxidoreductase_long_tail",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [],
+        "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "oxidoreductase_long_tail",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "1.1.1.105",
+          "1.1.1.209",
+          "1.1.1.239",
+          "1.1.1.53",
+          "1.1.1.62"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 4,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:O15247",
+      "entry_name": "O15247",
+      "external_source_context": {
+        "accession": "O15247",
+        "alphafold_ids": [
+          "O15247"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "1.11.1.-",
+          "1.8.-.-"
+        ],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "1.11.1.-",
+          "1.8.-.-"
+        ],
+        "ec_specificity_bucket": "broad_or_incomplete_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:oxidoreductase_long_tail",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "resolve_broad_or_incomplete_ec_before_active_site_mapping",
+        "pdb_ids": [
+          "2PER",
+          "2R4V",
+          "2R5G"
+        ],
+        "protein_name": "Chloride intracellular channel protein 2 (Glutaredoxin-like oxidoreductase CLIC2) (EC 1.8.-.-) (Glutaredoxin-like peroxidase CLIC2) (EC 1.11.1.-) (XAP121)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate",
+          "specific_reaction_disambiguation_for_broad_ec"
+        ],
+        "scope_signal": "oxidoreductase_long_tail",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 5,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q969G6",
+      "entry_name": "Q969G6",
+      "external_source_context": {
+        "accession": "Q969G6",
+        "alphafold_ids": [
+          "Q969G6"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.7.1.26"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_phosphoryl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "1NB0",
+          "1NB9",
+          "1P4M",
+          "1Q9S"
+        ],
+        "protein_name": "Riboflavin kinase (EC 2.7.1.26) (ATP:riboflavin 5'-phosphotransferase) (Flavokinase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "transferase_phosphoryl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.7.1.26"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 6,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P32189",
+      "entry_name": "P32189",
+      "external_source_context": {
+        "accession": "P32189",
+        "alphafold_ids": [
+          "P32189"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.7.1.30"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_phosphoryl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [],
+        "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "transferase_phosphoryl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.7.1.30"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 7,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P55263",
+      "entry_name": "P55263",
+      "external_source_context": {
+        "accession": "P55263",
+        "alphafold_ids": [
+          "P55263"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "2.7.1.-"
+        ],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.7.1.-",
+          "2.7.1.20"
+        ],
+        "ec_specificity_bucket": "specific_and_broad_ec_context",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_phosphoryl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "1BX4",
+          "2I6A",
+          "2I6B",
+          "4O1L"
+        ],
+        "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate",
+          "specific_reaction_disambiguation_for_broad_ec"
+        ],
+        "scope_signal": "transferase_phosphoryl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.7.1.20"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 8,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P27144",
+      "entry_name": "P27144",
+      "external_source_context": {
+        "accession": "P27144",
+        "alphafold_ids": [
+          "P27144"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.7.4.4",
+          "2.7.4.6"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_phosphoryl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "2AR7",
+          "2BBW",
+          "3NDP"
+        ],
+        "protein_name": "Adenylate kinase 4, mitochondrial (EC 2.7.4.4) (EC 2.7.4.6) (Adenylate kinase 3-like) (GTP:AMP phosphotransferase AK4)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "transferase_phosphoryl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.7.4.4",
+          "2.7.4.6"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 9,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:A2RU49",
+      "entry_name": "A2RU49",
+      "external_source_context": {
+        "accession": "A2RU49",
+        "alphafold_ids": [
+          "A2RU49"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.7.1.81"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_phosphoryl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [],
+        "protein_name": "Hydroxylysine kinase (5-hydroxy-L-lysine kinase) (EC 2.7.1.81) (Aminoglycoside phosphotransferase domain-containing protein 1)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "transferase_phosphoryl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.7.1.81"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 10,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P06746",
+      "entry_name": "P06746",
+      "external_source_context": {
+        "accession": "P06746",
+        "alphafold_ids": [
+          "P06746"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "4.2.99.-"
+        ],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.7.7.7",
+          "4.2.99.-",
+          "4.2.99.18"
+        ],
+        "ec_specificity_bucket": "specific_and_broad_ec_context",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:lyase",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "1BPX",
+          "1BPY",
+          "1BPZ",
+          "1MQ2",
+          "1MQ3",
+          "1TV9",
+          "1TVA",
+          "1ZJM",
+          "1ZJN",
+          "1ZQA",
+          "1ZQB",
+          "1ZQC",
+          "1ZQD",
+          "1ZQE",
+          "1ZQF",
+          "1ZQG",
+          "1ZQH",
+          "1ZQI",
+          "1ZQJ",
+          "1ZQK",
+          "1ZQL",
+          "1ZQM",
+          "1ZQN",
+          "1ZQO",
+          "1ZQP",
+          "1ZQQ",
+          "1ZQR",
+          "1ZQS",
+          "1ZQT",
+          "2FMP",
+          "2FMQ",
+          "2FMS",
+          "2I9G",
+          "2ISO",
+          "2ISP",
+          "2P66",
+          "2PXI",
+          "3C2K",
+          "3C2L",
+          "3C2M",
+          "3GDX",
+          "3ISB",
+          "3ISC",
+          "3ISD",
+          "3JPN",
+          "3JPO",
+          "3JPP",
+          "3JPQ",
+          "3JPR",
+          "3JPS",
+          "3JPT",
+          "3LK9",
+          "3MBY",
+          "3OGU",
+          "3RH4",
+          "3RH5",
+          "3RH6",
+          "3RJE",
+          "3RJF",
+          "3RJG",
+          "3RJH",
+          "3RJI",
+          "3RJJ",
+          "3RJK",
+          "3TFR",
+          "3TFS",
+          "4DO9",
+          "4DOA",
+          "4DOB",
+          "4DOC",
+          "4F5N",
+          "4F5O",
+          "4F5P",
+          "4F5Q",
+          "4F5R",
+          "4GXI",
+          "4GXJ",
+          "4GXK",
+          "4JWM",
+          "4JWN",
+          "4KLD",
+          "4KLE",
+          "4KLF",
+          "4KLG",
+          "4KLH",
+          "4KLI",
+          "4KLJ",
+          "4KLL",
+          "4KLM",
+          "4KLO",
+          "4KLQ",
+          "4KLS",
+          "4KLT",
+          "4KLU",
+          "4LVS",
+          "4M2Y",
+          "4M47",
+          "4M9G",
+          "4M9H",
+          "4M9J",
+          "4M9L",
+          "4M9N",
+          "4MF2",
+          "4MF8",
+          "4MFA",
+          "4MFC",
+          "4MFF",
+          "4NLK",
+          "4NLN",
+          "4NLZ",
+          "4NM1",
+          "4NM2",
+          "4NXZ",
+          "4NY8",
+          "4O5C",
+          "4O5E",
+          "4O5K",
+          "4O9M",
+          "4P2H",
+          "4PGQ",
+          "4PGX",
+          "4PGY",
+          "4PH5",
+          "4PHA",
+          "4PHD",
+          "4PHE",
+          "4PHP",
+          "4PPX",
+          "4R63",
+          "4R64",
+          "4R65",
+          "4R66",
+          "4RPX",
+          "4RPY",
+          "4RPZ",
+          "4RQ0",
+          "4RQ1",
+          "4RQ2",
+          "4RQ3",
+          "4RQ4",
+          "4RQ5",
+          "4RQ6",
+          "4RQ7",
+          "4RQ8",
+          "4RT2",
+          "4RT3",
+          "4TUP",
+          "4TUQ",
+          "4TUR",
+          "4TUS",
+          "4UAW",
+          "4UAY",
+          "4UAZ",
+          "4UB1",
+          "4UB2",
+          "4UB3",
+          "4UB4",
+          "4UB5",
+          "4UBB",
+          "4UBC",
+          "4YMM",
+          "4YMN",
+          "4YMO",
+          "4YN4",
+          "4Z6C",
+          "4Z6D",
+          "4Z6E",
+          "4Z6F",
+          "5BOL",
+          "5BOM",
+          "5BPC",
+          "5DB6",
+          "5DB7",
+          "5DB8",
+          "5DB9",
+          "5DBA",
+          "5DBB",
+          "5DBC",
+          "5EOZ",
+          "5HHH",
+          "5HHI",
+          "5J0O",
+          "5J0P",
+          "5J0Q",
+          "5J0R",
+          "5J0S",
+          "5J0T",
+          "5J0U",
+          "5J0W",
+          "5J0X",
+          "5J0Y",
+          "5J29",
+          "5J2A",
+          "5J2B",
+          "5J2C",
+          "5J2D",
+          "5J2E",
+          "5J2F",
+          "5J2G",
+          "5J2H",
+          "5J2I",
+          "5J2J",
+          "5J2K",
+          "5TB8",
+          "5TB9",
+          "5TBA",
+          "5TBB",
+          "5TBC",
+          "5TZV",
+          "5U2R",
+          "5U2S",
+          "5U2T",
+          "5U8G",
+          "5U8H",
+          "5U8I",
+          "5U9H",
+          "5UGN",
+          "5UGO",
+          "5UGP",
+          "5V1F",
+          "5V1G",
+          "5V1H",
+          "5V1I",
+          "5V1J",
+          "5V1N",
+          "5V1O",
+          "5V1P",
+          "5V1R",
+          "5VEZ",
+          "5VRW",
+          "5VRX",
+          "5VRY",
+          "5VRZ",
+          "5VS0",
+          "5VS1",
+          "5VS2",
+          "5VS3",
+          "5VS4",
+          "5WNX",
+          "5WNY",
+          "5WNZ",
+          "5WO0",
+          "6BEL",
+          "6BEM",
+          "6BTE",
+          "6BTF",
+          "6CLY",
+          "6CPQ",
+          "6CR3",
+          "6CR4",
+          "6CR5",
+          "6CR6",
+          "6CR7",
+          "6CR8",
+          "6CR9",
+          "6CRB",
+          "6CRC",
+          "6CRH",
+          "6CTI",
+          "6CTJ",
+          "6CTK",
+          "6CTL",
+          "6CTM",
+          "6CTN",
+          "6CTO",
+          "6CTP",
+          "6CTQ",
+          "6CTR",
+          "6CTT",
+          "6CTU",
+          "6CTV",
+          "6CTW",
+          "6CTX",
+          "6CU9",
+          "6CUA",
+          "6CUB",
+          "6DIA",
+          "6DIC",
+          "6E3R",
+          "6E3V",
+          "6E3W",
+          "6E3X",
+          "6G2Q",
+          "6MR7",
+          "6MR8",
+          "6N2R",
+          "6N2S",
+          "6N2T",
+          "6NKR",
+          "6NKS",
+          "6NKT",
+          "6NKU",
+          "6NKV",
+          "6NKW",
+          "6NKX",
+          "6NKY",
+          "6NKZ",
+          "6NL0",
+          "6PH5",
+          "6PH6",
+          "6PKZ",
+          "6U2O",
+          "6U6B",
+          "6UOK",
+          "6UOL",
+          "6UOM",
+          "6W2M",
+          "7ICE",
+          "7ICF",
+          "7ICG",
+          "7ICH",
+          "7ICI",
+          "7ICJ",
+          "7ICK",
+          "7ICL",
+          "7ICM",
+          "7ICN",
+          "7ICO",
+          "7ICP",
+          "7ICQ",
+          "7ICR",
+          "7ICS",
+          "7ICT",
+          "7ICU",
+          "7ICV",
+          "7K96",
+          "7K97",
+          "7MZ0",
+          "7MZ1",
+          "7MZ2",
+          "7MZ3",
+          "7MZ4",
+          "7MZ8",
+          "7RBE",
+          "7RBF",
+          "7RBG",
+          "7RBH",
+          "7RBI",
+          "7RBJ",
+          "7RBK",
+          "7RBL",
+          "7RBM",
+          "7RBN",
+          "7RBO",
+          "7S9J",
+          "7S9K",
+          "7S9L",
+          "7S9M",
+          "7S9N",
+          "7S9O",
+          "7S9P",
+          "7S9Q",
+          "8ICA",
+          "8ICB",
+          "8ICC",
+          "8ICE",
+          "8ICF",
+          "8ICG",
+          "8ICH",
+          "8ICI",
+          "8ICJ",
+          "8ICK",
+          "8ICL",
+          "8ICM",
+          "8ICN",
+          "8ICO",
+          "8ICP",
+          "8ICQ",
+          "8ICR",
+          "8ICS",
+          "8ICT",
+          "8ICU",
+          "8ICV",
+          "8ICW",
+          "8ICX",
+          "8ICY",
+          "8ICZ",
+          "8VF8",
+          "8VF9",
+          "8VFA",
+          "8VFB",
+          "8VFC",
+          "8VFD",
+          "8VFE",
+          "8VFF",
+          "8VFG",
+          "8VFH",
+          "8VFI",
+          "8VFJ",
+          "9DWG",
+          "9DWH",
+          "9DWI",
+          "9DWK",
+          "9DWM",
+          "9ICA",
+          "9ICB",
+          "9ICC",
+          "9ICE",
+          "9ICF",
+          "9ICG",
+          "9ICH",
+          "9ICI",
+          "9ICJ",
+          "9ICK",
+          "9ICL",
+          "9ICM",
+          "9ICN",
+          "9ICO",
+          "9ICP",
+          "9ICQ",
+          "9ICR",
+          "9ICS",
+          "9ICT",
+          "9ICU",
+          "9ICV",
+          "9ICW",
+          "9ICX",
+          "9ICY"
+        ],
+        "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate",
+          "specific_reaction_disambiguation_for_broad_ec"
+        ],
+        "scope_signal": "lyase",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.7.7.7",
+          "4.2.99.18"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 11,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q9BXD5",
+      "entry_name": "Q9BXD5",
+      "external_source_context": {
+        "accession": "Q9BXD5",
+        "alphafold_ids": [
+          "Q9BXD5"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "4.1.3.3"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:lyase",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "6ARH"
+        ],
+        "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "lyase",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "4.1.3.3"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 12,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P35914",
+      "entry_name": "P35914",
+      "external_source_context": {
+        "accession": "P35914",
+        "alphafold_ids": [
+          "P35914"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "4.1.3.4"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:lyase",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "2CW6",
+          "3MP3",
+          "3MP4",
+          "3MP5"
+        ],
+        "protein_name": "Hydroxymethylglutaryl-CoA lyase, mitochondrial (HL) (HMG-CoA lyase) (EC 4.1.3.4) (3-hydroxy-3-methylglutarate-CoA lyase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "lyase",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "4.1.3.4"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 13,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q96I15",
+      "entry_name": "Q96I15",
+      "external_source_context": {
+        "accession": "Q96I15",
+        "alphafold_ids": [
+          "Q96I15"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "4.4.1.16"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:lyase",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "3GZC",
+          "3GZD"
+        ],
+        "protein_name": "Selenocysteine lyase (hSCL) (EC 4.4.1.16)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "lyase",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "4.4.1.16"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 14,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:O15527",
+      "entry_name": "O15527",
+      "external_source_context": {
+        "accession": "O15527",
+        "alphafold_ids": [
+          "O15527"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built",
+          "exact_sequence_cluster_overlap_existing_m_csa"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "3.2.2.-"
+        ],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "3.2.2.-",
+          "4.2.99.18"
+        ],
+        "ec_specificity_bucket": "specific_and_broad_ec_context",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:lyase",
+        "matched_m_csa_entry_ids": [
+          "m_csa:185"
+        ],
+        "next_action": "route_exact_reference_overlap_to_holdout_control",
+        "pdb_ids": [
+          "1EBM",
+          "1FN7",
+          "1HU0",
+          "1KO9",
+          "1LWV",
+          "1LWW",
+          "1LWY",
+          "1M3H",
+          "1M3Q",
+          "1N39",
+          "1N3A",
+          "1N3C",
+          "1YQK",
+          "1YQL",
+          "1YQM",
+          "1YQR",
+          "2I5W",
+          "2NOB",
+          "2NOE",
+          "2NOF",
+          "2NOH",
+          "2NOI",
+          "2NOL",
+          "2NOZ",
+          "2XHI",
+          "3IH7",
+          "3KTU",
+          "5AN4",
+          "6RLW",
+          "6W0M",
+          "6W0R",
+          "6W13",
+          "7AYY",
+          "8VWT",
+          "8VWV",
+          "8VX4",
+          "8VX6",
+          "8XWC",
+          "8XWU",
+          "8XXG",
+          "8XXK",
+          "9EOZ",
+          "9KKY",
+          "9KL8"
+        ],
+        "protein_name": "N-glycosylase/DNA lyase [Includes: 8-oxoguanine DNA glycosylase (EC 3.2.2.-); DNA-(apurinic or apyrimidinic site) lyase (AP lyase) (EC 4.2.99.18)]",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate",
+          "specific_reaction_disambiguation_for_broad_ec"
+        ],
+        "scope_signal": "lyase",
+        "sequence_similarity_bucket": "exact_reference_overlap_holdout",
+        "specific_ec_numbers": [
+          "4.2.99.18"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 15,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q13907",
+      "entry_name": "Q13907",
+      "external_source_context": {
+        "accession": "Q13907",
+        "alphafold_ids": [
+          "Q13907"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "5.3.3.2"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:isomerase",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "2DHO",
+          "2I6K",
+          "2ICJ",
+          "2ICK"
+        ],
+        "protein_name": "Isopentenyl-diphosphate Delta-isomerase 1 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 1) (IPP isomerase 1) (IPPI1)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "isomerase",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "5.3.3.2"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 16,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q9BXS1",
+      "entry_name": "Q9BXS1",
+      "external_source_context": {
+        "accession": "Q9BXS1",
+        "alphafold_ids": [
+          "Q9BXS1"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "5.3.3.2"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:isomerase",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "2PNY"
+        ],
+        "protein_name": "Isopentenyl-diphosphate delta-isomerase 2 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 2) (IPP isomerase 2) (IPPI2)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "isomerase",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "5.3.3.2"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 17,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P34949",
+      "entry_name": "P34949",
+      "external_source_context": {
+        "accession": "P34949",
+        "alphafold_ids": [
+          "P34949"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "5.3.1.8"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:isomerase",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [],
+        "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "isomerase",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "5.3.1.8"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 18,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P60174",
+      "entry_name": "P60174",
+      "external_source_context": {
+        "accession": "P60174",
+        "alphafold_ids": [
+          "P60174"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "4.2.3.3",
+          "5.3.1.1"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:isomerase",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "1HTI",
+          "1KLG",
+          "1KLU",
+          "1WYI",
+          "2IAM",
+          "2IAN",
+          "2JK2",
+          "2VOM",
+          "4BR1",
+          "4E41",
+          "4POC",
+          "4POD",
+          "4UNK",
+          "4UNL",
+          "4ZVJ",
+          "6C2G",
+          "6D43",
+          "6NLH",
+          "6UP1",
+          "6UP5",
+          "6UP8",
+          "6UPF",
+          "7RDE",
+          "7SX1",
+          "7T0Q",
+          "7UXB",
+          "7UXV",
+          "9F69",
+          "9FFC"
+        ],
+        "protein_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Methylglyoxal synthase) (EC 4.2.3.3) (Triose-phosphate isomerase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "isomerase",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "4.2.3.3",
+          "5.3.1.1"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 19,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P42126",
+      "entry_name": "P42126",
+      "external_source_context": {
+        "accession": "P42126",
+        "alphafold_ids": [
+          "P42126"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built",
+          "exact_sequence_cluster_overlap_existing_m_csa"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "5.3.3.8"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:isomerase",
+        "matched_m_csa_entry_ids": [
+          "m_csa:341"
+        ],
+        "next_action": "route_exact_reference_overlap_to_holdout_control",
+        "pdb_ids": [
+          "1SG4"
+        ],
+        "protein_name": "Enoyl-CoA delta isomerase 1, mitochondrial (EC 5.3.3.8) (3,2-trans-enoyl-CoA isomerase) (Delta(3),Delta(2)-enoyl-CoA isomerase) (D3,D2-enoyl-CoA isomerase) (Dodecenoyl-CoA isomerase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "isomerase",
+        "sequence_similarity_bucket": "exact_reference_overlap_holdout",
+        "specific_ec_numbers": [
+          "5.3.3.8"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 20,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q6NSJ0",
+      "entry_name": "Q6NSJ0",
+      "external_source_context": {
+        "accession": "Q6NSJ0",
+        "alphafold_ids": [
+          "Q6NSJ0"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "3.2.1.22"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:glycan_chemistry",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "7QQF",
+          "7QQG",
+          "7QQH"
+        ],
+        "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "glycan_chemistry",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "3.2.1.22"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 21,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P30176",
+      "entry_name": "P30176",
+      "external_source_context": {
+        "accession": "P30176",
+        "alphafold_ids": [
+          "P30176"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "3.2.2.-"
+        ],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "3.2.2.-"
+        ],
+        "ec_specificity_bucket": "broad_or_incomplete_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:glycan_chemistry",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "resolve_broad_or_incomplete_ec_before_active_site_mapping",
+        "pdb_ids": [
+          "2B3W"
+        ],
+        "protein_name": "N-glycosidase YbiA (EC 3.2.2.-) (Riboflavin biosynthesis intermediates N-glycosidase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate",
+          "specific_reaction_disambiguation_for_broad_ec"
+        ],
+        "scope_signal": "glycan_chemistry",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 22,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P29372",
+      "entry_name": "P29372",
+      "external_source_context": {
+        "accession": "P29372",
+        "alphafold_ids": [
+          "P29372"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "3.2.2.21"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:glycan_chemistry",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "1BNK",
+          "1EWN",
+          "1F4R",
+          "1F6O",
+          "3QI5",
+          "3UBY",
+          "7XFH",
+          "7XFJ",
+          "7XFM"
+        ],
+        "protein_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "glycan_chemistry",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "3.2.2.21"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 23,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P33025",
+      "entry_name": "P33025",
+      "external_source_context": {
+        "accession": "P33025",
+        "alphafold_ids": [
+          "P33025"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "4.2.1.70"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:glycan_chemistry",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "4GIJ",
+          "4GIK",
+          "4GIL",
+          "4GIM"
+        ],
+        "protein_name": "Pseudouridine-5'-phosphate glycosidase (PsiMP glycosidase) (EC 4.2.1.70)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "glycan_chemistry",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "4.2.1.70"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 24,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:O60568",
+      "entry_name": "O60568",
+      "external_source_context": {
+        "accession": "O60568",
+        "alphafold_ids": [
+          "O60568"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "1.14.11.4",
+          "2.4.1.50",
+          "2.4.1.66"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:glycan_chemistry",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "6FXK",
+          "6FXM",
+          "6FXR",
+          "6FXT",
+          "6FXX",
+          "6FXY",
+          "6TE3",
+          "6TEC",
+          "6TES",
+          "6TEU",
+          "6TEX",
+          "6TEZ",
+          "6WFV",
+          "8ONE",
+          "8ZGC",
+          "8ZGE",
+          "8ZGG",
+          "8ZGH"
+        ],
+        "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "glycan_chemistry",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "1.14.11.4",
+          "2.4.1.50",
+          "2.4.1.66"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 25,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:O95050",
+      "entry_name": "O95050",
+      "external_source_context": {
+        "accession": "O95050",
+        "alphafold_ids": [
+          "O95050"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.1.1.49",
+          "2.1.1.96"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_methyl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "2A14"
+        ],
+        "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "transferase_methyl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.1.1.49",
+          "2.1.1.96"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 26,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:P51580",
+      "entry_name": "P51580",
+      "external_source_context": {
+        "accession": "P51580",
+        "alphafold_ids": [
+          "P51580"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.1.1.67"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_methyl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "2BZG",
+          "2H11"
+        ],
+        "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "transferase_methyl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.1.1.67"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 27,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q9Y5N5",
+      "entry_name": "Q9Y5N5",
+      "external_source_context": {
+        "accession": "Q9Y5N5",
+        "alphafold_ids": [
+          "Q9Y5N5"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [
+          "2.1.1.-"
+        ],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.1.1.-"
+        ],
+        "ec_specificity_bucket": "broad_or_incomplete_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_methyl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "resolve_broad_or_incomplete_ec_before_active_site_mapping",
+        "pdb_ids": [
+          "6H1D",
+          "6H1E",
+          "6K0X",
+          "6KHS",
+          "6KMR",
+          "6KMS",
+          "6PED",
+          "8CNC",
+          "8QDG",
+          "8QDI",
+          "9FIM",
+          "9FKE",
+          "9FKG",
+          "9FKM",
+          "9FKV",
+          "9FKW",
+          "9FL4",
+          "9FL5"
+        ],
+        "protein_name": "Methyltransferase HEMK2 (HemK methyltransferase family member 2) (M.HsaHemK2P) (Lysine N-methyltransferase 9) (EC 2.1.1.-) (Methylarsonite methyltransferase N6AMT1) (EC 2.1.1.-) (Methyltransferase N6AMT1) (Protein N(5)-glutamine methyltransferase) (EC 2.1.1.-)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate",
+          "specific_reaction_disambiguation_for_broad_ec"
+        ],
+        "scope_signal": "transferase_methyl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 28,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q32P41",
+      "entry_name": "Q32P41",
+      "external_source_context": {
+        "accession": "Q32P41",
+        "alphafold_ids": [
+          "Q32P41"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.1.1.228"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_methyl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [],
+        "protein_name": "tRNA (guanine(37)-N(1))-methyltransferase (EC 2.1.1.228) (M1G-methyltransferase) (tRNA [GM37] methyltransferase) (tRNA methyltransferase 5 homolog)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "transferase_methyl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.1.1.228"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 29,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": null,
+        "evidence_score": null,
+        "external_source_resolution": "needs_more_evidence",
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "uniprot:Q9HBK9",
+      "entry_name": "Q9HBK9",
+      "external_source_context": {
+        "accession": "Q9HBK9",
+        "alphafold_ids": [
+          "Q9HBK9"
+        ],
+        "blockers": [
+          "external_mechanism_evidence_not_attached",
+          "heuristic_control_scores_not_computed",
+          "external_decision_artifact_not_built"
+        ],
+        "broad_or_incomplete_ec_numbers": [],
+        "countable_label_candidate": false,
+        "ec_numbers": [
+          "2.1.1.137"
+        ],
+        "ec_specificity_bucket": "specific_ec_only",
+        "evidence_collection_status": "not_started",
+        "external_review_ready": true,
+        "lane_id": "external_source:transferase_methyl",
+        "matched_m_csa_entry_ids": [],
+        "next_action": "collect_active_site_and_mechanism_evidence",
+        "pdb_ids": [
+          "8XT7"
+        ],
+        "protein_name": "Arsenite methyltransferase (EC 2.1.1.137) (Methylarsonite methyltransferase) (S-adenosyl-L-methionine:arsenic(III) methyltransferase)",
+        "ready_for_label_import": false,
+        "required_evidence": [
+          "curated_reaction_or_mechanism_evidence",
+          "active_site_residue_positions",
+          "structure_mapping_for_candidate",
+          "heuristic_geometry_control_score",
+          "external_ood_calibration_assignment",
+          "sequence_similarity_holdout_or_exclusion",
+          "review_decision_artifact",
+          "full_label_factory_gate"
+        ],
+        "scope_signal": "transferase_methyl",
+        "sequence_similarity_bucket": "requires_near_duplicate_search",
+        "specific_ec_numbers": [
+          "2.1.1.137"
+        ],
+        "structure_reference_status": "pdb_or_alphafold_reference_present"
+      },
+      "rank": 30,
+      "review_question": "Can curated reaction, active-site residue, structure-mapping, OOD, sequence-holdout, and heuristic-control evidence be assembled for this external source candidate?"
+    }
+  ]
+}

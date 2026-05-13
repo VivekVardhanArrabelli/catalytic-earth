@@ -243,7 +243,16 @@ Current expectation:
   new labels are cleanly countable and review debt rises to 329 rows. The source
   audit records 1,003 observed M-CSA source records against the requested 1,025
   tranche, so the 10,000-label target requires a separate UniProtKB/Swiss-Prot
-  style transfer method with OOD calibration and sequence-similarity controls.
+  style transfer method with OOD calibration, sequence-similarity controls,
+  external evidence collection, and heuristic-control comparison. The first
+  30-row external sample now has a review-only candidate manifest, evidence
+  plan/export, import-safety audit, and 11/11 transfer gate; 2 exact-reference
+  overlaps are routed to holdout controls, the lane-balance audit confirms six
+  evenly represented query lanes, a six-candidate Rhea reaction-context sample
+  collects 22 review-only reaction records while flagging 3 broad/incomplete EC
+  queries, the evidence plan flags 7 broad/incomplete EC candidates, the
+  active-site evidence queue exports 25 ready review-only candidates while
+  deferring 5 rows, and 0 external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

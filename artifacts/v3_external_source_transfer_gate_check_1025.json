@@ -1,0 +1,35 @@
+{
+  "blockers": [],
+  "gates": {
+    "active_site_evidence_queue_review_only": true,
+    "candidate_manifest_audit_guardrail_clean": true,
+    "candidate_manifest_blocks_label_import": true,
+    "candidate_sample_audit_guardrail_clean": true,
+    "evidence_plan_blocks_label_import": true,
+    "evidence_request_export_review_only": true,
+    "external_lane_balance_audit_guardrail_clean": true,
+    "external_review_only_import_safety_clean": true,
+    "ood_plan_requires_heuristic_control": true,
+    "query_manifest_blocks_label_import": true,
+    "transfer_manifest_blocks_label_import": true
+  },
+  "metadata": {
+    "active_site_deferred_candidate_count": 5,
+    "active_site_ready_candidate_count": 25,
+    "blocker_count": 0,
+    "countable_label_candidate_count": 0,
+    "exact_reference_overlap_holdout_count": 2,
+    "external_candidate_count": 30,
+    "external_dominant_lane_fraction": 0.1667,
+    "external_lane_count": 6,
+    "gate_count": 11,
+    "heuristic_control_required": true,
+    "method": "external_source_transfer_gate_check",
+    "passed_gate_count": 11,
+    "ready_for_external_evidence_collection": true,
+    "ready_for_label_import": false
+  },
+  "warnings": [
+    "passing this gate authorizes review-only external evidence collection, not label import"
+  ]
+}

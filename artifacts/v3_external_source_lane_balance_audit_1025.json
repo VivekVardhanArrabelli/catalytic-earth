@@ -1,0 +1,34 @@
+{
+  "blockers": [],
+  "lane_counts": {
+    "external_source:glycan_chemistry": 5,
+    "external_source:isomerase": 5,
+    "external_source:lyase": 5,
+    "external_source:oxidoreductase_long_tail": 5,
+    "external_source:transferase_methyl": 5,
+    "external_source:transferase_phosphoryl": 5
+  },
+  "metadata": {
+    "candidate_count": 30,
+    "countable_label_candidate_count": 0,
+    "dominant_lane": "external_source:oxidoreductase_long_tail",
+    "dominant_lane_fraction": 0.1667,
+    "guardrail_clean": true,
+    "lane_count": 6,
+    "max_dominant_lane_fraction": 0.6,
+    "method": "external_source_lane_balance_audit",
+    "min_lanes": 3,
+    "ready_for_label_import": false
+  },
+  "scope_signal_counts": {
+    "glycan_chemistry": 5,
+    "isomerase": 5,
+    "lyase": 5,
+    "oxidoreductase_long_tail": 5,
+    "transferase_methyl": 5,
+    "transferase_phosphoryl": 5
+  },
+  "warnings": [
+    "lane balance is a sampling guardrail only; it does not make external candidates countable"
+  ]
+}

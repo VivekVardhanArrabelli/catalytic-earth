@@ -7,6 +7,7 @@
     "duplicate_accessions": [],
     "ec_supported_count": 30,
     "guardrail_clean": true,
+    "import_ready_row_count": 0,
     "method": "external_source_candidate_sample_guardrail_audit",
     "ready_for_label_import": false,
     "reviewed_count": 30,

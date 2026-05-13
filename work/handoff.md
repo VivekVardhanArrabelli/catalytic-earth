@@ -192,6 +192,16 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   30-row UniProtKB/Swiss-Prot read-only candidate sample, guardrail audit,
   artifact regression tests, and unit tests. All external candidates are
   non-countable.
+- Hardened the external-source transfer path with a review-only candidate
+  manifest, candidate-manifest audit, lane-balance audit, evidence plan,
+  evidence request export, external review-only import-safety audit, 11/11
+  transfer gate, bounded Rhea reaction-context sample, and reaction-context
+  guardrail audit. The canonical registry remains at 679 labels; 0 external
+  labels are countable.
+- Added broad/incomplete EC routing and a review-only active-site evidence
+  queue for the external path: seven candidates require broad-EC attention,
+  three broad-only rows are deferred before active-site mapping, 25 candidates
+  are queued for active-site evidence, and 0 external labels are countable.
 
 ## Current Metrics
 
@@ -471,13 +481,36 @@ rises from 326 to 329 rows, with new rows `m_csa:1003`, `m_csa:1004`, and
 The 1,025 run exposed a source-scale bottleneck rather than a label-quality
 failure. `artifacts/v3_source_scale_limit_audit_1025.json` records 1,003
 observed M-CSA source records for the requested 1,025 tranche and recommends
-stopping M-CSA-only count growth. The external-source transfer artifacts are
-review-only: `artifacts/v3_external_source_transfer_manifest_1025.json`,
+stopping M-CSA-only count growth. The external-source transfer path is now
+gated for review-only evidence collection rather than count growth:
+`artifacts/v3_external_source_transfer_manifest_1025.json`,
 `artifacts/v3_external_source_query_manifest_1025.json`,
 `artifacts/v3_external_ood_calibration_plan_1025.json`,
-`artifacts/v3_external_source_candidate_sample_1025.json`, and
-`artifacts/v3_external_source_candidate_sample_audit_1025.json` scope a
-UniProtKB/Swiss-Prot transfer path and keep `countable_label_candidate_count=0`.
+`artifacts/v3_external_source_candidate_sample_1025.json`,
+`artifacts/v3_external_source_candidate_sample_audit_1025.json`,
+`artifacts/v3_external_source_candidate_manifest_1025.json`,
+`artifacts/v3_external_source_candidate_manifest_audit_1025.json`,
+`artifacts/v3_external_source_lane_balance_audit_1025.json`,
+`artifacts/v3_external_source_evidence_plan_1025.json`,
+`artifacts/v3_external_source_evidence_request_export_1025.json`,
+`artifacts/v3_external_source_active_site_evidence_queue_1025.json`,
+`artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
+`artifacts/v3_external_source_transfer_gate_check_1025.json` keep
+`countable_label_candidate_count=0` and pass an 11/11 review-only transfer gate.
+The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
+query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
+to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC
+contexts; the active-site queue exports 25 ready evidence rows and defers five
+rows, including two exact-reference holdouts and three broad-EC disambiguation
+cases.
+
+`artifacts/v3_external_source_reaction_evidence_sample_1025.json` starts the
+first bounded evidence-collection pass by querying Rhea for the first six
+external candidates. It records 22 reaction-context rows with 0 fetch failures
+and remains non-countable. Its companion audit
+`artifacts/v3_external_source_reaction_evidence_sample_audit_1025.json` is
+guardrail-clean but flags broad/incomplete EC context for `1.1.1.-`,
+`1.11.1.-`, and `1.8.-.-`; those rows are not specific mechanism evidence.
 
 Label-quality confidence call for the 2026-05-13T03:03:14Z run: yes, current
 quality gates are good enough to spend this run on a bounded 1,025 preview.
@@ -501,6 +534,24 @@ review-only import growth remains 0. However, the 1,025 acceptance artifact has
 0 accepted new labels and the source-scale audit shows the M-CSA-only path does
 not have enough source records for the next tranche. This is an operational
 workflow decision, not a claim of biological truth.
+
+Label-quality confidence call for the 2026-05-13T04:04:36Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source transfer
+scaffolding. Evidence at run start: `validate` and 217 unit tests passed, the
+1,025 preview gate passes 21/21 checks, hard negatives remain 0, near misses
+remain 0, out-of-scope false non-abstentions remain 0, actionable in-scope
+failures remain 0, accepted review-gap labels remain 0, review-only import
+growth remains 0, the 1,025 acceptance artifact adds 0 clean countable labels,
+and the source-scale audit records only 1,003 observed M-CSA records for the
+requested 1,025 tranche. This run should advance external-source transfer
+guardrails while keeping all external candidates non-countable.
+
+Remaining-time plan for the 2026-05-13T04:04:36Z run: after the external
+candidate manifest, evidence plan, evidence request export, import-safety
+audit, and 11/11 external-transfer gate are implemented, use the remaining
+productive window to harden documentation, artifact regression coverage, and
+review-only external-source guardrails rather than opening another M-CSA-only
+tranche.
 
 Remaining-time plan for the 2026-05-13T03:03:14Z run: after the 1,025 preview
 proved clean but non-promotable, use the remaining productive window to harden
@@ -570,19 +621,32 @@ Start with:
 `artifacts/v3_external_source_query_manifest_1025.json`,
 `artifacts/v3_external_ood_calibration_plan_1025.json`,
 `artifacts/v3_external_source_candidate_sample_1025.json`,
-`artifacts/v3_external_source_candidate_sample_audit_1025.json`, and
-`work/label_preview_1025_notes.md`.
+`artifacts/v3_external_source_candidate_sample_audit_1025.json`,
+`artifacts/v3_external_source_candidate_manifest_1025.json`,
+`artifacts/v3_external_source_candidate_manifest_audit_1025.json`,
+`artifacts/v3_external_source_lane_balance_audit_1025.json`,
+`artifacts/v3_external_source_evidence_plan_1025.json`,
+`artifacts/v3_external_source_evidence_request_export_1025.json`,
+`artifacts/v3_external_source_active_site_evidence_queue_1025.json`,
+`artifacts/v3_external_source_review_only_import_safety_audit_1025.json`,
+`artifacts/v3_external_source_transfer_gate_check_1025.json`,
+`artifacts/v3_external_source_reaction_evidence_sample_1025.json`,
+`artifacts/v3_external_source_reaction_evidence_sample_audit_1025.json`, and
+`work/label_preview_1025_notes.md`. For the compact external-transfer profile,
+also read `work/external_source_transfer_1025_notes.md`.
 
 Highest-value options:
 
 1. Do not promote the 1,025 preview; it has 0 accepted labels and exists as a
    source-limit audit point.
-2. Implement the external-source transfer path as review-only candidate
-   ingestion with OOD calibration, sequence-similarity failure sets, and
-   heuristic retrieval kept as the control.
-3. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
+2. Continue review-only external-source evidence collection from
+   `artifacts/v3_external_source_active_site_evidence_queue_1025.json`; source
+   active-site residue evidence for ready rows and keep deferred rows separate.
+3. Treat the Rhea reaction-context sample as context only, especially the three
+   broad/incomplete EC queries; do not treat Rhea rows as active-site evidence.
+4. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
    separate decision artifact passes the full label-factory gate.
-4. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
+5. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
    do not collapse these families into generic hydrolase or metal-hydrolase
    labels.
 
@@ -632,6 +696,29 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-13T04:04:36Z
+- ENDED_AT: 2026-05-13T04:55:29Z
+- Measured elapsed time: 50.883 minutes
+- Documentation checked and updated across README, docs/label_factory.md,
+  docs/external_source_transfer.md, docs/ingestion_plan.md,
+  docs/research_program.md, docs/safety_scope.md, docs/v2_report.md,
+  docs/v2_strengthening_report.md, work/scope.md, work/handoff.md,
+  work/label_factory_notes.md, work/label_preview_1025_notes.md, and
+  work/external_source_transfer_1025_notes.md before status regeneration.
+- Normal locked run from the non-promoted 1,025 preview kept M-CSA-only growth
+  stopped and hardened external-source transfer without importing labels.
+- Added review-only external candidate manifest, manifest audit, lane-balance
+  audit, evidence plan/export, active-site evidence queue, import-safety audit,
+  11/11 transfer gate, Rhea reaction-context sample, and reaction-context audit.
+  All external artifacts keep `countable_label_candidate_count=0`.
+- The evidence plan flags seven broad/incomplete EC candidates; the active-site
+  evidence queue exports 25 ready review-only candidates and defers five rows
+  (two exact-reference holdouts and three broad-EC disambiguation cases).
+- Final verification passed: `git diff --check`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `PYTHONPATH=src python -m unittest discover -s tests` with 230 tests,
+  targeted external-transfer tests, and `python -m compileall -q src tests`.
 
 - STARTED_AT: 2026-05-13T03:03:14Z
 - ENDED_AT: 2026-05-13T03:54:50Z

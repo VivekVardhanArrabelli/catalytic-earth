@@ -76,11 +76,20 @@ from .source_limits import audit_source_scale_limits
 from .sources import build_source_ledger, load_sources
 from .structure import write_geometry_features
 from .transfer_scope import (
+    audit_external_source_candidate_manifest,
     audit_external_source_candidate_sample,
+    audit_external_source_lane_balance,
+    audit_external_source_reaction_evidence_sample,
     build_external_ood_calibration_plan,
+    build_external_source_candidate_manifest,
     build_external_source_candidate_sample,
+    build_external_source_active_site_evidence_queue,
+    build_external_source_evidence_plan,
+    build_external_source_evidence_request_export,
     build_external_source_query_manifest,
+    build_external_source_reaction_evidence_sample,
     build_external_source_transfer_manifest,
+    check_external_source_transfer_gates,
 )
 from .v2 import (
     build_mechanism_benchmark,
@@ -395,6 +404,196 @@ def cmd_audit_external_source_candidate_sample(args: argparse.Namespace) -> int:
     write_json(Path(args.out), audit)
     print(
         "Wrote external source sample guardrail audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_candidate_manifest(args: argparse.Namespace) -> int:
+    with Path(args.candidate_sample).open("r", encoding="utf-8") as handle:
+        candidate_sample = json.load(handle)
+    with Path(args.ood_calibration_plan).open("r", encoding="utf-8") as handle:
+        ood_calibration_plan = json.load(handle)
+    with Path(args.sequence_clusters).open("r", encoding="utf-8") as handle:
+        sequence_clusters = json.load(handle)
+    with Path(args.sequence_similarity_failure_sets).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        sequence_similarity_failure_sets = json.load(handle)
+    with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
+        transfer_manifest = json.load(handle)
+    manifest = build_external_source_candidate_manifest(
+        candidate_sample=candidate_sample,
+        ood_calibration_plan=ood_calibration_plan,
+        sequence_clusters=sequence_clusters,
+        sequence_similarity_failure_sets=sequence_similarity_failure_sets,
+        transfer_manifest=transfer_manifest,
+    )
+    write_json(Path(args.out), manifest)
+    print(
+        "Wrote external source candidate manifest to "
+        f"{args.out} ({manifest['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_candidate_manifest(args: argparse.Namespace) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    audit = audit_external_source_candidate_manifest(candidate_manifest)
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source candidate manifest audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_evidence_plan(args: argparse.Namespace) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    with Path(args.candidate_manifest_audit).open("r", encoding="utf-8") as handle:
+        candidate_manifest_audit = json.load(handle)
+    plan = build_external_source_evidence_plan(
+        candidate_manifest=candidate_manifest,
+        candidate_manifest_audit=candidate_manifest_audit,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote external source evidence plan to "
+        f"{args.out} ({plan['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_build_external_source_evidence_request_export(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.evidence_plan).open("r", encoding="utf-8") as handle:
+        evidence_plan = json.load(handle)
+    export = build_external_source_evidence_request_export(
+        evidence_plan=evidence_plan,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), export)
+    print(
+        "Wrote external source evidence request export to "
+        f"{args.out} ({export['metadata']['exported_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_active_site_evidence_queue(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.evidence_plan).open("r", encoding="utf-8") as handle:
+        evidence_plan = json.load(handle)
+    queue = build_external_source_active_site_evidence_queue(
+        evidence_plan=evidence_plan,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote external source active-site evidence queue to "
+        f"{args.out} ({queue['metadata']['exported_ready_candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
+    with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
+        transfer_manifest = json.load(handle)
+    with Path(args.query_manifest).open("r", encoding="utf-8") as handle:
+        query_manifest = json.load(handle)
+    with Path(args.ood_calibration_plan).open("r", encoding="utf-8") as handle:
+        ood_calibration_plan = json.load(handle)
+    with Path(args.candidate_sample_audit).open("r", encoding="utf-8") as handle:
+        candidate_sample_audit = json.load(handle)
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    with Path(args.candidate_manifest_audit).open("r", encoding="utf-8") as handle:
+        candidate_manifest_audit = json.load(handle)
+    with Path(args.lane_balance_audit).open("r", encoding="utf-8") as handle:
+        lane_balance_audit = json.load(handle)
+    with Path(args.evidence_plan).open("r", encoding="utf-8") as handle:
+        evidence_plan = json.load(handle)
+    with Path(args.evidence_request_export).open("r", encoding="utf-8") as handle:
+        evidence_request_export = json.load(handle)
+    with Path(args.review_only_import_safety_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        review_only_import_safety_audit = json.load(handle)
+    active_site_evidence_queue = None
+    if args.active_site_evidence_queue:
+        with Path(args.active_site_evidence_queue).open("r", encoding="utf-8") as handle:
+            active_site_evidence_queue = json.load(handle)
+    gates = check_external_source_transfer_gates(
+        transfer_manifest=transfer_manifest,
+        query_manifest=query_manifest,
+        ood_calibration_plan=ood_calibration_plan,
+        candidate_sample_audit=candidate_sample_audit,
+        candidate_manifest=candidate_manifest,
+        candidate_manifest_audit=candidate_manifest_audit,
+        lane_balance_audit=lane_balance_audit,
+        evidence_plan=evidence_plan,
+        evidence_request_export=evidence_request_export,
+        review_only_import_safety_audit=review_only_import_safety_audit,
+        active_site_evidence_queue=active_site_evidence_queue,
+    )
+    write_json(Path(args.out), gates)
+    print(
+        "Wrote external source transfer gate check to "
+        f"{args.out} ({gates['metadata']['passed_gate_count']}/"
+        f"{gates['metadata']['gate_count']} gates)"
+    )
+    return 0
+
+
+def cmd_build_external_source_reaction_evidence_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.evidence_request_export).open("r", encoding="utf-8") as handle:
+        evidence_request_export = json.load(handle)
+    sample = build_external_source_reaction_evidence_sample(
+        evidence_request_export=evidence_request_export,
+        max_candidates=args.max_candidates,
+        max_reactions_per_ec=args.max_reactions_per_ec,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote external source reaction evidence sample to "
+        f"{args.out} ({sample['metadata']['reaction_record_count']} reactions)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_reaction_evidence_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.reaction_evidence_sample).open("r", encoding="utf-8") as handle:
+        reaction_evidence_sample = json.load(handle)
+    audit = audit_external_source_reaction_evidence_sample(
+        reaction_evidence_sample
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source reaction evidence audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_audit_external_source_lane_balance(args: argparse.Namespace) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    audit = audit_external_source_lane_balance(
+        candidate_manifest=candidate_manifest,
+        min_lanes=args.min_lanes,
+        max_dominant_lane_fraction=args.max_dominant_lane_fraction,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source lane-balance audit to "
         f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
     )
     return 0
@@ -2183,6 +2382,216 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_external_source_candidate_sample_audit.json",
     )
     external_sample_audit.set_defaults(func=cmd_audit_external_source_candidate_sample)
+
+    external_candidate_manifest = subparsers.add_parser(
+        "build-external-source-candidate-manifest",
+        help="attach external-source candidates to OOD and sequence controls",
+    )
+    external_candidate_manifest.add_argument(
+        "--candidate-sample",
+        default="artifacts/v3_external_source_candidate_sample.json",
+    )
+    external_candidate_manifest.add_argument(
+        "--ood-calibration-plan",
+        default="artifacts/v3_external_ood_calibration_plan.json",
+    )
+    external_candidate_manifest.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy.json",
+    )
+    external_candidate_manifest.add_argument(
+        "--sequence-similarity-failure-sets",
+        default="artifacts/v3_sequence_similarity_failure_sets.json",
+    )
+    external_candidate_manifest.add_argument(
+        "--transfer-manifest",
+        default="artifacts/v3_external_source_transfer_manifest.json",
+    )
+    external_candidate_manifest.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_candidate_manifest.set_defaults(
+        func=cmd_build_external_source_candidate_manifest
+    )
+
+    external_candidate_manifest_audit = subparsers.add_parser(
+        "audit-external-source-candidate-manifest",
+        help="verify external-source candidate manifests remain review-only",
+    )
+    external_candidate_manifest_audit.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_candidate_manifest_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_candidate_manifest_audit.json",
+    )
+    external_candidate_manifest_audit.set_defaults(
+        func=cmd_audit_external_source_candidate_manifest
+    )
+
+    external_lane_balance = subparsers.add_parser(
+        "audit-external-source-lane-balance",
+        help="check external-source candidate lanes for review queue collapse",
+    )
+    external_lane_balance.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_lane_balance.add_argument("--min-lanes", type=int, default=3)
+    external_lane_balance.add_argument(
+        "--max-dominant-lane-fraction",
+        type=float,
+        default=0.6,
+    )
+    external_lane_balance.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_lane_balance_audit.json",
+    )
+    external_lane_balance.set_defaults(func=cmd_audit_external_source_lane_balance)
+
+    external_evidence_plan = subparsers.add_parser(
+        "build-external-source-evidence-plan",
+        help="plan review-only evidence collection for external-source candidates",
+    )
+    external_evidence_plan.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_evidence_plan.add_argument(
+        "--candidate-manifest-audit",
+        default="artifacts/v3_external_source_candidate_manifest_audit.json",
+    )
+    external_evidence_plan.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_evidence_plan.json",
+    )
+    external_evidence_plan.set_defaults(func=cmd_build_external_source_evidence_plan)
+
+    external_evidence_request_export = subparsers.add_parser(
+        "build-external-source-evidence-request-export",
+        help="export review-only evidence requests for external-source candidates",
+    )
+    external_evidence_request_export.add_argument(
+        "--evidence-plan",
+        default="artifacts/v3_external_source_evidence_plan.json",
+    )
+    external_evidence_request_export.add_argument("--max-rows", type=int, default=50)
+    external_evidence_request_export.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_evidence_request_export.json",
+    )
+    external_evidence_request_export.set_defaults(
+        func=cmd_build_external_source_evidence_request_export
+    )
+
+    external_active_site_queue = subparsers.add_parser(
+        "build-external-source-active-site-evidence-queue",
+        help="prioritize review-only external candidates for active-site evidence",
+    )
+    external_active_site_queue.add_argument(
+        "--evidence-plan",
+        default="artifacts/v3_external_source_evidence_plan.json",
+    )
+    external_active_site_queue.add_argument("--max-rows", type=int, default=50)
+    external_active_site_queue.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_active_site_evidence_queue.json",
+    )
+    external_active_site_queue.set_defaults(
+        func=cmd_build_external_source_active_site_evidence_queue
+    )
+
+    external_transfer_gate = subparsers.add_parser(
+        "check-external-source-transfer-gates",
+        help="gate review-only external-source transfer artifacts before import work",
+    )
+    external_transfer_gate.add_argument(
+        "--transfer-manifest",
+        default="artifacts/v3_external_source_transfer_manifest.json",
+    )
+    external_transfer_gate.add_argument(
+        "--query-manifest",
+        default="artifacts/v3_external_source_query_manifest.json",
+    )
+    external_transfer_gate.add_argument(
+        "--ood-calibration-plan",
+        default="artifacts/v3_external_ood_calibration_plan.json",
+    )
+    external_transfer_gate.add_argument(
+        "--candidate-sample-audit",
+        default="artifacts/v3_external_source_candidate_sample_audit.json",
+    )
+    external_transfer_gate.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_transfer_gate.add_argument(
+        "--candidate-manifest-audit",
+        default="artifacts/v3_external_source_candidate_manifest_audit.json",
+    )
+    external_transfer_gate.add_argument(
+        "--lane-balance-audit",
+        default="artifacts/v3_external_source_lane_balance_audit.json",
+    )
+    external_transfer_gate.add_argument(
+        "--evidence-plan",
+        default="artifacts/v3_external_source_evidence_plan.json",
+    )
+    external_transfer_gate.add_argument(
+        "--evidence-request-export",
+        default="artifacts/v3_external_source_evidence_request_export.json",
+    )
+    external_transfer_gate.add_argument(
+        "--review-only-import-safety-audit",
+        default="artifacts/v3_external_source_review_only_import_safety_audit.json",
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-evidence-queue",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_transfer_gate_check.json",
+    )
+    external_transfer_gate.set_defaults(func=cmd_check_external_source_transfer_gates)
+
+    external_reaction_sample = subparsers.add_parser(
+        "build-external-source-reaction-evidence-sample",
+        help="fetch bounded Rhea reaction context for external-source candidates",
+    )
+    external_reaction_sample.add_argument(
+        "--evidence-request-export",
+        default="artifacts/v3_external_source_evidence_request_export.json",
+    )
+    external_reaction_sample.add_argument("--max-candidates", type=int, default=10)
+    external_reaction_sample.add_argument(
+        "--max-reactions-per-ec", type=int, default=3
+    )
+    external_reaction_sample.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_reaction_evidence_sample.json",
+    )
+    external_reaction_sample.set_defaults(
+        func=cmd_build_external_source_reaction_evidence_sample
+    )
+
+    external_reaction_sample_audit = subparsers.add_parser(
+        "audit-external-source-reaction-evidence-sample",
+        help="verify external reaction evidence samples remain review-only",
+    )
+    external_reaction_sample_audit.add_argument(
+        "--reaction-evidence-sample",
+        default="artifacts/v3_external_source_reaction_evidence_sample.json",
+    )
+    external_reaction_sample_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_reaction_evidence_sample_audit.json",
+    )
+    external_reaction_sample_audit.set_defaults(
+        func=cmd_audit_external_source_reaction_evidence_sample
+    )
 
     benchmark = subparsers.add_parser(
         "build-v2-benchmark",

@@ -2184,6 +2184,54 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         imported = import_countable_review_decisions(labels, reviewed_batch)
         self.assertNotIn("m_csa:656", {label.entry_id for label in imported})
 
+    def test_external_source_review_exports_cannot_import_countable_labels(
+        self,
+    ) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id=None,
+                label_type="out_of_scope",
+                confidence="high",
+                rationale="baseline out-of-scope control",
+            )
+        ]
+        export = {
+            "metadata": {
+                "method": "external_source_evidence_request_export",
+                "external_source_review_only": True,
+            },
+            "review_items": [
+                {
+                    "entry_id": "uniprot:P12345",
+                    "current_label": None,
+                    "external_source_context": {
+                        "accession": "P12345",
+                        "countable_label_candidate": False,
+                    },
+                    "decision": {
+                        "action": "accept_label",
+                        "label_type": "seed_fingerprint",
+                        "fingerprint_id": "metal_dependent_hydrolase",
+                        "tier": "bronze",
+                        "confidence": "medium",
+                        "reviewer": "automation_label_factory",
+                        "rationale": (
+                            "Automation must not count external-source review rows."
+                        ),
+                        "evidence_score": 0.7,
+                        "review_status": "automation_curated",
+                    },
+                }
+            ],
+        }
+
+        batch = build_provisional_review_decision_batch(export)
+        self.assertTrue(batch["metadata"]["external_source_review_only"])
+        self.assertEqual(batch["metadata"]["decision_counts"], {"no_decision": 1})
+        imported = import_countable_review_decisions(labels, export)
+        self.assertEqual([label.entry_id for label in imported], ["m_csa:1"])
+
     def test_factory_gate_requires_mismatch_review_export_when_guardrails_find_lanes(
         self,
     ) -> None:

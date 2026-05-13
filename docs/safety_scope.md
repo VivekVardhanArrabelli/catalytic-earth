@@ -23,7 +23,8 @@ prioritization for legitimate environmental, industrial, and biological research
 - Operational wet-lab methods.
 - Claims that computational predictions are experimentally validated.
 - Treating external-source transfer candidates as validated or countable labels
-  without explicit review and factory-gate artifacts.
+  without explicit evidence collection, review, sequence-holdout, heuristic
+  control, and factory-gate artifacts.
 
 ## Candidate Language
 

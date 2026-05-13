@@ -48,6 +48,9 @@ python -m catalytic_earth.cli fetch-mcsa-sample --ids 1,2,3 --out artifacts/mcsa
 M-CSA is now sufficient as a seed benchmark source but not as the full scaling
 source. The 1,025 preview finds 1,003 observed M-CSA source records and adds 0
 countable labels. UniProtKB/Swiss-Prot transfer is now scoped through
-review-only manifests and bounded samples in `docs/external_source_transfer.md`;
-those artifacts are not label imports and must remain non-countable until OOD
-calibration and label-factory gates pass.
+review-only manifests, bounded samples, candidate manifests, evidence requests,
+active-site evidence queues, reaction-context samples, and the external
+transfer gate in `docs/external_source_transfer.md`; those artifacts are not
+label imports and must remain non-countable until OOD calibration, heuristic
+retrieval controls, sequence holdouts, active-site evidence review, and
+label-factory gates pass.

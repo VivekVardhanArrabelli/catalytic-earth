@@ -104,7 +104,8 @@ non-abstentions, and 0 actionable in-scope failures. See
 `work/label_preview_725_notes.md`, `work/label_preview_750_notes.md`,
 `work/label_preview_850_notes.md`, `work/label_preview_950_notes.md`,
 `work/label_preview_975_notes.md`, `work/label_preview_1000_notes.md`, and
-`work/label_preview_1025_notes.md`.
+`work/label_preview_1025_notes.md`; the external-source transfer profile is in
+`work/external_source_transfer_1025_notes.md`.
 
 Label scaling is now gated by the label factory rather than raw queue size. The
 current 1,000 factory audit proposes 115 bronze-to-silver promotions, flags
@@ -158,9 +159,19 @@ labels, 329 review-state rows, and a `do_not_promote` scaling recommendation.
 slice currently exposes 1,003 source records rather than 1,025, so M-CSA-only
 growth cannot reach the 10,000-label target. The new external-source transfer
 artifacts scope a UniProtKB/Swiss-Prot path with query lanes, OOD calibration,
-sequence-similarity controls, and a 30-row read-only candidate sample; all
-external rows remain non-countable. See `docs/external_source_transfer.md` for
-the guarded command sequence.
+sequence-similarity controls, a 30-row read-only candidate sample, an external
+candidate manifest, evidence plan/export, review-only import-safety audit, and
+an 11/11 external transfer gate. The evidence plan now flags seven broad or
+incomplete EC contexts, defers three broad-only candidates for reaction
+disambiguation, and exports a review-only active-site evidence queue with 25
+ready candidates. Two sample candidates overlap existing M-CSA reference
+accessions and are routed to sequence-holdout controls; the lane-balance audit
+confirms six evenly represented query lanes. All external rows remain
+non-countable; the gate authorizes evidence collection only, not label import.
+A first Rhea reaction-context sample covers six external candidates with 22
+reaction records, flags three broad/incomplete EC queries, and remains
+review-only. See
+`docs/external_source_transfer.md` for the guarded command sequence.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,
@@ -229,8 +240,8 @@ the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
 1,025 preview is open but not promoted; the next bounded work item is
-external-source transfer scaffolding and calibration, not M-CSA-only count
-growth.
+external-source evidence collection behind the 11/11 review-only transfer gate,
+not M-CSA-only count growth or label import.
 See
 `docs/label_factory.md`.
 
@@ -347,8 +358,9 @@ Current timeline judgment:
 3. Next serious milestone: move beyond M-CSA-only tranche growth. The 1,025
    preview is cleanly non-promotable with 0 accepted labels, and the source
    audit shows only 1,003 M-CSA records are available in the current slice.
-   External-source transfer must stay review-only until OOD calibration,
-   sequence-similarity failure controls, and the full label-factory gate pass.
+   External-source transfer must stay review-only until active-site evidence,
+   OOD calibration, sequence-similarity failure controls, heuristic retrieval
+   controls, and the full label-factory gate pass.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that
    are credible enough for external labs to prioritize.

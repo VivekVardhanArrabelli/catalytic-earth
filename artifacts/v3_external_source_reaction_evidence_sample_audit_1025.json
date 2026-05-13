@@ -1,0 +1,22 @@
+{
+  "blockers": [],
+  "metadata": {
+    "broad_ec_context_row_count": 6,
+    "broad_or_incomplete_ec_numbers": [
+      "1.1.1.-",
+      "1.11.1.-",
+      "1.8.-.-"
+    ],
+    "countable_label_candidate_count": 0,
+    "fetch_failure_count": 0,
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "method": "external_source_reaction_evidence_guardrail_audit",
+    "non_context_row_count": 0,
+    "reaction_record_count": 22,
+    "ready_for_label_import": false
+  },
+  "warnings": [
+    "reaction context requires active-site mapping and factory gates before any external label import"
+  ]
+}
