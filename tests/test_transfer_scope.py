@@ -6017,6 +6017,15 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "metadata": {"candidate_count": 1},
                 "rows": [{"accession": "Q88888"}],
             },
+            sequence_holdout_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                },
+                "rows": [{"accession": "Q77777"}],
+            },
         )
 
         self.assertFalse(
@@ -6034,6 +6043,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             lineage["unexpected_accessions"]["pilot_evidence_packet"],
             ["Q88888"],
+        )
+        self.assertEqual(
+            lineage["unexpected_accessions"]["sequence_holdout_audit"],
+            ["Q77777"],
         )
         self.assertEqual(lineage["missing_accessions"]["evidence_plan"], ["P12345"])
 

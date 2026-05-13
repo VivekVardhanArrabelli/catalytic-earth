@@ -179,11 +179,11 @@ Priority blockers:
   controls, active-site sourcing packets, representation samples, and blocker
   matrices fail the gate if they carry accessions outside the candidate manifest
   or claim full 30-row coverage while silently dropping manifest rows. The
-  current lineage check also includes the pilot-priority, no-decision pilot
-  review export, pilot evidence-packet, and pilot evidence-dossier artifacts,
-  and fails fast if supplied artifact paths mix source slices such as 1,000 and
-  1,025. It also fails if those pilot artifacts stop being review-only,
-  non-countable, no-decision work products.
+  current lineage check also includes the sequence-holdout audit, pilot-priority,
+  no-decision pilot review export, pilot evidence-packet, and pilot
+  evidence-dossier artifacts, and fails fast if supplied artifact paths mix
+  source slices such as 1,000 and 1,025. It also fails if those pilot artifacts
+  stop being review-only, non-countable, no-decision work products.
 - `artifacts/v3_external_source_pilot_candidate_priority_1025.json` ranks the
   30 external candidates for a bounded review pilot. It selects 10
   non-countable candidates across the external lanes, defers 5 exact-holdout or
@@ -693,7 +693,9 @@ The transfer gate now checks both row-level candidate lineage and artifact-path
 lineage. Current 1,025 artifacts share a clean path-inferred slice across 62
 supplied artifacts, and the CLI fails fast if a future gate invocation mixes
 1,000 and 1,025 artifacts or if payload-declared slice metadata contradicts the
-artifact path.
+artifact path. Candidate-lineage validation now includes the sequence-holdout
+audit, so a stale holdout audit cannot silently satisfy the gate by matching
+only high-level candidate counts.
 
 Do not import external candidates directly into
 `data/registries/curated_mechanism_labels.json`. The first safe external-source

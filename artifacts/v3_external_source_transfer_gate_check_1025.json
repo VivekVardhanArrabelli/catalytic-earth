@@ -380,6 +380,7 @@
         "representation_control_comparison",
         "representation_control_manifest",
         "sequence_alignment_verification",
+        "sequence_holdout_audit",
         "sequence_neighborhood_plan",
         "sequence_neighborhood_sample",
         "sequence_reference_screen_audit",

@@ -1502,6 +1502,10 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             "pilot_evidence_dossiers",
             external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
         )
+        self.assertIn(
+            "sequence_holdout_audit",
+            external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
+        )
         self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])
         self.assertTrue(
             external_transfer_gate["metadata"][

@@ -252,10 +252,11 @@ routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
 only, not label import. Its lineage metadata now records a clean 1,025 slice
-across 61 supplied external artifacts and fails fast on mixed-slice artifact
-paths or payload-declared slice contradictions. The full Rhea reaction-context pass
-covers all 30 external candidates with 64 reaction records, flags 16 broad-EC
-context rows, and remains review-only. See
+across 62 supplied external artifacts, includes the sequence-holdout audit in
+row-level candidate-lineage validation, and fails fast on mixed-slice artifact
+paths or payload-declared slice contradictions. The full Rhea reaction-context
+pass covers all 30 external candidates with 64 reaction records, flags 16
+broad-EC context rows, and remains review-only. See
 `docs/external_source_transfer.md` for the guarded command sequence.
 `artifacts/v3_sequence_distance_holdout_eval_1000.json` and
 `artifacts/v3_sequence_distance_holdout_eval_1025.json` now report the first

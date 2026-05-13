@@ -100,6 +100,7 @@ EXTERNAL_TRANSFER_CANDIDATE_LINEAGE_FIELDS = (
     "pilot_evidence_dossiers",
     "binding_context_repair_plan",
     "binding_context_mapping_sample",
+    "sequence_holdout_audit",
 )
 _EXTERNAL_TRANSFER_ARTIFACT_SLICE_RE = re.compile(
     r"_(\d+)(?=(?:_[A-Za-z0-9]+)*\.json$)"

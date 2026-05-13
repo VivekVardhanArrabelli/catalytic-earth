@@ -564,7 +564,7 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current SPOF status after the 2026-05-13T21:24:10Z run: counterevidence
+Current SPOF status after the 2026-05-13T22:25:38Z run: counterevidence
 maintainability is handled at the code level. `geometry_retrieval.py` uses a
 versioned declarative `COUNTEREVIDENCE_POLICY` with typed shared inputs,
 rule-level provenance, backwards-compatible reason/detail fields, and explicit
@@ -592,9 +592,34 @@ review-only/no-decision semantics through the typed
 `ExternalSourceTransferGateInputs.v1` contract and shared candidate-lineage
 artifact registry before passing the 65/65 review-only gate. The gate CLI fails
 fast on mixed 1,000/1,025 paths, payload-declared slice contradictions, or
-pilot artifacts that stop being non-countable review work products.
+pilot artifacts that stop being non-countable review work products. The
+sequence-holdout audit is now part of the row-level candidate-lineage registry,
+so a stale or mismatched holdout audit cannot silently satisfy the gate by
+matching only high-level candidate counts.
 
-Latest run targeted the external-pilot sequence SPOF rather than adding generic
+Latest run targeted the artifact-graph consistency SPOF rather than adding gate
+count. The code evidence showed that `sequence_holdout_audit` was accepted by
+`ExternalSourceTransferGateInputs.v1` and checked by its own gate, but it was
+not included in `EXTERNAL_TRANSFER_CANDIDATE_LINEAGE_FIELDS`. The fix adds it
+to shared candidate-lineage validation, adds a negative regression with a
+mismatched holdout accession, and refreshes
+`artifacts/v3_external_source_transfer_gate_check_1025.json`; the gate still
+passes 65/65, now with `sequence_holdout_audit` listed among 32 checked
+candidate-lineage artifacts and a clean 62-artifact path lineage. This removes
+one silent-failure surface without changing countable labels or import
+readiness.
+
+Label-quality confidence call for the 2026-05-13T22:25:38Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair, no
+for external-source import, no for new scientific generalization artifacts, and
+yes for SPOF/artifact-lineage hardening. Evidence at run start: 296 unit tests
+and `validate` passed, the 1,025 preview remained non-promotable, current
+artifacts already contained the proxy sequence/fold-distance holdout and
+12-row ESM-2 representation sample, Foldseek/MMseqs2/BLAST/DIAMOND were absent
+on PATH, and the code inspection found the sequence-holdout audit lineage gap
+inside the external transfer gate contract.
+
+Previous run targeted the external-pilot sequence SPOF rather than adding generic
 gate count. The new
 `artifacts/v3_external_source_sequence_reference_screen_audit_1025.json` checks
 whether the bounded current countable-reference screen can clear the
@@ -1544,6 +1569,27 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-13T22:25:38Z
+- ENDED_AT: 2026-05-13T22:33:55Z
+- Measured elapsed time: 8.283 minutes
+- Documentation checked and updated across README, docs/external_source_transfer.md,
+  work/scope.md, work/handoff.md, and
+  work/external_source_transfer_1025_notes.md before status regeneration.
+- Normal locked SPOF-hardening run kept M-CSA-only growth stopped and did not
+  import external labels. Counterevidence maintainability, text leakage,
+  sequence/fold proxy holdout, learned representation sample, and selected-PDB
+  override evidence were already present, so the bounded unblocked item was the
+  artifact-graph consistency gap in the external transfer gate.
+- The external gate's shared candidate-lineage registry now includes
+  `sequence_holdout_audit`; a negative regression shows a mismatched holdout
+  accession fails the lineage gate, and
+  `artifacts/v3_external_source_transfer_gate_check_1025.json` still passes
+  65/65 with 0 countable/import-ready external rows.
+- Final verification passed: `PYTHONPATH=src python -m unittest discover -s
+  tests` with 296 tests, `PYTHONPATH=src python -m catalytic_earth.cli
+  validate`, `PYTHONPATH=src python -m compileall -q src tests`,
+  `git diff --check`, and changed JSON artifact parsing.
 
 - STARTED_AT: 2026-05-13T06:06:38Z
 - ENDED_AT: 2026-05-13T06:57:46Z

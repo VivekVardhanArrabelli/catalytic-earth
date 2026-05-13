@@ -160,8 +160,9 @@ Current review-only external artifacts:
   sequence-screen audit. It uses the typed
   `ExternalSourceTransferGateInputs.v1` contract, validates both candidate
   lineage across high-fan-in external artifacts and artifact-path lineage across
-  all supplied gate inputs, and fails fast on mixed-slice paths,
-  payload-declared slice contradictions, or pilot artifacts that stop being
+  all supplied gate inputs, now includes the sequence-holdout audit in row-level
+  lineage validation, and fails fast on mixed-slice paths, payload-declared
+  slice contradictions, stale holdout rows, or pilot artifacts that stop being
   review-only/no-decision work products. It is still not ready for label import.
 
 Sequence-similarity guardrail details:

@@ -242,8 +242,9 @@ Current expectation:
   shared candidate-lineage artifact registry. The CLI command now builds that
   typed contract from the artifact map before calling the gate, then fails on
   non-object artifact payloads, unexpected accessions, missing full-coverage
-  manifest rows, per-artifact candidate-count drift, or pilot artifacts that
-  stop being review-only/no-decision work products.
+  manifest rows, per-artifact candidate-count drift, stale sequence-holdout
+  audit rows, or pilot artifacts that stop being review-only/no-decision work
+  products.
 - selected-PDB single-point mitigation now has a general override path with
   provenance. `artifacts/v3_selected_pdb_override_plan_700.json` applies the
   holo-preference action path for `m_csa:577` and `m_csa:641`, keeps
