@@ -5,12 +5,14 @@
   ],
   "metadata": {
     "active_site_sourcing_export_candidate_count": 10,
+    "active_site_sourcing_resolution_candidate_count": 10,
     "blocker_counts": {
       "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing": 7,
       "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source": 3,
       "complete_near_duplicate_reference_search_not_completed": 28,
       "complete_near_duplicate_search_required": 28,
       "exact_sequence_holdout": 2,
+      "explicit_active_site_residue_sources_absent": 10,
       "explicit_active_site_residue_sources_not_collected": 10,
       "external_active_site_evidence_not_sampled": 5,
       "external_active_site_feature_gap": 10,
@@ -20,6 +22,7 @@
       "heuristic_control_not_scored": 18,
       "heuristic_metal_hydrolase_collapse": 9,
       "heuristic_scope_top1_mismatch": 9,
+      "learned_or_structure_language_embedding_not_run": 12,
       "primary_active_site_source_required": 3,
       "representation_backend_not_selected": 12,
       "representation_backend_plan_missing_or_not_eligible": 18,
@@ -27,6 +30,7 @@
       "representation_control_proxy_boundary_case_requires_glycan_hydrolase_split": 2,
       "representation_control_proxy_flags_metal_hydrolase_collapse": 7,
       "representation_control_proxy_flags_scope_top1_mismatch": 2,
+      "representation_near_duplicate_control_holdout": 1,
       "sequence_alignment_near_duplicate_candidate_holdout": 2,
       "sequence_holdout_control_not_resolved": 2
     },
@@ -45,19 +49,22 @@
     "max_rows": 100,
     "method": "external_source_transfer_blocker_matrix",
     "prioritized_action_counts": {
-      "complete_active_site_source_review_packet": 7,
       "complete_near_duplicate_sequence_search": 18,
+      "curate_primary_literature_or_pdb_active_site_sources": 7,
       "find_primary_active_site_or_residue_role_source": 3,
       "keep_sequence_holdout_out_of_import_batch": 2
     },
     "ready_for_label_import": false,
     "representation_backend_plan_candidate_count": 12,
+    "representation_backend_sample_candidate_count": 12,
     "review_only_rule": "blocker matrices join review packets into a worklist only; they cannot create countable labels or import-ready rows",
     "sequence_search_export_candidate_count": 30,
     "source_active_site_sourcing_method": "external_source_active_site_sourcing_export",
+    "source_active_site_sourcing_resolution_method": "external_source_active_site_sourcing_resolution",
     "source_candidate_manifest_method": "external_source_candidate_manifest",
     "source_import_readiness_method": "external_source_import_readiness_audit",
     "source_representation_backend_method": "external_source_representation_backend_plan",
+    "source_representation_backend_sample_method": "external_source_representation_backend_sample",
     "source_sequence_search_method": "external_source_sequence_search_export"
   },
   "rows": [
@@ -66,8 +73,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
         "source_target_count": 6,
-        "source_task": "curate_active_site_positions_from_mapped_binding_context"
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -78,13 +87,14 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:A2RUC4",
       "lane_id": "external_source:oxidoreductase_long_tail",
-      "prioritized_action": "complete_active_site_source_review_packet",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
       "protein_name": "tRNA wybutosine-synthesizing protein 5 (hTYW5) (tRNA yW-synthesizing protein 5) (EC 1.14.11.42) (tRNA(Phe) (7-(3-amino-3-carboxypropyl)wyosine(37)-C(2))-hydroxylase)",
       "readiness_status": "blocked_by_active_site_sourcing",
       "ready_for_label_import": false,
@@ -92,7 +102,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "oxidoreductase_long_tail",
@@ -108,8 +120,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "needs_primary_active_site_source",
+        "resolution_status": "reaction_context_only_no_active_site_positions",
         "source_target_count": 3,
-        "source_task": "find_primary_active_site_or_residue_role_source"
+        "source_task": "find_primary_active_site_or_residue_role_source",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -121,6 +135,7 @@
         "full_label_factory_gate_not_run",
         "primary_active_site_source_required",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
@@ -135,7 +150,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "oxidoreductase_long_tail",
@@ -150,6 +167,7 @@
       "accession": "C9JRZ8",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -173,7 +191,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "oxidoreductase_long_tail",
@@ -188,6 +208,7 @@
       "accession": "O14756",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -197,7 +218,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:O14756",
@@ -211,6 +233,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P14604",
+        "sample_top_embedding_cosine": 0.8803,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -226,6 +253,7 @@
       "accession": "O15247",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -250,7 +278,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "oxidoreductase_long_tail",
@@ -265,6 +295,7 @@
       "accession": "Q969G6",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -277,7 +308,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q969G6",
@@ -291,6 +323,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P80078",
+        "sample_top_embedding_cosine": 0.8529,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -307,8 +344,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
         "source_target_count": 4,
-        "source_task": "curate_active_site_positions_from_mapped_binding_context"
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -319,13 +358,14 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P32189",
       "lane_id": "external_source:transferase_phosphoryl",
-      "prioritized_action": "complete_active_site_source_review_packet",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
       "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
       "readiness_status": "blocked_by_active_site_sourcing",
       "ready_for_label_import": false,
@@ -333,7 +373,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "transferase_phosphoryl",
@@ -348,6 +390,7 @@
       "accession": "P55263",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -371,7 +414,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "transferase_phosphoryl",
@@ -387,8 +432,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
         "source_target_count": 10,
-        "source_task": "curate_active_site_positions_from_mapped_binding_context"
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -399,13 +446,14 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P27144",
       "lane_id": "external_source:transferase_phosphoryl",
-      "prioritized_action": "complete_active_site_source_review_packet",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
       "protein_name": "Adenylate kinase 4, mitochondrial (EC 2.7.4.4) (EC 2.7.4.6) (Adenylate kinase 3-like) (GTP:AMP phosphotransferase AK4)",
       "readiness_status": "blocked_by_active_site_sourcing",
       "ready_for_label_import": false,
@@ -413,7 +461,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "transferase_phosphoryl",
@@ -428,6 +478,7 @@
       "accession": "A2RU49",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -440,7 +491,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:A2RU49",
@@ -454,6 +506,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P05404",
+        "sample_top_embedding_cosine": 0.8965,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -469,6 +526,7 @@
       "accession": "P06746",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -492,7 +550,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "lyase",
@@ -507,6 +567,7 @@
       "accession": "Q9BXD5",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -518,7 +579,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q9BXD5",
@@ -532,6 +594,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P21327",
+        "sample_top_embedding_cosine": 0.9364,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -547,6 +614,7 @@
       "accession": "P35914",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -559,7 +627,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P35914",
@@ -573,6 +642,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P33038",
+        "sample_top_embedding_cosine": 0.9214,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -588,6 +662,7 @@
       "accession": "Q96I15",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -600,7 +675,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q96I15",
@@ -614,6 +690,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P07650",
+        "sample_top_embedding_cosine": 0.9295,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -629,6 +710,7 @@
       "accession": "O15527",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -654,7 +736,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "lyase",
@@ -669,6 +753,7 @@
       "accession": "Q13907",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -681,7 +766,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q13907",
@@ -695,6 +781,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "O58403",
+        "sample_top_embedding_cosine": 0.8539,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -710,6 +801,7 @@
       "accession": "Q9BXS1",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -722,7 +814,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q9BXS1",
@@ -736,6 +829,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P61517",
+        "sample_top_embedding_cosine": 0.9026,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -751,6 +849,7 @@
       "accession": "P34949",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -762,7 +861,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P34949",
@@ -776,6 +876,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P36507",
+        "sample_top_embedding_cosine": 0.92,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -791,6 +896,7 @@
       "accession": "P60174",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -803,7 +909,9 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "representation_near_duplicate_control_holdout",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P60174",
@@ -817,6 +925,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "representation_near_duplicate_holdout",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": true,
+        "sample_nearest_reference_accession": "P00940",
+        "sample_top_embedding_cosine": 0.9782,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -832,6 +945,7 @@
       "accession": "P42126",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -857,7 +971,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "isomerase",
@@ -872,6 +988,7 @@
       "accession": "Q6NSJ0",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -883,7 +1000,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q6NSJ0",
@@ -897,6 +1015,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P27002",
+        "sample_top_embedding_cosine": 0.9175,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -912,6 +1035,7 @@
       "accession": "P30176",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -936,7 +1060,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "glycan_chemistry",
@@ -952,8 +1078,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "needs_primary_active_site_source",
+        "resolution_status": "reaction_context_only_no_active_site_positions",
         "source_target_count": 11,
-        "source_task": "find_primary_active_site_or_residue_role_source"
+        "source_task": "find_primary_active_site_or_residue_role_source",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -965,6 +1093,7 @@
         "full_label_factory_gate_not_run",
         "primary_active_site_source_required",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
@@ -979,7 +1108,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "glycan_chemistry",
@@ -994,6 +1125,7 @@
       "accession": "P33025",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -1005,7 +1137,8 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed"
+        "external_embeddings_not_computed",
+        "learned_or_structure_language_embedding_not_run"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P33025",
@@ -1019,6 +1152,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
+        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P0A786",
+        "sample_top_embedding_cosine": 0.9,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -1035,8 +1173,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
         "source_target_count": 17,
-        "source_task": "curate_active_site_positions_from_mapped_binding_context"
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -1047,13 +1187,14 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:O60568",
       "lane_id": "external_source:glycan_chemistry",
-      "prioritized_action": "complete_active_site_source_review_packet",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
       "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
       "readiness_status": "blocked_by_active_site_sourcing",
       "ready_for_label_import": false,
@@ -1061,7 +1202,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "glycan_chemistry",
@@ -1077,8 +1220,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
         "source_target_count": 6,
-        "source_task": "curate_active_site_positions_from_mapped_binding_context"
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -1089,13 +1234,14 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:O95050",
       "lane_id": "external_source:transferase_methyl",
-      "prioritized_action": "complete_active_site_source_review_packet",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
       "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
       "readiness_status": "blocked_by_active_site_sourcing",
       "ready_for_label_import": false,
@@ -1103,7 +1249,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "transferase_methyl",
@@ -1119,8 +1267,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
         "source_target_count": 6,
-        "source_task": "curate_active_site_positions_from_mapped_binding_context"
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -1131,13 +1281,14 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P51580",
       "lane_id": "external_source:transferase_methyl",
-      "prioritized_action": "complete_active_site_source_review_packet",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
       "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
       "readiness_status": "blocked_by_active_site_sourcing",
       "ready_for_label_import": false,
@@ -1145,7 +1296,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "transferase_methyl",
@@ -1160,6 +1313,7 @@
       "accession": "Q9Y5N5",
       "active_site_sourcing": {
         "decision_status": null,
+        "resolution_status": null,
         "source_target_count": 0,
         "source_task": "not_active_site_sourcing_row"
       },
@@ -1184,7 +1338,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "transferase_methyl",
@@ -1200,8 +1356,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
         "source_target_count": 4,
-        "source_task": "curate_active_site_positions_from_mapped_binding_context"
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -1212,13 +1370,14 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q32P41",
       "lane_id": "external_source:transferase_methyl",
-      "prioritized_action": "complete_active_site_source_review_packet",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
       "protein_name": "tRNA (guanine(37)-N(1))-methyltransferase (EC 2.1.1.228) (M1G-methyltransferase) (tRNA [GM37] methyltransferase) (tRNA methyltransferase 5 homolog)",
       "readiness_status": "blocked_by_active_site_sourcing",
       "ready_for_label_import": false,
@@ -1226,7 +1385,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "transferase_methyl",
@@ -1242,8 +1403,10 @@
       "active_site_sourcing": {
         "decision_status": "no_decision",
         "queue_status": "needs_primary_active_site_source",
+        "resolution_status": "reaction_context_only_no_active_site_positions",
         "source_target_count": 5,
-        "source_task": "find_primary_active_site_or_residue_role_source"
+        "source_task": "find_primary_active_site_or_residue_role_source",
+        "sourced_active_site_position_count": 0
       },
       "blockers": [
         "complete_near_duplicate_search_required",
@@ -1255,6 +1418,7 @@
         "full_label_factory_gate_not_run",
         "primary_active_site_source_required",
         "explicit_active_site_residue_sources_not_collected",
+        "explicit_active_site_residue_sources_absent",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_plan_missing_or_not_eligible"
       ],
@@ -1269,7 +1433,9 @@
         "backend_readiness_status": "not_backend_eligible_yet",
         "embedding_status": "not_planned",
         "recommended_backend_count": 0,
-        "required_input_count": 0
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
       "scope_signal": "transferase_methyl",

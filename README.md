@@ -166,8 +166,9 @@ prototypes, failure-mode audit, control-repair artifacts, representation-control
 comparison, broad-EC disambiguation, active-site gap source requests,
 sequence-neighborhood controls, sequence-alignment verification,
 sequence-search export, import-readiness audit, active-site sourcing queue/export,
-representation-backend plan, a candidate blocker matrix, and a 53/53 external
-transfer gate. The evidence plan flags seven broad or incomplete EC contexts,
+active-site sourcing resolution, representation-backend plan/sample, a
+candidate blocker matrix, and a 59/59 external transfer gate. The evidence plan
+flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
 review-only active-site evidence queue with 25 ready candidates. The active-site
 feature pass finds 15 feature-supported candidates and 10 active-site-feature
@@ -181,6 +182,11 @@ learned or structure-language comparison, the feature-proxy comparison flags
 7 metal-hydrolase collapse rows and 2 glycan-boundary rows, the broad-EC audit
 finds specific reaction context for all 3 broad-only repair rows, and the
 binding-context path maps 7/7 active-site-gap rows as repair context only. The
+active-site sourcing resolution re-checks all 10 active-site-gap rows against
+UniProt feature evidence, finds 0 explicit active-site residue sources, and
+keeps them non-countable. The computed representation backend sample covers all
+12 planned controls with a deterministic sequence k-mer baseline, flags one
+representation-level near-duplicate holdout, and remains review-only. The
 active-site gap source-request artifact covers all 10 gaps, and the
 sequence-neighborhood plan keeps 2 exact-reference overlaps as holdouts while
 requesting near-duplicate search for the other 28 candidates. The bounded
@@ -197,9 +203,11 @@ gaps into 7 mapped-binding-context rows and 3 primary-source rows. The
 active-site sourcing export carries 72 source targets, the sequence-search
 export keeps 28 near-duplicate searches and 2 sequence holdouts review-only, the
 representation-backend plan covers 12 controls without computing embeddings, and
-the blocker matrix joins all 30 external rows into a non-countable worklist. Two
-sample candidates overlap existing M-CSA reference accessions and are routed to sequence-holdout controls;
-the lane-balance audit confirms six evenly represented query lanes. All
+the blocker matrix joins all 30 external rows into a non-countable worklist with
+the active-site resolution and representation sample statuses carried forward.
+Two sample candidates overlap existing M-CSA reference accessions and are
+routed to sequence-holdout controls; the lane-balance audit confirms six evenly
+represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
 only, not label import. The full Rhea reaction-context pass covers all 30
 external candidates with 64 reaction records, flags 16 broad-EC context rows,
@@ -273,7 +281,7 @@ the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
 1,025 preview is open but not promoted; the next bounded work item is
-repairing review-only external-source controls behind the 53/53 transfer gate,
+repairing review-only external-source controls behind the 59/59 transfer gate,
 not M-CSA-only count growth or label import.
 See
 `docs/label_factory.md`.

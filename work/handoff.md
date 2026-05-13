@@ -233,6 +233,14 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   search, a representation-backend plan, and an integrated external blocker
   matrix. The external transfer gate now passes 53/53 review-only checks while
   keeping every external row non-countable and import-blocked.
+- Added active-site sourcing resolution and a computed representation backend
+  sample for the external 1,025 transfer path. The active-site resolution
+  re-checks all 10 gap rows against UniProt feature evidence, finds 0 explicit
+  active-site residue sources, and keeps 7 binding-plus-reaction rows and 3
+  reaction-only rows non-countable. The deterministic sequence k-mer
+  representation sample covers all 12 planned representation controls, flags
+  `P60174` as a representation near-duplicate holdout, and keeps the external
+  transfer gate at 59/59 review-only checks with 0 import-ready labels.
 
 ## Current Metrics
 
@@ -563,13 +571,17 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json`,
 `artifacts/v3_external_source_active_site_sourcing_export_1025.json`,
 `artifacts/v3_external_source_active_site_sourcing_export_audit_1025.json`,
+`artifacts/v3_external_source_active_site_sourcing_resolution_1025.json`,
+`artifacts/v3_external_source_active_site_sourcing_resolution_audit_1025.json`,
 `artifacts/v3_external_source_representation_backend_plan_1025.json`,
 `artifacts/v3_external_source_representation_backend_plan_audit_1025.json`,
+`artifacts/v3_external_source_representation_backend_sample_1025.json`,
+`artifacts/v3_external_source_representation_backend_sample_audit_1025.json`,
 `artifacts/v3_external_source_transfer_blocker_matrix_1025.json`,
 `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` keep
-`countable_label_candidate_count=0` and pass a 53/53 review-only transfer gate.
+`countable_label_candidate_count=0` and pass a 59/59 review-only transfer gate.
 The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
 query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
 to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC
@@ -634,13 +646,24 @@ complete near-duplicate search requirements, 9 heuristic scope/top1 mismatches,
 The sequence-search export converts all 30 rows into no-decision sequence
 controls, with 28 complete near-duplicate searches and 2 sequence-holdout tasks.
 The active-site sourcing export carries 72 source targets for the 10 active-site
-gaps with 0 completed decisions. The representation-backend plan covers 12
-mapped controls, keeps embeddings absent, and requires heuristic-baseline
-contrast for 9 rows. The transfer blocker matrix joins all 30 candidates into
-prioritized review-only next actions: 7 active-site source packets, 3 primary
-active-site source tasks, 18 near-duplicate sequence searches, and 2 sequence
-holdouts. Its dominant next-action fraction is 0.6000 and dominant lane fraction
-is 0.1667, so the queue has not collapsed to one action or one chemistry lane.
+gaps with 0 completed decisions. The active-site sourcing resolution re-checks
+those 10 gaps against UniProt feature evidence, records 0 explicit active-site
+residue sources, and keeps the 7 binding-plus-reaction rows plus 3 reaction-only
+rows non-countable. The representation-backend plan covers 12 mapped controls,
+keeps embeddings absent, and requires heuristic-baseline contrast for 9 rows.
+The deterministic k-mer representation backend sample computes review-only
+sequence controls for all 12 planned rows, flags one representation
+near-duplicate holdout (`P60174` against `m_csa:324`/`P00940`), and does not
+replace the future learned or structure-language backend requirement. The
+transfer blocker matrix joins all 30 candidates into
+prioritized review-only next actions: 7 primary literature/PDB active-site
+source reviews for rows where the UniProt re-check found no explicit active-site
+positions, 3 primary active-site source tasks, 18 near-duplicate sequence
+searches, and 2 sequence holdouts. Its audit now records 10 active-site
+resolution rows, 12 representation sample rows, and one representation
+near-duplicate alert. Its dominant next-action fraction is 0.6000 and dominant
+lane fraction is 0.1667, so the queue has not collapsed to one action or one
+chemistry lane.
 
 Label-quality confidence call for the 2026-05-13T10:12:41Z run: no for
 additional M-CSA-only count growth, yes for bounded external-source repair
@@ -675,6 +698,46 @@ external-source transfer gate. Final verification passed:
 `PYTHONPATH=src python -m catalytic_earth.cli validate`, `compileall`,
 `git diff --check`, JSON/countable-label guardrail scans, and CLI help checks.
 External rows remain 0 countable and not import-ready.
+
+Label-quality confidence call for the 2026-05-13T11:14:12Z run: yes for
+external-source repair and scientific-expansion controls, no for external label
+import or M-CSA-only count growth. Evidence at run start: `validate` and 265
+unit tests passed, the 1,025 preview remained non-promotable with 0 accepted
+new labels, the external transfer gate passed 53/53 review-only checks, hard
+negatives remained 0, near misses remained 0, out-of-scope false
+non-abstentions remained 0, actionable in-scope failures remained 0,
+review-only import growth remained 0, and the import-readiness audit kept 0
+external rows import-ready. The operational decision was to reduce external
+active-site and representation uncertainty while keeping every external
+candidate non-countable.
+
+Remaining-time plan for the 2026-05-13T11:14:12Z run: after the active-site
+sourcing resolution and deterministic representation sample were in place, use
+the remaining productive window to make the blocker matrix consume those packets
+directly, add gate/audit checks that reject stale blocker matrices, refresh
+artifacts and docs to the 59/59 gate state, and rerun the full validation stack
+before wrap-up. Do not open external label decisions or import rows during this
+run.
+
+New failure modes checked in the 2026-05-13T11:14:12Z run: the deterministic
+representation sample surfaced one representation-level near-duplicate holdout
+(`P60174` nearest `P00940`/`m_csa:324`) that was not promoted, and the blocker
+matrix path had a stale-integration risk where resolution/sample artifacts could
+exist without row-level blocker evidence. The transfer gate now has explicit
+matrix-integration checks for active-site resolution and representation sample
+rows, and the matrix audit rejects advertised integration counts that are absent
+from rows.
+
+Wrap-up note for the 2026-05-13T11:14:12Z run:
+`ENDED_AT=2026-05-13T12:04:24Z`; measured productive-plus-wrap elapsed time was
+about 50.2 minutes. Documentation was checked and updated across README, docs,
+and work notes; no stale current-state claims are intentionally left outside
+historical progress entries/status that will be regenerated from the log. Final
+verification before wrap-up passed: full unit tests with 268 tests, validate,
+compileall, `git diff --check`, JSON artifact parse checks,
+countable/import-ready guardrail scans for the new artifacts, and CLI help
+checks for the new commands. External rows remain 0 countable and not
+import-ready; the gate is 59/59 review-only checks.
 
 Label-quality confidence call for the 2026-05-13T09:10:54Z run: no for
 additional M-CSA-only count growth, yes for bounded external-source repair
@@ -948,6 +1011,12 @@ Start with:
 `artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json`,
 `artifacts/v3_external_source_active_site_sourcing_export_1025.json`,
 `artifacts/v3_external_source_active_site_sourcing_export_audit_1025.json`,
+`artifacts/v3_external_source_active_site_sourcing_resolution_1025.json`,
+`artifacts/v3_external_source_active_site_sourcing_resolution_audit_1025.json`,
+`artifacts/v3_external_source_representation_backend_plan_1025.json`,
+`artifacts/v3_external_source_representation_backend_plan_audit_1025.json`,
+`artifacts/v3_external_source_representation_backend_sample_1025.json`,
+`artifacts/v3_external_source_representation_backend_sample_audit_1025.json`,
 `artifacts/v3_external_source_transfer_blocker_matrix_1025.json`,
 `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`,
@@ -963,11 +1032,11 @@ Highest-value options:
 1. Do not promote the 1,025 preview; it has 0 accepted labels and exists as a
    source-limit audit point.
 2. Continue review-only external-source evidence collection from
-   `artifacts/v3_external_source_transfer_blocker_matrix_1025.json` and
-   `artifacts/v3_external_source_active_site_sourcing_export_1025.json`: source
-   explicit catalytic or active-site residue evidence for the 7
-   mapped-binding-context rows first, then the 3 primary-source rows, without
-   counting any row.
+   `artifacts/v3_external_source_active_site_sourcing_resolution_1025.json`:
+   the first UniProt feature re-check found 0 explicit active-site residue
+   sources, so the next active-site step is primary literature/PDB source
+   review for the 7 binding-plus-reaction context rows and primary active-site
+   source discovery for the 3 reaction-only rows without counting any row.
 3. Treat the Rhea reaction-context sample as context only, especially the 16
    broad-EC context rows; do not treat Rhea rows as active-site evidence.
 4. Run real near-duplicate sequence searches for the 28 rows in
@@ -977,14 +1046,19 @@ Highest-value options:
    bounded top-hit alignment check in
    `artifacts/v3_external_source_sequence_alignment_verification_1025.json` are
    not enough for import readiness.
-5. Replace the feature-proxy representation comparison with real learned or
+5. Replace the deterministic k-mer representation sample with real learned or
    structure-language controls using
-   `artifacts/v3_external_source_representation_backend_plan_1025.json` while
-   keeping heuristic retrieval as the required baseline.
+   `artifacts/v3_external_source_representation_backend_plan_1025.json` and
+   `artifacts/v3_external_source_representation_backend_sample_1025.json` while
+   keeping heuristic retrieval and sequence-search controls as required
+   baselines.
 6. Use `artifacts/v3_external_source_transfer_blocker_matrix_1025.json` as the
-   candidate-level blocker map: 10 active-site source rows, 28 complete
-   near-duplicate searches, 2 sequence holdouts, 12 representation-backend
-   plans, and 0 completed decisions.
+   candidate-level blocker map: 10 active-site source rows with resolution
+   statuses carried forward, 28 complete near-duplicate searches, 2 sequence
+   holdouts, 12 representation-backend plans, 12 representation sample rows, 1
+   representation near-duplicate holdout in the k-mer sample, and 0 completed
+   import decisions. The 59/59 transfer gate now fails stale matrices that omit
+   active-site resolution or representation sample integration.
 7. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
    separate decision artifact passes the full label-factory gate.
 8. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;

@@ -1,0 +1,19 @@
+{
+  "blockers": [],
+  "metadata": {
+    "candidate_count": 12,
+    "countable_label_candidate_count": 0,
+    "embedding_backend": "deterministic_sequence_kmer_control",
+    "embedding_status": "computed_review_only",
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "method": "external_source_representation_backend_sample_audit",
+    "missing_backend_status_row_count": 0,
+    "missing_review_only_status_row_count": 0,
+    "ready_for_label_import": false,
+    "representation_near_duplicate_alert_count": 1
+  },
+  "warnings": [
+    "computed representation backend samples are review-only controls and cannot authorize external label import"
+  ]
+}

@@ -18,7 +18,7 @@ artifacts, representation-control comparison, active-site gap source requests,
 sequence-holdout and sequence-neighborhood controls, broad-EC disambiguation,
 bounded sequence-neighborhood screen, sequence-alignment verification,
 sequence-search export, import-readiness audit, active-site sourcing
-queue/export, representation-backend plan, transfer blocker matrix, 53/53
+queue/export/resolution, representation-backend plan/sample, transfer blocker matrix, 59/59
 transfer gate, and full 30-candidate Rhea reaction context all keep
 `countable_label_candidate_count=0`.
 

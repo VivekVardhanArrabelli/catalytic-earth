@@ -97,14 +97,25 @@ Current review-only external artifacts:
   near-duplicate searches and 2 sequence holdouts.
 - `artifacts/v3_external_source_representation_backend_plan_1025.json` covers 12
   mapped representation controls without computing embeddings.
+- `artifacts/v3_external_source_representation_backend_sample_1025.json` computes
+  a deterministic sequence k-mer control for those 12 rows and flags 1
+  representation near-duplicate holdout without making any row countable.
+- `artifacts/v3_external_source_active_site_sourcing_resolution_1025.json`
+  re-checks the 10 active-site-gap rows against UniProt feature evidence,
+  records 0 explicit active-site residue sources, and leaves all rows
+  non-countable.
 - `artifacts/v3_external_source_transfer_blocker_matrix_1025.json` joins all 30
   candidates into a review-only blocker matrix with prioritized next actions.
+  The matrix now consumes active-site resolution and representation sample
+  packets directly, so the current gate rejects stale matrices that omit those
+  row-level blockers.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
   checkpoints, then 45/45 after sequence-alignment verification and the
-  active-site sourcing queue. The current gate now passes 53/53 after the source
-  exports, representation-backend plan, and blocker matrix. It is still not
+  active-site sourcing queue. The current gate now passes 59/59 after the source
+  exports, active-site sourcing resolution, representation-backend sample, and
+  blocker matrix. It is still not
   ready for label import.
 
 Sequence-similarity guardrail details:

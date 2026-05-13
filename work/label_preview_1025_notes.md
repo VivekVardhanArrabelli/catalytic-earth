@@ -55,9 +55,12 @@ carry sampled PDB/AlphaFold structure references into the evidence export, queue
 UniProtKB active-site features, map all 12 heuristic-ready AlphaFold controls,
 score the mapped controls with the current heuristic retrieval path, add a
 bounded sequence-neighborhood screen and import-readiness audit, and pass the
-53/53 external-transfer gate for review-only evidence collection with
-sequence-search export, active-site sourcing export, representation-backend
-planning, and a candidate blocker matrix.
+59/59 external-transfer gate for review-only evidence collection with
+sequence-search export, active-site sourcing export/resolution,
+representation-backend planning/sample, and a candidate blocker matrix. The
+active-site sourcing resolution finds 0 explicit active-site residue sources in
+the 10 gap rows, and the deterministic k-mer representation sample flags one
+representation near-duplicate holdout while keeping all rows non-countable.
 Two sample accessions (`O15527` and `P42126`) overlap existing M-CSA reference
 accessions and are routed to holdout controls. The lane-balance audit is clean:
 six lanes each contribute five candidates, so the initial review sample has not

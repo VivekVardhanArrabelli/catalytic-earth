@@ -3,12 +3,12 @@
 The 1,025 external-source path remains review-only and non-countable. The
 current repair surface covers heuristic collapse, representation-control
 comparison, broad-EC disambiguation, active-site gap sourcing/export,
-sequence-search export, representation-backend planning, and a candidate blocker
-matrix.
+active-site sourcing resolution, sequence-search export, representation-backend
+planning/sample, and a candidate blocker matrix.
 
 ## Current Gate
 
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 53/53
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 59/59
   review-only checks.
 - `countable_label_candidate_count` remains 0.
 - `ready_for_label_import` remains false.
@@ -36,8 +36,18 @@ matrix.
   metal-hydrolase collapse, 2 are glycan-boundary cases, 2 are other
   scope/top1 mismatches, and 1 is scope-consistent. No embeddings or labels are
   created.
+- `artifacts/v3_external_source_representation_backend_sample_1025.json` adds a
+  computed deterministic sequence k-mer control for all 12 planned
+  representation rows. It is review-only, flags 1 representation near-duplicate
+  holdout, and does not replace the future learned or structure-language
+  backend requirement.
 
 ## Active-Site Gap Repair
+
+- `artifacts/v3_external_source_active_site_sourcing_resolution_1025.json`
+  re-checks the 10 active-site-gap rows against UniProt feature evidence: 7 rows
+  have binding plus reaction context only, 3 have reaction context only, and 0
+  expose explicit active-site residue positions.
 
 - `artifacts/v3_external_source_binding_context_repair_plan_1025.json` splits
   the 10 active-site feature gaps into 7 rows with binding context ready to map
@@ -100,11 +110,13 @@ matrix.
 - `artifacts/v3_external_source_representation_backend_plan_1025.json` keeps 12
   mapped controls ready for backend selection but explicitly unembedded.
 - `artifacts/v3_external_source_transfer_blocker_matrix_1025.json` joins all 30
-  candidates into a non-countable blocker matrix: 7 active-site source packets,
-  3 primary-source tasks, 18 near-duplicate sequence searches, and 2 sequence
-  holdouts as prioritized actions. The dominant action fraction is 0.6000 and
-  the dominant lane fraction is 0.1667, so this queue has not collapsed to one
-  action or chemistry lane.
+  candidates into a non-countable blocker matrix: 7 primary literature/PDB
+  active-site source reviews after the UniProt re-check found no explicit
+  positions, 3 primary-source tasks, 18 near-duplicate sequence searches, and 2
+  sequence holdouts as prioritized actions. The matrix now carries active-site
+  resolution and representation sample statuses directly. The dominant action
+  fraction is 0.6000 and the dominant lane fraction is 0.1667, so this queue has
+  not collapsed to one action or chemistry lane.
 - Remaining-time plan executed for the 2026-05-13T03:08:55-05:00 run: after
   the sequence screen and import-readiness audit passed targeted tests, keep
   work bounded to artifact regression coverage, docs, validation, and final

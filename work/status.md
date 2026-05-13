@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 63
-- Measured elapsed time: 2515.2 minutes (41.92 hours)
+- Entries: 64
+- Measured elapsed time: 2565.4 minutes (42.76 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 2437.1 measured minutes (40.62 hours)
+- post-v2: 2487.3 measured minutes (41.45 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 663
-- Evidence references logged: 545
+- Artifact references logged: 684
+- Evidence references logged: 559
 
 ## Recent Entries
-
-### 2026-05-13T03:55:19.973294+00:00 - post-v2
-
-- Task: Open 1025 preview and scope external transfer
-- Time mode: measured
-- Measured minutes: 51.6
-- Started: 2026-05-13T03:03:14Z
-- Ended: 2026-05-13T03:54:50Z
-- Artifacts: artifacts/v3_label_factory_gate_check_1025_preview.json, artifacts/v3_label_batch_acceptance_check_1025_preview.json, artifacts/v3_source_scale_limit_audit_1025.json, artifacts/v3_external_source_transfer_manifest_1025.json, artifacts/v3_external_source_query_manifest_1025.json, artifacts/v3_external_ood_calibration_plan_1025.json, artifacts/v3_external_source_candidate_sample_1025.json, artifacts/v3_external_source_candidate_sample_audit_1025.json, docs/external_source_transfer.md, work/label_preview_1025_notes.md
-- Evidence: 217 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 21/21 1025 preview gate checks passed, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 0 accepted new labels, 30 external candidates kept non-countable
-- Notes: Normal locked measured run. Opened the 1025 preview, kept countable labels at 679, and added review-only external-source transfer scaffolding.
 
 ### 2026-05-13T04:55:52.608228+00:00 - post-v2
 
@@ -113,6 +102,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-13T11:03:46Z
 - Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_active_site_sourcing_export_1025.json, artifacts/v3_external_source_active_site_sourcing_export_audit_1025.json, artifacts/v3_external_source_sequence_search_export_1025.json, artifacts/v3_external_source_sequence_search_export_audit_1025.json, artifacts/v3_external_source_representation_backend_plan_1025.json, artifacts/v3_external_source_representation_backend_plan_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md, work/label_factory_notes.md
 - Evidence: 265 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, CLI help checks passed, 53/53 external transfer gates, 10 active-site source-review packets, 28 near-duplicate sequence search requests, 12 representation backend plans with embeddings absent, 30-row blocker matrix with no action/lane collapse, 0 countable external labels, 0 import-ready external labels
+- Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
+
+### 2026-05-13T12:05:19.086868+00:00 - post-v2
+
+- Task: Harden external active-site and representation controls
+- Time mode: measured
+- Measured minutes: 50.2
+- Started: 2026-05-13T11:14:12Z
+- Ended: 2026-05-13T12:04:24Z
+- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_active_site_sourcing_resolution_1025.json, artifacts/v3_external_source_active_site_sourcing_resolution_audit_1025.json, artifacts/v3_external_source_representation_backend_sample_1025.json, artifacts/v3_external_source_representation_backend_sample_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md, work/label_factory_notes.md
+- Evidence: 268 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, CLI help checks passed, 59/59 external transfer gates, 10 active-site sourcing resolution rows, 0 explicit active-site residue sources, 12 deterministic k-mer representation sample rows, 1 representation near-duplicate holdout, 30-row blocker matrix integrates active-site resolution and representation sample statuses, 0 countable external labels, 0 import-ready external labels
 - Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
 
 ## Expectation Updates
@@ -239,3 +239,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T09:00:39.138608+00:00: External transfer remains non-countable; next import readiness depends on active-site sourcing, complete near-duplicate sequence search, and real representation controls before any external decision.
 - 2026-05-13T10:03:45+00:00: External transfer remains non-countable; next import readiness depends on sourcing explicit active-site evidence, completing near-duplicate sequence search, and replacing feature-proxy representation controls before any external decision.
 - 2026-05-13T11:04:16.318492+00:00: External transfer remains non-countable; next import readiness depends on sourcing explicit active-site evidence, completing near-duplicate sequence search, and running real representation controls before any external decision.
+- 2026-05-13T12:05:19.086868+00:00: External transfer remains non-countable; next import readiness depends on primary literature/PDB active-site source review, complete near-duplicate sequence search, and replacing deterministic k-mer controls with real learned or structure-language representation controls before any external decision.

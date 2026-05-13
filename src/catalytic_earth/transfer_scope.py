@@ -3094,6 +3094,259 @@ def audit_external_source_representation_backend_plan(
     }
 
 
+def build_external_source_representation_backend_sample(
+    *,
+    representation_backend_plan: dict[str, Any],
+    sequence_neighborhood_sample: dict[str, Any],
+    max_rows: int = 100,
+    top_k: int = 3,
+    similarity_alert_threshold: float = 0.95,
+    fetcher: Callable[[list[str]], dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Compute a review-only deterministic sequence representation control."""
+    fetch = fetcher or _fetch_uniprot_sequence_records
+    sequence_rows_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in sequence_neighborhood_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    plan_rows = [
+        row
+        for row in representation_backend_plan.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]
+    candidate_accessions = [
+        _normalize_accession(row.get("accession")) for row in plan_rows
+    ]
+    reference_accessions = sorted(
+        {
+            _normalize_accession(match.get("reference_accession"))
+            for accession in candidate_accessions
+            for match in (
+                sequence_rows_by_accession.get(accession, {}).get("top_matches", [])
+                or []
+            )[:top_k]
+            if isinstance(match, dict)
+            and _normalize_accession(match.get("reference_accession"))
+        }
+    )
+    requested_accessions = sorted(set(candidate_accessions) | set(reference_accessions))
+    fetch_failures: list[dict[str, str]] = []
+    try:
+        sequence_payload = fetch(requested_accessions)
+    except Exception as exc:  # pragma: no cover - live network failure path
+        sequence_payload = {"metadata": {}, "records": []}
+        fetch_failures.append({"error_type": type(exc).__name__, "error": str(exc)})
+    records_by_accession = {
+        _normalize_accession(record.get("accession")): record
+        for record in sequence_payload.get("records", []) or []
+        if isinstance(record, dict) and _normalize_accession(record.get("accession"))
+    }
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    alert_count = 0
+    reference_pair_count = 0
+    for plan_row in plan_rows:
+        accession = _normalize_accession(plan_row.get("accession"))
+        sequence_row = sequence_rows_by_accession.get(accession, {})
+        candidate_sequence = _clean_sequence(
+            records_by_accession.get(accession, {}).get("sequence")
+        )
+        candidate_embedding = _sequence_kmer_embedding(candidate_sequence)
+        reference_scores: list[dict[str, Any]] = []
+        for match in (sequence_row.get("top_matches", []) or [])[:top_k]:
+            if not isinstance(match, dict):
+                continue
+            reference_accession = _normalize_accession(match.get("reference_accession"))
+            reference_sequence = _clean_sequence(
+                records_by_accession.get(reference_accession, {}).get("sequence")
+            )
+            if not reference_accession or not reference_sequence or not candidate_embedding:
+                continue
+            score = _sparse_cosine_similarity(
+                candidate_embedding,
+                _sequence_kmer_embedding(reference_sequence),
+            )
+            reference_scores.append(
+                {
+                    "embedding_cosine": round(score, 4),
+                    "length_coverage": round(
+                        _sequence_length_coverage(candidate_sequence, reference_sequence),
+                        4,
+                    ),
+                    "matched_m_csa_entry_ids": match.get("matched_m_csa_entry_ids", []),
+                    "reference_accession": reference_accession,
+                    "screen_near_duplicate_score": match.get("near_duplicate_score"),
+                }
+            )
+        reference_scores.sort(
+            key=lambda item: (
+                -float(item.get("embedding_cosine", 0.0) or 0.0),
+                str(item.get("reference_accession") or ""),
+            )
+        )
+        best_score = (
+            float(reference_scores[0].get("embedding_cosine", 0.0) or 0.0)
+            if reference_scores
+            else 0.0
+        )
+        status = _external_representation_backend_sample_status(
+            candidate_sequence=candidate_sequence,
+            reference_scores=reference_scores,
+            backend_readiness_status=str(
+                plan_row.get("backend_readiness_status") or ""
+            ),
+            similarity_alert_threshold=similarity_alert_threshold,
+        )
+        status_counts[status] += 1
+        if status == "representation_near_duplicate_holdout":
+            alert_count += 1
+        reference_pair_count += len(reference_scores)
+        rows.append(
+            {
+                "accession": accession,
+                "backend_status": status,
+                "blockers": _external_representation_backend_sample_blockers(status),
+                "candidate_sequence_length": len(candidate_sequence),
+                "comparison_status": plan_row.get("comparison_status"),
+                "countable_label_candidate": False,
+                "embedding_backend": "deterministic_sequence_kmer_control",
+                "embedding_status": "computed_review_only",
+                "entry_id": plan_row.get("entry_id") or f"uniprot:{accession}",
+                "heuristic_baseline_control": plan_row.get(
+                    "heuristic_baseline_control", {}
+                ),
+                "lane_id": plan_row.get("lane_id"),
+                "nearest_reference": reference_scores[0] if reference_scores else None,
+                "ready_for_label_import": False,
+                "reference_scores": reference_scores,
+                "review_status": "representation_backend_sample_review_only",
+                "scope_signal": plan_row.get("scope_signal"),
+                "sequence_search_task": plan_row.get("sequence_search_task"),
+                "top_embedding_cosine": round(best_score, 4),
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "external_source_representation_backend_sample",
+            "source_representation_backend_plan_method": (
+                representation_backend_plan.get("metadata", {}).get("method")
+            ),
+            "source_sequence_neighborhood_sample_method": (
+                sequence_neighborhood_sample.get("metadata", {}).get("method")
+            ),
+            "source_fetch_method": sequence_payload.get("metadata", {}).get("source"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "top_k": top_k,
+            "embedding_backend": "deterministic_sequence_kmer_control",
+            "embedding_status": "computed_review_only",
+            "requested_accession_count": len(requested_accessions),
+            "fetched_accession_count": len(records_by_accession),
+            "reference_pair_count": reference_pair_count,
+            "similarity_alert_threshold": similarity_alert_threshold,
+            "representation_near_duplicate_alert_count": alert_count,
+            "heuristic_contrast_required_count": sum(
+                1
+                for row in rows
+                if (
+                    row.get("heuristic_baseline_control", {}).get(
+                        "scope_top1_mismatch"
+                    )
+                    or row.get("heuristic_baseline_control", {}).get(
+                        "top1_fingerprint_id"
+                    )
+                    == "metal_dependent_hydrolase"
+                )
+            ),
+            "fetch_failure_count": len(fetch_failures),
+            "backend_status_counts": dict(sorted(status_counts.items())),
+            "review_only_rule": (
+                "computed representation samples are controls only; they do "
+                "not replace sequence-search, review-decision, or factory gates"
+            ),
+        },
+        "rows": rows,
+        "fetch_failures": fetch_failures,
+        "blockers": [
+            "learned_or_structure_language_embedding_not_run",
+            "external_review_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "the deterministic k-mer backend is a computed baseline control, "
+                "not expert evidence or a learned representation model"
+            )
+        ],
+    }
+
+
+def audit_external_source_representation_backend_sample(
+    representation_backend_sample: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify computed representation backend samples remain review-only."""
+    rows = [
+        row
+        for row in representation_backend_sample.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_backend_status = [row for row in rows if not row.get("backend_status")]
+    missing_review_status = [
+        row
+        for row in rows
+        if row.get("review_status") != "representation_backend_sample_review_only"
+    ]
+    metadata = representation_backend_sample.get("metadata", {})
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_representation_backend_sample")
+    if metadata.get("embedding_status") != "computed_review_only":
+        blockers.append("representation_backend_sample_embedding_status_invalid")
+    if countable_rows:
+        blockers.append("representation_backend_sample_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("representation_backend_sample_rows_marked_ready_for_import")
+    if missing_backend_status:
+        blockers.append("representation_backend_sample_rows_missing_backend_status")
+    if missing_review_status:
+        blockers.append("representation_backend_sample_rows_not_review_only")
+    return {
+        "metadata": {
+            "method": "external_source_representation_backend_sample_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "embedding_status": metadata.get("embedding_status"),
+            "embedding_backend": metadata.get("embedding_backend"),
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_backend_status_row_count": len(missing_backend_status),
+            "missing_review_only_status_row_count": len(missing_review_status),
+            "representation_near_duplicate_alert_count": metadata.get(
+                "representation_near_duplicate_alert_count", 0
+            ),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "computed representation backend samples are review-only "
+                "controls and cannot authorize external label import"
+            )
+        ],
+    }
+
+
 def audit_external_source_broad_ec_disambiguation(
     *,
     control_repair_plan: dict[str, Any],
@@ -4487,6 +4740,221 @@ def audit_external_source_active_site_sourcing_export(
     }
 
 
+def build_external_source_active_site_sourcing_resolution(
+    *,
+    active_site_sourcing_export: dict[str, Any],
+    max_rows: int = 100,
+    fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+) -> dict[str, Any]:
+    """Resolve active-site source packets against UniProt feature evidence only."""
+    source_rows = [
+        row
+        for row in active_site_sourcing_export.get("rows", []) or []
+        if isinstance(row, dict)
+    ][:max_rows]
+    rows: list[dict[str, Any]] = []
+    fetch_failures: list[dict[str, str]] = []
+    status_counts: Counter[str] = Counter()
+    explicit_active_site_count = 0
+    binding_context_only_count = 0
+    primary_source_required_count = 0
+    evidence_reference_count = 0
+
+    for source_row in source_rows:
+        accession = _normalize_accession(source_row.get("accession"))
+        if not accession:
+            continue
+        record: dict[str, Any] = {}
+        try:
+            payload = fetcher(accession)
+            candidate = payload.get("record", payload)
+            if isinstance(candidate, dict):
+                record = candidate
+            else:
+                raise ValueError("UniProt payload did not contain a record")
+        except Exception as exc:  # pragma: no cover - live network failure path
+            fetch_failures.append(
+                {
+                    "accession": accession,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+
+        active_features = [
+            feature
+            for feature in record.get("active_site_features", []) or []
+            if isinstance(feature, dict)
+        ]
+        binding_features = [
+            feature
+            for feature in record.get("binding_site_features", []) or []
+            if isinstance(feature, dict)
+        ]
+        catalytic_comments = [
+            comment
+            for comment in record.get("catalytic_activity_comments", []) or []
+            if isinstance(comment, dict)
+        ]
+        status = _external_active_site_sourcing_resolution_status(
+            active_features=active_features,
+            binding_features=binding_features,
+            catalytic_comments=catalytic_comments,
+            fetch_failed=not bool(record),
+        )
+        status_counts[status] += 1
+        if active_features:
+            explicit_active_site_count += 1
+        elif binding_features or (
+            source_row.get("active_site_gap_request_status")
+            == "binding_context_mapped_ready_for_active_site_sourcing"
+        ):
+            binding_context_only_count += 1
+        else:
+            primary_source_required_count += 1
+        evidence_reference_count += _external_feature_evidence_reference_count(
+            active_features + binding_features
+        )
+        rows.append(
+            {
+                "accession": accession,
+                "active_site_gap_request_status": source_row.get(
+                    "active_site_gap_request_status"
+                ),
+                "active_site_source_status": status,
+                "blockers": _external_active_site_sourcing_resolution_blockers(
+                    status
+                ),
+                "binding_site_feature_count": len(binding_features),
+                "catalytic_activity_count": len(catalytic_comments),
+                "countable_label_candidate": False,
+                "entry_id": source_row.get("entry_id") or f"uniprot:{accession}",
+                "explicit_active_site_feature_count": len(active_features),
+                "lane_id": source_row.get("lane_id"),
+                "protein_name": source_row.get("protein_name"),
+                "queue_status": source_row.get("queue_status"),
+                "ready_for_label_import": False,
+                "review_status": "active_site_sourcing_resolution_review_only",
+                "scope_signal": source_row.get("scope_signal"),
+                "source_task": source_row.get("source_task"),
+                "sourced_active_site_positions": _external_sourced_active_site_positions(
+                    active_features
+                ),
+                "uniprot_entry_name": record.get("entry_name"),
+                "uniprot_review_status": record.get("entry_type"),
+            }
+        )
+
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    return {
+        "metadata": {
+            "method": "external_source_active_site_sourcing_resolution",
+            "source_active_site_sourcing_method": active_site_sourcing_export.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "explicit_active_site_source_count": explicit_active_site_count,
+            "binding_context_only_count": binding_context_only_count,
+            "primary_source_required_count": primary_source_required_count,
+            "import_ready_row_count": len(import_ready_rows),
+            "fetch_failure_count": len(fetch_failures),
+            "feature_evidence_reference_count": evidence_reference_count,
+            "active_site_source_status_counts": dict(sorted(status_counts.items())),
+            "review_only_rule": (
+                "active-site sourcing resolutions summarize source evidence only; "
+                "they cannot create countable labels or import-ready rows"
+            ),
+        },
+        "rows": rows,
+        "fetch_failures": fetch_failures,
+        "blockers": [
+            "external_review_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "explicit active-site positions, when present, still require "
+                "mapping, review decisions, and the full label-factory gate"
+            )
+        ],
+    }
+
+
+def audit_external_source_active_site_sourcing_resolution(
+    *,
+    active_site_sourcing_resolution: dict[str, Any],
+    active_site_sourcing_export: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify active-site sourcing resolutions remain review-only evidence."""
+    rows = [
+        row
+        for row in active_site_sourcing_resolution.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    expected_count = int(
+        active_site_sourcing_export.get("metadata", {}).get("candidate_count", 0) or 0
+    )
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_status_rows = [row for row in rows if not row.get("active_site_source_status")]
+    missing_review_status_rows = [
+        row
+        for row in rows
+        if row.get("review_status") != "active_site_sourcing_resolution_review_only"
+    ]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_active_site_sourcing_resolution")
+    if expected_count and len(rows) != expected_count:
+        blockers.append("active_site_sourcing_resolution_missing_export_rows")
+    if countable_rows:
+        blockers.append("active_site_sourcing_resolution_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("active_site_sourcing_resolution_rows_marked_ready_for_import")
+    if missing_status_rows:
+        blockers.append("active_site_sourcing_resolution_rows_missing_source_status")
+    if missing_review_status_rows:
+        blockers.append("active_site_sourcing_resolution_rows_not_review_only")
+    return {
+        "metadata": {
+            "method": "external_source_active_site_sourcing_resolution_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "expected_export_candidate_count": expected_count,
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_source_status_row_count": len(missing_status_rows),
+            "missing_review_only_status_row_count": len(missing_review_status_rows),
+            "explicit_active_site_source_count": active_site_sourcing_resolution.get(
+                "metadata", {}
+            ).get("explicit_active_site_source_count", 0),
+            "fetch_failure_count": active_site_sourcing_resolution.get(
+                "metadata", {}
+            ).get("fetch_failure_count", 0),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "active-site source resolutions are review-only and cannot "
+                "authorize external label import"
+            )
+        ],
+    }
+
+
 def audit_external_source_import_readiness(
     *,
     candidate_manifest: dict[str, Any],
@@ -4673,6 +5141,8 @@ def build_external_source_transfer_blocker_matrix(
     active_site_sourcing_export: dict[str, Any],
     sequence_search_export: dict[str, Any],
     representation_backend_plan: dict[str, Any],
+    active_site_sourcing_resolution: dict[str, Any] | None = None,
+    representation_backend_sample: dict[str, Any] | None = None,
     max_rows: int = 100,
 ) -> dict[str, Any]:
     """Join external blocker packets into a candidate-level review matrix."""
@@ -4696,6 +5166,16 @@ def build_external_source_transfer_blocker_matrix(
         for row in representation_backend_plan.get("rows", []) or []
         if isinstance(row, dict) and _normalize_accession(row.get("accession"))
     }
+    active_site_resolution_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in (active_site_sourcing_resolution or {}).get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    backend_sample_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in (representation_backend_sample or {}).get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
 
     rows: list[dict[str, Any]] = []
     for manifest_row in candidate_manifest.get("rows", []) or []:
@@ -4708,23 +5188,30 @@ def build_external_source_transfer_blocker_matrix(
         active_site = active_site_by_accession.get(accession)
         sequence = sequence_by_accession.get(accession)
         backend = backend_by_accession.get(accession)
+        active_site_resolution = active_site_resolution_by_accession.get(accession)
+        backend_sample = backend_sample_by_accession.get(accession)
         blockers = _external_transfer_blocker_matrix_blockers(
             readiness=readiness,
             active_site=active_site,
             sequence=sequence,
             backend=backend,
+            active_site_resolution=active_site_resolution,
+            backend_sample=backend_sample,
         )
         prioritized_action = _external_transfer_blocker_matrix_next_action(
             readiness=readiness,
             active_site=active_site,
             sequence=sequence,
             backend=backend,
+            active_site_resolution=active_site_resolution,
+            backend_sample=backend_sample,
         )
         rows.append(
             {
                 "accession": accession,
                 "active_site_sourcing": _external_transfer_blocker_matrix_active_site(
-                    active_site
+                    active_site,
+                    active_site_resolution=active_site_resolution,
                 ),
                 "blockers": blockers,
                 "countable_label_candidate": False,
@@ -4735,7 +5222,10 @@ def build_external_source_transfer_blocker_matrix(
                 "ready_for_label_import": False,
                 "readiness_status": readiness.get("readiness_status"),
                 "representation_backend": (
-                    _external_transfer_blocker_matrix_backend(backend)
+                    _external_transfer_blocker_matrix_backend(
+                        backend,
+                        backend_sample=backend_sample,
+                    )
                 ),
                 "review_status": "external_transfer_blocker_matrix_review_only",
                 "scope_signal": manifest_row.get("scope_signal"),
@@ -4767,12 +5257,18 @@ def build_external_source_transfer_blocker_matrix(
             "source_active_site_sourcing_method": active_site_sourcing_export.get(
                 "metadata", {}
             ).get("method"),
+            "source_active_site_sourcing_resolution_method": (
+                (active_site_sourcing_resolution or {}).get("metadata", {}).get("method")
+            ),
             "source_sequence_search_method": sequence_search_export.get(
                 "metadata", {}
             ).get("method"),
             "source_representation_backend_method": representation_backend_plan.get(
                 "metadata", {}
             ).get("method"),
+            "source_representation_backend_sample_method": (
+                (representation_backend_sample or {}).get("metadata", {}).get("method")
+            ),
             "ready_for_label_import": False,
             "countable_label_candidate_count": 0,
             "candidate_count": len(rows),
@@ -4780,8 +5276,14 @@ def build_external_source_transfer_blocker_matrix(
             "active_site_sourcing_export_candidate_count": len(
                 active_site_by_accession
             ),
+            "active_site_sourcing_resolution_candidate_count": len(
+                active_site_resolution_by_accession
+            ),
             "sequence_search_export_candidate_count": len(sequence_by_accession),
             "representation_backend_plan_candidate_count": len(backend_by_accession),
+            "representation_backend_sample_candidate_count": len(
+                backend_sample_by_accession
+            ),
             "blocker_counts": dict(sorted(blocker_counts.items())),
             "dominant_lane_fraction": (
                 round(dominant_lane_count / len(rows), 4) if rows else 0.0
@@ -4853,8 +5355,30 @@ def audit_external_source_transfer_blocker_matrix(
         for row in rows
         if row.get("sequence_search", {}).get("decision_status") != "no_decision"
     ]
+    active_site_resolution_rows = [
+        row
+        for row in rows
+        if row.get("active_site_sourcing", {}).get("resolution_status")
+    ]
+    representation_sample_rows = [
+        row
+        for row in rows
+        if row.get("representation_backend", {}).get("sample_backend_status")
+    ]
+    representation_near_duplicate_rows = [
+        row
+        for row in representation_sample_rows
+        if row.get("representation_backend", {}).get("sample_near_duplicate_alert")
+        is True
+    ]
     blockers: list[str] = []
     metadata = transfer_blocker_matrix.get("metadata", {})
+    expected_active_site_resolution_count = int(
+        metadata.get("active_site_sourcing_resolution_candidate_count", 0) or 0
+    )
+    expected_representation_sample_count = int(
+        metadata.get("representation_backend_sample_candidate_count", 0) or 0
+    )
     if not rows:
         blockers.append("empty_external_transfer_blocker_matrix")
     if expected_candidate_count and len(rows) != expected_candidate_count:
@@ -4886,6 +5410,20 @@ def audit_external_source_transfer_blocker_matrix(
         blockers.append("external_transfer_blocker_matrix_active_site_decisions_present")
     if completed_sequence_decisions:
         blockers.append("external_transfer_blocker_matrix_sequence_decisions_present")
+    if (
+        expected_active_site_resolution_count
+        and len(active_site_resolution_rows) != expected_active_site_resolution_count
+    ):
+        blockers.append(
+            "external_transfer_blocker_matrix_active_site_resolution_mismatch"
+        )
+    if (
+        expected_representation_sample_count
+        and len(representation_sample_rows) != expected_representation_sample_count
+    ):
+        blockers.append(
+            "external_transfer_blocker_matrix_representation_sample_mismatch"
+        )
     return {
         "metadata": {
             "method": "external_source_transfer_blocker_matrix_audit",
@@ -4906,6 +5444,17 @@ def audit_external_source_transfer_blocker_matrix(
                 completed_active_site_decisions
             ),
             "completed_sequence_decision_count": len(completed_sequence_decisions),
+            "active_site_resolution_row_count": len(active_site_resolution_rows),
+            "expected_active_site_resolution_row_count": (
+                expected_active_site_resolution_count
+            ),
+            "representation_sample_row_count": len(representation_sample_rows),
+            "expected_representation_sample_row_count": (
+                expected_representation_sample_count
+            ),
+            "representation_near_duplicate_alert_count": len(
+                representation_near_duplicate_rows
+            ),
             "guardrail_clean": not blockers,
         },
         "blockers": blockers,
@@ -4952,6 +5501,8 @@ def check_external_source_transfer_gates(
     representation_control_comparison_audit: dict[str, Any] | None = None,
     representation_backend_plan: dict[str, Any] | None = None,
     representation_backend_plan_audit: dict[str, Any] | None = None,
+    representation_backend_sample: dict[str, Any] | None = None,
+    representation_backend_sample_audit: dict[str, Any] | None = None,
     broad_ec_disambiguation_audit: dict[str, Any] | None = None,
     active_site_gap_source_requests: dict[str, Any] | None = None,
     sequence_neighborhood_plan: dict[str, Any] | None = None,
@@ -4966,6 +5517,8 @@ def check_external_source_transfer_gates(
     active_site_sourcing_queue_audit: dict[str, Any] | None = None,
     active_site_sourcing_export: dict[str, Any] | None = None,
     active_site_sourcing_export_audit: dict[str, Any] | None = None,
+    active_site_sourcing_resolution: dict[str, Any] | None = None,
+    active_site_sourcing_resolution_audit: dict[str, Any] | None = None,
     transfer_blocker_matrix: dict[str, Any] | None = None,
     transfer_blocker_matrix_audit: dict[str, Any] | None = None,
     binding_context_repair_plan: dict[str, Any] | None = None,
@@ -5382,6 +5935,44 @@ def check_external_source_transfer_gates(
             and backend_audit_meta.get("embedding_status")
             == "backend_plan_only_not_computed"
         )
+    if representation_backend_sample is not None:
+        sample_meta = representation_backend_sample.get("metadata", {})
+        sample_rows = [
+            row
+            for row in representation_backend_sample.get("rows", []) or []
+            if isinstance(row, dict)
+        ]
+        expected_sample_count = (
+            representation_backend_plan.get("metadata", {}).get("candidate_count")
+            if representation_backend_plan is not None
+            else len(sample_rows)
+        )
+        gates["representation_backend_sample_review_only"] = (
+            sample_meta.get("ready_for_label_import") is False
+            and sample_meta.get("countable_label_candidate_count") == 0
+            and sample_meta.get("embedding_status") == "computed_review_only"
+            and sample_meta.get("embedding_backend")
+            == "deterministic_sequence_kmer_control"
+            and int(sample_meta.get("candidate_count", 0) or 0) == len(sample_rows)
+            and int(sample_meta.get("candidate_count", 0) or 0)
+            == int(expected_sample_count or 0)
+            and len(sample_rows) > 0
+            and all(row.get("countable_label_candidate") is False for row in sample_rows)
+            and all(row.get("ready_for_label_import") is False for row in sample_rows)
+            and all(
+                row.get("review_status") == "representation_backend_sample_review_only"
+                for row in sample_rows
+            )
+            and all(row.get("backend_status") for row in sample_rows)
+        )
+    if representation_backend_sample_audit is not None:
+        sample_audit_meta = representation_backend_sample_audit.get("metadata", {})
+        gates["representation_backend_sample_audit_guardrail_clean"] = (
+            sample_audit_meta.get("guardrail_clean") is True
+            and sample_audit_meta.get("ready_for_label_import") is False
+            and sample_audit_meta.get("countable_label_candidate_count") == 0
+            and sample_audit_meta.get("embedding_status") == "computed_review_only"
+        )
     if broad_ec_disambiguation_audit is not None:
         broad_meta = broad_ec_disambiguation_audit.get("metadata", {})
         broad_rows = [
@@ -5669,6 +6260,50 @@ def check_external_source_transfer_gates(
             and export_audit_meta.get("countable_label_candidate_count") == 0
             and export_audit_meta.get("completed_decision_count") == 0
         )
+    if active_site_sourcing_resolution is not None:
+        resolution_meta = active_site_sourcing_resolution.get("metadata", {})
+        resolution_rows = [
+            row
+            for row in active_site_sourcing_resolution.get("rows", []) or []
+            if isinstance(row, dict)
+        ]
+        expected_resolution_count = (
+            active_site_sourcing_export.get("metadata", {}).get("candidate_count")
+            if active_site_sourcing_export is not None
+            else len(resolution_rows)
+        )
+        gates["active_site_sourcing_resolution_review_only"] = (
+            resolution_meta.get("ready_for_label_import") is False
+            and resolution_meta.get("countable_label_candidate_count") == 0
+            and int(resolution_meta.get("candidate_count", 0) or 0)
+            == len(resolution_rows)
+            and int(resolution_meta.get("candidate_count", 0) or 0)
+            == int(expected_resolution_count or 0)
+            and len(resolution_rows) > 0
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in resolution_rows
+            )
+            and all(
+                row.get("ready_for_label_import") is False
+                for row in resolution_rows
+            )
+            and all(
+                row.get("review_status")
+                == "active_site_sourcing_resolution_review_only"
+                for row in resolution_rows
+            )
+            and all(row.get("active_site_source_status") for row in resolution_rows)
+        )
+    if active_site_sourcing_resolution_audit is not None:
+        resolution_audit_meta = active_site_sourcing_resolution_audit.get(
+            "metadata", {}
+        )
+        gates["active_site_sourcing_resolution_audit_guardrail_clean"] = (
+            resolution_audit_meta.get("guardrail_clean") is True
+            and resolution_audit_meta.get("ready_for_label_import") is False
+            and resolution_audit_meta.get("countable_label_candidate_count") == 0
+        )
     if transfer_blocker_matrix is not None:
         matrix_meta = transfer_blocker_matrix.get("metadata", {})
         matrix_rows = [
@@ -5700,6 +6335,28 @@ def check_external_source_transfer_gates(
                 representation_backend_plan.get("metadata", {}).get("candidate_count")
                 if representation_backend_plan is not None
                 else matrix_meta.get("representation_backend_plan_candidate_count")
+            )
+            or 0
+        )
+        expected_matrix_resolution_count = int(
+            (
+                active_site_sourcing_resolution.get("metadata", {}).get(
+                    "candidate_count"
+                )
+                if active_site_sourcing_resolution is not None
+                else matrix_meta.get(
+                    "active_site_sourcing_resolution_candidate_count", 0
+                )
+            )
+            or 0
+        )
+        expected_matrix_sample_count = int(
+            (
+                representation_backend_sample.get("metadata", {}).get(
+                    "candidate_count"
+                )
+                if representation_backend_sample is not None
+                else matrix_meta.get("representation_backend_sample_candidate_count", 0)
             )
             or 0
         )
@@ -5737,6 +6394,40 @@ def check_external_source_transfer_gates(
                 for row in matrix_rows
             )
         )
+        if active_site_sourcing_resolution is not None:
+            matrix_resolution_rows = [
+                row
+                for row in matrix_rows
+                if row.get("active_site_sourcing", {}).get("resolution_status")
+            ]
+            gates[
+                "external_transfer_blocker_matrix_active_site_resolution_integrated"
+            ] = (
+                int(
+                    matrix_meta.get(
+                        "active_site_sourcing_resolution_candidate_count", 0
+                    )
+                    or 0
+                )
+                == expected_matrix_resolution_count
+                and len(matrix_resolution_rows) == expected_matrix_resolution_count
+            )
+        if representation_backend_sample is not None:
+            matrix_sample_rows = [
+                row
+                for row in matrix_rows
+                if row.get("representation_backend", {}).get("sample_backend_status")
+            ]
+            gates[
+                "external_transfer_blocker_matrix_representation_sample_integrated"
+            ] = (
+                int(
+                    matrix_meta.get("representation_backend_sample_candidate_count", 0)
+                    or 0
+                )
+                == expected_matrix_sample_count
+                and len(matrix_sample_rows) == expected_matrix_sample_count
+            )
     if transfer_blocker_matrix_audit is not None:
         matrix_audit_meta = transfer_blocker_matrix_audit.get("metadata", {})
         gates["external_transfer_blocker_matrix_audit_guardrail_clean"] = (
@@ -6014,6 +6705,27 @@ def check_external_source_transfer_gates(
                 if representation_backend_plan is not None
                 else 0
             ),
+            "representation_backend_sample_candidate_count": (
+                representation_backend_sample.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if representation_backend_sample is not None
+                else 0
+            ),
+            "representation_backend_sample_reference_pair_count": (
+                representation_backend_sample.get("metadata", {}).get(
+                    "reference_pair_count", 0
+                )
+                if representation_backend_sample is not None
+                else 0
+            ),
+            "representation_backend_sample_near_duplicate_alert_count": (
+                representation_backend_sample.get("metadata", {}).get(
+                    "representation_near_duplicate_alert_count", 0
+                )
+                if representation_backend_sample is not None
+                else 0
+            ),
             "broad_ec_disambiguation_candidate_count": (
                 broad_ec_disambiguation_audit.get("metadata", {}).get(
                     "candidate_count", 0
@@ -6187,6 +6899,27 @@ def check_external_source_transfer_gates(
                 if active_site_sourcing_export_audit is not None
                 else 0
             ),
+            "active_site_sourcing_resolution_candidate_count": (
+                active_site_sourcing_resolution.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if active_site_sourcing_resolution is not None
+                else 0
+            ),
+            "active_site_sourcing_resolution_explicit_source_count": (
+                active_site_sourcing_resolution.get("metadata", {}).get(
+                    "explicit_active_site_source_count", 0
+                )
+                if active_site_sourcing_resolution is not None
+                else 0
+            ),
+            "active_site_sourcing_resolution_fetch_failure_count": (
+                active_site_sourcing_resolution_audit.get("metadata", {}).get(
+                    "fetch_failure_count", 0
+                )
+                if active_site_sourcing_resolution_audit is not None
+                else 0
+            ),
             "external_transfer_blocker_matrix_candidate_count": (
                 transfer_blocker_matrix.get("metadata", {}).get("candidate_count", 0)
                 if transfer_blocker_matrix is not None
@@ -6206,9 +6939,23 @@ def check_external_source_transfer_gates(
                 if transfer_blocker_matrix is not None
                 else 0
             ),
+            "external_transfer_blocker_matrix_active_site_resolution_count": (
+                transfer_blocker_matrix.get("metadata", {}).get(
+                    "active_site_sourcing_resolution_candidate_count", 0
+                )
+                if transfer_blocker_matrix is not None
+                else 0
+            ),
             "external_transfer_blocker_matrix_representation_count": (
                 transfer_blocker_matrix.get("metadata", {}).get(
                     "representation_backend_plan_candidate_count", 0
+                )
+                if transfer_blocker_matrix is not None
+                else 0
+            ),
+            "external_transfer_blocker_matrix_representation_sample_count": (
+                transfer_blocker_matrix.get("metadata", {}).get(
+                    "representation_backend_sample_candidate_count", 0
                 )
                 if transfer_blocker_matrix is not None
                 else 0
@@ -7016,6 +7763,46 @@ def _external_representation_backend_options(
     return sorted(set(options))
 
 
+def _external_representation_backend_sample_status(
+    *,
+    candidate_sequence: str,
+    reference_scores: list[dict[str, Any]],
+    backend_readiness_status: str,
+    similarity_alert_threshold: float,
+) -> str:
+    if backend_readiness_status != "ready_for_backend_selection_not_embedding":
+        return "blocked_by_backend_plan_readiness"
+    if not candidate_sequence:
+        return "candidate_sequence_missing"
+    if not reference_scores:
+        return "reference_sequences_missing"
+    best = reference_scores[0]
+    if (
+        float(best.get("embedding_cosine", 0.0) or 0.0)
+        >= similarity_alert_threshold
+        and float(best.get("length_coverage", 0.0) or 0.0) >= 0.9
+    ):
+        return "representation_near_duplicate_holdout"
+    return "sequence_kmer_embedding_control_complete"
+
+
+def _external_representation_backend_sample_blockers(status: str) -> list[str]:
+    blockers = [
+        "learned_or_structure_language_embedding_not_run",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if status == "representation_near_duplicate_holdout":
+        blockers.insert(0, "representation_near_duplicate_control_holdout")
+    elif status == "candidate_sequence_missing":
+        blockers.insert(0, "candidate_sequence_missing")
+    elif status == "reference_sequences_missing":
+        blockers.insert(0, "reference_sequences_missing")
+    elif status == "blocked_by_backend_plan_readiness":
+        blockers.insert(0, "representation_backend_plan_not_ready")
+    return blockers
+
+
 def _external_representation_required_inputs(
     *,
     manifest_row: dict[str, Any],
@@ -7517,6 +8304,41 @@ def _sequence_kmers(sequence: str, *, kmer_size: int) -> set[str]:
     return {sequence[index : index + kmer_size] for index in range(len(sequence) - kmer_size + 1)}
 
 
+def _sequence_kmer_embedding(
+    sequence: str,
+    *,
+    kmer_size: int = 3,
+) -> dict[str, float]:
+    cleaned = _clean_sequence(sequence)
+    if not cleaned:
+        return {}
+    counts: Counter[str] = Counter()
+    for amino_acid in cleaned:
+        counts[f"aa:{amino_acid}"] += 1
+    if len(cleaned) < kmer_size:
+        counts[f"kmer:{cleaned}"] += 1
+    else:
+        for index in range(len(cleaned) - kmer_size + 1):
+            counts[f"kmer:{cleaned[index:index + kmer_size]}"] += 1
+    total = sum(counts.values()) or 1
+    return {token: count / total for token, count in counts.items()}
+
+
+def _sparse_cosine_similarity(
+    left: dict[str, float],
+    right: dict[str, float],
+) -> float:
+    if not left or not right:
+        return 0.0
+    shared = set(left) & set(right)
+    dot = sum(left[token] * right[token] for token in shared)
+    left_norm = sum(value * value for value in left.values()) ** 0.5
+    right_norm = sum(value * value for value in right.values()) ** 0.5
+    if not left_norm or not right_norm:
+        return 0.0
+    return dot / (left_norm * right_norm)
+
+
 def _ec_specificity(ec_number: str) -> str:
     parts = ec_number.split(".")
     if len(parts) != 4 or any(part in {"", "-"} for part in parts):
@@ -7735,6 +8557,77 @@ def _external_active_site_sourcing_export_blockers(queue_status: str) -> list[st
     elif queue_status != "ready_for_curated_active_site_sourcing":
         blockers.insert(0, "active_site_sourcing_context_incomplete")
     return blockers
+
+
+def _external_active_site_sourcing_resolution_status(
+    *,
+    active_features: list[dict[str, Any]],
+    binding_features: list[dict[str, Any]],
+    catalytic_comments: list[dict[str, Any]],
+    fetch_failed: bool,
+) -> str:
+    if fetch_failed:
+        return "source_fetch_failed"
+    if active_features:
+        return "explicit_uniprot_active_site_positions_found"
+    if binding_features and catalytic_comments:
+        return "binding_and_reaction_context_only_no_active_site_positions"
+    if binding_features:
+        return "binding_context_only_no_active_site_positions"
+    if catalytic_comments:
+        return "reaction_context_only_no_active_site_positions"
+    return "no_uniprot_active_site_or_binding_context_found"
+
+
+def _external_active_site_sourcing_resolution_blockers(status: str) -> list[str]:
+    blockers = [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if status == "explicit_uniprot_active_site_positions_found":
+        blockers.insert(0, "active_site_positions_need_mapping_and_review")
+    elif status == "source_fetch_failed":
+        blockers.insert(0, "active_site_source_fetch_failed")
+    else:
+        blockers.insert(0, "explicit_active_site_residue_sources_absent")
+    return blockers
+
+
+def _external_sourced_active_site_positions(
+    active_features: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    positions: list[dict[str, Any]] = []
+    for feature in active_features:
+        if not isinstance(feature, dict):
+            continue
+        positions.append(
+            {
+                "begin": feature.get("begin"),
+                "end": feature.get("end"),
+                "description": feature.get("description"),
+                "evidence": feature.get("evidence", []),
+            }
+        )
+    return positions
+
+
+def _external_feature_evidence_reference_count(
+    features: list[dict[str, Any]],
+) -> int:
+    seen: set[tuple[str, str, str]] = set()
+    for feature in features:
+        if not isinstance(feature, dict):
+            continue
+        feature_type = str(feature.get("feature_type") or "")
+        for evidence in feature.get("evidence", []) or []:
+            if not isinstance(evidence, dict):
+                continue
+            source = str(evidence.get("source") or "")
+            evidence_id = str(evidence.get("id") or "")
+            evidence_code = str(evidence.get("evidence_code") or "")
+            if source or evidence_id or evidence_code:
+                seen.add((feature_type, source, evidence_id or evidence_code))
+    return len(seen)
 
 
 def _external_binding_feature_positions(
@@ -7981,12 +8874,19 @@ def _external_transfer_blocker_matrix_blockers(
     active_site: dict[str, Any] | None,
     sequence: dict[str, Any] | None,
     backend: dict[str, Any] | None,
+    active_site_resolution: dict[str, Any] | None = None,
+    backend_sample: dict[str, Any] | None = None,
 ) -> list[str]:
     blockers: list[str] = []
     blockers.extend(str(blocker) for blocker in readiness.get("blockers", []) or [])
     if active_site is not None:
         blockers.extend(
             str(blocker) for blocker in active_site.get("blockers", []) or []
+        )
+    if active_site_resolution is not None:
+        blockers.extend(
+            str(blocker)
+            for blocker in active_site_resolution.get("blockers", []) or []
         )
     if sequence is not None:
         blockers.extend(str(blocker) for blocker in sequence.get("blockers", []) or [])
@@ -7996,6 +8896,10 @@ def _external_transfer_blocker_matrix_blockers(
         blockers.extend(str(blocker) for blocker in backend.get("blockers", []) or [])
     else:
         blockers.append("representation_backend_plan_missing_or_not_eligible")
+    if backend_sample is not None:
+        blockers.extend(
+            str(blocker) for blocker in backend_sample.get("blockers", []) or []
+        )
     blockers.extend(
         [
             "external_review_decision_artifact_not_built",
@@ -8018,11 +8922,17 @@ def _external_transfer_blocker_matrix_next_action(
     active_site: dict[str, Any] | None,
     sequence: dict[str, Any] | None,
     backend: dict[str, Any] | None,
+    active_site_resolution: dict[str, Any] | None = None,
+    backend_sample: dict[str, Any] | None = None,
 ) -> str:
     if active_site is not None:
         source_task = str(active_site.get("source_task") or "")
         if source_task == "find_primary_active_site_or_residue_role_source":
             return "find_primary_active_site_or_residue_role_source"
+        if active_site_resolution is not None and str(
+            active_site_resolution.get("active_site_source_status") or ""
+        ).endswith("_no_active_site_positions"):
+            return "curate_primary_literature_or_pdb_active_site_sources"
         if source_task:
             return "complete_active_site_source_review_packet"
     search_task = str((sequence or {}).get("search_task") or "")
@@ -8030,6 +8940,9 @@ def _external_transfer_blocker_matrix_next_action(
         return "keep_sequence_holdout_out_of_import_batch"
     if search_task:
         return "complete_near_duplicate_sequence_search"
+    backend_sample_status = str((backend_sample or {}).get("backend_status") or "")
+    if backend_sample_status == "representation_near_duplicate_holdout":
+        return "keep_representation_near_duplicate_out_of_import_batch"
     if backend is not None:
         return "select_and_run_real_representation_backend"
     return str(
@@ -8040,17 +8953,29 @@ def _external_transfer_blocker_matrix_next_action(
 
 def _external_transfer_blocker_matrix_active_site(
     active_site: dict[str, Any] | None,
+    *,
+    active_site_resolution: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if active_site is None:
         return {
             "source_task": "not_active_site_sourcing_row",
             "decision_status": None,
             "source_target_count": 0,
+            "resolution_status": (
+                (active_site_resolution or {}).get("active_site_source_status")
+            ),
         }
     return {
         "source_task": active_site.get("source_task"),
         "decision_status": (active_site.get("decision") or {}).get("decision_status"),
         "queue_status": active_site.get("queue_status"),
+        "resolution_status": (
+            (active_site_resolution or {}).get("active_site_source_status")
+        ),
+        "sourced_active_site_position_count": len(
+            (active_site_resolution or {}).get("sourced_active_site_positions", [])
+            or []
+        ),
         "source_target_count": len(active_site.get("source_targets", []) or []),
     }
 
@@ -8074,17 +8999,34 @@ def _external_transfer_blocker_matrix_sequence(
 
 def _external_transfer_blocker_matrix_backend(
     backend: dict[str, Any] | None,
+    *,
+    backend_sample: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if backend is None:
         return {
             "backend_readiness_status": "not_backend_eligible_yet",
             "embedding_status": "not_planned",
+            "sample_backend_status": (backend_sample or {}).get("backend_status"),
+            "sample_embedding_status": (backend_sample or {}).get("embedding_status"),
             "recommended_backend_count": 0,
             "required_input_count": 0,
         }
+    nearest_reference = (backend_sample or {}).get("nearest_reference") or {}
     return {
         "backend_readiness_status": backend.get("backend_readiness_status"),
         "embedding_status": backend.get("embedding_status"),
+        "sample_backend_status": (backend_sample or {}).get("backend_status"),
+        "sample_embedding_status": (backend_sample or {}).get("embedding_status"),
+        "sample_near_duplicate_alert": (
+            (backend_sample or {}).get("backend_status")
+            == "representation_near_duplicate_holdout"
+        ),
+        "sample_nearest_reference_accession": nearest_reference.get(
+            "reference_accession"
+        ),
+        "sample_top_embedding_cosine": (backend_sample or {}).get(
+            "top_embedding_cosine"
+        ),
         "recommended_backend_count": len(backend.get("recommended_backends", []) or []),
         "required_input_count": len(backend.get("required_inputs", []) or []),
         "sequence_search_task": backend.get("sequence_search_task"),

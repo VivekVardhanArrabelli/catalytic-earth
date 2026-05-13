@@ -252,7 +252,8 @@ Current expectation:
   active-site gap source requests, sequence-neighborhood controls, bounded
   sequence-neighborhood screening, bounded sequence-alignment verification,
   sequence-search export, import-readiness audit, active-site sourcing
-  queue/export, representation-backend plan, transfer blocker matrix, and 53/53
+  queue/export/resolution, representation-backend plan/sample, transfer blocker
+  matrix, and 59/59
   transfer gate;
   2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
@@ -279,9 +280,13 @@ Current expectation:
   queue prioritizes 7 mapped-binding-context rows and 3 primary-source rows, the
   active-site sourcing export carries 72 source targets, the sequence-search
   export keeps 28 near-duplicate searches and 2 sequence holdouts review-only,
-  the representation-backend plan covers 12 controls without embeddings, the
+  the active-site sourcing resolution finds 0 explicit active-site residue
+  sources across the 10 gap rows, the representation-backend plan covers 12
+  controls without embeddings, the deterministic k-mer representation sample
+  covers all 12 controls and flags one representation near-duplicate holdout, the
   transfer blocker matrix keeps all 30 candidates non-countable with explicit
-  next actions,
+  next actions and now carries the active-site resolution plus representation
+  sample statuses directly,
   and 0 external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain

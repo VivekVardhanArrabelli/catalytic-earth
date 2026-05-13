@@ -79,6 +79,7 @@ from .transfer_scope import (
     audit_external_source_active_site_evidence_sample,
     audit_external_source_active_site_sourcing_export,
     audit_external_source_active_site_sourcing_queue,
+    audit_external_source_active_site_sourcing_resolution,
     audit_external_source_binding_context_mapping_sample,
     audit_external_source_binding_context_repair_plan,
     audit_external_source_broad_ec_disambiguation,
@@ -92,6 +93,7 @@ from .transfer_scope import (
     audit_external_source_representation_control_comparison,
     audit_external_source_representation_control_manifest,
     audit_external_source_representation_backend_plan,
+    audit_external_source_representation_backend_sample,
     audit_external_source_sequence_alignment_verification,
     audit_external_source_sequence_search_export,
     audit_external_source_sequence_holdouts,
@@ -105,6 +107,7 @@ from .transfer_scope import (
     build_external_source_active_site_gap_source_requests,
     build_external_source_active_site_sourcing_export,
     build_external_source_active_site_sourcing_queue,
+    build_external_source_active_site_sourcing_resolution,
     build_external_source_binding_context_mapping_sample,
     build_external_source_binding_context_repair_plan,
     build_external_source_candidate_manifest,
@@ -123,6 +126,7 @@ from .transfer_scope import (
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
     build_external_source_representation_backend_plan,
+    build_external_source_representation_backend_sample,
     build_external_source_sequence_alignment_verification,
     build_external_source_sequence_search_export,
     build_external_source_sequence_neighborhood_plan,
@@ -989,6 +993,45 @@ def cmd_audit_external_source_representation_backend_plan(
     return 0
 
 
+def cmd_build_external_source_representation_backend_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.representation_backend_plan).open("r", encoding="utf-8") as handle:
+        representation_backend_plan = json.load(handle)
+    with Path(args.sequence_neighborhood_sample).open("r", encoding="utf-8") as handle:
+        sequence_neighborhood_sample = json.load(handle)
+    sample = build_external_source_representation_backend_sample(
+        representation_backend_plan=representation_backend_plan,
+        sequence_neighborhood_sample=sequence_neighborhood_sample,
+        max_rows=args.max_rows,
+        top_k=args.top_k,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote external source representation backend sample to "
+        f"{args.out} ({sample['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_representation_backend_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.representation_backend_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        representation_backend_sample = json.load(handle)
+    audit = audit_external_source_representation_backend_sample(
+        representation_backend_sample
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source representation backend sample audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_audit_external_source_broad_ec_disambiguation(
     args: argparse.Namespace,
 ) -> int:
@@ -1275,6 +1318,44 @@ def cmd_audit_external_source_active_site_sourcing_export(
     return 0
 
 
+def cmd_build_external_source_active_site_sourcing_resolution(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_sourcing_export).open("r", encoding="utf-8") as handle:
+        active_site_sourcing_export = json.load(handle)
+    resolution = build_external_source_active_site_sourcing_resolution(
+        active_site_sourcing_export=active_site_sourcing_export,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), resolution)
+    print(
+        "Wrote external source active-site sourcing resolution to "
+        f"{args.out} ({resolution['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_active_site_sourcing_resolution(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_sourcing_resolution).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        active_site_sourcing_resolution = json.load(handle)
+    with Path(args.active_site_sourcing_export).open("r", encoding="utf-8") as handle:
+        active_site_sourcing_export = json.load(handle)
+    audit = audit_external_source_active_site_sourcing_resolution(
+        active_site_sourcing_resolution=active_site_sourcing_resolution,
+        active_site_sourcing_export=active_site_sourcing_export,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source active-site sourcing resolution audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_build_external_source_transfer_blocker_matrix(
     args: argparse.Namespace,
 ) -> int:
@@ -1290,12 +1371,26 @@ def cmd_build_external_source_transfer_blocker_matrix(
         sequence_search_export = json.load(handle)
     with Path(args.representation_backend_plan).open("r", encoding="utf-8") as handle:
         representation_backend_plan = json.load(handle)
+    active_site_sourcing_resolution = None
+    if args.active_site_sourcing_resolution:
+        with Path(args.active_site_sourcing_resolution).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_sourcing_resolution = json.load(handle)
+    representation_backend_sample = None
+    if args.representation_backend_sample:
+        with Path(args.representation_backend_sample).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_backend_sample = json.load(handle)
     matrix = build_external_source_transfer_blocker_matrix(
         candidate_manifest=candidate_manifest,
         external_import_readiness_audit=external_import_readiness_audit,
         active_site_sourcing_export=active_site_sourcing_export,
         sequence_search_export=sequence_search_export,
         representation_backend_plan=representation_backend_plan,
+        active_site_sourcing_resolution=active_site_sourcing_resolution,
+        representation_backend_sample=representation_backend_sample,
         max_rows=args.max_rows,
     )
     write_json(Path(args.out), matrix)
@@ -1507,6 +1602,18 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             representation_backend_plan_audit = json.load(handle)
+    representation_backend_sample = None
+    if args.representation_backend_sample:
+        with Path(args.representation_backend_sample).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_backend_sample = json.load(handle)
+    representation_backend_sample_audit = None
+    if args.representation_backend_sample_audit:
+        with Path(args.representation_backend_sample_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_backend_sample_audit = json.load(handle)
     broad_ec_disambiguation_audit = None
     if args.broad_ec_disambiguation_audit:
         with Path(args.broad_ec_disambiguation_audit).open(
@@ -1591,6 +1698,18 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             active_site_sourcing_export_audit = json.load(handle)
+    active_site_sourcing_resolution = None
+    if args.active_site_sourcing_resolution:
+        with Path(args.active_site_sourcing_resolution).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_sourcing_resolution = json.load(handle)
+    active_site_sourcing_resolution_audit = None
+    if args.active_site_sourcing_resolution_audit:
+        with Path(args.active_site_sourcing_resolution_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_sourcing_resolution_audit = json.load(handle)
     transfer_blocker_matrix = None
     if args.transfer_blocker_matrix:
         with Path(args.transfer_blocker_matrix).open(
@@ -1664,6 +1783,8 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         representation_control_comparison_audit=representation_control_comparison_audit,
         representation_backend_plan=representation_backend_plan,
         representation_backend_plan_audit=representation_backend_plan_audit,
+        representation_backend_sample=representation_backend_sample,
+        representation_backend_sample_audit=representation_backend_sample_audit,
         broad_ec_disambiguation_audit=broad_ec_disambiguation_audit,
         active_site_gap_source_requests=active_site_gap_source_requests,
         sequence_neighborhood_plan=sequence_neighborhood_plan,
@@ -1678,6 +1799,8 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         active_site_sourcing_queue_audit=active_site_sourcing_queue_audit,
         active_site_sourcing_export=active_site_sourcing_export,
         active_site_sourcing_export_audit=active_site_sourcing_export_audit,
+        active_site_sourcing_resolution=active_site_sourcing_resolution,
+        active_site_sourcing_resolution_audit=active_site_sourcing_resolution_audit,
         transfer_blocker_matrix=transfer_blocker_matrix,
         transfer_blocker_matrix_audit=transfer_blocker_matrix_audit,
         binding_context_repair_plan=binding_context_repair_plan,
@@ -4112,6 +4235,55 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_representation_backend_plan
     )
 
+    external_representation_backend_sample = subparsers.add_parser(
+        "build-external-source-representation-backend-sample",
+        help="compute a review-only deterministic sequence representation control",
+    )
+    external_representation_backend_sample.add_argument(
+        "--representation-backend-plan",
+        default="artifacts/v3_external_source_representation_backend_plan.json",
+    )
+    external_representation_backend_sample.add_argument(
+        "--sequence-neighborhood-sample",
+        default="artifacts/v3_external_source_sequence_neighborhood_sample.json",
+    )
+    external_representation_backend_sample.add_argument(
+        "--max-rows", type=int, default=100
+    )
+    external_representation_backend_sample.add_argument("--top-k", type=int, default=3)
+    external_representation_backend_sample.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_representation_backend_sample.json"
+        ),
+    )
+    external_representation_backend_sample.set_defaults(
+        func=cmd_build_external_source_representation_backend_sample
+    )
+
+    external_representation_backend_sample_audit = subparsers.add_parser(
+        "audit-external-source-representation-backend-sample",
+        help="verify computed external representation samples remain review-only",
+    )
+    external_representation_backend_sample_audit.add_argument(
+        "--representation-backend-sample",
+        default=(
+            "artifacts/"
+            "v3_external_source_representation_backend_sample.json"
+        ),
+    )
+    external_representation_backend_sample_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_representation_backend_sample_audit.json"
+        ),
+    )
+    external_representation_backend_sample_audit.set_defaults(
+        func=cmd_audit_external_source_representation_backend_sample
+    )
+
     external_broad_ec_audit = subparsers.add_parser(
         "audit-external-source-broad-ec-disambiguation",
         help="narrow broad external EC repair rows to review-only reaction context",
@@ -4455,6 +4627,54 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_active_site_sourcing_export
     )
 
+    external_active_site_sourcing_resolution = subparsers.add_parser(
+        "build-external-source-active-site-sourcing-resolution",
+        help="resolve active-site sourcing packets against UniProt feature evidence",
+    )
+    external_active_site_sourcing_resolution.add_argument(
+        "--active-site-sourcing-export",
+        default="artifacts/v3_external_source_active_site_sourcing_export.json",
+    )
+    external_active_site_sourcing_resolution.add_argument(
+        "--max-rows", type=int, default=100
+    )
+    external_active_site_sourcing_resolution.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_active_site_sourcing_resolution.json"
+        ),
+    )
+    external_active_site_sourcing_resolution.set_defaults(
+        func=cmd_build_external_source_active_site_sourcing_resolution
+    )
+
+    external_active_site_sourcing_resolution_audit = subparsers.add_parser(
+        "audit-external-source-active-site-sourcing-resolution",
+        help="verify external active-site sourcing resolutions remain review-only",
+    )
+    external_active_site_sourcing_resolution_audit.add_argument(
+        "--active-site-sourcing-resolution",
+        default=(
+            "artifacts/"
+            "v3_external_source_active_site_sourcing_resolution.json"
+        ),
+    )
+    external_active_site_sourcing_resolution_audit.add_argument(
+        "--active-site-sourcing-export",
+        default="artifacts/v3_external_source_active_site_sourcing_export.json",
+    )
+    external_active_site_sourcing_resolution_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_active_site_sourcing_resolution_audit.json"
+        ),
+    )
+    external_active_site_sourcing_resolution_audit.set_defaults(
+        func=cmd_audit_external_source_active_site_sourcing_resolution
+    )
+
     external_transfer_blocker_matrix = subparsers.add_parser(
         "build-external-source-transfer-blocker-matrix",
         help="join external transfer blocker packets into a review-only matrix",
@@ -4472,12 +4692,20 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_external_source_active_site_sourcing_export.json",
     )
     external_transfer_blocker_matrix.add_argument(
+        "--active-site-sourcing-resolution",
+        default=None,
+    )
+    external_transfer_blocker_matrix.add_argument(
         "--sequence-search-export",
         default="artifacts/v3_external_source_sequence_search_export.json",
     )
     external_transfer_blocker_matrix.add_argument(
         "--representation-backend-plan",
         default="artifacts/v3_external_source_representation_backend_plan.json",
+    )
+    external_transfer_blocker_matrix.add_argument(
+        "--representation-backend-sample",
+        default=None,
     )
     external_transfer_blocker_matrix.add_argument("--max-rows", type=int, default=100)
     external_transfer_blocker_matrix.add_argument(
@@ -4641,6 +4869,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     external_transfer_gate.add_argument(
+        "--representation-backend-sample",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--representation-backend-sample-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
         "--broad-ec-disambiguation-audit",
         default=None,
     )
@@ -4694,6 +4930,14 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--active-site-sourcing-export-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-sourcing-resolution",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-sourcing-resolution-audit",
         default=None,
     )
     external_transfer_gate.add_argument(
