@@ -195,7 +195,7 @@ Current expectation:
   through the label factory; accepted batches added 204 labels beyond the
   475-entry source slice and left 326 review-state decisions pending after the
   1000 batch
-- label scaling is now gated by the factory: the current 1000 audit proposes 115
+- label scaling is now gated by the factory: the current 1000 audit proposes 125
   bronze-to-silver promotions, flags 112 abstention/review rows, mines 80
   adversarial negative controls, exports 430 expert-review items from the
   current ranked review cutoff plus all unlabeled candidates from the 1000
@@ -226,6 +226,14 @@ Current expectation:
   lineage plus payload-declared slice/batch metadata, fails on contradictions,
   and writes lineage metadata, payload methods, and payload digests into the
   gate artifact.
+- text-leakage mitigation is now enforced in the geometry scorer as well as the
+  representation sample: mechanism text, entry names, labels, EC/Rhea ids,
+  source ids, and target labels are excluded from positive retrieval scoring.
+  The PLP mechanism-text boost has been replaced by a text-free local
+  PLP ligand-anchor feature, with regression tests and refreshed 1,000/1,025
+  retrieval, holdout, label-factory, and external heuristic-control artifacts
+  preserving 0 hard negatives, 0 near misses, 0 out-of-scope false
+  non-abstentions, and 0 countable external labels.
 - artifact-lineage hardening has started: the external transfer blocker matrix
   audit now compares row accessions and candidate-manifest source method against
   the candidate manifest and fails on stale or mismatched matrix inputs. The

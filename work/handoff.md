@@ -564,7 +564,7 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current SPOF status after the 2026-05-13T19:23:08Z run: counterevidence
+Current SPOF status after the 2026-05-13T20:23:44Z run: counterevidence
 maintainability is handled at the code level. `geometry_retrieval.py` uses a
 versioned declarative `COUNTEREVIDENCE_POLICY` with typed shared inputs,
 rule-level provenance, backwards-compatible reason/detail fields, and explicit
@@ -574,50 +574,52 @@ table-driven map, and non-exempt label-factory gate inputs now get slice-lineage
 validation plus payload-declared slice/batch checks. The current 1,000 gate
 artifact also records payload methods and short payload digests, and a negative
 regression test rejects a renamed or stale artifact whose payload slice metadata
-contradicts the path lineage. Text-leakage protection is also present for the
-external representation sample: sequence embeddings and length coverage are the
-only predictive feature sources, while heuristic fingerprint ids, matched M-CSA
-reference ids, and source scope signals carry explicit review/holdout leakage
-flags. The representation audit fails if EC/Rhea ids, mechanism text, labels,
-fingerprint ids, or source-target identifiers appear as predictive feature
-sources. Artifact consistency hardening exists in the external blocker matrix
-audit, which rejects candidate-manifest lineage mismatches, and in the external
-transfer gate, which now validates candidate accessions across high-fan-in
-external artifacts, artifact-path slice lineage across supplied external
-artifacts, and pilot review-only/no-decision semantics through the typed
+contradicts the path lineage. Text-leakage protection is now enforced in both
+the geometry scorer and the external representation sample: geometry retrieval
+excludes mechanism text, entry names, labels, EC/Rhea identifiers, source ids,
+and target labels from positive scoring, and uses a text-free local
+PLP ligand-anchor feature for PLP-supported positives. Representation samples
+use sequence embeddings and length coverage as predictive sources; heuristic
+fingerprint ids, matched M-CSA reference ids, and source scope signals carry
+explicit review/holdout leakage flags. The representation audit fails if
+EC/Rhea ids, mechanism text, labels, fingerprint ids, or source-target
+identifiers appear as predictive feature sources. Artifact consistency
+hardening exists in the external blocker matrix audit, which rejects
+candidate-manifest lineage mismatches, and in the external transfer gate, which
+validates candidate accessions across high-fan-in external artifacts,
+artifact-path slice lineage across supplied external artifacts, and pilot
+review-only/no-decision semantics through the typed
 `ExternalSourceTransferGateInputs.v1` contract and shared candidate-lineage
 artifact registry before passing the 64/64 review-only gate. The gate CLI fails
 fast on mixed 1,000/1,025 paths, payload-declared slice contradictions, or
 pilot artifacts that stop being non-countable review work products.
 
-Latest run addressed the remaining high-fan-in external-transfer maintainability
-SPOF rather than adding generic gates or labels. `transfer_scope.py` now has an
-`ExternalSourceTransferGateInputs.v1` dataclass, an explicit required-field
-contract, and a single `EXTERNAL_TRANSFER_CANDIDATE_LINEAGE_FIELDS` registry
-used by candidate-lineage validation instead of a duplicated hand-built map
-inside `check_external_source_transfer_gates`. The CLI gate command now builds
-that dataclass from its artifact map before invoking the gate, so the command no
-longer adds a second one-off keyword cascade to the high-fan-in gate surface.
-The public keyword API remains backwards compatible, but the gate artifact now
-records `metadata.gate_input_contract`. Regression coverage verifies typed
-input use, mixed typed/keyword rejection, missing required input rejection, and
-the CLI-generated contract metadata. The contract also rejects required or
-optional gate artifacts that are not JSON objects, so schema drift fails at the
-contract boundary before gate logic reads nested metadata.
-`artifacts/v3_external_source_transfer_gate_check_1025.json` was regenerated
-and still records 64/64 passing review-only checks, 0 countable external labels,
-and 0 import-ready rows.
+Latest run removed the code-confirmed text-leakage SPOF rather than adding
+generic gates or labels. The prior PLP mechanism-text score boost in
+`geometry_retrieval.py` was removed, a local PLP ligand-anchor score based on
+proximal PLP/LLP/PMP/P5P ligand context was added, retrieval metadata now
+declares excluded leakage-prone fields, and regression tests verify that PLP
+mechanism text no longer changes the score. Refreshed 1,000/1,025 retrieval,
+holdout, label-factory, selected-PDB override, and external heuristic-control
+artifacts preserve 0 hard negatives, 0 near misses, 0 out-of-scope false
+non-abstentions, 0 actionable in-scope failures, and 0 countable/import-ready
+external rows. `artifacts/v3_label_factory_gate_check_1000.json` still passes
+21/21, and `artifacts/v3_external_source_transfer_gate_check_1025.json` still
+passes 64/64. Final verification after regenerated artifacts: 292 unit tests,
+`validate`, `compileall`, `git diff --check`, and JSON artifact parsing passed.
 
-Label-quality confidence call for the 2026-05-13T19:23:08Z run: no for
+Label-quality confidence call for the 2026-05-13T20:23:44Z run: no for
 additional M-CSA-only count growth, yes for bounded external-source repair, no
 for external-source import, no for new scientific generalization artifacts, and
-yes for SPOF hardening. Evidence at run start: 289 unit tests passed,
+yes for SPOF hardening. Evidence at run start: 290 unit tests passed,
 `validate` passed with 679 curated labels, the 1,025 preview remained
 non-promotable and review-only, the latest artifacts already contained the
 proxy sequence/fold-distance holdout and the 12-row ESM-2 representation sample,
-and `foldseek`, `mmseqs`, `blastp`, and `diamond` were absent on PATH.
+and the code inspection found a positive PLP mechanism-text scoring path that
+was not compatible with orphan-enzyme discovery claims.
 
-This run removed the selected-PDB single-point blocker in bounded form. The new
+An earlier SPOF run removed the selected-PDB single-point blocker in bounded
+form. The new
 `build-selected-pdb-overrides` command produces
 `artifacts/v3_selected_pdb_override_plan_700.json` from the holo-preference
 audit and remediation plan. The plan applies `m_csa:577` -> `1AWB` and

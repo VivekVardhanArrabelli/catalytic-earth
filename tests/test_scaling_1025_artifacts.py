@@ -144,6 +144,10 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_heuristic_control_scores_audit_1025.json"
         )
+        self.assertTrue(heuristic_control_scores_audit["metadata"]["guardrail_clean"])
+        for result in heuristic_control_scores["results"]:
+            for hit in result["top_fingerprints"]:
+                self.assertFalse(hit["text_or_label_fields_used_for_score"])
         failure_mode_audit = _load_json(
             ROOT
             / "artifacts"

@@ -1795,23 +1795,23 @@
         "factory_actions": [
           {
             "evidence_conflicts": [],
-            "factory_evidence_score": 0.6851,
+            "factory_evidence_score": 0.7031,
             "recommended_action": "promote_to_silver",
             "target_fingerprint_id": "plp_dependent_enzyme",
-            "target_score": 0.6835,
+            "target_score": 0.7235,
             "top1_fingerprint_id": "plp_dependent_enzyme",
-            "top1_score": 0.6835
+            "top1_score": 0.7235
           }
         ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": 0.6835,
+        "retrieval_score": 0.7235,
         "sources": [
           "curator_rationale",
           "label_factory_audit"
         ]
       },
-      "evidence_score": 0.6851,
+      "evidence_score": 0.7031,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "D-alanine transaminase is a pyridoxal-phosphate aminotransferase and fits the current PLP-dependent enzyme seed fingerprint.",
@@ -4154,21 +4154,33 @@
       "confidence": "medium",
       "entry_id": "m_csa:147",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.6979,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.7119,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.7119
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.7119,
         "sources": [
-          "curator_rationale"
+          "curator_rationale",
+          "label_factory_audit"
         ]
       },
-      "evidence_score": 0.65,
+      "evidence_score": 0.6979,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "Serine hydroxymethyltransferase is a PLP-dependent amino-acid one-carbon transfer enzyme, fitting the PLP-dependent enzyme seed.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "medium",
@@ -5286,21 +5298,33 @@
       "confidence": "medium",
       "entry_id": "m_csa:195",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.6955,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.7067,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.7067
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.7067,
         "sources": [
-          "curator_rationale"
+          "curator_rationale",
+          "label_factory_audit"
         ]
       },
-      "evidence_score": 0.65,
+      "evidence_score": 0.6955,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "Glutamate-1-semialdehyde 2,1-aminomutase is a PLP-dependent aminomutase, matching the PLP-dependent enzyme seed.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "medium",
@@ -6682,21 +6706,33 @@
       "confidence": "medium",
       "entry_id": "m_csa:249",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.6913,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.6974,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.6974
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.6974,
         "sources": [
-          "curator_rationale"
+          "curator_rationale",
+          "label_factory_audit"
         ]
       },
-      "evidence_score": 0.65,
+      "evidence_score": 0.6913,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "Adenosylmethionine--8-amino-7-oxononanoate transaminase uses PLP Schiff-base transamination chemistry, matching the PLP-dependent enzyme seed.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "medium",
@@ -7653,23 +7689,23 @@
         "factory_actions": [
           {
             "evidence_conflicts": [],
-            "factory_evidence_score": 0.7303,
+            "factory_evidence_score": 0.7483,
             "recommended_action": "promote_to_silver",
             "target_fingerprint_id": "plp_dependent_enzyme",
-            "target_score": 0.7839,
+            "target_score": 0.8239,
             "top1_fingerprint_id": "plp_dependent_enzyme",
-            "top1_score": 0.7839
+            "top1_score": 0.8239
           }
         ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": 0.7839,
+        "retrieval_score": 0.8239,
         "sources": [
           "curator_rationale",
           "label_factory_audit"
         ]
       },
-      "evidence_score": 0.7303,
+      "evidence_score": 0.7483,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "O-phospho-L-seryl-tRNASec:L-selenocysteinyl-tRNA synthase uses a PLP external aldimine and acid-base chemistry, matching the PLP-dependent enzyme seed.",
@@ -8064,21 +8100,33 @@
       "confidence": "medium",
       "entry_id": "m_csa:305",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.6942,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.7037,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.7037
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.7037,
         "sources": [
-          "curator_rationale"
+          "curator_rationale",
+          "label_factory_audit"
         ]
       },
-      "evidence_score": 0.65,
+      "evidence_score": 0.6942,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "Class IV aminodeoxychorismate lyase uses a PLP Schiff-base external aldimine mechanism, matching the PLP-dependent enzyme seed.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "medium",
@@ -8659,23 +8707,23 @@
         "factory_actions": [
           {
             "evidence_conflicts": [],
-            "factory_evidence_score": 0.7261,
+            "factory_evidence_score": 0.6901,
             "recommended_action": "promote_to_silver",
             "target_fingerprint_id": "plp_dependent_enzyme",
-            "target_score": 0.7747,
+            "target_score": 0.6947,
             "top1_fingerprint_id": "plp_dependent_enzyme",
-            "top1_score": 0.7747
+            "top1_score": 0.6947
           }
         ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": 0.7747,
+        "retrieval_score": 0.6947,
         "sources": [
           "curator_rationale",
           "label_factory_audit"
         ]
       },
-      "evidence_score": 0.7261,
+      "evidence_score": 0.6901,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "Serine racemase uses a pyridoxal-5-phosphate external aldimine and acid-base racemization chemistry, matching the PLP-dependent enzyme seed.",
@@ -9322,21 +9370,33 @@
       "confidence": "medium",
       "entry_id": "m_csa:358",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.6889,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.6921,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.6921
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.6921,
         "sources": [
-          "curator_rationale"
+          "curator_rationale",
+          "label_factory_audit"
         ]
       },
-      "evidence_score": 0.65,
+      "evidence_score": 0.6889,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "Lysine 2,3-aminomutase requires PLP along with SAM and an iron-sulfur cluster; the PLP external aldimine chemistry fits the broad PLP-dependent seed.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "medium",
@@ -10032,21 +10092,33 @@
       "confidence": "medium",
       "entry_id": "m_csa:383",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7262,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.7748,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.7748
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.7748,
         "sources": [
-          "curator_rationale"
+          "curator_rationale",
+          "label_factory_audit"
         ]
       },
-      "evidence_score": 0.65,
+      "evidence_score": 0.7262,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "Tryptophan synthase includes a beta active site with a PLP-bound lysine and PLP-mediated beta-elimination and beta-addition chemistry, matching the PLP seed.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "medium",
@@ -14247,17 +14319,17 @@
         "factory_actions": [
           {
             "evidence_conflicts": [],
-            "factory_evidence_score": 0.6992,
+            "factory_evidence_score": 0.7172,
             "recommended_action": "promote_to_silver",
             "target_fingerprint_id": "plp_dependent_enzyme",
-            "target_score": 0.6605,
+            "target_score": 0.7005,
             "top1_fingerprint_id": "plp_dependent_enzyme",
-            "top1_score": 0.6605
+            "top1_score": 0.7005
           }
         ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": 0.6605,
+        "retrieval_score": 0.7005,
         "sources": [
           "label_factory_review_import",
           "label_factory_audit"
@@ -17584,7 +17656,7 @@
       "confidence": "high",
       "entry_id": "m_csa:742",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
         "expert_reviews": [
           {
@@ -17596,11 +17668,23 @@
             "source": "label_factory_review_import"
           }
         ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.7154,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.6964,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.6964
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.6964,
         "sources": [
-          "label_factory_review_import"
+          "label_factory_review_import",
+          "label_factory_audit"
         ]
       },
       "evidence_score": 0.72,
@@ -17608,7 +17692,7 @@
       "label_type": "seed_fingerprint",
       "rationale": "kynureninase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5764 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "high",
@@ -17773,23 +17857,23 @@
         "factory_actions": [
           {
             "evidence_conflicts": [],
-            "factory_evidence_score": 0.7648,
+            "factory_evidence_score": 0.7828,
             "recommended_action": "promote_to_silver",
             "target_fingerprint_id": "plp_dependent_enzyme",
-            "target_score": 0.8063,
+            "target_score": 0.8463,
             "top1_fingerprint_id": "plp_dependent_enzyme",
-            "top1_score": 0.8063
+            "top1_score": 0.8463
           }
         ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": 0.8063,
+        "retrieval_score": 0.8463,
         "sources": [
           "label_factory_review_import",
           "label_factory_audit"
         ]
       },
-      "evidence_score": 0.7648,
+      "evidence_score": 0.7828,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "glycine C-acetyltransferase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.8063 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
@@ -18256,7 +18340,7 @@
       "confidence": "high",
       "entry_id": "m_csa:854",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
         "expert_reviews": [
           {
@@ -18268,11 +18352,23 @@
             "source": "label_factory_review_import"
           }
         ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.6878,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.6351,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.6351
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.6351,
         "sources": [
-          "label_factory_review_import"
+          "label_factory_review_import",
+          "label_factory_audit"
         ]
       },
       "evidence_score": 0.72,
@@ -18280,7 +18376,7 @@
       "label_type": "seed_fingerprint",
       "rationale": "4-aminobutyrate transaminase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5151 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "high",
@@ -18301,23 +18397,23 @@
         "factory_actions": [
           {
             "evidence_conflicts": [],
-            "factory_evidence_score": 0.7071,
+            "factory_evidence_score": 0.7251,
             "recommended_action": "promote_to_silver",
             "target_fingerprint_id": "plp_dependent_enzyme",
-            "target_score": 0.6779,
+            "target_score": 0.7179,
             "top1_fingerprint_id": "plp_dependent_enzyme",
-            "top1_score": 0.6779
+            "top1_score": 0.7179
           }
         ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": 0.6779,
+        "retrieval_score": 0.7179,
         "sources": [
           "label_factory_review_import",
           "label_factory_audit"
         ]
       },
-      "evidence_score": 0.72,
+      "evidence_score": 0.7251,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "cysteine desulfurase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.6779 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
@@ -18358,7 +18454,7 @@
       "confidence": "high",
       "entry_id": "m_csa:860",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
         "expert_reviews": [
           {
@@ -18370,11 +18466,23 @@
             "source": "label_factory_review_import"
           }
         ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.6867,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.6327,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.6327
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.6327,
         "sources": [
-          "label_factory_review_import"
+          "label_factory_review_import",
+          "label_factory_audit"
         ]
       },
       "evidence_score": 0.72,
@@ -18382,7 +18490,7 @@
       "label_type": "seed_fingerprint",
       "rationale": "ornithine decarboxylase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5927 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "high",
@@ -18856,7 +18964,7 @@
       "confidence": "high",
       "entry_id": "m_csa:937",
       "evidence": {
-        "cofactor_evidence_level": null,
+        "cofactor_evidence_level": "all_expected_local",
         "conflicts": [],
         "expert_reviews": [
           {
@@ -18868,11 +18976,23 @@
             "source": "label_factory_review_import"
           }
         ],
+        "factory_actions": [
+          {
+            "evidence_conflicts": [],
+            "factory_evidence_score": 0.6833,
+            "recommended_action": "promote_to_silver",
+            "target_fingerprint_id": "plp_dependent_enzyme",
+            "target_score": 0.625,
+            "top1_fingerprint_id": "plp_dependent_enzyme",
+            "top1_score": 0.625
+          }
+        ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": null,
+        "retrieval_score": 0.625,
         "sources": [
-          "label_factory_review_import"
+          "label_factory_review_import",
+          "label_factory_audit"
         ]
       },
       "evidence_score": 0.72,
@@ -18880,7 +19000,7 @@
       "label_type": "seed_fingerprint",
       "rationale": "ornithine decarboxylase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5850 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "review_status": "automation_curated",
-      "tier": "bronze"
+      "tier": "silver"
     },
     {
       "confidence": "high",
@@ -19027,23 +19147,23 @@
         "factory_actions": [
           {
             "evidence_conflicts": [],
-            "factory_evidence_score": 0.7506,
+            "factory_evidence_score": 0.7146,
             "recommended_action": "promote_to_silver",
             "target_fingerprint_id": "plp_dependent_enzyme",
-            "target_score": 0.7747,
+            "target_score": 0.6947,
             "top1_fingerprint_id": "plp_dependent_enzyme",
-            "top1_score": 0.7747
+            "top1_score": 0.6947
           }
         ],
         "migration": "label_factory_v1_default",
         "notes": [],
-        "retrieval_score": 0.7747,
+        "retrieval_score": 0.6947,
         "sources": [
           "label_factory_review_import",
           "label_factory_audit"
         ]
       },
-      "evidence_score": 0.7506,
+      "evidence_score": 0.72,
       "fingerprint_id": "plp_dependent_enzyme",
       "label_type": "seed_fingerprint",
       "rationale": "L-serine ammonia-lyase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.7747 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
@@ -19242,8 +19362,8 @@
       "abstain_pending_evidence": 9,
       "hold_bronze_boundary_review": 83,
       "hold_bronze_need_review": 20,
-      "hold_current_tier": 451,
-      "promote_to_silver": 115
+      "hold_current_tier": 441,
+      "promote_to_silver": 125
     },
     "input_label_count": 679,
     "method": "apply_label_factory_actions",
@@ -19269,15 +19389,15 @@
         "needs_expert_review": 112
       },
       "by_tier": {
-        "bronze": 564,
-        "silver": 115
+        "bronze": 554,
+        "silver": 125
       },
       "by_type": {
         "out_of_scope": 467,
         "seed_fingerprint": 212
       },
       "label_count": 679,
-      "mean_evidence_score": 0.6574
+      "mean_evidence_score": 0.6578
     }
   }
 }

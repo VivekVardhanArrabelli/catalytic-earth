@@ -45,6 +45,16 @@ explicitly marked as `mechanism_text_review_context_only` and
 `counterevidence_only_not_predictive_evidence`, so text can route review or
 abstention but must not be used as positive discovery evidence.
 
+Geometry retrieval now carries an explicit text-free scoring policy in artifact
+metadata. Mechanism text, entry names, labels, EC/Rhea identifiers, source ids,
+and target labels are excluded from positive scoring and kept only as review or
+counterevidence context. The prior PLP text-context score boost has been
+replaced by a local PLP ligand-anchor feature from proximal PLP/LLP/PMP/P5P
+ligand context, and regression tests verify that PLP mechanism text does not
+change the score. This removes the text-leakage SPOF without lowering the
+accepted 1,000 guardrails: hard negatives, near misses, out-of-scope false
+non-abstentions, and actionable in-scope failures remain 0.
+
 The label-factory gate also has a typed input contract:
 `LabelFactoryGateInputs.v1`. The CLI loads required and optional gate artifacts
 through a table-driven artifact map before calling `check_label_factory_gates`,
@@ -639,7 +649,7 @@ Current 1,000-queue gate state:
   review export ready, review-only import safety ready, ATP/phosphoryl-transfer
   family expansion ready, accepted-review-debt deferral ready, scaling-quality
   audit attached, and unlabeled queue retention ready.
-- 115 bronze-to-silver promotions are proposed in the applied-label artifact
+- 125 bronze-to-silver promotions are proposed in the applied-label artifact
   after the accepted 1,000 batch.
 - 433 rows are queued for active-learning review after the accepted 1,000 batch,
   including all 321 expert-label decision rows; 24 queued rows carry the

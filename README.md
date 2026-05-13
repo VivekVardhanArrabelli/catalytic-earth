@@ -121,7 +121,7 @@ non-abstentions, and 0 actionable in-scope failures. See
 `work/external_source_transfer_1025_notes.md`.
 
 Label scaling is now gated by the label factory rather than raw queue size. The
-current 1,000 factory audit proposes 115 bronze-to-silver promotions, flags
+current 1,000 factory audit proposes 125 bronze-to-silver promotions, flags
 112 abstention/review rows, mines 80 adversarial negative controls from 466
 out-of-scope candidates, exports 430 review items from the 1,000 post-batch
 review queue, exports all 321 active `expert_label_decision_needed` rows as
@@ -272,7 +272,14 @@ learned-vs-heuristic disagreement rows while preserving geometry retrieval as
 the required baseline. Its predictive feature policy is sequence-only:
 heuristic fingerprint ids, matched M-CSA reference ids, and source scope signals
 are carried with leakage flags as review or holdout context, not as discovery
-evidence.
+evidence. The geometry retrieval scorer now follows the same text-leakage
+boundary: mechanism text, entry names, labels, EC/Rhea identifiers, and source
+ids are excluded from positive scoring. The former PLP mechanism-text boost was
+replaced with a text-free local PLP ligand-anchor feature derived from proximal
+PLP/LLP/PMP/P5P ligand context, and the refreshed 1,000/1,025 retrieval,
+holdout, label-factory, and external heuristic-control artifacts preserve 0 hard
+negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0 countable
+external labels.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,

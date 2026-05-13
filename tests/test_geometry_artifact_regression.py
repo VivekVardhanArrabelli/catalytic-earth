@@ -2535,6 +2535,33 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
         self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
 
+    def test_current_geometry_retrieval_artifacts_are_text_leakage_safe(self) -> None:
+        retrieval = _load_json(ROOT / "artifacts" / "v3_geometry_retrieval_1000.json")
+
+        self.assertEqual(
+            retrieval["metadata"]["blocker_removed"],
+            "text_leakage_mitigation_geometry_retrieval",
+        )
+        leakage_policy = retrieval["metadata"]["leakage_policy"]
+        self.assertFalse(leakage_policy["text_or_label_fields_used_for_score"])
+        self.assertIn(
+            "mechanism_text_snippets",
+            leakage_policy["excluded_predictive_fields"],
+        )
+        self.assertIn(
+            "local_plp_ligand_anchor_context",
+            retrieval["metadata"]["predictive_evidence_sources"],
+        )
+        results = {row["entry_id"]: row for row in retrieval["results"]}
+        for entry_id in ("m_csa:410", "m_csa:449"):
+            plp_hit = next(
+                hit
+                for hit in results[entry_id]["top_fingerprints"]
+                if hit["fingerprint_id"] == "plp_dependent_enzyme"
+            )
+            self.assertFalse(plp_hit["text_or_label_fields_used_for_score"])
+            self.assertEqual(plp_hit["plp_ligand_anchor_score"], 1.0)
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 74
-- Measured elapsed time: 2788.5 minutes (46.47 hours)
+- Entries: 75
+- Measured elapsed time: 2815.8 minutes (46.93 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 167.4 measured minutes (2.79 hours)
+- post-mcsa-spof-hardening: 194.8 measured minutes (3.25 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -23,21 +23,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 792
-- Evidence references logged: 654
+- Artifact references logged: 797
+- Evidence references logged: 659
 
 ## Recent Entries
-
-### 2026-05-13T14:08:28.620965+00:00 - post-v2
-
-- Task: Sequence holdout and learned representation controls
-- Time mode: measured
-- Measured minutes: 51.0
-- Started: 2026-05-13T13:16:40Z
-- Ended: 2026-05-13T14:07:40Z
-- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_sequence_distance_holdout_eval_1000.json, artifacts/v3_sequence_distance_holdout_eval_1025.json, artifacts/v3_external_source_representation_backend_sample_1025.json, artifacts/v3_external_source_representation_backend_sample_audit_1025.json, artifacts/v3_external_source_kmer_representation_backend_sample_1025.json, artifacts/v3_external_source_kmer_representation_backend_sample_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md
-- Evidence: 273 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, CLI help checks passed, proxy holdout 136 rows with 0 held-out out-of-scope false non-abstentions, held-out evaluable top1 accuracy 0.9767 and retained top3 accuracy 1.0000, 12-row ESM-2 representation sample computed with 0 embedding failures, 3 representation near-duplicate holdouts, 12 learned-vs-heuristic disagreements, 59/59 external transfer gates, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked measured run. Documentation checked and updated; holo-PDB override path inspected but not started because it needs a general selected-PDB override plus regenerated downstream artifacts.
 
 ### 2026-05-13T14:53:10.709166+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 290 unit tests passed, validate passed, compileall passed, git diff --check passed, external gate 64/64 with ExternalSourceTransferGateInputs.v1, CLI gate command uses typed artifact contract, non-object gate artifact regression coverage, 0 countable external labels, 0 import-ready external rows
 - Notes: Normal locked SPOF-hardening run. No M-CSA count growth or external import; docs checked and updated.
 
+### 2026-05-13T20:51:07.000000+00:00 - post-mcsa-spof-hardening
+
+- Task: Remove geometry retrieval text leakage
+- Time mode: measured
+- Measured minutes: 27.383
+- Started: 2026-05-13T20:23:44Z
+- Ended: 2026-05-13T20:51:07Z
+- Artifacts: src/catalytic_earth/geometry_retrieval.py, artifacts/v3_geometry_retrieval_1000.json, artifacts/v3_geometry_retrieval_1025.json, artifacts/v3_external_source_heuristic_control_scores_1025.json, artifacts/v3_label_factory_gate_check_1000.json
+- Evidence: tests/test_geometry_retrieval.py, tests/test_geometry_artifact_regression.py, tests/test_scaling_1025_artifacts.py, PYTHONPATH=src python -m unittest discover -s tests, PYTHONPATH=src python -m catalytic_earth.cli validate
+- Notes: Normal locked SPOF-hardening run. Refreshed dependent 1000/1025 artifacts and docs; preserved zero hard negatives, zero near misses, zero out-of-scope false non-abstentions, zero actionable failures, and zero countable external labels.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -181,6 +181,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T17:47:33.256358+00:00: External pilot now has per-candidate review dossiers; next work should fill decisions and missing evidence, not add generic gates.
 - 2026-05-13T18:44:44.009443+00:00: External pilot import remains blocked; next work should fill real active-site and sequence evidence decisions rather than expanding gate count.
 - 2026-05-13T19:39:20.606270+00:00: External pilot import remains blocked; high-fan-in gate maintenance is reduced, but active-site source decisions and complete near-duplicate search remain the next blockers.
+- 2026-05-13T20:51:07.000000+00:00: Geometry retrieval predictive evidence is now explicitly text-free; PLP positive signal uses local ligand-anchor context
 
 ## Scope Adjustments
 
@@ -254,3 +255,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T17:47:33.256358+00:00: External transfer gate now fails fast on mixed-slice artifact paths across supplied gate artifacts.
 - 2026-05-13T18:44:44.009443+00:00: External pilot review-decision path now fails if selected rows are ineligible, pilot decisions are completed prematurely, required review prerequisites are missing, or pilot dossier evidence blockers are stale.
 - 2026-05-13T19:39:20.606270+00:00: External transfer gate input typing and CLI loading are now contract-based; next pilot work should fill real active-site and sequence evidence, not add generic gate count.
+- 2026-05-13T20:51:07.000000+00:00: No M-CSA-only growth or external import; SPOF text-leakage hardening only

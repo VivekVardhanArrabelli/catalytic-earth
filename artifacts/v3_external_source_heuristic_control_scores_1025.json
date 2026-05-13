@@ -369,6 +369,8 @@
           "compactness_score": 0.5526,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 1,
@@ -397,10 +399,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.3355,
-          "substrate_pocket_score": 0.1463
+          "substrate_pocket_score": 0.1463,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -413,6 +417,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -441,10 +459,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.6667,
           "score": 0.3008,
-          "substrate_pocket_score": 0.875
+          "substrate_pocket_score": 0.875,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -457,6 +477,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -487,10 +523,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
           "score": 0.2595,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.15,
@@ -503,6 +541,21 @@
               "reason": "absent_plp_ligand_without_lysine_anchor"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -533,10 +586,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
           "score": 0.2514,
-          "substrate_pocket_score": 0.23
+          "substrate_pocket_score": 0.23,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -549,6 +604,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -569,10 +638,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.1827,
-          "substrate_pocket_score": 0.2675
+          "substrate_pocket_score": 0.2675,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -888,6 +959,8 @@
           "compactness_score": 0.987,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 1,
@@ -918,10 +991,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.3741,
-          "substrate_pocket_score": 0.172
+          "substrate_pocket_score": 0.172,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -934,6 +1009,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -972,10 +1061,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
           "score": 0.3559,
-          "substrate_pocket_score": 0.2574
+          "substrate_pocket_score": 0.2574,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -988,6 +1079,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -1027,10 +1134,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
           "score": 0.3504,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -1043,6 +1152,21 @@
               "reason": "absent_plp_ligand_without_lysine_anchor"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -1066,10 +1190,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.1866,
-          "substrate_pocket_score": 0.2353
+          "substrate_pocket_score": 0.2353,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -1086,6 +1212,31 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.45,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_nonhydrolytic_electrophile_without_leaving_group",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_nonhydrolytic_electrophile_without_leaving_group"
+            },
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_nonhydrolytic_electrophile_without_leaving_group",
             "ser_his_seed_missing_triad_coherence"
@@ -1117,10 +1268,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
           "score": 0.1812,
-          "substrate_pocket_score": 0.9197
+          "substrate_pocket_score": 0.9197,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -1416,6 +1569,8 @@
           "compactness_score": 0.7984,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 1,
@@ -1445,10 +1600,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.3714,
-          "substrate_pocket_score": 0.2548
+          "substrate_pocket_score": 0.2548,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -1461,6 +1618,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -1492,10 +1665,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.2233,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -1508,6 +1683,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -1538,10 +1727,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.2213,
-          "substrate_pocket_score": 0.2887
+          "substrate_pocket_score": 0.2887,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -1549,6 +1740,8 @@
           "compactness_score": 0.7984,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 1,
@@ -1569,10 +1762,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1982,
-          "substrate_pocket_score": 0.1178
+          "substrate_pocket_score": 0.1178,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -1585,6 +1780,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -1607,10 +1816,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1565,
-          "substrate_pocket_score": 0.6258
+          "substrate_pocket_score": 0.6258,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -1925,6 +2136,8 @@
           "compactness_score": 0.8504,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 1,
@@ -1955,10 +2168,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.3552,
-          "substrate_pocket_score": 0.1191
+          "substrate_pocket_score": 0.1191,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -1971,6 +2186,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -2000,10 +2229,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.6667,
           "score": 0.3049,
-          "substrate_pocket_score": 0.7725
+          "substrate_pocket_score": 0.7725,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -2016,6 +2247,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -2036,10 +2283,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.2038,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -2052,6 +2301,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -2075,10 +2338,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.1959,
-          "substrate_pocket_score": 0.2441
+          "substrate_pocket_score": 0.2441,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -2091,6 +2356,21 @@
               "reason": "absent_plp_ligand_without_lysine_anchor"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -2114,10 +2394,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.1713,
-          "substrate_pocket_score": 0.1382
+          "substrate_pocket_score": 0.1382,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -2391,6 +2673,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -2427,10 +2723,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
           "score": 0.3646,
-          "substrate_pocket_score": 0.3393
+          "substrate_pocket_score": 0.3393,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -2443,6 +2741,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -2481,10 +2795,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
           "score": 0.351,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.15,
@@ -2497,6 +2813,21 @@
               "reason": "absent_plp_ligand_without_lysine_anchor"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -2527,10 +2858,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
           "score": 0.2683,
-          "substrate_pocket_score": 0.1786
+          "substrate_pocket_score": 0.1786,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -2543,6 +2876,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -2563,10 +2910,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.2264,
-          "substrate_pocket_score": 0.9358
+          "substrate_pocket_score": 0.9358,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -2583,6 +2932,31 @@
               "reason": "nad_only_or_nonflavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "nad_only_or_nonflavin_context",
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -2606,10 +2980,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1694,
-          "substrate_pocket_score": 0.5714
+          "substrate_pocket_score": 0.5714,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -2925,6 +3301,8 @@
           "compactness_score": 0.7994,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 1,
@@ -2953,10 +3331,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.3734,
-          "substrate_pocket_score": 0.2677
+          "substrate_pocket_score": 0.2677,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -2969,6 +3349,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -2999,10 +3395,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.2234,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -3015,6 +3413,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -3045,10 +3457,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.213,
-          "substrate_pocket_score": 0.6156
+          "substrate_pocket_score": 0.6156,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -3061,6 +3475,21 @@
               "reason": "absent_plp_ligand_without_lysine_anchor"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -3091,10 +3520,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.208,
-          "substrate_pocket_score": 0.3294
+          "substrate_pocket_score": 0.3294,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -3111,6 +3542,31 @@
               "reason": "nad_only_or_nonflavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "nad_only_or_nonflavin_context",
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -3134,10 +3590,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1534,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -3351,6 +3809,8 @@
           "compactness_score": 0.0,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 0
@@ -3376,10 +3836,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.302,
-          "substrate_pocket_score": 0.2175
+          "substrate_pocket_score": 0.2175,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -3392,6 +3854,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -3411,10 +3887,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.165,
-          "substrate_pocket_score": 0.6333
+          "substrate_pocket_score": 0.6333,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -3427,6 +3905,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -3444,10 +3938,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.163,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -3460,6 +3956,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -3479,10 +3989,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.15,
-          "substrate_pocket_score": 0.2275
+          "substrate_pocket_score": 0.2275,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -3495,6 +4007,21 @@
               "reason": "absent_plp_ligand_without_lysine_anchor"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -3514,10 +4041,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.1364,
-          "substrate_pocket_score": 0.205
+          "substrate_pocket_score": 0.205,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -3748,6 +4277,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -3781,10 +4324,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 1.0,
           "role_match_fraction": 0.3333,
           "score": 0.3039,
-          "substrate_pocket_score": 0.25
+          "substrate_pocket_score": 0.25,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -3797,6 +4342,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -3824,10 +4385,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
           "score": 0.233,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -3840,6 +4403,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -3857,10 +4434,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.1898,
-          "substrate_pocket_score": 0.9715
+          "substrate_pocket_score": 0.9715,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -3873,6 +4452,21 @@
               "reason": "absent_plp_ligand_without_lysine_anchor"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -3892,10 +4486,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.3333,
           "score": 0.1399,
-          "substrate_pocket_score": 0.2429
+          "substrate_pocket_score": 0.2429,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -3908,6 +4504,20 @@
               "reason": "absent_cobalamin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_cobalamin_context",
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_cobalamin_context"
           ],
@@ -3935,10 +4545,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.0771,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -4151,6 +4763,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -4178,10 +4806,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.185,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -4198,6 +4828,31 @@
               "reason": "nad_only_or_nonflavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_monooxygenase:absent_flavin_context"
+            },
+            {
+              "evidence_fields": [
+                "ligand_context"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "nad_only_or_nonflavin_context",
+              "rule_id": "flavin_monooxygenase:nad_only_or_nonflavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context",
             "nad_only_or_nonflavin_context"
@@ -4218,10 +4873,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1127,
-          "substrate_pocket_score": 0.475
+          "substrate_pocket_score": 0.475,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -4234,6 +4891,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -4253,10 +4924,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1041,
-          "substrate_pocket_score": 0.2895
+          "substrate_pocket_score": 0.2895,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -4269,6 +4942,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -4279,10 +4966,12 @@
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
           "matched_signature_roles": [],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
           "score": 0.0894,
-          "substrate_pocket_score": 0.9157
+          "substrate_pocket_score": 0.9157,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -4295,6 +4984,20 @@
               "reason": "absent_cobalamin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_cobalamin_context",
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_cobalamin_context"
           ],
@@ -4322,10 +5025,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.0771,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -4515,6 +5220,8 @@
           "compactness_score": 0.0,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 0
@@ -4532,10 +5239,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1875,
-          "substrate_pocket_score": 0.2324
+          "substrate_pocket_score": 0.2324,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -4548,6 +5257,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -4575,10 +5300,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.185,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -4591,6 +5318,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -4618,10 +5359,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.1729,
-          "substrate_pocket_score": 0.2176
+          "substrate_pocket_score": 0.2176,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -4629,6 +5372,8 @@
           "compactness_score": 0.0,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 0
@@ -4646,10 +5391,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1264,
-          "substrate_pocket_score": 0.0647
+          "substrate_pocket_score": 0.0647,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -4662,6 +5409,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -4672,10 +5433,12 @@
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
           "matched_signature_roles": [],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
           "score": 0.0702,
-          "substrate_pocket_score": 0.6549
+          "substrate_pocket_score": 0.6549,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -4860,6 +5623,8 @@
           "compactness_score": 0.0,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 0
@@ -4885,10 +5650,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.3012,
-          "substrate_pocket_score": 0.2125
+          "substrate_pocket_score": 0.2125,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -4901,6 +5668,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -4926,10 +5707,12 @@
             }
           ],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.3333,
           "score": 0.2396,
-          "substrate_pocket_score": 0.8708
+          "substrate_pocket_score": 0.8708,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -4942,6 +5725,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -4961,10 +5760,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.115,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -4977,6 +5778,21 @@
               "reason": "absent_plp_ligand_without_lysine_anchor"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_plp_ligand_without_lysine_anchor",
+              "rule_id": "plp_dependent_enzyme:absent_plp_ligand_without_lysine_anchor"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_plp_ligand_without_lysine_anchor"
           ],
@@ -4996,10 +5812,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.0976,
-          "substrate_pocket_score": 0.3063
+          "substrate_pocket_score": 0.3063,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -5012,6 +5830,20 @@
               "reason": "absent_cobalamin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.25,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_cobalamin_context",
+              "rule_id": "cobalamin_radical_rearrangement:absent_cobalamin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_cobalamin_context"
           ],
@@ -5039,10 +5871,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.0771,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     },
@@ -5172,6 +6006,8 @@
           "compactness_score": 0.0,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 0
@@ -5189,10 +6025,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1935,
-          "substrate_pocket_score": 0.2722
+          "substrate_pocket_score": 0.2722,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -5205,6 +6043,22 @@
               "reason": "absent_flavin_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence",
+                "ligand_context",
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.6,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_flavin_context",
+              "rule_id": "flavin_dehydrogenase_reductase:absent_flavin_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_flavin_context"
           ],
@@ -5232,10 +6086,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.185,
-          "substrate_pocket_score": 0.5
+          "substrate_pocket_score": 0.5,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -5248,6 +6104,20 @@
               "reason": "absent_heme_context"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "cofactor_evidence"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.65,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "absent_heme_context",
+              "rule_id": "heme_peroxidase_oxidase:absent_heme_context"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "absent_heme_context"
           ],
@@ -5275,10 +6145,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.6667,
           "role_match_fraction": 0.0,
           "score": 0.1744,
-          "substrate_pocket_score": 0.2333
+          "substrate_pocket_score": 0.2333,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.0,
@@ -5286,6 +6158,8 @@
           "compactness_score": 0.0,
           "counterevidence_penalty": 1.0,
           "counterevidence_penalty_details": [],
+          "counterevidence_policy_hits": [],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [],
           "distance_summary": {
             "count": 0
@@ -5303,10 +6177,12 @@
             }
           ],
           "mechanistic_coherence_score": 1.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.3333,
           "role_match_fraction": 0.0,
           "score": 0.1292,
-          "substrate_pocket_score": 0.0833
+          "substrate_pocket_score": 0.0833,
+          "text_or_label_fields_used_for_score": false
         },
         {
           "cofactor_context_score": 0.25,
@@ -5319,6 +6195,20 @@
               "reason": "ser_his_seed_missing_triad_coherence"
             }
           ],
+          "counterevidence_policy_hits": [
+            {
+              "evidence_fields": [
+                "residue_roles"
+              ],
+              "evidence_role": "counterevidence_only_not_predictive_evidence",
+              "leakage_flags": [],
+              "penalty": 0.7,
+              "policy_version": "2026-05-13.declarative-v1",
+              "reason": "ser_his_seed_missing_triad_coherence",
+              "rule_id": "ser_his_acid_hydrolase:ser_his_seed_missing_triad_coherence"
+            }
+          ],
+          "counterevidence_policy_version": "2026-05-13.declarative-v1",
           "counterevidence_reasons": [
             "ser_his_seed_missing_triad_coherence"
           ],
@@ -5329,10 +6219,12 @@
           "fingerprint_name": "Ser-His-Asp/Glu hydrolase triad",
           "matched_signature_roles": [],
           "mechanistic_coherence_score": 0.0,
+          "plp_ligand_anchor_score": 0.0,
           "residue_match_fraction": 0.0,
           "role_match_fraction": 0.0,
           "score": 0.0759,
-          "substrate_pocket_score": 0.7333
+          "substrate_pocket_score": 0.7333,
+          "text_or_label_fields_used_for_score": false
         }
       ]
     }

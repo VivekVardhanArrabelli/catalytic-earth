@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from catalytic_earth.geometry_retrieval import (
     COUNTEREVIDENCE_POLICY,
     COUNTEREVIDENCE_POLICY_VERSION,
+    audit_geometry_retrieval_leakage_policy,
     compactness_score,
     counterevidence_assessment,
     cofactor_context_score,
@@ -1059,8 +1060,8 @@ class GeometryRetrievalTests(unittest.TestCase):
         self.assertEqual(assessment["penalty"], 0.58)
         self.assertIn("glycosidase_not_metal_hydrolase_seed", assessment["reasons"])
 
-    def test_plp_text_context_boosts_ligand_supported_transaldimination(self) -> None:
-        entry = {
+    def test_mechanism_text_does_not_boost_plp_score(self) -> None:
+        entry_with_text = {
             "mechanism_text_snippets": [
                 "The enzyme proceeds through transaldimination and an external aldimine."
             ],
@@ -1082,11 +1083,19 @@ class GeometryRetrievalTests(unittest.TestCase):
                 {"role": "phosphate_binder", "residue": "Gly/Ser/Thr-rich motif"},
             ],
         }
-        score = score_entry_against_fingerprint(entry, fingerprint)
-        self.assertGreaterEqual(score["score"], 0.42)
+        entry_without_text = dict(entry_with_text)
+        entry_without_text["mechanism_text_snippets"] = []
+        score_with_text = score_entry_against_fingerprint(entry_with_text, fingerprint)
+        score_without_text = score_entry_against_fingerprint(entry_without_text, fingerprint)
+        self.assertEqual(score_with_text["score"], score_without_text["score"])
+        self.assertEqual(score_with_text["plp_ligand_anchor_score"], 0.67)
+        self.assertGreaterEqual(score_with_text["score"], 0.42)
+        self.assertFalse(score_with_text["text_or_label_fields_used_for_score"])
 
-    def test_plp_beta_elimination_text_context_boosts_ligand_supported_entry(self) -> None:
+    def test_geometry_retrieval_records_text_free_scoring_policy(self) -> None:
         entry = {
+            "entry_id": "example:1",
+            "entry_name": "PLP review context only",
             "mechanism_text_snippets": [
                 "A PLP external aldimine aligns the sulfur atom for C-S bond cleavage "
                 "during beta-elimination."
@@ -1110,8 +1119,76 @@ class GeometryRetrievalTests(unittest.TestCase):
                 {"role": "phosphate_binder", "residue": "Gly/Ser/Thr-rich motif"},
             ],
         }
-        score = score_entry_against_fingerprint(entry, fingerprint)
-        self.assertGreaterEqual(score["score"], 0.45)
+        retrieval = run_geometry_retrieval({"entries": [entry]}, top_k=20)
+        metadata = retrieval["metadata"]
+        self.assertEqual(
+            metadata["blocker_removed"],
+            "text_leakage_mitigation_geometry_retrieval",
+        )
+        self.assertFalse(metadata["leakage_policy"]["text_or_label_fields_used_for_score"])
+        self.assertIn(
+            "mechanism_text_snippets",
+            metadata["leakage_policy"]["excluded_predictive_fields"],
+        )
+        self.assertIn(
+            "local_plp_ligand_anchor_context",
+            metadata["predictive_evidence_sources"],
+        )
+        plp_hit = next(
+            hit
+            for hit in retrieval["results"][0]["top_fingerprints"]
+            if hit["fingerprint_id"] == "plp_dependent_enzyme"
+        )
+        self.assertFalse(plp_hit["text_or_label_fields_used_for_score"])
+        self.assertEqual(plp_hit["plp_ligand_anchor_score"], 1.0)
+
+    def test_geometry_retrieval_leakage_policy_audit_rejects_predictive_text(
+        self,
+    ) -> None:
+        clean = run_geometry_retrieval(
+            {
+                "entries": [
+                    {
+                        "entry_id": "example:1",
+                        "entry_name": "Text review context",
+                        "mechanism_text_snippets": ["Text stays review-only."],
+                        "residues": [{"code": "LYS", "roles": ["plp anchor"]}],
+                        "ligand_context": {
+                            "ligand_codes": ["LLP"],
+                            "cofactor_families": ["plp"],
+                        },
+                    }
+                ]
+            }
+        )
+        self.assertTrue(
+            audit_geometry_retrieval_leakage_policy(clean)["metadata"][
+                "guardrail_clean"
+            ]
+        )
+
+        leaky = dict(clean)
+        leaky["metadata"] = dict(clean["metadata"])
+        leaky["metadata"]["predictive_evidence_sources"] = [
+            "mechanism_text_snippets"
+        ]
+        leaky["results"] = [dict(clean["results"][0])]
+        leaky["results"][0]["top_fingerprints"] = [
+            dict(clean["results"][0]["top_fingerprints"][0])
+        ]
+        leaky["results"][0]["top_fingerprints"][0][
+            "text_or_label_fields_used_for_score"
+        ] = True
+        audit = audit_geometry_retrieval_leakage_policy(leaky)
+        self.assertFalse(audit["metadata"]["guardrail_clean"])
+        self.assertIn(
+            "geometry_retrieval_leakage_prone_predictive_source",
+            audit["metadata"]["blockers"],
+        )
+        self.assertIn(
+            "geometry_retrieval_hit_uses_text_or_label_score",
+            audit["metadata"]["blockers"],
+        )
 
     def test_ser_his_hydrolase_penalizes_phosphoryl_transfer_text_context(self) -> None:
         assessment = counterevidence_assessment(

@@ -763,7 +763,7 @@
     "near_miss_margin": 0.01,
     "near_miss_top1_fingerprint_counts": {},
     "score_floor": 0.4245,
-    "score_floor_source": "min_correct_in_scope_top1_score",
+    "score_floor_source": "explicit",
     "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": false,
     "top1_fingerprint_counts": {}
   },

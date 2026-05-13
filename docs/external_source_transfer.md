@@ -79,6 +79,9 @@ Priority blockers:
 - The structure-mapping sample now covers all 12 heuristic-ready external
   candidates on current AlphaFold model CIFs, resolves all requested active-site
   positions, and runs the current geometry-retrieval heuristic as a control.
+  That heuristic now carries a text-free scoring policy: mechanism text, source
+  labels, EC/Rhea identifiers, and target labels are review context only, while
+  the PLP-specific positive signal comes from local ligand-anchor evidence.
   The control is intentionally not a label decision: 9/12 scored candidates
   rank `metal_dependent_hydrolase` top1, 2 rank `heme_peroxidase_oxidase`, and
   1 ranks `flavin_dehydrogenase_reductase`. The failure-mode audit records

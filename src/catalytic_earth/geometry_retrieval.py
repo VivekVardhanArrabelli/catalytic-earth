@@ -73,7 +73,54 @@ FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES = {
     "BR",  # aromatic monooxygenase product/substrate context in M-CSA 131
     "PHB",  # p-hydroxybenzoate monooxygenase substrate/product context
 }
+PLP_LIGAND_ANCHOR_CODES = {"LLP", "PLP", "PMP", "P5P"}
 COUNTEREVIDENCE_POLICY_VERSION = "2026-05-13.declarative-v1"
+GEOMETRY_RETRIEVAL_PREDICTIVE_EVIDENCE_SOURCES = (
+    "active_site_residue_identity",
+    "active_site_residue_roles",
+    "local_ligand_cofactor_context",
+    "local_plp_ligand_anchor_context",
+    "substrate_pocket_descriptors",
+    "active_site_compactness",
+)
+GEOMETRY_RETRIEVAL_REVIEW_CONTEXT_FIELDS = (
+    "entry_name",
+    "mechanism_text_count",
+    "mechanism_text_snippets",
+)
+GEOMETRY_RETRIEVAL_LEAKAGE_POLICY = {
+    "text_or_label_fields_used_for_score": False,
+    "excluded_predictive_fields": [
+        "mechanism_text",
+        "mechanism_text_count",
+        "mechanism_text_snippets",
+        "entry_name",
+        "mechanism_labels",
+        "ec_identifiers",
+        "rhea_identifiers",
+        "source_entry_ids",
+        "source_labels",
+        "target_labels",
+    ],
+    "review_context_fields": list(GEOMETRY_RETRIEVAL_REVIEW_CONTEXT_FIELDS),
+    "review_context_policy": (
+        "Mechanism text, entry names, labels, EC/Rhea identifiers, and source ids "
+        "may be carried for review, abstention, or counterevidence provenance, "
+        "but must not add positive retrieval score."
+    ),
+}
+GEOMETRY_RETRIEVAL_LEAKAGE_PRONE_FIELDS = {
+    "mechanism_text",
+    "mechanism_text_count",
+    "mechanism_text_snippets",
+    "entry_name",
+    "mechanism_labels",
+    "ec_identifiers",
+    "rhea_identifiers",
+    "source_entry_ids",
+    "source_labels",
+    "target_labels",
+}
 
 
 @dataclass(frozen=True)
@@ -158,9 +205,18 @@ def run_geometry_retrieval(
     return {
         "metadata": {
             "method": "geometry_aware_seed_fingerprint_retrieval",
+            "blocker_removed": "text_leakage_mitigation_geometry_retrieval",
             "entry_count": len(results),
             "fingerprint_count": len(fingerprints),
-            "scoring": "residue and role overlap plus ligand/cofactor context, substrate-pocket descriptors, and compactness",
+            "scoring": (
+                "residue and role overlap plus ligand/cofactor context, "
+                "local PLP ligand-anchor context, substrate-pocket descriptors, "
+                "and compactness"
+            ),
+            "predictive_evidence_sources": list(
+                GEOMETRY_RETRIEVAL_PREDICTIVE_EVIDENCE_SOURCES
+            ),
+            "leakage_policy": GEOMETRY_RETRIEVAL_LEAKAGE_POLICY,
             "validation_boundary": "retrieval evidence only; not mechanism validation",
         },
         "results": results,
@@ -209,6 +265,10 @@ def score_entry_against_fingerprint(
     cofactor_evidence = cofactor_evidence_level(fingerprint, residue_roles, entry.get("ligand_context"))
     compactness = compactness_score(distances)
     substrate_pocket = substrate_pocket_score(fingerprint, entry.get("pocket_context"))
+    plp_ligand_anchor = plp_ligand_anchor_score(
+        entry.get("ligand_context"),
+        entry.get("pocket_context"),
+    )
     coherence = mechanistic_coherence_score(fingerprint, residues)
     mechanism_context = _entry_mechanism_context(entry)
     counterevidence = counterevidence_assessment(
@@ -231,15 +291,8 @@ def score_entry_against_fingerprint(
     if (
         fingerprint.get("id") == "plp_dependent_enzyme"
         and cofactor_evidence == "ligand_supported"
-        and _has_plp_transaldimination_text_context(_joined_mechanism_text(mechanism_context))
     ):
-        raw_score += 0.08
-    if (
-        fingerprint.get("id") == "plp_dependent_enzyme"
-        and cofactor_evidence == "ligand_supported"
-        and _has_plp_beta_elimination_text_context(_joined_mechanism_text(mechanism_context))
-    ):
-        raw_score += 0.04
+        raw_score += 0.12 * plp_ligand_anchor
     if fingerprint.get("id") == "ser_his_acid_hydrolase":
         raw_score *= 0.70 + 0.30 * coherence
     raw_score *= counterevidence["penalty"]
@@ -254,12 +307,14 @@ def score_entry_against_fingerprint(
         "cofactor_evidence_level": cofactor_evidence,
         "compactness_score": round(compactness, 4),
         "substrate_pocket_score": round(substrate_pocket, 4),
+        "plp_ligand_anchor_score": round(plp_ligand_anchor, 4),
         "mechanistic_coherence_score": round(coherence, 4),
         "counterevidence_penalty": round(counterevidence["penalty"], 4),
         "counterevidence_reasons": counterevidence["reasons"],
         "counterevidence_penalty_details": counterevidence["penalty_details"],
         "counterevidence_policy_version": counterevidence["policy_version"],
         "counterevidence_policy_hits": counterevidence["policy_hits"],
+        "text_or_label_fields_used_for_score": False,
         "matched_signature_roles": matched_signature_roles,
         "distance_summary": distance_summary(distances),
     }
@@ -475,6 +530,24 @@ def substrate_pocket_score(
     return 0.5
 
 
+def plp_ligand_anchor_score(
+    ligand_context: dict[str, Any] | None,
+    pocket_context: dict[str, Any] | None = None,
+) -> float:
+    """Score local PLP ligand evidence without using mechanism text."""
+    if "plp" not in _ligand_cofactor_families(ligand_context):
+        return 0.0
+    if not (PLP_LIGAND_ANCHOR_CODES & _ligand_codes(ligand_context)):
+        return 0.0
+    nearby_count = 0
+    if isinstance(pocket_context, dict):
+        try:
+            nearby_count = int(pocket_context.get("nearby_residue_count", 0) or 0)
+        except (TypeError, ValueError):
+            nearby_count = 0
+    return 1.0 if nearby_count >= 20 else 0.67
+
+
 def mechanistic_coherence_score(
     fingerprint: dict[str, Any],
     residues: list[dict[str, Any]],
@@ -669,6 +742,69 @@ def write_geometry_retrieval(
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(artifact, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return artifact
+
+
+def audit_geometry_retrieval_leakage_policy(artifact: dict[str, Any]) -> dict[str, Any]:
+    """Verify retrieval scoring provenance excludes text and label leakage."""
+    metadata = artifact.get("metadata", {})
+    leakage_policy = metadata.get("leakage_policy", {})
+    predictive_sources = set(metadata.get("predictive_evidence_sources", []) or [])
+    excluded_fields = set(leakage_policy.get("excluded_predictive_fields", []) or [])
+    blockers: list[str] = []
+
+    if leakage_policy.get("text_or_label_fields_used_for_score") is not False:
+        blockers.append("geometry_retrieval_text_or_label_score_flag_not_false")
+    if predictive_sources & GEOMETRY_RETRIEVAL_LEAKAGE_PRONE_FIELDS:
+        blockers.append("geometry_retrieval_leakage_prone_predictive_source")
+    missing_excluded_fields = GEOMETRY_RETRIEVAL_LEAKAGE_PRONE_FIELDS - excluded_fields
+    if missing_excluded_fields:
+        blockers.append("geometry_retrieval_missing_excluded_leakage_fields")
+
+    scored_text_rows = []
+    counterevidence_text_without_role = []
+    for result in artifact.get("results", []) or []:
+        for hit in result.get("top_fingerprints", []) or []:
+            if hit.get("text_or_label_fields_used_for_score") is not False:
+                scored_text_rows.append(
+                    {
+                        "entry_id": result.get("entry_id"),
+                        "fingerprint_id": hit.get("fingerprint_id"),
+                    }
+                )
+            for policy_hit in hit.get("counterevidence_policy_hits", []) or []:
+                evidence_fields = set(policy_hit.get("evidence_fields", []) or [])
+                if "mechanism_text" not in evidence_fields:
+                    continue
+                if (
+                    policy_hit.get("evidence_role")
+                    != "counterevidence_only_not_predictive_evidence"
+                ):
+                    counterevidence_text_without_role.append(
+                        {
+                            "entry_id": result.get("entry_id"),
+                            "fingerprint_id": hit.get("fingerprint_id"),
+                            "rule_id": policy_hit.get("rule_id"),
+                        }
+                    )
+    if scored_text_rows:
+        blockers.append("geometry_retrieval_hit_uses_text_or_label_score")
+    if counterevidence_text_without_role:
+        blockers.append("geometry_retrieval_text_counterevidence_role_missing")
+
+    return {
+        "metadata": {
+            "method": "geometry_retrieval_leakage_policy_audit",
+            "blocker_removed": "text_leakage_mitigation_geometry_retrieval",
+            "guardrail_clean": not blockers,
+            "blockers": sorted(set(blockers)),
+            "scored_text_row_count": len(scored_text_rows),
+            "text_counterevidence_role_issue_count": len(
+                counterevidence_text_without_role
+            ),
+        },
+        "scored_text_rows": scored_text_rows,
+        "text_counterevidence_role_issues": counterevidence_text_without_role,
+    }
 
 
 def _allowed_residue_codes(spec: str) -> set[str]:

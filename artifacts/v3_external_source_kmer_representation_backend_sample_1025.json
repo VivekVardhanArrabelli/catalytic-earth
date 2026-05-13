@@ -10,6 +10,11 @@
       "accession": "P33025",
       "entry_id": "uniprot:P33025",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:405"
@@ -21,6 +26,11 @@
       "accession": "P60174",
       "entry_id": "uniprot:P60174",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "representation_near_duplicate_holdout",
       "nearest_reference_entry_ids": [
         "m_csa:324"
@@ -32,6 +42,11 @@
       "accession": "Q13907",
       "entry_id": "uniprot:Q13907",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:335"
@@ -43,6 +58,11 @@
       "accession": "Q6NSJ0",
       "entry_id": "uniprot:Q6NSJ0",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:539"
@@ -54,6 +74,11 @@
       "accession": "Q9BXD5",
       "entry_id": "uniprot:Q9BXD5",
       "heuristic_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:856"
@@ -65,6 +90,11 @@
       "accession": "Q9BXS1",
       "entry_id": "uniprot:Q9BXS1",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:517"
@@ -76,6 +106,11 @@
       "accession": "A2RU49",
       "entry_id": "uniprot:A2RU49",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:348"
@@ -87,6 +122,11 @@
       "accession": "O14756",
       "entry_id": "uniprot:O14756",
       "heuristic_top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:315"
@@ -98,6 +138,11 @@
       "accession": "P34949",
       "entry_id": "uniprot:P34949",
       "heuristic_top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:282"
@@ -109,6 +154,11 @@
       "accession": "P35914",
       "entry_id": "uniprot:P35914",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:369"
@@ -120,6 +170,11 @@
       "accession": "Q969G6",
       "entry_id": "uniprot:Q969G6",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:63"
@@ -131,6 +186,11 @@
       "accession": "Q96I15",
       "entry_id": "uniprot:Q96I15",
       "heuristic_top1_fingerprint_id": "metal_dependent_hydrolase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "learned_or_proxy_backend_status": "sequence_kmer_embedding_control_complete",
       "nearest_reference_entry_ids": [
         "m_csa:413"
@@ -160,11 +220,22 @@
     "max_rows": 100,
     "method": "external_source_representation_backend_sample",
     "model_name": null,
+    "predictive_feature_policy": "representation status is computed from sequence embeddings and sequence length coverage only; identifiers, EC/Rhea, mechanism text, labels, and heuristic fingerprint ids are review context or holdout context only",
+    "predictive_feature_sources": [
+      "sequence_embedding_cosine",
+      "sequence_length_coverage"
+    ],
     "ready_for_label_import": false,
     "reference_pair_count": 36,
     "representation_near_duplicate_alert_count": 1,
     "requested_accession_count": 47,
     "requested_embedding_backend": "deterministic_sequence_kmer_control",
+    "review_context_fields": [
+      "heuristic_baseline_control",
+      "nearest_reference",
+      "scope_signal",
+      "sequence_search_task"
+    ],
     "review_only_rule": "computed representation samples are controls only; they do not replace sequence-search, review-decision, or factory gates",
     "similarity_alert_threshold": 0.95,
     "source_fetch_method": "uniprot_sequence_batch_search",
@@ -196,6 +267,11 @@
         "top1_score": 0.3355
       },
       "lane_id": "external_source:glycan_chemistry",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.9,
@@ -206,6 +282,10 @@
         "reference_accession": "P0A786",
         "screen_near_duplicate_score": 0.0929
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -239,6 +319,12 @@
           "screen_near_duplicate_score": 0.0929
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "glycan_chemistry",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -268,6 +354,11 @@
         "top1_score": 0.3741
       },
       "lane_id": "external_source:isomerase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.9782,
@@ -278,6 +369,10 @@
         "reference_accession": "P00940",
         "screen_near_duplicate_score": 0.4773
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -311,6 +406,12 @@
           "screen_near_duplicate_score": 0.1044
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -339,6 +440,11 @@
         "top1_score": 0.3714
       },
       "lane_id": "external_source:isomerase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.8539,
@@ -349,6 +455,10 @@
         "reference_accession": "O58403",
         "screen_near_duplicate_score": 0.0921
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -382,6 +492,12 @@
           "screen_near_duplicate_score": 0.0891
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -410,6 +526,11 @@
         "top1_score": 0.3552
       },
       "lane_id": "external_source:glycan_chemistry",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.9175,
@@ -420,6 +541,10 @@
         "reference_accession": "P27002",
         "screen_near_duplicate_score": 0.0803
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -453,6 +578,12 @@
           "screen_near_duplicate_score": 0.0784
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "glycan_chemistry",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -481,6 +612,11 @@
         "top1_score": 0.3646
       },
       "lane_id": "external_source:lyase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.9364,
@@ -491,6 +627,10 @@
         "reference_accession": "P21327",
         "screen_near_duplicate_score": 0.09
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -524,6 +664,12 @@
           "screen_near_duplicate_score": 0.0917
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "lyase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -552,6 +698,11 @@
         "top1_score": 0.3734
       },
       "lane_id": "external_source:isomerase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.9026,
@@ -562,6 +713,10 @@
         "reference_accession": "P61517",
         "screen_near_duplicate_score": 0.0837
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -595,6 +750,12 @@
           "screen_near_duplicate_score": 0.0965
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -623,6 +784,11 @@
         "top1_score": 0.302
       },
       "lane_id": "external_source:transferase_phosphoryl",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.8965,
@@ -633,6 +799,10 @@
         "reference_accession": "P05404",
         "screen_near_duplicate_score": 0.0912
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -666,6 +836,12 @@
           "screen_near_duplicate_score": 0.0907
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "transferase_phosphoryl",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -694,6 +870,11 @@
         "top1_score": 0.3039
       },
       "lane_id": "external_source:oxidoreductase_long_tail",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.8803,
@@ -704,6 +885,10 @@
         "reference_accession": "P14604",
         "screen_near_duplicate_score": 0.0852
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -737,6 +922,12 @@
           "screen_near_duplicate_score": 0.0852
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "oxidoreductase_long_tail",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -765,6 +956,11 @@
         "top1_score": 0.185
       },
       "lane_id": "external_source:isomerase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.92,
@@ -775,6 +971,10 @@
         "reference_accession": "P36507",
         "screen_near_duplicate_score": 0.0898
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -808,6 +1008,12 @@
           "screen_near_duplicate_score": 0.0868
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "isomerase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -836,6 +1042,11 @@
         "top1_score": 0.1875
       },
       "lane_id": "external_source:lyase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.9214,
@@ -846,6 +1057,10 @@
         "reference_accession": "P33038",
         "screen_near_duplicate_score": 0.1026
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -879,6 +1094,12 @@
           "screen_near_duplicate_score": 0.0939
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "lyase",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -907,6 +1128,11 @@
         "top1_score": 0.3012
       },
       "lane_id": "external_source:transferase_phosphoryl",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.8529,
@@ -917,6 +1143,10 @@
         "reference_accession": "P80078",
         "screen_near_duplicate_score": 0.0903
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -950,6 +1180,12 @@
           "screen_near_duplicate_score": 0.1097
         }
       ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
+      ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "transferase_phosphoryl",
       "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
@@ -978,6 +1214,11 @@
         "top1_score": 0.1935
       },
       "lane_id": "external_source:lyase",
+      "leakage_flags": [
+        "heuristic_fingerprint_id_review_context_only",
+        "matched_m_csa_reference_ids_holdout_context_only",
+        "source_scope_signal_review_context_only"
+      ],
       "nearest_reference": {
         "embedding_backend": "deterministic_sequence_kmer_control",
         "embedding_cosine": 0.9295,
@@ -988,6 +1229,10 @@
         "reference_accession": "P07650",
         "screen_near_duplicate_score": 0.0899
       },
+      "predictive_feature_sources": [
+        "sequence_embedding_cosine",
+        "sequence_length_coverage"
+      ],
       "ready_for_label_import": false,
       "reference_scores": [
         {
@@ -1020,6 +1265,12 @@
           "reference_accession": "P0DJQ7",
           "screen_near_duplicate_score": 0.0936
         }
+      ],
+      "review_context_fields": [
+        "heuristic_baseline_control",
+        "nearest_reference",
+        "scope_signal",
+        "sequence_search_task"
       ],
       "review_status": "representation_backend_sample_review_only",
       "scope_signal": "lyase",

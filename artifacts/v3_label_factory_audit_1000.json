@@ -6,8 +6,8 @@
       "abstain_pending_evidence": 9,
       "hold_bronze_boundary_review": 83,
       "hold_bronze_need_review": 20,
-      "hold_current_tier": 451,
-      "promote_to_silver": 115
+      "hold_current_tier": 441,
+      "promote_to_silver": 125
     },
     "demote_to_bronze_count": 0,
     "demotion_rule": "silver/gold labels demote to bronze, or bronze labels stay review-only, when retrieval counterevidence, abstention, top-family mismatch, or out-of-scope false non-abstention is present",
@@ -15,15 +15,15 @@
     "hard_negative_evidence_entry_count": 82,
     "label_count": 679,
     "method": "label_factory_promotion_demotion_audit",
-    "promote_to_silver_count": 115,
+    "promote_to_silver_count": 125,
     "promotion_rule": "bronze labels promote to silver when retrieval agrees with the label, the score clears the abstention threshold, and no evidence-limiting cofactor or counterevidence conflict is present",
     "target_tier_counts": {
-      "bronze": 563,
-      "silver": 115
+      "bronze": 553,
+      "silver": 125
     },
     "tier_transition_counts": {
-      "bronze->bronze": 563,
-      "bronze->silver": 115
+      "bronze->bronze": 553,
+      "bronze->silver": 125
     }
   },
   "rows": [
@@ -12169,7 +12169,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.6851,
+      "factory_evidence_score": 0.7031,
       "hard_negative_evidence": [],
       "label_rationale": "D-alanine transaminase is a pyridoxal-phosphate aminotransferase and fits the current PLP-dependent enzyme seed fingerprint.",
       "label_type": "seed_fingerprint",
@@ -12181,12 +12181,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.6835,
+      "target_score": 0.7235,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.6835,
+      "top1_score": 0.7235,
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.2837,
+      "top2_gap": 0.3237,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3998
     },
@@ -14785,6 +14785,83 @@
     },
     {
       "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "serine hydroxymethyltransferase",
+        "ligand_codes": [
+          "PLP"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The THF-dependent reaction is thought to proceed via a retroaldol mechanism. The serine substrate first forms the external aldimine by displacing Lys229 from the internal aldimine. Glu57 abstracts the C3-OH proton, initiating the loss of formaldehyde from the intermediate leaving behind the glyci..."
+        ],
+        "nearby_residue_count": 76,
+        "pdb_id": "1LS3",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1974,
+          "charge_balance": 0.1053,
+          "hydrophobic_fraction": 0.3421,
+          "mean_min_distance_to_active_site": 5.4171,
+          "negative_fraction": 0.0263,
+          "polar_fraction": 0.3553,
+          "positive_fraction": 0.1316,
+          "sulfur_fraction": 0.0658
+        },
+        "residue_codes": [
+          "THR",
+          "LYS",
+          "GLU",
+          "ASP",
+          "ARG",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP",
+          "GLY",
+          "GOL",
+          "TGF"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:147",
+      "entry_name": "serine hydroxymethyltransferase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6979,
+      "hard_negative_evidence": [],
+      "label_rationale": "Serine hydroxymethyltransferase is a PLP-dependent amino-acid one-carbon transfer enzyme, fitting the PLP-dependent enzyme seed.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.65,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.7119,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.7119,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_gap": 0.3169,
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.395
+    },
+    {
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "cofactor_coverage_status": null,
       "confidence": "medium",
@@ -16045,6 +16122,78 @@
       "top2_gap": 0.0052,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.303
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "glutamate-1-semialdehyde 2,1-aminomutase",
+        "ligand_codes": [
+          "PMP"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "This is a pyridoxal-phosphate (PLP) dependent enzyme. It is possible that the same group of the enzyme is responsible for all the general acid and base steps of the mechanism. By analogy to aspartate aminotransferase this group is assumed to be the Lys273A [PMID:8519748,PMID:1730703]."
+        ],
+        "nearby_residue_count": 56,
+        "pdb_id": "2GSA",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.125,
+          "charge_balance": 0.0178,
+          "hydrophobic_fraction": 0.375,
+          "mean_min_distance_to_active_site": 5.9256,
+          "negative_fraction": 0.0536,
+          "polar_fraction": 0.2321,
+          "positive_fraction": 0.0714,
+          "sulfur_fraction": 0.0357
+        },
+        "residue_codes": [
+          "LYS",
+          "ASP",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PMP",
+          "PLP"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:195",
+      "entry_name": "glutamate-1-semialdehyde 2,1-aminomutase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6955,
+      "hard_negative_evidence": [],
+      "label_rationale": "Glutamate-1-semialdehyde 2,1-aminomutase is a PLP-dependent aminomutase, matching the PLP-dependent enzyme seed.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.65,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.7067,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.7067,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_gap": 0.3124,
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3943
     },
     {
       "abstain_threshold": 0.4115,
@@ -18161,6 +18310,79 @@
       "confidence": "medium",
       "context": {
         "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "adenosylmethionine--8-amino-7-oxononanoate transaminase",
+        "ligand_codes": [
+          "PLP"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Catalysis proceeds by a classical ping-pong bi-bi reaction mechanism. In the first steps, as in other PLP-dependent enzymes, the substrate SAM replaces Lys274 on the PLP-cofactor. Lys274 then deprotonates the CH adjacent to the bound amine, resulting in double bond rearrangement as the PLP acts a..."
+        ],
+        "nearby_residue_count": 78,
+        "pdb_id": "1DTY",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1538,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3462,
+          "mean_min_distance_to_active_site": 5.7382,
+          "negative_fraction": 0.0641,
+          "polar_fraction": 0.2949,
+          "positive_fraction": 0.0641,
+          "sulfur_fraction": 0.1026
+        },
+        "residue_codes": [
+          "TYR",
+          "TYR",
+          "ASP",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP",
+          "NA"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:249",
+      "entry_name": "adenosylmethionine--8-amino-7-oxononanoate transaminase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6913,
+      "hard_negative_evidence": [],
+      "label_rationale": "Adenosylmethionine--8-amino-7-oxononanoate transaminase uses PLP Schiff-base transamination chemistry, matching the PLP-dependent enzyme seed.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.65,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.6974,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.6974,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_gap": 0.31,
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3874
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [
           "heme",
           "metal_ion"
         ],
@@ -19882,7 +20104,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.7303,
+      "factory_evidence_score": 0.7483,
       "hard_negative_evidence": [],
       "label_rationale": "O-phospho-L-seryl-tRNASec:L-selenocysteinyl-tRNA synthase uses a PLP external aldimine and acid-base chemistry, matching the PLP-dependent enzyme seed.",
       "label_type": "seed_fingerprint",
@@ -19894,12 +20116,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.7839,
+      "target_score": 0.8239,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.7839,
+      "top1_score": 0.8239,
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.3902,
+      "top2_gap": 0.4302,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3937
     },
@@ -20826,6 +21048,78 @@
       "top2_gap": 0.3977,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.3673
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "aminodeoxychorismate lyase (class IV)",
+        "ligand_codes": [
+          "PLP"
+        ],
+        "mechanism_text_count": 2,
+        "mechanism_text_snippets": [
+          "Lys159 forms a Schiff base linkage to PLP, attaching it to the active site. The amino group of ADC nucleophilically attacks the C4' of PLP. This forms a PLP-ADC Schiff base linkage and releases Lys159. Lys159 forms a hydrogen bond with Thr38, decreasing the free energy level of the external aldim...",
+          "This alternative mechanism follows the same path as the other proposal other than pyruvate being eliminated intramolecularly. However the majority of evidence suggests the other mechanism is correct."
+        ],
+        "nearby_residue_count": 50,
+        "pdb_id": "1ET0",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.12,
+          "charge_balance": 0.12,
+          "hydrophobic_fraction": 0.54,
+          "mean_min_distance_to_active_site": 5.5374,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.22,
+          "positive_fraction": 0.12,
+          "sulfur_fraction": 0.06
+        },
+        "residue_codes": [
+          "LYS",
+          "GLU",
+          "THR"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:305",
+      "entry_name": "aminodeoxychorismate lyase (class IV)",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6942,
+      "hard_negative_evidence": [],
+      "label_rationale": "Class IV aminodeoxychorismate lyase uses a PLP Schiff-base external aldimine mechanism, matching the PLP-dependent enzyme seed.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.65,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.7037,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.7037,
+      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top2_gap": 0.3213,
+      "top2_ontology_family": "flavin_redox",
+      "top2_score": 0.3824
     },
     {
       "abstain_threshold": 0.4115,
@@ -21940,7 +22234,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.7261,
+      "factory_evidence_score": 0.6901,
       "hard_negative_evidence": [],
       "label_rationale": "Serine racemase uses a pyridoxal-5-phosphate external aldimine and acid-base racemization chemistry, matching the PLP-dependent enzyme seed.",
       "label_type": "seed_fingerprint",
@@ -21952,12 +22246,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.7747,
+      "target_score": 0.6947,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.7747,
+      "top1_score": 0.6947,
       "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.3953,
+      "top2_gap": 0.3153,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.3794
     },
@@ -22941,6 +23235,100 @@
     },
     {
       "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "fe_s_cluster",
+          "plp",
+          "sam"
+        ],
+        "entry_name": "lysine 2,3-aminomutase",
+        "ligand_codes": [
+          "MSE",
+          "SAM",
+          "SF4",
+          "SO4",
+          "PLP",
+          "LYS"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "LAM has a strict requirement for S-adenosyl-L-methionine, a [4Fe-4S]<sup>+</sup> cluster and pyridoxal 5'-phosphate (PLP), as well as anaerobic conditions. The PLP is bound in the active site in a unique mode, in which the pyrimidine nitrogen is neutral and unprotonated being hydrogen bonded to a..."
+        ],
+        "nearby_residue_count": 95,
+        "pdb_id": "2A5H",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1474,
+          "charge_balance": 0.0632,
+          "hydrophobic_fraction": 0.3368,
+          "mean_min_distance_to_active_site": 5.4414,
+          "negative_fraction": 0.1263,
+          "polar_fraction": 0.2316,
+          "positive_fraction": 0.1895,
+          "sulfur_fraction": 0.0105
+        },
+        "residue_codes": [
+          "ARG",
+          "CYS",
+          "TYR",
+          "ARG",
+          "CYS",
+          "ARG",
+          "LYS",
+          "ASP",
+          "ASP",
+          "CYS"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion",
+          "plp",
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "MSE",
+          "SAM",
+          "SF4",
+          "SO4",
+          "PLP",
+          "LYS",
+          "ZN"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:358",
+      "entry_name": "lysine 2,3-aminomutase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6889,
+      "hard_negative_evidence": [],
+      "label_rationale": "Lysine 2,3-aminomutase requires PLP along with SAM and an iron-sulfur cluster; the PLP external aldimine chemistry fits the broad PLP-dependent seed.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.65,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.6921,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.6921,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_gap": 0.3081,
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.384
+    },
+    {
+      "abstain_threshold": 0.4115,
       "abstained": true,
       "cofactor_coverage_status": null,
       "confidence": "medium",
@@ -23555,6 +23943,98 @@
       "top2_gap": 0.0113,
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.2728
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "medium",
+      "context": {
+        "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "tryptophan synthase",
+        "ligand_codes": [
+          "PLP",
+          "FIP",
+          "NA"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The reaction takes place at two different sites, the \u03b1-site and \u03b2-site. The product from the alpha site is transferred through a tunnel to the beta site. <br/><br/> The \u03b1-active site catalyses the reversible formation of G3P and indole from IGP. The mechanism starts with protonation of the indole..."
+        ],
+        "nearby_residue_count": 183,
+        "pdb_id": "1A50",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1093,
+          "charge_balance": 0.0109,
+          "hydrophobic_fraction": 0.5191,
+          "mean_min_distance_to_active_site": 5.3507,
+          "negative_fraction": 0.0601,
+          "polar_fraction": 0.1749,
+          "positive_fraction": 0.071,
+          "sulfur_fraction": 0.0546
+        },
+        "residue_codes": [
+          "GLU",
+          "TYR",
+          "TYR",
+          "THR",
+          "SER",
+          "ASN",
+          "SER",
+          "THR",
+          "GLY",
+          "GLY",
+          "GLY",
+          "ASP",
+          "GLY",
+          "LYS",
+          "GLU",
+          "TYR",
+          "SER",
+          "SER",
+          "SER",
+          "THR"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP",
+          "FIP",
+          "NA"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:383",
+      "entry_name": "tryptophan synthase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.7262,
+      "hard_negative_evidence": [],
+      "label_rationale": "Tryptophan synthase includes a beta active site with a PLP-bound lysine and PLP-mediated beta-elimination and beta-addition chemistry, matching the PLP seed.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.65,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.7748,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.7748,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_gap": 0.409,
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3658
     },
     {
       "abstain_threshold": 0.4115,
@@ -30305,7 +30785,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.6992,
+      "factory_evidence_score": 0.7172,
       "hard_negative_evidence": [],
       "label_rationale": "1-aminocyclopropane-1-carboxylate deaminase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.6605 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "label_type": "seed_fingerprint",
@@ -30317,12 +30797,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.6605,
+      "target_score": 0.7005,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.6605,
+      "top1_score": 0.7005,
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.2724,
+      "top2_gap": 0.3124,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3881
     },
@@ -34511,6 +34991,82 @@
       "confidence": "high",
       "context": {
         "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "kynureninase",
+        "ligand_codes": [
+          "PLP",
+          "P3G"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "Lys 227 binds PLP to Kynureninase. Electrophilicity of PLP is enhanced through close contact with Asp 201 which aids protonation of the pyridine ring. Phe 129 is Pi-stacked on top of the pyridine ring of PLP, stabilising the cofactor.The phosphate of PLPis protonated by Tyr226 which then accepts..."
+        ],
+        "nearby_residue_count": 80,
+        "pdb_id": "1QZ9",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2125,
+          "charge_balance": 0.0125,
+          "hydrophobic_fraction": 0.35,
+          "mean_min_distance_to_active_site": 5.2601,
+          "negative_fraction": 0.05,
+          "polar_fraction": 0.275,
+          "positive_fraction": 0.0625,
+          "sulfur_fraction": 0.05
+        },
+        "residue_codes": [
+          "TYR",
+          "ARG",
+          "PHE",
+          "ASP",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP",
+          "P3G",
+          "CL"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:742",
+      "entry_name": "kynureninase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.7154,
+      "hard_negative_evidence": [],
+      "label_rationale": "kynureninase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5764 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.6964,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.6964,
+      "top2_fingerprint_id": "heme_peroxidase_oxidase",
+      "top2_gap": 0.3063,
+      "top2_ontology_family": "heme_redox",
+      "top2_score": 0.3901
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
           "fe_s_cluster",
           "flavin"
         ],
@@ -34710,7 +35266,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.7648,
+      "factory_evidence_score": 0.7828,
       "hard_negative_evidence": [],
       "label_rationale": "glycine C-acetyltransferase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.8063 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "label_type": "seed_fingerprint",
@@ -34722,12 +35278,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.8063,
+      "target_score": 0.8463,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.8063,
+      "top1_score": 0.8463,
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.3984,
+      "top2_gap": 0.4384,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.4079
     },
@@ -35327,6 +35883,82 @@
         "cofactor_families": [
           "plp"
         ],
+        "entry_name": "4-aminobutyrate transaminase",
+        "ligand_codes": [
+          "PLP",
+          "ACT"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The catalytic mechanism of GABA-AT is usually divided into two parts. In the first half reaction, the natural substrate GABA is converted to succinic semialdehyde and it involves the conversion of PLP to pyridoxamine phosphate (PMP). The PMP molecule in the active site is then bound to the enzyme..."
+        ],
+        "nearby_residue_count": 61,
+        "pdb_id": "1OHV",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1148,
+          "charge_balance": 0.0656,
+          "hydrophobic_fraction": 0.3443,
+          "mean_min_distance_to_active_site": 5.3907,
+          "negative_fraction": 0.0492,
+          "polar_fraction": 0.3443,
+          "positive_fraction": 0.1148,
+          "sulfur_fraction": 0.082
+        },
+        "residue_codes": [
+          "PHE",
+          "ASP",
+          "LYS",
+          "THR"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP",
+          "ACT",
+          "FES"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:854",
+      "entry_name": "4-aminobutyrate transaminase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6878,
+      "hard_negative_evidence": [],
+      "label_rationale": "4-aminobutyrate transaminase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5151 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.6351,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.6351,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_gap": 0.2726,
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.3625
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "plp"
+        ],
         "entry_name": "cysteine desulfurase",
         "ligand_codes": [
           "PLP"
@@ -35372,7 +36004,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.7071,
+      "factory_evidence_score": 0.7251,
       "hard_negative_evidence": [],
       "label_rationale": "cysteine desulfurase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.6779 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "label_type": "seed_fingerprint",
@@ -35384,14 +36016,85 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.6779,
+      "target_score": 0.7179,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.6779,
+      "top1_score": 0.7179,
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.276,
+      "top2_gap": 0.316,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.4019
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "ornithine decarboxylase",
+        "ligand_codes": [
+          "PLP"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "In this PLP-dependent reaction, lysine is displaced from the PLP cofactor by the substrate. The intermediate then undergoes double bond rearrangement and decarboxylation followed by a second transaldimination reaction in which the lysine displaces the product."
+        ],
+        "nearby_residue_count": 56,
+        "pdb_id": "1ORD",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1607,
+          "charge_balance": 0.0179,
+          "hydrophobic_fraction": 0.2679,
+          "mean_min_distance_to_active_site": 5.5167,
+          "negative_fraction": 0.0714,
+          "polar_fraction": 0.4107,
+          "positive_fraction": 0.0893,
+          "sulfur_fraction": 0.0179
+        },
+        "residue_codes": [
+          "HIS",
+          "ASP",
+          "LYS"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:860",
+      "entry_name": "ornithine decarboxylase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6867,
+      "hard_negative_evidence": [],
+      "label_rationale": "ornithine decarboxylase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5927 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.6327,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.6327,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_gap": 0.2679,
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.3648
     },
     {
       "abstain_threshold": 0.4115,
@@ -36036,6 +36739,77 @@
       "confidence": "high",
       "context": {
         "cofactor_families": [
+          "plp"
+        ],
+        "entry_name": "ornithine decarboxylase",
+        "ligand_codes": [
+          "PLP"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "In this PLP-dependent reaction, lysine is displaced from the PLP cofactor by the substrate. The intermediate then undergoes double bond rearrangement and decarboxylation followed by a second transaldimination reaction in which the lysine displaces the product."
+        ],
+        "nearby_residue_count": 44,
+        "pdb_id": "7ODC",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2045,
+          "charge_balance": -0.0682,
+          "hydrophobic_fraction": 0.3636,
+          "mean_min_distance_to_active_site": 5.4495,
+          "negative_fraction": 0.0909,
+          "polar_fraction": 0.1818,
+          "positive_fraction": 0.0227,
+          "sulfur_fraction": 0.0455
+        },
+        "residue_codes": [
+          "HIS",
+          "LYS",
+          "GLU"
+        ],
+        "structure_cofactor_families": [
+          "plp"
+        ],
+        "structure_ligand_codes": [
+          "PLP"
+        ]
+      },
+      "counterevidence_reasons": [],
+      "current_tier": "bronze",
+      "entry_id": "m_csa:937",
+      "entry_name": "ornithine decarboxylase",
+      "evaluable": true,
+      "evidence_conflicts": [],
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "factory_evidence_score": 0.6833,
+      "hard_negative_evidence": [],
+      "label_rationale": "ornithine decarboxylase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5850 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
+      "label_type": "seed_fingerprint",
+      "proposed_tier": "silver",
+      "recommended_action": "promote_to_silver",
+      "registry_evidence_score": 0.72,
+      "review_priority_rank": 8,
+      "review_status": "automation_curated",
+      "target_fingerprint_id": "plp_dependent_enzyme",
+      "target_ontology_family": "plp_chemistry",
+      "target_rank": 1,
+      "target_score": 0.625,
+      "top1_fingerprint_id": "plp_dependent_enzyme",
+      "top1_ontology_family": "plp_chemistry",
+      "top1_score": 0.625,
+      "top2_fingerprint_id": "metal_dependent_hydrolase",
+      "top2_gap": 0.2695,
+      "top2_ontology_family": "hydrolysis",
+      "top2_score": 0.3555
+    },
+    {
+      "abstain_threshold": 0.4115,
+      "abstained": false,
+      "cofactor_coverage_status": "all_expected_local",
+      "confidence": "high",
+      "context": {
+        "cofactor_families": [
           "flavin"
         ],
         "entry_name": "(R)-mandelonitrile lyase",
@@ -36336,7 +37110,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.7506,
+      "factory_evidence_score": 0.7146,
       "hard_negative_evidence": [],
       "label_rationale": "L-serine ammonia-lyase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.7747 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "label_type": "seed_fingerprint",
@@ -36348,12 +37122,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.7747,
+      "target_score": 0.6947,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.7747,
+      "top1_score": 0.6947,
       "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.3953,
+      "top2_gap": 0.3153,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.3794
     },
@@ -39471,83 +40245,6 @@
     },
     {
       "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [
-          "plp"
-        ],
-        "entry_name": "serine hydroxymethyltransferase",
-        "ligand_codes": [
-          "PLP"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The THF-dependent reaction is thought to proceed via a retroaldol mechanism. The serine substrate first forms the external aldimine by displacing Lys229 from the internal aldimine. Glu57 abstracts the C3-OH proton, initiating the loss of formaldehyde from the intermediate leaving behind the glyci..."
-        ],
-        "nearby_residue_count": 76,
-        "pdb_id": "1LS3",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1974,
-          "charge_balance": 0.1053,
-          "hydrophobic_fraction": 0.3421,
-          "mean_min_distance_to_active_site": 5.4171,
-          "negative_fraction": 0.0263,
-          "polar_fraction": 0.3553,
-          "positive_fraction": 0.1316,
-          "sulfur_fraction": 0.0658
-        },
-        "residue_codes": [
-          "THR",
-          "LYS",
-          "GLU",
-          "ASP",
-          "ARG",
-          "TYR"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PLP",
-          "GLY",
-          "GOL",
-          "TGF"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:147",
-      "entry_name": "serine hydroxymethyltransferase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6799,
-      "hard_negative_evidence": [],
-      "label_rationale": "Serine hydroxymethyltransferase is a PLP-dependent amino-acid one-carbon transfer enzyme, fitting the PLP-dependent enzyme seed.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.6719,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.6719,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.2769,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.395
-    },
-    {
-      "abstain_threshold": 0.4115,
       "abstained": true,
       "cofactor_coverage_status": null,
       "confidence": "medium",
@@ -41267,78 +41964,6 @@
         "cofactor_families": [
           "plp"
         ],
-        "entry_name": "glutamate-1-semialdehyde 2,1-aminomutase",
-        "ligand_codes": [
-          "PMP"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "This is a pyridoxal-phosphate (PLP) dependent enzyme. It is possible that the same group of the enzyme is responsible for all the general acid and base steps of the mechanism. By analogy to aspartate aminotransferase this group is assumed to be the Lys273A [PMID:8519748,PMID:1730703]."
-        ],
-        "nearby_residue_count": 56,
-        "pdb_id": "2GSA",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.125,
-          "charge_balance": 0.0178,
-          "hydrophobic_fraction": 0.375,
-          "mean_min_distance_to_active_site": 5.9256,
-          "negative_fraction": 0.0536,
-          "polar_fraction": 0.2321,
-          "positive_fraction": 0.0714,
-          "sulfur_fraction": 0.0357
-        },
-        "residue_codes": [
-          "LYS",
-          "ASP",
-          "TYR"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PMP",
-          "PLP"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:195",
-      "entry_name": "glutamate-1-semialdehyde 2,1-aminomutase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6415,
-      "hard_negative_evidence": [],
-      "label_rationale": "Glutamate-1-semialdehyde 2,1-aminomutase is a PLP-dependent aminomutase, matching the PLP-dependent enzyme seed.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.5867,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5867,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.1924,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3943
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [
-          "plp"
-        ],
         "entry_name": "Glycogen phosphorylase",
         "ligand_codes": [
           "PLP"
@@ -41384,7 +42009,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.641,
+      "factory_evidence_score": 0.659,
       "hard_negative_evidence": [],
       "label_rationale": "Glycogen phosphorylase uses covalently bound pyridoxal phosphate to support phosphorolysis, fitting the broad PLP-dependent enzyme seed.",
       "label_type": "seed_fingerprint",
@@ -41396,12 +42021,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.5855,
+      "target_score": 0.6255,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5855,
+      "top1_score": 0.6255,
       "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.2295,
+      "top2_gap": 0.2695,
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.356
     },
@@ -42071,79 +42696,6 @@
       "top2_gap": 0.0133,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.342
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [
-          "plp"
-        ],
-        "entry_name": "adenosylmethionine--8-amino-7-oxononanoate transaminase",
-        "ligand_codes": [
-          "PLP"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Catalysis proceeds by a classical ping-pong bi-bi reaction mechanism. In the first steps, as in other PLP-dependent enzymes, the substrate SAM replaces Lys274 on the PLP-cofactor. Lys274 then deprotonates the CH adjacent to the bound amine, resulting in double bond rearrangement as the PLP acts a..."
-        ],
-        "nearby_residue_count": 78,
-        "pdb_id": "1DTY",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1538,
-          "charge_balance": 0.0,
-          "hydrophobic_fraction": 0.3462,
-          "mean_min_distance_to_active_site": 5.7382,
-          "negative_fraction": 0.0641,
-          "polar_fraction": 0.2949,
-          "positive_fraction": 0.0641,
-          "sulfur_fraction": 0.1026
-        },
-        "residue_codes": [
-          "TYR",
-          "TYR",
-          "ASP",
-          "LYS"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PLP",
-          "NA"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:249",
-      "entry_name": "adenosylmethionine--8-amino-7-oxononanoate transaminase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6373,
-      "hard_negative_evidence": [],
-      "label_rationale": "Adenosylmethionine--8-amino-7-oxononanoate transaminase uses PLP Schiff-base transamination chemistry, matching the PLP-dependent enzyme seed.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.5774,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5774,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.19,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3874
     },
     {
       "abstain_threshold": 0.4115,
@@ -42978,78 +43530,6 @@
       "top2_gap": 0.2432,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3536
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [
-          "plp"
-        ],
-        "entry_name": "aminodeoxychorismate lyase (class IV)",
-        "ligand_codes": [
-          "PLP"
-        ],
-        "mechanism_text_count": 2,
-        "mechanism_text_snippets": [
-          "Lys159 forms a Schiff base linkage to PLP, attaching it to the active site. The amino group of ADC nucleophilically attacks the C4' of PLP. This forms a PLP-ADC Schiff base linkage and releases Lys159. Lys159 forms a hydrogen bond with Thr38, decreasing the free energy level of the external aldim...",
-          "This alternative mechanism follows the same path as the other proposal other than pyruvate being eliminated intramolecularly. However the majority of evidence suggests the other mechanism is correct."
-        ],
-        "nearby_residue_count": 50,
-        "pdb_id": "1ET0",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.12,
-          "charge_balance": 0.12,
-          "hydrophobic_fraction": 0.54,
-          "mean_min_distance_to_active_site": 5.5374,
-          "negative_fraction": 0.0,
-          "polar_fraction": 0.22,
-          "positive_fraction": 0.12,
-          "sulfur_fraction": 0.06
-        },
-        "residue_codes": [
-          "LYS",
-          "GLU",
-          "THR"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PLP"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:305",
-      "entry_name": "aminodeoxychorismate lyase (class IV)",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6762,
-      "hard_negative_evidence": [],
-      "label_rationale": "Class IV aminodeoxychorismate lyase uses a PLP Schiff-base external aldimine mechanism, matching the PLP-dependent enzyme seed.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.6637,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.6637,
-      "top2_fingerprint_id": "flavin_dehydrogenase_reductase",
-      "top2_gap": 0.2813,
-      "top2_ontology_family": "flavin_redox",
-      "top2_score": 0.3824
     },
     {
       "abstain_threshold": 0.4115,
@@ -44151,100 +44631,6 @@
     },
     {
       "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [
-          "fe_s_cluster",
-          "plp",
-          "sam"
-        ],
-        "entry_name": "lysine 2,3-aminomutase",
-        "ligand_codes": [
-          "MSE",
-          "SAM",
-          "SF4",
-          "SO4",
-          "PLP",
-          "LYS"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "LAM has a strict requirement for S-adenosyl-L-methionine, a [4Fe-4S]<sup>+</sup> cluster and pyridoxal 5'-phosphate (PLP), as well as anaerobic conditions. The PLP is bound in the active site in a unique mode, in which the pyrimidine nitrogen is neutral and unprotonated being hydrogen bonded to a..."
-        ],
-        "nearby_residue_count": 95,
-        "pdb_id": "2A5H",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1474,
-          "charge_balance": 0.0632,
-          "hydrophobic_fraction": 0.3368,
-          "mean_min_distance_to_active_site": 5.4414,
-          "negative_fraction": 0.1263,
-          "polar_fraction": 0.2316,
-          "positive_fraction": 0.1895,
-          "sulfur_fraction": 0.0105
-        },
-        "residue_codes": [
-          "ARG",
-          "CYS",
-          "TYR",
-          "ARG",
-          "CYS",
-          "ARG",
-          "LYS",
-          "ASP",
-          "ASP",
-          "CYS"
-        ],
-        "structure_cofactor_families": [
-          "fe_s_cluster",
-          "metal_ion",
-          "plp",
-          "sam"
-        ],
-        "structure_ligand_codes": [
-          "MSE",
-          "SAM",
-          "SF4",
-          "SO4",
-          "PLP",
-          "LYS",
-          "ZN"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:358",
-      "entry_name": "lysine 2,3-aminomutase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6349,
-      "hard_negative_evidence": [],
-      "label_rationale": "Lysine 2,3-aminomutase requires PLP along with SAM and an iron-sulfur cluster; the PLP external aldimine chemistry fits the broad PLP-dependent seed.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.5721,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5721,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.1881,
-      "top2_ontology_family": "hydrolysis",
-      "top2_score": 0.384
-    },
-    {
-      "abstain_threshold": 0.4115,
       "abstained": true,
       "cofactor_coverage_status": null,
       "confidence": "medium",
@@ -44689,98 +45075,6 @@
       "top2_gap": 0.261,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3073
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "medium",
-      "context": {
-        "cofactor_families": [
-          "plp"
-        ],
-        "entry_name": "tryptophan synthase",
-        "ligand_codes": [
-          "PLP",
-          "FIP",
-          "NA"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The reaction takes place at two different sites, the \u03b1-site and \u03b2-site. The product from the alpha site is transferred through a tunnel to the beta site. <br/><br/> The \u03b1-active site catalyses the reversible formation of G3P and indole from IGP. The mechanism starts with protonation of the indole..."
-        ],
-        "nearby_residue_count": 183,
-        "pdb_id": "1A50",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1093,
-          "charge_balance": 0.0109,
-          "hydrophobic_fraction": 0.5191,
-          "mean_min_distance_to_active_site": 5.3507,
-          "negative_fraction": 0.0601,
-          "polar_fraction": 0.1749,
-          "positive_fraction": 0.071,
-          "sulfur_fraction": 0.0546
-        },
-        "residue_codes": [
-          "GLU",
-          "TYR",
-          "TYR",
-          "THR",
-          "SER",
-          "ASN",
-          "SER",
-          "THR",
-          "GLY",
-          "GLY",
-          "GLY",
-          "ASP",
-          "GLY",
-          "LYS",
-          "GLU",
-          "TYR",
-          "SER",
-          "SER",
-          "SER",
-          "THR"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PLP",
-          "FIP",
-          "NA"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:383",
-      "entry_name": "tryptophan synthase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6722,
-      "hard_negative_evidence": [],
-      "label_rationale": "Tryptophan synthase includes a beta active site with a PLP-bound lysine and PLP-mediated beta-elimination and beta-addition chemistry, matching the PLP seed.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.65,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.6548,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.6548,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.289,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3658
     },
     {
       "abstain_threshold": 0.4115,
@@ -45352,7 +45646,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.5865,
+      "factory_evidence_score": 0.6045,
       "hard_negative_evidence": [],
       "label_rationale": "Tryptophanase proceeds through PLP transaldimination, quinonoid formation, and beta-elimination chemistry, matching the PLP-dependent enzyme seed.",
       "label_type": "seed_fingerprint",
@@ -45364,12 +45658,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.4644,
+      "target_score": 0.5044,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.4644,
+      "top1_score": 0.5044,
       "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.1119,
+      "top2_gap": 0.1519,
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.3525
     },
@@ -45424,7 +45718,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.6483,
+      "factory_evidence_score": 0.6663,
       "hard_negative_evidence": [],
       "label_rationale": "Aromatic-amino-acid transaminase uses PLP-mediated transaldimination and amino-group transfer, matching the PLP-dependent enzyme seed.",
       "label_type": "seed_fingerprint",
@@ -45436,12 +45730,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.6017,
+      "target_score": 0.6417,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.6017,
+      "top1_score": 0.6417,
       "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.2372,
+      "top2_gap": 0.2772,
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.3645
     },
@@ -45705,7 +45999,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.6458,
+      "factory_evidence_score": 0.6638,
       "hard_negative_evidence": [],
       "label_rationale": "1-aminocyclopropane-1-carboxylate synthase uses lysine-bound PLP transaldimination and elimination/cyclization chemistry, matching the PLP seed.",
       "label_type": "seed_fingerprint",
@@ -45717,12 +46011,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.5963,
+      "target_score": 0.6363,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5963,
+      "top1_score": 0.6363,
       "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.2303,
+      "top2_gap": 0.2703,
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.366
     },
@@ -45781,7 +46075,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.6305,
+      "factory_evidence_score": 0.6485,
       "hard_negative_evidence": [],
       "label_rationale": "3-amino-5-hydroxybenzoate synthase uses PLP Schiff-base and proton-transfer chemistry, matching the broad PLP-dependent enzyme seed.",
       "label_type": "seed_fingerprint",
@@ -45793,12 +46087,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.5622,
+      "target_score": 0.6022,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5622,
+      "top1_score": 0.6022,
       "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.2361,
+      "top2_gap": 0.2761,
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.3261
     },
@@ -45854,7 +46148,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.6428,
+      "factory_evidence_score": 0.6608,
       "hard_negative_evidence": [],
       "label_rationale": "Phosphoserine transaminase uses PLP Schiff-base transamination chemistry, matching the PLP-dependent enzyme seed.",
       "label_type": "seed_fingerprint",
@@ -45866,12 +46160,12 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.5896,
+      "target_score": 0.6296,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5896,
+      "top1_score": 0.6296,
       "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.2324,
+      "top2_gap": 0.2724,
       "top2_ontology_family": "hydrolysis",
       "top2_score": 0.3572
     },
@@ -50245,82 +50539,6 @@
       "confidence": "high",
       "context": {
         "cofactor_families": [
-          "plp"
-        ],
-        "entry_name": "kynureninase",
-        "ligand_codes": [
-          "PLP",
-          "P3G"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "Lys 227 binds PLP to Kynureninase. Electrophilicity of PLP is enhanced through close contact with Asp 201 which aids protonation of the pyridine ring. Phe 129 is Pi-stacked on top of the pyridine ring of PLP, stabilising the cofactor.The phosphate of PLPis protonated by Tyr226 which then accepts..."
-        ],
-        "nearby_residue_count": 80,
-        "pdb_id": "1QZ9",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.2125,
-          "charge_balance": 0.0125,
-          "hydrophobic_fraction": 0.35,
-          "mean_min_distance_to_active_site": 5.2601,
-          "negative_fraction": 0.05,
-          "polar_fraction": 0.275,
-          "positive_fraction": 0.0625,
-          "sulfur_fraction": 0.05
-        },
-        "residue_codes": [
-          "TYR",
-          "ARG",
-          "PHE",
-          "ASP",
-          "LYS"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PLP",
-          "P3G",
-          "CL"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:742",
-      "entry_name": "kynureninase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6614,
-      "hard_negative_evidence": [],
-      "label_rationale": "kynureninase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5764 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.72,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.5764,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5764,
-      "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.1863,
-      "top2_ontology_family": "heme_redox",
-      "top2_score": 0.3901
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "high",
-      "context": {
-        "cofactor_families": [
           "metal_ion"
         ],
         "entry_name": "3'-5' exonuclease",
@@ -50765,82 +50983,6 @@
       "confidence": "high",
       "context": {
         "cofactor_families": [
-          "plp"
-        ],
-        "entry_name": "4-aminobutyrate transaminase",
-        "ligand_codes": [
-          "PLP",
-          "ACT"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "The catalytic mechanism of GABA-AT is usually divided into two parts. In the first half reaction, the natural substrate GABA is converted to succinic semialdehyde and it involves the conversion of PLP to pyridoxamine phosphate (PMP). The PMP molecule in the active site is then bound to the enzyme..."
-        ],
-        "nearby_residue_count": 61,
-        "pdb_id": "1OHV",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1148,
-          "charge_balance": 0.0656,
-          "hydrophobic_fraction": 0.3443,
-          "mean_min_distance_to_active_site": 5.3907,
-          "negative_fraction": 0.0492,
-          "polar_fraction": 0.3443,
-          "positive_fraction": 0.1148,
-          "sulfur_fraction": 0.082
-        },
-        "residue_codes": [
-          "PHE",
-          "ASP",
-          "LYS",
-          "THR"
-        ],
-        "structure_cofactor_families": [
-          "fe_s_cluster",
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PLP",
-          "ACT",
-          "FES"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:854",
-      "entry_name": "4-aminobutyrate transaminase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6338,
-      "hard_negative_evidence": [],
-      "label_rationale": "4-aminobutyrate transaminase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5151 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.72,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.5151,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5151,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.1526,
-      "top2_ontology_family": "hydrolysis",
-      "top2_score": 0.3625
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "high",
-      "context": {
-        "cofactor_families": [
           "metal_ion"
         ],
         "entry_name": "inositol-1,4-bisphosphate 1-phosphatase",
@@ -50908,77 +51050,6 @@
       "top2_gap": 0.3102,
       "top2_ontology_family": "flavin_redox",
       "top2_score": 0.282
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "high",
-      "context": {
-        "cofactor_families": [
-          "plp"
-        ],
-        "entry_name": "ornithine decarboxylase",
-        "ligand_codes": [
-          "PLP"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "In this PLP-dependent reaction, lysine is displaced from the PLP cofactor by the substrate. The intermediate then undergoes double bond rearrangement and decarboxylation followed by a second transaldimination reaction in which the lysine displaces the product."
-        ],
-        "nearby_residue_count": 56,
-        "pdb_id": "1ORD",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.1607,
-          "charge_balance": 0.0179,
-          "hydrophobic_fraction": 0.2679,
-          "mean_min_distance_to_active_site": 5.5167,
-          "negative_fraction": 0.0714,
-          "polar_fraction": 0.4107,
-          "positive_fraction": 0.0893,
-          "sulfur_fraction": 0.0179
-        },
-        "residue_codes": [
-          "HIS",
-          "ASP",
-          "LYS"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PLP"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:860",
-      "entry_name": "ornithine decarboxylase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6687,
-      "hard_negative_evidence": [],
-      "label_rationale": "ornithine decarboxylase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5927 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.72,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.5927,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5927,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.2279,
-      "top2_ontology_family": "hydrolysis",
-      "top2_score": 0.3648
     },
     {
       "abstain_threshold": 0.4115,
@@ -51182,7 +51253,7 @@
       "expected_cofactor_families": [
         "plp"
       ],
-      "factory_evidence_score": 0.6466,
+      "factory_evidence_score": 0.6646,
       "hard_negative_evidence": [],
       "label_rationale": "tyrosine phenol-lyase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5435 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
       "label_type": "seed_fingerprint",
@@ -51194,85 +51265,14 @@
       "target_fingerprint_id": "plp_dependent_enzyme",
       "target_ontology_family": "plp_chemistry",
       "target_rank": 1,
-      "target_score": 0.5435,
+      "target_score": 0.5835,
       "top1_fingerprint_id": "plp_dependent_enzyme",
       "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.5435,
+      "top1_score": 0.5835,
       "top2_fingerprint_id": "heme_peroxidase_oxidase",
-      "top2_gap": 0.2077,
+      "top2_gap": 0.2477,
       "top2_ontology_family": "heme_redox",
       "top2_score": 0.3358
-    },
-    {
-      "abstain_threshold": 0.4115,
-      "abstained": false,
-      "cofactor_coverage_status": "all_expected_local",
-      "confidence": "high",
-      "context": {
-        "cofactor_families": [
-          "plp"
-        ],
-        "entry_name": "ornithine decarboxylase",
-        "ligand_codes": [
-          "PLP"
-        ],
-        "mechanism_text_count": 1,
-        "mechanism_text_snippets": [
-          "In this PLP-dependent reaction, lysine is displaced from the PLP cofactor by the substrate. The intermediate then undergoes double bond rearrangement and decarboxylation followed by a second transaldimination reaction in which the lysine displaces the product."
-        ],
-        "nearby_residue_count": 44,
-        "pdb_id": "7ODC",
-        "pocket_descriptors": {
-          "aromatic_fraction": 0.2045,
-          "charge_balance": -0.0682,
-          "hydrophobic_fraction": 0.3636,
-          "mean_min_distance_to_active_site": 5.4495,
-          "negative_fraction": 0.0909,
-          "polar_fraction": 0.1818,
-          "positive_fraction": 0.0227,
-          "sulfur_fraction": 0.0455
-        },
-        "residue_codes": [
-          "HIS",
-          "LYS",
-          "GLU"
-        ],
-        "structure_cofactor_families": [
-          "plp"
-        ],
-        "structure_ligand_codes": [
-          "PLP"
-        ]
-      },
-      "counterevidence_reasons": [],
-      "current_tier": "bronze",
-      "entry_id": "m_csa:937",
-      "entry_name": "ornithine decarboxylase",
-      "evaluable": true,
-      "evidence_conflicts": [],
-      "expected_cofactor_families": [
-        "plp"
-      ],
-      "factory_evidence_score": 0.6653,
-      "hard_negative_evidence": [],
-      "label_rationale": "ornithine decarboxylase is provisionally assigned to plp_dependent_enzyme: retrieval score 0.5850 clears the 0.4115 floor and the review context reports ligand_supported cofactor evidence.",
-      "label_type": "seed_fingerprint",
-      "proposed_tier": "bronze",
-      "recommended_action": "hold_current_tier",
-      "registry_evidence_score": 0.72,
-      "review_priority_rank": 9,
-      "review_status": "automation_curated",
-      "target_fingerprint_id": "plp_dependent_enzyme",
-      "target_ontology_family": "plp_chemistry",
-      "target_rank": 1,
-      "target_score": 0.585,
-      "top1_fingerprint_id": "plp_dependent_enzyme",
-      "top1_ontology_family": "plp_chemistry",
-      "top1_score": 0.585,
-      "top2_fingerprint_id": "metal_dependent_hydrolase",
-      "top2_gap": 0.2295,
-      "top2_ontology_family": "hydrolysis",
-      "top2_score": 0.3555
     },
     {
       "abstain_threshold": 0.4115,
