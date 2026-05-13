@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 65
-- Measured elapsed time: 2567.6 minutes (42.79 hours)
+- Entries: 66
+- Measured elapsed time: 2570.0 minutes (42.83 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 2489.5 measured minutes (41.49 hours)
+- post-v2: 2491.9 measured minutes (41.53 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 686
-- Evidence references logged: 565
+- Artifact references logged: 689
+- Evidence references logged: 574
 
 ## Recent Entries
-
-### 2026-05-13T05:57:24.579339+00:00 - post-v2
-
-- Task: Advance external-source active-site controls
-- Time mode: measured
-- Measured minutes: 51.35
-- Started: 2026-05-13T05:05:40Z
-- Ended: 2026-05-13T05:57:01Z
-- Artifacts: src/catalytic_earth/adapters.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, artifacts/v3_external_source_active_site_evidence_sample_1025.json, artifacts/v3_external_source_heuristic_control_queue_1025.json, artifacts/v3_external_source_structure_mapping_plan_1025.json, artifacts/v3_external_source_structure_mapping_sample_1025.json, artifacts/v3_external_source_heuristic_control_scores_1025.json, artifacts/v3_external_source_failure_mode_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, docs/external_source_transfer.md, work/handoff.md
-- Evidence: 239 unit tests passed, validate passed, git diff check passed, compileall passed, 22/22 external transfer gates, 25 active-site evidence rows sampled, 15 active-site-supported candidates, 4/4 AlphaFold controls mapped, metal-hydrolase top1 collapse recorded, 0 countable external labels
-- Notes: Documentation checked and updated during wrap-up; 12 repeated full-suite passes and final verification were clean.
 
 ### 2026-05-13T06:58:30.872167+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 268 unit tests passed, validate passed, git diff --check passed, automation prompt updated, no abstract gates unless directly unblocking external pilot, 5-10 candidate external pilot is next target
 - Notes: User requested concrete agent instructions after the 1,025 source-limit pivot.
 
+### 2026-05-13T13:02:54.457092+00:00 - post-v2
+
+- Task: Prioritize holdout and pilot instructions
+- Time mode: measured
+- Measured minutes: 2.433
+- Started: 2026-05-13T13:00:21Z
+- Ended: 2026-05-13T13:02:47Z
+- Artifacts: work/handoff.md, work/scope.md, docs/external_source_transfer.md
+- Evidence: 268 unit tests passed, validate passed, git diff --check passed, automation prompt updated, sequence/fold-distance holdout is first priority, real representation controls second, holo-PDB overrides third, ePK fourth, transition-state schema later
+- Notes: User clarified not to implement locally in this turn; durable agent instructions were updated instead.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -176,6 +176,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T05:57:24.579339+00:00: External transfer remains review-only; repair active-site feature gaps and heuristic metal-hydrolase collapse before any label import.
 - 2026-05-13T06:58:30.872167+00:00: External transfer remains non-countable; next bounded work should source active-site evidence for 10 gaps, disambiguate 3 broad-EC rows, and prototype representation controls for 12 mapped controls.
 - 2026-05-13T12:55:17.737175+00:00: The next useful milestone is pilot import readiness for named external candidates, not a higher external-transfer gate count.
+- 2026-05-13T13:02:54.457092+00:00: The next run should implement holdout/generalization evaluation first; external pilot work resumes after that signal or in parallel only when directly unblocking import readiness.
 
 ## Scope Adjustments
 
@@ -242,3 +243,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T11:04:16.318492+00:00: External transfer remains non-countable; next import readiness depends on sourcing explicit active-site evidence, completing near-duplicate sequence search, and running real representation controls before any external decision.
 - 2026-05-13T12:05:19.086868+00:00: External transfer remains non-countable; next import readiness depends on primary literature/PDB active-site source review, complete near-duplicate sequence search, and replacing deterministic k-mer controls with real learned or structure-language representation controls before any external decision.
 - 2026-05-13T12:55:17.737175+00:00: Post-M-CSA work now prioritizes a 5-10 candidate external-source pilot over additional abstract transfer gates or M-CSA-only tranche growth.
+- 2026-05-13T13:02:54.457092+00:00: Agent work is now instruction-only redirected toward sequence/fold-distance holdout evaluation before external import or further abstract gates.

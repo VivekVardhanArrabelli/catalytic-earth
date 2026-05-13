@@ -155,6 +155,10 @@ expert-validated enzyme discovery program.
 Current expectation:
 
 - v2 scaffold: complete
+- immediate priority: falsify generalization before adding more gate machinery.
+  Implement a sequence/fold-distance holdout evaluation over the accepted
+  countable registry and 1,000/1,025 slice context, then use real representation
+  controls and a small external-source pilot to decide what can safely import
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed

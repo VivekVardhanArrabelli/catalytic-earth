@@ -37,6 +37,14 @@ The next phase is a small external-source import pilot, not more abstract gate
 accumulation. New gates or audits should be added only when they directly
 remove one blocker to pilot import readiness.
 
+Before any external import attempt, add a sequence/fold-distance holdout
+evaluation for the accepted countable registry and 1,000/1,025 slice context.
+This should report held-out top1 accuracy, retained top3 accuracy where
+applicable, retention, abstention, out-of-scope false non-abstentions, and
+per-fingerprint breakdowns separately from the current in-distribution slice
+metrics. Use Foldseek/MMseqs2 if available; otherwise use a deterministic local
+proxy and state the limitation.
+
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,
 sequence, representation, review, and full label-factory gates pass.

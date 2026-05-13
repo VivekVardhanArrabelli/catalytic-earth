@@ -506,6 +506,41 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch
 
 ## Next Agent Start Here
 
+User-approved priority override: do not keep adding gates upon gates. The next
+runs should follow this ordered worklist unless a concrete repo blocker appears.
+Every new artifact, audit, or gate must directly remove one generalization or
+external-pilot blocker; otherwise do not build it.
+
+1. Implement sequence/fold-distance holdout evaluation first. Emit
+   `v3_sequence_distance_holdout_eval_{slice}.json` against the accepted
+   countable registry and 1,000/1,025 slice context. Use Foldseek/MMseqs2 if
+   locally available; otherwise use the strongest deterministic local proxy and
+   label the limitation clearly. Target a held-out partition around <=30%
+   sequence identity and/or <0.7 TM-score when measurable. Report top1
+   accuracy, top3 retained accuracy where applicable, retention rate,
+   abstention rate, out-of-scope false non-abstentions, and per-fingerprint
+   breakdowns separately from in-distribution slice metrics. Add regression
+   tests so held-out numbers cannot silently regress.
+2. Replace deterministic k-mer representation controls with a real learned or
+   structure-language representation backend, or a clearly executable backend
+   interface with a small computed sample. Preserve heuristic geometry retrieval
+   as the baseline and emit learned-vs-heuristic disagreement rows for
+   active-learning priority.
+3. Implement a general selected-PDB override path with provenance and apply the
+   holo-preference audit action path for `m_csa:577` and `m_csa:641`. Seed it
+   from `v3_structure_selection_holo_preference_audit_700.json` rows where
+   `recommendation == "swap_selected_structure"`. Skip `m_csa:592` unless new
+   evidence changes the current kinase/reaction-mismatch demotion. Only count
+   labels if regenerated gates pass.
+4. Add the ePK fingerprint conservatively after the holdout signal exists:
+   fingerprint JSON, ontology link, minimal abstention/counterevidence rules,
+   and tests first. Let gates reveal which stronger sibling-family rules are
+   needed before overfitting ePK against ASKHA, ATP-grasp, GHKL, dNK, NDK,
+   PfkA, PfkB, and GHMP.
+5. Add `transition_state_signature` only after the higher-priority
+   generalization and external-pilot blockers are addressed, or if the run is
+   otherwise blocked. Keep it validation-only at first.
+
 Concrete user direction for the next runs: stop adding abstract gates unless
 they directly unblock the first external-source import pilot. The 1,025
 checkpoint already proved the key strategic point: M-CSA-only count growth is
