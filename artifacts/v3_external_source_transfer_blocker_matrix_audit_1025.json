@@ -1,0 +1,23 @@
+{
+  "blockers": [],
+  "metadata": {
+    "candidate_count": 30,
+    "completed_active_site_decision_count": 0,
+    "completed_sequence_decision_count": 0,
+    "countable_label_candidate_count": 0,
+    "dominant_lane_fraction": 0.1667,
+    "dominant_prioritized_action_fraction": 0.6,
+    "expected_candidate_count": 30,
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "method": "external_source_transfer_blocker_matrix_audit",
+    "missing_blocker_row_count": 0,
+    "missing_prioritized_action_row_count": 0,
+    "missing_review_only_status_row_count": 0,
+    "missing_sequence_task_row_count": 0,
+    "ready_for_label_import": false
+  },
+  "warnings": [
+    "external transfer blocker matrices are review-only worklists and cannot authorize external label import"
+  ]
+}

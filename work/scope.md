@@ -251,7 +251,9 @@ Current expectation:
   artifacts, representation-control comparison, broad-EC disambiguation,
   active-site gap source requests, sequence-neighborhood controls, bounded
   sequence-neighborhood screening, bounded sequence-alignment verification,
-  import-readiness audit, active-site sourcing queue, and 45/45 transfer gate;
+  sequence-search export, import-readiness audit, active-site sourcing
+  queue/export, representation-backend plan, transfer blocker matrix, and 53/53
+  transfer gate;
   2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
   full Rhea reaction-context sample collects 64 review-only reaction records
@@ -274,7 +276,12 @@ Current expectation:
   import-readiness audit records 0
   import-ready rows plus 10 active-site gaps, 9 heuristic scope/top1
   mismatches, and 29 representation-control issues, the active-site sourcing
-  queue prioritizes 7 mapped-binding-context rows and 3 primary-source rows,
+  queue prioritizes 7 mapped-binding-context rows and 3 primary-source rows, the
+  active-site sourcing export carries 72 source targets, the sequence-search
+  export keeps 28 near-duplicate searches and 2 sequence holdouts review-only,
+  the representation-backend plan covers 12 controls without embeddings, the
+  transfer blocker matrix keeps all 30 candidates non-countable with explicit
+  next actions,
   and 0 external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain

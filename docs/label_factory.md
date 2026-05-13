@@ -686,15 +686,23 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json`,
   `artifacts/v3_external_source_sequence_alignment_verification_1025.json`,
   `artifacts/v3_external_source_sequence_alignment_verification_audit_1025.json`,
+  `artifacts/v3_external_source_sequence_search_export_1025.json`,
+  `artifacts/v3_external_source_sequence_search_export_audit_1025.json`,
   `artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json`,
   `artifacts/v3_external_source_import_readiness_audit_1025.json`,
   `artifacts/v3_external_source_active_site_sourcing_queue_1025.json`,
   `artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json`,
+  `artifacts/v3_external_source_active_site_sourcing_export_1025.json`,
+  `artifacts/v3_external_source_active_site_sourcing_export_audit_1025.json`,
+  `artifacts/v3_external_source_representation_backend_plan_1025.json`,
+  `artifacts/v3_external_source_representation_backend_plan_audit_1025.json`,
+  `artifacts/v3_external_source_transfer_blocker_matrix_1025.json`,
+  `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  45/45 external transfer gate for evidence collection, pass the lane-balance
+  53/53 external transfer gate for evidence collection, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
   map all 12 heuristic-ready controls onto AlphaFold structures, and must not
@@ -718,7 +726,12 @@ Current 1,025-preview state:
   search requirements, 9 heuristic scope/top1 mismatches, and 29
   representation-control issues; the active-site sourcing queue prioritizes the
   10 active-site gaps into 7 mapped-binding-context rows and 3 primary-source
-  rows.
+  rows. The active-site sourcing export carries 72 source targets with 0
+  completed decisions, the sequence-search export keeps all 30 candidates in
+  no-decision sequence controls, the representation-backend plan covers 12
+  mapped controls without embeddings, and the transfer blocker matrix joins all
+  30 external candidates into a review-only next-action worklist with no
+  single-action or single-lane collapse.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
   adds bounded Rhea reaction context for all 30 candidates while keeping every
   row non-countable and outside any reviewed decision artifact; its companion

@@ -2911,6 +2911,189 @@ def audit_external_source_representation_control_comparison(
     }
 
 
+def build_external_source_representation_backend_plan(
+    *,
+    representation_control_manifest: dict[str, Any],
+    representation_control_comparison: dict[str, Any],
+    sequence_search_export: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Plan real representation-control inputs while keeping embeddings absent."""
+    comparison_by_entry = {
+        str(row.get("entry_id")): row
+        for row in representation_control_comparison.get("rows", []) or []
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    sequence_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in sequence_search_export.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for manifest_row in representation_control_manifest.get("rows", []) or []:
+        if not isinstance(manifest_row, dict) or not manifest_row.get("entry_id"):
+            continue
+        entry_id = str(manifest_row.get("entry_id"))
+        accession = _normalize_accession(manifest_row.get("accession"))
+        comparison = comparison_by_entry.get(entry_id, {})
+        sequence = sequence_by_accession.get(accession, {})
+        readiness_status = _external_representation_backend_status(
+            manifest_row=manifest_row,
+            comparison=comparison,
+            sequence=sequence,
+        )
+        status_counts[readiness_status] += 1
+        rows.append(
+            {
+                "accession": accession,
+                "backend_readiness_status": readiness_status,
+                "blockers": _external_representation_backend_blockers(
+                    readiness_status
+                ),
+                "comparison_status": comparison.get("comparison_status"),
+                "countable_label_candidate": False,
+                "embedding_status": "backend_plan_only_not_computed",
+                "entry_id": entry_id,
+                "feature_summary": manifest_row.get("feature_summary", {}),
+                "heuristic_baseline_control": manifest_row.get(
+                    "heuristic_baseline_control", {}
+                ),
+                "lane_id": manifest_row.get("lane_id"),
+                "ready_for_label_import": False,
+                "recommended_backends": _external_representation_backend_options(
+                    scope_signal=str(manifest_row.get("scope_signal") or ""),
+                    comparison_status=str(comparison.get("comparison_status") or ""),
+                ),
+                "required_inputs": _external_representation_required_inputs(
+                    manifest_row=manifest_row,
+                    sequence=sequence,
+                ),
+                "review_status": "representation_backend_plan_review_only",
+                "scope_signal": manifest_row.get("scope_signal"),
+                "sequence_search_task": sequence.get("search_task"),
+            }
+        )
+
+    rows = rows[:max_rows]
+    return {
+        "metadata": {
+            "method": "external_source_representation_backend_plan",
+            "source_representation_control_method": (
+                representation_control_manifest.get("metadata", {}).get("method")
+            ),
+            "source_representation_comparison_method": (
+                representation_control_comparison.get("metadata", {}).get("method")
+            ),
+            "source_sequence_search_export_method": (
+                sequence_search_export.get("metadata", {}).get("method")
+            ),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "eligible_control_count": sum(
+                1
+                for row in representation_control_manifest.get("rows", []) or []
+                if isinstance(row, dict)
+                and row.get("eligible_for_representation_control")
+            ),
+            "embedding_status": "backend_plan_only_not_computed",
+            "backend_readiness_status_counts": dict(sorted(status_counts.items())),
+            "sequence_search_blocked_count": sum(
+                1
+                for row in rows
+                if row["backend_readiness_status"]
+                == "blocked_until_sequence_search_complete"
+            ),
+            "heuristic_contrast_required_count": sum(
+                1
+                for row in rows
+                if "active_site_contrastive_baseline"
+                in row.get("recommended_backends", [])
+            ),
+            "review_only_rule": (
+                "representation backend plans define inputs and controls only; "
+                "they do not compute embeddings or create labels"
+            ),
+        },
+        "rows": rows,
+        "blockers": [
+            "external_embeddings_not_computed",
+            "representation_backend_not_selected",
+            "external_review_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "real representation controls must be evaluated against the "
+                "heuristic baseline and sequence-search controls before import"
+            )
+        ],
+    }
+
+
+def audit_external_source_representation_backend_plan(
+    representation_backend_plan: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify representation backend plans are controls, not labels."""
+    rows = [
+        row
+        for row in representation_backend_plan.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_inputs = [row for row in rows if not row.get("required_inputs")]
+    missing_backends = [row for row in rows if not row.get("recommended_backends")]
+    missing_review_status = [
+        row
+        for row in rows
+        if row.get("review_status") != "representation_backend_plan_review_only"
+    ]
+    metadata = representation_backend_plan.get("metadata", {})
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_representation_backend_plan")
+    if metadata.get("embedding_status") != "backend_plan_only_not_computed":
+        blockers.append("representation_backend_plan_embedding_status_invalid")
+    if countable_rows:
+        blockers.append("representation_backend_plan_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("representation_backend_plan_rows_marked_ready_for_import")
+    if missing_inputs:
+        blockers.append("representation_backend_plan_rows_missing_required_inputs")
+    if missing_backends:
+        blockers.append("representation_backend_plan_rows_missing_backend_options")
+    if missing_review_status:
+        blockers.append("representation_backend_plan_rows_not_review_only")
+    return {
+        "metadata": {
+            "method": "external_source_representation_backend_plan_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "embedding_status": "backend_plan_only_not_computed",
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_required_input_row_count": len(missing_inputs),
+            "missing_backend_option_row_count": len(missing_backends),
+            "missing_review_only_status_row_count": len(missing_review_status),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "representation backend plans are no-embedding control plans "
+                "and cannot authorize label import"
+            )
+        ],
+    }
+
+
 def audit_external_source_broad_ec_disambiguation(
     *,
     control_repair_plan: dict[str, Any],
@@ -3693,6 +3876,206 @@ def audit_external_source_sequence_alignment_verification(
     }
 
 
+def build_external_source_sequence_search_export(
+    *,
+    sequence_neighborhood_plan: dict[str, Any],
+    sequence_neighborhood_sample: dict[str, Any],
+    sequence_alignment_verification: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Export complete near-duplicate sequence-search tasks as review-only work."""
+    sample_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in sequence_neighborhood_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    alignment_by_accession: dict[str, list[dict[str, Any]]] = {}
+    for row in sequence_alignment_verification.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if accession:
+            alignment_by_accession.setdefault(accession, []).append(row)
+
+    rows: list[dict[str, Any]] = []
+    search_task_counts: Counter[str] = Counter()
+    for plan_row in sequence_neighborhood_plan.get("rows", []) or []:
+        if not isinstance(plan_row, dict):
+            continue
+        accession = _normalize_accession(plan_row.get("accession"))
+        if not accession:
+            continue
+        sample_row = sample_by_accession.get(accession, {})
+        alignment_rows = alignment_by_accession.get(accession, [])
+        alignment_status = _external_sequence_alignment_status(alignment_rows)
+        search_task = _external_sequence_search_task(
+            plan_status=str(plan_row.get("plan_status") or ""),
+            screen_status=str(sample_row.get("screen_status") or ""),
+            alignment_status=alignment_status,
+        )
+        search_task_counts[search_task] += 1
+        top_matches = list(sample_row.get("top_matches") or [])[:10]
+        rows.append(
+            {
+                "accession": accession,
+                "alignment_status": alignment_status,
+                "blockers": _external_sequence_search_export_blockers(search_task),
+                "countable_label_candidate": False,
+                "decision": {
+                    "decision_status": "no_decision",
+                    "reviewer": "",
+                    "reviewed_at": "",
+                    "sequence_search_result": "",
+                    "rationale": "",
+                },
+                "entry_id": plan_row.get("entry_id") or f"uniprot:{accession}",
+                "holdout_status": plan_row.get("holdout_status"),
+                "lane_id": plan_row.get("lane_id"),
+                "matched_m_csa_entry_ids": plan_row.get("matched_m_csa_entry_ids", []),
+                "plan_status": plan_row.get("plan_status"),
+                "protein_name": plan_row.get("protein_name"),
+                "ready_for_label_import": False,
+                "review_status": "sequence_search_export_review_only",
+                "scope_signal": plan_row.get("scope_signal"),
+                "screen_status": sample_row.get("screen_status"),
+                "search_task": search_task,
+                "source_targets": _external_sequence_search_source_targets(
+                    accession=accession,
+                    top_matches=top_matches,
+                ),
+                "top_matches": top_matches,
+            }
+        )
+
+    rows = rows[:max_rows]
+    return {
+        "metadata": {
+            "method": "external_source_sequence_search_export",
+            "source_sequence_neighborhood_plan_method": (
+                sequence_neighborhood_plan.get("metadata", {}).get("method")
+            ),
+            "source_sequence_neighborhood_sample_method": (
+                sequence_neighborhood_sample.get("metadata", {}).get("method")
+            ),
+            "source_sequence_alignment_method": (
+                sequence_alignment_verification.get("metadata", {}).get("method")
+            ),
+            "ready_for_label_import": False,
+            "complete_near_duplicate_search_required": True,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "decision_status_counts": {"no_decision": len(rows)},
+            "search_task_counts": dict(sorted(search_task_counts.items())),
+            "near_duplicate_search_request_count": sum(
+                1
+                for row in rows
+                if row["search_task"]
+                == "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+            ),
+            "sequence_holdout_task_count": sum(
+                1
+                for row in rows
+                if row["search_task"] == "keep_sequence_holdout_control"
+            ),
+            "source_target_count": sum(
+                len(row.get("source_targets", []) or []) for row in rows
+            ),
+            "review_only_rule": (
+                "sequence-search exports are OOD control worklists and cannot "
+                "create countable labels or import-ready rows"
+            ),
+        },
+        "rows": rows,
+        "blockers": [
+            "complete_near_duplicate_reference_search_not_completed",
+            "external_review_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "bounded sequence screens and top-hit alignments are not a "
+                "complete near-duplicate search; keep external rows non-countable"
+            )
+        ],
+    }
+
+
+def audit_external_source_sequence_search_export(
+    *,
+    sequence_search_export: dict[str, Any],
+    sequence_neighborhood_plan: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify complete sequence-search exports remain review-only worklists."""
+    rows = [
+        row
+        for row in sequence_search_export.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    expected_candidate_count = int(
+        sequence_neighborhood_plan.get("metadata", {}).get("candidate_count", 0)
+        or 0
+    )
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_targets = [row for row in rows if not row.get("source_targets")]
+    missing_task = [row for row in rows if not row.get("search_task")]
+    completed_decisions = [
+        row
+        for row in rows
+        if (row.get("decision") or {}).get("decision_status") != "no_decision"
+    ]
+    missing_review_status = [
+        row
+        for row in rows
+        if row.get("review_status") != "sequence_search_export_review_only"
+    ]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_sequence_search_export")
+    if expected_candidate_count and len(rows) != expected_candidate_count:
+        blockers.append("sequence_search_export_missing_plan_rows")
+    if countable_rows:
+        blockers.append("sequence_search_export_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("sequence_search_export_rows_marked_ready_for_import")
+    if missing_targets:
+        blockers.append("sequence_search_export_rows_missing_source_targets")
+    if missing_task:
+        blockers.append("sequence_search_export_rows_missing_search_task")
+    if completed_decisions:
+        blockers.append("sequence_search_export_contains_completed_decisions")
+    if missing_review_status:
+        blockers.append("sequence_search_export_rows_not_review_only")
+    return {
+        "metadata": {
+            "method": "external_source_sequence_search_export_audit",
+            "ready_for_label_import": False,
+            "complete_near_duplicate_search_required": True,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "expected_plan_candidate_count": expected_candidate_count,
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_source_target_row_count": len(missing_targets),
+            "missing_search_task_row_count": len(missing_task),
+            "completed_decision_count": len(completed_decisions),
+            "missing_review_only_status_row_count": len(missing_review_status),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "sequence-search exports are no-decision OOD control packets "
+                "and must not be used as countable label registries"
+            )
+        ],
+    }
+
+
 def build_external_source_active_site_sourcing_queue(
     *,
     active_site_gap_source_requests: dict[str, Any],
@@ -3879,6 +4262,231 @@ def audit_external_source_active_site_sourcing_queue(
     }
 
 
+def build_external_source_active_site_sourcing_export(
+    *,
+    active_site_sourcing_queue: dict[str, Any],
+    active_site_gap_source_requests: dict[str, Any],
+    active_site_evidence_sample: dict[str, Any],
+    reaction_evidence_sample: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Build a review-only packet for sourcing external active-site residues."""
+    request_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in active_site_gap_source_requests.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    summary_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in active_site_evidence_sample.get("candidate_summaries", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    binding_rows_by_accession: dict[str, list[dict[str, Any]]] = {}
+    for row in active_site_evidence_sample.get("rows", []) or []:
+        if not isinstance(row, dict) or row.get("feature_type") != "Binding site":
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if accession:
+            binding_rows_by_accession.setdefault(accession, []).append(row)
+    reaction_context_by_entry = _external_reaction_context_by_entry(
+        reaction_evidence_sample
+    )
+
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    source_task_counts: Counter[str] = Counter()
+    for queue_row in active_site_sourcing_queue.get("rows", []) or []:
+        if not isinstance(queue_row, dict):
+            continue
+        accession = _normalize_accession(queue_row.get("accession"))
+        if not accession:
+            continue
+        request = request_by_accession.get(accession, {})
+        summary = summary_by_accession.get(accession, {})
+        entry_id = str(queue_row.get("entry_id") or f"uniprot:{accession}")
+        binding_rows = binding_rows_by_accession.get(accession, [])
+        reaction_context = reaction_context_by_entry.get(
+            entry_id, _empty_external_reaction_context(entry_id)
+        )
+        source_task = _external_active_site_sourcing_task(
+            str(queue_row.get("queue_status") or "")
+        )
+        status_counts[str(queue_row.get("queue_status") or "unknown")] += 1
+        source_task_counts[source_task] += 1
+        evidence_refs = list(request.get("binding_evidence_references") or [])
+        rows.append(
+            {
+                "accession": accession,
+                "active_site_gap_request_status": request.get("request_status")
+                or queue_row.get("active_site_gap_request_status"),
+                "binding_context": {
+                    "binding_feature_count": len(binding_rows),
+                    "binding_positions": _external_binding_feature_positions(
+                        binding_rows
+                    )[:25],
+                    "evidence_references": evidence_refs[:25],
+                    "mapped_binding_position_count": queue_row.get(
+                        "mapped_binding_position_count", 0
+                    ),
+                },
+                "blockers": _external_active_site_sourcing_export_blockers(
+                    str(queue_row.get("queue_status") or "")
+                ),
+                "countable_label_candidate": False,
+                "decision": {
+                    "decision_status": "no_decision",
+                    "reviewer": "",
+                    "reviewed_at": "",
+                    "sourced_active_site_positions": [],
+                    "rationale": "",
+                },
+                "entry_id": entry_id,
+                "lane_id": queue_row.get("lane_id"),
+                "priority_score": queue_row.get("priority_score"),
+                "protein_name": queue_row.get("protein_name"),
+                "queue_status": queue_row.get("queue_status"),
+                "reaction_context": reaction_context,
+                "ready_for_label_import": False,
+                "review_status": "active_site_sourcing_export_review_only",
+                "scope_signal": queue_row.get("scope_signal"),
+                "sequence_alignment_status": queue_row.get(
+                    "sequence_alignment_status"
+                ),
+                "source_task": source_task,
+                "source_targets": _external_active_site_source_targets(
+                    accession=accession,
+                    summary=summary,
+                    request=request,
+                    reaction_context=reaction_context,
+                ),
+                "specific_ec_numbers": queue_row.get("specific_ec_numbers", []),
+            }
+        )
+
+    rows = rows[:max_rows]
+    target_count = sum(len(row.get("source_targets", []) or []) for row in rows)
+    evidence_reference_count = sum(
+        len(row.get("binding_context", {}).get("evidence_references", []) or [])
+        for row in rows
+    )
+    return {
+        "metadata": {
+            "method": "external_source_active_site_sourcing_export",
+            "source_active_site_sourcing_method": active_site_sourcing_queue.get(
+                "metadata", {}
+            ).get("method"),
+            "source_active_site_gap_request_method": (
+                active_site_gap_source_requests.get("metadata", {}).get("method")
+            ),
+            "source_active_site_evidence_method": active_site_evidence_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "source_reaction_evidence_method": reaction_evidence_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "decision_status_counts": {"no_decision": len(rows)},
+            "source_task_counts": dict(sorted(source_task_counts.items())),
+            "queue_status_counts": dict(sorted(status_counts.items())),
+            "source_target_count": target_count,
+            "binding_evidence_reference_count": evidence_reference_count,
+            "review_only_rule": (
+                "active-site sourcing exports are expert/source-review packets; "
+                "they cannot create countable labels or import-ready rows"
+            ),
+        },
+        "rows": rows,
+        "blockers": [
+            "explicit_active_site_residue_sources_not_collected",
+            "external_review_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "sourced positions must be imported through a separate reviewed "
+                "decision artifact and full label-factory gate before any label counts"
+            )
+        ],
+    }
+
+
+def audit_external_source_active_site_sourcing_export(
+    *,
+    active_site_sourcing_export: dict[str, Any],
+    active_site_sourcing_queue: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify active-site sourcing exports are complete, review-only packets."""
+    rows = [
+        row
+        for row in active_site_sourcing_export.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    queue_candidate_count = int(
+        active_site_sourcing_queue.get("metadata", {}).get("candidate_count", 0)
+        or 0
+    )
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_targets = [row for row in rows if not row.get("source_targets")]
+    missing_task = [row for row in rows if not row.get("source_task")]
+    completed_decisions = [
+        row
+        for row in rows
+        if (row.get("decision") or {}).get("decision_status") != "no_decision"
+    ]
+    missing_review_status = [
+        row
+        for row in rows
+        if row.get("review_status") != "active_site_sourcing_export_review_only"
+    ]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_active_site_sourcing_export")
+    if queue_candidate_count and len(rows) != queue_candidate_count:
+        blockers.append("active_site_sourcing_export_missing_queue_rows")
+    if countable_rows:
+        blockers.append("active_site_sourcing_export_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("active_site_sourcing_export_rows_marked_ready_for_import")
+    if missing_targets:
+        blockers.append("active_site_sourcing_export_rows_missing_source_targets")
+    if missing_task:
+        blockers.append("active_site_sourcing_export_rows_missing_source_task")
+    if completed_decisions:
+        blockers.append("active_site_sourcing_export_contains_completed_decisions")
+    if missing_review_status:
+        blockers.append("active_site_sourcing_export_rows_not_review_only")
+    return {
+        "metadata": {
+            "method": "external_source_active_site_sourcing_export_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "expected_queue_candidate_count": queue_candidate_count,
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_source_target_row_count": len(missing_targets),
+            "missing_source_task_row_count": len(missing_task),
+            "completed_decision_count": len(completed_decisions),
+            "missing_review_only_status_row_count": len(missing_review_status),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "active-site sourcing exports are no-decision work packets and "
+                "must not be used as countable label registries"
+            )
+        ],
+    }
+
+
 def audit_external_source_import_readiness(
     *,
     candidate_manifest: dict[str, Any],
@@ -4058,6 +4666,258 @@ def audit_external_source_import_readiness(
     }
 
 
+def build_external_source_transfer_blocker_matrix(
+    *,
+    candidate_manifest: dict[str, Any],
+    external_import_readiness_audit: dict[str, Any],
+    active_site_sourcing_export: dict[str, Any],
+    sequence_search_export: dict[str, Any],
+    representation_backend_plan: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Join external blocker packets into a candidate-level review matrix."""
+    readiness_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in external_import_readiness_audit.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    active_site_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in active_site_sourcing_export.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    sequence_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in sequence_search_export.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    backend_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in representation_backend_plan.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+
+    rows: list[dict[str, Any]] = []
+    for manifest_row in candidate_manifest.get("rows", []) or []:
+        if not isinstance(manifest_row, dict):
+            continue
+        accession = _normalize_accession(manifest_row.get("accession"))
+        if not accession:
+            continue
+        readiness = readiness_by_accession.get(accession, {})
+        active_site = active_site_by_accession.get(accession)
+        sequence = sequence_by_accession.get(accession)
+        backend = backend_by_accession.get(accession)
+        blockers = _external_transfer_blocker_matrix_blockers(
+            readiness=readiness,
+            active_site=active_site,
+            sequence=sequence,
+            backend=backend,
+        )
+        prioritized_action = _external_transfer_blocker_matrix_next_action(
+            readiness=readiness,
+            active_site=active_site,
+            sequence=sequence,
+            backend=backend,
+        )
+        rows.append(
+            {
+                "accession": accession,
+                "active_site_sourcing": _external_transfer_blocker_matrix_active_site(
+                    active_site
+                ),
+                "blockers": blockers,
+                "countable_label_candidate": False,
+                "entry_id": manifest_row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": manifest_row.get("lane_id"),
+                "prioritized_action": prioritized_action,
+                "protein_name": manifest_row.get("protein_name"),
+                "ready_for_label_import": False,
+                "readiness_status": readiness.get("readiness_status"),
+                "representation_backend": (
+                    _external_transfer_blocker_matrix_backend(backend)
+                ),
+                "review_status": "external_transfer_blocker_matrix_review_only",
+                "scope_signal": manifest_row.get("scope_signal"),
+                "sequence_search": _external_transfer_blocker_matrix_sequence(
+                    sequence
+                ),
+            }
+        )
+
+    rows = rows[:max_rows]
+    blocker_counts = Counter(
+        blocker for row in rows for blocker in row.get("blockers", []) or []
+    )
+    lane_counts = Counter(str(row.get("lane_id") or "unknown") for row in rows)
+    prioritized_action_counts = Counter(
+        str(row.get("prioritized_action") or "unknown") for row in rows
+    )
+    dominant_action_count = max(prioritized_action_counts.values(), default=0)
+    dominant_lane_count = max(lane_counts.values(), default=0)
+    return {
+        "metadata": {
+            "method": "external_source_transfer_blocker_matrix",
+            "source_candidate_manifest_method": candidate_manifest.get(
+                "metadata", {}
+            ).get("method"),
+            "source_import_readiness_method": external_import_readiness_audit.get(
+                "metadata", {}
+            ).get("method"),
+            "source_active_site_sourcing_method": active_site_sourcing_export.get(
+                "metadata", {}
+            ).get("method"),
+            "source_sequence_search_method": sequence_search_export.get(
+                "metadata", {}
+            ).get("method"),
+            "source_representation_backend_method": representation_backend_plan.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "active_site_sourcing_export_candidate_count": len(
+                active_site_by_accession
+            ),
+            "sequence_search_export_candidate_count": len(sequence_by_accession),
+            "representation_backend_plan_candidate_count": len(backend_by_accession),
+            "blocker_counts": dict(sorted(blocker_counts.items())),
+            "dominant_lane_fraction": (
+                round(dominant_lane_count / len(rows), 4) if rows else 0.0
+            ),
+            "dominant_prioritized_action_fraction": (
+                round(dominant_action_count / len(rows), 4) if rows else 0.0
+            ),
+            "lane_counts": dict(sorted(lane_counts.items())),
+            "prioritized_action_counts": dict(sorted(prioritized_action_counts.items())),
+            "review_only_rule": (
+                "blocker matrices join review packets into a worklist only; "
+                "they cannot create countable labels or import-ready rows"
+            ),
+        },
+        "rows": rows,
+        "blockers": [
+            "external_review_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "the blocker matrix is a coordination artifact; complete source, "
+                "sequence, representation, decision, and factory gates remain required"
+            )
+        ],
+    }
+
+
+def audit_external_source_transfer_blocker_matrix(
+    *,
+    transfer_blocker_matrix: dict[str, Any],
+    candidate_manifest: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify the external blocker matrix is complete and non-countable."""
+    rows = [
+        row
+        for row in transfer_blocker_matrix.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    expected_candidate_count = int(
+        candidate_manifest.get("metadata", {}).get("candidate_count", 0) or 0
+    )
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_blocker_rows = [row for row in rows if not row.get("blockers")]
+    missing_review_status_rows = [
+        row
+        for row in rows
+        if row.get("review_status") != "external_transfer_blocker_matrix_review_only"
+    ]
+    missing_sequence_rows = [
+        row
+        for row in rows
+        if not row.get("sequence_search", {}).get("search_task")
+    ]
+    missing_action_rows = [row for row in rows if not row.get("prioritized_action")]
+    completed_active_site_decisions = [
+        row
+        for row in rows
+        if row.get("active_site_sourcing", {}).get("decision_status")
+        not in (None, "no_decision")
+    ]
+    completed_sequence_decisions = [
+        row
+        for row in rows
+        if row.get("sequence_search", {}).get("decision_status") != "no_decision"
+    ]
+    blockers: list[str] = []
+    metadata = transfer_blocker_matrix.get("metadata", {})
+    if not rows:
+        blockers.append("empty_external_transfer_blocker_matrix")
+    if expected_candidate_count and len(rows) != expected_candidate_count:
+        blockers.append("external_transfer_blocker_matrix_missing_candidates")
+    if countable_rows:
+        blockers.append("external_transfer_blocker_matrix_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("external_transfer_blocker_matrix_rows_marked_ready_for_import")
+    if missing_blocker_rows:
+        blockers.append("external_transfer_blocker_matrix_rows_missing_blockers")
+    if missing_review_status_rows:
+        blockers.append("external_transfer_blocker_matrix_rows_not_review_only")
+    if missing_sequence_rows:
+        blockers.append("external_transfer_blocker_matrix_rows_missing_sequence_task")
+    if missing_action_rows:
+        blockers.append("external_transfer_blocker_matrix_rows_missing_next_action")
+    if (
+        len(rows) >= 5
+        and float(metadata.get("dominant_prioritized_action_fraction", 0.0) or 0.0)
+        > 0.8
+    ):
+        blockers.append("external_transfer_blocker_matrix_action_queue_collapsed")
+    if (
+        len(rows) >= 5
+        and float(metadata.get("dominant_lane_fraction", 0.0) or 0.0) > 0.8
+    ):
+        blockers.append("external_transfer_blocker_matrix_lane_queue_collapsed")
+    if completed_active_site_decisions:
+        blockers.append("external_transfer_blocker_matrix_active_site_decisions_present")
+    if completed_sequence_decisions:
+        blockers.append("external_transfer_blocker_matrix_sequence_decisions_present")
+    return {
+        "metadata": {
+            "method": "external_source_transfer_blocker_matrix_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "expected_candidate_count": expected_candidate_count,
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_blocker_row_count": len(missing_blocker_rows),
+            "missing_review_only_status_row_count": len(missing_review_status_rows),
+            "missing_sequence_task_row_count": len(missing_sequence_rows),
+            "missing_prioritized_action_row_count": len(missing_action_rows),
+            "dominant_prioritized_action_fraction": metadata.get(
+                "dominant_prioritized_action_fraction", 0.0
+            ),
+            "dominant_lane_fraction": metadata.get("dominant_lane_fraction", 0.0),
+            "completed_active_site_decision_count": len(
+                completed_active_site_decisions
+            ),
+            "completed_sequence_decision_count": len(completed_sequence_decisions),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "external transfer blocker matrices are review-only worklists "
+                "and cannot authorize external label import"
+            )
+        ],
+    }
+
+
 def check_external_source_transfer_gates(
     *,
     transfer_manifest: dict[str, Any],
@@ -4090,6 +4950,8 @@ def check_external_source_transfer_gates(
     representation_control_manifest_audit: dict[str, Any] | None = None,
     representation_control_comparison: dict[str, Any] | None = None,
     representation_control_comparison_audit: dict[str, Any] | None = None,
+    representation_backend_plan: dict[str, Any] | None = None,
+    representation_backend_plan_audit: dict[str, Any] | None = None,
     broad_ec_disambiguation_audit: dict[str, Any] | None = None,
     active_site_gap_source_requests: dict[str, Any] | None = None,
     sequence_neighborhood_plan: dict[str, Any] | None = None,
@@ -4097,9 +4959,15 @@ def check_external_source_transfer_gates(
     sequence_neighborhood_sample_audit: dict[str, Any] | None = None,
     sequence_alignment_verification: dict[str, Any] | None = None,
     sequence_alignment_verification_audit: dict[str, Any] | None = None,
+    sequence_search_export: dict[str, Any] | None = None,
+    sequence_search_export_audit: dict[str, Any] | None = None,
     external_import_readiness_audit: dict[str, Any] | None = None,
     active_site_sourcing_queue: dict[str, Any] | None = None,
     active_site_sourcing_queue_audit: dict[str, Any] | None = None,
+    active_site_sourcing_export: dict[str, Any] | None = None,
+    active_site_sourcing_export_audit: dict[str, Any] | None = None,
+    transfer_blocker_matrix: dict[str, Any] | None = None,
+    transfer_blocker_matrix_audit: dict[str, Any] | None = None,
     binding_context_repair_plan: dict[str, Any] | None = None,
     binding_context_repair_plan_audit: dict[str, Any] | None = None,
     binding_context_mapping_sample: dict[str, Any] | None = None,
@@ -4473,6 +5341,47 @@ def check_external_source_transfer_gates(
             and audit_meta.get("ready_for_label_import") is False
             and audit_meta.get("countable_label_candidate_count") == 0
         )
+    if representation_backend_plan is not None:
+        backend_meta = representation_backend_plan.get("metadata", {})
+        backend_rows = [
+            row
+            for row in representation_backend_plan.get("rows", []) or []
+            if isinstance(row, dict)
+        ]
+        expected_backend_count = (
+            representation_control_manifest.get("metadata", {}).get("candidate_count")
+            if representation_control_manifest is not None
+            else len(backend_rows)
+        )
+        gates["representation_backend_plan_review_only"] = (
+            backend_meta.get("ready_for_label_import") is False
+            and backend_meta.get("countable_label_candidate_count") == 0
+            and backend_meta.get("embedding_status") == "backend_plan_only_not_computed"
+            and int(backend_meta.get("candidate_count", 0) or 0) == len(backend_rows)
+            and int(backend_meta.get("candidate_count", 0) or 0)
+            == int(expected_backend_count or 0)
+            and len(backend_rows) > 0
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in backend_rows
+            )
+            and all(row.get("ready_for_label_import") is False for row in backend_rows)
+            and all(
+                row.get("review_status") == "representation_backend_plan_review_only"
+                for row in backend_rows
+            )
+            and all(row.get("required_inputs") for row in backend_rows)
+            and all(row.get("recommended_backends") for row in backend_rows)
+        )
+    if representation_backend_plan_audit is not None:
+        backend_audit_meta = representation_backend_plan_audit.get("metadata", {})
+        gates["representation_backend_plan_audit_guardrail_clean"] = (
+            backend_audit_meta.get("guardrail_clean") is True
+            and backend_audit_meta.get("ready_for_label_import") is False
+            and backend_audit_meta.get("countable_label_candidate_count") == 0
+            and backend_audit_meta.get("embedding_status")
+            == "backend_plan_only_not_computed"
+        )
     if broad_ec_disambiguation_audit is not None:
         broad_meta = broad_ec_disambiguation_audit.get("metadata", {})
         broad_rows = [
@@ -4626,6 +5535,57 @@ def check_external_source_transfer_gates(
             and alignment_audit_meta.get("complete_near_duplicate_search_required")
             is True
         )
+    if sequence_search_export is not None:
+        search_export_meta = sequence_search_export.get("metadata", {})
+        search_export_rows = [
+            row
+            for row in sequence_search_export.get("rows", []) or []
+            if isinstance(row, dict)
+        ]
+        expected_sequence_count = (
+            sequence_neighborhood_plan.get("metadata", {}).get("candidate_count")
+            if sequence_neighborhood_plan is not None
+            else len(search_export_rows)
+        )
+        gates["sequence_search_export_review_only"] = (
+            search_export_meta.get("ready_for_label_import") is False
+            and search_export_meta.get("complete_near_duplicate_search_required")
+            is True
+            and search_export_meta.get("countable_label_candidate_count") == 0
+            and int(search_export_meta.get("candidate_count", 0) or 0)
+            == len(search_export_rows)
+            and int(search_export_meta.get("candidate_count", 0) or 0)
+            == int(expected_sequence_count or 0)
+            and len(search_export_rows) > 0
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in search_export_rows
+            )
+            and all(
+                row.get("ready_for_label_import") is False
+                for row in search_export_rows
+            )
+            and all(
+                row.get("review_status") == "sequence_search_export_review_only"
+                for row in search_export_rows
+            )
+            and all(row.get("source_targets") for row in search_export_rows)
+            and all(row.get("search_task") for row in search_export_rows)
+            and all(
+                (row.get("decision") or {}).get("decision_status") == "no_decision"
+                for row in search_export_rows
+            )
+        )
+    if sequence_search_export_audit is not None:
+        search_export_audit_meta = sequence_search_export_audit.get("metadata", {})
+        gates["sequence_search_export_audit_guardrail_clean"] = (
+            search_export_audit_meta.get("guardrail_clean") is True
+            and search_export_audit_meta.get("ready_for_label_import") is False
+            and search_export_audit_meta.get("complete_near_duplicate_search_required")
+            is True
+            and search_export_audit_meta.get("countable_label_candidate_count") == 0
+            and search_export_audit_meta.get("completed_decision_count") == 0
+        )
     if external_import_readiness_audit is not None:
         import_readiness_meta = external_import_readiness_audit.get("metadata", {})
         gates["external_import_readiness_audit_blocks_label_import"] = (
@@ -4668,6 +5628,123 @@ def check_external_source_transfer_gates(
             sourcing_audit_meta.get("guardrail_clean") is True
             and sourcing_audit_meta.get("ready_for_label_import") is False
             and sourcing_audit_meta.get("countable_label_candidate_count") == 0
+        )
+    if active_site_sourcing_export is not None:
+        export_meta = active_site_sourcing_export.get("metadata", {})
+        export_rows = [
+            row
+            for row in active_site_sourcing_export.get("rows", []) or []
+            if isinstance(row, dict)
+        ]
+        expected_sourcing_count = (
+            active_site_sourcing_queue.get("metadata", {}).get("candidate_count")
+            if active_site_sourcing_queue is not None
+            else len(export_rows)
+        )
+        gates["active_site_sourcing_export_review_only"] = (
+            export_meta.get("ready_for_label_import") is False
+            and export_meta.get("countable_label_candidate_count") == 0
+            and int(export_meta.get("candidate_count", 0) or 0) == len(export_rows)
+            and int(export_meta.get("candidate_count", 0) or 0)
+            == int(expected_sourcing_count or 0)
+            and len(export_rows) > 0
+            and all(row.get("countable_label_candidate") is False for row in export_rows)
+            and all(row.get("ready_for_label_import") is False for row in export_rows)
+            and all(
+                row.get("review_status") == "active_site_sourcing_export_review_only"
+                for row in export_rows
+            )
+            and all(row.get("source_targets") for row in export_rows)
+            and all(row.get("source_task") for row in export_rows)
+            and all(
+                (row.get("decision") or {}).get("decision_status") == "no_decision"
+                for row in export_rows
+            )
+        )
+    if active_site_sourcing_export_audit is not None:
+        export_audit_meta = active_site_sourcing_export_audit.get("metadata", {})
+        gates["active_site_sourcing_export_audit_guardrail_clean"] = (
+            export_audit_meta.get("guardrail_clean") is True
+            and export_audit_meta.get("ready_for_label_import") is False
+            and export_audit_meta.get("countable_label_candidate_count") == 0
+            and export_audit_meta.get("completed_decision_count") == 0
+        )
+    if transfer_blocker_matrix is not None:
+        matrix_meta = transfer_blocker_matrix.get("metadata", {})
+        matrix_rows = [
+            row
+            for row in transfer_blocker_matrix.get("rows", []) or []
+            if isinstance(row, dict)
+        ]
+        expected_matrix_count = int(
+            candidate_manifest.get("metadata", {}).get("candidate_count", 0) or 0
+        )
+        expected_matrix_active_site_count = int(
+            (
+                active_site_sourcing_export.get("metadata", {}).get("candidate_count")
+                if active_site_sourcing_export is not None
+                else matrix_meta.get("active_site_sourcing_export_candidate_count")
+            )
+            or 0
+        )
+        expected_matrix_sequence_count = int(
+            (
+                sequence_search_export.get("metadata", {}).get("candidate_count")
+                if sequence_search_export is not None
+                else matrix_meta.get("sequence_search_export_candidate_count")
+            )
+            or 0
+        )
+        expected_matrix_representation_count = int(
+            (
+                representation_backend_plan.get("metadata", {}).get("candidate_count")
+                if representation_backend_plan is not None
+                else matrix_meta.get("representation_backend_plan_candidate_count")
+            )
+            or 0
+        )
+        gates["external_transfer_blocker_matrix_review_only"] = (
+            matrix_meta.get("ready_for_label_import") is False
+            and matrix_meta.get("countable_label_candidate_count") == 0
+            and int(matrix_meta.get("candidate_count", 0) or 0) == len(matrix_rows)
+            and int(matrix_meta.get("candidate_count", 0) or 0)
+            == expected_matrix_count
+            and int(
+                matrix_meta.get("active_site_sourcing_export_candidate_count", 0)
+                or 0
+            )
+            == expected_matrix_active_site_count
+            and int(
+                matrix_meta.get("sequence_search_export_candidate_count", 0) or 0
+            )
+            == expected_matrix_sequence_count
+            and int(
+                matrix_meta.get("representation_backend_plan_candidate_count", 0)
+                or 0
+            )
+            == expected_matrix_representation_count
+            and len(matrix_rows) > 0
+            and all(row.get("countable_label_candidate") is False for row in matrix_rows)
+            and all(row.get("ready_for_label_import") is False for row in matrix_rows)
+            and all(
+                row.get("review_status")
+                == "external_transfer_blocker_matrix_review_only"
+                for row in matrix_rows
+            )
+            and all(row.get("blockers") for row in matrix_rows)
+            and all(
+                row.get("sequence_search", {}).get("search_task")
+                for row in matrix_rows
+            )
+        )
+    if transfer_blocker_matrix_audit is not None:
+        matrix_audit_meta = transfer_blocker_matrix_audit.get("metadata", {})
+        gates["external_transfer_blocker_matrix_audit_guardrail_clean"] = (
+            matrix_audit_meta.get("guardrail_clean") is True
+            and matrix_audit_meta.get("ready_for_label_import") is False
+            and matrix_audit_meta.get("countable_label_candidate_count") == 0
+            and matrix_audit_meta.get("completed_active_site_decision_count") == 0
+            and matrix_audit_meta.get("completed_sequence_decision_count") == 0
         )
     if binding_context_repair_plan is not None:
         binding_meta = binding_context_repair_plan.get("metadata", {})
@@ -4916,6 +5993,27 @@ def check_external_source_transfer_gates(
                 if representation_control_comparison is not None
                 else 0
             ),
+            "representation_backend_plan_candidate_count": (
+                representation_backend_plan.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if representation_backend_plan is not None
+                else 0
+            ),
+            "representation_backend_plan_sequence_blocked_count": (
+                representation_backend_plan.get("metadata", {}).get(
+                    "sequence_search_blocked_count", 0
+                )
+                if representation_backend_plan is not None
+                else 0
+            ),
+            "representation_backend_plan_contrast_required_count": (
+                representation_backend_plan.get("metadata", {}).get(
+                    "heuristic_contrast_required_count", 0
+                )
+                if representation_backend_plan is not None
+                else 0
+            ),
             "broad_ec_disambiguation_candidate_count": (
                 broad_ec_disambiguation_audit.get("metadata", {}).get(
                     "candidate_count", 0
@@ -5007,6 +6105,25 @@ def check_external_source_transfer_gates(
                 if sequence_alignment_verification is not None
                 else 0
             ),
+            "sequence_search_export_candidate_count": (
+                sequence_search_export.get("metadata", {}).get("candidate_count", 0)
+                if sequence_search_export is not None
+                else 0
+            ),
+            "sequence_search_export_near_duplicate_request_count": (
+                sequence_search_export.get("metadata", {}).get(
+                    "near_duplicate_search_request_count", 0
+                )
+                if sequence_search_export is not None
+                else 0
+            ),
+            "sequence_search_export_completed_decision_count": (
+                sequence_search_export_audit.get("metadata", {}).get(
+                    "completed_decision_count", 0
+                )
+                if sequence_search_export_audit is not None
+                else 0
+            ),
             "external_import_readiness_candidate_count": (
                 external_import_readiness_audit.get("metadata", {}).get(
                     "candidate_count", 0
@@ -5047,6 +6164,65 @@ def check_external_source_transfer_gates(
                     "text_source_candidate_count", 0
                 )
                 if active_site_sourcing_queue is not None
+                else 0
+            ),
+            "active_site_sourcing_export_candidate_count": (
+                active_site_sourcing_export.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if active_site_sourcing_export is not None
+                else 0
+            ),
+            "active_site_sourcing_export_source_target_count": (
+                active_site_sourcing_export.get("metadata", {}).get(
+                    "source_target_count", 0
+                )
+                if active_site_sourcing_export is not None
+                else 0
+            ),
+            "active_site_sourcing_export_completed_decision_count": (
+                active_site_sourcing_export_audit.get("metadata", {}).get(
+                    "completed_decision_count", 0
+                )
+                if active_site_sourcing_export_audit is not None
+                else 0
+            ),
+            "external_transfer_blocker_matrix_candidate_count": (
+                transfer_blocker_matrix.get("metadata", {}).get("candidate_count", 0)
+                if transfer_blocker_matrix is not None
+                else 0
+            ),
+            "external_transfer_blocker_matrix_sequence_count": (
+                transfer_blocker_matrix.get("metadata", {}).get(
+                    "sequence_search_export_candidate_count", 0
+                )
+                if transfer_blocker_matrix is not None
+                else 0
+            ),
+            "external_transfer_blocker_matrix_active_site_count": (
+                transfer_blocker_matrix.get("metadata", {}).get(
+                    "active_site_sourcing_export_candidate_count", 0
+                )
+                if transfer_blocker_matrix is not None
+                else 0
+            ),
+            "external_transfer_blocker_matrix_representation_count": (
+                transfer_blocker_matrix.get("metadata", {}).get(
+                    "representation_backend_plan_candidate_count", 0
+                )
+                if transfer_blocker_matrix is not None
+                else 0
+            ),
+            "external_transfer_blocker_matrix_completed_decision_count": (
+                (
+                    transfer_blocker_matrix_audit.get("metadata", {}).get(
+                        "completed_active_site_decision_count", 0
+                    )
+                    + transfer_blocker_matrix_audit.get("metadata", {}).get(
+                        "completed_sequence_decision_count", 0
+                    )
+                )
+                if transfer_blocker_matrix_audit is not None
                 else 0
             ),
             "binding_context_ready_candidate_count": (
@@ -5782,6 +6958,111 @@ def _external_representation_axes(
     return sorted(set(axes))
 
 
+def _external_representation_backend_status(
+    *,
+    manifest_row: dict[str, Any],
+    comparison: dict[str, Any],
+    sequence: dict[str, Any],
+) -> str:
+    if sequence.get("search_task") == "keep_sequence_holdout_control":
+        return "blocked_by_sequence_holdout_control"
+    if sequence.get("search_task") != "run_complete_uniref_or_all_vs_all_near_duplicate_search":
+        return "blocked_until_sequence_search_complete"
+    if not manifest_row.get("eligible_for_representation_control"):
+        return "blocked_by_representation_input_gap"
+    if not comparison.get("comparison_status"):
+        return "blocked_until_feature_proxy_comparison_attached"
+    return "ready_for_backend_selection_not_embedding"
+
+
+def _external_representation_backend_blockers(readiness_status: str) -> list[str]:
+    blockers = [
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if readiness_status == "blocked_by_sequence_holdout_control":
+        blockers.insert(0, "sequence_holdout_control_not_resolved")
+    elif readiness_status == "blocked_until_sequence_search_complete":
+        blockers.insert(0, "complete_near_duplicate_reference_search_not_completed")
+    elif readiness_status == "blocked_by_representation_input_gap":
+        blockers.insert(0, "representation_input_gap")
+    elif readiness_status == "blocked_until_feature_proxy_comparison_attached":
+        blockers.insert(0, "feature_proxy_comparison_missing")
+    else:
+        blockers.insert(0, "representation_backend_not_selected")
+    return blockers
+
+
+def _external_representation_backend_options(
+    *,
+    scope_signal: str,
+    comparison_status: str,
+) -> list[str]:
+    options = [
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding",
+        "heuristic_geometry_baseline_control",
+    ]
+    if (
+        comparison_status.startswith("proxy_flags_")
+        or scope_signal in {"transferase_phosphoryl", "transferase_methyl"}
+    ):
+        options.append("active_site_contrastive_baseline")
+    if scope_signal == "glycan_chemistry":
+        options.append("glycan_boundary_contrastive_axis")
+    if scope_signal == "oxidoreductase_long_tail":
+        options.append("redox_cofactor_contrastive_axis")
+    return sorted(set(options))
+
+
+def _external_representation_required_inputs(
+    *,
+    manifest_row: dict[str, Any],
+    sequence: dict[str, Any],
+) -> list[dict[str, Any]]:
+    accession = _normalize_accession(manifest_row.get("accession"))
+    feature_summary = manifest_row.get("feature_summary", {})
+    if not isinstance(feature_summary, dict):
+        feature_summary = {}
+    inputs = [
+        {
+            "input_type": "candidate_sequence",
+            "status": "required_not_embedded",
+            "source_id": accession,
+        },
+        {
+            "input_type": "heuristic_baseline_scores",
+            "status": "required_attached",
+            "source_id": manifest_row.get("entry_id"),
+        },
+        {
+            "input_type": "sequence_search_control",
+            "status": sequence.get("search_task") or "required_not_complete",
+            "source_id": accession,
+        },
+    ]
+    structure_id = feature_summary.get("structure_id")
+    if structure_id:
+        inputs.append(
+            {
+                "input_type": "mapped_active_site_structure",
+                "status": "required_not_embedded",
+                "source_id": structure_id,
+                "source_type": feature_summary.get("structure_source"),
+            }
+        )
+    else:
+        inputs.append(
+            {
+                "input_type": "mapped_active_site_structure",
+                "status": "required_missing",
+                "source_id": None,
+            }
+        )
+    return inputs
+
+
 def _external_binding_evidence_references(row: dict[str, Any]) -> list[dict[str, str]]:
     seen: set[tuple[str, str, str]] = set()
     refs: list[dict[str, str]] = []
@@ -6322,6 +7603,85 @@ def _external_sequence_alignment_status(
     return sorted(statuses)[0] if statuses else None
 
 
+def _external_sequence_search_task(
+    *,
+    plan_status: str,
+    screen_status: str,
+    alignment_status: str | None,
+) -> str:
+    if plan_status in {
+        "exact_reference_overlap_keep_as_holdout",
+        "sequence_failure_set_keep_as_holdout",
+    }:
+        return "keep_sequence_holdout_control"
+    if alignment_status == "alignment_near_duplicate_candidate_holdout":
+        return "keep_sequence_holdout_control"
+    if screen_status == "near_duplicate_candidate_holdout":
+        return "keep_sequence_holdout_control"
+    return "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+
+
+def _external_sequence_search_export_blockers(search_task: str) -> list[str]:
+    blockers = [
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if search_task == "keep_sequence_holdout_control":
+        blockers.insert(0, "sequence_holdout_control_not_resolved")
+    else:
+        blockers.insert(0, "complete_near_duplicate_reference_search_not_completed")
+    return blockers
+
+
+def _external_sequence_search_source_targets(
+    *,
+    accession: str,
+    top_matches: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    targets: list[dict[str, Any]] = [
+        {
+            "source_type": "UniProtKB",
+            "source_id": accession,
+            "url": f"https://www.uniprot.org/uniprotkb/{accession}/entry",
+            "purpose": "inspect candidate sequence and cross-references",
+        },
+        {
+            "source_type": "UniRef",
+            "source_id": accession,
+            "url": f"https://www.uniprot.org/uniref?query={accession}",
+            "purpose": "complete near-duplicate family search before import",
+        },
+    ]
+    for match in top_matches:
+        if not isinstance(match, dict):
+            continue
+        reference_accession = _normalize_accession(match.get("reference_accession"))
+        if not reference_accession:
+            continue
+        targets.append(
+            {
+                "source_type": "UniProtKB",
+                "source_id": reference_accession,
+                "matched_m_csa_entry_ids": match.get("matched_m_csa_entry_ids", []),
+                "near_duplicate_score": match.get("near_duplicate_score"),
+                "url": (
+                    "https://www.uniprot.org/uniprotkb/"
+                    f"{reference_accession}/entry"
+                ),
+                "purpose": "inspect bounded-screen top hit as a sequence control",
+            }
+        )
+    deduped: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for target in targets:
+        key = (str(target.get("source_type") or ""), str(target.get("source_id") or ""))
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(target)
+    return deduped
+
+
 def _external_active_site_sourcing_queue_status(
     *,
     request_status: str,
@@ -6350,6 +7710,131 @@ def _external_active_site_sourcing_next_action(queue_status: str) -> str:
     if queue_status == "defer_sequence_holdout_before_sourcing":
         return "keep_sequence_holdout_out_of_active_site_sourcing_batch"
     return "defer_until_required_context_is_available"
+
+
+def _external_active_site_sourcing_task(queue_status: str) -> str:
+    if queue_status == "ready_for_curated_active_site_sourcing":
+        return "curate_active_site_positions_from_mapped_binding_context"
+    if queue_status == "needs_primary_active_site_source":
+        return "find_primary_active_site_or_residue_role_source"
+    if queue_status == "defer_sequence_holdout_before_sourcing":
+        return "defer_until_sequence_holdout_resolved"
+    return "defer_until_required_context_is_available"
+
+
+def _external_active_site_sourcing_export_blockers(queue_status: str) -> list[str]:
+    blockers = [
+        "explicit_active_site_residue_sources_not_collected",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if queue_status == "defer_sequence_holdout_before_sourcing":
+        blockers.insert(0, "sequence_holdout_unresolved")
+    elif queue_status == "needs_primary_active_site_source":
+        blockers.insert(0, "primary_active_site_source_required")
+    elif queue_status != "ready_for_curated_active_site_sourcing":
+        blockers.insert(0, "active_site_sourcing_context_incomplete")
+    return blockers
+
+
+def _external_binding_feature_positions(
+    binding_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    positions = []
+    for row in binding_rows:
+        if not isinstance(row, dict):
+            continue
+        positions.append(
+            {
+                "begin": row.get("begin"),
+                "end": row.get("end"),
+                "ligand_id": row.get("ligand_id"),
+                "ligand_name": row.get("ligand_name"),
+                "evidence": row.get("evidence", []),
+            }
+        )
+    return positions
+
+
+def _external_active_site_source_targets(
+    *,
+    accession: str,
+    summary: dict[str, Any],
+    request: dict[str, Any],
+    reaction_context: dict[str, Any],
+) -> list[dict[str, Any]]:
+    targets: list[dict[str, Any]] = [
+        {
+            "source_type": "UniProtKB",
+            "source_id": accession,
+            "url": f"https://www.uniprot.org/uniprotkb/{accession}/entry",
+            "purpose": "inspect feature table, catalytic activity, and evidence links",
+        }
+    ]
+    for pdb_id in (request.get("pdb_ids_sample") or summary.get("pdb_ids_sample") or [])[:10]:
+        if not pdb_id:
+            continue
+        targets.append(
+            {
+                "source_type": "PDB",
+                "source_id": pdb_id,
+                "url": f"https://www.rcsb.org/structure/{pdb_id}",
+                "purpose": "inspect structure evidence for catalytic residue positions",
+            }
+        )
+    for alphafold_id in (
+        request.get("alphafold_ids_sample")
+        or summary.get("alphafold_ids_sample")
+        or []
+    )[:5]:
+        if not alphafold_id:
+            continue
+        targets.append(
+            {
+                "source_type": "AlphaFoldDB",
+                "source_id": alphafold_id,
+                "url": f"https://alphafold.ebi.ac.uk/entry/{accession}",
+                "purpose": "map sourced residue positions after curated evidence exists",
+            }
+        )
+    for ref in request.get("binding_evidence_references", []) or []:
+        if not isinstance(ref, dict):
+            continue
+        source = str(ref.get("source") or "")
+        source_id = str(ref.get("id") or "")
+        if not source or not source_id:
+            continue
+        target = {
+            "source_type": source,
+            "source_id": source_id,
+            "ligand_name": ref.get("ligand_name"),
+            "purpose": "inspect binding-context source for catalytic residue evidence",
+        }
+        if source == "PubMed":
+            target["url"] = f"https://pubmed.ncbi.nlm.nih.gov/{source_id}/"
+        elif source == "PDB":
+            target["url"] = f"https://www.rcsb.org/structure/{source_id}"
+        elif source == "UniProtKB":
+            target["url"] = f"https://www.uniprot.org/uniprotkb/{source_id}/entry"
+        targets.append(target)
+    for rhea_id in reaction_context.get("rhea_ids", [])[:10]:
+        targets.append(
+            {
+                "source_type": "Rhea",
+                "source_id": rhea_id,
+                "url": f"https://www.rhea-db.org/rhea/{str(rhea_id).removeprefix('RHEA:')}",
+                "purpose": "check reaction context only; not active-site residue evidence",
+            }
+        )
+    deduped: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for target in targets:
+        key = (str(target.get("source_type") or ""), str(target.get("source_id") or ""))
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(target)
+    return deduped
 
 
 def _external_active_site_sourcing_priority_score(
@@ -6488,3 +7973,119 @@ def _external_import_readiness_next_action(blockers: list[str]) -> str:
     if "complete_near_duplicate_search_required" in blockers:
         return "complete_near_duplicate_sequence_search"
     return "build_review_decisions_only_after_factory_gates"
+
+
+def _external_transfer_blocker_matrix_blockers(
+    *,
+    readiness: dict[str, Any],
+    active_site: dict[str, Any] | None,
+    sequence: dict[str, Any] | None,
+    backend: dict[str, Any] | None,
+) -> list[str]:
+    blockers: list[str] = []
+    blockers.extend(str(blocker) for blocker in readiness.get("blockers", []) or [])
+    if active_site is not None:
+        blockers.extend(
+            str(blocker) for blocker in active_site.get("blockers", []) or []
+        )
+    if sequence is not None:
+        blockers.extend(str(blocker) for blocker in sequence.get("blockers", []) or [])
+    else:
+        blockers.append("sequence_search_export_missing")
+    if backend is not None:
+        blockers.extend(str(blocker) for blocker in backend.get("blockers", []) or [])
+    else:
+        blockers.append("representation_backend_plan_missing_or_not_eligible")
+    blockers.extend(
+        [
+            "external_review_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ]
+    )
+    deduped: list[str] = []
+    seen: set[str] = set()
+    for blocker in blockers:
+        if not blocker or blocker in seen:
+            continue
+        seen.add(blocker)
+        deduped.append(blocker)
+    return deduped
+
+
+def _external_transfer_blocker_matrix_next_action(
+    *,
+    readiness: dict[str, Any],
+    active_site: dict[str, Any] | None,
+    sequence: dict[str, Any] | None,
+    backend: dict[str, Any] | None,
+) -> str:
+    if active_site is not None:
+        source_task = str(active_site.get("source_task") or "")
+        if source_task == "find_primary_active_site_or_residue_role_source":
+            return "find_primary_active_site_or_residue_role_source"
+        if source_task:
+            return "complete_active_site_source_review_packet"
+    search_task = str((sequence or {}).get("search_task") or "")
+    if search_task == "keep_sequence_holdout_control":
+        return "keep_sequence_holdout_out_of_import_batch"
+    if search_task:
+        return "complete_near_duplicate_sequence_search"
+    if backend is not None:
+        return "select_and_run_real_representation_backend"
+    return str(
+        readiness.get("next_action")
+        or "complete_external_review_prerequisites_before_decision"
+    )
+
+
+def _external_transfer_blocker_matrix_active_site(
+    active_site: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if active_site is None:
+        return {
+            "source_task": "not_active_site_sourcing_row",
+            "decision_status": None,
+            "source_target_count": 0,
+        }
+    return {
+        "source_task": active_site.get("source_task"),
+        "decision_status": (active_site.get("decision") or {}).get("decision_status"),
+        "queue_status": active_site.get("queue_status"),
+        "source_target_count": len(active_site.get("source_targets", []) or []),
+    }
+
+
+def _external_transfer_blocker_matrix_sequence(
+    sequence: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if sequence is None:
+        return {
+            "search_task": None,
+            "decision_status": None,
+            "source_target_count": 0,
+        }
+    return {
+        "alignment_status": sequence.get("alignment_status"),
+        "decision_status": (sequence.get("decision") or {}).get("decision_status"),
+        "search_task": sequence.get("search_task"),
+        "source_target_count": len(sequence.get("source_targets", []) or []),
+    }
+
+
+def _external_transfer_blocker_matrix_backend(
+    backend: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if backend is None:
+        return {
+            "backend_readiness_status": "not_backend_eligible_yet",
+            "embedding_status": "not_planned",
+            "recommended_backend_count": 0,
+            "required_input_count": 0,
+        }
+    return {
+        "backend_readiness_status": backend.get("backend_readiness_status"),
+        "embedding_status": backend.get("embedding_status"),
+        "recommended_backend_count": len(backend.get("recommended_backends", []) or []),
+        "required_input_count": len(backend.get("required_inputs", []) or []),
+        "sequence_search_task": backend.get("sequence_search_task"),
+    }

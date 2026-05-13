@@ -9,6 +9,7 @@ from pathlib import Path
 
 from catalytic_earth.transfer_scope import (
     audit_external_source_active_site_evidence_sample,
+    audit_external_source_active_site_sourcing_export,
     audit_external_source_active_site_sourcing_queue,
     audit_external_source_binding_context_mapping_sample,
     audit_external_source_binding_context_repair_plan,
@@ -23,14 +24,18 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_reaction_evidence_sample,
     audit_external_source_representation_control_comparison,
     audit_external_source_representation_control_manifest,
+    audit_external_source_representation_backend_plan,
     audit_external_source_sequence_alignment_verification,
+    audit_external_source_sequence_search_export,
     audit_external_source_sequence_holdouts,
     audit_external_source_sequence_neighborhood_sample,
     audit_external_source_structure_mapping_plan,
     audit_external_source_structure_mapping_sample,
     audit_external_source_control_repair_plan,
+    audit_external_source_transfer_blocker_matrix,
     build_external_ood_calibration_plan,
     build_external_source_active_site_gap_source_requests,
+    build_external_source_active_site_sourcing_export,
     build_external_source_active_site_sourcing_queue,
     build_external_source_binding_context_mapping_sample,
     build_external_source_binding_context_repair_plan,
@@ -49,10 +54,13 @@ from catalytic_earth.transfer_scope import (
     build_external_source_reaction_evidence_sample,
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
+    build_external_source_representation_backend_plan,
     build_external_source_sequence_alignment_verification,
+    build_external_source_sequence_search_export,
     build_external_source_sequence_neighborhood_plan,
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
+    build_external_source_transfer_blocker_matrix,
     check_external_source_transfer_gates,
 )
 
@@ -1658,6 +1666,35 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                         "countable_label_candidate_count": 0,
                     }
                 },
+                representation_backend_plan={
+                    "metadata": {
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
+                        "candidate_count": 1,
+                        "embedding_status": "backend_plan_only_not_computed",
+                        "sequence_search_blocked_count": 0,
+                        "heuristic_contrast_required_count": 1,
+                    },
+                    "rows": [
+                        {
+                            "countable_label_candidate": False,
+                            "ready_for_label_import": False,
+                            "recommended_backends": [
+                                "active_site_contrastive_baseline"
+                            ],
+                            "required_inputs": [{"input_type": "candidate_sequence"}],
+                            "review_status": "representation_backend_plan_review_only",
+                        }
+                    ],
+                },
+                representation_backend_plan_audit={
+                    "metadata": {
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
+                        "embedding_status": "backend_plan_only_not_computed",
+                    }
+                },
                 broad_ec_disambiguation_audit={
                     "metadata": {
                         "guardrail_clean": True,
@@ -1763,6 +1800,38 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                         "countable_label_candidate_count": 0,
                     }
                 },
+                sequence_search_export={
+                    "metadata": {
+                        "ready_for_label_import": False,
+                        "complete_near_duplicate_search_required": True,
+                        "countable_label_candidate_count": 0,
+                        "candidate_count": 1,
+                        "near_duplicate_search_request_count": 1,
+                    },
+                    "rows": [
+                        {
+                            "countable_label_candidate": False,
+                            "decision": {"decision_status": "no_decision"},
+                            "ready_for_label_import": False,
+                            "review_status": "sequence_search_export_review_only",
+                            "search_task": (
+                                "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                            ),
+                            "source_targets": [
+                                {"source_id": "P11111", "source_type": "UniRef"}
+                            ],
+                        }
+                    ],
+                },
+                sequence_search_export_audit={
+                    "metadata": {
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "complete_near_duplicate_search_required": True,
+                        "countable_label_candidate_count": 0,
+                        "completed_decision_count": 0,
+                    }
+                },
                 external_import_readiness_audit={
                     "metadata": {
                         "guardrail_clean": True,
@@ -1795,6 +1864,74 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                         "guardrail_clean": True,
                         "ready_for_label_import": False,
                         "countable_label_candidate_count": 0,
+                    }
+                },
+                active_site_sourcing_export={
+                    "metadata": {
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
+                        "candidate_count": 1,
+                        "source_target_count": 2,
+                    },
+                    "rows": [
+                        {
+                            "countable_label_candidate": False,
+                            "decision": {"decision_status": "no_decision"},
+                            "ready_for_label_import": False,
+                            "review_status": (
+                                "active_site_sourcing_export_review_only"
+                            ),
+                            "source_targets": [
+                                {"source_id": "P11111", "source_type": "UniProtKB"}
+                            ],
+                            "source_task": (
+                                "curate_active_site_positions_from_mapped_binding_context"
+                            ),
+                        }
+                    ],
+                },
+                active_site_sourcing_export_audit={
+                    "metadata": {
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
+                        "completed_decision_count": 0,
+                    }
+                },
+                transfer_blocker_matrix={
+                    "metadata": {
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
+                        "candidate_count": 1,
+                        "active_site_sourcing_export_candidate_count": 1,
+                        "sequence_search_export_candidate_count": 1,
+                        "representation_backend_plan_candidate_count": 1,
+                    },
+                    "rows": [
+                        {
+                            "blockers": ["full_label_factory_gate_not_run"],
+                            "countable_label_candidate": False,
+                            "ready_for_label_import": False,
+                            "review_status": (
+                                "external_transfer_blocker_matrix_review_only"
+                            ),
+                            "sequence_search": {
+                                "decision_status": "no_decision",
+                                "search_task": (
+                                    "run_complete_uniref_or_all_vs_all_"
+                                    "near_duplicate_search"
+                                ),
+                            },
+                        }
+                    ],
+                },
+                transfer_blocker_matrix_audit={
+                    "metadata": {
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
+                        "completed_active_site_decision_count": 0,
+                        "completed_sequence_decision_count": 0,
                     }
                 },
                 binding_context_repair_plan={
@@ -1894,6 +2031,23 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 1,
             )
             self.assertTrue(
+                gates["gates"]["representation_backend_plan_review_only"]
+            )
+            self.assertTrue(
+                gates["gates"][
+                    "representation_backend_plan_audit_guardrail_clean"
+                ]
+            )
+            self.assertEqual(
+                gates["metadata"]["representation_backend_plan_candidate_count"], 1
+            )
+            self.assertEqual(
+                gates["metadata"][
+                    "representation_backend_plan_contrast_required_count"
+                ],
+                1,
+            )
+            self.assertTrue(
                 gates["gates"]["broad_ec_disambiguation_audit_review_only"]
             )
             self.assertEqual(
@@ -1938,6 +2092,16 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             self.assertEqual(
                 gates["metadata"]["sequence_alignment_alert_candidate_count"], 1
             )
+            self.assertTrue(gates["gates"]["sequence_search_export_review_only"])
+            self.assertTrue(
+                gates["gates"]["sequence_search_export_audit_guardrail_clean"]
+            )
+            self.assertEqual(
+                gates["metadata"][
+                    "sequence_search_export_near_duplicate_request_count"
+                ],
+                1,
+            )
             self.assertTrue(
                 gates["gates"][
                     "external_import_readiness_audit_blocks_label_import"
@@ -1959,6 +2123,41 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             )
             self.assertEqual(
                 gates["metadata"]["active_site_sourcing_ready_candidate_count"], 1
+            )
+            self.assertTrue(
+                gates["gates"]["active_site_sourcing_export_review_only"]
+            )
+            self.assertTrue(
+                gates["gates"][
+                    "active_site_sourcing_export_audit_guardrail_clean"
+                ]
+            )
+            self.assertEqual(
+                gates["metadata"]["active_site_sourcing_export_candidate_count"], 1
+            )
+            self.assertEqual(
+                gates["metadata"][
+                    "active_site_sourcing_export_completed_decision_count"
+                ],
+                0,
+            )
+            self.assertTrue(
+                gates["gates"]["external_transfer_blocker_matrix_review_only"]
+            )
+            self.assertTrue(
+                gates["gates"][
+                    "external_transfer_blocker_matrix_audit_guardrail_clean"
+                ]
+            )
+            self.assertEqual(
+                gates["metadata"]["external_transfer_blocker_matrix_candidate_count"],
+                1,
+            )
+            self.assertEqual(
+                gates["metadata"][
+                    "external_transfer_blocker_matrix_completed_decision_count"
+                ],
+                0,
             )
             self.assertTrue(gates["gates"]["binding_context_repair_plan_review_only"])
             self.assertTrue(
@@ -2336,6 +2535,100 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertTrue(audit["metadata"]["guardrail_clean"])
         self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
 
+    def test_external_representation_backend_plan_keeps_embeddings_absent(self) -> None:
+        plan = build_external_source_representation_backend_plan(
+            representation_control_manifest={
+                "metadata": {
+                    "method": "external_source_representation_control_manifest"
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "eligible_for_representation_control": True,
+                        "entry_id": "uniprot:P11111",
+                        "feature_summary": {
+                            "resolved_residue_count": 2,
+                            "structure_id": "AF-P11111-F1",
+                            "structure_source": "alphafold",
+                        },
+                        "heuristic_baseline_control": {
+                            "scope_top1_mismatch": True,
+                            "top1_fingerprint_id": "metal_dependent_hydrolase",
+                        },
+                        "scope_signal": "transferase_phosphoryl",
+                    },
+                    {
+                        "accession": "P22222",
+                        "eligible_for_representation_control": True,
+                        "entry_id": "uniprot:P22222",
+                        "feature_summary": {"resolved_residue_count": 2},
+                        "heuristic_baseline_control": {
+                            "scope_top1_mismatch": False,
+                            "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                        },
+                        "scope_signal": "oxidoreductase_long_tail",
+                    },
+                ],
+            },
+            representation_control_comparison={
+                "metadata": {
+                    "method": "external_source_representation_control_comparison"
+                },
+                "rows": [
+                    {
+                        "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+                        "entry_id": "uniprot:P11111",
+                    },
+                    {
+                        "comparison_status": "proxy_consistent_with_heuristic_scope",
+                        "entry_id": "uniprot:P22222",
+                    },
+                ],
+            },
+            sequence_search_export={
+                "metadata": {"method": "external_source_sequence_search_export"},
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "search_task": (
+                            "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                        ),
+                    },
+                    {
+                        "accession": "P22222",
+                        "search_task": "keep_sequence_holdout_control",
+                    },
+                ],
+            },
+        )
+        audit = audit_external_source_representation_backend_plan(plan)
+
+        self.assertFalse(plan["metadata"]["ready_for_label_import"])
+        self.assertEqual(plan["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            plan["metadata"]["embedding_status"], "backend_plan_only_not_computed"
+        )
+        self.assertEqual(plan["metadata"]["candidate_count"], 2)
+        self.assertEqual(
+            plan["rows"][0]["backend_readiness_status"],
+            "ready_for_backend_selection_not_embedding",
+        )
+        self.assertEqual(
+            plan["rows"][1]["backend_readiness_status"],
+            "blocked_by_sequence_holdout_control",
+        )
+        self.assertIn(
+            "active_site_contrastive_baseline",
+            plan["rows"][0]["recommended_backends"],
+        )
+        self.assertEqual(
+            plan["rows"][0]["review_status"],
+            "representation_backend_plan_review_only",
+        )
+        self.assertFalse(plan["rows"][0]["countable_label_candidate"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["missing_review_only_status_row_count"], 0)
+
     def test_external_broad_ec_disambiguation_stays_review_only(self) -> None:
         audit = audit_external_source_broad_ec_disambiguation(
             control_repair_plan={
@@ -2556,6 +2849,135 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             {"ready_for_curated_active_site_sourcing": 1},
         )
 
+    def test_external_active_site_sourcing_export_is_review_only(self) -> None:
+        queue = {
+            "metadata": {
+                "method": "external_source_active_site_sourcing_queue",
+                "candidate_count": 2,
+            },
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "entry_id": "uniprot:P11111",
+                    "lane_id": "external_source:transferase_phosphoryl",
+                    "mapped_binding_position_count": 2,
+                    "priority_score": 12.0,
+                    "protein_name": "Example kinase",
+                    "queue_status": "ready_for_curated_active_site_sourcing",
+                    "scope_signal": "transferase_phosphoryl",
+                    "sequence_alignment_status": "alignment_no_near_duplicate_signal",
+                    "specific_ec_numbers": ["2.7.1.1"],
+                },
+                {
+                    "accession": "P22222",
+                    "entry_id": "uniprot:P22222",
+                    "lane_id": "external_source:glycan_chemistry",
+                    "mapped_binding_position_count": 0,
+                    "priority_score": 5.0,
+                    "protein_name": "Example glycosylase",
+                    "queue_status": "needs_primary_active_site_source",
+                    "scope_signal": "glycan_chemistry",
+                    "sequence_alignment_status": "alignment_no_near_duplicate_signal",
+                    "specific_ec_numbers": ["3.2.2.21"],
+                },
+            ],
+        }
+        export = build_external_source_active_site_sourcing_export(
+            active_site_sourcing_queue=queue,
+            active_site_gap_source_requests={
+                "metadata": {
+                    "method": "external_source_active_site_gap_source_requests"
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "alphafold_ids_sample": ["P11111"],
+                        "binding_evidence_references": [
+                            {
+                                "id": "12345",
+                                "ligand_name": "ATP",
+                                "source": "PubMed",
+                            }
+                        ],
+                        "mapped_binding_position_count": 2,
+                        "pdb_ids_sample": ["1ABC"],
+                        "request_status": (
+                            "binding_context_mapped_ready_for_active_site_sourcing"
+                        ),
+                    },
+                    {
+                        "accession": "P22222",
+                        "alphafold_ids_sample": ["P22222"],
+                        "request_status": (
+                            "reaction_text_only_needs_curated_residue_source"
+                        ),
+                    },
+                ],
+            },
+            active_site_evidence_sample={
+                "metadata": {"method": "external_source_active_site_evidence_sample"},
+                "candidate_summaries": [
+                    {"accession": "P11111", "pdb_ids_sample": ["1ABC"]},
+                    {"accession": "P22222", "pdb_ids_sample": []},
+                ],
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "begin": 10,
+                        "end": 10,
+                        "evidence": [
+                            {
+                                "evidence_code": "ECO:0000269",
+                                "id": "12345",
+                                "source": "PubMed",
+                            }
+                        ],
+                        "feature_type": "Binding site",
+                        "ligand_name": "ATP",
+                    }
+                ],
+            },
+            reaction_evidence_sample={
+                "metadata": {"method": "external_source_reaction_evidence_sample"},
+                "rows": [
+                    {
+                        "entry_id": "uniprot:P11111",
+                        "ec_number": "2.7.1.1",
+                        "ec_specificity": "specific",
+                        "rhea_id": "RHEA:12345",
+                    }
+                ],
+            },
+        )
+        audit = audit_external_source_active_site_sourcing_export(
+            active_site_sourcing_export=export,
+            active_site_sourcing_queue=queue,
+        )
+
+        self.assertFalse(export["metadata"]["ready_for_label_import"])
+        self.assertEqual(export["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(export["metadata"]["candidate_count"], 2)
+        self.assertEqual(export["metadata"]["decision_status_counts"], {"no_decision": 2})
+        self.assertEqual(
+            export["rows"][0]["source_task"],
+            "curate_active_site_positions_from_mapped_binding_context",
+        )
+        self.assertEqual(
+            export["rows"][1]["source_task"],
+            "find_primary_active_site_or_residue_role_source",
+        )
+        self.assertFalse(export["rows"][0]["countable_label_candidate"])
+        self.assertEqual(
+            export["rows"][0]["decision"]["decision_status"], "no_decision"
+        )
+        self.assertEqual(
+            export["rows"][0]["review_status"],
+            "active_site_sourcing_export_review_only",
+        )
+        self.assertTrue(export["rows"][0]["source_targets"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["missing_review_only_status_row_count"], 0)
+
     def test_external_sequence_neighborhood_plan_is_review_only(self) -> None:
         plan = build_external_source_sequence_neighborhood_plan(
             candidate_manifest={
@@ -2602,6 +3024,349 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "near_duplicate_search_required_before_import",
         )
         self.assertFalse(plan["rows"][0]["countable_label_candidate"])
+
+    def test_external_sequence_search_export_stays_no_decision(self) -> None:
+        export = build_external_source_sequence_search_export(
+            sequence_neighborhood_plan={
+                "metadata": {
+                    "candidate_count": 2,
+                    "method": "external_source_sequence_neighborhood_plan",
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "entry_id": "uniprot:P11111",
+                        "plan_status": (
+                            "near_duplicate_search_required_before_import"
+                        ),
+                    },
+                    {
+                        "accession": "P22222",
+                        "entry_id": "uniprot:P22222",
+                        "plan_status": "exact_reference_overlap_keep_as_holdout",
+                    },
+                ],
+            },
+            sequence_neighborhood_sample={
+                "metadata": {
+                    "method": "external_source_sequence_neighborhood_sample"
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+                        "top_matches": [
+                            {
+                                "matched_m_csa_entry_ids": ["m_csa:1"],
+                                "near_duplicate_score": 0.4,
+                                "reference_accession": "Q11111",
+                            }
+                        ],
+                    },
+                    {
+                        "accession": "P22222",
+                        "screen_status": "preexisting_sequence_holdout_retained",
+                    },
+                ],
+            },
+            sequence_alignment_verification={
+                "metadata": {
+                    "method": "external_source_sequence_alignment_verification"
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "verification_status": "alignment_no_near_duplicate_signal",
+                    },
+                    {
+                        "accession": "P22222",
+                        "verification_status": (
+                            "alignment_near_duplicate_candidate_holdout"
+                        ),
+                    },
+                ],
+            },
+        )
+        audit = audit_external_source_sequence_search_export(
+            sequence_search_export=export,
+            sequence_neighborhood_plan={
+                "metadata": {"candidate_count": 2},
+                "rows": [{"accession": "P11111"}, {"accession": "P22222"}],
+            },
+        )
+
+        self.assertFalse(export["metadata"]["ready_for_label_import"])
+        self.assertTrue(export["metadata"]["complete_near_duplicate_search_required"])
+        self.assertEqual(export["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(export["metadata"]["candidate_count"], 2)
+        self.assertEqual(export["metadata"]["decision_status_counts"], {"no_decision": 2})
+        self.assertEqual(
+            export["metadata"]["search_task_counts"],
+            {
+                "keep_sequence_holdout_control": 1,
+                "run_complete_uniref_or_all_vs_all_near_duplicate_search": 1,
+            },
+        )
+        self.assertEqual(
+            export["rows"][0]["search_task"],
+            "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        )
+        self.assertEqual(
+            export["rows"][0]["review_status"],
+            "sequence_search_export_review_only",
+        )
+        self.assertFalse(export["rows"][0]["countable_label_candidate"])
+        self.assertTrue(export["rows"][0]["source_targets"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["missing_review_only_status_row_count"], 0)
+
+    def test_external_transfer_blocker_matrix_integrates_review_packets(self) -> None:
+        matrix = build_external_source_transfer_blocker_matrix(
+            candidate_manifest={
+                "metadata": {
+                    "candidate_count": 2,
+                    "method": "external_source_candidate_manifest",
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "lane_id": "external_source:transferase_phosphoryl",
+                        "protein_name": "Example kinase",
+                        "scope_signal": "transferase_phosphoryl",
+                    },
+                    {
+                        "accession": "P22222",
+                        "lane_id": "external_source:glycan_chemistry",
+                        "protein_name": "Example glycosylase",
+                        "scope_signal": "glycan_chemistry",
+                    },
+                ],
+            },
+            external_import_readiness_audit={
+                "metadata": {"method": "external_source_import_readiness_audit"},
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "blockers": [
+                            "external_active_site_feature_gap",
+                            "complete_near_duplicate_search_required",
+                        ],
+                        "next_action": "source_explicit_active_site_residue_positions",
+                        "readiness_status": "blocked_by_active_site_sourcing",
+                    },
+                    {
+                        "accession": "P22222",
+                        "blockers": [
+                            "complete_near_duplicate_search_required",
+                            "representation_control_not_compared",
+                        ],
+                        "next_action": "complete_near_duplicate_sequence_search",
+                        "readiness_status": "blocked_by_sequence_search",
+                    },
+                ],
+            },
+            active_site_sourcing_export={
+                "metadata": {"method": "external_source_active_site_sourcing_export"},
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "blockers": [
+                            "explicit_active_site_residue_sources_not_collected"
+                        ],
+                        "decision": {"decision_status": "no_decision"},
+                        "queue_status": "ready_for_curated_active_site_sourcing",
+                        "source_task": (
+                            "curate_active_site_positions_from_mapped_binding_context"
+                        ),
+                        "source_targets": [{"source_type": "UniProtKB"}],
+                    }
+                ],
+            },
+            sequence_search_export={
+                "metadata": {"method": "external_source_sequence_search_export"},
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "blockers": [
+                            "complete_near_duplicate_reference_search_not_completed"
+                        ],
+                        "decision": {"decision_status": "no_decision"},
+                        "search_task": (
+                            "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                        ),
+                        "source_targets": [{"source_type": "UniRef"}],
+                    },
+                    {
+                        "accession": "P22222",
+                        "blockers": ["sequence_holdout_control_not_resolved"],
+                        "decision": {"decision_status": "no_decision"},
+                        "search_task": "keep_sequence_holdout_control",
+                        "source_targets": [{"source_type": "UniProtKB"}],
+                    },
+                ],
+            },
+            representation_backend_plan={
+                "metadata": {"method": "external_source_representation_backend_plan"},
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "backend_readiness_status": (
+                            "ready_for_backend_selection_not_embedding"
+                        ),
+                        "blockers": ["representation_backend_not_selected"],
+                        "embedding_status": "backend_plan_only_not_computed",
+                        "recommended_backends": ["sequence_language_model_embedding"],
+                        "required_inputs": [{"input_type": "candidate_sequence"}],
+                        "sequence_search_task": "keep_sequence_holdout_control",
+                    }
+                ],
+            },
+        )
+        audit = audit_external_source_transfer_blocker_matrix(
+            transfer_blocker_matrix=matrix,
+            candidate_manifest={"metadata": {"candidate_count": 2}},
+        )
+
+        self.assertFalse(matrix["metadata"]["ready_for_label_import"])
+        self.assertEqual(matrix["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(matrix["metadata"]["candidate_count"], 2)
+        self.assertEqual(
+            matrix["metadata"]["active_site_sourcing_export_candidate_count"], 1
+        )
+        self.assertEqual(matrix["metadata"]["sequence_search_export_candidate_count"], 2)
+        self.assertEqual(
+            matrix["metadata"]["representation_backend_plan_candidate_count"], 1
+        )
+        self.assertEqual(
+            matrix["metadata"]["dominant_prioritized_action_fraction"], 0.5
+        )
+        self.assertEqual(matrix["metadata"]["dominant_lane_fraction"], 0.5)
+        self.assertEqual(
+            matrix["rows"][0]["prioritized_action"],
+            "complete_active_site_source_review_packet",
+        )
+        self.assertEqual(
+            matrix["rows"][1]["prioritized_action"],
+            "keep_sequence_holdout_out_of_import_batch",
+        )
+        self.assertFalse(matrix["rows"][0]["countable_label_candidate"])
+        self.assertEqual(
+            matrix["rows"][0]["sequence_search"]["decision_status"], "no_decision"
+        )
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["completed_sequence_decision_count"], 0)
+        self.assertEqual(
+            audit["metadata"]["dominant_prioritized_action_fraction"], 0.5
+        )
+
+    def test_external_review_packet_audits_reject_non_review_status(self) -> None:
+        representation_audit = audit_external_source_representation_backend_plan(
+            {
+                "metadata": {"embedding_status": "backend_plan_only_not_computed"},
+                "rows": [
+                    {
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                        "recommended_backends": ["active_site_contrastive_baseline"],
+                        "required_inputs": [{"input_type": "candidate_sequence"}],
+                        "review_status": "promote",
+                    }
+                ],
+            }
+        )
+        sequence_audit = audit_external_source_sequence_search_export(
+            sequence_search_export={
+                "rows": [
+                    {
+                        "countable_label_candidate": False,
+                        "decision": {"decision_status": "no_decision"},
+                        "ready_for_label_import": False,
+                        "review_status": "promote",
+                        "search_task": (
+                            "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                        ),
+                        "source_targets": [{"source_type": "UniRef"}],
+                    }
+                ]
+            },
+            sequence_neighborhood_plan={"metadata": {"candidate_count": 1}},
+        )
+        active_site_audit = audit_external_source_active_site_sourcing_export(
+            active_site_sourcing_export={
+                "rows": [
+                    {
+                        "countable_label_candidate": False,
+                        "decision": {"decision_status": "no_decision"},
+                        "ready_for_label_import": False,
+                        "review_status": "promote",
+                        "source_targets": [{"source_type": "UniProtKB"}],
+                        "source_task": (
+                            "curate_active_site_positions_from_mapped_binding_context"
+                        ),
+                    }
+                ]
+            },
+            active_site_sourcing_queue={"metadata": {"candidate_count": 1}},
+        )
+
+        self.assertFalse(representation_audit["metadata"]["guardrail_clean"])
+        self.assertIn(
+            "representation_backend_plan_rows_not_review_only",
+            representation_audit["blockers"],
+        )
+        self.assertFalse(sequence_audit["metadata"]["guardrail_clean"])
+        self.assertIn(
+            "sequence_search_export_rows_not_review_only",
+            sequence_audit["blockers"],
+        )
+        self.assertFalse(active_site_audit["metadata"]["guardrail_clean"])
+        self.assertIn(
+            "active_site_sourcing_export_rows_not_review_only",
+            active_site_audit["blockers"],
+        )
+
+    def test_external_transfer_blocker_matrix_flags_action_collapse(self) -> None:
+        audit = audit_external_source_transfer_blocker_matrix(
+            transfer_blocker_matrix={
+                "metadata": {
+                    "candidate_count": 5,
+                    "dominant_lane_fraction": 0.9,
+                    "dominant_prioritized_action_fraction": 0.9,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                },
+                "rows": [
+                    {
+                        "blockers": ["complete_near_duplicate_search_required"],
+                        "countable_label_candidate": False,
+                        "prioritized_action": "complete_near_duplicate_sequence_search",
+                        "ready_for_label_import": False,
+                        "review_status": (
+                            "external_transfer_blocker_matrix_review_only"
+                        ),
+                        "sequence_search": {
+                            "decision_status": "no_decision",
+                            "search_task": (
+                                "run_complete_uniref_or_all_vs_all_"
+                                "near_duplicate_search"
+                            ),
+                        },
+                    }
+                    for _ in range(5)
+                ],
+            },
+            candidate_manifest={"metadata": {"candidate_count": 5}},
+        )
+
+        self.assertFalse(audit["metadata"]["guardrail_clean"])
+        self.assertIn(
+            "external_transfer_blocker_matrix_action_queue_collapsed",
+            audit["blockers"],
+        )
+        self.assertIn(
+            "external_transfer_blocker_matrix_lane_queue_collapsed",
+            audit["blockers"],
+        )
 
     def test_external_sequence_neighborhood_sample_screens_reference_sequences(
         self,
@@ -3836,19 +4601,33 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             representation_comparison_audit = (
                 root / "representation_comparison_audit.json"
             )
+            representation_backend_plan = root / "representation_backend_plan.json"
+            representation_backend_plan_audit = (
+                root / "representation_backend_plan_audit.json"
+            )
             control_repair = root / "control_repair.json"
             binding_repair = root / "binding_repair.json"
             binding_mapping = root / "binding_mapping.json"
             active_site_requests = root / "active_site_requests.json"
+            active_site_evidence = root / "active_site_evidence.json"
             import_readiness = root / "import_readiness.json"
             active_site_sourcing = root / "active_site_sourcing.json"
             active_site_sourcing_audit = root / "active_site_sourcing_audit.json"
+            active_site_sourcing_export = root / "active_site_sourcing_export.json"
+            active_site_sourcing_export_audit = (
+                root / "active_site_sourcing_export_audit.json"
+            )
             broad_ec_audit = root / "broad_ec_audit.json"
             candidate_manifest = root / "candidate_manifest.json"
             sequence_holdout = root / "sequence_holdout.json"
             sequence_plan = root / "sequence_plan.json"
+            sequence_sample = root / "sequence_sample.json"
             sequence_alignment = root / "sequence_alignment.json"
             sequence_alignment_audit = root / "sequence_alignment_audit.json"
+            sequence_search_export = root / "sequence_search_export.json"
+            sequence_search_export_audit = root / "sequence_search_export_audit.json"
+            transfer_blocker_matrix = root / "transfer_blocker_matrix.json"
+            transfer_blocker_matrix_audit = root / "transfer_blocker_matrix_audit.json"
 
             representation_manifest.write_text(
                 json.dumps(
@@ -3985,6 +4764,31 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 ),
                 encoding="utf-8",
             )
+            active_site_evidence.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_active_site_evidence_sample"
+                        },
+                        "candidate_summaries": [
+                            {
+                                "accession": "P11111",
+                                "pdb_ids_sample": ["1ABC"],
+                            }
+                        ],
+                        "rows": [
+                            {
+                                "accession": "P11111",
+                                "begin": 99,
+                                "end": 99,
+                                "feature_type": "Binding site",
+                                "ligand_name": "ATP",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
             candidate_manifest.write_text(
                 json.dumps(
                     {
@@ -4029,6 +4833,27 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                                 "verification_status": (
                                     "alignment_no_near_duplicate_signal"
                                 ),
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            sequence_sample.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_sequence_neighborhood_sample"
+                        },
+                        "rows": [
+                            {
+                                "accession": "P11111",
+                                "screen_status": (
+                                    "no_high_similarity_hit_in_bounded_screen"
+                                ),
+                                "top_matches": [
+                                    {"reference_accession": "Q11111"}
+                                ],
                             }
                         ],
                     }
@@ -4162,6 +4987,76 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             subprocess.run(
                 base_cmd
                 + [
+                    "build-external-source-sequence-search-export",
+                    "--sequence-neighborhood-plan",
+                    str(sequence_plan),
+                    "--sequence-neighborhood-sample",
+                    str(sequence_sample),
+                    "--sequence-alignment-verification",
+                    str(sequence_alignment),
+                    "--out",
+                    str(sequence_search_export),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
+                    "audit-external-source-sequence-search-export",
+                    "--sequence-search-export",
+                    str(sequence_search_export),
+                    "--sequence-neighborhood-plan",
+                    str(sequence_plan),
+                    "--out",
+                    str(sequence_search_export_audit),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
+                    "build-external-source-representation-backend-plan",
+                    "--representation-control-manifest",
+                    str(representation_manifest),
+                    "--representation-control-comparison",
+                    str(representation_comparison),
+                    "--sequence-search-export",
+                    str(sequence_search_export),
+                    "--out",
+                    str(representation_backend_plan),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
+                    "audit-external-source-representation-backend-plan",
+                    "--representation-backend-plan",
+                    str(representation_backend_plan),
+                    "--out",
+                    str(representation_backend_plan_audit),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
                     "build-external-source-active-site-sourcing-queue",
                     "--active-site-gap-source-requests",
                     str(active_site_requests),
@@ -4195,12 +5090,96 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 capture_output=True,
                 text=True,
             )
+            subprocess.run(
+                base_cmd
+                + [
+                    "build-external-source-active-site-sourcing-export",
+                    "--active-site-sourcing-queue",
+                    str(active_site_sourcing),
+                    "--active-site-gap-source-requests",
+                    str(active_site_requests),
+                    "--active-site-evidence-sample",
+                    str(active_site_evidence),
+                    "--reaction-evidence-sample",
+                    str(reaction_sample),
+                    "--out",
+                    str(active_site_sourcing_export),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
+                    "audit-external-source-active-site-sourcing-export",
+                    "--active-site-sourcing-export",
+                    str(active_site_sourcing_export),
+                    "--active-site-sourcing-queue",
+                    str(active_site_sourcing),
+                    "--out",
+                    str(active_site_sourcing_export_audit),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
+                    "build-external-source-transfer-blocker-matrix",
+                    "--candidate-manifest",
+                    str(candidate_manifest),
+                    "--external-import-readiness-audit",
+                    str(import_readiness),
+                    "--active-site-sourcing-export",
+                    str(active_site_sourcing_export),
+                    "--sequence-search-export",
+                    str(sequence_search_export),
+                    "--representation-backend-plan",
+                    str(representation_backend_plan),
+                    "--out",
+                    str(transfer_blocker_matrix),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                base_cmd
+                + [
+                    "audit-external-source-transfer-blocker-matrix",
+                    "--transfer-blocker-matrix",
+                    str(transfer_blocker_matrix),
+                    "--candidate-manifest",
+                    str(candidate_manifest),
+                    "--out",
+                    str(transfer_blocker_matrix_audit),
+                ],
+                cwd=ROOT,
+                env=env,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
 
             comparison_payload = json.loads(
                 representation_comparison.read_text(encoding="utf-8")
             )
             comparison_audit_payload = json.loads(
                 representation_comparison_audit.read_text(encoding="utf-8")
+            )
+            representation_backend_payload = json.loads(
+                representation_backend_plan.read_text(encoding="utf-8")
+            )
+            representation_backend_audit_payload = json.loads(
+                representation_backend_plan_audit.read_text(encoding="utf-8")
             )
             active_site_payload = json.loads(
                 active_site_requests.read_text(encoding="utf-8")
@@ -4210,15 +5189,39 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             sequence_alignment_payload = json.loads(
                 sequence_alignment_audit.read_text(encoding="utf-8")
             )
+            sequence_search_export_payload = json.loads(
+                sequence_search_export.read_text(encoding="utf-8")
+            )
+            sequence_search_export_audit_payload = json.loads(
+                sequence_search_export_audit.read_text(encoding="utf-8")
+            )
             active_site_sourcing_payload = json.loads(
                 active_site_sourcing.read_text(encoding="utf-8")
             )
             active_site_sourcing_audit_payload = json.loads(
                 active_site_sourcing_audit.read_text(encoding="utf-8")
             )
+            active_site_sourcing_export_payload = json.loads(
+                active_site_sourcing_export.read_text(encoding="utf-8")
+            )
+            active_site_sourcing_export_audit_payload = json.loads(
+                active_site_sourcing_export_audit.read_text(encoding="utf-8")
+            )
+            transfer_blocker_matrix_payload = json.loads(
+                transfer_blocker_matrix.read_text(encoding="utf-8")
+            )
+            transfer_blocker_matrix_audit_payload = json.loads(
+                transfer_blocker_matrix_audit.read_text(encoding="utf-8")
+            )
 
             self.assertEqual(comparison_payload["metadata"]["candidate_count"], 1)
             self.assertTrue(comparison_audit_payload["metadata"]["guardrail_clean"])
+            self.assertEqual(
+                representation_backend_payload["metadata"]["candidate_count"], 1
+            )
+            self.assertTrue(
+                representation_backend_audit_payload["metadata"]["guardrail_clean"]
+            )
             self.assertEqual(active_site_payload["metadata"]["candidate_count"], 1)
             self.assertEqual(broad_ec_payload["metadata"]["candidate_count"], 1)
             self.assertEqual(sequence_payload["metadata"]["candidate_count"], 1)
@@ -4230,8 +5233,34 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 sequence_alignment_payload["metadata"]["guardrail_clean"]
             )
             self.assertEqual(
+                sequence_search_export_payload["metadata"]["candidate_count"], 1
+            )
+            self.assertTrue(
+                sequence_search_export_audit_payload["metadata"]["guardrail_clean"]
+            )
+            self.assertEqual(
                 active_site_sourcing_payload["metadata"]["candidate_count"], 1
             )
             self.assertTrue(
                 active_site_sourcing_audit_payload["metadata"]["guardrail_clean"]
+            )
+            self.assertEqual(
+                active_site_sourcing_export_payload["metadata"]["candidate_count"], 1
+            )
+            self.assertTrue(
+                active_site_sourcing_export_audit_payload["metadata"][
+                    "guardrail_clean"
+                ]
+            )
+            self.assertEqual(
+                transfer_blocker_matrix_payload["metadata"]["candidate_count"], 1
+            )
+            self.assertEqual(
+                transfer_blocker_matrix_payload["metadata"][
+                    "sequence_search_export_candidate_count"
+                ],
+                1,
+            )
+            self.assertTrue(
+                transfer_blocker_matrix_audit_payload["metadata"]["guardrail_clean"]
             )

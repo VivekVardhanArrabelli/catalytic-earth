@@ -1,0 +1,925 @@
+{
+  "blockers": [
+    "external_embeddings_not_computed",
+    "representation_backend_not_selected",
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "metadata": {
+    "backend_readiness_status_counts": {
+      "ready_for_backend_selection_not_embedding": 12
+    },
+    "candidate_count": 12,
+    "countable_label_candidate_count": 0,
+    "eligible_control_count": 12,
+    "embedding_status": "backend_plan_only_not_computed",
+    "heuristic_contrast_required_count": 9,
+    "max_rows": 100,
+    "method": "external_source_representation_backend_plan",
+    "ready_for_label_import": false,
+    "review_only_rule": "representation backend plans define inputs and controls only; they do not compute embeddings or create labels",
+    "sequence_search_blocked_count": 0,
+    "source_representation_comparison_method": "external_source_representation_control_comparison",
+    "source_representation_control_method": "external_source_representation_control_manifest",
+    "source_sequence_search_export_method": "external_source_sequence_search_export"
+  },
+  "rows": [
+    {
+      "accession": "P33025",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:P33025",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "GLU",
+          "LYS"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "P33025",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "separate_glycan_chemistry_from_metal_hydrolase_boundary",
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3355
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "glycan_boundary_contrastive_axis",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "P33025",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:P33025",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "P33025",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "P33025",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "glycan_chemistry",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "P60174",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:P60174",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "HIS",
+          "GLU"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "P60174",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3741
+      },
+      "lane_id": "external_source:isomerase",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "P60174",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:P60174",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "P60174",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "P60174",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "Q13907",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:Q13907",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "CYS",
+          "GLU"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "Q13907",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3714
+      },
+      "lane_id": "external_source:isomerase",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "Q13907",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:Q13907",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "Q13907",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "Q13907",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:Q6NSJ0",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "ASP",
+          "ASP"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "Q6NSJ0",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "separate_glycan_chemistry_from_metal_hydrolase_boundary",
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3552
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "glycan_boundary_contrastive_axis",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "Q6NSJ0",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:Q6NSJ0",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "Q6NSJ0",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "Q6NSJ0",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "glycan_chemistry",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "Q9BXD5",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:Q9BXD5",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "TYR",
+          "LYS"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "Q9BXD5",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3646
+      },
+      "lane_id": "external_source:lyase",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "Q9BXD5",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:Q9BXD5",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "Q9BXD5",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "Q9BXD5",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "Q9BXS1",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:Q9BXS1",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "SER",
+          "GLU"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "Q9BXS1",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3734
+      },
+      "lane_id": "external_source:isomerase",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "Q9BXS1",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:Q9BXS1",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "Q9BXS1",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "Q9BXS1",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "A2RU49",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:A2RU49",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "ASP"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "A2RU49",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.302
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "A2RU49",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:A2RU49",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "A2RU49",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "A2RU49",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "O14756",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_consistent_with_heuristic_scope",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:O14756",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "TYR"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "O14756",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "compare_heuristic_control_against_learned_representation",
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3039
+      },
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "heuristic_geometry_baseline_control",
+        "redox_cofactor_contrastive_axis",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "O14756",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:O14756",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "O14756",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "O14756",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "P34949",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:P34949",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "ARG"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "P34949",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.185
+      },
+      "lane_id": "external_source:isomerase",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "P34949",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:P34949",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "P34949",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "P34949",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "P35914",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:P35914",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "CYS"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "P35914",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.1875
+      },
+      "lane_id": "external_source:lyase",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "P35914",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:P35914",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "P35914",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "P35914",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "Q969G6",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:Q969G6",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "GLU"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "Q969G6",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3012
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "Q969G6",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:Q969G6",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "Q969G6",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "Q969G6",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "Q96I15",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:Q96I15",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "CYS"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "Q96I15",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.1935
+      },
+      "lane_id": "external_source:lyase",
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "Q96I15",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:Q96I15",
+          "status": "required_attached"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "Q96I15",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "mapped_active_site_structure",
+          "source_id": "Q96I15",
+          "source_type": "alphafold",
+          "status": "required_not_embedded"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    }
+  ],
+  "warnings": [
+    "real representation controls must be evaluated against the heuristic baseline and sequence-search controls before import"
+  ]
+}

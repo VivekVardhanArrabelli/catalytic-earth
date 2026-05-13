@@ -1,0 +1,20 @@
+{
+  "blockers": [],
+  "metadata": {
+    "candidate_count": 30,
+    "complete_near_duplicate_search_required": true,
+    "completed_decision_count": 0,
+    "countable_label_candidate_count": 0,
+    "expected_plan_candidate_count": 30,
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "method": "external_source_sequence_search_export_audit",
+    "missing_review_only_status_row_count": 0,
+    "missing_search_task_row_count": 0,
+    "missing_source_target_row_count": 0,
+    "ready_for_label_import": false
+  },
+  "warnings": [
+    "sequence-search exports are no-decision OOD control packets and must not be used as countable label registries"
+  ]
+}

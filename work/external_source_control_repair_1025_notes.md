@@ -2,12 +2,13 @@
 
 The 1,025 external-source path remains review-only and non-countable. The
 current repair surface covers heuristic collapse, representation-control
-comparison, broad-EC disambiguation, active-site gap sourcing, and sequence
-neighborhood controls.
+comparison, broad-EC disambiguation, active-site gap sourcing/export,
+sequence-search export, representation-backend planning, and a candidate blocker
+matrix.
 
 ## Current Gate
 
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 45/45
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 53/53
   review-only checks.
 - `countable_label_candidate_count` remains 0.
 - `ready_for_label_import` remains false.
@@ -50,6 +51,9 @@ neighborhood controls.
 - `artifacts/v3_external_source_active_site_sourcing_queue_1025.json`
   prioritizes those 10 gaps into 7 mapped-binding-context sourcing rows and 3
   primary active-site source rows, all non-countable.
+- `artifacts/v3_external_source_active_site_sourcing_export_1025.json` packages
+  those rows into source-review packets with 72 source targets and 0 completed
+  decisions.
 
 ## Reaction And Sequence Controls
 
@@ -78,6 +82,9 @@ neighborhood controls.
   checks the top 90 sequence-neighborhood pairs, confirms the two
   exact-reference holdouts by alignment, records 88 no-signal pairs, and
   remains a bounded review-only control.
+- `artifacts/v3_external_source_sequence_search_export_1025.json` keeps all 30
+  external rows in no-decision sequence controls, with 28 complete
+  near-duplicate searches and 2 sequence holdout tasks.
 
 ## Import Readiness
 
@@ -90,6 +97,14 @@ neighborhood controls.
 - Readiness buckets are: 10 blocked by active-site sourcing, 11 blocked by
   heuristic controls, 6 blocked by representation controls, 2 blocked by
   sequence holdouts, and 1 blocked by sequence search.
+- `artifacts/v3_external_source_representation_backend_plan_1025.json` keeps 12
+  mapped controls ready for backend selection but explicitly unembedded.
+- `artifacts/v3_external_source_transfer_blocker_matrix_1025.json` joins all 30
+  candidates into a non-countable blocker matrix: 7 active-site source packets,
+  3 primary-source tasks, 18 near-duplicate sequence searches, and 2 sequence
+  holdouts as prioritized actions. The dominant action fraction is 0.6000 and
+  the dominant lane fraction is 0.1667, so this queue has not collapsed to one
+  action or chemistry lane.
 - Remaining-time plan executed for the 2026-05-13T03:08:55-05:00 run: after
   the sequence screen and import-readiness audit passed targeted tests, keep
   work bounded to artifact regression coverage, docs, validation, and final
@@ -101,9 +116,10 @@ Do not import external labels yet. The next bounded work should either:
 
 - source explicit catalytic or active-site residue evidence for the 10
   active-site feature gaps using
-  `artifacts/v3_external_source_active_site_sourcing_queue_1025.json`; or
+  `artifacts/v3_external_source_active_site_sourcing_export_1025.json`; or
 - run/attach real near-duplicate sequence searches for the 28
-  `near_duplicate_search_required_before_import` rows; or
-- replace the feature-proxy representation comparison with a real learned or
-  structure-language representation while keeping heuristic retrieval as the
-  required control.
+  `near_duplicate_search_required_before_import` rows in
+  `artifacts/v3_external_source_sequence_search_export_1025.json`; or
+- select/run a real learned or structure-language representation backend from
+  `artifacts/v3_external_source_representation_backend_plan_1025.json` while
+  keeping heuristic retrieval as the required control.

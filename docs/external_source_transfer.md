@@ -83,8 +83,15 @@ import.
   search requirements, 9 heuristic scope/top1 mismatches, and 29
   representation-control issues. The active-site sourcing queue turns the 10
   active-site gaps into 7 mapped-binding-context sourcing rows and 3
-  primary-source rows. The external transfer gate passes 45/45 review-only
-  checks and remains not ready for label import.
+  primary-source rows, and the active-site sourcing export packages 72 source
+  targets without decisions. The sequence-search export keeps all 30 candidates
+  in no-decision sequence controls, with 28 complete near-duplicate searches and
+  2 sequence holdouts. The representation-backend plan covers 12 mapped controls
+  without computing embeddings. The transfer blocker matrix joins all 30
+  candidates into a review-only next-action worklist; its dominant next-action
+  fraction is 0.6000 and dominant lane fraction is 0.1667, so the queue has not
+  collapsed to one action or chemistry lane. The external transfer gate passes
+  53/53 review-only checks and remains not ready for label import.
 
 ## Artifacts
 
@@ -297,6 +304,17 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-alig
   --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
   --out artifacts/v3_external_source_sequence_alignment_verification_audit_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-sequence-search-export \
+  --sequence-neighborhood-plan artifacts/v3_external_source_sequence_neighborhood_plan_1025.json \
+  --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
+  --out artifacts/v3_external_source_sequence_search_export_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-search-export \
+  --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
+  --sequence-neighborhood-plan artifacts/v3_external_source_sequence_neighborhood_plan_1025.json \
+  --out artifacts/v3_external_source_sequence_search_export_audit_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-reaction-evidence-sample \
   --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
   --max-candidates 30 \
@@ -316,6 +334,16 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representatio
 PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-control-comparison \
   --representation-control-comparison artifacts/v3_external_source_representation_control_comparison_1025.json \
   --out artifacts/v3_external_source_representation_control_comparison_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-plan \
+  --representation-control-manifest artifacts/v3_external_source_representation_control_manifest_1025.json \
+  --representation-control-comparison artifacts/v3_external_source_representation_control_comparison_1025.json \
+  --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
+  --out artifacts/v3_external_source_representation_backend_plan_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-plan \
+  --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
+  --out artifacts/v3_external_source_representation_backend_plan_audit_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-broad-ec-disambiguation \
   --control-repair-plan artifacts/v3_external_source_control_repair_plan_1025.json \
@@ -342,6 +370,31 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-active-site-s
   --active-site-sourcing-queue artifacts/v3_external_source_active_site_sourcing_queue_1025.json \
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
   --out artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-active-site-sourcing-export \
+  --active-site-sourcing-queue artifacts/v3_external_source_active_site_sourcing_queue_1025.json \
+  --active-site-gap-source-requests artifacts/v3_external_source_active_site_gap_source_requests_1025.json \
+  --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
+  --reaction-evidence-sample artifacts/v3_external_source_reaction_evidence_sample_1025.json \
+  --out artifacts/v3_external_source_active_site_sourcing_export_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-active-site-sourcing-export \
+  --active-site-sourcing-export artifacts/v3_external_source_active_site_sourcing_export_1025.json \
+  --active-site-sourcing-queue artifacts/v3_external_source_active_site_sourcing_queue_1025.json \
+  --out artifacts/v3_external_source_active_site_sourcing_export_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-transfer-blocker-matrix \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --active-site-sourcing-export artifacts/v3_external_source_active_site_sourcing_export_1025.json \
+  --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
+  --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
+  --out artifacts/v3_external_source_transfer_blocker_matrix_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-transfer-blocker-matrix \
+  --transfer-blocker-matrix artifacts/v3_external_source_transfer_blocker_matrix_1025.json \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --out artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
   --labels data/registries/curated_mechanism_labels.json \
@@ -379,6 +432,8 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --representation-control-manifest-audit artifacts/v3_external_source_representation_control_manifest_audit_1025.json \
   --representation-control-comparison artifacts/v3_external_source_representation_control_comparison_1025.json \
   --representation-control-comparison-audit artifacts/v3_external_source_representation_control_comparison_audit_1025.json \
+  --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
+  --representation-backend-plan-audit artifacts/v3_external_source_representation_backend_plan_audit_1025.json \
   --broad-ec-disambiguation-audit artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json \
   --active-site-gap-source-requests artifacts/v3_external_source_active_site_gap_source_requests_1025.json \
   --sequence-neighborhood-plan artifacts/v3_external_source_sequence_neighborhood_plan_1025.json \
@@ -386,9 +441,15 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --sequence-neighborhood-sample-audit artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json \
   --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
   --sequence-alignment-verification-audit artifacts/v3_external_source_sequence_alignment_verification_audit_1025.json \
+  --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
+  --sequence-search-export-audit artifacts/v3_external_source_sequence_search_export_audit_1025.json \
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
   --active-site-sourcing-queue artifacts/v3_external_source_active_site_sourcing_queue_1025.json \
   --active-site-sourcing-queue-audit artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json \
+  --active-site-sourcing-export artifacts/v3_external_source_active_site_sourcing_export_1025.json \
+  --active-site-sourcing-export-audit artifacts/v3_external_source_active_site_sourcing_export_audit_1025.json \
+  --transfer-blocker-matrix artifacts/v3_external_source_transfer_blocker_matrix_1025.json \
+  --transfer-blocker-matrix-audit artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json \
   --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
   --binding-context-repair-plan-audit artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json \
   --binding-context-mapping-sample artifacts/v3_external_source_binding_context_mapping_sample_1025.json \

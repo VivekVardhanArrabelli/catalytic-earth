@@ -89,12 +89,23 @@ Current review-only external artifacts:
 - `artifacts/v3_external_source_active_site_sourcing_queue_1025.json` converts
   the 10 active-site gaps into a prioritized non-countable sourcing queue: 7
   mapped-binding-context rows and 3 primary active-site source rows.
+- `artifacts/v3_external_source_active_site_sourcing_export_1025.json` packages
+  those 10 active-site sourcing tasks with 72 source targets and 0 completed
+  decisions.
+- `artifacts/v3_external_source_sequence_search_export_1025.json` keeps all 30
+  external candidates in no-decision sequence controls: 28 complete
+  near-duplicate searches and 2 sequence holdouts.
+- `artifacts/v3_external_source_representation_backend_plan_1025.json` covers 12
+  mapped representation controls without computing embeddings.
+- `artifacts/v3_external_source_transfer_blocker_matrix_1025.json` joins all 30
+  candidates into a review-only blocker matrix with prioritized next actions.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
-  checkpoints. The current gate now passes 45/45 after sequence-alignment
-  verification and the active-site sourcing queue. It is still not ready for
-  label import.
+  checkpoints, then 45/45 after sequence-alignment verification and the
+  active-site sourcing queue. The current gate now passes 53/53 after the source
+  exports, representation-backend plan, and blocker matrix. It is still not
+  ready for label import.
 
 Sequence-similarity guardrail details:
 
@@ -135,8 +146,9 @@ Sequence-holdout details:
 
 Next bounded work should keep repairing external-control weaknesses before any
 external label decision: source explicit catalytic residues for the 10
-active-site-feature gaps prioritized by
-`artifacts/v3_external_source_active_site_sourcing_queue_1025.json`, run
-near-duplicate sequence searches for 28 rows, or
-replace the feature-proxy representation comparison with real learned or
-structure-language controls.
+active-site-feature gaps using
+`artifacts/v3_external_source_active_site_sourcing_export_1025.json`, run
+near-duplicate sequence searches for the 28 rows in
+`artifacts/v3_external_source_sequence_search_export_1025.json`, or select and
+run the real representation backend planned in
+`artifacts/v3_external_source_representation_backend_plan_1025.json`.

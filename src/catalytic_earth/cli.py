@@ -77,6 +77,7 @@ from .sources import build_source_ledger, load_sources
 from .structure import write_geometry_features
 from .transfer_scope import (
     audit_external_source_active_site_evidence_sample,
+    audit_external_source_active_site_sourcing_export,
     audit_external_source_active_site_sourcing_queue,
     audit_external_source_binding_context_mapping_sample,
     audit_external_source_binding_context_repair_plan,
@@ -90,15 +91,19 @@ from .transfer_scope import (
     audit_external_source_reaction_evidence_sample,
     audit_external_source_representation_control_comparison,
     audit_external_source_representation_control_manifest,
+    audit_external_source_representation_backend_plan,
     audit_external_source_sequence_alignment_verification,
+    audit_external_source_sequence_search_export,
     audit_external_source_sequence_holdouts,
     audit_external_source_sequence_neighborhood_sample,
     audit_external_source_structure_mapping_plan,
     audit_external_source_structure_mapping_sample,
     audit_external_source_control_repair_plan,
     audit_external_source_import_readiness,
+    audit_external_source_transfer_blocker_matrix,
     build_external_ood_calibration_plan,
     build_external_source_active_site_gap_source_requests,
+    build_external_source_active_site_sourcing_export,
     build_external_source_active_site_sourcing_queue,
     build_external_source_binding_context_mapping_sample,
     build_external_source_binding_context_repair_plan,
@@ -117,10 +122,13 @@ from .transfer_scope import (
     build_external_source_reaction_evidence_sample,
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
+    build_external_source_representation_backend_plan,
     build_external_source_sequence_alignment_verification,
+    build_external_source_sequence_search_export,
     build_external_source_sequence_neighborhood_plan,
     build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
+    build_external_source_transfer_blocker_matrix,
     check_external_source_transfer_gates,
 )
 from .v2 import (
@@ -938,6 +946,49 @@ def cmd_audit_external_source_representation_control_comparison(
     return 0
 
 
+def cmd_build_external_source_representation_backend_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.representation_control_manifest).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        representation_control_manifest = json.load(handle)
+    with Path(args.representation_control_comparison).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        representation_control_comparison = json.load(handle)
+    with Path(args.sequence_search_export).open("r", encoding="utf-8") as handle:
+        sequence_search_export = json.load(handle)
+    plan = build_external_source_representation_backend_plan(
+        representation_control_manifest=representation_control_manifest,
+        representation_control_comparison=representation_control_comparison,
+        sequence_search_export=sequence_search_export,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote external source representation backend plan to "
+        f"{args.out} ({plan['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_representation_backend_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.representation_backend_plan).open("r", encoding="utf-8") as handle:
+        representation_backend_plan = json.load(handle)
+    audit = audit_external_source_representation_backend_plan(
+        representation_backend_plan
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source representation backend plan audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_audit_external_source_broad_ec_disambiguation(
     args: argparse.Namespace,
 ) -> int:
@@ -1081,6 +1132,50 @@ def cmd_audit_external_source_sequence_alignment_verification(
     return 0
 
 
+def cmd_build_external_source_sequence_search_export(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_neighborhood_plan).open("r", encoding="utf-8") as handle:
+        sequence_neighborhood_plan = json.load(handle)
+    with Path(args.sequence_neighborhood_sample).open("r", encoding="utf-8") as handle:
+        sequence_neighborhood_sample = json.load(handle)
+    with Path(args.sequence_alignment_verification).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        sequence_alignment_verification = json.load(handle)
+    export = build_external_source_sequence_search_export(
+        sequence_neighborhood_plan=sequence_neighborhood_plan,
+        sequence_neighborhood_sample=sequence_neighborhood_sample,
+        sequence_alignment_verification=sequence_alignment_verification,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), export)
+    print(
+        "Wrote external source sequence search export to "
+        f"{args.out} ({export['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_sequence_search_export(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_search_export).open("r", encoding="utf-8") as handle:
+        sequence_search_export = json.load(handle)
+    with Path(args.sequence_neighborhood_plan).open("r", encoding="utf-8") as handle:
+        sequence_neighborhood_plan = json.load(handle)
+    audit = audit_external_source_sequence_search_export(
+        sequence_search_export=sequence_search_export,
+        sequence_neighborhood_plan=sequence_neighborhood_plan,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source sequence search export audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_build_external_source_active_site_sourcing_queue(
     args: argparse.Namespace,
 ) -> int:
@@ -1128,6 +1223,103 @@ def cmd_audit_external_source_active_site_sourcing_queue(
     write_json(Path(args.out), audit)
     print(
         "Wrote external source active-site sourcing queue audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_active_site_sourcing_export(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_sourcing_queue).open("r", encoding="utf-8") as handle:
+        active_site_sourcing_queue = json.load(handle)
+    with Path(args.active_site_gap_source_requests).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        active_site_gap_source_requests = json.load(handle)
+    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+        active_site_evidence_sample = json.load(handle)
+    with Path(args.reaction_evidence_sample).open("r", encoding="utf-8") as handle:
+        reaction_evidence_sample = json.load(handle)
+    export = build_external_source_active_site_sourcing_export(
+        active_site_sourcing_queue=active_site_sourcing_queue,
+        active_site_gap_source_requests=active_site_gap_source_requests,
+        active_site_evidence_sample=active_site_evidence_sample,
+        reaction_evidence_sample=reaction_evidence_sample,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), export)
+    print(
+        "Wrote external source active-site sourcing export to "
+        f"{args.out} ({export['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_active_site_sourcing_export(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_sourcing_export).open("r", encoding="utf-8") as handle:
+        active_site_sourcing_export = json.load(handle)
+    with Path(args.active_site_sourcing_queue).open("r", encoding="utf-8") as handle:
+        active_site_sourcing_queue = json.load(handle)
+    audit = audit_external_source_active_site_sourcing_export(
+        active_site_sourcing_export=active_site_sourcing_export,
+        active_site_sourcing_queue=active_site_sourcing_queue,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source active-site sourcing export audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_transfer_blocker_matrix(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    with Path(args.external_import_readiness_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        external_import_readiness_audit = json.load(handle)
+    with Path(args.active_site_sourcing_export).open("r", encoding="utf-8") as handle:
+        active_site_sourcing_export = json.load(handle)
+    with Path(args.sequence_search_export).open("r", encoding="utf-8") as handle:
+        sequence_search_export = json.load(handle)
+    with Path(args.representation_backend_plan).open("r", encoding="utf-8") as handle:
+        representation_backend_plan = json.load(handle)
+    matrix = build_external_source_transfer_blocker_matrix(
+        candidate_manifest=candidate_manifest,
+        external_import_readiness_audit=external_import_readiness_audit,
+        active_site_sourcing_export=active_site_sourcing_export,
+        sequence_search_export=sequence_search_export,
+        representation_backend_plan=representation_backend_plan,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), matrix)
+    print(
+        "Wrote external source transfer blocker matrix to "
+        f"{args.out} ({matrix['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_transfer_blocker_matrix(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.transfer_blocker_matrix).open("r", encoding="utf-8") as handle:
+        transfer_blocker_matrix = json.load(handle)
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    audit = audit_external_source_transfer_blocker_matrix(
+        transfer_blocker_matrix=transfer_blocker_matrix,
+        candidate_manifest=candidate_manifest,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source transfer blocker matrix audit to "
         f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
     )
     return 0
@@ -1303,6 +1495,18 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             representation_control_comparison_audit = json.load(handle)
+    representation_backend_plan = None
+    if args.representation_backend_plan:
+        with Path(args.representation_backend_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_backend_plan = json.load(handle)
+    representation_backend_plan_audit = None
+    if args.representation_backend_plan_audit:
+        with Path(args.representation_backend_plan_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_backend_plan_audit = json.load(handle)
     broad_ec_disambiguation_audit = None
     if args.broad_ec_disambiguation_audit:
         with Path(args.broad_ec_disambiguation_audit).open(
@@ -1345,6 +1549,18 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             sequence_alignment_verification_audit = json.load(handle)
+    sequence_search_export = None
+    if args.sequence_search_export:
+        with Path(args.sequence_search_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_search_export = json.load(handle)
+    sequence_search_export_audit = None
+    if args.sequence_search_export_audit:
+        with Path(args.sequence_search_export_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_search_export_audit = json.load(handle)
     external_import_readiness_audit = None
     if args.external_import_readiness_audit:
         with Path(args.external_import_readiness_audit).open(
@@ -1363,6 +1579,30 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             active_site_sourcing_queue_audit = json.load(handle)
+    active_site_sourcing_export = None
+    if args.active_site_sourcing_export:
+        with Path(args.active_site_sourcing_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_sourcing_export = json.load(handle)
+    active_site_sourcing_export_audit = None
+    if args.active_site_sourcing_export_audit:
+        with Path(args.active_site_sourcing_export_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_sourcing_export_audit = json.load(handle)
+    transfer_blocker_matrix = None
+    if args.transfer_blocker_matrix:
+        with Path(args.transfer_blocker_matrix).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            transfer_blocker_matrix = json.load(handle)
+    transfer_blocker_matrix_audit = None
+    if args.transfer_blocker_matrix_audit:
+        with Path(args.transfer_blocker_matrix_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            transfer_blocker_matrix_audit = json.load(handle)
     binding_context_repair_plan = None
     if args.binding_context_repair_plan:
         with Path(args.binding_context_repair_plan).open(
@@ -1422,6 +1662,8 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         representation_control_manifest_audit=representation_control_manifest_audit,
         representation_control_comparison=representation_control_comparison,
         representation_control_comparison_audit=representation_control_comparison_audit,
+        representation_backend_plan=representation_backend_plan,
+        representation_backend_plan_audit=representation_backend_plan_audit,
         broad_ec_disambiguation_audit=broad_ec_disambiguation_audit,
         active_site_gap_source_requests=active_site_gap_source_requests,
         sequence_neighborhood_plan=sequence_neighborhood_plan,
@@ -1429,9 +1671,15 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         sequence_neighborhood_sample_audit=sequence_neighborhood_sample_audit,
         sequence_alignment_verification=sequence_alignment_verification,
         sequence_alignment_verification_audit=sequence_alignment_verification_audit,
+        sequence_search_export=sequence_search_export,
+        sequence_search_export_audit=sequence_search_export_audit,
         external_import_readiness_audit=external_import_readiness_audit,
         active_site_sourcing_queue=active_site_sourcing_queue,
         active_site_sourcing_queue_audit=active_site_sourcing_queue_audit,
+        active_site_sourcing_export=active_site_sourcing_export,
+        active_site_sourcing_export_audit=active_site_sourcing_export_audit,
+        transfer_blocker_matrix=transfer_blocker_matrix,
+        transfer_blocker_matrix_audit=transfer_blocker_matrix_audit,
         binding_context_repair_plan=binding_context_repair_plan,
         binding_context_repair_plan_audit=binding_context_repair_plan_audit,
         binding_context_mapping_sample=binding_context_mapping_sample,
@@ -3823,6 +4071,47 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_representation_control_comparison
     )
 
+    external_representation_backend_plan = subparsers.add_parser(
+        "build-external-source-representation-backend-plan",
+        help="plan review-only real representation backend controls",
+    )
+    external_representation_backend_plan.add_argument(
+        "--representation-control-manifest",
+        default="artifacts/v3_external_source_representation_control_manifest.json",
+    )
+    external_representation_backend_plan.add_argument(
+        "--representation-control-comparison",
+        default="artifacts/v3_external_source_representation_control_comparison.json",
+    )
+    external_representation_backend_plan.add_argument(
+        "--sequence-search-export",
+        default="artifacts/v3_external_source_sequence_search_export.json",
+    )
+    external_representation_backend_plan.add_argument("--max-rows", type=int, default=100)
+    external_representation_backend_plan.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_representation_backend_plan.json",
+    )
+    external_representation_backend_plan.set_defaults(
+        func=cmd_build_external_source_representation_backend_plan
+    )
+
+    external_representation_backend_plan_audit = subparsers.add_parser(
+        "audit-external-source-representation-backend-plan",
+        help="verify external representation backend plans remain review-only",
+    )
+    external_representation_backend_plan_audit.add_argument(
+        "--representation-backend-plan",
+        default="artifacts/v3_external_source_representation_backend_plan.json",
+    )
+    external_representation_backend_plan_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_representation_backend_plan_audit.json",
+    )
+    external_representation_backend_plan_audit.set_defaults(
+        func=cmd_audit_external_source_representation_backend_plan
+    )
+
     external_broad_ec_audit = subparsers.add_parser(
         "audit-external-source-broad-ec-disambiguation",
         help="narrow broad external EC repair rows to review-only reaction context",
@@ -3980,6 +4269,51 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_sequence_alignment_verification
     )
 
+    external_sequence_search_export = subparsers.add_parser(
+        "build-external-source-sequence-search-export",
+        help="build review-only complete near-duplicate sequence-search packets",
+    )
+    external_sequence_search_export.add_argument(
+        "--sequence-neighborhood-plan",
+        default="artifacts/v3_external_source_sequence_neighborhood_plan.json",
+    )
+    external_sequence_search_export.add_argument(
+        "--sequence-neighborhood-sample",
+        default="artifacts/v3_external_source_sequence_neighborhood_sample.json",
+    )
+    external_sequence_search_export.add_argument(
+        "--sequence-alignment-verification",
+        default="artifacts/v3_external_source_sequence_alignment_verification.json",
+    )
+    external_sequence_search_export.add_argument("--max-rows", type=int, default=100)
+    external_sequence_search_export.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_sequence_search_export.json",
+    )
+    external_sequence_search_export.set_defaults(
+        func=cmd_build_external_source_sequence_search_export
+    )
+
+    external_sequence_search_export_audit = subparsers.add_parser(
+        "audit-external-source-sequence-search-export",
+        help="verify external sequence-search exports remain review-only",
+    )
+    external_sequence_search_export_audit.add_argument(
+        "--sequence-search-export",
+        default="artifacts/v3_external_source_sequence_search_export.json",
+    )
+    external_sequence_search_export_audit.add_argument(
+        "--sequence-neighborhood-plan",
+        default="artifacts/v3_external_source_sequence_neighborhood_plan.json",
+    )
+    external_sequence_search_export_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_sequence_search_export_audit.json",
+    )
+    external_sequence_search_export_audit.set_defaults(
+        func=cmd_audit_external_source_sequence_search_export
+    )
+
     external_import_readiness = subparsers.add_parser(
         "audit-external-source-import-readiness",
         help="summarize remaining review-only blockers before external label import",
@@ -4067,6 +4401,111 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_active_site_sourcing_audit.set_defaults(
         func=cmd_audit_external_source_active_site_sourcing_queue
+    )
+
+    external_active_site_sourcing_export = subparsers.add_parser(
+        "build-external-source-active-site-sourcing-export",
+        help="build review-only source packets for external active-site gaps",
+    )
+    external_active_site_sourcing_export.add_argument(
+        "--active-site-sourcing-queue",
+        default="artifacts/v3_external_source_active_site_sourcing_queue.json",
+    )
+    external_active_site_sourcing_export.add_argument(
+        "--active-site-gap-source-requests",
+        default="artifacts/v3_external_source_active_site_gap_source_requests.json",
+    )
+    external_active_site_sourcing_export.add_argument(
+        "--active-site-evidence-sample",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_active_site_sourcing_export.add_argument(
+        "--reaction-evidence-sample",
+        default="artifacts/v3_external_source_reaction_evidence_sample.json",
+    )
+    external_active_site_sourcing_export.add_argument("--max-rows", type=int, default=100)
+    external_active_site_sourcing_export.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_active_site_sourcing_export.json",
+    )
+    external_active_site_sourcing_export.set_defaults(
+        func=cmd_build_external_source_active_site_sourcing_export
+    )
+
+    external_active_site_sourcing_export_audit = subparsers.add_parser(
+        "audit-external-source-active-site-sourcing-export",
+        help="verify external active-site sourcing exports remain review-only",
+    )
+    external_active_site_sourcing_export_audit.add_argument(
+        "--active-site-sourcing-export",
+        default="artifacts/v3_external_source_active_site_sourcing_export.json",
+    )
+    external_active_site_sourcing_export_audit.add_argument(
+        "--active-site-sourcing-queue",
+        default="artifacts/v3_external_source_active_site_sourcing_queue.json",
+    )
+    external_active_site_sourcing_export_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_active_site_sourcing_export_audit.json"
+        ),
+    )
+    external_active_site_sourcing_export_audit.set_defaults(
+        func=cmd_audit_external_source_active_site_sourcing_export
+    )
+
+    external_transfer_blocker_matrix = subparsers.add_parser(
+        "build-external-source-transfer-blocker-matrix",
+        help="join external transfer blocker packets into a review-only matrix",
+    )
+    external_transfer_blocker_matrix.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_transfer_blocker_matrix.add_argument(
+        "--external-import-readiness-audit",
+        default="artifacts/v3_external_source_import_readiness_audit.json",
+    )
+    external_transfer_blocker_matrix.add_argument(
+        "--active-site-sourcing-export",
+        default="artifacts/v3_external_source_active_site_sourcing_export.json",
+    )
+    external_transfer_blocker_matrix.add_argument(
+        "--sequence-search-export",
+        default="artifacts/v3_external_source_sequence_search_export.json",
+    )
+    external_transfer_blocker_matrix.add_argument(
+        "--representation-backend-plan",
+        default="artifacts/v3_external_source_representation_backend_plan.json",
+    )
+    external_transfer_blocker_matrix.add_argument("--max-rows", type=int, default=100)
+    external_transfer_blocker_matrix.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_transfer_blocker_matrix.json",
+    )
+    external_transfer_blocker_matrix.set_defaults(
+        func=cmd_build_external_source_transfer_blocker_matrix
+    )
+
+    external_transfer_blocker_matrix_audit = subparsers.add_parser(
+        "audit-external-source-transfer-blocker-matrix",
+        help="verify external transfer blocker matrices remain review-only",
+    )
+    external_transfer_blocker_matrix_audit.add_argument(
+        "--transfer-blocker-matrix",
+        default="artifacts/v3_external_source_transfer_blocker_matrix.json",
+    )
+    external_transfer_blocker_matrix_audit.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_transfer_blocker_matrix_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_transfer_blocker_matrix_audit.json",
+    )
+    external_transfer_blocker_matrix_audit.set_defaults(
+        func=cmd_audit_external_source_transfer_blocker_matrix
     )
 
     external_transfer_gate = subparsers.add_parser(
@@ -4194,6 +4633,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     external_transfer_gate.add_argument(
+        "--representation-backend-plan",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--representation-backend-plan-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
         "--broad-ec-disambiguation-audit",
         default=None,
     )
@@ -4222,6 +4669,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     external_transfer_gate.add_argument(
+        "--sequence-search-export",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--sequence-search-export-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
         "--external-import-readiness-audit",
         default=None,
     )
@@ -4231,6 +4686,22 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--active-site-sourcing-queue-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-sourcing-export",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-sourcing-export-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--transfer-blocker-matrix",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--transfer-blocker-matrix-audit",
         default=None,
     )
     external_transfer_gate.add_argument(
