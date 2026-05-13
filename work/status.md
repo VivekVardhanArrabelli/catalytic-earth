@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 54
-- Measured elapsed time: 2042.9 minutes (34.05 hours)
+- Entries: 55
+- Measured elapsed time: 2103.3 minutes (35.06 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 1964.8 measured minutes (32.75 hours)
+- post-v2: 2025.2 measured minutes (33.75 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 536
-- Evidence references logged: 442
+- Artifact references logged: 540
+- Evidence references logged: 452
 
 ## Recent Entries
-
-### 2026-05-12T15:04:26.275853+00:00 - post-v2
-
-- Task: Prioritize expert-reviewed ATP family ontology expansion
-- Time mode: measured
-- Measured minutes: 2.833
-- Started: 2026-05-12T15:01:00Z
-- Ended: 2026-05-12T15:03:50Z
-- Artifacts: README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_factory_notes.md, work/label_preview_700_notes.md
-- Evidence: 195 unit tests passed, validate passed, automation prompt updated to prioritize nine-family ontology expansion, expert review now treated as available, guardrails remain non-countable before count growth
-- Notes: Follow-up after active automation run 6d15811; docs corrected stale defer-until-expert-review language.
 
 ### 2026-05-12T16:42:24.970333+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 205 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 21/21 950 label-factory gates passed, 673 countable labels, 21 accepted labels across 875-950, 282 review-state rows explicitly deferred, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, m_csa:865 external-review-only debt classified
 - Notes: Normal locked measured run. Accepted 875, 900, 925, and 950 gated batches; repaired unclassified review-debt issue class; documentation checked and updated.
 
+### 2026-05-13T02:01:21.378176+00:00 - post-v2
+
+- Task: Accept gated 975 and 1000 label batches
+- Time mode: measured
+- Measured minutes: 60.383
+- Started: 2026-05-13T01:00:39Z
+- Ended: 2026-05-13T02:01:02Z
+- Artifacts: artifacts/v3_label_batch_acceptance_check_1000.json, artifacts/v3_label_factory_gate_check_1000.json, artifacts/v3_accepted_review_debt_deferral_audit_1000.json, work/label_preview_1000_notes.md
+- Evidence: 206 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 679 countable labels, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures
+- Notes: Normal locked measured run. Accepted 975 and 1000; repaired m_csa:986 heme boundary deferral; documentation updated.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -170,6 +170,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T21:46:07.698000+00:00: Countable registry is 642 labels; the label factory remains below the 1000-label milestone and should continue bounded batches with quality repair on any gate failure.
 - 2026-05-12T22:58:26.440004+00:00: Countable registry is 652 labels; next bounded work is an 875 preview while post-850 gate stays clean.
 - 2026-05-13T00:50:52.831198+00:00: Countable registry is 673 labels; next bounded work is a 975 preview while post-950 gate stays clean.
+- 2026-05-13T02:01:21.378176+00:00: Low-score local heme boundary rows now defer instead of becoming countable out-of-scope negatives.
 
 ## Scope Adjustments
 
@@ -225,3 +226,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T21:46:07.698000+00:00: Accepted 775 as latest gated countable slice; next bounded work is an 800 preview only while the 775 post-batch gate stays clean.
 - 2026-05-12T22:58:26.440004+00:00: Accepted 850 as latest gated countable slice; geometry row reuse added for tranche scaling.
 - 2026-05-13T00:50:52.831198+00:00: Accepted 950 as latest gated countable slice; review-debt deferral remains mandatory before 1,000-label milestone.
+- 2026-05-13T02:01:21.378176+00:00: Accepted 1000 as latest gated countable slice; next bounded tranche is 1025 only while post-1000 gates stay clean.

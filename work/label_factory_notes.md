@@ -3,11 +3,11 @@
 ## Current Plan
 
 The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
-800-, 825-, 850-, 875-, 900-, 925-, and 950-slice label-factory batches have
-been processed through countable import and acceptance checks. The canonical
-registry has 673 countable labels. Open the next tranche only as a bounded
-gated 975 preview; 282 rows remain `needs_more_evidence` and are explicitly
-non-countable under the 950 deferral audit.
+800-, 825-, 850-, 875-, 900-, 925-, 950-, 975-, and 1000-slice label-factory batches
+have been processed through countable import and acceptance checks. The
+canonical registry has 679 countable labels. Open the next tranche only as a
+bounded gated 1,025 preview; 326 rows remain `needs_more_evidence` and are
+explicitly non-countable under the 1000 deferral audit.
 
 ## Current Generated Artifacts
 
@@ -97,24 +97,35 @@ non-countable under the 950 deferral audit.
 - `artifacts/v3_mechanism_ontology_gap_audit_950.json`
 - `artifacts/v3_learned_retrieval_manifest_950.json`
 - `artifacts/v3_sequence_similarity_failure_sets_950.json`
+- `artifacts/v3_label_batch_acceptance_check_975.json`
+- `artifacts/v3_label_factory_gate_check_975.json`
+- `artifacts/v3_accepted_review_debt_deferral_audit_975.json`
+- `artifacts/v3_label_scaling_quality_audit_975_preview.json`
+- `artifacts/v3_active_learning_review_queue_975.json`
+- `artifacts/v3_reaction_substrate_mismatch_review_export_975.json`
+- `artifacts/v3_expert_label_decision_review_export_975.json`
+- `artifacts/v3_expert_label_decision_local_evidence_gap_audit_975.json`
+- `artifacts/v3_mechanism_ontology_gap_audit_975.json`
+- `artifacts/v3_learned_retrieval_manifest_975.json`
+- `artifacts/v3_sequence_similarity_failure_sets_975.json`
 
 Current export behavior: expert-review artifacts include top-ranked review rows
 plus every unlabeled queue row, so label expansion cannot skip a lower-ranked
 unlabeled candidate.
 
-Current gate state: 21/21 factory checks pass on the 673-label countable
-registry. The latest accepted batch-acceptance check passes: 6 additional
-labels were accepted for counting in the 950 batch (`m_csa:933`, `m_csa:935`,
-`m_csa:937`, `m_csa:941`, `m_csa:942`, and `m_csa:944`), 282 review-state
+Current gate state: 21/21 factory checks pass on the 679-label countable
+registry. The latest accepted batch-acceptance check passes: 4 additional
+labels were accepted for counting in the 1000 batch (`m_csa:978`, `m_csa:988`,
+`m_csa:990`, and `m_csa:994`), 326 review-state
 decisions remain pending, and the countable subset has 0 hard negatives,
 0 near misses, 0 out-of-scope false non-abstentions, and 0 actionable
 in-scope failures. `m_csa:836` and `m_csa:865` are regression guardrail rows:
 role-inferred or review-marked evidence gaps remain `needs_more_evidence`
-rather than counted. The 950 active-learning queue retains all 277
-expert-label decision rows, the 950 deferral audit keeps every review-state
-row non-countable, and the batch summary reports 19/19 accepted batches with
-0 blockers. The next tranche is a bounded gated 975 preview only while these
-950 gates remain clean.
+rather than counted. The 1000 active-learning queue retains all 321
+expert-label decision rows, the 1000 deferral audit keeps every review-state
+row non-countable, and the batch summary reports 21/21 accepted batches with
+0 blockers. The next tranche is a bounded gated 1,025 preview only while these
+1000 gates remain clean.
 
 Historical 700 gate state: 20/20 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional

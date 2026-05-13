@@ -12767,6 +12767,12 @@ def _provisional_unlabeled_decision(
         or bool(counterevidence)
         or (cofactor_sensitive_top1 and cofactor_level in {"absent", "structure_only", "role_inferred"})
     )
+    cofactor_supported_low_score_negative = (
+        top1_score < threshold
+        and cofactor_sensitive_top1
+        and cofactor_level == "ligand_supported"
+        and _has_cofactor_sensitive_seed_text(top1, text, entry_name)
+    )
     if top1_score < threshold and evidence_limited_negative:
         rationale_bits = [
             f"{entry_name} remains below the {threshold:.4f} abstention floor, "
@@ -12790,6 +12796,23 @@ def _provisional_unlabeled_decision(
             "confidence": "medium",
             "reviewer": reviewer,
             "rationale": " ".join(rationale_bits),
+            "evidence_score": 0.55,
+            "review_status": "needs_expert_review",
+        }
+    if cofactor_supported_low_score_negative:
+        return {
+            "action": "mark_needs_more_evidence",
+            "label_type": "out_of_scope",
+            "fingerprint_id": None,
+            "tier": "bronze",
+            "confidence": "medium",
+            "reviewer": reviewer,
+            "rationale": (
+                f"{entry_name} remains below the {threshold:.4f} abstention floor, "
+                f"but local {cofactor_level} evidence and mechanism text match "
+                f"{top1}; keep this candidate in expert review rather than "
+                "counting it as a clean out-of-scope negative."
+            ),
             "evidence_score": 0.55,
             "review_status": "needs_expert_review",
         }
@@ -12851,6 +12874,41 @@ def _has_metal_hydrolysis_text(text: str, entry_name: str) -> bool:
         "attacking nucleophilic hydroxide",
     }
     return any(term in combined for term in direct_terms | water_attack_terms)
+
+
+def _has_cofactor_sensitive_seed_text(
+    fingerprint_id: str,
+    text: str,
+    entry_name: str,
+) -> bool:
+    combined = f"{entry_name.lower()} {text}"
+    if fingerprint_id == "heme_peroxidase_oxidase":
+        return any(
+            term in combined
+            for term in {"heme", "haem", "peroxidase", "oxidase"}
+        )
+    if fingerprint_id in {
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase",
+    }:
+        return any(
+            term in combined
+            for term in {
+                "dehydrogenase",
+                "fad",
+                "flavin",
+                "fmn",
+                "monooxygenase",
+            }
+        )
+    if fingerprint_id == "cobalamin_radical_rearrangement":
+        return any(
+            term in combined
+            for term in {"adenosylcobalamin", "b12", "cobalamin"}
+        )
+    if fingerprint_id == "metal_dependent_hydrolase":
+        return _has_metal_hydrolysis_text(text, entry_name)
+    return False
 
 
 def _has_ser_his_hydrolase_text(text: str, entry_name: str) -> bool:

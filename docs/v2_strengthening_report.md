@@ -12,10 +12,10 @@ The V2 scaffold was strengthened in several ways:
    before giving full triad evidence.
 4. Abstention calibration now reports the tradeoff between zero out-of-scope
    false non-abstentions and retained in-scope positives.
-5. Curated labels now cover 673 countable entries: the full 475-entry source
-   slice plus 198 factory-accepted labels from the 500-, 525-, 550-, 575-,
+5. Curated labels now cover 679 countable entries: the full 475-entry source
+   slice plus 204 factory-accepted labels from the 500-, 525-, 550-, 575-,
    600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-, 800-, 825-, 850-, 875-,
-   900-, 925-, and 950-entry queues, with geometry evaluability tracked
+   900-, 925-, 950-, 975-, and 1,000-entry queues, with geometry evaluability tracked
    separately from label availability.
 6. mmCIF structure parsing now resolves catalytic residue positions through
    both `auth_*` and `label_*` numbering namespaces.
@@ -32,7 +32,7 @@ The V2 scaffold was strengthened in several ways:
 Current artifact:
 
 ```text
-artifacts/v3_geometry_label_eval_950.json
+artifacts/v3_geometry_label_eval_975.json
 ```
 
 Current measured result on the 20-entry regression slice:
@@ -64,19 +64,19 @@ artifacts/v3_hard_negative_controls_125.json
 artifacts/v3_label_expansion_candidates_125.json
 ```
 
-The 950-entry countable geometry stress slice is intentionally harder: 206
-in-scope positives, 466 evaluated out-of-scope controls, 656 evaluable
-active-site structures, and 38 structure-mapping issues. Its calibrated
-zero-false threshold is 0.4115, which retains 202/206 in-scope positives
-(`0.9806`) and reports 0 hard negatives plus 0 near misses. The
+The 1,000-entry countable geometry stress slice is intentionally harder: 212
+in-scope positives, 466 evaluated out-of-scope controls, 662 evaluable
+active-site structures, and 39 structure-mapping issues. Its calibrated
+zero-false threshold is 0.4115, which retains 208/212 in-scope positives
+(`0.9811`) and reports 0 hard negatives plus 0 near misses. The
 remaining in-scope failures are `m_csa:132`, `m_csa:353`, `m_csa:372`, and
 `m_csa:430`; all are evidence-limited abstentions tied to selected-structure
 cofactor gaps, so the current actionable in-scope failure count is 0.
 
 The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
-800-, 825-, 850-, 875-, 900-, 925-, and 950-entry candidate queues have been
-processed through the label factory. The accepted countable subsets added 198
-labels beyond the 475-entry slice and leave 282 accepted-950 review-state rows
+800-, 825-, 850-, 875-, 900-, 925-, 950-, 975-, and 1,000-entry candidate queues have
+been processed through the label factory. The accepted countable subsets added 204
+labels beyond the 475-entry slice and leave 326 accepted-1,000 review-state rows
 outside the benchmark until local
 evidence gaps are repaired.
 
@@ -86,11 +86,11 @@ The label-factory slice adds `artifacts/v3_label_factory_audit_500.json`,
 `artifacts/v3_active_learning_review_queue_500.json`,
 `artifacts/v3_expert_review_export_500.json`,
 `artifacts/v3_family_propagation_guardrails_500.json`, and
-`artifacts/v3_label_factory_gate_check_500.json`; the accepted 950 artifacts
-carry the same workflow forward at `*_950.json`. The current gate passes for
-the 673-label countable registry, and
-`artifacts/v3_label_batch_acceptance_check_950.json` records the latest
-accepted 950-slice batch. Review-debt remediation artifacts now separate
+`artifacts/v3_label_factory_gate_check_500.json`; the accepted 1,000 artifacts
+carry the same workflow forward at `*_1000.json`. The current gate passes for
+the 679-label countable registry, and
+`artifacts/v3_label_batch_acceptance_check_1000.json` records the latest
+accepted 1,000-slice batch. Review-debt remediation artifacts now separate
 structure-wide alternate-PDB cofactor hits from local active-site support before
 any further count growth.
 
@@ -99,7 +99,7 @@ any further count growth.
 Current artifact:
 
 ```text
-artifacts/perf_report_950.json
+artifacts/perf_report_1000.json
 ```
 
 The suite is local-only and avoids network calls. It measures the current graph,
@@ -108,23 +108,23 @@ hard-negative selection, in-scope failure analysis, cofactor coverage, cofactor
 policy sweeps, seed-family audits, and structure-mapping diagnostics on existing
 artifacts.
 
-Latest 5-iteration mean timings on the 950-entry artifacts:
+Latest 3-iteration mean timings on the 1,000-entry artifacts:
 
-- load V1 graph: 108.511 ms
-- build V2 benchmark: 14.298 ms
-- run geometry retrieval: 360.688 ms
-- evaluate geometry labels: 1.496 ms
-- sweep abstention thresholds: 1414.655 ms
-- analyze geometry score margins: 1.924 ms
-- build hard negative controls: 3.216 ms
-- build adversarial negative controls: 5.728 ms
-- build label-factory audit: 26.859 ms
-- build active-learning review queue: 8.737 ms
-- analyze in-scope failures: 1.178 ms
-- analyze cofactor coverage: 1.493 ms
-- analyze cofactor abstention policy: 1911.291 ms
-- analyze seed-family performance: 2.010 ms
-- analyze structure mapping issues: 0.113 ms
+- load V1 graph: 96.720 ms
+- build V2 benchmark: 14.682 ms
+- run geometry retrieval: 385.569 ms
+- evaluate geometry labels: 1.673 ms
+- sweep abstention thresholds: 1386.516 ms
+- analyze geometry score margins: 1.729 ms
+- build hard negative controls: 3.121 ms
+- build adversarial negative controls: 36.282 ms
+- build label-factory audit: 8.891 ms
+- build active-learning review queue: 9.682 ms
+- analyze in-scope failures: 1.226 ms
+- analyze cofactor coverage: 1.475 ms
+- analyze cofactor abstention policy: 1965.815 ms
+- analyze seed-family performance: 2.027 ms
+- analyze structure mapping issues: 0.141 ms
 
 ## Interpretation
 
@@ -142,8 +142,8 @@ What is now better:
 - substrate-pocket context now contributes to ranking
 - hard negative controls are explicit instead of hidden in aggregate metrics
 - near-miss controls now expose out-of-scope rows just below the positive score
-  floor; the current 950-entry countable slice has no near misses
-- curated labels cover 673 countable entries
+  floor; the current 1,000-entry countable slice has no near misses
+- curated labels cover 679 countable entries
 - structure-mapping blockers are now summarized as a first-class artifact and
   currently report 0 non-OK mappings on the 100-entry slice, 1 labeled
   out-of-scope issue on the 125-entry slice, 2 on the 150- and 175-entry
@@ -155,10 +155,11 @@ What is now better:
   the 725-entry slice, 23 on the 750-entry slice, 27 on the 775-entry slice,
   28 on the 800-entry slice, 29 on the 825-entry slice, 30 on the
   850-entry slice, 31 on the 875-entry slice, 33 on the 900-entry slice,
-  34 on the 925-entry slice, and 38 on the 950-entry slice
-- the current 950-entry label queue is explicit; the accepted 950 batch is
-  resolved only for 6 clean labels, and the post-batch active-learning queue
-  retains all 277 expert-label decision rows while 282 review-state rows remain
+  34 on the 925-entry slice, 38 on the 950- and 975-entry slices, and 39 on the
+  1000-entry slice
+- the current 1000-entry label queue is explicit; the accepted 1000 batch is
+  resolved only for 4 clean labels, and the post-batch active-learning queue
+  retains all 321 expert-label decision rows while 326 review-state rows remain
   non-countable; the queue continues to prioritize reaction/substrate mismatch
   review rows with kinase or ATP phosphoryl-transfer text, while
   family-propagation guardrails retain 30 related propagation blockers
@@ -170,9 +171,9 @@ What is now better:
 
 What remains weak:
 
-- the curated label set is still provisional despite covering 673 countable
+- the curated label set is still provisional despite covering 679 countable
   entries; bronze/silver factory tiers are not expert validation
-- the 950-entry countable slice still has 4 in-scope positives that are
+- the 1000-entry countable slice still has 4 in-scope positives that are
   abstained because the selected structures lack expected local or
   structure-wide cofactor context
 - ligand/cofactor context is only a simple nearby-ligand heuristic

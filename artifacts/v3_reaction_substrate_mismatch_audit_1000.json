@@ -1,0 +1,971 @@
+{
+  "metadata": {
+    "atp_phosphoryl_transfer_family_boundary_count": 19,
+    "atp_phosphoryl_transfer_family_counts": {
+      "askha": 3,
+      "atp_grasp": 1,
+      "dnk": 1,
+      "epk": 7,
+      "ghkl": 1,
+      "ghmp": 1,
+      "ndk": 1,
+      "pfka": 1,
+      "pfkb": 3
+    },
+    "countable_label_candidate_count": 0,
+    "method": "reaction_substrate_mismatch_audit",
+    "mismatch_count": 24,
+    "mismatch_entry_ids": [
+      "m_csa:35",
+      "m_csa:51",
+      "m_csa:151",
+      "m_csa:246",
+      "m_csa:365",
+      "m_csa:498",
+      "m_csa:541",
+      "m_csa:588",
+      "m_csa:592",
+      "m_csa:603",
+      "m_csa:637",
+      "m_csa:640",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:670",
+      "m_csa:696",
+      "m_csa:751",
+      "m_csa:756",
+      "m_csa:757",
+      "m_csa:760",
+      "m_csa:778",
+      "m_csa:863"
+    ],
+    "mismatch_reason_counts": {
+      "atp_phosphoryl_transfer_text_with_hydrolase_top1": 11,
+      "kinase_name_with_hydrolase_top1": 22
+    },
+    "review_rule": "keyword-level reaction/substrate mismatch signals are review triage only; they cannot reject or accept labels without expert or rule-backed review",
+    "top1_fingerprint_counts": {
+      "metal_dependent_hydrolase": 24
+    }
+  },
+  "rows": [
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "Asp149 deprotonates the protein substrate hydroxyl group, initiating nucleophilic attack upon the gamma-phosphate of ATP in a substitution reaction that eliminates ADP. The phosphorylated protein deprotonates Asp149 [PMID:10545198]."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 2,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4069
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": null,
+      "decision_review_status": null,
+      "entry_id": "m_csa:51",
+      "entry_name": "phosphoenolpyruvate carboxykinase (ATP)",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "The substrate undergoes decarboxylation, resulting in the formation of an enol intermediate, stabilised by positively charged residues. The oxyanion formed attacks the gamma phosphate of ATP in a nucleophilic substitution, giving the products of ADP and phosphoenolpyruvate."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 23,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3977
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": null,
+      "decision_review_status": null,
+      "entry_id": "m_csa:151",
+      "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "The catalysis follows an inline displacement mechanism. The hydroxyl group of HP performs a nucleophilic attack to the beta-phosphate group of ATP to yield HP-pyrophosphate and AMP. Arg92, Arg82 and two Mg(II) ions stabilise the transition state. Both Mg(II) ions activate the beta-phosphorus for..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 20,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4081
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "The entry represents the proposed dissociative (S<sub>N</sub>1-type) mechanism. Here a metaphosphate anion is eliminated from the ATP substrate in an intramolecular elimination. This extremely reactive intermediate then attacks the protein tyrosine substrate in an addition reaction with concomitt...",
+        "This entry represents the associative (S<sub>N</sub>2-type) mechanism. Here Asp1132 deprotonates the substrate Tyr hydroxide, activating it for nucleophilic attack on the gamma phosphate of ATP, which forms a pentavalent transition state. The transition state is stabilised by hydrogen bonding to..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 3,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4033
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "pfka",
+        "family_name": "PfkA-fold phosphofructokinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "pfka",
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:365",
+      "entry_name": "Phosphofructokinase I",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "Asp128 is proposed to act as a base, abstracting a proton from 1-OH of 6-phosphofructose. This increases the nucleophilicity of the functional group which then attacks at the gamma phosphate of ATP in an SN2 reaction, forming 1,6-bisphosphate fructose and ADP."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 5,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3999
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "atp_grasp",
+        "family_name": "ATP-grasp ligases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "atp_grasp",
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:498",
+      "entry_name": "glutathione synthase (eukaryotic)",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "Although this protein shares very little similarity to the prokaryotic enzyme (MACiE 199), the reaction is thought to proceed in a similar manner with two successive transfer reactions. Firstly, it transfers the gamma-phosphate group of ATP to the C-terminal carboxylate of the second substrate, g..."
+      ],
+      "mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 4,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3949
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": null,
+      "decision_review_status": null,
+      "entry_id": "m_csa:541",
+      "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "The formyl oxygen of the major rotamer of the enolate form of 5-formylTHF makes a nucleophilic attack on the gamma-phosphoryl group of ATP to form a phosphorylated intermediate. At this intermediate, enzyme-bound ADP can freely equilibriate with the solvent ADP. The N10 of the iminium phosphate i..."
+      ],
+      "mismatch_reasons": [
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 28,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4001
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "dnk",
+        "family_name": "Deoxynucleoside kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "dnk",
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": null,
+      "decision_review_status": null,
+      "entry_id": "m_csa:588",
+      "entry_name": "thymidine kinase",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "The catalytic mechanism proceeds as follows: Glu83 acts as a general base to activate the acceptor group, 5'-hydroxyl group of thymidine. The activated acceptor group makes a nucleophilic attack on the transferred group, gamma-phosphate of ATP. During the transition state, the transferred group a..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 7,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4073
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "askha",
+        "family_name": "ASKHA sugar and acetate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "askha",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "Asp 100 acts as a general base to remove a proton from the O6 hydroxyl group of glucose, which can then attack the gamma phosphorous of ATP. Simultaneously, Lys 169 acts as an acid catalyst, protonating the gamma phosphate's O3. There is then subsequent proton transfer from Asp205 to Lys169 so th..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 278,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5769
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ghkl",
+        "family_name": "GHKL/Bergerat ATP-binding kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ghkl",
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "One proposed mechanism is a general base mechanism. Glu251 deprotonates the targeted serine residue of the pyruvate dehydrogenase E1 subunit and promotes its nucleophilic attack on the terminal phosphate of ATP. His247 polarises Glu243 to allow deprotonation. Magnesium ion coordinated to Asp help..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 1,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4004
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ndk",
+        "family_name": "Nucleoside diphosphate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ndk",
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": null,
+      "decision_review_status": null,
+      "entry_id": "m_csa:637",
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "In line nucleophilic attack from the dNMP on the gamma phosphate of ATP seems the most likely mechanism for the reaction. This proceeds via a pentavalent phosphate transition state, stabilised by catalytic residues Arg68, His 206 and a catalytic Mg2+ ion whose location in the enzyme has not been..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 8,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4066
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
+      "countable_label_candidate": false,
+      "current_label_type": "out_of_scope",
+      "decision_action": null,
+      "decision_review_status": null,
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "label_state": "labeled",
+      "mechanism_text_snippets": [
+        "Nucleophilic attack on the gamma phosphate of ATP by the 3' or 5' OH group of the substrate allows formation of a pentavalent phosphate transition state which collapses to release the products. In order to accelerate this the deprotonation of the OH group is accomplished by Asp 190 and the transi..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 6,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue"
+      ],
+      "source_recommended_action": "hold_bronze_boundary_review",
+      "target_fingerprint_id": null,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4066
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "askha",
+        "family_name": "ASKHA sugar and acetate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "askha",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "The proposed mechanism is an in-line single displacement reaction where the acetate acts as the nucleophile to attack the gamma phosphate of ATP, resulting in acetyl phosphate and ADP. For this reaction to take place, a magnesium ion, His180, Arg241 and Arg91 are important in stabilising the reac..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 10,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4227
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "ghmp",
+        "family_name": "GHMP-superfamily kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "ghmp",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "The catalysis is most likely to follow an associative in-line mechanism to form a pentacovalent intermediate. Asp141 acts as a base to deprotonate the hydroxyl group of CDP-ME to promote its nucleophilic attack on the terminal phosphate of ATP. Lys10 stabilises the transition state by interacting..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 15,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3581
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "Asp278 acts as a base to deprotonate the 4-hydroxyl group of inositol ring. The negatively charged oxygen atom of the hydroxyl group acts as a nucleophile and directly attack the terminal-phosphate of ATP. The product is formed via a SN2 mechanism. Mg2+ and Lys150 which coordinates with alpha-pho..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 17,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3263
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "pfkb",
+        "family_name": "PfkB/ribokinase-family kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "pfkb",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "Asp255 acts as a base to deprotonate the O5'-hydroxyl group of ribose. The negatively charged O5' atom then makes a direct nucleophilic attack on the gamma-phosphate group of ATP in an in-line mechanism. An anion hole formed by backbone amide group of residues 252-255 (Ala252, Ala253, Gly254, Asp..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 16,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.2601
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "pfkb",
+        "family_name": "PfkB/ribokinase-family kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "pfkb",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "HMPP kinase catalyses an SN2 type in line displacement reaction where the substrate acts as the nucleophile to attack the gamma phosphate of ATP, forming a pentavalent phosphate transition state. This is stabilised by Mg2+and Lys 176 at the active site, and collapses to release the end products...."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 9,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3474
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "askha",
+        "family_name": "ASKHA sugar and acetate kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "askha",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "The 6-hydroxyl group of Glucose is 3A from the gamma-phosphorus atom and oriented for an in-line displacement reaction. Asp657 is a catalytic base. It abstracts a proton from the 6-hydroxyl group, activating the oxygen which then attacks the gamma-phosphorous. This leads to lysis of the phosphodi..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 14,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3559
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "pfkb",
+        "family_name": "PfkB/ribokinase-family kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "pfkb",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "The mechanism proposed is mainly by homology to other ribokinases, such as human adenosine kinase. Asp 252 is a general base and deprotonates the 5' hydroxyl group of the ribose. The deprotonated hydroxyl attacks the gamma-phosphate of ATP in an inline displacement mechanism. The backbone amides..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 18,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3789
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:756",
+      "entry_name": "protein kinase C",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "Asp 369 acts as a base by abstracting a proton from the phosphoacceptor, activating it for nucleophilic attack on the gamma phosphorus atom of ATP. Asp 369 is stabilised by a hydrogen bond to its main chain carbonyl from Asn 374. The reaction goes through a pentavalent transition state which is s..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 11,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3721
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "Asp 166 activates the phosphoacceptor, serine causing it to act as a nucleophile and attack the gamma phosphorus of ATP, creating a pentavalent transition state, stabilised by Lys 168 and Thr202 (part of the catalytic triad along with Asp167). Once the gamma phosphoryl transfer has taken place, A..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1",
+        "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+      ],
+      "rank": 12,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.4252
+    },
+    {
+      "atp_phosphoryl_transfer_family": {
+        "countable_label_candidate": false,
+        "evidence_sources": [
+          "kinase_name_with_hydrolase_top1",
+          "reaction_substrate_mismatch_text_signature"
+        ],
+        "family_id": "epk",
+        "family_name": "ePK-fold protein and ePK-like kinases",
+        "parent_family_id": "atp_phosphoryl_transfer",
+        "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+        "support_level": "review_lane_text_signature_only"
+      },
+      "atp_phosphoryl_transfer_family_id": "epk",
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "The basic mechanism is the inline displacement of ADP, by nucleophilic attack of the SpoIIAA Ser 58 on the gamma-phosphate of ATP. Various residues and an Mg cofactor aid the reaction: Mg2+, bound by Asn 50 coordinates all three phosphate groups of ATP. This stabilises the transition state by red..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 13,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3977
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:778",
+      "entry_name": "homoserine kinase",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "A transition state stabilisation mechanism which does not involved a catalytic base is the currently accepted proposal for HSK. Substrate binding induces conformational changes at the active site to promote the catalysis and transition state stabilisation. Mg2+ ion coordinates with the beta and g..."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 34,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.3999
+    },
+    {
+      "atp_phosphoryl_transfer_family": null,
+      "atp_phosphoryl_transfer_family_id": null,
+      "countable_label_candidate": false,
+      "current_label_type": null,
+      "decision_action": "mark_needs_more_evidence",
+      "decision_review_status": "needs_expert_review",
+      "entry_id": "m_csa:863",
+      "entry_name": "phosphoenolpyruvate carboxykinase (GTP)",
+      "label_state": "unlabeled",
+      "mechanism_text_snippets": [
+        "Phosphoryl transfer occurring through a direct inline transfer of the phosphoryl group progressing through an enol-pyruvate intermediate."
+      ],
+      "mismatch_reasons": [
+        "kinase_name_with_hydrolase_top1"
+      ],
+      "rank": 349,
+      "recommended_action": "expert_reaction_substrate_review",
+      "review_policy": "reaction/substrate text that conflicts with the top ontology family must be expert-reviewed before any label can count",
+      "source_artifacts": [
+        "active_learning_queue",
+        "review_evidence_gaps"
+      ],
+      "source_recommended_action": "expert_label_decision_needed",
+      "target_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_ontology_family": "hydrolysis",
+      "top1_score": 0.5666
+    }
+  ]
+}

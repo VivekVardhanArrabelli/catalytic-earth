@@ -1,0 +1,773 @@
+{
+  "closest_below_floor_rows": [
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 1.0,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "nonhydrolytic_metal_transfer_ligand_context"
+          },
+          {
+            "penalty": 0.68,
+            "reason": "nucleotide_transfer_ligand_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "nonhydrolytic_metal_transfer_ligand_context",
+          "nucleotide_transfer_ligand_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.211
+      },
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": "adenylosuccinate synthase",
+        "ligand_codes": [
+          "GDP",
+          "HDA",
+          "NO3",
+          "IMP",
+          "MG"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "There is a two-step nature of the reaction. Four residues are essential for the reaction: Asp13, His41 and Gln224 and Lys16 . Asp13 acts first as a catalytic base, removing a proton from the N1 atom of IMP, while His41 acts as an acid, protonating the beta-phosphoryl group of GTP which then becom..."
+        ],
+        "nearby_residue_count": 59,
+        "pdb_id": "1GIM",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0508,
+          "charge_balance": 0.0678,
+          "hydrophobic_fraction": 0.3051,
+          "mean_min_distance_to_active_site": 5.4765,
+          "negative_fraction": 0.1017,
+          "polar_fraction": 0.2881,
+          "positive_fraction": 0.1695,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "ASP",
+          "LYS",
+          "GLN",
+          "GLY",
+          "HIS"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "GDP",
+          "HDA",
+          "NO3",
+          "IMP",
+          "MG"
+        ]
+      },
+      "entry_id": "m_csa:65",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Adenylosuccinate synthase performs nucleotide-dependent ligation/addition chemistry outside the current hydrolase and PLP seed fingerprints.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0131,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4114
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.0,
+        "counterevidence_penalty": 0.63,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.63,
+            "reason": "molybdenum_center_heme_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "molybdenum_center_heme_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2811
+      },
+      "context": {
+        "cofactor_families": [
+          "heme"
+        ],
+        "entry_name": "sulfite oxidase",
+        "ligand_codes": [
+          "MTE",
+          "MO",
+          "HEM"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "This protein requires both Heme and a molybdenum (VI) centre to be catalytically active. The sulfite substrate initiates a nucleophilic attack on one of the oxo ligands of the Mo(VI) centre, reducing the Mo to +4. This forms the sulfate product, which is displaced from the active site by water. D..."
+        ],
+        "nearby_residue_count": 74,
+        "pdb_id": "1SOX",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2297,
+          "charge_balance": 0.081,
+          "hydrophobic_fraction": 0.3919,
+          "mean_min_distance_to_active_site": 5.4193,
+          "negative_fraction": 0.0676,
+          "polar_fraction": 0.2027,
+          "positive_fraction": 0.1486,
+          "sulfur_fraction": 0.0
+        },
+        "residue_codes": [
+          "CYS",
+          "HIS",
+          "HIS",
+          "ARG",
+          "TYR"
+        ],
+        "structure_cofactor_families": [
+          "heme"
+        ],
+        "structure_ligand_codes": [
+          "MTE",
+          "MO",
+          "HEM",
+          "SO4",
+          "GOL",
+          "EPE"
+        ]
+      },
+      "entry_id": "m_csa:121",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Sulfite oxidase uses molybdenum-centered sulfite oxidation with heme electron transfer, outside the current heme peroxidase or oxidase seed.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0136,
+      "top1_fingerprint_id": "heme_peroxidase_oxidase",
+      "top1_score": 0.4109
+    },
+    {
+      "cofactor_evidence_level": "not_required",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 1.0,
+        "counterevidence_penalty": 0.7,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.7,
+            "reason": "ser_his_seed_missing_triad_coherence"
+          }
+        ],
+        "counterevidence_reasons": [
+          "ser_his_seed_missing_triad_coherence"
+        ],
+        "mechanistic_coherence_score": 0.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.9847
+      },
+      "context": {
+        "cofactor_families": [
+          "cobalamin"
+        ],
+        "entry_name": "methionine synthase",
+        "ligand_codes": [
+          "COB"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "This enzyme is unique in E. coli in that it utilises methylcobalamin (rather than adenosylcobalamin) and catalysis involves a heterolytic (rather than homolytic) cleavage of the Co-C bond [PMID:8652590]. The Cob(I)alamin intermediate generated by this heterolytic cleavage is highly reactive and i..."
+        ],
+        "nearby_residue_count": 26,
+        "pdb_id": "1BMT",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.4615,
+          "mean_min_distance_to_active_site": 4.9722,
+          "negative_fraction": 0.1154,
+          "polar_fraction": 0.1923,
+          "positive_fraction": 0.1154,
+          "sulfur_fraction": 0.0769
+        },
+        "residue_codes": [
+          "ASP",
+          "HIS",
+          "SER"
+        ],
+        "structure_cofactor_families": [
+          "cobalamin"
+        ],
+        "structure_ligand_codes": [
+          "COB"
+        ]
+      },
+      "entry_id": "m_csa:268",
+      "hard_negative_reason": "ser_his_signature_without_ser_nucleophile_coherence",
+      "label_rationale": "Methionine synthase uses methylcobalamin heterolytic methyl transfer rather than adenosylcobalamin radical rearrangement in the current cobalamin seed.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.014,
+      "top1_fingerprint_id": "ser_his_acid_hydrolase",
+      "top1_score": 0.4105
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.7111,
+        "counterevidence_penalty": 0.72,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.72,
+            "reason": "role_inferred_metal_low_pocket_support"
+          }
+        ],
+        "counterevidence_reasons": [
+          "role_inferred_metal_low_pocket_support"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1325
+      },
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "exodeoxyribonuclease (lambda-induced)",
+        "ligand_codes": [
+          "MSE"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "There are several proposed mechanisms for the action of 5'-3' exonuclease, taking into account many possible mechanisms involving up to three catalytic divalent metal ions. The most accepted mechanism implies the involvement of two catalytic Mg(2+) ions. A water molecule is deprotonated by the co..."
+        ],
+        "nearby_residue_count": 63,
+        "pdb_id": "1EXN",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.127,
+          "charge_balance": 0.0794,
+          "hydrophobic_fraction": 0.4286,
+          "mean_min_distance_to_active_site": 5.3825,
+          "negative_fraction": 0.0635,
+          "polar_fraction": 0.1746,
+          "positive_fraction": 0.1429,
+          "sulfur_fraction": 0.0159
+        },
+        "residue_codes": [
+          "ASP",
+          "LYS",
+          "ASP",
+          "ASP",
+          "ASP",
+          "ASP",
+          "ASP",
+          "ASP",
+          "GLU",
+          "ARG"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "MSE"
+        ]
+      },
+      "entry_id": "m_csa:549",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "exodeoxyribonuclease (lambda-induced) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4105, below the 0.4115 floor. Counterevidence: role_inferred_metal_low_pocket_support.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.014,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4105
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.6136,
+        "counterevidence_penalty": 0.72,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.72,
+            "reason": "sam_ligand_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "sam_ligand_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1832
+      },
+      "context": {
+        "cofactor_families": [
+          "metal_ion",
+          "sam"
+        ],
+        "entry_name": "methionine adenosyltransferase",
+        "ligand_codes": [
+          "SAM",
+          "ADN",
+          "K",
+          "MET",
+          "PPK",
+          "MG"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The reaction involves the cleavage of the triphosphate chain from ATP, in forming the product, and hydrolysis of the PPPi moiety to PPi and Pi before the AdoMet product is released. <br/><br/> Mechanistic studies have shown the AdoMet forming reaction to follow an SN2 mechanism, with the S atom o..."
+        ],
+        "nearby_residue_count": 107,
+        "pdb_id": "5A1I",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.0748,
+          "charge_balance": -0.0281,
+          "hydrophobic_fraction": 0.3925,
+          "mean_min_distance_to_active_site": 4.8509,
+          "negative_fraction": 0.0935,
+          "polar_fraction": 0.2617,
+          "positive_fraction": 0.0654,
+          "sulfur_fraction": 0.0374
+        },
+        "residue_codes": [
+          "GLU",
+          "LYS",
+          "LYS",
+          "LYS",
+          "GLU",
+          "ASP",
+          "LYS",
+          "HIS",
+          "ASP",
+          "LYS",
+          "PHE",
+          "ASP",
+          "ALA",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion",
+          "sam"
+        ],
+        "structure_ligand_codes": [
+          "SAM",
+          "ADN",
+          "K",
+          "MET",
+          "PPK",
+          "MG",
+          "PG4",
+          "PEG",
+          "EDO"
+        ]
+      },
+      "entry_id": "m_csa:9",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Methionine adenosyltransferase performs ATP-dependent adenosyl transfer and triphosphate processing outside the current seed fingerprints.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0142,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4103
+    },
+    {
+      "cofactor_evidence_level": "absent",
+      "component_scores": {
+        "cofactor_context_score": 0.35,
+        "compactness_score": 0.0261,
+        "counterevidence_penalty": 0.63,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.63,
+            "reason": "fe_s_single_electron_partial_flavin_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "fe_s_single_electron_partial_flavin_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 1.0,
+        "role_match_fraction": 0.6667,
+        "substrate_pocket_score": 0.5
+      },
+      "context": {
+        "cofactor_families": [
+          "fe_s_cluster"
+        ],
+        "entry_name": "nitrogenase",
+        "ligand_codes": [
+          "ADP",
+          "HCA",
+          "CLF",
+          "SF4",
+          "ALF"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The Fe protein and the FeMo protein must associate before catalytic reactions can occur. Once associated, Asp129 from the Fe protein removes a proton from water and hydroxide acts as the nucleophile in the hydrolysis of ATP to ADP and phosphate. This causes a conformational change that enables th..."
+        ],
+        "nearby_residue_count": 147,
+        "pdb_id": "1N2C",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1088,
+          "charge_balance": 0.0408,
+          "hydrophobic_fraction": 0.3469,
+          "mean_min_distance_to_active_site": 5.5806,
+          "negative_fraction": 0.0612,
+          "polar_fraction": 0.2721,
+          "positive_fraction": 0.102,
+          "sulfur_fraction": 0.102
+        },
+        "residue_codes": [
+          "VAL",
+          "ARG",
+          "LYS",
+          "ASP",
+          "LYS",
+          "HIS",
+          "CYS",
+          "LYS",
+          "CYS",
+          "ALA"
+        ],
+        "structure_cofactor_families": [
+          "fe_s_cluster",
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "ADP",
+          "HCA",
+          "CLF",
+          "SF4",
+          "ALF",
+          "MG",
+          "CFM",
+          "CA"
+        ]
+      },
+      "entry_id": "m_csa:212",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Nitrogenase couples ATP hydrolysis to iron-sulfur and FeMo-co electron transfer, outside the current flavin, heme, radical-SAM, and hydrolase seeds.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0149,
+      "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+      "top1_score": 0.4096
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 1.0,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "nonhydrolytic_metal_transfer_ligand_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "nonhydrolytic_metal_transfer_ligand_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.1825
+      },
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": "phosphoglucomutase",
+        "ligand_codes": [
+          "SEP",
+          "MG"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "This mechanism involves the di-phosphate intermediate flipping in the active site. Such a conformational rearrangement has been identified by phosphorous and fluorine NMR studies, indicating that two glucose-phosphate binding sites are present within the active site. The final product is shown wi..."
+        ],
+        "nearby_residue_count": 57,
+        "pdb_id": "3PMG",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1579,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.3333,
+          "mean_min_distance_to_active_site": 5.3565,
+          "negative_fraction": 0.1053,
+          "polar_fraction": 0.2456,
+          "positive_fraction": 0.1053,
+          "sulfur_fraction": 0.0702
+        },
+        "residue_codes": [
+          "HIS",
+          "LYS",
+          "ARG",
+          "ASP",
+          "ASP",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "SEP",
+          "MG"
+        ]
+      },
+      "entry_id": "m_csa:352",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "Phosphoglucomutase performs intramolecular phosphoryl transfer through a glucose diphosphate intermediate rather than metal-activated hydrolysis.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.016,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4085
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.8931,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "metal_redox_ligand_context"
+          },
+          {
+            "penalty": 0.72,
+            "reason": "role_inferred_metal_missing_water_activation_role"
+          }
+        ],
+        "counterevidence_reasons": [
+          "metal_redox_ligand_context",
+          "role_inferred_metal_missing_water_activation_role"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.237
+      },
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "taurine dioxygenase",
+        "ligand_codes": [
+          "TAU",
+          "FE2",
+          "AKG"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "In the resting state, Fe(II) is coordinated by His99, Asp 101, His 255 and three water molecules. The cosubstrate 2-oxoglutarate binds to Fe(II) via the carbonyls on C1 and C2, displacing two water molecules. Taurine binds (not to Fe(II)), displacing the third water molecule. Dioxygen binds to Fe..."
+        ],
+        "nearby_residue_count": 46,
+        "pdb_id": "1OS7",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1957,
+          "charge_balance": 0.0217,
+          "hydrophobic_fraction": 0.413,
+          "mean_min_distance_to_active_site": 5.1948,
+          "negative_fraction": 0.0435,
+          "polar_fraction": 0.3913,
+          "positive_fraction": 0.0652,
+          "sulfur_fraction": 0.0217
+        },
+        "residue_codes": [
+          "ARG",
+          "HIS",
+          "ASP",
+          "HIS"
+        ],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [
+          "TAU",
+          "FE2",
+          "AKG"
+        ]
+      },
+      "entry_id": "m_csa:129",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Taurine dioxygenase is a non-heme iron and alpha-ketoglutarate dioxygenase, outside the current flavin or heme redox seed fingerprints.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0163,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4082
+    },
+    {
+      "cofactor_evidence_level": "ligand_supported",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 1.0,
+        "counterevidence_penalty": 0.68,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.68,
+            "reason": "nucleotide_transfer_ligand_context"
+          }
+        ],
+        "counterevidence_reasons": [
+          "nucleotide_transfer_ligand_context"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.179
+      },
+      "context": {
+        "cofactor_families": [
+          "metal_ion"
+        ],
+        "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
+        "ligand_codes": [
+          "APC",
+          "MG"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The catalysis follows an inline displacement mechanism. The hydroxyl group of HP performs a nucleophilic attack to the beta-phosphate group of ATP to yield HP-pyrophosphate and AMP. Arg92, Arg82 and two Mg(II) ions stabilise the transition state. Both Mg(II) ions activate the beta-phosphorus for..."
+        ],
+        "nearby_residue_count": 38,
+        "pdb_id": "1Q0N",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.1053,
+          "charge_balance": 0.079,
+          "hydrophobic_fraction": 0.4474,
+          "mean_min_distance_to_active_site": 5.2938,
+          "negative_fraction": 0.0263,
+          "polar_fraction": 0.2895,
+          "positive_fraction": 0.1053,
+          "sulfur_fraction": 0.0526
+        },
+        "residue_codes": [
+          "ARG",
+          "ASP",
+          "ASP",
+          "ARG"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "APC",
+          "MG",
+          "PH2",
+          "ACT",
+          "CL"
+        ]
+      },
+      "entry_id": "m_csa:151",
+      "hard_negative_reason": "high_score_out_of_scope_overlap",
+      "label_rationale": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase performs ATP-dependent pyrophosphoryl transfer, not the current metal-hydrolase seed.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0164,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4081
+    },
+    {
+      "cofactor_evidence_level": "role_inferred",
+      "component_scores": {
+        "cofactor_context_score": 1.0,
+        "compactness_score": 0.5316,
+        "counterevidence_penalty": 0.72,
+        "counterevidence_penalty_details": [
+          {
+            "penalty": 0.72,
+            "reason": "role_inferred_metal_missing_water_activation_role"
+          }
+        ],
+        "counterevidence_reasons": [
+          "role_inferred_metal_missing_water_activation_role"
+        ],
+        "mechanistic_coherence_score": 1.0,
+        "residue_match_fraction": 0.6667,
+        "role_match_fraction": 0.3333,
+        "substrate_pocket_score": 0.2064
+      },
+      "context": {
+        "cofactor_families": [],
+        "entry_name": "trichodiene synthase",
+        "ligand_codes": [
+          "GOL"
+        ],
+        "mechanism_text_count": 1,
+        "mechanism_text_snippets": [
+          "The active site contour is complementary in both shape and hyrdophobicity to the productive conformer of the farnesyl substrate [PMID:11698643]. The three magnesium ions are bound to the enzyme in the presence of the substrate, the binding of which triggers a protein conformational change. The pu..."
+        ],
+        "nearby_residue_count": 70,
+        "pdb_id": "1JFG",
+        "pocket_descriptors": {
+          "aromatic_fraction": 0.2286,
+          "charge_balance": -0.0571,
+          "hydrophobic_fraction": 0.3,
+          "mean_min_distance_to_active_site": 5.3545,
+          "negative_fraction": 0.1571,
+          "polar_fraction": 0.2571,
+          "positive_fraction": 0.1,
+          "sulfur_fraction": 0.0857
+        },
+        "residue_codes": [
+          "THR",
+          "LEU",
+          "TYR",
+          "ARG",
+          "LYS",
+          "ARG",
+          "TYR",
+          "ASP"
+        ],
+        "structure_cofactor_families": [
+          "metal_ion"
+        ],
+        "structure_ligand_codes": [
+          "GOL",
+          "MG",
+          "POP"
+        ]
+      },
+      "entry_id": "m_csa:262",
+      "hard_negative_reason": "metal_role_overlap_without_confirmed_hydrolysis",
+      "label_rationale": "Trichodiene synthase uses magnesium-associated diphosphate departure and terpene carbocation rearrangement rather than metal-activated hydrolysis.",
+      "negative_control_type": "below_in_scope_floor",
+      "score_floor": 0.4245,
+      "score_gap_to_floor": 0.0164,
+      "top1_fingerprint_id": "metal_dependent_hydrolase",
+      "top1_score": 0.4081
+    }
+  ],
+  "groups": [],
+  "metadata": {
+    "closest_below_floor_entry_id": "m_csa:65",
+    "closest_below_floor_top1_fingerprint_id": "metal_dependent_hydrolase",
+    "closest_near_miss_entry_id": null,
+    "closest_near_miss_top1_fingerprint_id": null,
+    "cofactor_evidence_counts": {},
+    "evaluable_out_of_scope_count": 451,
+    "evaluated_out_of_scope_count": 466,
+    "hard_negative_count": 0,
+    "method": "geometry_hard_negative_control_selection",
+    "minimum_below_floor_score_gap": 0.0131,
+    "minimum_near_miss_score_gap_to_floor": null,
+    "near_miss_cofactor_evidence_counts": {},
+    "near_miss_count": 0,
+    "near_miss_margin": 0.01,
+    "near_miss_top1_fingerprint_counts": {},
+    "score_floor": 0.4245,
+    "score_floor_source": "min_correct_in_scope_top1_score",
+    "strict_threshold_exists_to_retain_all_in_scope_and_abstain_all_out_of_scope": false,
+    "top1_fingerprint_counts": {}
+  },
+  "near_miss_groups": [],
+  "near_miss_rows": [],
+  "rows": []
+}

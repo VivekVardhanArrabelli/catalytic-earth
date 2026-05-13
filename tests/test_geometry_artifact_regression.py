@@ -13,8 +13,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
     def test_label_summary_artifact_matches_curated_registry(self) -> None:
         summary = _load_json(ROOT / "artifacts" / "v3_label_summary.json")
 
-        self.assertEqual(summary["label_count"], 673)
-        self.assertEqual(summary["by_type"]["seed_fingerprint"], 206)
+        self.assertEqual(summary["label_count"], 679)
+        self.assertEqual(summary["by_type"]["seed_fingerprint"], 212)
         self.assertEqual(summary["by_type"]["out_of_scope"], 467)
 
     def test_125_entry_geometry_artifacts_remain_clean(self) -> None:
@@ -542,8 +542,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         gate = _load_json(ROOT / "artifacts" / "v3_label_factory_gate_check_500.json")
 
-        self.assertEqual(label_summary["by_tier"], {"bronze": 673})
-        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 673})
+        self.assertEqual(label_summary["by_tier"], {"bronze": 679})
+        self.assertEqual(label_summary["by_review_status"], {"automation_curated": 679})
         self.assertEqual(audit["metadata"]["promote_to_silver_count"], 63)
         self.assertEqual(audit["metadata"]["abstention_or_review_count"], 101)
         self.assertEqual(audit["metadata"]["hard_negative_evidence_entry_count"], 100)
@@ -582,6 +582,8 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         acceptance_700 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_700.json")
         acceptance_725 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_725.json")
         acceptance_750 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_750.json")
+        acceptance_975 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_975.json")
+        acceptance_1000 = _load_json(ROOT / "artifacts" / "v3_label_batch_acceptance_check_1000.json")
         batch_summary = _load_json(
             ROOT / "artifacts" / "v3_label_factory_batch_summary.json"
         )
@@ -848,7 +850,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             batch_summary["metadata"][
                 "latest_active_queue_expert_label_decision_count"
             ],
-            277,
+            321,
         )
         self.assertEqual(
             batch_summary["metadata"][
@@ -888,7 +890,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             batch_summary["metadata"][
                 "latest_expert_label_decision_repair_guardrail_priority_repair_row_count"
             ],
-            84,
+            92,
         )
         self.assertEqual(
             batch_summary["metadata"][
@@ -898,15 +900,35 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         latest_batch_summary = batch_summary["rows"][-1]
         batch_700_summary = next(row for row in batch_summary["rows"] if row["batch"] == "700")
-        self.assertEqual(latest_batch_summary["batch"], "950")
-        self.assertEqual(latest_batch_summary["countable_label_count"], 673)
-        self.assertEqual(latest_batch_summary["accepted_new_label_count"], 6)
-        self.assertEqual(latest_batch_summary["active_queue_expert_label_decision_count"], 277)
-        self.assertEqual(latest_batch_summary["expert_label_decision_repair_guardrail_priority_repair_row_count"], 84)
+        self.assertTrue(acceptance_975["metadata"]["accepted_for_counting"])
+        self.assertEqual(acceptance_975["metadata"]["accepted_new_label_count"], 2)
+        self.assertEqual(
+            acceptance_975["metadata"]["accepted_new_label_entry_ids"],
+            ["m_csa:956", "m_csa:973"],
+        )
+        self.assertEqual(acceptance_975["metadata"]["countable_label_count"], 675)
+        self.assertEqual(acceptance_975["metadata"]["pending_review_count"], 305)
+        self.assertEqual(acceptance_975["metadata"]["accepted_review_gap_count"], 0)
+        self.assertEqual(acceptance_975["metadata"]["accepted_review_gap_entry_ids"], [])
+        self.assertTrue(acceptance_1000["metadata"]["accepted_for_counting"])
+        self.assertEqual(acceptance_1000["metadata"]["accepted_new_label_count"], 4)
+        self.assertEqual(
+            acceptance_1000["metadata"]["accepted_new_label_entry_ids"],
+            ["m_csa:978", "m_csa:988", "m_csa:990", "m_csa:994"],
+        )
+        self.assertEqual(acceptance_1000["metadata"]["countable_label_count"], 679)
+        self.assertEqual(acceptance_1000["metadata"]["pending_review_count"], 326)
+        self.assertEqual(acceptance_1000["metadata"]["accepted_review_gap_count"], 0)
+        self.assertEqual(acceptance_1000["metadata"]["accepted_review_gap_entry_ids"], [])
+        self.assertEqual(latest_batch_summary["batch"], "1000")
+        self.assertEqual(latest_batch_summary["countable_label_count"], 679)
+        self.assertEqual(latest_batch_summary["accepted_new_label_count"], 4)
+        self.assertEqual(latest_batch_summary["active_queue_expert_label_decision_count"], 321)
+        self.assertEqual(latest_batch_summary["expert_label_decision_repair_guardrail_priority_repair_row_count"], 92)
         self.assertTrue(latest_batch_summary["expert_label_decision_local_evidence_gap_audit_ready"])
         self.assertEqual(
             latest_batch_summary["expert_label_decision_local_evidence_review_export_exported_count"],
-            84,
+            92,
         )
         self.assertFalse(
             latest_batch_summary[
@@ -918,7 +940,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         )
         self.assertEqual(
             latest_batch_summary["explicit_alternate_residue_position_requests_count"],
-            32,
+            38,
         )
         self.assertTrue(latest_batch_summary["review_only_import_safety_audit_present"])
         self.assertEqual(
@@ -939,7 +961,7 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
             latest_batch_summary[
                 "accepted_review_debt_deferral_audit_deferred_entry_count"
             ],
-            282,
+            326,
         )
         self.assertEqual(
             latest_batch_summary[

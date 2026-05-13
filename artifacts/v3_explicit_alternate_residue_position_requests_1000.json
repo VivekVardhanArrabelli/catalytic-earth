@@ -1,0 +1,2683 @@
+{
+  "metadata": {
+    "alternate_pdb_with_residue_positions_count": 0,
+    "candidate_alternate_structure_count": 335,
+    "countable_label_candidate_count": 0,
+    "method": "explicit_alternate_residue_position_sourcing_requests",
+    "request_count": 38,
+    "request_entry_ids": [
+      "m_csa:567",
+      "m_csa:572",
+      "m_csa:578",
+      "m_csa:657",
+      "m_csa:667",
+      "m_csa:698",
+      "m_csa:704",
+      "m_csa:713",
+      "m_csa:743",
+      "m_csa:749",
+      "m_csa:753",
+      "m_csa:766",
+      "m_csa:770",
+      "m_csa:772",
+      "m_csa:773",
+      "m_csa:777",
+      "m_csa:783",
+      "m_csa:797",
+      "m_csa:801",
+      "m_csa:809",
+      "m_csa:813",
+      "m_csa:836",
+      "m_csa:865",
+      "m_csa:873",
+      "m_csa:882",
+      "m_csa:886",
+      "m_csa:892",
+      "m_csa:893",
+      "m_csa:909",
+      "m_csa:911",
+      "m_csa:930",
+      "m_csa:946",
+      "m_csa:955",
+      "m_csa:968",
+      "m_csa:977",
+      "m_csa:981",
+      "m_csa:991",
+      "m_csa:996"
+    ],
+    "request_reason_counts": {
+      "alternate_structures_lack_explicit_residue_positions": 38,
+      "expected_cofactor_absent_from_structure": 21,
+      "expected_cofactor_not_local": 5,
+      "external_expert_decision_required": 38,
+      "review_marked_needs_more_evidence": 38,
+      "selected_structure_residue_support_shortfall": 29,
+      "top1_below_abstention_threshold": 21
+    },
+    "review_only_rule": "alternate residue-position sourcing requests are non-countable until explicit evidence is supplied, reviewed, and accepted by the label factory",
+    "source_plan_method": "expert_label_decision_local_evidence_repair_plan",
+    "source_remediation_method": "review_debt_remediation_plan",
+    "sourcing_request_ready": true
+  },
+  "rows": [
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_ids": [
+        "1CF3",
+        "3QVP",
+        "3QVR",
+        "5NIT",
+        "5NIW"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "candidate_pdb_structure_ids": [
+        "1CF3",
+        "1GAL",
+        "3QVP",
+        "3QVR",
+        "5NIT",
+        "5NIW"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.1.3.4"
+      ],
+      "entry_id": "m_csa:567",
+      "entry_name": "glucose oxidase",
+      "expected_cofactor_families": [
+        "flavin"
+      ],
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P13006",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1GAL",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "flavin"
+      ]
+    },
+    {
+      "alternate_pdb_count": 2,
+      "alternate_pdb_ids": [
+        "1JKU",
+        "1JKV"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 3,
+      "candidate_pdb_structure_ids": [
+        "1JKU",
+        "1JKV",
+        "1O9I"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.11.1.6"
+      ],
+      "entry_id": "m_csa:572",
+      "entry_name": "catalase (manganese dependent)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P60355",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_not_local",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1O9I",
+      "selected_pdb_residue_position_count": 6,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ]
+    },
+    {
+      "alternate_pdb_count": 24,
+      "alternate_pdb_ids": [
+        "2HRC",
+        "2HRE",
+        "2PNJ",
+        "2PO5",
+        "2PO7",
+        "2QD1",
+        "2QD2",
+        "2QD3",
+        "2QD4",
+        "2QD5",
+        "3AQI",
+        "3HCN",
+        "3HCO",
+        "3HCP",
+        "3HCR",
+        "3W1W",
+        "4F4D",
+        "4KLA",
+        "4KLC",
+        "4KLR",
+        "4KMM",
+        "4MK4",
+        "7CT7",
+        "7CTC"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 25,
+      "candidate_pdb_structure_ids": [
+        "1HRK",
+        "2HRC",
+        "2HRE",
+        "2PNJ",
+        "2PO5",
+        "2PO7",
+        "2QD1",
+        "2QD2",
+        "2QD3",
+        "2QD4",
+        "2QD5",
+        "3AQI",
+        "3HCN",
+        "3HCO",
+        "3HCP",
+        "3HCR",
+        "3W1W",
+        "4F4D",
+        "4KLA",
+        "4KLC",
+        "4KLR",
+        "4KMM",
+        "4MK4",
+        "7CT7",
+        "7CTC"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:4.99.1.1"
+      ],
+      "entry_id": "m_csa:578",
+      "entry_name": "ferrochelatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P22830",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1HRK",
+      "selected_pdb_residue_position_count": 9,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "fe_s_cluster"
+      ]
+    },
+    {
+      "alternate_pdb_count": 3,
+      "alternate_pdb_ids": [
+        "1HR7",
+        "1HR8",
+        "1HR9"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 4,
+      "candidate_pdb_structure_ids": [
+        "1HR6",
+        "1HR7",
+        "1HR8",
+        "1HR9"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:3.4.24.64"
+      ],
+      "entry_id": "m_csa:657",
+      "entry_name": "mitochondrial processing peptidase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P11914",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_not_local",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1HR6",
+      "selected_pdb_residue_position_count": 5,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ]
+    },
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_ids": [
+        "1PZ2",
+        "1QW8",
+        "1QW9",
+        "6SXU",
+        "6SXV"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "candidate_pdb_structure_ids": [
+        "1PZ2",
+        "1PZ3",
+        "1QW8",
+        "1QW9",
+        "6SXU",
+        "6SXV"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:3.2.1.55"
+      ],
+      "entry_id": "m_csa:667",
+      "entry_name": "alpha-N-arabinofuranosidase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "Q9XBQ3",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1PZ3",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_ids": [
+        "1JRO",
+        "2W3R",
+        "2W3S",
+        "2W54",
+        "2W55"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "candidate_pdb_structure_ids": [
+        "1JRO",
+        "1JRP",
+        "2W3R",
+        "2W3S",
+        "2W54",
+        "2W55"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.17.1.4"
+      ],
+      "entry_id": "m_csa:698",
+      "entry_name": "xanthine dehydrogenase (bacterial)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "O54051",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_not_local",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1JRP",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "fe_s_cluster",
+        "flavin",
+        "metal_ion"
+      ]
+    },
+    {
+      "alternate_pdb_count": 11,
+      "alternate_pdb_ids": [
+        "1BAL",
+        "1BBL",
+        "1E2O",
+        "1PMR",
+        "1SCZ",
+        "1W4H",
+        "2BTG",
+        "2BTH",
+        "2WXC",
+        "6PBR",
+        "9DZ8"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 12,
+      "candidate_pdb_structure_ids": [
+        "1BAL",
+        "1BBL",
+        "1C4T",
+        "1E2O",
+        "1PMR",
+        "1SCZ",
+        "1W4H",
+        "2BTG",
+        "2BTH",
+        "2WXC",
+        "6PBR",
+        "9DZ8"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.3.1.61"
+      ],
+      "entry_id": "m_csa:704",
+      "entry_name": "dihydrolipoyllysine-residue succinyltransferase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P0AFG6",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1C4T",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 18,
+      "alternate_pdb_ids": [
+        "1JBQ",
+        "4COO",
+        "4L0D",
+        "4L27",
+        "4L28",
+        "4L3V",
+        "4PCU",
+        "4UUU",
+        "5MMS",
+        "7QGT",
+        "8S5H",
+        "8S5I",
+        "8S5J",
+        "8S5K",
+        "8S5L",
+        "8S5M",
+        "8STW",
+        "9HIF"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 19,
+      "candidate_pdb_structure_ids": [
+        "1JBQ",
+        "1M54",
+        "4COO",
+        "4L0D",
+        "4L27",
+        "4L28",
+        "4L3V",
+        "4PCU",
+        "4UUU",
+        "5MMS",
+        "7QGT",
+        "8S5H",
+        "8S5I",
+        "8S5J",
+        "8S5K",
+        "8S5L",
+        "8S5M",
+        "8STW",
+        "9HIF"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:4.2.1.22"
+      ],
+      "entry_id": "m_csa:713",
+      "entry_name": "cystathionine beta-synthase",
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P35520",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1M54",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "heme",
+        "plp"
+      ]
+    },
+    {
+      "alternate_pdb_count": 4,
+      "alternate_pdb_ids": [
+        "1GQH",
+        "1H1I",
+        "1H1M",
+        "1JUH"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 5,
+      "candidate_pdb_structure_ids": [
+        "1GQG",
+        "1GQH",
+        "1H1I",
+        "1H1M",
+        "1JUH"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.13.11.24"
+      ],
+      "entry_id": "m_csa:743",
+      "entry_name": "quercetin 2,3-dioxygenase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "Q7SIC2",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_not_local",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1GQG",
+      "selected_pdb_residue_position_count": 4,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ]
+    },
+    {
+      "alternate_pdb_count": 2,
+      "alternate_pdb_ids": [
+        "1RZ5",
+        "1RZ6"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 3,
+      "candidate_pdb_structure_ids": [
+        "1NML",
+        "1RZ5",
+        "1RZ6"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.11.1.5"
+      ],
+      "entry_id": "m_csa:749",
+      "entry_name": "cytochrome-c peroxidase (di-heme type)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P83787",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1NML",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "heme"
+      ]
+    },
+    {
+      "alternate_pdb_count": 25,
+      "alternate_pdb_ids": [
+        "1GPW",
+        "1THF",
+        "1VH7",
+        "2LLE",
+        "2W6R",
+        "2WJZ",
+        "3CWO",
+        "3OG3",
+        "3ZR4",
+        "4EWN",
+        "4FX7",
+        "4J9J",
+        "5TQL",
+        "6RTZ",
+        "6RU0",
+        "6VDG",
+        "6YMU",
+        "7AC8",
+        "7QC3",
+        "7QC6",
+        "7QC7",
+        "7QC8",
+        "7QC9",
+        "8S8R",
+        "8S8S"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 26,
+      "candidate_pdb_structure_ids": [
+        "1GPW",
+        "1THF",
+        "1VH7",
+        "2A0N",
+        "2LLE",
+        "2W6R",
+        "2WJZ",
+        "3CWO",
+        "3OG3",
+        "3ZR4",
+        "4EWN",
+        "4FX7",
+        "4J9J",
+        "5TQL",
+        "6RTZ",
+        "6RU0",
+        "6VDG",
+        "6YMU",
+        "7AC8",
+        "7QC3",
+        "7QC6",
+        "7QC7",
+        "7QC8",
+        "7QC9",
+        "8S8R",
+        "8S8S"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:4.1.3.-"
+      ],
+      "entry_id": "m_csa:753",
+      "entry_name": "imidazole glycerol phosphate synthase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "Q9X0C6",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "2A0N",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 15,
+      "alternate_pdb_ids": [
+        "2O2P",
+        "2O2Q",
+        "2O2R",
+        "3RHJ",
+        "3RHL",
+        "3RHM",
+        "3RHO",
+        "3RHP",
+        "3RHQ",
+        "3RHR",
+        "4GNZ",
+        "4GO0",
+        "4GO2",
+        "7RLT",
+        "7RLU"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 16,
+      "candidate_pdb_structure_ids": [
+        "1S3I",
+        "2O2P",
+        "2O2Q",
+        "2O2R",
+        "3RHJ",
+        "3RHL",
+        "3RHM",
+        "3RHO",
+        "3RHP",
+        "3RHQ",
+        "3RHR",
+        "4GNZ",
+        "4GO0",
+        "4GO2",
+        "7RLT",
+        "7RLU"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.5.1.6"
+      ],
+      "entry_id": "m_csa:766",
+      "entry_name": "formyltetrahydrofolate dehydrogenase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P28037",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1S3I",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 6,
+      "alternate_pdb_ids": [
+        "1FO8",
+        "1FO9",
+        "2AM3",
+        "2AM4",
+        "2AM5",
+        "2APC"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 7,
+      "candidate_pdb_structure_ids": [
+        "1FO8",
+        "1FO9",
+        "1FOA",
+        "2AM3",
+        "2AM4",
+        "2AM5",
+        "2APC"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.4.1.101"
+      ],
+      "entry_id": "m_csa:770",
+      "entry_name": "alpha-1,3-mannosyl-glycoprotein 2-beta-N-acetylglucosaminyltransferase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P27115",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1FOA",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ]
+    },
+    {
+      "alternate_pdb_count": 3,
+      "alternate_pdb_ids": [
+        "1U7W",
+        "1U7Z",
+        "1U80"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 4,
+      "candidate_pdb_structure_ids": [
+        "1U7U",
+        "1U7W",
+        "1U7Z",
+        "1U80"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:6.3.2.5"
+      ],
+      "entry_id": "m_csa:772",
+      "entry_name": "phosphopantothenate-cysteine ligase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P0ABQ0",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1U7U",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 8,
+      "alternate_pdb_ids": [
+        "1DDT",
+        "1DTP",
+        "1F0L",
+        "1MDT",
+        "1SGK",
+        "1XDT",
+        "4AE0",
+        "4AE1"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 9,
+      "candidate_pdb_structure_ids": [
+        "1DDT",
+        "1DTP",
+        "1F0L",
+        "1MDT",
+        "1SGK",
+        "1TOX",
+        "1XDT",
+        "4AE0",
+        "4AE1"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.4.2.36"
+      ],
+      "entry_id": "m_csa:773",
+      "entry_name": "NAD+---diphthamide ADP-ribosyltransferase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [
+        "nad"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P00588",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1TOX",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "nad"
+      ]
+    },
+    {
+      "alternate_pdb_count": 104,
+      "alternate_pdb_ids": [
+        "1AAW",
+        "1AHE",
+        "1AHF",
+        "1AHG",
+        "1AHX",
+        "1AHY",
+        "1AIA",
+        "1AIB",
+        "1AIC",
+        "1AMQ",
+        "1AMR",
+        "1AMS",
+        "1ARG",
+        "1ARH",
+        "1ARI",
+        "1ARS",
+        "1ART",
+        "1ASA",
+        "1ASB",
+        "1ASC",
+        "1ASD",
+        "1ASE",
+        "1ASF",
+        "1ASG",
+        "1ASL",
+        "1ASM",
+        "1ASN",
+        "1B4X",
+        "1BQA",
+        "1BQD",
+        "1C9C",
+        "1CQ6",
+        "1CQ7",
+        "1CQ8",
+        "1CZC",
+        "1CZE",
+        "1G4V",
+        "1G4X",
+        "1G7W",
+        "1G7X",
+        "1IX6",
+        "1IX7",
+        "1IX8",
+        "1QIR",
+        "1QIS",
+        "1QIT",
+        "1SPA",
+        "1TOE",
+        "1TOG",
+        "1TOI",
+        "1TOJ",
+        "1TOK",
+        "1X28",
+        "1X29",
+        "1X2A",
+        "1YOO",
+        "2AAT",
+        "2D5Y",
+        "2D61",
+        "2D63",
+        "2D64",
+        "2D65",
+        "2D66",
+        "2D7Y",
+        "2D7Z",
+        "2Q7W",
+        "2QA3",
+        "2QB2",
+        "2QB3",
+        "2QBT",
+        "3AAT",
+        "3QN6",
+        "3QPG",
+        "3ZZJ",
+        "3ZZK",
+        "4A00",
+        "4DBC",
+        "4F5F",
+        "4F5G",
+        "4F5H",
+        "4F5I",
+        "4F5J",
+        "4F5K",
+        "4F5L",
+        "4F5M",
+        "5EAA",
+        "5T4L",
+        "5VWQ",
+        "5VWR",
+        "8E9C",
+        "8E9D",
+        "8E9J",
+        "8E9K",
+        "8E9L",
+        "8E9M",
+        "8E9N",
+        "8E9O",
+        "8E9P",
+        "8E9Q",
+        "8E9R",
+        "8E9S",
+        "8E9T",
+        "8E9U",
+        "8E9V"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 105,
+      "candidate_pdb_structure_ids": [
+        "1AAM",
+        "1AAW",
+        "1AHE",
+        "1AHF",
+        "1AHG",
+        "1AHX",
+        "1AHY",
+        "1AIA",
+        "1AIB",
+        "1AIC",
+        "1AMQ",
+        "1AMR",
+        "1AMS",
+        "1ARG",
+        "1ARH",
+        "1ARI",
+        "1ARS",
+        "1ART",
+        "1ASA",
+        "1ASB",
+        "1ASC",
+        "1ASD",
+        "1ASE",
+        "1ASF",
+        "1ASG",
+        "1ASL",
+        "1ASM",
+        "1ASN",
+        "1B4X",
+        "1BQA",
+        "1BQD",
+        "1C9C",
+        "1CQ6",
+        "1CQ7",
+        "1CQ8",
+        "1CZC",
+        "1CZE",
+        "1G4V",
+        "1G4X",
+        "1G7W",
+        "1G7X",
+        "1IX6",
+        "1IX7",
+        "1IX8",
+        "1QIR",
+        "1QIS",
+        "1QIT",
+        "1SPA",
+        "1TOE",
+        "1TOG",
+        "1TOI",
+        "1TOJ",
+        "1TOK",
+        "1X28",
+        "1X29",
+        "1X2A",
+        "1YOO",
+        "2AAT",
+        "2D5Y",
+        "2D61",
+        "2D63",
+        "2D64",
+        "2D65",
+        "2D66",
+        "2D7Y",
+        "2D7Z",
+        "2Q7W",
+        "2QA3",
+        "2QB2",
+        "2QB3",
+        "2QBT",
+        "3AAT",
+        "3QN6",
+        "3QPG",
+        "3ZZJ",
+        "3ZZK",
+        "4A00",
+        "4DBC",
+        "4F5F",
+        "4F5G",
+        "4F5H",
+        "4F5I",
+        "4F5J",
+        "4F5K",
+        "4F5L",
+        "4F5M",
+        "5EAA",
+        "5T4L",
+        "5VWQ",
+        "5VWR",
+        "8E9C",
+        "8E9D",
+        "8E9J",
+        "8E9K",
+        "8E9L",
+        "8E9M",
+        "8E9N",
+        "8E9O",
+        "8E9P",
+        "8E9Q",
+        "8E9R",
+        "8E9S",
+        "8E9T",
+        "8E9U",
+        "8E9V"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.6.1.1"
+      ],
+      "entry_id": "m_csa:777",
+      "entry_name": "aspartate transaminase",
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P00509",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1AAM",
+      "selected_pdb_residue_position_count": 3,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "plp"
+      ]
+    },
+    {
+      "alternate_pdb_count": 1,
+      "alternate_pdb_ids": [
+        "1IUQ"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 2,
+      "candidate_pdb_structure_ids": [
+        "1IUQ",
+        "1K30"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.3.1.15"
+      ],
+      "entry_id": "m_csa:783",
+      "entry_name": "glycerol-3-phosphate O-acyltransferase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P10349",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1K30",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_ids": [
+        "1RUS",
+        "2RUS",
+        "5HQM",
+        "5RUB",
+        "9RUB"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "candidate_pdb_structure_ids": [
+        "1RBA",
+        "1RUS",
+        "2RUS",
+        "5HQM",
+        "5RUB",
+        "9RUB"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:4.1.1.39"
+      ],
+      "entry_id": "m_csa:797",
+      "entry_name": "ribulose-bisphosphate carboxylase (type II)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P04718",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1RBA",
+      "selected_pdb_residue_position_count": 8,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 2,
+      "alternate_pdb_ids": [
+        "1FGG",
+        "3CU0"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 3,
+      "candidate_pdb_structure_ids": [
+        "1FGG",
+        "1KWS",
+        "3CU0"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.4.1.135"
+      ],
+      "entry_id": "m_csa:801",
+      "entry_name": "galactosylgalactosylxylosylprotein 3-beta-glucuronosyltransferase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "O94766",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1KWS",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ]
+    },
+    {
+      "alternate_pdb_count": 9,
+      "alternate_pdb_ids": [
+        "1B37",
+        "1H81",
+        "1H82",
+        "1H83",
+        "1H84",
+        "1H86",
+        "3KPF",
+        "3KU9",
+        "3L1R"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 10,
+      "candidate_pdb_structure_ids": [
+        "1B37",
+        "1B5Q",
+        "1H81",
+        "1H82",
+        "1H83",
+        "1H84",
+        "1H86",
+        "3KPF",
+        "3KU9",
+        "3L1R"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.5.3.14"
+      ],
+      "entry_id": "m_csa:809",
+      "entry_name": "polyamine oxidase (propane-1,3-diamine-forming)",
+      "expected_cofactor_families": [
+        "flavin"
+      ],
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "O64411",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1B5Q",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "flavin"
+      ]
+    },
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_ids": [
+        "1A3G",
+        "1I1K",
+        "1I1L",
+        "1I1M",
+        "1IYE"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "candidate_pdb_structure_ids": [
+        "1A3G",
+        "1I1K",
+        "1I1L",
+        "1I1M",
+        "1IYD",
+        "1IYE"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.6.1.42"
+      ],
+      "entry_id": "m_csa:813",
+      "entry_name": "branched-chain-amino-acid transaminase",
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P0AB80",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1IYD",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "plp"
+      ]
+    },
+    {
+      "alternate_pdb_count": 4,
+      "alternate_pdb_ids": [
+        "3SLP",
+        "3SM4",
+        "4WUZ",
+        "6M9K"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 5,
+      "candidate_pdb_structure_ids": [
+        "1AVQ",
+        "3SLP",
+        "3SM4",
+        "4WUZ",
+        "6M9K"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:3.1.11.3"
+      ],
+      "entry_id": "m_csa:836",
+      "entry_name": "exodeoxyribonuclease (lambda-induced)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P03697",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1AVQ",
+      "selected_pdb_residue_position_count": 6,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 3,
+      "alternate_pdb_ids": [
+        "1D6S",
+        "1FCJ",
+        "6Z4N"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 4,
+      "candidate_pdb_structure_ids": [
+        "1D6S",
+        "1FCJ",
+        "1OAS",
+        "6Z4N"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.5.1.47"
+      ],
+      "entry_id": "m_csa:865",
+      "entry_name": "cysteine synthase",
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P0A1E3",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1OAS",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "plp"
+      ]
+    },
+    {
+      "alternate_pdb_count": 3,
+      "alternate_pdb_ids": [
+        "6TAI",
+        "6TAJ",
+        "6TAK"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 4,
+      "candidate_pdb_structure_ids": [
+        "1ORO",
+        "6TAI",
+        "6TAJ",
+        "6TAK"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.4.2.10"
+      ],
+      "entry_id": "m_csa:873",
+      "entry_name": "orotate phosphoribosyltransferase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P0A7E3",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1ORO",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 6,
+      "alternate_pdb_ids": [
+        "1QMI",
+        "3KGD",
+        "3TUT",
+        "3TUX",
+        "3TV1",
+        "3TW3"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 7,
+      "candidate_pdb_structure_ids": [
+        "1QMH",
+        "1QMI",
+        "3KGD",
+        "3TUT",
+        "3TUX",
+        "3TV1",
+        "3TW3"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:6.5.1.4"
+      ],
+      "entry_id": "m_csa:882",
+      "entry_name": "RNA-3'-phosphate cyclase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P46849",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1QMH",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 5,
+      "alternate_pdb_ids": [
+        "8ZKV",
+        "9D2Q",
+        "9D2R",
+        "9D2S",
+        "9JFI"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 6,
+      "candidate_pdb_structure_ids": [
+        "1TDJ",
+        "8ZKV",
+        "9D2Q",
+        "9D2R",
+        "9D2S",
+        "9JFI"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:4.3.1.19"
+      ],
+      "entry_id": "m_csa:886",
+      "entry_name": "threonine ammonia-lyase (biosynthetic)",
+      "expected_cofactor_families": [
+        "plp"
+      ],
+      "local_cofactor_families": [
+        "plp"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P04968",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1TDJ",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "plp"
+      ]
+    },
+    {
+      "alternate_pdb_count": 10,
+      "alternate_pdb_ids": [
+        "1DOR",
+        "1JQV",
+        "1JQX",
+        "1JRB",
+        "1JRC",
+        "1JUB",
+        "1JUE",
+        "1OVD",
+        "2BSL",
+        "2BX7"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 11,
+      "candidate_pdb_structure_ids": [
+        "1DOR",
+        "1JQV",
+        "1JQX",
+        "1JRB",
+        "1JRC",
+        "1JUB",
+        "1JUE",
+        "1OVD",
+        "2BSL",
+        "2BX7",
+        "2DOR"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.3.98.1"
+      ],
+      "entry_id": "m_csa:892",
+      "entry_name": "dihydroorotate dehydrogenase (fumarate)",
+      "expected_cofactor_families": [
+        "flavin"
+      ],
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "A2RJT9",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "2DOR",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "flavin"
+      ]
+    },
+    {
+      "alternate_pdb_count": 2,
+      "alternate_pdb_ids": [
+        "1UDY",
+        "3MDE"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 3,
+      "candidate_pdb_structure_ids": [
+        "1UDY",
+        "3MDD",
+        "3MDE"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.3.8.7"
+      ],
+      "entry_id": "m_csa:893",
+      "entry_name": "medium-chain acyl-CoA dehydrogenase",
+      "expected_cofactor_families": [
+        "flavin"
+      ],
+      "local_cofactor_families": [
+        "flavin"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P41367",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "3MDD",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "flavin"
+      ]
+    },
+    {
+      "alternate_pdb_count": 1,
+      "alternate_pdb_ids": [
+        "1ZIS"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 2,
+      "candidate_pdb_structure_ids": [
+        "1RVV",
+        "1ZIS"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:2.5.1.78"
+      ],
+      "entry_id": "m_csa:909",
+      "entry_name": "6,7-dimethyl-8-ribityllumazine synthase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P11998",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1RVV",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 4,
+      "alternate_pdb_ids": [
+        "1CRW",
+        "1DSS",
+        "1IHX",
+        "1IHY"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 5,
+      "candidate_pdb_structure_ids": [
+        "1CRW",
+        "1DSS",
+        "1IHX",
+        "1IHY",
+        "1SZJ"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.2.1.12"
+      ],
+      "entry_id": "m_csa:911",
+      "entry_name": "glyceraldehyde-3-phosphate dehydrogenase (phosphorylating) (type I)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [
+        "nad"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P56649",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "1SZJ",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "nad"
+      ]
+    },
+    {
+      "alternate_pdb_count": 1,
+      "alternate_pdb_ids": [
+        "2PIA"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 1,
+      "candidate_pdb_structure_ids": [
+        "2PIA"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.14.12.7"
+      ],
+      "entry_id": "m_csa:930",
+      "entry_name": "phthalate dioxygenase system",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "Q9ZFQ5",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": null,
+      "selected_pdb_residue_position_count": 0,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 3,
+      "alternate_pdb_ids": [
+        "5XD7",
+        "5XD8",
+        "5XD9"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 3,
+      "candidate_pdb_structure_ids": [
+        "5XD7",
+        "5XD8",
+        "5XD9"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:5.5.1.25"
+      ],
+      "entry_id": "m_csa:946",
+      "entry_name": "3,6-anhydro-alpha-L-galactonate cycloisomerase",
+      "expected_cofactor_families": [
+        "fe_s_cluster",
+        "sam"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "H2IFX0",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": null,
+      "selected_pdb_residue_position_count": 0,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    },
+    {
+      "alternate_pdb_count": 7,
+      "alternate_pdb_ids": [
+        "3WQK",
+        "3WQM",
+        "3WQN",
+        "4CMV",
+        "4CMW",
+        "4CMX",
+        "4KT8"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 8,
+      "candidate_pdb_structure_ids": [
+        "3WQK",
+        "3WQL",
+        "3WQM",
+        "3WQN",
+        "4CMV",
+        "4CMW",
+        "4CMX",
+        "4KT8"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:3.1.7.8"
+      ],
+      "entry_id": "m_csa:955",
+      "entry_name": "tuberculosinol synthase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [
+        "metal_ion"
+      ],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P9WJ61",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "3WQL",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "metal_ion"
+      ]
+    },
+    {
+      "alternate_pdb_count": 6,
+      "alternate_pdb_ids": [
+        "4UHW",
+        "5EPG",
+        "6Q6Q",
+        "7OPN",
+        "7ORC",
+        "8EMT"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 7,
+      "candidate_pdb_structure_ids": [
+        "4UHW",
+        "4UHX",
+        "5EPG",
+        "6Q6Q",
+        "7OPN",
+        "7ORC",
+        "8EMT"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.2.3.1"
+      ],
+      "entry_id": "m_csa:968",
+      "entry_name": "aldehyde oxidase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "Q06278",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "4UHX",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "fe_s_cluster",
+        "flavin"
+      ]
+    },
+    {
+      "alternate_pdb_count": 6,
+      "alternate_pdb_ids": [
+        "2APG",
+        "2AQJ",
+        "2ARD",
+        "2JKC",
+        "4Z43",
+        "4Z44"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 7,
+      "candidate_pdb_structure_ids": [
+        "2APG",
+        "2AQJ",
+        "2AR8",
+        "2ARD",
+        "2JKC",
+        "4Z43",
+        "4Z44"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.14.19.9"
+      ],
+      "entry_id": "m_csa:977",
+      "entry_name": "tryptophan 7-halogenase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "P95480",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "2AR8",
+      "selected_pdb_residue_position_count": 2,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "flavin"
+      ]
+    },
+    {
+      "alternate_pdb_count": 4,
+      "alternate_pdb_ids": [
+        "5ODC",
+        "5ODH",
+        "5ODQ",
+        "5ODR"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 5,
+      "candidate_pdb_structure_ids": [
+        "5ODC",
+        "5ODH",
+        "5ODI",
+        "5ODQ",
+        "5ODR"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.8.7.3"
+      ],
+      "entry_id": "m_csa:981",
+      "entry_name": "ferredoxin:CoB-CoM heterodisulfide reductase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "A0A2D0TCB4",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_not_local",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "5ODI",
+      "selected_pdb_residue_position_count": 11,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "fe_s_cluster",
+        "flavin",
+        "metal_ion"
+      ]
+    },
+    {
+      "alternate_pdb_count": 7,
+      "alternate_pdb_ids": [
+        "4S39",
+        "4S3A",
+        "4S3B",
+        "4S3C",
+        "4S3D",
+        "4S3E",
+        "4S3F"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 8,
+      "candidate_pdb_structure_ids": [
+        "4S38",
+        "4S39",
+        "4S3A",
+        "4S3B",
+        "4S3C",
+        "4S3D",
+        "4S3E",
+        "4S3F"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:1.17.7.3"
+      ],
+      "entry_id": "m_csa:991",
+      "entry_name": "4-hydroxy-3-methylbut-2-en-1-yl diphosphate synthase (IspG)",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "active_site_mapping_or_structure_gap_unresolved",
+        "external_expert_decision_required",
+        "insufficient_selected_structure_residue_support",
+        "missing_local_active_site_expected_family_evidence",
+        "readiness_blockers_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "Q5SLI8",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence",
+        "selected_structure_residue_support_shortfall",
+        "top1_below_abstention_threshold"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "4S38",
+      "selected_pdb_residue_position_count": 1,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": [
+        "fe_s_cluster"
+      ]
+    },
+    {
+      "alternate_pdb_count": 1,
+      "alternate_pdb_ids": [
+        "5O6Y"
+      ],
+      "alternate_pdb_with_residue_positions_count": 0,
+      "candidate_pdb_structure_count": 2,
+      "candidate_pdb_structure_ids": [
+        "4L1G",
+        "5O6Y"
+      ],
+      "countable_label_candidate": false,
+      "ec_ids": [
+        "ec:3.5.1.104"
+      ],
+      "entry_id": "m_csa:996",
+      "entry_name": "Peptidoglycan-N-acetylglucosamine deacetylase Bc1960",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_cofactor_families": [],
+      "non_countable_blockers": [
+        "external_expert_decision_required",
+        "missing_local_active_site_expected_family_evidence",
+        "text_leakage_or_nonlocal_evidence_risk_unresolved"
+      ],
+      "recommended_next_action": "source_explicit_alternate_structure_residue_positions",
+      "reference_uniprot_id": "Q81EK9",
+      "repair_lane": "source_explicit_alternate_structure_residue_positions",
+      "request_reasons": [
+        "alternate_structures_lack_explicit_residue_positions",
+        "expected_cofactor_absent_from_structure",
+        "external_expert_decision_required",
+        "review_marked_needs_more_evidence"
+      ],
+      "request_status": "awaiting_explicit_alternate_structure_residue_positions",
+      "required_evidence_fields": [
+        "alternate_pdb_id",
+        "chain_id",
+        "residue_number_or_auth_seq_id",
+        "residue_code",
+        "mapping_basis",
+        "source_reference"
+      ],
+      "selected_pdb_id": "4L1G",
+      "selected_pdb_residue_position_count": 6,
+      "sourcing_policy": "explicit alternate-structure residue positions are sourcing requests only; they do not count as local mechanistic evidence until reviewed and passed through the label factory",
+      "structure_cofactor_families": []
+    }
+  ]
+}

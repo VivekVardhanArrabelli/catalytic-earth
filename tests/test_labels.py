@@ -70,12 +70,12 @@ from catalytic_earth.labels import (
 class LabelTests(unittest.TestCase):
     def test_load_labels(self) -> None:
         labels = load_labels()
-        self.assertEqual(len(labels), 673)
+        self.assertEqual(len(labels), 679)
         summary = label_summary(labels)
         self.assertGreater(summary["by_type"]["seed_fingerprint"], 0)
         self.assertGreater(summary["by_type"]["out_of_scope"], 0)
-        self.assertEqual(summary["by_tier"]["bronze"], 673)
-        self.assertEqual(summary["by_review_status"]["automation_curated"], 673)
+        self.assertEqual(summary["by_tier"]["bronze"], 679)
+        self.assertEqual(summary["by_review_status"]["automation_curated"], 679)
         self.assertGreater(summary["mean_evidence_score"], 0)
 
     def test_invalid_label(self) -> None:
@@ -4561,6 +4561,41 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertIn("not a clean countable out-of-scope negative", decisions["m_csa:653"]["rationale"])
         self.assertEqual(decisions["m_csa:666"]["action"], "accept_label")
         self.assertEqual(decisions["m_csa:666"]["label_type"], "out_of_scope")
+
+    def test_provisional_batch_defers_low_score_local_heme_boundary_negative(self) -> None:
+        review = {
+            "metadata": {"method": "expert_review_export"},
+            "review_items": [
+                {
+                    "entry_id": "m_csa:986",
+                    "entry_name": "Thiosulfate dehydrogenase",
+                    "current_label": None,
+                    "queue_context": {
+                        "entry_id": "m_csa:986",
+                        "entry_name": "Thiosulfate dehydrogenase",
+                        "label_state": "unlabeled",
+                        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+                        "top1_score": 0.3935,
+                        "abstain_threshold": 0.4115,
+                        "cofactor_evidence_level": "ligand_supported",
+                        "counterevidence_reasons": [],
+                        "readiness_blockers": [],
+                        "mechanism_text_snippets": [
+                            "Cys123 bound to heme acts as an electron relay during redox turnover."
+                        ],
+                    },
+                    "decision": {"action": "no_decision"},
+                }
+            ],
+        }
+        batch = build_provisional_review_decision_batch(review)
+        decision = batch["review_items"][0]["decision"]
+
+        self.assertEqual(decision["action"], "mark_needs_more_evidence")
+        self.assertEqual(decision["label_type"], "out_of_scope")
+        self.assertIsNone(decision["fingerprint_id"])
+        self.assertIn("local ligand_supported evidence", decision["rationale"])
+        self.assertIn("clean out-of-scope negative", decision["rationale"])
 
     def test_provisional_batch_defers_ser_his_boundary_without_triad_text(self) -> None:
         review = {
