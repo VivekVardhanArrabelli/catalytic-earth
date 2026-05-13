@@ -547,38 +547,62 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch
 
 ## Next Agent Start Here
 
-User-approved priority override: do not keep adding gates upon gates. The next
-runs should follow this ordered worklist unless a concrete repo blocker appears.
-Every new artifact, audit, or gate must directly remove one generalization or
+User-approved priority override: do not keep adding gates upon gates. Every new
+artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-1. Sequence/fold-distance holdout evaluation is now implemented and pinned by
+Current SPOF status after the 2026-05-13T14:17:40Z run: counterevidence
+maintainability is handled at the code level. `geometry_retrieval.py` now uses a
+versioned declarative `COUNTEREVIDENCE_POLICY` with typed shared inputs,
+rule-level provenance, backwards-compatible reason/detail fields, and explicit
+mechanism-text leakage flags. `check_label_factory_gates` now accepts the typed
+`LabelFactoryGateInputs.v1` contract, and the CLI loads gate artifacts through a
+table-driven map instead of one read branch per optional artifact. The gate CLI
+now also validates non-exempt artifact slice lineage before loading the
+high-fan-in JSON inputs; `artifacts/v3_label_factory_gate_check_1000.json`
+records `metadata.artifact_lineage` with `slice_id=1000` and the historical
+ATP-family boundary-control artifact explicitly exempted as review/scope
+context.
+The same run also added bounded text-leakage protection to the external
+representation sample: sequence embeddings and length coverage are the only
+predictive feature sources, while heuristic fingerprint ids, matched M-CSA
+reference ids, and source scope signals carry explicit review/holdout leakage
+flags. The representation audit now fails if EC/Rhea ids, mechanism text,
+labels, fingerprint ids, or source-target identifiers appear as predictive
+feature sources. Artifact consistency hardening started in the external blocker
+matrix audit, which now rejects candidate-manifest lineage mismatches.
+
+Next ordered worklist:
+
+1. Continue text-leakage mitigation. Counterevidence mechanism-text rules are
+   now marked `mechanism_text_review_context_only` and
+   `counterevidence_only_not_predictive_evidence`; next verify learned
+   representation artifacts and external pilot ranking do not use mechanism
+   text, labels, EC/Rhea IDs, or source-derived target labels as predictive
+   discovery evidence.
+2. Extend artifact graph consistency checks beyond the external blocker matrix
+   and label-factory gate CLI: source slice, graph id, and lineage mismatches
+   should fail fast in other high-fan-in gates and audits. Include negative
+   regression tests with mismatched slice inputs.
+3. Sequence/fold-distance holdout evaluation is implemented and pinned by
    regression tests. Treat the current artifacts as a proxy-only generalization
    signal, not as proof of <=30% sequence identity or <0.7 TM-score behavior.
-   Re-run with Foldseek/MMseqs2 or an equivalent local clustering backend if it
-   becomes available.
-2. Use the learned representation backend path. A 12-row ESM-2 sample is now
-   computed and review-only; next use its learned-vs-heuristic disagreement
-   rows to rank external pilot candidates and decide which representation
-   repairs are needed. Preserve heuristic geometry retrieval as the baseline.
-3. Implement a general selected-PDB override path with provenance and apply the
+   The 2026-05-13T14:17:40Z run checked for `foldseek`, `mmseqs`, `blastp`,
+   and `diamond`; none were available on PATH. Re-run with Foldseek/MMseqs2/
+   BLAST/DIAMOND or an equivalent local clustering backend if it becomes
+   available.
+4. Use the learned representation backend path. A 12-row ESM-2 sample is now
+   computed and review-only; next use its learned-vs-heuristic disagreement rows
+   to rank external pilot candidates and decide which representation repairs are
+   needed. Preserve heuristic geometry retrieval as the baseline.
+5. Implement a general selected-PDB override path with provenance and apply the
    holo-preference audit action path for `m_csa:577` and `m_csa:641`. Seed it
    from `v3_structure_selection_holo_preference_audit_700.json` rows where
    `recommendation == "swap_selected_structure"`. Skip `m_csa:592` unless new
    evidence changes the current kinase/reaction-mismatch demotion. Only count
-   labels if regenerated gates pass. The 2026-05-13T13:16:40Z run inspected
-   this path and did not start it because the selected-PDB override needs a
-   general provenance-carrying implementation plus regenerated geometry,
-   retrieval, label-eval, factory gate, and acceptance artifacts for affected
-   entries.
-4. Add the ePK fingerprint conservatively after the holdout signal exists:
-   fingerprint JSON, ontology link, minimal abstention/counterevidence rules,
-   and tests first. Let gates reveal which stronger sibling-family rules are
-   needed before overfitting ePK against ASKHA, ATP-grasp, GHKL, dNK, NDK,
-   PfkA, PfkB, and GHMP.
-5. Add `transition_state_signature` only after the higher-priority
-   generalization and external-pilot blockers are addressed, or if the run is
-   otherwise blocked. Keep it validation-only at first.
+   labels if regenerated gates pass.
+6. Keep ePK and transition-state signature work lower priority until the SPOF
+   and external-pilot blockers above are either fixed or explicitly blocked.
 
 Concrete user direction for the next runs: stop adding abstract gates unless
 they directly unblock the first external-source import pilot. The 1,025
@@ -858,9 +882,37 @@ sample has 0 embedding failures, 3 representation near-duplicate holdouts, and
 12 learned-vs-heuristic disagreements. The holo-PDB swap action path was
 inspected but not started because it requires a general selected-PDB override
 implementation plus regenerated geometry/retrieval/factory artifacts. Final
-verification before logging: 273 unit tests passed, `validate` passed,
+verification before logging: 276 unit tests passed, `validate` passed,
 `compileall` passed, `git diff --check` passed, JSON artifact parse passed, and
-CLI help checks passed.
+the 1,000-slice label-factory gate smoke wrote lineage metadata with
+`slice_id=1000`.
+
+Label-quality confidence call for the 2026-05-13T14:17:40Z run: no for
+additional M-CSA-only count growth, no for external-source import, no for new
+external candidate repair, no for new scientific generalization artifacts, and
+yes for SPOF hardening. Evidence at run start: `validate` and 273 unit tests
+passed, the accepted M-CSA count stayed at 679 labels, the 1,025 preview still
+added 0 clean countable labels, source-scale audit still limited M-CSA exposure
+to 1,003 observed source records, hard negatives remained 0, near misses
+remained 0, out-of-scope false non-abstentions remained 0, actionable in-scope
+failures remained 0, and the latest external transfer gate remained review-only
+with 0 import-ready rows. The run therefore targeted the first named SPOF:
+counterevidence maintainability. It replaced the geometry-retrieval
+counterevidence branch cascade with typed declarative rules and gave the
+label-factory gate a typed input contract plus table-driven CLI artifact
+loading plus non-exempt slice-lineage validation. It then advanced the next
+SPOFs in bounded form: representation samples now declare sequence-only
+predictive features and mark heuristic fingerprint ids, matched M-CSA ids, and
+scope signals as review/holdout context; the external blocker-matrix audit now
+rejects candidate-manifest lineage mismatches.
+
+Remaining-time plan for the 2026-05-13T14:17:40Z run: after counterevidence
+policy refactoring and label-factory gate input hardening passed focused tests
+and a 1,000-slice gate smoke, use the remaining productive window for
+documentation, full tests/validation, and wrap-up rather than opening count
+growth or another generic transfer gate. The next unblocked SPOF is text-leakage
+mitigation across learned representation artifacts and external pilot ranking,
+followed by artifact graph consistency checks.
 
 Remaining-time plan for the 2026-05-13T11:14:12Z run: after the active-site
 sourcing resolution and deterministic representation sample were in place, use

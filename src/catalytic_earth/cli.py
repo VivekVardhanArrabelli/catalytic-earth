@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 from .adapters import fetch_mcsa_sample, fetch_rhea_sample
 from .automation import acquire_automation_lock, inspect_automation_lock, release_automation_lock
@@ -56,6 +58,7 @@ from .labels import (
     apply_label_factory_actions,
     import_expert_review_decisions,
     import_countable_review_decisions,
+    LabelFactoryGateInputs,
     label_summary,
     load_labels,
     migrate_label_registry_records,
@@ -152,6 +155,90 @@ def write_json(path: Path, payload: object) -> None:
     with path.open("w", encoding="utf-8") as handle:
         json.dump(payload, handle, indent=2, sort_keys=True)
         handle.write("\n")
+
+
+def read_json_object(path: Path) -> dict[str, Any]:
+    with path.open("r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    if not isinstance(payload, dict):
+        raise ValueError(f"{path} must contain a JSON object")
+    return payload
+
+
+_LABEL_FACTORY_GATE_SLICE_ID_RE = re.compile(
+    r"_(\d+)(?=(?:_[A-Za-z0-9]+)*\.json$)"
+)
+_LABEL_FACTORY_GATE_LINEAGE_EXEMPTIONS = {
+    "atp_phosphoryl_transfer_family_expansion": (
+        "historical ATP-family boundary-control artifact; it is ontology scope "
+        "context and may predate the current label-factory slice"
+    )
+}
+
+
+def _infer_label_factory_gate_slice_id(path: str | None) -> int | None:
+    if not path:
+        return None
+    matches = _LABEL_FACTORY_GATE_SLICE_ID_RE.findall(Path(path).name)
+    return int(matches[-1]) if matches else None
+
+
+def _validate_label_factory_gate_cli_lineage(
+    *,
+    labels_path: str,
+    required_artifacts: dict[str, str],
+    optional_artifacts: dict[str, str | None],
+) -> dict[str, Any]:
+    artifact_paths: dict[str, str] = {
+        field_name: str(path)
+        for field_name, path in {
+            **required_artifacts,
+            **{name: path for name, path in optional_artifacts.items() if path},
+        }.items()
+    }
+    artifact_slice_ids: dict[str, int] = {}
+    missing_slice_id_artifacts: list[str] = []
+    exempted_artifacts: dict[str, dict[str, Any]] = {}
+    slice_members: dict[int, list[str]] = {}
+
+    for field_name, path in artifact_paths.items():
+        slice_id = _infer_label_factory_gate_slice_id(path)
+        if field_name in _LABEL_FACTORY_GATE_LINEAGE_EXEMPTIONS:
+            exempted_artifacts[field_name] = {
+                "path": path,
+                "slice_id": slice_id,
+                "reason": _LABEL_FACTORY_GATE_LINEAGE_EXEMPTIONS[field_name],
+            }
+            continue
+        if slice_id is None:
+            missing_slice_id_artifacts.append(field_name)
+            continue
+        artifact_slice_ids[field_name] = slice_id
+        slice_members.setdefault(slice_id, []).append(field_name)
+
+    labels_slice_id = _infer_label_factory_gate_slice_id(labels_path)
+    if labels_slice_id is not None:
+        artifact_slice_ids["labels"] = labels_slice_id
+        slice_members.setdefault(labels_slice_id, []).append("labels")
+
+    if len(slice_members) > 1:
+        details = "; ".join(
+            f"{slice_id}: {', '.join(sorted(names))}"
+            for slice_id, names in sorted(slice_members.items())
+        )
+        raise ValueError(
+            "mismatched label-factory gate artifact lineage: "
+            f"expected one non-exempt slice id across gate inputs, saw {details}"
+        )
+
+    return {
+        "method": "label_factory_gate_cli_lineage_validation",
+        "slice_id": next(iter(slice_members), None),
+        "artifact_slice_ids": dict(sorted(artifact_slice_ids.items())),
+        "artifact_paths": dict(sorted(artifact_paths.items())),
+        "missing_slice_id_artifacts": sorted(missing_slice_id_artifacts),
+        "exempted_artifacts": dict(sorted(exempted_artifacts.items())),
+    }
 
 
 def write_label_registry(path: Path, records: list[dict[str, object]]) -> None:
@@ -3188,111 +3275,69 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
 
 
 def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
-    with Path(args.label_factory_audit).open("r", encoding="utf-8") as handle:
-        factory = json.load(handle)
-    with Path(args.applied_label_factory).open("r", encoding="utf-8") as handle:
-        applied = json.load(handle)
-    with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
-        queue = json.load(handle)
-    with Path(args.adversarial_negatives).open("r", encoding="utf-8") as handle:
-        adversarial = json.load(handle)
-    with Path(args.expert_review_export).open("r", encoding="utf-8") as handle:
-        review_export = json.load(handle)
-    with Path(args.family_propagation_guardrails).open("r", encoding="utf-8") as handle:
-        family_guardrails = json.load(handle)
-    mismatch_review_export = None
-    if args.reaction_substrate_mismatch_review_export:
-        with Path(args.reaction_substrate_mismatch_review_export).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            mismatch_review_export = json.load(handle)
-    expert_label_review_export = None
-    if args.expert_label_decision_review_export:
-        with Path(args.expert_label_decision_review_export).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            expert_label_review_export = json.load(handle)
-    expert_label_repair_candidates = None
-    if args.expert_label_decision_repair_candidates:
-        with Path(args.expert_label_decision_repair_candidates).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            expert_label_repair_candidates = json.load(handle)
-    expert_label_repair_guardrail_audit = None
-    if args.expert_label_decision_repair_guardrail_audit:
-        with Path(args.expert_label_decision_repair_guardrail_audit).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            expert_label_repair_guardrail_audit = json.load(handle)
-    expert_label_local_evidence_gap_audit = None
-    if args.expert_label_decision_local_evidence_gap_audit:
-        with Path(args.expert_label_decision_local_evidence_gap_audit).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            expert_label_local_evidence_gap_audit = json.load(handle)
-    expert_label_local_evidence_review_export = None
-    if args.expert_label_decision_local_evidence_review_export:
-        with Path(args.expert_label_decision_local_evidence_review_export).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            expert_label_local_evidence_review_export = json.load(handle)
-    expert_label_local_evidence_repair_resolution = None
-    if args.expert_label_decision_local_evidence_repair_resolution:
-        with Path(args.expert_label_decision_local_evidence_repair_resolution).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            expert_label_local_evidence_repair_resolution = json.load(handle)
-    alternate_residue_requests = None
-    if args.explicit_alternate_residue_position_requests:
-        with Path(args.explicit_alternate_residue_position_requests).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            alternate_residue_requests = json.load(handle)
-    review_only_import_safety = None
-    if args.review_only_import_safety_audit:
-        with Path(args.review_only_import_safety_audit).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            review_only_import_safety = json.load(handle)
-    atp_family_expansion = None
-    if args.atp_phosphoryl_transfer_family_expansion:
-        with Path(args.atp_phosphoryl_transfer_family_expansion).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            atp_family_expansion = json.load(handle)
-    review_debt_deferral = None
-    if args.accepted_review_debt_deferral_audit:
-        with Path(args.accepted_review_debt_deferral_audit).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            review_debt_deferral = json.load(handle)
+    required_artifacts = {
+        "label_factory_audit": args.label_factory_audit,
+        "applied_label_factory": args.applied_label_factory,
+        "active_learning_queue": args.active_learning_queue,
+        "adversarial_negatives": args.adversarial_negatives,
+        "expert_review_export": args.expert_review_export,
+        "family_propagation_guardrails": args.family_propagation_guardrails,
+    }
+    optional_artifacts = {
+        "reaction_substrate_mismatch_review_export": (
+            args.reaction_substrate_mismatch_review_export
+        ),
+        "expert_label_decision_review_export": (
+            args.expert_label_decision_review_export
+        ),
+        "expert_label_decision_repair_candidates": (
+            args.expert_label_decision_repair_candidates
+        ),
+        "expert_label_decision_repair_guardrail_audit": (
+            args.expert_label_decision_repair_guardrail_audit
+        ),
+        "expert_label_decision_local_evidence_gap_audit": (
+            args.expert_label_decision_local_evidence_gap_audit
+        ),
+        "expert_label_decision_local_evidence_review_export": (
+            args.expert_label_decision_local_evidence_review_export
+        ),
+        "expert_label_decision_local_evidence_repair_resolution": (
+            args.expert_label_decision_local_evidence_repair_resolution
+        ),
+        "explicit_alternate_residue_position_requests": (
+            args.explicit_alternate_residue_position_requests
+        ),
+        "review_only_import_safety_audit": args.review_only_import_safety_audit,
+        "atp_phosphoryl_transfer_family_expansion": (
+            args.atp_phosphoryl_transfer_family_expansion
+        ),
+        "accepted_review_debt_deferral_audit": (
+            args.accepted_review_debt_deferral_audit
+        ),
+    }
+    artifact_lineage = _validate_label_factory_gate_cli_lineage(
+        labels_path=args.labels,
+        required_artifacts=required_artifacts,
+        optional_artifacts=optional_artifacts,
+    )
+    gate_artifacts = {
+        field_name: read_json_object(Path(path))
+        for field_name, path in required_artifacts.items()
+    }
+    gate_artifacts.update(
+        {
+            field_name: read_json_object(Path(path))
+            for field_name, path in optional_artifacts.items()
+            if path
+        }
+    )
     gates = check_label_factory_gates(
-        load_labels(Path(args.labels)),
-        factory,
-        applied,
-        queue,
-        adversarial,
-        review_export,
-        family_propagation_guardrails=family_guardrails,
-        reaction_substrate_mismatch_review_export=mismatch_review_export,
-        expert_label_decision_review_export=expert_label_review_export,
-        expert_label_decision_repair_candidates=expert_label_repair_candidates,
-        expert_label_decision_repair_guardrail_audit=(
-            expert_label_repair_guardrail_audit
-        ),
-        expert_label_decision_local_evidence_gap_audit=(
-            expert_label_local_evidence_gap_audit
-        ),
-        expert_label_decision_local_evidence_review_export=(
-            expert_label_local_evidence_review_export
-        ),
-        expert_label_decision_local_evidence_repair_resolution=(
-            expert_label_local_evidence_repair_resolution
-        ),
-        explicit_alternate_residue_position_requests=alternate_residue_requests,
-        review_only_import_safety_audit=review_only_import_safety,
-        atp_phosphoryl_transfer_family_expansion=atp_family_expansion,
-        accepted_review_debt_deferral_audit=review_debt_deferral,
+        LabelFactoryGateInputs(
+            labels=load_labels(Path(args.labels)),
+            artifact_lineage=artifact_lineage,
+            **gate_artifacts,
+        )
     )
     write_json(Path(args.out), gates)
     print(
@@ -5770,10 +5815,10 @@ def build_parser() -> argparse.ArgumentParser:
         help="verify label-factory artifacts before the next label batch",
     )
     gate_check.add_argument("--labels", default="data/registries/curated_mechanism_labels.json")
-    gate_check.add_argument("--label-factory-audit", default="artifacts/v3_label_factory_audit_475.json")
-    gate_check.add_argument("--applied-label-factory", default="artifacts/v3_label_factory_applied_labels_475.json")
+    gate_check.add_argument("--label-factory-audit", default="artifacts/v3_label_factory_audit_500.json")
+    gate_check.add_argument("--applied-label-factory", default="artifacts/v3_label_factory_applied_labels_500.json")
     gate_check.add_argument("--active-learning-queue", default="artifacts/v3_active_learning_review_queue_500.json")
-    gate_check.add_argument("--adversarial-negatives", default="artifacts/v3_adversarial_negative_controls_475.json")
+    gate_check.add_argument("--adversarial-negatives", default="artifacts/v3_adversarial_negative_controls_500.json")
     gate_check.add_argument("--expert-review-export", default="artifacts/v3_expert_review_export_500.json")
     gate_check.add_argument("--family-propagation-guardrails", default="artifacts/v3_family_propagation_guardrails_500.json")
     gate_check.add_argument("--reaction-substrate-mismatch-review-export", default=None)

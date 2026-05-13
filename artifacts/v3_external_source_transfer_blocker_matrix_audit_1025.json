@@ -10,17 +10,23 @@
     "dominant_prioritized_action_fraction": 0.6,
     "expected_active_site_resolution_row_count": 10,
     "expected_candidate_count": 30,
+    "expected_candidate_manifest_method": "external_source_candidate_manifest",
     "expected_representation_sample_row_count": 12,
+    "extra_matrix_accessions": [],
     "guardrail_clean": true,
     "import_ready_row_count": 0,
+    "manifest_accession_count": 30,
+    "matrix_accession_count": 30,
     "method": "external_source_transfer_blocker_matrix_audit",
     "missing_blocker_row_count": 0,
+    "missing_manifest_accessions": [],
     "missing_prioritized_action_row_count": 0,
     "missing_review_only_status_row_count": 0,
     "missing_sequence_task_row_count": 0,
     "ready_for_label_import": false,
     "representation_near_duplicate_alert_count": 3,
-    "representation_sample_row_count": 12
+    "representation_sample_row_count": 12,
+    "source_candidate_manifest_method": "external_source_candidate_manifest"
   },
   "warnings": [
     "external transfer blocker matrices are review-only worklists and cannot authorize external label import"

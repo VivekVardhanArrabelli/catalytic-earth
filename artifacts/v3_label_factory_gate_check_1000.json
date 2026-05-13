@@ -355,6 +355,53 @@
       "m_csa:1001",
       "m_csa:1002"
     ],
+    "artifact_lineage": {
+      "artifact_paths": {
+        "accepted_review_debt_deferral_audit": "artifacts/v3_accepted_review_debt_deferral_audit_1000.json",
+        "active_learning_queue": "artifacts/v3_active_learning_review_queue_1000.json",
+        "adversarial_negatives": "artifacts/v3_adversarial_negative_controls_1000.json",
+        "applied_label_factory": "artifacts/v3_label_factory_applied_labels_1000.json",
+        "atp_phosphoryl_transfer_family_expansion": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+        "expert_label_decision_local_evidence_gap_audit": "artifacts/v3_expert_label_decision_local_evidence_gap_audit_1000.json",
+        "expert_label_decision_local_evidence_review_export": "artifacts/v3_expert_label_decision_local_evidence_review_export_1000.json",
+        "expert_label_decision_repair_candidates": "artifacts/v3_expert_label_decision_repair_candidates_1000.json",
+        "expert_label_decision_repair_guardrail_audit": "artifacts/v3_expert_label_decision_repair_guardrail_audit_1000.json",
+        "expert_label_decision_review_export": "artifacts/v3_expert_label_decision_review_export_1000.json",
+        "expert_review_export": "artifacts/v3_expert_review_export_1000_post_batch.json",
+        "explicit_alternate_residue_position_requests": "artifacts/v3_explicit_alternate_residue_position_requests_1000.json",
+        "family_propagation_guardrails": "artifacts/v3_family_propagation_guardrails_1000.json",
+        "label_factory_audit": "artifacts/v3_label_factory_audit_1000.json",
+        "reaction_substrate_mismatch_review_export": "artifacts/v3_reaction_substrate_mismatch_review_export_1000.json",
+        "review_only_import_safety_audit": "artifacts/v3_review_only_import_safety_audit_1000.json"
+      },
+      "artifact_slice_ids": {
+        "accepted_review_debt_deferral_audit": 1000,
+        "active_learning_queue": 1000,
+        "adversarial_negatives": 1000,
+        "applied_label_factory": 1000,
+        "expert_label_decision_local_evidence_gap_audit": 1000,
+        "expert_label_decision_local_evidence_review_export": 1000,
+        "expert_label_decision_repair_candidates": 1000,
+        "expert_label_decision_repair_guardrail_audit": 1000,
+        "expert_label_decision_review_export": 1000,
+        "expert_review_export": 1000,
+        "explicit_alternate_residue_position_requests": 1000,
+        "family_propagation_guardrails": 1000,
+        "label_factory_audit": 1000,
+        "reaction_substrate_mismatch_review_export": 1000,
+        "review_only_import_safety_audit": 1000
+      },
+      "exempted_artifacts": {
+        "atp_phosphoryl_transfer_family_expansion": {
+          "path": "artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json",
+          "reason": "historical ATP-family boundary-control artifact; it is ontology scope context and may predate the current label-factory slice",
+          "slice_id": 700
+        }
+      },
+      "method": "label_factory_gate_cli_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "slice_id": 1000
+    },
     "atp_phosphoryl_transfer_family_expansion_countable_label_candidate_count": 0,
     "atp_phosphoryl_transfer_family_expansion_mapped_family_ids": [
       "askha",
@@ -1140,6 +1187,7 @@
       "m_csa:863"
     ],
     "gate_count": 21,
+    "gate_input_contract": "LabelFactoryGateInputs.v1",
     "label_count": 679,
     "method": "label_factory_gate_check",
     "omitted_underrepresented_queue_entry_ids": [],

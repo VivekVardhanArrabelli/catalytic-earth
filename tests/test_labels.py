@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from catalytic_earth.labels import (
+    LabelFactoryGateInputs,
     MechanismLabel,
     analyze_cofactor_abstention_policy,
     analyze_cofactor_coverage,
@@ -709,6 +710,72 @@ class LabelTests(unittest.TestCase):
         )
         self.assertFalse(truncated_gates["gates"]["active_queue_retains_unlabeled_candidates"])
         self.assertIn("active_queue_retains_unlabeled_candidates", truncated_gates["blockers"])
+
+    def test_label_factory_gate_accepts_typed_input_bundle(self) -> None:
+        labels = [
+            MechanismLabel(
+                entry_id="m_csa:1",
+                fingerprint_id="metal_dependent_hydrolase",
+                label_type="seed_fingerprint",
+                confidence="high",
+                rationale="Countable seed label used to exercise typed factory gate inputs.",
+            )
+        ]
+        inputs = LabelFactoryGateInputs(
+            labels=labels,
+            label_factory_audit={
+                "metadata": {"promote_to_silver_count": 1, "abstention_or_review_count": 1}
+            },
+            applied_label_factory={
+                "metadata": {
+                    "output_label_count": len(labels),
+                    "output_summary": {"by_tier": {"silver": 1}},
+                }
+            },
+            active_learning_queue={
+                "metadata": {
+                    "queued_count": 1,
+                    "all_unlabeled_rows_retained": True,
+                    "ranking_terms": [
+                        "uncertainty",
+                        "impact",
+                        "novelty",
+                        "hard_negative_value",
+                        "evidence_conflict",
+                        "family_boundary_value",
+                        "reaction_substrate_mismatch_value",
+                    ],
+                },
+                "rows": [{"entry_id": "m_csa:1", "top1_ontology_family": "hydrolysis"}],
+            },
+            adversarial_negatives={
+                "metadata": {
+                    "control_count": 1,
+                    "axis_counts": {"ontology_family_boundary": 1},
+                }
+            },
+            expert_review_export={
+                "metadata": {"exported_count": 1},
+                "review_items": [{"entry_id": "m_csa:1"}],
+            },
+            family_propagation_guardrails={
+                "metadata": {
+                    "reported_count": 1,
+                    "source_guardrails": [{"source": "local_proxy"}],
+                },
+                "rows": [],
+            },
+            artifact_lineage={
+                "method": "label_factory_gate_cli_lineage_validation",
+                "slice_id": 1000,
+            },
+        )
+
+        gates = check_label_factory_gates(inputs)
+
+        self.assertEqual(gates["metadata"]["gate_input_contract"], "LabelFactoryGateInputs.v1")
+        self.assertEqual(gates["metadata"]["artifact_lineage"]["slice_id"], 1000)
+        self.assertTrue(gates["metadata"]["automation_ready_for_next_label_batch"])
 
     def test_expert_review_export_includes_underrepresented_queue_families(self) -> None:
         labels = [

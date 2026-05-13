@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from catalytic_earth.geometry_retrieval import (
+    COUNTEREVIDENCE_POLICY,
+    COUNTEREVIDENCE_POLICY_VERSION,
     compactness_score,
     counterevidence_assessment,
     cofactor_context_score,
@@ -31,6 +33,63 @@ class GeometryRetrievalTests(unittest.TestCase):
         summary = distance_summary([{"distance": 4}, {"distance": 10}, {"distance": 20}])
         self.assertEqual(summary["median"], 10)
         self.assertEqual(summary["count"], 3)
+
+    def test_counterevidence_policy_records_rule_provenance(self) -> None:
+        rule_ids = [rule.rule_id for rule in COUNTEREVIDENCE_POLICY]
+        self.assertEqual(len(rule_ids), len(set(rule_ids)))
+        self.assertGreater(len(rule_ids), 40)
+
+        assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[
+                {"code": "CYS", "roles": ["metal ligand", "radical stabilizer"]},
+                {"code": "ASN", "roles": ["activator"]},
+            ],
+            cofactor_evidence="role_inferred",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+        )
+        self.assertEqual(assessment["policy_version"], COUNTEREVIDENCE_POLICY_VERSION)
+        self.assertEqual(
+            assessment["penalty_details"],
+            [
+                {
+                    "reason": "role_inferred_metal_radical_transfer_roles",
+                    "penalty": 0.68,
+                }
+            ],
+        )
+        self.assertEqual(
+            assessment["policy_hits"],
+            [
+                {
+                    "rule_id": "metal_dependent_hydrolase:role_inferred_metal_radical_transfer_roles",
+                    "reason": "role_inferred_metal_radical_transfer_roles",
+                    "penalty": 0.68,
+                    "evidence_fields": ["cofactor_evidence", "residue_roles"],
+                    "evidence_role": "counterevidence_only_not_predictive_evidence",
+                    "leakage_flags": [],
+                    "policy_version": COUNTEREVIDENCE_POLICY_VERSION,
+                }
+            ],
+        )
+        text_assessment = counterevidence_assessment(
+            fingerprint={"id": "metal_dependent_hydrolase"},
+            residues=[{"code": "HIS", "roles": ["metal ligand"]}],
+            cofactor_evidence="role_inferred",
+            ligand_context={"ligand_codes": [], "cofactor_families": []},
+            substrate_pocket_score_value=0.2,
+            mechanism_text_snippets=["A methylcobalamin methyl transfer reaction."],
+        )
+        text_hits = {
+            hit["reason"]: hit for hit in text_assessment["policy_hits"]
+        }
+        self.assertEqual(
+            text_hits["methylcobalamin_transfer_context_for_metal_hydrolase"][
+                "leakage_flags"
+            ],
+            ["mechanism_text_review_context_only"],
+        )
 
     def test_score_ser_his_acid_fingerprint(self) -> None:
         entry = {

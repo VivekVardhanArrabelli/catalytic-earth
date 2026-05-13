@@ -271,6 +271,29 @@ class MechanismLabel:
         }
 
 
+@dataclass(frozen=True)
+class LabelFactoryGateInputs:
+    labels: list[MechanismLabel]
+    label_factory_audit: dict[str, Any]
+    applied_label_factory: dict[str, Any] | None
+    active_learning_queue: dict[str, Any]
+    adversarial_negatives: dict[str, Any]
+    expert_review_export: dict[str, Any]
+    family_propagation_guardrails: dict[str, Any] | None = None
+    reaction_substrate_mismatch_review_export: dict[str, Any] | None = None
+    expert_label_decision_review_export: dict[str, Any] | None = None
+    expert_label_decision_repair_candidates: dict[str, Any] | None = None
+    expert_label_decision_repair_guardrail_audit: dict[str, Any] | None = None
+    expert_label_decision_local_evidence_gap_audit: dict[str, Any] | None = None
+    expert_label_decision_local_evidence_review_export: dict[str, Any] | None = None
+    expert_label_decision_local_evidence_repair_resolution: dict[str, Any] | None = None
+    explicit_alternate_residue_position_requests: dict[str, Any] | None = None
+    review_only_import_safety_audit: dict[str, Any] | None = None
+    atp_phosphoryl_transfer_family_expansion: dict[str, Any] | None = None
+    accepted_review_debt_deferral_audit: dict[str, Any] | None = None
+    artifact_lineage: dict[str, Any] | None = None
+
+
 def migrate_label_record(data: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(data, dict):
         raise ValueError("label record must be an object")
@@ -5943,13 +5966,13 @@ def apply_label_factory_actions(
     }
 
 
-def check_label_factory_gates(
-    labels: list[MechanismLabel],
-    label_factory_audit: dict[str, Any],
+def _coerce_label_factory_gate_inputs(
+    labels: list[MechanismLabel] | LabelFactoryGateInputs,
+    label_factory_audit: dict[str, Any] | None,
     applied_label_factory: dict[str, Any] | None,
-    active_learning_queue: dict[str, Any],
-    adversarial_negatives: dict[str, Any],
-    expert_review_export: dict[str, Any],
+    active_learning_queue: dict[str, Any] | None,
+    adversarial_negatives: dict[str, Any] | None,
+    expert_review_export: dict[str, Any] | None,
     family_propagation_guardrails: dict[str, Any] | None = None,
     reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
     expert_label_decision_review_export: dict[str, Any] | None = None,
@@ -5962,7 +5985,149 @@ def check_label_factory_gates(
     review_only_import_safety_audit: dict[str, Any] | None = None,
     atp_phosphoryl_transfer_family_expansion: dict[str, Any] | None = None,
     accepted_review_debt_deferral_audit: dict[str, Any] | None = None,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> LabelFactoryGateInputs:
+    if isinstance(labels, LabelFactoryGateInputs):
+        return labels
+    required = {
+        "label_factory_audit": label_factory_audit,
+        "active_learning_queue": active_learning_queue,
+        "adversarial_negatives": adversarial_negatives,
+        "expert_review_export": expert_review_export,
+    }
+    missing = sorted(name for name, value in required.items() if value is None)
+    if missing:
+        raise ValueError(f"missing label factory gate inputs: {', '.join(missing)}")
+    return LabelFactoryGateInputs(
+        labels=labels,
+        label_factory_audit=label_factory_audit,
+        applied_label_factory=applied_label_factory,
+        active_learning_queue=active_learning_queue,
+        adversarial_negatives=adversarial_negatives,
+        expert_review_export=expert_review_export,
+        family_propagation_guardrails=family_propagation_guardrails,
+        reaction_substrate_mismatch_review_export=(
+            reaction_substrate_mismatch_review_export
+        ),
+        expert_label_decision_review_export=expert_label_decision_review_export,
+        expert_label_decision_repair_candidates=expert_label_decision_repair_candidates,
+        expert_label_decision_repair_guardrail_audit=(
+            expert_label_decision_repair_guardrail_audit
+        ),
+        expert_label_decision_local_evidence_gap_audit=(
+            expert_label_decision_local_evidence_gap_audit
+        ),
+        expert_label_decision_local_evidence_review_export=(
+            expert_label_decision_local_evidence_review_export
+        ),
+        expert_label_decision_local_evidence_repair_resolution=(
+            expert_label_decision_local_evidence_repair_resolution
+        ),
+        explicit_alternate_residue_position_requests=(
+            explicit_alternate_residue_position_requests
+        ),
+        review_only_import_safety_audit=review_only_import_safety_audit,
+        atp_phosphoryl_transfer_family_expansion=(
+            atp_phosphoryl_transfer_family_expansion
+        ),
+        accepted_review_debt_deferral_audit=accepted_review_debt_deferral_audit,
+        artifact_lineage=artifact_lineage,
+    )
+
+
+def check_label_factory_gates(
+    labels: list[MechanismLabel] | LabelFactoryGateInputs,
+    label_factory_audit: dict[str, Any] | None = None,
+    applied_label_factory: dict[str, Any] | None = None,
+    active_learning_queue: dict[str, Any] | None = None,
+    adversarial_negatives: dict[str, Any] | None = None,
+    expert_review_export: dict[str, Any] | None = None,
+    family_propagation_guardrails: dict[str, Any] | None = None,
+    reaction_substrate_mismatch_review_export: dict[str, Any] | None = None,
+    expert_label_decision_review_export: dict[str, Any] | None = None,
+    expert_label_decision_repair_candidates: dict[str, Any] | None = None,
+    expert_label_decision_repair_guardrail_audit: dict[str, Any] | None = None,
+    expert_label_decision_local_evidence_gap_audit: dict[str, Any] | None = None,
+    expert_label_decision_local_evidence_review_export: dict[str, Any] | None = None,
+    expert_label_decision_local_evidence_repair_resolution: dict[str, Any] | None = None,
+    explicit_alternate_residue_position_requests: dict[str, Any] | None = None,
+    review_only_import_safety_audit: dict[str, Any] | None = None,
+    atp_phosphoryl_transfer_family_expansion: dict[str, Any] | None = None,
+    accepted_review_debt_deferral_audit: dict[str, Any] | None = None,
+    artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    gate_inputs = _coerce_label_factory_gate_inputs(
+        labels=labels,
+        label_factory_audit=label_factory_audit,
+        applied_label_factory=applied_label_factory,
+        active_learning_queue=active_learning_queue,
+        adversarial_negatives=adversarial_negatives,
+        expert_review_export=expert_review_export,
+        family_propagation_guardrails=family_propagation_guardrails,
+        reaction_substrate_mismatch_review_export=(
+            reaction_substrate_mismatch_review_export
+        ),
+        expert_label_decision_review_export=expert_label_decision_review_export,
+        expert_label_decision_repair_candidates=expert_label_decision_repair_candidates,
+        expert_label_decision_repair_guardrail_audit=(
+            expert_label_decision_repair_guardrail_audit
+        ),
+        expert_label_decision_local_evidence_gap_audit=(
+            expert_label_decision_local_evidence_gap_audit
+        ),
+        expert_label_decision_local_evidence_review_export=(
+            expert_label_decision_local_evidence_review_export
+        ),
+        expert_label_decision_local_evidence_repair_resolution=(
+            expert_label_decision_local_evidence_repair_resolution
+        ),
+        explicit_alternate_residue_position_requests=(
+            explicit_alternate_residue_position_requests
+        ),
+        review_only_import_safety_audit=review_only_import_safety_audit,
+        atp_phosphoryl_transfer_family_expansion=(
+            atp_phosphoryl_transfer_family_expansion
+        ),
+        accepted_review_debt_deferral_audit=accepted_review_debt_deferral_audit,
+        artifact_lineage=artifact_lineage,
+    )
+    labels = gate_inputs.labels
+    label_factory_audit = gate_inputs.label_factory_audit
+    applied_label_factory = gate_inputs.applied_label_factory
+    active_learning_queue = gate_inputs.active_learning_queue
+    adversarial_negatives = gate_inputs.adversarial_negatives
+    expert_review_export = gate_inputs.expert_review_export
+    family_propagation_guardrails = gate_inputs.family_propagation_guardrails
+    reaction_substrate_mismatch_review_export = (
+        gate_inputs.reaction_substrate_mismatch_review_export
+    )
+    expert_label_decision_review_export = (
+        gate_inputs.expert_label_decision_review_export
+    )
+    expert_label_decision_repair_candidates = (
+        gate_inputs.expert_label_decision_repair_candidates
+    )
+    expert_label_decision_repair_guardrail_audit = (
+        gate_inputs.expert_label_decision_repair_guardrail_audit
+    )
+    expert_label_decision_local_evidence_gap_audit = (
+        gate_inputs.expert_label_decision_local_evidence_gap_audit
+    )
+    expert_label_decision_local_evidence_review_export = (
+        gate_inputs.expert_label_decision_local_evidence_review_export
+    )
+    expert_label_decision_local_evidence_repair_resolution = (
+        gate_inputs.expert_label_decision_local_evidence_repair_resolution
+    )
+    explicit_alternate_residue_position_requests = (
+        gate_inputs.explicit_alternate_residue_position_requests
+    )
+    review_only_import_safety_audit = gate_inputs.review_only_import_safety_audit
+    atp_phosphoryl_transfer_family_expansion = (
+        gate_inputs.atp_phosphoryl_transfer_family_expansion
+    )
+    accepted_review_debt_deferral_audit = gate_inputs.accepted_review_debt_deferral_audit
+    artifact_lineage = gate_inputs.artifact_lineage or {}
     ontology = load_mechanism_ontology()
     required_terms = {
         "uncertainty",
@@ -6451,6 +6616,8 @@ def check_label_factory_gates(
     return {
         "metadata": {
             "method": "label_factory_gate_check",
+            "gate_input_contract": "LabelFactoryGateInputs.v1",
+            "artifact_lineage": artifact_lineage,
             "label_count": len(labels),
             "passed_gate_count": sum(1 for passed in gates.values() if passed),
             "gate_count": len(gates),

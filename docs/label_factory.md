@@ -34,6 +34,28 @@ abstention, top-family mismatch, or out-of-scope false non-abstention appears.
 Bronze labels with the same conflicts stay bronze and enter review/abstention
 handling.
 
+Counterevidence policy is now table-driven rather than a growing branch cascade
+inside the geometry scorer. `geometry_retrieval.py` evaluates typed
+`CounterevidenceInputs` against a versioned `COUNTEREVIDENCE_POLICY`; retrieval
+artifacts keep the existing `counterevidence_reasons` and
+`counterevidence_penalty_details` fields, and newer outputs also attach
+`counterevidence_policy_version` and `counterevidence_policy_hits`. Policy hits
+record rule id, evidence fields, and leakage flags. Mechanism-text rules are
+explicitly marked as `mechanism_text_review_context_only` and
+`counterevidence_only_not_predictive_evidence`, so text can route review or
+abstention but must not be used as positive discovery evidence.
+
+The label-factory gate also has a typed input contract:
+`LabelFactoryGateInputs.v1`. The CLI loads required and optional gate artifacts
+through a table-driven artifact map before calling `check_label_factory_gates`,
+which keeps future gate inputs from becoming another one-off argument cascade.
+The same path validates high-fan-in artifact lineage before loading the JSON:
+all non-exempt gate inputs must share a compatible slice id, and
+`artifacts/v3_label_factory_gate_check_1000.json` now records the validated
+lineage under `metadata.artifact_lineage`. The only current exemption is the
+historical ATP-family boundary-control artifact, which remains review/scope
+context rather than a count-growth input.
+
 Current slice artifact:
 
 ```bash

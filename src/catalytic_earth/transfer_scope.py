@@ -21,6 +21,28 @@ from .geometry_retrieval import run_geometry_retrieval
 ALPHAFOLD_CIF_URL = "https://alphafold.ebi.ac.uk/files/AF-{accession}-F1-model_v{version}.cif"
 ALPHAFOLD_MODEL_VERSIONS = (6, 5, 4, 3, 2, 1)
 USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
+REPRESENTATION_PREDICTIVE_FEATURE_SOURCES = (
+    "sequence_embedding_cosine",
+    "sequence_length_coverage",
+)
+REPRESENTATION_REVIEW_CONTEXT_FIELDS = (
+    "heuristic_baseline_control",
+    "nearest_reference",
+    "scope_signal",
+    "sequence_search_task",
+)
+REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS = (
+    "accession",
+    "ec",
+    "entry_id",
+    "fingerprint",
+    "label",
+    "mechanism",
+    "rhea",
+    "scope_signal",
+    "source_target",
+    "text",
+)
 
 
 def build_external_source_transfer_manifest(
@@ -3203,6 +3225,10 @@ def build_external_source_representation_backend_sample(
             if reference_scores
             else 0.0
         )
+        leakage_flags = _external_representation_sample_leakage_flags(
+            plan_row=plan_row,
+            reference_scores=reference_scores,
+        )
         status = _external_representation_backend_sample_status(
             candidate_sequence=candidate_sequence,
             reference_scores=reference_scores,
@@ -3246,6 +3272,7 @@ def build_external_source_representation_backend_sample(
                     "entry_id": plan_row.get("entry_id") or f"uniprot:{accession}",
                     "heuristic_top1_fingerprint_id": heuristic_top1,
                     "learned_or_proxy_backend_status": status,
+                    "leakage_flags": leakage_flags,
                     "nearest_reference_entry_ids": nearest_reference_entry_ids,
                     "representation_heuristic_disagreement_status": disagreement_status,
                     "top_embedding_cosine": round(best_score, 4),
@@ -3276,9 +3303,14 @@ def build_external_source_representation_backend_sample(
                 ),
                 "lane_id": plan_row.get("lane_id"),
                 "nearest_reference": reference_scores[0] if reference_scores else None,
+                "leakage_flags": leakage_flags,
+                "predictive_feature_sources": list(
+                    REPRESENTATION_PREDICTIVE_FEATURE_SOURCES
+                ),
                 "ready_for_label_import": False,
                 "reference_scores": reference_scores,
                 "review_status": "representation_backend_sample_review_only",
+                "review_context_fields": list(REPRESENTATION_REVIEW_CONTEXT_FIELDS),
                 "scope_signal": plan_row.get("scope_signal"),
                 "sequence_search_task": plan_row.get("sequence_search_task"),
                 "top_embedding_cosine": round(best_score, 4),
@@ -3309,6 +3341,14 @@ def build_external_source_representation_backend_sample(
             "requested_embedding_backend": embedding_backend,
             "model_name": embedding_payload["metadata"].get("model_name"),
             "embedding_status": "computed_review_only",
+            "predictive_feature_policy": (
+                "representation status is computed from sequence embeddings "
+                "and sequence length coverage only; identifiers, EC/Rhea, "
+                "mechanism text, labels, and heuristic fingerprint ids are "
+                "review context or holdout context only"
+            ),
+            "predictive_feature_sources": list(REPRESENTATION_PREDICTIVE_FEATURE_SOURCES),
+            "review_context_fields": list(REPRESENTATION_REVIEW_CONTEXT_FIELDS),
             "embedding_backend_available": embedding_payload["metadata"].get(
                 "embedding_backend_available"
             ),
@@ -3361,6 +3401,22 @@ def build_external_source_representation_backend_sample(
     }
 
 
+def _external_representation_sample_leakage_flags(
+    *,
+    plan_row: dict[str, Any],
+    reference_scores: list[dict[str, Any]],
+) -> list[str]:
+    flags: list[str] = []
+    heuristic_control = plan_row.get("heuristic_baseline_control", {})
+    if isinstance(heuristic_control, dict) and heuristic_control.get("top1_fingerprint_id"):
+        flags.append("heuristic_fingerprint_id_review_context_only")
+    if any(score.get("matched_m_csa_entry_ids") for score in reference_scores):
+        flags.append("matched_m_csa_reference_ids_holdout_context_only")
+    if plan_row.get("scope_signal"):
+        flags.append("source_scope_signal_review_context_only")
+    return sorted(set(flags))
+
+
 def audit_external_source_representation_backend_sample(
     representation_backend_sample: dict[str, Any],
 ) -> dict[str, Any]:
@@ -3382,7 +3438,31 @@ def audit_external_source_representation_backend_sample(
         for row in rows
         if row.get("review_status") != "representation_backend_sample_review_only"
     ]
+    missing_predictive_sources = [
+        row
+        for row in rows
+        if row.get("predictive_feature_sources")
+        != list(REPRESENTATION_PREDICTIVE_FEATURE_SOURCES)
+    ]
+    leakage_context_unmarked = [
+        row
+        for row in rows
+        if (
+            (row.get("heuristic_baseline_control") or row.get("nearest_reference"))
+            and not row.get("leakage_flags")
+        )
+    ]
     metadata = representation_backend_sample.get("metadata", {})
+    predictive_sources = _representation_predictive_sources_from(metadata)
+    for row in rows:
+        predictive_sources.extend(_representation_predictive_sources_from(row))
+    leakage_prone_predictive_sources = sorted(
+        {
+            source
+            for source in predictive_sources
+            if _representation_predictive_source_is_leakage_prone(source)
+        }
+    )
     blockers: list[str] = []
     if not rows:
         blockers.append("empty_representation_backend_sample")
@@ -3396,6 +3476,16 @@ def audit_external_source_representation_backend_sample(
         blockers.append("representation_backend_sample_rows_missing_backend_status")
     if missing_review_status:
         blockers.append("representation_backend_sample_rows_not_review_only")
+    if metadata.get("predictive_feature_sources") != list(
+        REPRESENTATION_PREDICTIVE_FEATURE_SOURCES
+    ):
+        blockers.append("representation_backend_sample_predictive_policy_missing")
+    if missing_predictive_sources:
+        blockers.append("representation_backend_sample_rows_missing_predictive_sources")
+    if leakage_context_unmarked:
+        blockers.append("representation_backend_sample_leakage_context_unmarked")
+    if leakage_prone_predictive_sources:
+        blockers.append("representation_backend_sample_leakage_prone_predictive_sources")
     return {
         "metadata": {
             "method": "external_source_representation_backend_sample_audit",
@@ -3411,6 +3501,10 @@ def audit_external_source_representation_backend_sample(
             "import_ready_row_count": len(import_ready_rows),
             "missing_backend_status_row_count": len(missing_backend_status),
             "missing_review_only_status_row_count": len(missing_review_status),
+            "missing_predictive_sources_row_count": len(missing_predictive_sources),
+            "leakage_context_unmarked_row_count": len(leakage_context_unmarked),
+            "leakage_prone_predictive_sources": leakage_prone_predictive_sources,
+            "predictive_feature_sources": metadata.get("predictive_feature_sources"),
             "representation_near_duplicate_alert_count": metadata.get(
                 "representation_near_duplicate_alert_count", 0
             ),
@@ -3424,6 +3518,23 @@ def audit_external_source_representation_backend_sample(
             )
         ],
     }
+
+
+def _representation_predictive_source_is_leakage_prone(source: str) -> bool:
+    normalized = source.lower()
+    return any(
+        term in normalized
+        for term in REPRESENTATION_LEAKAGE_PRONE_PREDICTIVE_TERMS
+    )
+
+
+def _representation_predictive_sources_from(payload: dict[str, Any]) -> list[str]:
+    sources = payload.get("predictive_feature_sources", [])
+    if isinstance(sources, str):
+        return [sources]
+    if isinstance(sources, (list, tuple)):
+        return [str(source) for source in sources]
+    return []
 
 
 def audit_external_source_broad_ec_disambiguation(
@@ -5405,6 +5516,22 @@ def audit_external_source_transfer_blocker_matrix(
     expected_candidate_count = int(
         candidate_manifest.get("metadata", {}).get("candidate_count", 0) or 0
     )
+    manifest_accessions = sorted(
+        {
+            _normalize_accession(row.get("accession"))
+            for row in candidate_manifest.get("rows", []) or []
+            if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+        }
+    )
+    matrix_accessions = sorted(
+        {
+            _normalize_accession(row.get("accession"))
+            for row in rows
+            if _normalize_accession(row.get("accession"))
+        }
+    )
+    missing_manifest_accessions = sorted(set(manifest_accessions) - set(matrix_accessions))
+    extra_matrix_accessions = sorted(set(matrix_accessions) - set(manifest_accessions))
     countable_rows = [
         row for row in rows if row.get("countable_label_candidate") is not False
     ]
@@ -5462,6 +5589,16 @@ def audit_external_source_transfer_blocker_matrix(
         blockers.append("empty_external_transfer_blocker_matrix")
     if expected_candidate_count and len(rows) != expected_candidate_count:
         blockers.append("external_transfer_blocker_matrix_missing_candidates")
+    if manifest_accessions and (
+        missing_manifest_accessions or extra_matrix_accessions
+    ):
+        blockers.append("external_transfer_blocker_matrix_candidate_lineage_mismatch")
+    if (
+        candidate_manifest.get("metadata", {}).get("method")
+        and metadata.get("source_candidate_manifest_method")
+        != candidate_manifest.get("metadata", {}).get("method")
+    ):
+        blockers.append("external_transfer_blocker_matrix_source_method_mismatch")
     if countable_rows:
         blockers.append("external_transfer_blocker_matrix_rows_marked_countable")
     if import_ready_rows:
@@ -5510,6 +5647,16 @@ def audit_external_source_transfer_blocker_matrix(
             "countable_label_candidate_count": len(countable_rows),
             "candidate_count": len(rows),
             "expected_candidate_count": expected_candidate_count,
+            "manifest_accession_count": len(manifest_accessions),
+            "matrix_accession_count": len(matrix_accessions),
+            "missing_manifest_accessions": missing_manifest_accessions,
+            "extra_matrix_accessions": extra_matrix_accessions,
+            "source_candidate_manifest_method": metadata.get(
+                "source_candidate_manifest_method"
+            ),
+            "expected_candidate_manifest_method": candidate_manifest.get(
+                "metadata", {}
+            ).get("method"),
             "import_ready_row_count": len(import_ready_rows),
             "missing_blocker_row_count": len(missing_blocker_rows),
             "missing_review_only_status_row_count": len(missing_review_status_rows),

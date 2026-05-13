@@ -148,7 +148,17 @@ Priority blockers:
   records 320-dimensional embeddings, keeps all rows non-countable and not
   import-ready, flags 3 representation-near-duplicate holdouts, and emits 12
   learned-vs-heuristic disagreement rows for active-learning priority. The
+  sample now declares `sequence_embedding_cosine` and `sequence_length_coverage`
+  as the only predictive representation feature sources. Heuristic fingerprint
+  ids, matched M-CSA reference ids, and source scope signals are carried with
+  explicit leakage flags as review or holdout context only. The audit now also
+  fails if EC/Rhea identifiers, mechanism text, source labels, fingerprint ids,
+  or source-target identifiers appear as predictive feature sources. The
   heuristic geometry retrieval remains the required baseline control.
+- The transfer blocker matrix audit now performs a row-level candidate-manifest
+  lineage check. A matrix built from a stale or mismatched manifest fails with
+  `external_transfer_blocker_matrix_candidate_lineage_mismatch` instead of
+  passing because high-level candidate counts happen to match.
 
 ## Artifacts
 

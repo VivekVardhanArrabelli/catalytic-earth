@@ -7,10 +7,49 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from catalytic_earth.cli import _validate_label_factory_gate_cli_lineage
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class CliTests(unittest.TestCase):
+    def test_label_factory_gate_cli_lineage_rejects_mismatched_slices(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            required = {
+                "label_factory_audit": str(root / "v3_label_factory_audit_1000.json"),
+                "applied_label_factory": str(
+                    root / "v3_label_factory_applied_labels_1025.json"
+                ),
+                "active_learning_queue": str(
+                    root / "v3_active_learning_review_queue_1000.json"
+                ),
+                "adversarial_negatives": str(
+                    root / "v3_adversarial_negative_controls_1000.json"
+                ),
+                "expert_review_export": str(
+                    root / "v3_expert_review_export_1000_post_batch.json"
+                ),
+                "family_propagation_guardrails": str(
+                    root / "v3_family_propagation_guardrails_1000.json"
+                ),
+            }
+            optional = {
+                "atp_phosphoryl_transfer_family_expansion": str(
+                    root / "v3_atp_phosphoryl_transfer_family_expansion_700.json"
+                )
+            }
+
+            with self.assertRaisesRegex(
+                ValueError,
+                "mismatched label-factory gate artifact lineage",
+            ):
+                _validate_label_factory_gate_cli_lineage(
+                    labels_path=str(root / "curated_mechanism_labels.json"),
+                    required_artifacts=required,
+                    optional_artifacts=optional,
+                )
+
     def test_validate_command(self) -> None:
         result = subprocess.run(
             [sys.executable, "-m", "catalytic_earth.cli", "validate"],

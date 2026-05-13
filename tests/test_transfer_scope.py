@@ -2767,6 +2767,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(sample["metadata"]["candidate_count"], 1)
         self.assertEqual(sample["metadata"]["embedding_status"], "computed_review_only")
         self.assertEqual(
+            sample["metadata"]["predictive_feature_sources"],
+            ["sequence_embedding_cosine", "sequence_length_coverage"],
+        )
+        self.assertEqual(
             sample["rows"][0]["review_status"],
             "representation_backend_sample_review_only",
         )
@@ -2775,8 +2779,50 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "deterministic_sequence_kmer_control",
         )
         self.assertGreater(sample["rows"][0]["top_embedding_cosine"], 0.5)
+        self.assertEqual(
+            sample["rows"][0]["predictive_feature_sources"],
+            ["sequence_embedding_cosine", "sequence_length_coverage"],
+        )
+        self.assertEqual(
+            sample["rows"][0]["leakage_flags"],
+            [
+                "heuristic_fingerprint_id_review_context_only",
+                "matched_m_csa_reference_ids_holdout_context_only",
+                "source_scope_signal_review_context_only",
+            ],
+        )
         self.assertFalse(sample["rows"][0]["countable_label_candidate"])
         self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["missing_predictive_sources_row_count"], 0)
+
+        broken_sample = json.loads(json.dumps(sample))
+        broken_sample["rows"][0].pop("predictive_feature_sources")
+        broken_audit = audit_external_source_representation_backend_sample(broken_sample)
+        self.assertIn(
+            "representation_backend_sample_rows_missing_predictive_sources",
+            broken_audit["blockers"],
+        )
+
+        leakage_sample = json.loads(json.dumps(sample))
+        leakage_sample["metadata"]["predictive_feature_sources"] = [
+            "sequence_embedding_cosine",
+            "ec_number_text_label",
+        ]
+        leakage_sample["rows"][0]["predictive_feature_sources"] = [
+            "sequence_embedding_cosine",
+            "mechanism_text_label",
+        ]
+        leakage_audit = audit_external_source_representation_backend_sample(
+            leakage_sample
+        )
+        self.assertIn(
+            "representation_backend_sample_leakage_prone_predictive_sources",
+            leakage_audit["blockers"],
+        )
+        self.assertEqual(
+            leakage_audit["metadata"]["leakage_prone_predictive_sources"],
+            ["ec_number_text_label", "mechanism_text_label"],
+        )
 
     def test_external_representation_backend_sample_accepts_learned_backend(self) -> None:
         plan = {
@@ -2866,6 +2912,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "learned_representation_sample_complete",
         )
         self.assertEqual(sample["metadata"]["learned_representation_complete_count"], 1)
+        self.assertEqual(
+            sample["metadata"]["predictive_feature_sources"],
+            ["sequence_embedding_cosine", "sequence_length_coverage"],
+        )
         self.assertEqual(
             sample["metadata"]["learned_vs_heuristic_disagreement_count"], 1
         )
@@ -3620,7 +3670,13 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         )
         audit = audit_external_source_transfer_blocker_matrix(
             transfer_blocker_matrix=matrix,
-            candidate_manifest={"metadata": {"candidate_count": 2}},
+            candidate_manifest={
+                "metadata": {
+                    "candidate_count": 2,
+                    "method": "external_source_candidate_manifest",
+                },
+                "rows": [{"accession": "P11111"}, {"accession": "P22222"}],
+            },
         )
 
         self.assertFalse(matrix["metadata"]["ready_for_label_import"])
@@ -3676,9 +3732,24 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             matrix["rows"][1]["blockers"],
         )
         self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["manifest_accession_count"], 2)
         self.assertEqual(audit["metadata"]["completed_sequence_decision_count"], 0)
         self.assertEqual(
             audit["metadata"]["dominant_prioritized_action_fraction"], 0.5
+        )
+        mismatch_audit = audit_external_source_transfer_blocker_matrix(
+            transfer_blocker_matrix=matrix,
+            candidate_manifest={
+                "metadata": {
+                    "candidate_count": 2,
+                    "method": "external_source_candidate_manifest",
+                },
+                "rows": [{"accession": "P11111"}, {"accession": "P33333"}],
+            },
+        )
+        self.assertIn(
+            "external_transfer_blocker_matrix_candidate_lineage_mismatch",
+            mismatch_audit["blockers"],
         )
 
     def test_external_review_packet_audits_reject_non_review_status(self) -> None:

@@ -217,6 +217,17 @@ Current expectation:
   artifacts from adding countable labels. The expert-label decision export
   records 0 countable candidates, and the repair/local-evidence artifacts keep
   all priority lanes non-countable
+- counterevidence maintainability is no longer the top single-point blocker:
+  the geometry scorer now uses a versioned declarative policy with typed shared
+  inputs, rule-level provenance, and explicit mechanism-text leakage flags. The
+  label-factory gate has a typed `LabelFactoryGateInputs.v1` contract and a
+  table-driven CLI artifact loader so future gate inputs do not keep growing as
+  one-off branches. The gate CLI now validates non-exempt artifact slice
+  lineage before loading high-fan-in inputs and writes the lineage metadata into
+  the gate artifact.
+- artifact-lineage hardening has started: the external transfer blocker matrix
+  audit now compares row accessions and candidate-manifest source method against
+  the candidate manifest and fails on stale or mismatched matrix inputs.
 - review-debt triage now ranks 326 evidence-gap rows from the 1000 review pass,
   with 326 `needs_more_evidence` decisions, 305 carried rows, 21 new rows, and
   explicit non-countable deferral coverage for every row
@@ -295,7 +306,9 @@ Current expectation:
   controls without embeddings, the deterministic k-mer baseline covers all 12
   controls and flags one representation near-duplicate holdout, the canonical
   ESM-2 sample covers all 12 controls, flags three representation
-  near-duplicate holdouts, and emits 12 learned-vs-heuristic disagreements, the
+  near-duplicate holdouts, emits 12 learned-vs-heuristic disagreements, and
+  now marks heuristic fingerprint ids, matched M-CSA reference ids, and scope
+  signals as review or holdout context rather than predictive evidence, the
   transfer blocker matrix keeps all 30 candidates non-countable with explicit
   next actions and now carries the active-site resolution plus representation
   sample statuses directly,

@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import json
 import statistics
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from .fingerprints import load_fingerprints
 
@@ -72,6 +73,48 @@ FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES = {
     "BR",  # aromatic monooxygenase product/substrate context in M-CSA 131
     "PHB",  # p-hydroxybenzoate monooxygenase substrate/product context
 }
+COUNTEREVIDENCE_POLICY_VERSION = "2026-05-13.declarative-v1"
+
+
+@dataclass(frozen=True)
+class CounterevidenceInputs:
+    fingerprint_id: str
+    residues: list[dict[str, Any]]
+    cofactor_evidence: str
+    ligand_context: dict[str, Any] | None
+    substrate_pocket_score_value: float
+    pocket_context: dict[str, Any] | None
+    compactness_score_value: float | None
+    mechanism_text_snippets: list[str] | None
+    residue_roles: set[str]
+    ligand_families: set[str]
+    ligand_codes: set[str]
+    structure_ligand_families: set[str]
+    structure_ligand_codes: set[str]
+    mechanism_text: str
+
+
+CounterevidencePredicate = Callable[[CounterevidenceInputs, set[str]], bool]
+
+
+@dataclass(frozen=True)
+class CounterevidenceRule:
+    fingerprint_id: str
+    reason: str
+    penalty: float
+    evidence_fields: tuple[str, ...]
+    predicate: CounterevidencePredicate
+
+    @property
+    def rule_id(self) -> str:
+        return f"{self.fingerprint_id}:{self.reason}"
+
+    @property
+    def leakage_flags(self) -> tuple[str, ...]:
+        flags: list[str] = []
+        if "mechanism_text" in self.evidence_fields:
+            flags.append("mechanism_text_review_context_only")
+        return tuple(flags)
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -215,6 +258,8 @@ def score_entry_against_fingerprint(
         "counterevidence_penalty": round(counterevidence["penalty"], 4),
         "counterevidence_reasons": counterevidence["reasons"],
         "counterevidence_penalty_details": counterevidence["penalty_details"],
+        "counterevidence_policy_version": counterevidence["policy_version"],
+        "counterevidence_policy_hits": counterevidence["policy_hits"],
         "matched_signature_roles": matched_signature_roles,
         "distance_summary": distance_summary(distances),
     }
@@ -506,28 +551,38 @@ def counterevidence_assessment(
     compactness_score_value: float | None = None,
     mechanism_text_snippets: list[str] | None = None,
 ) -> dict[str, Any]:
-    fingerprint_id = str(fingerprint.get("id", ""))
-    residue_roles = {
-        _normalize_phrase(role)
-        for residue in residues
-        for role in residue.get("roles", [])
-        if isinstance(role, str)
-    }
-    ligand_families = _ligand_cofactor_families(ligand_context)
-    ligand_codes = _ligand_codes(ligand_context)
-    structure_ligand_families = _structure_ligand_cofactor_families(ligand_context)
-    structure_ligand_codes = _structure_ligand_codes(ligand_context)
-    mechanism_text = _joined_mechanism_text(mechanism_text_snippets)
+    inputs = _build_counterevidence_inputs(
+        fingerprint=fingerprint,
+        residues=residues,
+        cofactor_evidence=cofactor_evidence,
+        ligand_context=ligand_context,
+        substrate_pocket_score_value=substrate_pocket_score_value,
+        pocket_context=pocket_context,
+        compactness_score_value=compactness_score_value,
+        mechanism_text_snippets=mechanism_text_snippets,
+    )
     penalty = 1.0
     reasons: list[str] = []
     penalty_details: list[dict[str, Any]] = []
+    policy_hits: list[dict[str, Any]] = []
 
-    def apply(value: float, reason: str) -> None:
+    def apply(rule: CounterevidenceRule) -> None:
         nonlocal penalty
-        if value < penalty:
-            penalty = value
-        reasons.append(reason)
-        penalty_details.append({"reason": reason, "penalty": round(value, 4)})
+        if rule.penalty < penalty:
+            penalty = rule.penalty
+        reasons.append(rule.reason)
+        penalty_details.append({"reason": rule.reason, "penalty": round(rule.penalty, 4)})
+        policy_hits.append(
+            {
+                "rule_id": rule.rule_id,
+                "reason": rule.reason,
+                "penalty": round(rule.penalty, 4),
+                "evidence_fields": list(rule.evidence_fields),
+                "evidence_role": "counterevidence_only_not_predictive_evidence",
+                "leakage_flags": list(rule.leakage_flags),
+                "policy_version": COUNTEREVIDENCE_POLICY_VERSION,
+            }
+        )
 
     def result() -> dict[str, Any]:
         return {
@@ -537,209 +592,72 @@ def counterevidence_assessment(
                 {detail["reason"]: detail for detail in penalty_details}.values(),
                 key=lambda detail: (float(detail["penalty"]), str(detail["reason"])),
             ),
+            "policy_version": COUNTEREVIDENCE_POLICY_VERSION,
+            "policy_hits": sorted(
+                {hit["rule_id"]: hit for hit in policy_hits}.values(),
+                key=lambda hit: (float(hit["penalty"]), str(hit["rule_id"])),
+            ),
         }
 
-    if fingerprint_id == "metal_dependent_hydrolase":
-        if cofactor_evidence == "role_inferred" and substrate_pocket_score_value < 0.15:
-            apply(0.72, "role_inferred_metal_low_pocket_support")
-        if (
-            cofactor_evidence == "role_inferred"
-            and substrate_pocket_score_value < 0.13
-            and _has_hydrophobic_low_polar_pocket(pocket_context)
-        ):
-            apply(0.70, "role_inferred_metal_hydrophobic_low_pocket_support")
-        if cofactor_evidence == "role_inferred" and compactness_score_value is not None:
-            if compactness_score_value < 0.20:
-                apply(0.72, "role_inferred_metal_low_compactness")
-        if cofactor_evidence == "role_inferred" and not _has_water_activation_role(residues):
-            if _has_metal_phosphate_hydrolysis_text_context(mechanism_text):
-                apply(0.88, "role_inferred_metal_phosphate_hydrolysis_text_support")
-            else:
-                apply(0.72, "role_inferred_metal_missing_water_activation_role")
-        if cofactor_evidence == "role_inferred" and _has_aromatic_positive_pocket(pocket_context):
-            apply(0.92, "role_inferred_metal_aromatic_positive_pocket")
-        if cofactor_evidence == "role_inferred" and _has_histidine_only_metal_site(residues):
-            apply(0.68, "role_inferred_histidine_only_metal_site")
-        if (
-            cofactor_evidence == "role_inferred"
-            and {"nucleophile", "nucleofuge"}.issubset(residue_roles)
-        ):
-            apply(0.68, "role_inferred_metal_covalent_cleavage_roles")
-        if cofactor_evidence == "role_inferred" and _has_radical_transfer_role(residues):
-            apply(0.68, "role_inferred_metal_radical_transfer_roles")
-        if (
-            cofactor_evidence == "role_inferred"
-            and "metal_ion" in structure_ligand_families
-            and "metal_ion" not in ligand_families
-            and "MN" in structure_ligand_codes
-            and _has_manganese_decarboxylase_signature(residues)
-        ):
-            apply(0.68, "structure_only_manganese_decarboxylase_context")
-        if "heme" in ligand_families and "metal_ion" not in ligand_families:
-            apply(0.75, "heme_only_context_for_metal_hydrolase")
-        if "cobalamin" in ligand_families and "metal_ion" not in ligand_families:
-            apply(0.80, "cobalamin_only_context_for_metal_hydrolase")
-        if _has_methylcobalamin_transfer_text_context(mechanism_text):
-            apply(0.45, "methylcobalamin_transfer_context_for_metal_hydrolase")
-        if _has_zinc_methyltransfer_text_context(mechanism_text):
-            apply(0.55, "zinc_methyltransfer_not_hydrolysis")
-        if (
-            cofactor_evidence == "ligand_supported"
-            and "metal_ion" in ligand_families
-            and "metal ligand" not in residue_roles
-        ):
-            apply(0.70, "ligand_supported_metal_without_metal_ligand_roles")
-        if ligand_codes & NUCLEOTIDE_TRANSFER_LIGAND_CODES:
-            apply(0.68, "nucleotide_transfer_ligand_context")
-        if _has_nad_redox_text_context(mechanism_text):
-            apply(0.62, "metal_bound_nad_redox_text_context")
-        if "sam" in ligand_families:
-            apply(0.72, "sam_ligand_context")
-        if "fe_s_cluster" in ligand_families and "metal_ion" not in ligand_families:
-            apply(0.70, "fe_s_cluster_context_for_metal_hydrolase")
-        if ligand_codes & METAL_HYDROLASE_TRANSFER_LIGAND_CODES:
-            apply(0.68, "nonhydrolytic_metal_transfer_ligand_context")
-        if {"KCX", "MG", "ZN"}.issubset(ligand_codes):
-            apply(0.68, "biotin_carboxyltransfer_mixed_metal_context")
-        if ligand_codes & METAL_HYDROLASE_REDOX_LIGAND_CODES:
-            apply(0.68, "metal_redox_ligand_context")
-        if _has_prenyl_carbocation_text_context(mechanism_text):
-            apply(0.58, "nonhydrolytic_prenyl_carbocation_text_context")
-        if _has_nonhydrolytic_isomerase_lyase_text_context(mechanism_text):
-            apply(0.62, "nonhydrolytic_isomerase_lyase_text_context")
-        if _has_nonhydrolytic_hydratase_dehydratase_text_context(mechanism_text):
-            apply(0.62, "nonhydrolytic_hydratase_dehydratase_text_context")
-        if _has_phosphoenolpyruvate_transfer_text_context(mechanism_text):
-            apply(0.55, "phosphoenolpyruvate_transfer_not_metal_hydrolysis")
-        if _has_metal_bound_dehydrogenase_text_context(mechanism_text):
-            apply(0.55, "metal_bound_dehydrogenase_not_hydrolysis")
-        if _has_aminoacyl_ligase_text_context(mechanism_text):
-            apply(0.58, "aminoacyl_ligase_not_metal_hydrolysis")
-        if _has_glycosidase_text_context(mechanism_text):
-            apply(0.58, "glycosidase_not_metal_hydrolase_seed")
-        if _has_alpha_ketoglutarate_hydroxylation_text_context(mechanism_text):
-            apply(0.55, "nonhydrolytic_alpha_ketoglutarate_hydroxylation")
-        if (
-            cofactor_evidence == "ligand_supported"
-            and substrate_pocket_score_value < 0.18
-            and not _has_water_activation_role(residues)
-            and "FE" in ligand_codes
-            and _has_aromatic_oxygenase_pocket(pocket_context)
-        ):
-            apply(0.70, "nonheme_iron_aromatic_low_pocket_without_water_activation")
-        if (
-            cofactor_evidence == "ligand_supported"
-            and "FE" in ligand_codes
-            and "HBI" in structure_ligand_codes
-            and _has_aromatic_oxygenase_pocket(pocket_context)
-        ):
-            apply(0.64, "nonheme_iron_biopterin_hydroxylase_context")
-        if (
-            cofactor_evidence == "ligand_supported"
-            and substrate_pocket_score_value < 0.10
-            and _has_hydrophobic_low_polar_pocket(pocket_context)
-        ):
-            apply(0.70, "ligand_supported_metal_hydrophobic_low_pocket_support")
-        if any("single electron" in role for role in residue_roles):
-            apply(0.70, "single_electron_role_context")
-        return result()
-
-    if fingerprint_id == "ser_his_acid_hydrolase":
-        metal_ligand_roles = sum(
-            1
-            for residue in residues
-            if _residue_has_any_role(residue, {"metal ligand"})
-        )
-        if "metal_ion" in ligand_families and metal_ligand_roles >= 3:
-            apply(0.70, "metal_supported_site_for_ser_his_seed")
-        if "metal ligand" in residue_roles and metal_ligand_roles >= 4:
-            apply(0.85, "metal_ligand_rich_site_for_ser_his_seed")
-        if mechanistic_coherence_score(fingerprint, residues) < 0.5:
-            apply(0.70, "ser_his_seed_missing_triad_coherence")
-        if "electrophile" in residue_roles and "nucleofuge" not in residue_roles:
-            apply(0.45, "ser_his_nonhydrolytic_electrophile_without_leaving_group")
-        if _has_phosphoryl_transfer_text_context(mechanism_text):
-            apply(0.55, "ser_his_phosphoryl_transfer_text_context")
-        if _has_ser_his_acyl_transfer_text_context(mechanism_text):
-            apply(0.55, "ser_his_acyl_transfer_not_hydrolysis")
-        return result()
-
-    if fingerprint_id == "heme_peroxidase_oxidase":
-        if cofactor_evidence == "absent":
-            apply(0.65, "absent_heme_context")
-        if "heme" in ligand_families and ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES:
-            apply(0.63, "molybdenum_center_heme_context")
-        if _has_heme_dehydratase_text_context(mechanism_text):
-            apply(0.55, "heme_dehydratase_not_peroxidase_oxidase")
-        return result()
-
-    if fingerprint_id == "plp_dependent_enzyme":
-        if cofactor_evidence == "absent":
-            if _has_plp_lysine_anchor(residues) and "13P" in ligand_codes:
-                apply(0.60, "non_plp_aldolase_schiff_base_context")
-            if _has_plp_lysine_anchor(residues):
-                apply(0.75, "absent_plp_ligand_with_lysine_anchor")
-            else:
-                apply(0.60, "absent_plp_ligand_without_lysine_anchor")
-        return result()
-
-    if fingerprint_id == "cobalamin_radical_rearrangement":
-        if _has_methylcobalamin_transfer_text_context(mechanism_text):
-            apply(0.45, "methylcobalamin_transfer_not_radical_rearrangement")
-        if cofactor_evidence == "absent":
-            apply(0.25, "absent_cobalamin_context")
-        return result()
-
-    if fingerprint_id == "flavin_monooxygenase":
-        if cofactor_evidence == "absent":
-            apply(0.60, "absent_flavin_context")
-        if "flavin" not in ligand_families:
-            apply(0.60, "nad_only_or_nonflavin_context")
-        if (
-            cofactor_evidence == "ligand_supported"
-            and _has_tpp_carboligation_text_context(mechanism_text)
-        ):
-            apply(0.45, "thiamine_carboligation_not_flavin_oxygenation")
-        if (
-            cofactor_evidence == "ligand_supported"
-            and "nad" not in ligand_families
-            and not ligand_codes & FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES
-        ):
-            apply(0.75, "flavin_without_reductant_context")
-        return result()
-
-    if fingerprint_id == "flavin_dehydrogenase_reductase":
-        if (
-            cofactor_evidence == "ligand_supported"
-            and _has_tpp_carboligation_text_context(mechanism_text)
-        ):
-            apply(0.45, "thiamine_carboligation_not_local_flavin_redox")
-        if (
-            cofactor_evidence == "ligand_supported"
-            and _has_flavin_mutase_text_context(mechanism_text)
-        ):
-            apply(0.55, "flavin_mutase_not_dehydrogenase_reductase")
-        if (
-            cofactor_evidence == "ligand_supported"
-            and "flavin" in ligand_families
-            and ligand_codes & FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES
-            and not _has_electron_transfer_role(residues)
-        ):
-            apply(0.55, "flavin_monooxygenase_substrate_without_electron_transfer_context")
-        if cofactor_evidence == "absent":
-            if ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES:
-                apply(0.55, "molybdenum_center_without_flavin_context")
-            elif "fe_s_cluster" in ligand_families and "metal_ion" in ligand_families:
-                apply(0.55, "nonheme_iron_fe_s_without_flavin_context")
-            if "fe_s_cluster" in ligand_families and any(
-                "single electron" in role for role in residue_roles
-            ):
-                apply(0.63, "fe_s_single_electron_partial_flavin_context")
-            elif not reasons:
-                apply(0.60, "absent_flavin_context")
-        return result()
+    applied_reasons: set[str] = set()
+    for rule in COUNTEREVIDENCE_POLICY:
+        if rule.fingerprint_id != inputs.fingerprint_id:
+            continue
+        if rule.predicate(inputs, applied_reasons):
+            apply(rule)
+            applied_reasons.add(rule.reason)
 
     return result()
+
+
+def _build_counterevidence_inputs(
+    fingerprint: dict[str, Any],
+    residues: list[dict[str, Any]],
+    cofactor_evidence: str,
+    ligand_context: dict[str, Any] | None,
+    substrate_pocket_score_value: float,
+    pocket_context: dict[str, Any] | None,
+    compactness_score_value: float | None,
+    mechanism_text_snippets: list[str] | None,
+) -> CounterevidenceInputs:
+    residue_roles = {
+        _normalize_phrase(role)
+        for residue in residues
+        for role in residue.get("roles", [])
+        if isinstance(role, str)
+    }
+    return CounterevidenceInputs(
+        fingerprint_id=str(fingerprint.get("id", "")),
+        residues=residues,
+        cofactor_evidence=cofactor_evidence,
+        ligand_context=ligand_context,
+        substrate_pocket_score_value=substrate_pocket_score_value,
+        pocket_context=pocket_context,
+        compactness_score_value=compactness_score_value,
+        mechanism_text_snippets=mechanism_text_snippets,
+        residue_roles=residue_roles,
+        ligand_families=_ligand_cofactor_families(ligand_context),
+        ligand_codes=_ligand_codes(ligand_context),
+        structure_ligand_families=_structure_ligand_cofactor_families(ligand_context),
+        structure_ligand_codes=_structure_ligand_codes(ligand_context),
+        mechanism_text=_joined_mechanism_text(mechanism_text_snippets),
+    )
+
+
+def _counterevidence_rule(
+    fingerprint_id: str,
+    reason: str,
+    penalty: float,
+    evidence_fields: tuple[str, ...],
+    predicate: CounterevidencePredicate,
+) -> CounterevidenceRule:
+    return CounterevidenceRule(
+        fingerprint_id=fingerprint_id,
+        reason=reason,
+        penalty=penalty,
+        evidence_fields=evidence_fields,
+        predicate=predicate,
+    )
 
 
 def write_geometry_retrieval(
@@ -1400,3 +1318,484 @@ def _has_aromatic_oxygenase_pocket(pocket_context: dict[str, Any] | None) -> boo
 
 def _clamp(value: float) -> float:
     return max(0.0, min(1.0, value))
+
+
+def _metal_ligand_role_count(inputs: CounterevidenceInputs) -> int:
+    return sum(
+        1
+        for residue in inputs.residues
+        if _residue_has_any_role(residue, {"metal ligand"})
+    )
+
+
+def _has_single_electron_role(inputs: CounterevidenceInputs) -> bool:
+    return any("single electron" in role for role in inputs.residue_roles)
+
+
+COUNTEREVIDENCE_POLICY: tuple[CounterevidenceRule, ...] = (
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_metal_low_pocket_support",
+        0.72,
+        ("cofactor_evidence", "substrate_pocket_score"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and c.substrate_pocket_score_value < 0.15,
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_metal_hydrophobic_low_pocket_support",
+        0.70,
+        ("cofactor_evidence", "substrate_pocket_score", "pocket_context"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and c.substrate_pocket_score_value < 0.13
+        and _has_hydrophobic_low_polar_pocket(c.pocket_context),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_metal_low_compactness",
+        0.72,
+        ("cofactor_evidence", "compactness_score"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and c.compactness_score_value is not None
+        and c.compactness_score_value < 0.20,
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_metal_phosphate_hydrolysis_text_support",
+        0.88,
+        ("cofactor_evidence", "residue_roles", "mechanism_text"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and not _has_water_activation_role(c.residues)
+        and _has_metal_phosphate_hydrolysis_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_metal_missing_water_activation_role",
+        0.72,
+        ("cofactor_evidence", "residue_roles", "mechanism_text"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and not _has_water_activation_role(c.residues)
+        and not _has_metal_phosphate_hydrolysis_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_metal_aromatic_positive_pocket",
+        0.92,
+        ("cofactor_evidence", "pocket_context"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and _has_aromatic_positive_pocket(c.pocket_context),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_histidine_only_metal_site",
+        0.68,
+        ("cofactor_evidence", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and _has_histidine_only_metal_site(c.residues),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_metal_covalent_cleavage_roles",
+        0.68,
+        ("cofactor_evidence", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and {"nucleophile", "nucleofuge"}.issubset(c.residue_roles),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "role_inferred_metal_radical_transfer_roles",
+        0.68,
+        ("cofactor_evidence", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and _has_radical_transfer_role(c.residues),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "structure_only_manganese_decarboxylase_context",
+        0.68,
+        ("cofactor_evidence", "ligand_context", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "role_inferred"
+        and "metal_ion" in c.structure_ligand_families
+        and "metal_ion" not in c.ligand_families
+        and "MN" in c.structure_ligand_codes
+        and _has_manganese_decarboxylase_signature(c.residues),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "heme_only_context_for_metal_hydrolase",
+        0.75,
+        ("ligand_context",),
+        lambda c, _: "heme" in c.ligand_families and "metal_ion" not in c.ligand_families,
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "cobalamin_only_context_for_metal_hydrolase",
+        0.80,
+        ("ligand_context",),
+        lambda c, _: "cobalamin" in c.ligand_families
+        and "metal_ion" not in c.ligand_families,
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "methylcobalamin_transfer_context_for_metal_hydrolase",
+        0.45,
+        ("mechanism_text",),
+        lambda c, _: _has_methylcobalamin_transfer_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "zinc_methyltransfer_not_hydrolysis",
+        0.55,
+        ("mechanism_text",),
+        lambda c, _: _has_zinc_methyltransfer_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "ligand_supported_metal_without_metal_ligand_roles",
+        0.70,
+        ("cofactor_evidence", "ligand_context", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and "metal_ion" in c.ligand_families
+        and "metal ligand" not in c.residue_roles,
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "nucleotide_transfer_ligand_context",
+        0.68,
+        ("ligand_context",),
+        lambda c, _: bool(c.ligand_codes & NUCLEOTIDE_TRANSFER_LIGAND_CODES),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "metal_bound_nad_redox_text_context",
+        0.62,
+        ("mechanism_text",),
+        lambda c, _: _has_nad_redox_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "sam_ligand_context",
+        0.72,
+        ("ligand_context",),
+        lambda c, _: "sam" in c.ligand_families,
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "fe_s_cluster_context_for_metal_hydrolase",
+        0.70,
+        ("ligand_context",),
+        lambda c, _: "fe_s_cluster" in c.ligand_families
+        and "metal_ion" not in c.ligand_families,
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "nonhydrolytic_metal_transfer_ligand_context",
+        0.68,
+        ("ligand_context",),
+        lambda c, _: bool(c.ligand_codes & METAL_HYDROLASE_TRANSFER_LIGAND_CODES),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "biotin_carboxyltransfer_mixed_metal_context",
+        0.68,
+        ("ligand_context",),
+        lambda c, _: {"KCX", "MG", "ZN"}.issubset(c.ligand_codes),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "metal_redox_ligand_context",
+        0.68,
+        ("ligand_context",),
+        lambda c, _: bool(c.ligand_codes & METAL_HYDROLASE_REDOX_LIGAND_CODES),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "nonhydrolytic_prenyl_carbocation_text_context",
+        0.58,
+        ("mechanism_text",),
+        lambda c, _: _has_prenyl_carbocation_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "nonhydrolytic_isomerase_lyase_text_context",
+        0.62,
+        ("mechanism_text",),
+        lambda c, _: _has_nonhydrolytic_isomerase_lyase_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "nonhydrolytic_hydratase_dehydratase_text_context",
+        0.62,
+        ("mechanism_text",),
+        lambda c, _: _has_nonhydrolytic_hydratase_dehydratase_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "phosphoenolpyruvate_transfer_not_metal_hydrolysis",
+        0.55,
+        ("mechanism_text",),
+        lambda c, _: _has_phosphoenolpyruvate_transfer_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "metal_bound_dehydrogenase_not_hydrolysis",
+        0.55,
+        ("mechanism_text",),
+        lambda c, _: _has_metal_bound_dehydrogenase_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "aminoacyl_ligase_not_metal_hydrolysis",
+        0.58,
+        ("mechanism_text",),
+        lambda c, _: _has_aminoacyl_ligase_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "glycosidase_not_metal_hydrolase_seed",
+        0.58,
+        ("mechanism_text",),
+        lambda c, _: _has_glycosidase_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "nonhydrolytic_alpha_ketoglutarate_hydroxylation",
+        0.55,
+        ("mechanism_text",),
+        lambda c, _: _has_alpha_ketoglutarate_hydroxylation_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "nonheme_iron_aromatic_low_pocket_without_water_activation",
+        0.70,
+        ("cofactor_evidence", "ligand_context", "pocket_context", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and c.substrate_pocket_score_value < 0.18
+        and not _has_water_activation_role(c.residues)
+        and "FE" in c.ligand_codes
+        and _has_aromatic_oxygenase_pocket(c.pocket_context),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "nonheme_iron_biopterin_hydroxylase_context",
+        0.64,
+        ("cofactor_evidence", "ligand_context", "pocket_context"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and "FE" in c.ligand_codes
+        and "HBI" in c.structure_ligand_codes
+        and _has_aromatic_oxygenase_pocket(c.pocket_context),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "ligand_supported_metal_hydrophobic_low_pocket_support",
+        0.70,
+        ("cofactor_evidence", "substrate_pocket_score", "pocket_context"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and c.substrate_pocket_score_value < 0.10
+        and _has_hydrophobic_low_polar_pocket(c.pocket_context),
+    ),
+    _counterevidence_rule(
+        "metal_dependent_hydrolase",
+        "single_electron_role_context",
+        0.70,
+        ("residue_roles",),
+        lambda c, _: _has_single_electron_role(c),
+    ),
+    _counterevidence_rule(
+        "ser_his_acid_hydrolase",
+        "metal_supported_site_for_ser_his_seed",
+        0.70,
+        ("ligand_context", "residue_roles"),
+        lambda c, _: "metal_ion" in c.ligand_families
+        and _metal_ligand_role_count(c) >= 3,
+    ),
+    _counterevidence_rule(
+        "ser_his_acid_hydrolase",
+        "metal_ligand_rich_site_for_ser_his_seed",
+        0.85,
+        ("residue_roles",),
+        lambda c, _: "metal ligand" in c.residue_roles
+        and _metal_ligand_role_count(c) >= 4,
+    ),
+    _counterevidence_rule(
+        "ser_his_acid_hydrolase",
+        "ser_his_seed_missing_triad_coherence",
+        0.70,
+        ("residue_roles",),
+        lambda c, _: mechanistic_coherence_score({"id": c.fingerprint_id}, c.residues) < 0.5,
+    ),
+    _counterevidence_rule(
+        "ser_his_acid_hydrolase",
+        "ser_his_nonhydrolytic_electrophile_without_leaving_group",
+        0.45,
+        ("residue_roles",),
+        lambda c, _: "electrophile" in c.residue_roles
+        and "nucleofuge" not in c.residue_roles,
+    ),
+    _counterevidence_rule(
+        "ser_his_acid_hydrolase",
+        "ser_his_phosphoryl_transfer_text_context",
+        0.55,
+        ("mechanism_text",),
+        lambda c, _: _has_phosphoryl_transfer_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "ser_his_acid_hydrolase",
+        "ser_his_acyl_transfer_not_hydrolysis",
+        0.55,
+        ("mechanism_text",),
+        lambda c, _: _has_ser_his_acyl_transfer_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "heme_peroxidase_oxidase",
+        "absent_heme_context",
+        0.65,
+        ("cofactor_evidence",),
+        lambda c, _: c.cofactor_evidence == "absent",
+    ),
+    _counterevidence_rule(
+        "heme_peroxidase_oxidase",
+        "molybdenum_center_heme_context",
+        0.63,
+        ("ligand_context",),
+        lambda c, _: "heme" in c.ligand_families
+        and bool(c.ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES),
+    ),
+    _counterevidence_rule(
+        "heme_peroxidase_oxidase",
+        "heme_dehydratase_not_peroxidase_oxidase",
+        0.55,
+        ("mechanism_text",),
+        lambda c, _: _has_heme_dehydratase_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "plp_dependent_enzyme",
+        "non_plp_aldolase_schiff_base_context",
+        0.60,
+        ("cofactor_evidence", "ligand_context", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "absent"
+        and _has_plp_lysine_anchor(c.residues)
+        and "13P" in c.ligand_codes,
+    ),
+    _counterevidence_rule(
+        "plp_dependent_enzyme",
+        "absent_plp_ligand_with_lysine_anchor",
+        0.75,
+        ("cofactor_evidence", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "absent"
+        and _has_plp_lysine_anchor(c.residues),
+    ),
+    _counterevidence_rule(
+        "plp_dependent_enzyme",
+        "absent_plp_ligand_without_lysine_anchor",
+        0.60,
+        ("cofactor_evidence", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "absent"
+        and not _has_plp_lysine_anchor(c.residues),
+    ),
+    _counterevidence_rule(
+        "cobalamin_radical_rearrangement",
+        "methylcobalamin_transfer_not_radical_rearrangement",
+        0.45,
+        ("mechanism_text",),
+        lambda c, _: _has_methylcobalamin_transfer_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "cobalamin_radical_rearrangement",
+        "absent_cobalamin_context",
+        0.25,
+        ("cofactor_evidence",),
+        lambda c, _: c.cofactor_evidence == "absent",
+    ),
+    _counterevidence_rule(
+        "flavin_monooxygenase",
+        "absent_flavin_context",
+        0.60,
+        ("cofactor_evidence",),
+        lambda c, _: c.cofactor_evidence == "absent",
+    ),
+    _counterevidence_rule(
+        "flavin_monooxygenase",
+        "nad_only_or_nonflavin_context",
+        0.60,
+        ("ligand_context",),
+        lambda c, _: "flavin" not in c.ligand_families,
+    ),
+    _counterevidence_rule(
+        "flavin_monooxygenase",
+        "thiamine_carboligation_not_flavin_oxygenation",
+        0.45,
+        ("cofactor_evidence", "mechanism_text"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and _has_tpp_carboligation_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "flavin_monooxygenase",
+        "flavin_without_reductant_context",
+        0.75,
+        ("cofactor_evidence", "ligand_context"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and "nad" not in c.ligand_families
+        and not c.ligand_codes & FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES,
+    ),
+    _counterevidence_rule(
+        "flavin_dehydrogenase_reductase",
+        "thiamine_carboligation_not_local_flavin_redox",
+        0.45,
+        ("cofactor_evidence", "mechanism_text"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and _has_tpp_carboligation_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "flavin_dehydrogenase_reductase",
+        "flavin_mutase_not_dehydrogenase_reductase",
+        0.55,
+        ("cofactor_evidence", "mechanism_text"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and _has_flavin_mutase_text_context(c.mechanism_text),
+    ),
+    _counterevidence_rule(
+        "flavin_dehydrogenase_reductase",
+        "flavin_monooxygenase_substrate_without_electron_transfer_context",
+        0.55,
+        ("cofactor_evidence", "ligand_context", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "ligand_supported"
+        and "flavin" in c.ligand_families
+        and bool(c.ligand_codes & FLAVIN_MONOOXYGENASE_SUBSTRATE_LIGAND_CODES)
+        and not _has_electron_transfer_role(c.residues),
+    ),
+    _counterevidence_rule(
+        "flavin_dehydrogenase_reductase",
+        "molybdenum_center_without_flavin_context",
+        0.55,
+        ("cofactor_evidence", "ligand_context"),
+        lambda c, _: c.cofactor_evidence == "absent"
+        and bool(c.ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES),
+    ),
+    _counterevidence_rule(
+        "flavin_dehydrogenase_reductase",
+        "nonheme_iron_fe_s_without_flavin_context",
+        0.55,
+        ("cofactor_evidence", "ligand_context"),
+        lambda c, _: c.cofactor_evidence == "absent"
+        and not c.ligand_codes & MOLYBDENUM_CENTER_LIGAND_CODES
+        and "fe_s_cluster" in c.ligand_families
+        and "metal_ion" in c.ligand_families,
+    ),
+    _counterevidence_rule(
+        "flavin_dehydrogenase_reductase",
+        "fe_s_single_electron_partial_flavin_context",
+        0.63,
+        ("cofactor_evidence", "ligand_context", "residue_roles"),
+        lambda c, _: c.cofactor_evidence == "absent"
+        and "fe_s_cluster" in c.ligand_families
+        and _has_single_electron_role(c),
+    ),
+    _counterevidence_rule(
+        "flavin_dehydrogenase_reductase",
+        "absent_flavin_context",
+        0.60,
+        ("cofactor_evidence", "ligand_context", "residue_roles"),
+        lambda c, applied: c.cofactor_evidence == "absent" and not applied,
+    ),
+)

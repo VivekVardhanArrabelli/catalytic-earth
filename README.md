@@ -68,7 +68,9 @@ The repository currently contains:
     expert-review export/import, review-debt triage, repair guardrail audits,
     ontology-gap and sequence-similarity failure controls, learned-retrieval
     manifest pathing, expert-reviewed ATP/phosphoryl-transfer family expansion,
-    batch summary with scaling-quality audit attachment, and a scaling gate.
+    batch summary with scaling-quality audit attachment, a scaling gate, a
+    versioned declarative counterevidence policy with leakage provenance, and a
+    typed label-factory gate input contract.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
@@ -230,7 +232,10 @@ external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
 320-dimensional embeddings, keeps all rows review-only and non-countable,
 flags three representation-near-duplicate holdouts, and emits 12
 learned-vs-heuristic disagreement rows while preserving geometry retrieval as
-the required baseline.
+the required baseline. Its predictive feature policy is sequence-only:
+heuristic fingerprint ids, matched M-CSA reference ids, and source scope signals
+are carried with leakage flags as review or holdout context, not as discovery
+evidence.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,
@@ -299,10 +304,12 @@ the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
 1,025 preview is open but not promoted; the first proxy sequence/fold-distance
-holdout and first 12-row ESM-2 representation sample are now in place. The next
-bounded work item is using the learned-vs-heuristic disagreement rows to
-prioritize the external pilot, not
-M-CSA-only count growth or label import.
+holdout and first 12-row ESM-2 representation sample are now in place. The
+first SPOF hardening pass also refactored counterevidence and gate inputs. The
+label-factory gate now records validated artifact lineage and fails on
+non-exempt slice mismatches before reading high-fan-in inputs. The next bounded
+work item is text-leakage-safe external pilot ranking, not M-CSA-only count
+growth or label import.
 See
 `docs/label_factory.md`.
 

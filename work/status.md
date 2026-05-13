@@ -4,14 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 67
-- Measured elapsed time: 2621.0 minutes (43.68 hours)
+- Entries: 69
+- Measured elapsed time: 2663.3 minutes (44.39 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
+- post-mcsa-spof-hardening: 42.3 measured minutes (0.70 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -22,32 +23,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 712
-- Evidence references logged: 588
+- Artifact references logged: 720
+- Evidence references logged: 599
 
 ## Recent Entries
-
-### 2026-05-13T08:00:59.297672+00:00 - post-v2
-
-- Task: Repair external-source transfer controls
-- Time mode: measured
-- Measured minutes: 52.083
-- Started: 2026-05-13T07:08:09Z
-- Ended: 2026-05-13T08:00:14Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_representation_control_comparison_1025.json, artifacts/v3_external_source_representation_control_comparison_audit_1025.json, artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json, artifacts/v3_external_source_active_site_gap_source_requests_1025.json, artifacts/v3_external_source_sequence_neighborhood_plan_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, docs/external_source_transfer.md, docs/label_factory.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md, work/label_factory_notes.md
-- Evidence: 252 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, 38/38 external transfer gates, 12 representation-control comparisons, 7 metal-hydrolase collapse flags, 3 broad-EC rows disambiguated to specific reaction context, 10 active-site gap source requests, 28 near-duplicate sequence search requests, 0 countable external labels
-- Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
-
-### 2026-05-13T09:00:39.138608+00:00 - post-v2
-
-- Task: Screen external sequence neighborhoods
-- Time mode: measured
-- Measured minutes: 50.9
-- Started: 2026-05-13T03:08:55-05:00
-- Ended: 2026-05-13T03:59:49-05:00
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_sequence_neighborhood_sample_1025.json, artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json, artifacts/v3_external_source_import_readiness_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, docs/external_source_transfer.md, docs/label_factory.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md, work/label_factory_notes.md
-- Evidence: 256 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, 41/41 external transfer gates, 30 external sequences screened, 733 countable M-CSA reference sequences screened, 0 high-similarity sequence alerts, 0 countable external labels, 0 import-ready external labels, 10 active-site gaps recorded, 9 heuristic scope/top1 mismatches recorded, 29 representation-control issues recorded
-- Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
 
 ### 2026-05-13T10:03:45+00:00 - post-v2
 
@@ -114,6 +93,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_sequence_distance_holdout_eval_1000.json, artifacts/v3_sequence_distance_holdout_eval_1025.json, artifacts/v3_external_source_representation_backend_sample_1025.json, artifacts/v3_external_source_representation_backend_sample_audit_1025.json, artifacts/v3_external_source_kmer_representation_backend_sample_1025.json, artifacts/v3_external_source_kmer_representation_backend_sample_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md
 - Evidence: 273 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, CLI help checks passed, proxy holdout 136 rows with 0 held-out out-of-scope false non-abstentions, held-out evaluable top1 accuracy 0.9767 and retained top3 accuracy 1.0000, 12-row ESM-2 representation sample computed with 0 embedding failures, 3 representation near-duplicate holdouts, 12 learned-vs-heuristic disagreements, 59/59 external transfer gates, 0 countable external labels, 0 import-ready external labels
 - Notes: Normal locked measured run. Documentation checked and updated; holo-PDB override path inspected but not started because it needs a general selected-PDB override plus regenerated downstream artifacts.
+
+### 2026-05-13T14:53:10.709166+00:00 - post-mcsa-spof-hardening
+
+- Task: Harden counterevidence, leakage, and artifact lineage SPOFs
+- Time mode: measured
+- Measured minutes: 35.367
+- Started: 2026-05-13T14:17:40Z
+- Ended: 2026-05-13T14:53:02Z
+- Artifacts: artifacts/v3_label_factory_gate_check_1000.json, artifacts/v3_external_source_representation_backend_sample_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json
+- Evidence: 276 unit tests, validate, compileall, git diff --check, JSON artifact parse
+- Notes: No count growth or external import; hardened named SPOFs only.
+
+### 2026-05-13T15:00:09.182705+00:00 - post-mcsa-spof-hardening
+
+- Task: Add representation leakage-source guardrail
+- Time mode: measured
+- Measured minutes: 6.9
+- Started: 2026-05-13T14:53:03Z
+- Ended: 2026-05-13T14:59:57Z
+- Artifacts: src/catalytic_earth/transfer_scope.py, tests/test_transfer_scope.py, artifacts/v3_external_source_representation_backend_sample_audit_1025.json, work/handoff.md, docs/external_source_transfer.md
+- Evidence: 276 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, foldseek/mmseqs/blastp/diamond absent on PATH
+- Notes: Continuation after first wrap-up: added explicit leakage-prone predictive-source blocker and documented real alignment backend availability.
 
 ## Expectation Updates
 
