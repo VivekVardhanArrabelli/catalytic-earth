@@ -163,9 +163,10 @@ Current expectation:
   GHMP, wired through guardrails, review exports, active learning, adversarial
   negatives, gates, tests, artifacts, and documentation
 - return to factory-gated label scaling toward 10k while preserving quality
-  gates; the accepted 1,000 state now has 679 countable labels, its 326
+  gates; the accepted 1,000 state has 679 countable labels, its 326
   review-state rows have an explicit non-countable deferral audit, and the
-  next bounded tranche should start as a gated 1,025 preview
+  1,025 preview is cleanly non-promotable because it adds 0 countable labels
+  while exposing an M-CSA source limit at 1,003 records
 - higher-impact work now depends on quality, not more scaffolding
 - geometry-aware features are now available for 20-, 30-, 40-, 50-, 60-, 75-,
   100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-, 375-,
@@ -237,12 +238,17 @@ Current expectation:
   11, 11, 15, 17, 17, 19, and 21 respectively; later accepted reports rise to
   23 at 750, 27 at 775, 28 at 800, 29 at 825, 30 at 850, 31 at 875, 33 at
   900, 34 at 925, 38 at 950 and 975, and 39 at 1000
-- next bottleneck is opening a 1,025 preview without weakening the 1000 gate.
+- next bottleneck is external-source transfer, not another M-CSA-only tranche.
+  The 1,025 preview gate passes 21/21, but batch acceptance is false because 0
+  new labels are cleanly countable and review debt rises to 329 rows. The source
+  audit records 1,003 observed M-CSA source records against the requested 1,025
+  tranche, so the 10,000-label target requires a separate UniProtKB/Swiss-Prot
+  style transfer method with OOD calibration and sequence-similarity controls.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
-  and `m_csa:994`; the other 326 review-state rows remain outside the
-  benchmark and now have an explicit deferral audit. `m_csa:986` is the current
-  scaling-quality regression row for local heme support below the abstention
-  floor that should stay non-countable.
+  and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
+  outside the benchmark and now have an explicit deferral audit. `m_csa:986` is
+  the current scaling-quality regression row for local heme support below the
+  abstention floor that should stay non-countable.
   The 725 scaling-quality audit observes
   ontology scope pressure, family-propagation boundaries, cofactor ambiguity,
   reaction/substrate mismatches, active-site mapping gaps, and active-learning

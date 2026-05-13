@@ -180,10 +180,22 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   class so PLP-supported rows such as `m_csa:865` are classified as
   non-countable external-review debt rather than blocking promotion as
   unclassified review debt.
+- Accepted the gated 975- and 1,000-entry label-factory batches, raising the
+  canonical registry to 679 countable labels while leaving 326 review-state
+  rows non-countable.
+- Opened the bounded 1,025 preview. The preview gate passes 21/21 checks, but
+  acceptance is false because it adds 0 clean countable labels and review debt
+  rises to 329 rows. The source-scale audit records 1,003 observed M-CSA source
+  records and shifts next work toward external-source transfer.
+- Added external-source transfer scaffolding for the post-M-CSA path:
+  source-limit audit, transfer manifest, query manifest, OOD calibration plan,
+  30-row UniProtKB/Swiss-Prot read-only candidate sample, guardrail audit,
+  artifact regression tests, and unit tests. All external candidates are
+  non-countable.
 
 ## Current Metrics
 
-- Curated label registry: 673 bronze automation-curated labels, with 206
+- Curated label registry: 679 bronze automation-curated labels, with 212
   seed-fingerprint positives and 467 out-of-scope labels.
 - 20-entry slice: threshold `0.4104`, 20/20 evaluable, 7/7 in-scope positives
   retained, 0 false non-abstentions, 0 hard negatives.
@@ -291,6 +303,16 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   non-countable, with 84 priority local-evidence rows audited/exported, 32
   explicit alternate residue-position requests, 19 new 950-preview review-debt
   rows classified and deferred, and 0 accepted-label overlap.
+- Accepted-1000 current state: 679 countable labels, 326 review-state rows
+  explicitly deferred, 21/21 gate checks passing, 0 hard negatives, 0 near
+  misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures,
+  and `m_csa:986` kept non-countable as a low-score local-heme boundary row.
+- 1,025 preview state: 21/21 preview gate checks passing but 0 accepted new
+  labels, so the preview is not promoted. Review debt rises to 329 rows with
+  new rows `m_csa:1003`, `m_csa:1004`, and `m_csa:1005`; all remain
+  non-countable. Source scaling is now the bottleneck: the graph exposes 1,003
+  M-CSA records, and external-source transfer artifacts now provide a
+  review-only UniProtKB/Swiss-Prot path with 30 non-countable sample candidates.
 - 725 post-batch review surface: all 95 unlabeled candidates are retained in a
   207-row active-learning queue; 95 expert-label decision rows are exported as
   review-only no-decision items; 25 priority local-evidence lanes are audited
@@ -435,33 +457,56 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch
 
 ## Next Agent Start Here
 
-Start from the accepted 1,000 state. The canonical registry has 679 countable
-labels; the latest accepted labels are `m_csa:978`, `m_csa:988`,
-`m_csa:990`, and `m_csa:994`.
+Start from the accepted 1,000 state plus the non-promoted 1,025 preview. The
+canonical registry remains at 679 countable labels; the latest accepted labels
+are still `m_csa:978`, `m_csa:988`, `m_csa:990`, and `m_csa:994`.
 
-This run accepted 975 and 1,000 after explicitly deferring every review-state
-row at each tranche. `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`
-covers the 21 new 1,000-preview review-debt rows and keeps all 326 deferred
-rows non-countable. `artifacts/v3_label_factory_batch_summary.json` now
-reports 21/21 accepted batches, latest batch `1000`, 679 countable labels, 326
-pending review-state rows, and 0 blockers.
+This run opened a bounded 1,025 preview. The preview gate passes 21/21 checks,
+but `artifacts/v3_label_batch_acceptance_check_1025_preview.json` is not
+accepted for counting because it adds 0 clean countable labels. Review debt
+rises from 326 to 329 rows, with new rows `m_csa:1003`, `m_csa:1004`, and
+`m_csa:1005`, all explicitly deferred by
+`artifacts/v3_accepted_review_debt_deferral_audit_1025_preview.json`.
 
-The 1,000 preview exposed `m_csa:986` as a low-score heme boundary negative
-with local heme support. The provisional decision rule now defers
-below-threshold cofactor-sensitive rows with local ligand evidence and matching
-mechanism text, so `m_csa:986` stays review-state rather than countable
-out-of-scope.
+The 1,025 run exposed a source-scale bottleneck rather than a label-quality
+failure. `artifacts/v3_source_scale_limit_audit_1025.json` records 1,003
+observed M-CSA source records for the requested 1,025 tranche and recommends
+stopping M-CSA-only count growth. The external-source transfer artifacts are
+review-only: `artifacts/v3_external_source_transfer_manifest_1025.json`,
+`artifacts/v3_external_source_query_manifest_1025.json`,
+`artifacts/v3_external_ood_calibration_plan_1025.json`,
+`artifacts/v3_external_source_candidate_sample_1025.json`, and
+`artifacts/v3_external_source_candidate_sample_audit_1025.json` scope a
+UniProtKB/Swiss-Prot transfer path and keep `countable_label_candidate_count=0`.
 
-Label-quality confidence call at handoff for the next run: yes, current quality
-gates are good enough to open a bounded 1,025 preview if the post-1,000 gate
-still passes. Evidence: the 1,000 gate passes 21/21 checks, accepted-review
-debt overlap is 0, hard negatives remain 0, near misses remain 0,
-out-of-scope false non-abstentions remain 0, actionable in-scope failures
+Label-quality confidence call for the 2026-05-13T03:03:14Z run: yes, current
+quality gates are good enough to spend this run on a bounded 1,025 preview.
+Evidence at run start: `validate` and 206 unit tests passed, the accepted-1,000
+gate passes 21/21 checks with 0 blockers, the accepted-1,000 review-debt
+deferral audit keeps all 326 review-state rows non-countable with 0 accepted
+overlap and 0 countable candidates, hard negatives remain 0, near misses remain
+0, out-of-scope false non-abstentions remain 0, actionable in-scope failures
 remain 0, review-only import growth remains 0, 321 expert-label decision rows
-are retained in review-only artifacts, the 92 priority local-evidence gap rows
-remain non-countable, and the ATP/phosphoryl-transfer family expansion remains
+remain review-only, the 92 priority local-evidence gap rows remain
+non-countable, and the ATP/phosphoryl-transfer family expansion remains
 guardrail-clean with 0 countable label candidates. This is an operational
 workflow decision, not a claim of biological truth.
+
+Label-quality confidence call at handoff for the next run: no for additional
+M-CSA-only count growth, yes for bounded external-source transfer scaffolding.
+Evidence: the 1,025 factory gate passes 21/21 checks, hard negatives remain 0,
+near misses remain 0, out-of-scope false non-abstentions remain 0, actionable
+in-scope failures remain 0, accepted review-gap labels remain 0, and
+review-only import growth remains 0. However, the 1,025 acceptance artifact has
+0 accepted new labels and the source-scale audit shows the M-CSA-only path does
+not have enough source records for the next tranche. This is an operational
+workflow decision, not a claim of biological truth.
+
+Remaining-time plan for the 2026-05-13T03:03:14Z run: after the 1,025 preview
+proved clean but non-promotable, use the remaining productive window to harden
+the external-source transfer path. Completed: source-scale audit, transfer
+manifest, query manifest, OOD calibration plan, bounded read-only UniProtKB/
+Swiss-Prot sample, sample guardrail audit, regression tests, and documentation.
 
 Label-quality confidence call for the 2026-05-13T01:00:39Z run: yes, current
 quality gates are good enough to spend this run on a bounded 975 preview.
@@ -515,39 +560,29 @@ countable label candidates. This is an operational workflow decision, not a
 claim of biological truth.
 
 Start with:
-`artifacts/v3_label_batch_acceptance_check_950.json`,
-`artifacts/v3_label_factory_gate_check_950.json`,
-`artifacts/v3_accepted_review_debt_deferral_audit_950.json`,
-`artifacts/v3_label_scaling_quality_audit_950_preview.json`,
-`artifacts/v3_review_debt_summary_950_preview.json`,
-`artifacts/v3_active_learning_review_queue_950.json`,
-`artifacts/v3_expert_label_decision_review_export_950.json`,
-`artifacts/v3_expert_label_decision_repair_candidates_950.json`,
-`artifacts/v3_expert_label_decision_local_evidence_gap_audit_950.json`,
-`artifacts/v3_expert_label_decision_local_evidence_repair_plan_950.json`,
-`artifacts/v3_mechanism_ontology_gap_audit_950.json`,
-`artifacts/v3_learned_retrieval_manifest_950.json`,
-`artifacts/v3_sequence_similarity_failure_sets_950.json`,
-`artifacts/v3_geometry_features_950.json`,
-`artifacts/v3_label_factory_batch_summary.json`, and
-`work/label_preview_950_notes.md`.
+`artifacts/v3_label_batch_acceptance_check_1025_preview.json`,
+`artifacts/v3_label_factory_gate_check_1025_preview.json`,
+`artifacts/v3_label_scaling_quality_audit_1025_preview.json`,
+`artifacts/v3_review_debt_summary_1025_preview.json`,
+`artifacts/v3_accepted_review_debt_deferral_audit_1025_preview.json`,
+`artifacts/v3_source_scale_limit_audit_1025.json`,
+`artifacts/v3_external_source_transfer_manifest_1025.json`,
+`artifacts/v3_external_source_query_manifest_1025.json`,
+`artifacts/v3_external_ood_calibration_plan_1025.json`,
+`artifacts/v3_external_source_candidate_sample_1025.json`,
+`artifacts/v3_external_source_candidate_sample_audit_1025.json`, and
+`work/label_preview_1025_notes.md`.
 
 Highest-value options:
 
-1. Open a bounded 975 preview toward the 1,000-label milestone only if the 950
-   post-batch gate remains clean.
-2. Reuse prior geometry rows with `build-geometry-features --reuse-existing
-   artifacts/v3_geometry_features_950.json` when generating the 975 geometry
-   artifact, then run retrieval and all downstream gates.
-3. Run the full label-factory gate before any 975 promotion: review/confidence
-   evidence validation, promotion/demotion checks, ontology/family guardrails,
-   active-learning queue, adversarial negatives, expert-review artifacts,
-   abstention calibration, hard-negative checks, in-scope failure analysis,
-   tests, validate, and docs/status updates.
-4. If the 975 preview adds review debt or exposes ontology/family-propagation
-   drift, stop count growth and repair or explicitly defer that surface before
-   promotion.
-5. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
+1. Do not promote the 1,025 preview; it has 0 accepted labels and exists as a
+   source-limit audit point.
+2. Implement the external-source transfer path as review-only candidate
+   ingestion with OOD calibration, sequence-similarity failure sets, and
+   heuristic retrieval kept as the control.
+3. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
+   separate decision artifact passes the full label-factory gate.
+4. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
    do not collapse these families into generic hydrolase or metal-hydrolase
    labels.
 
@@ -597,6 +632,34 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-13T03:03:14Z
+- ENDED_AT: 2026-05-13T03:54:50Z
+- Measured elapsed time: 51.600 minutes
+- Documentation checked and updated across README, docs/label_factory.md,
+  docs/geometry_features.md, docs/performance.md,
+  docs/v2_strengthening_report.md, docs/v2_report.md,
+  docs/research_program.md, docs/ingestion_plan.md, docs/safety_scope.md,
+  docs/external_source_transfer.md, work/scope.md, work/handoff.md,
+  work/status.md inputs, work/label_factory_notes.md, and
+  work/label_preview_1025_notes.md before status regeneration.
+- Normal locked run from the accepted 1000 state first made an evidence-based
+  confidence call, opened the bounded 1025 preview, and stopped promotion when
+  the acceptance artifact added 0 clean countable labels.
+- The 1025 preview gate passes 21/21 checks and records 0 hard negatives, 0
+  near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope
+  failures, 0 accepted review-gap labels, and 0 review-only import count
+  growth. All 329 preview review-state rows remain non-countable.
+- Source-scale audit now records 1,003 observed M-CSA source records for the
+  requested 1,025 tranche, so M-CSA-only scaling is the active bottleneck. The
+  run added review-only external-source transfer, query, OOD calibration,
+  30-row UniProtKB/Swiss-Prot candidate sample, and sample guardrail artifacts
+  with 0 countable external candidates.
+- Final verification passed: `git diff --check`,
+  `PYTHONPATH=src python -m catalytic_earth.cli validate`,
+  `PYTHONPATH=src python -m unittest discover -s tests` with 217 tests,
+  `PYTHONPATH=src python -m compileall -q src tests`, and JSON parsing across
+  1627 artifact/registry files.
 
 - STARTED_AT: 2026-05-13T01:00:39Z
 - ENDED_AT: 2026-05-13T02:01:02Z

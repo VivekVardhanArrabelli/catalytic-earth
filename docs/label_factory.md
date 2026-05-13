@@ -643,6 +643,28 @@ Current 1,000-queue gate state:
   review-debt rows, with 0 countable candidates. The canonical registry now
   has 679 labels and the 1,000 gate passes 21/21.
 
+Current 1,025-preview state:
+
+- `artifacts/v3_label_factory_gate_check_1025_preview.json` passes 21/21
+  checks, preserving the label-quality gates.
+- `artifacts/v3_label_batch_acceptance_check_1025_preview.json` is not
+  accepted for counting because it adds 0 clean labels; the canonical registry
+  remains at 679 countable labels.
+- `artifacts/v3_review_debt_summary_1025_preview.json` records 329 review-debt
+  rows with 3 new rows: `m_csa:1003`, `m_csa:1004`, and `m_csa:1005`.
+  `artifacts/v3_accepted_review_debt_deferral_audit_1025_preview.json` keeps
+  all 329 non-countable.
+- `artifacts/v3_source_scale_limit_audit_1025.json` records 1,003 observed
+  M-CSA source records against a 1,025 requested tranche and recommends stopping
+  M-CSA-only count growth.
+- `artifacts/v3_external_source_transfer_manifest_1025.json`,
+  `artifacts/v3_external_source_query_manifest_1025.json`,
+  `artifacts/v3_external_ood_calibration_plan_1025.json`,
+  `artifacts/v3_external_source_candidate_sample_1025.json`, and
+  `artifacts/v3_external_source_candidate_sample_audit_1025.json` scope a
+  review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
+  candidates and must not be imported as labels.
+
 ## Automation Lock
 
 The local run lock is also available as code, so future schedulers do not have

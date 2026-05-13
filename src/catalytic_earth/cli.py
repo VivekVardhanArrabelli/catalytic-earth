@@ -72,8 +72,16 @@ from .ontology import load_mechanism_ontology
 from .models import RegistryError
 from .performance import write_local_performance_suite
 from .progress import WorkEntry, append_work_entry, write_progress_report
+from .source_limits import audit_source_scale_limits
 from .sources import build_source_ledger, load_sources
 from .structure import write_geometry_features
+from .transfer_scope import (
+    audit_external_source_candidate_sample,
+    build_external_ood_calibration_plan,
+    build_external_source_candidate_sample,
+    build_external_source_query_manifest,
+    build_external_source_transfer_manifest,
+)
 from .v2 import (
     build_mechanism_benchmark,
     detect_inconsistencies,
@@ -260,6 +268,134 @@ def cmd_build_sequence_cluster_proxy(args: argparse.Namespace) -> int:
         "Wrote sequence cluster proxy to "
         f"{args.out} ({artifact['metadata']['entry_count']} entries, "
         f"{artifact['metadata']['duplicate_cluster_count']} duplicate clusters)"
+    )
+    return 0
+
+
+def cmd_audit_source_scale_limits(args: argparse.Namespace) -> int:
+    with Path(args.graph).open("r", encoding="utf-8") as handle:
+        graph = json.load(handle)
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        labels = json.load(handle)
+    prior_graph = None
+    if args.prior_graph:
+        with Path(args.prior_graph).open("r", encoding="utf-8") as handle:
+            prior_graph = json.load(handle)
+    review_debt = None
+    if args.review_debt:
+        with Path(args.review_debt).open("r", encoding="utf-8") as handle:
+            review_debt = json.load(handle)
+    label_expansion_candidates = None
+    if args.label_expansion_candidates:
+        with Path(args.label_expansion_candidates).open("r", encoding="utf-8") as handle:
+            label_expansion_candidates = json.load(handle)
+    audit = audit_source_scale_limits(
+        graph,
+        labels,
+        target_source_entries=args.target_source_entries,
+        public_target_countable_labels=args.public_target_countable_labels,
+        prior_graph=prior_graph,
+        review_debt=review_debt,
+        label_expansion_candidates=label_expansion_candidates,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote source scale limit audit to "
+        f"{args.out} ({audit['metadata']['recommendation']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_transfer_manifest(args: argparse.Namespace) -> int:
+    with Path(args.source_scale_audit).open("r", encoding="utf-8") as handle:
+        source_scale_audit = json.load(handle)
+    with Path(args.learned_retrieval_manifest).open("r", encoding="utf-8") as handle:
+        learned_retrieval_manifest = json.load(handle)
+    with Path(args.sequence_similarity_failure_sets).open("r", encoding="utf-8") as handle:
+        sequence_similarity_failure_sets = json.load(handle)
+    with Path(args.ontology_gap_audit).open("r", encoding="utf-8") as handle:
+        ontology_gap_audit = json.load(handle)
+    with Path(args.active_learning_queue).open("r", encoding="utf-8") as handle:
+        active_learning_queue = json.load(handle)
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        labels = json.load(handle)
+    manifest = build_external_source_transfer_manifest(
+        source_scale_audit=source_scale_audit,
+        learned_retrieval_manifest=learned_retrieval_manifest,
+        sequence_similarity_failure_sets=sequence_similarity_failure_sets,
+        ontology_gap_audit=ontology_gap_audit,
+        active_learning_queue=active_learning_queue,
+        labels=labels,
+    )
+    write_json(Path(args.out), manifest)
+    print(
+        "Wrote external source transfer manifest to "
+        f"{args.out} ({manifest['metadata']['manifest_recommendation']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_query_manifest(args: argparse.Namespace) -> int:
+    with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
+        transfer_manifest = json.load(handle)
+    with Path(args.ontology_gap_audit).open("r", encoding="utf-8") as handle:
+        ontology_gap_audit = json.load(handle)
+    manifest = build_external_source_query_manifest(
+        transfer_manifest=transfer_manifest,
+        ontology_gap_audit=ontology_gap_audit,
+        max_lanes=args.max_lanes,
+    )
+    write_json(Path(args.out), manifest)
+    print(
+        "Wrote external source query manifest to "
+        f"{args.out} ({manifest['metadata']['lane_count']} lanes)"
+    )
+    return 0
+
+
+def cmd_build_external_ood_calibration_plan(args: argparse.Namespace) -> int:
+    with Path(args.query_manifest).open("r", encoding="utf-8") as handle:
+        query_manifest = json.load(handle)
+    with Path(args.sequence_similarity_failure_sets).open("r", encoding="utf-8") as handle:
+        sequence_similarity_failure_sets = json.load(handle)
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        labels = json.load(handle)
+    plan = build_external_ood_calibration_plan(
+        query_manifest=query_manifest,
+        sequence_similarity_failure_sets=sequence_similarity_failure_sets,
+        labels=labels,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote external OOD calibration plan to "
+        f"{args.out} ({plan['metadata']['lane_count']} lanes)"
+    )
+    return 0
+
+
+def cmd_build_external_source_candidate_sample(args: argparse.Namespace) -> int:
+    with Path(args.query_manifest).open("r", encoding="utf-8") as handle:
+        query_manifest = json.load(handle)
+    sample = build_external_source_candidate_sample(
+        query_manifest=query_manifest,
+        max_records_per_lane=args.max_records_per_lane,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote external source candidate sample to "
+        f"{args.out} ({sample['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_candidate_sample(args: argparse.Namespace) -> int:
+    with Path(args.candidate_sample).open("r", encoding="utf-8") as handle:
+        candidate_sample = json.load(handle)
+    audit = audit_external_source_candidate_sample(candidate_sample)
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source sample guardrail audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
     )
     return 0
 
@@ -1915,6 +2051,138 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_sequence_cluster_proxy.json",
     )
     sequence_clusters.set_defaults(func=cmd_build_sequence_cluster_proxy)
+
+    source_scale_limits = subparsers.add_parser(
+        "audit-source-scale-limits",
+        help="audit whether the current source slice can support the next scale target",
+    )
+    source_scale_limits.add_argument("--graph", default="artifacts/v1_graph.json")
+    source_scale_limits.add_argument(
+        "--prior-graph",
+        default=None,
+        help="previous accepted graph slice for new-entry diffing",
+    )
+    source_scale_limits.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    source_scale_limits.add_argument("--review-debt", default=None)
+    source_scale_limits.add_argument("--label-expansion-candidates", default=None)
+    source_scale_limits.add_argument("--target-source-entries", type=int, required=True)
+    source_scale_limits.add_argument(
+        "--public-target-countable-labels",
+        type=int,
+        default=10000,
+    )
+    source_scale_limits.add_argument(
+        "--out",
+        default="artifacts/v3_source_scale_limit_audit.json",
+    )
+    source_scale_limits.set_defaults(func=cmd_audit_source_scale_limits)
+
+    transfer_manifest = subparsers.add_parser(
+        "build-external-source-transfer-manifest",
+        help="scope external-source label transfer without creating countable labels",
+    )
+    transfer_manifest.add_argument(
+        "--source-scale-audit",
+        default="artifacts/v3_source_scale_limit_audit.json",
+    )
+    transfer_manifest.add_argument(
+        "--learned-retrieval-manifest",
+        default="artifacts/v3_learned_retrieval_manifest.json",
+    )
+    transfer_manifest.add_argument(
+        "--sequence-similarity-failure-sets",
+        default="artifacts/v3_sequence_similarity_failure_sets.json",
+    )
+    transfer_manifest.add_argument(
+        "--ontology-gap-audit",
+        default="artifacts/v3_mechanism_ontology_gap_audit.json",
+    )
+    transfer_manifest.add_argument(
+        "--active-learning-queue",
+        default="artifacts/v3_active_learning_review_queue.json",
+    )
+    transfer_manifest.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    transfer_manifest.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_transfer_manifest.json",
+    )
+    transfer_manifest.set_defaults(func=cmd_build_external_source_transfer_manifest)
+
+    transfer_queries = subparsers.add_parser(
+        "build-external-source-query-manifest",
+        help="draft non-countable external-source query lanes from ontology gaps",
+    )
+    transfer_queries.add_argument(
+        "--transfer-manifest",
+        default="artifacts/v3_external_source_transfer_manifest.json",
+    )
+    transfer_queries.add_argument(
+        "--ontology-gap-audit",
+        default="artifacts/v3_mechanism_ontology_gap_audit.json",
+    )
+    transfer_queries.add_argument("--max-lanes", type=int, default=8)
+    transfer_queries.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_query_manifest.json",
+    )
+    transfer_queries.set_defaults(func=cmd_build_external_source_query_manifest)
+
+    external_ood = subparsers.add_parser(
+        "build-external-ood-calibration-plan",
+        help="plan OOD controls before external-source label transfer",
+    )
+    external_ood.add_argument(
+        "--query-manifest",
+        default="artifacts/v3_external_source_query_manifest.json",
+    )
+    external_ood.add_argument(
+        "--sequence-similarity-failure-sets",
+        default="artifacts/v3_sequence_similarity_failure_sets.json",
+    )
+    external_ood.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_ood.add_argument(
+        "--out",
+        default="artifacts/v3_external_ood_calibration_plan.json",
+    )
+    external_ood.set_defaults(func=cmd_build_external_ood_calibration_plan)
+
+    external_sample = subparsers.add_parser(
+        "build-external-source-candidate-sample",
+        help="fetch a bounded non-countable external-source candidate sample",
+    )
+    external_sample.add_argument(
+        "--query-manifest",
+        default="artifacts/v3_external_source_query_manifest.json",
+    )
+    external_sample.add_argument("--max-records-per-lane", type=int, default=5)
+    external_sample.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_candidate_sample.json",
+    )
+    external_sample.set_defaults(func=cmd_build_external_source_candidate_sample)
+
+    external_sample_audit = subparsers.add_parser(
+        "audit-external-source-candidate-sample",
+        help="verify external-source samples remain non-countable",
+    )
+    external_sample_audit.add_argument(
+        "--candidate-sample",
+        default="artifacts/v3_external_source_candidate_sample.json",
+    )
+    external_sample_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_candidate_sample_audit.json",
+    )
+    external_sample_audit.set_defaults(func=cmd_audit_external_source_candidate_sample)
 
     benchmark = subparsers.add_parser(
         "build-v2-benchmark",

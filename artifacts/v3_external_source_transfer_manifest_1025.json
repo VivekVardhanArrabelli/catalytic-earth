@@ -1,0 +1,65 @@
+{
+  "blockers": [
+    "m_csa_source_limit_reached",
+    "external_source_ingestion_not_implemented",
+    "external_out_of_distribution_calibration_not_built",
+    "external_sequence_similarity_failure_sets_not_built"
+  ],
+  "metadata": {
+    "active_queue_issue_class_counts": {},
+    "active_queue_row_count": 436,
+    "active_queue_top1_family_counts": {
+      "flavin_redox": 48,
+      "heme_redox": 38,
+      "hydrolysis": 337,
+      "plp_chemistry": 12,
+      "radical_rearrangement": 1
+    },
+    "blocker_count": 4,
+    "countable_label_candidate_count": 0,
+    "current_countable_label_count": 679,
+    "heuristic_control_required": true,
+    "learned_retrieval_eligible_row_count": null,
+    "m_csa_observed_source_entries": 1003,
+    "m_csa_source_limit_reached": true,
+    "m_csa_target_source_entries": 1025,
+    "manifest_recommendation": "prototype_external_source_transfer_before_next_count_growth",
+    "method": "external_source_transfer_scope_manifest",
+    "ontology_gap_row_count": 136,
+    "public_label_gap": 9321,
+    "public_target_countable_labels": 10000,
+    "ready_for_label_import": false,
+    "sequence_duplicate_cluster_count": 6,
+    "source_scale_recommendation": "stop_m_csa_only_tranche_growth_and_scope_external_source_transfer"
+  },
+  "next_actions": [
+    "Implement a read-only external-source candidate manifest before importing labels.",
+    "Attach OOD fold and sequence-similarity controls to the external manifest.",
+    "Keep all transfer candidates non-countable until factory gates pass on an explicit decision artifact."
+  ],
+  "required_guardrails": [
+    "Keep heuristic geometry retrieval as the required control.",
+    "Build external out-of-distribution calibration before countable import.",
+    "Build external sequence-similarity failure sets before propagation.",
+    "Route mechanism or family-boundary conflicts through review-only artifacts.",
+    "Run the full label-factory gate before any external-source label counts."
+  ],
+  "source_plan": {
+    "candidate_source": "UniProtKB/Swiss-Prot reviewed enzyme records",
+    "initial_filters": [
+      "reviewed:true",
+      "enzyme-annotated records with sequence and structure reference coverage",
+      "exclude entries that collapse into existing exact-reference duplicate clusters before benchmark split assignment"
+    ],
+    "minimum_fields": [
+      "accession",
+      "protein_name",
+      "organism_name",
+      "sequence",
+      "ec",
+      "reviewed",
+      "xref_pdb",
+      "xref_alphafolddb"
+    ]
+  }
+}

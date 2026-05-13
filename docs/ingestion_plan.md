@@ -42,3 +42,12 @@ usable before scaling to millions of proteins.
 python -m catalytic_earth.cli fetch-rhea-sample --limit 25 --out artifacts/rhea_sample.json
 python -m catalytic_earth.cli fetch-mcsa-sample --ids 1,2,3 --out artifacts/mcsa_sample.json
 ```
+
+## Current Scaling Update
+
+M-CSA is now sufficient as a seed benchmark source but not as the full scaling
+source. The 1,025 preview finds 1,003 observed M-CSA source records and adds 0
+countable labels. UniProtKB/Swiss-Prot transfer is now scoped through
+review-only manifests and bounded samples in `docs/external_source_transfer.md`;
+those artifacts are not label imports and must remain non-countable until OOD
+calibration and label-factory gates pass.

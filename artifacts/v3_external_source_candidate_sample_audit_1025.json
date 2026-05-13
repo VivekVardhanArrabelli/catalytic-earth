@@ -1,0 +1,18 @@
+{
+  "blockers": [],
+  "metadata": {
+    "candidate_count": 30,
+    "countable_label_candidate_count": 0,
+    "duplicate_accession_count": 0,
+    "duplicate_accessions": [],
+    "ec_supported_count": 30,
+    "guardrail_clean": true,
+    "method": "external_source_candidate_sample_guardrail_audit",
+    "ready_for_label_import": false,
+    "reviewed_count": 30,
+    "structure_supported_count": 30
+  },
+  "warnings": [
+    "external candidates require OOD calibration and label-factory review before any countable import"
+  ]
+}

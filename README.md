@@ -103,7 +103,8 @@ non-abstentions, and 0 actionable in-scope failures. See
 `work/label_queue_550_notes.md`, `work/label_factory_notes.md`,
 `work/label_preview_725_notes.md`, `work/label_preview_750_notes.md`,
 `work/label_preview_850_notes.md`, `work/label_preview_950_notes.md`,
-`work/label_preview_975_notes.md`, and `work/label_preview_1000_notes.md`.
+`work/label_preview_975_notes.md`, `work/label_preview_1000_notes.md`, and
+`work/label_preview_1025_notes.md`.
 
 Label scaling is now gated by the label factory rather than raw queue size. The
 current 1,000 factory audit proposes 115 bronze-to-silver promotions, flags
@@ -149,6 +150,17 @@ near-duplicate hits among audited rows. See
 `work/expert_label_decision_review_700_notes.md` for the clean label profiles,
 the top evidence gaps, the expert-decision review-only profile, and the
 prioritized non-countable repair buckets.
+
+The bounded 1,025 preview has been opened but not promoted. Its factory gate
+passes 21/21 checks, but the batch acceptance artifact records 0 accepted new
+labels, 329 review-state rows, and a `do_not_promote` scaling recommendation.
+`artifacts/v3_source_scale_limit_audit_1025.json` also shows that the M-CSA
+slice currently exposes 1,003 source records rather than 1,025, so M-CSA-only
+growth cannot reach the 10,000-label target. The new external-source transfer
+artifacts scope a UniProtKB/Swiss-Prot path with query lanes, OOD calibration,
+sequence-similarity controls, and a 30-row read-only candidate sample; all
+external rows remain non-countable. See `docs/external_source_transfer.md` for
+the guarded command sequence.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,
@@ -215,8 +227,10 @@ automation-curated bronze labels after the accepted 850 state. The latest
 1,000 batch accepted `m_csa:978`, `m_csa:988`, `m_csa:990`, and `m_csa:994`;
 the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
-`artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The next bounded
-work item is a gated 1,025 preview only if the 1,000 post-batch gate stays clean.
+`artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
+1,025 preview is open but not promoted; the next bounded work item is
+external-source transfer scaffolding and calibration, not M-CSA-only count
+growth.
 See
 `docs/label_factory.md`.
 
@@ -330,11 +344,11 @@ Current timeline judgment:
    promotion/demotion, adversarial-negative, active-learning, expert-review
    export/import, family-propagation, ATP/phosphoryl-transfer family-boundary,
    validation, and test gates before labels count toward the benchmark.
-3. Next serious milestone: open the next bounded gated tranche beyond 1,000
-   source entries, starting with a 1,025 preview, only while the 1,000 post-batch gate stays
-   clean. Stop count growth if the next gate exposes review debt,
-   ontology/family propagation drift, hard negatives, out-of-scope false
-   non-abstentions, or actionable in-scope failures.
+3. Next serious milestone: move beyond M-CSA-only tranche growth. The 1,025
+   preview is cleanly non-promotable with 0 accepted labels, and the source
+   audit shows only 1,003 M-CSA records are available in the current slice.
+   External-source transfer must stay review-only until OOD calibration,
+   sequence-similarity failure controls, and the full label-factory gate pass.
 4. Long-term impact path: expert-reviewed mechanism labels, learned
    geometry-aware retrieval, source-scale ingestion, and candidate dossiers that
    are credible enough for external labs to prioritize.

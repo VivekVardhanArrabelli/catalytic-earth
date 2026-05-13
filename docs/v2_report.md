@@ -73,6 +73,11 @@ for expert review, not validated functions.
   review-state rows remain non-countable
   evidence gaps. Future additions must pass the label-factory gate before any
   new labels count in the benchmark.
+- The 1,025 preview has been processed but not promoted: it adds 0 countable
+  labels, keeps 329 review-state rows non-countable, and shows the current
+  M-CSA-only source slice has 1,003 records. The next scaling method is
+  external-source transfer with OOD calibration and sequence-similarity
+  controls, not blind M-CSA tranche growth.
 - Label-factory artifacts now provide bronze/silver/gold label schema,
   promotion/demotion audit, adversarial negative controls, active-learning
   review ranking, family-propagation guardrails, and expert-review

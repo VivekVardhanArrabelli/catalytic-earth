@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 55
-- Measured elapsed time: 2103.3 minutes (35.06 hours)
+- Entries: 56
+- Measured elapsed time: 2154.9 minutes (35.92 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 2025.2 measured minutes (33.75 hours)
+- post-v2: 2076.8 measured minutes (34.61 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 540
-- Evidence references logged: 452
+- Artifact references logged: 550
+- Evidence references logged: 464
 
 ## Recent Entries
-
-### 2026-05-12T16:42:24.970333+00:00 - post-v2
-
-- Task: Implement ATP phosphoryl-transfer family expansion
-- Time mode: measured
-- Measured minutes: 50.817
-- Started: 2026-05-12T15:50:29Z
-- Ended: 2026-05-12T16:41:18Z
-- Artifacts: artifacts/v3_atp_phosphoryl_transfer_family_expansion_700.json, artifacts/v3_label_factory_gate_check_700.json, artifacts/v3_label_scaling_quality_audit_700_preview.json, artifacts/v3_active_learning_review_queue_700.json, artifacts/v3_family_propagation_guardrails_700.json
-- Evidence: 198 tests passed, validate passed, 21/21 label factory gate, 0 countable candidates from ATP family expansion
-- Notes: Added ePK ASKHA ATP-grasp GHKL dNK NDK PfkA PfkB GHMP ontology family layer and wired review/gate artifacts without count growth.
 
 ### 2026-05-12T17:48:03.708741+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 206 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 679 countable labels, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures
 - Notes: Normal locked measured run. Accepted 975 and 1000; repaired m_csa:986 heme boundary deferral; documentation updated.
 
+### 2026-05-13T03:55:19.973294+00:00 - post-v2
+
+- Task: Open 1025 preview and scope external transfer
+- Time mode: measured
+- Measured minutes: 51.6
+- Started: 2026-05-13T03:03:14Z
+- Ended: 2026-05-13T03:54:50Z
+- Artifacts: artifacts/v3_label_factory_gate_check_1025_preview.json, artifacts/v3_label_batch_acceptance_check_1025_preview.json, artifacts/v3_source_scale_limit_audit_1025.json, artifacts/v3_external_source_transfer_manifest_1025.json, artifacts/v3_external_source_query_manifest_1025.json, artifacts/v3_external_ood_calibration_plan_1025.json, artifacts/v3_external_source_candidate_sample_1025.json, artifacts/v3_external_source_candidate_sample_audit_1025.json, docs/external_source_transfer.md, work/label_preview_1025_notes.md
+- Evidence: 217 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 21/21 1025 preview gate checks passed, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 0 accepted new labels, 30 external candidates kept non-countable
+- Notes: Normal locked measured run. Opened the 1025 preview, kept countable labels at 679, and added review-only external-source transfer scaffolding.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -171,6 +171,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T22:58:26.440004+00:00: Countable registry is 652 labels; next bounded work is an 875 preview while post-850 gate stays clean.
 - 2026-05-13T00:50:52.831198+00:00: Countable registry is 673 labels; next bounded work is a 975 preview while post-950 gate stays clean.
 - 2026-05-13T02:01:21.378176+00:00: Low-score local heme boundary rows now defer instead of becoming countable out-of-scope negatives.
+- 2026-05-13T03:55:19.973294+00:00: The 1,025 preview is guardrail-clean but non-promotable; 10k progress now depends on external-source transfer rather than another M-CSA-only tranche.
 
 ## Scope Adjustments
 
@@ -227,3 +228,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-12T22:58:26.440004+00:00: Accepted 850 as latest gated countable slice; geometry row reuse added for tranche scaling.
 - 2026-05-13T00:50:52.831198+00:00: Accepted 950 as latest gated countable slice; review-debt deferral remains mandatory before 1,000-label milestone.
 - 2026-05-13T02:01:21.378176+00:00: Accepted 1000 as latest gated countable slice; next bounded tranche is 1025 only while post-1000 gates stay clean.
+- 2026-05-13T03:55:19.973294+00:00: M-CSA-only scaling is source-limited at 1,003 observed records; next work should build external-source transfer with all imported candidates non-countable until full factory gates pass.

@@ -1,0 +1,111 @@
+{
+  "blockers": [
+    "external_candidates_not_fetched",
+    "external_ood_scores_not_computed",
+    "external_sequence_similarity_failure_sets_not_built",
+    "external_abstention_threshold_not_calibrated"
+  ],
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "current_countable_label_count": 679,
+    "lane_count": 6,
+    "method": "external_ood_calibration_plan",
+    "ready_for_label_import": false,
+    "requires_embedding_or_structure_representation": true,
+    "requires_external_candidate_fetch": true,
+    "requires_heuristic_control": true,
+    "sequence_duplicate_cluster_count": 6
+  },
+  "rows": [
+    {
+      "calibration_controls": [
+        "exact_sequence_cluster_exclusion",
+        "near_duplicate_manual_review",
+        "family_holdout_split",
+        "source_text_leakage_check",
+        "abstention_threshold_recalibration",
+        "heuristic_retrieval_control_comparison"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "promotion_rule": "external candidates remain review-only until calibrated OOD controls and label-factory gates pass",
+      "scope_signal": "oxidoreductase_long_tail",
+      "source_query_draft": "(reviewed:true) AND (ec:1.*) NOT (protein_name:flavin OR protein_name:heme)"
+    },
+    {
+      "calibration_controls": [
+        "exact_sequence_cluster_exclusion",
+        "near_duplicate_manual_review",
+        "family_holdout_split",
+        "source_text_leakage_check",
+        "abstention_threshold_recalibration",
+        "heuristic_retrieval_control_comparison"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:transferase_phosphoryl",
+      "promotion_rule": "external candidates remain review-only until calibrated OOD controls and label-factory gates pass",
+      "scope_signal": "transferase_phosphoryl",
+      "source_query_draft": "(reviewed:true) AND (ec:2.7.* OR protein_name:kinase OR protein_name:phosphotransferase)"
+    },
+    {
+      "calibration_controls": [
+        "exact_sequence_cluster_exclusion",
+        "near_duplicate_manual_review",
+        "family_holdout_split",
+        "source_text_leakage_check",
+        "abstention_threshold_recalibration",
+        "heuristic_retrieval_control_comparison"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:lyase",
+      "promotion_rule": "external candidates remain review-only until calibrated OOD controls and label-factory gates pass",
+      "scope_signal": "lyase",
+      "source_query_draft": "(reviewed:true) AND (ec:4.* OR protein_name:lyase)"
+    },
+    {
+      "calibration_controls": [
+        "exact_sequence_cluster_exclusion",
+        "near_duplicate_manual_review",
+        "family_holdout_split",
+        "source_text_leakage_check",
+        "abstention_threshold_recalibration",
+        "heuristic_retrieval_control_comparison"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:isomerase",
+      "promotion_rule": "external candidates remain review-only until calibrated OOD controls and label-factory gates pass",
+      "scope_signal": "isomerase",
+      "source_query_draft": "(reviewed:true) AND (ec:5.* OR protein_name:isomerase)"
+    },
+    {
+      "calibration_controls": [
+        "exact_sequence_cluster_exclusion",
+        "near_duplicate_manual_review",
+        "family_holdout_split",
+        "source_text_leakage_check",
+        "abstention_threshold_recalibration",
+        "heuristic_retrieval_control_comparison"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:glycan_chemistry",
+      "promotion_rule": "external candidates remain review-only until calibrated OOD controls and label-factory gates pass",
+      "scope_signal": "glycan_chemistry",
+      "source_query_draft": "(reviewed:true) AND (ec:2.4.* OR ec:3.2.* OR protein_name:glycosyltransferase OR protein_name:glycosidase)"
+    },
+    {
+      "calibration_controls": [
+        "exact_sequence_cluster_exclusion",
+        "near_duplicate_manual_review",
+        "family_holdout_split",
+        "source_text_leakage_check",
+        "abstention_threshold_recalibration",
+        "heuristic_retrieval_control_comparison"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:transferase_methyl",
+      "promotion_rule": "external candidates remain review-only until calibrated OOD controls and label-factory gates pass",
+      "scope_signal": "transferase_methyl",
+      "source_query_draft": "(reviewed:true) AND (ec:2.1.1.* OR protein_name:methyltransferase)"
+    }
+  ]
+}

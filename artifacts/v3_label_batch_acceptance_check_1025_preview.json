@@ -1,0 +1,99 @@
+{
+  "blockers": [
+    "accepted_labels_added"
+  ],
+  "gates": {
+    "accepted_labels_added": false,
+    "accepted_labels_have_no_reaction_substrate_mismatches": true,
+    "accepted_labels_have_no_review_evidence_gaps": true,
+    "countable_registry_preserves_baseline": true,
+    "factory_gate_ready": true,
+    "no_pending_review_in_countable": true,
+    "zero_actionable_in_scope_failures": true,
+    "zero_hard_negatives": true,
+    "zero_near_misses": true,
+    "zero_out_of_scope_false_non_abstentions": true
+  },
+  "metadata": {
+    "accepted_for_counting": false,
+    "accepted_new_label_count": 0,
+    "accepted_new_label_entry_ids": [],
+    "accepted_reaction_substrate_mismatch_count": 0,
+    "accepted_reaction_substrate_mismatch_entry_ids": [],
+    "accepted_review_gap_count": 0,
+    "accepted_review_gap_entry_ids": [],
+    "actionable_in_scope_failure_count": 0,
+    "baseline_label_count": 679,
+    "countable_label_count": 679,
+    "evidence_limited_abstention_count": 4,
+    "factory_gate_ready": true,
+    "hard_negative_count": 0,
+    "method": "label_batch_acceptance_check",
+    "near_miss_count": 0,
+    "out_of_scope_false_non_abstentions": 0,
+    "pending_review_count": 329,
+    "review_state_label_count": 1003,
+    "review_state_rule": "pending-review labels remain in the review-state registry but are not copied into the countable benchmark registry"
+  },
+  "summaries": {
+    "countable": {
+      "by_confidence": {
+        "high": 75,
+        "low": 36,
+        "medium": 568
+      },
+      "by_fingerprint": {
+        "cobalamin_radical_rearrangement": 3,
+        "flavin_dehydrogenase_reductase": 49,
+        "flavin_monooxygenase": 2,
+        "heme_peroxidase_oxidase": 20,
+        "metal_dependent_hydrolase": 67,
+        "plp_dependent_enzyme": 30,
+        "radical_sam_enzyme": 1,
+        "ser_his_acid_hydrolase": 40
+      },
+      "by_review_status": {
+        "automation_curated": 679
+      },
+      "by_tier": {
+        "bronze": 679
+      },
+      "by_type": {
+        "out_of_scope": 467,
+        "seed_fingerprint": 212
+      },
+      "label_count": 679,
+      "mean_evidence_score": 0.6478
+    },
+    "review_state": {
+      "by_confidence": {
+        "high": 75,
+        "low": 36,
+        "medium": 892
+      },
+      "by_fingerprint": {
+        "cobalamin_radical_rearrangement": 5,
+        "flavin_dehydrogenase_reductase": 52,
+        "flavin_monooxygenase": 2,
+        "heme_peroxidase_oxidase": 20,
+        "metal_dependent_hydrolase": 116,
+        "plp_dependent_enzyme": 33,
+        "radical_sam_enzyme": 1,
+        "ser_his_acid_hydrolase": 44
+      },
+      "by_review_status": {
+        "automation_curated": 674,
+        "needs_expert_review": 329
+      },
+      "by_tier": {
+        "bronze": 1003
+      },
+      "by_type": {
+        "out_of_scope": 730,
+        "seed_fingerprint": 273
+      },
+      "label_count": 1003,
+      "mean_evidence_score": 0.6162
+    }
+  }
+}

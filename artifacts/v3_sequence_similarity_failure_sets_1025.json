@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "cluster_source": "reference_uniprot_exact_set",
+    "countable_label_candidate_count": 0,
+    "duplicate_cluster_count": 6,
+    "input_cluster_count": 996,
+    "method": "sequence_similarity_failure_set_audit",
+    "review_only_rule": "exact-reference clusters are failure-set controls; they do not propagate labels without mechanism evidence",
+    "risk_flag_counts": {
+      "active_queue_cluster_member": 4,
+      "duplicate_cluster_control": 2
+    }
+  },
+  "rows": [
+    {
+      "active_queue_recommended_action_counts": {},
+      "cluster_source": "reference_uniprot_exact_set",
+      "countable_label_candidate": false,
+      "entry_ids": [
+        "m_csa:330",
+        "m_csa:956"
+      ],
+      "fingerprint_counts": {
+        "plp_dependent_enzyme": 2
+      },
+      "label_type_counts": {
+        "seed_fingerprint": 2
+      },
+      "recommended_next_action": "keep as sequence-similarity failure control before any family propagation or learned retrieval split",
+      "risk_flags": [
+        "duplicate_cluster_control"
+      ],
+      "sequence_cluster_id": "uniprot:O59791",
+      "top1_ontology_family_counts": {}
+    },
+    {
+      "active_queue_recommended_action_counts": {
+        "expert_label_decision_needed": 1
+      },
+      "cluster_source": "reference_uniprot_exact_set",
+      "countable_label_candidate": false,
+      "entry_ids": [
+        "m_csa:307",
+        "m_csa:939"
+      ],
+      "fingerprint_counts": {
+        "out_of_scope": 1
+      },
+      "label_type_counts": {
+        "out_of_scope": 1
+      },
+      "recommended_next_action": "keep as sequence-similarity failure control before any family propagation or learned retrieval split",
+      "risk_flags": [
+        "active_queue_cluster_member"
+      ],
+      "sequence_cluster_id": "uniprot:P06104+P22515",
+      "top1_ontology_family_counts": {
+        "hydrolysis": 1
+      }
+    },
+    {
+      "active_queue_recommended_action_counts": {},
+      "cluster_source": "reference_uniprot_exact_set",
+      "countable_label_candidate": false,
+      "entry_ids": [
+        "m_csa:389",
+        "m_csa:458"
+      ],
+      "fingerprint_counts": {
+        "out_of_scope": 2
+      },
+      "label_type_counts": {
+        "out_of_scope": 2
+      },
+      "recommended_next_action": "keep as sequence-similarity failure control before any family propagation or learned retrieval split",
+      "risk_flags": [
+        "duplicate_cluster_control"
+      ],
+      "sequence_cluster_id": "uniprot:P11586",
+      "top1_ontology_family_counts": {}
+    },
+    {
+      "active_queue_recommended_action_counts": {
+        "expert_label_decision_needed": 1
+      },
+      "cluster_source": "reference_uniprot_exact_set",
+      "countable_label_candidate": false,
+      "entry_ids": [
+        "m_csa:139",
+        "m_csa:987"
+      ],
+      "fingerprint_counts": {
+        "out_of_scope": 1
+      },
+      "label_type_counts": {
+        "out_of_scope": 1
+      },
+      "recommended_next_action": "keep as sequence-similarity failure control before any family propagation or learned retrieval split",
+      "risk_flags": [
+        "active_queue_cluster_member"
+      ],
+      "sequence_cluster_id": "uniprot:P80457",
+      "top1_ontology_family_counts": {
+        "hydrolysis": 1
+      }
+    },
+    {
+      "active_queue_recommended_action_counts": {
+        "hold_bronze_boundary_review": 3
+      },
+      "cluster_source": "reference_uniprot_exact_set",
+      "countable_label_candidate": false,
+      "entry_ids": [
+        "m_csa:373",
+        "m_csa:374",
+        "m_csa:386"
+      ],
+      "fingerprint_counts": {
+        "out_of_scope": 3
+      },
+      "label_type_counts": {
+        "out_of_scope": 3
+      },
+      "recommended_next_action": "keep as sequence-similarity failure control before any family propagation or learned retrieval split",
+      "risk_flags": [
+        "active_queue_cluster_member"
+      ],
+      "sequence_cluster_id": "uniprot:P81701",
+      "top1_ontology_family_counts": {
+        "hydrolysis": 3
+      }
+    },
+    {
+      "active_queue_recommended_action_counts": {
+        "expert_label_decision_needed": 2
+      },
+      "cluster_source": "reference_uniprot_exact_set",
+      "countable_label_candidate": false,
+      "entry_ids": [
+        "m_csa:954",
+        "m_csa:955"
+      ],
+      "fingerprint_counts": {},
+      "label_type_counts": {},
+      "recommended_next_action": "keep as sequence-similarity failure control before any family propagation or learned retrieval split",
+      "risk_flags": [
+        "active_queue_cluster_member"
+      ],
+      "sequence_cluster_id": "uniprot:P9WJ61",
+      "top1_ontology_family_counts": {
+        "hydrolysis": 2
+      }
+    }
+  ]
+}

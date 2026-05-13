@@ -99,7 +99,7 @@ any further count growth.
 Current artifact:
 
 ```text
-artifacts/perf_report_1000.json
+artifacts/perf_report_1025.json
 ```
 
 The suite is local-only and avoids network calls. It measures the current graph,
@@ -108,22 +108,22 @@ hard-negative selection, in-scope failure analysis, cofactor coverage, cofactor
 policy sweeps, seed-family audits, and structure-mapping diagnostics on existing
 artifacts.
 
-Latest 3-iteration mean timings on the 1,000-entry artifacts:
+Latest 3-iteration mean timings on the 1,025-preview artifacts:
 
-- load V1 graph: 96.720 ms
-- build V2 benchmark: 14.682 ms
-- run geometry retrieval: 385.569 ms
-- evaluate geometry labels: 1.673 ms
-- sweep abstention thresholds: 1386.516 ms
-- analyze geometry score margins: 1.729 ms
-- build hard negative controls: 3.121 ms
-- build adversarial negative controls: 36.282 ms
-- build label-factory audit: 8.891 ms
-- build active-learning review queue: 9.682 ms
-- analyze in-scope failures: 1.226 ms
-- analyze cofactor coverage: 1.475 ms
-- analyze cofactor abstention policy: 1965.815 ms
-- analyze seed-family performance: 2.027 ms
+- load V1 graph: 110.104 ms
+- build V2 benchmark: 17.555 ms
+- run geometry retrieval: 397.688 ms
+- evaluate geometry labels: 1.538 ms
+- sweep abstention thresholds: 1387.703 ms
+- analyze geometry score margins: 1.789 ms
+- build hard negative controls: 3.171 ms
+- build adversarial negative controls: 5.659 ms
+- build label-factory audit: 39.318 ms
+- build active-learning review queue: 9.634 ms
+- analyze in-scope failures: 1.150 ms
+- analyze cofactor coverage: 1.486 ms
+- analyze cofactor abstention policy: 1967.761 ms
+- analyze seed-family performance: 2.060 ms
 - analyze structure mapping issues: 0.141 ms
 
 ## Interpretation
@@ -168,6 +168,9 @@ What is now better:
 - cofactor policy sweeps recommend audit-only handling for evidence-limited
   retained positives rather than a post-hoc score penalty
 - local performance is measured and reproducible
+- the 1,025 preview exposes source-scale limits without weakening label gates:
+  it adds 0 countable labels, keeps all 329 review-state rows non-countable,
+  and shifts next work to external-source transfer with OOD controls
 
 What remains weak:
 
@@ -179,3 +182,6 @@ What remains weak:
 - ligand/cofactor context is only a simple nearby-ligand heuristic
 - substrate-pocket context is currently a heuristic residue-shell summary
 - local performance does not measure full-database scalability
+- M-CSA-only tranche growth cannot reach the 10,000-label target; external
+  UniProtKB/Swiss-Prot transfer is now a separate review-only methodology
+  until calibrated and factory-gated

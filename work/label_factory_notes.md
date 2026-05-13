@@ -5,9 +5,11 @@
 The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
 800-, 825-, 850-, 875-, 900-, 925-, 950-, 975-, and 1000-slice label-factory batches
 have been processed through countable import and acceptance checks. The
-canonical registry has 679 countable labels. Open the next tranche only as a
-bounded gated 1,025 preview; 326 rows remain `needs_more_evidence` and are
-explicitly non-countable under the 1000 deferral audit.
+canonical registry has 679 countable labels. The bounded 1,025 preview is
+cleanly non-promotable with 0 accepted labels; 329 rows remain
+`needs_more_evidence` and are explicitly non-countable under the 1,025 preview
+deferral audit. Next work should build the external-source transfer path rather
+than opening another M-CSA-only tranche.
 
 ## Current Generated Artifacts
 
@@ -124,8 +126,20 @@ role-inferred or review-marked evidence gaps remain `needs_more_evidence`
 rather than counted. The 1000 active-learning queue retains all 321
 expert-label decision rows, the 1000 deferral audit keeps every review-state
 row non-countable, and the batch summary reports 21/21 accepted batches with
-0 blockers. The next tranche is a bounded gated 1,025 preview only while these
-1000 gates remain clean.
+0 blockers.
+
+Current 1,025 preview state: 21/21 factory checks pass, but the preview is not
+accepted for counting because it adds 0 clean countable labels. Review debt
+rises from 326 to 329 rows, with new rows `m_csa:1003`, `m_csa:1004`, and
+`m_csa:1005`, all explicitly deferred as non-countable. The M-CSA source-scale
+audit records only 1,003 observed source records for a requested 1,025 tranche,
+so the next scaling step is external-source transfer rather than another
+M-CSA-only batch. `artifacts/v3_external_source_transfer_manifest_1025.json`,
+`artifacts/v3_external_source_query_manifest_1025.json`,
+`artifacts/v3_external_ood_calibration_plan_1025.json`,
+`artifacts/v3_external_source_candidate_sample_1025.json`, and
+`artifacts/v3_external_source_candidate_sample_audit_1025.json` are review-only
+discovery artifacts with 0 countable label candidates.
 
 Historical 700 gate state: 20/20 factory checks pass on the 624-label countable
 registry. The latest accepted batch-acceptance check passes: 5 additional

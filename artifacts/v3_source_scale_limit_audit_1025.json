@@ -1,0 +1,36 @@
+{
+  "blockers": [
+    "source_has_fewer_entries_than_requested_tranche",
+    "m_csa_only_scaling_cannot_reach_public_label_target",
+    "new_review_debt_requires_repair_or_deferral"
+  ],
+  "metadata": {
+    "blocker_count": 3,
+    "countable_label_count": 679,
+    "label_expansion_candidate_count": 324,
+    "m_csa_only_public_target_blocked": true,
+    "method": "source_scale_limit_audit",
+    "new_review_debt_count": 3,
+    "new_source_entry_count": 3,
+    "new_source_entry_ids": [
+      "m_csa:1003",
+      "m_csa:1004",
+      "m_csa:1005"
+    ],
+    "observed_source_entries": 1003,
+    "prior_source_entries": 1000,
+    "public_label_gap": 9321,
+    "public_target_countable_labels": 10000,
+    "recommendation": "stop_m_csa_only_tranche_growth_and_scope_external_source_transfer",
+    "review_debt_count": 329,
+    "source": "m_csa",
+    "source_entry_gap": 22,
+    "source_limit_reached": true,
+    "target_source_entries": 1025
+  },
+  "next_actions": [
+    "Do not promote the current preview unless label-factory acceptance adds clean countable labels.",
+    "Treat further scaling beyond the available M-CSA slice as a new methodology.",
+    "Scope UniProt or SwissProt transfer with out-of-distribution calibration, sequence-similarity failure sets, and the existing heuristic baseline as a control."
+  ]
+}

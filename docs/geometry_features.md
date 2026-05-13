@@ -279,12 +279,17 @@ Current slices:
   labeled rows evaluable, 208/212 in-scope positives retained, 0 out-of-scope
   false non-abstentions, 0 hard negatives, 0 near misses, and 4
   evidence-limited in-scope abstentions.
+- 1025-preview slice: threshold 0.4115, 662/678 evaluated countable labeled
+  rows evaluable, 208/212 in-scope positives retained, 0 out-of-scope false
+  non-abstentions, 0 hard negatives, 0 near misses, and 4 evidence-limited
+  in-scope abstentions. This preview is not promoted because it adds 0 clean
+  countable labels.
 
 `artifacts/v3_geometry_slice_summary.json` summarizes the 20-, 30-, 40-, 50-,
 60-, 75-, 100-, 125-, 150-, 175-, 200-, 225-, 250-, 275-, 300-, 325-, 350-,
 375-, 400-, 425-, 450-, 475-, 500-, 525-, 550-, 575-, 600-, 625-, 650-,
 675-, 700-, 725-, 750-, 775-, 800-, 825-, 850-, 875-, 900-, 925-, 950-, 975-,
-and 1000-entry slices. It
+1000-entry, and 1025-preview slices. It
 currently reports zero hard negatives, zero near misses, and zero out-of-scope
 false non-abstentions across all slices. Total in-scope failures across slice
 rows are 110, max in any slice is 4, and the actionable in-scope failure count
@@ -311,15 +316,16 @@ smallest retained evidence-limited margin is now `0.013`.
 
 The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
 800-, 825-, 850-, 875-, 900-, 925-, 950-, 975-, and 1000-entry source slices have
-been processed through the label factory. The 1000-entry batch is
-resolved only for clean countable labels because every batch candidate has an
-accept, reject, or needs-more-evidence decision:
+been processed through the label factory and accepted for their clean labels.
+The 1025 preview has also been processed but is not accepted for counting
+because it adds 0 clean labels and exposes an M-CSA source limit:
 
 - geometry entries in expansion artifact: 999
 - countable curated labels: 679
 - evaluated labeled rows: 678
 - evaluable labeled active-site structures: 662
 - post-batch expert-label decision rows retained: 321
+- 1025-preview review-state rows retained: 329
 - review notes: `work/label_factory_notes.md`
 - active-learning review queue: `artifacts/v3_active_learning_review_queue_1000.json`
 - expert-review export: `artifacts/v3_expert_review_export_1000_post_batch.json`

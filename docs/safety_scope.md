@@ -12,6 +12,8 @@ prioritization for legitimate environmental, industrial, and biological research
 - Candidate ranking for benign chemistry.
 - Dossiers for expert review.
 - Assay-family suggestions at a high level.
+- Review-only external-source transfer manifests that keep computational
+  candidates non-countable until label-factory gates and expert evidence clear.
 
 ## Out of Scope
 
@@ -20,6 +22,8 @@ prioritization for legitimate environmental, industrial, and biological research
 - Instructions for culturing, modifying, or deploying organisms.
 - Operational wet-lab methods.
 - Claims that computational predictions are experimentally validated.
+- Treating external-source transfer candidates as validated or countable labels
+  without explicit review and factory-gate artifacts.
 
 ## Candidate Language
 

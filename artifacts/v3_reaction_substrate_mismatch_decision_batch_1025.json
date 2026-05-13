@@ -1,0 +1,2641 @@
+{
+  "metadata": {
+    "all_family_guardrail_mismatches_exported": true,
+    "all_reaction_audit_mismatches_exported": true,
+    "atp_phosphoryl_transfer_family_boundary_count": 24,
+    "atp_phosphoryl_transfer_family_counts": {
+      "askha": 4,
+      "atp_grasp": 2,
+      "dnk": 2,
+      "epk": 8,
+      "ghkl": 2,
+      "ghmp": 1,
+      "ndk": 1,
+      "pfka": 1,
+      "pfkb": 3
+    },
+    "batch_id": "1025_reaction_substrate_mismatch_review",
+    "boundary_control_decisions": 0,
+    "countable_import_rule": "accepted mismatch-export rows must be explicitly expert_reviewed and carry a non-needs_more_evidence reaction/substrate resolution before import-countable-label-review can count them",
+    "countable_label_candidate_count": 0,
+    "current_label_type_counts": {
+      "out_of_scope": 17,
+      "unlabeled": 13
+    },
+    "decision_counts": {
+      "no_decision": 30
+    },
+    "decision_entry_ids": {
+      "no_decision": [
+        "m_csa:151",
+        "m_csa:246",
+        "m_csa:282",
+        "m_csa:299",
+        "m_csa:310",
+        "m_csa:327",
+        "m_csa:35",
+        "m_csa:365",
+        "m_csa:498",
+        "m_csa:51",
+        "m_csa:541",
+        "m_csa:588",
+        "m_csa:592",
+        "m_csa:603",
+        "m_csa:615",
+        "m_csa:637",
+        "m_csa:640",
+        "m_csa:643",
+        "m_csa:651",
+        "m_csa:654",
+        "m_csa:662",
+        "m_csa:663",
+        "m_csa:670",
+        "m_csa:696",
+        "m_csa:751",
+        "m_csa:756",
+        "m_csa:757",
+        "m_csa:760",
+        "m_csa:778",
+        "m_csa:863"
+      ]
+    },
+    "decision_schema": {
+      "action": [
+        "accept_label",
+        "mark_needs_more_evidence",
+        "reject_label",
+        "no_decision"
+      ],
+      "reaction_substrate_resolution": [
+        "confirm_current_label_or_out_of_scope",
+        "assign_existing_fingerprint",
+        "requires_new_ontology_family",
+        "needs_more_evidence"
+      ],
+      "review_status": [
+        "expert_reviewed",
+        "needs_expert_review"
+      ]
+    },
+    "expert_label_decision_review_only": false,
+    "exported_count": 30,
+    "exported_entry_ids": [
+      "m_csa:35",
+      "m_csa:51",
+      "m_csa:151",
+      "m_csa:246",
+      "m_csa:282",
+      "m_csa:299",
+      "m_csa:310",
+      "m_csa:327",
+      "m_csa:365",
+      "m_csa:498",
+      "m_csa:541",
+      "m_csa:588",
+      "m_csa:592",
+      "m_csa:603",
+      "m_csa:615",
+      "m_csa:637",
+      "m_csa:640",
+      "m_csa:643",
+      "m_csa:651",
+      "m_csa:654",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:670",
+      "m_csa:696",
+      "m_csa:751",
+      "m_csa:756",
+      "m_csa:757",
+      "m_csa:760",
+      "m_csa:778",
+      "m_csa:863"
+    ],
+    "family_guardrail_mismatch_count": 30,
+    "family_guardrail_mismatch_entry_ids": [
+      "m_csa:35",
+      "m_csa:51",
+      "m_csa:151",
+      "m_csa:246",
+      "m_csa:282",
+      "m_csa:299",
+      "m_csa:310",
+      "m_csa:327",
+      "m_csa:365",
+      "m_csa:498",
+      "m_csa:541",
+      "m_csa:588",
+      "m_csa:592",
+      "m_csa:603",
+      "m_csa:615",
+      "m_csa:637",
+      "m_csa:640",
+      "m_csa:643",
+      "m_csa:651",
+      "m_csa:654",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:670",
+      "m_csa:696",
+      "m_csa:751",
+      "m_csa:756",
+      "m_csa:757",
+      "m_csa:760",
+      "m_csa:778",
+      "m_csa:863"
+    ],
+    "label_state_counts": {
+      "labeled": 17,
+      "unlabeled": 13
+    },
+    "labeled_seed_mismatch_count": 0,
+    "labeled_seed_mismatch_entry_ids": [],
+    "local_evidence_gap_review_only": false,
+    "method": "provisional_label_review_decision_batch",
+    "mismatch_reason_counts": {
+      "atp_phosphoryl_transfer_text_with_hydrolase_top1": 13,
+      "kinase_name_with_hydrolase_top1": 26
+    },
+    "missing_entry_ids": [],
+    "ontology_rule_decision": "defer_new_family_rule_until_expert_review",
+    "policy": "Automation-curated batch decisions stay bronze and are imported as automation_curated or needs_expert_review records, not gold or expert-reviewed labels.",
+    "reaction_audit_mismatch_count": 24,
+    "reaction_audit_mismatch_entry_ids": [
+      "m_csa:35",
+      "m_csa:51",
+      "m_csa:151",
+      "m_csa:246",
+      "m_csa:365",
+      "m_csa:498",
+      "m_csa:541",
+      "m_csa:588",
+      "m_csa:592",
+      "m_csa:603",
+      "m_csa:637",
+      "m_csa:640",
+      "m_csa:643",
+      "m_csa:654",
+      "m_csa:662",
+      "m_csa:663",
+      "m_csa:670",
+      "m_csa:696",
+      "m_csa:751",
+      "m_csa:756",
+      "m_csa:757",
+      "m_csa:760",
+      "m_csa:778",
+      "m_csa:863"
+    ],
+    "reaction_substrate_mismatch_review_only": true,
+    "recommended_path": "expert_reaction_substrate_review_before_ontology_split",
+    "review_rule": "keyword-level kinase or ATP phosphoryl-transfer mismatch is not enough to create a new ontology family or count a label; export every mismatch lane for expert reaction/substrate review",
+    "reviewer": "automation_label_factory",
+    "selected_entry_ids": [],
+    "source_audit_method": "reaction_substrate_mismatch_audit",
+    "source_family_guardrail_method": "family_propagation_guardrail_audit",
+    "source_method": "reaction_substrate_mismatch_review_export",
+    "top1_fingerprint_counts": {
+      "metal_dependent_hydrolase": 30
+    }
+  },
+  "review_items": [
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:35",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Phosphorylase kinase performs ATP-dependent phosphoryl transfer outside the current seed fingerprints.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:35",
+      "entry_name": "phosphorylase kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:35",
+        "entry_name": "phosphorylase kinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Asp149 deprotonates the protein substrate hydroxyl group, initiating nucleophilic attack upon the gamma-phosphate of ATP in a substitution reaction that eliminates ADP. The phosphorylated protein deprotonates Asp149 [PMID:10545198]."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4069
+      },
+      "rank": 1,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:51",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Phosphoenolpyruvate carboxykinase couples decarboxylation to ATP phosphoryl transfer rather than the current hydrolase or redox seed mechanisms.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:51",
+      "entry_name": "phosphoenolpyruvate carboxykinase (ATP)",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:51",
+        "entry_name": "phosphoenolpyruvate carboxykinase (ATP)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The substrate undergoes decarboxylation, resulting in the formation of an enol intermediate, stabilised by positively charged residues. The oxyanion formed attacks the gamma phosphate of ATP in a nucleophilic substitution, giving the products of ADP and phosphoenolpyruvate."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3977
+      },
+      "rank": 2,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:151",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase performs ATP-dependent pyrophosphoryl transfer, not the current metal-hydrolase seed.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:151",
+      "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:151",
+        "entry_name": "2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The catalysis follows an inline displacement mechanism. The hydroxyl group of HP performs a nucleophilic attack to the beta-phosphate group of ATP to yield HP-pyrophosphate and AMP. Arg92, Arg82 and two Mg(II) ions stabilise the transition state. Both Mg(II) ions activate the beta-phosphorus for..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4081
+      },
+      "rank": 3,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:246",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Receptor protein-tyrosine kinase performs ATP-dependent phosphoryl transfer rather than metal-activated hydrolysis in the current seed definitions.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:246",
+      "entry_name": "receptor protein-tyrosine kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:246",
+        "entry_name": "receptor protein-tyrosine kinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The entry represents the proposed dissociative (S<sub>N</sub>1-type) mechanism. Here a metaphosphate anion is eliminated from the ATP substrate in an intramolecular elimination. This extremely reactive intermediate then attacks the protein tyrosine substrate in an addition reaction with concomitt...",
+          "This entry represents the associative (S<sub>N</sub>2-type) mechanism. Here Asp1132 deprotonates the substrate Tyr hydroxide, activating it for nucleophilic attack on the gamma phosphate of ATP, which forms a pentavalent transition state. The transition state is stabilised by hydrogen bonding to..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4033
+      },
+      "rank": 4,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:282",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Mitogen-activated protein kinase kinase performs ATP-dependent protein phosphoryl transfer rather than any current hydrolase, flavin, heme, PLP, or cobalamin seed chemistry.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:282",
+      "entry_name": "mitogen-activated protein kinase kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:282",
+        "entry_name": "mitogen-activated protein kinase kinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The serine residue of the protein substrate attacks the terminal, pentavalent phosphorous of ATP. Asp194 abstracts a proton from the phospho-serine residue. Asp194 relays the proton to ADP, regenerating the active site."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "family_propagation_guardrails"
+        ],
+        "source_recommended_action": null,
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3223
+      },
+      "rank": 5,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:299",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Pantetheine-phosphate adenylyltransferase performs ATP-dependent nucleotidyl transfer rather than metal-activated hydrolysis or current cofactor-redox seed chemistry.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:299",
+      "entry_name": "pantetheine-phosphate adenylyltransferase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:299",
+        "entry_name": "pantetheine-phosphate adenylyltransferase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "One of the 4'-phosphate oxygen's of Ppant undergoes nucleophilic attack on the alpha-phosphate group of ATP with pyrophosphate as the leaving group. The pentacovalent transition state is stabilised by His18 while the leaving group is stabilised by Arg91, Ser129 and the magnesium ion."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "family_propagation_guardrails"
+        ],
+        "source_recommended_action": null,
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3517
+      },
+      "rank": 6,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:310",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "D-alanine-(R)-lactate ligase uses ATP-dependent phosphoryl activation and amide or ester bond formation rather than metal-activated hydrolysis.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:310",
+      "entry_name": "D-alanine-(R)-lactate ligase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "atp_grasp",
+          "family_name": "ATP-grasp ligases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "atp_grasp",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:310",
+        "entry_name": "D-alanine-(R)-lactate ligase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The D-lactate substrate attacks the terminal phosphate of ATP in a concerted mechanism to form ADP and phosphorylated D-lactate. D-alanine attacks the alpha phosphate of the D-lactate phosphate adduct, forming a tetrahedral intermediate. The tetrahedral intermediate collapses, eliminating inorgan..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "family_propagation_guardrails"
+        ],
+        "source_recommended_action": null,
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3649
+      },
+      "rank": 7,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:327",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Protein histidine kinase performs ATP-dependent phosphotransfer through histidine and aspartate relay chemistry outside the current metal-hydrolase seed.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:327",
+      "entry_name": "protein histidine kinase (CheA)",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "ghkl",
+          "family_name": "GHKL/Bergerat ATP-binding kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "ghkl",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:327",
+        "entry_name": "protein histidine kinase (CheA)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "This kinase first phosphorylates His45, the phosphate group is then passed on to the nucleophilic Asp of the CheY substrate."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "family_propagation_guardrails"
+        ],
+        "source_recommended_action": null,
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.2704
+      },
+      "rank": 8,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:365",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "curator_rationale"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "Phosphofructokinase I performs ATP-dependent phosphoryl transfer rather than metal-activated hydrolysis in the current seed definitions.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:365",
+      "entry_name": "Phosphofructokinase I",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "pfka",
+          "family_name": "PfkA-fold phosphofructokinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "pfka",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:365",
+        "entry_name": "Phosphofructokinase I",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Asp128 is proposed to act as a base, abstracting a proton from 1-OH of 6-phosphofructose. This increases the nucleophilicity of the functional group which then attacks at the gamma phosphate of ATP in an SN2 reaction, forming 1,6-bisphosphate fructose and ADP."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3999
+      },
+      "rank": 9,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:498",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 98,
+              "rationale": "glutathione synthase (eukaryotic) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3949, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory_500_batch_1",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "glutathione synthase (eukaryotic) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3949, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:498",
+      "entry_name": "glutathione synthase (eukaryotic)",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "atp_grasp",
+          "family_name": "ATP-grasp ligases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "atp_grasp",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:498",
+        "entry_name": "glutathione synthase (eukaryotic)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Although this protein shares very little similarity to the prokaryotic enzyme (MACiE 199), the reaction is thought to proceed in a similar manner with two successive transfer reactions. Firstly, it transfers the gamma-phosphate group of ATP to the C-terminal carboxylate of the second substrate, g..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3949
+      },
+      "rank": 10,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:541",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 107,
+              "rationale": "5-formyltetrahydrofolate cyclo-ligase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4001, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "5-formyltetrahydrofolate cyclo-ligase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4001, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:541",
+      "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:541",
+        "entry_name": "5-formyltetrahydrofolate cyclo-ligase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The formyl oxygen of the major rotamer of the enolate form of 5-formylTHF makes a nucleophilic attack on the gamma-phosphoryl group of ATP to form a phosphorylated intermediate. At this intermediate, enzyme-bound ADP can freely equilibriate with the solvent ADP. The N10 of the iminium phosphate i..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4001
+      },
+      "rank": 11,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:588",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 105,
+              "rationale": "thymidine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4073, below the 0.4115 floor. Counterevidence: role_inferred_metal_low_pocket_support.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "thymidine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4073, below the 0.4115 floor. Counterevidence: role_inferred_metal_low_pocket_support.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:588",
+      "entry_name": "thymidine kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "dnk",
+          "family_name": "Deoxynucleoside kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "dnk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:588",
+        "entry_name": "thymidine kinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The catalytic mechanism proceeds as follows: Glu83 acts as a general base to activate the acceptor group, 5'-hydroxyl group of thymidine. The activated acceptor group makes a nucleophilic attack on the transferred group, gamma-phosphate of ATP. During the transition state, the transferred group a..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4073
+      },
+      "rank": 12,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "askha",
+          "family_name": "ASKHA sugar and acetate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "askha",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:592",
+        "entry_name": "glucokinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Asp 100 acts as a general base to remove a proton from the O6 hydroxyl group of glucose, which can then attack the gamma phosphorous of ATP. Simultaneously, Lys 169 acts as an acid catalyst, protonating the gamma phosphate's O3. There is then subsequent proton transfer from Asp205 to Lys169 so th..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.5769
+      },
+      "rank": 13,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:603",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 101,
+              "rationale": "[pyruvate dehydrogenase (acetyl-transferring)] kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4004, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "[pyruvate dehydrogenase (acetyl-transferring)] kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4004, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:603",
+      "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "ghkl",
+          "family_name": "GHKL/Bergerat ATP-binding kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "ghkl",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:603",
+        "entry_name": "[pyruvate dehydrogenase (acetyl-transferring)] kinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "One proposed mechanism is a general base mechanism. Glu251 deprotonates the targeted serine residue of the pyruvate dehydrogenase E1 subunit and promotes its nucleophilic attack on the terminal phosphate of ATP. His247 polarises Glu243 to allow deprotonation. Magnesium ion coordinated to Asp help..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4004
+      },
+      "rank": 14,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "low",
+        "entry_id": "m_csa:615",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 112,
+              "rationale": "deoxyguanosine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3789, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.4,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "deoxyguanosine kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3789, below the 0.4115 floor. Review blockers: fewer_than_three_resolved_residues.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:615",
+      "entry_name": "deoxyguanosine kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "dnk",
+          "family_name": "Deoxynucleoside kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "dnk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:615",
+        "entry_name": "deoxyguanosine kinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Activation of the 5'-OH of the deoxyribose by deprotonation with Glu 70 allows a nucleophilic attack of the gamma-phosphate of the phosphate donor. Arg 142 as well as the magnesium cation stabilise the trigonal bypyrimidal transition state formed in the reaction. The magnesium ion will coordinate..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "family_propagation_guardrails"
+        ],
+        "source_recommended_action": null,
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3789
+      },
+      "rank": 15,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:637",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 122,
+              "rationale": "(deoxy)nucleoside-phosphate kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4066, below the 0.4115 floor. Counterevidence: role_inferred_metal_missing_water_activation_role.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "(deoxy)nucleoside-phosphate kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4066, below the 0.4115 floor. Counterevidence: role_inferred_metal_missing_water_activation_role.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:637",
+      "entry_name": "(deoxy)nucleoside-phosphate kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "ndk",
+          "family_name": "Nucleoside diphosphate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "ndk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:637",
+        "entry_name": "(deoxy)nucleoside-phosphate kinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "In line nucleophilic attack from the dNMP on the gamma phosphate of ATP seems the most likely mechanism for the reaction. This proceeds via a pentavalent phosphate transition state, stabilised by catalytic residues Arg68, His 206 and a catalytic Mg2+ ion whose location in the enzyme has not been..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4066
+      },
+      "rank": 16,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:640",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 118,
+              "rationale": "kanamycin kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4066, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "kanamycin kinase is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.4066, below the 0.4115 floor. Counterevidence: nucleotide_transfer_ligand_context.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:640",
+      "entry_name": "kanamycin kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:640",
+        "entry_name": "kanamycin kinase",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "Nucleophilic attack on the gamma phosphate of ATP by the 3' or 5' OH group of the substrate allows formation of a pentavalent phosphate transition state which collapses to release the products. In order to accelerate this the deprotonation of the OH group is accomplished by Asp 190 and the transi..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit"
+        ],
+        "source_recommended_action": "hold_bronze_boundary_review",
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4066
+      },
+      "rank": 17,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:643",
+      "entry_name": "acetate kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "askha",
+          "family_name": "ASKHA sugar and acetate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "askha",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:643",
+        "entry_name": "acetate kinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The proposed mechanism is an in-line single displacement reaction where the acetate acts as the nucleophile to attack the gamma phosphate of ATP, resulting in acetyl phosphate and ADP. For this reaction to take place, a magnesium ion, His180, Arg241 and Arg91 are important in stabilising the reac..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4227
+      },
+      "rank": 18,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": {
+        "confidence": "medium",
+        "entry_id": "m_csa:651",
+        "evidence": {
+          "cofactor_evidence_level": null,
+          "conflicts": [],
+          "expert_reviews": [
+            {
+              "action": "accept_label",
+              "queue_rank": 126,
+              "rationale": "hexokinase (type II) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3633, below the 0.4115 floor.",
+              "review_status": "automation_curated",
+              "reviewer": "automation_label_factory",
+              "source": "label_factory_review_import"
+            }
+          ],
+          "migration": "label_factory_v1_default",
+          "notes": [],
+          "retrieval_score": null,
+          "sources": [
+            "label_factory_review_import"
+          ]
+        },
+        "evidence_score": 0.65,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": "hexokinase (type II) is provisionally outside the current seed fingerprints. Top retrieval metal_dependent_hydrolase scored 0.3633, below the 0.4115 floor.",
+        "review_status": "automation_curated",
+        "tier": "bronze"
+      },
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": "out_of_scope",
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:651",
+      "entry_name": "hexokinase (type II)",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "askha",
+          "family_name": "ASKHA sugar and acetate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "askha",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": "out_of_scope",
+        "current_review_status": "automation_curated",
+        "current_tier": "bronze",
+        "entry_id": "m_csa:651",
+        "entry_name": "hexokinase (type II)",
+        "label_state": "labeled",
+        "mechanism_text_snippets": [
+          "The reaction proceeds via an SN2 mechanism with the 6C OH of the glucose acting as a nucleophile, due to deprotonation by Asp 211, to attack the gamma phosphate of ATP. In doing so the position of glucose in the binding site changes to bring it within optimum hydrogen bonding distance of Ser 158,..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent"
+        ],
+        "propagation_decision": "block_family_propagation",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "labeled_propagation_block_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "family_propagation_guardrails"
+        ],
+        "source_recommended_action": null,
+        "target_fingerprint_id": null,
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3633
+      },
+      "rank": 19,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:654",
+      "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "ghmp",
+          "family_name": "GHMP-superfamily kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "ghmp",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:654",
+        "entry_name": "4-(cytidine 5'-diphospho)-2-C-methyl-D-erythritol kinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The catalysis is most likely to follow an associative in-line mechanism to form a pentacovalent intermediate. Asp141 acts as a base to deprotonate the hydroxyl group of CDP-ME to promote its nucleophilic attack on the terminal phosphate of ATP. Lys10 stabilises the transition state by interacting..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3581
+      },
+      "rank": 20,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:662",
+      "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:662",
+        "entry_name": "1-phosphatidylinositol-5-phosphate 4-kinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Asp278 acts as a base to deprotonate the 4-hydroxyl group of inositol ring. The negatively charged oxygen atom of the hydroxyl group acts as a nucleophile and directly attack the terminal-phosphate of ATP. The product is formed via a SN2 mechanism. Mg2+ and Lys150 which coordinates with alpha-pho..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3263
+      },
+      "rank": 21,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:663",
+      "entry_name": "ribokinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "pfkb",
+          "family_name": "PfkB/ribokinase-family kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "pfkb",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:663",
+        "entry_name": "ribokinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Asp255 acts as a base to deprotonate the O5'-hydroxyl group of ribose. The negatively charged O5' atom then makes a direct nucleophilic attack on the gamma-phosphate group of ATP in an in-line mechanism. An anion hole formed by backbone amide group of residues 252-255 (Ala252, Ala253, Gly254, Asp..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "close_cross_family_top1_top2",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.2601
+      },
+      "rank": 22,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:670",
+      "entry_name": "hydroxymethylpyrimidine kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "pfkb",
+          "family_name": "PfkB/ribokinase-family kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "pfkb",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:670",
+        "entry_name": "hydroxymethylpyrimidine kinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "HMPP kinase catalyses an SN2 type in line displacement reaction where the substrate acts as the nucleophile to attack the gamma phosphate of ATP, forming a pentavalent phosphate transition state. This is stabilised by Mg2+and Lys 176 at the active site, and collapses to release the end products...."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "close_cross_family_top1_top2",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3474
+      },
+      "rank": 23,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:696",
+      "entry_name": "hexokinase (type I)",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "askha",
+          "family_name": "ASKHA sugar and acetate kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "askha",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:696",
+        "entry_name": "hexokinase (type I)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The 6-hydroxyl group of Glucose is 3A from the gamma-phosphorus atom and oriented for an in-line displacement reaction. Asp657 is a catalytic base. It abstracts a proton from the 6-hydroxyl group, activating the oxygen which then attacks the gamma-phosphorous. This leads to lysis of the phosphodi..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3559
+      },
+      "rank": 24,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:751",
+      "entry_name": "CDP-diacylglycerol diphosphatase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "pfkb",
+          "family_name": "PfkB/ribokinase-family kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "pfkb",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:751",
+        "entry_name": "CDP-diacylglycerol diphosphatase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The mechanism proposed is mainly by homology to other ribokinases, such as human adenosine kinase. Asp 252 is a general base and deprotonates the 5' hydroxyl group of the ribose. The deprotonated hydroxyl attacks the gamma-phosphate of ATP in an inline displacement mechanism. The backbone amides..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3789
+      },
+      "rank": 25,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:756",
+      "entry_name": "protein kinase C",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:756",
+        "entry_name": "protein kinase C",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Asp 369 acts as a base by abstracting a proton from the phosphoacceptor, activating it for nucleophilic attack on the gamma phosphorus atom of ATP. Asp 369 is stabilised by a hydrogen bond to its main chain carbonyl from Asn 374. The reaction goes through a pentavalent transition state which is s..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_cofactor_absent",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3721
+      },
+      "rank": 26,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:757",
+      "entry_name": "cAMP-dependent protein kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:757",
+        "entry_name": "cAMP-dependent protein kinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Asp 166 activates the phosphoacceptor, serine causing it to act as a nucleophile and attack the gamma phosphorus of ATP, creating a pentavalent transition state, stabilised by Lys 168 and Thr202 (part of the catalytic triad along with Asp167). Once the gamma phosphoryl transfer has taken place, A..."
+        ],
+        "mismatch_reasons": [
+          "atp_phosphoryl_transfer_text_with_hydrolase_top1",
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "ser_his_acid_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.4252
+      },
+      "rank": 27,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:760",
+      "entry_name": "non-specific serine/threonine protein kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": {
+          "countable_label_candidate": false,
+          "evidence_sources": [
+            "kinase_name_with_hydrolase_top1",
+            "reaction_substrate_mismatch_text_signature"
+          ],
+          "family_id": "epk",
+          "family_name": "ePK-fold protein and ePK-like kinases",
+          "parent_family_id": "atp_phosphoryl_transfer",
+          "review_rule": "ATP/phosphoryl-transfer family mapping is ontology boundary evidence only; unsupported rows stay review-only and cannot be counted as hydrolase labels.",
+          "support_level": "review_lane_text_signature_only"
+        },
+        "atp_phosphoryl_transfer_family_id": "epk",
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:760",
+        "entry_name": "non-specific serine/threonine protein kinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "The basic mechanism is the inline displacement of ADP, by nucleophilic attack of the SpoIIAA Ser 58 on the gamma-phosphate of ATP. Various residues and an Mg cofactor aid the reaction: Mg2+, bound by Asn 50 coordinates all three phosphate groups of ATP. This stabilises the transition state by red..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "atp_phosphoryl_transfer_family_boundary",
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3977
+      },
+      "rank": 28,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:778",
+      "entry_name": "homoserine kinase",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:778",
+        "entry_name": "homoserine kinase",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "A transition state stabilisation mechanism which does not involved a catalytic base is the currently accepted proposal for HSK. Substrate binding induces conformational changes at the active site to promote the catalysis and transition state stabilisation. Mg2+ ion coordinates with the beta and g..."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "reaction_substrate_mismatch",
+          "top1_counterevidence_present",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.3999
+      },
+      "rank": 29,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    },
+    {
+      "current_label": null,
+      "decision": {
+        "action": "no_decision",
+        "confidence": "medium",
+        "evidence_score": null,
+        "fingerprint_id": null,
+        "label_type": null,
+        "rationale": null,
+        "reaction_substrate_resolution": "needs_more_evidence",
+        "review_status": "expert_reviewed",
+        "reviewer": null,
+        "tier": "bronze"
+      },
+      "entry_id": "m_csa:863",
+      "entry_name": "phosphoenolpyruvate carboxykinase (GTP)",
+      "mismatch_context": {
+        "atp_phosphoryl_transfer_family": null,
+        "atp_phosphoryl_transfer_family_id": null,
+        "countable_label_candidate": false,
+        "current_fingerprint_id": null,
+        "current_label_type": null,
+        "current_review_status": null,
+        "current_tier": null,
+        "entry_id": "m_csa:863",
+        "entry_name": "phosphoenolpyruvate carboxykinase (GTP)",
+        "label_state": "unlabeled",
+        "mechanism_text_snippets": [
+          "Phosphoryl transfer occurring through a direct inline transfer of the phosphoryl group progressing through an enol-pyruvate intermediate."
+        ],
+        "mismatch_reasons": [
+          "kinase_name_with_hydrolase_top1"
+        ],
+        "propagation_blockers": [
+          "reaction_substrate_mismatch",
+          "unlabeled_candidate_requires_direct_review"
+        ],
+        "propagation_decision": "block_propagation_pending_review",
+        "recommended_action": "expert_reaction_substrate_review",
+        "recommended_resolution": "expert_review_before_ontology_split_or_countable_label",
+        "resolution_lane": "unlabeled_pending_review",
+        "review_policy": "route both labeled and unlabeled reaction/substrate mismatch lanes to expert review before adding an ontology-family rule or accepting more countable labels",
+        "source_artifacts": [
+          "active_learning_queue",
+          "family_propagation_guardrails",
+          "reaction_substrate_mismatch_audit",
+          "review_evidence_gaps"
+        ],
+        "source_recommended_action": "expert_label_decision_needed",
+        "target_fingerprint_id": "metal_dependent_hydrolase",
+        "target_ontology_family": null,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_ontology_family": "hydrolysis",
+        "top1_score": 0.5666
+      },
+      "rank": 30,
+      "review_question": "Does this entry represent kinase, ATP phosphoryl-transfer, or another non-hydrolytic reaction class that should remain out of scope, use an existing seed fingerprint, or require a new ontology family before any countable label is accepted?"
+    }
+  ]
+}
