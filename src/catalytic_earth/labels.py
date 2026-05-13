@@ -9141,6 +9141,222 @@ def audit_structure_selection_holo_preference(
     }
 
 
+def build_selected_pdb_override_plan(
+    holo_preference_audit: dict[str, Any],
+    remediation_plan: dict[str, Any],
+    *,
+    entry_ids: list[str] | None = None,
+    skip_entry_ids: list[str] | None = None,
+    source_audit: str | None = None,
+    source_remediation: str | None = None,
+    cif_fetcher=fetch_pdb_cif,
+) -> dict[str, Any]:
+    """Build a provenance-bearing selected-PDB override plan.
+
+    The plan is intentionally separate from geometry-feature generation: it
+    records why a canonical selected structure can be swapped, what residue
+    positions will be used on the override PDB, and which entries remain
+    skipped or blocked. Geometry builders can then consume only rows whose
+    ``apply_status`` is ``ready_to_apply``.
+    """
+    requested_ids = set(_sorted_strings(entry_ids or []))
+    skipped_ids = set(_sorted_strings(skip_entry_ids or []))
+    remediation_by_entry = {
+        str(row.get("entry_id")): row
+        for row in remediation_plan.get("rows", [])
+        if isinstance(row, dict) and isinstance(row.get("entry_id"), str)
+    }
+
+    rows: list[dict[str, Any]] = []
+    for audit_row in holo_preference_audit.get("rows", []):
+        if not isinstance(audit_row, dict):
+            continue
+        entry_id = audit_row.get("entry_id")
+        if not isinstance(entry_id, str):
+            continue
+        if requested_ids and entry_id not in requested_ids:
+            continue
+        if audit_row.get("recommendation") != "swap_selected_structure":
+            continue
+
+        current_pdb = str(audit_row.get("current_selected_pdb_id") or "").upper()
+        override_pdb = str(audit_row.get("recommended_pdb_id") or "").upper()
+        base_row: dict[str, Any] = {
+            "entry_id": entry_id,
+            "entry_name": audit_row.get("entry_name"),
+            "current_selected_pdb_id": current_pdb or None,
+            "override_pdb_id": override_pdb or None,
+            "recommended_pdb_id": override_pdb or None,
+            "expected_cofactor_families": _sorted_strings(
+                audit_row.get("expected_cofactor_families", [])
+            ),
+            "local_expected_family_hits": _sorted_strings(
+                audit_row.get("recommended_pdb_local_expected_family_hits", [])
+            ),
+            "local_ligand_codes": _sorted_strings(
+                audit_row.get("recommended_pdb_local_ligand_codes", [])
+            ),
+            "source_audit": source_audit,
+            "source_remediation": source_remediation,
+            "residue_positions": [],
+            "residue_position_source": None,
+            "residue_position_remap_basis": None,
+            "residue_position_remap_warnings": [],
+            "apply_status": "blocked",
+            "rationale": audit_row.get("recommendation_rationale"),
+            "countable_label_candidate": False,
+        }
+
+        if entry_id in skipped_ids:
+            rows.append(
+                {
+                    **base_row,
+                    "apply_status": "skipped_by_policy",
+                    "skip_reason": (
+                        "Entry intentionally skipped; current evidence requires "
+                        "reaction/substrate or family-boundary review before a "
+                        "selected-PDB override can be applied."
+                    ),
+                }
+            )
+            continue
+        remediation_row = remediation_by_entry.get(entry_id)
+        if not remediation_row:
+            rows.append(
+                {
+                    **base_row,
+                    "apply_status": "blocked_missing_remediation",
+                    "blocker": "missing_remediation_plan_row",
+                }
+            )
+            continue
+        if not current_pdb or not override_pdb:
+            rows.append(
+                {
+                    **base_row,
+                    "apply_status": "blocked_missing_pdb_id",
+                    "blocker": "missing_current_or_override_pdb_id",
+                }
+            )
+            continue
+
+        residue_positions_by_pdb = {
+            str(pdb_id).upper(): _review_debt_normalized_residue_positions(positions)
+            for pdb_id, positions in (
+                remediation_row.get("candidate_pdb_residue_positions", {}) or {}
+            ).items()
+            if isinstance(positions, list)
+        }
+        explicit_positions = residue_positions_by_pdb.get(override_pdb, [])
+        if explicit_positions:
+            rows.append(
+                {
+                    **base_row,
+                    "apply_status": "ready_to_apply",
+                    "residue_positions": _override_positions_for_pdb(
+                        explicit_positions,
+                        override_pdb,
+                    ),
+                    "residue_position_source": "mcsa_explicit",
+                }
+            )
+            continue
+
+        try:
+            atoms = parse_atom_site_loop(cif_fetcher(override_pdb))
+        except Exception as exc:  # network/source errors become artifact evidence
+            rows.append(
+                {
+                    **base_row,
+                    "apply_status": "blocked_fetch_failed",
+                    "blocker": "override_pdb_fetch_failed",
+                    "error": str(exc),
+                }
+            )
+            continue
+
+        remap_result = _review_debt_infer_residue_positions(
+            atoms,
+            residue_positions_by_pdb,
+            selected_pdb_id=current_pdb,
+        )
+        remapped_positions = _review_debt_normalized_residue_positions(
+            remap_result.get("positions", []) or []
+        )
+        if not remapped_positions:
+            rows.append(
+                {
+                    **base_row,
+                    "apply_status": "blocked_no_residue_positions",
+                    "blocker": "no_conservative_residue_position_remap",
+                    "residue_position_remap_basis": remap_result.get("basis"),
+                    "residue_position_remap_warnings": remap_result.get(
+                        "warnings", []
+                    ),
+                }
+            )
+            continue
+        rows.append(
+            {
+                **base_row,
+                "apply_status": "ready_to_apply",
+                "residue_positions": _override_positions_for_pdb(
+                    remapped_positions,
+                    override_pdb,
+                ),
+                "residue_position_source": "selected_position_remap",
+                "residue_position_remap_basis": remap_result.get("basis"),
+                "residue_position_remap_warnings": remap_result.get("warnings", []),
+            }
+        )
+
+    rows.sort(key=lambda row: _entry_id_sort_key(str(row.get("entry_id", ""))))
+    ready_ids = _sorted_entry_ids(
+        row.get("entry_id") for row in rows if row.get("apply_status") == "ready_to_apply"
+    )
+    skipped_output_ids = _sorted_entry_ids(
+        row.get("entry_id") for row in rows if row.get("apply_status") == "skipped_by_policy"
+    )
+    blocked_ids = _sorted_entry_ids(
+        row.get("entry_id")
+        for row in rows
+        if row.get("apply_status") not in {"ready_to_apply", "skipped_by_policy"}
+    )
+    status_counts = Counter(str(row.get("apply_status")) for row in rows)
+    return {
+        "metadata": {
+            "method": "selected_pdb_override_plan",
+            "source_audit_method": holo_preference_audit.get("metadata", {}).get(
+                "method"
+            ),
+            "source_remediation_method": remediation_plan.get("metadata", {}).get(
+                "method"
+            ),
+            "source_audit": source_audit,
+            "source_remediation": source_remediation,
+            "requested_entry_ids": sorted(requested_ids, key=_entry_id_sort_key),
+            "policy_skipped_entry_ids": sorted(skipped_ids, key=_entry_id_sort_key),
+            "ready_to_apply_count": len(ready_ids),
+            "ready_to_apply_entry_ids": ready_ids,
+            "skipped_entry_count": len(skipped_output_ids),
+            "skipped_entry_ids": skipped_output_ids,
+            "blocked_entry_count": len(blocked_ids),
+            "blocked_entry_ids": blocked_ids,
+            "apply_status_counts": dict(sorted(status_counts.items())),
+            "countable_label_candidate_count": 0,
+            "blocker_removed": "selected_pdb_single_point_mitigation",
+            "application_rule": (
+                "Only holo-preference swap recommendations with explicit or "
+                "conservatively remapped residue positions become ready_to_apply; "
+                "the override changes geometry evidence only and does not make "
+                "any label countable without downstream review/import and full "
+                "label-factory gates."
+            ),
+        },
+        "rows": rows,
+    }
+
+
 def summarize_review_debt_structure_selection_candidates(
     remap_local_lead_audit: dict[str, Any],
     alternate_structure_scan: dict[str, Any],
@@ -10009,6 +10225,20 @@ def _review_debt_normalized_residue_positions(
             }
         )
     return normalized
+
+
+def _override_positions_for_pdb(
+    positions: list[dict[str, Any]],
+    pdb_id: str,
+) -> list[dict[str, Any]]:
+    normalized = _review_debt_normalized_residue_positions(positions)
+    return [
+        {
+            **position,
+            "pdb_id": str(pdb_id).upper(),
+        }
+        for position in normalized
+    ]
 
 
 def _review_debt_infer_residue_positions(

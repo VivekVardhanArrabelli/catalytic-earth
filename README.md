@@ -71,6 +71,10 @@ The repository currently contains:
     batch summary with scaling-quality audit attachment, a scaling gate, a
     versioned declarative counterevidence policy with leakage provenance, and a
     typed label-factory gate input contract.
+12. A provenance-bearing selected-PDB override path for review-debt structure
+    single points of failure. The first override plan applies holo-preference
+    repairs for `m_csa:577` and `m_csa:641`, skips `m_csa:592` as a
+    reaction-mismatch policy case, and keeps all rows non-countable.
 
 The 20- through 1,000-entry evaluation slices are clean out-of-scope regression
 slices: each has 0 out-of-scope false non-abstentions and 0 hard negatives
@@ -92,6 +96,13 @@ penalty reduces retained evidence-limited positives without losing retained
 positives. Cofactor coverage artifacts explicitly identify retained
 evidence-limited positives: `m_csa:41`, `m_csa:108`, `m_csa:160`,
 `m_csa:446`, and `m_csa:486`.
+`artifacts/v3_selected_pdb_override_plan_700.json` now records a general
+selected-structure override plan. The corresponding
+`artifacts/v3_geometry_features_1000_selected_pdb_override.json` and downstream
+retrieval/evaluation artifacts show `m_csa:577` using holo alternate `1AWB` and
+`m_csa:641` using holo alternate `1J7N`, with 0 hard negatives, 0 near misses,
+0 out-of-scope false non-abstentions, and 0 actionable in-scope failures. These
+override artifacts are repair evidence only; they do not add countable labels.
 
 The 500-, 525-, 550-, 575-, 600-, 625-, 650-, 675-, 700-, 725-, 750-, 775-,
 800-, 825-, 850-, 875-, 900-, 925-, 950-, 975-, and 1,000-entry candidate
@@ -169,7 +180,9 @@ comparison, broad-EC disambiguation, active-site gap source requests,
 sequence-neighborhood controls, sequence-alignment verification,
 sequence-search export, import-readiness audit, active-site sourcing queue/export,
 active-site sourcing resolution, representation-backend plan/sample, a
-candidate blocker matrix, and a 59/59 external transfer gate. The evidence plan
+candidate blocker matrix, a 10-row external pilot candidate priority worklist,
+and a 60/60 external transfer gate with candidate lineage validation. The
+evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
 review-only active-site evidence queue with 25 ready candidates. The active-site
@@ -186,9 +199,10 @@ finds specific reaction context for all 3 broad-only repair rows, and the
 binding-context path maps 7/7 active-site-gap rows as repair context only. The
 active-site sourcing resolution re-checks all 10 active-site-gap rows against
 UniProt feature evidence, finds 0 explicit active-site residue sources, and
-keeps them non-countable. The computed representation backend sample covers all
-12 planned controls with a deterministic sequence k-mer baseline, flags one
-representation-level near-duplicate holdout, and remains review-only. The
+keeps them non-countable. The computed ESM-2 representation backend sample
+covers all 12 planned controls, flags three representation-level
+near-duplicate holdouts, and remains review-only; the deterministic k-mer
+sample is preserved separately as a labeled proxy baseline. The
 active-site gap source-request artifact covers all 10 gaps, and the
 sequence-neighborhood plan keeps 2 exact-reference overlaps as holdouts while
 requesting near-duplicate search for the other 28 candidates. The bounded
@@ -207,6 +221,14 @@ export keeps 28 near-duplicate searches and 2 sequence holdouts review-only, the
 representation-backend plan covers 12 controls without computing embeddings, and
 the blocker matrix joins all 30 external rows into a non-countable worklist with
 the active-site resolution and representation sample statuses carried forward.
+`artifacts/v3_external_source_pilot_candidate_priority_1025.json` then selects
+10 review-only pilot candidates across six external lanes, defers 5 exact
+holdout or near-duplicate rows, and keeps every selected row non-countable and
+not import-ready. Its leakage policy records that mechanism text, EC/Rhea ids,
+source labels, and target labels are excluded from priority scoring.
+`artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
+those 10 rows as no-decision review packets with 0 completed decisions, so it
+removes the packet-scaffolding blocker without authorizing import.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
@@ -307,9 +329,11 @@ review-debt rows remain explicitly non-countable under
 holdout and first 12-row ESM-2 representation sample are now in place. The
 first SPOF hardening pass also refactored counterevidence and gate inputs. The
 label-factory gate now records validated artifact lineage and fails on
-non-exempt slice mismatches before reading high-fan-in inputs. The next bounded
-work item is text-leakage-safe external pilot ranking, not M-CSA-only count
-growth or label import.
+non-exempt slice mismatches before reading high-fan-in inputs. The external
+pilot ranking and no-decision review export artifacts are now built; the next
+bounded work item is filling evidence gaps for those packets, especially
+active-site sources and complete near-duplicate sequence evidence, not M-CSA-only
+count growth or label import.
 See
 `docs/label_factory.md`.
 

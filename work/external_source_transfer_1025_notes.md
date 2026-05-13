@@ -114,13 +114,26 @@ Current review-only external artifacts:
   The matrix now consumes active-site resolution and representation sample
   packets directly, so the current gate rejects stale matrices that omit those
   row-level blockers.
+- `artifacts/v3_external_source_pilot_candidate_priority_1025.json` converts
+  that blocker matrix into a bounded review pilot worklist. It selects 10
+  candidates (`O14756`, `P06746`, `C9JRZ8`, `P55263`, `P34949`, `Q9BXD5`,
+  `Q6NSJ0`, `O60568`, `O95050`, and `P51580`), caps lanes at 2 selected rows,
+  defers 5 exact-holdout or near-duplicate rows, and keeps all selected rows
+  non-countable and not import-ready. Its leakage policy excludes mechanism
+  text, EC/Rhea ids, source labels, and target labels from priority scoring.
+- `artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
+  the selected 10 as no-decision review packets with 0 completed decisions.
+  It is packet scaffolding only; active-site evidence, sequence search,
+  representation controls, reviewed decisions, and full gates still block
+  import.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
   checkpoints, then 45/45 after sequence-alignment verification and the
-  active-site sourcing queue. The current gate now passes 59/59 after the source
+  active-site sourcing queue. The current gate now passes 60/60 after the source
   exports, active-site sourcing resolution, representation-backend sample, and
-  blocker matrix. It is still not
+  blocker matrix; the extra gate validates candidate lineage across high-fan-in
+  external artifacts. It is still not
   ready for label import.
 
 Sequence-similarity guardrail details:

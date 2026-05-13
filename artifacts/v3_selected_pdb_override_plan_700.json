@@ -1,0 +1,230 @@
+{
+  "metadata": {
+    "application_rule": "Only holo-preference swap recommendations with explicit or conservatively remapped residue positions become ready_to_apply; the override changes geometry evidence only and does not make any label countable without downstream review/import and full label-factory gates.",
+    "apply_status_counts": {
+      "ready_to_apply": 2,
+      "skipped_by_policy": 1
+    },
+    "blocked_entry_count": 0,
+    "blocked_entry_ids": [],
+    "blocker_removed": "selected_pdb_single_point_mitigation",
+    "countable_label_candidate_count": 0,
+    "method": "selected_pdb_override_plan",
+    "policy_skipped_entry_ids": [
+      "m_csa:592"
+    ],
+    "ready_to_apply_count": 2,
+    "ready_to_apply_entry_ids": [
+      "m_csa:577",
+      "m_csa:641"
+    ],
+    "requested_entry_ids": [
+      "m_csa:577",
+      "m_csa:592",
+      "m_csa:641"
+    ],
+    "skipped_entry_count": 1,
+    "skipped_entry_ids": [
+      "m_csa:592"
+    ],
+    "source_audit": "artifacts/v3_structure_selection_holo_preference_audit_700.json",
+    "source_audit_method": "structure_selection_holo_preference_audit",
+    "source_remediation": "artifacts/v3_review_debt_remediation_700_all.json",
+    "source_remediation_method": "review_debt_remediation_plan"
+  },
+  "rows": [
+    {
+      "apply_status": "ready_to_apply",
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1IMA",
+      "entry_id": "m_csa:577",
+      "entry_name": "inositol-phosphate phosphatase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_expected_family_hits": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "CA",
+        "IPD"
+      ],
+      "override_pdb_id": "1AWB",
+      "rationale": "Selected PDB 1IMA is apo for expected cofactor family ['metal_ion'] at active site. Alternate 1AWB carries local expected_family_hits=['metal_ion'] with 6 usable residue positions via selected_position_remap mapping. Recommend swapping the canonical reference structure to 1AWB and regenerating geometry features for this entry.",
+      "recommended_pdb_id": "1AWB",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "ILE",
+          "pdb_id": "1AWB",
+          "resid": "92",
+          "residue_node_id": "m_csa:577:residue:1",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "90",
+          "residue_node_id": "m_csa:577:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "220",
+          "residue_node_id": "m_csa:577:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "ASP",
+          "pdb_id": "1AWB",
+          "resid": "93",
+          "residue_node_id": "m_csa:577:residue:4",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1AWB",
+          "resid": "70",
+          "residue_node_id": "m_csa:577:residue:5",
+          "roles": [
+            "metal ligand",
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "THR",
+          "pdb_id": "1AWB",
+          "resid": "95",
+          "residue_node_id": "m_csa:577:residue:6",
+          "roles": [
+            "hydrogen bond acceptor"
+          ]
+        }
+      ],
+      "source_audit": "artifacts/v3_structure_selection_holo_preference_audit_700.json",
+      "source_remediation": "artifacts/v3_review_debt_remediation_700_all.json"
+    },
+    {
+      "apply_status": "skipped_by_policy",
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "3IDH",
+      "entry_id": "m_csa:592",
+      "entry_name": "glucokinase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_expected_family_hits": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "BGC",
+        "MG"
+      ],
+      "override_pdb_id": "3FGU",
+      "rationale": "Selected PDB 3IDH is apo for expected cofactor family ['metal_ion'] at active site. Alternate 3FGU carries local expected_family_hits=['metal_ion'] with 2 usable residue positions via selected_position_remap mapping. Recommend swapping the canonical reference structure to 3FGU and regenerating geometry features for this entry.",
+      "recommended_pdb_id": "3FGU",
+      "residue_position_remap_basis": null,
+      "residue_position_remap_warnings": [],
+      "residue_position_source": null,
+      "residue_positions": [],
+      "skip_reason": "Entry intentionally skipped; current evidence requires reaction/substrate or family-boundary review before a selected-PDB override can be applied.",
+      "source_audit": "artifacts/v3_structure_selection_holo_preference_audit_700.json",
+      "source_remediation": "artifacts/v3_review_debt_remediation_700_all.json"
+    },
+    {
+      "apply_status": "ready_to_apply",
+      "countable_label_candidate": false,
+      "current_selected_pdb_id": "1PWV",
+      "entry_id": "m_csa:641",
+      "entry_name": "anthrax lethal factor endopeptidase",
+      "expected_cofactor_families": [
+        "metal_ion"
+      ],
+      "local_expected_family_hits": [
+        "metal_ion"
+      ],
+      "local_ligand_codes": [
+        "ZN"
+      ],
+      "override_pdb_id": "1J7N",
+      "rationale": "Selected PDB 1PWV is apo for expected cofactor family ['metal_ion'] at active site. Alternate 1J7N carries local expected_family_hits=['metal_ion'] with 5 usable residue positions via selected_position_remap mapping. Recommend swapping the canonical reference structure to 1J7N and regenerating geometry features for this entry.",
+      "recommended_pdb_id": "1J7N",
+      "residue_position_remap_basis": "same_chain_residue_id",
+      "residue_position_remap_warnings": [],
+      "residue_position_source": "selected_position_remap",
+      "residue_positions": [
+        {
+          "chain_name": "A",
+          "code": "HIS",
+          "pdb_id": "1J7N",
+          "resid": "690",
+          "residue_node_id": "m_csa:641:residue:1",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "HIS",
+          "pdb_id": "1J7N",
+          "resid": "686",
+          "residue_node_id": "m_csa:641:residue:2",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1J7N",
+          "resid": "735",
+          "residue_node_id": "m_csa:641:residue:3",
+          "roles": [
+            "metal ligand"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "GLU",
+          "pdb_id": "1J7N",
+          "resid": "687",
+          "residue_node_id": "m_csa:641:residue:4",
+          "roles": [
+            "proton acceptor",
+            "proton donor"
+          ]
+        },
+        {
+          "chain_name": "A",
+          "code": "TYR",
+          "pdb_id": "1J7N",
+          "resid": "728",
+          "residue_node_id": "m_csa:641:residue:5",
+          "roles": [
+            "electrostatic stabiliser"
+          ]
+        }
+      ],
+      "source_audit": "artifacts/v3_structure_selection_holo_preference_audit_700.json",
+      "source_remediation": "artifacts/v3_review_debt_remediation_700_all.json"
+    }
+  ]
+}

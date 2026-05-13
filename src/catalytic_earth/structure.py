@@ -135,6 +135,7 @@ def build_geometry_features(
     max_entries: int = 20,
     cif_fetcher=fetch_pdb_cif,
     reuse_features: dict[str, Any] | None = None,
+    selected_pdb_overrides: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if max_entries < 1:
         raise ValueError("max_entries must be positive")
@@ -154,17 +155,31 @@ def build_geometry_features(
         for entry in (reuse_features or {}).get("entries", [])
         if isinstance(entry, dict) and entry.get("entry_id")
     }
+    override_by_entry = _selected_pdb_overrides_by_entry(selected_pdb_overrides)
     reused_entry_count = 0
+    selected_pdb_override_applied_count = 0
+    selected_pdb_override_applied_entry_ids: list[str] = []
     entry_features: list[dict[str, Any]] = []
 
     for entry_id in sorted(residues_by_entry, key=_entry_sort_key)[:max_entries]:
-        if entry_id in reusable_entries:
+        override = override_by_entry.get(entry_id)
+        if entry_id in reusable_entries and override is None:
             entry_features.append(reusable_entries[entry_id])
             reused_entry_count += 1
             continue
 
         residues = residues_by_entry[entry_id]
         positions_by_pdb = _positions_by_pdb(residues)
+        structure_selection_override = None
+        if override is not None:
+            override_pdb_id = str(override["override_pdb_id"]).upper()
+            positions_by_pdb = dict(positions_by_pdb)
+            positions_by_pdb[override_pdb_id] = list(override["residue_positions"])
+            structure_selection_override = _structure_selection_override_provenance(
+                override
+            )
+            selected_pdb_override_applied_count += 1
+            selected_pdb_override_applied_entry_ids.append(entry_id)
         if not positions_by_pdb:
             entry_features.append(
                 {
@@ -186,11 +201,17 @@ def build_geometry_features(
                         "structure_cofactor_families": [],
                     },
                     "pocket_context": _empty_pocket_context(),
+                    "structure_selection_override": structure_selection_override,
                 }
             )
             continue
 
-        pdb_id = sorted(positions_by_pdb, key=lambda item: (-len(positions_by_pdb[item]), item))[0]
+        if override is not None:
+            pdb_id = str(override["override_pdb_id"]).upper()
+        else:
+            pdb_id = sorted(
+                positions_by_pdb, key=lambda item: (-len(positions_by_pdb[item]), item)
+            )[0]
         try:
             if pdb_id not in cif_cache:
                 cif_cache[pdb_id] = parse_atom_site_loop(cif_fetcher(pdb_id))
@@ -217,6 +238,7 @@ def build_geometry_features(
                         "structure_cofactor_families": [],
                     },
                     "pocket_context": _empty_pocket_context(),
+                    "structure_selection_override": structure_selection_override,
                 }
             )
             continue
@@ -264,6 +286,7 @@ def build_geometry_features(
                 "pairwise_distances_angstrom": pairwise_distances(resolved),
                 "ligand_context": ligand_context_from_atoms(atoms, resolved),
                 "pocket_context": pocket_context_from_atoms(atoms, resolved),
+                "structure_selection_override": structure_selection_override,
             }
         )
 
@@ -274,6 +297,10 @@ def build_geometry_features(
             "max_entries": max_entries,
             "entry_count": len(entry_features),
             "reused_entry_count": reused_entry_count,
+            "selected_pdb_override_applied_count": selected_pdb_override_applied_count,
+            "selected_pdb_override_applied_entry_ids": sorted(
+                selected_pdb_override_applied_entry_ids, key=_entry_sort_key
+            ),
             "entries_with_pairwise_geometry": sum(
                 1 for entry in entry_features if entry.get("pairwise_distances_angstrom")
             ),
@@ -313,6 +340,7 @@ def write_geometry_features(
     out_path: Path,
     max_entries: int = 20,
     reuse_existing_path: Path | None = None,
+    selected_pdb_overrides_path: Path | None = None,
 ) -> dict[str, Any]:
     reuse_features = None
     if reuse_existing_path is not None:
@@ -320,10 +348,17 @@ def write_geometry_features(
 
         with reuse_existing_path.open("r", encoding="utf-8") as handle:
             reuse_features = json.load(handle)
+    selected_pdb_overrides = None
+    if selected_pdb_overrides_path is not None:
+        import json
+
+        with selected_pdb_overrides_path.open("r", encoding="utf-8") as handle:
+            selected_pdb_overrides = json.load(handle)
     features = build_geometry_features(
         load_graph(graph_path),
         max_entries=max_entries,
         reuse_features=reuse_features,
+        selected_pdb_overrides=selected_pdb_overrides,
     )
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(_json_dumps(features), encoding="utf-8")
@@ -811,6 +846,98 @@ def _positions_by_pdb(residue_nodes: list[dict[str, Any]]) -> dict[str, list[dic
                 }
             )
     return by_pdb
+
+
+def _selected_pdb_overrides_by_entry(
+    selected_pdb_overrides: dict[str, Any] | None,
+) -> dict[str, dict[str, Any]]:
+    if not selected_pdb_overrides:
+        return {}
+    rows = selected_pdb_overrides.get("rows")
+    if not isinstance(rows, list):
+        raise ValueError("selected_pdb_overrides.rows must be a list")
+
+    overrides: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        if row.get("apply_status") not in {None, "ready_to_apply"}:
+            continue
+        entry_id = row.get("entry_id")
+        override_pdb_id = row.get("override_pdb_id") or row.get("recommended_pdb_id")
+        positions = row.get("residue_positions")
+        if not isinstance(entry_id, str) or not entry_id:
+            raise ValueError("selected-PDB override row missing entry_id")
+        if not isinstance(override_pdb_id, str) or not override_pdb_id:
+            raise ValueError(f"{entry_id}: selected-PDB override missing override_pdb_id")
+        if not isinstance(positions, list) or not positions:
+            raise ValueError(f"{entry_id}: selected-PDB override missing residue_positions")
+        if entry_id in overrides:
+            raise ValueError(f"{entry_id}: duplicate selected-PDB override row")
+        overrides[entry_id] = {
+            **row,
+            "entry_id": entry_id,
+            "override_pdb_id": override_pdb_id.upper(),
+            "residue_positions": _normalize_override_residue_positions(entry_id, positions),
+        }
+    return overrides
+
+
+def _normalize_override_residue_positions(
+    entry_id: str,
+    positions: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    normalized: list[dict[str, Any]] = []
+    for position in positions:
+        if not isinstance(position, dict):
+            continue
+        residue_node_id = position.get("residue_node_id")
+        chain_name = position.get("chain_name")
+        resid = position.get("resid")
+        code = position.get("code")
+        if not isinstance(residue_node_id, str) or not residue_node_id:
+            raise ValueError(f"{entry_id}: override residue missing residue_node_id")
+        if chain_name in {None, "", ".", "?"}:
+            raise ValueError(f"{entry_id}: override residue missing chain_name")
+        if resid in {None, "", ".", "?"}:
+            raise ValueError(f"{entry_id}: override residue missing resid")
+        if code in {None, "", ".", "?"}:
+            raise ValueError(f"{entry_id}: override residue missing code")
+        normalized.append(
+            {
+                "residue_node_id": residue_node_id,
+                "roles": list(position.get("roles", [])),
+                "pdb_id": str(position.get("pdb_id") or "").upper(),
+                "chain_name": str(chain_name),
+                "code": str(code).upper(),
+                "resid": str(resid),
+            }
+        )
+    if not normalized:
+        raise ValueError(f"{entry_id}: selected-PDB override has no usable residues")
+    return normalized
+
+
+def _structure_selection_override_provenance(
+    override: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "method": "selected_pdb_override",
+        "current_selected_pdb_id": override.get("current_selected_pdb_id"),
+        "override_pdb_id": override.get("override_pdb_id"),
+        "source_audit": override.get("source_audit"),
+        "source_scan": override.get("source_scan"),
+        "source_remediation": override.get("source_remediation"),
+        "residue_position_source": override.get("residue_position_source"),
+        "residue_position_remap_basis": override.get("residue_position_remap_basis"),
+        "residue_position_remap_warnings": override.get(
+            "residue_position_remap_warnings", []
+        ),
+        "expected_cofactor_families": override.get("expected_cofactor_families", []),
+        "local_expected_family_hits": override.get("local_expected_family_hits", []),
+        "local_ligand_codes": override.get("local_ligand_codes", []),
+        "rationale": override.get("rationale"),
+    }
 
 
 def _json_dumps(payload: dict[str, Any]) -> str:

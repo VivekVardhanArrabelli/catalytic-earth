@@ -52,6 +52,8 @@ from catalytic_earth.transfer_scope import (
     build_external_source_evidence_request_export,
     build_external_source_heuristic_control_queue,
     build_external_source_heuristic_control_scores,
+    build_external_source_pilot_candidate_priority,
+    build_external_source_pilot_review_decision_export,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -3861,6 +3863,194 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             audit["blockers"],
         )
 
+    def test_external_source_pilot_candidate_priority_defers_holdouts(self) -> None:
+        priority = build_external_source_pilot_candidate_priority(
+            {
+                "metadata": {"method": "external_source_transfer_blocker_matrix"},
+                "rows": [
+                    {
+                        "accession": "PGOOD1",
+                        "active_site_sourcing": {
+                            "queue_status": "ready_for_curated_active_site_sourcing",
+                            "source_task": (
+                                "curate_active_site_positions_from_mapped_binding_context"
+                            ),
+                        },
+                        "blockers": ["complete_near_duplicate_search_required"],
+                        "lane_id": "external_source:lane_a",
+                        "mechanism_text": "tempting text must stay review context",
+                        "prioritized_action": "complete_near_duplicate_sequence_search",
+                        "representation_backend": {
+                            "sample_backend_status": (
+                                "learned_representation_sample_complete"
+                            ),
+                            "sample_near_duplicate_alert": False,
+                        },
+                        "sequence_search": {
+                            "alignment_status": "alignment_no_near_duplicate_signal"
+                        },
+                        "source_label": "do_not_use_label_as_evidence",
+                    },
+                    {
+                        "accession": "PHOLD",
+                        "blockers": [
+                            "complete_near_duplicate_search_required",
+                            "exact_sequence_holdout",
+                        ],
+                        "lane_id": "external_source:lane_b",
+                        "representation_backend": {
+                            "sample_backend_status": (
+                                "learned_representation_sample_complete"
+                            ),
+                            "sample_near_duplicate_alert": False,
+                        },
+                        "sequence_search": {
+                            "alignment_status": "alignment_no_near_duplicate_signal"
+                        },
+                    },
+                    {
+                        "accession": "PNEAR",
+                        "blockers": [
+                            "complete_near_duplicate_search_required",
+                            "representation_near_duplicate_control_holdout",
+                        ],
+                        "lane_id": "external_source:lane_c",
+                        "representation_backend": {
+                            "sample_near_duplicate_alert": True
+                        },
+                    },
+                    {
+                        "accession": "PGOOD2",
+                        "active_site_sourcing": {
+                            "queue_status": "ready_for_curated_active_site_sourcing"
+                        },
+                        "blockers": ["complete_near_duplicate_search_required"],
+                        "lane_id": "external_source:lane_b",
+                        "prioritized_action": "complete_near_duplicate_sequence_search",
+                        "representation_backend": {
+                            "sample_backend_status": (
+                                "learned_representation_sample_complete"
+                            ),
+                            "sample_near_duplicate_alert": False,
+                        },
+                        "sequence_search": {
+                            "alignment_status": "alignment_no_near_duplicate_signal"
+                        },
+                    },
+                ],
+            },
+            max_candidates=2,
+            max_per_lane=1,
+        )
+
+        self.assertEqual(priority["metadata"]["candidate_count"], 4)
+        self.assertEqual(priority["metadata"]["selected_candidate_count"], 2)
+        self.assertEqual(priority["metadata"]["countable_label_candidate_count"], 0)
+        self.assertFalse(priority["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            priority["metadata"]["blocker_removed"],
+            "external_pilot_candidate_ranking",
+        )
+        self.assertFalse(
+            priority["metadata"]["leakage_policy"][
+                "text_or_label_fields_used_for_priority"
+            ]
+        )
+        self.assertEqual(priority["metadata"]["selected_accessions"], ["PGOOD1", "PGOOD2"])
+        self.assertEqual(
+            priority["rows"][0]["leakage_provenance"][
+                "present_text_or_label_context_fields"
+            ],
+            ["mechanism_text", "source_label"],
+        )
+        self.assertFalse(
+            priority["rows"][0]["leakage_provenance"][
+                "text_or_label_fields_used_for_priority"
+            ]
+        )
+        self.assertEqual(
+            priority["metadata"]["holdout_or_near_duplicate_deferred_count"],
+            2,
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in priority["rows"])
+        )
+        self.assertTrue(all(not row["ready_for_label_import"] for row in priority["rows"]))
+        self.assertNotIn(
+            "exact_sequence_holdout",
+            {blocker for row in priority["rows"] for blocker in row["blockers"]},
+        )
+        self.assertEqual(
+            {
+                row["accession"]: row["pilot_selection_status"]
+                for row in priority["deferred_rows"]
+            },
+            {
+                "PHOLD": "deferred_by_holdout_or_near_duplicate",
+                "PNEAR": "deferred_by_holdout_or_near_duplicate",
+            },
+        )
+
+    def test_external_source_pilot_review_decision_export_is_no_decision(self) -> None:
+        priority = {
+            "metadata": {"method": "external_source_pilot_candidate_priority"},
+            "rows": [
+                {
+                    "accession": "PGOOD1",
+                    "active_site_sourcing": {"queue_status": "ready"},
+                    "blockers": ["complete_near_duplicate_search_required"],
+                    "countable_label_candidate": False,
+                    "entry_id": "uniprot:PGOOD1",
+                    "lane_id": "external_source:lane_a",
+                    "pilot_priority_score": 92.0,
+                    "pilot_selection_status": "selected_for_review_pilot",
+                    "ready_for_label_import": False,
+                    "representation_backend": {
+                        "sample_backend_status": (
+                            "learned_representation_sample_complete"
+                        )
+                    },
+                    "sequence_search": {
+                        "alignment_status": "alignment_no_near_duplicate_signal"
+                    },
+                },
+                {
+                    "accession": "PDEFER",
+                    "blockers": ["exact_sequence_holdout"],
+                    "pilot_selection_status": "deferred_by_holdout_or_near_duplicate",
+                },
+            ],
+        }
+
+        export = build_external_source_pilot_review_decision_export(
+            pilot_candidate_priority=priority
+        )
+
+        self.assertEqual(
+            export["metadata"]["method"],
+            "external_source_pilot_review_decision_export",
+        )
+        self.assertEqual(
+            export["metadata"]["blocker_removed"],
+            "external_pilot_review_decision_export_scaffold",
+        )
+        self.assertEqual(export["metadata"]["candidate_count"], 1)
+        self.assertEqual(export["metadata"]["completed_decision_count"], 0)
+        self.assertFalse(export["metadata"]["ready_for_label_import"])
+        self.assertEqual(export["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            export["metadata"]["decision_status_counts"], {"no_decision": 1}
+        )
+        item = export["review_items"][0]
+        self.assertEqual(item["accession"], "PGOOD1")
+        self.assertEqual(item["decision"]["decision_status"], "no_decision")
+        self.assertFalse(item["decision"]["ready_for_label_import"])
+        self.assertFalse(item["countable_label_candidate"])
+        self.assertIn(
+            "complete_near_duplicate_sequence_search",
+            item["review_requirements"],
+        )
+
     def test_external_transfer_blocker_matrix_audit_rejects_missing_integrated_rows(
         self,
     ) -> None:
@@ -4601,11 +4791,102 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertTrue(gates["gates"]["external_failure_mode_audit_review_only"])
         self.assertEqual(gates["metadata"]["external_failure_mode_count"], 2)
         self.assertTrue(gates["metadata"]["ready_for_external_evidence_collection"])
-        self.assertEqual(gates["metadata"]["passed_gate_count"], 22)
+        self.assertEqual(gates["metadata"]["passed_gate_count"], 23)
         self.assertTrue(
             gates["gates"]["external_lane_balance_audit_guardrail_clean"]
         )
         self.assertTrue(gates["gates"]["external_review_only_import_safety_clean"])
+
+    def test_external_transfer_gate_rejects_candidate_lineage_mismatch(self) -> None:
+        gates = check_external_source_transfer_gates(
+            transfer_manifest={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            query_manifest={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            ood_calibration_plan={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "requires_heuristic_control": True,
+                }
+            },
+            candidate_sample_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            candidate_manifest={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "heuristic_control_required": True,
+                },
+                "rows": [{"accession": "P12345"}],
+            },
+            candidate_manifest_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            lane_balance_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "countable_label_candidate_count": 0,
+                    "lane_count": 1,
+                    "dominant_lane_fraction": 1.0,
+                }
+            },
+            evidence_plan={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "ready_for_evidence_collection": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "exact_reference_overlap_holdout_count": 0,
+                },
+                "rows": [{"accession": "Q99999"}],
+            },
+            evidence_request_export={
+                "metadata": {
+                    "external_source_review_only": True,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            review_only_import_safety_audit={
+                "metadata": {
+                    "countable_import_safe": True,
+                    "total_new_countable_label_count": 0,
+                }
+            },
+            pilot_review_decision_export={
+                "metadata": {"candidate_count": 1},
+                "review_items": [{"accession": "Q99999"}],
+            },
+        )
+
+        self.assertFalse(
+            gates["gates"]["external_transfer_candidate_lineage_consistent"]
+        )
+        self.assertIn("external_transfer_candidate_lineage_consistent", gates["blockers"])
+        lineage = gates["metadata"]["artifact_lineage"]
+        self.assertEqual(
+            lineage["unexpected_accessions"]["evidence_plan"], ["Q99999"]
+        )
+        self.assertEqual(
+            lineage["unexpected_accessions"]["pilot_review_decision_export"],
+            ["Q99999"],
+        )
+        self.assertEqual(lineage["missing_accessions"]["evidence_plan"], ["P12345"])
 
     def test_external_transfer_gate_blocks_countable_active_site_queue(self) -> None:
         gates = check_external_source_transfer_gates(

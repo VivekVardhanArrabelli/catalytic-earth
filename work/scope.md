@@ -227,7 +227,24 @@ Current expectation:
   the gate artifact.
 - artifact-lineage hardening has started: the external transfer blocker matrix
   audit now compares row accessions and candidate-manifest source method against
-  the candidate manifest and fails on stale or mismatched matrix inputs.
+  the candidate manifest and fails on stale or mismatched matrix inputs. The
+  external transfer gate now also validates candidate lineage across high-fan-in
+  external artifacts and fails on unexpected accessions, missing full-coverage
+  manifest rows, or per-artifact candidate-count drift.
+- selected-PDB single-point mitigation now has a general override path with
+  provenance. `artifacts/v3_selected_pdb_override_plan_700.json` applies the
+  holo-preference action path for `m_csa:577` and `m_csa:641`, keeps
+  `m_csa:592` skipped because its glucokinase reaction/substrate mismatch still
+  needs review, and records 0 countable label candidates. The 1,000-context
+  selected-PDB override geometry/retrieval/evaluation artifacts preserve 0 hard
+  negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0
+  actionable in-scope failures.
+- external pilot prioritization now has a review-only 10-row worklist:
+  `artifacts/v3_external_source_pilot_candidate_priority_1025.json` selects
+  lane-balanced candidates from the 30-row external blocker matrix, defers exact
+  holdout and near-duplicate rows, and keeps 0 countable or import-ready rows.
+  `artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
+  those rows as no-decision review packets with 0 completed decisions.
 - review-debt triage now ranks 326 evidence-gap rows from the 1000 review pass,
   with 326 `needs_more_evidence` decisions, 305 carried rows, 21 new rows, and
   explicit non-countable deferral coverage for every row
@@ -274,7 +291,7 @@ Current expectation:
   sequence-neighborhood screening, bounded sequence-alignment verification,
   sequence-search export, import-readiness audit, active-site sourcing
   queue/export/resolution, representation-backend plan/sample, transfer blocker
-  matrix, and 59/59
+  matrix, and 60/60
   transfer gate;
   2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
@@ -311,7 +328,9 @@ Current expectation:
   signals as review or holdout context rather than predictive evidence, the
   transfer blocker matrix keeps all 30 candidates non-countable with explicit
   next actions and now carries the active-site resolution plus representation
-  sample statuses directly,
+  sample statuses directly, the pilot-priority artifact selects 10
+  non-countable candidates and defers 5 holdout or near-duplicate rows, the
+  pilot review-decision export keeps 10 selected rows as no-decision packets,
   and 0 external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain

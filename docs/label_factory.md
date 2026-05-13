@@ -254,6 +254,19 @@ hydrolase top hit. `artifacts/v3_review_debt_structure_selection_candidates_700.
 therefore has 0 current structure-selection candidates after reaction mismatch
 triage.
 
+The selected-PDB repair path is now executable rather than only advisory.
+`build-selected-pdb-overrides` turns holo-preference swap recommendations into
+a provenance-bearing override plan with explicit residue positions. The first
+plan, `artifacts/v3_selected_pdb_override_plan_700.json`, marks `m_csa:577`
+and `m_csa:641` ready to apply, skips `m_csa:592` because its glucokinase
+reaction/substrate mismatch still requires review, and keeps
+`countable_label_candidate_count` at 0. The downstream selected-PDB override
+geometry/retrieval/evaluation artifacts for the 1,000 context confirm the two
+ready rows now use holo alternates `1AWB` and `1J7N` while preserving 0 hard
+negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0
+actionable in-scope failures. These artifacts repair selected-structure
+evidence only; they are not a label-import path.
+
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \
   --remediation artifacts/v3_review_debt_remediation_700.json \
@@ -280,6 +293,20 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-review-debt-remap-local-leads
   --remediation artifacts/v3_review_debt_remediation_700_all.json \
   --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
   --out artifacts/v3_review_debt_remap_local_lead_audit_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-selected-pdb-overrides \
+  --holo-preference-audit artifacts/v3_structure_selection_holo_preference_audit_700.json \
+  --remediation artifacts/v3_review_debt_remediation_700_all.json \
+  --entry-ids m_csa:577,m_csa:592,m_csa:641 \
+  --skip-entry-ids m_csa:592 \
+  --out artifacts/v3_selected_pdb_override_plan_700.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-geometry-features \
+  --graph artifacts/v1_graph_1000.json \
+  --max-entries 1000 \
+  --reuse-existing artifacts/v3_geometry_features_1000.json \
+  --selected-pdb-overrides artifacts/v3_selected_pdb_override_plan_700.json \
+  --out artifacts/v3_geometry_features_1000_selected_pdb_override.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-reaction-substrate-mismatches \
   --review-evidence-gaps artifacts/v3_review_evidence_gaps_700.json \
@@ -724,11 +751,13 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_representation_backend_sample_audit_1025.json`,
   `artifacts/v3_external_source_transfer_blocker_matrix_1025.json`,
   `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
+  `artifacts/v3_external_source_pilot_candidate_priority_1025.json`,
+  `artifacts/v3_external_source_pilot_review_decision_export_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  59/59 external transfer gate for evidence collection, pass the lane-balance
+  60/60 external transfer gate for evidence collection, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
   resolve 0 explicit active-site residue sources across the 10 gap rows, map
@@ -766,7 +795,10 @@ Current 1,025-preview state:
   12 learned-vs-heuristic disagreements, and the transfer blocker matrix joins
   all 30 external candidates into a
   review-only next-action worklist with no single-action or single-lane
-  collapse.
+  collapse. The pilot-priority artifact selects 10 non-countable candidates
+  across lanes and defers exact-holdout or near-duplicate rows before any
+  import attempt. The pilot review-decision export creates no-decision packets
+  for those 10 rows with 0 completed decisions and 0 countable candidates.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
   adds bounded Rhea reaction context for all 30 candidates while keeping every
   row non-countable and outside any reviewed decision artifact; its companion

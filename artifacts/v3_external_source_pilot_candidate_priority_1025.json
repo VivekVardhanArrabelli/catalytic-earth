@@ -1,0 +1,1908 @@
+{
+  "deferred_rows": [
+    {
+      "accession": "A2RUC4",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
+        "source_target_count": 6,
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:A2RUC4",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
+      "protein_name": "tRNA wybutosine-synthesizing protein 5 (hTYW5) (tRNA yW-synthesizing protein 5) (EC 1.14.11.42) (tRNA(Phe) (7-(3-amino-3-carboxypropyl)wyosine(37)-C(2))-hydroxylase)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=72.0; next_action=curate_primary_literature_or_pdb_active_site_sources; blockers=11; active_site_source_task=curate_active_site_positions_from_mapped_binding_context; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q32P41",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
+        "source_target_count": 4,
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:Q32P41",
+      "lane_id": "external_source:transferase_methyl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
+      "protein_name": "tRNA (guanine(37)-N(1))-methyltransferase (EC 2.1.1.228) (M1G-methyltransferase) (tRNA [GM37] methyltransferase) (tRNA methyltransferase 5 homolog)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=72.0; next_action=curate_primary_literature_or_pdb_active_site_sources; blockers=11; active_site_source_task=curate_active_site_positions_from_mapped_binding_context; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P27144",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
+        "source_target_count": 10,
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P27144",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
+      "protein_name": "Adenylate kinase 4, mitochondrial (EC 2.7.4.4) (EC 2.7.4.6) (Adenylate kinase 3-like) (GTP:AMP phosphotransferase AK4)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=72.0; next_action=curate_primary_literature_or_pdb_active_site_sources; blockers=11; active_site_source_task=curate_active_site_positions_from_mapped_binding_context; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P32189",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
+        "source_target_count": 4,
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P32189",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
+      "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=72.0; next_action=curate_primary_literature_or_pdb_active_site_sources; blockers=11; active_site_source_task=curate_active_site_positions_from_mapped_binding_context; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q13907",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:Q13907",
+      "lane_id": "external_source:isomerase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 68.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Isopentenyl-diphosphate Delta-isomerase 1 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 1) (IPP isomerase 1) (IPPI1)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P13000",
+        "sample_top_embedding_cosine": 0.8265,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=68.0; next_action=complete_near_duplicate_sequence_search; blockers=9; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q9BXS1",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:Q9BXS1",
+      "lane_id": "external_source:isomerase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 68.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Isopentenyl-diphosphate delta-isomerase 2 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 2) (IPP isomerase 2) (IPPI2)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P61517",
+        "sample_top_embedding_cosine": 0.9025,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=68.0; next_action=complete_near_duplicate_sequence_search; blockers=9; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P35914",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P35914",
+      "lane_id": "external_source:lyase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 68.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Hydroxymethylglutaryl-CoA lyase, mitochondrial (HL) (HMG-CoA lyase) (EC 4.1.3.4) (3-hydroxy-3-methylglutarate-CoA lyase)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P21874",
+        "sample_top_embedding_cosine": 0.9499,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=68.0; next_action=complete_near_duplicate_sequence_search; blockers=9; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q96I15",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:Q96I15",
+      "lane_id": "external_source:lyase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 68.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Selenocysteine lyase (hSCL) (EC 4.4.1.16)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P24295",
+        "sample_top_embedding_cosine": 0.8346,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=68.0; next_action=complete_near_duplicate_sequence_search; blockers=9; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "A2RU49",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:A2RU49",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 68.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Hydroxylysine kinase (5-hydroxy-L-lysine kinase) (EC 2.7.1.81) (Aminoglycoside phosphotransferase domain-containing protein 1)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P05404",
+        "sample_top_embedding_cosine": 0.8879,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=68.0; next_action=complete_near_duplicate_sequence_search; blockers=9; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P30176",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_active_site_evidence_not_sampled",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P30176",
+      "lane_id": "external_source:glycan_chemistry",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 64.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "N-glycosidase YbiA (EC 3.2.2.-) (Riboflavin biosynthesis intermediates N-glycosidase)",
+      "readiness_status": "blocked_by_representation_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=64.0; next_action=complete_near_duplicate_sequence_search; blockers=8; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "O15247",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_active_site_evidence_not_sampled",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:O15247",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 64.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Chloride intracellular channel protein 2 (Glutaredoxin-like oxidoreductase CLIC2) (EC 1.8.-.-) (Glutaredoxin-like peroxidase CLIC2) (EC 1.11.1.-) (XAP121)",
+      "readiness_status": "blocked_by_representation_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=64.0; next_action=complete_near_duplicate_sequence_search; blockers=8; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q9Y5N5",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_active_site_evidence_not_sampled",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:Q9Y5N5",
+      "lane_id": "external_source:transferase_methyl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 64.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Methyltransferase HEMK2 (HemK methyltransferase family member 2) (M.HsaHemK2P) (Lysine N-methyltransferase 9) (EC 2.1.1.-) (Methylarsonite methyltransferase N6AMT1) (EC 2.1.1.-) (Methyltransferase N6AMT1) (Protein N(5)-glutamine methyltransferase) (EC 2.1.1.-)",
+      "readiness_status": "blocked_by_representation_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=64.0; next_action=complete_near_duplicate_sequence_search; blockers=8; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P29372",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "needs_primary_active_site_source",
+        "resolution_status": "reaction_context_only_no_active_site_positions",
+        "source_target_count": 11,
+        "source_task": "find_primary_active_site_or_residue_role_source",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "primary_active_site_source_required",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P29372",
+      "lane_id": "external_source:glycan_chemistry",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 60.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "find_primary_active_site_or_residue_role_source",
+      "protein_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=60.0; next_action=find_primary_active_site_or_residue_role_source; blockers=12; active_site_source_task=find_primary_active_site_or_residue_role_source; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "A5PLL7",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "needs_primary_active_site_source",
+        "resolution_status": "reaction_context_only_no_active_site_positions",
+        "source_target_count": 3,
+        "source_task": "find_primary_active_site_or_residue_role_source",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "primary_active_site_source_required",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:A5PLL7",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 60.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "find_primary_active_site_or_residue_role_source",
+      "protein_name": "Plasmanylethanolamine desaturase 1 (EC 1.14.19.77) (Transmembrane protein 189)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=60.0; next_action=find_primary_active_site_or_residue_role_source; blockers=12; active_site_source_task=find_primary_active_site_or_residue_role_source; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q9HBK9",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "needs_primary_active_site_source",
+        "resolution_status": "reaction_context_only_no_active_site_positions",
+        "source_target_count": 5,
+        "source_task": "find_primary_active_site_or_residue_role_source",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "primary_active_site_source_required",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:Q9HBK9",
+      "lane_id": "external_source:transferase_methyl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 60.0,
+      "pilot_selection_status": "deferred_by_rank_or_lane_balance",
+      "prioritized_action": "find_primary_active_site_or_residue_role_source",
+      "protein_name": "Arsenite methyltransferase (EC 2.1.1.137) (Methylarsonite methyltransferase) (S-adenosyl-L-methionine:arsenic(III) methyltransferase)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=60.0; next_action=find_primary_active_site_or_residue_role_source; blockers=12; active_site_source_task=find_primary_active_site_or_residue_role_source; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P33025",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "representation_backend_not_selected",
+        "representation_control_proxy_boundary_case_requires_glycan_hydrolase_split",
+        "representation_near_duplicate_control_holdout"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": false,
+      "entry_id": "uniprot:P33025",
+      "lane_id": "external_source:glycan_chemistry",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [
+        "representation_near_duplicate_control_holdout",
+        "representation_sample_near_duplicate_alert"
+      ],
+      "pilot_priority_score": 43.0,
+      "pilot_selection_status": "deferred_by_holdout_or_near_duplicate",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Pseudouridine-5'-phosphate glycosidase (PsiMP glycosidase) (EC 4.2.1.70)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "representation_near_duplicate_holdout",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": true,
+        "sample_nearest_reference_accession": "P0A786",
+        "sample_top_embedding_cosine": 0.9727,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=43.0; next_action=complete_near_duplicate_sequence_search; blockers=9; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=representation_near_duplicate_holdout",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P60174",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse",
+        "representation_near_duplicate_control_holdout"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": false,
+      "entry_id": "uniprot:P60174",
+      "lane_id": "external_source:isomerase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [
+        "representation_near_duplicate_control_holdout",
+        "representation_sample_near_duplicate_alert"
+      ],
+      "pilot_priority_score": 33.0,
+      "pilot_selection_status": "deferred_by_holdout_or_near_duplicate",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Methylglyoxal synthase) (EC 4.2.3.3) (Triose-phosphate isomerase)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "representation_near_duplicate_holdout",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": true,
+        "sample_nearest_reference_accession": "P00940",
+        "sample_top_embedding_cosine": 0.9984,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=33.0; next_action=complete_near_duplicate_sequence_search; blockers=10; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=representation_near_duplicate_holdout",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q969G6",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_metal_hydrolase_collapse",
+        "representation_near_duplicate_control_holdout"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": false,
+      "entry_id": "uniprot:Q969G6",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [
+        "representation_near_duplicate_control_holdout",
+        "representation_sample_near_duplicate_alert"
+      ],
+      "pilot_priority_score": 33.0,
+      "pilot_selection_status": "deferred_by_holdout_or_near_duplicate",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Riboflavin kinase (EC 2.7.1.26) (ATP:riboflavin 5'-phosphotransferase) (Flavokinase)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "representation_near_duplicate_holdout",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": true,
+        "sample_nearest_reference_accession": "P0A7F3",
+        "sample_top_embedding_cosine": 0.9789,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=33.0; next_action=complete_near_duplicate_sequence_search; blockers=10; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=representation_near_duplicate_holdout",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P42126",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "exact_sequence_holdout",
+        "external_active_site_evidence_not_sampled",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared",
+        "sequence_alignment_near_duplicate_candidate_holdout",
+        "sequence_holdout_control_not_resolved"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": false,
+      "entry_id": "uniprot:P42126",
+      "lane_id": "external_source:isomerase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [
+        "exact_sequence_holdout",
+        "sequence_alignment_near_duplicate_candidate_holdout"
+      ],
+      "pilot_priority_score": -29.0,
+      "pilot_selection_status": "deferred_by_holdout_or_near_duplicate",
+      "prioritized_action": "keep_sequence_holdout_out_of_import_batch",
+      "protein_name": "Enoyl-CoA delta isomerase 1, mitochondrial (EC 5.3.3.8) (3,2-trans-enoyl-CoA isomerase) (Delta(3),Delta(2)-enoyl-CoA isomerase) (D3,D2-enoyl-CoA isomerase) (Dodecenoyl-CoA isomerase)",
+      "readiness_status": "blocked_by_sequence_holdout",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=-29.0; next_action=keep_sequence_holdout_out_of_import_batch; blockers=9; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_near_duplicate_candidate_holdout; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_near_duplicate_candidate_holdout",
+        "decision_status": "no_decision",
+        "search_task": "keep_sequence_holdout_control",
+        "source_target_count": 4
+      }
+    },
+    {
+      "accession": "O15527",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "exact_sequence_holdout",
+        "external_active_site_evidence_not_sampled",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared",
+        "sequence_alignment_near_duplicate_candidate_holdout",
+        "sequence_holdout_control_not_resolved"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": false,
+      "entry_id": "uniprot:O15527",
+      "lane_id": "external_source:lyase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [
+        "exact_sequence_holdout",
+        "sequence_alignment_near_duplicate_candidate_holdout"
+      ],
+      "pilot_priority_score": -29.0,
+      "pilot_selection_status": "deferred_by_holdout_or_near_duplicate",
+      "prioritized_action": "keep_sequence_holdout_out_of_import_batch",
+      "protein_name": "N-glycosylase/DNA lyase [Includes: 8-oxoguanine DNA glycosylase (EC 3.2.2.-); DNA-(apurinic or apyrimidinic site) lyase (AP lyase) (EC 4.2.99.18)]",
+      "readiness_status": "blocked_by_sequence_holdout",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=-29.0; next_action=keep_sequence_holdout_out_of_import_batch; blockers=9; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_near_duplicate_candidate_holdout; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_near_duplicate_candidate_holdout",
+        "decision_status": "no_decision",
+        "search_task": "keep_sequence_holdout_control",
+        "source_target_count": 4
+      }
+    }
+  ],
+  "metadata": {
+    "blocker_removed": "external_pilot_candidate_ranking",
+    "candidate_count": 30,
+    "countable_label_candidate_count": 0,
+    "eligible_candidate_count": 25,
+    "holdout_or_near_duplicate_deferred_count": 5,
+    "leakage_policy": {
+      "excluded_predictive_fields": [
+        "mechanism_text",
+        "label",
+        "source_label",
+        "target_label",
+        "ec_number",
+        "ec",
+        "rhea_id",
+        "rhea_ids",
+        "reaction_text",
+        "mechanism_summary"
+      ],
+      "review_context_only": [
+        "protein_name",
+        "prioritized_action",
+        "blockers",
+        "sequence_search",
+        "active_site_sourcing",
+        "representation_backend"
+      ],
+      "text_or_label_fields_used_for_priority": false
+    },
+    "max_candidates": 10,
+    "max_per_lane": 2,
+    "method": "external_source_pilot_candidate_priority",
+    "predictive_feature_sources": [
+      "blocker_names",
+      "blocker_count",
+      "sequence_alignment_status",
+      "active_site_sourcing_status",
+      "representation_backend_status",
+      "representation_near_duplicate_alert",
+      "lane_balance"
+    ],
+    "ready_for_label_import": false,
+    "selected_accessions": [
+      "O14756",
+      "P06746",
+      "C9JRZ8",
+      "P55263",
+      "P34949",
+      "Q9BXD5",
+      "Q6NSJ0",
+      "O60568",
+      "O95050",
+      "P51580"
+    ],
+    "selected_candidate_count": 10,
+    "selected_lane_counts": {
+      "external_source:glycan_chemistry": 2,
+      "external_source:isomerase": 1,
+      "external_source:lyase": 2,
+      "external_source:oxidoreductase_long_tail": 2,
+      "external_source:transferase_methyl": 2,
+      "external_source:transferase_phosphoryl": 1
+    },
+    "selection_rule": "rank review-only external candidates by fewer import blockers, clean sequence-holdout status, non-near-duplicate representation sample status, active-site sourcing readiness, and lane balance; defer exact sequence holdouts and near-duplicate alerts; do not mark any candidate countable or import-ready",
+    "source_method": "external_source_transfer_blocker_matrix"
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "representation_backend_not_selected"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:O14756",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 92.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+      "readiness_status": "blocked_by_sequence_search",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P0A6C1",
+        "sample_top_embedding_cosine": 0.7852,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=92.0; next_action=complete_near_duplicate_sequence_search; blockers=6; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P06746",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P06746",
+      "lane_id": "external_source:lyase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 82.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+      "readiness_status": "blocked_by_representation_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=82.0; next_action=complete_near_duplicate_sequence_search; blockers=7; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "C9JRZ8",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:C9JRZ8",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 82.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+      "readiness_status": "blocked_by_representation_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=82.0; next_action=complete_near_duplicate_sequence_search; blockers=7; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P55263",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P55263",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 82.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "readiness_status": "blocked_by_representation_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=82.0; next_action=complete_near_duplicate_sequence_search; blockers=7; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P34949",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_scope_top1_mismatch"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P34949",
+      "lane_id": "external_source:isomerase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 80.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P0A6D3",
+        "sample_top_embedding_cosine": 0.9199,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=80.0; next_action=complete_near_duplicate_sequence_search; blockers=8; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q9BXD5",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_scope_top1_mismatch",
+        "representation_backend_not_selected",
+        "representation_control_proxy_flags_scope_top1_mismatch"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:Q9BXD5",
+      "lane_id": "external_source:lyase",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 80.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P11708",
+        "sample_top_embedding_cosine": 0.8619,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=80.0; next_action=complete_near_duplicate_sequence_search; blockers=8; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "Q6NSJ0",
+      "active_site_sourcing": {
+        "decision_status": null,
+        "resolution_status": null,
+        "source_target_count": 0,
+        "source_task": "not_active_site_sourcing_row"
+      },
+      "blockers": [
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_metal_hydrolase_collapse",
+        "representation_backend_not_selected",
+        "representation_control_proxy_boundary_case_requires_glycan_hydrolase_split"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:Q6NSJ0",
+      "lane_id": "external_source:glycan_chemistry",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 78.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "complete_near_duplicate_sequence_search",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "readiness_status": "blocked_by_heuristic_control",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+        "embedding_status": "backend_plan_only_not_computed",
+        "recommended_backend_count": 4,
+        "required_input_count": 4,
+        "sample_backend_status": "learned_representation_sample_complete",
+        "sample_embedding_status": "computed_review_only",
+        "sample_near_duplicate_alert": false,
+        "sample_nearest_reference_accession": "P0ABI8",
+        "sample_top_embedding_cosine": 0.8958,
+        "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=78.0; next_action=complete_near_duplicate_sequence_search; blockers=8; active_site_source_task=not_active_site_sourcing_row; sequence_status=alignment_no_near_duplicate_signal; representation_status=learned_representation_sample_complete",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "O60568",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
+        "source_target_count": 17,
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:O60568",
+      "lane_id": "external_source:glycan_chemistry",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
+      "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=72.0; next_action=curate_primary_literature_or_pdb_active_site_sources; blockers=11; active_site_source_task=curate_active_site_positions_from_mapped_binding_context; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "O95050",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
+        "source_target_count": 6,
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:O95050",
+      "lane_id": "external_source:transferase_methyl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
+      "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=72.0; next_action=curate_primary_literature_or_pdb_active_site_sources; blockers=11; active_site_source_task=curate_active_site_positions_from_mapped_binding_context; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    },
+    {
+      "accession": "P51580",
+      "active_site_sourcing": {
+        "decision_status": "no_decision",
+        "queue_status": "ready_for_curated_active_site_sourcing",
+        "resolution_status": "binding_and_reaction_context_only_no_active_site_positions",
+        "source_target_count": 6,
+        "source_task": "curate_active_site_positions_from_mapped_binding_context",
+        "sourced_active_site_position_count": 0
+      },
+      "blockers": [
+        "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
+        "complete_near_duplicate_reference_search_not_completed",
+        "complete_near_duplicate_search_required",
+        "explicit_active_site_residue_sources_absent",
+        "explicit_active_site_residue_sources_not_collected",
+        "external_active_site_feature_gap",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "heuristic_control_not_scored",
+        "representation_backend_plan_missing_or_not_eligible",
+        "representation_control_not_compared"
+      ],
+      "countable_label_candidate": false,
+      "eligible_for_review_pilot": true,
+      "entry_id": "uniprot:P51580",
+      "lane_id": "external_source:transferase_methyl",
+      "leakage_provenance": {
+        "predictive_feature_sources": [
+          "blocker_names",
+          "sequence_alignment_status",
+          "active_site_sourcing_status",
+          "representation_backend_status",
+          "representation_near_duplicate_alert"
+        ],
+        "present_text_or_label_context_fields": [],
+        "text_or_label_fields_used_for_priority": false
+      },
+      "pilot_priority_blockers": [],
+      "pilot_priority_score": 72.0,
+      "pilot_selection_status": "selected_for_review_pilot",
+      "prioritized_action": "curate_primary_literature_or_pdb_active_site_sources",
+      "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+      "readiness_status": "blocked_by_active_site_sourcing",
+      "ready_for_label_import": false,
+      "representation_backend": {
+        "backend_readiness_status": "not_backend_eligible_yet",
+        "embedding_status": "not_planned",
+        "recommended_backend_count": 0,
+        "required_input_count": 0,
+        "sample_backend_status": null,
+        "sample_embedding_status": null
+      },
+      "review_status": "external_pilot_candidate_priority_review_only",
+      "selection_rationale": "score=72.0; next_action=curate_primary_literature_or_pdb_active_site_sources; blockers=11; active_site_source_task=curate_active_site_positions_from_mapped_binding_context; sequence_status=alignment_no_near_duplicate_signal; representation_status=None",
+      "sequence_search": {
+        "alignment_status": "alignment_no_near_duplicate_signal",
+        "decision_status": "no_decision",
+        "search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search",
+        "source_target_count": 5
+      }
+    }
+  ],
+  "warnings": [
+    "pilot priority rows are a review worklist only; complete near-duplicate sequence search, active-site evidence, review decisions, and full label-factory gates remain required"
+  ]
+}

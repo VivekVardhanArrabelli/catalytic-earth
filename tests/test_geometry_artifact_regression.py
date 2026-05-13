@@ -2471,6 +2471,70 @@ class GeometryArtifactRegressionTests(unittest.TestCase):
         self.assertEqual(gate_675["blockers"], [])
         self.assertEqual(gate_700["blockers"], [])
 
+    def test_selected_pdb_override_path_is_non_countable_and_guardrail_clean(self) -> None:
+        override_plan = _load_json(
+            ROOT / "artifacts" / "v3_selected_pdb_override_plan_700.json"
+        )
+        geometry = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_geometry_features_1000_selected_pdb_override.json"
+        )
+        evaluation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_geometry_label_eval_1000_selected_pdb_override.json"
+        )
+        hard_negatives = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_hard_negative_controls_1000_selected_pdb_override.json"
+        )
+        in_scope_failures = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_in_scope_failure_analysis_1000_selected_pdb_override.json"
+        )
+
+        self.assertEqual(
+            override_plan["metadata"]["blocker_removed"],
+            "selected_pdb_single_point_mitigation",
+        )
+        self.assertEqual(
+            override_plan["metadata"]["ready_to_apply_entry_ids"],
+            ["m_csa:577", "m_csa:641"],
+        )
+        self.assertEqual(override_plan["metadata"]["skipped_entry_ids"], ["m_csa:592"])
+        self.assertEqual(
+            override_plan["metadata"]["countable_label_candidate_count"], 0
+        )
+        rows = {row["entry_id"]: row for row in override_plan["rows"]}
+        self.assertEqual(rows["m_csa:577"]["override_pdb_id"], "1AWB")
+        self.assertEqual(rows["m_csa:641"]["override_pdb_id"], "1J7N")
+        self.assertEqual(rows["m_csa:592"]["apply_status"], "skipped_by_policy")
+
+        self.assertEqual(
+            geometry["metadata"]["selected_pdb_override_applied_count"], 2
+        )
+        entries = {row["entry_id"]: row for row in geometry["entries"]}
+        self.assertEqual(entries["m_csa:577"]["pdb_id"], "1AWB")
+        self.assertEqual(entries["m_csa:641"]["pdb_id"], "1J7N")
+        self.assertEqual(entries["m_csa:592"]["pdb_id"], "3IDH")
+        self.assertIn(
+            "metal_ion",
+            entries["m_csa:577"]["ligand_context"]["cofactor_families"],
+        )
+        self.assertIn(
+            "metal_ion",
+            entries["m_csa:641"]["ligand_context"]["cofactor_families"],
+        )
+        self.assertEqual(
+            evaluation["metadata"]["out_of_scope_false_non_abstentions"], 0
+        )
+        self.assertEqual(hard_negatives["metadata"]["hard_negative_count"], 0)
+        self.assertEqual(hard_negatives["metadata"]["near_miss_count"], 0)
+        self.assertEqual(in_scope_failures["metadata"]["actionable_failure_count"], 0)
+
 
 def _load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:

@@ -551,57 +551,70 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current SPOF status after the 2026-05-13T14:17:40Z run: counterevidence
-maintainability is handled at the code level. `geometry_retrieval.py` now uses a
+Current SPOF status after the 2026-05-13T10:19:12-05:00 run: counterevidence
+maintainability is handled at the code level. `geometry_retrieval.py` uses a
 versioned declarative `COUNTEREVIDENCE_POLICY` with typed shared inputs,
 rule-level provenance, backwards-compatible reason/detail fields, and explicit
-mechanism-text leakage flags. `check_label_factory_gates` now accepts the typed
-`LabelFactoryGateInputs.v1` contract, and the CLI loads gate artifacts through a
-table-driven map instead of one read branch per optional artifact. The gate CLI
-now also validates non-exempt artifact slice lineage before loading the
-high-fan-in JSON inputs; `artifacts/v3_label_factory_gate_check_1000.json`
-records `metadata.artifact_lineage` with `slice_id=1000` and the historical
-ATP-family boundary-control artifact explicitly exempted as review/scope
-context.
-The same run also added bounded text-leakage protection to the external
-representation sample: sequence embeddings and length coverage are the only
-predictive feature sources, while heuristic fingerprint ids, matched M-CSA
+mechanism-text leakage flags. `check_label_factory_gates` accepts the typed
+`LabelFactoryGateInputs.v1` contract, the CLI loads gate artifacts through a
+table-driven map, and non-exempt label-factory gate inputs now get slice-lineage
+validation before loading. Text-leakage protection is also present for the
+external representation sample: sequence embeddings and length coverage are the
+only predictive feature sources, while heuristic fingerprint ids, matched M-CSA
 reference ids, and source scope signals carry explicit review/holdout leakage
-flags. The representation audit now fails if EC/Rhea ids, mechanism text,
-labels, fingerprint ids, or source-target identifiers appear as predictive
-feature sources. Artifact consistency hardening started in the external blocker
-matrix audit, which now rejects candidate-manifest lineage mismatches.
+flags. The representation audit fails if EC/Rhea ids, mechanism text, labels,
+fingerprint ids, or source-target identifiers appear as predictive feature
+sources. Artifact consistency hardening exists in the external blocker matrix
+audit, which rejects candidate-manifest lineage mismatches, and in the external
+transfer gate, which now validates candidate accessions across high-fan-in
+external artifacts before passing the 60/60 review-only gate.
+
+This run removed the selected-PDB single-point blocker in bounded form. The new
+`build-selected-pdb-overrides` command produces
+`artifacts/v3_selected_pdb_override_plan_700.json` from the holo-preference
+audit and remediation plan. The plan applies `m_csa:577` -> `1AWB` and
+`m_csa:641` -> `1J7N` with explicit remapped residue positions, keeps
+`m_csa:592` skipped because its glucokinase reaction/substrate mismatch still
+requires review, and records 0 countable label candidates. The downstream
+1,000-context selected-PDB override geometry/retrieval/evaluation artifacts
+preserve 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions,
+and 0 actionable in-scope failures.
+
+This run also converted the external blocker matrix into a bounded pilot
+priority artifact instead of another generic gate. The new
+`artifacts/v3_external_source_pilot_candidate_priority_1025.json` selects 10
+review-only candidates across the external lanes, caps lane selection at 2,
+defers 5 exact-holdout or near-duplicate rows, records
+`external_pilot_candidate_ranking` as the blocker removed, and keeps every row
+non-countable and not import-ready. Its leakage provenance records that
+mechanism text, EC/Rhea identifiers, source labels, and target labels are not
+priority-scoring evidence. The companion
+`artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
+those 10 rows as no-decision review packets with 0 completed decisions.
 
 Next ordered worklist:
 
-1. Continue text-leakage mitigation. Counterevidence mechanism-text rules are
-   now marked `mechanism_text_review_context_only` and
-   `counterevidence_only_not_predictive_evidence`; next verify learned
-   representation artifacts and external pilot ranking do not use mechanism
-   text, labels, EC/Rhea IDs, or source-derived target labels as predictive
-   discovery evidence.
-2. Extend artifact graph consistency checks beyond the external blocker matrix
+1. Continue artifact graph consistency checks beyond the external blocker matrix
    and label-factory gate CLI: source slice, graph id, and lineage mismatches
    should fail fast in other high-fan-in gates and audits. Include negative
    regression tests with mismatched slice inputs.
-3. Sequence/fold-distance holdout evaluation is implemented and pinned by
+2. Sequence/fold-distance holdout evaluation is implemented and pinned by
    regression tests. Treat the current artifacts as a proxy-only generalization
    signal, not as proof of <=30% sequence identity or <0.7 TM-score behavior.
-   The 2026-05-13T14:17:40Z run checked for `foldseek`, `mmseqs`, `blastp`,
-   and `diamond`; none were available on PATH. Re-run with Foldseek/MMseqs2/
+   The 2026-05-13T10:19:12-05:00 run checked for `foldseek`, `mmseqs`,
+   `mmseqs2`, `blastp`, and `diamond`; none were available on PATH. Re-run
+   with Foldseek/MMseqs2/
    BLAST/DIAMOND or an equivalent local clustering backend if it becomes
    available.
-4. Use the learned representation backend path. A 12-row ESM-2 sample is now
-   computed and review-only; next use its learned-vs-heuristic disagreement rows
-   to rank external pilot candidates and decide which representation repairs are
-   needed. Preserve heuristic geometry retrieval as the baseline.
-5. Implement a general selected-PDB override path with provenance and apply the
-   holo-preference audit action path for `m_csa:577` and `m_csa:641`. Seed it
-   from `v3_structure_selection_holo_preference_audit_700.json` rows where
-   `recommendation == "swap_selected_structure"`. Skip `m_csa:592` unless new
-   evidence changes the current kinase/reaction-mismatch demotion. Only count
-   labels if regenerated gates pass.
-6. Keep ePK and transition-state signature work lower priority until the SPOF
+3. Use the learned representation backend path, pilot priority artifact, and
+   no-decision review export for reviewer work. A 12-row ESM-2 sample is
+   computed and review-only; the next work is to fill evidence gaps and
+   representation repairs for the 10 selected candidates while preserving
+   heuristic geometry retrieval as the baseline.
+4. Reviewer policy and schema typing are lower priority unless code evidence
+   exposes new ambiguity in countable vs review-only imports or high-fan-in
+   artifact schemas.
+5. Keep ePK and transition-state signature work lower priority until the SPOF
    and external-pilot blockers above are either fixed or explicitly blocked.
 
 Concrete user direction for the next runs: stop adding abstract gates unless
@@ -611,11 +624,12 @@ source-limited, while external-source import is not yet ready. The next
 valuable work is not a larger gate count; it is a small, evidence-backed
 external pilot.
 
-Immediate target: build toward a 5-10 candidate external-source pilot from the
-existing 30-row UniProtKB/Swiss-Prot sample. Keep every external row
-review-only until active-site, reaction, sequence, representation, review, and
-full label-factory gates pass. Do not open another M-CSA-only tranche such as
-1,050 as normal progress.
+Immediate target: advance the 10 selected candidates in
+`artifacts/v3_external_source_pilot_candidate_priority_1025.json` from the
+30-row UniProtKB/Swiss-Prot sample. Keep every external row review-only until
+active-site, reaction, sequence, representation, review, and full label-factory
+gates pass. Do not open another M-CSA-only tranche such as 1,050 as normal
+progress.
 
 Priority blockers to remove:
 
@@ -628,18 +642,18 @@ Priority blockers to remove:
    rows in `artifacts/v3_external_source_sequence_search_export_1025.json`.
    Exact-reference overlaps and high-similarity rows stay holdout controls, not
    labels.
-3. Replace deterministic k-mer proxy controls with a real learned or
-   structure-language representation backend, or a clearly executable backend
-   interface with a small computed sample. Preserve heuristic geometry
-   retrieval as the required control baseline.
-4. Rank the 30 external candidates for pilot readiness and choose 5-10 with
-   explicit active-site evidence, specific reaction evidence, clean sequence
-   holdout status, clean structure mapping, non-collapsed
-   heuristic/representation behavior, and no broad-EC ambiguity.
-5. Produce a review decision export for the pilot candidates. Keep decisions
-   review-only first. Attempt countable import only for candidates that pass
-   active-site, reaction, sequence, representation, review, and full factory
-   gates.
+3. Use the computed ESM-2 representation sample and the new pilot-priority
+   artifact to prepare representation repair or reviewer decisions for the 10
+   selected candidates. Preserve heuristic geometry retrieval as the required
+   control baseline.
+4. Advance the 10 selected pilot candidates toward explicit active-site
+   evidence, specific reaction evidence, clean sequence holdout status, clean
+   structure mapping, non-collapsed heuristic/representation behavior, and no
+   broad-EC ambiguity.
+5. Fill the no-decision review packets only after evidence is assembled. Keep
+   decisions review-only first. Attempt countable import only for candidates
+   that pass active-site, reaction, sequence, representation, review, and full
+   factory gates.
 
 Definition of done for this pivot: 5-10 named external candidates have
 per-row evidence dossiers covering active-site residues, reaction/mechanism
@@ -723,7 +737,7 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` keep
-`countable_label_candidate_count=0` and pass a 59/59 review-only transfer gate.
+`countable_label_candidate_count=0` and pass a 60/60 review-only transfer gate.
 The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
 query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
 to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC
@@ -796,7 +810,8 @@ keeps embeddings absent, and requires heuristic-baseline contrast for 9 rows.
 The deterministic k-mer representation backend sample computes review-only
 sequence controls for all 12 planned rows, flags one representation
 near-duplicate holdout (`P60174` against `m_csa:324`/`P00940`), and does not
-replace the future learned or structure-language backend requirement. The
+replace the canonical ESM-2 learned representation sample, which now provides
+the current review-only learned control. The
 transfer blocker matrix joins all 30 candidates into
 prioritized review-only next actions: 7 primary literature/PDB active-site
 source reviews for rows where the UniProt re-check found no explicit active-site
@@ -877,15 +892,43 @@ sequence/fold-distance holdout artifacts for the 1,000 and 1,025 contexts,
 promoted the canonical 12-row external representation sample to ESM-2
 (`facebook/esm2_t6_8M_UR50D`), preserved the k-mer sample as an explicit
 baseline artifact, and kept all external rows review-only/non-countable. The
-transfer gate remains 59/59 and `ready_for_label_import=false`; the learned
+transfer gate remains 60/60 and `ready_for_label_import=false`; the learned
 sample has 0 embedding failures, 3 representation near-duplicate holdouts, and
-12 learned-vs-heuristic disagreements. The holo-PDB swap action path was
-inspected but not started because it requires a general selected-PDB override
-implementation plus regenerated geometry/retrieval/factory artifacts. Final
-verification before logging: 276 unit tests passed, `validate` passed,
-`compileall` passed, `git diff --check` passed, JSON artifact parse passed, and
-the 1,000-slice label-factory gate smoke wrote lineage metadata with
-`slice_id=1000`.
+12 learned-vs-heuristic disagreements. The later selected-PDB override run
+implemented the holo-PDB swap action path for `m_csa:577` and `m_csa:641`
+without count growth. Final verification before logging: 276 unit tests passed,
+`validate` passed, `compileall` passed, `git diff --check` passed, JSON
+artifact parse passed, and the 1,000-slice label-factory gate smoke wrote
+lineage metadata with `slice_id=1000`.
+
+Label-quality confidence call for the 2026-05-13T10:19:12-05:00 run: no for
+additional M-CSA-only count growth, yes for bounded external-source pilot
+readiness repair, no for external-source import, no for new scientific
+generalization artifacts, and yes for SPOF hardening.
+Evidence at run start: 276 unit tests passed, `validate` passed, the accepted
+M-CSA count stayed at 679 labels, the 1,025 preview still added 0 clean
+countable labels, source-scale audit still limited M-CSA exposure to 1,003
+observed source records, hard negatives remained 0, near misses remained 0,
+out-of-scope false non-abstentions remained 0, and actionable in-scope failures
+remained 0. The run therefore targeted the selected-PDB SPOF: the new override
+plan applies holo-preference repairs for `m_csa:577` and `m_csa:641`, skips
+`m_csa:592`, keeps 0 countable label candidates, and its 1,000-context
+downstream selected-PDB override evaluation preserves 0 hard negatives, 0 near
+misses, 0 out-of-scope false non-abstentions, and 0 actionable in-scope
+failures. The same run extended external transfer artifact-lineage hardening:
+`check_external_source_transfer_gates` now validates candidate accessions across
+high-fan-in external artifacts and the gate artifact passes 60/60 with
+`metadata.artifact_lineage.guardrail_clean=true`, including the pilot priority
+and review-decision export artifacts. The pilot-priority artifact selects 10
+review-only candidates, defers 5 holdout or near-duplicate rows, and keeps all
+selected rows non-countable and not import-ready. The review-decision export
+artifact creates 10 no-decision packets with 0 completed decisions.
+
+Wrap-up verification for the same run: 283 unit tests passed, `validate`
+passed with 679 curated labels, `compileall` passed, `git diff --check` passed,
+JSON artifact parsing passed for the selected-PDB, pilot-priority, pilot review
+export, and external transfer gate artifacts, and CLI smoke coverage now pins
+the new pilot priority and review-decision export commands.
 
 Label-quality confidence call for the 2026-05-13T14:17:40Z run: no for
 additional M-CSA-only count growth, no for external-source import, no for new
@@ -1261,8 +1304,10 @@ Highest-value options:
    holdouts, 12 representation-backend plans, 12 representation sample rows, 3
    representation near-duplicate holdouts in the ESM-2 sample, 1 representation
    near-duplicate holdout in the k-mer baseline, and 0 completed import
-   decisions. The 59/59 transfer gate now fails stale matrices that omit
-   active-site resolution or representation sample integration.
+   decisions. The 60/60 transfer gate now fails stale matrices that omit
+   active-site resolution or representation sample integration, and also fails
+   high-fan-in external artifacts with unexpected candidate accessions, missing
+   full-coverage manifest rows, or candidate-count drift.
 7. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
    separate decision artifact passes the full label-factory gate.
 8. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;

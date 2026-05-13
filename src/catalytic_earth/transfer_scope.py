@@ -5693,6 +5693,462 @@ def audit_external_source_transfer_blocker_matrix(
     }
 
 
+def build_external_source_pilot_candidate_priority(
+    transfer_blocker_matrix: dict[str, Any],
+    *,
+    max_candidates: int = 10,
+    max_per_lane: int = 2,
+) -> dict[str, Any]:
+    """Rank external candidates for the first focused review pilot.
+
+    The output is a review worklist, not an import decision. It favors rows with
+    fewer scientific blockers while preserving lane diversity and explicitly
+    carrying the next blocker that prevents countable import.
+    """
+    if max_candidates < 1:
+        raise ValueError("max_candidates must be positive")
+    if max_per_lane < 1:
+        raise ValueError("max_per_lane must be positive")
+
+    ranked_rows: list[dict[str, Any]] = []
+    for row in transfer_blocker_matrix.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if not accession:
+            continue
+        blockers = sorted(
+            str(blocker) for blocker in row.get("blockers", []) or [] if blocker
+        )
+        lane_id = str(row.get("lane_id") or "unknown")
+        representation = row.get("representation_backend", {}) or {}
+        sequence = row.get("sequence_search", {}) or {}
+        active_site = row.get("active_site_sourcing", {}) or {}
+        pilot_priority_blockers = _external_pilot_candidate_selection_blockers(
+            blockers=blockers,
+            representation=representation,
+        )
+        priority_score = _external_pilot_candidate_priority_score(
+            row=row,
+            blockers=blockers,
+        )
+        ranked_rows.append(
+            {
+                "accession": accession,
+                "active_site_sourcing": active_site,
+                "blockers": blockers,
+                "countable_label_candidate": False,
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "eligible_for_review_pilot": not pilot_priority_blockers,
+                "lane_id": lane_id,
+                "leakage_provenance": _external_pilot_leakage_provenance(row),
+                "pilot_priority_score": priority_score,
+                "pilot_priority_blockers": pilot_priority_blockers,
+                "prioritized_action": row.get("prioritized_action"),
+                "protein_name": row.get("protein_name"),
+                "ready_for_label_import": False,
+                "readiness_status": row.get("readiness_status"),
+                "representation_backend": representation,
+                "review_status": "external_pilot_candidate_priority_review_only",
+                "selection_rationale": _external_pilot_candidate_rationale(
+                    row=row,
+                    blockers=blockers,
+                    priority_score=priority_score,
+                ),
+                "sequence_search": sequence,
+            }
+        )
+
+    ranked_rows.sort(
+        key=lambda row: (
+            not bool(row.get("eligible_for_review_pilot")),
+            -float(row.get("pilot_priority_score", 0.0) or 0.0),
+            str(row.get("lane_id") or ""),
+            str(row.get("accession") or ""),
+        )
+    )
+
+    lane_counts: Counter[str] = Counter()
+    selected_rows: list[dict[str, Any]] = []
+    deferred_rows: list[dict[str, Any]] = []
+    for row in ranked_rows:
+        lane_id = str(row.get("lane_id") or "unknown")
+        if not row.get("eligible_for_review_pilot"):
+            deferred_rows.append(
+                {
+                    **row,
+                    "pilot_selection_status": "deferred_by_holdout_or_near_duplicate",
+                }
+            )
+        elif (
+            len(selected_rows) < max_candidates
+            and lane_counts[lane_id] < max_per_lane
+        ):
+            row = {**row, "pilot_selection_status": "selected_for_review_pilot"}
+            selected_rows.append(row)
+            lane_counts[lane_id] += 1
+        else:
+            deferred_rows.append(
+                {**row, "pilot_selection_status": "deferred_by_rank_or_lane_balance"}
+            )
+
+    selected_accessions = [row["accession"] for row in selected_rows]
+    return {
+        "metadata": {
+            "method": "external_source_pilot_candidate_priority",
+            "source_method": transfer_blocker_matrix.get("metadata", {}).get(
+                "method"
+            ),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(ranked_rows),
+            "eligible_candidate_count": sum(
+                1 for row in ranked_rows if row.get("eligible_for_review_pilot")
+            ),
+            "holdout_or_near_duplicate_deferred_count": sum(
+                1 for row in ranked_rows if row.get("pilot_priority_blockers")
+            ),
+            "max_candidates": max_candidates,
+            "max_per_lane": max_per_lane,
+            "selected_candidate_count": len(selected_rows),
+            "selected_accessions": selected_accessions,
+            "selected_lane_counts": dict(sorted(lane_counts.items())),
+            "blocker_removed": "external_pilot_candidate_ranking",
+            "predictive_feature_sources": [
+                "blocker_names",
+                "blocker_count",
+                "sequence_alignment_status",
+                "active_site_sourcing_status",
+                "representation_backend_status",
+                "representation_near_duplicate_alert",
+                "lane_balance",
+            ],
+            "leakage_policy": {
+                "text_or_label_fields_used_for_priority": False,
+                "excluded_predictive_fields": [
+                    "mechanism_text",
+                    "label",
+                    "source_label",
+                    "target_label",
+                    "ec_number",
+                    "ec",
+                    "rhea_id",
+                    "rhea_ids",
+                    "reaction_text",
+                    "mechanism_summary",
+                ],
+                "review_context_only": [
+                    "protein_name",
+                    "prioritized_action",
+                    "blockers",
+                    "sequence_search",
+                    "active_site_sourcing",
+                    "representation_backend",
+                ],
+            },
+            "selection_rule": (
+                "rank review-only external candidates by fewer import blockers, "
+                "clean sequence-holdout status, non-near-duplicate representation "
+                "sample status, active-site sourcing readiness, and lane balance; "
+                "defer exact sequence holdouts and near-duplicate alerts; do not "
+                "mark any candidate countable or import-ready"
+            ),
+        },
+        "rows": selected_rows,
+        "deferred_rows": deferred_rows,
+        "warnings": [
+            (
+                "pilot priority rows are a review worklist only; complete "
+                "near-duplicate sequence search, active-site evidence, review "
+                "decisions, and full label-factory gates remain required"
+            )
+        ],
+    }
+
+
+def _external_pilot_leakage_provenance(row: dict[str, Any]) -> dict[str, Any]:
+    excluded_fields = [
+        "mechanism_text",
+        "label",
+        "source_label",
+        "target_label",
+        "ec_number",
+        "ec",
+        "rhea_id",
+        "rhea_ids",
+        "reaction_text",
+        "mechanism_summary",
+    ]
+    present_review_context = [
+        field for field in excluded_fields if row.get(field) not in (None, "", [])
+    ]
+    return {
+        "predictive_feature_sources": [
+            "blocker_names",
+            "sequence_alignment_status",
+            "active_site_sourcing_status",
+            "representation_backend_status",
+            "representation_near_duplicate_alert",
+        ],
+        "present_text_or_label_context_fields": present_review_context,
+        "text_or_label_fields_used_for_priority": False,
+    }
+
+
+def build_external_source_pilot_review_decision_export(
+    *,
+    pilot_candidate_priority: dict[str, Any],
+    max_rows: int = 10,
+) -> dict[str, Any]:
+    """Export no-decision review packets for selected external pilot candidates."""
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+    selected_rows = [
+        row
+        for row in pilot_candidate_priority.get("rows", []) or []
+        if isinstance(row, dict)
+        and row.get("pilot_selection_status") == "selected_for_review_pilot"
+    ][:max_rows]
+
+    review_items: list[dict[str, Any]] = []
+    for rank, row in enumerate(selected_rows, start=1):
+        accession = _normalize_accession(row.get("accession"))
+        blockers = sorted(
+            str(blocker) for blocker in row.get("blockers", []) or [] if blocker
+        )
+        review_items.append(
+            {
+                "accession": accession,
+                "active_site_sourcing": row.get("active_site_sourcing", {}),
+                "blockers": blockers,
+                "countable_label_candidate": False,
+                "decision": {
+                    "decision_status": "no_decision",
+                    "external_source_resolution": "needs_more_evidence",
+                    "ready_for_label_import": False,
+                    "reviewer": "",
+                    "reviewed_at": "",
+                    "rationale": "",
+                    "proposed_fingerprint_id": "",
+                    "proposed_label_tier": "",
+                },
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "lane_id": row.get("lane_id"),
+                "pilot_priority_score": row.get("pilot_priority_score"),
+                "pilot_selection_status": row.get("pilot_selection_status"),
+                "protein_name": row.get("protein_name"),
+                "rank": rank,
+                "ready_for_label_import": False,
+                "representation_backend": row.get("representation_backend", {}),
+                "review_requirements": [
+                    "curated_active_site_residue_evidence",
+                    "specific_reaction_or_mechanism_evidence",
+                    "complete_near_duplicate_sequence_search",
+                    "leakage_safe_representation_control",
+                    "review_decision",
+                    "full_label_factory_gate",
+                ],
+                "review_status": "external_pilot_review_decision_no_decision",
+                "sequence_search": row.get("sequence_search", {}),
+            }
+        )
+
+    return {
+        "metadata": {
+            "method": "external_source_pilot_review_decision_export",
+            "source_method": pilot_candidate_priority.get("metadata", {}).get(
+                "method"
+            ),
+            "blocker_removed": "external_pilot_review_decision_export_scaffold",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(review_items),
+            "max_rows": max_rows,
+            "decision_status_counts": {"no_decision": len(review_items)},
+            "completed_decision_count": 0,
+            "review_only": True,
+        },
+        "review_items": review_items,
+        "warnings": [
+            (
+                "pilot review-decision exports are no-decision packets only; "
+                "they do not authorize countable import"
+            )
+        ],
+    }
+
+
+def _external_pilot_candidate_selection_blockers(
+    *,
+    blockers: list[str],
+    representation: dict[str, Any],
+) -> list[str]:
+    blocker_set = set(blockers)
+    pilot_blockers: list[str] = []
+    if "exact_sequence_holdout" in blocker_set:
+        pilot_blockers.append("exact_sequence_holdout")
+    if "sequence_alignment_near_duplicate_candidate_holdout" in blocker_set:
+        pilot_blockers.append("sequence_alignment_near_duplicate_candidate_holdout")
+    if "representation_near_duplicate_control_holdout" in blocker_set:
+        pilot_blockers.append("representation_near_duplicate_control_holdout")
+    if representation.get("sample_near_duplicate_alert") is True:
+        pilot_blockers.append("representation_sample_near_duplicate_alert")
+    return sorted(set(pilot_blockers))
+
+
+def _external_transfer_candidate_lineage(
+    candidate_manifest: dict[str, Any],
+    artifacts: dict[str, dict[str, Any] | None],
+) -> dict[str, Any]:
+    manifest_accessions = _external_artifact_accessions(candidate_manifest)
+    unexpected_accessions: dict[str, list[str]] = {}
+    missing_accessions: dict[str, list[str]] = {}
+    count_mismatch_artifacts: list[str] = []
+    checked_artifacts: list[str] = []
+
+    for artifact_name, artifact in artifacts.items():
+        if artifact is None:
+            continue
+        accessions = _external_artifact_accessions(artifact)
+        if not accessions:
+            continue
+        checked_artifacts.append(artifact_name)
+        extras = sorted(accessions - manifest_accessions)
+        if extras:
+            unexpected_accessions[artifact_name] = extras
+
+        metadata = artifact.get("metadata", {}) if isinstance(artifact, dict) else {}
+        candidate_count = metadata.get("candidate_count")
+        try:
+            candidate_count_int = int(candidate_count)
+        except (TypeError, ValueError):
+            candidate_count_int = None
+        if candidate_count_int is not None and candidate_count_int != len(accessions):
+            count_mismatch_artifacts.append(artifact_name)
+
+        if manifest_accessions and candidate_count_int == len(manifest_accessions):
+            missing = sorted(manifest_accessions - accessions)
+            if missing:
+                missing_accessions[artifact_name] = missing
+
+    blockers: list[str] = []
+    if unexpected_accessions:
+        blockers.append("external_transfer_candidate_lineage_unexpected_accessions")
+    if missing_accessions:
+        blockers.append("external_transfer_candidate_lineage_missing_accessions")
+    if count_mismatch_artifacts:
+        blockers.append("external_transfer_candidate_lineage_count_mismatch")
+
+    return {
+        "method": "external_transfer_candidate_lineage_validation",
+        "candidate_manifest_accession_count": len(manifest_accessions),
+        "checked_artifacts": sorted(checked_artifacts),
+        "unexpected_accessions": unexpected_accessions,
+        "missing_accessions": missing_accessions,
+        "count_mismatch_artifacts": sorted(count_mismatch_artifacts),
+        "blockers": blockers,
+        "guardrail_clean": not blockers,
+    }
+
+
+def _external_artifact_accessions(artifact: dict[str, Any]) -> set[str]:
+    accessions: set[str] = set()
+    for row in _external_artifact_candidate_rows(artifact):
+        accession = _normalize_accession(row.get("accession"))
+        if not accession and isinstance(row.get("external_source_context"), dict):
+            accession = _normalize_accession(
+                row.get("external_source_context", {}).get("accession")
+            )
+        if not accession:
+            entry_id = str(row.get("entry_id") or "")
+            if entry_id.startswith("uniprot:"):
+                accession = _normalize_accession(entry_id.split(":", 1)[1])
+        if accession:
+            accessions.add(accession)
+    return accessions
+
+
+def _external_artifact_candidate_rows(artifact: dict[str, Any]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for key in (
+        "rows",
+        "deferred_rows",
+        "candidate_summaries",
+        "entries",
+        "results",
+        "review_items",
+    ):
+        values = artifact.get(key, []) if isinstance(artifact, dict) else []
+        if isinstance(values, list):
+            rows.extend(row for row in values if isinstance(row, dict))
+    return rows
+
+
+def _external_pilot_candidate_priority_score(
+    *,
+    row: dict[str, Any],
+    blockers: list[str],
+) -> float:
+    blocker_set = set(blockers)
+    score = 100.0
+    score -= 2.0 * len(blocker_set)
+    if "exact_sequence_holdout" in blocker_set:
+        score -= 60.0
+    if "sequence_alignment_near_duplicate_candidate_holdout" in blocker_set:
+        score -= 35.0
+    if "complete_near_duplicate_search_required" in blocker_set:
+        score -= 8.0
+    if "external_active_site_feature_gap" in blocker_set:
+        score -= 12.0
+    if "external_active_site_evidence_not_sampled" in blocker_set:
+        score -= 16.0
+    if "heuristic_metal_hydrolase_collapse" in blocker_set:
+        score -= 10.0
+    if "heuristic_scope_top1_mismatch" in blocker_set:
+        score -= 8.0
+    if any("broad_ec" in blocker for blocker in blocker_set):
+        score -= 10.0
+    representation = row.get("representation_backend", {}) or {}
+    if representation.get("sample_near_duplicate_alert") is True:
+        score -= 25.0
+    elif (
+        representation.get("sample_backend_status")
+        == "learned_representation_sample_complete"
+    ):
+        score += 8.0
+    active_site = row.get("active_site_sourcing", {}) or {}
+    if active_site.get("queue_status") == "ready_for_curated_active_site_sourcing":
+        score += 6.0
+    if (
+        active_site.get("source_task")
+        == "curate_active_site_positions_from_mapped_binding_context"
+    ):
+        score += 4.0
+    sequence = row.get("sequence_search", {}) or {}
+    if sequence.get("alignment_status") == "alignment_no_near_duplicate_signal":
+        score += 4.0
+    return round(score, 3)
+
+
+def _external_pilot_candidate_rationale(
+    *,
+    row: dict[str, Any],
+    blockers: list[str],
+    priority_score: float,
+) -> str:
+    action = row.get("prioritized_action") or "complete_external_review"
+    blocker_count = len(blockers)
+    representation = row.get("representation_backend", {}) or {}
+    active_site = row.get("active_site_sourcing", {}) or {}
+    sequence = row.get("sequence_search", {}) or {}
+    return (
+        f"score={priority_score}; next_action={action}; blockers={blocker_count}; "
+        f"active_site_source_task={active_site.get('source_task')}; "
+        f"sequence_status={sequence.get('alignment_status')}; "
+        f"representation_status={representation.get('sample_backend_status')}"
+    )
+
+
 def check_external_source_transfer_gates(
     *,
     transfer_manifest: dict[str, Any],
@@ -5747,6 +6203,8 @@ def check_external_source_transfer_gates(
     active_site_sourcing_resolution_audit: dict[str, Any] | None = None,
     transfer_blocker_matrix: dict[str, Any] | None = None,
     transfer_blocker_matrix_audit: dict[str, Any] | None = None,
+    pilot_candidate_priority: dict[str, Any] | None = None,
+    pilot_review_decision_export: dict[str, Any] | None = None,
     binding_context_repair_plan: dict[str, Any] | None = None,
     binding_context_repair_plan_audit: dict[str, Any] | None = None,
     binding_context_mapping_sample: dict[str, Any] | None = None,
@@ -5754,7 +6212,43 @@ def check_external_source_transfer_gates(
     sequence_holdout_audit: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Gate external-source transfer artifacts before future label import work."""
+    candidate_lineage = _external_transfer_candidate_lineage(
+        candidate_manifest,
+        {
+            "evidence_plan": evidence_plan,
+            "evidence_request_export": evidence_request_export,
+            "active_site_evidence_queue": active_site_evidence_queue,
+            "active_site_evidence_sample": active_site_evidence_sample,
+            "heuristic_control_queue": heuristic_control_queue,
+            "structure_mapping_plan": structure_mapping_plan,
+            "structure_mapping_sample": structure_mapping_sample,
+            "heuristic_control_scores": heuristic_control_scores,
+            "external_control_repair_plan": external_control_repair_plan,
+            "reaction_evidence_sample": reaction_evidence_sample,
+            "representation_control_manifest": representation_control_manifest,
+            "representation_control_comparison": representation_control_comparison,
+            "representation_backend_plan": representation_backend_plan,
+            "representation_backend_sample": representation_backend_sample,
+            "active_site_gap_source_requests": active_site_gap_source_requests,
+            "sequence_neighborhood_plan": sequence_neighborhood_plan,
+            "sequence_neighborhood_sample": sequence_neighborhood_sample,
+            "sequence_alignment_verification": sequence_alignment_verification,
+            "sequence_search_export": sequence_search_export,
+            "external_import_readiness_audit": external_import_readiness_audit,
+            "active_site_sourcing_queue": active_site_sourcing_queue,
+            "active_site_sourcing_export": active_site_sourcing_export,
+            "active_site_sourcing_resolution": active_site_sourcing_resolution,
+            "transfer_blocker_matrix": transfer_blocker_matrix,
+            "pilot_candidate_priority": pilot_candidate_priority,
+            "pilot_review_decision_export": pilot_review_decision_export,
+            "binding_context_repair_plan": binding_context_repair_plan,
+            "binding_context_mapping_sample": binding_context_mapping_sample,
+        },
+    )
     gates = {
+        "external_transfer_candidate_lineage_consistent": bool(
+            candidate_lineage.get("guardrail_clean")
+        ),
         "transfer_manifest_blocks_label_import": (
             transfer_manifest.get("metadata", {}).get("ready_for_label_import")
             is False
@@ -6732,6 +7226,7 @@ def check_external_source_transfer_gates(
     return {
         "metadata": {
             "method": "external_source_transfer_gate_check",
+            "artifact_lineage": candidate_lineage,
             "gate_count": len(gates),
             "passed_gate_count": sum(1 for passed in gates.values() if passed),
             "ready_for_label_import": False,

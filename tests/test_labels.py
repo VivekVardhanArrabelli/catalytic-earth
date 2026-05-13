@@ -41,6 +41,7 @@ from catalytic_earth.labels import (
     build_label_factory_audit,
     build_provisional_review_decision_batch,
     build_reaction_substrate_mismatch_review_export,
+    build_selected_pdb_override_plan,
     check_label_batch_acceptance,
     check_label_factory_gates,
     check_label_preview_promotion_readiness,
@@ -1809,6 +1810,107 @@ HETATM 3 N N1 FAD B 900 1.5 0.0 0.0 N1 FAD B 900
         self.assertEqual(
             row["alternative_holo_candidate_pdb_ids"], ["1AWB", "4AS4"]
         )
+
+    def test_selected_pdb_override_plan_builds_ready_rows_and_policy_skips(self) -> None:
+        holo_audit = {
+            "metadata": {"method": "structure_selection_holo_preference_audit"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:577",
+                    "entry_name": "inositol-phosphate phosphatase",
+                    "current_selected_pdb_id": "1IMA",
+                    "recommended_pdb_id": "1AWB",
+                    "recommendation": "swap_selected_structure",
+                    "recommendation_rationale": "apo selected; holo alternate",
+                    "expected_cofactor_families": ["metal_ion"],
+                    "recommended_pdb_local_expected_family_hits": ["metal_ion"],
+                    "recommended_pdb_local_ligand_codes": ["CA"],
+                },
+                {
+                    "entry_id": "m_csa:592",
+                    "entry_name": "glucokinase",
+                    "current_selected_pdb_id": "3IDH",
+                    "recommended_pdb_id": "3FGU",
+                    "recommendation": "swap_selected_structure",
+                    "recommendation_rationale": "skip pending reaction review",
+                    "expected_cofactor_families": ["metal_ion"],
+                    "recommended_pdb_local_expected_family_hits": ["metal_ion"],
+                    "recommended_pdb_local_ligand_codes": ["MG"],
+                },
+            ],
+        }
+        remediation = {
+            "metadata": {"method": "review_debt_remediation_plan"},
+            "rows": [
+                {
+                    "entry_id": "m_csa:577",
+                    "candidate_pdb_residue_positions": {
+                        "1IMA": [
+                            {
+                                "residue_node_id": "m_csa:577:residue:1",
+                                "chain_name": "A",
+                                "code": "ASP",
+                                "resid": 7,
+                                "roles": ["metal ligand"],
+                            },
+                            {
+                                "residue_node_id": "m_csa:577:residue:2",
+                                "chain_name": "A",
+                                "code": "CYS",
+                                "resid": 70,
+                                "roles": ["acid"],
+                            },
+                        ]
+                    },
+                },
+            ],
+        }
+        override_cif = """data_override
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.auth_atom_id
+_atom_site.auth_comp_id
+_atom_site.auth_asym_id
+_atom_site.auth_seq_id
+ATOM 1 N N ASP A 7 0.0 0.0 0.0 N ASP A 7
+ATOM 2 C CA ASP A 7 1.0 0.0 0.0 CA ASP A 7
+ATOM 3 N N CYS A 70 0.0 4.0 0.0 N CYS A 70
+ATOM 4 C CA CYS A 70 0.0 5.0 0.0 CA CYS A 70
+#
+"""
+
+        plan = build_selected_pdb_override_plan(
+            holo_audit,
+            remediation,
+            entry_ids=["m_csa:577", "m_csa:592"],
+            skip_entry_ids=["m_csa:592"],
+            source_audit="holo.json",
+            source_remediation="remediation.json",
+            cif_fetcher=lambda pdb_id: override_cif,
+        )
+
+        self.assertEqual(plan["metadata"]["ready_to_apply_entry_ids"], ["m_csa:577"])
+        self.assertEqual(plan["metadata"]["skipped_entry_ids"], ["m_csa:592"])
+        rows = {row["entry_id"]: row for row in plan["rows"]}
+        self.assertEqual(rows["m_csa:577"]["apply_status"], "ready_to_apply")
+        self.assertEqual(rows["m_csa:577"]["override_pdb_id"], "1AWB")
+        self.assertEqual(
+            rows["m_csa:577"]["residue_position_source"],
+            "selected_position_remap",
+        )
+        self.assertEqual(len(rows["m_csa:577"]["residue_positions"]), 2)
+        self.assertEqual(rows["m_csa:592"]["apply_status"], "skipped_by_policy")
+        self.assertEqual(plan["metadata"]["countable_label_candidate_count"], 0)
 
     def test_holo_preference_no_swap_when_already_holo(self) -> None:
         scan = {

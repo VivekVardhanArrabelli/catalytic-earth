@@ -368,6 +368,90 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(features["entries"][0], reused_row)
         self.assertEqual(fetched, ["1ABC"])
 
+    def test_selected_pdb_override_recomputes_reused_row_with_provenance(self) -> None:
+        graph = {
+            "nodes": [
+                {
+                    "id": "m_csa:1:residue:1",
+                    "type": "catalytic_residue",
+                    "roles": ["acid"],
+                    "structure_positions": [
+                        {"pdb_id": "1ABC", "chain_name": "A", "code": "ASP", "resid": 7}
+                    ],
+                },
+                {
+                    "id": "m_csa:1:residue:2",
+                    "type": "catalytic_residue",
+                    "roles": ["nucleophile"],
+                    "structure_positions": [
+                        {"pdb_id": "1ABC", "chain_name": "A", "code": "CYS", "resid": 70}
+                    ],
+                },
+            ],
+            "edges": [],
+        }
+        reused_row = {
+            "entry_id": "m_csa:1",
+            "status": "ok",
+            "pdb_id": "1ABC",
+            "pairwise_distances_angstrom": [{"distance": 1.0}],
+            "ligand_context": {"proximal_ligands": []},
+            "pocket_context": {"nearby_residue_count": 0},
+        }
+        override_plan = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:1",
+                    "apply_status": "ready_to_apply",
+                    "current_selected_pdb_id": "1ABC",
+                    "override_pdb_id": "2XYZ",
+                    "residue_position_source": "selected_position_remap",
+                    "residue_position_remap_basis": "same_chain_residue_id",
+                    "source_audit": "audit.json",
+                    "residue_positions": [
+                        {
+                            "residue_node_id": "m_csa:1:residue:1",
+                            "chain_name": "A",
+                            "code": "ASP",
+                            "resid": 7,
+                            "roles": ["acid"],
+                        },
+                        {
+                            "residue_node_id": "m_csa:1:residue:2",
+                            "chain_name": "A",
+                            "code": "CYS",
+                            "resid": 70,
+                            "roles": ["nucleophile"],
+                        },
+                    ],
+                }
+            ]
+        }
+        fetched: list[str] = []
+
+        def fetcher(pdb_id: str) -> str:
+            fetched.append(pdb_id)
+            return SAMPLE_CIF
+
+        features = build_geometry_features(
+            graph,
+            max_entries=1,
+            cif_fetcher=fetcher,
+            reuse_features={"entries": [reused_row]},
+            selected_pdb_overrides=override_plan,
+        )
+
+        entry = features["entries"][0]
+        self.assertEqual(features["metadata"]["reused_entry_count"], 0)
+        self.assertEqual(features["metadata"]["selected_pdb_override_applied_count"], 1)
+        self.assertEqual(entry["pdb_id"], "2XYZ")
+        self.assertEqual(fetched, ["2XYZ"])
+        self.assertEqual(
+            entry["structure_selection_override"]["residue_position_source"],
+            "selected_position_remap",
+        )
+        self.assertEqual(entry["resolved_residue_count"], 2)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -58,18 +58,19 @@ sequence, representation, review, and full label-factory gates pass.
 
 Priority blockers:
 
-- use the 12-row ESM-2 learned-vs-heuristic disagreement sample to rank
-  pilot-review priority and decide which candidates need representation repair;
+- use the 12-row ESM-2 learned-vs-heuristic disagreement sample and the
+  review-only pilot priority artifact to drive pilot review decisions and
+  representation repair;
 - source explicit catalytic or active-site residue evidence for the 10
   active-site-feature gap rows;
 - complete real near-duplicate or UniRef-style sequence searches for the 28
   rows that still require sequence search;
-- rank the 30 candidates and select 5-10 pilot candidates with explicit
-  active-site evidence, specific reaction evidence, clean sequence holdout
-  status, clean structure mapping, non-collapsed retrieval/representation
-  behavior, and no broad-EC ambiguity;
-- export review decisions for those pilot candidates before any countable
-  import attempt.
+- advance the 10 selected pilot-priority candidates with explicit active-site
+  evidence, specific reaction evidence, clean sequence holdout status, clean
+  structure mapping, non-collapsed retrieval/representation behavior, and no
+  broad-EC ambiguity;
+- fill the no-decision review packets for those pilot candidates only after
+  evidence assembly, and before any countable import attempt.
 - The active-site evidence pass now samples all 25 ready candidates from
   UniProtKB feature records. It finds active-site features for 15 candidates,
   leaves 10 candidates as active-site-feature gaps, and keeps all rows
@@ -140,7 +141,7 @@ Priority blockers:
   tasks, 18 require near-duplicate sequence search, and 2 stay sequence
   holdouts. Its dominant next-action fraction is 0.6000 and dominant lane
   fraction is 0.1667, so the queue has not collapsed to one action or chemistry
-  lane. The external transfer gate passes 59/59 review-only checks and remains
+  lane. The external transfer gate passes 60/60 review-only checks and remains
   not ready for label import.
 - The learned representation backend path now has a computed 12-row ESM-2
   sample in `artifacts/v3_external_source_representation_backend_sample_1025.json`
@@ -159,6 +160,27 @@ Priority blockers:
   lineage check. A matrix built from a stale or mismatched manifest fails with
   `external_transfer_blocker_matrix_candidate_lineage_mismatch` instead of
   passing because high-level candidate counts happen to match.
+- The external transfer gate now performs its own candidate-lineage check across
+  high-fan-in external artifacts. Evidence plans, review exports, sequence
+  controls, active-site sourcing packets, representation samples, and blocker
+  matrices fail the gate if they carry accessions outside the candidate manifest
+  or claim full 30-row coverage while silently dropping manifest rows. The
+  current lineage check also includes the pilot-priority and no-decision pilot
+  review export artifacts.
+- `artifacts/v3_external_source_pilot_candidate_priority_1025.json` ranks the
+  30 external candidates for a bounded review pilot. It selects 10
+  non-countable candidates across the external lanes, defers 5 exact-holdout or
+  near-duplicate rows, and records `external_pilot_candidate_ranking` as the
+  blocker removed. Its leakage policy explicitly excludes mechanism text,
+  EC/Rhea ids, source labels, and target labels from priority scoring. The
+  worklist is review context only: selected rows still require active-site
+  evidence, reaction/mechanism review, complete
+  near-duplicate sequence search, leakage-safe representation controls, review
+  decisions, and full label-factory gates before any import attempt.
+- `artifacts/v3_external_source_pilot_review_decision_export_1025.json` exports
+  those 10 selected rows as no-decision review packets. It records 0 completed
+  decisions, 0 countable candidates, and `ready_for_label_import=false`; the
+  artifact removes only the review-packet scaffolding blocker.
 
 ## Artifacts
 
@@ -515,6 +537,17 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-transfer-bloc
   --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
   --out artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-candidate-priority \
+  --transfer-blocker-matrix artifacts/v3_external_source_transfer_blocker_matrix_1025.json \
+  --max-candidates 10 \
+  --max-per-lane 2 \
+  --out artifacts/v3_external_source_pilot_candidate_priority_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-review-decision-export \
+  --pilot-candidate-priority artifacts/v3_external_source_pilot_candidate_priority_1025.json \
+  --max-rows 10 \
+  --out artifacts/v3_external_source_pilot_review_decision_export_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
   --labels data/registries/curated_mechanism_labels.json \
   --review artifacts/v3_external_source_evidence_request_export_1025.json \
@@ -573,6 +606,8 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --active-site-sourcing-resolution-audit artifacts/v3_external_source_active_site_sourcing_resolution_audit_1025.json \
   --transfer-blocker-matrix artifacts/v3_external_source_transfer_blocker_matrix_1025.json \
   --transfer-blocker-matrix-audit artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json \
+  --pilot-candidate-priority artifacts/v3_external_source_pilot_candidate_priority_1025.json \
+  --pilot-review-decision-export artifacts/v3_external_source_pilot_review_decision_export_1025.json \
   --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
   --binding-context-repair-plan-audit artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json \
   --binding-context-mapping-sample artifacts/v3_external_source_binding_context_mapping_sample_1025.json \

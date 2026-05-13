@@ -49,6 +49,7 @@ from .labels import (
     build_explicit_alternate_residue_position_requests,
     build_provisional_review_decision_batch,
     build_reaction_substrate_mismatch_review_export,
+    build_selected_pdb_override_plan,
     check_label_batch_acceptance,
     check_label_factory_gates,
     check_label_preview_promotion_readiness,
@@ -123,6 +124,8 @@ from .transfer_scope import (
     build_external_source_evidence_request_export,
     build_external_source_heuristic_control_queue,
     build_external_source_heuristic_control_scores,
+    build_external_source_pilot_candidate_priority,
+    build_external_source_pilot_review_decision_export,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -1540,6 +1543,39 @@ def cmd_audit_external_source_transfer_blocker_matrix(
     return 0
 
 
+def cmd_build_external_source_pilot_candidate_priority(args: argparse.Namespace) -> int:
+    with Path(args.transfer_blocker_matrix).open("r", encoding="utf-8") as handle:
+        transfer_blocker_matrix = json.load(handle)
+    priority = build_external_source_pilot_candidate_priority(
+        transfer_blocker_matrix,
+        max_candidates=args.max_candidates,
+        max_per_lane=args.max_per_lane,
+    )
+    write_json(Path(args.out), priority)
+    print(
+        "Wrote external source pilot candidate priority to "
+        f"{args.out} ({priority['metadata']['selected_candidate_count']} selected)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_review_decision_export(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.pilot_candidate_priority).open("r", encoding="utf-8") as handle:
+        pilot_candidate_priority = json.load(handle)
+    export = build_external_source_pilot_review_decision_export(
+        pilot_candidate_priority=pilot_candidate_priority,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), export)
+    print(
+        "Wrote external source pilot review-decision export to "
+        f"{args.out} ({export['metadata']['candidate_count']} review items)"
+    )
+    return 0
+
+
 def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
     with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
         candidate_manifest = json.load(handle)
@@ -1842,6 +1878,18 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             transfer_blocker_matrix_audit = json.load(handle)
+    pilot_candidate_priority = None
+    if args.pilot_candidate_priority:
+        with Path(args.pilot_candidate_priority).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            pilot_candidate_priority = json.load(handle)
+    pilot_review_decision_export = None
+    if args.pilot_review_decision_export:
+        with Path(args.pilot_review_decision_export).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            pilot_review_decision_export = json.load(handle)
     binding_context_repair_plan = None
     if args.binding_context_repair_plan:
         with Path(args.binding_context_repair_plan).open(
@@ -1923,6 +1971,8 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         active_site_sourcing_resolution_audit=active_site_sourcing_resolution_audit,
         transfer_blocker_matrix=transfer_blocker_matrix,
         transfer_blocker_matrix_audit=transfer_blocker_matrix_audit,
+        pilot_candidate_priority=pilot_candidate_priority,
+        pilot_review_decision_export=pilot_review_decision_export,
         binding_context_repair_plan=binding_context_repair_plan,
         binding_context_repair_plan_audit=binding_context_repair_plan_audit,
         binding_context_mapping_sample=binding_context_mapping_sample,
@@ -2058,6 +2108,9 @@ def cmd_build_geometry_features(args: argparse.Namespace) -> int:
         out_path=Path(args.out),
         max_entries=args.max_entries,
         reuse_existing_path=Path(args.reuse_existing) if args.reuse_existing else None,
+        selected_pdb_overrides_path=(
+            Path(args.selected_pdb_overrides) if args.selected_pdb_overrides else None
+        ),
     )
     print(
         "Wrote geometry features to "
@@ -3030,6 +3083,32 @@ def cmd_audit_structure_selection_holo_preference(
         f"{meta['swap_recommended_count']} swap recommendations, "
         f"{meta['already_holo_entry_count']} already holo, "
         f"{meta['no_holo_alternate_entry_count']} no holo alternate)"
+    )
+    return 0
+
+
+def cmd_build_selected_pdb_overrides(args: argparse.Namespace) -> int:
+    with Path(args.holo_preference_audit).open("r", encoding="utf-8") as handle:
+        holo_preference_audit = json.load(handle)
+    with Path(args.remediation).open("r", encoding="utf-8") as handle:
+        remediation = json.load(handle)
+    entry_ids = _split_csv(args.entry_ids)
+    skip_entry_ids = _split_csv(args.skip_entry_ids)
+    plan = build_selected_pdb_override_plan(
+        holo_preference_audit,
+        remediation,
+        entry_ids=entry_ids,
+        skip_entry_ids=skip_entry_ids,
+        source_audit=args.holo_preference_audit,
+        source_remediation=args.remediation,
+    )
+    write_json(Path(args.out), plan)
+    meta = plan["metadata"]
+    print(
+        "Wrote selected-PDB override plan to "
+        f"{args.out} ({meta['ready_to_apply_count']} ready, "
+        f"{meta['skipped_entry_count']} skipped, "
+        f"{meta['blocked_entry_count']} blocked)"
     )
     return 0
 
@@ -4853,6 +4932,41 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_transfer_blocker_matrix
     )
 
+    external_pilot_priority = subparsers.add_parser(
+        "build-external-source-pilot-candidate-priority",
+        help="rank review-only external candidates for a focused pilot worklist",
+    )
+    external_pilot_priority.add_argument(
+        "--transfer-blocker-matrix",
+        default="artifacts/v3_external_source_transfer_blocker_matrix.json",
+    )
+    external_pilot_priority.add_argument("--max-candidates", type=int, default=10)
+    external_pilot_priority.add_argument("--max-per-lane", type=int, default=2)
+    external_pilot_priority.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_pilot_candidate_priority.json",
+    )
+    external_pilot_priority.set_defaults(
+        func=cmd_build_external_source_pilot_candidate_priority
+    )
+
+    external_pilot_review_export = subparsers.add_parser(
+        "build-external-source-pilot-review-decision-export",
+        help="export no-decision review packets for selected external pilot rows",
+    )
+    external_pilot_review_export.add_argument(
+        "--pilot-candidate-priority",
+        default="artifacts/v3_external_source_pilot_candidate_priority.json",
+    )
+    external_pilot_review_export.add_argument("--max-rows", type=int, default=10)
+    external_pilot_review_export.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_pilot_review_decision_export.json",
+    )
+    external_pilot_review_export.set_defaults(
+        func=cmd_build_external_source_pilot_review_decision_export
+    )
+
     external_transfer_gate = subparsers.add_parser(
         "check-external-source-transfer-gates",
         help="gate review-only external-source transfer artifacts before import work",
@@ -5066,6 +5180,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     external_transfer_gate.add_argument(
+        "--pilot-candidate-priority",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--pilot-review-decision-export",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
         "--binding-context-repair-plan",
         default=None,
     )
@@ -5187,6 +5309,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--reuse-existing",
         default=None,
         help="reuse matching entry rows from an existing geometry artifact",
+    )
+    geometry.add_argument(
+        "--selected-pdb-overrides",
+        default=None,
+        help="apply a selected-PDB override plan with explicit residue positions",
     )
     geometry.add_argument("--out", default="artifacts/v3_geometry_features.json")
     geometry.set_defaults(func=cmd_build_geometry_features)
@@ -6034,6 +6161,34 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_structure_selection_holo_preference_audit.json",
     )
     holo_preference.set_defaults(func=cmd_audit_structure_selection_holo_preference)
+
+    selected_pdb_overrides = subparsers.add_parser(
+        "build-selected-pdb-overrides",
+        help="build a provenance-bearing selected-PDB override plan",
+    )
+    selected_pdb_overrides.add_argument(
+        "--holo-preference-audit",
+        default="artifacts/v3_structure_selection_holo_preference_audit_700.json",
+    )
+    selected_pdb_overrides.add_argument(
+        "--remediation",
+        default="artifacts/v3_review_debt_remediation_700_all.json",
+    )
+    selected_pdb_overrides.add_argument(
+        "--entry-ids",
+        default=None,
+        help="comma-separated entry ids to apply from the holo-preference audit",
+    )
+    selected_pdb_overrides.add_argument(
+        "--skip-entry-ids",
+        default=None,
+        help="comma-separated entry ids to preserve as skipped policy cases",
+    )
+    selected_pdb_overrides.add_argument(
+        "--out",
+        default="artifacts/v3_selected_pdb_override_plan.json",
+    )
+    selected_pdb_overrides.set_defaults(func=cmd_build_selected_pdb_overrides)
 
     structure_selection = subparsers.add_parser(
         "summarize-review-debt-structure-selection-candidates",

@@ -308,6 +308,16 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_transfer_blocker_matrix_audit_1025.json"
         )
+        pilot_priority = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_candidate_priority_1025.json"
+        )
+        pilot_review_export = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_review_decision_export_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -1094,6 +1104,115 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             ],
             3,
         )
+        self.assertEqual(
+            pilot_priority["metadata"]["method"],
+            "external_source_pilot_candidate_priority",
+        )
+        self.assertEqual(
+            pilot_priority["metadata"]["blocker_removed"],
+            "external_pilot_candidate_ranking",
+        )
+        self.assertFalse(
+            pilot_priority["metadata"]["leakage_policy"][
+                "text_or_label_fields_used_for_priority"
+            ]
+        )
+        self.assertIn(
+            "representation_near_duplicate_alert",
+            pilot_priority["metadata"]["predictive_feature_sources"],
+        )
+        self.assertFalse(pilot_priority["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            pilot_priority["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(pilot_priority["metadata"]["candidate_count"], 30)
+        self.assertEqual(pilot_priority["metadata"]["selected_candidate_count"], 10)
+        self.assertEqual(pilot_priority["metadata"]["eligible_candidate_count"], 25)
+        self.assertEqual(
+            pilot_priority["metadata"]["holdout_or_near_duplicate_deferred_count"],
+            5,
+        )
+        self.assertEqual(
+            pilot_priority["metadata"]["selected_accessions"],
+            [
+                "O14756",
+                "P06746",
+                "C9JRZ8",
+                "P55263",
+                "P34949",
+                "Q9BXD5",
+                "Q6NSJ0",
+                "O60568",
+                "O95050",
+                "P51580",
+            ],
+        )
+        self.assertTrue(
+            all(row["eligible_for_review_pilot"] for row in pilot_priority["rows"])
+        )
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in pilot_priority["rows"])
+        )
+        self.assertTrue(
+            all(not row["ready_for_label_import"] for row in pilot_priority["rows"])
+        )
+        self.assertTrue(
+            all(not row["pilot_priority_blockers"] for row in pilot_priority["rows"])
+        )
+        self.assertTrue(
+            all(
+                not row["leakage_provenance"][
+                    "text_or_label_fields_used_for_priority"
+                ]
+                for row in pilot_priority["rows"]
+            )
+        )
+        self.assertNotIn(
+            "exact_sequence_holdout",
+            {
+                blocker
+                for row in pilot_priority["rows"]
+                for blocker in row["blockers"]
+            },
+        )
+        self.assertLessEqual(
+            max(pilot_priority["metadata"]["selected_lane_counts"].values()),
+            2,
+        )
+        self.assertEqual(
+            pilot_review_export["metadata"]["method"],
+            "external_source_pilot_review_decision_export",
+        )
+        self.assertEqual(
+            pilot_review_export["metadata"]["blocker_removed"],
+            "external_pilot_review_decision_export_scaffold",
+        )
+        self.assertFalse(pilot_review_export["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            pilot_review_export["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(pilot_review_export["metadata"]["candidate_count"], 10)
+        self.assertEqual(pilot_review_export["metadata"]["completed_decision_count"], 0)
+        self.assertEqual(
+            pilot_review_export["metadata"]["decision_status_counts"],
+            {"no_decision": 10},
+        )
+        self.assertEqual(
+            [row["accession"] for row in pilot_review_export["review_items"]],
+            pilot_priority["metadata"]["selected_accessions"],
+        )
+        self.assertTrue(
+            all(
+                row["decision"]["decision_status"] == "no_decision"
+                for row in pilot_review_export["review_items"]
+            )
+        )
+        self.assertTrue(
+            all(
+                not row["decision"]["ready_for_label_import"]
+                for row in pilot_review_export["review_items"]
+            )
+        )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
             external_import_safety["metadata"]["total_new_countable_label_count"], 0
@@ -1105,8 +1224,24 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 59)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 59)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 60)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 60)
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "external_transfer_candidate_lineage_consistent"
+            ]
+        )
+        self.assertTrue(
+            external_transfer_gate["metadata"]["artifact_lineage"]["guardrail_clean"]
+        )
+        self.assertIn(
+            "pilot_candidate_priority",
+            external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
+        )
+        self.assertIn(
+            "pilot_review_decision_export",
+            external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
+        )
         self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])
         self.assertTrue(
             external_transfer_gate["metadata"][

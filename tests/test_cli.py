@@ -112,6 +112,99 @@ class CliTests(unittest.TestCase):
             self.assertEqual(clusters["metadata"]["duplicate_cluster_count"], 1)
             self.assertEqual(clusters["duplicate_clusters"][0]["entry_count"], 2)
 
+    def test_external_pilot_priority_cli_commands(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            matrix = root / "matrix.json"
+            priority = root / "priority.json"
+            review_export = root / "review_export.json"
+            matrix.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_transfer_blocker_matrix"
+                        },
+                        "rows": [
+                            {
+                                "accession": "PGOOD",
+                                "blockers": [
+                                    "complete_near_duplicate_search_required"
+                                ],
+                                "lane_id": "external_source:lane_a",
+                                "representation_backend": {
+                                    "sample_backend_status": (
+                                        "learned_representation_sample_complete"
+                                    ),
+                                    "sample_near_duplicate_alert": False,
+                                },
+                                "sequence_search": {
+                                    "alignment_status": (
+                                        "alignment_no_near_duplicate_signal"
+                                    )
+                                },
+                            },
+                            {
+                                "accession": "PHOLD",
+                                "blockers": ["exact_sequence_holdout"],
+                                "lane_id": "external_source:lane_b",
+                            },
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-external-source-pilot-candidate-priority",
+                    "--transfer-blocker-matrix",
+                    str(matrix),
+                    "--out",
+                    str(priority),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-external-source-pilot-review-decision-export",
+                    "--pilot-candidate-priority",
+                    str(priority),
+                    "--out",
+                    str(review_export),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+            priority_payload = json.loads(priority.read_text(encoding="utf-8"))
+            review_payload = json.loads(review_export.read_text(encoding="utf-8"))
+            self.assertEqual(
+                priority_payload["metadata"]["selected_accessions"], ["PGOOD"]
+            )
+            self.assertFalse(
+                priority_payload["metadata"]["leakage_policy"][
+                    "text_or_label_fields_used_for_priority"
+                ]
+            )
+            self.assertEqual(review_payload["metadata"]["candidate_count"], 1)
+            self.assertEqual(
+                review_payload["metadata"]["decision_status_counts"],
+                {"no_decision": 1},
+            )
+
     def test_build_geometry_features_reuse_existing_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
