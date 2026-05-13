@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 58
-- Measured elapsed time: 2257.1 minutes (37.62 hours)
+- Entries: 59
+- Measured elapsed time: 2308.3 minutes (38.47 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 2179.0 measured minutes (36.32 hours)
+- post-v2: 2230.1 measured minutes (37.17 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 571
-- Evidence references logged: 481
+- Artifact references logged: 585
+- Evidence references logged: 492
 
 ## Recent Entries
-
-### 2026-05-12T20:14:45.382801+00:00 - post-v2
-
-- Task: Accept gated 750 label batch
-- Time mode: measured
-- Measured minutes: 19.9
-- Started: 2026-05-12T19:54:22Z
-- Ended: 2026-05-12T20:14:16Z
-- Artifacts: data/registries/curated_mechanism_labels.json, artifacts/v3_label_batch_acceptance_check_750.json, artifacts/v3_label_factory_gate_check_750.json, artifacts/v3_accepted_review_debt_deferral_audit_750.json, artifacts/v3_label_factory_batch_summary.json, artifacts/v3_geometry_label_eval_750.json, work/label_preview_750_notes.md
-- Evidence: 200 unit tests passed, validate passed, git diff --check passed, compileall passed, 20/20 label-factory gates passed, 637 countable labels, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 118 review-state rows explicitly deferred
-- Notes: Normal locked measured run. Seven clean 750 labels accepted; 118 review-state rows remain non-countable.
 
 ### 2026-05-12T21:46:07.698000+00:00 - post-v2
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 239 unit tests passed, validate passed, git diff check passed, compileall passed, 22/22 external transfer gates, 25 active-site evidence rows sampled, 15 active-site-supported candidates, 4/4 AlphaFold controls mapped, metal-hydrolase top1 collapse recorded, 0 countable external labels
 - Notes: Documentation checked and updated during wrap-up; 12 repeated full-suite passes and final verification were clean.
 
+### 2026-05-13T06:58:30.872167+00:00 - post-v2
+
+- Task: Repair external-source transfer controls
+- Time mode: measured
+- Measured minutes: 51.133
+- Started: 2026-05-13T06:06:38Z
+- Ended: 2026-05-13T06:57:46Z
+- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, artifacts/v3_external_source_structure_mapping_sample_1025.json, artifacts/v3_external_source_heuristic_control_scores_1025.json, artifacts/v3_external_source_control_repair_plan_1025.json, artifacts/v3_external_source_representation_control_manifest_1025.json, artifacts/v3_external_source_binding_context_repair_plan_1025.json, artifacts/v3_external_source_binding_context_mapping_sample_1025.json, artifacts/v3_external_source_sequence_holdout_audit_1025.json, artifacts/v3_external_source_reaction_evidence_sample_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, docs/external_source_transfer.md, work/external_source_control_repair_1025_notes.md, work/handoff.md
+- Evidence: 247 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 33/33 external transfer gates, 12/12 AlphaFold controls mapped, 25 review-only repair rows, 64 Rhea reaction rows, 2 exact-reference holdouts, 0 countable external labels
+- Notes: Documentation checked and updated during wrap-up; all external artifacts remain review-only and ready_for_label_import=false.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -174,6 +174,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T03:55:19.973294+00:00: The 1,025 preview is guardrail-clean but non-promotable; 10k progress now depends on external-source transfer rather than another M-CSA-only tranche.
 - 2026-05-13T04:55:52.608228+00:00: Next bounded work should use the active-site evidence queue for external candidates while keeping all external rows non-countable.
 - 2026-05-13T05:57:24.579339+00:00: External transfer remains review-only; repair active-site feature gaps and heuristic metal-hydrolase collapse before any label import.
+- 2026-05-13T06:58:30.872167+00:00: External transfer remains non-countable; next bounded work should source active-site evidence for 10 gaps, disambiguate 3 broad-EC rows, and prototype representation controls for 12 mapped controls.
 
 ## Scope Adjustments
 
@@ -233,3 +234,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T03:55:19.973294+00:00: M-CSA-only scaling is source-limited at 1,003 observed records; next work should build external-source transfer with all imported candidates non-countable until full factory gates pass.
 - 2026-05-13T04:55:52.608228+00:00: M-CSA-only scaling remains stopped at 1,003 observed source records; external-source transfer is review-only evidence collection until active-site evidence OOD sequence holdouts heuristic controls decisions and factory gates pass.
 - 2026-05-13T05:57:24.579339+00:00: M-CSA-only count growth remains stopped at 1,003 observed records; post-M-CSA scaling now depends on active-site-supported external controls plus representation or ontology repairs.
+- 2026-05-13T06:58:30.872167+00:00: M-CSA-only count growth remains stopped at 1,003 observed records; post-M-CSA scaling still depends on review-only external-source repair and representation controls before label import.

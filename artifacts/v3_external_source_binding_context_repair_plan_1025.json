@@ -1,0 +1,1458 @@
+{
+  "blockers": [
+    "binding_context_not_mapped_to_structure",
+    "active_site_positions_still_missing",
+    "external_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "metadata": {
+    "binding_position_count": 70,
+    "candidate_count": 10,
+    "countable_label_candidate_count": 0,
+    "deferred_binding_context_candidate_count": 3,
+    "lane_counts": {
+      "external_source:glycan_chemistry": 2,
+      "external_source:oxidoreductase_long_tail": 2,
+      "external_source:transferase_methyl": 4,
+      "external_source:transferase_phosphoryl": 2
+    },
+    "max_rows": 100,
+    "method": "external_source_binding_context_repair_plan",
+    "ready_binding_context_candidate_count": 7,
+    "ready_for_label_import": false,
+    "repair_status_counts": {
+      "defer_binding_context_missing": 3,
+      "ready_for_binding_context_mapping": 7
+    },
+    "review_only_rule": "binding context can prioritize active-site repair but cannot stand in for catalytic active-site evidence",
+    "source_active_site_evidence_method": "external_source_active_site_evidence_sample",
+    "source_control_repair_method": "external_source_control_repair_plan"
+  },
+  "rows": [
+    {
+      "accession": "O60568",
+      "alphafold_ids_sample": [
+        "O60568"
+      ],
+      "binding_position_count": 13,
+      "binding_positions": [
+        {
+          "begin": 44,
+          "description": "",
+          "end": 46,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:58223",
+          "ligand_name": "UDP",
+          "ligand_note": null
+        },
+        {
+          "begin": 112,
+          "description": "",
+          "end": 114,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:58223",
+          "ligand_name": "UDP",
+          "ligand_note": null
+        },
+        {
+          "begin": 112,
+          "description": "",
+          "end": 112,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:29035",
+          "ligand_name": "Mn(2+)",
+          "ligand_note": null
+        },
+        {
+          "begin": 115,
+          "description": "",
+          "end": 115,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:29035",
+          "ligand_name": "Mn(2+)",
+          "ligand_note": null
+        },
+        {
+          "begin": 253,
+          "description": "",
+          "end": 253,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:29035",
+          "ligand_name": "Mn(2+)",
+          "ligand_note": null
+        },
+        {
+          "begin": 256,
+          "description": "",
+          "end": 259,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:58223",
+          "ligand_name": "UDP",
+          "ligand_note": null
+        },
+        {
+          "begin": 599,
+          "description": "",
+          "end": 599,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:16810",
+          "ligand_name": "2-oxoglutarate",
+          "ligand_note": null
+        },
+        {
+          "begin": 656,
+          "description": "",
+          "end": 656,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:16810",
+          "ligand_name": "2-oxoglutarate",
+          "ligand_note": null
+        },
+        {
+          "begin": 667,
+          "description": "",
+          "end": 667,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "PRU00805",
+              "source": "PROSITE-ProRule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "ligand_note": null
+        },
+        {
+          "begin": 669,
+          "description": "",
+          "end": 669,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "PRU00805",
+              "source": "PROSITE-ProRule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "ligand_note": null
+        },
+        {
+          "begin": 676,
+          "description": "",
+          "end": 676,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:16810",
+          "ligand_name": "2-oxoglutarate",
+          "ligand_note": null
+        },
+        {
+          "begin": 719,
+          "description": "",
+          "end": 719,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "PRU00805",
+              "source": "PROSITE-ProRule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "ligand_note": null
+        },
+        {
+          "begin": 729,
+          "description": "",
+          "end": 729,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "30089812",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "6FXY",
+              "source": "PDB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:16810",
+          "ligand_name": "2-oxoglutarate",
+          "ligand_note": null
+        }
+      ],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_not_yet_mapped_to_structure"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:glycan_chemistry",
+      "pdb_ids_sample": [
+        "6FXK",
+        "6FXM",
+        "6FXR",
+        "6FXT",
+        "6FXX",
+        "6FXY",
+        "6TE3",
+        "6TEC",
+        "6TES",
+        "6TEU"
+      ],
+      "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "ready_for_label_import": false,
+      "repair_lane": "map_binding_site_context_then_source_catalytic_positions",
+      "repair_status": "ready_for_binding_context_mapping",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "glycan_chemistry",
+      "specific_ec_numbers": [
+        "1.14.11.4",
+        "2.4.1.50",
+        "2.4.1.66"
+      ]
+    },
+    {
+      "accession": "P29372",
+      "alphafold_ids_sample": [
+        "P29372"
+      ],
+      "binding_position_count": 0,
+      "binding_positions": [],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_missing"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:glycan_chemistry",
+      "pdb_ids_sample": [
+        "1BNK",
+        "1EWN",
+        "1F4R",
+        "1F6O",
+        "3QI5",
+        "3UBY",
+        "7XFH",
+        "7XFJ",
+        "7XFM"
+      ],
+      "protein_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+      "ready_for_label_import": false,
+      "repair_lane": "source_catalytic_positions_from_curated_literature",
+      "repair_status": "defer_binding_context_missing",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "glycan_chemistry",
+      "specific_ec_numbers": [
+        "3.2.2.21"
+      ]
+    },
+    {
+      "accession": "P27144",
+      "alphafold_ids_sample": [
+        "P27144"
+      ],
+      "binding_position_count": 10,
+      "binding_positions": [
+        {
+          "begin": 15,
+          "description": "",
+          "end": 20,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "Ref.17",
+              "source": "Reference"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:61557",
+          "ligand_name": "a ribonucleoside 5'-triphosphate",
+          "ligand_note": null
+        },
+        {
+          "begin": 36,
+          "description": "",
+          "end": 36,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "Ref.17",
+              "source": "Reference"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456215",
+          "ligand_name": "AMP",
+          "ligand_note": null
+        },
+        {
+          "begin": 41,
+          "description": "",
+          "end": 41,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456215",
+          "ligand_name": "AMP",
+          "ligand_note": null
+        },
+        {
+          "begin": 62,
+          "description": "",
+          "end": 64,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "Ref.17",
+              "source": "Reference"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456215",
+          "ligand_name": "AMP",
+          "ligand_note": null
+        },
+        {
+          "begin": 89,
+          "description": "",
+          "end": 92,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "Ref.17",
+              "source": "Reference"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456215",
+          "ligand_name": "AMP",
+          "ligand_note": null
+        },
+        {
+          "begin": 96,
+          "description": "",
+          "end": 96,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456215",
+          "ligand_name": "AMP",
+          "ligand_note": null
+        },
+        {
+          "begin": 126,
+          "description": "",
+          "end": 126,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "Ref.17",
+              "source": "Reference"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:61557",
+          "ligand_name": "a ribonucleoside 5'-triphosphate",
+          "ligand_note": null
+        },
+        {
+          "begin": 135,
+          "description": "",
+          "end": 136,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:61557",
+          "ligand_name": "a ribonucleoside 5'-triphosphate",
+          "ligand_note": null
+        },
+        {
+          "begin": 170,
+          "description": "",
+          "end": 170,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "Ref.17",
+              "source": "Reference"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456215",
+          "ligand_name": "AMP",
+          "ligand_note": null
+        },
+        {
+          "begin": 199,
+          "description": "",
+          "end": 199,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03170",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "Ref.17",
+              "source": "Reference"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:61557",
+          "ligand_name": "a ribonucleoside 5'-triphosphate",
+          "ligand_note": null
+        }
+      ],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_not_yet_mapped_to_structure"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:transferase_phosphoryl",
+      "pdb_ids_sample": [
+        "2AR7",
+        "2BBW",
+        "3NDP"
+      ],
+      "protein_name": "Adenylate kinase 4, mitochondrial (EC 2.7.4.4) (EC 2.7.4.6) (Adenylate kinase 3-like) (GTP:AMP phosphotransferase AK4)",
+      "ready_for_label_import": false,
+      "repair_lane": "map_binding_site_context_then_source_catalytic_positions",
+      "repair_status": "ready_for_binding_context_mapping",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.4.4",
+        "2.7.4.6"
+      ]
+    },
+    {
+      "accession": "A2RUC4",
+      "alphafold_ids_sample": [
+        "A2RUC4"
+      ],
+      "binding_position_count": 6,
+      "binding_positions": [
+        {
+          "begin": 106,
+          "description": "",
+          "end": 106,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "20972222",
+              "source": "PubMed"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:16810",
+          "ligand_name": "2-oxoglutarate",
+          "ligand_note": null
+        },
+        {
+          "begin": 160,
+          "description": "",
+          "end": 160,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "ligand_note": "catalytic"
+        },
+        {
+          "begin": 162,
+          "description": "",
+          "end": 162,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "ligand_note": "catalytic"
+        },
+        {
+          "begin": 166,
+          "description": "",
+          "end": 166,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "20972222",
+              "source": "PubMed"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:16810",
+          "ligand_name": "2-oxoglutarate",
+          "ligand_note": null
+        },
+        {
+          "begin": 175,
+          "description": "",
+          "end": 175,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "20972222",
+              "source": "PubMed"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:16810",
+          "ligand_name": "2-oxoglutarate",
+          "ligand_note": null
+        },
+        {
+          "begin": 235,
+          "description": "",
+          "end": 235,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:24875",
+          "ligand_name": "Fe cation",
+          "ligand_note": "catalytic"
+        }
+      ],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_not_yet_mapped_to_structure"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_ids_sample": [
+        "3AL5",
+        "3AL6"
+      ],
+      "protein_name": "tRNA wybutosine-synthesizing protein 5 (hTYW5) (tRNA yW-synthesizing protein 5) (EC 1.14.11.42) (tRNA(Phe) (7-(3-amino-3-carboxypropyl)wyosine(37)-C(2))-hydroxylase)",
+      "ready_for_label_import": false,
+      "repair_lane": "map_binding_site_context_then_source_catalytic_positions",
+      "repair_status": "ready_for_binding_context_mapping",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers": [
+        "1.14.11.42"
+      ]
+    },
+    {
+      "accession": "P51580",
+      "alphafold_ids_sample": [
+        "P51580"
+      ],
+      "binding_position_count": 6,
+      "binding_positions": [
+        {
+          "begin": 29,
+          "description": "",
+          "end": 40,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 40,
+          "description": "",
+          "end": 40,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": null,
+              "source": null
+            }
+          ],
+          "ligand_id": null,
+          "ligand_name": "substrate",
+          "ligand_note": null
+        },
+        {
+          "begin": 69,
+          "description": "",
+          "end": 69,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 90,
+          "description": "",
+          "end": 90,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 134,
+          "description": "",
+          "end": 135,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 152,
+          "description": "",
+          "end": 152,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        }
+      ],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_not_yet_mapped_to_structure"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids_sample": [
+        "2BZG",
+        "2H11"
+      ],
+      "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+      "ready_for_label_import": false,
+      "repair_lane": "map_binding_site_context_then_source_catalytic_positions",
+      "repair_status": "ready_for_binding_context_mapping",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "transferase_methyl",
+      "specific_ec_numbers": [
+        "2.1.1.67"
+      ]
+    },
+    {
+      "accession": "O95050",
+      "alphafold_ids_sample": [
+        "O95050"
+      ],
+      "binding_position_count": 8,
+      "binding_positions": [
+        {
+          "begin": 20,
+          "description": "",
+          "end": 20,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 25,
+          "description": "",
+          "end": 25,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 63,
+          "description": "",
+          "end": 63,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 69,
+          "description": "",
+          "end": 69,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 85,
+          "description": "",
+          "end": 87,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 90,
+          "description": "",
+          "end": 90,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 142,
+          "description": "",
+          "end": 143,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 163,
+          "description": "",
+          "end": 163,
+          "evidence": [],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        }
+      ],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_not_yet_mapped_to_structure"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids_sample": [
+        "2A14"
+      ],
+      "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+      "ready_for_label_import": false,
+      "repair_lane": "map_binding_site_context_then_source_catalytic_positions",
+      "repair_status": "ready_for_binding_context_mapping",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "transferase_methyl",
+      "specific_ec_numbers": [
+        "2.1.1.49",
+        "2.1.1.96"
+      ]
+    },
+    {
+      "accession": "Q9HBK9",
+      "alphafold_ids_sample": [
+        "Q9HBK9"
+      ],
+      "binding_position_count": 0,
+      "binding_positions": [],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_missing"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids_sample": [
+        "8XT7"
+      ],
+      "protein_name": "Arsenite methyltransferase (EC 2.1.1.137) (Methylarsonite methyltransferase) (S-adenosyl-L-methionine:arsenic(III) methyltransferase)",
+      "ready_for_label_import": false,
+      "repair_lane": "source_catalytic_positions_from_curated_literature",
+      "repair_status": "defer_binding_context_missing",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "transferase_methyl",
+      "specific_ec_numbers": [
+        "2.1.1.137"
+      ]
+    },
+    {
+      "accession": "A5PLL7",
+      "alphafold_ids_sample": [
+        "A5PLL7"
+      ],
+      "binding_position_count": 0,
+      "binding_positions": [],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_missing"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pdb_ids_sample": [],
+      "protein_name": "Plasmanylethanolamine desaturase 1 (EC 1.14.19.77) (Transmembrane protein 189)",
+      "ready_for_label_import": false,
+      "repair_lane": "source_catalytic_positions_from_curated_literature",
+      "repair_status": "defer_binding_context_missing",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers": [
+        "1.14.19.77"
+      ]
+    },
+    {
+      "accession": "P32189",
+      "alphafold_ids_sample": [
+        "P32189"
+      ],
+      "binding_position_count": 23,
+      "binding_positions": [
+        {
+          "begin": 20,
+          "description": "",
+          "end": 20,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "ligand_note": null
+        },
+        {
+          "begin": 20,
+          "description": "",
+          "end": 20,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "ligand_note": null
+        },
+        {
+          "begin": 20,
+          "description": "",
+          "end": 20,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "ligand_note": null
+        },
+        {
+          "begin": 21,
+          "description": "",
+          "end": 21,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "ligand_note": null
+        },
+        {
+          "begin": 22,
+          "description": "",
+          "end": 22,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "ligand_note": null
+        },
+        {
+          "begin": 24,
+          "description": "",
+          "end": 24,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "ligand_note": null
+        },
+        {
+          "begin": 94,
+          "description": "",
+          "end": 94,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "ligand_note": null
+        },
+        {
+          "begin": 94,
+          "description": "",
+          "end": 94,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "ligand_note": null
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "ligand_note": null
+        },
+        {
+          "begin": 95,
+          "description": "",
+          "end": 95,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "ligand_note": null
+        },
+        {
+          "begin": 148,
+          "description": "",
+          "end": 148,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "ligand_note": null
+        },
+        {
+          "begin": 148,
+          "description": "",
+          "end": 148,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "ligand_note": null
+        },
+        {
+          "begin": 252,
+          "description": "",
+          "end": 252,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:32966",
+          "ligand_name": "beta-D-fructose 1,6-bisphosphate",
+          "ligand_note": "allosteric inhibitor"
+        },
+        {
+          "begin": 265,
+          "description": "",
+          "end": 265,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "ligand_note": null
+        },
+        {
+          "begin": 265,
+          "description": "",
+          "end": 265,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:57597",
+          "ligand_name": "sn-glycerol 3-phosphate",
+          "ligand_note": null
+        },
+        {
+          "begin": 266,
+          "description": "",
+          "end": 266,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:17754",
+          "ligand_name": "glycerol",
+          "ligand_note": null
+        },
+        {
+          "begin": 287,
+          "description": "",
+          "end": 287,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "ligand_note": null
+        },
+        {
+          "begin": 287,
+          "description": "",
+          "end": 287,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "ligand_note": null
+        },
+        {
+          "begin": 332,
+          "description": "",
+          "end": 332,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "ligand_note": null
+        },
+        {
+          "begin": 332,
+          "description": "",
+          "end": 332,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "ligand_note": null
+        },
+        {
+          "begin": 433,
+          "description": "",
+          "end": 433,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "ligand_note": null
+        },
+        {
+          "begin": 433,
+          "description": "",
+          "end": 433,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:30616",
+          "ligand_name": "ATP",
+          "ligand_note": null
+        },
+        {
+          "begin": 437,
+          "description": "",
+          "end": 437,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6F3",
+              "source": "UniProtKB"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:456216",
+          "ligand_name": "ADP",
+          "ligand_note": null
+        }
+      ],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_not_yet_mapped_to_structure"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:transferase_phosphoryl",
+      "pdb_ids_sample": [],
+      "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+      "ready_for_label_import": false,
+      "repair_lane": "map_binding_site_context_then_source_catalytic_positions",
+      "repair_status": "ready_for_binding_context_mapping",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.30"
+      ]
+    },
+    {
+      "accession": "Q32P41",
+      "alphafold_ids_sample": [
+        "Q32P41"
+      ],
+      "binding_position_count": 4,
+      "binding_positions": [
+        {
+          "begin": 289,
+          "description": "",
+          "end": 289,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03152",
+              "source": "HAMAP-Rule"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 327,
+          "description": "",
+          "end": 328,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03152",
+              "source": "HAMAP-Rule"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 355,
+          "description": "",
+          "end": 356,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03152",
+              "source": "HAMAP-Rule"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        },
+        {
+          "begin": 387,
+          "description": "",
+          "end": 387,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_03152",
+              "source": "HAMAP-Rule"
+            }
+          ],
+          "ligand_id": "ChEBI:CHEBI:59789",
+          "ligand_name": "S-adenosyl-L-methionine",
+          "ligand_note": null
+        }
+      ],
+      "blockers": [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "binding_context_not_yet_mapped_to_structure"
+      ],
+      "countable_label_candidate": false,
+      "lane_id": "external_source:transferase_methyl",
+      "pdb_ids_sample": [],
+      "protein_name": "tRNA (guanine(37)-N(1))-methyltransferase (EC 2.1.1.228) (M1G-methyltransferase) (tRNA [GM37] methyltransferase) (tRNA methyltransferase 5 homolog)",
+      "ready_for_label_import": false,
+      "repair_lane": "map_binding_site_context_then_source_catalytic_positions",
+      "repair_status": "ready_for_binding_context_mapping",
+      "repair_type": "binding_context_for_active_site_gap",
+      "required_next_evidence": [
+        "map binding-site positions to candidate structures as context only",
+        "source explicit active-site or catalytic residue positions before scoring",
+        "keep binding-only evidence non-countable until full gates pass"
+      ],
+      "scope_signal": "transferase_methyl",
+      "specific_ec_numbers": [
+        "2.1.1.228"
+      ]
+    }
+  ]
+}

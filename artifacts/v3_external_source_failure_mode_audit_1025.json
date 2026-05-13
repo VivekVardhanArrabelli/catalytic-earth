@@ -25,17 +25,17 @@
     {
       "failure_mode": "heuristic_control_top1_fingerprint_collapse",
       "recommended_action": "treat external heuristic scores as a retrieval-control failure signal; do not create labels until ontology or representation controls separate the lane",
-      "row_count": 4
+      "row_count": 12
     },
     {
       "failure_mode": "heuristic_control_metal_hydrolase_collapse",
       "recommended_action": "treat external heuristic scores as a retrieval-control failure signal; do not create labels until ontology or representation controls separate the lane",
-      "row_count": 4
+      "row_count": 12
     },
     {
       "failure_mode": "heuristic_control_scope_top1_mismatch",
       "recommended_action": "treat external heuristic scores as a retrieval-control failure signal; do not create labels until ontology or representation controls separate the lane",
-      "row_count": 4
+      "row_count": 12
     }
   ],
   "warnings": [

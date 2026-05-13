@@ -35,22 +35,37 @@ import.
   leaves 10 candidates as active-site-feature gaps, and keeps all rows
   non-countable. A heuristic-control queue then identifies 12 candidates ready
   for structure mapping and defers 13 rows, including 3 broad-EC rows.
-- A bounded structure-mapping sample maps 4 external candidates onto current
-  AlphaFold model CIFs, resolves all requested active-site positions, and runs
-  the current geometry-retrieval heuristic as a control. The control is
-  intentionally not a label decision: all 4 scored candidates rank
-  `metal_dependent_hydrolase` top1, and the failure-mode audit records
+- The structure-mapping sample now covers all 12 heuristic-ready external
+  candidates on current AlphaFold model CIFs, resolves all requested active-site
+  positions, and runs the current geometry-retrieval heuristic as a control.
+  The control is intentionally not a label decision: 9/12 scored candidates
+  rank `metal_dependent_hydrolase` top1, 2 rank `heme_peroxidase_oxidase`, and
+  1 ranks `flavin_dehydrogenase_reductase`. The failure-mode audit records
   active-site feature gaps, broad-EC disambiguation needs, top1 fingerprint
-  collapse, metal-hydrolase collapse, and scope/top1 mismatch as review-only
-  blockers to label import. The external transfer gate passes 22/22 checks for
+  collapse, metal-hydrolase collapse, and 9 scope/top1 mismatches as review-only
+  blockers to label import.
+- The external control repair plan converts the current failures into 25
+  non-countable repair rows: 10 active-site feature gaps, 3 broad-EC
+  disambiguation rows, and 12 heuristic-control repair rows. The representation
+  control manifest exposes all 12 mapped controls for future learned or
+  structure-language scoring while keeping `embedding_status` as
+  `not_computed_interface_only`.
+- The binding-context repair path splits the 10 active-site feature gaps into
+  7 rows with binding context ready to map and 3 rows without binding context.
+  The binding-context mapping sample maps 7/7 ready rows with 0 fetch failures,
+  but binding positions remain repair context only and do not replace
+  catalytic active-site evidence.
+- The reaction-context pass now queries Rhea for all 30 external candidates,
+  finds 64 reaction records with 0 fetch failures, and keeps every row
+  `reaction_context_only` and non-countable because the Rhea rows have not been
+  converted into a reviewed decision artifact or full label-factory gate. Its
+  guardrail audit is clean and flags 16 broad-EC context rows across
+  `1.1.1.-`, `1.11.1.-`, `1.8.-.-`, `2.1.1.-`, `2.7.1.-`, `3.2.2.-`, and
+  `4.2.99.-`.
+- The sequence-holdout audit keeps `O15527` and `P42126` as exact M-CSA
+  reference-overlap holdouts and marks the remaining 28 candidates as requiring
+  near-duplicate search. The external transfer gate passes 33/33 checks for
   review-only evidence collection and remains not ready for label import.
-- The first bounded reaction-context pass queries Rhea for six external
-  candidates, finds 22 reaction records with 0 fetch failures, and keeps every
-  row `reaction_context_only` and non-countable because the Rhea rows have not
-  been converted into a reviewed decision artifact or full label-factory gate.
-  Its guardrail audit is clean and explicitly flags three broad or incomplete
-  EC queries (`1.1.1.-`,
-  `1.11.1.-`, and `1.8.-.-`) as review-only context.
 
 ## Artifacts
 
@@ -158,7 +173,7 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-structure-map
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-structure-mapping-sample \
   --structure-mapping-plan artifacts/v3_external_source_structure_mapping_plan_1025.json \
-  --max-candidates 4 \
+  --max-candidates 12 \
   --out artifacts/v3_external_source_structure_mapping_sample_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-structure-mapping-sample \
@@ -180,6 +195,64 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-failure-modes
   --heuristic-control-scores-audit artifacts/v3_external_source_heuristic_control_scores_audit_1025.json \
   --structure-mapping-sample-audit artifacts/v3_external_source_structure_mapping_sample_audit_1025.json \
   --out artifacts/v3_external_source_failure_mode_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-control-repair-plan \
+  --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --heuristic-control-scores-audit artifacts/v3_external_source_heuristic_control_scores_audit_1025.json \
+  --external-failure-mode-audit artifacts/v3_external_source_failure_mode_audit_1025.json \
+  --max-rows 100 \
+  --out artifacts/v3_external_source_control_repair_plan_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-control-repair-plan \
+  --control-repair-plan artifacts/v3_external_source_control_repair_plan_1025.json \
+  --external-failure-mode-audit artifacts/v3_external_source_failure_mode_audit_1025.json \
+  --out artifacts/v3_external_source_control_repair_plan_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-control-manifest \
+  --structure-mapping-sample artifacts/v3_external_source_structure_mapping_sample_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --control-repair-plan artifacts/v3_external_source_control_repair_plan_1025.json \
+  --max-rows 100 \
+  --out artifacts/v3_external_source_representation_control_manifest_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-control-manifest \
+  --representation-control-manifest artifacts/v3_external_source_representation_control_manifest_1025.json \
+  --out artifacts/v3_external_source_representation_control_manifest_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-binding-context-repair-plan \
+  --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
+  --control-repair-plan artifacts/v3_external_source_control_repair_plan_1025.json \
+  --max-rows 100 \
+  --out artifacts/v3_external_source_binding_context_repair_plan_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-binding-context-repair-plan \
+  --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
+  --out artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-binding-context-mapping-sample \
+  --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
+  --max-candidates 7 \
+  --out artifacts/v3_external_source_binding_context_mapping_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-binding-context-mapping-sample \
+  --binding-context-mapping-sample artifacts/v3_external_source_binding_context_mapping_sample_1025.json \
+  --out artifacts/v3_external_source_binding_context_mapping_sample_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-holdouts \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --max-rows 100 \
+  --out artifacts/v3_external_source_sequence_holdout_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-reaction-evidence-sample \
+  --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
+  --max-candidates 30 \
+  --max-reactions-per-ec 2 \
+  --out artifacts/v3_external_source_reaction_evidence_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-reaction-evidence-sample \
+  --reaction-evidence-sample artifacts/v3_external_source_reaction_evidence_sample_1025.json \
+  --out artifacts/v3_external_source_reaction_evidence_sample_audit_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
   --labels data/registries/curated_mechanism_labels.json \
@@ -209,17 +282,18 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
   --heuristic-control-scores-audit artifacts/v3_external_source_heuristic_control_scores_audit_1025.json \
   --external-failure-mode-audit artifacts/v3_external_source_failure_mode_audit_1025.json \
-  --out artifacts/v3_external_source_transfer_gate_check_1025.json
-
-PYTHONPATH=src python -m catalytic_earth.cli build-external-source-reaction-evidence-sample \
-  --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
-  --max-candidates 6 \
-  --max-reactions-per-ec 2 \
-  --out artifacts/v3_external_source_reaction_evidence_sample_1025.json
-
-PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-reaction-evidence-sample \
+  --external-control-repair-plan artifacts/v3_external_source_control_repair_plan_1025.json \
+  --external-control-repair-plan-audit artifacts/v3_external_source_control_repair_plan_audit_1025.json \
   --reaction-evidence-sample artifacts/v3_external_source_reaction_evidence_sample_1025.json \
-  --out artifacts/v3_external_source_reaction_evidence_sample_audit_1025.json
+  --reaction-evidence-sample-audit artifacts/v3_external_source_reaction_evidence_sample_audit_1025.json \
+  --representation-control-manifest artifacts/v3_external_source_representation_control_manifest_1025.json \
+  --representation-control-manifest-audit artifacts/v3_external_source_representation_control_manifest_audit_1025.json \
+  --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
+  --binding-context-repair-plan-audit artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json \
+  --binding-context-mapping-sample artifacts/v3_external_source_binding_context_mapping_sample_1025.json \
+  --binding-context-mapping-sample-audit artifacts/v3_external_source_binding_context_mapping_sample_audit_1025.json \
+  --sequence-holdout-audit artifacts/v3_external_source_sequence_holdout_audit_1025.json \
+  --out artifacts/v3_external_source_transfer_gate_check_1025.json
 ```
 
 ## Guardrails

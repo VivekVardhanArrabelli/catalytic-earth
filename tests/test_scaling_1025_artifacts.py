@@ -149,6 +149,47 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_failure_mode_audit_1025.json"
         )
+        control_repair_plan = _load_json(
+            ROOT / "artifacts" / "v3_external_source_control_repair_plan_1025.json"
+        )
+        control_repair_plan_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_control_repair_plan_audit_1025.json"
+        )
+        representation_control = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_control_manifest_1025.json"
+        )
+        representation_control_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_control_manifest_audit_1025.json"
+        )
+        binding_context_repair = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_binding_context_repair_plan_1025.json"
+        )
+        binding_context_repair_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_binding_context_repair_plan_audit_1025.json"
+        )
+        binding_context_mapping = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_binding_context_mapping_sample_1025.json"
+        )
+        binding_context_mapping_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_binding_context_mapping_sample_audit_1025.json"
+        )
+        sequence_holdout_audit = _load_json(
+            ROOT / "artifacts" / "v3_external_source_sequence_holdout_audit_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -421,9 +462,9 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             structure_mapping_sample["metadata"]["countable_label_candidate_count"],
             0,
         )
-        self.assertEqual(structure_mapping_sample["metadata"]["candidate_count"], 4)
+        self.assertEqual(structure_mapping_sample["metadata"]["candidate_count"], 12)
         self.assertEqual(
-            structure_mapping_sample["metadata"]["mapped_candidate_count"], 4
+            structure_mapping_sample["metadata"]["mapped_candidate_count"], 12
         )
         self.assertEqual(
             structure_mapping_sample["metadata"]["fetch_failure_count"], 0
@@ -442,10 +483,14 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             heuristic_control_scores["metadata"]["countable_label_candidate_count"],
             0,
         )
-        self.assertEqual(heuristic_control_scores["metadata"]["candidate_count"], 4)
+        self.assertEqual(heuristic_control_scores["metadata"]["candidate_count"], 12)
         self.assertEqual(
             heuristic_control_scores["metadata"]["top1_fingerprint_counts"],
-            {"metal_dependent_hydrolase": 4},
+            {
+                "flavin_dehydrogenase_reductase": 1,
+                "heme_peroxidase_oxidase": 2,
+                "metal_dependent_hydrolase": 9,
+            },
         )
         self.assertTrue(heuristic_control_scores_audit["metadata"]["guardrail_clean"])
         self.assertEqual(
@@ -462,6 +507,18 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "heuristic_control_scope_top1_mismatch",
             ],
         )
+        self.assertEqual(
+            heuristic_control_scores_audit["metadata"]["dominant_top1_fingerprint"],
+            "metal_dependent_hydrolase",
+        )
+        self.assertEqual(
+            heuristic_control_scores_audit["metadata"]["dominant_top1_fraction"],
+            0.75,
+        )
+        self.assertEqual(
+            heuristic_control_scores_audit["metadata"]["scope_top1_mismatch_count"],
+            9,
+        )
         self.assertFalse(failure_mode_audit["metadata"]["ready_for_label_import"])
         self.assertEqual(
             failure_mode_audit["metadata"]["countable_label_candidate_count"], 0
@@ -477,6 +534,88 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "heuristic_control_scope_top1_mismatch",
             ],
         )
+        self.assertFalse(control_repair_plan["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            control_repair_plan["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(control_repair_plan["metadata"]["repair_row_count"], 25)
+        self.assertEqual(
+            control_repair_plan["metadata"]["active_site_gap_repair_count"], 10
+        )
+        self.assertEqual(
+            control_repair_plan["metadata"]["broad_ec_disambiguation_repair_count"], 3
+        )
+        self.assertEqual(
+            control_repair_plan["metadata"]["heuristic_control_repair_count"], 12
+        )
+        self.assertEqual(
+            control_repair_plan["metadata"]["scope_top1_mismatch_repair_count"], 9
+        )
+        self.assertTrue(
+            control_repair_plan["metadata"][
+                "repair_plan_complete_for_observed_failures"
+            ]
+        )
+        self.assertEqual(control_repair_plan["metadata"]["uncovered_failure_modes"], [])
+        self.assertTrue(control_repair_plan_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            control_repair_plan_audit["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertFalse(representation_control["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            representation_control["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(representation_control["metadata"]["candidate_count"], 12)
+        self.assertEqual(
+            representation_control["metadata"]["eligible_control_count"], 12
+        )
+        self.assertEqual(
+            representation_control["metadata"]["scope_top1_mismatch_count"], 9
+        )
+        self.assertTrue(representation_control_audit["metadata"]["guardrail_clean"])
+        self.assertFalse(binding_context_repair["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            binding_context_repair["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(binding_context_repair["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            binding_context_repair["metadata"][
+                "ready_binding_context_candidate_count"
+            ],
+            7,
+        )
+        self.assertEqual(
+            binding_context_repair["metadata"][
+                "deferred_binding_context_candidate_count"
+            ],
+            3,
+        )
+        self.assertEqual(binding_context_repair["metadata"]["binding_position_count"], 70)
+        self.assertTrue(binding_context_repair_audit["metadata"]["guardrail_clean"])
+        self.assertFalse(binding_context_mapping["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            binding_context_mapping["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(binding_context_mapping["metadata"]["candidate_count"], 7)
+        self.assertEqual(binding_context_mapping["metadata"]["mapped_candidate_count"], 7)
+        self.assertTrue(binding_context_mapping_audit["metadata"]["guardrail_clean"])
+        self.assertTrue(sequence_holdout_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            sequence_holdout_audit["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            sequence_holdout_audit["metadata"][
+                "exact_reference_overlap_holdout_count"
+            ],
+            2,
+        )
+        self.assertEqual(
+            sequence_holdout_audit["metadata"][
+                "near_duplicate_search_candidate_count"
+            ],
+            28,
+        )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
             external_import_safety["metadata"]["total_new_countable_label_count"], 0
@@ -488,8 +627,8 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 22)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 22)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 33)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 33)
         self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])
         self.assertTrue(
             external_transfer_gate["metadata"][
@@ -567,7 +706,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             external_transfer_gate["metadata"][
                 "structure_mapping_sample_mapped_candidate_count"
             ],
-            4,
+            12,
         )
         self.assertTrue(
             external_transfer_gate["gates"]["heuristic_control_scores_review_only"]
@@ -581,13 +720,98 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             external_transfer_gate["metadata"][
                 "heuristic_control_scored_candidate_count"
             ],
-            4,
+            12,
         )
         self.assertTrue(
             external_transfer_gate["gates"]["external_failure_mode_audit_review_only"]
         )
         self.assertEqual(
             external_transfer_gate["metadata"]["external_failure_mode_count"], 5
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["external_control_repair_plan_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "external_control_repair_plan_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["external_control_repair_row_count"],
+            25,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "representation_control_manifest_review_only"
+            ]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "representation_control_manifest_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["representation_control_eligible_count"],
+            12,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["binding_context_repair_plan_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "binding_context_repair_plan_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["binding_context_ready_candidate_count"],
+            7,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["binding_context_mapping_sample_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "binding_context_mapping_sample_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "binding_context_mapping_mapped_candidate_count"
+            ],
+            7,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "external_sequence_holdout_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["sequence_holdout_exact_overlap_count"],
+            2,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "sequence_holdout_near_duplicate_search_count"
+            ],
+            28,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["reaction_evidence_sample_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "reaction_evidence_sample_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["reaction_evidence_candidate_count"], 30
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["reaction_evidence_record_count"], 64
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["reaction_broad_ec_context_row_count"],
+            16,
         )
         self.assertEqual(
             external_transfer_gate["metadata"]["countable_label_candidate_count"],
@@ -602,19 +826,27 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertEqual(
             reaction_evidence["metadata"]["countable_label_candidate_count"], 0
         )
-        self.assertEqual(reaction_evidence["metadata"]["candidate_count"], 6)
+        self.assertEqual(reaction_evidence["metadata"]["candidate_count"], 30)
         self.assertEqual(
-            reaction_evidence["metadata"]["candidate_with_reaction_context_count"], 6
+            reaction_evidence["metadata"]["candidate_with_reaction_context_count"], 29
         )
         self.assertEqual(
-            reaction_evidence["metadata"]["broad_or_incomplete_ec_count"], 3
+            reaction_evidence["metadata"]["broad_or_incomplete_ec_count"], 7
         )
         self.assertEqual(
             reaction_evidence["metadata"]["broad_or_incomplete_ec_numbers"],
-            ["1.1.1.-", "1.11.1.-", "1.8.-.-"],
+            [
+                "1.1.1.-",
+                "1.11.1.-",
+                "1.8.-.-",
+                "2.1.1.-",
+                "2.7.1.-",
+                "3.2.2.-",
+                "4.2.99.-",
+            ],
         )
         self.assertEqual(reaction_evidence["metadata"]["fetch_failure_count"], 0)
-        self.assertGreater(reaction_evidence["metadata"]["reaction_record_count"], 0)
+        self.assertEqual(reaction_evidence["metadata"]["reaction_record_count"], 64)
         self.assertTrue(
             all(
                 row["evidence_status"] == "reaction_context_only"
@@ -628,7 +860,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             0,
         )
         self.assertEqual(
-            reaction_evidence_audit["metadata"]["broad_ec_context_row_count"], 6
+            reaction_evidence_audit["metadata"]["broad_ec_context_row_count"], 16
         )
         self.assertEqual(reaction_evidence_audit["blockers"], [])
         self.assertTrue(lane_balance["metadata"]["guardrail_clean"])

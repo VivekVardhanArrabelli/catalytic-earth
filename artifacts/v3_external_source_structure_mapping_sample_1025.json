@@ -1422,22 +1422,1874 @@
       "status": "ok",
       "structure_id": "Q6NSJ0",
       "structure_source": "alphafold"
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BXD5",
+      "lane_id": "external_source:lyase",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
+      },
+      "missing_active_site_positions": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 4.775,
+          "left": "uniprot:Q9BXD5:143",
+          "right": "uniprot:Q9BXD5:173"
+        }
+      ],
+      "pocket_context": {
+        "descriptors": {
+          "aromatic_fraction": 0.3571,
+          "charge_balance": 0.0357,
+          "hydrophobic_fraction": 0.4286,
+          "mean_min_distance_to_active_site": 5.5802,
+          "negative_fraction": 0.0357,
+          "polar_fraction": 0.1429,
+          "positive_fraction": 0.0714,
+          "sulfur_fraction": 0.0
+        },
+        "distance_cutoff_angstrom": 8.0,
+        "nearby_residue_count": 28,
+        "nearby_residue_sites": [
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 2.426,
+            "resid": "144"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 2.45,
+            "resid": "174"
+          },
+          {
+            "atom_count": 12,
+            "chain_name": "A",
+            "code": "TYR",
+            "min_distance_to_active_site": 2.463,
+            "resid": "142"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 2.466,
+            "resid": "172"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 3.315,
+            "resid": "197"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 3.689,
+            "resid": "110"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 4.563,
+            "resid": "111"
+          },
+          {
+            "atom_count": 12,
+            "chain_name": "A",
+            "code": "TYR",
+            "min_distance_to_active_site": 5.015,
+            "resid": "141"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 5.07,
+            "resid": "175"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 5.203,
+            "resid": "216"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 5.241,
+            "resid": "145"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 5.542,
+            "resid": "198"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 5.637,
+            "resid": "109"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 5.731,
+            "resid": "47"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 5.814,
+            "resid": "199"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 5.842,
+            "resid": "112"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 5.884,
+            "resid": "171"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 6.106,
+            "resid": "196"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 6.136,
+            "resid": "195"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 6.239,
+            "resid": "84"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 7.283,
+            "resid": "215"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 7.473,
+            "resid": "128"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 7.56,
+            "resid": "182"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 7.692,
+            "resid": "149"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 7.777,
+            "resid": "158"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 7.846,
+            "resid": "140"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 7.866,
+            "resid": "214"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 7.917,
+            "resid": "176"
+          }
+        ],
+        "residue_code_counts": {
+          "ALA": 4,
+          "ASP": 1,
+          "GLY": 3,
+          "HIS": 2,
+          "ILE": 2,
+          "LEU": 4,
+          "PHE": 6,
+          "SER": 1,
+          "THR": 1,
+          "TYR": 2,
+          "VAL": 2
+        }
+      },
+      "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "ready_for_label_import": false,
+      "residue_count": 2,
+      "residues": [
+        {
+          "atom_count": 12,
+          "ca": {
+            "x": 5.483,
+            "y": 0.649,
+            "z": -7.001
+          },
+          "centroid": {
+            "x": 3.056,
+            "y": 1.347,
+            "z": -7.001
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 143,
+          "residue_node_id": "uniprot:Q9BXD5:143",
+          "roles": [
+            "uniprot_active_site_feature",
+            "Proton donor"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 4.786,
+            "y": -3.286,
+            "z": -4.388
+          },
+          "centroid": {
+            "x": 3.144,
+            "y": -2.091,
+            "z": -4.452
+          },
+          "chain_name": "A",
+          "code": "LYS",
+          "resid": 173,
+          "residue_node_id": "uniprot:Q9BXD5:173",
+          "roles": [
+            "uniprot_active_site_feature",
+            "Schiff-base intermediate with substrate"
+          ]
+        }
+      ],
+      "resolved_residue_count": 2,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.1.3.3"
+      ],
+      "status": "ok",
+      "structure_id": "Q9BXD5",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BXS1",
+      "lane_id": "external_source:isomerase",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
+      },
+      "missing_active_site_positions": [],
+      "pairwise_distances_angstrom": [
+        {
+          "coordinate_type": "ca_or_centroid",
+          "distance": 11.209,
+          "left": "uniprot:Q9BXS1:86",
+          "right": "uniprot:Q9BXS1:148"
+        }
+      ],
+      "pocket_context": {
+        "descriptors": {
+          "aromatic_fraction": 0.2647,
+          "charge_balance": 0.1765,
+          "hydrophobic_fraction": 0.2941,
+          "mean_min_distance_to_active_site": 5.3765,
+          "negative_fraction": 0.0882,
+          "polar_fraction": 0.3824,
+          "positive_fraction": 0.2647,
+          "sulfur_fraction": 0.0882
+        },
+        "distance_cutoff_angstrom": 8.0,
+        "nearby_residue_count": 34,
+        "nearby_residue_sites": [
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 2.417,
+            "resid": "149"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 2.428,
+            "resid": "147"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 2.429,
+            "resid": "87"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "CYS",
+            "min_distance_to_active_site": 2.472,
+            "resid": "85"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 3.274,
+            "resid": "51"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 3.291,
+            "resid": "54"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 3.638,
+            "resid": "50"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 3.936,
+            "resid": "136"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 3.99,
+            "resid": "83"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 4.273,
+            "resid": "55"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "CYS",
+            "min_distance_to_active_site": 4.674,
+            "resid": "150"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 4.923,
+            "resid": "135"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 4.951,
+            "resid": "56"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 5.015,
+            "resid": "53"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "GLU",
+            "min_distance_to_active_site": 5.392,
+            "resid": "146"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "GLU",
+            "min_distance_to_active_site": 5.427,
+            "resid": "115"
+          },
+          {
+            "atom_count": 14,
+            "chain_name": "A",
+            "code": "TRP",
+            "min_distance_to_active_site": 5.448,
+            "resid": "196"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "ARG",
+            "min_distance_to_active_site": 5.48,
+            "resid": "52"
+          },
+          {
+            "atom_count": 12,
+            "chain_name": "A",
+            "code": "TYR",
+            "min_distance_to_active_site": 5.728,
+            "resid": "134"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "ARG",
+            "min_distance_to_active_site": 5.876,
+            "resid": "70"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 5.908,
+            "resid": "84"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 6.071,
+            "resid": "88"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 6.131,
+            "resid": "82"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "GLN",
+            "min_distance_to_active_site": 6.135,
+            "resid": "68"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "LYS",
+            "min_distance_to_active_site": 6.169,
+            "resid": "137"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 6.536,
+            "resid": "24"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "ARG",
+            "min_distance_to_active_site": 6.754,
+            "resid": "111"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 6.961,
+            "resid": "49"
+          },
+          {
+            "atom_count": 12,
+            "chain_name": "A",
+            "code": "TYR",
+            "min_distance_to_active_site": 7.654,
+            "resid": "151"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 7.772,
+            "resid": "138"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 7.787,
+            "resid": "200"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "CYS",
+            "min_distance_to_active_site": 7.89,
+            "resid": "39"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 7.973,
+            "resid": "22"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 7.997,
+            "resid": "57"
+          }
+        ],
+        "residue_code_counts": {
+          "ALA": 2,
+          "ARG": 3,
+          "ASP": 1,
+          "CYS": 3,
+          "GLN": 1,
+          "GLU": 2,
+          "HIS": 5,
+          "ILE": 3,
+          "LEU": 2,
+          "LYS": 1,
+          "PHE": 1,
+          "SER": 3,
+          "THR": 1,
+          "TRP": 1,
+          "TYR": 2,
+          "VAL": 3
+        }
+      },
+      "protein_name": "Isopentenyl-diphosphate delta-isomerase 2 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 2) (IPP isomerase 2) (IPPI2)",
+      "ready_for_label_import": false,
+      "residue_count": 2,
+      "residues": [
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 1.928,
+            "y": 1.876,
+            "z": 0.527
+          },
+          "centroid": {
+            "x": 2.423,
+            "y": 2.026,
+            "z": 0.559
+          },
+          "chain_name": "A",
+          "code": "SER",
+          "resid": 86,
+          "residue_node_id": "uniprot:Q9BXS1:86",
+          "roles": [
+            "uniprot_active_site_feature"
+          ]
+        },
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": 2.676,
+            "y": 7.186,
+            "z": -9.316
+          },
+          "centroid": {
+            "x": 3.092,
+            "y": 6.613,
+            "z": -7.852
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 148,
+          "residue_node_id": "uniprot:Q9BXS1:148",
+          "roles": [
+            "uniprot_active_site_feature"
+          ]
+        }
+      ],
+      "resolved_residue_count": 2,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "5.3.3.2"
+      ],
+      "status": "ok",
+      "structure_id": "Q9BXS1",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RU49",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
+      },
+      "missing_active_site_positions": [],
+      "pairwise_distances_angstrom": [],
+      "pocket_context": {
+        "descriptors": {
+          "aromatic_fraction": 0.2,
+          "charge_balance": -0.1,
+          "hydrophobic_fraction": 0.25,
+          "mean_min_distance_to_active_site": 5.6327,
+          "negative_fraction": 0.2,
+          "polar_fraction": 0.25,
+          "positive_fraction": 0.1,
+          "sulfur_fraction": 0.05
+        },
+        "distance_cutoff_angstrom": 8.0,
+        "nearby_residue_count": 20,
+        "nearby_residue_sites": [
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 2.448,
+            "resid": "227"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 2.487,
+            "resid": "225"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 3.785,
+            "resid": "224"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "ARG",
+            "min_distance_to_active_site": 4.072,
+            "resid": "312"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 4.206,
+            "resid": "268"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASN",
+            "min_distance_to_active_site": 4.424,
+            "resid": "228"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 4.617,
+            "resid": "256"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASN",
+            "min_distance_to_active_site": 4.779,
+            "resid": "231"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "GLU",
+            "min_distance_to_active_site": 4.942,
+            "resid": "265"
+          },
+          {
+            "atom_count": 12,
+            "chain_name": "A",
+            "code": "TYR",
+            "min_distance_to_active_site": 5.155,
+            "resid": "272"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 5.629,
+            "resid": "253"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 6.856,
+            "resid": "252"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "MET",
+            "min_distance_to_active_site": 6.921,
+            "resid": "257"
+          },
+          {
+            "atom_count": 14,
+            "chain_name": "A",
+            "code": "TRP",
+            "min_distance_to_active_site": 6.952,
+            "resid": "176"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 7.19,
+            "resid": "269"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASN",
+            "min_distance_to_active_site": 7.368,
+            "resid": "223"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 7.577,
+            "resid": "255"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 7.654,
+            "resid": "254"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 7.783,
+            "resid": "178"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 7.81,
+            "resid": "229"
+          }
+        ],
+        "residue_code_counts": {
+          "ARG": 1,
+          "ASN": 3,
+          "ASP": 3,
+          "GLU": 1,
+          "GLY": 2,
+          "HIS": 1,
+          "ILE": 1,
+          "LEU": 3,
+          "MET": 1,
+          "PHE": 1,
+          "THR": 1,
+          "TRP": 1,
+          "TYR": 1
+        }
+      },
+      "protein_name": "Hydroxylysine kinase (5-hydroxy-L-lysine kinase) (EC 2.7.1.81) (Aminoglycoside phosphotransferase domain-containing protein 1)",
+      "ready_for_label_import": false,
+      "residue_count": 1,
+      "residues": [
+        {
+          "atom_count": 8,
+          "ca": {
+            "x": 0.153,
+            "y": -1.389,
+            "z": 1.46
+          },
+          "centroid": {
+            "x": -0.034,
+            "y": -1.147,
+            "z": 0.28
+          },
+          "chain_name": "A",
+          "code": "ASP",
+          "resid": 226,
+          "residue_node_id": "uniprot:A2RU49:226",
+          "roles": [
+            "uniprot_active_site_feature",
+            "Proton acceptor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 1,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.81"
+      ],
+      "status": "ok",
+      "structure_id": "A2RU49",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
+      },
+      "missing_active_site_positions": [],
+      "pairwise_distances_angstrom": [],
+      "pocket_context": {
+        "descriptors": {
+          "aromatic_fraction": 0.0952,
+          "charge_balance": 0.0,
+          "hydrophobic_fraction": 0.4286,
+          "mean_min_distance_to_active_site": 5.5293,
+          "negative_fraction": 0.0476,
+          "polar_fraction": 0.2857,
+          "positive_fraction": 0.0476,
+          "sulfur_fraction": 0.0952
+        },
+        "distance_cutoff_angstrom": 8.0,
+        "nearby_residue_count": 21,
+        "nearby_residue_sites": [
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 2.454,
+            "resid": "175"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "CYS",
+            "min_distance_to_active_site": 2.47,
+            "resid": "177"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 3.608,
+            "resid": "179"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 3.618,
+            "resid": "173"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "MET",
+            "min_distance_to_active_site": 4.086,
+            "resid": "133"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 4.185,
+            "resid": "174"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 4.456,
+            "resid": "178"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASN",
+            "min_distance_to_active_site": 4.788,
+            "resid": "137"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 5.092,
+            "resid": "116"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "LYS",
+            "min_distance_to_active_site": 5.224,
+            "resid": "180"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 5.725,
+            "resid": "115"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 5.733,
+            "resid": "172"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 6.255,
+            "resid": "166"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 6.668,
+            "resid": "134"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 6.953,
+            "resid": "130"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 7.137,
+            "resid": "117"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 7.191,
+            "resid": "125"
+          },
+          {
+            "atom_count": 12,
+            "chain_name": "A",
+            "code": "TYR",
+            "min_distance_to_active_site": 7.343,
+            "resid": "181"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "PRO",
+            "min_distance_to_active_site": 7.445,
+            "resid": "118"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 7.809,
+            "resid": "129"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 7.876,
+            "resid": "164"
+          }
+        ],
+        "residue_code_counts": {
+          "ASN": 1,
+          "ASP": 1,
+          "CYS": 1,
+          "GLY": 2,
+          "ILE": 1,
+          "LEU": 4,
+          "LYS": 1,
+          "MET": 1,
+          "PHE": 1,
+          "PRO": 1,
+          "SER": 3,
+          "THR": 1,
+          "TYR": 1,
+          "VAL": 2
+        }
+      },
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+      "ready_for_label_import": false,
+      "residue_count": 1,
+      "residues": [
+        {
+          "atom_count": 12,
+          "ca": {
+            "x": 8.617,
+            "y": -2.321,
+            "z": -6.566
+          },
+          "centroid": {
+            "x": 7.094,
+            "y": -0.632,
+            "z": -5.588
+          },
+          "chain_name": "A",
+          "code": "TYR",
+          "resid": 176,
+          "residue_node_id": "uniprot:O14756:176",
+          "roles": [
+            "uniprot_active_site_feature",
+            "Proton acceptor"
+          ]
+        }
+      ],
+      "resolved_residue_count": 1,
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers": [
+        "1.1.1.105",
+        "1.1.1.209",
+        "1.1.1.239",
+        "1.1.1.53",
+        "1.1.1.62"
+      ],
+      "status": "ok",
+      "structure_id": "O14756",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P34949",
+      "lane_id": "external_source:isomerase",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
+      },
+      "missing_active_site_positions": [],
+      "pairwise_distances_angstrom": [],
+      "pocket_context": {
+        "descriptors": {
+          "aromatic_fraction": 0.1579,
+          "charge_balance": 0.0527,
+          "hydrophobic_fraction": 0.4737,
+          "mean_min_distance_to_active_site": 5.4766,
+          "negative_fraction": 0.0526,
+          "polar_fraction": 0.2632,
+          "positive_fraction": 0.1053,
+          "sulfur_fraction": 0.0526
+        },
+        "distance_cutoff_angstrom": 8.0,
+        "nearby_residue_count": 19,
+        "nearby_residue_sites": [
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 2.416,
+            "resid": "296"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 2.48,
+            "resid": "294"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 3.457,
+            "resid": "109"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "GLN",
+            "min_distance_to_active_site": 4.163,
+            "resid": "110"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 4.792,
+            "resid": "297"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 4.837,
+            "resid": "302"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 5.001,
+            "resid": "303"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 5.081,
+            "resid": "308"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 5.141,
+            "resid": "293"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 5.235,
+            "resid": "111"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 5.501,
+            "resid": "299"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 5.52,
+            "resid": "108"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 5.606,
+            "resid": "304"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "LYS",
+            "min_distance_to_active_site": 6.972,
+            "resid": "301"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "MET",
+            "min_distance_to_active_site": 7.272,
+            "resid": "202"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 7.469,
+            "resid": "305"
+          },
+          {
+            "atom_count": 12,
+            "chain_name": "A",
+            "code": "TYR",
+            "min_distance_to_active_site": 7.626,
+            "resid": "129"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 7.723,
+            "resid": "276"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 7.763,
+            "resid": "298"
+          }
+        ],
+        "residue_code_counts": {
+          "ALA": 2,
+          "ASP": 1,
+          "GLN": 1,
+          "GLY": 1,
+          "HIS": 1,
+          "ILE": 2,
+          "LEU": 2,
+          "LYS": 1,
+          "MET": 1,
+          "PHE": 1,
+          "SER": 1,
+          "THR": 2,
+          "TYR": 1,
+          "VAL": 2
+        }
+      },
+      "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+      "ready_for_label_import": false,
+      "residue_count": 1,
+      "residues": [
+        {
+          "atom_count": 11,
+          "ca": {
+            "x": -13.232,
+            "y": -5.435,
+            "z": 2.064
+          },
+          "centroid": {
+            "x": -13.264,
+            "y": -4.109,
+            "z": 0.003
+          },
+          "chain_name": "A",
+          "code": "ARG",
+          "resid": 295,
+          "residue_node_id": "uniprot:P34949:295",
+          "roles": [
+            "uniprot_active_site_feature"
+          ]
+        }
+      ],
+      "resolved_residue_count": 1,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "5.3.1.8"
+      ],
+      "status": "ok",
+      "structure_id": "P34949",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P35914",
+      "lane_id": "external_source:lyase",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
+      },
+      "missing_active_site_positions": [],
+      "pairwise_distances_angstrom": [],
+      "pocket_context": {
+        "descriptors": {
+          "aromatic_fraction": 0.1176,
+          "charge_balance": 0.0588,
+          "hydrophobic_fraction": 0.2353,
+          "mean_min_distance_to_active_site": 5.3564,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.4118,
+          "positive_fraction": 0.0588,
+          "sulfur_fraction": 0.0
+        },
+        "distance_cutoff_angstrom": 8.0,
+        "nearby_residue_count": 17,
+        "nearby_residue_sites": [
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 2.439,
+            "resid": "265"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "PRO",
+            "min_distance_to_active_site": 2.503,
+            "resid": "267"
+          },
+          {
+            "atom_count": 12,
+            "chain_name": "A",
+            "code": "TYR",
+            "min_distance_to_active_site": 4.186,
+            "resid": "268"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 4.586,
+            "resid": "269"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 4.892,
+            "resid": "235"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 4.914,
+            "resid": "273"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 5.085,
+            "resid": "272"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 5.121,
+            "resid": "274"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 5.132,
+            "resid": "237"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 5.287,
+            "resid": "205"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASN",
+            "min_distance_to_active_site": 5.941,
+            "resid": "46"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 6.117,
+            "resid": "264"
+          },
+          {
+            "atom_count": 9,
+            "chain_name": "A",
+            "code": "GLN",
+            "min_distance_to_active_site": 6.436,
+            "resid": "270"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 6.445,
+            "resid": "206"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 7.048,
+            "resid": "271"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASN",
+            "min_distance_to_active_site": 7.14,
+            "resid": "275"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 7.786,
+            "resid": "207"
+          }
+        ],
+        "residue_code_counts": {
+          "ALA": 2,
+          "ASN": 2,
+          "GLN": 1,
+          "GLY": 5,
+          "HIS": 1,
+          "ILE": 1,
+          "PRO": 1,
+          "SER": 1,
+          "THR": 2,
+          "TYR": 1
+        }
+      },
+      "protein_name": "Hydroxymethylglutaryl-CoA lyase, mitochondrial (HL) (HMG-CoA lyase) (EC 4.1.3.4) (3-hydroxy-3-methylglutarate-CoA lyase)",
+      "ready_for_label_import": false,
+      "residue_count": 1,
+      "residues": [
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": 4.008,
+            "y": -4.297,
+            "z": -10.846
+          },
+          "centroid": {
+            "x": 4.205,
+            "y": -4.474,
+            "z": -11.541
+          },
+          "chain_name": "A",
+          "code": "CYS",
+          "resid": 266,
+          "residue_node_id": "uniprot:P35914:266",
+          "roles": [
+            "uniprot_active_site_feature"
+          ]
+        }
+      ],
+      "resolved_residue_count": 1,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.1.3.4"
+      ],
+      "status": "ok",
+      "structure_id": "P35914",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969G6",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
+      },
+      "missing_active_site_positions": [],
+      "pairwise_distances_angstrom": [],
+      "pocket_context": {
+        "descriptors": {
+          "aromatic_fraction": 0.125,
+          "charge_balance": 0.0625,
+          "hydrophobic_fraction": 0.5,
+          "mean_min_distance_to_active_site": 5.4196,
+          "negative_fraction": 0.0,
+          "polar_fraction": 0.375,
+          "positive_fraction": 0.0625,
+          "sulfur_fraction": 0.0625
+        },
+        "distance_cutoff_angstrom": 8.0,
+        "nearby_residue_count": 16,
+        "nearby_residue_sites": [
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 2.446,
+            "resid": "80"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "MET",
+            "min_distance_to_active_site": 2.479,
+            "resid": "78"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 3.467,
+            "resid": "28"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 3.874,
+            "resid": "64"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "THR",
+            "min_distance_to_active_site": 4.73,
+            "resid": "27"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASN",
+            "min_distance_to_active_site": 4.841,
+            "resid": "29"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 5.115,
+            "resid": "63"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 5.564,
+            "resid": "81"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 5.611,
+            "resid": "77"
+          },
+          {
+            "atom_count": 11,
+            "chain_name": "A",
+            "code": "PHE",
+            "min_distance_to_active_site": 5.751,
+            "resid": "30"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ILE",
+            "min_distance_to_active_site": 6.109,
+            "resid": "65"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 6.233,
+            "resid": "62"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "LEU",
+            "min_distance_to_active_site": 7.452,
+            "resid": "95"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 7.456,
+            "resid": "66"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 7.787,
+            "resid": "35"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "PRO",
+            "min_distance_to_active_site": 7.798,
+            "resid": "26"
+          }
+        ],
+        "residue_code_counts": {
+          "ALA": 1,
+          "ASN": 1,
+          "GLY": 1,
+          "HIS": 1,
+          "ILE": 1,
+          "LEU": 1,
+          "MET": 1,
+          "PHE": 1,
+          "PRO": 1,
+          "SER": 2,
+          "THR": 2,
+          "VAL": 3
+        }
+      },
+      "protein_name": "Riboflavin kinase (EC 2.7.1.26) (ATP:riboflavin 5'-phosphotransferase) (Flavokinase)",
+      "ready_for_label_import": false,
+      "residue_count": 1,
+      "residues": [
+        {
+          "atom_count": 9,
+          "ca": {
+            "x": -4.519,
+            "y": -2.035,
+            "z": -5.473
+          },
+          "centroid": {
+            "x": -3.285,
+            "y": -2.869,
+            "z": -6.105
+          },
+          "chain_name": "A",
+          "code": "GLU",
+          "resid": 79,
+          "residue_node_id": "uniprot:Q969G6:79",
+          "roles": [
+            "uniprot_active_site_feature",
+            "Nucleophile"
+          ]
+        }
+      ],
+      "resolved_residue_count": 1,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.26"
+      ],
+      "status": "ok",
+      "structure_id": "Q969G6",
+      "structure_source": "alphafold"
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96I15",
+      "lane_id": "external_source:lyase",
+      "ligand_context": {
+        "cofactor_families": [],
+        "distance_cutoff_angstrom": 6.0,
+        "ligand_codes": [],
+        "proximal_ligands": [],
+        "structure_cofactor_families": [],
+        "structure_ligand_codes": [],
+        "structure_ligands": []
+      },
+      "missing_active_site_positions": [],
+      "pairwise_distances_angstrom": [],
+      "pocket_context": {
+        "descriptors": {
+          "aromatic_fraction": 0.1111,
+          "charge_balance": -0.1111,
+          "hydrophobic_fraction": 0.3333,
+          "mean_min_distance_to_active_site": 5.2582,
+          "negative_fraction": 0.2222,
+          "polar_fraction": 0.3333,
+          "positive_fraction": 0.1111,
+          "sulfur_fraction": 0.0
+        },
+        "distance_cutoff_angstrom": 8.0,
+        "nearby_residue_count": 9,
+        "nearby_residue_sites": [
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 2.462,
+            "resid": "387"
+          },
+          {
+            "atom_count": 10,
+            "chain_name": "A",
+            "code": "HIS",
+            "min_distance_to_active_site": 2.497,
+            "resid": "389"
+          },
+          {
+            "atom_count": 5,
+            "chain_name": "A",
+            "code": "ALA",
+            "min_distance_to_active_site": 3.761,
+            "resid": "386"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 4.697,
+            "resid": "390"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 6.098,
+            "resid": "146"
+          },
+          {
+            "atom_count": 4,
+            "chain_name": "A",
+            "code": "GLY",
+            "min_distance_to_active_site": 6.643,
+            "resid": "385"
+          },
+          {
+            "atom_count": 8,
+            "chain_name": "A",
+            "code": "ASP",
+            "min_distance_to_active_site": 6.729,
+            "resid": "391"
+          },
+          {
+            "atom_count": 7,
+            "chain_name": "A",
+            "code": "VAL",
+            "min_distance_to_active_site": 7.001,
+            "resid": "384"
+          },
+          {
+            "atom_count": 6,
+            "chain_name": "A",
+            "code": "SER",
+            "min_distance_to_active_site": 7.436,
+            "resid": "383"
+          }
+        ],
+        "residue_code_counts": {
+          "ALA": 2,
+          "ASP": 2,
+          "GLY": 1,
+          "HIS": 1,
+          "SER": 2,
+          "VAL": 1
+        }
+      },
+      "protein_name": "Selenocysteine lyase (hSCL) (EC 4.4.1.16)",
+      "ready_for_label_import": false,
+      "residue_count": 1,
+      "residues": [
+        {
+          "atom_count": 6,
+          "ca": {
+            "x": -6.067,
+            "y": 16.477,
+            "z": -10.526
+          },
+          "centroid": {
+            "x": -6.22,
+            "y": 16.396,
+            "z": -10.131
+          },
+          "chain_name": "A",
+          "code": "CYS",
+          "resid": 388,
+          "residue_node_id": "uniprot:Q96I15:388",
+          "roles": [
+            "uniprot_active_site_feature",
+            "S-selanylcysteine intermediate"
+          ]
+        }
+      ],
+      "resolved_residue_count": 1,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.4.1.16"
+      ],
+      "status": "ok",
+      "structure_id": "Q96I15",
+      "structure_source": "alphafold"
     }
   ],
   "fetch_failures": [],
   "metadata": {
-    "candidate_count": 4,
+    "candidate_count": 12,
     "countable_label_candidate_count": 0,
     "fetch_failure_count": 0,
-    "mapped_candidate_count": 4,
-    "max_candidates": 4,
+    "mapped_candidate_count": 12,
+    "max_candidates": 12,
     "method": "external_source_structure_mapping_sample",
     "ready_for_heuristic_control_scoring": true,
     "ready_for_label_import": false,
     "review_only_rule": "external structure mapping samples are heuristic-control inputs only and cannot create countable labels",
     "source_method": "external_source_structure_mapping_plan",
     "status_counts": {
-      "ok": 4
+      "ok": 12
     }
   }
 }

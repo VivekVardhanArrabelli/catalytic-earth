@@ -1,0 +1,18 @@
+{
+  "blockers": [],
+  "metadata": {
+    "countable_label_candidate_count": 0,
+    "covered_failure_mode_count": 5,
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "method": "external_source_control_repair_plan_audit",
+    "missing_next_evidence_row_count": 0,
+    "observed_failure_mode_count": 5,
+    "ready_for_label_import": false,
+    "repair_row_count": 25,
+    "uncovered_failure_modes": []
+  },
+  "warnings": [
+    "external control repairs are review-only prerequisites for future import decisions"
+  ]
+}

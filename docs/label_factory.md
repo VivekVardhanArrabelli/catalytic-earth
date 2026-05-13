@@ -674,22 +674,30 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_structure_mapping_sample_1025.json`,
   `artifacts/v3_external_source_heuristic_control_scores_1025.json`,
   `artifacts/v3_external_source_failure_mode_audit_1025.json`,
+  `artifacts/v3_external_source_control_repair_plan_1025.json`,
+  `artifacts/v3_external_source_representation_control_manifest_1025.json`,
+  `artifacts/v3_external_source_binding_context_repair_plan_1025.json`,
+  `artifacts/v3_external_source_binding_context_mapping_sample_1025.json`,
+  `artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  22/22 external transfer gate for evidence collection, pass the lane-balance
+  33/33 external transfer gate for evidence collection, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
-  map 4/4 sampled controls onto AlphaFold structures, and must not be imported
-  as labels. The heuristic-control audit records a metal-hydrolase top1
-  collapse and scope/top1 mismatch as review-only failure modes rather than
-  countable evidence.
+  map all 12 heuristic-ready controls onto AlphaFold structures, and must not
+  be imported as labels. The heuristic-control audit records a 9/12
+  metal-hydrolase top1 collapse and 9 scope/top1 mismatches as review-only
+  failure modes rather than countable evidence. The repair plan creates 25
+  non-countable repair rows, the representation manifest exposes 12 mapped
+  controls for future learned or structure-language scoring, and the
+  binding-context path maps 7/7 active-site-gap rows as repair context only.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
-  adds bounded Rhea reaction context for six candidates while keeping every row
-  non-countable and outside any reviewed decision artifact; its companion
-  guardrail audit is clean and flags three broad/incomplete EC queries as
-  review-only context.
+  adds bounded Rhea reaction context for all 30 candidates while keeping every
+  row non-countable and outside any reviewed decision artifact; its companion
+  guardrail audit is clean and flags 16 broad-EC context rows as review-only
+  context.
 
 ## Automation Lock
 

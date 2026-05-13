@@ -32,6 +32,16 @@ External-source transfer remains review-only. The new artifacts
 `artifacts/v3_external_source_candidate_manifest_audit_1025.json`,
 `artifacts/v3_external_source_evidence_plan_1025.json`,
 `artifacts/v3_external_source_evidence_request_export_1025.json`,
+`artifacts/v3_external_source_active_site_evidence_sample_1025.json`,
+`artifacts/v3_external_source_heuristic_control_queue_1025.json`,
+`artifacts/v3_external_source_structure_mapping_sample_1025.json`,
+`artifacts/v3_external_source_heuristic_control_scores_1025.json`,
+`artifacts/v3_external_source_failure_mode_audit_1025.json`,
+`artifacts/v3_external_source_control_repair_plan_1025.json`,
+`artifacts/v3_external_source_representation_control_manifest_1025.json`,
+`artifacts/v3_external_source_binding_context_repair_plan_1025.json`,
+`artifacts/v3_external_source_binding_context_mapping_sample_1025.json`,
+`artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` define a bounded
 UniProtKB/Swiss-Prot transfer path, draft six ontology-pressure query lanes,
@@ -39,26 +49,29 @@ fetch a 30-row read-only candidate sample, attach OOD and exact-reference
 sequence controls, request active-site/mechanism/heuristic-control evidence,
 carry sampled PDB/AlphaFold structure references into the evidence export, queue
 25 review-only active-site evidence rows while deferring five rows, sample
-UniProtKB active-site features, map a bounded AlphaFold structure-control
-sample, score the mapped controls with the current heuristic retrieval path, and
-pass the 22/22 external-transfer gate for review-only evidence collection.
+UniProtKB active-site features, map all 12 heuristic-ready AlphaFold controls,
+score the mapped controls with the current heuristic retrieval path, and pass
+the 33/33 external-transfer gate for review-only evidence collection.
 Two sample accessions (`O15527` and `P42126`) overlap existing M-CSA reference
 accessions and are routed to holdout controls. The lane-balance audit is clean:
 six lanes each contribute five candidates, so the initial review sample has not
 collapsed to one chemistry. These artifacts are
 discovery-facing scaffolds only; they do not create benchmark labels.
 `artifacts/v3_external_source_reaction_evidence_sample_1025.json` then fetches
-Rhea reaction context for the first six external candidates, yielding 22
-reaction records with 0 fetch failures; its guardrail audit is clean, and
-those rows remain `reaction_context_only` and non-countable because they have
-not been converted into a reviewed decision artifact or full label-factory
-gate. The audit also flags three broad or incomplete EC queries (`1.1.1.-`,
-`1.11.1.-`, and `1.8.-.-`) as review-only context, not specific mechanism
-evidence.
+Rhea reaction context for all 30 external candidates, yielding 64 reaction
+records with 0 fetch failures; its guardrail audit is clean, and those rows
+remain `reaction_context_only` and non-countable because they have not been
+converted into a reviewed decision artifact or full label-factory gate. The
+audit also flags 16 broad-EC context rows across `1.1.1.-`, `1.11.1.-`,
+`1.8.-.-`, `2.1.1.-`, `2.7.1.-`, `3.2.2.-`, and `4.2.99.-` as review-only
+context, not specific mechanism evidence.
 
 Next bounded work: repair the external-source control findings before any label
 import. The active-site feature sample leaves 10 feature-gap rows, the broad EC
-router leaves three disambiguation rows, and the first heuristic-control score
-sample collapses all 4 mapped candidates to `metal_dependent_hydrolase` top1
-with two scope/top1 mismatches. These are review-only failure modes, not
-countable labels.
+router leaves three disambiguation rows, and the expanded heuristic-control
+score sample collapses 9/12 mapped candidates to `metal_dependent_hydrolase`
+top1 with 9 scope/top1 mismatches. The control-repair plan records 25
+non-countable repair rows, the representation manifest exposes 12 mapped
+controls for future comparison, and the binding-context mapping sample maps 7/7
+active-site-gap rows as repair context only. These are review-only failure
+modes, not countable labels.

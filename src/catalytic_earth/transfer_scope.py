@@ -587,6 +587,106 @@ def audit_external_source_candidate_manifest(
     }
 
 
+def audit_external_source_sequence_holdouts(
+    *,
+    candidate_manifest: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Make external exact-overlap and near-duplicate holdout work explicit."""
+    manifest_rows = [
+        row for row in candidate_manifest.get("rows", []) if isinstance(row, dict)
+    ]
+    rows: list[dict[str, Any]] = []
+    lane_counts: Counter[str] = Counter()
+    status_counts: Counter[str] = Counter()
+    exact_overlap_count = 0
+    failure_overlap_count = 0
+    for row in manifest_rows:
+        sequence_control = row.get("external_source_controls", {}).get(
+            "sequence_similarity_control", {}
+        )
+        exact_overlap = bool(sequence_control.get("exact_reference_overlap"))
+        failure_overlap = bool(sequence_control.get("sequence_failure_set_overlap"))
+        if exact_overlap:
+            holdout_status = "exact_reference_overlap_holdout"
+            exact_overlap_count += 1
+        elif failure_overlap:
+            holdout_status = "sequence_failure_set_holdout"
+            failure_overlap_count += 1
+        else:
+            holdout_status = "requires_near_duplicate_search"
+        lane_id = str(row.get("lane_id") or "unknown")
+        lane_counts[lane_id] += 1
+        status_counts[holdout_status] += 1
+        rows.append(
+            {
+                "accession": row.get("accession"),
+                "blockers": _external_sequence_holdout_blockers(holdout_status),
+                "countable_label_candidate": False,
+                "holdout_status": holdout_status,
+                "lane_id": row.get("lane_id"),
+                "matched_failure_cluster_ids": sequence_control.get(
+                    "matched_failure_cluster_ids", []
+                ),
+                "matched_m_csa_entry_ids": sequence_control.get(
+                    "matched_m_csa_entry_ids", []
+                ),
+                "protein_name": row.get("protein_name"),
+                "ready_for_label_import": False,
+                "scope_signal": row.get("scope_signal"),
+                "sequence_cluster_ids": sequence_control.get(
+                    "sequence_cluster_ids", []
+                ),
+            }
+        )
+    rows = rows[:max_rows]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_external_sequence_holdout_audit")
+    if countable_rows:
+        blockers.append("external_sequence_holdout_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("external_sequence_holdout_rows_marked_ready_for_import")
+    return {
+        "metadata": {
+            "method": "external_source_sequence_holdout_audit",
+            "source_method": candidate_manifest.get("metadata", {}).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(manifest_rows),
+            "emitted_row_count": len(rows),
+            "max_rows": max_rows,
+            "omitted_by_max_rows": max(len(manifest_rows) - len(rows), 0),
+            "exact_reference_overlap_holdout_count": exact_overlap_count,
+            "sequence_failure_set_holdout_count": failure_overlap_count,
+            "near_duplicate_search_candidate_count": status_counts.get(
+                "requires_near_duplicate_search", 0
+            ),
+            "lane_counts": dict(sorted(lane_counts.items())),
+            "holdout_status_counts": dict(sorted(status_counts.items())),
+            "guardrail_clean": not blockers,
+            "review_only_rule": (
+                "external sequence holdouts prevent sequence leakage and do "
+                "not create labels"
+            ),
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "near-duplicate search must be completed before any external "
+                "label import decision"
+            )
+        ],
+    }
+
+
 def build_external_source_evidence_plan(
     *,
     candidate_manifest: dict[str, Any],
@@ -1860,6 +1960,756 @@ def audit_external_source_failure_modes(
     }
 
 
+def build_external_source_control_repair_plan(
+    *,
+    active_site_evidence_sample: dict[str, Any],
+    heuristic_control_scores: dict[str, Any],
+    heuristic_control_scores_audit: dict[str, Any],
+    external_failure_mode_audit: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Turn external-transfer control failures into bounded non-countable repair work."""
+    rows: list[dict[str, Any]] = []
+    observed_failure_modes = [
+        str(row.get("failure_mode"))
+        for row in external_failure_mode_audit.get("rows", [])
+        if isinstance(row, dict) and row.get("failure_mode")
+    ]
+    heuristic_findings = [
+        str(item)
+        for item in heuristic_control_scores_audit.get("control_findings", [])
+    ]
+
+    for summary in active_site_evidence_sample.get("candidate_summaries", []) or []:
+        if not isinstance(summary, dict):
+            continue
+        active_site_count = int(summary.get("active_site_feature_count", 0) or 0)
+        broad_ec_numbers = list(summary.get("broad_or_incomplete_ec_numbers") or [])
+        if active_site_count == 0:
+            row = _external_active_site_gap_repair_row(summary)
+            rows.append(row)
+        if broad_ec_numbers:
+            row = _external_broad_ec_repair_row(summary)
+            rows.append(row)
+
+    for result in heuristic_control_scores.get("results", []) or []:
+        if not isinstance(result, dict):
+            continue
+        top1 = _external_top1_fingerprint(result)
+        if not top1:
+            continue
+        if (
+            heuristic_findings
+            or top1 == "metal_dependent_hydrolase"
+            or bool(result.get("scope_top1_mismatch"))
+        ):
+            row = _external_heuristic_control_repair_row(
+                result=result,
+                heuristic_findings=heuristic_findings,
+            )
+            rows.append(row)
+
+    rows = rows[:max_rows]
+    row_type_counts = Counter(str(row.get("repair_type") or "unknown") for row in rows)
+    repair_lane_counts = Counter(
+        str(row.get("repair_lane") or "unknown") for row in rows
+    )
+    covered_failure_modes = _external_control_repair_coverage(
+        rows=rows,
+        observed_failure_modes=observed_failure_modes,
+        heuristic_findings=heuristic_findings,
+    )
+    uncovered_failure_modes = [
+        mode for mode in observed_failure_modes if mode not in covered_failure_modes
+    ]
+    active_site_gap_repair_count = sum(
+        1 for row in rows if row.get("repair_type") == "active_site_feature_gap"
+    )
+    broad_ec_repair_count = sum(
+        1 for row in rows if row.get("repair_type") == "broad_ec_disambiguation"
+    )
+    heuristic_repair_count = sum(
+        1 for row in rows if row.get("repair_type") == "heuristic_control_failure"
+    )
+    return {
+        "metadata": {
+            "method": "external_source_control_repair_plan",
+            "source_active_site_evidence_method": active_site_evidence_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "source_heuristic_scores_method": heuristic_control_scores.get(
+                "metadata", {}
+            ).get("method"),
+            "source_failure_mode_method": external_failure_mode_audit.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "max_rows": max_rows,
+            "repair_row_count": len(rows),
+            "active_site_gap_repair_count": active_site_gap_repair_count,
+            "broad_ec_disambiguation_repair_count": broad_ec_repair_count,
+            "heuristic_control_repair_count": heuristic_repair_count,
+            "scope_top1_mismatch_repair_count": sum(
+                1
+                for row in rows
+                if row.get("repair_type") == "heuristic_control_failure"
+                and row.get("scope_top1_mismatch")
+            ),
+            "metal_hydrolase_collapse_repair_count": sum(
+                1
+                for row in rows
+                if row.get("repair_type") == "heuristic_control_failure"
+                and row.get("top1_fingerprint") == "metal_dependent_hydrolase"
+            ),
+            "observed_failure_modes": observed_failure_modes,
+            "covered_failure_modes": covered_failure_modes,
+            "uncovered_failure_modes": uncovered_failure_modes,
+            "repair_plan_complete_for_observed_failures": not uncovered_failure_modes,
+            "row_type_counts": dict(sorted(row_type_counts.items())),
+            "repair_lane_counts": dict(sorted(repair_lane_counts.items())),
+            "review_only_rule": (
+                "external repair plans convert control failures into review-only "
+                "work items; they cannot create countable labels"
+            ),
+        },
+        "rows": rows,
+        "blockers": [
+            "external_repair_work_not_completed",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "repair rows are scoped evidence and representation work, not "
+                "mechanism labels"
+            )
+        ],
+    }
+
+
+def audit_external_source_control_repair_plan(
+    *,
+    control_repair_plan: dict[str, Any],
+    external_failure_mode_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify external control repair plans stay review-only and cover failures."""
+    rows = [row for row in control_repair_plan.get("rows", []) if isinstance(row, dict)]
+    metadata = control_repair_plan.get("metadata", {})
+    failure_meta = external_failure_mode_audit.get("metadata", {})
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_next_evidence_rows = [
+        row for row in rows if not row.get("required_next_evidence")
+    ]
+    blockers: list[str] = []
+    if not rows and int(failure_meta.get("failure_mode_count", 0) or 0) > 0:
+        blockers.append("external_control_repair_plan_empty")
+    if countable_rows:
+        blockers.append("external_control_repair_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("external_control_repair_rows_marked_ready_for_import")
+    if missing_next_evidence_rows:
+        blockers.append("external_control_repair_rows_missing_next_evidence")
+    if metadata.get("repair_plan_complete_for_observed_failures") is not True:
+        blockers.append("external_control_repair_plan_missing_failure_coverage")
+    if (
+        int(failure_meta.get("active_site_feature_gap_count", 0) or 0) > 0
+        and int(metadata.get("active_site_gap_repair_count", 0) or 0) == 0
+    ):
+        blockers.append("active_site_feature_gaps_missing_repair_rows")
+    if (
+        int(failure_meta.get("broad_ec_disambiguation_count", 0) or 0) > 0
+        and int(metadata.get("broad_ec_disambiguation_repair_count", 0) or 0) == 0
+    ):
+        blockers.append("broad_ec_disambiguation_missing_repair_rows")
+    if (
+        int(failure_meta.get("heuristic_control_finding_count", 0) or 0) > 0
+        and int(metadata.get("heuristic_control_repair_count", 0) or 0) == 0
+    ):
+        blockers.append("heuristic_control_findings_missing_repair_rows")
+    return {
+        "metadata": {
+            "method": "external_source_control_repair_plan_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "repair_row_count": len(rows),
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_next_evidence_row_count": len(missing_next_evidence_rows),
+            "observed_failure_mode_count": int(
+                failure_meta.get("failure_mode_count", 0) or 0
+            ),
+            "covered_failure_mode_count": len(
+                metadata.get("covered_failure_modes", []) or []
+            ),
+            "uncovered_failure_modes": metadata.get("uncovered_failure_modes", []),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "external control repairs are review-only prerequisites for "
+                "future import decisions"
+            )
+        ],
+    }
+
+
+def build_external_source_binding_context_repair_plan(
+    *,
+    active_site_evidence_sample: dict[str, Any],
+    control_repair_plan: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Collect binding-site context for active-site-gap external repair rows."""
+    binding_rows_by_accession: dict[str, list[dict[str, Any]]] = {}
+    for row in active_site_evidence_sample.get("rows", []) or []:
+        if not isinstance(row, dict) or row.get("feature_type") != "Binding site":
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if accession:
+            binding_rows_by_accession.setdefault(accession, []).append(row)
+    repair_rows = [
+        row
+        for row in control_repair_plan.get("rows", []) or []
+        if isinstance(row, dict) and row.get("repair_type") == "active_site_feature_gap"
+    ][:max_rows]
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    lane_counts: Counter[str] = Counter()
+    binding_position_count = 0
+    for repair_row in repair_rows:
+        accession = _normalize_accession(repair_row.get("accession"))
+        binding_features = binding_rows_by_accession.get(accession, [])
+        binding_positions = [
+            {
+                "begin": feature.get("begin"),
+                "description": feature.get("description"),
+                "end": feature.get("end"),
+                "evidence": feature.get("evidence", []),
+                "ligand_id": feature.get("ligand_id"),
+                "ligand_name": feature.get("ligand_name"),
+                "ligand_note": feature.get("ligand_note"),
+            }
+            for feature in binding_features
+        ]
+        binding_position_count += len(binding_positions)
+        if binding_positions:
+            repair_status = "ready_for_binding_context_mapping"
+        else:
+            repair_status = "defer_binding_context_missing"
+        status_counts[repair_status] += 1
+        lane_counts[str(repair_row.get("lane_id") or "unknown")] += 1
+        rows.append(
+            {
+                "accession": accession,
+                "alphafold_ids_sample": repair_row.get("alphafold_ids_sample", []),
+                "binding_position_count": len(binding_positions),
+                "binding_positions": binding_positions,
+                "blockers": _external_binding_context_repair_blockers(
+                    repair_status
+                ),
+                "countable_label_candidate": False,
+                "lane_id": repair_row.get("lane_id"),
+                "pdb_ids_sample": repair_row.get("pdb_ids_sample", []),
+                "protein_name": repair_row.get("protein_name"),
+                "ready_for_label_import": False,
+                "repair_lane": repair_row.get("repair_lane"),
+                "repair_status": repair_status,
+                "repair_type": "binding_context_for_active_site_gap",
+                "required_next_evidence": [
+                    "map binding-site positions to candidate structures as context only",
+                    "source explicit active-site or catalytic residue positions before scoring",
+                    "keep binding-only evidence non-countable until full gates pass",
+                ],
+                "scope_signal": repair_row.get("scope_signal"),
+                "specific_ec_numbers": repair_row.get("specific_ec_numbers", []),
+            }
+        )
+    return {
+        "metadata": {
+            "method": "external_source_binding_context_repair_plan",
+            "source_active_site_evidence_method": active_site_evidence_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "source_control_repair_method": control_repair_plan.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "max_rows": max_rows,
+            "candidate_count": len(rows),
+            "ready_binding_context_candidate_count": sum(
+                1
+                for row in rows
+                if row["repair_status"] == "ready_for_binding_context_mapping"
+            ),
+            "deferred_binding_context_candidate_count": sum(
+                1
+                for row in rows
+                if row["repair_status"] != "ready_for_binding_context_mapping"
+            ),
+            "binding_position_count": binding_position_count,
+            "repair_status_counts": dict(sorted(status_counts.items())),
+            "lane_counts": dict(sorted(lane_counts.items())),
+            "review_only_rule": (
+                "binding context can prioritize active-site repair but cannot "
+                "stand in for catalytic active-site evidence"
+            ),
+        },
+        "rows": rows,
+        "blockers": [
+            "binding_context_not_mapped_to_structure",
+            "active_site_positions_still_missing",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+    }
+
+
+def audit_external_source_binding_context_repair_plan(
+    binding_context_repair_plan: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify binding-context repair rows remain non-countable context."""
+    rows = [
+        row
+        for row in binding_context_repair_plan.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_status_rows = [row for row in rows if not row.get("repair_status")]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_binding_context_repair_plan")
+    if countable_rows:
+        blockers.append("binding_context_repair_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("binding_context_repair_rows_marked_ready_for_import")
+    if missing_status_rows:
+        blockers.append("binding_context_repair_rows_missing_status")
+    return {
+        "metadata": {
+            "method": "external_source_binding_context_repair_plan_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "ready_binding_context_candidate_count": binding_context_repair_plan.get(
+                "metadata", {}
+            ).get("ready_binding_context_candidate_count", 0),
+            "deferred_binding_context_candidate_count": (
+                binding_context_repair_plan.get("metadata", {}).get(
+                    "deferred_binding_context_candidate_count", 0
+                )
+            ),
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_status_row_count": len(missing_status_rows),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "binding context repairs are evidence-collection work only and "
+                "must not become countable labels"
+            )
+        ],
+    }
+
+
+def build_external_source_binding_context_mapping_sample(
+    *,
+    binding_context_repair_plan: dict[str, Any],
+    max_candidates: int = 10,
+    cif_fetcher: Callable[[str, str], str] | None = None,
+) -> dict[str, Any]:
+    """Map binding-site repair positions onto structures as review-only context."""
+    fetcher = cif_fetcher or fetch_external_structure_cif
+    ready_rows = [
+        row
+        for row in binding_context_repair_plan.get("rows", [])
+        if isinstance(row, dict)
+        and row.get("repair_status") == "ready_for_binding_context_mapping"
+    ][:max_candidates]
+    entries: list[dict[str, Any]] = []
+    fetch_failures: list[dict[str, str]] = []
+    status_counts: Counter[str] = Counter()
+    for row in ready_rows:
+        accession = _normalize_accession(row.get("accession"))
+        structure_source, structure_id = _external_structure_choice(row)
+        if not structure_source or not structure_id:
+            entry = _external_binding_context_mapping_failure_entry(
+                row=row,
+                status="structure_reference_missing",
+                error="no PDB or AlphaFold structure handle available",
+            )
+            entries.append(entry)
+            status_counts[entry["status"]] += 1
+            continue
+        try:
+            atoms = parse_atom_site_loop(fetcher(structure_source, structure_id))
+        except Exception as exc:  # pragma: no cover - exercised by live artifacts
+            fetch_failures.append(
+                {
+                    "accession": accession,
+                    "structure_source": structure_source,
+                    "structure_id": structure_id,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+            entry = _external_binding_context_mapping_failure_entry(
+                row=row,
+                status="structure_fetch_failed",
+                error=str(exc),
+                structure_source=structure_source,
+                structure_id=structure_id,
+            )
+            entries.append(entry)
+            status_counts[entry["status"]] += 1
+            continue
+        resolved = []
+        missing_positions = []
+        for position in row.get("binding_positions", []) or []:
+            residue_atoms = select_residue_atoms(
+                atoms,
+                chain_name=None,
+                resid=position.get("begin"),
+                code=None,
+            )
+            if not residue_atoms:
+                missing_positions.append(position)
+                continue
+            first_atom = residue_atoms[0]
+            resolved.append(
+                {
+                    "atom_count": len(residue_atoms),
+                    "ca": atom_position(residue_atoms, "CA"),
+                    "centroid": residue_centroid(residue_atoms),
+                    "chain_name": first_atom.get("auth_asym_id")
+                    or first_atom.get("label_asym_id"),
+                    "code": first_atom.get("auth_comp_id")
+                    or first_atom.get("label_comp_id"),
+                    "ligand_id": position.get("ligand_id"),
+                    "ligand_name": position.get("ligand_name"),
+                    "resid": position.get("begin"),
+                    "residue_node_id": f"uniprot:{accession}:binding:{position.get('begin')}",
+                    "roles": ["uniprot_binding_site_feature"],
+                }
+            )
+        status = "ok" if resolved else "binding_positions_unresolved"
+        entry = {
+            "accession": accession,
+            "binding_position_count": len(row.get("binding_positions", []) or []),
+            "countable_label_candidate": False,
+            "entry_id": f"uniprot:{accession}",
+            "lane_id": row.get("lane_id"),
+            "ligand_context": ligand_context_from_atoms(atoms, resolved),
+            "missing_binding_positions": missing_positions,
+            "pairwise_distances_angstrom": pairwise_distances(resolved),
+            "pocket_context": pocket_context_from_atoms(atoms, resolved),
+            "protein_name": row.get("protein_name"),
+            "ready_for_label_import": False,
+            "resolved_binding_position_count": len(resolved),
+            "residues": resolved,
+            "scope_signal": row.get("scope_signal"),
+            "specific_ec_numbers": row.get("specific_ec_numbers", []),
+            "status": status,
+            "structure_id": structure_id,
+            "structure_source": structure_source,
+        }
+        entries.append(entry)
+        status_counts[status] += 1
+    ok_count = sum(1 for entry in entries if entry.get("status") == "ok")
+    return {
+        "metadata": {
+            "method": "external_source_binding_context_mapping_sample",
+            "source_method": binding_context_repair_plan.get("metadata", {}).get(
+                "method"
+            ),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(entries),
+            "mapped_candidate_count": ok_count,
+            "fetch_failure_count": len(fetch_failures),
+            "max_candidates": max_candidates,
+            "status_counts": dict(sorted(status_counts.items())),
+            "review_only_rule": (
+                "binding-context mapping is not active-site evidence and cannot "
+                "create countable labels"
+            ),
+        },
+        "entries": entries,
+        "fetch_failures": fetch_failures,
+        "blockers": [
+            "active_site_positions_still_missing",
+            "binding_context_not_label_evidence",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+    }
+
+
+def audit_external_source_binding_context_mapping_sample(
+    binding_context_mapping_sample: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify mapped binding context stays review-only."""
+    entries = [
+        entry
+        for entry in binding_context_mapping_sample.get("entries", [])
+        if isinstance(entry, dict)
+    ]
+    countable_entries = [
+        entry for entry in entries if entry.get("countable_label_candidate") is not False
+    ]
+    import_ready_entries = [
+        entry for entry in entries if entry.get("ready_for_label_import") is not False
+    ]
+    unresolved_entries = [
+        entry for entry in entries if entry.get("status") != "ok"
+    ]
+    blockers: list[str] = []
+    if not entries:
+        blockers.append("empty_binding_context_mapping_sample")
+    if countable_entries:
+        blockers.append("binding_context_mapping_entries_marked_countable")
+    if import_ready_entries:
+        blockers.append("binding_context_mapping_entries_marked_ready_for_import")
+    return {
+        "metadata": {
+            "method": "external_source_binding_context_mapping_sample_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_entries),
+            "candidate_count": len(entries),
+            "mapped_candidate_count": sum(
+                1 for entry in entries if entry.get("status") == "ok"
+            ),
+            "unresolved_candidate_count": len(unresolved_entries),
+            "import_ready_entry_count": len(import_ready_entries),
+            "fetch_failure_count": binding_context_mapping_sample.get(
+                "metadata", {}
+            ).get("fetch_failure_count", 0),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "binding-context mapping is only a repair aid for active-site "
+                "feature gaps"
+            )
+        ],
+    }
+
+
+def build_external_source_representation_control_manifest(
+    *,
+    structure_mapping_sample: dict[str, Any],
+    heuristic_control_scores: dict[str, Any],
+    control_repair_plan: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Expose external mapped controls for a future learned representation path."""
+    scores_by_entry = {
+        str(row.get("entry_id")): row
+        for row in heuristic_control_scores.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    repair_by_entry: dict[str, dict[str, Any]] = {}
+    for row in control_repair_plan.get("rows", []) or []:
+        if not isinstance(row, dict) or row.get("repair_type") != "heuristic_control_failure":
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id:
+            repair_by_entry[entry_id] = row
+
+    rows: list[dict[str, Any]] = []
+    for entry in structure_mapping_sample.get("entries", []) or []:
+        if not isinstance(entry, dict) or not entry.get("entry_id"):
+            continue
+        entry_id = str(entry.get("entry_id"))
+        score_row = scores_by_entry.get(entry_id, {})
+        repair_row = repair_by_entry.get(entry_id, {})
+        top1 = _external_top1_fingerprint(score_row)
+        repair_lane = repair_row.get("repair_lane")
+        ligand_context = entry.get("ligand_context", {})
+        if not isinstance(ligand_context, dict):
+            ligand_context = {}
+        pocket_context = entry.get("pocket_context", {})
+        if not isinstance(pocket_context, dict):
+            pocket_context = {}
+        pocket_descriptors = pocket_context.get("descriptors", {})
+        if not isinstance(pocket_descriptors, dict):
+            pocket_descriptors = {}
+        eligible = (
+            entry.get("status") == "ok"
+            and int(entry.get("resolved_residue_count", 0) or 0) > 0
+            and bool(score_row)
+        )
+        rows.append(
+            {
+                "accession": entry.get("accession"),
+                "countable_label_candidate": False,
+                "eligible_for_representation_control": eligible,
+                "eligibility_blockers": _external_representation_control_blockers(
+                    entry=entry,
+                    score_row=score_row,
+                ),
+                "embedding_status": "not_computed_interface_only",
+                "entry_id": entry_id,
+                "external_control_label": "review_only_external_candidate",
+                "feature_summary": {
+                    "local_cofactor_families": ligand_context.get(
+                        "cofactor_families", []
+                    ),
+                    "pairwise_distance_count": len(
+                        entry.get("pairwise_distances_angstrom", [])
+                    ),
+                    "pocket_descriptor_names": sorted(pocket_descriptors),
+                    "resolved_residue_count": entry.get("resolved_residue_count"),
+                    "residue_codes": [
+                        str(residue.get("code", "")).upper()
+                        for residue in entry.get("residues", [])
+                        if isinstance(residue, dict) and residue.get("code")
+                    ],
+                    "structure_id": entry.get("structure_id"),
+                    "structure_source": entry.get("structure_source"),
+                },
+                "heuristic_baseline_control": {
+                    "repair_lane": repair_lane,
+                    "scope_top1_mismatch": bool(
+                        score_row.get("scope_top1_mismatch")
+                    ),
+                    "top1_fingerprint_id": top1,
+                    "top1_score": (
+                        score_row.get("top_fingerprints", [{}])[0].get("score")
+                        if score_row.get("top_fingerprints")
+                        else None
+                    ),
+                },
+                "lane_id": entry.get("lane_id"),
+                "protein_name": entry.get("protein_name"),
+                "ready_for_label_import": False,
+                "scope_signal": entry.get("scope_signal"),
+                "specific_ec_numbers": entry.get("specific_ec_numbers", []),
+            }
+        )
+
+    rows = rows[:max_rows]
+    top1_counts = Counter(
+        str(row["heuristic_baseline_control"]["top1_fingerprint_id"])
+        for row in rows
+        if row["heuristic_baseline_control"].get("top1_fingerprint_id")
+    )
+    repair_lane_counts = Counter(
+        str(row["heuristic_baseline_control"]["repair_lane"])
+        for row in rows
+        if row["heuristic_baseline_control"].get("repair_lane")
+    )
+    return {
+        "metadata": {
+            "method": "external_source_representation_control_manifest",
+            "source_structure_mapping_method": structure_mapping_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "source_heuristic_scores_method": heuristic_control_scores.get(
+                "metadata", {}
+            ).get("method"),
+            "source_control_repair_method": control_repair_plan.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "max_rows": max_rows,
+            "candidate_count": len(rows),
+            "eligible_control_count": sum(
+                1 for row in rows if row["eligible_for_representation_control"]
+            ),
+            "ineligible_control_count": sum(
+                1 for row in rows if not row["eligible_for_representation_control"]
+            ),
+            "scope_top1_mismatch_count": sum(
+                1
+                for row in rows
+                if row["heuristic_baseline_control"]["scope_top1_mismatch"]
+            ),
+            "top1_fingerprint_counts": dict(sorted(top1_counts.items())),
+            "repair_lane_counts": dict(sorted(repair_lane_counts.items())),
+            "embedding_status": "not_computed_interface_only",
+            "control_rule": (
+                "external representation controls must be compared against the "
+                "current heuristic geometry baseline before label decisions"
+            ),
+            "training_label_rule": (
+                "external rows are review-only controls and are never countable "
+                "training labels in this manifest"
+            ),
+        },
+        "rows": rows,
+        "blockers": [
+            "external_embeddings_not_computed",
+            "external_ood_calibration_not_applied",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+    }
+
+
+def audit_external_source_representation_control_manifest(
+    representation_control_manifest: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify external representation controls cannot be used as labels."""
+    rows = [
+        row
+        for row in representation_control_manifest.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_heuristic_rows = [
+        row for row in rows if not row.get("heuristic_baseline_control")
+    ]
+    metadata = representation_control_manifest.get("metadata", {})
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_external_representation_control_manifest")
+    if countable_rows:
+        blockers.append("external_representation_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("external_representation_rows_marked_ready_for_import")
+    if missing_heuristic_rows:
+        blockers.append("external_representation_rows_missing_heuristic_control")
+    return {
+        "metadata": {
+            "method": "external_source_representation_control_manifest_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "eligible_control_count": metadata.get("eligible_control_count", 0),
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_heuristic_control_row_count": len(missing_heuristic_rows),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "representation-control rows are future scoring inputs, not "
+                "external label decisions"
+            )
+        ],
+    }
+
+
 def check_external_source_transfer_gates(
     *,
     transfer_manifest: dict[str, Any],
@@ -1884,6 +2734,17 @@ def check_external_source_transfer_gates(
     heuristic_control_scores: dict[str, Any] | None = None,
     heuristic_control_scores_audit: dict[str, Any] | None = None,
     external_failure_mode_audit: dict[str, Any] | None = None,
+    external_control_repair_plan: dict[str, Any] | None = None,
+    external_control_repair_plan_audit: dict[str, Any] | None = None,
+    reaction_evidence_sample: dict[str, Any] | None = None,
+    reaction_evidence_sample_audit: dict[str, Any] | None = None,
+    representation_control_manifest: dict[str, Any] | None = None,
+    representation_control_manifest_audit: dict[str, Any] | None = None,
+    binding_context_repair_plan: dict[str, Any] | None = None,
+    binding_context_repair_plan_audit: dict[str, Any] | None = None,
+    binding_context_mapping_sample: dict[str, Any] | None = None,
+    binding_context_mapping_sample_audit: dict[str, Any] | None = None,
+    sequence_holdout_audit: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Gate external-source transfer artifacts before future label import work."""
     gates = {
@@ -2145,6 +3006,138 @@ def check_external_source_transfer_gates(
             and audit_meta.get("ready_for_label_import") is False
             and audit_meta.get("countable_label_candidate_count") == 0
         )
+    if external_control_repair_plan is not None:
+        repair_meta = external_control_repair_plan.get("metadata", {})
+        repair_rows = [
+            row
+            for row in external_control_repair_plan.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        gates["external_control_repair_plan_review_only"] = (
+            repair_meta.get("ready_for_label_import") is False
+            and repair_meta.get("countable_label_candidate_count") == 0
+            and repair_meta.get("repair_plan_complete_for_observed_failures") is True
+            and all(row.get("countable_label_candidate") is False for row in repair_rows)
+            and all(row.get("ready_for_label_import") is False for row in repair_rows)
+        )
+    if external_control_repair_plan_audit is not None:
+        audit_meta = external_control_repair_plan_audit.get("metadata", {})
+        gates["external_control_repair_plan_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("ready_for_label_import") is False
+            and audit_meta.get("countable_label_candidate_count") == 0
+        )
+    if reaction_evidence_sample is not None:
+        reaction_meta = reaction_evidence_sample.get("metadata", {})
+        reaction_rows = [
+            row
+            for row in reaction_evidence_sample.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        gates["reaction_evidence_sample_review_only"] = (
+            reaction_meta.get("ready_for_label_import") is False
+            and reaction_meta.get("countable_label_candidate_count") == 0
+            and int(reaction_meta.get("candidate_count", 0) or 0) > 0
+            and all(row.get("countable_label_candidate") is False for row in reaction_rows)
+            and all(row.get("ready_for_label_import") is False for row in reaction_rows)
+            and all(
+                row.get("evidence_status") == "reaction_context_only"
+                for row in reaction_rows
+            )
+        )
+    if reaction_evidence_sample_audit is not None:
+        audit_meta = reaction_evidence_sample_audit.get("metadata", {})
+        gates["reaction_evidence_sample_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("ready_for_label_import") is False
+            and audit_meta.get("countable_label_candidate_count") == 0
+        )
+    if representation_control_manifest is not None:
+        representation_meta = representation_control_manifest.get("metadata", {})
+        representation_rows = [
+            row
+            for row in representation_control_manifest.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        gates["representation_control_manifest_review_only"] = (
+            representation_meta.get("ready_for_label_import") is False
+            and representation_meta.get("countable_label_candidate_count") == 0
+            and representation_meta.get("embedding_status")
+            == "not_computed_interface_only"
+            and len(representation_rows) > 0
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in representation_rows
+            )
+            and all(
+                row.get("ready_for_label_import") is False
+                for row in representation_rows
+            )
+        )
+    if representation_control_manifest_audit is not None:
+        audit_meta = representation_control_manifest_audit.get("metadata", {})
+        gates["representation_control_manifest_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("ready_for_label_import") is False
+            and audit_meta.get("countable_label_candidate_count") == 0
+        )
+    if binding_context_repair_plan is not None:
+        binding_meta = binding_context_repair_plan.get("metadata", {})
+        binding_rows = [
+            row
+            for row in binding_context_repair_plan.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        gates["binding_context_repair_plan_review_only"] = (
+            binding_meta.get("ready_for_label_import") is False
+            and binding_meta.get("countable_label_candidate_count") == 0
+            and len(binding_rows) > 0
+            and all(row.get("countable_label_candidate") is False for row in binding_rows)
+            and all(row.get("ready_for_label_import") is False for row in binding_rows)
+        )
+    if binding_context_repair_plan_audit is not None:
+        audit_meta = binding_context_repair_plan_audit.get("metadata", {})
+        gates["binding_context_repair_plan_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("ready_for_label_import") is False
+            and audit_meta.get("countable_label_candidate_count") == 0
+        )
+    if binding_context_mapping_sample is not None:
+        mapping_meta = binding_context_mapping_sample.get("metadata", {})
+        mapping_entries = [
+            entry
+            for entry in binding_context_mapping_sample.get("entries", [])
+            if isinstance(entry, dict)
+        ]
+        gates["binding_context_mapping_sample_review_only"] = (
+            mapping_meta.get("ready_for_label_import") is False
+            and mapping_meta.get("countable_label_candidate_count") == 0
+            and int(mapping_meta.get("candidate_count", 0) or 0) > 0
+            and all(
+                entry.get("countable_label_candidate") is False
+                for entry in mapping_entries
+            )
+            and all(
+                entry.get("ready_for_label_import") is False
+                for entry in mapping_entries
+            )
+        )
+    if binding_context_mapping_sample_audit is not None:
+        audit_meta = binding_context_mapping_sample_audit.get("metadata", {})
+        gates["binding_context_mapping_sample_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("ready_for_label_import") is False
+            and audit_meta.get("countable_label_candidate_count") == 0
+        )
+    if sequence_holdout_audit is not None:
+        sequence_meta = sequence_holdout_audit.get("metadata", {})
+        gates["external_sequence_holdout_audit_guardrail_clean"] = (
+            sequence_meta.get("guardrail_clean") is True
+            and sequence_meta.get("ready_for_label_import") is False
+            and sequence_meta.get("countable_label_candidate_count") == 0
+            and int(sequence_meta.get("candidate_count", 0) or 0)
+            == int(candidate_manifest.get("metadata", {}).get("candidate_count", 0) or 0)
+        )
     blockers = [name for name, passed in gates.items() if not passed]
     return {
         "metadata": {
@@ -2258,6 +3251,109 @@ def check_external_source_transfer_gates(
                     "failure_mode_count", 0
                 )
                 if external_failure_mode_audit is not None
+                else 0
+            ),
+            "external_control_repair_row_count": (
+                external_control_repair_plan.get("metadata", {}).get(
+                    "repair_row_count", 0
+                )
+                if external_control_repair_plan is not None
+                else 0
+            ),
+            "external_control_repair_complete": (
+                external_control_repair_plan.get("metadata", {}).get(
+                    "repair_plan_complete_for_observed_failures", False
+                )
+                if external_control_repair_plan is not None
+                else False
+            ),
+            "reaction_evidence_candidate_count": (
+                reaction_evidence_sample.get("metadata", {}).get("candidate_count", 0)
+                if reaction_evidence_sample is not None
+                else 0
+            ),
+            "reaction_evidence_record_count": (
+                reaction_evidence_sample.get("metadata", {}).get(
+                    "reaction_record_count", 0
+                )
+                if reaction_evidence_sample is not None
+                else 0
+            ),
+            "reaction_broad_ec_context_row_count": (
+                reaction_evidence_sample_audit.get("metadata", {}).get(
+                    "broad_ec_context_row_count", 0
+                )
+                if reaction_evidence_sample_audit is not None
+                else 0
+            ),
+            "representation_control_candidate_count": (
+                representation_control_manifest.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if representation_control_manifest is not None
+                else 0
+            ),
+            "representation_control_eligible_count": (
+                representation_control_manifest.get("metadata", {}).get(
+                    "eligible_control_count", 0
+                )
+                if representation_control_manifest is not None
+                else 0
+            ),
+            "representation_control_scope_mismatch_count": (
+                representation_control_manifest.get("metadata", {}).get(
+                    "scope_top1_mismatch_count", 0
+                )
+                if representation_control_manifest is not None
+                else 0
+            ),
+            "binding_context_ready_candidate_count": (
+                binding_context_repair_plan.get("metadata", {}).get(
+                    "ready_binding_context_candidate_count", 0
+                )
+                if binding_context_repair_plan is not None
+                else 0
+            ),
+            "binding_context_deferred_candidate_count": (
+                binding_context_repair_plan.get("metadata", {}).get(
+                    "deferred_binding_context_candidate_count", 0
+                )
+                if binding_context_repair_plan is not None
+                else 0
+            ),
+            "binding_context_position_count": (
+                binding_context_repair_plan.get("metadata", {}).get(
+                    "binding_position_count", 0
+                )
+                if binding_context_repair_plan is not None
+                else 0
+            ),
+            "binding_context_mapping_sampled_candidate_count": (
+                binding_context_mapping_sample.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if binding_context_mapping_sample is not None
+                else 0
+            ),
+            "binding_context_mapping_mapped_candidate_count": (
+                binding_context_mapping_sample.get("metadata", {}).get(
+                    "mapped_candidate_count", 0
+                )
+                if binding_context_mapping_sample is not None
+                else 0
+            ),
+            "sequence_holdout_exact_overlap_count": (
+                sequence_holdout_audit.get("metadata", {}).get(
+                    "exact_reference_overlap_holdout_count", 0
+                )
+                if sequence_holdout_audit is not None
+                else 0
+            ),
+            "sequence_holdout_near_duplicate_search_count": (
+                sequence_holdout_audit.get("metadata", {}).get(
+                    "near_duplicate_search_candidate_count", 0
+                )
+                if sequence_holdout_audit is not None
                 else 0
             ),
             "heuristic_control_required": bool(
@@ -2630,18 +3726,227 @@ def _external_scope_top1_mismatch(scope_signal: Any, top1_fingerprint: str) -> b
     scope = str(scope_signal or "")
     if not scope or not top1_fingerprint:
         return False
-    if scope in {
-        "isomerase",
-        "lyase",
-        "oxidoreductase_long_tail",
-        "transferase_methyl",
-        "transferase_phosphoryl",
-    }:
-        return top1_fingerprint in {
+    compatible_top1 = {
+        "glycan_chemistry": {
             "metal_dependent_hydrolase",
             "ser_his_acid_hydrolase",
-        }
+        },
+        "oxidoreductase_long_tail": {
+            "flavin_dehydrogenase_reductase",
+            "heme_peroxidase_oxidase",
+            "radical_sam_enzyme",
+        },
+    }
+    if scope in compatible_top1:
+        return top1_fingerprint not in compatible_top1[scope]
+    if scope in {"isomerase", "lyase", "transferase_methyl", "transferase_phosphoryl"}:
+        return True
     return False
+
+
+def _external_active_site_gap_repair_row(summary: dict[str, Any]) -> dict[str, Any]:
+    binding_count = int(summary.get("binding_site_feature_count", 0) or 0)
+    catalytic_count = int(summary.get("catalytic_activity_count", 0) or 0)
+    if binding_count:
+        repair_lane = "map_binding_site_context_then_source_catalytic_positions"
+        required_next_evidence = [
+            "inspect UniProt binding-site positions as non-countable mapping context",
+            "source explicit catalytic or active-site residue positions",
+            "rerun structure mapping and heuristic controls after positions exist",
+        ]
+    elif catalytic_count:
+        repair_lane = "source_catalytic_positions_from_curated_literature"
+        required_next_evidence = [
+            "source catalytic residue positions from curated literature or database cross-reference",
+            "keep reaction text separate from active-site evidence",
+            "rerun structure mapping and heuristic controls after positions exist",
+        ]
+    else:
+        repair_lane = "defer_until_curated_active_site_or_structure_evidence"
+        required_next_evidence = [
+            "find curated active-site or binding-site evidence",
+            "verify candidate structure reference before scoring",
+            "rerun external evidence gates before any decision artifact",
+        ]
+    return {
+        "accession": summary.get("accession"),
+        "alphafold_ids_sample": summary.get("alphafold_ids_sample", []),
+        "binding_site_feature_count": binding_count,
+        "blockers": [
+            "uniprot_active_site_feature_missing",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "catalytic_activity_count": catalytic_count,
+        "countable_label_candidate": False,
+        "lane_id": summary.get("lane_id"),
+        "pdb_ids_sample": summary.get("pdb_ids_sample", []),
+        "protein_name": summary.get("protein_name"),
+        "ready_for_label_import": False,
+        "repair_lane": repair_lane,
+        "repair_type": "active_site_feature_gap",
+        "required_next_evidence": required_next_evidence,
+        "scope_signal": summary.get("scope_signal"),
+        "specific_ec_numbers": summary.get("specific_ec_numbers", []),
+    }
+
+
+def _external_broad_ec_repair_row(summary: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "accession": summary.get("accession"),
+        "blockers": [
+            "specific_reaction_disambiguation_for_broad_ec",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "broad_or_incomplete_ec_numbers": list(
+            summary.get("broad_or_incomplete_ec_numbers") or []
+        ),
+        "countable_label_candidate": False,
+        "lane_id": summary.get("lane_id"),
+        "protein_name": summary.get("protein_name"),
+        "ready_for_label_import": False,
+        "repair_lane": "resolve_specific_reaction_context_before_scoring",
+        "repair_type": "broad_ec_disambiguation",
+        "required_next_evidence": [
+            "replace broad or incomplete EC context with a specific reaction record",
+            "confirm reaction direction and substrate class before interpreting heuristic controls",
+            "keep broad-EC rows out of countable imports until the full factory gate passes",
+        ],
+        "scope_signal": summary.get("scope_signal"),
+        "specific_ec_numbers": summary.get("specific_ec_numbers", []),
+    }
+
+
+def _external_heuristic_control_repair_row(
+    *,
+    result: dict[str, Any],
+    heuristic_findings: list[str],
+) -> dict[str, Any]:
+    top1 = _external_top1_fingerprint(result)
+    scope_signal = str(result.get("external_scope_signal") or "")
+    if top1 == "metal_dependent_hydrolase" and scope_signal == "glycan_chemistry":
+        repair_lane = "separate_glycan_chemistry_from_metal_hydrolase_boundary"
+    elif top1 == "metal_dependent_hydrolase":
+        repair_lane = "add_scope_specific_negative_control_and_representation_features"
+    elif bool(result.get("scope_top1_mismatch")):
+        repair_lane = "add_lane_specific_scope_contrastive_controls"
+    else:
+        repair_lane = "compare_heuristic_control_against_learned_representation"
+    return {
+        "accession": str(result.get("entry_id") or "").removeprefix("uniprot:"),
+        "blockers": [
+            "heuristic_control_failure_unresolved",
+            "external_ood_calibration_not_applied",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "control_findings": heuristic_findings,
+        "countable_label_candidate": False,
+        "entry_id": result.get("entry_id"),
+        "lane_id": result.get("external_lane_id"),
+        "protein_name": result.get("protein_name"),
+        "ready_for_label_import": False,
+        "repair_lane": repair_lane,
+        "repair_type": "heuristic_control_failure",
+        "required_next_evidence": [
+            "add lane-specific adversarial negative controls",
+            "compare heuristic scores against learned or structure-language representations",
+            "audit ontology-family boundaries before any external decision artifact",
+            "rerun external transfer gates after control separation improves",
+        ],
+        "scope_signal": scope_signal,
+        "scope_top1_mismatch": bool(result.get("scope_top1_mismatch")),
+        "specific_ec_numbers": result.get("specific_ec_numbers", []),
+        "top1_fingerprint": top1,
+    }
+
+
+def _external_top1_fingerprint(result: dict[str, Any]) -> str | None:
+    top_fingerprints = result.get("top_fingerprints", [])
+    if not top_fingerprints:
+        return None
+    top1 = top_fingerprints[0]
+    if not isinstance(top1, dict):
+        return None
+    fingerprint = top1.get("fingerprint_id")
+    return str(fingerprint) if fingerprint else None
+
+
+def _external_control_repair_coverage(
+    *,
+    rows: list[dict[str, Any]],
+    observed_failure_modes: list[str],
+    heuristic_findings: list[str],
+) -> list[str]:
+    covered: set[str] = set()
+    if any(row.get("repair_type") == "active_site_feature_gap" for row in rows):
+        covered.add("external_active_site_feature_gap")
+    if any(row.get("repair_type") == "broad_ec_disambiguation" for row in rows):
+        covered.add("external_broad_ec_disambiguation_needed")
+    if any(row.get("repair_type") == "heuristic_control_failure" for row in rows):
+        covered.update(heuristic_findings)
+    return [mode for mode in observed_failure_modes if mode in covered]
+
+
+def _external_representation_control_blockers(
+    *,
+    entry: dict[str, Any],
+    score_row: dict[str, Any],
+) -> list[str]:
+    blockers: list[str] = []
+    if entry.get("status") != "ok":
+        blockers.append("structure_mapping_status_not_ok")
+    if int(entry.get("resolved_residue_count", 0) or 0) <= 0:
+        blockers.append("no_resolved_external_residue_positions")
+    if not score_row:
+        blockers.append("heuristic_control_score_missing")
+    return blockers
+
+
+def _external_binding_context_repair_blockers(repair_status: str) -> list[str]:
+    blockers = [
+        "active_site_positions_still_missing",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if repair_status == "ready_for_binding_context_mapping":
+        blockers.append("binding_context_not_yet_mapped_to_structure")
+    else:
+        blockers.append("binding_context_missing")
+    return blockers
+
+
+def _external_binding_context_mapping_failure_entry(
+    *,
+    row: dict[str, Any],
+    status: str,
+    error: str,
+    structure_source: str | None = None,
+    structure_id: str | None = None,
+) -> dict[str, Any]:
+    accession = _normalize_accession(row.get("accession"))
+    return {
+        "accession": accession,
+        "binding_position_count": len(row.get("binding_positions", []) or []),
+        "countable_label_candidate": False,
+        "entry_id": f"uniprot:{accession}",
+        "error": error,
+        "lane_id": row.get("lane_id"),
+        "ligand_context": {},
+        "missing_binding_positions": row.get("binding_positions", []),
+        "pairwise_distances_angstrom": [],
+        "pocket_context": {},
+        "protein_name": row.get("protein_name"),
+        "ready_for_label_import": False,
+        "resolved_binding_position_count": 0,
+        "residues": [],
+        "scope_signal": row.get("scope_signal"),
+        "specific_ec_numbers": row.get("specific_ec_numbers", []),
+        "status": status,
+        "structure_id": structure_id,
+        "structure_source": structure_source,
+    }
 
 
 def audit_external_source_lane_balance(
@@ -2859,4 +4164,19 @@ def _external_candidate_manifest_blockers(
         blockers.append("exact_sequence_cluster_overlap_existing_m_csa")
     if not has_structure_reference:
         blockers.append("external_structure_reference_missing")
+    return blockers
+
+
+def _external_sequence_holdout_blockers(holdout_status: str) -> list[str]:
+    blockers = [
+        "external_ood_calibration_not_applied",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if holdout_status == "exact_reference_overlap_holdout":
+        blockers.append("exact_reference_overlap_existing_m_csa")
+    elif holdout_status == "sequence_failure_set_holdout":
+        blockers.append("sequence_failure_set_overlap")
+    else:
+        blockers.append("near_duplicate_search_not_completed")
     return blockers

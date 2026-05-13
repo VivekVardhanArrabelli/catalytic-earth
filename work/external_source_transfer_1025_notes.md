@@ -34,23 +34,36 @@ Current review-only external artifacts:
   candidates ready for heuristic-control prototyping and defers 13 rows: 10
   active-site-feature gaps and 3 broad-EC disambiguation cases.
 - `artifacts/v3_external_source_structure_mapping_plan_1025.json` carries 12
-  candidates into structure mapping and keeps 13 deferred. The bounded
-  `artifacts/v3_external_source_structure_mapping_sample_1025.json` maps 4/4
-  sampled candidates onto current AlphaFold CIFs with 0 fetch failures and 0
-  countable labels.
+  candidates into structure mapping and keeps 13 deferred.
+  `artifacts/v3_external_source_structure_mapping_sample_1025.json` maps all
+  12 heuristic-ready candidates onto current AlphaFold CIFs with 0 fetch
+  failures and 0 countable labels.
 - `artifacts/v3_external_source_heuristic_control_scores_1025.json` runs the
-  current geometry-retrieval heuristic on those 4 mapped controls. All 4 rank
-  `metal_dependent_hydrolase` top1, so
+  current geometry-retrieval heuristic on those 12 mapped controls. The top1
+  predictions are 9 `metal_dependent_hydrolase`, 2
+  `heme_peroxidase_oxidase`, and 1 `flavin_dehydrogenase_reductase`, so
   `artifacts/v3_external_source_failure_mode_audit_1025.json` records top1
   fingerprint collapse, metal-hydrolase collapse, and scope/top1 mismatch as
   review-only failure modes before any external decision artifact can count.
-  The scope/top1 mismatches are the isomerase-lane controls `P60174` and
-  `Q13907`; the glycan-chemistry controls `P33025` and `Q6NSJ0` also collapse
-  to metal hydrolase top1 but are not marked scope/top1 mismatches by the
-  current audit rule.
+  The audit now records 9 scope/top1 mismatches; glycan-chemistry hydrolase
+  controls are tracked separately from non-hydrolase transferase, isomerase,
+  lyase, and oxidoreductase mismatch lanes.
+- `artifacts/v3_external_source_control_repair_plan_1025.json` turns those
+  weaknesses into 25 non-countable repair rows: 10 active-site feature gaps, 3
+  broad-EC disambiguation rows, and 12 heuristic-control repair rows.
+- `artifacts/v3_external_source_representation_control_manifest_1025.json`
+  exposes all 12 mapped controls as future representation rows. Embeddings are
+  explicitly not computed, and no row is a training label.
+- `artifacts/v3_external_source_binding_context_repair_plan_1025.json` splits
+  the 10 active-site-feature gaps into 7 rows ready for binding-context mapping
+  and 3 rows still missing binding context.
+- `artifacts/v3_external_source_binding_context_mapping_sample_1025.json` maps
+  7/7 binding-context repair rows with 0 fetch failures. These mapped binding
+  positions remain repair context only; they are not catalytic active-site
+  evidence.
 - `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`
   confirms countable import adds 0 labels from that export.
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 22/22
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection and is still not ready for label
   import.
 
@@ -64,16 +77,23 @@ Sequence-similarity guardrail details:
 Reaction-context details:
 
 - `artifacts/v3_external_source_reaction_evidence_sample_1025.json` queries Rhea
-  for the first six external candidates and records 22 reaction-context rows
-  with 0 fetch failures.
+  for all 30 external candidates and records 64 reaction-context rows with 0
+  fetch failures.
 - `artifacts/v3_external_source_reaction_evidence_sample_audit_1025.json` is
   guardrail-clean, with 0 countable candidates and 0 import-ready rows.
-- The audit flags `1.1.1.-`, `1.11.1.-`, and `1.8.-.-` as broad or incomplete
-  EC context. Treat those rows as weak reaction context only, not specific
-  mechanism evidence.
+- The audit flags 16 broad-EC context rows across `1.1.1.-`, `1.11.1.-`,
+  `1.8.-.-`, `2.1.1.-`, `2.7.1.-`, `3.2.2.-`, and `4.2.99.-`. Treat those
+  rows as weak reaction context only, not specific mechanism evidence.
+
+Sequence-holdout details:
+
+- `artifacts/v3_external_source_sequence_holdout_audit_1025.json` keeps
+  `O15527` and `P42126` as exact-reference holdouts and marks the other 28
+  external candidates for near-duplicate search before any future import
+  decision.
 
 Next bounded work should repair the external-control weaknesses before any
 external label decision: resolve the 10 active-site-feature gaps, disambiguate
-the 3 broad-EC rows, and either improve ontology/representation controls or
-explain why the current heuristic collapses mapped external controls into
-`metal_dependent_hydrolase`.
+the 3 broad-EC rows, and either prototype representation controls for the 12
+mapped external controls or explain why the current heuristic collapses 9/12
+controls into `metal_dependent_hydrolase`.

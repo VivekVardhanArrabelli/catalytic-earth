@@ -77,6 +77,8 @@ from .sources import build_source_ledger, load_sources
 from .structure import write_geometry_features
 from .transfer_scope import (
     audit_external_source_active_site_evidence_sample,
+    audit_external_source_binding_context_mapping_sample,
+    audit_external_source_binding_context_repair_plan,
     audit_external_source_candidate_manifest,
     audit_external_source_candidate_sample,
     audit_external_source_heuristic_control_queue,
@@ -84,13 +86,19 @@ from .transfer_scope import (
     audit_external_source_failure_modes,
     audit_external_source_lane_balance,
     audit_external_source_reaction_evidence_sample,
+    audit_external_source_representation_control_manifest,
+    audit_external_source_sequence_holdouts,
     audit_external_source_structure_mapping_plan,
     audit_external_source_structure_mapping_sample,
+    audit_external_source_control_repair_plan,
     build_external_ood_calibration_plan,
+    build_external_source_binding_context_mapping_sample,
+    build_external_source_binding_context_repair_plan,
     build_external_source_candidate_manifest,
     build_external_source_candidate_sample,
     build_external_source_active_site_evidence_queue,
     build_external_source_active_site_evidence_sample,
+    build_external_source_control_repair_plan,
     build_external_source_evidence_plan,
     build_external_source_evidence_request_export,
     build_external_source_heuristic_control_queue,
@@ -99,6 +107,7 @@ from .transfer_scope import (
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
     build_external_source_reaction_evidence_sample,
+    build_external_source_representation_control_manifest,
     build_external_source_transfer_manifest,
     check_external_source_transfer_gates,
 )
@@ -460,6 +469,21 @@ def cmd_audit_external_source_candidate_manifest(args: argparse.Namespace) -> in
     return 0
 
 
+def cmd_audit_external_source_sequence_holdouts(args: argparse.Namespace) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    audit = audit_external_source_sequence_holdouts(
+        candidate_manifest=candidate_manifest,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source sequence holdout audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_build_external_source_evidence_plan(args: argparse.Namespace) -> int:
     with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
         candidate_manifest = json.load(handle)
@@ -700,6 +724,165 @@ def cmd_audit_external_source_failure_modes(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_build_external_source_control_repair_plan(args: argparse.Namespace) -> int:
+    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+        active_site_evidence_sample = json.load(handle)
+    with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
+        heuristic_control_scores = json.load(handle)
+    with Path(args.heuristic_control_scores_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        heuristic_control_scores_audit = json.load(handle)
+    with Path(args.external_failure_mode_audit).open("r", encoding="utf-8") as handle:
+        external_failure_mode_audit = json.load(handle)
+    plan = build_external_source_control_repair_plan(
+        active_site_evidence_sample=active_site_evidence_sample,
+        heuristic_control_scores=heuristic_control_scores,
+        heuristic_control_scores_audit=heuristic_control_scores_audit,
+        external_failure_mode_audit=external_failure_mode_audit,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote external source control repair plan to "
+        f"{args.out} ({plan['metadata']['repair_row_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_control_repair_plan(args: argparse.Namespace) -> int:
+    with Path(args.control_repair_plan).open("r", encoding="utf-8") as handle:
+        control_repair_plan = json.load(handle)
+    with Path(args.external_failure_mode_audit).open("r", encoding="utf-8") as handle:
+        external_failure_mode_audit = json.load(handle)
+    audit = audit_external_source_control_repair_plan(
+        control_repair_plan=control_repair_plan,
+        external_failure_mode_audit=external_failure_mode_audit,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source control repair plan audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_binding_context_repair_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+        active_site_evidence_sample = json.load(handle)
+    with Path(args.control_repair_plan).open("r", encoding="utf-8") as handle:
+        control_repair_plan = json.load(handle)
+    plan = build_external_source_binding_context_repair_plan(
+        active_site_evidence_sample=active_site_evidence_sample,
+        control_repair_plan=control_repair_plan,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote external source binding-context repair plan to "
+        f"{args.out} ({plan['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_binding_context_repair_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.binding_context_repair_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        binding_context_repair_plan = json.load(handle)
+    audit = audit_external_source_binding_context_repair_plan(
+        binding_context_repair_plan
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source binding-context repair audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_binding_context_mapping_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.binding_context_repair_plan).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        binding_context_repair_plan = json.load(handle)
+    sample = build_external_source_binding_context_mapping_sample(
+        binding_context_repair_plan=binding_context_repair_plan,
+        max_candidates=args.max_candidates,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote external source binding-context mapping sample to "
+        f"{args.out} ({sample['metadata']['mapped_candidate_count']} mapped)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_binding_context_mapping_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.binding_context_mapping_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        binding_context_mapping_sample = json.load(handle)
+    audit = audit_external_source_binding_context_mapping_sample(
+        binding_context_mapping_sample
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source binding-context mapping audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_representation_control_manifest(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.structure_mapping_sample).open("r", encoding="utf-8") as handle:
+        structure_mapping_sample = json.load(handle)
+    with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
+        heuristic_control_scores = json.load(handle)
+    with Path(args.control_repair_plan).open("r", encoding="utf-8") as handle:
+        control_repair_plan = json.load(handle)
+    manifest = build_external_source_representation_control_manifest(
+        structure_mapping_sample=structure_mapping_sample,
+        heuristic_control_scores=heuristic_control_scores,
+        control_repair_plan=control_repair_plan,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), manifest)
+    print(
+        "Wrote external source representation control manifest to "
+        f"{args.out} ({manifest['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_representation_control_manifest(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.representation_control_manifest).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        representation_control_manifest = json.load(handle)
+    audit = audit_external_source_representation_control_manifest(
+        representation_control_manifest
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source representation control audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
         transfer_manifest = json.load(handle)
@@ -781,6 +964,68 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     if args.external_failure_mode_audit:
         with Path(args.external_failure_mode_audit).open("r", encoding="utf-8") as handle:
             external_failure_mode_audit = json.load(handle)
+    external_control_repair_plan = None
+    if args.external_control_repair_plan:
+        with Path(args.external_control_repair_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            external_control_repair_plan = json.load(handle)
+    external_control_repair_plan_audit = None
+    if args.external_control_repair_plan_audit:
+        with Path(args.external_control_repair_plan_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            external_control_repair_plan_audit = json.load(handle)
+    reaction_evidence_sample = None
+    if args.reaction_evidence_sample:
+        with Path(args.reaction_evidence_sample).open("r", encoding="utf-8") as handle:
+            reaction_evidence_sample = json.load(handle)
+    reaction_evidence_sample_audit = None
+    if args.reaction_evidence_sample_audit:
+        with Path(args.reaction_evidence_sample_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            reaction_evidence_sample_audit = json.load(handle)
+    representation_control_manifest = None
+    if args.representation_control_manifest:
+        with Path(args.representation_control_manifest).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_control_manifest = json.load(handle)
+    representation_control_manifest_audit = None
+    if args.representation_control_manifest_audit:
+        with Path(args.representation_control_manifest_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_control_manifest_audit = json.load(handle)
+    binding_context_repair_plan = None
+    if args.binding_context_repair_plan:
+        with Path(args.binding_context_repair_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            binding_context_repair_plan = json.load(handle)
+    binding_context_repair_plan_audit = None
+    if args.binding_context_repair_plan_audit:
+        with Path(args.binding_context_repair_plan_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            binding_context_repair_plan_audit = json.load(handle)
+    binding_context_mapping_sample = None
+    if args.binding_context_mapping_sample:
+        with Path(args.binding_context_mapping_sample).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            binding_context_mapping_sample = json.load(handle)
+    binding_context_mapping_sample_audit = None
+    if args.binding_context_mapping_sample_audit:
+        with Path(args.binding_context_mapping_sample_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            binding_context_mapping_sample_audit = json.load(handle)
+    sequence_holdout_audit = None
+    if args.sequence_holdout_audit:
+        with Path(args.sequence_holdout_audit).open("r", encoding="utf-8") as handle:
+            sequence_holdout_audit = json.load(handle)
     gates = check_external_source_transfer_gates(
         transfer_manifest=transfer_manifest,
         query_manifest=query_manifest,
@@ -804,6 +1049,17 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         heuristic_control_scores=heuristic_control_scores,
         heuristic_control_scores_audit=heuristic_control_scores_audit,
         external_failure_mode_audit=external_failure_mode_audit,
+        external_control_repair_plan=external_control_repair_plan,
+        external_control_repair_plan_audit=external_control_repair_plan_audit,
+        reaction_evidence_sample=reaction_evidence_sample,
+        reaction_evidence_sample_audit=reaction_evidence_sample_audit,
+        representation_control_manifest=representation_control_manifest,
+        representation_control_manifest_audit=representation_control_manifest_audit,
+        binding_context_repair_plan=binding_context_repair_plan,
+        binding_context_repair_plan_audit=binding_context_repair_plan_audit,
+        binding_context_mapping_sample=binding_context_mapping_sample,
+        binding_context_mapping_sample_audit=binding_context_mapping_sample_audit,
+        sequence_holdout_audit=sequence_holdout_audit,
     )
     write_json(Path(args.out), gates)
     print(
@@ -2696,6 +2952,23 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_candidate_manifest
     )
 
+    external_sequence_holdouts = subparsers.add_parser(
+        "audit-external-source-sequence-holdouts",
+        help="audit external sequence overlap holdouts and near-duplicate search debt",
+    )
+    external_sequence_holdouts.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_sequence_holdouts.add_argument("--max-rows", type=int, default=100)
+    external_sequence_holdouts.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_sequence_holdout_audit.json",
+    )
+    external_sequence_holdouts.set_defaults(
+        func=cmd_audit_external_source_sequence_holdouts
+    )
+
     external_lane_balance = subparsers.add_parser(
         "audit-external-source-lane-balance",
         help="check external-source candidate lanes for review queue collapse",
@@ -2965,6 +3238,168 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_failure_modes.set_defaults(func=cmd_audit_external_source_failure_modes)
 
+    external_control_repair = subparsers.add_parser(
+        "build-external-source-control-repair-plan",
+        help="plan review-only repairs for external active-site and heuristic controls",
+    )
+    external_control_repair.add_argument(
+        "--active-site-evidence-sample",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_control_repair.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores.json",
+    )
+    external_control_repair.add_argument(
+        "--heuristic-control-scores-audit",
+        default="artifacts/v3_external_source_heuristic_control_scores_audit.json",
+    )
+    external_control_repair.add_argument(
+        "--external-failure-mode-audit",
+        default="artifacts/v3_external_source_failure_mode_audit.json",
+    )
+    external_control_repair.add_argument("--max-rows", type=int, default=100)
+    external_control_repair.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_control_repair_plan.json",
+    )
+    external_control_repair.set_defaults(
+        func=cmd_build_external_source_control_repair_plan
+    )
+
+    external_control_repair_audit = subparsers.add_parser(
+        "audit-external-source-control-repair-plan",
+        help="verify external control repair plans remain review-only",
+    )
+    external_control_repair_audit.add_argument(
+        "--control-repair-plan",
+        default="artifacts/v3_external_source_control_repair_plan.json",
+    )
+    external_control_repair_audit.add_argument(
+        "--external-failure-mode-audit",
+        default="artifacts/v3_external_source_failure_mode_audit.json",
+    )
+    external_control_repair_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_control_repair_plan_audit.json",
+    )
+    external_control_repair_audit.set_defaults(
+        func=cmd_audit_external_source_control_repair_plan
+    )
+
+    external_binding_context_repair = subparsers.add_parser(
+        "build-external-source-binding-context-repair-plan",
+        help="collect review-only binding context for active-site-gap external rows",
+    )
+    external_binding_context_repair.add_argument(
+        "--active-site-evidence-sample",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_binding_context_repair.add_argument(
+        "--control-repair-plan",
+        default="artifacts/v3_external_source_control_repair_plan.json",
+    )
+    external_binding_context_repair.add_argument("--max-rows", type=int, default=100)
+    external_binding_context_repair.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_binding_context_repair_plan.json",
+    )
+    external_binding_context_repair.set_defaults(
+        func=cmd_build_external_source_binding_context_repair_plan
+    )
+
+    external_binding_context_repair_audit = subparsers.add_parser(
+        "audit-external-source-binding-context-repair-plan",
+        help="verify binding-context repair plans remain review-only",
+    )
+    external_binding_context_repair_audit.add_argument(
+        "--binding-context-repair-plan",
+        default="artifacts/v3_external_source_binding_context_repair_plan.json",
+    )
+    external_binding_context_repair_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_binding_context_repair_plan_audit.json",
+    )
+    external_binding_context_repair_audit.set_defaults(
+        func=cmd_audit_external_source_binding_context_repair_plan
+    )
+
+    external_binding_context_mapping = subparsers.add_parser(
+        "build-external-source-binding-context-mapping-sample",
+        help="map review-only binding context for active-site-gap external rows",
+    )
+    external_binding_context_mapping.add_argument(
+        "--binding-context-repair-plan",
+        default="artifacts/v3_external_source_binding_context_repair_plan.json",
+    )
+    external_binding_context_mapping.add_argument(
+        "--max-candidates", type=int, default=10
+    )
+    external_binding_context_mapping.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_binding_context_mapping_sample.json",
+    )
+    external_binding_context_mapping.set_defaults(
+        func=cmd_build_external_source_binding_context_mapping_sample
+    )
+
+    external_binding_context_mapping_audit = subparsers.add_parser(
+        "audit-external-source-binding-context-mapping-sample",
+        help="verify binding-context mapping samples remain review-only",
+    )
+    external_binding_context_mapping_audit.add_argument(
+        "--binding-context-mapping-sample",
+        default="artifacts/v3_external_source_binding_context_mapping_sample.json",
+    )
+    external_binding_context_mapping_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_binding_context_mapping_sample_audit.json",
+    )
+    external_binding_context_mapping_audit.set_defaults(
+        func=cmd_audit_external_source_binding_context_mapping_sample
+    )
+
+    external_representation_control = subparsers.add_parser(
+        "build-external-source-representation-control-manifest",
+        help="expose review-only external controls for future representation scoring",
+    )
+    external_representation_control.add_argument(
+        "--structure-mapping-sample",
+        default="artifacts/v3_external_source_structure_mapping_sample.json",
+    )
+    external_representation_control.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores.json",
+    )
+    external_representation_control.add_argument(
+        "--control-repair-plan",
+        default="artifacts/v3_external_source_control_repair_plan.json",
+    )
+    external_representation_control.add_argument("--max-rows", type=int, default=100)
+    external_representation_control.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_representation_control_manifest.json",
+    )
+    external_representation_control.set_defaults(
+        func=cmd_build_external_source_representation_control_manifest
+    )
+
+    external_representation_control_audit = subparsers.add_parser(
+        "audit-external-source-representation-control-manifest",
+        help="verify external representation controls remain review-only",
+    )
+    external_representation_control_audit.add_argument(
+        "--representation-control-manifest",
+        default="artifacts/v3_external_source_representation_control_manifest.json",
+    )
+    external_representation_control_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_representation_control_manifest_audit.json",
+    )
+    external_representation_control_audit.set_defaults(
+        func=cmd_audit_external_source_representation_control_manifest
+    )
+
     external_transfer_gate = subparsers.add_parser(
         "check-external-source-transfer-gates",
         help="gate review-only external-source transfer artifacts before import work",
@@ -3055,6 +3490,50 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--external-failure-mode-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--external-control-repair-plan",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--external-control-repair-plan-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--reaction-evidence-sample",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--reaction-evidence-sample-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--representation-control-manifest",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--representation-control-manifest-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--binding-context-repair-plan",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--binding-context-repair-plan-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--binding-context-mapping-sample",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--binding-context-mapping-sample-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--sequence-holdout-audit",
         default=None,
     )
     external_transfer_gate.add_argument(

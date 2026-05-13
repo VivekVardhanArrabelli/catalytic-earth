@@ -67,25 +67,240 @@
         "2.7.1.26"
       ],
       "reaction_record_count": 1
+    },
+    {
+      "accession": "P32189",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.1.30"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P55263",
+      "broad_or_incomplete_ec_numbers": [
+        "2.7.1.-"
+      ],
+      "ec_numbers": [
+        "2.7.1.-",
+        "2.7.1.20"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "P27144",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.4.4",
+        "2.7.4.6"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "A2RU49",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.7.1.81"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P06746",
+      "broad_or_incomplete_ec_numbers": [
+        "4.2.99.-"
+      ],
+      "ec_numbers": [
+        "2.7.7.7",
+        "4.2.99.-",
+        "4.2.99.18"
+      ],
+      "reaction_record_count": 4
+    },
+    {
+      "accession": "Q9BXD5",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.1.3.3"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P35914",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.1.3.4"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q96I15",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.4.1.16"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "O15527",
+      "broad_or_incomplete_ec_numbers": [
+        "3.2.2.-"
+      ],
+      "ec_numbers": [
+        "3.2.2.-",
+        "4.2.99.18"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "Q13907",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.3.2"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q9BXS1",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.3.2"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P34949",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.1.8"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P60174",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.2.3.3",
+        "5.3.1.1"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "P42126",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "5.3.3.8"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "Q6NSJ0",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "3.2.1.22"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "P30176",
+      "broad_or_incomplete_ec_numbers": [
+        "3.2.2.-"
+      ],
+      "ec_numbers": [
+        "3.2.2.-"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "P29372",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "3.2.2.21"
+      ],
+      "reaction_record_count": 0
+    },
+    {
+      "accession": "P33025",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "4.2.1.70"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "O60568",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "1.14.11.4",
+        "2.4.1.50",
+        "2.4.1.66"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "O95050",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.1.1.49",
+        "2.1.1.96"
+      ],
+      "reaction_record_count": 3
+    },
+    {
+      "accession": "P51580",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.1.1.67"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "Q9Y5N5",
+      "broad_or_incomplete_ec_numbers": [
+        "2.1.1.-"
+      ],
+      "ec_numbers": [
+        "2.1.1.-"
+      ],
+      "reaction_record_count": 2
+    },
+    {
+      "accession": "Q32P41",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.1.1.228"
+      ],
+      "reaction_record_count": 1
+    },
+    {
+      "accession": "Q9HBK9",
+      "broad_or_incomplete_ec_numbers": [],
+      "ec_numbers": [
+        "2.1.1.137"
+      ],
+      "reaction_record_count": 2
     }
   ],
   "fetch_failures": [],
   "metadata": {
-    "broad_or_incomplete_ec_count": 3,
+    "broad_or_incomplete_ec_count": 7,
     "broad_or_incomplete_ec_numbers": [
       "1.1.1.-",
       "1.11.1.-",
-      "1.8.-.-"
+      "1.8.-.-",
+      "2.1.1.-",
+      "2.7.1.-",
+      "3.2.2.-",
+      "4.2.99.-"
     ],
-    "candidate_count": 6,
-    "candidate_with_reaction_context_count": 6,
+    "candidate_count": 30,
+    "candidate_with_reaction_context_count": 29,
     "countable_label_candidate_count": 0,
     "fetch_failure_count": 0,
-    "max_candidates": 6,
+    "max_candidates": 30,
     "max_reactions_per_ec": 2,
     "method": "external_source_reaction_evidence_sample",
-    "queried_ec_count": 15,
-    "reaction_record_count": 22,
+    "queried_ec_count": 45,
+    "reaction_record_count": 64,
     "ready_for_label_import": false,
     "review_only_rule": "Rhea reaction context is evidence to review; it is not active-site mapping and cannot create countable labels"
   },
@@ -397,6 +612,594 @@
       "ready_for_label_import": false,
       "rhea_id": "RHEA:14357",
       "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P32189",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.30",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P32189",
+      "equation": "glycerol + ATP = sn-glycerol 3-phosphate + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:21644",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P55263",
+      "equation": "pyridoxal + ATP = pyridoxal 5'-phosphate + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10224",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P55263",
+      "equation": "a 1,2-diacyl-sn-glycerol + ATP = a 1,2-diacyl-sn-glycero-3-phosphate + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10272",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.20",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P55263",
+      "equation": "adenosine + ATP = AMP + ADP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:20824",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.4",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P27144",
+      "equation": "a ribonucleoside 5'-phosphate + ATP = a ribonucleoside 5'-diphosphate + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24036",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.6",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P27144",
+      "equation": "a ribonucleoside 5'-diphosphate + ATP = a ribonucleoside 5'-triphosphate + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:18113",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.4.6",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P27144",
+      "equation": "UDP + ATP = UTP + ADP",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:25098",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.1.81",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:A2RU49",
+      "equation": "(5R)-5-hydroxy-L-lysine + GTP = (5R)-5-phosphooxy-L-lysine + GDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:19049",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "ec_number": "2.7.7.7",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P06746",
+      "equation": "DNA(n) + a 2'-deoxyribonucleoside 5'-triphosphate = DNA(n+1) + diphosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:22508",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.99.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P06746",
+      "equation": "carboxymethoxysuccinate = glycolate + fumarate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12336",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.99.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P06746",
+      "equation": "5-enolpyruvoyl-6-hydroxy-2-succinyl-cyclohex-3-ene-1-carboxylate = (1R,6R)-6-hydroxy-2-succinyl-cyclohexa-2,4-diene-1-carboxylate + pyruvate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:25597",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.99.18",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P06746",
+      "equation": "2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:66592",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "ec_number": "4.1.3.3",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q9BXD5",
+      "equation": "aceneuramate = aldehydo-N-acetyl-D-mannosamine + pyruvate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23296",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "ec_number": "4.1.3.4",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P35914",
+      "equation": "(3S)-3-hydroxy-3-methylglutaryl-CoA = acetoacetate + acetyl-CoA",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:24404",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "ec_number": "4.4.1.16",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q96I15",
+      "equation": "L-selenocysteine + AH2 = hydrogenselenide + L-alanine + A + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:11632",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.2.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15527",
+      "equation": "7-methylxanthosine + H2O = 7-methylxanthine + D-ribose + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10880",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.2.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:O15527",
+      "equation": "N(4)-(beta-N-acetyl-D-glucosaminyl)-L-asparagine + H2O = N-acetyl-D-glucosamine + L-asparagine",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12324",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.99.18",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O15527",
+      "equation": "2'-deoxyribonucleotide-(2'-deoxyribose 5'-phosphate)-2'-deoxyribonucleotide-DNA = a 3'-end 2'-deoxyribonucleotide-(2,3-dehydro-2,3-deoxyribose 5'-phosphate)-DNA + a 5'-end 5'-phospho-2'-deoxyribonucleoside-DNA + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:lyase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:66592",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.3.2",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q13907",
+      "equation": "isopentenyl diphosphate = dimethylallyl diphosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23284",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.3.2",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q9BXS1",
+      "equation": "isopentenyl diphosphate = dimethylallyl diphosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23284",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.1.8",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P34949",
+      "equation": "D-mannose 6-phosphate = D-fructose 6-phosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12356",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.3.3",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P60174",
+      "equation": "dihydroxyacetone phosphate = methylglyoxal + phosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:17937",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.1.1",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P60174",
+      "equation": "D-glyceraldehyde 3-phosphate = dihydroxyacetone phosphate",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:18585",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.3.8",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P42126",
+      "equation": "(3Z)-dodecenoyl-CoA = (2E)-dodecenoyl-CoA",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23716",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "ec_number": "5.3.3.8",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P42126",
+      "equation": "a (3E)-enoyl-CoA = a 4-saturated (2E)-enoyl-CoA",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:isomerase",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:45228",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.1.22",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q6NSJ0",
+      "equation": "a globoside Gb3Cer (d18:1(4E)) + H2O = a beta-D-Gal-(1->4)-beta-D-Glc-(1<->1)-Cer(d18:1(4E)) + D-galactose",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:21112",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.2.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P30176",
+      "equation": "7-methylxanthosine + H2O = 7-methylxanthine + D-ribose + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10880",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "ec_number": "3.2.2.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:P30176",
+      "equation": "N(4)-(beta-N-acetyl-D-glucosaminyl)-L-asparagine + H2O = N-acetyl-D-glucosamine + L-asparagine",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12324",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "ec_number": "4.2.1.70",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P33025",
+      "equation": "D-ribose 5-phosphate + uracil = psi-UMP + H2O",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:18337",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "ec_number": "1.14.11.4",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O60568",
+      "equation": "L-lysyl-[collagen] + 2-oxoglutarate + O2 = (5R)-5-hydroxy-L-lysyl-[collagen] + succinate + CO2",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:16569",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.50",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O60568",
+      "equation": "(5R)-5-hydroxy-L-lysyl-[collagen] + UDP-alpha-D-galactose = (5R)-5-O-(beta-D-galactosyl)-5-hydroxy-L-lysyl-[collagen] + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12637",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "ec_number": "2.4.1.66",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O60568",
+      "equation": "(5R)-5-O-(beta-D-galactosyl)-5-hydroxy-L-lysyl-[collagen] + UDP-alpha-D-glucose = (5R)-5-O-[alpha-D-glucosyl-(1->2)-beta-D-galactosyl]-5-hydroxy-L-lysyl-[collagen] + UDP + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:glycan_chemistry",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12576",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.49",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O95050",
+      "equation": "a primary amine + S-adenosyl-L-methionine = a methylated primary amine + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:23136",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.49",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O95050",
+      "equation": "a secondary amine + S-adenosyl-L-methionine = a methylated secondary amine + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:53924",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.96",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:O95050",
+      "equation": "dimethyl sulfide + S-adenosyl-L-methionine = trimethylsulfonium + S-adenosyl-L-homocysteine",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:19613",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "P51580",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.67",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P51580",
+      "equation": "mercaptopurine + S-adenosyl-L-methionine = 6-methylthiopurine + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:12609",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "P51580",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.67",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:P51580",
+      "equation": "6-thioguanine + S-adenosyl-L-methionine = 6-methylthioguanine + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:56580",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "Q9Y5N5",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:Q9Y5N5",
+      "equation": "N,N-dimethylglycine + S-adenosyl-L-methionine = glycine betaine + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10072",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "Q9Y5N5",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.-",
+      "ec_specificity": "broad_or_incomplete",
+      "entry_id": "uniprot:Q9Y5N5",
+      "equation": "1,7-dimethylxanthine + S-adenosyl-L-methionine = caffeine + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:10280",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "Q32P41",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.228",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q32P41",
+      "equation": "guanosine(37) in tRNA + S-adenosyl-L-methionine = N(1)-methylguanosine(37) in tRNA + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:36899",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "Q9HBK9",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.137",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q9HBK9",
+      "equation": "arsenic triglutathione + 3 [thioredoxin]-dithiol + 3 S-adenosyl-L-methionine = trimethylarsine + 3 [thioredoxin]-disulfide + 3 glutathione + 3 S-adenosyl-L-homocysteine + 3 H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:69432",
+      "scope_signal": "transferase_methyl"
+    },
+    {
+      "accession": "Q9HBK9",
+      "countable_label_candidate": false,
+      "ec_number": "2.1.1.137",
+      "ec_specificity": "specific",
+      "entry_id": "uniprot:Q9HBK9",
+      "equation": "arsenic triglutathione + [thioredoxin]-dithiol + S-adenosyl-L-methionine + 2 H2O = methylarsonous acid + [thioredoxin]-disulfide + 3 glutathione + S-adenosyl-L-homocysteine + H(+)",
+      "evidence_status": "reaction_context_only",
+      "lane_id": "external_source:transferase_methyl",
+      "mapped_enzyme_count": null,
+      "ready_for_label_import": false,
+      "rhea_id": "RHEA:69460",
+      "scope_signal": "transferase_methyl"
     }
   ]
 }

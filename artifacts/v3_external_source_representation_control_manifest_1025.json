@@ -1,0 +1,552 @@
+{
+  "blockers": [
+    "external_embeddings_not_computed",
+    "external_ood_calibration_not_applied",
+    "external_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "metadata": {
+    "candidate_count": 12,
+    "control_rule": "external representation controls must be compared against the current heuristic geometry baseline before label decisions",
+    "countable_label_candidate_count": 0,
+    "eligible_control_count": 12,
+    "embedding_status": "not_computed_interface_only",
+    "ineligible_control_count": 0,
+    "max_rows": 100,
+    "method": "external_source_representation_control_manifest",
+    "ready_for_label_import": false,
+    "repair_lane_counts": {
+      "add_lane_specific_scope_contrastive_controls": 2,
+      "add_scope_specific_negative_control_and_representation_features": 7,
+      "compare_heuristic_control_against_learned_representation": 1,
+      "separate_glycan_chemistry_from_metal_hydrolase_boundary": 2
+    },
+    "scope_top1_mismatch_count": 9,
+    "source_control_repair_method": "external_source_control_repair_plan",
+    "source_heuristic_scores_method": "external_source_heuristic_control_scores",
+    "source_structure_mapping_method": "external_source_structure_mapping_sample",
+    "top1_fingerprint_counts": {
+      "flavin_dehydrogenase_reductase": 1,
+      "heme_peroxidase_oxidase": 2,
+      "metal_dependent_hydrolase": 9
+    },
+    "training_label_rule": "external rows are review-only controls and are never countable training labels in this manifest"
+  },
+  "rows": [
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:P33025",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "GLU",
+          "LYS"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "P33025",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "separate_glycan_chemistry_from_metal_hydrolase_boundary",
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3355
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Pseudouridine-5'-phosphate glycosidase (PsiMP glycosidase) (EC 4.2.1.70)",
+      "ready_for_label_import": false,
+      "scope_signal": "glycan_chemistry",
+      "specific_ec_numbers": [
+        "4.2.1.70"
+      ]
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:P60174",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "HIS",
+          "GLU"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "P60174",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3741
+      },
+      "lane_id": "external_source:isomerase",
+      "protein_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Methylglyoxal synthase) (EC 4.2.3.3) (Triose-phosphate isomerase)",
+      "ready_for_label_import": false,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "4.2.3.3",
+        "5.3.1.1"
+      ]
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:Q13907",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "CYS",
+          "GLU"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "Q13907",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3714
+      },
+      "lane_id": "external_source:isomerase",
+      "protein_name": "Isopentenyl-diphosphate Delta-isomerase 1 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 1) (IPP isomerase 1) (IPPI1)",
+      "ready_for_label_import": false,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "5.3.3.2"
+      ]
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:Q6NSJ0",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "ASP",
+          "ASP"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "Q6NSJ0",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "separate_glycan_chemistry_from_metal_hydrolase_boundary",
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3552
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "ready_for_label_import": false,
+      "scope_signal": "glycan_chemistry",
+      "specific_ec_numbers": [
+        "3.2.1.22"
+      ]
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:Q9BXD5",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "TYR",
+          "LYS"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "Q9BXD5",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3646
+      },
+      "lane_id": "external_source:lyase",
+      "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "ready_for_label_import": false,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.1.3.3"
+      ]
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:Q9BXS1",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 1,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "SER",
+          "GLU"
+        ],
+        "resolved_residue_count": 2,
+        "structure_id": "Q9BXS1",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3734
+      },
+      "lane_id": "external_source:isomerase",
+      "protein_name": "Isopentenyl-diphosphate delta-isomerase 2 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 2) (IPP isomerase 2) (IPPI2)",
+      "ready_for_label_import": false,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "5.3.3.2"
+      ]
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:A2RU49",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "ASP"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "A2RU49",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.302
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "protein_name": "Hydroxylysine kinase (5-hydroxy-L-lysine kinase) (EC 2.7.1.81) (Aminoglycoside phosphotransferase domain-containing protein 1)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.81"
+      ]
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:O14756",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "TYR"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "O14756",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "compare_heuristic_control_against_learned_representation",
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3039
+      },
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+      "ready_for_label_import": false,
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers": [
+        "1.1.1.105",
+        "1.1.1.209",
+        "1.1.1.239",
+        "1.1.1.53",
+        "1.1.1.62"
+      ]
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:P34949",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "ARG"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "P34949",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_lane_specific_scope_contrastive_controls",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.185
+      },
+      "lane_id": "external_source:isomerase",
+      "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+      "ready_for_label_import": false,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "5.3.1.8"
+      ]
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:P35914",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "CYS"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "P35914",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.1875
+      },
+      "lane_id": "external_source:lyase",
+      "protein_name": "Hydroxymethylglutaryl-CoA lyase, mitochondrial (HL) (HMG-CoA lyase) (EC 4.1.3.4) (3-hydroxy-3-methylglutarate-CoA lyase)",
+      "ready_for_label_import": false,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.1.3.4"
+      ]
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:Q969G6",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "GLU"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "Q969G6",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3012
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "protein_name": "Riboflavin kinase (EC 2.7.1.26) (ATP:riboflavin 5'-phosphotransferase) (Flavokinase)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.26"
+      ]
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "eligibility_blockers": [],
+      "eligible_for_representation_control": true,
+      "embedding_status": "not_computed_interface_only",
+      "entry_id": "uniprot:Q96I15",
+      "external_control_label": "review_only_external_candidate",
+      "feature_summary": {
+        "local_cofactor_families": [],
+        "pairwise_distance_count": 0,
+        "pocket_descriptor_names": [
+          "aromatic_fraction",
+          "charge_balance",
+          "hydrophobic_fraction",
+          "mean_min_distance_to_active_site",
+          "negative_fraction",
+          "polar_fraction",
+          "positive_fraction",
+          "sulfur_fraction"
+        ],
+        "residue_codes": [
+          "CYS"
+        ],
+        "resolved_residue_count": 1,
+        "structure_id": "Q96I15",
+        "structure_source": "alphafold"
+      },
+      "heuristic_baseline_control": {
+        "repair_lane": "add_scope_specific_negative_control_and_representation_features",
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.1935
+      },
+      "lane_id": "external_source:lyase",
+      "protein_name": "Selenocysteine lyase (hSCL) (EC 4.4.1.16)",
+      "ready_for_label_import": false,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.4.1.16"
+      ]
+    }
+  ]
+}

@@ -12,9 +12,10 @@ deferral audit. Next work should build the external-source transfer path rather
 than opening another M-CSA-only tranche. The current external path is
 review-only: candidate manifest, lane-balance audit, evidence plan/export,
 active-site evidence queue, active-site feature sample, structure-control
-mapping sample, heuristic-control score audit, failure-mode audit, 22/22
-transfer gate, and bounded Rhea reaction context all keep
-`countable_label_candidate_count=0`.
+mapping sample, heuristic-control score audit, failure-mode audit,
+control-repair plan, representation-control manifest, binding-context repair
+artifacts, sequence-holdout audit, 33/33 transfer gate, and full 30-candidate
+Rhea reaction context all keep `countable_label_candidate_count=0`.
 
 ## Current Generated Artifacts
 

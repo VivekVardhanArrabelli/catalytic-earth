@@ -205,12 +205,18 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 - Advanced the external path from evidence queue to bounded review-only
   controls: sampled UniProtKB active-site features for all 25 ready external
   rows, found 15 active-site-feature-supported candidates and 10 feature gaps,
-  queued 12 candidates for heuristic-control prototyping, mapped 4/4 sampled
-  controls onto current AlphaFold CIF structures, ran the current geometry
-  heuristic, and recorded a metal-hydrolase top1 collapse plus scope/top1
-  mismatch in `artifacts/v3_external_source_failure_mode_audit_1025.json`.
-  The external transfer gate now passes 22/22 review-only checks and still adds
-  0 countable labels.
+  queued 12 candidates for heuristic-control prototyping, mapped all 12
+  heuristic-ready controls onto current AlphaFold CIF structures, ran the
+  current geometry heuristic, and recorded a metal-hydrolase top1 collapse plus
+  9 scope/top1 mismatches in
+  `artifacts/v3_external_source_failure_mode_audit_1025.json`. The external
+  transfer gate now passes 33/33 review-only checks and still adds 0 countable
+  labels.
+- Expanded external-source controls from the 4-control heuristic sample to all
+  12 heuristic-ready AlphaFold controls, added review-only control-repair,
+  representation-control, binding-context, full reaction-context, and
+  sequence-holdout artifacts, and raised the external transfer gate to 33/33.
+  External candidates still add 0 countable labels and are not import-ready.
 
 ## Current Metrics
 
@@ -480,11 +486,12 @@ Start from the accepted 1,000 state plus the non-promoted 1,025 preview. The
 canonical registry remains at 679 countable labels; the latest accepted labels
 are still `m_csa:978`, `m_csa:988`, `m_csa:990`, and `m_csa:994`.
 
-This run opened a bounded 1,025 preview. The preview gate passes 21/21 checks,
-but `artifacts/v3_label_batch_acceptance_check_1025_preview.json` is not
-accepted for counting because it adds 0 clean countable labels. Review debt
-rises from 326 to 329 rows, with new rows `m_csa:1003`, `m_csa:1004`, and
-`m_csa:1005`, all explicitly deferred by
+The bounded 1,025 preview remains open but not promotable. The preview gate
+passes 21/21 checks, but
+`artifacts/v3_label_batch_acceptance_check_1025_preview.json` is not accepted
+for counting because it adds 0 clean countable labels. Review debt rises from
+326 to 329 rows, with new rows `m_csa:1003`, `m_csa:1004`, and `m_csa:1005`,
+all explicitly deferred by
 `artifacts/v3_accepted_review_debt_deferral_audit_1025_preview.json`.
 
 The 1,025 run exposed a source-scale bottleneck rather than a label-quality
@@ -514,9 +521,18 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_heuristic_control_scores_1025.json`,
 `artifacts/v3_external_source_heuristic_control_scores_audit_1025.json`,
 `artifacts/v3_external_source_failure_mode_audit_1025.json`,
+`artifacts/v3_external_source_control_repair_plan_1025.json`,
+`artifacts/v3_external_source_control_repair_plan_audit_1025.json`,
+`artifacts/v3_external_source_representation_control_manifest_1025.json`,
+`artifacts/v3_external_source_representation_control_manifest_audit_1025.json`,
+`artifacts/v3_external_source_binding_context_repair_plan_1025.json`,
+`artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json`,
+`artifacts/v3_external_source_binding_context_mapping_sample_1025.json`,
+`artifacts/v3_external_source_binding_context_mapping_sample_audit_1025.json`,
+`artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` keep
-`countable_label_candidate_count=0` and pass a 22/22 review-only transfer gate.
+`countable_label_candidate_count=0` and pass a 33/33 review-only transfer gate.
 The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
 query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
 to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC
@@ -524,31 +540,63 @@ contexts; the active-site queue exports 25 ready evidence rows and defers five
 rows, including two exact-reference holdouts and three broad-EC disambiguation
 cases.
 
-This run sampled all 25 active-site-ready external rows from UniProtKB feature
-records. Fifteen candidates have active-site features, ten remain
-active-site-feature gaps, and all sampled rows remain non-countable. The
+External active-site and control work is broader now. The UniProtKB feature
+sample covers all 25 active-site-ready rows: 15 have active-site features, 10
+remain active-site-feature gaps, and all sampled rows remain non-countable. The
 heuristic-control queue marks 12 candidates ready for control prototyping and
-defers 13 rows. A bounded structure-mapping sample maps 4/4 selected controls
-onto current AlphaFold model CIFs, resolves all requested active-site positions,
-and then runs the existing geometry retrieval heuristic as a control. The
-heuristic is not label-ready: all 4 mapped controls rank
-`metal_dependent_hydrolase` top1, and the failure-mode audit records active-site
-feature gaps, broad-EC disambiguation needs, top1 fingerprint collapse,
-metal-hydrolase collapse, and scope/top1 mismatch as review-only failures to
-repair before any external label decision. The current scope/top1 mismatches
-are the two isomerase-lane controls `P60174` and `Q13907`; `P33025` and
-`Q6NSJ0` are glycan-chemistry controls that still collapse to metal hydrolase
-top1 and need representation/ontology review before any import decision.
+defers 13 rows. The expanded structure-mapping sample maps all 12
+heuristic-ready controls onto current AlphaFold model CIFs, resolves all
+requested active-site positions, and then runs the existing geometry retrieval
+heuristic as a control. The heuristic is not label-ready: top1 predictions are
+9 `metal_dependent_hydrolase`, 2 `heme_peroxidase_oxidase`, and 1
+`flavin_dehydrogenase_reductase`, with 9 scope/top1 mismatches. The
+failure-mode audit records active-site feature gaps, broad-EC disambiguation
+needs, top1 fingerprint collapse, metal-hydrolase collapse, and scope/top1
+mismatch as review-only failures to repair before any external label decision.
 The active-site feature-gap rows are `O60568`, `P29372`, `P27144`, `A2RUC4`,
 `P51580`, `O95050`, `Q9HBK9`, `A5PLL7`, `P32189`, and `Q32P41`.
 
-`artifacts/v3_external_source_reaction_evidence_sample_1025.json` starts the
-first bounded evidence-collection pass by querying Rhea for the first six
-external candidates. It records 22 reaction-context rows with 0 fetch failures
-and remains non-countable. Its companion audit
+The new control-repair artifacts turn the current weaknesses into concrete
+non-countable repair work. `artifacts/v3_external_source_control_repair_plan_1025.json`
+has 25 repair rows: 10 active-site feature gaps, 3 broad-EC disambiguation
+rows, and 12 heuristic-control repair rows. The representation control manifest
+exposes all 12 mapped controls as future representation rows with embeddings
+explicitly not computed and no training labels. The binding-context repair plan
+splits the 10 active-site feature gaps into 7 rows ready for binding-context
+mapping and 3 rows still missing binding context; the mapping sample maps 7/7
+ready rows with 0 fetch failures. Binding positions remain repair context only,
+not catalytic active-site evidence.
+
+`artifacts/v3_external_source_reaction_evidence_sample_1025.json` now queries
+Rhea for all 30 external candidates. It records 64 reaction-context rows with 0
+fetch failures and remains non-countable. Its companion audit
 `artifacts/v3_external_source_reaction_evidence_sample_audit_1025.json` is
-guardrail-clean but flags broad/incomplete EC context for `1.1.1.-`,
-`1.11.1.-`, and `1.8.-.-`; those rows are not specific mechanism evidence.
+guardrail-clean but flags 16 broad-EC context rows across `1.1.1.-`,
+`1.11.1.-`, `1.8.-.-`, `2.1.1.-`, `2.7.1.-`, `3.2.2.-`, and `4.2.99.-`;
+those rows are not specific mechanism evidence. The sequence-holdout audit
+keeps `O15527` and `P42126` as exact-reference holdouts and marks the remaining
+28 candidates as near-duplicate-search cases before any future import decision.
+
+Label-quality confidence call for the 2026-05-13T06:06:38Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source control
+repair. Evidence at run start: `validate` and 239 unit tests passed, the 1,025
+preview gate passes 21/21 checks, the prior external transfer gate passes 22/22
+review-only checks, hard negatives remain 0, near misses remain 0,
+out-of-scope false non-abstentions remain 0, actionable in-scope failures
+remain 0, review-only import growth remains 0, the 1,025 acceptance artifact
+adds 0 clean countable labels, and the source-scale audit records only 1,003
+observed M-CSA records for the requested 1,025 tranche. The existing external
+control artifacts exposed active-site feature gaps, broad-EC rows, and a
+metal-hydrolase/top1 collapse, so this run repaired guardrails instead of
+opening label growth. This is an operational workflow decision, not a claim of
+biological truth.
+
+Remaining-time plan for the 2026-05-13T06:06:38Z run: after expanding
+structure mapping to all 12 heuristic-ready controls, adding repair,
+representation, binding-context, reaction, and sequence-holdout artifacts, use
+the remaining productive window for regression tests, docs, and final gate
+validation. Do not import external labels until a separate reviewed decision
+artifact passes full label-factory gates.
 
 Label-quality confidence call for the 2026-05-13T03:03:14Z run: yes, current
 quality gates are good enough to spend this run on a bounded 1,025 preview.
@@ -563,8 +611,9 @@ non-countable, and the ATP/phosphoryl-transfer family expansion remains
 guardrail-clean with 0 countable label candidates. This is an operational
 workflow decision, not a claim of biological truth.
 
-Label-quality confidence call at handoff for the next run: no for additional
-M-CSA-only count growth, yes for bounded external-source transfer scaffolding.
+Label-quality confidence call at handoff after the 2026-05-13T03:03:14Z run:
+no for additional M-CSA-only count growth, yes for bounded external-source
+transfer scaffolding.
 Evidence: the 1,025 factory gate passes 21/21 checks, hard negatives remain 0,
 near misses remain 0, out-of-scope false non-abstentions remain 0, actionable
 in-scope failures remain 0, accepted review-gap labels remain 0, and
@@ -694,6 +743,15 @@ Start with:
 `artifacts/v3_external_source_heuristic_control_scores_1025.json`,
 `artifacts/v3_external_source_heuristic_control_scores_audit_1025.json`,
 `artifacts/v3_external_source_failure_mode_audit_1025.json`,
+`artifacts/v3_external_source_control_repair_plan_1025.json`,
+`artifacts/v3_external_source_control_repair_plan_audit_1025.json`,
+`artifacts/v3_external_source_representation_control_manifest_1025.json`,
+`artifacts/v3_external_source_representation_control_manifest_audit_1025.json`,
+`artifacts/v3_external_source_binding_context_repair_plan_1025.json`,
+`artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json`,
+`artifacts/v3_external_source_binding_context_mapping_sample_1025.json`,
+`artifacts/v3_external_source_binding_context_mapping_sample_audit_1025.json`,
+`artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`,
 `artifacts/v3_external_source_transfer_gate_check_1025.json`,
 `artifacts/v3_external_source_reaction_evidence_sample_1025.json`,
@@ -706,11 +764,11 @@ Highest-value options:
 1. Do not promote the 1,025 preview; it has 0 accepted labels and exists as a
    source-limit audit point.
 2. Continue review-only external-source evidence collection from
-   `artifacts/v3_external_source_failure_mode_audit_1025.json`: repair the 10
-   active-site-feature gaps, disambiguate the 3 broad-EC rows, and investigate
-   why the first 4 mapped controls collapse to metal hydrolase top1.
-3. Treat the Rhea reaction-context sample as context only, especially the three
-   broad/incomplete EC queries; do not treat Rhea rows as active-site evidence.
+   `artifacts/v3_external_source_control_repair_plan_1025.json`: resolve the
+   10 active-site-feature gaps, disambiguate the 3 broad-EC rows, and prototype
+   representation controls for the 12 mapped external controls.
+3. Treat the Rhea reaction-context sample as context only, especially the 16
+   broad-EC context rows; do not treat Rhea rows as active-site evidence.
 4. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
    separate decision artifact passes the full label-factory gate.
 5. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
@@ -764,29 +822,30 @@ Known blockers:
 
 ## Run Timing
 
-- STARTED_AT: 2026-05-13T05:05:40Z
-- ENDED_AT: 2026-05-13T05:57:01Z
-- Measured elapsed time: 51.350 minutes
+- STARTED_AT: 2026-05-13T06:06:38Z
+- ENDED_AT: 2026-05-13T06:57:46Z
+- Measured elapsed time: 51.133 minutes
 - Documentation checked and updated across README, docs/label_factory.md,
   docs/external_source_transfer.md, docs/v2_strengthening_report.md,
   work/scope.md, work/handoff.md, work/label_factory_notes.md,
-  work/label_preview_1025_notes.md, and
-  work/external_source_transfer_1025_notes.md before status regeneration.
+  work/label_preview_1025_notes.md, work/external_source_transfer_1025_notes.md,
+  and work/external_source_control_repair_1025_notes.md before status
+  regeneration.
 - Normal locked run kept external UniProtKB/Swiss-Prot candidates review-only
-  and advanced the post-M-CSA transfer controls without importing labels.
-- Added UniProtKB active-site feature sampling for 25 ready candidates,
-  heuristic-control queueing, AlphaFold/PDB structure-mapping plans, a 4-row
-  structure-control mapping sample, heuristic-control scoring, and an explicit
-  external failure-mode audit. All external artifacts keep
-  `countable_label_candidate_count=0`.
-- The external transfer gate now passes 22/22 checks for review-only evidence
-  collection, while the heuristic-control audit records metal-hydrolase top1
-  collapse and scope/top1 mismatch as blockers before any external label
-  decision.
+  and repaired the post-M-CSA transfer controls without importing labels.
+- Expanded structure mapping and heuristic scoring from 4 to all 12
+  heuristic-ready external controls, added control-repair, representation,
+  binding-context, full reaction-context, and sequence-holdout artifacts, and
+  kept every external row non-countable.
+- The external transfer gate now passes 33/33 checks for review-only evidence
+  collection; the repair plan records 25 non-countable repair rows, the
+  representation manifest exposes 12 mapped controls, the binding-context
+  sample maps 7/7 rows as context only, and the sequence audit keeps two exact
+  reference overlaps as holdouts.
 - Final verification passed: `git diff --check`,
   `PYTHONPATH=src python -m catalytic_earth.cli validate`,
-  `PYTHONPATH=src python -m unittest discover -s tests` with 239 tests,
-  targeted external-transfer/CLI tests, JSON artifact parsing, external
+  `PYTHONPATH=src python -m unittest discover -s tests` with 247 tests,
+  targeted external-transfer/scaling tests, JSON artifact parsing, external
   import/countable violation scan, and `python -m compileall -q src tests`.
 
 - STARTED_AT: 2026-05-13T04:04:36Z
