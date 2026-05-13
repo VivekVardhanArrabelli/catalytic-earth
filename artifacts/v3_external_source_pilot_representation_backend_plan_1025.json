@@ -1,0 +1,551 @@
+{
+  "blockers": [
+    "external_embeddings_not_computed",
+    "representation_backend_not_selected",
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "metadata": {
+    "backend_readiness_status_counts": {
+      "ready_for_backend_selection_not_embedding": 10
+    },
+    "blocker_removed": "external_pilot_representation_sample_coverage",
+    "candidate_count": 10,
+    "countable_label_candidate_count": 0,
+    "embedding_status": "backend_plan_only_not_computed",
+    "heuristic_baseline_missing_count": 6,
+    "max_rows": 10,
+    "method": "external_source_pilot_representation_backend_plan",
+    "missing_sequence_export_accessions": [],
+    "ready_for_label_import": false,
+    "review_only_rule": "pilot representation plans compute sequence-embedding controls only; they do not replace heuristic controls, sequence-search completion, review decisions, or label-factory gates",
+    "selected_candidate_count": 10,
+    "sequence_search_blocked_count": 0,
+    "source_pilot_candidate_priority_method": "external_source_pilot_candidate_priority",
+    "source_sequence_search_export_method": "external_source_sequence_search_export"
+  },
+  "rows": [
+    {
+      "accession": "O14756",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "pilot_sequence_embedding_control",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:O14756",
+      "feature_summary": {
+        "pilot_priority_score": 92.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "heuristic_geometry_baseline_control",
+        "redox_cofactor_contrastive_axis",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "O14756",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "O14756",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:O14756",
+          "status": "required_attached"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "P06746",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:P06746",
+      "feature_summary": {
+        "pilot_priority_score": 82.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:lyase",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "P06746",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "P06746",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:P06746",
+          "status": "required_missing"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "C9JRZ8",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:C9JRZ8",
+      "feature_summary": {
+        "pilot_priority_score": 82.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "heuristic_geometry_baseline_control",
+        "redox_cofactor_contrastive_axis",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "C9JRZ8",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "C9JRZ8",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:C9JRZ8",
+          "status": "required_missing"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "P55263",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:P55263",
+      "feature_summary": {
+        "pilot_priority_score": 82.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "P55263",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "P55263",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:P55263",
+          "status": "required_missing"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "P34949",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:P34949",
+      "feature_summary": {
+        "pilot_priority_score": 80.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:isomerase",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "P34949",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "P34949",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:P34949",
+          "status": "required_attached"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "isomerase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "Q9BXD5",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:Q9BXD5",
+      "feature_summary": {
+        "pilot_priority_score": 80.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:lyase",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "Q9BXD5",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "Q9BXD5",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:Q9BXD5",
+          "status": "required_attached"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "lyase",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:Q6NSJ0",
+      "feature_summary": {
+        "pilot_priority_score": 78.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "glycan_boundary_contrastive_axis",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "Q6NSJ0",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "Q6NSJ0",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:Q6NSJ0",
+          "status": "required_attached"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "glycan_chemistry",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "O60568",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:O60568",
+      "feature_summary": {
+        "pilot_priority_score": 72.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "glycan_boundary_contrastive_axis",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "O60568",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "O60568",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:O60568",
+          "status": "required_missing"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "glycan_chemistry",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "O95050",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:O95050",
+      "feature_summary": {
+        "pilot_priority_score": 72.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:transferase_methyl",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "O95050",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "O95050",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:O95050",
+          "status": "required_missing"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "transferase_methyl",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    },
+    {
+      "accession": "P51580",
+      "backend_readiness_status": "ready_for_backend_selection_not_embedding",
+      "blockers": [
+        "representation_backend_not_selected",
+        "external_embeddings_not_computed",
+        "external_review_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+      "countable_label_candidate": false,
+      "embedding_status": "backend_plan_only_not_computed",
+      "entry_id": "uniprot:P51580",
+      "feature_summary": {
+        "pilot_priority_score": 72.0,
+        "pilot_selection_status": "selected_for_review_pilot"
+      },
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": null,
+        "top1_score": null
+      },
+      "lane_id": "external_source:transferase_methyl",
+      "pilot_representation_control": true,
+      "ready_for_label_import": false,
+      "recommended_backends": [
+        "active_site_contrastive_baseline",
+        "heuristic_geometry_baseline_control",
+        "sequence_language_model_embedding",
+        "structure_or_active_site_language_model_embedding"
+      ],
+      "required_inputs": [
+        {
+          "input_type": "candidate_sequence",
+          "source_id": "P51580",
+          "status": "required_not_embedded"
+        },
+        {
+          "input_type": "sequence_search_control",
+          "source_id": "P51580",
+          "status": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+        },
+        {
+          "input_type": "heuristic_baseline_scores",
+          "source_id": "uniprot:P51580",
+          "status": "required_missing"
+        }
+      ],
+      "review_status": "representation_backend_plan_review_only",
+      "scope_signal": "transferase_methyl",
+      "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+    }
+  ],
+  "warnings": [
+    "pilot representation plans are review-only and cannot authorize countable external label import"
+  ]
+}

@@ -118,6 +118,11 @@ Current review-only external artifacts:
   computes the canonical 12-row ESM-2 representation sample, flags 3
   representation near-duplicate holdouts, and emits learned-vs-heuristic
   disagreements without making any row countable.
+- `artifacts/v3_external_source_pilot_representation_backend_plan_1025.json`
+  extends the representation backend plan to the 10 selected pilot rows.
+  `artifacts/v3_external_source_pilot_representation_backend_sample_1025.json`
+  computes ESM-2 embeddings for all 10, flags `P55263` as a representation
+  near-duplicate holdout, and keeps every row review-only and non-countable.
 - `artifacts/v3_external_source_active_site_sourcing_resolution_1025.json`
   re-checks the 10 active-site-gap rows against UniProt feature evidence,
   records 0 explicit active-site residue sources, and leaves all rows
@@ -145,8 +150,8 @@ Current review-only external artifacts:
   required source packets; it is source-packet consolidation only.
 - `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` turns the
   selected 10 into per-candidate review dossiers. Seven have explicit UniProt
-  active-site feature support, all 10 have Rhea reaction context, four have
-  representation-sample rows, and all 10 still carry import blockers. The
+  active-site feature support, all 10 have Rhea reaction context, all 10 have
+  pilot representation-sample rows, and all 10 still carry import blockers. The
   artifact is review-only and creates 0 countable candidates. The latest
   assembly also adds local evidence-completeness blockers, including explicit
   active-site-evidence blockers for `O60568`, `O95050`, and `P51580`.
@@ -154,15 +159,16 @@ Current review-only external artifacts:
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
   checkpoints, then 45/45 after sequence-alignment verification and the
-  active-site sourcing queue. The current gate now passes 65/65 after the source
+  active-site sourcing queue. The current gate now passes 66/66 after the source
   exports, active-site sourcing resolution, representation-backend sample,
-  blocker matrix, pilot review-only safeguards, and current-reference
-  sequence-screen audit. It uses the typed
+  blocker matrix, pilot review-only safeguards, selected-pilot representation
+  sample coverage, and current-reference sequence-screen audit. It uses the typed
   `ExternalSourceTransferGateInputs.v1` contract, validates both candidate
   lineage across high-fan-in external artifacts and artifact-path lineage across
-  all supplied gate inputs, now includes the sequence-holdout audit in row-level
-  lineage validation, and fails fast on mixed-slice paths, payload-declared
-  slice contradictions, stale holdout rows, or pilot artifacts that stop being
+  all supplied gate inputs, now includes the sequence-holdout audit and pilot
+  representation sample in row-level lineage validation, and fails fast on
+  mixed-slice paths, payload-declared slice contradictions, stale holdout rows,
+  stale pilot representation rows, or pilot artifacts that stop being
   review-only/no-decision work products. It is still not ready for label import.
 
 Sequence-similarity guardrail details:

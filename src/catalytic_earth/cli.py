@@ -137,6 +137,7 @@ from .transfer_scope import (
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
     build_external_source_representation_backend_plan,
+    build_external_source_pilot_representation_backend_plan,
     build_external_source_representation_backend_sample,
     build_external_source_sequence_alignment_verification,
     build_external_source_sequence_search_export,
@@ -1195,6 +1196,26 @@ def cmd_build_external_source_representation_backend_plan(
     write_json(Path(args.out), plan)
     print(
         "Wrote external source representation backend plan to "
+        f"{args.out} ({plan['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_representation_backend_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.pilot_candidate_priority).open("r", encoding="utf-8") as handle:
+        pilot_candidate_priority = json.load(handle)
+    with Path(args.sequence_search_export).open("r", encoding="utf-8") as handle:
+        sequence_search_export = json.load(handle)
+    plan = build_external_source_pilot_representation_backend_plan(
+        pilot_candidate_priority=pilot_candidate_priority,
+        sequence_search_export=sequence_search_export,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote external source pilot representation backend plan to "
         f"{args.out} ({plan['metadata']['candidate_count']} rows)"
     )
     return 0
@@ -4277,6 +4298,32 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_external_source_representation_backend_plan
     )
 
+    external_pilot_representation_backend_plan = subparsers.add_parser(
+        "build-external-source-pilot-representation-backend-plan",
+        help="plan review-only sequence representation controls for selected pilot rows",
+    )
+    external_pilot_representation_backend_plan.add_argument(
+        "--pilot-candidate-priority",
+        default="artifacts/v3_external_source_pilot_candidate_priority.json",
+    )
+    external_pilot_representation_backend_plan.add_argument(
+        "--sequence-search-export",
+        default="artifacts/v3_external_source_sequence_search_export.json",
+    )
+    external_pilot_representation_backend_plan.add_argument(
+        "--max-rows", type=int, default=10
+    )
+    external_pilot_representation_backend_plan.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_representation_backend_plan.json"
+        ),
+    )
+    external_pilot_representation_backend_plan.set_defaults(
+        func=cmd_build_external_source_pilot_representation_backend_plan
+    )
+
     external_representation_backend_plan_audit = subparsers.add_parser(
         "audit-external-source-representation-backend-plan",
         help="verify external representation backend plans remain review-only",
@@ -5177,6 +5224,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--pilot-evidence-dossiers",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--pilot-representation-backend-sample",
         default=None,
     )
     external_transfer_gate.add_argument(

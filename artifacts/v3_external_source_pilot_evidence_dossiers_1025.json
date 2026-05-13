@@ -14,7 +14,7 @@
     "pilot_specific_reaction_context_missing_count": 0,
     "reaction_context_candidate_count": 10,
     "ready_for_label_import": false,
-    "representation_sample_candidate_count": 4,
+    "representation_sample_candidate_count": 10,
     "review_only": true,
     "review_policy": {
       "countable_import_rule": "external candidates require explicit active-site evidence, specific reaction or mechanism review, complete sequence near-duplicate controls, leakage-safe representation controls, review decisions, and full label-factory gates",
@@ -34,6 +34,7 @@
       "P51580"
     ],
     "source_pilot_evidence_packet_method": "external_source_pilot_evidence_packet",
+    "source_representation_backend_sample_method": "external_source_representation_backend_sample",
     "source_transfer_blocker_matrix_method": "external_source_transfer_blocker_matrix"
   },
   "rows": [
@@ -106,10 +107,8 @@
       "remaining_blockers": [
         "complete_near_duplicate_search_required",
         "complete_uniref_or_all_vs_all_near_duplicate_search_required",
-        "external_embeddings_not_computed",
         "external_review_decision_artifact_not_built",
-        "full_label_factory_gate_not_run",
-        "representation_backend_not_selected"
+        "full_label_factory_gate_not_run"
       ],
       "representation_control": {
         "backend_status": "learned_representation_sample_complete",
@@ -117,7 +116,7 @@
           "external_review_decision_artifact_not_built",
           "full_label_factory_gate_not_run"
         ],
-        "comparison_status": "proxy_consistent_with_heuristic_scope",
+        "comparison_status": "pilot_sequence_embedding_control",
         "embedding_status": "computed_review_only",
         "nearest_reference_accession": "P0A6C1",
         "nearest_reference_entry_id": null,
@@ -232,18 +231,19 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
-        "representation_backend_plan_missing_or_not_eligible",
-        "representation_backend_sample_missing_for_candidate",
         "representation_control_not_compared"
       ],
       "representation_control": {
-        "backend_status": "missing",
-        "blockers": [],
-        "comparison_status": null,
-        "embedding_status": null,
-        "nearest_reference_accession": null,
+        "backend_status": "learned_representation_sample_complete",
+        "blockers": [
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+        "embedding_status": "computed_review_only",
+        "nearest_reference_accession": "P31116",
         "nearest_reference_entry_id": null,
-        "top_embedding_cosine": null
+        "top_embedding_cosine": 0.9275
       },
       "review_status": "external_pilot_evidence_dossier_review_only",
       "sequence_evidence": {
@@ -359,18 +359,19 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
-        "representation_backend_plan_missing_or_not_eligible",
-        "representation_backend_sample_missing_for_candidate",
         "representation_control_not_compared"
       ],
       "representation_control": {
-        "backend_status": "missing",
-        "blockers": [],
-        "comparison_status": null,
-        "embedding_status": null,
-        "nearest_reference_accession": null,
+        "backend_status": "learned_representation_sample_complete",
+        "blockers": [
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+        "embedding_status": "computed_review_only",
+        "nearest_reference_accession": "P0A786",
         "nearest_reference_entry_id": null,
-        "top_embedding_cosine": null
+        "top_embedding_cosine": 0.7995
       },
       "review_status": "external_pilot_evidence_dossier_review_only",
       "sequence_evidence": {
@@ -483,18 +484,21 @@
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
-        "representation_backend_plan_missing_or_not_eligible",
-        "representation_backend_sample_missing_for_candidate",
-        "representation_control_not_compared"
+        "representation_control_not_compared",
+        "representation_near_duplicate_control_holdout"
       ],
       "representation_control": {
-        "backend_status": "missing",
-        "blockers": [],
-        "comparison_status": null,
-        "embedding_status": null,
-        "nearest_reference_accession": null,
+        "backend_status": "representation_near_duplicate_holdout",
+        "blockers": [
+          "representation_near_duplicate_control_holdout",
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+        "embedding_status": "computed_review_only",
+        "nearest_reference_accession": "Q9TVW2",
         "nearest_reference_entry_id": null,
-        "top_embedding_cosine": null
+        "top_embedding_cosine": 0.9731
       },
       "review_status": "external_pilot_evidence_dossier_review_only",
       "sequence_evidence": {
@@ -596,11 +600,9 @@
       "remaining_blockers": [
         "complete_near_duplicate_search_required",
         "complete_uniref_or_all_vs_all_near_duplicate_search_required",
-        "external_embeddings_not_computed",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_scope_top1_mismatch",
-        "representation_backend_not_selected",
         "representation_control_proxy_flags_scope_top1_mismatch"
       ],
       "representation_control": {
@@ -727,11 +729,9 @@
       "remaining_blockers": [
         "complete_near_duplicate_search_required",
         "complete_uniref_or_all_vs_all_near_duplicate_search_required",
-        "external_embeddings_not_computed",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_scope_top1_mismatch",
-        "representation_backend_not_selected",
         "representation_control_proxy_flags_scope_top1_mismatch"
       ],
       "representation_control": {
@@ -858,11 +858,9 @@
       "remaining_blockers": [
         "complete_near_duplicate_search_required",
         "complete_uniref_or_all_vs_all_near_duplicate_search_required",
-        "external_embeddings_not_computed",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_metal_hydrolase_collapse",
-        "representation_backend_not_selected",
         "representation_control_proxy_boundary_case_requires_glycan_hydrolase_split"
       ],
       "representation_control": {
@@ -978,18 +976,19 @@
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
         "pilot_explicit_active_site_evidence_missing",
-        "representation_backend_plan_missing_or_not_eligible",
-        "representation_backend_sample_missing_for_candidate",
         "representation_control_not_compared"
       ],
       "representation_control": {
-        "backend_status": "missing",
-        "blockers": [],
-        "comparison_status": null,
-        "embedding_status": null,
-        "nearest_reference_accession": null,
+        "backend_status": "learned_representation_sample_complete",
+        "blockers": [
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+        "embedding_status": "computed_review_only",
+        "nearest_reference_accession": "P00488",
         "nearest_reference_entry_id": null,
-        "top_embedding_cosine": null
+        "top_embedding_cosine": 0.9454
       },
       "review_status": "external_pilot_evidence_dossier_review_only",
       "sequence_evidence": {
@@ -1091,18 +1090,19 @@
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
         "pilot_explicit_active_site_evidence_missing",
-        "representation_backend_plan_missing_or_not_eligible",
-        "representation_backend_sample_missing_for_candidate",
         "representation_control_not_compared"
       ],
       "representation_control": {
-        "backend_status": "missing",
-        "blockers": [],
-        "comparison_status": null,
-        "embedding_status": null,
-        "nearest_reference_accession": null,
+        "backend_status": "learned_representation_sample_complete",
+        "blockers": [
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+        "embedding_status": "computed_review_only",
+        "nearest_reference_accession": "P71119",
         "nearest_reference_entry_id": null,
-        "top_embedding_cosine": null
+        "top_embedding_cosine": 0.9103
       },
       "review_status": "external_pilot_evidence_dossier_review_only",
       "sequence_evidence": {
@@ -1201,18 +1201,19 @@
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
         "pilot_explicit_active_site_evidence_missing",
-        "representation_backend_plan_missing_or_not_eligible",
-        "representation_backend_sample_missing_for_candidate",
         "representation_control_not_compared"
       ],
       "representation_control": {
-        "backend_status": "missing",
-        "blockers": [],
-        "comparison_status": null,
-        "embedding_status": null,
-        "nearest_reference_accession": null,
+        "backend_status": "learned_representation_sample_complete",
+        "blockers": [
+          "external_review_decision_artifact_not_built",
+          "full_label_factory_gate_not_run"
+        ],
+        "comparison_status": "pilot_sequence_embedding_without_feature_proxy_comparison",
+        "embedding_status": "computed_review_only",
+        "nearest_reference_accession": "P09147",
         "nearest_reference_entry_id": null,
-        "top_embedding_cosine": null
+        "top_embedding_cosine": 0.8325
       },
       "review_status": "external_pilot_evidence_dossier_review_only",
       "sequence_evidence": {

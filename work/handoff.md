@@ -274,6 +274,14 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   status, Rhea reaction context, sequence alignment checks, structure mapping,
   heuristic control results, representation controls, and remaining blockers
   without making any row countable or import-ready.
+- Added a pilot-specific representation backend path for the selected external
+  worklist. `artifacts/v3_external_source_pilot_representation_backend_plan_1025.json`
+  covers all 10 selected rows, and
+  `artifacts/v3_external_source_pilot_representation_backend_sample_1025.json`
+  computes review-only ESM-2 embeddings for all 10, flags `P55263` as a
+  representation near-duplicate holdout, refreshes the pilot dossiers so every
+  selected row has representation evidence, and keeps every external row
+  non-countable and not import-ready.
 
 ## Current Metrics
 
@@ -416,6 +424,15 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   is guardrail-clean. This is pilot-priority evidence only; sequence search,
   active-site sourcing, review decisions, and full factory gates remain
   required before any import.
+- Pilot representation state:
+  `artifacts/v3_external_source_pilot_representation_backend_sample_1025.json`
+  computes ESM-2 embeddings for all 10 selected pilot candidates, has vector
+  dimension `320`, 0 embedding failures, 9 complete learned-representation
+  rows, 1 representation-near-duplicate holdout (`P55263` to reference
+  `Q9TVW2` at cosine `0.9731`), 30 reference pairs, and 0 countable/import-ready
+  rows. The refreshed pilot dossiers now attach representation rows to all 10
+  selected candidates, keep 3 explicit-active-site evidence blockers, and keep
+  every selected candidate blocked before import.
 - 725 post-batch review surface: all 95 unlabeled candidates are retained in a
   207-row active-learning queue; 95 expert-label decision rows are exported as
   review-only no-decision items; 25 priority local-evidence lanes are audited
@@ -563,6 +580,33 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality --batch
 User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
+
+Current run targeted the external-pilot representation-control SPOF rather than
+adding gate count. Code and artifact evidence showed that the selected pilot
+dossiers still depended on the 12-row mapped-control representation sample and
+therefore had representation rows for only 4 of the 10 selected pilot
+candidates; the other 6 carried stale representation-backend blockers before
+review could proceed. The fix adds
+`build-external-source-pilot-representation-backend-plan`, builds the
+review-only pilot plan and ESM-2 sample, refreshes pilot dossiers to attach
+representation evidence to all 10 selected rows, and adds the pilot
+representation sample to typed candidate-lineage validation. The refreshed
+external transfer gate now passes 66/66 with 0 blockers, records
+`external_pilot_representation_sample_candidate_count=10`, validates 33
+candidate-lineage artifacts, and validates 63 clean 1,025 artifact-path inputs.
+All external rows remain review-only, non-countable, and not import-ready;
+`P55263` is explicitly held out as a representation near-duplicate control.
+
+Label-quality confidence call for the 2026-05-13T23:26:40Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair, no
+for external-source import, yes for bounded scientific generalization/control
+work through the pilot-specific leakage-safe ESM-2 sample, and yes for
+SPOF/external-pilot hardening. Evidence at run start: 296 unit tests and
+`validate` passed, the 1,025 preview remained non-promotable with 0 clean
+countable labels, current artifacts already contained the proxy sequence/fold
+holdout and 12-row canonical ESM-2 sample, no Foldseek/MMseqs2/BLAST/DIAMOND
+backend was available on PATH, and the selected pilot dossier artifact exposed
+missing representation rows for 6 selected candidates.
 
 Current SPOF status after the 2026-05-13T22:25:38Z run: counterevidence
 maintainability is handled at the code level. `geometry_retrieval.py` uses a
@@ -768,11 +812,12 @@ Next ordered worklist:
    BLAST/DIAMOND or an equivalent local clustering backend if it becomes
    available.
 3. Use the learned representation backend path, pilot priority artifact,
-   no-decision review export, pilot evidence packet, and pilot evidence
-   dossiers for reviewer work. A 12-row ESM-2 sample is computed and
-   review-only; the next work is to fill evidence decisions from the
-   per-candidate dossier/source-target rows while preserving heuristic geometry
-   retrieval as the baseline.
+   no-decision review export, pilot evidence packet, pilot-specific
+   representation sample, and pilot evidence dossiers for reviewer work. The
+   canonical 12-row mapped-control ESM-2 sample and the 10-row selected-pilot
+   ESM-2 sample are both computed and review-only; the next work is to fill
+   evidence decisions from the per-candidate dossier/source-target rows while
+   preserving heuristic geometry retrieval as the baseline.
 4. Reviewer policy and schema typing are lower priority unless code evidence
    exposes new ambiguity in countable vs review-only imports or high-fan-in
    artifact schemas.
@@ -899,7 +944,7 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` keep
-`countable_label_candidate_count=0` and pass a 65/65 review-only transfer gate.
+`countable_label_candidate_count=0` and pass a 66/66 review-only transfer gate.
 The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
 query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
 to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC
@@ -1569,6 +1614,34 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-13T23:26:40Z
+- ENDED_AT: 2026-05-13T23:51:56Z
+- Measured elapsed time: 25.267 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, work/scope.md, work/handoff.md,
+  work/status.md inputs, and work/external_source_transfer_1025_notes.md before
+  status regeneration.
+- Normal locked SPOF-hardening run kept M-CSA-only growth stopped and did not
+  import external labels. The code-confirmed blocker was selected-pilot
+  representation coverage: pilot dossiers had representation rows for only 4
+  of the 10 selected candidates because they depended on the 12-row mapped
+  control sample.
+- The run added a pilot-specific representation backend plan/sample for all 10
+  selected pilot candidates, refreshed the pilot dossiers, added the pilot
+  representation sample to candidate-lineage validation, and added a focused
+  gate requiring selected-pilot representation sample coverage. The transfer
+  gate now passes 66/66 and keeps all external rows review-only,
+  non-countable, and not import-ready; `P55263` is a representation
+  near-duplicate holdout.
+- Remaining-time plan executed in the same run: after the pilot sample covered
+  all selected rows, harden the artifact graph by adding a negative regression
+  for stale pilot representation sample rows and a direct 66th gate check for
+  selected-pilot representation coverage.
+- Final verification passed: `PYTHONPATH=src python -m unittest discover -s
+  tests` with 298 tests, `PYTHONPATH=src python -m catalytic_earth.cli
+  validate`, `PYTHONPATH=src python -m compileall -q src tests`,
+  `git diff --check`, and JSON artifact parsing with `jq empty`.
 
 - STARTED_AT: 2026-05-13T22:25:38Z
 - ENDED_AT: 2026-05-13T22:33:55Z

@@ -182,8 +182,9 @@ sequence-search export, import-readiness audit, active-site sourcing queue/expor
 active-site sourcing resolution, representation-backend plan/sample, a
 candidate blocker matrix, a 10-row external pilot candidate priority worklist,
 a consolidated pilot evidence packet, 10 per-candidate pilot evidence
-dossiers, and a 65/65 external transfer gate with current-reference sequence
-screen, candidate, artifact-path, and pilot review-only decision validation. The
+dossiers, a 10-row pilot-specific ESM-2 representation sample, and a 66/66
+external transfer gate with current-reference sequence screen, candidate,
+artifact-path, and pilot review-only decision validation. The
 evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
@@ -243,18 +244,21 @@ and non-countable.
 `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` assembles
 the selected 10 rows into review-only per-candidate dossiers: 7 currently have
 explicit UniProt active-site feature support, all 10 have Rhea reaction
-context, 4 have representation-sample rows, and all 10 still carry import
-blockers. The dossier assembly now adds local evidence-completeness blockers
-itself; the 3 selected rows without explicit active-site evidence are flagged,
-and no selected row is missing specific reaction context.
+context, all 10 now have pilot-specific ESM-2 representation rows, and all 10
+still carry import blockers. The pilot representation sample flags `P55263` as
+a representation near-duplicate holdout and keeps every row review-only. The
+dossier assembly now adds local evidence-completeness blockers itself; the 3
+selected rows without explicit active-site evidence are flagged, and no
+selected row is missing specific reaction context.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
 only, not label import. Its lineage metadata now records a clean 1,025 slice
-across 62 supplied external artifacts, includes the sequence-holdout audit in
-row-level candidate-lineage validation, and fails fast on mixed-slice artifact
-paths or payload-declared slice contradictions. The full Rhea reaction-context
+across 63 supplied external artifacts, includes the sequence-holdout audit and
+pilot representation sample in row-level candidate-lineage validation, and
+fails fast on mixed-slice artifact paths or payload-declared slice
+contradictions. The full Rhea reaction-context
 pass covers all 30 external candidates with 64 reaction records, flags 16
 broad-EC context rows, and remains review-only. See
 `docs/external_source_transfer.md` for the guarded command sequence.
@@ -354,7 +358,8 @@ the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
 1,025 preview is open but not promoted; the first proxy sequence/fold-distance
-holdout and first 12-row ESM-2 representation sample are now in place. The
+holdout, the 12-row mapped-control ESM-2 representation sample, and the
+10-row selected-pilot ESM-2 representation sample are now in place. The
 first SPOF hardening pass also refactored counterevidence and gate inputs. The
 label-factory gate now records validated artifact lineage and fails on
 non-exempt slice mismatches, including payload-declared slice or batch metadata
@@ -365,10 +370,11 @@ artifact registry so the high-fan-in pilot gate does not keep accreting
 one-off lineage branches; the CLI gate command builds that contract from its
 artifact map instead of passing another long keyword cascade into the gate, and
 the contract rejects non-object artifact payloads at the gate boundary.
-The external pilot ranking, no-decision review export, and evidence-packet
-artifacts are now built; the next bounded work item is filling the packet
-decisions with active-site sources and complete near-duplicate sequence
-evidence, not M-CSA-only count growth or label import.
+The external pilot ranking, no-decision review export, evidence-packet,
+pilot-specific representation, and dossier artifacts are now built; the next
+bounded work item is filling the packet decisions with active-site sources and
+complete near-duplicate sequence evidence, not M-CSA-only count growth or label
+import.
 See
 `docs/label_factory.md`.
 

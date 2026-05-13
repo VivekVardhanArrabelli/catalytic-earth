@@ -332,6 +332,26 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_evidence_packet_1025.json"
         )
+        pilot_representation_plan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_representation_backend_plan_1025.json"
+        )
+        pilot_representation_plan_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_representation_backend_plan_audit_1025.json"
+        )
+        pilot_representation_sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_representation_backend_sample_1025.json"
+        )
+        pilot_representation_sample_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_representation_backend_sample_audit_1025.json"
+        )
         pilot_evidence_dossiers = _load_json(
             ROOT
             / "artifacts"
@@ -1380,6 +1400,38 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             )
         )
         self.assertEqual(
+            pilot_representation_plan["metadata"]["blocker_removed"],
+            "external_pilot_representation_sample_coverage",
+        )
+        self.assertEqual(pilot_representation_plan["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            pilot_representation_plan["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertTrue(pilot_representation_plan_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(pilot_representation_sample["metadata"]["candidate_count"], 10)
+        self.assertTrue(
+            pilot_representation_sample["metadata"]["embedding_backend_available"]
+        )
+        self.assertEqual(
+            pilot_representation_sample["metadata"]["embedding_vector_dimension"],
+            320,
+        )
+        self.assertEqual(
+            pilot_representation_sample["metadata"][
+                "representation_near_duplicate_alert_count"
+            ],
+            1,
+        )
+        self.assertEqual(
+            pilot_representation_sample["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertFalse(
+            pilot_representation_sample["metadata"]["ready_for_label_import"]
+        )
+        self.assertTrue(pilot_representation_sample_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
             pilot_evidence_dossiers["metadata"]["blocker_removed"],
             "external_pilot_per_candidate_evidence_dossier_assembly",
         )
@@ -1427,8 +1479,8 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 65)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 65)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 66)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 66)
         self.assertEqual(
             external_transfer_gate["metadata"]["gate_input_contract"],
             "ExternalSourceTransferGateInputs.v1",
@@ -1456,8 +1508,19 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "external_pilot_evidence_dossiers_review_only"
             ]
         )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "external_pilot_representation_sample_review_only"
+            ]
+        )
         self.assertEqual(
             external_transfer_gate["metadata"]["external_pilot_selected_candidate_count"],
+            10,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "external_pilot_representation_sample_candidate_count"
+            ],
             10,
         )
         self.assertEqual(
@@ -1500,6 +1563,10 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertIn(
             "pilot_evidence_dossiers",
+            external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
+        )
+        self.assertIn(
+            "pilot_representation_backend_sample",
             external_transfer_gate["metadata"]["artifact_lineage"]["checked_artifacts"],
         )
         self.assertIn(

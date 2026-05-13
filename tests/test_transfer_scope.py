@@ -64,6 +64,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
     build_external_source_representation_backend_plan,
+    build_external_source_pilot_representation_backend_plan,
     build_external_source_representation_backend_sample,
     build_external_source_sequence_alignment_verification,
     build_external_source_sequence_search_export,
@@ -2846,6 +2847,83 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertTrue(audit["metadata"]["guardrail_clean"])
         self.assertEqual(audit["metadata"]["missing_review_only_status_row_count"], 0)
 
+    def test_external_pilot_representation_backend_plan_covers_selected_rows(
+        self,
+    ) -> None:
+        plan = build_external_source_pilot_representation_backend_plan(
+            pilot_candidate_priority={
+                "metadata": {
+                    "method": "external_source_pilot_candidate_priority",
+                    "selected_candidate_count": 2,
+                },
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "blockers": ["heuristic_control_not_scored"],
+                        "entry_id": "uniprot:P11111",
+                        "lane_id": "external_source:lyase",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    },
+                    {
+                        "accession": "P22222",
+                        "blockers": [
+                            (
+                                "representation_control_proxy_flags_"
+                                "metal_hydrolase_collapse"
+                            )
+                        ],
+                        "entry_id": "uniprot:P22222",
+                        "lane_id": "external_source:glycan_chemistry",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                    },
+                    {
+                        "accession": "P33333",
+                        "pilot_selection_status": "deferred_from_review_pilot",
+                    },
+                ],
+            },
+            sequence_search_export={
+                "metadata": {"method": "external_source_sequence_search_export"},
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "search_task": (
+                            "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                        ),
+                    },
+                    {
+                        "accession": "P22222",
+                        "search_task": (
+                            "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                        ),
+                    },
+                ],
+            },
+        )
+        audit = audit_external_source_representation_backend_plan(plan)
+
+        self.assertEqual(
+            plan["metadata"]["blocker_removed"],
+            "external_pilot_representation_sample_coverage",
+        )
+        self.assertEqual(plan["metadata"]["candidate_count"], 2)
+        self.assertEqual(
+            plan["metadata"]["embedding_status"], "backend_plan_only_not_computed"
+        )
+        self.assertEqual(
+            plan["rows"][0]["backend_readiness_status"],
+            "ready_for_backend_selection_not_embedding",
+        )
+        self.assertEqual(
+            plan["rows"][0]["required_inputs"][2]["status"], "required_missing"
+        )
+        self.assertIn(
+            "glycan_boundary_contrastive_axis",
+            plan["rows"][1]["recommended_backends"],
+        )
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertFalse(plan["rows"][0]["countable_label_candidate"])
+
     def test_external_representation_backend_sample_is_review_only(self) -> None:
         plan = {
             "metadata": {"method": "external_source_representation_backend_plan"},
@@ -5439,6 +5517,91 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             },
         )
 
+    def test_external_pilot_dossiers_use_pilot_representation_sample(
+        self,
+    ) -> None:
+        dossiers = build_external_source_pilot_evidence_dossiers(
+            pilot_evidence_packet={
+                "metadata": {"method": "external_source_pilot_evidence_packet"},
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P12345",
+                        "entry_id": "uniprot:P12345",
+                        "lane_id": "external_source:lyase",
+                        "sequence_search": {"decision_status": "no_decision"},
+                    }
+                ],
+            },
+            active_site_evidence_sample={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "feature_type": "Active site",
+                        "begin": 42,
+                        "end": 42,
+                    }
+                ]
+            },
+            active_site_sourcing_resolution={"rows": [{"accession": "P12345"}]},
+            reaction_evidence_sample={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "ec_number": "4.2.1.1",
+                        "ec_specificity": "specific",
+                    }
+                ]
+            },
+            sequence_alignment_verification={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "verification_status": "alignment_no_near_duplicate_signal",
+                    }
+                ]
+            },
+            representation_backend_sample={
+                "metadata": {
+                    "method": "external_source_pilot_representation_backend_sample"
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "backend_status": "learned_representation_sample_complete",
+                        "embedding_status": "computed_review_only",
+                        "top_embedding_cosine": 0.4,
+                    }
+                ],
+            },
+            heuristic_control_scores={"results": []},
+            structure_mapping_sample={"entries": []},
+            transfer_blocker_matrix={
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "blockers": [
+                            "external_embeddings_not_computed",
+                            "representation_backend_not_selected",
+                            "representation_backend_plan_missing_or_not_eligible",
+                            "representation_control_not_compared",
+                        ],
+                    }
+                ]
+            },
+            external_import_readiness_audit={"rows": [{"accession": "P12345"}]},
+        )
+
+        blockers = dossiers["rows"][0]["remaining_blockers"]
+        self.assertNotIn("external_embeddings_not_computed", blockers)
+        self.assertNotIn("representation_backend_not_selected", blockers)
+        self.assertNotIn("representation_backend_plan_missing_or_not_eligible", blockers)
+        self.assertNotIn("representation_backend_sample_missing_for_candidate", blockers)
+        self.assertIn("representation_control_not_compared", blockers)
+        self.assertEqual(
+            dossiers["metadata"]["representation_sample_candidate_count"], 1
+        )
+
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,
     ) -> None:
@@ -5564,6 +5727,34 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 }
             ],
         }
+        pilot_representation_backend_sample = {
+            "metadata": {
+                "method": "external_source_representation_backend_sample",
+                "ready_for_label_import": False,
+                "countable_label_candidate_count": 0,
+                "candidate_count": 1,
+                "embedding_status": "computed_review_only",
+                "embedding_backend_available": True,
+                "predictive_feature_sources": [
+                    "sequence_embedding_cosine",
+                    "sequence_length_coverage",
+                ],
+            },
+            "rows": [
+                {
+                    "accession": "P12345",
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    "review_status": "representation_backend_sample_review_only",
+                    "embedding_status": "computed_review_only",
+                    "backend_status": "learned_representation_sample_complete",
+                    "predictive_feature_sources": [
+                        "sequence_embedding_cosine",
+                        "sequence_length_coverage",
+                    ],
+                }
+            ],
+        }
 
         gates = check_external_source_transfer_gates(
             **_base_external_transfer_gate_inputs(),
@@ -5571,6 +5762,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             pilot_review_decision_export=pilot_review_decision_export,
             pilot_evidence_packet=pilot_evidence_packet,
             pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_representation_backend_sample=pilot_representation_backend_sample,
         )
 
         self.assertEqual(gates["blockers"], [])
@@ -5584,10 +5776,42 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertTrue(
             gates["gates"]["external_pilot_evidence_dossiers_review_only"]
         )
+        self.assertTrue(
+            gates["gates"]["external_pilot_representation_sample_review_only"]
+        )
         self.assertEqual(gates["metadata"]["external_pilot_selected_candidate_count"], 1)
+        self.assertEqual(
+            gates["metadata"]["external_pilot_representation_sample_candidate_count"],
+            1,
+        )
         self.assertEqual(
             gates["metadata"]["external_pilot_review_completed_decision_count"],
             0,
+        )
+
+        missing_sample_gates = check_external_source_transfer_gates(
+            **_base_external_transfer_gate_inputs(),
+            pilot_candidate_priority=pilot_candidate_priority,
+            pilot_review_decision_export=pilot_review_decision_export,
+            pilot_evidence_packet=pilot_evidence_packet,
+            pilot_evidence_dossiers=pilot_evidence_dossiers,
+            pilot_representation_backend_sample={
+                "metadata": {
+                    **pilot_representation_backend_sample["metadata"],
+                    "candidate_count": 0,
+                },
+                "rows": [],
+            },
+        )
+
+        self.assertFalse(
+            missing_sample_gates["gates"][
+                "external_pilot_representation_sample_review_only"
+            ]
+        )
+        self.assertIn(
+            "external_pilot_representation_sample_review_only",
+            missing_sample_gates["blockers"],
         )
 
         blocked_gates = check_external_source_transfer_gates(
@@ -6017,6 +6241,14 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 "metadata": {"candidate_count": 1},
                 "rows": [{"accession": "Q88888"}],
             },
+            pilot_representation_backend_sample={
+                "metadata": {
+                    "candidate_count": 1,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                },
+                "rows": [{"accession": "Q66666"}],
+            },
             sequence_holdout_audit={
                 "metadata": {
                     "guardrail_clean": True,
@@ -6047,6 +6279,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             lineage["unexpected_accessions"]["sequence_holdout_audit"],
             ["Q77777"],
+        )
+        self.assertEqual(
+            lineage["unexpected_accessions"]["pilot_representation_backend_sample"],
+            ["Q66666"],
         )
         self.assertEqual(lineage["missing_accessions"]["evidence_plan"], ["P12345"])
 

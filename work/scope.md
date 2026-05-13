@@ -162,9 +162,10 @@ Current expectation:
   evaluable top1 accuracy and retention of `0.9767`, with `1.0000` top3
   accuracy among retained held-out evaluable rows, but it is not a substitute
   for real <=30% sequence-identity or <0.7 TM-score clustering. The first
-  12-row ESM-2 representation sample is also computed and review-only; next use
-  its learned-vs-heuristic disagreement rows and a small external-source pilot
-  to decide what can safely import
+  12-row ESM-2 representation sample and a 10-row selected-pilot ESM-2
+  representation sample are also computed and review-only; next use their
+  learned-vs-heuristic disagreements, pilot holdouts, and per-candidate
+  dossiers to decide what can safely import
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed
@@ -261,7 +262,10 @@ Current expectation:
   those rows as no-decision review packets with 0 completed decisions.
   `artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
   79 review-only source targets for the same candidates, including all 10
-  sequence-search packets and 3 active-site sourcing packets.
+  sequence-search packets and 3 active-site sourcing packets. The pilot-specific
+  representation sample now computes ESM-2 embeddings for all 10 selected
+  candidates, flags `P55263` as a representation near-duplicate holdout, and
+  keeps every selected row non-countable and not import-ready.
 - external sequence controls now repair a current-reference coverage gap instead
   of silently treating the bounded screen as complete. The screen now covers all
   735 expected current countable M-CSA reference accessions because
@@ -316,7 +320,7 @@ Current expectation:
   sequence-neighborhood screening, bounded sequence-alignment verification,
   sequence-search export, import-readiness audit, active-site sourcing
   queue/export/resolution, representation-backend plan/sample, transfer blocker
-  matrix, and a 65/65 transfer gate with a direct current-reference
+  matrix, and a 66/66 transfer gate with a direct current-reference
   sequence-screen audit check;
   2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
@@ -358,8 +362,12 @@ Current expectation:
   sample statuses directly, the pilot-priority artifact selects 10
   non-countable candidates and defers 5 holdout or near-duplicate rows, the
   pilot review-decision export keeps 10 selected rows as no-decision packets,
-  the pilot evidence packet consolidates 79 source targets for review, and 0
-  external labels are countable.
+  the pilot evidence packet consolidates 79 source targets for review, the
+  pilot-specific ESM-2 sample covers all 10 selected candidates with 9 complete
+  learned-representation rows and 1 representation near-duplicate holdout, the
+  pilot dossiers now carry representation rows for all 10 selected candidates
+  while preserving 3 explicit-active-site blockers, and 0 external labels are
+  countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

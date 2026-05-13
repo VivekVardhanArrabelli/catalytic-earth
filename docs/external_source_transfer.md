@@ -150,8 +150,9 @@ Priority blockers:
   fraction is 0.1667, so the queue has not collapsed to one action or chemistry
   lane. The external transfer gate now directly checks the current-reference
   sequence screen audit and rejects sequence-search exports whose reference
-  screen completion counts do not match that audit. It passes 65/65 review-only
-  checks and remains not ready for label import.
+  screen completion counts do not match that audit. It passes 66/66 review-only
+  checks, including selected-pilot representation sample coverage, and remains
+  not ready for label import.
 - The learned representation backend path now has a computed 12-row ESM-2
   sample in `artifacts/v3_external_source_representation_backend_sample_1025.json`
   plus a clean review-only audit. It uses `facebook/esm2_t6_8M_UR50D`,
@@ -204,11 +205,17 @@ Priority blockers:
   sourcing packets, 0 missing required source packets, and
   `guardrail_clean=true`; it removes only the source-packet consolidation
   blocker and does not authorize import.
+- `artifacts/v3_external_source_pilot_representation_backend_plan_1025.json`
+  and `artifacts/v3_external_source_pilot_representation_backend_sample_1025.json`
+  extend leakage-safe sequence representation controls to all 10 selected pilot
+  rows. The ESM-2 sample computes 320-dimensional embeddings, keeps every row
+  review-only and non-countable, and flags `P55263` as a representation
+  near-duplicate holdout.
 - `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` assembles
   the same 10 selected rows into per-candidate review dossiers. It records 7
   candidates with explicit UniProt active-site feature support, all 10 with
-  Rhea reaction context, 4 with representation-sample rows, and 10 with
-  remaining blockers; it is review-only and does not authorize import. Dossier
+  Rhea reaction context, all 10 with pilot representation-sample rows, and 10
+  with remaining blockers; it is review-only and does not authorize import. Dossier
   assembly now adds local blockers for missing explicit active-site evidence,
   missing specific reaction context, and near-duplicate sequence alerts instead
   of relying only on upstream blocker lists. The current selected pilot has 3
@@ -596,13 +603,36 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidenc
   --max-rows 10 \
   --out artifacts/v3_external_source_pilot_evidence_packet_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-representation-backend-plan \
+  --pilot-candidate-priority artifacts/v3_external_source_pilot_candidate_priority_1025.json \
+  --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
+  --max-rows 10 \
+  --out artifacts/v3_external_source_pilot_representation_backend_plan_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-plan \
+  --representation-backend-plan artifacts/v3_external_source_pilot_representation_backend_plan_1025.json \
+  --out artifacts/v3_external_source_pilot_representation_backend_plan_audit_1025.json
+
+HF_HOME=/private/tmp/catalytic-earth-hf-cache \
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
+  --representation-backend-plan artifacts/v3_external_source_pilot_representation_backend_plan_1025.json \
+  --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --max-rows 10 \
+  --top-k 3 \
+  --embedding-backend esm2_t6_8m_ur50d \
+  --out artifacts/v3_external_source_pilot_representation_backend_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-sample \
+  --representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
+  --out artifacts/v3_external_source_pilot_representation_backend_sample_audit_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidence-dossiers \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \
   --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
   --active-site-sourcing-resolution artifacts/v3_external_source_active_site_sourcing_resolution_1025.json \
   --reaction-evidence-sample artifacts/v3_external_source_reaction_evidence_sample_1025.json \
   --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
-  --representation-backend-sample artifacts/v3_external_source_representation_backend_sample_1025.json \
+  --representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
   --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
   --structure-mapping-sample artifacts/v3_external_source_structure_mapping_sample_1025.json \
   --transfer-blocker-matrix artifacts/v3_external_source_transfer_blocker_matrix_1025.json \
@@ -672,6 +702,7 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --pilot-review-decision-export artifacts/v3_external_source_pilot_review_decision_export_1025.json \
   --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \
   --pilot-evidence-dossiers artifacts/v3_external_source_pilot_evidence_dossiers_1025.json \
+  --pilot-representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
   --binding-context-repair-plan artifacts/v3_external_source_binding_context_repair_plan_1025.json \
   --binding-context-repair-plan-audit artifacts/v3_external_source_binding_context_repair_plan_audit_1025.json \
   --binding-context-mapping-sample artifacts/v3_external_source_binding_context_mapping_sample_1025.json \
@@ -690,12 +721,13 @@ label-factory gate. The current gate only authorizes review-only evidence
 collection.
 
 The transfer gate now checks both row-level candidate lineage and artifact-path
-lineage. Current 1,025 artifacts share a clean path-inferred slice across 62
+lineage. Current 1,025 artifacts share a clean path-inferred slice across 63
 supplied artifacts, and the CLI fails fast if a future gate invocation mixes
 1,000 and 1,025 artifacts or if payload-declared slice metadata contradicts the
 artifact path. Candidate-lineage validation now includes the sequence-holdout
-audit, so a stale holdout audit cannot silently satisfy the gate by matching
-only high-level candidate counts.
+audit and pilot representation sample, so stale holdout or pilot
+representation rows cannot silently satisfy the gate by matching only
+high-level candidate counts.
 
 Do not import external candidates directly into
 `data/registries/curated_mechanism_labels.json`. The first safe external-source

@@ -4,13 +4,14 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 77
-- Measured elapsed time: 2864.3 minutes (47.74 hours)
+- Entries: 78
+- Measured elapsed time: 2889.6 minutes (48.16 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
+- external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
 - post-mcsa-spof-hardening: 243.3 measured minutes (4.06 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
@@ -23,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 820
-- Evidence references logged: 677
+- Artifact references logged: 824
+- Evidence references logged: 682
 
 ## Recent Entries
-
-### 2026-05-13T16:04:03.062604+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden selected-PDB overrides and external pilot SPOFs
-- Time mode: measured
-- Measured minutes: 44.824
-- Started: 2026-05-13T10:19:12.573683-05:00
-- Ended: 2026-05-13T11:04:02-05:00
-- Artifacts: src/catalytic_earth/labels.py, src/catalytic_earth/structure.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_labels.py, tests/test_structure.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, tests/test_geometry_artifact_regression.py, tests/test_cli.py, artifacts/v3_selected_pdb_override_plan_700.json, artifacts/v3_geometry_features_1000_selected_pdb_override.json, artifacts/v3_external_source_pilot_candidate_priority_1025.json, artifacts/v3_external_source_pilot_review_decision_export_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
-- Evidence: 283 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, 60/60 external transfer gate with pilot artifact lineage, 10 review-only pilot candidates, 10 no-decision pilot review packets, 2 selected-PDB overrides applied, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked measured SPOF-hardening run. Documentation checked and updated; no count growth or external import.
 
 ### 2026-05-13T16:37:11.331979+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +106,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 296 unit tests passed, validate passed, compileall passed, git diff --check passed, external gate 65/65 with sequence_holdout_audit in candidate lineage, 0 countable external labels, 0 import-ready external labels
 - Notes: Normal locked SPOF-hardening run. Added sequence-holdout audit to external candidate-lineage validation and refreshed docs/artifact without count growth or import.
 
+### 2026-05-13T23:52:26.926762+00:00 - external-transfer-spof-hardening
+
+- Task: pilot-specific representation controls and gate coverage
+- Time mode: measured
+- Measured minutes: 25.267
+- Started: 2026-05-13T23:26:40Z
+- Ended: 2026-05-13T23:51:56Z
+- Artifacts: artifacts/v3_external_source_pilot_representation_backend_plan_1025.json, artifacts/v3_external_source_pilot_representation_backend_sample_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json
+- Evidence: 298-unit-tests, validate, compileall, git-diff-check, jq-empty
+- Notes: M-CSA-only growth remains stopped; all pilot representation rows are review-only and non-countable
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -184,6 +185,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T20:51:07.000000+00:00: Geometry retrieval predictive evidence is now explicitly text-free; PLP positive signal uses local ligand-anchor context
 - 2026-05-13T22:04:23.805937+00:00: M-CSA-only growth remains stopped; next external-pilot work should fill real sequence-search and active-site decisions rather than add generic gates.
 - 2026-05-13T22:34:16.818554+00:00: External transfer remains non-countable; complete UniRef/all-vs-all sequence search and active-site evidence decisions still block import.
+- 2026-05-13T23:52:26.926762+00:00: external pilot can proceed to review decisions only after active-site sources and complete sequence search; no external import is ready
 
 ## Scope Adjustments
 
@@ -260,3 +262,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T20:51:07.000000+00:00: No M-CSA-only growth or external import; SPOF text-leakage hardening only
 - 2026-05-13T22:04:23.805937+00:00: External transfer remains non-countable; current-reference sequence screen blocker is cleared, but complete UniRef/all-vs-all near-duplicate search and active-site evidence still block import.
 - 2026-05-13T22:34:16.818554+00:00: Artifact-lineage SPOF hardening now includes the external sequence-holdout audit in row-level candidate lineage checks.
+- 2026-05-13T23:52:26.926762+00:00: selected-pilot representation coverage is now a direct review-only gate input rather than stale mapped-control evidence
