@@ -682,12 +682,15 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_active_site_gap_source_requests_1025.json`,
   `artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
   `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json`,
+  `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json`,
+  `artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json`,
   `artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json`,
+  `artifacts/v3_external_source_import_readiness_audit_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  38/38 external transfer gate for evidence collection, pass the lane-balance
+  41/41 external transfer gate for evidence collection, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
   map all 12 heuristic-ready controls onto AlphaFold structures, and must not
@@ -700,7 +703,14 @@ Current 1,025-preview state:
   glycan-boundary rows, and the binding-context path maps 7/7 active-site-gap
   rows as repair context only. The active-site gap source requests cover all 10
   feature-gap rows, and the sequence-neighborhood plan requests near-duplicate
-  search for 28 external rows.
+  search for 28 external rows. The bounded sequence-neighborhood sample fetches
+  all 30 external sequences plus 733 current countable M-CSA reference
+  sequences and finds 0 high-similarity alerts under the current unaligned
+  screen, but still requires complete near-duplicate search before import. The
+  import-readiness audit keeps 0 rows import-ready while summarizing 10
+  active-site gaps, 2 exact sequence holdouts, 28 complete near-duplicate
+  search requirements, 9 heuristic scope/top1 mismatches, and 29
+  representation-control issues.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
   adds bounded Rhea reaction context for all 30 candidates while keeping every
   row non-countable and outside any reviewed decision artifact; its companion

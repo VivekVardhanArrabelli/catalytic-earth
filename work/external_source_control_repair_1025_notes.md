@@ -7,7 +7,7 @@ neighborhood controls.
 
 ## Current Gate
 
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 38/38
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 41/41
   review-only checks.
 - `countable_label_candidate_count` remains 0.
 - `ready_for_label_import` remains false.
@@ -66,6 +66,26 @@ neighborhood controls.
 - `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json` converts
   the sequence-holdout surface into 2 exact-holdout rows and 28 explicit
   near-duplicate search requests.
+- `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json` fetches
+  sequences for all 30 external rows and 733 current countable M-CSA reference
+  sequences. It records 0 high-similarity hits in the bounded unaligned screen,
+  retains the 2 exact-reference holdouts, and keeps full near-duplicate or
+  UniRef-style search as required before import.
+
+## Import Readiness
+
+- `artifacts/v3_external_source_import_readiness_audit_1025.json` keeps all 30
+  external rows non-countable and import-blocked.
+- The readiness audit records 10 active-site-gap rows, 2 sequence holdouts, 28
+  rows still requiring complete near-duplicate search, 9 heuristic scope/top1
+  mismatches, and 29 representation-control issues.
+- Readiness buckets are: 10 blocked by active-site sourcing, 11 blocked by
+  heuristic controls, 6 blocked by representation controls, 2 blocked by
+  sequence holdouts, and 1 blocked by sequence search.
+- Remaining-time plan executed for the 2026-05-13T03:08:55-05:00 run: after
+  the sequence screen and import-readiness audit passed targeted tests, keep
+  work bounded to artifact regression coverage, docs, validation, and final
+  gate verification rather than opening any external label decision.
 
 ## Next Repair Target
 

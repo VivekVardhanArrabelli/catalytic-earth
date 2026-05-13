@@ -16,7 +16,8 @@ mapping sample, heuristic-control score audit, failure-mode audit,
 control-repair plan, representation-control manifest, binding-context repair
 artifacts, representation-control comparison, active-site gap source requests,
 sequence-holdout and sequence-neighborhood controls, broad-EC disambiguation,
-38/38 transfer gate, and full 30-candidate Rhea reaction context all keep
+bounded sequence-neighborhood screen, import-readiness audit, 41/41 transfer
+gate, and full 30-candidate Rhea reaction context all keep
 `countable_label_candidate_count=0`.
 
 ## Current Generated Artifacts

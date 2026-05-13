@@ -3213,6 +3213,430 @@ def build_external_source_sequence_neighborhood_plan(
     }
 
 
+def build_external_source_sequence_neighborhood_sample(
+    *,
+    sequence_neighborhood_plan: dict[str, Any],
+    sequence_clusters: dict[str, Any],
+    labels: list[dict[str, Any]],
+    max_external_rows: int = 30,
+    max_reference_sequences: int = 1000,
+    top_k: int = 3,
+    identity_alert_threshold: float = 0.9,
+    coverage_alert_threshold: float = 0.9,
+    kmer_alert_threshold: float = 0.85,
+    fetcher: Callable[[list[str]], dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Run a bounded sequence-neighborhood control screen for external rows."""
+    fetch = fetcher or _fetch_uniprot_sequence_records
+    plan_rows = [
+        row
+        for row in sequence_neighborhood_plan.get("rows", [])
+        if isinstance(row, dict) and row.get("accession")
+    ][:max_external_rows]
+    countable_entry_ids = _countable_label_entry_ids(labels)
+    reference_accessions_by_entry: dict[str, list[str]] = {}
+    reference_entry_ids_by_accession: dict[str, set[str]] = {}
+    for row in sequence_clusters.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id not in countable_entry_ids:
+            continue
+        references = [
+            _normalize_accession(accession)
+            for accession in row.get("reference_uniprot_ids", []) or []
+            if _normalize_accession(accession)
+        ]
+        if not references:
+            continue
+        reference_accessions_by_entry[entry_id] = references
+        for accession in references:
+            reference_entry_ids_by_accession.setdefault(accession, set()).add(entry_id)
+
+    reference_accessions = sorted(reference_entry_ids_by_accession)[:max_reference_sequences]
+    external_accessions = sorted(
+        {_normalize_accession(row.get("accession")) for row in plan_rows}
+    )
+    requested_accessions = sorted(set(external_accessions) | set(reference_accessions))
+    fetch_failures: list[dict[str, str]] = []
+    try:
+        sequence_payload = fetch(requested_accessions)
+    except Exception as exc:  # pragma: no cover - live network failure path
+        sequence_payload = {"metadata": {}, "records": []}
+        fetch_failures.append(
+            {"error_type": type(exc).__name__, "error": str(exc)}
+        )
+
+    records_by_accession = {
+        _normalize_accession(record.get("accession")): record
+        for record in sequence_payload.get("records", []) or []
+        if isinstance(record, dict) and _normalize_accession(record.get("accession"))
+    }
+    reference_records = [
+        records_by_accession[accession]
+        for accession in reference_accessions
+        if accession in records_by_accession
+        and _clean_sequence(records_by_accession[accession].get("sequence"))
+    ]
+
+    rows: list[dict[str, Any]] = []
+    top_hit_rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    high_similarity_count = 0
+    exact_holdout_count = 0
+    no_hit_count = 0
+    missing_external_sequence_count = 0
+    for plan_row in plan_rows:
+        accession = _normalize_accession(plan_row.get("accession"))
+        external_record = records_by_accession.get(accession, {})
+        external_sequence = _clean_sequence(external_record.get("sequence"))
+        top_matches: list[dict[str, Any]] = []
+        if external_sequence:
+            for reference_record in reference_records:
+                reference_accession = _normalize_accession(
+                    reference_record.get("accession")
+                )
+                if not reference_accession:
+                    continue
+                match = _sequence_similarity_match(
+                    external_accession=accession,
+                    external_sequence=external_sequence,
+                    reference_accession=reference_accession,
+                    reference_sequence=_clean_sequence(
+                        reference_record.get("sequence")
+                    ),
+                    matched_m_csa_entry_ids=sorted(
+                        reference_entry_ids_by_accession.get(reference_accession, set())
+                    ),
+                    identity_alert_threshold=identity_alert_threshold,
+                    coverage_alert_threshold=coverage_alert_threshold,
+                    kmer_alert_threshold=kmer_alert_threshold,
+                )
+                if match:
+                    top_matches.append(match)
+            top_matches.sort(
+                key=lambda match: (
+                    -float(match.get("near_duplicate_score", 0.0) or 0.0),
+                    str(match.get("reference_accession") or ""),
+                )
+            )
+            top_matches = top_matches[:top_k]
+        plan_status = str(plan_row.get("plan_status") or "")
+        has_alert = any(match.get("near_duplicate_alert") for match in top_matches)
+        if plan_status in {
+            "exact_reference_overlap_keep_as_holdout",
+            "sequence_failure_set_keep_as_holdout",
+        }:
+            screen_status = "preexisting_sequence_holdout_retained"
+            exact_holdout_count += 1
+        elif not external_sequence:
+            screen_status = "external_sequence_missing"
+            missing_external_sequence_count += 1
+        elif has_alert:
+            screen_status = "near_duplicate_candidate_holdout"
+            high_similarity_count += 1
+        else:
+            screen_status = "no_high_similarity_hit_in_bounded_screen"
+            no_hit_count += 1
+        status_counts[screen_status] += 1
+        row = {
+            "accession": accession,
+            "countable_label_candidate": False,
+            "entry_id": f"uniprot:{accession}",
+            "external_sequence_length": len(external_sequence) if external_sequence else 0,
+            "holdout_status": plan_row.get("holdout_status"),
+            "lane_id": plan_row.get("lane_id"),
+            "matched_m_csa_entry_ids": plan_row.get("matched_m_csa_entry_ids", []),
+            "near_duplicate_search_status": "bounded_sequence_screen_complete",
+            "plan_status": plan_status,
+            "protein_name": plan_row.get("protein_name"),
+            "ready_for_label_import": False,
+            "review_status": "sequence_neighborhood_screen_review_only",
+            "scope_signal": plan_row.get("scope_signal"),
+            "screen_status": screen_status,
+            "sequence_cluster_ids": plan_row.get("sequence_cluster_ids", []),
+            "top_matches": top_matches,
+        }
+        rows.append(row)
+        for match in top_matches:
+            top_hit_rows.append(
+                {
+                    "accession": accession,
+                    "countable_label_candidate": False,
+                    "ready_for_label_import": False,
+                    **match,
+                }
+            )
+
+    return {
+        "metadata": {
+            "method": "external_source_sequence_neighborhood_sample",
+            "source_sequence_neighborhood_plan_method": sequence_neighborhood_plan.get(
+                "metadata", {}
+            ).get("method"),
+            "source_sequence_cluster_method": sequence_clusters.get("metadata", {}).get(
+                "method"
+            ),
+            "source_fetch_method": sequence_payload.get("metadata", {}).get("source"),
+            "ready_for_label_import": False,
+            "complete_near_duplicate_search_required": True,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_external_rows": max_external_rows,
+            "max_reference_sequences": max_reference_sequences,
+            "requested_accession_count": len(requested_accessions),
+            "external_sequence_fetched_count": sum(
+                1 for accession in external_accessions if accession in records_by_accession
+            ),
+            "reference_sequence_count": len(reference_records),
+            "reference_entry_count": len(reference_accessions_by_entry),
+            "top_hit_row_count": len(top_hit_rows),
+            "high_similarity_candidate_count": high_similarity_count,
+            "exact_or_failure_holdout_count": exact_holdout_count,
+            "no_high_similarity_hit_count": no_hit_count,
+            "missing_external_sequence_count": missing_external_sequence_count,
+            "fetch_failure_count": len(fetch_failures),
+            "identity_alert_threshold": identity_alert_threshold,
+            "coverage_alert_threshold": coverage_alert_threshold,
+            "kmer_alert_threshold": kmer_alert_threshold,
+            "screen_status_counts": dict(sorted(status_counts.items())),
+            "screen_rule": (
+                "bounded unaligned sequence screen for external near-duplicate "
+                "risk; this is an OOD control and cannot create labels"
+            ),
+        },
+        "rows": rows,
+        "top_hit_rows": top_hit_rows,
+        "fetch_failures": fetch_failures,
+        "blockers": [
+            "full_alignment_or_uniref_search_not_completed",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "high sequence similarity creates holdout/control debt; absence "
+                "of a bounded-screen hit is not evidence for label import"
+            )
+        ],
+    }
+
+
+def audit_external_source_sequence_neighborhood_sample(
+    sequence_neighborhood_sample: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify sequence-neighborhood screens remain non-countable controls."""
+    rows = [
+        row
+        for section in ("rows", "top_hit_rows")
+        for row in sequence_neighborhood_sample.get(section, []) or []
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_status_rows = [
+        row
+        for row in sequence_neighborhood_sample.get("rows", []) or []
+        if isinstance(row, dict) and not row.get("screen_status")
+    ]
+    metadata = sequence_neighborhood_sample.get("metadata", {})
+    blockers: list[str] = []
+    if not sequence_neighborhood_sample.get("rows"):
+        blockers.append("empty_sequence_neighborhood_sample")
+    if countable_rows:
+        blockers.append("sequence_neighborhood_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("sequence_neighborhood_rows_marked_ready_for_import")
+    if missing_status_rows:
+        blockers.append("sequence_neighborhood_rows_missing_screen_status")
+    return {
+        "metadata": {
+            "method": "external_source_sequence_neighborhood_sample_audit",
+            "ready_for_label_import": False,
+            "complete_near_duplicate_search_required": True,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": metadata.get("candidate_count", 0),
+            "top_hit_row_count": metadata.get("top_hit_row_count", 0),
+            "high_similarity_candidate_count": metadata.get(
+                "high_similarity_candidate_count", 0
+            ),
+            "missing_external_sequence_count": metadata.get(
+                "missing_external_sequence_count", 0
+            ),
+            "fetch_failure_count": metadata.get("fetch_failure_count", 0),
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_status_row_count": len(missing_status_rows),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "sequence-neighborhood screen findings are review-only OOD "
+                "controls and cannot authorize external label import"
+            )
+        ],
+    }
+
+
+def audit_external_source_import_readiness(
+    *,
+    candidate_manifest: dict[str, Any],
+    active_site_evidence_sample: dict[str, Any],
+    heuristic_control_scores: dict[str, Any],
+    representation_control_comparison: dict[str, Any],
+    active_site_gap_source_requests: dict[str, Any],
+    sequence_neighborhood_sample: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Summarize remaining external import blockers by candidate."""
+    active_site_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in active_site_evidence_sample.get("candidate_summaries", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    heuristic_by_accession = {
+        _normalize_accession(str(row.get("entry_id") or "").removeprefix("uniprot:")): row
+        for row in heuristic_control_scores.get("results", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(str(row.get("entry_id") or "").removeprefix("uniprot:"))
+    }
+    representation_by_accession = {
+        _normalize_accession(str(row.get("entry_id") or "").removeprefix("uniprot:")): row
+        for row in representation_control_comparison.get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(str(row.get("entry_id") or "").removeprefix("uniprot:"))
+    }
+    active_site_gap_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in active_site_gap_source_requests.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    sequence_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in sequence_neighborhood_sample.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    rows: list[dict[str, Any]] = []
+    blocker_counts: Counter[str] = Counter()
+    status_counts: Counter[str] = Counter()
+    for manifest_row in candidate_manifest.get("rows", []) or []:
+        if not isinstance(manifest_row, dict):
+            continue
+        accession = _normalize_accession(manifest_row.get("accession"))
+        if not accession:
+            continue
+        active_site = active_site_by_accession.get(accession)
+        heuristic = heuristic_by_accession.get(accession)
+        representation = representation_by_accession.get(accession)
+        active_site_gap = active_site_gap_by_accession.get(accession)
+        sequence = sequence_by_accession.get(accession)
+        blockers = _external_import_readiness_blockers(
+            manifest_row=manifest_row,
+            active_site=active_site,
+            heuristic=heuristic,
+            representation=representation,
+            active_site_gap=active_site_gap,
+            sequence=sequence,
+        )
+        blocker_counts.update(blockers)
+        readiness_status = _external_import_readiness_status(blockers)
+        status_counts[readiness_status] += 1
+        rows.append(
+            {
+                "accession": accession,
+                "active_site_feature_count": (
+                    active_site.get("active_site_feature_count") if active_site else 0
+                ),
+                "blockers": blockers,
+                "countable_label_candidate": False,
+                "entry_id": f"uniprot:{accession}",
+                "heuristic_top1_fingerprint": _external_top1_fingerprint(
+                    heuristic or {}
+                ),
+                "lane_id": manifest_row.get("lane_id"),
+                "next_action": _external_import_readiness_next_action(blockers),
+                "protein_name": manifest_row.get("protein_name"),
+                "ready_for_label_import": False,
+                "readiness_status": readiness_status,
+                "representation_status": (
+                    representation.get("comparison_status") if representation else None
+                ),
+                "review_status": "external_import_readiness_review_only",
+                "scope_signal": manifest_row.get("scope_signal"),
+                "sequence_screen_status": (
+                    sequence.get("screen_status") if sequence else None
+                ),
+            }
+        )
+
+    rows = rows[:max_rows]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_external_import_readiness_audit")
+    if countable_rows:
+        blockers.append("external_import_readiness_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("external_import_readiness_rows_marked_ready_for_import")
+    return {
+        "metadata": {
+            "method": "external_source_import_readiness_audit",
+            "source_candidate_manifest_method": candidate_manifest.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "guardrail_clean": not blockers,
+            "countable_label_candidate_count": len(countable_rows),
+            "label_import_ready_count": len(import_ready_rows),
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "active_site_gap_count": blocker_counts.get(
+                "external_active_site_feature_gap", 0
+            ),
+            "sequence_holdout_or_search_count": sum(
+                blocker_counts.get(blocker, 0)
+                for blocker in (
+                    "exact_sequence_holdout",
+                    "near_duplicate_candidate_holdout",
+                    "complete_near_duplicate_search_required",
+                )
+            ),
+            "heuristic_scope_mismatch_count": blocker_counts.get(
+                "heuristic_scope_top1_mismatch", 0
+            ),
+            "representation_control_issue_count": sum(
+                count
+                for blocker, count in blocker_counts.items()
+                if blocker.startswith("representation_control_")
+            ),
+            "blocker_counts": dict(sorted(blocker_counts.items())),
+            "readiness_status_counts": dict(sorted(status_counts.items())),
+            "readiness_rule": (
+                "external candidates remain non-countable until active-site, "
+                "sequence, heuristic, representation, review-decision, and "
+                "label-factory gates all pass"
+            ),
+        },
+        "rows": rows,
+        "blockers": blockers,
+        "warnings": [
+            (
+                "import-readiness audits prioritize external review work and "
+                "must not be used as label registries"
+            )
+        ],
+    }
+
+
 def check_external_source_transfer_gates(
     *,
     transfer_manifest: dict[str, Any],
@@ -3248,6 +3672,9 @@ def check_external_source_transfer_gates(
     broad_ec_disambiguation_audit: dict[str, Any] | None = None,
     active_site_gap_source_requests: dict[str, Any] | None = None,
     sequence_neighborhood_plan: dict[str, Any] | None = None,
+    sequence_neighborhood_sample: dict[str, Any] | None = None,
+    sequence_neighborhood_sample_audit: dict[str, Any] | None = None,
+    external_import_readiness_audit: dict[str, Any] | None = None,
     binding_context_repair_plan: dict[str, Any] | None = None,
     binding_context_repair_plan_audit: dict[str, Any] | None = None,
     binding_context_mapping_sample: dict[str, Any] | None = None,
@@ -3690,6 +4117,65 @@ def check_external_source_transfer_gates(
             )
             and all(row.get("plan_status") for row in sequence_plan_rows)
         )
+    if sequence_neighborhood_sample is not None:
+        sequence_sample_meta = sequence_neighborhood_sample.get("metadata", {})
+        sequence_sample_rows = [
+            row
+            for row in sequence_neighborhood_sample.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        plan_candidate_count = (
+            int(
+                sequence_neighborhood_plan.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                or 0
+            )
+            if sequence_neighborhood_plan is not None
+            else len(sequence_sample_rows)
+        )
+        gates["sequence_neighborhood_sample_review_only"] = (
+            sequence_sample_meta.get("ready_for_label_import") is False
+            and sequence_sample_meta.get("countable_label_candidate_count") == 0
+            and sequence_sample_meta.get("complete_near_duplicate_search_required")
+            is True
+            and int(sequence_sample_meta.get("candidate_count", 0) or 0)
+            == len(sequence_sample_rows)
+            and len(sequence_sample_rows) > 0
+            and int(sequence_sample_meta.get("candidate_count", 0) or 0)
+            <= plan_candidate_count
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in sequence_sample_rows
+            )
+            and all(
+                row.get("ready_for_label_import") is False
+                for row in sequence_sample_rows
+            )
+            and all(row.get("screen_status") for row in sequence_sample_rows)
+        )
+    if sequence_neighborhood_sample_audit is not None:
+        sequence_sample_audit_meta = sequence_neighborhood_sample_audit.get(
+            "metadata", {}
+        )
+        gates["sequence_neighborhood_sample_audit_guardrail_clean"] = (
+            sequence_sample_audit_meta.get("guardrail_clean") is True
+            and sequence_sample_audit_meta.get("ready_for_label_import") is False
+            and sequence_sample_audit_meta.get("countable_label_candidate_count")
+            == 0
+            and sequence_sample_audit_meta.get("complete_near_duplicate_search_required")
+            is True
+        )
+    if external_import_readiness_audit is not None:
+        import_readiness_meta = external_import_readiness_audit.get("metadata", {})
+        gates["external_import_readiness_audit_blocks_label_import"] = (
+            import_readiness_meta.get("guardrail_clean") is True
+            and import_readiness_meta.get("ready_for_label_import") is False
+            and import_readiness_meta.get("countable_label_candidate_count") == 0
+            and import_readiness_meta.get("label_import_ready_count") == 0
+            and int(import_readiness_meta.get("candidate_count", 0) or 0)
+            == int(candidate_manifest.get("metadata", {}).get("candidate_count", 0) or 0)
+        )
     if binding_context_repair_plan is not None:
         binding_meta = binding_context_repair_plan.get("metadata", {})
         binding_rows = [
@@ -3977,6 +4463,55 @@ def check_external_source_transfer_gates(
                     "near_duplicate_search_request_count", 0
                 )
                 if sequence_neighborhood_plan is not None
+                else 0
+            ),
+            "sequence_neighborhood_sample_candidate_count": (
+                sequence_neighborhood_sample.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if sequence_neighborhood_sample is not None
+                else 0
+            ),
+            "sequence_neighborhood_reference_sequence_count": (
+                sequence_neighborhood_sample.get("metadata", {}).get(
+                    "reference_sequence_count", 0
+                )
+                if sequence_neighborhood_sample is not None
+                else 0
+            ),
+            "sequence_neighborhood_high_similarity_candidate_count": (
+                sequence_neighborhood_sample.get("metadata", {}).get(
+                    "high_similarity_candidate_count", 0
+                )
+                if sequence_neighborhood_sample is not None
+                else 0
+            ),
+            "sequence_neighborhood_screen_requires_complete_search": (
+                sequence_neighborhood_sample.get("metadata", {}).get(
+                    "complete_near_duplicate_search_required", False
+                )
+                if sequence_neighborhood_sample is not None
+                else False
+            ),
+            "external_import_readiness_candidate_count": (
+                external_import_readiness_audit.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if external_import_readiness_audit is not None
+                else 0
+            ),
+            "external_import_readiness_active_site_gap_count": (
+                external_import_readiness_audit.get("metadata", {}).get(
+                    "active_site_gap_count", 0
+                )
+                if external_import_readiness_audit is not None
+                else 0
+            ),
+            "external_import_readiness_representation_issue_count": (
+                external_import_readiness_audit.get("metadata", {}).get(
+                    "representation_control_issue_count", 0
+                )
+                if external_import_readiness_audit is not None
                 else 0
             ),
             "binding_context_ready_candidate_count": (
@@ -4928,14 +5463,47 @@ def _issue_class_counts(rows: list[Any]) -> Counter[str]:
 def _countable_label_count(labels: list[dict[str, Any]]) -> int:
     count = 0
     for label in labels:
-        if not isinstance(label, dict):
+        if not isinstance(label, dict) and not hasattr(label, "entry_id"):
             continue
-        if label.get("review_status") not in {"automation_curated", "expert_reviewed"}:
+        if _label_field(label, "review_status") not in {
+            "automation_curated",
+            "expert_reviewed",
+        }:
             continue
-        if label.get("label_type") not in {"seed_fingerprint", "out_of_scope"}:
+        if _label_field(label, "label_type") not in {
+            "seed_fingerprint",
+            "out_of_scope",
+        }:
             continue
         count += 1
     return count
+
+
+def _countable_label_entry_ids(labels: list[dict[str, Any]]) -> set[str]:
+    entry_ids: set[str] = set()
+    for label in labels:
+        if not isinstance(label, dict) and not hasattr(label, "entry_id"):
+            continue
+        if _label_field(label, "review_status") not in {
+            "automation_curated",
+            "expert_reviewed",
+        }:
+            continue
+        if _label_field(label, "label_type") not in {
+            "seed_fingerprint",
+            "out_of_scope",
+        }:
+            continue
+        entry_id = str(_label_field(label, "entry_id") or "")
+        if entry_id:
+            entry_ids.add(entry_id)
+    return entry_ids
+
+
+def _label_field(label: Any, field: str) -> Any:
+    if isinstance(label, dict):
+        return label.get(field)
+    return getattr(label, field, None)
 
 
 def _duplicate_accessions(rows: list[dict[str, Any]]) -> list[str]:
@@ -4947,6 +5515,112 @@ def _duplicate_accessions(rows: list[dict[str, Any]]) -> list[str]:
 
 def _normalize_accession(value: Any) -> str:
     return str(value or "").strip().upper()
+
+
+def _clean_sequence(value: Any) -> str:
+    return "".join(ch for ch in str(value or "").upper() if ch.isalpha())
+
+
+def _fetch_uniprot_sequence_records(accessions: list[str]) -> dict[str, Any]:
+    cleaned = sorted({_normalize_accession(accession) for accession in accessions})
+    cleaned = [accession for accession in cleaned if accession]
+    records: list[dict[str, Any]] = []
+    batch_metadata: list[dict[str, Any]] = []
+    for batch in _batch_items(cleaned, 20):
+        query = "(" + " OR ".join(f"accession:{accession}" for accession in batch) + ")"
+        payload = fetch_uniprot_query(query, size=len(batch))
+        batch_records = [
+            record
+            for record in payload.get("records", []) or []
+            if isinstance(record, dict)
+        ]
+        records.extend(batch_records)
+        batch_metadata.append(
+            {
+                "requested_accession_count": len(batch),
+                "record_count": len(batch_records),
+            }
+        )
+    by_accession = {
+        _normalize_accession(record.get("accession")): record
+        for record in records
+        if _normalize_accession(record.get("accession"))
+    }
+    return {
+        "metadata": {
+            "source": "uniprot_sequence_batch_search",
+            "requested_accession_count": len(cleaned),
+            "record_count": len(by_accession),
+            "batch_count": len(batch_metadata),
+            "batches": batch_metadata,
+        },
+        "records": [by_accession[accession] for accession in sorted(by_accession)],
+    }
+
+
+def _batch_items(items: list[str], size: int) -> list[list[str]]:
+    return [items[index : index + size] for index in range(0, len(items), size)]
+
+
+def _sequence_similarity_match(
+    *,
+    external_accession: str,
+    external_sequence: str,
+    reference_accession: str,
+    reference_sequence: str,
+    matched_m_csa_entry_ids: list[str],
+    identity_alert_threshold: float,
+    coverage_alert_threshold: float,
+    kmer_alert_threshold: float,
+) -> dict[str, Any] | None:
+    external_sequence = _clean_sequence(external_sequence)
+    reference_sequence = _clean_sequence(reference_sequence)
+    if not external_sequence or not reference_sequence:
+        return None
+    min_len = min(len(external_sequence), len(reference_sequence))
+    max_len = max(len(external_sequence), len(reference_sequence))
+    positional_matches = sum(
+        1
+        for left, right in zip(external_sequence[:min_len], reference_sequence[:min_len])
+        if left == right
+    )
+    positional_identity = positional_matches / min_len if min_len else 0.0
+    length_coverage = min_len / max_len if max_len else 0.0
+    kmer_jaccard = _sequence_kmer_jaccard(external_sequence, reference_sequence)
+    near_duplicate_score = max(positional_identity * length_coverage, kmer_jaccard)
+    near_duplicate_alert = (
+        positional_identity >= identity_alert_threshold
+        and length_coverage >= coverage_alert_threshold
+    ) or kmer_jaccard >= kmer_alert_threshold
+    return {
+        "external_accession": external_accession,
+        "reference_accession": reference_accession,
+        "matched_m_csa_entry_ids": matched_m_csa_entry_ids,
+        "external_length": len(external_sequence),
+        "reference_length": len(reference_sequence),
+        "length_coverage": round(length_coverage, 4),
+        "positional_identity": round(positional_identity, 4),
+        "kmer_jaccard": round(kmer_jaccard, 4),
+        "near_duplicate_score": round(near_duplicate_score, 4),
+        "near_duplicate_alert": near_duplicate_alert,
+        "review_status": "sequence_similarity_screen_review_only",
+    }
+
+
+def _sequence_kmer_jaccard(
+    external_sequence: str, reference_sequence: str, kmer_size: int = 5
+) -> float:
+    left = _sequence_kmers(external_sequence, kmer_size=kmer_size)
+    right = _sequence_kmers(reference_sequence, kmer_size=kmer_size)
+    if not left or not right:
+        return 0.0
+    return len(left & right) / len(left | right)
+
+
+def _sequence_kmers(sequence: str, *, kmer_size: int) -> set[str]:
+    if len(sequence) < kmer_size:
+        return {sequence} if sequence else set()
+    return {sequence[index : index + kmer_size] for index in range(len(sequence) - kmer_size + 1)}
 
 
 def _ec_specificity(ec_number: str) -> str:
@@ -5016,3 +5690,101 @@ def _external_sequence_holdout_blockers(holdout_status: str) -> list[str]:
     else:
         blockers.append("near_duplicate_search_not_completed")
     return blockers
+
+
+def _external_import_readiness_blockers(
+    *,
+    manifest_row: dict[str, Any],
+    active_site: dict[str, Any] | None,
+    heuristic: dict[str, Any] | None,
+    representation: dict[str, Any] | None,
+    active_site_gap: dict[str, Any] | None,
+    sequence: dict[str, Any] | None,
+) -> list[str]:
+    blockers: list[str] = []
+    sequence_status = str((sequence or {}).get("screen_status") or "")
+    if sequence_status == "preexisting_sequence_holdout_retained":
+        blockers.append("exact_sequence_holdout")
+    elif sequence_status == "near_duplicate_candidate_holdout":
+        blockers.append("near_duplicate_candidate_holdout")
+    elif sequence_status:
+        blockers.append("complete_near_duplicate_search_required")
+    else:
+        blockers.append("sequence_neighborhood_screen_missing")
+
+    if active_site is None:
+        blockers.append("external_active_site_evidence_not_sampled")
+    elif int(active_site.get("active_site_feature_count", 0) or 0) == 0:
+        blockers.append("external_active_site_feature_gap")
+    if active_site_gap is not None:
+        request_status = str(active_site_gap.get("request_status") or "")
+        blockers.append(f"active_site_gap_source_request:{request_status}")
+
+    if heuristic is None:
+        blockers.append("heuristic_control_not_scored")
+    elif heuristic.get("scope_top1_mismatch"):
+        blockers.append("heuristic_scope_top1_mismatch")
+    top1 = _external_top1_fingerprint(heuristic or {})
+    if top1 == "metal_dependent_hydrolase" and str(
+        manifest_row.get("scope_signal") or ""
+    ) != "hydrolysis":
+        blockers.append("heuristic_metal_hydrolase_collapse")
+
+    if representation is None:
+        blockers.append("representation_control_not_compared")
+    else:
+        comparison_status = str(representation.get("comparison_status") or "")
+        if comparison_status != "proxy_consistent_with_heuristic_scope":
+            blockers.append(f"representation_control_{comparison_status}")
+
+    blockers.extend(
+        [
+            "external_review_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ]
+    )
+    return blockers
+
+
+def _external_import_readiness_status(blockers: list[str]) -> str:
+    if any(blocker in blockers for blocker in ("exact_sequence_holdout", "near_duplicate_candidate_holdout")):
+        return "blocked_by_sequence_holdout"
+    if any(blocker.startswith("active_site_gap_source_request") for blocker in blockers):
+        return "blocked_by_active_site_sourcing"
+    if "external_active_site_feature_gap" in blockers:
+        return "blocked_by_active_site_gap"
+    if any(
+        blocker in blockers
+        for blocker in (
+            "heuristic_scope_top1_mismatch",
+            "heuristic_metal_hydrolase_collapse",
+        )
+    ):
+        return "blocked_by_heuristic_control"
+    if any(blocker.startswith("representation_control_") for blocker in blockers):
+        return "blocked_by_representation_control"
+    if "complete_near_duplicate_search_required" in blockers:
+        return "blocked_by_sequence_search"
+    return "blocked_by_review_decision_and_factory_gate"
+
+
+def _external_import_readiness_next_action(blockers: list[str]) -> str:
+    if any(blocker in blockers for blocker in ("exact_sequence_holdout", "near_duplicate_candidate_holdout")):
+        return "keep_sequence_holdout_out_of_import_batch"
+    if any(blocker.startswith("active_site_gap_source_request") for blocker in blockers):
+        return "source_explicit_active_site_residue_positions"
+    if "external_active_site_feature_gap" in blockers:
+        return "resolve_active_site_feature_gap_before_mapping"
+    if any(
+        blocker in blockers
+        for blocker in (
+            "heuristic_scope_top1_mismatch",
+            "heuristic_metal_hydrolase_collapse",
+        )
+    ):
+        return "repair_heuristic_or_ontology_control_before_decision"
+    if any(blocker.startswith("representation_control_") for blocker in blockers):
+        return "compute_or_attach_real_representation_control"
+    if "complete_near_duplicate_search_required" in blockers:
+        return "complete_near_duplicate_sequence_search"
+    return "build_review_decisions_only_after_factory_gates"

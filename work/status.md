@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 60
-- Measured elapsed time: 2360.4 minutes (39.34 hours)
+- Entries: 61
+- Measured elapsed time: 2411.3 minutes (40.19 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 2282.2 measured minutes (38.04 hours)
+- post-v2: 2333.1 measured minutes (38.89 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 604
-- Evidence references logged: 504
+- Artifact references logged: 621
+- Evidence references logged: 518
 
 ## Recent Entries
-
-### 2026-05-12T22:58:26.440004+00:00 - post-v2
-
-- Task: Accept gated 800-850 label batches
-- Time mode: measured
-- Measured minutes: 62.067
-- Started: 2026-05-12T16:56:09-05:00
-- Ended: 2026-05-12T17:58:13-05:00
-- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/labels.py, src/catalytic_earth/cli.py, data/registries/curated_mechanism_labels.json, artifacts/v3_label_batch_acceptance_check_850.json, artifacts/v3_label_factory_gate_check_850.json, artifacts/v3_accepted_review_debt_deferral_audit_850.json, artifacts/v3_label_scaling_quality_audit_850_preview.json, artifacts/v3_label_factory_batch_summary.json, artifacts/v3_geometry_features_850.json, artifacts/perf_report_850.json, work/label_preview_850_notes.md
-- Evidence: 205 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 20/20 850 label-factory gates passed, 652 countable labels, 3 accepted 850 labels, 203 review-state rows explicitly deferred, 0 hard negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable in-scope failures, m_csa:836 role-inferred metal-hydrolase deferral covered
-- Notes: Normal locked measured run. Accepted 800, 825, and 850 gated batches; repaired role-inferred metal-hydrolase promotion; documentation checked and updated.
 
 ### 2026-05-13T00:50:52.831198+00:00 - post-v2
 
@@ -113,6 +102,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-13T08:00:14Z
 - Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_representation_control_comparison_1025.json, artifacts/v3_external_source_representation_control_comparison_audit_1025.json, artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json, artifacts/v3_external_source_active_site_gap_source_requests_1025.json, artifacts/v3_external_source_sequence_neighborhood_plan_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, docs/external_source_transfer.md, docs/label_factory.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md, work/label_factory_notes.md
 - Evidence: 252 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, 38/38 external transfer gates, 12 representation-control comparisons, 7 metal-hydrolase collapse flags, 3 broad-EC rows disambiguated to specific reaction context, 10 active-site gap source requests, 28 near-duplicate sequence search requests, 0 countable external labels
+- Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
+
+### 2026-05-13T09:00:39.138608+00:00 - post-v2
+
+- Task: Screen external sequence neighborhoods
+- Time mode: measured
+- Measured minutes: 50.9
+- Started: 2026-05-13T03:08:55-05:00
+- Ended: 2026-05-13T03:59:49-05:00
+- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_sequence_neighborhood_sample_1025.json, artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json, artifacts/v3_external_source_import_readiness_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, docs/external_source_transfer.md, docs/label_factory.md, docs/v2_strengthening_report.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md, work/label_factory_notes.md
+- Evidence: 256 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, 41/41 external transfer gates, 30 external sequences screened, 733 countable M-CSA reference sequences screened, 0 high-similarity sequence alerts, 0 countable external labels, 0 import-ready external labels, 10 active-site gaps recorded, 9 heuristic scope/top1 mismatches recorded, 29 representation-control issues recorded
 - Notes: Normal locked measured run with at least 50 minutes productive work before wrap-up. Documentation checked and updated; external transfer remains ready_for_label_import=false.
 
 ## Expectation Updates
@@ -236,3 +236,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T05:57:24.579339+00:00: M-CSA-only count growth remains stopped at 1,003 observed records; post-M-CSA scaling now depends on active-site-supported external controls plus representation or ontology repairs.
 - 2026-05-13T06:58:30.872167+00:00: M-CSA-only count growth remains stopped at 1,003 observed records; post-M-CSA scaling still depends on review-only external-source repair and representation controls before label import.
 - 2026-05-13T08:00:59.297672+00:00: Post-M-CSA scaling remains review-only; next import readiness depends on active-site sourcing, near-duplicate sequence search, and real representation controls before any external label decision.
+- 2026-05-13T09:00:39.138608+00:00: External transfer remains non-countable; next import readiness depends on active-site sourcing, complete near-duplicate sequence search, and real representation controls before any external decision.

@@ -171,12 +171,13 @@ What is now better:
 - the 1,025 preview exposes source-scale limits without weakening label gates:
   it adds 0 countable labels, keeps all 329 review-state rows non-countable,
   and shifts next work to external-source transfer with OOD controls; the first
-  30 external candidates now feed a 38/38 review-only transfer gate with
+  30 external candidates now feed a 41/41 review-only transfer gate with
   active-site feature sampling, all 12 heuristic-ready structure controls,
   heuristic score controls, control-repair artifacts, representation-control
   comparison, active-site gap source requests, sequence-neighborhood controls,
-  broad-EC disambiguation, reaction/sequence holdout audits, and explicit
-  failure-mode audits while remaining blocked from label import
+  bounded sequence-neighborhood screening, import-readiness audit, broad-EC
+  disambiguation, reaction/sequence holdout audits, and explicit failure-mode
+  audits while remaining blocked from label import
 
 What remains weak:
 

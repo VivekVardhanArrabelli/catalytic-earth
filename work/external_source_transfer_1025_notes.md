@@ -70,11 +70,23 @@ Current review-only external artifacts:
   mapped binding context and 3 need curated residue sources.
 - `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`
   confirms countable import adds 0 labels from that export.
+- `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json` runs a
+  bounded sequence screen against 733 current countable M-CSA reference
+  sequences. It fetches all 30 external sequences, records 0 high-similarity
+  alerts under the current unaligned screen, retains the 2 exact-reference
+  holdouts, and keeps complete near-duplicate search as a mandatory future
+  control.
+- `artifacts/v3_external_source_import_readiness_audit_1025.json` aggregates
+  candidate-level blockers: 10 active-site gaps, 2 sequence holdouts, 28
+  complete near-duplicate search requirements, 9 heuristic scope/top1
+  mismatches, and 29 representation-control issues. It marks 0 rows ready for
+  label import.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the current gate passes 38/38 after representation comparison,
   broad-EC disambiguation, active-site gap source requests, and
-  sequence-neighborhood controls. It is still not ready for label
+  sequence-neighborhood controls, and now passes 41/41 after the sequence
+  screen and import-readiness audit. It is still not ready for label
   import.
 
 Sequence-similarity guardrail details:
@@ -86,6 +98,9 @@ Sequence-similarity guardrail details:
 - `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json` turns the
   current sequence surface into 2 exact-holdout rows and 28 near-duplicate
   search requests.
+- `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json` is a
+  bounded sequence screen only, not a final homology search. Absence of a
+  high-similarity hit in that artifact must not be used as import evidence.
 
 Reaction-context details:
 

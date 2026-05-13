@@ -17,11 +17,13 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_heuristic_control_queue,
     audit_external_source_heuristic_control_scores,
     audit_external_source_failure_modes,
+    audit_external_source_import_readiness,
     audit_external_source_lane_balance,
     audit_external_source_reaction_evidence_sample,
     audit_external_source_representation_control_comparison,
     audit_external_source_representation_control_manifest,
     audit_external_source_sequence_holdouts,
+    audit_external_source_sequence_neighborhood_sample,
     audit_external_source_structure_mapping_plan,
     audit_external_source_structure_mapping_sample,
     audit_external_source_control_repair_plan,
@@ -45,6 +47,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
     build_external_source_sequence_neighborhood_plan,
+    build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
     check_external_source_transfer_gates,
 )
@@ -1703,6 +1706,42 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                         }
                     ],
                 },
+                sequence_neighborhood_sample={
+                    "metadata": {
+                        "ready_for_label_import": False,
+                        "complete_near_duplicate_search_required": True,
+                        "countable_label_candidate_count": 0,
+                        "candidate_count": 1,
+                        "reference_sequence_count": 1,
+                        "high_similarity_candidate_count": 1,
+                    },
+                    "rows": [
+                        {
+                            "countable_label_candidate": False,
+                            "ready_for_label_import": False,
+                            "screen_status": "near_duplicate_candidate_holdout",
+                        }
+                    ],
+                },
+                sequence_neighborhood_sample_audit={
+                    "metadata": {
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "complete_near_duplicate_search_required": True,
+                        "countable_label_candidate_count": 0,
+                    }
+                },
+                external_import_readiness_audit={
+                    "metadata": {
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "countable_label_candidate_count": 0,
+                        "label_import_ready_count": 0,
+                        "candidate_count": 1,
+                        "active_site_gap_count": 1,
+                        "representation_control_issue_count": 1,
+                    }
+                },
                 binding_context_repair_plan={
                     "metadata": {
                         "ready_for_label_import": False,
@@ -1817,6 +1856,26 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                     "sequence_neighborhood_near_duplicate_search_request_count"
                 ],
                 1,
+            )
+            self.assertTrue(
+                gates["gates"]["sequence_neighborhood_sample_review_only"]
+            )
+            self.assertTrue(
+                gates["gates"][
+                    "sequence_neighborhood_sample_audit_guardrail_clean"
+                ]
+            )
+            self.assertEqual(
+                gates["metadata"]["sequence_neighborhood_high_similarity_candidate_count"],
+                1,
+            )
+            self.assertTrue(
+                gates["gates"][
+                    "external_import_readiness_audit_blocks_label_import"
+                ]
+            )
+            self.assertEqual(
+                gates["metadata"]["external_import_readiness_candidate_count"], 1
             )
             self.assertTrue(gates["gates"]["binding_context_repair_plan_review_only"])
             self.assertTrue(
@@ -2370,6 +2429,311 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "near_duplicate_search_required_before_import",
         )
         self.assertFalse(plan["rows"][0]["countable_label_candidate"])
+
+    def test_external_sequence_neighborhood_sample_screens_reference_sequences(
+        self,
+    ) -> None:
+        sample = build_external_source_sequence_neighborhood_sample(
+            sequence_neighborhood_plan={
+                "metadata": {"method": "external_source_sequence_neighborhood_plan"},
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "holdout_status": "requires_near_duplicate_search",
+                        "lane_id": "external_source:isomerase",
+                        "plan_status": (
+                            "near_duplicate_search_required_before_import"
+                        ),
+                        "ready_for_label_import": False,
+                    }
+                ],
+            },
+            sequence_clusters={
+                "metadata": {"method": "sequence_cluster_proxy_from_reference_uniprot"},
+                "rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "reference_uniprot_ids": ["P11111"],
+                    }
+                ],
+            },
+            labels=[
+                {
+                    "entry_id": "m_csa:1",
+                    "label_type": "seed_fingerprint",
+                    "review_status": "automation_curated",
+                }
+            ],
+            fetcher=lambda accessions: {
+                "metadata": {"source": "unit_test_fetcher"},
+                "records": [
+                    {
+                        "accession": "P11111",
+                        "sequence": "M" + "A" * 80 + "GGGG",
+                    },
+                    {
+                        "accession": "P22222",
+                        "sequence": "M" + "A" * 80 + "GGGA",
+                    },
+                ],
+            },
+        )
+        audit = audit_external_source_sequence_neighborhood_sample(sample)
+
+        self.assertFalse(sample["metadata"]["ready_for_label_import"])
+        self.assertTrue(sample["metadata"]["complete_near_duplicate_search_required"])
+        self.assertEqual(sample["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(sample["metadata"]["candidate_count"], 1)
+        self.assertEqual(sample["metadata"]["reference_sequence_count"], 1)
+        self.assertEqual(sample["metadata"]["high_similarity_candidate_count"], 1)
+        self.assertEqual(
+            sample["rows"][0]["screen_status"], "near_duplicate_candidate_holdout"
+        )
+        self.assertTrue(sample["rows"][0]["top_matches"][0]["near_duplicate_alert"])
+        self.assertFalse(sample["rows"][0]["countable_label_candidate"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+
+    def test_external_sequence_neighborhood_sample_audit_blocks_import_rows(
+        self,
+    ) -> None:
+        audit = audit_external_source_sequence_neighborhood_sample(
+            {
+                "metadata": {
+                    "candidate_count": 1,
+                    "top_hit_row_count": 0,
+                    "high_similarity_candidate_count": 0,
+                },
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "countable_label_candidate": True,
+                        "ready_for_label_import": True,
+                        "screen_status": "near_duplicate_candidate_holdout",
+                    }
+                ],
+            }
+        )
+
+        self.assertFalse(audit["metadata"]["guardrail_clean"])
+        self.assertIn(
+            "sequence_neighborhood_rows_marked_countable", audit["blockers"]
+        )
+        self.assertIn(
+            "sequence_neighborhood_rows_marked_ready_for_import", audit["blockers"]
+        )
+
+    def test_external_import_readiness_audit_prioritizes_remaining_blockers(
+        self,
+    ) -> None:
+        audit = audit_external_source_import_readiness(
+            candidate_manifest={
+                "metadata": {"method": "external_source_candidate_manifest"},
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "lane_id": "external_source:isomerase",
+                        "protein_name": "Example isomerase",
+                        "scope_signal": "isomerase",
+                    },
+                    {
+                        "accession": "P22222",
+                        "lane_id": "external_source:glycan_chemistry",
+                        "protein_name": "Example glycan enzyme",
+                        "scope_signal": "glycan_chemistry",
+                    },
+                ],
+            },
+            active_site_evidence_sample={
+                "candidate_summaries": [
+                    {
+                        "accession": "P11111",
+                        "active_site_feature_count": 2,
+                    },
+                    {
+                        "accession": "P22222",
+                        "active_site_feature_count": 0,
+                    },
+                ]
+            },
+            heuristic_control_scores={
+                "results": [
+                    {
+                        "entry_id": "uniprot:P11111",
+                        "scope_top1_mismatch": True,
+                        "top_fingerprints": [
+                            {"fingerprint_id": "metal_dependent_hydrolase"}
+                        ],
+                    }
+                ]
+            },
+            representation_control_comparison={
+                "rows": [
+                    {
+                        "entry_id": "uniprot:P11111",
+                        "comparison_status": (
+                            "proxy_flags_metal_hydrolase_collapse"
+                        ),
+                    }
+                ]
+            },
+            active_site_gap_source_requests={
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "request_status": (
+                            "binding_context_mapped_ready_for_active_site_sourcing"
+                        ),
+                    }
+                ]
+            },
+            sequence_neighborhood_sample={
+                "rows": [
+                    {
+                        "accession": "P11111",
+                        "screen_status": "no_high_similarity_hit_in_bounded_screen",
+                    },
+                    {
+                        "accession": "P22222",
+                        "screen_status": "preexisting_sequence_holdout_retained",
+                    },
+                ]
+            },
+        )
+
+        self.assertFalse(audit["metadata"]["ready_for_label_import"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(audit["metadata"]["candidate_count"], 2)
+        self.assertEqual(audit["metadata"]["active_site_gap_count"], 1)
+        self.assertEqual(audit["metadata"]["heuristic_scope_mismatch_count"], 1)
+        self.assertEqual(audit["metadata"]["representation_control_issue_count"], 2)
+        self.assertEqual(
+            audit["rows"][0]["readiness_status"], "blocked_by_heuristic_control"
+        )
+        self.assertEqual(
+            audit["rows"][1]["readiness_status"], "blocked_by_sequence_holdout"
+        )
+        self.assertFalse(audit["rows"][0]["countable_label_candidate"])
+
+    def test_external_import_readiness_cli(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            candidate_manifest = root / "candidate_manifest.json"
+            active_site_sample = root / "active_site_sample.json"
+            heuristic_scores = root / "heuristic_scores.json"
+            representation = root / "representation.json"
+            active_site_gap_sources = root / "active_site_gap_sources.json"
+            sequence_sample = root / "sequence_sample.json"
+            out = root / "import_readiness.json"
+            candidate_manifest.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"method": "external_source_candidate_manifest"},
+                        "rows": [
+                            {
+                                "accession": "P11111",
+                                "lane_id": "external_source:lyase",
+                                "scope_signal": "lyase",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            active_site_sample.write_text(
+                json.dumps(
+                    {
+                        "candidate_summaries": [
+                            {"accession": "P11111", "active_site_feature_count": 1}
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heuristic_scores.write_text(
+                json.dumps(
+                    {
+                        "results": [
+                            {
+                                "entry_id": "uniprot:P11111",
+                                "scope_top1_mismatch": False,
+                                "top_fingerprints": [
+                                    {"fingerprint_id": "flavin_dehydrogenase_reductase"}
+                                ],
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            representation.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "entry_id": "uniprot:P11111",
+                                "comparison_status": (
+                                    "proxy_consistent_with_heuristic_scope"
+                                ),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            active_site_gap_sources.write_text(json.dumps({"rows": []}), encoding="utf-8")
+            sequence_sample.write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "accession": "P11111",
+                                "screen_status": (
+                                    "no_high_similarity_hit_in_bounded_screen"
+                                ),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-external-source-import-readiness",
+                    "--candidate-manifest",
+                    str(candidate_manifest),
+                    "--active-site-evidence-sample",
+                    str(active_site_sample),
+                    "--heuristic-control-scores",
+                    str(heuristic_scores),
+                    "--representation-control-comparison",
+                    str(representation),
+                    "--active-site-gap-source-requests",
+                    str(active_site_gap_sources),
+                    "--sequence-neighborhood-sample",
+                    str(sequence_sample),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            self.assertTrue(payload["metadata"]["guardrail_clean"])
+            self.assertFalse(payload["metadata"]["ready_for_label_import"])
+            self.assertEqual(payload["metadata"]["candidate_count"], 1)
+            self.assertEqual(
+                payload["rows"][0]["next_action"],
+                "complete_near_duplicate_sequence_search",
+            )
 
     def test_external_source_evidence_request_export_is_no_decision(self) -> None:
         export = build_external_source_evidence_request_export(

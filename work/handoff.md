@@ -217,10 +217,13 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   representation-control, binding-context, full reaction-context, and
   sequence-holdout artifacts, and raised the external transfer gate to 33/33.
   External candidates still add 0 countable labels and are not import-ready.
-- Added external-source repair controls for the current run: feature-proxy
+- Added external-source repair controls for the prior repair pass: feature-proxy
   representation comparison, broad-EC disambiguation, active-site gap source
   requests, and a sequence-neighborhood plan. The external transfer gate now
   passes 38/38 review-only checks while keeping every external row non-countable.
+- Added bounded sequence-neighborhood screening and candidate-level import
+  readiness auditing. The external transfer gate now passes 41/41 review-only
+  checks while keeping every external row non-countable and import-blocked.
 
 ## Current Metrics
 
@@ -538,9 +541,12 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_active_site_gap_source_requests_1025.json`,
 `artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
 `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json`,
+`artifacts/v3_external_source_sequence_neighborhood_sample_1025.json`,
+`artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json`,
+`artifacts/v3_external_source_import_readiness_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` keep
-`countable_label_candidate_count=0` and pass a 38/38 review-only transfer gate.
+`countable_label_candidate_count=0` and pass a 41/41 review-only transfer gate.
 The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
 query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
 to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC
@@ -591,7 +597,39 @@ keeps `O15527` and `P42126` as exact-reference holdouts and marks the remaining
 The broad-EC disambiguation audit finds specific reaction context for all 3
 broad-only repair rows, and the sequence-neighborhood plan converts the
 sequence surface into 2 exact-holdout rows and 28 near-duplicate search
-requests.
+requests. The sequence-neighborhood sample fetches all 30 external sequences
+and 733 current countable M-CSA reference sequences, finds 0 high-similarity
+alerts in the bounded unaligned screen, and keeps complete near-duplicate or
+UniRef-style search mandatory before import. The import-readiness audit keeps
+0 rows ready for label import and records 10 active-site gaps, 2 exact sequence
+holdouts, 28 complete near-duplicate search requirements, 9 heuristic scope/top1
+mismatches, and 29 representation-control issues.
+
+Label-quality confidence call for the 2026-05-13T03:08:55-05:00 run: no for
+additional M-CSA-only count growth, yes for bounded external-source control
+repair. Evidence at run start: `validate` and 252 unit tests passed, the 1,025
+preview gate remains clean but non-promotable with 0 accepted new labels, the
+prior external transfer gate passed 38/38 review-only checks, hard negatives
+remain 0, near misses remain 0, out-of-scope false non-abstentions remain 0,
+actionable in-scope failures remain 0, review-only import growth remains 0,
+and the source-scale audit records only 1,003 observed M-CSA records for the
+requested 1,025 tranche. The operational decision was to reduce external
+sequence/readiness uncertainty while keeping every external candidate
+non-countable.
+
+Remaining-time plan for the 2026-05-13T03:08:55-05:00 run: after the bounded
+sequence-neighborhood screen and import-readiness audit passed targeted tests,
+keep work scoped to artifact regression coverage, docs, validation, and final
+gate verification. Do not import external labels until explicit active-site
+sourcing, complete sequence-neighborhood controls, real representation
+controls, review decisions, and full label-factory gates pass.
+
+Wrap-up note for the 2026-05-13T03:08:55-05:00 run: productive work continued
+to the 50-minute boundary before wrap-up. `ENDED_AT=2026-05-13T03:59:49-05:00`;
+documentation was checked and updated across README, docs, and work notes.
+Final verification passed with 256 unit tests, `validate`, `compileall`,
+`git diff --check`, JSON artifact parse checks, CLI help checks, and external
+artifact import/countable guardrail checks.
 
 Label-quality confidence call for the 2026-05-13T07:08:09Z run: no for
 additional M-CSA-only count growth, yes for bounded external-source repair
@@ -799,6 +837,9 @@ Start with:
 `artifacts/v3_external_source_active_site_gap_source_requests_1025.json`,
 `artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
 `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json`,
+`artifacts/v3_external_source_sequence_neighborhood_sample_1025.json`,
+`artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json`,
+`artifacts/v3_external_source_import_readiness_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`,
 `artifacts/v3_external_source_transfer_gate_check_1025.json`,
 `artifacts/v3_external_source_reaction_evidence_sample_1025.json`,
@@ -818,13 +859,20 @@ Highest-value options:
 3. Treat the Rhea reaction-context sample as context only, especially the 16
    broad-EC context rows; do not treat Rhea rows as active-site evidence.
 4. Run real near-duplicate sequence searches for the 28 rows in
-   `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json`.
+   `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json`; the
+   bounded screen in
+   `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json` is not
+   enough for import readiness.
 5. Replace the feature-proxy representation comparison with real learned or
    structure-language controls while keeping heuristic retrieval as the
    required baseline.
-6. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
+6. Use `artifacts/v3_external_source_import_readiness_audit_1025.json` as the
+   candidate-level blocker map: 10 active-site sourcing rows, 11 heuristic
+   control rows, 6 representation-control rows, 2 sequence holdouts, and 1
+   sequence-search-only row.
+7. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
    separate decision artifact passes the full label-factory gate.
-7. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
+8. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
    do not collapse these families into generic hydrolase or metal-hydrolase
    labels.
 

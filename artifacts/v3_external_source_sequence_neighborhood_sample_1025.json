@@ -1,0 +1,3593 @@
+{
+  "blockers": [
+    "full_alignment_or_uniref_search_not_completed",
+    "external_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "fetch_failures": [],
+  "metadata": {
+    "candidate_count": 30,
+    "complete_near_duplicate_search_required": true,
+    "countable_label_candidate_count": 0,
+    "coverage_alert_threshold": 0.9,
+    "exact_or_failure_holdout_count": 2,
+    "external_sequence_fetched_count": 30,
+    "fetch_failure_count": 0,
+    "high_similarity_candidate_count": 0,
+    "identity_alert_threshold": 0.9,
+    "kmer_alert_threshold": 0.85,
+    "max_external_rows": 30,
+    "max_reference_sequences": 1000,
+    "method": "external_source_sequence_neighborhood_sample",
+    "missing_external_sequence_count": 0,
+    "no_high_similarity_hit_count": 28,
+    "ready_for_label_import": false,
+    "reference_entry_count": 679,
+    "reference_sequence_count": 733,
+    "requested_accession_count": 763,
+    "screen_rule": "bounded unaligned sequence screen for external near-duplicate risk; this is an OOD control and cannot create labels",
+    "screen_status_counts": {
+      "no_high_similarity_hit_in_bounded_screen": 28,
+      "preexisting_sequence_holdout_retained": 2
+    },
+    "source_fetch_method": "uniprot_sequence_batch_search",
+    "source_sequence_cluster_method": "sequence_cluster_proxy_from_reference_uniprot",
+    "source_sequence_neighborhood_plan_method": "external_source_sequence_neighborhood_plan",
+    "top_hit_row_count": 90
+  },
+  "rows": [
+    {
+      "accession": "A2RUC4",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RUC4",
+      "external_sequence_length": 315,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "tRNA wybutosine-synthesizing protein 5 (hTYW5) (tRNA yW-synthesizing protein 5) (EC 1.14.11.42) (tRNA(Phe) (7-(3-amino-3-carboxypropyl)wyosine(37)-C(2))-hydroxylase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "A2RUC4",
+          "external_length": 315,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.913,
+          "matched_m_csa_entry_ids": [
+            "m_csa:652"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0957,
+          "positional_identity": 0.1048,
+          "reference_accession": "P51016",
+          "reference_length": 345,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "A2RUC4",
+          "external_length": 315,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:443"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0921,
+          "positional_identity": 0.0921,
+          "reference_accession": "P13063",
+          "reference_length": 315,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "A2RUC4",
+          "external_length": 315,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9492,
+          "matched_m_csa_entry_ids": [
+            "m_csa:495"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0889,
+          "positional_identity": 0.0936,
+          "reference_accession": "O68557",
+          "reference_length": 299,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "A5PLL7",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A5PLL7",
+      "external_sequence_length": 270,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Plasmanylethanolamine desaturase 1 (EC 1.14.19.77) (Transmembrane protein 189)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "A5PLL7",
+          "external_length": 270,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.989,
+          "matched_m_csa_entry_ids": [
+            "m_csa:402"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0952,
+          "positional_identity": 0.0963,
+          "reference_accession": "P04036",
+          "reference_length": 273,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "A5PLL7",
+          "external_length": 270,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8257,
+          "matched_m_csa_entry_ids": [
+            "m_csa:342"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0917,
+          "positional_identity": 0.1111,
+          "reference_accession": "Q62651",
+          "reference_length": 327,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "A5PLL7",
+          "external_length": 270,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9704,
+          "matched_m_csa_entry_ids": [
+            "m_csa:606"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0889,
+          "positional_identity": 0.0916,
+          "reference_accession": "P0AEK4",
+          "reference_length": 262,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:C9JRZ8",
+      "external_sequence_length": 316,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "C9JRZ8",
+          "external_length": 316,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9723,
+          "matched_m_csa_entry_ids": [
+            "m_csa:106"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0923,
+          "positional_identity": 0.0949,
+          "reference_accession": "P21874",
+          "reference_length": 325,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "C9JRZ8",
+          "external_length": 316,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9842,
+          "matched_m_csa_entry_ids": [
+            "m_csa:405"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0918,
+          "positional_identity": 0.0932,
+          "reference_accession": "P0A786",
+          "reference_length": 311,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "C9JRZ8",
+          "external_length": 316,
+          "kmer_jaccard": 0.0017,
+          "length_coverage": 0.8956,
+          "matched_m_csa_entry_ids": [
+            "m_csa:66"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0918,
+          "positional_identity": 0.1025,
+          "reference_accession": "P19938",
+          "reference_length": 283,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O14756",
+      "external_sequence_length": 317,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "O14756",
+          "external_length": 317,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8991,
+          "matched_m_csa_entry_ids": [
+            "m_csa:11"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0852,
+          "positional_identity": 0.0947,
+          "reference_accession": "P0A6C1",
+          "reference_length": 285,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O14756",
+          "external_length": 317,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9148,
+          "matched_m_csa_entry_ids": [
+            "m_csa:315"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0852,
+          "positional_identity": 0.0931,
+          "reference_accession": "P14604",
+          "reference_length": 290,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O14756",
+          "external_length": 317,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8202,
+          "matched_m_csa_entry_ids": [
+            "m_csa:595"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0852,
+          "positional_identity": 0.1038,
+          "reference_accession": "P15369",
+          "reference_length": 260,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O15247",
+      "external_sequence_length": 247,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Chloride intracellular channel protein 2 (Glutaredoxin-like oxidoreductase CLIC2) (EC 1.8.-.-) (Glutaredoxin-like peroxidase CLIC2) (EC 1.11.1.-) (XAP121)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "O15247",
+          "external_length": 247,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:504"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1053,
+          "positional_identity": 0.1053,
+          "reference_accession": "P00950",
+          "reference_length": 247,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O15247",
+          "external_length": 247,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9611,
+          "matched_m_csa_entry_ids": [
+            "m_csa:16"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1051,
+          "positional_identity": 0.1093,
+          "reference_accession": "P04190",
+          "reference_length": 257,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O15247",
+          "external_length": 247,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9757,
+          "matched_m_csa_entry_ids": [
+            "m_csa:637"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0972,
+          "positional_identity": 0.0996,
+          "reference_accession": "P04531",
+          "reference_length": 241,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q969G6",
+      "external_sequence_length": 155,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Riboflavin kinase (EC 2.7.1.26) (ATP:riboflavin 5'-phosphotransferase) (Flavokinase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q969G6",
+          "external_length": 155,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9677,
+          "matched_m_csa_entry_ids": [
+            "m_csa:123"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1097,
+          "positional_identity": 0.1133,
+          "reference_accession": "O28604",
+          "reference_length": 150,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q969G6",
+          "external_length": 155,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9871,
+          "matched_m_csa_entry_ids": [
+            "m_csa:405"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1032,
+          "positional_identity": 0.1046,
+          "reference_accession": "P0A7F3",
+          "reference_length": 153,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q969G6",
+          "external_length": 155,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8839,
+          "matched_m_csa_entry_ids": [
+            "m_csa:63"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0903,
+          "positional_identity": 0.1022,
+          "reference_accession": "P80078",
+          "reference_length": 137,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P32189",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P32189",
+      "external_sequence_length": 559,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P32189",
+          "external_length": 559,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:385"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.093,
+          "positional_identity": 0.093,
+          "reference_accession": "P21164",
+          "reference_length": 559,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P32189",
+          "external_length": 559,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9929,
+          "matched_m_csa_entry_ids": [
+            "m_csa:478"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0835,
+          "positional_identity": 0.0841,
+          "reference_accession": "P07254",
+          "reference_length": 563,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P32189",
+          "external_length": 559,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9894,
+          "matched_m_csa_entry_ids": [
+            "m_csa:627"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0814,
+          "positional_identity": 0.0823,
+          "reference_accession": "P36655",
+          "reference_length": 565,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P55263",
+      "external_sequence_length": 362,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P55263",
+          "external_length": 362,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.826,
+          "matched_m_csa_entry_ids": [
+            "m_csa:445"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0856,
+          "positional_identity": 0.1037,
+          "reference_accession": "P53608",
+          "reference_length": 299,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P55263",
+          "external_length": 362,
+          "kmer_jaccard": 0.0014,
+          "length_coverage": 0.9669,
+          "matched_m_csa_entry_ids": [
+            "m_csa:536"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0829,
+          "positional_identity": 0.0857,
+          "reference_accession": "P26239",
+          "reference_length": 350,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P55263",
+          "external_length": 362,
+          "kmer_jaccard": 0.0273,
+          "length_coverage": 0.9972,
+          "matched_m_csa_entry_ids": [
+            "m_csa:209"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0826,
+          "positional_identity": 0.0829,
+          "reference_accession": "Q9TVW2",
+          "reference_length": 363,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P27144",
+      "external_sequence_length": 223,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Adenylate kinase 4, mitochondrial (EC 2.7.4.4) (EC 2.7.4.6) (Adenylate kinase 3-like) (GTP:AMP phosphotransferase AK4)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P27144",
+          "external_length": 223,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.991,
+          "matched_m_csa_entry_ids": [
+            "m_csa:206"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1031,
+          "positional_identity": 0.1041,
+          "reference_accession": "P71447",
+          "reference_length": 221,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P27144",
+          "external_length": 223,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9571,
+          "matched_m_csa_entry_ids": [
+            "m_csa:122"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.103,
+          "positional_identity": 0.1076,
+          "reference_accession": "P54149",
+          "reference_length": 233,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P27144",
+          "external_length": 223,
+          "kmer_jaccard": 0.0022,
+          "length_coverage": 0.9331,
+          "matched_m_csa_entry_ids": [
+            "m_csa:50"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1004,
+          "positional_identity": 0.1076,
+          "reference_accession": "P25971",
+          "reference_length": 239,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:A2RU49",
+      "external_sequence_length": 373,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Hydroxylysine kinase (5-hydroxy-L-lysine kinase) (EC 2.7.1.81) (Aminoglycoside phosphotransferase domain-containing protein 1)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "A2RU49",
+          "external_length": 373,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.992,
+          "matched_m_csa_entry_ids": [
+            "m_csa:348"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0912,
+          "positional_identity": 0.0919,
+          "reference_accession": "P05404",
+          "reference_length": 370,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "A2RU49",
+          "external_length": 373,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9947,
+          "matched_m_csa_entry_ids": [
+            "m_csa:377"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0907,
+          "positional_identity": 0.0912,
+          "reference_accession": "Q9RYA6",
+          "reference_length": 375,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "A2RU49",
+          "external_length": 373,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8928,
+          "matched_m_csa_entry_ids": [
+            "m_csa:576"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0885,
+          "positional_identity": 0.0991,
+          "reference_accession": "P26297",
+          "reference_length": 333,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P06746",
+      "external_sequence_length": 335,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "lyase",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P06746",
+          "external_length": 335,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9331,
+          "matched_m_csa_entry_ids": [
+            "m_csa:521"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0919,
+          "positional_identity": 0.0985,
+          "reference_accession": "P31116",
+          "reference_length": 359,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P06746",
+          "external_length": 335,
+          "kmer_jaccard": 0.0015,
+          "length_coverage": 0.9795,
+          "matched_m_csa_entry_ids": [
+            "m_csa:353"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0906,
+          "positional_identity": 0.0925,
+          "reference_accession": "P08373",
+          "reference_length": 342,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P06746",
+          "external_length": 335,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9571,
+          "matched_m_csa_entry_ids": [
+            "m_csa:536"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0857,
+          "positional_identity": 0.0896,
+          "reference_accession": "P26239",
+          "reference_length": 350,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BXD5",
+      "external_sequence_length": 320,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "lyase",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q9BXD5",
+          "external_length": 320,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9581,
+          "matched_m_csa_entry_ids": [
+            "m_csa:526"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1048,
+          "positional_identity": 0.1094,
+          "reference_accession": "P11708",
+          "reference_length": 334,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q9BXD5",
+          "external_length": 320,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9786,
+          "matched_m_csa_entry_ids": [
+            "m_csa:342"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0917,
+          "positional_identity": 0.0938,
+          "reference_accession": "Q62651",
+          "reference_length": 327,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q9BXD5",
+          "external_length": 320,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8,
+          "matched_m_csa_entry_ids": [
+            "m_csa:856"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.09,
+          "positional_identity": 0.1125,
+          "reference_accession": "P21327",
+          "reference_length": 400,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P35914",
+      "external_sequence_length": 325,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Hydroxymethylglutaryl-CoA lyase, mitochondrial (HL) (HMG-CoA lyase) (EC 4.1.3.4) (3-hydroxy-3-methylglutarate-CoA lyase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "lyase",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P35914",
+          "external_length": 325,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.7757,
+          "matched_m_csa_entry_ids": [
+            "m_csa:369"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1026,
+          "positional_identity": 0.1323,
+          "reference_accession": "P33038",
+          "reference_length": 419,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P35914",
+          "external_length": 325,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:106"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0954,
+          "positional_identity": 0.0954,
+          "reference_accession": "P21874",
+          "reference_length": 325,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P35914",
+          "external_length": 325,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9848,
+          "matched_m_csa_entry_ids": [
+            "m_csa:75"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0939,
+          "positional_identity": 0.0954,
+          "reference_accession": "P00963",
+          "reference_length": 330,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q96I15",
+      "external_sequence_length": 445,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Selenocysteine lyase (hSCL) (EC 4.4.1.16)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "lyase",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q96I15",
+          "external_length": 445,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8674,
+          "matched_m_csa_entry_ids": [
+            "m_csa:303"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0936,
+          "positional_identity": 0.1079,
+          "reference_accession": "P0DJQ7",
+          "reference_length": 513,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q96I15",
+          "external_length": 445,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9889,
+          "matched_m_csa_entry_ids": [
+            "m_csa:579"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0911,
+          "positional_identity": 0.0921,
+          "reference_accession": "P24295",
+          "reference_length": 450,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q96I15",
+          "external_length": 445,
+          "kmer_jaccard": 0.0023,
+          "length_coverage": 0.9888,
+          "matched_m_csa_entry_ids": [
+            "m_csa:413"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0899,
+          "positional_identity": 0.0909,
+          "reference_accession": "P07650",
+          "reference_length": 440,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O15527",
+      "external_sequence_length": 345,
+      "holdout_status": "exact_reference_overlap_holdout",
+      "lane_id": "external_source:lyase",
+      "matched_m_csa_entry_ids": [
+        "m_csa:185"
+      ],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "exact_reference_overlap_keep_as_holdout",
+      "protein_name": "N-glycosylase/DNA lyase [Includes: 8-oxoguanine DNA glycosylase (EC 3.2.2.-); DNA-(apurinic or apyrimidinic site) lyase (AP lyase) (EC 4.2.99.18)]",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "lyase",
+      "screen_status": "preexisting_sequence_holdout_retained",
+      "sequence_cluster_ids": [
+        "uniprot:O15527"
+      ],
+      "top_matches": [
+        {
+          "external_accession": "O15527",
+          "external_length": 345,
+          "kmer_jaccard": 1.0,
+          "length_coverage": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:185"
+          ],
+          "near_duplicate_alert": true,
+          "near_duplicate_score": 1.0,
+          "positional_identity": 1.0,
+          "reference_accession": "O15527",
+          "reference_length": 345,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O15527",
+          "external_length": 345,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9072,
+          "matched_m_csa_entry_ids": [
+            "m_csa:260"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0899,
+          "positional_identity": 0.099,
+          "reference_accession": "P06983",
+          "reference_length": 313,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O15527",
+          "external_length": 345,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.92,
+          "matched_m_csa_entry_ids": [
+            "m_csa:978"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0827,
+          "positional_identity": 0.0899,
+          "reference_accession": "Q9HXE3",
+          "reference_length": 375,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q13907",
+      "external_sequence_length": 227,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Isopentenyl-diphosphate Delta-isomerase 1 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 1) (IPP isomerase 1) (IPPI1)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "isomerase",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q13907",
+          "external_length": 227,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9912,
+          "matched_m_csa_entry_ids": [
+            "m_csa:74"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0925,
+          "positional_identity": 0.0933,
+          "reference_accession": "P13000",
+          "reference_length": 225,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q13907",
+          "external_length": 227,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9956,
+          "matched_m_csa_entry_ids": [
+            "m_csa:335"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0921,
+          "positional_identity": 0.0925,
+          "reference_accession": "O58403",
+          "reference_length": 228,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q13907",
+          "external_length": 227,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.919,
+          "matched_m_csa_entry_ids": [
+            "m_csa:516"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0891,
+          "positional_identity": 0.0969,
+          "reference_accession": "P40881",
+          "reference_length": 247,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9BXS1",
+      "external_sequence_length": 227,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Isopentenyl-diphosphate delta-isomerase 2 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 2) (IPP isomerase 2) (IPPI2)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "isomerase",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q9BXS1",
+          "external_length": 227,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9956,
+          "matched_m_csa_entry_ids": [
+            "m_csa:335"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0965,
+          "positional_identity": 0.0969,
+          "reference_accession": "O58403",
+          "reference_length": 228,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q9BXS1",
+          "external_length": 227,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9419,
+          "matched_m_csa_entry_ids": [
+            "m_csa:637"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0871,
+          "positional_identity": 0.0925,
+          "reference_accession": "P04531",
+          "reference_length": 241,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q9BXS1",
+          "external_length": 227,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9692,
+          "matched_m_csa_entry_ids": [
+            "m_csa:517"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0837,
+          "positional_identity": 0.0864,
+          "reference_accession": "P61517",
+          "reference_length": 220,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P34949",
+      "external_sequence_length": 423,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "isomerase",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P34949",
+          "external_length": 423,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9906,
+          "matched_m_csa_entry_ids": [
+            "m_csa:457"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0913,
+          "positional_identity": 0.0922,
+          "reference_accession": "P0A6D3",
+          "reference_length": 427,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P34949",
+          "external_length": 423,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9456,
+          "matched_m_csa_entry_ids": [
+            "m_csa:282"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0898,
+          "positional_identity": 0.095,
+          "reference_accession": "P36507",
+          "reference_length": 400,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P34949",
+          "external_length": 423,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9658,
+          "matched_m_csa_entry_ids": [
+            "m_csa:317"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0868,
+          "positional_identity": 0.0898,
+          "reference_accession": "P14900",
+          "reference_length": 438,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P60174",
+      "external_sequence_length": 249,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Methylglyoxal synthase) (EC 4.2.3.3) (Triose-phosphate isomerase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "isomerase",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P60174",
+          "external_length": 249,
+          "kmer_jaccard": 0.4773,
+          "length_coverage": 0.996,
+          "matched_m_csa_entry_ids": [
+            "m_csa:324"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.4773,
+          "positional_identity": 0.0847,
+          "reference_accession": "P00940",
+          "reference_length": 248,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P60174",
+          "external_length": 249,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.996,
+          "matched_m_csa_entry_ids": [
+            "m_csa:173"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1044,
+          "positional_identity": 0.1048,
+          "reference_accession": "P35049",
+          "reference_length": 248,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P60174",
+          "external_length": 249,
+          "kmer_jaccard": 0.002,
+          "length_coverage": 0.9881,
+          "matched_m_csa_entry_ids": [
+            "m_csa:54"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0992,
+          "positional_identity": 0.1004,
+          "reference_accession": "P24670",
+          "reference_length": 252,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P42126",
+      "external_sequence_length": 302,
+      "holdout_status": "exact_reference_overlap_holdout",
+      "lane_id": "external_source:isomerase",
+      "matched_m_csa_entry_ids": [
+        "m_csa:341"
+      ],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "exact_reference_overlap_keep_as_holdout",
+      "protein_name": "Enoyl-CoA delta isomerase 1, mitochondrial (EC 5.3.3.8) (3,2-trans-enoyl-CoA isomerase) (Delta(3),Delta(2)-enoyl-CoA isomerase) (D3,D2-enoyl-CoA isomerase) (Dodecenoyl-CoA isomerase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "isomerase",
+      "screen_status": "preexisting_sequence_holdout_retained",
+      "sequence_cluster_ids": [
+        "uniprot:P42126"
+      ],
+      "top_matches": [
+        {
+          "external_accession": "P42126",
+          "external_length": 302,
+          "kmer_jaccard": 1.0,
+          "length_coverage": 1.0,
+          "matched_m_csa_entry_ids": [
+            "m_csa:341"
+          ],
+          "near_duplicate_alert": true,
+          "near_duplicate_score": 1.0,
+          "positional_identity": 1.0,
+          "reference_accession": "P42126",
+          "reference_length": 302,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P42126",
+          "external_length": 302,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9437,
+          "matched_m_csa_entry_ids": [
+            "m_csa:8"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.106,
+          "positional_identity": 0.1123,
+          "reference_accession": "P9WJJ7",
+          "reference_length": 285,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P42126",
+          "external_length": 302,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9735,
+          "matched_m_csa_entry_ids": [
+            "m_csa:563"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0993,
+          "positional_identity": 0.102,
+          "reference_accession": "P0AAJ3",
+          "reference_length": 294,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q6NSJ0",
+      "external_sequence_length": 714,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:glycan_chemistry",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "glycan_chemistry",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q6NSJ0",
+          "external_length": 714,
+          "kmer_jaccard": 0.0007,
+          "length_coverage": 0.9096,
+          "matched_m_csa_entry_ids": [
+            "m_csa:539"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0803,
+          "positional_identity": 0.0882,
+          "reference_accession": "P27002",
+          "reference_length": 785,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q6NSJ0",
+          "external_length": 714,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9622,
+          "matched_m_csa_entry_ids": [
+            "m_csa:289"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0784,
+          "positional_identity": 0.0815,
+          "reference_accession": "P07342",
+          "reference_length": 687,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q6NSJ0",
+          "external_length": 714,
+          "kmer_jaccard": 0.0007,
+          "length_coverage": 0.9286,
+          "matched_m_csa_entry_ids": [
+            "m_csa:714"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0784,
+          "positional_identity": 0.0845,
+          "reference_accession": "P0ABI8",
+          "reference_length": 663,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P30176",
+      "external_sequence_length": 160,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:glycan_chemistry",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "N-glycosidase YbiA (EC 3.2.2.-) (Riboflavin biosynthesis intermediates N-glycosidase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "glycan_chemistry",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P30176",
+          "external_length": 160,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.884,
+          "matched_m_csa_entry_ids": [
+            "m_csa:329"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.105,
+          "positional_identity": 0.1187,
+          "reference_accession": "Q9HU21",
+          "reference_length": 181,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P30176",
+          "external_length": 160,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9938,
+          "matched_m_csa_entry_ids": [
+            "m_csa:299"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0938,
+          "positional_identity": 0.0943,
+          "reference_accession": "P0A6I6",
+          "reference_length": 159,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P30176",
+          "external_length": 160,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8438,
+          "matched_m_csa_entry_ids": [
+            "m_csa:359"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0938,
+          "positional_identity": 0.1111,
+          "reference_accession": "P0AC81",
+          "reference_length": 135,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P29372",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P29372",
+      "external_sequence_length": 298,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:glycan_chemistry",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "glycan_chemistry",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P29372",
+          "external_length": 298,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9868,
+          "matched_m_csa_entry_ids": [
+            "m_csa:523"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0993,
+          "positional_identity": 0.1007,
+          "reference_accession": "Q9UMR5",
+          "reference_length": 302,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P29372",
+          "external_length": 298,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9732,
+          "matched_m_csa_entry_ids": [
+            "m_csa:258"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0973,
+          "positional_identity": 0.1,
+          "reference_accession": "P52700",
+          "reference_length": 290,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P29372",
+          "external_length": 298,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9698,
+          "matched_m_csa_entry_ids": [
+            "m_csa:17"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0906,
+          "positional_identity": 0.0934,
+          "reference_accession": "P00491",
+          "reference_length": 289,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P33025",
+      "external_sequence_length": 312,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:glycan_chemistry",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Pseudouridine-5'-phosphate glycosidase (PsiMP glycosidase) (EC 4.2.1.70)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "glycan_chemistry",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P33025",
+          "external_length": 312,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9551,
+          "matched_m_csa_entry_ids": [
+            "m_csa:178"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0962,
+          "positional_identity": 0.1007,
+          "reference_accession": "P05631",
+          "reference_length": 298,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P33025",
+          "external_length": 312,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9968,
+          "matched_m_csa_entry_ids": [
+            "m_csa:49"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0929,
+          "positional_identity": 0.0932,
+          "reference_accession": "P00862",
+          "reference_length": 311,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P33025",
+          "external_length": 312,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9968,
+          "matched_m_csa_entry_ids": [
+            "m_csa:405"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0929,
+          "positional_identity": 0.0932,
+          "reference_accession": "P0A786",
+          "reference_length": 311,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O60568",
+      "external_sequence_length": 738,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:glycan_chemistry",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "glycan_chemistry",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "O60568",
+          "external_length": 738,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9919,
+          "matched_m_csa_entry_ids": [
+            "m_csa:149"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0718,
+          "positional_identity": 0.0724,
+          "reference_accession": "P00488",
+          "reference_length": 732,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O60568",
+          "external_length": 738,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.7954,
+          "matched_m_csa_entry_ids": [
+            "m_csa:380"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0691,
+          "positional_identity": 0.0869,
+          "reference_accession": "P42790",
+          "reference_length": 587,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O60568",
+          "external_length": 738,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.7724,
+          "matched_m_csa_entry_ids": [
+            "m_csa:581"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0691,
+          "positional_identity": 0.0895,
+          "reference_accession": "Q50925",
+          "reference_length": 570,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:O95050",
+      "external_sequence_length": 263,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_methyl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_methyl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "O95050",
+          "external_length": 263,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9886,
+          "matched_m_csa_entry_ids": [
+            "m_csa:216"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1065,
+          "positional_identity": 0.1077,
+          "reference_accession": "P00918",
+          "reference_length": 260,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O95050",
+          "external_length": 263,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.943,
+          "matched_m_csa_entry_ids": [
+            "m_csa:324"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0951,
+          "positional_identity": 0.1008,
+          "reference_accession": "P00940",
+          "reference_length": 248,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "O95050",
+          "external_length": 263,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8175,
+          "matched_m_csa_entry_ids": [
+            "m_csa:795"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0951,
+          "positional_identity": 0.1163,
+          "reference_accession": "P71119",
+          "reference_length": 215,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "P51580",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:P51580",
+      "external_sequence_length": 245,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_methyl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_methyl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "P51580",
+          "external_length": 245,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.7249,
+          "matched_m_csa_entry_ids": [
+            "m_csa:188"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0888,
+          "positional_identity": 0.1224,
+          "reference_accession": "P09147",
+          "reference_length": 338,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P51580",
+          "external_length": 245,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9306,
+          "matched_m_csa_entry_ids": [
+            "m_csa:335"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0857,
+          "positional_identity": 0.0921,
+          "reference_accession": "O58403",
+          "reference_length": 228,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "P51580",
+          "external_length": 245,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.902,
+          "matched_m_csa_entry_ids": [
+            "m_csa:206"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0857,
+          "positional_identity": 0.095,
+          "reference_accession": "P71447",
+          "reference_length": 221,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q9Y5N5",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9Y5N5",
+      "external_sequence_length": 214,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_methyl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Methyltransferase HEMK2 (HemK methyltransferase family member 2) (M.HsaHemK2P) (Lysine N-methyltransferase 9) (EC 2.1.1.-) (Methylarsonite methyltransferase N6AMT1) (EC 2.1.1.-) (Methyltransferase N6AMT1) (Protein N(5)-glutamine methyltransferase) (EC 2.1.1.-)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_methyl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q9Y5N5",
+          "external_length": 214,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9673,
+          "matched_m_csa_entry_ids": [
+            "m_csa:823"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1121,
+          "positional_identity": 0.1159,
+          "reference_accession": "O33199",
+          "reference_length": 207,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q9Y5N5",
+          "external_length": 214,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9264,
+          "matched_m_csa_entry_ids": [
+            "m_csa:165"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1082,
+          "positional_identity": 0.1168,
+          "reference_accession": "P00644",
+          "reference_length": 231,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q9Y5N5",
+          "external_length": 214,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.8594,
+          "matched_m_csa_entry_ids": [
+            "m_csa:15"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.1004,
+          "positional_identity": 0.1168,
+          "reference_accession": "P25910",
+          "reference_length": 249,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q32P41",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q32P41",
+      "external_sequence_length": 509,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_methyl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "tRNA (guanine(37)-N(1))-methyltransferase (EC 2.1.1.228) (M1G-methyltransferase) (tRNA [GM37] methyltransferase) (tRNA methyltransferase 5 homolog)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_methyl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q32P41",
+          "external_length": 509,
+          "kmer_jaccard": 0.001,
+          "length_coverage": 0.9903,
+          "matched_m_csa_entry_ids": [
+            "m_csa:443"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0837,
+          "positional_identity": 0.0845,
+          "reference_accession": "P13065",
+          "reference_length": 514,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q32P41",
+          "external_length": 509,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9823,
+          "matched_m_csa_entry_ids": [
+            "m_csa:854"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0806,
+          "positional_identity": 0.082,
+          "reference_accession": "P80147",
+          "reference_length": 500,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q32P41",
+          "external_length": 509,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9532,
+          "matched_m_csa_entry_ids": [
+            "m_csa:115"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0768,
+          "positional_identity": 0.0806,
+          "reference_accession": "Q9T0N8",
+          "reference_length": 534,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    },
+    {
+      "accession": "Q9HBK9",
+      "countable_label_candidate": false,
+      "entry_id": "uniprot:Q9HBK9",
+      "external_sequence_length": 375,
+      "holdout_status": "requires_near_duplicate_search",
+      "lane_id": "external_source:transferase_methyl",
+      "matched_m_csa_entry_ids": [],
+      "near_duplicate_search_status": "bounded_sequence_screen_complete",
+      "plan_status": "near_duplicate_search_required_before_import",
+      "protein_name": "Arsenite methyltransferase (EC 2.1.1.137) (Methylarsonite methyltransferase) (S-adenosyl-L-methionine:arsenic(III) methyltransferase)",
+      "ready_for_label_import": false,
+      "review_status": "sequence_neighborhood_screen_review_only",
+      "scope_signal": "transferase_methyl",
+      "screen_status": "no_high_similarity_hit_in_bounded_screen",
+      "sequence_cluster_ids": [],
+      "top_matches": [
+        {
+          "external_accession": "Q9HBK9",
+          "external_length": 375,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9446,
+          "matched_m_csa_entry_ids": [
+            "m_csa:609"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0907,
+          "positional_identity": 0.096,
+          "reference_accession": "P00778",
+          "reference_length": 397,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q9HBK9",
+          "external_length": 375,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9236,
+          "matched_m_csa_entry_ids": [
+            "m_csa:855"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0887,
+          "positional_identity": 0.096,
+          "reference_accession": "P77444",
+          "reference_length": 406,
+          "review_status": "sequence_similarity_screen_review_only"
+        },
+        {
+          "external_accession": "Q9HBK9",
+          "external_length": 375,
+          "kmer_jaccard": 0.0,
+          "length_coverage": 0.9615,
+          "matched_m_csa_entry_ids": [
+            "m_csa:172"
+          ],
+          "near_duplicate_alert": false,
+          "near_duplicate_score": 0.0846,
+          "positional_identity": 0.088,
+          "reference_accession": "P39377",
+          "reference_length": 390,
+          "review_status": "sequence_similarity_screen_review_only"
+        }
+      ]
+    }
+  ],
+  "top_hit_rows": [
+    {
+      "accession": "A2RUC4",
+      "countable_label_candidate": false,
+      "external_accession": "A2RUC4",
+      "external_length": 315,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.913,
+      "matched_m_csa_entry_ids": [
+        "m_csa:652"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0957,
+      "positional_identity": 0.1048,
+      "ready_for_label_import": false,
+      "reference_accession": "P51016",
+      "reference_length": 345,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "A2RUC4",
+      "countable_label_candidate": false,
+      "external_accession": "A2RUC4",
+      "external_length": 315,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 1.0,
+      "matched_m_csa_entry_ids": [
+        "m_csa:443"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0921,
+      "positional_identity": 0.0921,
+      "ready_for_label_import": false,
+      "reference_accession": "P13063",
+      "reference_length": 315,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "A2RUC4",
+      "countable_label_candidate": false,
+      "external_accession": "A2RUC4",
+      "external_length": 315,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9492,
+      "matched_m_csa_entry_ids": [
+        "m_csa:495"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0889,
+      "positional_identity": 0.0936,
+      "ready_for_label_import": false,
+      "reference_accession": "O68557",
+      "reference_length": 299,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "A5PLL7",
+      "countable_label_candidate": false,
+      "external_accession": "A5PLL7",
+      "external_length": 270,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.989,
+      "matched_m_csa_entry_ids": [
+        "m_csa:402"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0952,
+      "positional_identity": 0.0963,
+      "ready_for_label_import": false,
+      "reference_accession": "P04036",
+      "reference_length": 273,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "A5PLL7",
+      "countable_label_candidate": false,
+      "external_accession": "A5PLL7",
+      "external_length": 270,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8257,
+      "matched_m_csa_entry_ids": [
+        "m_csa:342"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0917,
+      "positional_identity": 0.1111,
+      "ready_for_label_import": false,
+      "reference_accession": "Q62651",
+      "reference_length": 327,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "A5PLL7",
+      "countable_label_candidate": false,
+      "external_accession": "A5PLL7",
+      "external_length": 270,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9704,
+      "matched_m_csa_entry_ids": [
+        "m_csa:606"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0889,
+      "positional_identity": 0.0916,
+      "ready_for_label_import": false,
+      "reference_accession": "P0AEK4",
+      "reference_length": 262,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "external_accession": "C9JRZ8",
+      "external_length": 316,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9723,
+      "matched_m_csa_entry_ids": [
+        "m_csa:106"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0923,
+      "positional_identity": 0.0949,
+      "ready_for_label_import": false,
+      "reference_accession": "P21874",
+      "reference_length": 325,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "external_accession": "C9JRZ8",
+      "external_length": 316,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9842,
+      "matched_m_csa_entry_ids": [
+        "m_csa:405"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0918,
+      "positional_identity": 0.0932,
+      "ready_for_label_import": false,
+      "reference_accession": "P0A786",
+      "reference_length": 311,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "C9JRZ8",
+      "countable_label_candidate": false,
+      "external_accession": "C9JRZ8",
+      "external_length": 316,
+      "kmer_jaccard": 0.0017,
+      "length_coverage": 0.8956,
+      "matched_m_csa_entry_ids": [
+        "m_csa:66"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0918,
+      "positional_identity": 0.1025,
+      "ready_for_label_import": false,
+      "reference_accession": "P19938",
+      "reference_length": 283,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "external_accession": "O14756",
+      "external_length": 317,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8991,
+      "matched_m_csa_entry_ids": [
+        "m_csa:11"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0852,
+      "positional_identity": 0.0947,
+      "ready_for_label_import": false,
+      "reference_accession": "P0A6C1",
+      "reference_length": 285,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "external_accession": "O14756",
+      "external_length": 317,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9148,
+      "matched_m_csa_entry_ids": [
+        "m_csa:315"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0852,
+      "positional_identity": 0.0931,
+      "ready_for_label_import": false,
+      "reference_accession": "P14604",
+      "reference_length": 290,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O14756",
+      "countable_label_candidate": false,
+      "external_accession": "O14756",
+      "external_length": 317,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8202,
+      "matched_m_csa_entry_ids": [
+        "m_csa:595"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0852,
+      "positional_identity": 0.1038,
+      "ready_for_label_import": false,
+      "reference_accession": "P15369",
+      "reference_length": 260,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "external_accession": "O15247",
+      "external_length": 247,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 1.0,
+      "matched_m_csa_entry_ids": [
+        "m_csa:504"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1053,
+      "positional_identity": 0.1053,
+      "ready_for_label_import": false,
+      "reference_accession": "P00950",
+      "reference_length": 247,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "external_accession": "O15247",
+      "external_length": 247,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9611,
+      "matched_m_csa_entry_ids": [
+        "m_csa:16"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1051,
+      "positional_identity": 0.1093,
+      "ready_for_label_import": false,
+      "reference_accession": "P04190",
+      "reference_length": 257,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O15247",
+      "countable_label_candidate": false,
+      "external_accession": "O15247",
+      "external_length": 247,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9757,
+      "matched_m_csa_entry_ids": [
+        "m_csa:637"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0972,
+      "positional_identity": 0.0996,
+      "ready_for_label_import": false,
+      "reference_accession": "P04531",
+      "reference_length": 241,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "external_accession": "Q969G6",
+      "external_length": 155,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9677,
+      "matched_m_csa_entry_ids": [
+        "m_csa:123"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1097,
+      "positional_identity": 0.1133,
+      "ready_for_label_import": false,
+      "reference_accession": "O28604",
+      "reference_length": 150,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "external_accession": "Q969G6",
+      "external_length": 155,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9871,
+      "matched_m_csa_entry_ids": [
+        "m_csa:405"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1032,
+      "positional_identity": 0.1046,
+      "ready_for_label_import": false,
+      "reference_accession": "P0A7F3",
+      "reference_length": 153,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q969G6",
+      "countable_label_candidate": false,
+      "external_accession": "Q969G6",
+      "external_length": 155,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8839,
+      "matched_m_csa_entry_ids": [
+        "m_csa:63"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0903,
+      "positional_identity": 0.1022,
+      "ready_for_label_import": false,
+      "reference_accession": "P80078",
+      "reference_length": 137,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P32189",
+      "countable_label_candidate": false,
+      "external_accession": "P32189",
+      "external_length": 559,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 1.0,
+      "matched_m_csa_entry_ids": [
+        "m_csa:385"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.093,
+      "positional_identity": 0.093,
+      "ready_for_label_import": false,
+      "reference_accession": "P21164",
+      "reference_length": 559,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P32189",
+      "countable_label_candidate": false,
+      "external_accession": "P32189",
+      "external_length": 559,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9929,
+      "matched_m_csa_entry_ids": [
+        "m_csa:478"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0835,
+      "positional_identity": 0.0841,
+      "ready_for_label_import": false,
+      "reference_accession": "P07254",
+      "reference_length": 563,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P32189",
+      "countable_label_candidate": false,
+      "external_accession": "P32189",
+      "external_length": 559,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9894,
+      "matched_m_csa_entry_ids": [
+        "m_csa:627"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0814,
+      "positional_identity": 0.0823,
+      "ready_for_label_import": false,
+      "reference_accession": "P36655",
+      "reference_length": 565,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "external_accession": "P55263",
+      "external_length": 362,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.826,
+      "matched_m_csa_entry_ids": [
+        "m_csa:445"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0856,
+      "positional_identity": 0.1037,
+      "ready_for_label_import": false,
+      "reference_accession": "P53608",
+      "reference_length": 299,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "external_accession": "P55263",
+      "external_length": 362,
+      "kmer_jaccard": 0.0014,
+      "length_coverage": 0.9669,
+      "matched_m_csa_entry_ids": [
+        "m_csa:536"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0829,
+      "positional_identity": 0.0857,
+      "ready_for_label_import": false,
+      "reference_accession": "P26239",
+      "reference_length": 350,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P55263",
+      "countable_label_candidate": false,
+      "external_accession": "P55263",
+      "external_length": 362,
+      "kmer_jaccard": 0.0273,
+      "length_coverage": 0.9972,
+      "matched_m_csa_entry_ids": [
+        "m_csa:209"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0826,
+      "positional_identity": 0.0829,
+      "ready_for_label_import": false,
+      "reference_accession": "Q9TVW2",
+      "reference_length": 363,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "external_accession": "P27144",
+      "external_length": 223,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.991,
+      "matched_m_csa_entry_ids": [
+        "m_csa:206"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1031,
+      "positional_identity": 0.1041,
+      "ready_for_label_import": false,
+      "reference_accession": "P71447",
+      "reference_length": 221,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "external_accession": "P27144",
+      "external_length": 223,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9571,
+      "matched_m_csa_entry_ids": [
+        "m_csa:122"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.103,
+      "positional_identity": 0.1076,
+      "ready_for_label_import": false,
+      "reference_accession": "P54149",
+      "reference_length": 233,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P27144",
+      "countable_label_candidate": false,
+      "external_accession": "P27144",
+      "external_length": 223,
+      "kmer_jaccard": 0.0022,
+      "length_coverage": 0.9331,
+      "matched_m_csa_entry_ids": [
+        "m_csa:50"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1004,
+      "positional_identity": 0.1076,
+      "ready_for_label_import": false,
+      "reference_accession": "P25971",
+      "reference_length": 239,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "external_accession": "A2RU49",
+      "external_length": 373,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.992,
+      "matched_m_csa_entry_ids": [
+        "m_csa:348"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0912,
+      "positional_identity": 0.0919,
+      "ready_for_label_import": false,
+      "reference_accession": "P05404",
+      "reference_length": 370,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "external_accession": "A2RU49",
+      "external_length": 373,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9947,
+      "matched_m_csa_entry_ids": [
+        "m_csa:377"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0907,
+      "positional_identity": 0.0912,
+      "ready_for_label_import": false,
+      "reference_accession": "Q9RYA6",
+      "reference_length": 375,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "A2RU49",
+      "countable_label_candidate": false,
+      "external_accession": "A2RU49",
+      "external_length": 373,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8928,
+      "matched_m_csa_entry_ids": [
+        "m_csa:576"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0885,
+      "positional_identity": 0.0991,
+      "ready_for_label_import": false,
+      "reference_accession": "P26297",
+      "reference_length": 333,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "external_accession": "P06746",
+      "external_length": 335,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9331,
+      "matched_m_csa_entry_ids": [
+        "m_csa:521"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0919,
+      "positional_identity": 0.0985,
+      "ready_for_label_import": false,
+      "reference_accession": "P31116",
+      "reference_length": 359,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "external_accession": "P06746",
+      "external_length": 335,
+      "kmer_jaccard": 0.0015,
+      "length_coverage": 0.9795,
+      "matched_m_csa_entry_ids": [
+        "m_csa:353"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0906,
+      "positional_identity": 0.0925,
+      "ready_for_label_import": false,
+      "reference_accession": "P08373",
+      "reference_length": 342,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P06746",
+      "countable_label_candidate": false,
+      "external_accession": "P06746",
+      "external_length": 335,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9571,
+      "matched_m_csa_entry_ids": [
+        "m_csa:536"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0857,
+      "positional_identity": 0.0896,
+      "ready_for_label_import": false,
+      "reference_accession": "P26239",
+      "reference_length": 350,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "external_accession": "Q9BXD5",
+      "external_length": 320,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9581,
+      "matched_m_csa_entry_ids": [
+        "m_csa:526"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1048,
+      "positional_identity": 0.1094,
+      "ready_for_label_import": false,
+      "reference_accession": "P11708",
+      "reference_length": 334,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "external_accession": "Q9BXD5",
+      "external_length": 320,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9786,
+      "matched_m_csa_entry_ids": [
+        "m_csa:342"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0917,
+      "positional_identity": 0.0938,
+      "ready_for_label_import": false,
+      "reference_accession": "Q62651",
+      "reference_length": 327,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9BXD5",
+      "countable_label_candidate": false,
+      "external_accession": "Q9BXD5",
+      "external_length": 320,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8,
+      "matched_m_csa_entry_ids": [
+        "m_csa:856"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.09,
+      "positional_identity": 0.1125,
+      "ready_for_label_import": false,
+      "reference_accession": "P21327",
+      "reference_length": 400,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "external_accession": "P35914",
+      "external_length": 325,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.7757,
+      "matched_m_csa_entry_ids": [
+        "m_csa:369"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1026,
+      "positional_identity": 0.1323,
+      "ready_for_label_import": false,
+      "reference_accession": "P33038",
+      "reference_length": 419,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "external_accession": "P35914",
+      "external_length": 325,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 1.0,
+      "matched_m_csa_entry_ids": [
+        "m_csa:106"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0954,
+      "positional_identity": 0.0954,
+      "ready_for_label_import": false,
+      "reference_accession": "P21874",
+      "reference_length": 325,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P35914",
+      "countable_label_candidate": false,
+      "external_accession": "P35914",
+      "external_length": 325,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9848,
+      "matched_m_csa_entry_ids": [
+        "m_csa:75"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0939,
+      "positional_identity": 0.0954,
+      "ready_for_label_import": false,
+      "reference_accession": "P00963",
+      "reference_length": 330,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "external_accession": "Q96I15",
+      "external_length": 445,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8674,
+      "matched_m_csa_entry_ids": [
+        "m_csa:303"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0936,
+      "positional_identity": 0.1079,
+      "ready_for_label_import": false,
+      "reference_accession": "P0DJQ7",
+      "reference_length": 513,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "external_accession": "Q96I15",
+      "external_length": 445,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9889,
+      "matched_m_csa_entry_ids": [
+        "m_csa:579"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0911,
+      "positional_identity": 0.0921,
+      "ready_for_label_import": false,
+      "reference_accession": "P24295",
+      "reference_length": 450,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q96I15",
+      "countable_label_candidate": false,
+      "external_accession": "Q96I15",
+      "external_length": 445,
+      "kmer_jaccard": 0.0023,
+      "length_coverage": 0.9888,
+      "matched_m_csa_entry_ids": [
+        "m_csa:413"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0899,
+      "positional_identity": 0.0909,
+      "ready_for_label_import": false,
+      "reference_accession": "P07650",
+      "reference_length": 440,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "external_accession": "O15527",
+      "external_length": 345,
+      "kmer_jaccard": 1.0,
+      "length_coverage": 1.0,
+      "matched_m_csa_entry_ids": [
+        "m_csa:185"
+      ],
+      "near_duplicate_alert": true,
+      "near_duplicate_score": 1.0,
+      "positional_identity": 1.0,
+      "ready_for_label_import": false,
+      "reference_accession": "O15527",
+      "reference_length": 345,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "external_accession": "O15527",
+      "external_length": 345,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9072,
+      "matched_m_csa_entry_ids": [
+        "m_csa:260"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0899,
+      "positional_identity": 0.099,
+      "ready_for_label_import": false,
+      "reference_accession": "P06983",
+      "reference_length": 313,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O15527",
+      "countable_label_candidate": false,
+      "external_accession": "O15527",
+      "external_length": 345,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.92,
+      "matched_m_csa_entry_ids": [
+        "m_csa:978"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0827,
+      "positional_identity": 0.0899,
+      "ready_for_label_import": false,
+      "reference_accession": "Q9HXE3",
+      "reference_length": 375,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "external_accession": "Q13907",
+      "external_length": 227,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9912,
+      "matched_m_csa_entry_ids": [
+        "m_csa:74"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0925,
+      "positional_identity": 0.0933,
+      "ready_for_label_import": false,
+      "reference_accession": "P13000",
+      "reference_length": 225,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "external_accession": "Q13907",
+      "external_length": 227,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9956,
+      "matched_m_csa_entry_ids": [
+        "m_csa:335"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0921,
+      "positional_identity": 0.0925,
+      "ready_for_label_import": false,
+      "reference_accession": "O58403",
+      "reference_length": 228,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q13907",
+      "countable_label_candidate": false,
+      "external_accession": "Q13907",
+      "external_length": 227,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.919,
+      "matched_m_csa_entry_ids": [
+        "m_csa:516"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0891,
+      "positional_identity": 0.0969,
+      "ready_for_label_import": false,
+      "reference_accession": "P40881",
+      "reference_length": 247,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "external_accession": "Q9BXS1",
+      "external_length": 227,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9956,
+      "matched_m_csa_entry_ids": [
+        "m_csa:335"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0965,
+      "positional_identity": 0.0969,
+      "ready_for_label_import": false,
+      "reference_accession": "O58403",
+      "reference_length": 228,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "external_accession": "Q9BXS1",
+      "external_length": 227,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9419,
+      "matched_m_csa_entry_ids": [
+        "m_csa:637"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0871,
+      "positional_identity": 0.0925,
+      "ready_for_label_import": false,
+      "reference_accession": "P04531",
+      "reference_length": 241,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9BXS1",
+      "countable_label_candidate": false,
+      "external_accession": "Q9BXS1",
+      "external_length": 227,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9692,
+      "matched_m_csa_entry_ids": [
+        "m_csa:517"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0837,
+      "positional_identity": 0.0864,
+      "ready_for_label_import": false,
+      "reference_accession": "P61517",
+      "reference_length": 220,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "external_accession": "P34949",
+      "external_length": 423,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9906,
+      "matched_m_csa_entry_ids": [
+        "m_csa:457"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0913,
+      "positional_identity": 0.0922,
+      "ready_for_label_import": false,
+      "reference_accession": "P0A6D3",
+      "reference_length": 427,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "external_accession": "P34949",
+      "external_length": 423,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9456,
+      "matched_m_csa_entry_ids": [
+        "m_csa:282"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0898,
+      "positional_identity": 0.095,
+      "ready_for_label_import": false,
+      "reference_accession": "P36507",
+      "reference_length": 400,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P34949",
+      "countable_label_candidate": false,
+      "external_accession": "P34949",
+      "external_length": 423,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9658,
+      "matched_m_csa_entry_ids": [
+        "m_csa:317"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0868,
+      "positional_identity": 0.0898,
+      "ready_for_label_import": false,
+      "reference_accession": "P14900",
+      "reference_length": 438,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "external_accession": "P60174",
+      "external_length": 249,
+      "kmer_jaccard": 0.4773,
+      "length_coverage": 0.996,
+      "matched_m_csa_entry_ids": [
+        "m_csa:324"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.4773,
+      "positional_identity": 0.0847,
+      "ready_for_label_import": false,
+      "reference_accession": "P00940",
+      "reference_length": 248,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "external_accession": "P60174",
+      "external_length": 249,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.996,
+      "matched_m_csa_entry_ids": [
+        "m_csa:173"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1044,
+      "positional_identity": 0.1048,
+      "ready_for_label_import": false,
+      "reference_accession": "P35049",
+      "reference_length": 248,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P60174",
+      "countable_label_candidate": false,
+      "external_accession": "P60174",
+      "external_length": 249,
+      "kmer_jaccard": 0.002,
+      "length_coverage": 0.9881,
+      "matched_m_csa_entry_ids": [
+        "m_csa:54"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0992,
+      "positional_identity": 0.1004,
+      "ready_for_label_import": false,
+      "reference_accession": "P24670",
+      "reference_length": 252,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "external_accession": "P42126",
+      "external_length": 302,
+      "kmer_jaccard": 1.0,
+      "length_coverage": 1.0,
+      "matched_m_csa_entry_ids": [
+        "m_csa:341"
+      ],
+      "near_duplicate_alert": true,
+      "near_duplicate_score": 1.0,
+      "positional_identity": 1.0,
+      "ready_for_label_import": false,
+      "reference_accession": "P42126",
+      "reference_length": 302,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "external_accession": "P42126",
+      "external_length": 302,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9437,
+      "matched_m_csa_entry_ids": [
+        "m_csa:8"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.106,
+      "positional_identity": 0.1123,
+      "ready_for_label_import": false,
+      "reference_accession": "P9WJJ7",
+      "reference_length": 285,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P42126",
+      "countable_label_candidate": false,
+      "external_accession": "P42126",
+      "external_length": 302,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9735,
+      "matched_m_csa_entry_ids": [
+        "m_csa:563"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0993,
+      "positional_identity": 0.102,
+      "ready_for_label_import": false,
+      "reference_accession": "P0AAJ3",
+      "reference_length": 294,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "external_accession": "Q6NSJ0",
+      "external_length": 714,
+      "kmer_jaccard": 0.0007,
+      "length_coverage": 0.9096,
+      "matched_m_csa_entry_ids": [
+        "m_csa:539"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0803,
+      "positional_identity": 0.0882,
+      "ready_for_label_import": false,
+      "reference_accession": "P27002",
+      "reference_length": 785,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "external_accession": "Q6NSJ0",
+      "external_length": 714,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9622,
+      "matched_m_csa_entry_ids": [
+        "m_csa:289"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0784,
+      "positional_identity": 0.0815,
+      "ready_for_label_import": false,
+      "reference_accession": "P07342",
+      "reference_length": 687,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "countable_label_candidate": false,
+      "external_accession": "Q6NSJ0",
+      "external_length": 714,
+      "kmer_jaccard": 0.0007,
+      "length_coverage": 0.9286,
+      "matched_m_csa_entry_ids": [
+        "m_csa:714"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0784,
+      "positional_identity": 0.0845,
+      "ready_for_label_import": false,
+      "reference_accession": "P0ABI8",
+      "reference_length": 663,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "external_accession": "P30176",
+      "external_length": 160,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.884,
+      "matched_m_csa_entry_ids": [
+        "m_csa:329"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.105,
+      "positional_identity": 0.1187,
+      "ready_for_label_import": false,
+      "reference_accession": "Q9HU21",
+      "reference_length": 181,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "external_accession": "P30176",
+      "external_length": 160,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9938,
+      "matched_m_csa_entry_ids": [
+        "m_csa:299"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0938,
+      "positional_identity": 0.0943,
+      "ready_for_label_import": false,
+      "reference_accession": "P0A6I6",
+      "reference_length": 159,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P30176",
+      "countable_label_candidate": false,
+      "external_accession": "P30176",
+      "external_length": 160,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8438,
+      "matched_m_csa_entry_ids": [
+        "m_csa:359"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0938,
+      "positional_identity": 0.1111,
+      "ready_for_label_import": false,
+      "reference_accession": "P0AC81",
+      "reference_length": 135,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P29372",
+      "countable_label_candidate": false,
+      "external_accession": "P29372",
+      "external_length": 298,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9868,
+      "matched_m_csa_entry_ids": [
+        "m_csa:523"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0993,
+      "positional_identity": 0.1007,
+      "ready_for_label_import": false,
+      "reference_accession": "Q9UMR5",
+      "reference_length": 302,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P29372",
+      "countable_label_candidate": false,
+      "external_accession": "P29372",
+      "external_length": 298,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9732,
+      "matched_m_csa_entry_ids": [
+        "m_csa:258"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0973,
+      "positional_identity": 0.1,
+      "ready_for_label_import": false,
+      "reference_accession": "P52700",
+      "reference_length": 290,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P29372",
+      "countable_label_candidate": false,
+      "external_accession": "P29372",
+      "external_length": 298,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9698,
+      "matched_m_csa_entry_ids": [
+        "m_csa:17"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0906,
+      "positional_identity": 0.0934,
+      "ready_for_label_import": false,
+      "reference_accession": "P00491",
+      "reference_length": 289,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "external_accession": "P33025",
+      "external_length": 312,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9551,
+      "matched_m_csa_entry_ids": [
+        "m_csa:178"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0962,
+      "positional_identity": 0.1007,
+      "ready_for_label_import": false,
+      "reference_accession": "P05631",
+      "reference_length": 298,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "external_accession": "P33025",
+      "external_length": 312,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9968,
+      "matched_m_csa_entry_ids": [
+        "m_csa:49"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0929,
+      "positional_identity": 0.0932,
+      "ready_for_label_import": false,
+      "reference_accession": "P00862",
+      "reference_length": 311,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P33025",
+      "countable_label_candidate": false,
+      "external_accession": "P33025",
+      "external_length": 312,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9968,
+      "matched_m_csa_entry_ids": [
+        "m_csa:405"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0929,
+      "positional_identity": 0.0932,
+      "ready_for_label_import": false,
+      "reference_accession": "P0A786",
+      "reference_length": 311,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "external_accession": "O60568",
+      "external_length": 738,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9919,
+      "matched_m_csa_entry_ids": [
+        "m_csa:149"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0718,
+      "positional_identity": 0.0724,
+      "ready_for_label_import": false,
+      "reference_accession": "P00488",
+      "reference_length": 732,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "external_accession": "O60568",
+      "external_length": 738,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.7954,
+      "matched_m_csa_entry_ids": [
+        "m_csa:380"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0691,
+      "positional_identity": 0.0869,
+      "ready_for_label_import": false,
+      "reference_accession": "P42790",
+      "reference_length": 587,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O60568",
+      "countable_label_candidate": false,
+      "external_accession": "O60568",
+      "external_length": 738,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.7724,
+      "matched_m_csa_entry_ids": [
+        "m_csa:581"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0691,
+      "positional_identity": 0.0895,
+      "ready_for_label_import": false,
+      "reference_accession": "Q50925",
+      "reference_length": 570,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "external_accession": "O95050",
+      "external_length": 263,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9886,
+      "matched_m_csa_entry_ids": [
+        "m_csa:216"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1065,
+      "positional_identity": 0.1077,
+      "ready_for_label_import": false,
+      "reference_accession": "P00918",
+      "reference_length": 260,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "external_accession": "O95050",
+      "external_length": 263,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.943,
+      "matched_m_csa_entry_ids": [
+        "m_csa:324"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0951,
+      "positional_identity": 0.1008,
+      "ready_for_label_import": false,
+      "reference_accession": "P00940",
+      "reference_length": 248,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "O95050",
+      "countable_label_candidate": false,
+      "external_accession": "O95050",
+      "external_length": 263,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8175,
+      "matched_m_csa_entry_ids": [
+        "m_csa:795"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0951,
+      "positional_identity": 0.1163,
+      "ready_for_label_import": false,
+      "reference_accession": "P71119",
+      "reference_length": 215,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P51580",
+      "countable_label_candidate": false,
+      "external_accession": "P51580",
+      "external_length": 245,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.7249,
+      "matched_m_csa_entry_ids": [
+        "m_csa:188"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0888,
+      "positional_identity": 0.1224,
+      "ready_for_label_import": false,
+      "reference_accession": "P09147",
+      "reference_length": 338,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P51580",
+      "countable_label_candidate": false,
+      "external_accession": "P51580",
+      "external_length": 245,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9306,
+      "matched_m_csa_entry_ids": [
+        "m_csa:335"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0857,
+      "positional_identity": 0.0921,
+      "ready_for_label_import": false,
+      "reference_accession": "O58403",
+      "reference_length": 228,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "P51580",
+      "countable_label_candidate": false,
+      "external_accession": "P51580",
+      "external_length": 245,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.902,
+      "matched_m_csa_entry_ids": [
+        "m_csa:206"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0857,
+      "positional_identity": 0.095,
+      "ready_for_label_import": false,
+      "reference_accession": "P71447",
+      "reference_length": 221,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9Y5N5",
+      "countable_label_candidate": false,
+      "external_accession": "Q9Y5N5",
+      "external_length": 214,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9673,
+      "matched_m_csa_entry_ids": [
+        "m_csa:823"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1121,
+      "positional_identity": 0.1159,
+      "ready_for_label_import": false,
+      "reference_accession": "O33199",
+      "reference_length": 207,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9Y5N5",
+      "countable_label_candidate": false,
+      "external_accession": "Q9Y5N5",
+      "external_length": 214,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9264,
+      "matched_m_csa_entry_ids": [
+        "m_csa:165"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1082,
+      "positional_identity": 0.1168,
+      "ready_for_label_import": false,
+      "reference_accession": "P00644",
+      "reference_length": 231,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9Y5N5",
+      "countable_label_candidate": false,
+      "external_accession": "Q9Y5N5",
+      "external_length": 214,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.8594,
+      "matched_m_csa_entry_ids": [
+        "m_csa:15"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.1004,
+      "positional_identity": 0.1168,
+      "ready_for_label_import": false,
+      "reference_accession": "P25910",
+      "reference_length": 249,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q32P41",
+      "countable_label_candidate": false,
+      "external_accession": "Q32P41",
+      "external_length": 509,
+      "kmer_jaccard": 0.001,
+      "length_coverage": 0.9903,
+      "matched_m_csa_entry_ids": [
+        "m_csa:443"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0837,
+      "positional_identity": 0.0845,
+      "ready_for_label_import": false,
+      "reference_accession": "P13065",
+      "reference_length": 514,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q32P41",
+      "countable_label_candidate": false,
+      "external_accession": "Q32P41",
+      "external_length": 509,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9823,
+      "matched_m_csa_entry_ids": [
+        "m_csa:854"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0806,
+      "positional_identity": 0.082,
+      "ready_for_label_import": false,
+      "reference_accession": "P80147",
+      "reference_length": 500,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q32P41",
+      "countable_label_candidate": false,
+      "external_accession": "Q32P41",
+      "external_length": 509,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9532,
+      "matched_m_csa_entry_ids": [
+        "m_csa:115"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0768,
+      "positional_identity": 0.0806,
+      "ready_for_label_import": false,
+      "reference_accession": "Q9T0N8",
+      "reference_length": 534,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9HBK9",
+      "countable_label_candidate": false,
+      "external_accession": "Q9HBK9",
+      "external_length": 375,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9446,
+      "matched_m_csa_entry_ids": [
+        "m_csa:609"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0907,
+      "positional_identity": 0.096,
+      "ready_for_label_import": false,
+      "reference_accession": "P00778",
+      "reference_length": 397,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9HBK9",
+      "countable_label_candidate": false,
+      "external_accession": "Q9HBK9",
+      "external_length": 375,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9236,
+      "matched_m_csa_entry_ids": [
+        "m_csa:855"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0887,
+      "positional_identity": 0.096,
+      "ready_for_label_import": false,
+      "reference_accession": "P77444",
+      "reference_length": 406,
+      "review_status": "sequence_similarity_screen_review_only"
+    },
+    {
+      "accession": "Q9HBK9",
+      "countable_label_candidate": false,
+      "external_accession": "Q9HBK9",
+      "external_length": 375,
+      "kmer_jaccard": 0.0,
+      "length_coverage": 0.9615,
+      "matched_m_csa_entry_ids": [
+        "m_csa:172"
+      ],
+      "near_duplicate_alert": false,
+      "near_duplicate_score": 0.0846,
+      "positional_identity": 0.088,
+      "ready_for_label_import": false,
+      "reference_accession": "P39377",
+      "reference_length": 390,
+      "review_status": "sequence_similarity_screen_review_only"
+    }
+  ],
+  "warnings": [
+    "high sequence similarity creates holdout/control debt; absence of a bounded-screen hit is not evidence for label import"
+  ]
+}

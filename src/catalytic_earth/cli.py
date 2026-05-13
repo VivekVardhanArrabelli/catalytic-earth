@@ -90,9 +90,11 @@ from .transfer_scope import (
     audit_external_source_representation_control_comparison,
     audit_external_source_representation_control_manifest,
     audit_external_source_sequence_holdouts,
+    audit_external_source_sequence_neighborhood_sample,
     audit_external_source_structure_mapping_plan,
     audit_external_source_structure_mapping_sample,
     audit_external_source_control_repair_plan,
+    audit_external_source_import_readiness,
     build_external_ood_calibration_plan,
     build_external_source_active_site_gap_source_requests,
     build_external_source_binding_context_mapping_sample,
@@ -113,6 +115,7 @@ from .transfer_scope import (
     build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
     build_external_source_sequence_neighborhood_plan,
+    build_external_source_sequence_neighborhood_sample,
     build_external_source_transfer_manifest,
     check_external_source_transfer_gates,
 )
@@ -996,6 +999,83 @@ def cmd_build_external_source_sequence_neighborhood_plan(
     return 0
 
 
+def cmd_build_external_source_sequence_neighborhood_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_neighborhood_plan).open("r", encoding="utf-8") as handle:
+        sequence_neighborhood_plan = json.load(handle)
+    with Path(args.sequence_clusters).open("r", encoding="utf-8") as handle:
+        sequence_clusters = json.load(handle)
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        labels = json.load(handle)
+    sample = build_external_source_sequence_neighborhood_sample(
+        sequence_neighborhood_plan=sequence_neighborhood_plan,
+        sequence_clusters=sequence_clusters,
+        labels=labels,
+        max_external_rows=args.max_external_rows,
+        max_reference_sequences=args.max_reference_sequences,
+        top_k=args.top_k,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote external source sequence neighborhood sample to "
+        f"{args.out} ({sample['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_sequence_neighborhood_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_neighborhood_sample).open("r", encoding="utf-8") as handle:
+        sequence_neighborhood_sample = json.load(handle)
+    audit = audit_external_source_sequence_neighborhood_sample(
+        sequence_neighborhood_sample
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source sequence neighborhood sample audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+        active_site_evidence_sample = json.load(handle)
+    with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
+        heuristic_control_scores = json.load(handle)
+    with Path(args.representation_control_comparison).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        representation_control_comparison = json.load(handle)
+    with Path(args.active_site_gap_source_requests).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        active_site_gap_source_requests = json.load(handle)
+    with Path(args.sequence_neighborhood_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        sequence_neighborhood_sample = json.load(handle)
+    audit = audit_external_source_import_readiness(
+        candidate_manifest=candidate_manifest,
+        active_site_evidence_sample=active_site_evidence_sample,
+        heuristic_control_scores=heuristic_control_scores,
+        representation_control_comparison=representation_control_comparison,
+        active_site_gap_source_requests=active_site_gap_source_requests,
+        sequence_neighborhood_sample=sequence_neighborhood_sample,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source import readiness audit to "
+        f"{args.out} ({audit['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
 def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
         transfer_manifest = json.load(handle)
@@ -1141,6 +1221,24 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             sequence_neighborhood_plan = json.load(handle)
+    sequence_neighborhood_sample = None
+    if args.sequence_neighborhood_sample:
+        with Path(args.sequence_neighborhood_sample).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_neighborhood_sample = json.load(handle)
+    sequence_neighborhood_sample_audit = None
+    if args.sequence_neighborhood_sample_audit:
+        with Path(args.sequence_neighborhood_sample_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_neighborhood_sample_audit = json.load(handle)
+    external_import_readiness_audit = None
+    if args.external_import_readiness_audit:
+        with Path(args.external_import_readiness_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            external_import_readiness_audit = json.load(handle)
     binding_context_repair_plan = None
     if args.binding_context_repair_plan:
         with Path(args.binding_context_repair_plan).open(
@@ -1203,6 +1301,9 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         broad_ec_disambiguation_audit=broad_ec_disambiguation_audit,
         active_site_gap_source_requests=active_site_gap_source_requests,
         sequence_neighborhood_plan=sequence_neighborhood_plan,
+        sequence_neighborhood_sample=sequence_neighborhood_sample,
+        sequence_neighborhood_sample_audit=sequence_neighborhood_sample_audit,
+        external_import_readiness_audit=external_import_readiness_audit,
         binding_context_repair_plan=binding_context_repair_plan,
         binding_context_repair_plan_audit=binding_context_repair_plan_audit,
         binding_context_mapping_sample=binding_context_mapping_sample,
@@ -3661,6 +3762,93 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_external_source_sequence_neighborhood_plan
     )
 
+    external_sequence_neighborhood_sample = subparsers.add_parser(
+        "build-external-source-sequence-neighborhood-sample",
+        help="run a bounded review-only sequence-neighborhood control screen",
+    )
+    external_sequence_neighborhood_sample.add_argument(
+        "--sequence-neighborhood-plan",
+        default="artifacts/v3_external_source_sequence_neighborhood_plan.json",
+    )
+    external_sequence_neighborhood_sample.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy.json",
+    )
+    external_sequence_neighborhood_sample.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_sequence_neighborhood_sample.add_argument(
+        "--max-external-rows", type=int, default=30
+    )
+    external_sequence_neighborhood_sample.add_argument(
+        "--max-reference-sequences", type=int, default=1000
+    )
+    external_sequence_neighborhood_sample.add_argument("--top-k", type=int, default=3)
+    external_sequence_neighborhood_sample.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_sequence_neighborhood_sample.json",
+    )
+    external_sequence_neighborhood_sample.set_defaults(
+        func=cmd_build_external_source_sequence_neighborhood_sample
+    )
+
+    external_sequence_neighborhood_sample_audit = subparsers.add_parser(
+        "audit-external-source-sequence-neighborhood-sample",
+        help="verify sequence-neighborhood screens remain review-only controls",
+    )
+    external_sequence_neighborhood_sample_audit.add_argument(
+        "--sequence-neighborhood-sample",
+        default="artifacts/v3_external_source_sequence_neighborhood_sample.json",
+    )
+    external_sequence_neighborhood_sample_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_sequence_neighborhood_sample_audit.json"
+        ),
+    )
+    external_sequence_neighborhood_sample_audit.set_defaults(
+        func=cmd_audit_external_source_sequence_neighborhood_sample
+    )
+
+    external_import_readiness = subparsers.add_parser(
+        "audit-external-source-import-readiness",
+        help="summarize remaining review-only blockers before external label import",
+    )
+    external_import_readiness.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_import_readiness.add_argument(
+        "--active-site-evidence-sample",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_import_readiness.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores.json",
+    )
+    external_import_readiness.add_argument(
+        "--representation-control-comparison",
+        default="artifacts/v3_external_source_representation_control_comparison.json",
+    )
+    external_import_readiness.add_argument(
+        "--active-site-gap-source-requests",
+        default="artifacts/v3_external_source_active_site_gap_source_requests.json",
+    )
+    external_import_readiness.add_argument(
+        "--sequence-neighborhood-sample",
+        default="artifacts/v3_external_source_sequence_neighborhood_sample.json",
+    )
+    external_import_readiness.add_argument("--max-rows", type=int, default=100)
+    external_import_readiness.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_import_readiness_audit.json",
+    )
+    external_import_readiness.set_defaults(
+        func=cmd_audit_external_source_import_readiness
+    )
+
     external_transfer_gate = subparsers.add_parser(
         "check-external-source-transfer-gates",
         help="gate review-only external-source transfer artifacts before import work",
@@ -3795,6 +3983,18 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--sequence-neighborhood-plan",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--sequence-neighborhood-sample",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--sequence-neighborhood-sample-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--external-import-readiness-audit",
         default=None,
     )
     external_transfer_gate.add_argument(
