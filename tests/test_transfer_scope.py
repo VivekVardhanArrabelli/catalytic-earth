@@ -29,6 +29,7 @@ from catalytic_earth.transfer_scope import (
     audit_external_source_representation_backend_plan,
     audit_external_source_representation_backend_sample,
     audit_external_source_sequence_alignment_verification,
+    audit_external_source_sequence_reference_screen,
     audit_external_source_sequence_search_export,
     audit_external_source_sequence_holdouts,
     audit_external_source_sequence_neighborhood_sample,
@@ -1632,6 +1633,7 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 },
                 candidate_sample_audit={
                     "metadata": {
+                        "method": "external_source_sequence_reference_screen_audit",
                         "guardrail_clean": True,
                         "countable_label_candidate_count": 0,
                     }
@@ -1916,6 +1918,35 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                         "countable_label_candidate_count": 0,
                     }
                 },
+                sequence_reference_screen_audit={
+                    "metadata": {
+                        "method": "external_source_sequence_reference_screen_audit",
+                        "guardrail_clean": True,
+                        "ready_for_label_import": False,
+                        "complete_near_duplicate_search_required": True,
+                        "countable_label_candidate_count": 0,
+                        "candidate_count": 1,
+                        "screened_reference_sequence_count": 1,
+                        "current_reference_screen_complete": True,
+                        "missing_reference_sequence_count": 0,
+                        "incomplete_candidate_count": 0,
+                        "blocker_removed": (
+                            "external_pilot_current_reference_near_duplicate_screen"
+                        ),
+                    },
+                    "rows": [
+                        {
+                            "countable_label_candidate": False,
+                            "current_reference_screen_status": (
+                                "current_reference_top_hits_aligned_no_alert"
+                            ),
+                            "ready_for_label_import": False,
+                            "review_status": (
+                                "sequence_reference_screen_audit_review_only"
+                            ),
+                        }
+                    ],
+                },
                 sequence_search_export={
                     "metadata": {
                         "ready_for_label_import": False,
@@ -1923,10 +1954,22 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                         "countable_label_candidate_count": 0,
                         "candidate_count": 1,
                         "near_duplicate_search_request_count": 1,
+                        "current_reference_screen_complete_candidate_count": 1,
+                        "source_sequence_reference_screen_audit_method": (
+                            "external_source_sequence_reference_screen_audit"
+                        ),
+                        "blocker_removed": (
+                            "external_pilot_current_reference_near_duplicate_screen"
+                        ),
                     },
                     "rows": [
                         {
                             "countable_label_candidate": False,
+                            "current_reference_screen": {
+                                "status": (
+                                    "current_reference_top_hits_aligned_no_alert"
+                                )
+                            },
                             "decision": {"decision_status": "no_decision"},
                             "ready_for_label_import": False,
                             "review_status": "sequence_search_export_review_only",
@@ -2247,6 +2290,24 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             )
             self.assertEqual(
                 gates["metadata"]["sequence_alignment_alert_candidate_count"], 1
+            )
+            self.assertTrue(
+                gates["gates"]["sequence_reference_screen_audit_guardrail_clean"]
+            )
+            self.assertEqual(
+                gates["metadata"]["sequence_reference_screen_candidate_count"], 1
+            )
+            self.assertEqual(
+                gates["metadata"][
+                    "sequence_reference_screened_reference_sequence_count"
+                ],
+                1,
+            )
+            self.assertEqual(
+                gates["metadata"][
+                    "sequence_reference_screen_blocker_removed"
+                ],
+                "external_pilot_current_reference_near_duplicate_screen",
             )
             self.assertTrue(gates["gates"]["sequence_search_export_review_only"])
             self.assertTrue(
@@ -4327,6 +4388,73 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertTrue(audit["metadata"]["guardrail_clean"])
         self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
 
+    def test_external_sequence_neighborhood_sample_resolves_inactive_references(
+        self,
+    ) -> None:
+        sample = build_external_source_sequence_neighborhood_sample(
+            sequence_neighborhood_plan={
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "plan_status": (
+                            "near_duplicate_search_required_before_import"
+                        ),
+                    }
+                ],
+            },
+            sequence_clusters={
+                "rows": [
+                    {
+                        "entry_id": "m_csa:1",
+                        "reference_uniprot_ids": ["P03176"],
+                    }
+                ],
+            },
+            labels=[
+                {
+                    "entry_id": "m_csa:1",
+                    "label_type": "seed_fingerprint",
+                    "review_status": "automation_curated",
+                }
+            ],
+            fetcher=lambda accessions: {
+                "metadata": {
+                    "source": "unit_test_fetcher",
+                    "inactive_accession_replacements": {
+                        "P03176": ["P0DTH5", "Q9QNF7"],
+                    },
+                },
+                "records": [
+                    {"accession": "P22222", "sequence": "M" + "A" * 40},
+                    {"accession": "P0DTH5", "sequence": "M" + "C" * 40},
+                    {"accession": "Q9QNF7", "sequence": "M" + "D" * 40},
+                ],
+            },
+        )
+
+        self.assertEqual(sample["metadata"]["reference_sequence_count"], 1)
+        self.assertEqual(sample["metadata"]["reference_sequence_record_count"], 2)
+        self.assertEqual(sample["metadata"]["missing_reference_sequence_count"], 0)
+        self.assertEqual(
+            sample["metadata"]["inactive_reference_accession_resolutions"],
+            {"P03176": ["P0DTH5", "Q9QNF7"]},
+        )
+        references = {
+            match["reference_accession"]: match
+            for match in sample["rows"][0]["top_matches"]
+        }
+        self.assertEqual(set(references), {"P0DTH5", "Q9QNF7"})
+        self.assertEqual(
+            references["P0DTH5"]["requested_reference_accession"], "P03176"
+        )
+        self.assertEqual(
+            references["P0DTH5"]["reference_accession_resolution"],
+            "inactive_accession_replacement",
+        )
+        self.assertEqual(
+            references["P0DTH5"]["matched_m_csa_entry_ids"], ["m_csa:1"]
+        )
+
     def test_external_sequence_neighborhood_sample_audit_blocks_import_rows(
         self,
     ) -> None:
@@ -4452,6 +4580,139 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertIn("sequence_alignment_rows_marked_countable", audit["blockers"])
         self.assertIn(
             "sequence_alignment_rows_marked_ready_for_import", audit["blockers"]
+        )
+
+    def test_external_sequence_reference_screen_audit_clears_current_reference_blocker(
+        self,
+    ) -> None:
+        sequence_neighborhood_sample = {
+            "metadata": {
+                "candidate_count": 1,
+                "fetch_failure_count": 0,
+                "missing_external_sequence_count": 0,
+                "reference_sequence_count": 2,
+            },
+            "rows": [
+                {
+                    "accession": "P22222",
+                    "entry_id": "uniprot:P22222",
+                    "screen_status": "no_high_similarity_hit_in_bounded_screen",
+                    "top_matches": [
+                        {
+                            "reference_accession": "P11111",
+                            "matched_m_csa_entry_ids": ["m_csa:1"],
+                        },
+                        {
+                            "reference_accession": "Q11111",
+                            "matched_m_csa_entry_ids": ["m_csa:2"],
+                        },
+                    ],
+                }
+            ],
+        }
+        sequence_alignment_verification = {
+            "metadata": {"method": "external_source_sequence_alignment_verification"},
+            "rows": [
+                {
+                    "accession": "P22222",
+                    "reference_accession": "P11111",
+                    "alignment_identity": 0.2,
+                    "verification_status": "alignment_no_near_duplicate_signal",
+                },
+                {
+                    "accession": "P22222",
+                    "reference_accession": "Q11111",
+                    "alignment_identity": 0.18,
+                    "verification_status": "alignment_no_near_duplicate_signal",
+                },
+            ],
+        }
+        sequence_clusters = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:1",
+                    "reference_uniprot_ids": ["P11111"],
+                },
+                {
+                    "entry_id": "m_csa:2",
+                    "reference_uniprot_ids": ["Q11111"],
+                },
+            ]
+        }
+        labels = [
+            {
+                "entry_id": "m_csa:1",
+                "label_type": "seed_fingerprint",
+                "review_status": "automation_curated",
+            },
+            {
+                "entry_id": "m_csa:2",
+                "label_type": "out_of_scope",
+                "review_status": "automation_curated",
+            },
+        ]
+
+        audit = audit_external_source_sequence_reference_screen(
+            sequence_neighborhood_sample=sequence_neighborhood_sample,
+            sequence_alignment_verification=sequence_alignment_verification,
+            sequence_clusters=sequence_clusters,
+            labels=labels,
+        )
+        export = build_external_source_sequence_search_export(
+            sequence_neighborhood_plan={
+                "metadata": {"candidate_count": 1},
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "entry_id": "uniprot:P22222",
+                        "plan_status": "near_duplicate_search_required_before_import",
+                    }
+                ],
+            },
+            sequence_neighborhood_sample=sequence_neighborhood_sample,
+            sequence_alignment_verification=sequence_alignment_verification,
+            sequence_reference_screen_audit=audit,
+        )
+
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertTrue(audit["metadata"]["current_reference_screen_complete"])
+        self.assertEqual(
+            audit["metadata"]["blocker_removed"],
+            "external_pilot_current_reference_near_duplicate_screen",
+        )
+        self.assertEqual(
+            audit["rows"][0]["current_reference_screen_status"],
+            "current_reference_top_hits_aligned_no_alert",
+        )
+        self.assertEqual(
+            export["metadata"]["blocker_removed"],
+            "external_pilot_current_reference_near_duplicate_screen",
+        )
+        self.assertNotIn(
+            "complete_near_duplicate_reference_search_not_completed",
+            export["rows"][0]["blockers"],
+        )
+        self.assertIn(
+            "complete_uniref_or_all_vs_all_near_duplicate_search_required",
+            export["rows"][0]["blockers"],
+        )
+
+        incomplete = audit_external_source_sequence_reference_screen(
+            sequence_neighborhood_sample={
+                **sequence_neighborhood_sample,
+                "metadata": {
+                    **sequence_neighborhood_sample["metadata"],
+                    "reference_sequence_count": 1,
+                },
+            },
+            sequence_alignment_verification=sequence_alignment_verification,
+            sequence_clusters=sequence_clusters,
+            labels=labels,
+        )
+        self.assertFalse(incomplete["metadata"]["guardrail_clean"])
+        self.assertIn(
+            "current_reference_sequence_screen_incomplete",
+            incomplete["blockers"],
         )
 
     def test_external_import_readiness_audit_prioritizes_remaining_blockers(
@@ -4818,6 +5079,160 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                 **_base_external_transfer_gate_inputs(),
                 pilot_evidence_packet=[],
             )
+
+    def test_external_transfer_gate_rejects_incomplete_reference_screen(
+        self,
+    ) -> None:
+        gates = check_external_source_transfer_gates(
+            **_base_external_transfer_gate_inputs(),
+            sequence_neighborhood_sample={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "complete_near_duplicate_search_required": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "reference_sequence_count": 2,
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                        "screen_status": "current_reference_top_hits_available",
+                    }
+                ],
+            },
+            sequence_reference_screen_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "complete_near_duplicate_search_required": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "screened_reference_sequence_count": 1,
+                    "current_reference_screen_complete": False,
+                    "missing_reference_sequence_count": 1,
+                    "incomplete_candidate_count": 1,
+                    "blocker_removed": (
+                        "external_pilot_current_reference_near_duplicate_screen"
+                    ),
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "countable_label_candidate": False,
+                        "current_reference_screen_status": (
+                            "current_reference_screen_incomplete"
+                        ),
+                        "ready_for_label_import": False,
+                        "review_status": "sequence_reference_screen_audit_review_only",
+                    }
+                ],
+            },
+        )
+
+        self.assertFalse(
+            gates["gates"]["sequence_reference_screen_audit_guardrail_clean"]
+        )
+        self.assertEqual(
+            gates["blockers"],
+            ["sequence_reference_screen_audit_guardrail_clean"],
+        )
+        self.assertEqual(
+            gates["metadata"]["sequence_reference_screen_incomplete_candidate_count"],
+            1,
+        )
+
+    def test_external_transfer_gate_rejects_stale_reference_screen_export(
+        self,
+    ) -> None:
+        gates = check_external_source_transfer_gates(
+            **_base_external_transfer_gate_inputs(),
+            sequence_neighborhood_sample={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "complete_near_duplicate_search_required": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "reference_sequence_count": 1,
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                        "screen_status": "current_reference_top_hits_available",
+                    }
+                ],
+            },
+            sequence_reference_screen_audit={
+                "metadata": {
+                    "method": "external_source_sequence_reference_screen_audit",
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "complete_near_duplicate_search_required": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "screened_reference_sequence_count": 1,
+                    "current_reference_screen_complete": True,
+                    "missing_reference_sequence_count": 0,
+                    "incomplete_candidate_count": 0,
+                    "blocker_removed": (
+                        "external_pilot_current_reference_near_duplicate_screen"
+                    ),
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "countable_label_candidate": False,
+                        "current_reference_screen_status": (
+                            "current_reference_top_hits_aligned_no_alert"
+                        ),
+                        "ready_for_label_import": False,
+                        "review_status": "sequence_reference_screen_audit_review_only",
+                    }
+                ],
+            },
+            sequence_search_export={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "complete_near_duplicate_search_required": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "current_reference_screen_complete_candidate_count": 0,
+                    "source_sequence_reference_screen_audit_method": (
+                        "external_source_sequence_reference_screen_audit"
+                    ),
+                    "blocker_removed": (
+                        "external_pilot_current_reference_near_duplicate_screen"
+                    ),
+                },
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "countable_label_candidate": False,
+                        "current_reference_screen": {
+                            "status": "current_reference_top_hits_aligned_no_alert"
+                        },
+                        "decision": {"decision_status": "no_decision"},
+                        "ready_for_label_import": False,
+                        "review_status": "sequence_search_export_review_only",
+                        "search_task": (
+                            "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                        ),
+                        "source_targets": [
+                            {"source_id": "P11111", "source_type": "UniRef"}
+                        ],
+                    }
+                ],
+            },
+        )
+
+        self.assertTrue(
+            gates["gates"]["sequence_reference_screen_audit_guardrail_clean"]
+        )
+        self.assertFalse(gates["gates"]["sequence_search_export_review_only"])
+        self.assertEqual(gates["blockers"], ["sequence_search_export_review_only"])
 
     def test_external_pilot_evidence_dossiers_are_review_only(self) -> None:
         dossiers = build_external_source_pilot_evidence_dossiers(

@@ -115,13 +115,16 @@ Priority blockers:
   reference-overlap holdouts and marks the remaining 28 candidates as requiring
   near-duplicate search. The sequence-neighborhood plan converts those into
   2 exact-holdout rows and 28 near-duplicate search requests. The bounded
-  sequence-neighborhood screen fetches all 30 external sequences and 733
-  current countable M-CSA reference sequences, finds 0 high-similarity alerts
-  under the current unaligned screen, and still requires complete
-  near-duplicate or UniRef-style search before import. The bounded top-hit
-  alignment verification checks 90 sequence-neighborhood pairs, confirms the
-  two exact-reference holdouts by alignment, finds 88 no-signal top-hit pairs,
-  and keeps complete sequence search mandatory.
+  sequence-neighborhood screen fetches all 30 external sequences and all 735
+  current countable M-CSA reference accessions after resolving inactive
+  demerged UniProt references `P03176` and `Q05489` to their replacement
+  accessions. The current-reference screen audit now clears the
+  current-reference near-duplicate blocker: 28 rows have top-hit alignments
+  with no near-duplicate signal and the two exact-reference rows remain
+  holdouts. Complete UniRef-style or all-vs-all near-duplicate search remains
+  mandatory. The bounded top-hit alignment verification checks 90
+  sequence-neighborhood pairs, confirms the two exact-reference holdouts by
+  alignment, and finds 88 no-signal top-hit pairs.
 - The import-readiness audit aggregates the current blockers by candidate: 10
   active-site gaps, 2 exact sequence holdouts, 28 complete near-duplicate
   search requirements, 9 heuristic scope/top1 mismatches, and 29
@@ -132,7 +135,8 @@ Priority blockers:
   10 active-site-gap rows against UniProt feature evidence, finds 0 explicit
   active-site residue sources, and leaves the rows non-countable. The
   sequence-search export keeps all 30 candidates in no-decision sequence
-  controls, with 28 complete near-duplicate searches and 2 sequence holdouts.
+  controls, with 28 UniRef/all-vs-all near-duplicate searches and
+  2 sequence holdouts.
   The representation-backend plan covers 12 mapped controls without computing
   embeddings. `artifacts/v3_external_source_kmer_representation_backend_sample_1025.json`
   preserves the deterministic k-mer baseline/proxy, while the canonical
@@ -144,8 +148,10 @@ Priority blockers:
   tasks, 18 require near-duplicate sequence search, and 2 stay sequence
   holdouts. Its dominant next-action fraction is 0.6000 and dominant lane
   fraction is 0.1667, so the queue has not collapsed to one action or chemistry
-  lane. The external transfer gate passes 64/64 review-only checks and remains
-  not ready for label import.
+  lane. The external transfer gate now directly checks the current-reference
+  sequence screen audit and rejects sequence-search exports whose reference
+  screen completion counts do not match that audit. It passes 65/65 review-only
+  checks and remains not ready for label import.
 - The learned representation backend path now has a computed 12-row ESM-2
   sample in `artifacts/v3_external_source_representation_backend_sample_1025.json`
   plus a clean review-only audit. It uses `facebook/esm2_t6_8M_UR50D`,
@@ -438,10 +444,18 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-alig
   --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
   --out artifacts/v3_external_source_sequence_alignment_verification_audit_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-reference-screen \
+  --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
+  --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json \
+  --labels artifacts/v3_countable_labels_batch_1025_preview.json \
+  --out artifacts/v3_external_source_sequence_reference_screen_audit_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-sequence-search-export \
   --sequence-neighborhood-plan artifacts/v3_external_source_sequence_neighborhood_plan_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
   --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
+  --sequence-reference-screen-audit artifacts/v3_external_source_sequence_reference_screen_audit_1025.json \
   --out artifacts/v3_external_source_sequence_search_export_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-search-export \
@@ -642,6 +656,7 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --sequence-neighborhood-sample-audit artifacts/v3_external_source_sequence_neighborhood_sample_audit_1025.json \
   --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
   --sequence-alignment-verification-audit artifacts/v3_external_source_sequence_alignment_verification_audit_1025.json \
+  --sequence-reference-screen-audit artifacts/v3_external_source_sequence_reference_screen_audit_1025.json \
   --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
   --sequence-search-export-audit artifacts/v3_external_source_sequence_search_export_audit_1025.json \
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
@@ -675,7 +690,7 @@ label-factory gate. The current gate only authorizes review-only evidence
 collection.
 
 The transfer gate now checks both row-level candidate lineage and artifact-path
-lineage. Current 1,025 artifacts share a clean path-inferred slice across 61
+lineage. Current 1,025 artifacts share a clean path-inferred slice across 62
 supplied artifacts, and the CLI fails fast if a future gate invocation mixes
 1,000 and 1,025 artifacts or if payload-declared slice metadata contradicts the
 artifact path.

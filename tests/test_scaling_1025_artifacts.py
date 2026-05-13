@@ -259,6 +259,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_sequence_alignment_verification_audit_1025.json"
         )
+        sequence_reference_screen_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_sequence_reference_screen_audit_1025.json"
+        )
         sequence_search_export = _load_json(
             ROOT / "artifacts" / "v3_external_source_sequence_search_export_1025.json"
         )
@@ -871,7 +876,40 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             sequence_neighborhood_sample["metadata"]["reference_entry_count"], 679
         )
         self.assertEqual(
-            sequence_neighborhood_sample["metadata"]["reference_sequence_count"], 733
+            sequence_neighborhood_sample["metadata"]["reference_sequence_count"], 735
+        )
+        self.assertEqual(
+            sequence_neighborhood_sample["metadata"][
+                "reference_sequence_record_count"
+            ],
+            737,
+        )
+        self.assertEqual(
+            sequence_neighborhood_sample["metadata"][
+                "expected_reference_accession_count"
+            ],
+            735,
+        )
+        self.assertEqual(
+            sequence_neighborhood_sample["metadata"][
+                "missing_reference_sequence_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            sequence_neighborhood_sample["metadata"][
+                "missing_reference_sequence_accessions"
+            ],
+            [],
+        )
+        self.assertEqual(
+            sequence_neighborhood_sample["metadata"][
+                "inactive_reference_accession_resolutions"
+            ],
+            {
+                "P03176": ["P0DTH5", "Q9QNF7"],
+                "Q05489": ["P0DUB8", "P0DUB9"],
+            },
         )
         self.assertEqual(
             sequence_neighborhood_sample["metadata"]["top_hit_row_count"], 90
@@ -913,6 +951,36 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             ],
             0,
         )
+        self.assertTrue(
+            sequence_reference_screen_audit["metadata"]["guardrail_clean"]
+        )
+        self.assertEqual(
+            sequence_reference_screen_audit["metadata"]["blocker_target"],
+            "external_pilot_current_reference_near_duplicate_screen",
+        )
+        self.assertEqual(
+            sequence_reference_screen_audit["metadata"]["blocker_removed"],
+            "external_pilot_current_reference_near_duplicate_screen",
+        )
+        self.assertTrue(
+            sequence_reference_screen_audit["metadata"][
+                "current_reference_screen_complete"
+            ]
+        )
+        self.assertEqual(
+            sequence_reference_screen_audit["metadata"][
+                "missing_reference_sequence_accessions"
+            ],
+            [],
+        )
+        self.assertEqual(sequence_reference_screen_audit["blockers"], [])
+        self.assertEqual(
+            sequence_reference_screen_audit["metadata"]["screen_status_counts"],
+            {
+                "current_reference_top_hits_aligned_no_alert": 28,
+                "preexisting_sequence_holdout_retained": 2,
+            },
+        )
         self.assertFalse(sequence_search_export["metadata"]["ready_for_label_import"])
         self.assertTrue(
             sequence_search_export["metadata"][
@@ -930,6 +998,44 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertEqual(
             sequence_search_export["metadata"]["near_duplicate_search_request_count"],
             28,
+        )
+        self.assertEqual(
+            sequence_search_export["metadata"][
+                "current_reference_screen_complete_candidate_count"
+            ],
+            28,
+        )
+        self.assertEqual(
+            sequence_search_export["metadata"]["blocker_removed"],
+            "external_pilot_current_reference_near_duplicate_screen",
+        )
+        self.assertEqual(
+            sequence_search_export["metadata"][
+                "source_sequence_reference_screen_audit_method"
+            ],
+            "external_source_sequence_reference_screen_audit",
+        )
+        self.assertNotIn(
+            "complete_near_duplicate_reference_search_not_completed",
+            sequence_search_export["rows"][0]["blockers"],
+        )
+        self.assertNotIn(
+            "complete_near_duplicate_reference_search_not_completed",
+            sequence_search_export["blockers"],
+        )
+        self.assertIn(
+            "complete_uniref_or_all_vs_all_near_duplicate_search_required",
+            sequence_search_export["rows"][0]["blockers"],
+        )
+        self.assertEqual(
+            sequence_search_export["metadata"]["blocker_counts"][
+                "complete_uniref_or_all_vs_all_near_duplicate_search_required"
+            ],
+            28,
+        )
+        self.assertEqual(
+            sequence_search_export["rows"][0]["current_reference_screen"]["status"],
+            "current_reference_top_hits_aligned_no_alert",
         )
         self.assertEqual(
             sequence_search_export["metadata"]["sequence_holdout_task_count"], 2
@@ -1321,8 +1427,8 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 64)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 64)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 65)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 65)
         self.assertEqual(
             external_transfer_gate["metadata"]["gate_input_contract"],
             "ExternalSourceTransferGateInputs.v1",
@@ -1654,7 +1760,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             external_transfer_gate["metadata"][
                 "sequence_neighborhood_reference_sequence_count"
             ],
-            733,
+            735,
         )
         self.assertTrue(
             external_transfer_gate["gates"][
@@ -1683,6 +1789,29 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 "sequence_alignment_deferred_pair_count"
             ],
             0,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "sequence_reference_screen_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "sequence_reference_screen_candidate_count"
+            ],
+            30,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "sequence_reference_screened_reference_sequence_count"
+            ],
+            735,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "sequence_reference_screen_blocker_removed"
+            ],
+            "external_pilot_current_reference_near_duplicate_screen",
         )
         self.assertTrue(
             external_transfer_gate["gates"]["sequence_search_export_review_only"]

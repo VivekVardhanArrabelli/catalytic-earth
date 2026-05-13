@@ -564,7 +564,7 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current SPOF status after the 2026-05-13T20:23:44Z run: counterevidence
+Current SPOF status after the 2026-05-13T21:24:10Z run: counterevidence
 maintainability is handled at the code level. `geometry_retrieval.py` uses a
 versioned declarative `COUNTEREVIDENCE_POLICY` with typed shared inputs,
 rule-level provenance, backwards-compatible reason/detail fields, and explicit
@@ -590,11 +590,39 @@ validates candidate accessions across high-fan-in external artifacts,
 artifact-path slice lineage across supplied external artifacts, and pilot
 review-only/no-decision semantics through the typed
 `ExternalSourceTransferGateInputs.v1` contract and shared candidate-lineage
-artifact registry before passing the 64/64 review-only gate. The gate CLI fails
+artifact registry before passing the 65/65 review-only gate. The gate CLI fails
 fast on mixed 1,000/1,025 paths, payload-declared slice contradictions, or
 pilot artifacts that stop being non-countable review work products.
 
-Latest run removed the code-confirmed text-leakage SPOF rather than adding
+Latest run targeted the external-pilot sequence SPOF rather than adding generic
+gate count. The new
+`artifacts/v3_external_source_sequence_reference_screen_audit_1025.json` checks
+whether the bounded current countable-reference screen can clear the
+current-reference near-duplicate blocker. The initial audit exposed two
+inactive demerged UniProt references (`P03176` and `Q05489`) among the expected
+735 current countable reference accessions; the fetch path now resolves those
+conservatively to all listed replacements (`P0DTH5`/`Q9QNF7` and
+`P0DUB8`/`P0DUB9`) instead of silently dropping them. The audit now records
+complete current-reference coverage, 28 current-reference top-hit no-signal
+rows, and two exact-reference holdouts. The sequence-search export replaces
+`complete_near_duplicate_reference_search_not_completed` with
+`complete_uniref_or_all_vs_all_near_duplicate_search_required` for the 28
+non-holdout rows, keeps 0 countable/import-ready external rows, and the
+external transfer gate now checks the reference-screen audit directly and
+passes 65/65. The gate also rejects a stale sequence-search export that claims
+a different current-reference completion count than the audit rows support.
+
+Label-quality confidence call for the 2026-05-13T21:24:10Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair, no
+for external-source import, no for new scientific generalization artifacts, and
+yes for SPOF/external-pilot hardening. Evidence at run start: 292 unit tests and
+`validate` passed, the 1,025 preview remained non-promotable, current artifacts
+already contained the proxy sequence/fold-distance holdout and 12-row ESM-2
+representation sample, and the new reference-screen audit showed that missing
+the initial reference-screen audit exposed inactive demerged current-reference
+accessions that had to be resolved before external pilot sequence clearance.
+
+Previous run removed the code-confirmed text-leakage SPOF rather than adding
 generic gates or labels. The prior PLP mechanism-text score boost in
 `geometry_retrieval.py` was removed, a local PLP ligand-anchor score based on
 proximal PLP/LLP/PMP/P5P ligand context was added, retrieval metadata now
@@ -604,8 +632,9 @@ holdout, label-factory, selected-PDB override, and external heuristic-control
 artifacts preserve 0 hard negatives, 0 near misses, 0 out-of-scope false
 non-abstentions, 0 actionable in-scope failures, and 0 countable/import-ready
 external rows. `artifacts/v3_label_factory_gate_check_1000.json` still passes
-21/21, and `artifacts/v3_external_source_transfer_gate_check_1025.json` still
-passes 64/64. Final verification after regenerated artifacts: 292 unit tests,
+21/21; after the current reference-screen gate integration,
+`artifacts/v3_external_source_transfer_gate_check_1025.json` passes 65/65.
+Final verification after regenerated artifacts: 292 unit tests,
 `validate`, `compileall`, `git diff --check`, and JSON artifact parsing passed.
 
 Label-quality confidence call for the 2026-05-13T20:23:44Z run: no for
@@ -669,7 +698,7 @@ evidence, missing specific reaction context, and near-duplicate sequence
 alerts. The pilot gate logic lives in a focused helper rather than another
 large branch cascade inside the external transfer gate. A negative regression
 test fails a completed pilot decision, and the regenerated
-`artifacts/v3_external_source_transfer_gate_check_1025.json` records 64/64
+`artifacts/v3_external_source_transfer_gate_check_1025.json` records 65/65
 passing checks with 10 selected pilot candidates, 0 completed pilot decisions,
 79 source targets, and 10 dossier rows that still carry import blockers. The
 dossier metadata now records 3 local explicit-active-site evidence blockers and
@@ -845,7 +874,7 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` keep
-`countable_label_candidate_count=0` and pass a 64/64 review-only transfer gate.
+`countable_label_candidate_count=0` and pass a 65/65 review-only transfer gate.
 The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
 query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
 to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC
@@ -899,16 +928,18 @@ The broad-EC disambiguation audit finds specific reaction context for all 3
 broad-only repair rows, and the sequence-neighborhood plan converts the
 sequence surface into 2 exact-holdout rows and 28 near-duplicate search
 requests. The sequence-neighborhood sample fetches all 30 external sequences
-and 733 current countable M-CSA reference sequences, finds 0 high-similarity
-alerts in the bounded unaligned screen, and keeps complete near-duplicate or
-UniRef-style search mandatory before import. The bounded alignment verification
+and all 735 current countable M-CSA reference accessions after resolving
+inactive demerged references, finds 0 high-similarity alerts in the bounded
+unaligned screen, and keeps complete UniRef-style or all-vs-all near-duplicate
+search mandatory before import. The bounded alignment verification
 checks 90 top-hit pairs, confirms `O15527` and `P42126` as exact holdouts, and
 records 88 no-signal pairs. The import-readiness audit keeps 0 rows ready for
 label import and records 10 active-site gaps, 2 exact sequence holdouts, 28
 complete near-duplicate search requirements, 9 heuristic scope/top1 mismatches,
 29 representation-control issues, and 2 alignment-confirmed sequence holdouts.
 The sequence-search export converts all 30 rows into no-decision sequence
-controls, with 28 complete near-duplicate searches and 2 sequence-holdout tasks.
+controls, with 28 UniRef/all-vs-all near-duplicate searches and 2
+sequence-holdout tasks.
 The active-site sourcing export carries 72 source targets for the 10 active-site
 gaps with 0 completed decisions. The active-site sourcing resolution re-checks
 those 10 gaps against UniProt feature evidence, records 0 explicit active-site

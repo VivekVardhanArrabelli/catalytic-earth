@@ -10,7 +10,7 @@ consolidated pilot evidence packet with review-only dossier safeguards.
 
 ## Current Gate
 
-- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 64/64
+- `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 65/65
   review-only checks under `ExternalSourceTransferGateInputs.v1`.
 - `countable_label_candidate_count` remains 0.
 - `ready_for_label_import` remains false.

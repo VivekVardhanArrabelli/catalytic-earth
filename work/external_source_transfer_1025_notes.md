@@ -71,16 +71,26 @@ Current review-only external artifacts:
 - `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`
   confirms countable import adds 0 labels from that export.
 - `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json` runs a
-  bounded sequence screen against 733 current countable M-CSA reference
-  sequences. It fetches all 30 external sequences, records 0 high-similarity
+  bounded sequence screen against all 735 current countable M-CSA reference
+  accessions after resolving inactive demerged references to replacement
+  accessions. It fetches all 30 external sequences, records 0 high-similarity
   alerts under the current unaligned screen, retains the 2 exact-reference
-  holdouts, and keeps complete near-duplicate search as a mandatory future
-  control.
+  holdouts, and keeps complete UniRef/all-vs-all near-duplicate search as a
+  mandatory future control.
 - `artifacts/v3_external_source_sequence_alignment_verification_1025.json`
   verifies the top 90 sequence-neighborhood pairs with bounded global
   edit-identity checks. It confirms `O15527` and `P42126` as alignment-level
   exact holdouts, records 88 no-signal pairs, and keeps complete search
   mandatory.
+- `artifacts/v3_external_source_sequence_reference_screen_audit_1025.json`
+  checks whether the current countable-reference sequence screen is complete
+  before using it to relax pilot sequence blockers. It now clears the
+  current-reference blocker by resolving inactive demerged UniProt references
+  `P03176` -> `P0DTH5`/`Q9QNF7` and `Q05489` -> `P0DUB8`/`P0DUB9`, giving
+  sequence coverage for all 735 expected current countable reference
+  accessions. The artifact is review-only, records 28 current-reference top-hit
+  no-signal rows plus the two exact holdouts, and leaves UniRef/all-vs-all
+  near-duplicate search mandatory.
 - `artifacts/v3_external_source_import_readiness_audit_1025.json` aggregates
   candidate-level blockers: 10 active-site gaps, 2 sequence holdouts, 28
   complete near-duplicate search requirements, 9 heuristic scope/top1
@@ -93,8 +103,11 @@ Current review-only external artifacts:
   those 10 active-site sourcing tasks with 72 source targets and 0 completed
   decisions.
 - `artifacts/v3_external_source_sequence_search_export_1025.json` keeps all 30
-  external candidates in no-decision sequence controls: 28 complete
-  near-duplicate searches and 2 sequence holdouts.
+  external candidates in no-decision sequence controls: 28 UniRef/all-vs-all
+  near-duplicate searches and 2 sequence holdouts. The prior
+  `complete_near_duplicate_reference_search_not_completed` blocker is replaced
+  by `complete_uniref_or_all_vs_all_near_duplicate_search_required` for the
+  28 non-holdout rows.
 - `artifacts/v3_external_source_representation_backend_plan_1025.json` covers 12
   mapped representation controls without computing embeddings.
 - `artifacts/v3_external_source_kmer_representation_backend_sample_1025.json`
@@ -141,9 +154,10 @@ Current review-only external artifacts:
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
   checkpoints, then 45/45 after sequence-alignment verification and the
-  active-site sourcing queue. The current gate now passes 64/64 after the source
+  active-site sourcing queue. The current gate now passes 65/65 after the source
   exports, active-site sourcing resolution, representation-backend sample,
-  blocker matrix, and pilot review-only safeguards. It uses the typed
+  blocker matrix, pilot review-only safeguards, and current-reference
+  sequence-screen audit. It uses the typed
   `ExternalSourceTransferGateInputs.v1` contract, validates both candidate
   lineage across high-fan-in external artifacts and artifact-path lineage across
   all supplied gate inputs, and fails fast on mixed-slice paths,
@@ -162,6 +176,9 @@ Sequence-similarity guardrail details:
 - `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json` is a
   bounded sequence screen only, not a final homology search. Absence of a
   high-similarity hit in that artifact must not be used as import evidence.
+  The current sample resolves inactive demerged references `P03176` and
+  `Q05489` conservatively to all listed replacement accessions, so the
+  current-reference screen is complete but still not a UniRef-style search.
 - `artifacts/v3_external_source_sequence_alignment_verification_1025.json`
   checks only bounded top hits; it confirms the two exact-reference holdouts
   but does not replace full near-duplicate or UniRef-style search.

@@ -261,6 +261,14 @@ Current expectation:
   `artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
   79 review-only source targets for the same candidates, including all 10
   sequence-search packets and 3 active-site sourcing packets.
+- external sequence controls now repair a current-reference coverage gap instead
+  of silently treating the bounded screen as complete. The screen now covers all
+  735 expected current countable M-CSA reference accessions because
+  `artifacts/v3_external_source_sequence_reference_screen_audit_1025.json`
+  resolves inactive demerged UniProt references `P03176` and `Q05489` to their
+  replacement accessions. The current-reference near-duplicate blocker is
+  cleared for the 28 non-holdout rows, while the UniRef/all-vs-all search
+  requirement remains active.
 - review-debt triage now ranks 326 evidence-gap rows from the 1000 review pass,
   with 326 `needs_more_evidence` decisions, 305 carried rows, 21 new rows, and
   explicit non-countable deferral coverage for every row
@@ -307,8 +315,8 @@ Current expectation:
   sequence-neighborhood screening, bounded sequence-alignment verification,
   sequence-search export, import-readiness audit, active-site sourcing
   queue/export/resolution, representation-backend plan/sample, transfer blocker
-  matrix, and 64/64
-  transfer gate;
+  matrix, and a 65/65 transfer gate with a direct current-reference
+  sequence-screen audit check;
   2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
   full Rhea reaction-context sample collects 64 review-only reaction records
@@ -325,15 +333,17 @@ Current expectation:
   all 3 broad-only repair rows, the active-site gap source-request artifact
   covers all 10 active-site gaps, the sequence-neighborhood plan requests
   near-duplicate search for 28 rows, the bounded sequence screen checks all 30
-  external sequences against 733 current countable M-CSA reference sequences
-  with 0 high-similarity alerts, bounded alignment verification checks 90
-  top-hit pairs and confirms the two exact-reference holdouts, the
+  external sequences against 735 current countable M-CSA reference accessions
+  with 0 high-similarity alerts after resolving inactive demerged references
+  `P03176` and `Q05489`, bounded alignment verification checks 90 top-hit pairs and
+  confirms the two exact-reference holdouts, the
   import-readiness audit records 0
   import-ready rows plus 10 active-site gaps, 9 heuristic scope/top1
   mismatches, and 29 representation-control issues, the active-site sourcing
   queue prioritizes 7 mapped-binding-context rows and 3 primary-source rows, the
   active-site sourcing export carries 72 source targets, the sequence-search
-  export keeps 28 near-duplicate searches and 2 sequence holdouts review-only,
+  export keeps 28 UniRef/all-vs-all near-duplicate searches and 2 sequence
+  holdouts review-only,
   the active-site sourcing resolution finds 0 explicit active-site residue
   sources across the 10 gap rows, the representation-backend plan covers 12
   controls without embeddings, the deterministic k-mer baseline covers all 12

@@ -182,8 +182,8 @@ sequence-search export, import-readiness audit, active-site sourcing queue/expor
 active-site sourcing resolution, representation-backend plan/sample, a
 candidate blocker matrix, a 10-row external pilot candidate priority worklist,
 a consolidated pilot evidence packet, 10 per-candidate pilot evidence
-dossiers, and a 64/64 external transfer gate with candidate, artifact-path, and
-pilot review-only decision validation. The
+dossiers, and a 65/65 external transfer gate with current-reference sequence
+screen, candidate, artifact-path, and pilot review-only decision validation. The
 evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
@@ -208,18 +208,23 @@ sample is preserved separately as a labeled proxy baseline. The
 active-site gap source-request artifact covers all 10 gaps, and the
 sequence-neighborhood plan keeps 2 exact-reference overlaps as holdouts while
 requesting near-duplicate search for the other 28 candidates. The bounded
-sequence screen fetches all 30 external sequences plus 733 current countable
-M-CSA reference sequences and finds 0 high-similarity alerts under the current
-unaligned screen, but complete near-duplicate search remains required. The
-bounded sequence-alignment verification checks 90 top-hit pairs, confirms the
-two exact-reference holdouts, and keeps every row non-countable. The
+sequence screen fetches all 30 external sequences plus all 735 current
+countable M-CSA reference accessions after resolving inactive demerged UniProt
+references `P03176` and `Q05489` to their replacement accessions. The
+current-reference screen audit now clears the current-reference near-duplicate
+blocker: 28 rows have top-hit alignments with no near-duplicate signal and two
+exact-reference rows stay holdouts. Complete UniRef/all-vs-all near-duplicate
+search remains required. The bounded sequence-alignment verification checks 90
+top-hit pairs, confirms the two exact-reference holdouts, and keeps every row
+non-countable. The
 import-readiness audit keeps 0 rows import-ready while summarizing 10
 active-site gaps, 2 exact sequence holdouts, 28 complete near-duplicate search
 requirements, 9 heuristic scope/top1 mismatches, and 29 representation-control
 issues, while the active-site sourcing queue prioritizes the 10 active-site
 gaps into 7 mapped-binding-context rows and 3 primary-source rows. The
 active-site sourcing export carries 72 source targets, the sequence-search
-export keeps 28 near-duplicate searches and 2 sequence holdouts review-only, the
+export keeps 28 UniRef/all-vs-all near-duplicate searches and 2 sequence
+holdouts review-only, the
 representation-backend plan covers 12 controls without computing embeddings, and
 the blocker matrix joins all 30 external rows into a non-countable worklist with
 the active-site resolution and representation sample statuses carried forward.

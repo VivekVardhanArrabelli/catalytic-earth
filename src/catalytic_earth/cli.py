@@ -101,6 +101,7 @@ from .transfer_scope import (
     audit_external_source_representation_backend_plan,
     audit_external_source_representation_backend_sample,
     audit_external_source_sequence_alignment_verification,
+    audit_external_source_sequence_reference_screen,
     audit_external_source_sequence_search_export,
     audit_external_source_sequence_holdouts,
     audit_external_source_sequence_neighborhood_sample,
@@ -1399,6 +1400,33 @@ def cmd_audit_external_source_sequence_alignment_verification(
     return 0
 
 
+def cmd_audit_external_source_sequence_reference_screen(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.sequence_neighborhood_sample).open("r", encoding="utf-8") as handle:
+        sequence_neighborhood_sample = json.load(handle)
+    with Path(args.sequence_alignment_verification).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        sequence_alignment_verification = json.load(handle)
+    with Path(args.sequence_clusters).open("r", encoding="utf-8") as handle:
+        sequence_clusters = json.load(handle)
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        labels = json.load(handle)
+    audit = audit_external_source_sequence_reference_screen(
+        sequence_neighborhood_sample=sequence_neighborhood_sample,
+        sequence_alignment_verification=sequence_alignment_verification,
+        sequence_clusters=sequence_clusters,
+        labels=labels,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source sequence reference screen audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_build_external_source_sequence_search_export(
     args: argparse.Namespace,
 ) -> int:
@@ -1410,10 +1438,17 @@ def cmd_build_external_source_sequence_search_export(
         "r", encoding="utf-8"
     ) as handle:
         sequence_alignment_verification = json.load(handle)
+    sequence_reference_screen_audit = None
+    if args.sequence_reference_screen_audit:
+        with Path(args.sequence_reference_screen_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_reference_screen_audit = json.load(handle)
     export = build_external_source_sequence_search_export(
         sequence_neighborhood_plan=sequence_neighborhood_plan,
         sequence_neighborhood_sample=sequence_neighborhood_sample,
         sequence_alignment_verification=sequence_alignment_verification,
+        sequence_reference_screen_audit=sequence_reference_screen_audit,
         max_rows=args.max_rows,
     )
     write_json(Path(args.out), export)
@@ -4473,6 +4508,34 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_sequence_alignment_verification
     )
 
+    external_sequence_reference_screen_audit = subparsers.add_parser(
+        "audit-external-source-sequence-reference-screen",
+        help="verify current countable-reference sequence screen coverage",
+    )
+    external_sequence_reference_screen_audit.add_argument(
+        "--sequence-neighborhood-sample",
+        default="artifacts/v3_external_source_sequence_neighborhood_sample.json",
+    )
+    external_sequence_reference_screen_audit.add_argument(
+        "--sequence-alignment-verification",
+        default="artifacts/v3_external_source_sequence_alignment_verification.json",
+    )
+    external_sequence_reference_screen_audit.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy.json",
+    )
+    external_sequence_reference_screen_audit.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_sequence_reference_screen_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_sequence_reference_screen_audit.json",
+    )
+    external_sequence_reference_screen_audit.set_defaults(
+        func=cmd_audit_external_source_sequence_reference_screen
+    )
+
     external_sequence_search_export = subparsers.add_parser(
         "build-external-source-sequence-search-export",
         help="build review-only complete near-duplicate sequence-search packets",
@@ -4488,6 +4551,10 @@ def build_parser() -> argparse.ArgumentParser:
     external_sequence_search_export.add_argument(
         "--sequence-alignment-verification",
         default="artifacts/v3_external_source_sequence_alignment_verification.json",
+    )
+    external_sequence_search_export.add_argument(
+        "--sequence-reference-screen-audit",
+        default=None,
     )
     external_sequence_search_export.add_argument("--max-rows", type=int, default=100)
     external_sequence_search_export.add_argument(
@@ -5046,6 +5113,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--sequence-alignment-verification-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--sequence-reference-screen-audit",
         default=None,
     )
     external_transfer_gate.add_argument(

@@ -11,19 +11,34 @@
     "countable_label_candidate_count": 0,
     "coverage_alert_threshold": 0.9,
     "exact_or_failure_holdout_count": 2,
+    "expected_reference_accession_count": 735,
     "external_sequence_fetched_count": 30,
     "fetch_failure_count": 0,
     "high_similarity_candidate_count": 0,
     "identity_alert_threshold": 0.9,
+    "inactive_reference_accession_resolution_count": 2,
+    "inactive_reference_accession_resolutions": {
+      "P03176": [
+        "P0DTH5",
+        "Q9QNF7"
+      ],
+      "Q05489": [
+        "P0DUB8",
+        "P0DUB9"
+      ]
+    },
     "kmer_alert_threshold": 0.85,
     "max_external_rows": 30,
     "max_reference_sequences": 1000,
     "method": "external_source_sequence_neighborhood_sample",
     "missing_external_sequence_count": 0,
+    "missing_reference_sequence_accessions": [],
+    "missing_reference_sequence_count": 0,
     "no_high_similarity_hit_count": 28,
     "ready_for_label_import": false,
     "reference_entry_count": 679,
-    "reference_sequence_count": 733,
+    "reference_sequence_count": 735,
+    "reference_sequence_record_count": 737,
     "requested_accession_count": 763,
     "screen_rule": "bounded unaligned sequence screen for external near-duplicate risk; this is an OOD control and cannot create labels",
     "screen_status_counts": {

@@ -23,8 +23,8 @@
         "source_task": "not_active_site_sourcing_row"
       },
       "blockers": [
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "external_embeddings_not_computed",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
@@ -85,8 +85,8 @@
         "source_task": "not_active_site_sourcing_row"
       },
       "blockers": [
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
@@ -144,8 +144,8 @@
         "source_task": "not_active_site_sourcing_row"
       },
       "blockers": [
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
@@ -203,8 +203,8 @@
         "source_task": "not_active_site_sourcing_row"
       },
       "blockers": [
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
         "heuristic_control_not_scored",
@@ -262,8 +262,8 @@
         "source_task": "not_active_site_sourcing_row"
       },
       "blockers": [
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "external_embeddings_not_computed",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
@@ -326,8 +326,8 @@
         "source_task": "not_active_site_sourcing_row"
       },
       "blockers": [
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "external_embeddings_not_computed",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
@@ -390,8 +390,8 @@
         "source_task": "not_active_site_sourcing_row"
       },
       "blockers": [
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "external_embeddings_not_computed",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
@@ -457,8 +457,8 @@
       },
       "blockers": [
         "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "explicit_active_site_residue_sources_absent",
         "explicit_active_site_residue_sources_not_collected",
         "external_active_site_feature_gap",
@@ -522,8 +522,8 @@
       },
       "blockers": [
         "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "explicit_active_site_residue_sources_absent",
         "explicit_active_site_residue_sources_not_collected",
         "external_active_site_feature_gap",
@@ -587,8 +587,8 @@
       },
       "blockers": [
         "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing",
-        "complete_near_duplicate_reference_search_not_completed",
         "complete_near_duplicate_search_required",
+        "complete_uniref_or_all_vs_all_near_duplicate_search_required",
         "explicit_active_site_residue_sources_absent",
         "explicit_active_site_residue_sources_not_collected",
         "external_active_site_feature_gap",

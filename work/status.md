@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 75
-- Measured elapsed time: 2815.8 minutes (46.93 hours)
+- Entries: 76
+- Measured elapsed time: 2856.1 minutes (47.60 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 194.8 measured minutes (3.25 hours)
+- post-mcsa-spof-hardening: 235.0 measured minutes (3.92 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -23,21 +23,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 797
-- Evidence references logged: 659
+- Artifact references logged: 811
+- Evidence references logged: 670
 
 ## Recent Entries
-
-### 2026-05-13T14:53:10.709166+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden counterevidence, leakage, and artifact lineage SPOFs
-- Time mode: measured
-- Measured minutes: 35.367
-- Started: 2026-05-13T14:17:40Z
-- Ended: 2026-05-13T14:53:02Z
-- Artifacts: artifacts/v3_label_factory_gate_check_1000.json, artifacts/v3_external_source_representation_backend_sample_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json
-- Evidence: 276 unit tests, validate, compileall, git diff --check, JSON artifact parse
-- Notes: No count growth or external import; hardened named SPOFs only.
 
 ### 2026-05-13T15:00:09.182705+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: tests/test_geometry_retrieval.py, tests/test_geometry_artifact_regression.py, tests/test_scaling_1025_artifacts.py, PYTHONPATH=src python -m unittest discover -s tests, PYTHONPATH=src python -m catalytic_earth.cli validate
 - Notes: Normal locked SPOF-hardening run. Refreshed dependent 1000/1025 artifacts and docs; preserved zero hard negatives, zero near misses, zero out-of-scope false non-abstentions, zero actionable failures, and zero countable external labels.
 
+### 2026-05-13T22:04:23.805937+00:00 - post-mcsa-spof-hardening
+
+- Task: Harden external current-reference sequence screen
+- Time mode: measured
+- Measured minutes: 40.217
+- Started: 2026-05-13T21:24:10Z
+- Ended: 2026-05-13T22:04:23Z
+- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_sequence_reference_screen_audit_1025.json, artifacts/v3_external_source_sequence_neighborhood_sample_1025.json, artifacts/v3_external_source_sequence_search_export_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md
+- Evidence: 296 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, external gate 65/65 with current-reference screen audit, 735 current reference accessions screened after inactive UniProt replacement resolution, 28 current-reference no-signal rows, 2 exact-reference holdouts, 0 countable external labels, 0 import-ready external labels
+- Notes: Normal locked SPOF-hardening run. Added inactive UniProt replacement handling, current-reference screen audit, direct transfer-gate validation, and stale-export regression coverage.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -182,6 +182,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T18:44:44.009443+00:00: External pilot import remains blocked; next work should fill real active-site and sequence evidence decisions rather than expanding gate count.
 - 2026-05-13T19:39:20.606270+00:00: External pilot import remains blocked; high-fan-in gate maintenance is reduced, but active-site source decisions and complete near-duplicate search remain the next blockers.
 - 2026-05-13T20:51:07.000000+00:00: Geometry retrieval predictive evidence is now explicitly text-free; PLP positive signal uses local ligand-anchor context
+- 2026-05-13T22:04:23.805937+00:00: M-CSA-only growth remains stopped; next external-pilot work should fill real sequence-search and active-site decisions rather than add generic gates.
 
 ## Scope Adjustments
 
@@ -256,3 +257,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T18:44:44.009443+00:00: External pilot review-decision path now fails if selected rows are ineligible, pilot decisions are completed prematurely, required review prerequisites are missing, or pilot dossier evidence blockers are stale.
 - 2026-05-13T19:39:20.606270+00:00: External transfer gate input typing and CLI loading are now contract-based; next pilot work should fill real active-site and sequence evidence, not add generic gate count.
 - 2026-05-13T20:51:07.000000+00:00: No M-CSA-only growth or external import; SPOF text-leakage hardening only
+- 2026-05-13T22:04:23.805937+00:00: External transfer remains non-countable; current-reference sequence screen blocker is cleared, but complete UniRef/all-vs-all near-duplicate search and active-site evidence still block import.
