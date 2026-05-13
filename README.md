@@ -162,8 +162,10 @@ artifacts scope a UniProtKB/Swiss-Prot path with query lanes, OOD calibration,
 sequence-similarity controls, a 30-row read-only candidate sample, an external
 candidate manifest, evidence plan/export, review-only import-safety audit,
 active-site feature sampling, structure-mapping and heuristic-control
-prototypes, failure-mode audit, control-repair artifacts, and a 33/33 external
-transfer gate. The evidence plan flags seven broad or incomplete EC contexts,
+prototypes, failure-mode audit, control-repair artifacts, representation-control
+comparison, broad-EC disambiguation, active-site gap source requests,
+sequence-neighborhood controls, and a 38/38 external transfer gate. The evidence
+plan flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
 review-only active-site evidence queue with 25 ready candidates. The active-site
 feature pass finds 15 feature-supported candidates and 10 active-site-feature
@@ -173,9 +175,14 @@ AlphaFold controls, but the heuristic control still collapses 9/12 to
 failure-mode audit keeps this as a review-only retrieval-control issue. The
 control-repair plan converts the current weaknesses into 25 non-countable
 repair rows, the representation manifest exposes 12 mapped controls for future
-learned or structure-language comparison, and the binding-context path maps 7/7
-active-site-gap rows as repair context only. Two sample candidates overlap
-existing M-CSA reference accessions and are routed to sequence-holdout controls;
+learned or structure-language comparison, the feature-proxy comparison flags
+7 metal-hydrolase collapse rows and 2 glycan-boundary rows, the broad-EC audit
+finds specific reaction context for all 3 broad-only repair rows, and the
+binding-context path maps 7/7 active-site-gap rows as repair context only. The
+active-site gap source-request artifact covers all 10 gaps, and the
+sequence-neighborhood plan keeps 2 exact-reference overlaps as holdouts while
+requesting near-duplicate search for the other 28 candidates. Two sample
+candidates overlap existing M-CSA reference accessions and are routed to sequence-holdout controls;
 the lane-balance audit confirms six evenly represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
 only, not label import. The full Rhea reaction-context pass covers all 30
@@ -250,7 +257,7 @@ the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
 1,025 preview is open but not promoted; the next bounded work item is
-repairing review-only external-source controls behind the 33/33 transfer gate,
+repairing review-only external-source controls behind the 38/38 transfer gate,
 not M-CSA-only count growth or label import.
 See
 `docs/label_factory.md`.

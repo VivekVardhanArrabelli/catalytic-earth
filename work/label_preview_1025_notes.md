@@ -39,9 +39,12 @@ External-source transfer remains review-only. The new artifacts
 `artifacts/v3_external_source_failure_mode_audit_1025.json`,
 `artifacts/v3_external_source_control_repair_plan_1025.json`,
 `artifacts/v3_external_source_representation_control_manifest_1025.json`,
+`artifacts/v3_external_source_representation_control_comparison_1025.json`,
 `artifacts/v3_external_source_binding_context_repair_plan_1025.json`,
 `artifacts/v3_external_source_binding_context_mapping_sample_1025.json`,
+`artifacts/v3_external_source_active_site_gap_source_requests_1025.json`,
 `artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
+`artifacts/v3_external_source_sequence_neighborhood_plan_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` define a bounded
 UniProtKB/Swiss-Prot transfer path, draft six ontology-pressure query lanes,
@@ -51,7 +54,7 @@ carry sampled PDB/AlphaFold structure references into the evidence export, queue
 25 review-only active-site evidence rows while deferring five rows, sample
 UniProtKB active-site features, map all 12 heuristic-ready AlphaFold controls,
 score the mapped controls with the current heuristic retrieval path, and pass
-the 33/33 external-transfer gate for review-only evidence collection.
+the 38/38 external-transfer gate for review-only evidence collection.
 Two sample accessions (`O15527` and `P42126`) overlap existing M-CSA reference
 accessions and are routed to holdout controls. The lane-balance audit is clean:
 six lanes each contribute five candidates, so the initial review sample has not
@@ -65,13 +68,18 @@ converted into a reviewed decision artifact or full label-factory gate. The
 audit also flags 16 broad-EC context rows across `1.1.1.-`, `1.11.1.-`,
 `1.8.-.-`, `2.1.1.-`, `2.7.1.-`, `3.2.2.-`, and `4.2.99.-` as review-only
 context, not specific mechanism evidence.
+`artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json` finds
+specific reaction context for all 3 broad-only repair rows, but those rows
+remain non-countable and still need active-site evidence and a future decision
+artifact.
 
 Next bounded work: repair the external-source control findings before any label
-import. The active-site feature sample leaves 10 feature-gap rows, the broad EC
-router leaves three disambiguation rows, and the expanded heuristic-control
-score sample collapses 9/12 mapped candidates to `metal_dependent_hydrolase`
-top1 with 9 scope/top1 mismatches. The control-repair plan records 25
-non-countable repair rows, the representation manifest exposes 12 mapped
-controls for future comparison, and the binding-context mapping sample maps 7/7
-active-site-gap rows as repair context only. These are review-only failure
-modes, not countable labels.
+import. The active-site feature sample leaves 10 feature-gap rows, now covered
+by source requests; the expanded heuristic-control score sample collapses 9/12
+mapped candidates to `metal_dependent_hydrolase` top1 with 9 scope/top1
+mismatches; and the sequence-neighborhood plan still requires near-duplicate
+search for 28 rows. The control-repair plan records 25 non-countable repair
+rows, the representation comparison exposes 12 mapped controls for future
+learned or structure-language comparison, and the binding-context mapping sample
+maps 7/7 active-site-gap rows as repair context only. These are review-only
+failure modes, not countable labels.

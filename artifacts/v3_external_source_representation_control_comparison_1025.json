@@ -1,0 +1,718 @@
+{
+  "blockers": [
+    "external_embeddings_not_computed",
+    "external_ood_calibration_not_applied",
+    "external_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "metadata": {
+    "boundary_case_count": 2,
+    "candidate_count": 12,
+    "comparison_rule": "feature-proxy representation controls expose heuristic-collapse cases but do not compute embeddings or create labels",
+    "comparison_status_counts": {
+      "proxy_boundary_case_requires_glycan_hydrolase_split": 2,
+      "proxy_consistent_with_heuristic_scope": 1,
+      "proxy_flags_metal_hydrolase_collapse": 7,
+      "proxy_flags_scope_top1_mismatch": 2
+    },
+    "countable_label_candidate_count": 0,
+    "embedding_status": "feature_proxy_no_embedding",
+    "max_rows": 100,
+    "metal_hydrolase_collapse_flag_count": 7,
+    "method": "external_source_representation_control_comparison",
+    "reaction_context_missing_count": 0,
+    "ready_for_label_import": false,
+    "scope_signal_counts": {
+      "glycan_chemistry": 2,
+      "isomerase": 4,
+      "lyase": 3,
+      "oxidoreductase_long_tail": 1,
+      "transferase_phosphoryl": 2
+    },
+    "scope_top1_mismatch_count": 9,
+    "source_heuristic_scores_method": "external_source_heuristic_control_scores",
+    "source_reaction_evidence_method": "external_source_reaction_evidence_sample",
+    "source_representation_control_method": "external_source_representation_control_manifest",
+    "top1_fingerprint_counts": {
+      "flavin_dehydrogenase_reductase": 1,
+      "heme_peroxidase_oxidase": 2,
+      "metal_dependent_hydrolase": 9
+    }
+  },
+  "rows": [
+    {
+      "accession": "P33025",
+      "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:P33025",
+      "feature_proxy_tokens": [
+        "scope:glycan_chemistry",
+        "lane:external_source:glycan_chemistry",
+        "resolved_residue_count:2",
+        "reaction:specific",
+        "active_site_residue:GLU",
+        "active_site_residue:LYS",
+        "local_cofactor:none",
+        "specific_ec:4.2.1.70",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3355
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:P33025",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:18337"
+        ],
+        "specific_ec_numbers": [
+          "4.2.1.70"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "glycan_hydrolase_boundary_axis",
+        "heuristic_top1_contrast_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "P60174",
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:P60174",
+      "feature_proxy_tokens": [
+        "scope:isomerase",
+        "lane:external_source:isomerase",
+        "resolved_residue_count:2",
+        "reaction:specific",
+        "active_site_residue:GLU",
+        "active_site_residue:HIS",
+        "local_cofactor:none",
+        "specific_ec:4.2.3.3",
+        "specific_ec:5.3.1.1",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3741
+      },
+      "lane_id": "external_source:isomerase",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:P60174",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 2,
+        "rhea_ids": [
+          "RHEA:17937",
+          "RHEA:18585"
+        ],
+        "specific_ec_numbers": [
+          "4.2.3.3",
+          "5.3.1.1"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "non_hydrolytic_scope_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "Q13907",
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:Q13907",
+      "feature_proxy_tokens": [
+        "scope:isomerase",
+        "lane:external_source:isomerase",
+        "resolved_residue_count:2",
+        "reaction:specific",
+        "active_site_residue:CYS",
+        "active_site_residue:GLU",
+        "local_cofactor:none",
+        "specific_ec:5.3.3.2",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3714
+      },
+      "lane_id": "external_source:isomerase",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:Q13907",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:23284"
+        ],
+        "specific_ec_numbers": [
+          "5.3.3.2"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "non_hydrolytic_scope_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "comparison_status": "proxy_boundary_case_requires_glycan_hydrolase_split",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:Q6NSJ0",
+      "feature_proxy_tokens": [
+        "scope:glycan_chemistry",
+        "lane:external_source:glycan_chemistry",
+        "resolved_residue_count:2",
+        "reaction:specific",
+        "active_site_residue:ASP",
+        "local_cofactor:none",
+        "specific_ec:3.2.1.22",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3552
+      },
+      "lane_id": "external_source:glycan_chemistry",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:Q6NSJ0",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:21112"
+        ],
+        "specific_ec_numbers": [
+          "3.2.1.22"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "glycan_hydrolase_boundary_axis",
+        "heuristic_top1_contrast_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "glycan_chemistry"
+    },
+    {
+      "accession": "Q9BXD5",
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:Q9BXD5",
+      "feature_proxy_tokens": [
+        "scope:lyase",
+        "lane:external_source:lyase",
+        "resolved_residue_count:2",
+        "reaction:specific",
+        "active_site_residue:LYS",
+        "active_site_residue:TYR",
+        "local_cofactor:none",
+        "specific_ec:4.1.3.3",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3646
+      },
+      "lane_id": "external_source:lyase",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:Q9BXD5",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:23296"
+        ],
+        "specific_ec_numbers": [
+          "4.1.3.3"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "non_hydrolytic_scope_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q9BXS1",
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:Q9BXS1",
+      "feature_proxy_tokens": [
+        "scope:isomerase",
+        "lane:external_source:isomerase",
+        "resolved_residue_count:2",
+        "reaction:specific",
+        "active_site_residue:GLU",
+        "active_site_residue:SER",
+        "local_cofactor:none",
+        "specific_ec:5.3.3.2",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3734
+      },
+      "lane_id": "external_source:isomerase",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:Q9BXS1",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:23284"
+        ],
+        "specific_ec_numbers": [
+          "5.3.3.2"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "non_hydrolytic_scope_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "A2RU49",
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:A2RU49",
+      "feature_proxy_tokens": [
+        "scope:transferase_phosphoryl",
+        "lane:external_source:transferase_phosphoryl",
+        "resolved_residue_count:1",
+        "reaction:specific",
+        "active_site_residue:ASP",
+        "local_cofactor:none",
+        "specific_ec:2.7.1.81",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.302
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:A2RU49",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:19049"
+        ],
+        "specific_ec_numbers": [
+          "2.7.1.81"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis",
+        "transferase_reaction_class_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "O14756",
+      "comparison_status": "proxy_consistent_with_heuristic_scope",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:O14756",
+      "feature_proxy_tokens": [
+        "scope:oxidoreductase_long_tail",
+        "lane:external_source:oxidoreductase_long_tail",
+        "resolved_residue_count:1",
+        "reaction:specific",
+        "active_site_residue:TYR",
+        "local_cofactor:none",
+        "specific_ec:1.1.1.105",
+        "specific_ec:1.1.1.209",
+        "specific_ec:1.1.1.239",
+        "specific_ec:1.1.1.53",
+        "specific_ec:1.1.1.62",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": false,
+        "top1_fingerprint_id": "heme_peroxidase_oxidase",
+        "top1_score": 0.3039
+      },
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:O14756",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 9,
+        "rhea_ids": [
+          "RHEA:14929",
+          "RHEA:20377",
+          "RHEA:20381",
+          "RHEA:21284",
+          "RHEA:22400",
+          "RHEA:24612",
+          "RHEA:24616",
+          "RHEA:42004",
+          "RHEA:48488"
+        ],
+        "specific_ec_numbers": [
+          "1.1.1.105",
+          "1.1.1.209",
+          "1.1.1.239",
+          "1.1.1.53",
+          "1.1.1.62"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis",
+        "redox_cofactor_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "oxidoreductase_long_tail"
+    },
+    {
+      "accession": "P34949",
+      "comparison_status": "proxy_flags_scope_top1_mismatch",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:P34949",
+      "feature_proxy_tokens": [
+        "scope:isomerase",
+        "lane:external_source:isomerase",
+        "resolved_residue_count:1",
+        "reaction:specific",
+        "active_site_residue:ARG",
+        "local_cofactor:none",
+        "specific_ec:5.3.1.8",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "flavin_dehydrogenase_reductase",
+        "top1_score": 0.185
+      },
+      "lane_id": "external_source:isomerase",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:P34949",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:12356"
+        ],
+        "specific_ec_numbers": [
+          "5.3.1.8"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "non_hydrolytic_scope_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "isomerase"
+    },
+    {
+      "accession": "P35914",
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:P35914",
+      "feature_proxy_tokens": [
+        "scope:lyase",
+        "lane:external_source:lyase",
+        "resolved_residue_count:1",
+        "reaction:specific",
+        "active_site_residue:CYS",
+        "local_cofactor:none",
+        "specific_ec:4.1.3.4",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.1875
+      },
+      "lane_id": "external_source:lyase",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:P35914",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:24404"
+        ],
+        "specific_ec_numbers": [
+          "4.1.3.4"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "non_hydrolytic_scope_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "lyase"
+    },
+    {
+      "accession": "Q969G6",
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:Q969G6",
+      "feature_proxy_tokens": [
+        "scope:transferase_phosphoryl",
+        "lane:external_source:transferase_phosphoryl",
+        "resolved_residue_count:1",
+        "reaction:specific",
+        "active_site_residue:GLU",
+        "local_cofactor:none",
+        "specific_ec:2.7.1.26",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.3012
+      },
+      "lane_id": "external_source:transferase_phosphoryl",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:Q969G6",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:14357"
+        ],
+        "specific_ec_numbers": [
+          "2.7.1.26"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis",
+        "transferase_reaction_class_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "transferase_phosphoryl"
+    },
+    {
+      "accession": "Q96I15",
+      "comparison_status": "proxy_flags_metal_hydrolase_collapse",
+      "countable_label_candidate": false,
+      "embedding_status": "feature_proxy_no_embedding",
+      "entry_id": "uniprot:Q96I15",
+      "feature_proxy_tokens": [
+        "scope:lyase",
+        "lane:external_source:lyase",
+        "resolved_residue_count:1",
+        "reaction:specific",
+        "active_site_residue:CYS",
+        "local_cofactor:none",
+        "specific_ec:4.4.1.16",
+        "pocket_descriptor:aromatic_fraction",
+        "pocket_descriptor:charge_balance",
+        "pocket_descriptor:hydrophobic_fraction",
+        "pocket_descriptor:mean_min_distance_to_active_site",
+        "pocket_descriptor:negative_fraction",
+        "pocket_descriptor:polar_fraction",
+        "pocket_descriptor:positive_fraction",
+        "pocket_descriptor:sulfur_fraction"
+      ],
+      "heuristic_baseline_control": {
+        "scope_top1_mismatch": true,
+        "top1_fingerprint_id": "metal_dependent_hydrolase",
+        "top1_score": 0.1935
+      },
+      "lane_id": "external_source:lyase",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [],
+        "entry_id": "uniprot:Q96I15",
+        "has_broad_ec_context": false,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 1,
+        "rhea_ids": [
+          "RHEA:11632"
+        ],
+        "specific_ec_numbers": [
+          "4.4.1.16"
+        ]
+      },
+      "ready_for_label_import": false,
+      "recommended_representation_axes": [
+        "active_site_residue_token_axis",
+        "heuristic_top1_contrast_axis",
+        "non_hydrolytic_scope_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis"
+      ],
+      "review_status": "representation_control_review_only",
+      "scope_signal": "lyase"
+    }
+  ],
+  "warnings": [
+    "representation-control comparisons are review-only diagnostics and cannot make external labels countable"
+  ]
+}

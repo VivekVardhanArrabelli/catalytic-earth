@@ -79,6 +79,7 @@ from .transfer_scope import (
     audit_external_source_active_site_evidence_sample,
     audit_external_source_binding_context_mapping_sample,
     audit_external_source_binding_context_repair_plan,
+    audit_external_source_broad_ec_disambiguation,
     audit_external_source_candidate_manifest,
     audit_external_source_candidate_sample,
     audit_external_source_heuristic_control_queue,
@@ -86,12 +87,14 @@ from .transfer_scope import (
     audit_external_source_failure_modes,
     audit_external_source_lane_balance,
     audit_external_source_reaction_evidence_sample,
+    audit_external_source_representation_control_comparison,
     audit_external_source_representation_control_manifest,
     audit_external_source_sequence_holdouts,
     audit_external_source_structure_mapping_plan,
     audit_external_source_structure_mapping_sample,
     audit_external_source_control_repair_plan,
     build_external_ood_calibration_plan,
+    build_external_source_active_site_gap_source_requests,
     build_external_source_binding_context_mapping_sample,
     build_external_source_binding_context_repair_plan,
     build_external_source_candidate_manifest,
@@ -107,7 +110,9 @@ from .transfer_scope import (
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
     build_external_source_reaction_evidence_sample,
+    build_external_source_representation_control_comparison,
     build_external_source_representation_control_manifest,
+    build_external_source_sequence_neighborhood_plan,
     build_external_source_transfer_manifest,
     check_external_source_transfer_gates,
 )
@@ -883,6 +888,114 @@ def cmd_audit_external_source_representation_control_manifest(
     return 0
 
 
+def cmd_build_external_source_representation_control_comparison(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.representation_control_manifest).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        representation_control_manifest = json.load(handle)
+    with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
+        heuristic_control_scores = json.load(handle)
+    with Path(args.reaction_evidence_sample).open("r", encoding="utf-8") as handle:
+        reaction_evidence_sample = json.load(handle)
+    comparison = build_external_source_representation_control_comparison(
+        representation_control_manifest=representation_control_manifest,
+        heuristic_control_scores=heuristic_control_scores,
+        reaction_evidence_sample=reaction_evidence_sample,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), comparison)
+    print(
+        "Wrote external source representation control comparison to "
+        f"{args.out} ({comparison['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_representation_control_comparison(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.representation_control_comparison).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        representation_control_comparison = json.load(handle)
+    audit = audit_external_source_representation_control_comparison(
+        representation_control_comparison
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source representation control comparison audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_audit_external_source_broad_ec_disambiguation(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.control_repair_plan).open("r", encoding="utf-8") as handle:
+        control_repair_plan = json.load(handle)
+    with Path(args.reaction_evidence_sample).open("r", encoding="utf-8") as handle:
+        reaction_evidence_sample = json.load(handle)
+    audit = audit_external_source_broad_ec_disambiguation(
+        control_repair_plan=control_repair_plan,
+        reaction_evidence_sample=reaction_evidence_sample,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source broad-EC disambiguation audit to "
+        f"{args.out} ({audit['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_active_site_gap_source_requests(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.control_repair_plan).open("r", encoding="utf-8") as handle:
+        control_repair_plan = json.load(handle)
+    with Path(args.binding_context_repair_plan).open("r", encoding="utf-8") as handle:
+        binding_context_repair_plan = json.load(handle)
+    with Path(args.binding_context_mapping_sample).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        binding_context_mapping_sample = json.load(handle)
+    requests = build_external_source_active_site_gap_source_requests(
+        control_repair_plan=control_repair_plan,
+        binding_context_repair_plan=binding_context_repair_plan,
+        binding_context_mapping_sample=binding_context_mapping_sample,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), requests)
+    print(
+        "Wrote external source active-site gap source requests to "
+        f"{args.out} ({requests['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_build_external_source_sequence_neighborhood_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    with Path(args.sequence_holdout_audit).open("r", encoding="utf-8") as handle:
+        sequence_holdout_audit = json.load(handle)
+    plan = build_external_source_sequence_neighborhood_plan(
+        candidate_manifest=candidate_manifest,
+        sequence_holdout_audit=sequence_holdout_audit,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote external source sequence neighborhood plan to "
+        f"{args.out} ({plan['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
 def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
         transfer_manifest = json.load(handle)
@@ -998,6 +1111,36 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             representation_control_manifest_audit = json.load(handle)
+    representation_control_comparison = None
+    if args.representation_control_comparison:
+        with Path(args.representation_control_comparison).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_control_comparison = json.load(handle)
+    representation_control_comparison_audit = None
+    if args.representation_control_comparison_audit:
+        with Path(args.representation_control_comparison_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            representation_control_comparison_audit = json.load(handle)
+    broad_ec_disambiguation_audit = None
+    if args.broad_ec_disambiguation_audit:
+        with Path(args.broad_ec_disambiguation_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            broad_ec_disambiguation_audit = json.load(handle)
+    active_site_gap_source_requests = None
+    if args.active_site_gap_source_requests:
+        with Path(args.active_site_gap_source_requests).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_gap_source_requests = json.load(handle)
+    sequence_neighborhood_plan = None
+    if args.sequence_neighborhood_plan:
+        with Path(args.sequence_neighborhood_plan).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            sequence_neighborhood_plan = json.load(handle)
     binding_context_repair_plan = None
     if args.binding_context_repair_plan:
         with Path(args.binding_context_repair_plan).open(
@@ -1055,6 +1198,11 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         reaction_evidence_sample_audit=reaction_evidence_sample_audit,
         representation_control_manifest=representation_control_manifest,
         representation_control_manifest_audit=representation_control_manifest_audit,
+        representation_control_comparison=representation_control_comparison,
+        representation_control_comparison_audit=representation_control_comparison_audit,
+        broad_ec_disambiguation_audit=broad_ec_disambiguation_audit,
+        active_site_gap_source_requests=active_site_gap_source_requests,
+        sequence_neighborhood_plan=sequence_neighborhood_plan,
         binding_context_repair_plan=binding_context_repair_plan,
         binding_context_repair_plan_audit=binding_context_repair_plan_audit,
         binding_context_mapping_sample=binding_context_mapping_sample,
@@ -3400,6 +3548,119 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_representation_control_manifest
     )
 
+    external_representation_comparison = subparsers.add_parser(
+        "build-external-source-representation-control-comparison",
+        help="compare review-only external representation controls to heuristic baseline",
+    )
+    external_representation_comparison.add_argument(
+        "--representation-control-manifest",
+        default="artifacts/v3_external_source_representation_control_manifest.json",
+    )
+    external_representation_comparison.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores.json",
+    )
+    external_representation_comparison.add_argument(
+        "--reaction-evidence-sample",
+        default="artifacts/v3_external_source_reaction_evidence_sample.json",
+    )
+    external_representation_comparison.add_argument(
+        "--max-rows", type=int, default=100
+    )
+    external_representation_comparison.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_representation_control_comparison.json",
+    )
+    external_representation_comparison.set_defaults(
+        func=cmd_build_external_source_representation_control_comparison
+    )
+
+    external_representation_comparison_audit = subparsers.add_parser(
+        "audit-external-source-representation-control-comparison",
+        help="verify external representation-control comparisons remain review-only",
+    )
+    external_representation_comparison_audit.add_argument(
+        "--representation-control-comparison",
+        default="artifacts/v3_external_source_representation_control_comparison.json",
+    )
+    external_representation_comparison_audit.add_argument(
+        "--out",
+        default=(
+            "artifacts/"
+            "v3_external_source_representation_control_comparison_audit.json"
+        ),
+    )
+    external_representation_comparison_audit.set_defaults(
+        func=cmd_audit_external_source_representation_control_comparison
+    )
+
+    external_broad_ec_audit = subparsers.add_parser(
+        "audit-external-source-broad-ec-disambiguation",
+        help="narrow broad external EC repair rows to review-only reaction context",
+    )
+    external_broad_ec_audit.add_argument(
+        "--control-repair-plan",
+        default="artifacts/v3_external_source_control_repair_plan.json",
+    )
+    external_broad_ec_audit.add_argument(
+        "--reaction-evidence-sample",
+        default="artifacts/v3_external_source_reaction_evidence_sample.json",
+    )
+    external_broad_ec_audit.add_argument("--max-rows", type=int, default=100)
+    external_broad_ec_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_broad_ec_disambiguation_audit.json",
+    )
+    external_broad_ec_audit.set_defaults(
+        func=cmd_audit_external_source_broad_ec_disambiguation
+    )
+
+    external_active_site_gap_sources = subparsers.add_parser(
+        "build-external-source-active-site-gap-source-requests",
+        help="export review-only sourcing requests for external active-site gaps",
+    )
+    external_active_site_gap_sources.add_argument(
+        "--control-repair-plan",
+        default="artifacts/v3_external_source_control_repair_plan.json",
+    )
+    external_active_site_gap_sources.add_argument(
+        "--binding-context-repair-plan",
+        default="artifacts/v3_external_source_binding_context_repair_plan.json",
+    )
+    external_active_site_gap_sources.add_argument(
+        "--binding-context-mapping-sample",
+        default="artifacts/v3_external_source_binding_context_mapping_sample.json",
+    )
+    external_active_site_gap_sources.add_argument("--max-rows", type=int, default=100)
+    external_active_site_gap_sources.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_active_site_gap_source_requests.json",
+    )
+    external_active_site_gap_sources.set_defaults(
+        func=cmd_build_external_source_active_site_gap_source_requests
+    )
+
+    external_sequence_neighborhood = subparsers.add_parser(
+        "build-external-source-sequence-neighborhood-plan",
+        help="prepare review-only near-duplicate sequence controls for external rows",
+    )
+    external_sequence_neighborhood.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_sequence_neighborhood.add_argument(
+        "--sequence-holdout-audit",
+        default="artifacts/v3_external_source_sequence_holdout_audit.json",
+    )
+    external_sequence_neighborhood.add_argument("--max-rows", type=int, default=100)
+    external_sequence_neighborhood.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_sequence_neighborhood_plan.json",
+    )
+    external_sequence_neighborhood.set_defaults(
+        func=cmd_build_external_source_sequence_neighborhood_plan
+    )
+
     external_transfer_gate = subparsers.add_parser(
         "check-external-source-transfer-gates",
         help="gate review-only external-source transfer artifacts before import work",
@@ -3514,6 +3775,26 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--representation-control-manifest-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--representation-control-comparison",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--representation-control-comparison-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--broad-ec-disambiguation-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-gap-source-requests",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--sequence-neighborhood-plan",
         default=None,
     )
     external_transfer_gate.add_argument(

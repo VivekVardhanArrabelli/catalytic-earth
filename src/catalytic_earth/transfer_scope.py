@@ -2710,6 +2710,509 @@ def audit_external_source_representation_control_manifest(
     }
 
 
+def build_external_source_representation_control_comparison(
+    *,
+    representation_control_manifest: dict[str, Any],
+    heuristic_control_scores: dict[str, Any],
+    reaction_evidence_sample: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Compare representation-control feature proxies with heuristic baseline calls."""
+    scores_by_entry = {
+        str(row.get("entry_id")): row
+        for row in heuristic_control_scores.get("results", [])
+        if isinstance(row, dict) and row.get("entry_id")
+    }
+    reaction_context_by_entry = _external_reaction_context_by_entry(
+        reaction_evidence_sample
+    )
+    rows: list[dict[str, Any]] = []
+    for manifest_row in representation_control_manifest.get("rows", []) or []:
+        if not isinstance(manifest_row, dict) or not manifest_row.get("entry_id"):
+            continue
+        entry_id = str(manifest_row.get("entry_id"))
+        score_row = scores_by_entry.get(entry_id, {})
+        heuristic_control = manifest_row.get("heuristic_baseline_control", {})
+        if not isinstance(heuristic_control, dict):
+            heuristic_control = {}
+        top1 = _external_top1_fingerprint(score_row) or heuristic_control.get(
+            "top1_fingerprint_id"
+        )
+        scope_signal = str(
+            manifest_row.get("scope_signal")
+            or score_row.get("external_scope_signal")
+            or ""
+        )
+        reaction_context = reaction_context_by_entry.get(
+            entry_id, _empty_external_reaction_context(entry_id)
+        )
+        scope_mismatch = _external_scope_top1_mismatch(scope_signal, str(top1 or ""))
+        comparison_status = _external_representation_proxy_status(
+            scope_signal=scope_signal,
+            top1_fingerprint=str(top1 or ""),
+            reaction_context=reaction_context,
+            scope_top1_mismatch=scope_mismatch,
+        )
+        rows.append(
+            {
+                "accession": manifest_row.get("accession"),
+                "comparison_status": comparison_status,
+                "countable_label_candidate": False,
+                "embedding_status": "feature_proxy_no_embedding",
+                "entry_id": entry_id,
+                "feature_proxy_tokens": _external_representation_proxy_tokens(
+                    manifest_row=manifest_row,
+                    reaction_context=reaction_context,
+                ),
+                "heuristic_baseline_control": {
+                    "scope_top1_mismatch": scope_mismatch,
+                    "top1_fingerprint_id": top1,
+                    "top1_score": heuristic_control.get("top1_score"),
+                },
+                "lane_id": manifest_row.get("lane_id"),
+                "ready_for_label_import": False,
+                "reaction_context": reaction_context,
+                "recommended_representation_axes": _external_representation_axes(
+                    scope_signal=scope_signal,
+                    top1_fingerprint=str(top1 or ""),
+                    reaction_context=reaction_context,
+                    scope_top1_mismatch=scope_mismatch,
+                ),
+                "review_status": "representation_control_review_only",
+                "scope_signal": scope_signal,
+            }
+        )
+
+    rows = rows[:max_rows]
+    status_counts = Counter(str(row["comparison_status"]) for row in rows)
+    top1_counts = Counter(
+        str(row["heuristic_baseline_control"].get("top1_fingerprint_id"))
+        for row in rows
+        if row["heuristic_baseline_control"].get("top1_fingerprint_id")
+    )
+    scope_counts = Counter(str(row.get("scope_signal") or "unknown") for row in rows)
+    return {
+        "metadata": {
+            "method": "external_source_representation_control_comparison",
+            "source_representation_control_method": representation_control_manifest.get(
+                "metadata", {}
+            ).get("method"),
+            "source_heuristic_scores_method": heuristic_control_scores.get(
+                "metadata", {}
+            ).get("method"),
+            "source_reaction_evidence_method": reaction_evidence_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "embedding_status": "feature_proxy_no_embedding",
+            "comparison_rule": (
+                "feature-proxy representation controls expose heuristic-collapse "
+                "cases but do not compute embeddings or create labels"
+            ),
+            "scope_top1_mismatch_count": sum(
+                1
+                for row in rows
+                if row["heuristic_baseline_control"].get("scope_top1_mismatch")
+            ),
+            "metal_hydrolase_collapse_flag_count": sum(
+                1
+                for row in rows
+                if row["comparison_status"]
+                == "proxy_flags_metal_hydrolase_collapse"
+            ),
+            "boundary_case_count": sum(
+                1
+                for row in rows
+                if row["comparison_status"]
+                == "proxy_boundary_case_requires_glycan_hydrolase_split"
+            ),
+            "reaction_context_missing_count": sum(
+                1
+                for row in rows
+                if not row["reaction_context"].get("has_reaction_context")
+            ),
+            "comparison_status_counts": dict(sorted(status_counts.items())),
+            "scope_signal_counts": dict(sorted(scope_counts.items())),
+            "top1_fingerprint_counts": dict(sorted(top1_counts.items())),
+        },
+        "rows": rows,
+        "blockers": [
+            "external_embeddings_not_computed",
+            "external_ood_calibration_not_applied",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "representation-control comparisons are review-only diagnostics "
+                "and cannot make external labels countable"
+            )
+        ],
+    }
+
+
+def audit_external_source_representation_control_comparison(
+    representation_control_comparison: dict[str, Any],
+) -> dict[str, Any]:
+    """Guard against treating representation-control comparisons as labels."""
+    rows = [
+        row
+        for row in representation_control_comparison.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_proxy_rows = [
+        row for row in rows if not row.get("feature_proxy_tokens")
+    ]
+    missing_heuristic_rows = [
+        row for row in rows if not row.get("heuristic_baseline_control")
+    ]
+    metadata = representation_control_comparison.get("metadata", {})
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_external_representation_control_comparison")
+    if countable_rows:
+        blockers.append("external_representation_comparison_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("external_representation_comparison_rows_marked_ready_for_import")
+    if missing_proxy_rows:
+        blockers.append("external_representation_comparison_rows_missing_proxy_tokens")
+    if missing_heuristic_rows:
+        blockers.append("external_representation_comparison_rows_missing_heuristic")
+    return {
+        "metadata": {
+            "method": "external_source_representation_control_comparison_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": len(rows),
+            "import_ready_row_count": len(import_ready_rows),
+            "missing_proxy_token_row_count": len(missing_proxy_rows),
+            "missing_heuristic_control_row_count": len(missing_heuristic_rows),
+            "metal_hydrolase_collapse_flag_count": metadata.get(
+                "metal_hydrolase_collapse_flag_count", 0
+            ),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "representation-control comparison rows are future scoring "
+                "diagnostics, not external label decisions"
+            )
+        ],
+    }
+
+
+def audit_external_source_broad_ec_disambiguation(
+    *,
+    control_repair_plan: dict[str, Any],
+    reaction_evidence_sample: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Narrow broad external EC repair rows to specific reaction-context review."""
+    reaction_context_by_entry = _external_reaction_context_by_entry(
+        reaction_evidence_sample
+    )
+    rows: list[dict[str, Any]] = []
+    for repair_row in control_repair_plan.get("rows", []) or []:
+        if (
+            not isinstance(repair_row, dict)
+            or repair_row.get("repair_type") != "broad_ec_disambiguation"
+        ):
+            continue
+        accession = str(repair_row.get("accession") or "")
+        entry_id = str(repair_row.get("entry_id") or f"uniprot:{accession}")
+        context = reaction_context_by_entry.get(
+            entry_id, _empty_external_reaction_context(entry_id)
+        )
+        specific_count = len(context.get("specific_ec_numbers", []))
+        if specific_count == 0:
+            status = "specific_reaction_context_missing"
+        elif specific_count == 1:
+            status = "specific_reaction_context_available_for_review"
+        else:
+            status = "multiple_specific_reactions_need_substrate_selection"
+        rows.append(
+            {
+                "accession": accession,
+                "broad_or_incomplete_ec_numbers": list(
+                    repair_row.get("broad_or_incomplete_ec_numbers") or []
+                ),
+                "countable_label_candidate": False,
+                "disambiguation_status": status,
+                "entry_id": entry_id,
+                "lane_id": repair_row.get("lane_id"),
+                "protein_name": repair_row.get("protein_name"),
+                "reaction_context": context,
+                "ready_for_label_import": False,
+                "review_status": "broad_ec_disambiguation_review_only",
+                "scope_signal": repair_row.get("scope_signal"),
+                "specific_ec_numbers_from_repair": list(
+                    repair_row.get("specific_ec_numbers") or []
+                ),
+                "specific_reaction_context_count": specific_count,
+            }
+        )
+
+    rows = rows[:max_rows]
+    status_counts = Counter(str(row["disambiguation_status"]) for row in rows)
+    return {
+        "metadata": {
+            "method": "external_source_broad_ec_disambiguation_audit",
+            "source_control_repair_method": control_repair_plan.get("metadata", {}).get(
+                "method"
+            ),
+            "source_reaction_evidence_method": reaction_evidence_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "specific_context_available_count": sum(
+                1 for row in rows if row["specific_reaction_context_count"] > 0
+            ),
+            "multiple_specific_context_count": sum(
+                1
+                for row in rows
+                if row["disambiguation_status"]
+                == "multiple_specific_reactions_need_substrate_selection"
+            ),
+            "guardrail_clean": True,
+            "disambiguation_status_counts": dict(sorted(status_counts.items())),
+        },
+        "rows": rows,
+        "blockers": [
+            "specific_reaction_context_not_active_site_evidence",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "specific reaction context can focus review but cannot replace "
+                "active-site evidence or label-factory gates"
+            )
+        ],
+    }
+
+
+def build_external_source_active_site_gap_source_requests(
+    *,
+    control_repair_plan: dict[str, Any],
+    binding_context_repair_plan: dict[str, Any],
+    binding_context_mapping_sample: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Export concrete non-countable sourcing requests for external active-site gaps."""
+    binding_repair_by_accession = {
+        str(row.get("accession")): row
+        for row in binding_context_repair_plan.get("rows", []) or []
+        if isinstance(row, dict) and row.get("accession")
+    }
+    mapped_by_accession = {
+        str(row.get("accession")): row
+        for row in binding_context_mapping_sample.get("entries", []) or []
+        if isinstance(row, dict) and row.get("accession")
+    }
+    rows: list[dict[str, Any]] = []
+    for repair_row in control_repair_plan.get("rows", []) or []:
+        if (
+            not isinstance(repair_row, dict)
+            or repair_row.get("repair_type") != "active_site_feature_gap"
+        ):
+            continue
+        accession = str(repair_row.get("accession") or "")
+        binding_repair = binding_repair_by_accession.get(accession, {})
+        mapped = mapped_by_accession.get(accession, {})
+        binding_position_count = int(
+            binding_repair.get("binding_position_count", 0) or 0
+        )
+        mapped_binding_position_count = int(
+            mapped.get("resolved_binding_position_count", 0) or 0
+        )
+        if mapped_binding_position_count:
+            request_status = "binding_context_mapped_ready_for_active_site_sourcing"
+        elif binding_position_count:
+            request_status = "binding_context_available_needs_structure_mapping"
+        elif int(repair_row.get("catalytic_activity_count", 0) or 0) > 0:
+            request_status = "reaction_text_only_needs_curated_residue_source"
+        else:
+            request_status = "defer_until_active_site_or_binding_source_found"
+        evidence_refs = _external_binding_evidence_references(binding_repair)
+        rows.append(
+            {
+                "accession": accession,
+                "alphafold_ids_sample": repair_row.get("alphafold_ids_sample", []),
+                "binding_evidence_reference_count": len(evidence_refs),
+                "binding_evidence_references": evidence_refs[:20],
+                "binding_position_count": binding_position_count,
+                "countable_label_candidate": False,
+                "entry_id": f"uniprot:{accession}",
+                "lane_id": repair_row.get("lane_id"),
+                "mapped_binding_position_count": mapped_binding_position_count,
+                "pdb_ids_sample": repair_row.get("pdb_ids_sample", []),
+                "protein_name": repair_row.get("protein_name"),
+                "ready_for_label_import": False,
+                "request_status": request_status,
+                "requested_evidence": [
+                    "explicit catalytic or active-site residue positions",
+                    "residue role annotations for mechanism interpretation",
+                    "structure mapping for sourced catalytic positions",
+                    "factory-gated decision artifact before any label import",
+                ],
+                "review_status": "active_site_gap_source_request_review_only",
+                "scope_signal": repair_row.get("scope_signal"),
+                "specific_ec_numbers": repair_row.get("specific_ec_numbers", []),
+            }
+        )
+
+    rows = rows[:max_rows]
+    status_counts = Counter(str(row["request_status"]) for row in rows)
+    return {
+        "metadata": {
+            "method": "external_source_active_site_gap_source_requests",
+            "source_control_repair_method": control_repair_plan.get("metadata", {}).get(
+                "method"
+            ),
+            "source_binding_context_repair_method": binding_context_repair_plan.get(
+                "metadata", {}
+            ).get("method"),
+            "source_binding_context_mapping_method": binding_context_mapping_sample.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "mapped_binding_context_request_count": sum(
+                1 for row in rows if row["mapped_binding_position_count"] > 0
+            ),
+            "binding_context_missing_request_count": sum(
+                1 for row in rows if row["binding_position_count"] == 0
+            ),
+            "request_status_counts": dict(sorted(status_counts.items())),
+        },
+        "rows": rows,
+        "blockers": [
+            "active_site_positions_still_missing",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "active-site gap source requests are evidence-collection tasks "
+                "and cannot create countable labels"
+            )
+        ],
+    }
+
+
+def build_external_source_sequence_neighborhood_plan(
+    *,
+    candidate_manifest: dict[str, Any],
+    sequence_holdout_audit: dict[str, Any],
+    max_rows: int = 100,
+) -> dict[str, Any]:
+    """Prepare non-countable near-duplicate sequence controls for external rows."""
+    manifest_by_accession = {
+        str(row.get("accession")): row
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict) and row.get("accession")
+    }
+    rows: list[dict[str, Any]] = []
+    for holdout_row in sequence_holdout_audit.get("rows", []) or []:
+        if not isinstance(holdout_row, dict) or not holdout_row.get("accession"):
+            continue
+        accession = str(holdout_row.get("accession"))
+        manifest_row = manifest_by_accession.get(accession, {})
+        holdout_status = str(holdout_row.get("holdout_status") or "")
+        if holdout_status == "exact_reference_overlap_holdout":
+            plan_status = "exact_reference_overlap_keep_as_holdout"
+        elif holdout_status == "sequence_failure_set_holdout":
+            plan_status = "sequence_failure_set_keep_as_holdout"
+        else:
+            plan_status = "near_duplicate_search_required_before_import"
+        rows.append(
+            {
+                "accession": accession,
+                "countable_label_candidate": False,
+                "entry_id": f"uniprot:{accession}",
+                "holdout_status": holdout_status,
+                "lane_id": holdout_row.get("lane_id") or manifest_row.get("lane_id"),
+                "matched_failure_cluster_ids": holdout_row.get(
+                    "matched_failure_cluster_ids", []
+                ),
+                "matched_m_csa_entry_ids": holdout_row.get(
+                    "matched_m_csa_entry_ids", []
+                ),
+                "near_duplicate_search_status": "not_run_request_only",
+                "plan_status": plan_status,
+                "protein_name": holdout_row.get("protein_name")
+                or manifest_row.get("protein_name"),
+                "ready_for_label_import": False,
+                "requested_controls": [
+                    "sequence identity search against countable M-CSA labels",
+                    "near-duplicate family-holdout assignment",
+                    "source-text leakage check before decision import",
+                    "external factory gate after sequence controls are complete",
+                ],
+                "review_status": "sequence_neighborhood_review_only",
+                "scope_signal": holdout_row.get("scope_signal")
+                or manifest_row.get("scope_signal"),
+                "sequence_cluster_ids": holdout_row.get("sequence_cluster_ids", []),
+            }
+        )
+
+    rows = rows[:max_rows]
+    status_counts = Counter(str(row["plan_status"]) for row in rows)
+    return {
+        "metadata": {
+            "method": "external_source_sequence_neighborhood_plan",
+            "source_candidate_manifest_method": candidate_manifest.get(
+                "metadata", {}
+            ).get("method"),
+            "source_sequence_holdout_method": sequence_holdout_audit.get(
+                "metadata", {}
+            ).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "exact_reference_overlap_holdout_count": sum(
+                1
+                for row in rows
+                if row["plan_status"] == "exact_reference_overlap_keep_as_holdout"
+            ),
+            "near_duplicate_search_request_count": sum(
+                1
+                for row in rows
+                if row["plan_status"] == "near_duplicate_search_required_before_import"
+            ),
+            "plan_status_counts": dict(sorted(status_counts.items())),
+        },
+        "rows": rows,
+        "blockers": [
+            "near_duplicate_search_not_completed",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+        "warnings": [
+            (
+                "sequence-neighborhood plans are OOD controls and cannot create "
+                "countable labels"
+            )
+        ],
+    }
+
+
 def check_external_source_transfer_gates(
     *,
     transfer_manifest: dict[str, Any],
@@ -2740,6 +3243,11 @@ def check_external_source_transfer_gates(
     reaction_evidence_sample_audit: dict[str, Any] | None = None,
     representation_control_manifest: dict[str, Any] | None = None,
     representation_control_manifest_audit: dict[str, Any] | None = None,
+    representation_control_comparison: dict[str, Any] | None = None,
+    representation_control_comparison_audit: dict[str, Any] | None = None,
+    broad_ec_disambiguation_audit: dict[str, Any] | None = None,
+    active_site_gap_source_requests: dict[str, Any] | None = None,
+    sequence_neighborhood_plan: dict[str, Any] | None = None,
     binding_context_repair_plan: dict[str, Any] | None = None,
     binding_context_repair_plan_audit: dict[str, Any] | None = None,
     binding_context_mapping_sample: dict[str, Any] | None = None,
@@ -3081,6 +3589,107 @@ def check_external_source_transfer_gates(
             and audit_meta.get("ready_for_label_import") is False
             and audit_meta.get("countable_label_candidate_count") == 0
         )
+    if representation_control_comparison is not None:
+        comparison_meta = representation_control_comparison.get("metadata", {})
+        comparison_rows = [
+            row
+            for row in representation_control_comparison.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        gates["representation_control_comparison_review_only"] = (
+            comparison_meta.get("ready_for_label_import") is False
+            and comparison_meta.get("countable_label_candidate_count") == 0
+            and comparison_meta.get("embedding_status") == "feature_proxy_no_embedding"
+            and int(comparison_meta.get("candidate_count", 0) or 0)
+            == len(comparison_rows)
+            and len(comparison_rows) > 0
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in comparison_rows
+            )
+            and all(
+                row.get("ready_for_label_import") is False
+                for row in comparison_rows
+            )
+            and all(row.get("comparison_status") for row in comparison_rows)
+            and all(row.get("feature_proxy_tokens") for row in comparison_rows)
+        )
+    if representation_control_comparison_audit is not None:
+        audit_meta = representation_control_comparison_audit.get("metadata", {})
+        gates["representation_control_comparison_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("ready_for_label_import") is False
+            and audit_meta.get("countable_label_candidate_count") == 0
+        )
+    if broad_ec_disambiguation_audit is not None:
+        broad_meta = broad_ec_disambiguation_audit.get("metadata", {})
+        broad_rows = [
+            row
+            for row in broad_ec_disambiguation_audit.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        gates["broad_ec_disambiguation_audit_review_only"] = (
+            broad_meta.get("guardrail_clean") is True
+            and broad_meta.get("ready_for_label_import") is False
+            and broad_meta.get("countable_label_candidate_count") == 0
+            and int(broad_meta.get("candidate_count", 0) or 0) == len(broad_rows)
+            and len(broad_rows) > 0
+            and all(row.get("countable_label_candidate") is False for row in broad_rows)
+            and all(row.get("ready_for_label_import") is False for row in broad_rows)
+            and all(row.get("disambiguation_status") for row in broad_rows)
+        )
+    if active_site_gap_source_requests is not None:
+        source_meta = active_site_gap_source_requests.get("metadata", {})
+        source_rows = [
+            row
+            for row in active_site_gap_source_requests.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        expected_gap_count = (
+            active_site_evidence_sample_audit.get("metadata", {}).get(
+                "active_site_feature_gap_count"
+            )
+            if active_site_evidence_sample_audit is not None
+            else len(source_rows)
+        )
+        if expected_gap_count is None:
+            expected_gap_count = len(source_rows)
+        gates["active_site_gap_source_requests_review_only"] = (
+            source_meta.get("ready_for_label_import") is False
+            and source_meta.get("countable_label_candidate_count") == 0
+            and int(source_meta.get("candidate_count", 0) or 0) == len(source_rows)
+            and int(source_meta.get("candidate_count", 0) or 0)
+            == int(expected_gap_count or 0)
+            and len(source_rows) > 0
+            and all(row.get("countable_label_candidate") is False for row in source_rows)
+            and all(row.get("ready_for_label_import") is False for row in source_rows)
+            and all(row.get("request_status") for row in source_rows)
+        )
+    if sequence_neighborhood_plan is not None:
+        sequence_plan_meta = sequence_neighborhood_plan.get("metadata", {})
+        sequence_plan_rows = [
+            row
+            for row in sequence_neighborhood_plan.get("rows", [])
+            if isinstance(row, dict)
+        ]
+        gates["sequence_neighborhood_plan_review_only"] = (
+            sequence_plan_meta.get("ready_for_label_import") is False
+            and sequence_plan_meta.get("countable_label_candidate_count") == 0
+            and int(sequence_plan_meta.get("candidate_count", 0) or 0)
+            == int(candidate_manifest.get("metadata", {}).get("candidate_count", 0) or 0)
+            and int(sequence_plan_meta.get("candidate_count", 0) or 0)
+            == len(sequence_plan_rows)
+            and len(sequence_plan_rows) > 0
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in sequence_plan_rows
+            )
+            and all(
+                row.get("ready_for_label_import") is False
+                for row in sequence_plan_rows
+            )
+            and all(row.get("plan_status") for row in sequence_plan_rows)
+        )
     if binding_context_repair_plan is not None:
         binding_meta = binding_context_repair_plan.get("metadata", {})
         binding_rows = [
@@ -3305,6 +3914,69 @@ def check_external_source_transfer_gates(
                     "scope_top1_mismatch_count", 0
                 )
                 if representation_control_manifest is not None
+                else 0
+            ),
+            "representation_control_comparison_candidate_count": (
+                representation_control_comparison.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if representation_control_comparison is not None
+                else 0
+            ),
+            "representation_control_comparison_scope_mismatch_count": (
+                representation_control_comparison.get("metadata", {}).get(
+                    "scope_top1_mismatch_count", 0
+                )
+                if representation_control_comparison is not None
+                else 0
+            ),
+            "representation_control_comparison_metal_collapse_count": (
+                representation_control_comparison.get("metadata", {}).get(
+                    "metal_hydrolase_collapse_flag_count", 0
+                )
+                if representation_control_comparison is not None
+                else 0
+            ),
+            "broad_ec_disambiguation_candidate_count": (
+                broad_ec_disambiguation_audit.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if broad_ec_disambiguation_audit is not None
+                else 0
+            ),
+            "broad_ec_specific_context_available_count": (
+                broad_ec_disambiguation_audit.get("metadata", {}).get(
+                    "specific_context_available_count", 0
+                )
+                if broad_ec_disambiguation_audit is not None
+                else 0
+            ),
+            "active_site_gap_source_request_count": (
+                active_site_gap_source_requests.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if active_site_gap_source_requests is not None
+                else 0
+            ),
+            "active_site_gap_mapped_binding_context_request_count": (
+                active_site_gap_source_requests.get("metadata", {}).get(
+                    "mapped_binding_context_request_count", 0
+                )
+                if active_site_gap_source_requests is not None
+                else 0
+            ),
+            "sequence_neighborhood_plan_candidate_count": (
+                sequence_neighborhood_plan.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if sequence_neighborhood_plan is not None
+                else 0
+            ),
+            "sequence_neighborhood_near_duplicate_search_request_count": (
+                sequence_neighborhood_plan.get("metadata", {}).get(
+                    "near_duplicate_search_request_count", 0
+                )
+                if sequence_neighborhood_plan is not None
                 else 0
             ),
             "binding_context_ready_candidate_count": (
@@ -3902,6 +4574,170 @@ def _external_representation_control_blockers(
     if not score_row:
         blockers.append("heuristic_control_score_missing")
     return blockers
+
+
+def _external_reaction_context_by_entry(
+    reaction_evidence_sample: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    contexts: dict[str, dict[str, Any]] = {}
+    for row in reaction_evidence_sample.get("rows", []) or []:
+        if not isinstance(row, dict) or not row.get("entry_id"):
+            continue
+        entry_id = str(row.get("entry_id"))
+        context = contexts.setdefault(entry_id, _empty_external_reaction_context(entry_id))
+        context["reaction_record_count"] += 1
+        ec_number = str(row.get("ec_number") or "")
+        if row.get("ec_specificity") == "specific" and ec_number:
+            context["specific_ec_numbers"].append(ec_number)
+        elif ec_number:
+            context["broad_or_incomplete_ec_numbers"].append(ec_number)
+        rhea_id = str(row.get("rhea_id") or "")
+        if rhea_id:
+            context["rhea_ids"].append(rhea_id)
+    for context in contexts.values():
+        context["specific_ec_numbers"] = sorted(set(context["specific_ec_numbers"]))
+        context["broad_or_incomplete_ec_numbers"] = sorted(
+            set(context["broad_or_incomplete_ec_numbers"])
+        )
+        context["rhea_ids"] = sorted(set(context["rhea_ids"]))
+        context["has_reaction_context"] = context["reaction_record_count"] > 0
+        context["has_specific_reaction_context"] = bool(context["specific_ec_numbers"])
+        context["has_broad_ec_context"] = bool(context["broad_or_incomplete_ec_numbers"])
+    return contexts
+
+
+def _empty_external_reaction_context(entry_id: str) -> dict[str, Any]:
+    return {
+        "entry_id": entry_id,
+        "broad_or_incomplete_ec_numbers": [],
+        "has_broad_ec_context": False,
+        "has_reaction_context": False,
+        "has_specific_reaction_context": False,
+        "reaction_record_count": 0,
+        "rhea_ids": [],
+        "specific_ec_numbers": [],
+    }
+
+
+def _external_representation_proxy_tokens(
+    *,
+    manifest_row: dict[str, Any],
+    reaction_context: dict[str, Any],
+) -> list[str]:
+    feature_summary = manifest_row.get("feature_summary", {})
+    if not isinstance(feature_summary, dict):
+        feature_summary = {}
+    tokens = [
+        f"scope:{manifest_row.get('scope_signal') or 'unknown'}",
+        f"lane:{manifest_row.get('lane_id') or 'unknown'}",
+        f"resolved_residue_count:{feature_summary.get('resolved_residue_count') or 0}",
+        (
+            "reaction:specific"
+            if reaction_context.get("has_specific_reaction_context")
+            else "reaction:broad"
+            if reaction_context.get("has_broad_ec_context")
+            else "reaction:missing"
+        ),
+    ]
+    for residue_code in sorted(
+        {
+            str(code).upper()
+            for code in feature_summary.get("residue_codes", []) or []
+            if code
+        }
+    ):
+        tokens.append(f"active_site_residue:{residue_code}")
+    for cofactor_family in sorted(
+        {
+            str(family)
+            for family in feature_summary.get("local_cofactor_families", []) or []
+            if family
+        }
+    ):
+        tokens.append(f"local_cofactor:{cofactor_family}")
+    if not any(token.startswith("local_cofactor:") for token in tokens):
+        tokens.append("local_cofactor:none")
+    for ec_number in reaction_context.get("specific_ec_numbers", [])[:5]:
+        tokens.append(f"specific_ec:{ec_number}")
+    for ec_number in reaction_context.get("broad_or_incomplete_ec_numbers", [])[:5]:
+        tokens.append(f"broad_ec:{ec_number}")
+    pocket_names = feature_summary.get("pocket_descriptor_names", []) or []
+    for descriptor_name in sorted(str(name) for name in pocket_names if name)[:8]:
+        tokens.append(f"pocket_descriptor:{descriptor_name}")
+    return tokens
+
+
+def _external_representation_proxy_status(
+    *,
+    scope_signal: str,
+    top1_fingerprint: str,
+    reaction_context: dict[str, Any],
+    scope_top1_mismatch: bool,
+) -> str:
+    if not reaction_context.get("has_reaction_context"):
+        return "needs_reaction_context_before_representation_comparison"
+    if scope_top1_mismatch and top1_fingerprint == "metal_dependent_hydrolase":
+        return "proxy_flags_metal_hydrolase_collapse"
+    if scope_top1_mismatch:
+        return "proxy_flags_scope_top1_mismatch"
+    if scope_signal == "glycan_chemistry" and top1_fingerprint == "metal_dependent_hydrolase":
+        return "proxy_boundary_case_requires_glycan_hydrolase_split"
+    return "proxy_consistent_with_heuristic_scope"
+
+
+def _external_representation_axes(
+    *,
+    scope_signal: str,
+    top1_fingerprint: str,
+    reaction_context: dict[str, Any],
+    scope_top1_mismatch: bool,
+) -> list[str]:
+    axes = [
+        "active_site_residue_token_axis",
+        "pocket_composition_axis",
+        "reaction_context_axis",
+    ]
+    if reaction_context.get("has_broad_ec_context"):
+        axes.append("broad_ec_disambiguation_axis")
+    if scope_signal in {"transferase_methyl", "transferase_phosphoryl"}:
+        axes.append("transferase_reaction_class_axis")
+    if scope_signal == "oxidoreductase_long_tail":
+        axes.append("redox_cofactor_context_axis")
+    if scope_signal in {"isomerase", "lyase"}:
+        axes.append("non_hydrolytic_scope_axis")
+    if scope_signal == "glycan_chemistry":
+        axes.append("glycan_hydrolase_boundary_axis")
+    if scope_top1_mismatch or top1_fingerprint == "metal_dependent_hydrolase":
+        axes.append("heuristic_top1_contrast_axis")
+    return sorted(set(axes))
+
+
+def _external_binding_evidence_references(row: dict[str, Any]) -> list[dict[str, str]]:
+    seen: set[tuple[str, str, str]] = set()
+    refs: list[dict[str, str]] = []
+    for position in row.get("binding_positions", []) or []:
+        if not isinstance(position, dict):
+            continue
+        ligand_name = str(position.get("ligand_name") or "")
+        for evidence in position.get("evidence", []) or []:
+            if not isinstance(evidence, dict):
+                continue
+            source = str(evidence.get("source") or "")
+            evidence_id = str(evidence.get("id") or "")
+            if not source or not evidence_id:
+                continue
+            key = (source, evidence_id, ligand_name)
+            if key in seen:
+                continue
+            seen.add(key)
+            refs.append(
+                {
+                    "source": source,
+                    "id": evidence_id,
+                    "ligand_name": ligand_name,
+                }
+            )
+    return refs
 
 
 def _external_binding_context_repair_blockers(repair_status: str) -> list[str]:

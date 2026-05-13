@@ -1,0 +1,148 @@
+{
+  "blockers": [
+    "specific_reaction_context_not_active_site_evidence",
+    "external_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "metadata": {
+    "candidate_count": 3,
+    "countable_label_candidate_count": 0,
+    "disambiguation_status_counts": {
+      "multiple_specific_reactions_need_substrate_selection": 2,
+      "specific_reaction_context_available_for_review": 1
+    },
+    "guardrail_clean": true,
+    "max_rows": 100,
+    "method": "external_source_broad_ec_disambiguation_audit",
+    "multiple_specific_context_count": 2,
+    "ready_for_label_import": false,
+    "source_control_repair_method": "external_source_control_repair_plan",
+    "source_reaction_evidence_method": "external_source_reaction_evidence_sample",
+    "specific_context_available_count": 3
+  },
+  "rows": [
+    {
+      "accession": "P06746",
+      "broad_or_incomplete_ec_numbers": [
+        "4.2.99.-"
+      ],
+      "countable_label_candidate": false,
+      "disambiguation_status": "multiple_specific_reactions_need_substrate_selection",
+      "entry_id": "uniprot:P06746",
+      "lane_id": "external_source:lyase",
+      "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [
+          "4.2.99.-"
+        ],
+        "entry_id": "uniprot:P06746",
+        "has_broad_ec_context": true,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 4,
+        "rhea_ids": [
+          "RHEA:12336",
+          "RHEA:22508",
+          "RHEA:25597",
+          "RHEA:66592"
+        ],
+        "specific_ec_numbers": [
+          "2.7.7.7",
+          "4.2.99.18"
+        ]
+      },
+      "ready_for_label_import": false,
+      "review_status": "broad_ec_disambiguation_review_only",
+      "scope_signal": "lyase",
+      "specific_ec_numbers_from_repair": [
+        "2.7.7.7",
+        "4.2.99.18"
+      ],
+      "specific_reaction_context_count": 2
+    },
+    {
+      "accession": "P55263",
+      "broad_or_incomplete_ec_numbers": [
+        "2.7.1.-"
+      ],
+      "countable_label_candidate": false,
+      "disambiguation_status": "specific_reaction_context_available_for_review",
+      "entry_id": "uniprot:P55263",
+      "lane_id": "external_source:transferase_phosphoryl",
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [
+          "2.7.1.-"
+        ],
+        "entry_id": "uniprot:P55263",
+        "has_broad_ec_context": true,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 3,
+        "rhea_ids": [
+          "RHEA:10224",
+          "RHEA:10272",
+          "RHEA:20824"
+        ],
+        "specific_ec_numbers": [
+          "2.7.1.20"
+        ]
+      },
+      "ready_for_label_import": false,
+      "review_status": "broad_ec_disambiguation_review_only",
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers_from_repair": [
+        "2.7.1.20"
+      ],
+      "specific_reaction_context_count": 1
+    },
+    {
+      "accession": "C9JRZ8",
+      "broad_or_incomplete_ec_numbers": [
+        "1.1.1.-"
+      ],
+      "countable_label_candidate": false,
+      "disambiguation_status": "multiple_specific_reactions_need_substrate_selection",
+      "entry_id": "uniprot:C9JRZ8",
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+      "reaction_context": {
+        "broad_or_incomplete_ec_numbers": [
+          "1.1.1.-"
+        ],
+        "entry_id": "uniprot:C9JRZ8",
+        "has_broad_ec_context": true,
+        "has_reaction_context": true,
+        "has_specific_reaction_context": true,
+        "reaction_record_count": 6,
+        "rhea_ids": [
+          "RHEA:10044",
+          "RHEA:10052",
+          "RHEA:12168",
+          "RHEA:14697",
+          "RHEA:14981",
+          "RHEA:25033"
+        ],
+        "specific_ec_numbers": [
+          "1.1.1.216",
+          "1.1.1.300",
+          "1.1.1.54",
+          "1.1.1.64"
+        ]
+      },
+      "ready_for_label_import": false,
+      "review_status": "broad_ec_disambiguation_review_only",
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers_from_repair": [
+        "1.1.1.216",
+        "1.1.1.300",
+        "1.1.1.54",
+        "1.1.1.64"
+      ],
+      "specific_reaction_context_count": 4
+    }
+  ],
+  "warnings": [
+    "specific reaction context can focus review but cannot replace active-site evidence or label-factory gates"
+  ]
+}

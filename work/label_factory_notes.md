@@ -14,8 +14,10 @@ review-only: candidate manifest, lane-balance audit, evidence plan/export,
 active-site evidence queue, active-site feature sample, structure-control
 mapping sample, heuristic-control score audit, failure-mode audit,
 control-repair plan, representation-control manifest, binding-context repair
-artifacts, sequence-holdout audit, 33/33 transfer gate, and full 30-candidate
-Rhea reaction context all keep `countable_label_candidate_count=0`.
+artifacts, representation-control comparison, active-site gap source requests,
+sequence-holdout and sequence-neighborhood controls, broad-EC disambiguation,
+38/38 transfer gate, and full 30-candidate Rhea reaction context all keep
+`countable_label_candidate_count=0`.
 
 ## Current Generated Artifacts
 

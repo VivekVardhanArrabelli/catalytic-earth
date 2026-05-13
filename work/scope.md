@@ -248,7 +248,8 @@ Current expectation:
   30-row external sample now has a review-only candidate manifest, evidence
   plan/export, import-safety audit, active-site feature sampling, structure
   mapping, heuristic-control scoring, failure-mode audit, control-repair
-  artifacts, and 33/33 transfer
+  artifacts, representation-control comparison, broad-EC disambiguation,
+  active-site gap source requests, sequence-neighborhood controls, and 38/38 transfer
   gate; 2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
   full Rhea reaction-context sample collects 64 review-only reaction records
@@ -259,8 +260,12 @@ Current expectation:
   pass finds 15 feature-supported rows and 10 gaps, the expanded AlphaFold
   mapping sample resolves all 12 heuristic-ready controls, the heuristic
   control collapses 9/12 controls to metal hydrolase top1 with 9 scope/top1
-  mismatches, the repair plan creates 25 non-countable repair rows, and 0
-  external labels are countable.
+  mismatches, the repair plan creates 25 non-countable repair rows, the
+  representation-control comparison flags 7 metal-hydrolase collapse rows and
+  2 glycan-boundary rows, the broad-EC audit finds specific reaction context for
+  all 3 broad-only repair rows, the active-site gap source-request artifact
+  covers all 10 active-site gaps, the sequence-neighborhood plan requests
+  near-duplicate search for 28 rows, and 0 external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

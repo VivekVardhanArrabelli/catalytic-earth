@@ -167,6 +167,26 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_representation_control_manifest_audit_1025.json"
         )
+        representation_comparison = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_control_comparison_1025.json"
+        )
+        representation_comparison_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_control_comparison_audit_1025.json"
+        )
+        broad_ec_disambiguation = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_broad_ec_disambiguation_audit_1025.json"
+        )
+        active_site_gap_sources = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_active_site_gap_source_requests_1025.json"
+        )
         binding_context_repair = _load_json(
             ROOT
             / "artifacts"
@@ -189,6 +209,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         sequence_holdout_audit = _load_json(
             ROOT / "artifacts" / "v3_external_source_sequence_holdout_audit_1025.json"
+        )
+        sequence_neighborhood = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_sequence_neighborhood_plan_1025.json"
         )
         external_import_safety = _load_json(
             ROOT
@@ -574,6 +599,59 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             representation_control["metadata"]["scope_top1_mismatch_count"], 9
         )
         self.assertTrue(representation_control_audit["metadata"]["guardrail_clean"])
+        self.assertFalse(representation_comparison["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            representation_comparison["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(representation_comparison["metadata"]["candidate_count"], 12)
+        self.assertEqual(
+            representation_comparison["metadata"]["scope_top1_mismatch_count"], 9
+        )
+        self.assertEqual(
+            representation_comparison["metadata"][
+                "metal_hydrolase_collapse_flag_count"
+            ],
+            7,
+        )
+        self.assertEqual(
+            representation_comparison["metadata"]["boundary_case_count"], 2
+        )
+        self.assertTrue(representation_comparison_audit["metadata"]["guardrail_clean"])
+        self.assertTrue(broad_ec_disambiguation["metadata"]["guardrail_clean"])
+        self.assertFalse(
+            broad_ec_disambiguation["metadata"]["ready_for_label_import"]
+        )
+        self.assertEqual(
+            broad_ec_disambiguation["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(broad_ec_disambiguation["metadata"]["candidate_count"], 3)
+        self.assertEqual(
+            broad_ec_disambiguation["metadata"][
+                "specific_context_available_count"
+            ],
+            3,
+        )
+        self.assertEqual(
+            broad_ec_disambiguation["metadata"]["multiple_specific_context_count"],
+            2,
+        )
+        self.assertFalse(active_site_gap_sources["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            active_site_gap_sources["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(active_site_gap_sources["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            active_site_gap_sources["metadata"][
+                "mapped_binding_context_request_count"
+            ],
+            7,
+        )
+        self.assertEqual(
+            active_site_gap_sources["metadata"][
+                "binding_context_missing_request_count"
+            ],
+            3,
+        )
         self.assertFalse(binding_context_repair["metadata"]["ready_for_label_import"])
         self.assertEqual(
             binding_context_repair["metadata"]["countable_label_candidate_count"], 0
@@ -616,6 +694,21 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             ],
             28,
         )
+        self.assertFalse(sequence_neighborhood["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            sequence_neighborhood["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(sequence_neighborhood["metadata"]["candidate_count"], 30)
+        self.assertEqual(
+            sequence_neighborhood["metadata"][
+                "exact_reference_overlap_holdout_count"
+            ],
+            2,
+        )
+        self.assertEqual(
+            sequence_neighborhood["metadata"]["near_duplicate_search_request_count"],
+            28,
+        )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
             external_import_safety["metadata"]["total_new_countable_label_count"], 0
@@ -627,8 +720,8 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 33)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 33)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 38)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 38)
         self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])
         self.assertTrue(
             external_transfer_gate["metadata"][
@@ -753,6 +846,57 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertEqual(
             external_transfer_gate["metadata"]["representation_control_eligible_count"],
             12,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "representation_control_comparison_review_only"
+            ]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "representation_control_comparison_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "representation_control_comparison_metal_collapse_count"
+            ],
+            7,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "broad_ec_disambiguation_audit_review_only"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "broad_ec_specific_context_available_count"
+            ],
+            3,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "active_site_gap_source_requests_review_only"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["active_site_gap_source_request_count"],
+            10,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "active_site_gap_mapped_binding_context_request_count"
+            ],
+            7,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["sequence_neighborhood_plan_review_only"]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "sequence_neighborhood_near_duplicate_search_request_count"
+            ],
+            28,
         )
         self.assertTrue(
             external_transfer_gate["gates"]["binding_context_repair_plan_review_only"]

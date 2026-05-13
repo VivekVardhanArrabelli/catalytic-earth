@@ -676,14 +676,18 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_failure_mode_audit_1025.json`,
   `artifacts/v3_external_source_control_repair_plan_1025.json`,
   `artifacts/v3_external_source_representation_control_manifest_1025.json`,
+  `artifacts/v3_external_source_representation_control_comparison_1025.json`,
   `artifacts/v3_external_source_binding_context_repair_plan_1025.json`,
   `artifacts/v3_external_source_binding_context_mapping_sample_1025.json`,
+  `artifacts/v3_external_source_active_site_gap_source_requests_1025.json`,
   `artifacts/v3_external_source_sequence_holdout_audit_1025.json`,
+  `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json`,
+  `artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  33/33 external transfer gate for evidence collection, pass the lane-balance
+  38/38 external transfer gate for evidence collection, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
   map all 12 heuristic-ready controls onto AlphaFold structures, and must not
@@ -691,13 +695,19 @@ Current 1,025-preview state:
   metal-hydrolase top1 collapse and 9 scope/top1 mismatches as review-only
   failure modes rather than countable evidence. The repair plan creates 25
   non-countable repair rows, the representation manifest exposes 12 mapped
-  controls for future learned or structure-language scoring, and the
-  binding-context path maps 7/7 active-site-gap rows as repair context only.
+  controls for future learned or structure-language scoring, the feature-proxy
+  representation comparison flags 7 metal-hydrolase collapse rows and 2
+  glycan-boundary rows, and the binding-context path maps 7/7 active-site-gap
+  rows as repair context only. The active-site gap source requests cover all 10
+  feature-gap rows, and the sequence-neighborhood plan requests near-duplicate
+  search for 28 external rows.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
   adds bounded Rhea reaction context for all 30 candidates while keeping every
   row non-countable and outside any reviewed decision artifact; its companion
   guardrail audit is clean and flags 16 broad-EC context rows as review-only
-  context.
+  context. `artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json`
+  finds specific reaction context for all 3 broad-only repair rows while keeping
+  them non-countable.
 
 ## Automation Lock
 

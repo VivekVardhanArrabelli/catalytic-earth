@@ -54,6 +54,10 @@ Current review-only external artifacts:
 - `artifacts/v3_external_source_representation_control_manifest_1025.json`
   exposes all 12 mapped controls as future representation rows. Embeddings are
   explicitly not computed, and no row is a training label.
+- `artifacts/v3_external_source_representation_control_comparison_1025.json`
+  compares feature-proxy controls against the heuristic baseline without
+  computing embeddings. It flags 7 metal-hydrolase collapse rows, keeps 2
+  glycan-boundary rows as review-only, and creates 0 countable labels.
 - `artifacts/v3_external_source_binding_context_repair_plan_1025.json` splits
   the 10 active-site-feature gaps into 7 rows ready for binding-context mapping
   and 3 rows still missing binding context.
@@ -61,10 +65,16 @@ Current review-only external artifacts:
   7/7 binding-context repair rows with 0 fetch failures. These mapped binding
   positions remain repair context only; they are not catalytic active-site
   evidence.
+- `artifacts/v3_external_source_active_site_gap_source_requests_1025.json`
+  converts all 10 active-site-feature gaps into sourcing requests: 7 have
+  mapped binding context and 3 need curated residue sources.
 - `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`
   confirms countable import adds 0 labels from that export.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
-  checks for review-only evidence collection and is still not ready for label
+  checks for review-only evidence collection in the earlier control-repair
+  pass; the current gate passes 38/38 after representation comparison,
+  broad-EC disambiguation, active-site gap source requests, and
+  sequence-neighborhood controls. It is still not ready for label
   import.
 
 Sequence-similarity guardrail details:
@@ -73,6 +83,9 @@ Sequence-similarity guardrail details:
 - `P42126` overlaps `m_csa:341` and must stay a sequence-holdout control.
 - No external candidate is countable from exact-reference or lane membership
   alone.
+- `artifacts/v3_external_source_sequence_neighborhood_plan_1025.json` turns the
+  current sequence surface into 2 exact-holdout rows and 28 near-duplicate
+  search requests.
 
 Reaction-context details:
 
@@ -84,6 +97,9 @@ Reaction-context details:
 - The audit flags 16 broad-EC context rows across `1.1.1.-`, `1.11.1.-`,
   `1.8.-.-`, `2.1.1.-`, `2.7.1.-`, `3.2.2.-`, and `4.2.99.-`. Treat those
   rows as weak reaction context only, not specific mechanism evidence.
+- `artifacts/v3_external_source_broad_ec_disambiguation_audit_1025.json` finds
+  specific reaction context for all 3 broad-only repair rows; 2 still require
+  substrate selection among multiple specific reactions.
 
 Sequence-holdout details:
 
@@ -92,8 +108,8 @@ Sequence-holdout details:
   external candidates for near-duplicate search before any future import
   decision.
 
-Next bounded work should repair the external-control weaknesses before any
-external label decision: resolve the 10 active-site-feature gaps, disambiguate
-the 3 broad-EC rows, and either prototype representation controls for the 12
-mapped external controls or explain why the current heuristic collapses 9/12
-controls into `metal_dependent_hydrolase`.
+Next bounded work should keep repairing external-control weaknesses before any
+external label decision: source explicit catalytic residues for the 10
+active-site-feature gaps, run near-duplicate sequence searches for 28 rows, or
+replace the feature-proxy representation comparison with real learned or
+structure-language controls.
