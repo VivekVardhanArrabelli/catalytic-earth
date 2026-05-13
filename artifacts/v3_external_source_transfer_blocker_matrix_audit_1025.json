@@ -19,7 +19,7 @@
     "missing_review_only_status_row_count": 0,
     "missing_sequence_task_row_count": 0,
     "ready_for_label_import": false,
-    "representation_near_duplicate_alert_count": 1,
+    "representation_near_duplicate_alert_count": 3,
     "representation_sample_row_count": 12
   },
   "warnings": [

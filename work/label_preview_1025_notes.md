@@ -59,8 +59,10 @@ bounded sequence-neighborhood screen and import-readiness audit, and pass the
 sequence-search export, active-site sourcing export/resolution,
 representation-backend planning/sample, and a candidate blocker matrix. The
 active-site sourcing resolution finds 0 explicit active-site residue sources in
-the 10 gap rows, and the deterministic k-mer representation sample flags one
-representation near-duplicate holdout while keeping all rows non-countable.
+the 10 gap rows, the deterministic k-mer baseline flags one representation
+near-duplicate holdout, and the canonical ESM-2 representation sample flags
+three representation near-duplicate holdouts while keeping all rows
+non-countable.
 Two sample accessions (`O15527` and `P42126`) overlap existing M-CSA reference
 accessions and are routed to holdout controls. The lane-balance audit is clean:
 six lanes each contribute five candidates, so the initial review sample has not

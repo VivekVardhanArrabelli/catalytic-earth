@@ -22,7 +22,6 @@
       "heuristic_control_not_scored": 18,
       "heuristic_metal_hydrolase_collapse": 9,
       "heuristic_scope_top1_mismatch": 9,
-      "learned_or_structure_language_embedding_not_run": 12,
       "primary_active_site_source_required": 3,
       "representation_backend_not_selected": 12,
       "representation_backend_plan_missing_or_not_eligible": 18,
@@ -30,7 +29,7 @@
       "representation_control_proxy_boundary_case_requires_glycan_hydrolase_split": 2,
       "representation_control_proxy_flags_metal_hydrolase_collapse": 7,
       "representation_control_proxy_flags_scope_top1_mismatch": 2,
-      "representation_near_duplicate_control_holdout": 1,
+      "representation_near_duplicate_control_holdout": 3,
       "sequence_alignment_near_duplicate_candidate_holdout": 2,
       "sequence_holdout_control_not_resolved": 2
     },
@@ -218,8 +217,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:O14756",
@@ -233,11 +231,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
-        "sample_nearest_reference_accession": "P14604",
-        "sample_top_embedding_cosine": 0.8803,
+        "sample_nearest_reference_accession": "P0A6C1",
+        "sample_top_embedding_cosine": 0.7852,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -309,7 +307,7 @@
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
         "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "representation_near_duplicate_control_holdout"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q969G6",
@@ -323,11 +321,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "representation_near_duplicate_holdout",
         "sample_embedding_status": "computed_review_only",
-        "sample_near_duplicate_alert": false,
-        "sample_nearest_reference_accession": "P80078",
-        "sample_top_embedding_cosine": 0.8529,
+        "sample_near_duplicate_alert": true,
+        "sample_nearest_reference_accession": "P0A7F3",
+        "sample_top_embedding_cosine": 0.9789,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -491,8 +489,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:A2RU49",
@@ -506,11 +503,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
         "sample_nearest_reference_accession": "P05404",
-        "sample_top_embedding_cosine": 0.8965,
+        "sample_top_embedding_cosine": 0.8879,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -579,8 +576,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q9BXD5",
@@ -594,11 +590,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
-        "sample_nearest_reference_accession": "P21327",
-        "sample_top_embedding_cosine": 0.9364,
+        "sample_nearest_reference_accession": "P11708",
+        "sample_top_embedding_cosine": 0.8619,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -627,8 +623,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P35914",
@@ -642,11 +637,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
-        "sample_nearest_reference_accession": "P33038",
-        "sample_top_embedding_cosine": 0.9214,
+        "sample_nearest_reference_accession": "P21874",
+        "sample_top_embedding_cosine": 0.9499,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -675,8 +670,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q96I15",
@@ -690,11 +684,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
-        "sample_nearest_reference_accession": "P07650",
-        "sample_top_embedding_cosine": 0.9295,
+        "sample_nearest_reference_accession": "P24295",
+        "sample_top_embedding_cosine": 0.8346,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -766,8 +760,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q13907",
@@ -781,11 +774,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
-        "sample_nearest_reference_accession": "O58403",
-        "sample_top_embedding_cosine": 0.8539,
+        "sample_nearest_reference_accession": "P13000",
+        "sample_top_embedding_cosine": 0.8265,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -814,8 +807,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q9BXS1",
@@ -829,11 +821,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
         "sample_nearest_reference_accession": "P61517",
-        "sample_top_embedding_cosine": 0.9026,
+        "sample_top_embedding_cosine": 0.9025,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -861,8 +853,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P34949",
@@ -876,11 +867,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
-        "sample_nearest_reference_accession": "P36507",
-        "sample_top_embedding_cosine": 0.92,
+        "sample_nearest_reference_accession": "P0A6D3",
+        "sample_top_embedding_cosine": 0.9199,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -910,8 +901,7 @@
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
         "external_embeddings_not_computed",
-        "representation_near_duplicate_control_holdout",
-        "learned_or_structure_language_embedding_not_run"
+        "representation_near_duplicate_control_holdout"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P60174",
@@ -929,7 +919,7 @@
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": true,
         "sample_nearest_reference_accession": "P00940",
-        "sample_top_embedding_cosine": 0.9782,
+        "sample_top_embedding_cosine": 0.9984,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -1000,8 +990,7 @@
         "full_label_factory_gate_not_run",
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
-        "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "external_embeddings_not_computed"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:Q6NSJ0",
@@ -1015,11 +1004,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "learned_representation_sample_complete",
         "sample_embedding_status": "computed_review_only",
         "sample_near_duplicate_alert": false,
-        "sample_nearest_reference_accession": "P27002",
-        "sample_top_embedding_cosine": 0.9175,
+        "sample_nearest_reference_accession": "P0ABI8",
+        "sample_top_embedding_cosine": 0.8958,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",
@@ -1138,7 +1127,7 @@
         "complete_near_duplicate_reference_search_not_completed",
         "representation_backend_not_selected",
         "external_embeddings_not_computed",
-        "learned_or_structure_language_embedding_not_run"
+        "representation_near_duplicate_control_holdout"
       ],
       "countable_label_candidate": false,
       "entry_id": "uniprot:P33025",
@@ -1152,11 +1141,11 @@
         "embedding_status": "backend_plan_only_not_computed",
         "recommended_backend_count": 4,
         "required_input_count": 4,
-        "sample_backend_status": "sequence_kmer_embedding_control_complete",
+        "sample_backend_status": "representation_near_duplicate_holdout",
         "sample_embedding_status": "computed_review_only",
-        "sample_near_duplicate_alert": false,
+        "sample_near_duplicate_alert": true,
         "sample_nearest_reference_accession": "P0A786",
-        "sample_top_embedding_cosine": 0.9,
+        "sample_top_embedding_cosine": 0.9727,
         "sequence_search_task": "run_complete_uniref_or_all_vs_all_near_duplicate_search"
       },
       "review_status": "external_transfer_blocker_matrix_review_only",

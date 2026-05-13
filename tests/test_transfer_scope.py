@@ -6,6 +6,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from catalytic_earth.transfer_scope import (
     audit_external_source_active_site_evidence_sample,
@@ -2774,6 +2775,100 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "deterministic_sequence_kmer_control",
         )
         self.assertGreater(sample["rows"][0]["top_embedding_cosine"], 0.5)
+        self.assertFalse(sample["rows"][0]["countable_label_candidate"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+
+    def test_external_representation_backend_sample_accepts_learned_backend(self) -> None:
+        plan = {
+            "metadata": {"method": "external_source_representation_backend_plan"},
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "backend_readiness_status": (
+                        "ready_for_backend_selection_not_embedding"
+                    ),
+                    "comparison_status": "feature_proxy_boundary_case",
+                    "countable_label_candidate": False,
+                    "entry_id": "uniprot:P11111",
+                    "heuristic_baseline_control": {
+                        "scope_top1_mismatch": True,
+                        "top1_fingerprint_id": "metal_dependent_hydrolase",
+                    },
+                    "lane_id": "external_source:isomerase",
+                    "ready_for_label_import": False,
+                    "scope_signal": "isomerase",
+                    "sequence_search_task": (
+                        "run_complete_uniref_or_all_vs_all_near_duplicate_search"
+                    ),
+                }
+            ],
+        }
+        sequence_sample = {
+            "metadata": {"method": "external_source_sequence_neighborhood_sample"},
+            "rows": [
+                {
+                    "accession": "P11111",
+                    "top_matches": [
+                        {
+                            "matched_m_csa_entry_ids": ["m_csa:1"],
+                            "near_duplicate_score": 0.2,
+                            "reference_accession": "P22222",
+                        }
+                    ],
+                }
+            ],
+        }
+
+        def fake_fetcher(accessions: list[str]) -> dict[str, object]:
+            self.assertEqual(sorted(accessions), ["P11111", "P22222"])
+            return {
+                "metadata": {"source": "fake_sequence_records"},
+                "records": [
+                    {"accession": "P11111", "sequence": "ACDEFGHIKLMNPQRSTVWY"},
+                    {"accession": "P22222", "sequence": "YYYYYGHIKLMNPQRSTVWY"},
+                ],
+            }
+
+        fake_embedding_payload = {
+            "metadata": {
+                "embedding_backend": "esm2_t6_8m_ur50d",
+                "embedding_backend_available": True,
+                "embedding_failure_count": 0,
+                "embedding_vector_dimension": 2,
+                "model_name": "fake-esm2",
+            },
+            "embeddings_by_accession": {
+                "P11111": [1.0, 0.0],
+                "P22222": [0.0, 1.0],
+            },
+            "embedding_failures": [],
+            "warnings": ["fake learned backend"],
+            "warnings_by_accession": {},
+        }
+
+        with patch(
+            "catalytic_earth.transfer_scope._compute_esm2_t6_embeddings",
+            return_value=fake_embedding_payload,
+        ):
+            sample = build_external_source_representation_backend_sample(
+                representation_backend_plan=plan,
+                sequence_neighborhood_sample=sequence_sample,
+                embedding_backend="esm2_t6_8m_ur50d",
+                fetcher=fake_fetcher,
+            )
+        audit = audit_external_source_representation_backend_sample(sample)
+
+        self.assertEqual(sample["metadata"]["embedding_backend"], "esm2_t6_8m_ur50d")
+        self.assertTrue(sample["metadata"]["embedding_backend_available"])
+        self.assertEqual(sample["metadata"]["embedding_vector_dimension"], 2)
+        self.assertEqual(
+            sample["rows"][0]["backend_status"],
+            "learned_representation_sample_complete",
+        )
+        self.assertEqual(sample["metadata"]["learned_representation_complete_count"], 1)
+        self.assertEqual(
+            sample["metadata"]["learned_vs_heuristic_disagreement_count"], 1
+        )
         self.assertFalse(sample["rows"][0]["countable_label_candidate"])
         self.assertTrue(audit["metadata"]["guardrail_clean"])
 

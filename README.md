@@ -213,6 +213,24 @@ only, not label import. The full Rhea reaction-context pass covers all 30
 external candidates with 64 reaction records, flags 16 broad-EC context rows,
 and remains review-only. See
 `docs/external_source_transfer.md` for the guarded command sequence.
+`artifacts/v3_sequence_distance_holdout_eval_1000.json` and
+`artifacts/v3_sequence_distance_holdout_eval_1025.json` now report the first
+generalization holdout metrics for the accepted countable registry. No
+Foldseek, MMseqs2, BLAST, or DIAMOND executable was available locally, so the
+partition is explicitly a deterministic proxy based on exact UniProt reference
+clusters, selected structures, and active-site geometry buckets. Both contexts
+hold out 136 labeled rows, retain 0 held-out out-of-scope false
+non-abstentions, and report held-out evaluable in-scope top1 accuracy and
+retention of `0.9767`; top1/top3 accuracy among retained held-out evaluable
+rows is `1.0000`. This removes the first generalization-visibility blocker but
+does not claim real <=30% sequence identity or <0.7 TM-score separation.
+`artifacts/v3_external_source_representation_backend_sample_1025.json`
+also computes the first bounded learned representation sample for all 12 mapped
+external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
+320-dimensional embeddings, keeps all rows review-only and non-countable,
+flags three representation-near-duplicate holdouts, and emits 12
+learned-vs-heuristic disagreement rows while preserving geometry retrieval as
+the required baseline.
 `artifacts/v3_expert_label_decision_local_evidence_repair_plan_700.json`
 prioritizes the current 21 local-evidence repair lanes as 4 reaction/substrate
 expert-review lanes, 3 explicit alternate-residue-position sourcing lanes,
@@ -280,9 +298,11 @@ automation-curated bronze labels after the accepted 850 state. The latest
 the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
-1,025 preview is open but not promoted; the next bounded work item is
-repairing review-only external-source controls behind the 59/59 transfer gate,
-not M-CSA-only count growth or label import.
+1,025 preview is open but not promoted; the first proxy sequence/fold-distance
+holdout and first 12-row ESM-2 representation sample are now in place. The next
+bounded work item is using the learned-vs-heuristic disagreement rows to
+prioritize the external pilot, not
+M-CSA-only count growth or label import.
 See
 `docs/label_factory.md`.
 

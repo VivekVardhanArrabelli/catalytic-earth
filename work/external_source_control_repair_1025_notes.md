@@ -36,11 +36,14 @@ planning/sample, and a candidate blocker matrix.
   metal-hydrolase collapse, 2 are glycan-boundary cases, 2 are other
   scope/top1 mismatches, and 1 is scope-consistent. No embeddings or labels are
   created.
-- `artifacts/v3_external_source_representation_backend_sample_1025.json` adds a
-  computed deterministic sequence k-mer control for all 12 planned
+- `artifacts/v3_external_source_kmer_representation_backend_sample_1025.json`
+  preserves a computed deterministic sequence k-mer baseline for all 12 planned
   representation rows. It is review-only, flags 1 representation near-duplicate
-  holdout, and does not replace the future learned or structure-language
-  backend requirement.
+  holdout, and stays a proxy control.
+- `artifacts/v3_external_source_representation_backend_sample_1025.json` adds
+  the canonical 12-row ESM-2 representation sample. It is review-only, flags 3
+  representation near-duplicate holdouts, emits learned-vs-heuristic
+  disagreements, and keeps all rows non-countable.
 
 ## Active-Site Gap Repair
 

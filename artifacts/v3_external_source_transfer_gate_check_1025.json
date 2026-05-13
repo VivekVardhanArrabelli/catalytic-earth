@@ -120,7 +120,7 @@
     "representation_backend_plan_contrast_required_count": 9,
     "representation_backend_plan_sequence_blocked_count": 0,
     "representation_backend_sample_candidate_count": 12,
-    "representation_backend_sample_near_duplicate_alert_count": 1,
+    "representation_backend_sample_near_duplicate_alert_count": 3,
     "representation_backend_sample_reference_pair_count": 36,
     "representation_control_candidate_count": 12,
     "representation_control_comparison_candidate_count": 12,

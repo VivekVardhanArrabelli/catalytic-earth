@@ -3101,9 +3101,11 @@ def build_external_source_representation_backend_sample(
     max_rows: int = 100,
     top_k: int = 3,
     similarity_alert_threshold: float = 0.95,
+    embedding_backend: str = "deterministic_sequence_kmer_control",
+    model_name: str = "facebook/esm2_t6_8M_UR50D",
     fetcher: Callable[[list[str]], dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    """Compute a review-only deterministic sequence representation control."""
+    """Compute a review-only sequence representation control."""
     fetch = fetcher or _fetch_uniprot_sequence_records
     sequence_rows_by_accession = {
         _normalize_accession(row.get("accession")): row
@@ -3142,18 +3144,27 @@ def build_external_source_representation_backend_sample(
         for record in sequence_payload.get("records", []) or []
         if isinstance(record, dict) and _normalize_accession(record.get("accession"))
     }
+    embedding_payload = _compute_sequence_embedding_payload(
+        records_by_accession=records_by_accession,
+        accessions=requested_accessions,
+        embedding_backend=embedding_backend,
+        model_name=model_name,
+    )
+    embeddings_by_accession = embedding_payload["embeddings_by_accession"]
 
     rows: list[dict[str, Any]] = []
     status_counts: Counter[str] = Counter()
     alert_count = 0
     reference_pair_count = 0
+    learned_complete_count = 0
+    disagreement_rows: list[dict[str, Any]] = []
     for plan_row in plan_rows:
         accession = _normalize_accession(plan_row.get("accession"))
         sequence_row = sequence_rows_by_accession.get(accession, {})
         candidate_sequence = _clean_sequence(
             records_by_accession.get(accession, {}).get("sequence")
         )
-        candidate_embedding = _sequence_kmer_embedding(candidate_sequence)
+        candidate_embedding = embeddings_by_accession.get(accession)
         reference_scores: list[dict[str, Any]] = []
         for match in (sequence_row.get("top_matches", []) or [])[:top_k]:
             if not isinstance(match, dict):
@@ -3164,13 +3175,14 @@ def build_external_source_representation_backend_sample(
             )
             if not reference_accession or not reference_sequence or not candidate_embedding:
                 continue
-            score = _sparse_cosine_similarity(
+            score = _embedding_cosine_similarity(
                 candidate_embedding,
-                _sequence_kmer_embedding(reference_sequence),
+                embeddings_by_accession.get(reference_accession),
             )
             reference_scores.append(
                 {
                     "embedding_cosine": round(score, 4),
+                    "embedding_backend": embedding_payload["metadata"]["embedding_backend"],
                     "length_coverage": round(
                         _sequence_length_coverage(candidate_sequence, reference_sequence),
                         4,
@@ -3197,22 +3209,67 @@ def build_external_source_representation_backend_sample(
             backend_readiness_status=str(
                 plan_row.get("backend_readiness_status") or ""
             ),
+            embedding_backend=embedding_payload["metadata"]["embedding_backend"],
             similarity_alert_threshold=similarity_alert_threshold,
         )
+        if (
+            embedding_payload["metadata"]["embedding_backend"]
+            != "deterministic_sequence_kmer_control"
+            and not embedding_payload["metadata"].get("embedding_backend_available")
+        ):
+            status = "embedding_backend_unavailable"
         status_counts[status] += 1
         if status == "representation_near_duplicate_holdout":
             alert_count += 1
+        if status == "learned_representation_sample_complete":
+            learned_complete_count += 1
         reference_pair_count += len(reference_scores)
+        heuristic_top1 = (
+            plan_row.get("heuristic_baseline_control", {}) or {}
+        ).get("top1_fingerprint_id")
+        nearest_reference_entry_ids = (
+            (reference_scores[0] if reference_scores else {}).get(
+                "matched_m_csa_entry_ids", []
+            )
+            or []
+        )
+        disagreement_status = _representation_heuristic_disagreement_status(
+            heuristic_top1=heuristic_top1,
+            representation_status=status,
+            nearest_reference_entry_ids=nearest_reference_entry_ids,
+            plan_row=plan_row,
+        )
+        if disagreement_status != "no_disagreement_signal":
+            disagreement_rows.append(
+                {
+                    "accession": accession,
+                    "entry_id": plan_row.get("entry_id") or f"uniprot:{accession}",
+                    "heuristic_top1_fingerprint_id": heuristic_top1,
+                    "learned_or_proxy_backend_status": status,
+                    "nearest_reference_entry_ids": nearest_reference_entry_ids,
+                    "representation_heuristic_disagreement_status": disagreement_status,
+                    "top_embedding_cosine": round(best_score, 4),
+                }
+            )
         rows.append(
             {
                 "accession": accession,
                 "backend_status": status,
-                "blockers": _external_representation_backend_sample_blockers(status),
+                "blockers": _external_representation_backend_sample_blockers(
+                    status=status,
+                    embedding_backend=embedding_payload["metadata"]["embedding_backend"],
+                ),
                 "candidate_sequence_length": len(candidate_sequence),
                 "comparison_status": plan_row.get("comparison_status"),
                 "countable_label_candidate": False,
-                "embedding_backend": "deterministic_sequence_kmer_control",
+                "embedding_backend": embedding_payload["metadata"]["embedding_backend"],
                 "embedding_status": "computed_review_only",
+                "embedding_vector_dimension": embedding_payload["metadata"].get(
+                    "embedding_vector_dimension"
+                ),
+                "embedding_warning": embedding_payload["warnings_by_accession"].get(
+                    accession
+                ),
                 "entry_id": plan_row.get("entry_id") or f"uniprot:{accession}",
                 "heuristic_baseline_control": plan_row.get(
                     "heuristic_baseline_control", {}
@@ -3231,6 +3288,11 @@ def build_external_source_representation_backend_sample(
     return {
         "metadata": {
             "method": "external_source_representation_backend_sample",
+            "blocker_removed": (
+                "computes a bounded learned or proxy representation sample "
+                "for external pilot readiness while preserving heuristic "
+                "geometry retrieval as the baseline"
+            ),
             "source_representation_backend_plan_method": (
                 representation_backend_plan.get("metadata", {}).get("method")
             ),
@@ -3243,13 +3305,27 @@ def build_external_source_representation_backend_sample(
             "candidate_count": len(rows),
             "max_rows": max_rows,
             "top_k": top_k,
-            "embedding_backend": "deterministic_sequence_kmer_control",
+            "embedding_backend": embedding_payload["metadata"]["embedding_backend"],
+            "requested_embedding_backend": embedding_backend,
+            "model_name": embedding_payload["metadata"].get("model_name"),
             "embedding_status": "computed_review_only",
+            "embedding_backend_available": embedding_payload["metadata"].get(
+                "embedding_backend_available"
+            ),
+            "embedding_vector_dimension": embedding_payload["metadata"].get(
+                "embedding_vector_dimension"
+            ),
+            "embedding_failure_count": embedding_payload["metadata"].get(
+                "embedding_failure_count",
+                0,
+            ),
             "requested_accession_count": len(requested_accessions),
             "fetched_accession_count": len(records_by_accession),
             "reference_pair_count": reference_pair_count,
             "similarity_alert_threshold": similarity_alert_threshold,
             "representation_near_duplicate_alert_count": alert_count,
+            "learned_representation_complete_count": learned_complete_count,
+            "learned_vs_heuristic_disagreement_count": len(disagreement_rows),
             "heuristic_contrast_required_count": sum(
                 1
                 for row in rows
@@ -3271,17 +3347,16 @@ def build_external_source_representation_backend_sample(
             ),
         },
         "rows": rows,
+        "learned_vs_heuristic_disagreements": disagreement_rows,
         "fetch_failures": fetch_failures,
+        "embedding_failures": embedding_payload["embedding_failures"],
         "blockers": [
-            "learned_or_structure_language_embedding_not_run",
             "external_review_decision_artifact_not_built",
             "full_label_factory_gate_not_run",
         ],
         "warnings": [
-            (
-                "the deterministic k-mer backend is a computed baseline control, "
-                "not expert evidence or a learned representation model"
-            )
+            *embedding_payload["warnings"],
+            "computed representation controls are not expert evidence",
         ],
     }
 
@@ -3324,6 +3399,10 @@ def audit_external_source_representation_backend_sample(
     return {
         "metadata": {
             "method": "external_source_representation_backend_sample_audit",
+            "blocker_removed": (
+                "verifies computed representation sample rows remain "
+                "review-only and non-countable before external pilot import"
+            ),
             "ready_for_label_import": False,
             "countable_label_candidate_count": len(countable_rows),
             "candidate_count": len(rows),
@@ -5952,7 +6031,15 @@ def check_external_source_transfer_gates(
             and sample_meta.get("countable_label_candidate_count") == 0
             and sample_meta.get("embedding_status") == "computed_review_only"
             and sample_meta.get("embedding_backend")
-            == "deterministic_sequence_kmer_control"
+            in {"deterministic_sequence_kmer_control", "esm2_t6_8m_ur50d"}
+            and (
+                sample_meta.get("embedding_backend")
+                == "deterministic_sequence_kmer_control"
+                or (
+                    sample_meta.get("embedding_backend_available") is True
+                    and int(sample_meta.get("embedding_failure_count", 0) or 0) == 0
+                )
+            )
             and int(sample_meta.get("candidate_count", 0) or 0) == len(sample_rows)
             and int(sample_meta.get("candidate_count", 0) or 0)
             == int(expected_sample_count or 0)
@@ -7768,6 +7855,7 @@ def _external_representation_backend_sample_status(
     candidate_sequence: str,
     reference_scores: list[dict[str, Any]],
     backend_readiness_status: str,
+    embedding_backend: str,
     similarity_alert_threshold: float,
 ) -> str:
     if backend_readiness_status != "ready_for_backend_selection_not_embedding":
@@ -7783,15 +7871,20 @@ def _external_representation_backend_sample_status(
         and float(best.get("length_coverage", 0.0) or 0.0) >= 0.9
     ):
         return "representation_near_duplicate_holdout"
+    if embedding_backend != "deterministic_sequence_kmer_control":
+        return "learned_representation_sample_complete"
     return "sequence_kmer_embedding_control_complete"
 
 
-def _external_representation_backend_sample_blockers(status: str) -> list[str]:
+def _external_representation_backend_sample_blockers(
+    *, status: str, embedding_backend: str
+) -> list[str]:
     blockers = [
-        "learned_or_structure_language_embedding_not_run",
         "external_review_decision_artifact_not_built",
         "full_label_factory_gate_not_run",
     ]
+    if embedding_backend == "deterministic_sequence_kmer_control":
+        blockers.insert(0, "learned_or_structure_language_embedding_not_run")
     if status == "representation_near_duplicate_holdout":
         blockers.insert(0, "representation_near_duplicate_control_holdout")
     elif status == "candidate_sequence_missing":
@@ -7800,6 +7893,8 @@ def _external_representation_backend_sample_blockers(status: str) -> list[str]:
         blockers.insert(0, "reference_sequences_missing")
     elif status == "blocked_by_backend_plan_readiness":
         blockers.insert(0, "representation_backend_plan_not_ready")
+    elif status == "embedding_backend_unavailable":
+        blockers.insert(0, "representation_embedding_backend_unavailable")
     return blockers
 
 
@@ -8337,6 +8432,221 @@ def _sparse_cosine_similarity(
     if not left_norm or not right_norm:
         return 0.0
     return dot / (left_norm * right_norm)
+
+
+def _embedding_cosine_similarity(left: Any, right: Any) -> float:
+    if not left or not right:
+        return 0.0
+    if isinstance(left, dict) and isinstance(right, dict):
+        return _sparse_cosine_similarity(left, right)
+    if isinstance(left, list) and isinstance(right, list):
+        return _dense_cosine_similarity(left, right)
+    return 0.0
+
+
+def _dense_cosine_similarity(left: list[float], right: list[float]) -> float:
+    if not left or not right or len(left) != len(right):
+        return 0.0
+    dot = sum(float(a) * float(b) for a, b in zip(left, right))
+    left_norm = sum(float(value) * float(value) for value in left) ** 0.5
+    right_norm = sum(float(value) * float(value) for value in right) ** 0.5
+    if not left_norm or not right_norm:
+        return 0.0
+    return dot / (left_norm * right_norm)
+
+
+def _compute_sequence_embedding_payload(
+    *,
+    records_by_accession: dict[str, dict[str, Any]],
+    accessions: list[str],
+    embedding_backend: str,
+    model_name: str,
+) -> dict[str, Any]:
+    backend = _normalized_embedding_backend(embedding_backend)
+    if backend == "deterministic_sequence_kmer_control":
+        embeddings = {
+            accession: _sequence_kmer_embedding(
+                _clean_sequence(records_by_accession.get(accession, {}).get("sequence"))
+            )
+            for accession in accessions
+            if _clean_sequence(records_by_accession.get(accession, {}).get("sequence"))
+        }
+        return {
+            "metadata": {
+                "embedding_backend": backend,
+                "embedding_backend_available": True,
+                "embedding_vector_dimension": None,
+                "model_name": None,
+                "embedding_failure_count": 0,
+            },
+            "embeddings_by_accession": embeddings,
+            "warnings_by_accession": {},
+            "embedding_failures": [],
+            "warnings": [
+                (
+                    "the deterministic k-mer backend is a computed baseline "
+                    "control, not a learned representation model"
+                )
+            ],
+        }
+    if backend != "esm2_t6_8m_ur50d":
+        return {
+            "metadata": {
+                "embedding_backend": backend,
+                "embedding_backend_available": False,
+                "embedding_vector_dimension": None,
+                "model_name": model_name,
+                "embedding_failure_count": len(accessions),
+            },
+            "embeddings_by_accession": {},
+            "warnings_by_accession": {},
+            "embedding_failures": [
+                {
+                    "accession": accession,
+                    "error_type": "UnsupportedBackend",
+                    "error": f"unsupported embedding backend: {embedding_backend}",
+                }
+                for accession in accessions
+            ],
+            "warnings": [f"unsupported embedding backend: {embedding_backend}"],
+        }
+    return _compute_esm2_t6_embeddings(
+        records_by_accession=records_by_accession,
+        accessions=accessions,
+        model_name=model_name,
+    )
+
+
+def _normalized_embedding_backend(value: str) -> str:
+    normalized = str(value or "").strip()
+    aliases = {
+        "esm2": "esm2_t6_8m_ur50d",
+        "esm-2": "esm2_t6_8m_ur50d",
+        "facebook/esm2_t6_8M_UR50D": "esm2_t6_8m_ur50d",
+        "esm2_t6_8M_UR50D": "esm2_t6_8m_ur50d",
+    }
+    return aliases.get(normalized, normalized or "deterministic_sequence_kmer_control")
+
+
+def _compute_esm2_t6_embeddings(
+    *,
+    records_by_accession: dict[str, dict[str, Any]],
+    accessions: list[str],
+    model_name: str,
+) -> dict[str, Any]:
+    try:
+        import torch
+        from transformers import AutoModel, AutoTokenizer
+
+        tokenizer = AutoTokenizer.from_pretrained(model_name)
+        model = AutoModel.from_pretrained(model_name)
+        model.eval()
+    except Exception as exc:  # pragma: no cover - depends on local model stack/cache
+        return {
+            "metadata": {
+                "embedding_backend": "esm2_t6_8m_ur50d",
+                "embedding_backend_available": False,
+                "embedding_vector_dimension": None,
+                "model_name": model_name,
+                "embedding_failure_count": len(accessions),
+            },
+            "embeddings_by_accession": {},
+            "warnings_by_accession": {},
+            "embedding_failures": [
+                {
+                    "accession": accession,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+                for accession in accessions
+            ],
+            "warnings": [
+                f"ESM-2 backend could not be loaded locally: {type(exc).__name__}: {exc}"
+            ],
+        }
+
+    embeddings: dict[str, list[float]] = {}
+    warnings_by_accession: dict[str, str] = {}
+    failures: list[dict[str, str]] = []
+    vector_dimension: int | None = None
+    for accession in accessions:
+        sequence = _clean_sequence(records_by_accession.get(accession, {}).get("sequence"))
+        if not sequence:
+            failures.append(
+                {
+                    "accession": accession,
+                    "error_type": "MissingSequence",
+                    "error": "no sequence available for embedding",
+                }
+            )
+            continue
+        try:
+            if len(sequence) > 1022:
+                warnings_by_accession[accession] = "sequence_truncated_to_1022_residues"
+            inputs = tokenizer(
+                sequence,
+                return_tensors="pt",
+                truncation=True,
+                max_length=1022,
+            )
+            with torch.no_grad():
+                outputs = model(**inputs)
+            hidden = outputs.last_hidden_state[0]
+            mask = inputs["attention_mask"][0].bool()
+            true_positions = mask.nonzero(as_tuple=False).flatten()
+            if len(true_positions) > 2:
+                mask[true_positions[0]] = False
+                mask[true_positions[-1]] = False
+            selected = hidden[mask]
+            if selected.numel() == 0:
+                selected = hidden[inputs["attention_mask"][0].bool()]
+            vector = selected.mean(dim=0).detach().cpu().tolist()
+            vector_dimension = len(vector)
+            embeddings[accession] = [float(value) for value in vector]
+        except Exception as exc:  # pragma: no cover - model runtime dependent
+            failures.append(
+                {
+                    "accession": accession,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+    return {
+        "metadata": {
+            "embedding_backend": "esm2_t6_8m_ur50d",
+            "embedding_backend_available": bool(embeddings),
+            "embedding_vector_dimension": vector_dimension,
+            "model_name": model_name,
+            "embedding_failure_count": len(failures),
+        },
+        "embeddings_by_accession": embeddings,
+        "warnings_by_accession": warnings_by_accession,
+        "embedding_failures": failures,
+        "warnings": [
+            (
+                "ESM-2 embeddings are computed review-only controls; they do "
+                "not replace active-site evidence, sequence-search completion, "
+                "expert decisions, or factory gates"
+            )
+        ],
+    }
+
+
+def _representation_heuristic_disagreement_status(
+    *,
+    heuristic_top1: Any,
+    representation_status: str,
+    nearest_reference_entry_ids: list[Any],
+    plan_row: dict[str, Any],
+) -> str:
+    comparison_status = str(plan_row.get("comparison_status") or "")
+    if representation_status == "representation_near_duplicate_holdout":
+        return "representation_near_duplicate_overrides_heuristic_review"
+    if heuristic_top1 == "metal_dependent_hydrolase" and "boundary" in comparison_status:
+        return "heuristic_metal_hydrolase_boundary_contrast_priority"
+    if nearest_reference_entry_ids and plan_row.get("sequence_search_task"):
+        return "learned_nearest_reference_requires_sequence_review"
+    return "no_disagreement_signal"
 
 
 def _ec_specificity(ec_number: str) -> str:

@@ -1037,7 +1037,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             transfer_blocker_matrix["metadata"]["blocker_counts"][
                 "representation_near_duplicate_control_holdout"
             ],
-            1,
+            3,
         )
         self.assertEqual(
             transfer_blocker_matrix["metadata"][
@@ -1092,7 +1092,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             transfer_blocker_matrix_audit["metadata"][
                 "representation_near_duplicate_alert_count"
             ],
-            1,
+            3,
         )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
@@ -1286,7 +1286,7 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             representation_backend_sample["metadata"][
                 "representation_near_duplicate_alert_count"
             ],
-            1,
+            3,
         )
         self.assertTrue(representation_backend_sample_audit["metadata"]["guardrail_clean"])
         self.assertTrue(
@@ -1309,8 +1309,9 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             external_transfer_gate["metadata"][
                 "representation_backend_sample_near_duplicate_alert_count"
             ],
-            1,
+            3,
         )
+
         self.assertTrue(
             external_transfer_gate["gates"][
                 "broad_ec_disambiguation_audit_review_only"
@@ -1706,6 +1707,36 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertEqual(lane_balance["metadata"]["dominant_lane_fraction"], 0.1667)
         self.assertEqual(lane_balance["metadata"]["countable_label_candidate_count"], 0)
         self.assertEqual(lane_balance["blockers"], [])
+
+    def test_learned_representation_backend_sample_is_computed_and_review_only(self) -> None:
+        sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_backend_sample_1025.json"
+        )
+        audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_representation_backend_sample_audit_1025.json"
+        )
+
+        self.assertEqual(sample["metadata"]["embedding_backend"], "esm2_t6_8m_ur50d")
+        self.assertTrue(sample["metadata"]["embedding_backend_available"])
+        self.assertEqual(sample["metadata"]["embedding_vector_dimension"], 320)
+        self.assertEqual(sample["metadata"]["candidate_count"], 12)
+        self.assertEqual(sample["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(
+            sample["metadata"]["representation_near_duplicate_alert_count"], 3
+        )
+        self.assertEqual(
+            sample["metadata"]["learned_vs_heuristic_disagreement_count"], 12
+        )
+        self.assertFalse(sample["metadata"]["ready_for_label_import"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        self.assertTrue(
+            all(row["countable_label_candidate"] is False for row in sample["rows"])
+        )
 
 
 def _load_json(path: Path) -> dict:

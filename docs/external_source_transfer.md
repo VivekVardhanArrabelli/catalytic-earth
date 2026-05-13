@@ -37,13 +37,20 @@ The next phase is a small external-source import pilot, not more abstract gate
 accumulation. New gates or audits should be added only when they directly
 remove one blocker to pilot import readiness.
 
-Before any external import attempt, add a sequence/fold-distance holdout
-evaluation for the accepted countable registry and 1,000/1,025 slice context.
-This should report held-out top1 accuracy, retained top3 accuracy where
-applicable, retention, abstention, out-of-scope false non-abstentions, and
-per-fingerprint breakdowns separately from the current in-distribution slice
-metrics. Use Foldseek/MMseqs2 if available; otherwise use a deterministic local
-proxy and state the limitation.
+The first sequence/fold-distance holdout evaluation now exists for the accepted
+countable registry and both the 1,000 and 1,025 slice contexts:
+`artifacts/v3_sequence_distance_holdout_eval_1000.json` and
+`artifacts/v3_sequence_distance_holdout_eval_1025.json`. No Foldseek, MMseqs2,
+BLAST, or DIAMOND executable was available locally, so this is explicitly a
+deterministic proxy using exact UniProt reference clusters, selected-structure
+identifiers, and active-site geometry buckets. It reports held-out metrics
+separately from in-distribution metrics: 136 held-out rows, 44 held-out
+in-scope rows, 92 held-out out-of-scope rows, 0 held-out out-of-scope false
+non-abstentions, `0.9767` held-out evaluable top1 accuracy, `1.0000`
+held-out evaluable top3 accuracy among retained rows, and `0.9767` held-out
+evaluable retention.
+Real <=30% sequence-identity or <0.7 TM-score separation remains unmeasured
+until a real clustering/alignment backend is available.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,
@@ -51,13 +58,12 @@ sequence, representation, review, and full label-factory gates pass.
 
 Priority blockers:
 
+- use the 12-row ESM-2 learned-vs-heuristic disagreement sample to rank
+  pilot-review priority and decide which candidates need representation repair;
 - source explicit catalytic or active-site residue evidence for the 10
   active-site-feature gap rows;
 - complete real near-duplicate or UniRef-style sequence searches for the 28
   rows that still require sequence search;
-- replace deterministic k-mer proxy controls with a real learned or
-  structure-language representation backend, or a clearly executable backend
-  interface with a small computed sample;
 - rank the 30 candidates and select 5-10 pilot candidates with explicit
   active-site evidence, specific reaction evidence, clean sequence holdout
   status, clean structure mapping, non-collapsed retrieval/representation
@@ -121,13 +127,14 @@ Priority blockers:
   targets without decisions. The active-site sourcing resolution re-checks all
   10 active-site-gap rows against UniProt feature evidence, finds 0 explicit
   active-site residue sources, and leaves the rows non-countable. The
-  sequence-search export keeps all 30 candidates
-  in no-decision sequence controls, with 28 complete near-duplicate searches and
-  2 sequence holdouts. The representation-backend plan covers 12 mapped controls
-  without computing embeddings, and the representation-backend sample computes a
-  deterministic sequence k-mer control for those 12 rows while flagging 1
-  representation near-duplicate holdout. The transfer blocker matrix joins all 30
-  candidates into a review-only next-action worklist and now carries the
+  sequence-search export keeps all 30 candidates in no-decision sequence
+  controls, with 28 complete near-duplicate searches and 2 sequence holdouts.
+  The representation-backend plan covers 12 mapped controls without computing
+  embeddings. `artifacts/v3_external_source_kmer_representation_backend_sample_1025.json`
+  preserves the deterministic k-mer baseline/proxy, while the canonical
+  `artifacts/v3_external_source_representation_backend_sample_1025.json`
+  computes the 12-row ESM-2 sample. The transfer blocker matrix joins all 30
+  candidates into a review-only next-action worklist and carries the
   resolution/sample row evidence directly: 7 rows move to primary
   literature/PDB active-site source review, 3 remain primary active-site source
   tasks, 18 require near-duplicate sequence search, and 2 stay sequence
@@ -135,6 +142,13 @@ Priority blockers:
   fraction is 0.1667, so the queue has not collapsed to one action or chemistry
   lane. The external transfer gate passes 59/59 review-only checks and remains
   not ready for label import.
+- The learned representation backend path now has a computed 12-row ESM-2
+  sample in `artifacts/v3_external_source_representation_backend_sample_1025.json`
+  plus a clean review-only audit. It uses `facebook/esm2_t6_8M_UR50D`,
+  records 320-dimensional embeddings, keeps all rows non-countable and not
+  import-ready, flags 3 representation-near-duplicate holdouts, and emits 12
+  learned-vs-heuristic disagreement rows for active-learning priority. The
+  heuristic geometry retrieval remains the required baseline control.
 
 ## Artifacts
 
@@ -157,6 +171,24 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-transfer-mani
   --active-learning-queue artifacts/v3_active_learning_review_queue_1025_preview_batch.json \
   --labels artifacts/v3_countable_labels_batch_1025_preview.json \
   --out artifacts/v3_external_source_transfer_manifest_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eval \
+  --slice-id 1000 \
+  --retrieval artifacts/v3_geometry_retrieval_1000.json \
+  --labels artifacts/v3_countable_labels_batch_1000.json \
+  --sequence-clusters artifacts/v3_sequence_cluster_proxy_1000.json \
+  --geometry artifacts/v3_geometry_features_1000.json \
+  --abstain-threshold 0.4115 \
+  --out artifacts/v3_sequence_distance_holdout_eval_1000.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-sequence-distance-holdout-eval \
+  --slice-id 1025 \
+  --retrieval artifacts/v3_geometry_retrieval_1025.json \
+  --labels artifacts/v3_countable_labels_batch_1025_preview.json \
+  --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json \
+  --geometry artifacts/v3_geometry_features_1025.json \
+  --abstain-threshold 0.4115 \
+  --out artifacts/v3_sequence_distance_holdout_eval_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-query-manifest \
   --transfer-manifest artifacts/v3_external_source_transfer_manifest_1025.json \
@@ -391,6 +423,20 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representatio
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
   --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --out artifacts/v3_external_source_kmer_representation_backend_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-sample \
+  --representation-backend-sample artifacts/v3_external_source_kmer_representation_backend_sample_1025.json \
+  --out artifacts/v3_external_source_kmer_representation_backend_sample_audit_1025.json
+
+HF_HOME=/private/tmp/catalytic-earth-hf \
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-representation-backend-sample \
+  --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
+  --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
+  --max-rows 12 \
+  --top-k 3 \
+  --embedding-backend esm2_t6_8m_ur50d \
+  --model-name facebook/esm2_t6_8M_UR50D \
   --out artifacts/v3_external_source_representation_backend_sample_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-representation-backend-sample \

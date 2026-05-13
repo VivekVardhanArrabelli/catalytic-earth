@@ -710,10 +710,11 @@ Current 1,025-preview state:
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
   resolve 0 explicit active-site residue sources across the 10 gap rows, map
-  all 12 heuristic-ready controls onto AlphaFold structures, compute a
-  deterministic k-mer representation sample for all 12 planned controls with one
-  representation near-duplicate holdout, and must not
-  be imported as labels. The heuristic-control audit records a 9/12
+  all 12 heuristic-ready controls onto AlphaFold structures, preserve a
+  deterministic k-mer representation baseline, compute a canonical 12-row ESM-2
+  representation sample with three representation near-duplicate holdouts and
+  12 learned-vs-heuristic disagreements, and must not be imported as labels.
+  The heuristic-control audit records a 9/12
   metal-hydrolase top1 collapse and 9 scope/top1 mismatches as review-only
   failure modes rather than countable evidence. The repair plan creates 25
   non-countable repair rows, the representation manifest exposes 12 mapped
@@ -738,8 +739,10 @@ Current 1,025-preview state:
   active-site residue sources, the sequence-search export keeps all 30
   candidates in no-decision sequence controls, the representation-backend plan
   covers 12 mapped controls without embeddings, the deterministic k-mer
-  representation sample flags one representation near-duplicate holdout, and
-  the transfer blocker matrix joins all 30 external candidates into a
+  representation baseline flags one representation near-duplicate holdout, the
+  canonical ESM-2 sample flags three representation near-duplicate holdouts and
+  12 learned-vs-heuristic disagreements, and the transfer blocker matrix joins
+  all 30 external candidates into a
   review-only next-action worklist with no single-action or single-lane
   collapse.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`

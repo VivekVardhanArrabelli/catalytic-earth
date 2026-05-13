@@ -12,6 +12,7 @@ from .fingerprints import build_mechanism_demo, load_fingerprints
 from .graph import build_seed_graph, build_sequence_cluster_proxy, build_v1_graph, summarize_graph
 from .geometry_retrieval import write_geometry_retrieval
 from .geometry_reports import write_geometry_slice_summary
+from .generalization import build_sequence_distance_holdout_eval
 from .learned_retrieval import build_learned_retrieval_manifest
 from .labels import (
     analyze_cofactor_abstention_policy,
@@ -321,6 +322,36 @@ def cmd_build_sequence_cluster_proxy(args: argparse.Namespace) -> int:
         "Wrote sequence cluster proxy to "
         f"{args.out} ({artifact['metadata']['entry_count']} entries, "
         f"{artifact['metadata']['duplicate_cluster_count']} duplicate clusters)"
+    )
+    return 0
+
+
+def cmd_build_sequence_distance_holdout_eval(args: argparse.Namespace) -> int:
+    with Path(args.retrieval).open("r", encoding="utf-8") as handle:
+        retrieval = json.load(handle)
+    with Path(args.sequence_clusters).open("r", encoding="utf-8") as handle:
+        sequence_clusters = json.load(handle)
+    geometry = None
+    if args.geometry:
+        with Path(args.geometry).open("r", encoding="utf-8") as handle:
+            geometry = json.load(handle)
+    labels = load_labels(Path(args.labels))
+    artifact = build_sequence_distance_holdout_eval(
+        retrieval=retrieval,
+        labels=labels,
+        sequence_clusters=sequence_clusters,
+        geometry=geometry,
+        slice_id=args.slice_id,
+        abstain_threshold=args.abstain_threshold,
+        holdout_fraction=args.holdout_fraction,
+        min_holdout_rows=args.min_holdout_rows,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote sequence/fold-distance holdout evaluation to "
+        f"{args.out} ({artifact['metadata']['heldout_count']} held out, "
+        f"{artifact['metrics']['heldout']['out_of_scope_false_non_abstentions']} "
+        "held-out false non-abstentions)"
     )
     return 0
 
@@ -1005,6 +1036,8 @@ def cmd_build_external_source_representation_backend_sample(
         sequence_neighborhood_sample=sequence_neighborhood_sample,
         max_rows=args.max_rows,
         top_k=args.top_k,
+        embedding_backend=args.embedding_backend,
+        model_name=args.model_name,
     )
     write_json(Path(args.out), sample)
     print(
@@ -3520,6 +3553,36 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sequence_clusters.set_defaults(func=cmd_build_sequence_cluster_proxy)
 
+    sequence_holdout = subparsers.add_parser(
+        "build-sequence-distance-holdout-eval",
+        help=(
+            "evaluate geometry retrieval on a proxy sequence/fold-distance "
+            "held-out partition"
+        ),
+    )
+    sequence_holdout.add_argument("--slice-id", required=True)
+    sequence_holdout.add_argument(
+        "--retrieval",
+        default="artifacts/v3_geometry_retrieval.json",
+    )
+    sequence_holdout.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    sequence_holdout.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy.json",
+    )
+    sequence_holdout.add_argument("--geometry", default=None)
+    sequence_holdout.add_argument("--abstain-threshold", type=float, default=0.4115)
+    sequence_holdout.add_argument("--holdout-fraction", type=float, default=0.2)
+    sequence_holdout.add_argument("--min-holdout-rows", type=int, default=40)
+    sequence_holdout.add_argument(
+        "--out",
+        default="artifacts/v3_sequence_distance_holdout_eval.json",
+    )
+    sequence_holdout.set_defaults(func=cmd_build_sequence_distance_holdout_eval)
+
     source_scale_limits = subparsers.add_parser(
         "audit-source-scale-limits",
         help="audit whether the current source slice can support the next scale target",
@@ -4237,7 +4300,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     external_representation_backend_sample = subparsers.add_parser(
         "build-external-source-representation-backend-sample",
-        help="compute a review-only deterministic sequence representation control",
+        help="compute a review-only sequence representation control",
     )
     external_representation_backend_sample.add_argument(
         "--representation-backend-plan",
@@ -4251,6 +4314,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--max-rows", type=int, default=100
     )
     external_representation_backend_sample.add_argument("--top-k", type=int, default=3)
+    external_representation_backend_sample.add_argument(
+        "--embedding-backend",
+        default="deterministic_sequence_kmer_control",
+        choices=("deterministic_sequence_kmer_control", "esm2_t6_8m_ur50d", "esm2"),
+    )
+    external_representation_backend_sample.add_argument(
+        "--model-name",
+        default="facebook/esm2_t6_8M_UR50D",
+    )
     external_representation_backend_sample.add_argument(
         "--out",
         default=(

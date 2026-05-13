@@ -233,14 +233,34 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   search, a representation-backend plan, and an integrated external blocker
   matrix. The external transfer gate now passes 53/53 review-only checks while
   keeping every external row non-countable and import-blocked.
-- Added active-site sourcing resolution and a computed representation backend
-  sample for the external 1,025 transfer path. The active-site resolution
-  re-checks all 10 gap rows against UniProt feature evidence, finds 0 explicit
-  active-site residue sources, and keeps 7 binding-plus-reaction rows and 3
-  reaction-only rows non-countable. The deterministic sequence k-mer
-  representation sample covers all 12 planned representation controls, flags
-  `P60174` as a representation near-duplicate holdout, and keeps the external
+- Added active-site sourcing resolution and representation backend samples for
+  the external 1,025 transfer path. The active-site resolution re-checks all 10
+  gap rows against UniProt feature evidence, finds 0 explicit active-site
+  residue sources, and keeps 7 binding-plus-reaction rows and 3 reaction-only
+  rows non-countable. The deterministic sequence k-mer baseline covers all 12
+  planned representation controls and flags `P60174` as a representation
+  near-duplicate holdout; the canonical ESM-2 sample covers all 12 controls,
+  flags 3 representation near-duplicate holdouts, and keeps the external
   transfer gate at 59/59 review-only checks with 0 import-ready labels.
+- Added sequence/fold-distance holdout evaluation for the accepted countable
+  registry in both the 1,000 and 1,025 slice contexts. No Foldseek, MMseqs2,
+  BLAST, or DIAMOND executable was available locally, so
+  `artifacts/v3_sequence_distance_holdout_eval_1000.json` and
+  `artifacts/v3_sequence_distance_holdout_eval_1025.json` explicitly label the
+  split as a deterministic proxy using exact UniProt reference clusters,
+  selected-structure identifiers, and active-site geometry buckets. The
+  held-out partition has 136 rows, 135/136 rows passing the strict
+  low-neighborhood proxy, 0 out-of-scope false non-abstentions, held-out
+  evaluable in-scope top1 accuracy and retention of `0.9767`, and
+  top1/top3 accuracy among retained held-out evaluable rows of `1.0000`.
+- Added the first bounded learned representation backend sample for external
+  pilot readiness. `artifacts/v3_external_source_representation_backend_sample_1025.json`
+  computes 12 ESM-2 (`facebook/esm2_t6_8M_UR50D`) candidate-control rows with
+  320-dimensional embeddings, keeps all rows review-only and non-countable,
+  flags 3 representation-near-duplicate holdouts, and emits 12
+  learned-vs-heuristic disagreement rows. The existing 12-row deterministic
+  k-mer sample remains the baseline/proxy control, and heuristic geometry
+  retrieval remains attached as the required baseline.
 
 ## Current Metrics
 
@@ -362,6 +382,27 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   non-countable. Source scaling is now the bottleneck: the graph exposes 1,003
   M-CSA records, and external-source transfer artifacts now provide a
   review-only UniProtKB/Swiss-Prot path with 30 non-countable sample candidates.
+- Sequence/fold-distance holdout state: `artifacts/v3_sequence_distance_holdout_eval_1000.json`
+  and `artifacts/v3_sequence_distance_holdout_eval_1025.json` evaluate the
+  accepted countable registry under a proxy low-neighborhood partition. Both
+  contexts evaluate 678 labeled retrieval rows and hold out 136 rows. Held-out
+  metrics are 44 in-scope rows, 43 evaluable in-scope rows, 92 out-of-scope
+  rows, 0 held-out out-of-scope false non-abstentions, `0.9767` held-out
+  evaluable top1 accuracy, `1.0000` held-out evaluable top3 accuracy among
+  retained rows, and `0.9767` held-out evaluable retention. In-distribution
+  evaluable top1 accuracy is `0.9881`, and top3 accuracy among retained
+  in-distribution rows is `1.0000`. These are proxy metrics only: real
+  <=30% sequence-identity or <0.7 TM-score clustering was not computed because
+  no local clustering executable was available.
+- Learned representation state: `artifacts/v3_external_source_representation_backend_sample_1025.json`
+  computes a 12-row ESM-2 sample for external mapped controls with
+  `embedding_backend_available=true`, vector dimension `320`, 0 embedding
+  failures, 3 representation-near-duplicate holdouts, 12 learned-vs-heuristic
+  disagreement rows, and 0 countable/import-ready rows. The audit
+  `artifacts/v3_external_source_representation_backend_sample_audit_1025.json`
+  is guardrail-clean. This is pilot-priority evidence only; sequence search,
+  active-site sourcing, review decisions, and full factory gates remain
+  required before any import.
 - 725 post-batch review surface: all 95 unlabeled candidates are retained in a
   207-row active-learning queue; 95 expert-label decision rows are exported as
   review-only no-decision items; 25 priority local-evidence lanes are audited
@@ -511,27 +552,25 @@ runs should follow this ordered worklist unless a concrete repo blocker appears.
 Every new artifact, audit, or gate must directly remove one generalization or
 external-pilot blocker; otherwise do not build it.
 
-1. Implement sequence/fold-distance holdout evaluation first. Emit
-   `v3_sequence_distance_holdout_eval_{slice}.json` against the accepted
-   countable registry and 1,000/1,025 slice context. Use Foldseek/MMseqs2 if
-   locally available; otherwise use the strongest deterministic local proxy and
-   label the limitation clearly. Target a held-out partition around <=30%
-   sequence identity and/or <0.7 TM-score when measurable. Report top1
-   accuracy, top3 retained accuracy where applicable, retention rate,
-   abstention rate, out-of-scope false non-abstentions, and per-fingerprint
-   breakdowns separately from in-distribution slice metrics. Add regression
-   tests so held-out numbers cannot silently regress.
-2. Replace deterministic k-mer representation controls with a real learned or
-   structure-language representation backend, or a clearly executable backend
-   interface with a small computed sample. Preserve heuristic geometry retrieval
-   as the baseline and emit learned-vs-heuristic disagreement rows for
-   active-learning priority.
+1. Sequence/fold-distance holdout evaluation is now implemented and pinned by
+   regression tests. Treat the current artifacts as a proxy-only generalization
+   signal, not as proof of <=30% sequence identity or <0.7 TM-score behavior.
+   Re-run with Foldseek/MMseqs2 or an equivalent local clustering backend if it
+   becomes available.
+2. Use the learned representation backend path. A 12-row ESM-2 sample is now
+   computed and review-only; next use its learned-vs-heuristic disagreement
+   rows to rank external pilot candidates and decide which representation
+   repairs are needed. Preserve heuristic geometry retrieval as the baseline.
 3. Implement a general selected-PDB override path with provenance and apply the
    holo-preference audit action path for `m_csa:577` and `m_csa:641`. Seed it
    from `v3_structure_selection_holo_preference_audit_700.json` rows where
    `recommendation == "swap_selected_structure"`. Skip `m_csa:592` unless new
    evidence changes the current kinase/reaction-mismatch demotion. Only count
-   labels if regenerated gates pass.
+   labels if regenerated gates pass. The 2026-05-13T13:16:40Z run inspected
+   this path and did not start it because the selected-PDB override needs a
+   general provenance-carrying implementation plus regenerated geometry,
+   retrieval, label-eval, factory gate, and acceptance artifacts for affected
+   entries.
 4. Add the ePK fingerprint conservatively after the holdout signal exists:
    fingerprint JSON, ontology link, minimal abstention/counterevidence rules,
    and tests first. Let gates reveal which stronger sibling-family rules are
@@ -789,6 +828,39 @@ review-only import growth remained 0, and the import-readiness audit kept 0
 external rows import-ready. The operational decision was to reduce external
 active-site and representation uncertainty while keeping every external
 candidate non-countable.
+
+Label-quality confidence call for the 2026-05-13T13:16:40Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair
+work, no for external-source import, and yes for scientific generalization
+work. Evidence at run start: `validate` and 268 unit tests passed, the 1,025
+preview still added 0 clean countable labels, source-scale audit remained
+limited to 1,003 observed M-CSA records, hard negatives remained 0, near misses
+remained 0, out-of-scope false non-abstentions remained 0, actionable in-scope
+failures remained 0, review-only import growth remained 0, the external
+transfer gate remained review-only at 59/59 checks with 0 import-ready rows,
+active-site source evidence remained unresolved for 10 external rows, complete
+near-duplicate search remained unresolved for 28 rows, and real representation
+controls remained absent. The run therefore implemented the user-requested
+sequence/fold-distance holdout first. The new holdout artifacts preserve 0
+held-out out-of-scope false non-abstentions and surface a small held-out versus
+in-distribution accuracy gap (`0.9767` vs `0.9881` evaluable in-scope top1),
+but explicitly do not claim real <=30% sequence-identity or <0.7 TM-score
+separation because no local Foldseek/MMseqs2/BLAST/DIAMOND executable was
+available.
+
+Wrap-up for the 2026-05-13T13:16:40Z run: implemented the proxy
+sequence/fold-distance holdout artifacts for the 1,000 and 1,025 contexts,
+promoted the canonical 12-row external representation sample to ESM-2
+(`facebook/esm2_t6_8M_UR50D`), preserved the k-mer sample as an explicit
+baseline artifact, and kept all external rows review-only/non-countable. The
+transfer gate remains 59/59 and `ready_for_label_import=false`; the learned
+sample has 0 embedding failures, 3 representation near-duplicate holdouts, and
+12 learned-vs-heuristic disagreements. The holo-PDB swap action path was
+inspected but not started because it requires a general selected-PDB override
+implementation plus regenerated geometry/retrieval/factory artifacts. Final
+verification before logging: 273 unit tests passed, `validate` passed,
+`compileall` passed, `git diff --check` passed, JSON artifact parse passed, and
+CLI help checks passed.
 
 Remaining-time plan for the 2026-05-13T11:14:12Z run: after the active-site
 sourcing resolution and deterministic representation sample were in place, use
@@ -1125,18 +1197,19 @@ Highest-value options:
    bounded top-hit alignment check in
    `artifacts/v3_external_source_sequence_alignment_verification_1025.json` are
    not enough for import readiness.
-5. Replace the deterministic k-mer representation sample with real learned or
-   structure-language controls using
-   `artifacts/v3_external_source_representation_backend_plan_1025.json` and
-   `artifacts/v3_external_source_representation_backend_sample_1025.json` while
-   keeping heuristic retrieval and sequence-search controls as required
-   baselines.
+5. Use the 12-row ESM-2 representation sample in
+   `artifacts/v3_external_source_representation_backend_sample_1025.json` and
+   its learned-vs-heuristic disagreements to prioritize pilot review, while
+   keeping heuristic retrieval, sequence-search controls, and
+   `artifacts/v3_external_source_kmer_representation_backend_sample_1025.json`
+   as required baselines.
 6. Use `artifacts/v3_external_source_transfer_blocker_matrix_1025.json` as the
    candidate-level blocker map: 10 active-site source rows with resolution
    statuses carried forward, 28 complete near-duplicate searches, 2 sequence
-   holdouts, 12 representation-backend plans, 12 representation sample rows, 1
-   representation near-duplicate holdout in the k-mer sample, and 0 completed
-   import decisions. The 59/59 transfer gate now fails stale matrices that omit
+   holdouts, 12 representation-backend plans, 12 representation sample rows, 3
+   representation near-duplicate holdouts in the ESM-2 sample, 1 representation
+   near-duplicate holdout in the k-mer baseline, and 0 completed import
+   decisions. The 59/59 transfer gate now fails stale matrices that omit
    active-site resolution or representation sample integration.
 7. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
    separate decision artifact passes the full label-factory gate.

@@ -97,9 +97,14 @@ Current review-only external artifacts:
   near-duplicate searches and 2 sequence holdouts.
 - `artifacts/v3_external_source_representation_backend_plan_1025.json` covers 12
   mapped representation controls without computing embeddings.
-- `artifacts/v3_external_source_representation_backend_sample_1025.json` computes
-  a deterministic sequence k-mer control for those 12 rows and flags 1
-  representation near-duplicate holdout without making any row countable.
+- `artifacts/v3_external_source_kmer_representation_backend_sample_1025.json`
+  preserves the deterministic sequence k-mer baseline for those 12 rows and
+  flags 1 representation near-duplicate holdout without making any row
+  countable.
+- `artifacts/v3_external_source_representation_backend_sample_1025.json`
+  computes the canonical 12-row ESM-2 representation sample, flags 3
+  representation near-duplicate holdouts, and emits learned-vs-heuristic
+  disagreements without making any row countable.
 - `artifacts/v3_external_source_active_site_sourcing_resolution_1025.json`
   re-checks the 10 active-site-gap rows against UniProt feature evidence,
   records 0 explicit active-site residue sources, and leaves all rows

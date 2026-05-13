@@ -156,9 +156,15 @@ Current expectation:
 
 - v2 scaffold: complete
 - immediate priority: falsify generalization before adding more gate machinery.
-  Implement a sequence/fold-distance holdout evaluation over the accepted
-  countable registry and 1,000/1,025 slice context, then use real representation
-  controls and a small external-source pilot to decide what can safely import
+  The first proxy sequence/fold-distance holdout evaluation now covers the
+  accepted countable registry in both the 1,000 and 1,025 slice contexts. It
+  preserves 0 held-out out-of-scope false non-abstentions and shows held-out
+  evaluable top1 accuracy and retention of `0.9767`, with `1.0000` top3
+  accuracy among retained held-out evaluable rows, but it is not a substitute
+  for real <=30% sequence-identity or <0.7 TM-score clustering. The first
+  12-row ESM-2 representation sample is also computed and review-only; next use
+  its learned-vs-heuristic disagreement rows and a small external-source pilot
+  to decide what can safely import
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed
@@ -286,8 +292,10 @@ Current expectation:
   export keeps 28 near-duplicate searches and 2 sequence holdouts review-only,
   the active-site sourcing resolution finds 0 explicit active-site residue
   sources across the 10 gap rows, the representation-backend plan covers 12
-  controls without embeddings, the deterministic k-mer representation sample
-  covers all 12 controls and flags one representation near-duplicate holdout, the
+  controls without embeddings, the deterministic k-mer baseline covers all 12
+  controls and flags one representation near-duplicate holdout, the canonical
+  ESM-2 sample covers all 12 controls, flags three representation
+  near-duplicate holdouts, and emits 12 learned-vs-heuristic disagreements, the
   transfer blocker matrix keeps all 30 candidates non-countable with explicit
   next actions and now carries the active-site resolution plus representation
   sample statuses directly,

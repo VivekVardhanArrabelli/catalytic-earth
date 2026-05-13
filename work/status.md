@@ -4,15 +4,15 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 66
-- Measured elapsed time: 2570.0 minutes (42.83 hours)
+- Entries: 67
+- Measured elapsed time: 2621.0 minutes (43.68 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
 ## Time By Stage
 
 - ops: 13.4 measured minutes (0.22 hours)
-- post-v2: 2491.9 measured minutes (41.53 hours)
+- post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
 - post-v2: 180 estimated minutes (3.00 hours)
@@ -22,21 +22,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 689
-- Evidence references logged: 574
+- Artifact references logged: 712
+- Evidence references logged: 588
 
 ## Recent Entries
-
-### 2026-05-13T06:58:30.872167+00:00 - post-v2
-
-- Task: Repair external-source transfer controls
-- Time mode: measured
-- Measured minutes: 51.133
-- Started: 2026-05-13T06:06:38Z
-- Ended: 2026-05-13T06:57:46Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, artifacts/v3_external_source_structure_mapping_sample_1025.json, artifacts/v3_external_source_heuristic_control_scores_1025.json, artifacts/v3_external_source_control_repair_plan_1025.json, artifacts/v3_external_source_representation_control_manifest_1025.json, artifacts/v3_external_source_binding_context_repair_plan_1025.json, artifacts/v3_external_source_binding_context_mapping_sample_1025.json, artifacts/v3_external_source_sequence_holdout_audit_1025.json, artifacts/v3_external_source_reaction_evidence_sample_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, docs/external_source_transfer.md, work/external_source_control_repair_1025_notes.md, work/handoff.md
-- Evidence: 247 unit tests passed, validate passed, git diff --check passed, compileall passed, JSON artifact parse passed, 33/33 external transfer gates, 12/12 AlphaFold controls mapped, 25 review-only repair rows, 64 Rhea reaction rows, 2 exact-reference holdouts, 0 countable external labels
-- Notes: Documentation checked and updated during wrap-up; all external artifacts remain review-only and ready_for_label_import=false.
 
 ### 2026-05-13T08:00:59.297672+00:00 - post-v2
 
@@ -114,6 +103,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: work/handoff.md, work/scope.md, docs/external_source_transfer.md
 - Evidence: 268 unit tests passed, validate passed, git diff --check passed, automation prompt updated, sequence/fold-distance holdout is first priority, real representation controls second, holo-PDB overrides third, ePK fourth, transition-state schema later
 - Notes: User clarified not to implement locally in this turn; durable agent instructions were updated instead.
+
+### 2026-05-13T14:08:28.620965+00:00 - post-v2
+
+- Task: Sequence holdout and learned representation controls
+- Time mode: measured
+- Measured minutes: 51.0
+- Started: 2026-05-13T13:16:40Z
+- Ended: 2026-05-13T14:07:40Z
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_generalization.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_sequence_distance_holdout_eval_1000.json, artifacts/v3_sequence_distance_holdout_eval_1025.json, artifacts/v3_external_source_representation_backend_sample_1025.json, artifacts/v3_external_source_representation_backend_sample_audit_1025.json, artifacts/v3_external_source_kmer_representation_backend_sample_1025.json, artifacts/v3_external_source_kmer_representation_backend_sample_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md
+- Evidence: 273 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, CLI help checks passed, proxy holdout 136 rows with 0 held-out out-of-scope false non-abstentions, held-out evaluable top1 accuracy 0.9767 and retained top3 accuracy 1.0000, 12-row ESM-2 representation sample computed with 0 embedding failures, 3 representation near-duplicate holdouts, 12 learned-vs-heuristic disagreements, 59/59 external transfer gates, 0 countable external labels, 0 import-ready external labels
+- Notes: Normal locked measured run. Documentation checked and updated; holo-PDB override path inspected but not started because it needs a general selected-PDB override plus regenerated downstream artifacts.
 
 ## Expectation Updates
 
@@ -244,3 +244,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T12:05:19.086868+00:00: External transfer remains non-countable; next import readiness depends on primary literature/PDB active-site source review, complete near-duplicate sequence search, and replacing deterministic k-mer controls with real learned or structure-language representation controls before any external decision.
 - 2026-05-13T12:55:17.737175+00:00: Post-M-CSA work now prioritizes a 5-10 candidate external-source pilot over additional abstract transfer gates or M-CSA-only tranche growth.
 - 2026-05-13T13:02:54.457092+00:00: Agent work is now instruction-only redirected toward sequence/fold-distance holdout evaluation before external import or further abstract gates.
+- 2026-05-13T14:08:28.620965+00:00: External transfer remains non-countable; next pilot readiness work should use the holdout metrics and learned-vs-heuristic disagreements to rank candidates before active-site source review, complete sequence search, selected-PDB override repairs, and full factory gates.
