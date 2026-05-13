@@ -1,0 +1,16 @@
+{
+  "blockers": [],
+  "metadata": {
+    "candidate_count": 25,
+    "countable_label_candidate_count": 0,
+    "deferred_candidate_count": 13,
+    "guardrail_clean": true,
+    "import_ready_row_count": 0,
+    "method": "external_source_heuristic_control_queue_audit",
+    "ready_candidate_count": 12,
+    "ready_for_label_import": false
+  },
+  "warnings": [
+    "heuristic-control readiness is not a label decision; external rows still require scores, review decisions, and factory gates"
+  ]
+}

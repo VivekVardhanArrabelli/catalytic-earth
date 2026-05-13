@@ -2,8 +2,25 @@ from __future__ import annotations
 
 from collections import Counter
 from typing import Any, Callable
+from urllib.request import Request, urlopen
 
-from .adapters import fetch_rhea_by_ec, fetch_uniprot_query
+from .adapters import fetch_rhea_by_ec, fetch_uniprot_entry, fetch_uniprot_query
+from .structure import (
+    atom_position,
+    fetch_pdb_cif,
+    ligand_context_from_atoms,
+    pairwise_distances,
+    parse_atom_site_loop,
+    pocket_context_from_atoms,
+    residue_centroid,
+    select_residue_atoms,
+)
+from .geometry_retrieval import run_geometry_retrieval
+
+
+ALPHAFOLD_CIF_URL = "https://alphafold.ebi.ac.uk/files/AF-{accession}-F1-model_v{version}.cif"
+ALPHAFOLD_MODEL_VERSIONS = (6, 5, 4, 3, 2, 1)
+USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
 
 
 def build_external_source_transfer_manifest(
@@ -92,7 +109,10 @@ def build_external_source_transfer_manifest(
             "initial_filters": [
                 "reviewed:true",
                 "enzyme-annotated records with sequence and structure reference coverage",
-                "exclude entries that collapse into existing exact-reference duplicate clusters before benchmark split assignment",
+                (
+                    "exclude entries that collapse into existing exact-reference "
+                    "duplicate clusters before benchmark split assignment"
+                ),
             ],
         },
         "required_guardrails": [
@@ -106,7 +126,10 @@ def build_external_source_transfer_manifest(
         "next_actions": [
             "Implement a read-only external-source candidate manifest before importing labels.",
             "Attach OOD fold and sequence-similarity controls to the external manifest.",
-            "Keep all transfer candidates non-countable until factory gates pass on an explicit decision artifact.",
+            (
+                "Keep all transfer candidates non-countable until factory gates "
+                "pass on an explicit decision artifact."
+            ),
         ],
     }
 
@@ -874,6 +897,969 @@ def build_external_source_active_site_evidence_queue(
     }
 
 
+def build_external_source_active_site_evidence_sample(
+    *,
+    active_site_evidence_queue: dict[str, Any],
+    max_candidates: int = 8,
+    fetcher: Callable[[str], dict[str, Any]] = fetch_uniprot_entry,
+) -> dict[str, Any]:
+    """Fetch bounded UniProt feature evidence for ready external candidates."""
+    queue_rows = [
+        row
+        for row in active_site_evidence_queue.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    ready_rows = [
+        row
+        for row in queue_rows
+        if row.get("queue_status") == "ready_for_active_site_evidence"
+    ]
+    skipped_queue_rows = len(queue_rows) - len(ready_rows)
+    selected_rows = ready_rows[:max_candidates]
+    candidate_summaries: list[dict[str, Any]] = []
+    evidence_rows: list[dict[str, Any]] = []
+    fetch_failures: list[dict[str, str]] = []
+    status_counts: Counter[str] = Counter()
+    active_site_feature_count = 0
+    binding_site_feature_count = 0
+    catalytic_activity_count = 0
+    cofactor_comment_count = 0
+
+    for row in selected_rows:
+        accession = _normalize_accession(row.get("accession"))
+        if not accession:
+            continue
+        try:
+            payload = fetcher(accession)
+        except Exception as exc:  # pragma: no cover - exercised by live artifacts
+            fetch_failures.append(
+                {
+                    "accession": accession,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+            continue
+        record = payload.get("record", payload)
+        if not isinstance(record, dict):
+            fetch_failures.append(
+                {
+                    "accession": accession,
+                    "error_type": "ValueError",
+                    "error": "UniProt feature payload did not contain a record",
+                }
+            )
+            continue
+        active_features = [
+            feature
+            for feature in record.get("active_site_features", []) or []
+            if isinstance(feature, dict)
+        ]
+        binding_features = [
+            feature
+            for feature in record.get("binding_site_features", []) or []
+            if isinstance(feature, dict)
+        ]
+        catalytic_comments = [
+            comment
+            for comment in record.get("catalytic_activity_comments", []) or []
+            if isinstance(comment, dict)
+        ]
+        cofactor_comments = [
+            comment
+            for comment in record.get("cofactor_comments", []) or []
+            if isinstance(comment, dict)
+        ]
+        active_site_feature_count += len(active_features)
+        binding_site_feature_count += len(binding_features)
+        catalytic_activity_count += len(catalytic_comments)
+        cofactor_comment_count += len(cofactor_comments)
+        evidence_status = _external_active_site_evidence_status(
+            active_features=active_features,
+            binding_features=binding_features,
+            catalytic_comments=catalytic_comments,
+        )
+        status_counts[evidence_status] += 1
+        blockers = _external_active_site_evidence_blockers(
+            queue_row=row,
+            active_features=active_features,
+            catalytic_comments=catalytic_comments,
+        )
+        candidate_summaries.append(
+            {
+                "accession": accession,
+                "active_site_feature_count": len(active_features),
+                "alphafold_ids_sample": list(row.get("alphafold_ids", []) or [])[:5],
+                "binding_site_feature_count": len(binding_features),
+                "blockers": blockers,
+                "broad_or_incomplete_ec_numbers": row.get(
+                    "broad_or_incomplete_ec_numbers", []
+                ),
+                "catalytic_activity_count": len(catalytic_comments),
+                "cofactor_comment_count": len(cofactor_comments),
+                "countable_label_candidate": False,
+                "evidence_status": evidence_status,
+                "lane_id": row.get("lane_id"),
+                "pdb_ids_sample": list(row.get("pdb_ids", []) or [])[:10],
+                "protein_name": row.get("protein_name"),
+                "queue_rank": row.get("rank"),
+                "ready_for_label_import": False,
+                "scope_signal": row.get("scope_signal"),
+                "specific_ec_numbers": row.get("specific_ec_numbers", []),
+                "uniprot_entry_name": record.get("entry_name"),
+                "uniprot_review_status": record.get("entry_type"),
+            }
+        )
+        for feature in active_features + binding_features:
+            evidence_rows.append(
+                _external_active_site_feature_row(
+                    accession=accession,
+                    queue_row=row,
+                    feature=feature,
+                )
+            )
+
+    candidate_count = len(candidate_summaries)
+    return {
+        "metadata": {
+            "method": "external_source_active_site_evidence_sample",
+            "source_method": active_site_evidence_queue.get("metadata", {}).get(
+                "method"
+            ),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "max_candidates": max_candidates,
+            "ready_queue_candidate_count": len(ready_rows),
+            "candidate_count": candidate_count,
+            "candidate_with_active_site_feature_count": sum(
+                1
+                for summary in candidate_summaries
+                if summary["active_site_feature_count"] > 0
+            ),
+            "candidate_with_binding_site_feature_count": sum(
+                1
+                for summary in candidate_summaries
+                if summary["binding_site_feature_count"] > 0
+            ),
+            "candidate_with_catalytic_activity_count": sum(
+                1
+                for summary in candidate_summaries
+                if summary["catalytic_activity_count"] > 0
+            ),
+            "active_site_feature_count": active_site_feature_count,
+            "binding_site_feature_count": binding_site_feature_count,
+            "catalytic_activity_count": catalytic_activity_count,
+            "cofactor_comment_count": cofactor_comment_count,
+            "feature_evidence_row_count": len(evidence_rows),
+            "fetch_failure_count": len(fetch_failures),
+            "skipped_queue_row_count": skipped_queue_rows,
+            "evidence_status_counts": dict(sorted(status_counts.items())),
+            "review_only_rule": (
+                "UniProt active-site feature evidence is review context only; "
+                "external candidates remain non-countable until heuristic "
+                "controls, decisions, and full label-factory gates pass"
+            ),
+        },
+        "candidate_summaries": candidate_summaries,
+        "rows": evidence_rows,
+        "fetch_failures": fetch_failures,
+        "blockers": [
+            "active_site_features_not_mapped_to_candidate_structure",
+            "heuristic_control_scores_not_computed",
+            "external_decision_artifact_not_built",
+            "not_label_factory_gated",
+        ],
+    }
+
+
+def audit_external_source_active_site_evidence_sample(
+    active_site_evidence_sample: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify external active-site evidence samples remain review-only context."""
+    summaries = [
+        row
+        for row in active_site_evidence_sample.get("candidate_summaries", [])
+        if isinstance(row, dict)
+    ]
+    rows = [
+        row
+        for row in active_site_evidence_sample.get("rows", [])
+        if isinstance(row, dict)
+    ]
+    countable_items = [
+        row
+        for row in summaries + rows
+        if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_items = [
+        row for row in summaries + rows if row.get("ready_for_label_import") is not False
+    ]
+    non_context_rows = [
+        row for row in rows if row.get("evidence_status") != "uniprot_feature_context_only"
+    ]
+    active_site_feature_gap_count = sum(
+        1
+        for row in summaries
+        if int(row.get("active_site_feature_count", 0) or 0) == 0
+    )
+    blockers: list[str] = []
+    if not summaries:
+        blockers.append("empty_active_site_evidence_sample")
+    if countable_items:
+        blockers.append("active_site_evidence_rows_marked_countable")
+    if import_ready_items:
+        blockers.append("active_site_evidence_rows_marked_ready_for_import")
+    if non_context_rows:
+        blockers.append("active_site_evidence_rows_missing_review_only_status")
+    return {
+        "metadata": {
+            "method": "external_source_active_site_evidence_guardrail_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_items),
+            "candidate_count": len(summaries),
+            "feature_evidence_row_count": len(rows),
+            "import_ready_item_count": len(import_ready_items),
+            "non_context_row_count": len(non_context_rows),
+            "active_site_feature_gap_count": active_site_feature_gap_count,
+            "fetch_failure_count": active_site_evidence_sample.get(
+                "metadata", {}
+            ).get("fetch_failure_count", 0),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "active-site feature evidence requires structure mapping, "
+                "heuristic controls, decisions, and label-factory gates before "
+                "any external label import"
+            )
+        ],
+    }
+
+
+def build_external_source_heuristic_control_queue(
+    *,
+    active_site_evidence_sample: dict[str, Any],
+    max_rows: int = 25,
+) -> dict[str, Any]:
+    """Queue external candidates for future heuristic geometry controls."""
+    summaries = [
+        row
+        for row in active_site_evidence_sample.get("candidate_summaries", [])
+        if isinstance(row, dict)
+    ]
+    ready_rows: list[dict[str, Any]] = []
+    deferred_rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    lane_counts: Counter[str] = Counter()
+
+    for summary in summaries:
+        lane_id = str(summary.get("lane_id") or "unknown")
+        lane_counts[lane_id] += 1
+        active_site_count = int(summary.get("active_site_feature_count", 0) or 0)
+        catalytic_count = int(summary.get("catalytic_activity_count", 0) or 0)
+        broad_ec_numbers = list(summary.get("broad_or_incomplete_ec_numbers") or [])
+        if active_site_count == 0:
+            queue_status = "defer_active_site_feature_gap"
+        elif catalytic_count == 0:
+            queue_status = "defer_catalytic_activity_gap"
+        elif broad_ec_numbers:
+            queue_status = "defer_broad_ec_disambiguation"
+        else:
+            queue_status = "ready_for_heuristic_control_prototype"
+        status_counts[queue_status] += 1
+        queue_row = {
+            "accession": summary.get("accession"),
+            "active_site_feature_count": active_site_count,
+            "alphafold_ids_sample": summary.get("alphafold_ids_sample", []),
+            "binding_site_feature_count": summary.get("binding_site_feature_count", 0),
+            "blockers": _external_heuristic_control_blockers(queue_status),
+            "broad_or_incomplete_ec_numbers": broad_ec_numbers,
+            "catalytic_activity_count": catalytic_count,
+            "countable_label_candidate": False,
+            "lane_id": summary.get("lane_id"),
+            "pdb_ids_sample": summary.get("pdb_ids_sample", []),
+            "protein_name": summary.get("protein_name"),
+            "queue_rank": summary.get("queue_rank"),
+            "queue_status": queue_status,
+            "ready_for_label_import": False,
+            "scope_signal": summary.get("scope_signal"),
+            "specific_ec_numbers": summary.get("specific_ec_numbers", []),
+        }
+        if queue_status == "ready_for_heuristic_control_prototype":
+            ready_rows.append(queue_row)
+        else:
+            deferred_rows.append(queue_row)
+
+    ready_rows = sorted(
+        ready_rows,
+        key=lambda row: (
+            -int(row.get("active_site_feature_count", 0) or 0),
+            str(row.get("accession") or ""),
+        ),
+    )
+    rows = []
+    for rank, row in enumerate(ready_rows[:max_rows], start=1):
+        item = dict(row)
+        item["heuristic_control_rank"] = rank
+        rows.append(item)
+    return {
+        "metadata": {
+            "method": "external_source_heuristic_control_queue",
+            "source_method": active_site_evidence_sample.get("metadata", {}).get(
+                "method"
+            ),
+            "ready_for_label_import": False,
+            "ready_for_heuristic_control_execution": bool(rows),
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(summaries),
+            "ready_candidate_count": len(ready_rows),
+            "exported_ready_candidate_count": len(rows),
+            "deferred_candidate_count": len(deferred_rows),
+            "max_rows": max_rows,
+            "omitted_ready_candidate_count": max(len(ready_rows) - len(rows), 0),
+            "queue_status_counts": dict(sorted(status_counts.items())),
+            "lane_counts": dict(sorted(lane_counts.items())),
+            "review_only_rule": (
+                "this queue identifies external candidates ready for heuristic "
+                "control scoring only; it cannot create countable labels"
+            ),
+        },
+        "rows": rows,
+        "deferred_rows": deferred_rows,
+        "blockers": [
+            "heuristic_control_scores_not_computed",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+    }
+
+
+def audit_external_source_heuristic_control_queue(
+    heuristic_control_queue: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify heuristic-control queues remain non-countable review work."""
+    rows = [
+        row
+        for section in ("rows", "deferred_rows")
+        for row in heuristic_control_queue.get(section, [])
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    metadata = heuristic_control_queue.get("metadata", {})
+    candidate_count = int(metadata.get("candidate_count", 0) or 0)
+    ready_count = int(metadata.get("ready_candidate_count", 0) or 0)
+    deferred_count = int(metadata.get("deferred_candidate_count", 0) or 0)
+    blockers: list[str] = []
+    if candidate_count == 0:
+        blockers.append("empty_heuristic_control_queue")
+    if candidate_count != ready_count + deferred_count:
+        blockers.append("heuristic_control_queue_count_mismatch")
+    if countable_rows:
+        blockers.append("heuristic_control_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("heuristic_control_rows_marked_ready_for_import")
+    return {
+        "metadata": {
+            "method": "external_source_heuristic_control_queue_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": candidate_count,
+            "ready_candidate_count": ready_count,
+            "deferred_candidate_count": deferred_count,
+            "import_ready_row_count": len(import_ready_rows),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "heuristic-control readiness is not a label decision; external "
+                "rows still require scores, review decisions, and factory gates"
+            )
+        ],
+    }
+
+
+def build_external_source_structure_mapping_plan(
+    *,
+    active_site_evidence_sample: dict[str, Any],
+    heuristic_control_queue: dict[str, Any],
+    max_rows: int = 25,
+) -> dict[str, Any]:
+    """Plan structure mapping for external candidates with residue evidence."""
+    feature_rows_by_accession: dict[str, list[dict[str, Any]]] = {}
+    for row in active_site_evidence_sample.get("rows", []) or []:
+        if not isinstance(row, dict) or row.get("feature_type") != "Active site":
+            continue
+        accession = _normalize_accession(row.get("accession"))
+        if accession:
+            feature_rows_by_accession.setdefault(accession, []).append(row)
+    queue_rows = [
+        row
+        for section in ("rows", "deferred_rows")
+        for row in heuristic_control_queue.get(section, [])
+        if isinstance(row, dict)
+    ]
+    planned_rows: list[dict[str, Any]] = []
+    deferred_rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    for row in queue_rows:
+        accession = _normalize_accession(row.get("accession"))
+        active_site_positions = [
+            {
+                "begin": feature.get("begin"),
+                "description": feature.get("description"),
+                "end": feature.get("end"),
+                "evidence": feature.get("evidence", []),
+            }
+            for feature in feature_rows_by_accession.get(accession, [])
+        ]
+        pdb_ids = list(row.get("pdb_ids_sample", []) or [])
+        alphafold_ids = list(row.get("alphafold_ids_sample", []) or [])
+        if row.get("queue_status") != "ready_for_heuristic_control_prototype":
+            mapping_status = "defer_before_structure_mapping"
+        elif not active_site_positions:
+            mapping_status = "defer_active_site_positions_missing"
+        elif not (pdb_ids or alphafold_ids):
+            mapping_status = "defer_structure_reference_missing"
+        else:
+            mapping_status = "ready_for_structure_mapping"
+        status_counts[mapping_status] += 1
+        mapping_row = {
+            "accession": accession,
+            "active_site_positions": active_site_positions,
+            "active_site_position_count": len(active_site_positions),
+            "alphafold_ids_sample": alphafold_ids,
+            "blockers": _external_structure_mapping_blockers(mapping_status),
+            "countable_label_candidate": False,
+            "heuristic_control_rank": row.get("heuristic_control_rank"),
+            "lane_id": row.get("lane_id"),
+            "mapping_status": mapping_status,
+            "pdb_ids_sample": pdb_ids,
+            "protein_name": row.get("protein_name"),
+            "ready_for_label_import": False,
+            "scope_signal": row.get("scope_signal"),
+            "specific_ec_numbers": row.get("specific_ec_numbers", []),
+            "structure_mapping_rule": (
+                "map UniProt active-site positions onto PDB or AlphaFold "
+                "candidate structures before heuristic geometry scoring"
+            ),
+            "upstream_queue_blockers": row.get("blockers", []),
+            "upstream_queue_status": row.get("queue_status"),
+        }
+        if mapping_status == "ready_for_structure_mapping":
+            planned_rows.append(mapping_row)
+        else:
+            deferred_rows.append(mapping_row)
+    planned_rows = planned_rows[:max_rows]
+    return {
+        "metadata": {
+            "method": "external_source_structure_mapping_plan",
+            "source_method": heuristic_control_queue.get("metadata", {}).get(
+                "method"
+            ),
+            "ready_for_label_import": False,
+            "ready_for_structure_mapping": bool(planned_rows),
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(queue_rows),
+            "ready_mapping_candidate_count": len(planned_rows),
+            "deferred_mapping_candidate_count": len(deferred_rows),
+            "max_rows": max_rows,
+            "mapping_status_counts": dict(sorted(status_counts.items())),
+            "review_only_rule": (
+                "structure mapping plans prepare heuristic controls only and "
+                "do not create countable labels"
+            ),
+        },
+        "rows": planned_rows,
+        "deferred_rows": deferred_rows,
+        "blockers": [
+            "structure_mapping_not_computed",
+            "heuristic_control_scores_not_computed",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+    }
+
+
+def audit_external_source_structure_mapping_plan(
+    structure_mapping_plan: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify external structure-mapping plans remain non-countable."""
+    rows = [
+        row
+        for section in ("rows", "deferred_rows")
+        for row in structure_mapping_plan.get(section, [])
+        if isinstance(row, dict)
+    ]
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_position_rows = [
+        row
+        for row in structure_mapping_plan.get("rows", [])
+        if isinstance(row, dict) and not row.get("active_site_positions")
+    ]
+    metadata = structure_mapping_plan.get("metadata", {})
+    candidate_count = int(metadata.get("candidate_count", 0) or 0)
+    ready_count = int(metadata.get("ready_mapping_candidate_count", 0) or 0)
+    deferred_count = int(metadata.get("deferred_mapping_candidate_count", 0) or 0)
+    blockers: list[str] = []
+    if candidate_count == 0:
+        blockers.append("empty_structure_mapping_plan")
+    if candidate_count != ready_count + deferred_count:
+        blockers.append("structure_mapping_plan_count_mismatch")
+    if countable_rows:
+        blockers.append("structure_mapping_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("structure_mapping_rows_marked_ready_for_import")
+    if missing_position_rows:
+        blockers.append("structure_mapping_ready_rows_missing_active_site_positions")
+    return {
+        "metadata": {
+            "method": "external_source_structure_mapping_plan_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "candidate_count": candidate_count,
+            "ready_mapping_candidate_count": ready_count,
+            "deferred_mapping_candidate_count": deferred_count,
+            "import_ready_row_count": len(import_ready_rows),
+            "ready_rows_missing_position_count": len(missing_position_rows),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "structure mapping is only a precursor to heuristic controls; "
+                "external rows still require decisions and full factory gates"
+            )
+        ],
+    }
+
+
+def build_external_source_structure_mapping_sample(
+    *,
+    structure_mapping_plan: dict[str, Any],
+    max_candidates: int = 4,
+    cif_fetcher: Callable[[str, str], str] | None = None,
+) -> dict[str, Any]:
+    """Resolve a bounded external active-site mapping sample on structures."""
+    fetcher = cif_fetcher or fetch_external_structure_cif
+    plan_rows = [
+        row for row in structure_mapping_plan.get("rows", []) if isinstance(row, dict)
+    ][:max_candidates]
+    entries: list[dict[str, Any]] = []
+    fetch_failures: list[dict[str, str]] = []
+    status_counts: Counter[str] = Counter()
+    for row in plan_rows:
+        accession = _normalize_accession(row.get("accession"))
+        structure_source, structure_id = _external_structure_choice(row)
+        if not structure_source or not structure_id:
+            entry = _external_structure_mapping_failure_entry(
+                row=row,
+                status="structure_reference_missing",
+                error="no PDB or AlphaFold structure handle available",
+            )
+            entries.append(entry)
+            status_counts[entry["status"]] += 1
+            continue
+        try:
+            atoms = parse_atom_site_loop(fetcher(structure_source, structure_id))
+        except Exception as exc:  # pragma: no cover - exercised by live artifacts
+            fetch_failures.append(
+                {
+                    "accession": accession,
+                    "structure_source": structure_source,
+                    "structure_id": structure_id,
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                }
+            )
+            entry = _external_structure_mapping_failure_entry(
+                row=row,
+                status="structure_fetch_failed",
+                error=str(exc),
+                structure_source=structure_source,
+                structure_id=structure_id,
+            )
+            entries.append(entry)
+            status_counts[entry["status"]] += 1
+            continue
+        resolved = []
+        missing_positions = []
+        for position in row.get("active_site_positions", []) or []:
+            residue_atoms = select_residue_atoms(
+                atoms,
+                chain_name=None,
+                resid=position.get("begin"),
+                code=None,
+            )
+            if not residue_atoms:
+                missing_positions.append(position)
+                continue
+            first_atom = residue_atoms[0]
+            resolved.append(
+                {
+                    "residue_node_id": f"uniprot:{accession}:{position.get('begin')}",
+                    "code": first_atom.get("auth_comp_id")
+                    or first_atom.get("label_comp_id"),
+                    "chain_name": first_atom.get("auth_asym_id")
+                    or first_atom.get("label_asym_id"),
+                    "resid": position.get("begin"),
+                    "atom_count": len(residue_atoms),
+                    "centroid": residue_centroid(residue_atoms),
+                    "ca": atom_position(residue_atoms, "CA"),
+                    "roles": _external_active_site_roles(position),
+                }
+            )
+        status = "ok" if resolved else "active_site_positions_unresolved"
+        entry = {
+            "accession": accession,
+            "countable_label_candidate": False,
+            "entry_id": f"uniprot:{accession}",
+            "lane_id": row.get("lane_id"),
+            "ligand_context": ligand_context_from_atoms(atoms, resolved),
+            "missing_active_site_positions": missing_positions,
+            "pairwise_distances_angstrom": pairwise_distances(resolved),
+            "pocket_context": pocket_context_from_atoms(atoms, resolved),
+            "protein_name": row.get("protein_name"),
+            "ready_for_label_import": False,
+            "resolved_residue_count": len(resolved),
+            "residue_count": len(row.get("active_site_positions", []) or []),
+            "residues": resolved,
+            "scope_signal": row.get("scope_signal"),
+            "specific_ec_numbers": row.get("specific_ec_numbers", []),
+            "status": status,
+            "structure_id": structure_id,
+            "structure_source": structure_source,
+        }
+        entries.append(entry)
+        status_counts[status] += 1
+    ok_count = sum(1 for entry in entries if entry.get("status") == "ok")
+    return {
+        "metadata": {
+            "method": "external_source_structure_mapping_sample",
+            "source_method": structure_mapping_plan.get("metadata", {}).get(
+                "method"
+            ),
+            "ready_for_label_import": False,
+            "ready_for_heuristic_control_scoring": ok_count > 0,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(entries),
+            "mapped_candidate_count": ok_count,
+            "fetch_failure_count": len(fetch_failures),
+            "max_candidates": max_candidates,
+            "status_counts": dict(sorted(status_counts.items())),
+            "review_only_rule": (
+                "external structure mapping samples are heuristic-control "
+                "inputs only and cannot create countable labels"
+            ),
+        },
+        "entries": entries,
+        "fetch_failures": fetch_failures,
+        "blockers": [
+            "heuristic_control_scores_not_computed",
+            "external_decision_artifact_not_built",
+            "full_label_factory_gate_not_run",
+        ],
+    }
+
+
+def audit_external_source_structure_mapping_sample(
+    structure_mapping_sample: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify external structure mapping samples remain review-only controls."""
+    entries = [
+        entry
+        for entry in structure_mapping_sample.get("entries", [])
+        if isinstance(entry, dict)
+    ]
+    countable_entries = [
+        entry for entry in entries if entry.get("countable_label_candidate") is not False
+    ]
+    import_ready_entries = [
+        entry for entry in entries if entry.get("ready_for_label_import") is not False
+    ]
+    unresolved_entries = [
+        entry for entry in entries if entry.get("status") != "ok"
+    ]
+    blockers: list[str] = []
+    if not entries:
+        blockers.append("empty_structure_mapping_sample")
+    if countable_entries:
+        blockers.append("structure_mapping_sample_entries_marked_countable")
+    if import_ready_entries:
+        blockers.append("structure_mapping_sample_entries_marked_ready_for_import")
+    return {
+        "metadata": {
+            "method": "external_source_structure_mapping_sample_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_entries),
+            "candidate_count": len(entries),
+            "mapped_candidate_count": sum(
+                1 for entry in entries if entry.get("status") == "ok"
+            ),
+            "unresolved_candidate_count": len(unresolved_entries),
+            "import_ready_entry_count": len(import_ready_entries),
+            "fetch_failure_count": structure_mapping_sample.get("metadata", {}).get(
+                "fetch_failure_count", 0
+            ),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "mapped external structures still require heuristic scoring, "
+                "review decisions, and full label-factory gates before import"
+            )
+        ],
+    }
+
+
+def build_external_source_heuristic_control_scores(
+    *,
+    structure_mapping_sample: dict[str, Any],
+    top_k: int = 5,
+) -> dict[str, Any]:
+    """Run seed-fingerprint retrieval as a review-only external control."""
+    retrieval = run_geometry_retrieval(structure_mapping_sample, top_k=top_k)
+    entry_index = {
+        str(entry.get("entry_id")): entry
+        for entry in structure_mapping_sample.get("entries", [])
+        if isinstance(entry, dict) and entry.get("entry_id")
+    }
+    results = []
+    top1_counts: Counter[str] = Counter()
+    for result in retrieval.get("results", []):
+        entry = entry_index.get(str(result.get("entry_id")), {})
+        top_fingerprints = result.get("top_fingerprints", [])
+        top1 = top_fingerprints[0].get("fingerprint_id") if top_fingerprints else None
+        if top1:
+            top1_counts[str(top1)] += 1
+        results.append(
+            {
+                **result,
+                "countable_label_candidate": False,
+                "external_control_status": "heuristic_control_only",
+                "external_lane_id": entry.get("lane_id"),
+                "external_scope_signal": entry.get("scope_signal"),
+                "protein_name": entry.get("protein_name"),
+                "ready_for_label_import": False,
+                "scope_top1_mismatch": _external_scope_top1_mismatch(
+                    entry.get("scope_signal"), str(top1 or "")
+                ),
+                "specific_ec_numbers": entry.get("specific_ec_numbers", []),
+                "structure_id": entry.get("structure_id"),
+                "structure_source": entry.get("structure_source"),
+            }
+        )
+    return {
+        "metadata": {
+            "method": "external_source_heuristic_control_scores",
+            "source_method": structure_mapping_sample.get("metadata", {}).get(
+                "method"
+            ),
+            "retrieval_method": retrieval.get("metadata", {}).get("method"),
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "candidate_count": len(results),
+            "top_k": top_k,
+            "top1_fingerprint_counts": dict(sorted(top1_counts.items())),
+            "review_only_rule": (
+                "external heuristic scores are controls for review decisions, "
+                "not label imports"
+            ),
+        },
+        "results": results,
+        "blockers": [
+            "external_decision_artifact_not_built",
+            "external_ood_calibration_not_applied",
+            "full_label_factory_gate_not_run",
+        ],
+    }
+
+
+def audit_external_source_heuristic_control_scores(
+    heuristic_control_scores: dict[str, Any],
+    max_dominant_top1_fraction: float = 0.6,
+) -> dict[str, Any]:
+    """Verify external heuristic score artifacts cannot be imported as labels."""
+    results = [
+        result
+        for result in heuristic_control_scores.get("results", [])
+        if isinstance(result, dict)
+    ]
+    top1_counts: Counter[str] = Counter()
+    for result in results:
+        top_fingerprints = result.get("top_fingerprints", [])
+        if top_fingerprints:
+            top1 = top_fingerprints[0].get("fingerprint_id")
+            if top1:
+                top1_counts[str(top1)] += 1
+    dominant_top1, dominant_count = (
+        top1_counts.most_common(1)[0] if top1_counts else (None, 0)
+    )
+    dominant_fraction = dominant_count / len(results) if results else 0.0
+    countable_results = [
+        result for result in results if result.get("countable_label_candidate") is not False
+    ]
+    import_ready_results = [
+        result for result in results if result.get("ready_for_label_import") is not False
+    ]
+    scope_mismatch_count = sum(
+        1 for result in results if result.get("scope_top1_mismatch")
+    )
+    blockers: list[str] = []
+    if not results:
+        blockers.append("empty_heuristic_control_scores")
+    if countable_results:
+        blockers.append("heuristic_control_scores_marked_countable")
+    if import_ready_results:
+        blockers.append("heuristic_control_scores_marked_ready_for_import")
+    control_findings = []
+    if dominant_fraction > max_dominant_top1_fraction:
+        control_findings.append("heuristic_control_top1_fingerprint_collapse")
+    if (
+        dominant_top1 == "metal_dependent_hydrolase"
+        and dominant_fraction > max_dominant_top1_fraction
+    ):
+        control_findings.append("heuristic_control_metal_hydrolase_collapse")
+    if scope_mismatch_count:
+        control_findings.append("heuristic_control_scope_top1_mismatch")
+    return {
+        "metadata": {
+            "method": "external_source_heuristic_control_scores_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_results),
+            "candidate_count": len(results),
+            "dominant_top1_fingerprint": dominant_top1,
+            "dominant_top1_fraction": round(dominant_fraction, 4),
+            "max_dominant_top1_fraction": max_dominant_top1_fraction,
+            "scope_top1_mismatch_count": scope_mismatch_count,
+            "import_ready_result_count": len(import_ready_results),
+            "control_finding_count": len(control_findings),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "control_findings": control_findings,
+        "warnings": [
+            (
+                "heuristic control scores require OOD calibration, decisions, "
+                "and full factory gates before any external label import"
+            )
+        ],
+    }
+
+
+def audit_external_source_failure_modes(
+    *,
+    active_site_evidence_sample_audit: dict[str, Any],
+    heuristic_control_queue: dict[str, Any],
+    heuristic_control_scores_audit: dict[str, Any],
+    structure_mapping_sample_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """Summarize external-transfer failure modes before label decisions."""
+    heuristic_status_counts = heuristic_control_queue.get("metadata", {}).get(
+        "queue_status_counts", {}
+    )
+    active_site_gap_count = int(
+        active_site_evidence_sample_audit.get("metadata", {}).get(
+            "active_site_feature_gap_count", 0
+        )
+        or 0
+    )
+    broad_ec_defer_count = int(
+        heuristic_status_counts.get("defer_broad_ec_disambiguation", 0) or 0
+    )
+    unresolved_mapping_count = int(
+        structure_mapping_sample_audit.get("metadata", {}).get(
+            "unresolved_candidate_count", 0
+        )
+        or 0
+    )
+    control_findings = [
+        str(item)
+        for item in heuristic_control_scores_audit.get("control_findings", [])
+    ]
+    rows = []
+    if active_site_gap_count:
+        rows.append(
+            {
+                "failure_mode": "external_active_site_feature_gap",
+                "row_count": active_site_gap_count,
+                "recommended_action": (
+                    "keep rows non-countable and source active-site positions "
+                    "or alternate curated evidence"
+                ),
+            }
+        )
+    if broad_ec_defer_count:
+        rows.append(
+            {
+                "failure_mode": "external_broad_ec_disambiguation_needed",
+                "row_count": broad_ec_defer_count,
+                "recommended_action": (
+                    "resolve broad EC context before structure mapping or "
+                    "heuristic-control interpretation"
+                ),
+            }
+        )
+    if unresolved_mapping_count:
+        rows.append(
+            {
+                "failure_mode": "external_structure_mapping_unresolved",
+                "row_count": unresolved_mapping_count,
+                "recommended_action": (
+                    "repair structure fetch or residue-position mapping before "
+                    "heuristic-control scoring"
+                ),
+            }
+        )
+    for finding in control_findings:
+        rows.append(
+            {
+                "failure_mode": finding,
+                "row_count": heuristic_control_scores_audit.get("metadata", {}).get(
+                    "candidate_count", 0
+                ),
+                "recommended_action": (
+                    "treat external heuristic scores as a retrieval-control "
+                    "failure signal; do not create labels until ontology or "
+                    "representation controls separate the lane"
+                ),
+            }
+        )
+    return {
+        "metadata": {
+            "method": "external_source_failure_mode_audit",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "failure_mode_count": len(rows),
+            "active_site_feature_gap_count": active_site_gap_count,
+            "broad_ec_disambiguation_count": broad_ec_defer_count,
+            "heuristic_control_finding_count": len(control_findings),
+            "structure_mapping_unresolved_count": unresolved_mapping_count,
+            "guardrail_clean": True,
+        },
+        "rows": rows,
+        "blockers": [],
+        "warnings": [
+            (
+                "failure-mode rows are review-only controls and must block "
+                "external label import until repaired or explicitly deferred"
+            )
+        ],
+    }
+
+
 def check_external_source_transfer_gates(
     *,
     transfer_manifest: dict[str, Any],
@@ -887,6 +1873,17 @@ def check_external_source_transfer_gates(
     evidence_request_export: dict[str, Any],
     review_only_import_safety_audit: dict[str, Any],
     active_site_evidence_queue: dict[str, Any] | None = None,
+    active_site_evidence_sample: dict[str, Any] | None = None,
+    active_site_evidence_sample_audit: dict[str, Any] | None = None,
+    heuristic_control_queue: dict[str, Any] | None = None,
+    heuristic_control_queue_audit: dict[str, Any] | None = None,
+    structure_mapping_plan: dict[str, Any] | None = None,
+    structure_mapping_plan_audit: dict[str, Any] | None = None,
+    structure_mapping_sample: dict[str, Any] | None = None,
+    structure_mapping_sample_audit: dict[str, Any] | None = None,
+    heuristic_control_scores: dict[str, Any] | None = None,
+    heuristic_control_scores_audit: dict[str, Any] | None = None,
+    external_failure_mode_audit: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Gate external-source transfer artifacts before future label import work."""
     gates = {
@@ -999,6 +1996,155 @@ def check_external_source_transfer_gates(
             and all(row.get("countable_label_candidate") is False for row in queue_rows)
             and all(row.get("ready_for_label_import") is False for row in queue_rows)
         )
+    if active_site_evidence_sample is not None:
+        sample_meta = active_site_evidence_sample.get("metadata", {})
+        sample_items = [
+            row
+            for section in ("candidate_summaries", "rows")
+            for row in active_site_evidence_sample.get(section, [])
+            if isinstance(row, dict)
+        ]
+        queue_ready_count = (
+            int(
+                active_site_evidence_queue.get("metadata", {}).get(
+                    "ready_candidate_count", 0
+                )
+                or 0
+            )
+            if active_site_evidence_queue is not None
+            else None
+        )
+        sample_count = int(sample_meta.get("candidate_count", 0) or 0)
+        sample_count_within_queue = (
+            queue_ready_count is None or sample_count <= queue_ready_count
+        )
+        gates["active_site_evidence_sample_review_only"] = (
+            sample_meta.get("ready_for_label_import") is False
+            and sample_meta.get("countable_label_candidate_count") == 0
+            and sample_count > 0
+            and sample_count_within_queue
+            and all(row.get("countable_label_candidate") is False for row in sample_items)
+            and all(row.get("ready_for_label_import") is False for row in sample_items)
+        )
+    if active_site_evidence_sample_audit is not None:
+        audit_meta = active_site_evidence_sample_audit.get("metadata", {})
+        gates["active_site_evidence_sample_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("countable_label_candidate_count") == 0
+            and audit_meta.get("ready_for_label_import") is False
+        )
+    if heuristic_control_queue is not None:
+        queue_meta = heuristic_control_queue.get("metadata", {})
+        queue_rows = [
+            row
+            for section in ("rows", "deferred_rows")
+            for row in heuristic_control_queue.get(section, [])
+            if isinstance(row, dict)
+        ]
+        ready_count = int(queue_meta.get("ready_candidate_count", 0) or 0)
+        deferred_count = int(queue_meta.get("deferred_candidate_count", 0) or 0)
+        candidate_count = int(queue_meta.get("candidate_count", 0) or 0)
+        gates["heuristic_control_queue_review_only"] = (
+            queue_meta.get("ready_for_label_import") is False
+            and queue_meta.get("countable_label_candidate_count") == 0
+            and queue_meta.get("ready_for_heuristic_control_execution") is True
+            and candidate_count == ready_count + deferred_count
+            and all(row.get("countable_label_candidate") is False for row in queue_rows)
+            and all(row.get("ready_for_label_import") is False for row in queue_rows)
+        )
+    if heuristic_control_queue_audit is not None:
+        audit_meta = heuristic_control_queue_audit.get("metadata", {})
+        gates["heuristic_control_queue_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("countable_label_candidate_count") == 0
+            and audit_meta.get("ready_for_label_import") is False
+        )
+    if structure_mapping_plan is not None:
+        plan_meta = structure_mapping_plan.get("metadata", {})
+        plan_rows = [
+            row
+            for section in ("rows", "deferred_rows")
+            for row in structure_mapping_plan.get(section, [])
+            if isinstance(row, dict)
+        ]
+        ready_count = int(plan_meta.get("ready_mapping_candidate_count", 0) or 0)
+        deferred_count = int(
+            plan_meta.get("deferred_mapping_candidate_count", 0) or 0
+        )
+        candidate_count = int(plan_meta.get("candidate_count", 0) or 0)
+        gates["structure_mapping_plan_review_only"] = (
+            plan_meta.get("ready_for_label_import") is False
+            and plan_meta.get("countable_label_candidate_count") == 0
+            and plan_meta.get("ready_for_structure_mapping") is True
+            and candidate_count == ready_count + deferred_count
+            and all(row.get("countable_label_candidate") is False for row in plan_rows)
+            and all(row.get("ready_for_label_import") is False for row in plan_rows)
+        )
+    if structure_mapping_plan_audit is not None:
+        audit_meta = structure_mapping_plan_audit.get("metadata", {})
+        gates["structure_mapping_plan_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("countable_label_candidate_count") == 0
+            and audit_meta.get("ready_for_label_import") is False
+        )
+    if structure_mapping_sample is not None:
+        sample_meta = structure_mapping_sample.get("metadata", {})
+        entries = [
+            entry
+            for entry in structure_mapping_sample.get("entries", [])
+            if isinstance(entry, dict)
+        ]
+        gates["structure_mapping_sample_review_only"] = (
+            sample_meta.get("ready_for_label_import") is False
+            and sample_meta.get("countable_label_candidate_count") == 0
+            and sample_meta.get("ready_for_heuristic_control_scoring") is True
+            and all(
+                entry.get("countable_label_candidate") is False for entry in entries
+            )
+            and all(entry.get("ready_for_label_import") is False for entry in entries)
+        )
+    if structure_mapping_sample_audit is not None:
+        audit_meta = structure_mapping_sample_audit.get("metadata", {})
+        gates["structure_mapping_sample_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("countable_label_candidate_count") == 0
+            and audit_meta.get("ready_for_label_import") is False
+        )
+    if heuristic_control_scores is not None:
+        score_meta = heuristic_control_scores.get("metadata", {})
+        score_results = [
+            result
+            for result in heuristic_control_scores.get("results", [])
+            if isinstance(result, dict)
+        ]
+        gates["heuristic_control_scores_review_only"] = (
+            score_meta.get("ready_for_label_import") is False
+            and score_meta.get("countable_label_candidate_count") == 0
+            and score_meta.get("candidate_count") == len(score_results)
+            and len(score_results) > 0
+            and all(
+                result.get("countable_label_candidate") is False
+                for result in score_results
+            )
+            and all(
+                result.get("ready_for_label_import") is False
+                for result in score_results
+            )
+        )
+    if heuristic_control_scores_audit is not None:
+        audit_meta = heuristic_control_scores_audit.get("metadata", {})
+        gates["heuristic_control_scores_audit_guardrail_clean"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("countable_label_candidate_count") == 0
+            and audit_meta.get("ready_for_label_import") is False
+        )
+    if external_failure_mode_audit is not None:
+        audit_meta = external_failure_mode_audit.get("metadata", {})
+        gates["external_failure_mode_audit_review_only"] = (
+            audit_meta.get("guardrail_clean") is True
+            and audit_meta.get("ready_for_label_import") is False
+            and audit_meta.get("countable_label_candidate_count") == 0
+        )
     blockers = [name for name, passed in gates.items() if not passed]
     return {
         "metadata": {
@@ -1039,6 +2185,79 @@ def check_external_source_transfer_gates(
                     "deferred_candidate_count", 0
                 )
                 if active_site_evidence_queue is not None
+                else 0
+            ),
+            "active_site_evidence_sampled_candidate_count": (
+                active_site_evidence_sample.get("metadata", {}).get(
+                    "candidate_count", 0
+                )
+                if active_site_evidence_sample is not None
+                else 0
+            ),
+            "active_site_feature_supported_candidate_count": (
+                active_site_evidence_sample.get("metadata", {}).get(
+                    "candidate_with_active_site_feature_count", 0
+                )
+                if active_site_evidence_sample is not None
+                else 0
+            ),
+            "active_site_feature_gap_count": (
+                active_site_evidence_sample_audit.get("metadata", {}).get(
+                    "active_site_feature_gap_count", 0
+                )
+                if active_site_evidence_sample_audit is not None
+                else 0
+            ),
+            "heuristic_control_ready_candidate_count": (
+                heuristic_control_queue.get("metadata", {}).get(
+                    "ready_candidate_count", 0
+                )
+                if heuristic_control_queue is not None
+                else 0
+            ),
+            "heuristic_control_deferred_candidate_count": (
+                heuristic_control_queue.get("metadata", {}).get(
+                    "deferred_candidate_count", 0
+                )
+                if heuristic_control_queue is not None
+                else 0
+            ),
+            "structure_mapping_ready_candidate_count": (
+                structure_mapping_plan.get("metadata", {}).get(
+                    "ready_mapping_candidate_count", 0
+                )
+                if structure_mapping_plan is not None
+                else 0
+            ),
+            "structure_mapping_deferred_candidate_count": (
+                structure_mapping_plan.get("metadata", {}).get(
+                    "deferred_mapping_candidate_count", 0
+                )
+                if structure_mapping_plan is not None
+                else 0
+            ),
+            "structure_mapping_sampled_candidate_count": (
+                structure_mapping_sample.get("metadata", {}).get("candidate_count", 0)
+                if structure_mapping_sample is not None
+                else 0
+            ),
+            "structure_mapping_sample_mapped_candidate_count": (
+                structure_mapping_sample.get("metadata", {}).get(
+                    "mapped_candidate_count", 0
+                )
+                if structure_mapping_sample is not None
+                else 0
+            ),
+            "heuristic_control_scored_candidate_count": (
+                heuristic_control_scores.get("metadata", {}).get("candidate_count", 0)
+                if heuristic_control_scores is not None
+                else 0
+            ),
+            "external_failure_mode_count": (
+                external_failure_mode_audit.get("metadata", {}).get(
+                    "failure_mode_count", 0
+                )
+                if external_failure_mode_audit is not None
                 else 0
             ),
             "heuristic_control_required": bool(
@@ -1225,6 +2444,204 @@ def audit_external_source_reaction_evidence_sample(
             )
         ],
     }
+
+
+def _external_active_site_evidence_status(
+    *,
+    active_features: list[dict[str, Any]],
+    binding_features: list[dict[str, Any]],
+    catalytic_comments: list[dict[str, Any]],
+) -> str:
+    if active_features and catalytic_comments:
+        return "active_site_and_catalytic_activity_context_found"
+    if active_features:
+        return "active_site_feature_context_found"
+    if binding_features or catalytic_comments:
+        return "binding_or_reaction_context_only"
+    return "active_site_feature_missing"
+
+
+def _external_active_site_evidence_blockers(
+    *,
+    queue_row: dict[str, Any],
+    active_features: list[dict[str, Any]],
+    catalytic_comments: list[dict[str, Any]],
+) -> list[str]:
+    blockers = [
+        "active_site_features_not_mapped_to_candidate_structure",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "not_label_factory_gated",
+    ]
+    if not active_features:
+        blockers.append("uniprot_active_site_feature_missing")
+    if not catalytic_comments:
+        blockers.append("uniprot_catalytic_activity_comment_missing")
+    if queue_row.get("broad_or_incomplete_ec_numbers"):
+        blockers.append("specific_reaction_disambiguation_for_broad_ec")
+    return blockers
+
+
+def _external_active_site_feature_row(
+    *,
+    accession: str,
+    queue_row: dict[str, Any],
+    feature: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "accession": accession,
+        "begin": feature.get("begin"),
+        "countable_label_candidate": False,
+        "description": feature.get("description"),
+        "end": feature.get("end"),
+        "evidence": feature.get("evidence", []),
+        "evidence_status": "uniprot_feature_context_only",
+        "feature_type": feature.get("feature_type"),
+        "lane_id": queue_row.get("lane_id"),
+        "ligand_id": feature.get("ligand_id"),
+        "ligand_name": feature.get("ligand_name"),
+        "ligand_note": feature.get("ligand_note"),
+        "queue_rank": queue_row.get("rank"),
+        "ready_for_label_import": False,
+        "scope_signal": queue_row.get("scope_signal"),
+    }
+
+
+def _external_heuristic_control_blockers(queue_status: str) -> list[str]:
+    blockers = [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if queue_status == "defer_active_site_feature_gap":
+        blockers.append("uniprot_active_site_feature_missing")
+    elif queue_status == "defer_catalytic_activity_gap":
+        blockers.append("uniprot_catalytic_activity_comment_missing")
+    elif queue_status == "defer_broad_ec_disambiguation":
+        blockers.append("specific_reaction_disambiguation_for_broad_ec")
+    return blockers
+
+
+def _external_structure_mapping_blockers(mapping_status: str) -> list[str]:
+    blockers = [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+    ]
+    if mapping_status == "defer_before_structure_mapping":
+        blockers.append("upstream_evidence_or_disambiguation_deferred")
+    elif mapping_status == "defer_active_site_positions_missing":
+        blockers.append("uniprot_active_site_feature_missing")
+    elif mapping_status == "defer_structure_reference_missing":
+        blockers.append("external_structure_reference_missing")
+    return blockers
+
+
+def fetch_external_structure_cif(structure_source: str, structure_id: str) -> str:
+    if structure_source == "alphafold":
+        errors: list[str] = []
+        for version in ALPHAFOLD_MODEL_VERSIONS:
+            request = Request(
+                ALPHAFOLD_CIF_URL.format(accession=structure_id, version=version),
+                headers={"User-Agent": USER_AGENT},
+            )
+            try:
+                with urlopen(request, timeout=30) as response:
+                    return response.read().decode("utf-8", errors="replace")
+            except Exception as exc:  # pragma: no cover - live-source fallback
+                errors.append(f"v{version}:{type(exc).__name__}")
+                continue
+        raise ValueError(
+            f"AlphaFold CIF fetch failed for {structure_id} across versions "
+            f"{', '.join(errors)}"
+        )
+    if structure_source == "pdb":
+        return fetch_pdb_cif(structure_id)
+    raise ValueError(f"unsupported structure source: {structure_source}")
+
+
+def _external_structure_choice(row: dict[str, Any]) -> tuple[str | None, str | None]:
+    alphafold_ids = [
+        _normalize_alphafold_model_accession(item)
+        for item in row.get("alphafold_ids_sample", [])
+        if _normalize_alphafold_model_accession(item)
+    ]
+    if alphafold_ids:
+        return "alphafold", alphafold_ids[0]
+    pdb_ids = [
+        str(item).strip().upper()
+        for item in row.get("pdb_ids_sample", [])
+        if str(item).strip()
+    ]
+    if pdb_ids:
+        return "pdb", pdb_ids[0]
+    return None, None
+
+
+def _normalize_alphafold_model_accession(value: Any) -> str:
+    text = str(value or "").strip()
+    if text.startswith("AF-") and "-F1" in text:
+        return text.removeprefix("AF-").split("-F1", 1)[0]
+    return text
+
+
+def _external_structure_mapping_failure_entry(
+    *,
+    row: dict[str, Any],
+    status: str,
+    error: str,
+    structure_source: str | None = None,
+    structure_id: str | None = None,
+) -> dict[str, Any]:
+    accession = _normalize_accession(row.get("accession"))
+    return {
+        "accession": accession,
+        "countable_label_candidate": False,
+        "entry_id": f"uniprot:{accession}",
+        "error": error,
+        "lane_id": row.get("lane_id"),
+        "ligand_context": {},
+        "missing_active_site_positions": row.get("active_site_positions", []),
+        "pairwise_distances_angstrom": [],
+        "pocket_context": {},
+        "protein_name": row.get("protein_name"),
+        "ready_for_label_import": False,
+        "resolved_residue_count": 0,
+        "residue_count": len(row.get("active_site_positions", []) or []),
+        "residues": [],
+        "scope_signal": row.get("scope_signal"),
+        "specific_ec_numbers": row.get("specific_ec_numbers", []),
+        "status": status,
+        "structure_id": structure_id,
+        "structure_source": structure_source,
+    }
+
+
+def _external_active_site_roles(position: dict[str, Any]) -> list[str]:
+    roles = ["uniprot_active_site_feature"]
+    description = str(position.get("description") or "").strip()
+    if description:
+        roles.append(description)
+    return roles
+
+
+def _external_scope_top1_mismatch(scope_signal: Any, top1_fingerprint: str) -> bool:
+    scope = str(scope_signal or "")
+    if not scope or not top1_fingerprint:
+        return False
+    if scope in {
+        "isomerase",
+        "lyase",
+        "oxidoreductase_long_tail",
+        "transferase_methyl",
+        "transferase_phosphoryl",
+    }:
+        return top1_fingerprint in {
+            "metal_dependent_hydrolase",
+            "ser_his_acid_hydrolase",
+        }
+    return False
 
 
 def audit_external_source_lane_balance(

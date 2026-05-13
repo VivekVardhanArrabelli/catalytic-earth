@@ -160,14 +160,20 @@ slice currently exposes 1,003 source records rather than 1,025, so M-CSA-only
 growth cannot reach the 10,000-label target. The new external-source transfer
 artifacts scope a UniProtKB/Swiss-Prot path with query lanes, OOD calibration,
 sequence-similarity controls, a 30-row read-only candidate sample, an external
-candidate manifest, evidence plan/export, review-only import-safety audit, and
-an 11/11 external transfer gate. The evidence plan now flags seven broad or
-incomplete EC contexts, defers three broad-only candidates for reaction
-disambiguation, and exports a review-only active-site evidence queue with 25
-ready candidates. Two sample candidates overlap existing M-CSA reference
-accessions and are routed to sequence-holdout controls; the lane-balance audit
-confirms six evenly represented query lanes. All external rows remain
-non-countable; the gate authorizes evidence collection only, not label import.
+candidate manifest, evidence plan/export, review-only import-safety audit,
+active-site feature sampling, structure-mapping and heuristic-control
+prototypes, failure-mode audit, and a 22/22 external transfer gate. The evidence
+plan now flags seven broad or incomplete EC contexts, defers three broad-only
+candidates for reaction disambiguation, and exports a review-only active-site
+evidence queue with 25 ready candidates. The active-site feature pass finds 15
+feature-supported candidates and 10 active-site-feature gaps; the bounded
+structure-mapping sample maps 4/4 AlphaFold controls, but the heuristic control
+collapses all 4 to `metal_dependent_hydrolase` top1, so the failure-mode audit
+keeps this as a review-only retrieval-control issue. Two sample candidates
+overlap existing M-CSA reference accessions and are routed to sequence-holdout
+controls; the lane-balance audit confirms six evenly represented query lanes.
+All external rows remain non-countable; the gate authorizes evidence collection
+only, not label import.
 A first Rhea reaction-context sample covers six external candidates with 22
 reaction records, flags three broad/incomplete EC queries, and remains
 review-only. See
@@ -240,7 +246,7 @@ the 21 new 1,000-preview
 review-debt rows remain explicitly non-countable under
 `artifacts/v3_accepted_review_debt_deferral_audit_1000.json`. The bounded
 1,025 preview is open but not promoted; the next bounded work item is
-external-source evidence collection behind the 11/11 review-only transfer gate,
+repairing review-only external-source controls behind the 22/22 transfer gate,
 not M-CSA-only count growth or label import.
 See
 `docs/label_factory.md`.

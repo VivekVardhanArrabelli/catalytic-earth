@@ -94,6 +94,61 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_active_site_evidence_queue_1025.json"
         )
+        active_site_sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_active_site_evidence_sample_1025.json"
+        )
+        active_site_sample_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_active_site_evidence_sample_audit_1025.json"
+        )
+        heuristic_control_queue = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_heuristic_control_queue_1025.json"
+        )
+        heuristic_control_queue_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_heuristic_control_queue_audit_1025.json"
+        )
+        structure_mapping_plan = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_structure_mapping_plan_1025.json"
+        )
+        structure_mapping_plan_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_structure_mapping_plan_audit_1025.json"
+        )
+        structure_mapping_sample = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_structure_mapping_sample_1025.json"
+        )
+        structure_mapping_sample_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_structure_mapping_sample_audit_1025.json"
+        )
+        heuristic_control_scores = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_heuristic_control_scores_1025.json"
+        )
+        heuristic_control_scores_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_heuristic_control_scores_audit_1025.json"
+        )
+        failure_mode_audit = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_failure_mode_audit_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -267,6 +322,161 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 for row in active_site_queue["rows"]
             )
         )
+        self.assertFalse(active_site_sample["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            active_site_sample["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(active_site_sample["metadata"]["candidate_count"], 25)
+        self.assertEqual(
+            active_site_sample["metadata"][
+                "candidate_with_active_site_feature_count"
+            ],
+            15,
+        )
+        self.assertEqual(
+            active_site_sample["metadata"]["candidate_with_catalytic_activity_count"],
+            25,
+        )
+        self.assertEqual(active_site_sample["metadata"]["fetch_failure_count"], 0)
+        self.assertTrue(
+            all(
+                row["countable_label_candidate"] is False
+                and row["ready_for_label_import"] is False
+                for row in active_site_sample["candidate_summaries"]
+            )
+        )
+        self.assertTrue(active_site_sample_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            active_site_sample_audit["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(
+            active_site_sample_audit["metadata"]["active_site_feature_gap_count"],
+            10,
+        )
+        self.assertFalse(
+            heuristic_control_queue["metadata"]["ready_for_label_import"]
+        )
+        self.assertTrue(
+            heuristic_control_queue["metadata"][
+                "ready_for_heuristic_control_execution"
+            ]
+        )
+        self.assertEqual(
+            heuristic_control_queue["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(heuristic_control_queue["metadata"]["candidate_count"], 25)
+        self.assertEqual(
+            heuristic_control_queue["metadata"]["ready_candidate_count"], 12
+        )
+        self.assertEqual(
+            heuristic_control_queue["metadata"]["deferred_candidate_count"], 13
+        )
+        self.assertEqual(
+            heuristic_control_queue["metadata"]["queue_status_counts"],
+            {
+                "defer_active_site_feature_gap": 10,
+                "defer_broad_ec_disambiguation": 3,
+                "ready_for_heuristic_control_prototype": 12,
+            },
+        )
+        self.assertTrue(heuristic_control_queue_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            heuristic_control_queue_audit["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertFalse(structure_mapping_plan["metadata"]["ready_for_label_import"])
+        self.assertTrue(
+            structure_mapping_plan["metadata"]["ready_for_structure_mapping"]
+        )
+        self.assertEqual(
+            structure_mapping_plan["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(structure_mapping_plan["metadata"]["candidate_count"], 25)
+        self.assertEqual(
+            structure_mapping_plan["metadata"]["ready_mapping_candidate_count"], 12
+        )
+        self.assertEqual(
+            structure_mapping_plan["metadata"]["deferred_mapping_candidate_count"], 13
+        )
+        self.assertTrue(structure_mapping_plan_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            structure_mapping_plan_audit["metadata"][
+                "ready_rows_missing_position_count"
+            ],
+            0,
+        )
+        self.assertFalse(
+            structure_mapping_sample["metadata"]["ready_for_label_import"]
+        )
+        self.assertTrue(
+            structure_mapping_sample["metadata"][
+                "ready_for_heuristic_control_scoring"
+            ]
+        )
+        self.assertEqual(
+            structure_mapping_sample["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(structure_mapping_sample["metadata"]["candidate_count"], 4)
+        self.assertEqual(
+            structure_mapping_sample["metadata"]["mapped_candidate_count"], 4
+        )
+        self.assertEqual(
+            structure_mapping_sample["metadata"]["fetch_failure_count"], 0
+        )
+        self.assertTrue(structure_mapping_sample_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            structure_mapping_sample_audit["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertFalse(
+            heuristic_control_scores["metadata"]["ready_for_label_import"]
+        )
+        self.assertEqual(
+            heuristic_control_scores["metadata"]["countable_label_candidate_count"],
+            0,
+        )
+        self.assertEqual(heuristic_control_scores["metadata"]["candidate_count"], 4)
+        self.assertEqual(
+            heuristic_control_scores["metadata"]["top1_fingerprint_counts"],
+            {"metal_dependent_hydrolase": 4},
+        )
+        self.assertTrue(heuristic_control_scores_audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            heuristic_control_scores_audit["metadata"][
+                "countable_label_candidate_count"
+            ],
+            0,
+        )
+        self.assertEqual(
+            heuristic_control_scores_audit["control_findings"],
+            [
+                "heuristic_control_top1_fingerprint_collapse",
+                "heuristic_control_metal_hydrolase_collapse",
+                "heuristic_control_scope_top1_mismatch",
+            ],
+        )
+        self.assertFalse(failure_mode_audit["metadata"]["ready_for_label_import"])
+        self.assertEqual(
+            failure_mode_audit["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(failure_mode_audit["metadata"]["failure_mode_count"], 5)
+        self.assertEqual(
+            [row["failure_mode"] for row in failure_mode_audit["rows"]],
+            [
+                "external_active_site_feature_gap",
+                "external_broad_ec_disambiguation_needed",
+                "heuristic_control_top1_fingerprint_collapse",
+                "heuristic_control_metal_hydrolase_collapse",
+                "heuristic_control_scope_top1_mismatch",
+            ],
+        )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(
             external_import_safety["metadata"]["total_new_countable_label_count"], 0
@@ -278,8 +488,8 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             True,
         )
         self.assertEqual(external_transfer_gate["blockers"], [])
-        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 11)
-        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 11)
+        self.assertEqual(external_transfer_gate["metadata"]["gate_count"], 22)
+        self.assertEqual(external_transfer_gate["metadata"]["passed_gate_count"], 22)
         self.assertFalse(external_transfer_gate["metadata"]["ready_for_label_import"])
         self.assertTrue(
             external_transfer_gate["metadata"][
@@ -296,6 +506,88 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         )
         self.assertTrue(
             external_transfer_gate["gates"]["active_site_evidence_queue_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["active_site_evidence_sample_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "active_site_evidence_sample_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "active_site_evidence_sampled_candidate_count"
+            ],
+            25,
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "active_site_feature_supported_candidate_count"
+            ],
+            15,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["heuristic_control_queue_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "heuristic_control_queue_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "heuristic_control_ready_candidate_count"
+            ],
+            12,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["structure_mapping_plan_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "structure_mapping_plan_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "structure_mapping_ready_candidate_count"
+            ],
+            12,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["structure_mapping_sample_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "structure_mapping_sample_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "structure_mapping_sample_mapped_candidate_count"
+            ],
+            4,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["heuristic_control_scores_review_only"]
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"][
+                "heuristic_control_scores_audit_guardrail_clean"
+            ]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"][
+                "heuristic_control_scored_candidate_count"
+            ],
+            4,
+        )
+        self.assertTrue(
+            external_transfer_gate["gates"]["external_failure_mode_audit_review_only"]
+        )
+        self.assertEqual(
+            external_transfer_gate["metadata"]["external_failure_mode_count"], 5
         )
         self.assertEqual(
             external_transfer_gate["metadata"]["countable_label_candidate_count"],

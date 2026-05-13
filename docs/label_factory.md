@@ -668,18 +668,28 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_evidence_plan_1025.json`,
   `artifacts/v3_external_source_evidence_request_export_1025.json`,
   `artifacts/v3_external_source_active_site_evidence_queue_1025.json`,
+  `artifacts/v3_external_source_active_site_evidence_sample_1025.json`,
+  `artifacts/v3_external_source_heuristic_control_queue_1025.json`,
+  `artifacts/v3_external_source_structure_mapping_plan_1025.json`,
+  `artifacts/v3_external_source_structure_mapping_sample_1025.json`,
+  `artifacts/v3_external_source_heuristic_control_scores_1025.json`,
+  `artifacts/v3_external_source_failure_mode_audit_1025.json`,
   `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  11/11 external transfer gate for evidence collection, pass the lane-balance
+  22/22 external transfer gate for evidence collection, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
-  defer five rows, and must not be imported as labels.
+  defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
+  map 4/4 sampled controls onto AlphaFold structures, and must not be imported
+  as labels. The heuristic-control audit records a metal-hydrolase top1
+  collapse and scope/top1 mismatch as review-only failure modes rather than
+  countable evidence.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
   adds bounded Rhea reaction context for six candidates while keeping every row
-  non-countable and unmapped to active-site evidence; its companion guardrail
-  audit is clean and flags three broad/incomplete EC queries as review-only
-  context.
+  non-countable and outside any reviewed decision artifact; its companion
+  guardrail audit is clean and flags three broad/incomplete EC queries as
+  review-only context.
 
 ## Automation Lock
 

@@ -8,16 +8,27 @@ import unittest
 from pathlib import Path
 
 from catalytic_earth.transfer_scope import (
+    audit_external_source_active_site_evidence_sample,
     audit_external_source_candidate_manifest,
     audit_external_source_candidate_sample,
+    audit_external_source_heuristic_control_queue,
+    audit_external_source_heuristic_control_scores,
+    audit_external_source_failure_modes,
     audit_external_source_lane_balance,
     audit_external_source_reaction_evidence_sample,
+    audit_external_source_structure_mapping_plan,
+    audit_external_source_structure_mapping_sample,
     build_external_ood_calibration_plan,
     build_external_source_active_site_evidence_queue,
+    build_external_source_active_site_evidence_sample,
     build_external_source_candidate_manifest,
     build_external_source_candidate_sample,
     build_external_source_evidence_plan,
     build_external_source_evidence_request_export,
+    build_external_source_heuristic_control_queue,
+    build_external_source_heuristic_control_scores,
+    build_external_source_structure_mapping_plan,
+    build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
     build_external_source_reaction_evidence_sample,
     build_external_source_transfer_manifest,
@@ -656,6 +667,517 @@ class ExternalSourceTransferManifestTests(unittest.TestCase):
             "defer_broad_ec_disambiguation",
         )
 
+    def test_active_site_evidence_sample_collects_review_only_uniprot_features(
+        self,
+    ) -> None:
+        def fake_fetcher(accession: str) -> dict:
+            self.assertEqual(accession, "P22222")
+            return {
+                "record": {
+                    "entry_name": "LYASE_EXAMPLE",
+                    "entry_type": "Swiss-Prot",
+                    "active_site_features": [
+                        {
+                            "begin": 42,
+                            "description": "Proton acceptor",
+                            "end": 42,
+                            "evidence": [
+                                {
+                                    "evidence_code": "ECO:0000269",
+                                    "source": "PubMed",
+                                    "id": "123",
+                                }
+                            ],
+                            "feature_type": "Active site",
+                        }
+                    ],
+                    "binding_site_features": [
+                        {
+                            "begin": 101,
+                            "description": "",
+                            "end": 101,
+                            "feature_type": "Binding site",
+                            "ligand_name": "magnesium",
+                        }
+                    ],
+                    "catalytic_activity_comments": [
+                        {"reaction": "substrate = product", "ec_number": "4.1.1.1"}
+                    ],
+                    "cofactor_comments": [{"cofactors": [{"name": "Mg(2+)"}]}],
+                }
+            }
+
+        sample = build_external_source_active_site_evidence_sample(
+            active_site_evidence_queue={
+                "metadata": {"method": "external_source_active_site_evidence_queue"},
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "broad_or_incomplete_ec_numbers": [],
+                        "countable_label_candidate": False,
+                        "lane_id": "external_source:lyase",
+                        "pdb_ids": ["2ABC"],
+                        "protein_name": "Example lyase",
+                        "queue_status": "ready_for_active_site_evidence",
+                        "rank": 1,
+                        "ready_for_label_import": False,
+                        "scope_signal": "lyase",
+                        "specific_ec_numbers": ["4.1.1.1"],
+                    },
+                    {
+                        "accession": "P11111",
+                        "queue_status": "defer_broad_ec_disambiguation",
+                    },
+                ],
+            },
+            max_candidates=5,
+            fetcher=fake_fetcher,
+        )
+
+        self.assertFalse(sample["metadata"]["ready_for_label_import"])
+        self.assertEqual(sample["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(sample["metadata"]["candidate_count"], 1)
+        self.assertEqual(
+            sample["metadata"]["candidate_with_active_site_feature_count"], 1
+        )
+        self.assertEqual(sample["metadata"]["active_site_feature_count"], 1)
+        self.assertEqual(sample["metadata"]["binding_site_feature_count"], 1)
+        self.assertEqual(sample["metadata"]["catalytic_activity_count"], 1)
+        self.assertEqual(sample["metadata"]["skipped_queue_row_count"], 1)
+        self.assertEqual(
+            sample["candidate_summaries"][0]["evidence_status"],
+            "active_site_and_catalytic_activity_context_found",
+        )
+        self.assertFalse(sample["candidate_summaries"][0]["countable_label_candidate"])
+        self.assertEqual(sample["rows"][0]["feature_type"], "Active site")
+        self.assertFalse(sample["rows"][0]["ready_for_label_import"])
+
+    def test_active_site_evidence_sample_deferred_gap_stays_non_countable(
+        self,
+    ) -> None:
+        sample = build_external_source_active_site_evidence_sample(
+            active_site_evidence_queue={
+                "metadata": {"method": "external_source_active_site_evidence_queue"},
+                "rows": [
+                    {
+                        "accession": "P33333",
+                        "broad_or_incomplete_ec_numbers": [],
+                        "countable_label_candidate": False,
+                        "lane_id": "external_source:isomerase",
+                        "pdb_ids": ["3ABC"],
+                        "protein_name": "Example isomerase",
+                        "queue_status": "ready_for_active_site_evidence",
+                        "rank": 1,
+                        "ready_for_label_import": False,
+                        "scope_signal": "isomerase",
+                        "specific_ec_numbers": ["5.3.1.1"],
+                    }
+                ],
+            },
+            max_candidates=1,
+            fetcher=lambda accession: {
+                "record": {
+                    "entry_name": "ISOM_EXAMPLE",
+                    "active_site_features": [],
+                    "binding_site_features": [],
+                    "catalytic_activity_comments": [],
+                    "cofactor_comments": [],
+                }
+            },
+        )
+        audit = audit_external_source_active_site_evidence_sample(sample)
+
+        self.assertEqual(
+            sample["candidate_summaries"][0]["evidence_status"],
+            "active_site_feature_missing",
+        )
+        self.assertIn(
+            "uniprot_active_site_feature_missing",
+            sample["candidate_summaries"][0]["blockers"],
+        )
+        self.assertEqual(sample["metadata"]["countable_label_candidate_count"], 0)
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["active_site_feature_gap_count"], 1)
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+
+    def test_active_site_evidence_audit_blocks_import_ready_rows(self) -> None:
+        audit = audit_external_source_active_site_evidence_sample(
+            {
+                "candidate_summaries": [
+                    {
+                        "accession": "P33333",
+                        "countable_label_candidate": True,
+                        "ready_for_label_import": True,
+                        "active_site_feature_count": 1,
+                    }
+                ],
+                "rows": [
+                    {
+                        "accession": "P33333",
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                        "evidence_status": "uniprot_feature_context_only",
+                    }
+                ],
+            }
+        )
+
+        self.assertFalse(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 1)
+        self.assertEqual(audit["metadata"]["import_ready_item_count"], 1)
+        self.assertIn(
+            "active_site_evidence_rows_marked_countable", audit["blockers"]
+        )
+
+    def test_heuristic_control_queue_splits_ready_and_deferred_candidates(
+        self,
+    ) -> None:
+        queue = build_external_source_heuristic_control_queue(
+            active_site_evidence_sample={
+                "metadata": {"method": "external_source_active_site_evidence_sample"},
+                "candidate_summaries": [
+                    {
+                        "accession": "P22222",
+                        "active_site_feature_count": 2,
+                        "binding_site_feature_count": 1,
+                        "broad_or_incomplete_ec_numbers": [],
+                        "catalytic_activity_count": 1,
+                        "countable_label_candidate": False,
+                        "lane_id": "external_source:lyase",
+                        "pdb_ids_sample": ["2ABC"],
+                        "protein_name": "Example lyase",
+                        "queue_rank": 1,
+                        "ready_for_label_import": False,
+                        "scope_signal": "lyase",
+                        "specific_ec_numbers": ["4.1.1.1"],
+                    },
+                    {
+                        "accession": "P33333",
+                        "active_site_feature_count": 0,
+                        "binding_site_feature_count": 3,
+                        "broad_or_incomplete_ec_numbers": [],
+                        "catalytic_activity_count": 1,
+                        "countable_label_candidate": False,
+                        "lane_id": "external_source:glycan_chemistry",
+                        "pdb_ids_sample": ["3ABC"],
+                        "protein_name": "Binding-only example",
+                        "queue_rank": 2,
+                        "ready_for_label_import": False,
+                        "scope_signal": "glycan_chemistry",
+                        "specific_ec_numbers": ["3.2.2.21"],
+                    },
+                ],
+            }
+        )
+        audit = audit_external_source_heuristic_control_queue(queue)
+
+        self.assertFalse(queue["metadata"]["ready_for_label_import"])
+        self.assertTrue(queue["metadata"]["ready_for_heuristic_control_execution"])
+        self.assertEqual(queue["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(queue["metadata"]["ready_candidate_count"], 1)
+        self.assertEqual(queue["metadata"]["deferred_candidate_count"], 1)
+        self.assertEqual(
+            queue["rows"][0]["queue_status"],
+            "ready_for_heuristic_control_prototype",
+        )
+        self.assertEqual(
+            queue["deferred_rows"][0]["queue_status"],
+            "defer_active_site_feature_gap",
+        )
+        self.assertIn(
+            "uniprot_active_site_feature_missing",
+            queue["deferred_rows"][0]["blockers"],
+        )
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+
+    def test_structure_mapping_plan_uses_active_site_positions_and_stays_review_only(
+        self,
+    ) -> None:
+        plan = build_external_source_structure_mapping_plan(
+            active_site_evidence_sample={
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "begin": 42,
+                        "description": "Proton acceptor",
+                        "end": 42,
+                        "evidence": [{"evidence_code": "ECO:0000269"}],
+                        "feature_type": "Active site",
+                    }
+                ]
+            },
+            heuristic_control_queue={
+                "metadata": {"method": "external_source_heuristic_control_queue"},
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "alphafold_ids_sample": ["AF-P22222-F1"],
+                        "countable_label_candidate": False,
+                        "heuristic_control_rank": 1,
+                        "lane_id": "external_source:lyase",
+                        "pdb_ids_sample": ["2ABC"],
+                        "protein_name": "Example lyase",
+                        "queue_status": "ready_for_heuristic_control_prototype",
+                        "ready_for_label_import": False,
+                        "scope_signal": "lyase",
+                        "specific_ec_numbers": ["4.1.1.1"],
+                    }
+                ],
+                "deferred_rows": [
+                    {
+                        "accession": "P33333",
+                        "countable_label_candidate": False,
+                        "queue_status": "defer_active_site_feature_gap",
+                        "ready_for_label_import": False,
+                    }
+                ],
+            },
+        )
+        audit = audit_external_source_structure_mapping_plan(plan)
+
+        self.assertFalse(plan["metadata"]["ready_for_label_import"])
+        self.assertTrue(plan["metadata"]["ready_for_structure_mapping"])
+        self.assertEqual(plan["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(plan["metadata"]["ready_mapping_candidate_count"], 1)
+        self.assertEqual(plan["metadata"]["deferred_mapping_candidate_count"], 1)
+        self.assertEqual(plan["rows"][0]["active_site_position_count"], 1)
+        self.assertEqual(
+            plan["rows"][0]["mapping_status"], "ready_for_structure_mapping"
+        )
+        self.assertEqual(
+            plan["deferred_rows"][0]["mapping_status"],
+            "defer_before_structure_mapping",
+        )
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+
+    def test_structure_mapping_sample_resolves_review_only_geometry(self) -> None:
+        cif_text = """data_test
+loop_
+_atom_site.group_PDB
+_atom_site.label_atom_id
+_atom_site.auth_atom_id
+_atom_site.label_comp_id
+_atom_site.auth_comp_id
+_atom_site.label_asym_id
+_atom_site.auth_asym_id
+_atom_site.label_seq_id
+_atom_site.auth_seq_id
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+ATOM CA CA GLY GLY A A 42 42 0.0 0.0 0.0
+ATOM N N GLY GLY A A 42 42 1.0 0.0 0.0
+ATOM CA CA SER SER A A 45 45 4.0 0.0 0.0
+ATOM N N SER SER A A 45 45 5.0 0.0 0.0
+HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
+#
+"""
+
+        sample = build_external_source_structure_mapping_sample(
+            structure_mapping_plan={
+                "metadata": {"method": "external_source_structure_mapping_plan"},
+                "rows": [
+                    {
+                        "accession": "P22222",
+                        "active_site_positions": [
+                            {"begin": 42, "description": "base", "end": 42},
+                            {"begin": 45, "description": "acid", "end": 45},
+                        ],
+                        "alphafold_ids_sample": ["P22222"],
+                        "countable_label_candidate": False,
+                        "pdb_ids_sample": [],
+                        "ready_for_label_import": False,
+                    }
+                ],
+            },
+            max_candidates=1,
+            cif_fetcher=lambda source, structure_id: cif_text,
+        )
+        audit = audit_external_source_structure_mapping_sample(sample)
+
+        self.assertFalse(sample["metadata"]["ready_for_label_import"])
+        self.assertTrue(sample["metadata"]["ready_for_heuristic_control_scoring"])
+        self.assertEqual(sample["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(sample["metadata"]["mapped_candidate_count"], 1)
+        self.assertEqual(sample["entries"][0]["status"], "ok")
+        self.assertEqual(sample["entries"][0]["resolved_residue_count"], 2)
+        self.assertEqual(
+            sample["entries"][0]["structure_source"],
+            "alphafold",
+        )
+        self.assertEqual(sample["entries"][0]["structure_id"], "P22222")
+        self.assertTrue(sample["entries"][0]["pairwise_distances_angstrom"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+
+    def test_heuristic_control_scores_stay_review_only(self) -> None:
+        scores = build_external_source_heuristic_control_scores(
+            structure_mapping_sample={
+                "metadata": {"method": "external_source_structure_mapping_sample"},
+                "entries": [
+                    {
+                        "entry_id": "uniprot:P22222",
+                        "entry_name": None,
+                        "scope_signal": "isomerase",
+                        "status": "ok",
+                        "resolved_residue_count": 2,
+                        "residues": [
+                            {
+                                "code": "SER",
+                                "roles": ["uniprot_active_site_feature"],
+                                "ca": {"x": 0.0, "y": 0.0, "z": 0.0},
+                            },
+                            {
+                                "code": "HIS",
+                                "roles": ["uniprot_active_site_feature"],
+                                "ca": {"x": 4.0, "y": 0.0, "z": 0.0},
+                            },
+                        ],
+                        "pairwise_distances_angstrom": [
+                            {
+                                "left": "a",
+                                "right": "b",
+                                "distance": 4.0,
+                                "coordinate_type": "ca_or_centroid",
+                            }
+                        ],
+                        "ligand_context": {},
+                        "pocket_context": {},
+                    }
+                ],
+            },
+            top_k=3,
+        )
+        audit = audit_external_source_heuristic_control_scores(scores)
+
+        self.assertFalse(scores["metadata"]["ready_for_label_import"])
+        self.assertEqual(scores["metadata"]["countable_label_candidate_count"], 0)
+        self.assertEqual(scores["metadata"]["candidate_count"], 1)
+        self.assertEqual(len(scores["results"][0]["top_fingerprints"]), 3)
+        self.assertFalse(scores["results"][0]["countable_label_candidate"])
+        self.assertFalse(scores["results"][0]["ready_for_label_import"])
+        self.assertTrue(scores["results"][0]["scope_top1_mismatch"])
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        self.assertGreaterEqual(audit["metadata"]["control_finding_count"], 1)
+        self.assertIn(
+            "heuristic_control_scope_top1_mismatch", audit["control_findings"]
+        )
+
+    def test_external_failure_mode_audit_collects_review_only_findings(self) -> None:
+        audit = audit_external_source_failure_modes(
+            active_site_evidence_sample_audit={
+                "metadata": {"active_site_feature_gap_count": 2}
+            },
+            heuristic_control_queue={
+                "metadata": {
+                    "queue_status_counts": {
+                        "defer_broad_ec_disambiguation": 1,
+                        "ready_for_heuristic_control_prototype": 3,
+                    }
+                }
+            },
+            heuristic_control_scores_audit={
+                "metadata": {"candidate_count": 4},
+                "control_findings": ["heuristic_control_top1_fingerprint_collapse"],
+            },
+            structure_mapping_sample_audit={
+                "metadata": {"unresolved_candidate_count": 0}
+            },
+        )
+
+        self.assertFalse(audit["metadata"]["ready_for_label_import"])
+        self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
+        self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(audit["metadata"]["failure_mode_count"], 3)
+        self.assertEqual(
+            [row["failure_mode"] for row in audit["rows"]],
+            [
+                "external_active_site_feature_gap",
+                "external_broad_ec_disambiguation_needed",
+                "heuristic_control_top1_fingerprint_collapse",
+            ],
+        )
+
+    def test_external_failure_mode_audit_cli(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            active_site_audit = root / "active_site_audit.json"
+            heuristic_queue = root / "heuristic_queue.json"
+            heuristic_scores_audit = root / "heuristic_scores_audit.json"
+            structure_mapping_audit = root / "structure_mapping_audit.json"
+            out = root / "failure_modes.json"
+            active_site_audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "active_site_feature_gap_count": 1,
+                            "countable_label_candidate_count": 0,
+                            "guardrail_clean": True,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heuristic_queue.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "queue_status_counts": {
+                                "defer_broad_ec_disambiguation": 1
+                            }
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+            heuristic_scores_audit.write_text(
+                json.dumps(
+                    {
+                        "metadata": {"candidate_count": 2},
+                        "control_findings": [
+                            "heuristic_control_scope_top1_mismatch"
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            structure_mapping_audit.write_text(
+                json.dumps({"metadata": {"unresolved_candidate_count": 0}}),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-external-source-failure-modes",
+                    "--active-site-evidence-sample-audit",
+                    str(active_site_audit),
+                    "--heuristic-control-queue",
+                    str(heuristic_queue),
+                    "--heuristic-control-scores-audit",
+                    str(heuristic_scores_audit),
+                    "--structure-mapping-sample-audit",
+                    str(structure_mapping_audit),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(payload["metadata"]["failure_mode_count"], 3)
+            self.assertFalse(payload["metadata"]["ready_for_label_import"])
+            self.assertEqual(payload["metadata"]["countable_label_candidate_count"], 0)
+
     def test_external_source_evidence_request_export_is_no_decision(self) -> None:
         export = build_external_source_evidence_request_export(
             evidence_plan={
@@ -754,12 +1276,190 @@ class ExternalSourceTransferManifestTests(unittest.TestCase):
                     "total_new_countable_label_count": 0,
                 }
             },
+            active_site_evidence_queue={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "ready_candidate_count": 1,
+                    "deferred_candidate_count": 0,
+                },
+                "rows": [
+                    {
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    }
+                ],
+            },
+            active_site_evidence_sample={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "candidate_with_active_site_feature_count": 1,
+                },
+                "candidate_summaries": [
+                    {
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    }
+                ],
+                "rows": [
+                    {
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    }
+                ],
+            },
+            active_site_evidence_sample_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                    "active_site_feature_gap_count": 0,
+                }
+            },
+            heuristic_control_queue={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "ready_for_heuristic_control_execution": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "ready_candidate_count": 1,
+                    "deferred_candidate_count": 0,
+                },
+                "rows": [
+                    {
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    }
+                ],
+                "deferred_rows": [],
+            },
+            heuristic_control_queue_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            structure_mapping_plan={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "ready_for_structure_mapping": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "ready_mapping_candidate_count": 1,
+                    "deferred_mapping_candidate_count": 0,
+                },
+                "rows": [
+                    {
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    }
+                ],
+                "deferred_rows": [],
+            },
+            structure_mapping_plan_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            structure_mapping_sample={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "ready_for_heuristic_control_scoring": True,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                    "mapped_candidate_count": 1,
+                },
+                "entries": [
+                    {
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    }
+                ],
+            },
+            structure_mapping_sample_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            heuristic_control_scores={
+                "metadata": {
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                    "candidate_count": 1,
+                },
+                "results": [
+                    {
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    }
+                ],
+            },
+            heuristic_control_scores_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                }
+            },
+            external_failure_mode_audit={
+                "metadata": {
+                    "guardrail_clean": True,
+                    "ready_for_label_import": False,
+                    "countable_label_candidate_count": 0,
+                    "failure_mode_count": 2,
+                }
+            },
         )
 
         self.assertEqual(gates["blockers"], [])
         self.assertFalse(gates["metadata"]["ready_for_label_import"])
+        self.assertTrue(gates["gates"]["active_site_evidence_sample_review_only"])
+        self.assertTrue(
+            gates["gates"]["active_site_evidence_sample_audit_guardrail_clean"]
+        )
+        self.assertEqual(
+            gates["metadata"]["active_site_evidence_sampled_candidate_count"], 1
+        )
+        self.assertTrue(gates["gates"]["heuristic_control_queue_review_only"])
+        self.assertTrue(
+            gates["gates"]["heuristic_control_queue_audit_guardrail_clean"]
+        )
+        self.assertEqual(
+            gates["metadata"]["heuristic_control_ready_candidate_count"], 1
+        )
+        self.assertTrue(gates["gates"]["structure_mapping_plan_review_only"])
+        self.assertTrue(
+            gates["gates"]["structure_mapping_plan_audit_guardrail_clean"]
+        )
+        self.assertEqual(
+            gates["metadata"]["structure_mapping_ready_candidate_count"], 1
+        )
+        self.assertTrue(gates["gates"]["structure_mapping_sample_review_only"])
+        self.assertTrue(
+            gates["gates"]["structure_mapping_sample_audit_guardrail_clean"]
+        )
+        self.assertEqual(
+            gates["metadata"]["structure_mapping_sample_mapped_candidate_count"], 1
+        )
+        self.assertTrue(gates["gates"]["heuristic_control_scores_review_only"])
+        self.assertTrue(
+            gates["gates"]["heuristic_control_scores_audit_guardrail_clean"]
+        )
+        self.assertEqual(
+            gates["metadata"]["heuristic_control_scored_candidate_count"], 1
+        )
+        self.assertTrue(gates["gates"]["external_failure_mode_audit_review_only"])
+        self.assertEqual(gates["metadata"]["external_failure_mode_count"], 2)
         self.assertTrue(gates["metadata"]["ready_for_external_evidence_collection"])
-        self.assertEqual(gates["metadata"]["passed_gate_count"], 10)
+        self.assertEqual(gates["metadata"]["passed_gate_count"], 22)
         self.assertTrue(
             gates["gates"]["external_lane_balance_audit_guardrail_clean"]
         )

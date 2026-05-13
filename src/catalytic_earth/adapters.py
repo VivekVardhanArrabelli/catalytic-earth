@@ -14,6 +14,7 @@ USER_AGENT = "CatalyticEarth/0.0.1 research prototype"
 RHEA_REST_URL = "https://www.rhea-db.org/rhea"
 MCSA_ENTRIES_URL = "https://www.ebi.ac.uk/thornton-srv/m-csa/api/entries/"
 UNIPROT_SEARCH_URL = "https://rest.uniprot.org/uniprotkb/search"
+UNIPROT_ENTRY_URL = "https://rest.uniprot.org/uniprotkb"
 UNIPROT_FIELDS = "accession,id,protein_name,organism_name,length,ec,xref_pdb,xref_alphafolddb"
 UNIPROT_DISCOVERY_FIELDS = (
     "accession,id,protein_name,organism_name,length,sequence,ec,xref_pdb,xref_alphafolddb,reviewed"
@@ -338,6 +339,151 @@ def fetch_uniprot_accessions(accessions: list[str]) -> dict[str, Any]:
         },
         "records": records,
     }
+
+
+def build_uniprot_entry_url(accession: str) -> str:
+    cleaned = accession.strip()
+    if not cleaned:
+        raise ValueError("accession is required")
+    return f"{UNIPROT_ENTRY_URL}/{cleaned}.json"
+
+
+def fetch_uniprot_entry(accession: str) -> dict[str, Any]:
+    url = build_uniprot_entry_url(accession)
+    payload = _fetch_json(url)
+    record = normalize_uniprot_entry_json(payload)
+    return {
+        "metadata": RetrievalMetadata("uniprotkb_json", url, 1).to_dict(),
+        "record": record,
+    }
+
+
+def normalize_uniprot_entry_json(payload: dict[str, Any]) -> dict[str, Any]:
+    features = [
+        _normalize_uniprot_feature(feature)
+        for feature in payload.get("features", [])
+        if isinstance(feature, dict)
+    ]
+    comments = [
+        comment for comment in payload.get("comments", []) if isinstance(comment, dict)
+    ]
+    catalytic_activity_comments = [
+        _normalize_uniprot_catalytic_activity(comment)
+        for comment in comments
+        if comment.get("commentType") == "CATALYTIC ACTIVITY"
+    ]
+    cofactor_comments = [
+        _normalize_uniprot_cofactor(comment)
+        for comment in comments
+        if comment.get("commentType") == "COFACTOR"
+    ]
+    return {
+        "source": "uniprot",
+        "accession": payload.get("primaryAccession"),
+        "entry_name": payload.get("uniProtkbId"),
+        "entry_type": payload.get("entryType"),
+        "annotation_score": payload.get("annotationScore"),
+        "sequence_length": payload.get("sequence", {}).get("length"),
+        "active_site_features": [
+            feature for feature in features if feature["feature_type"] == "Active site"
+        ],
+        "binding_site_features": [
+            feature for feature in features if feature["feature_type"] == "Binding site"
+        ],
+        "site_features": [
+            feature for feature in features if feature["feature_type"] == "Site"
+        ],
+        "catalytic_activity_comments": catalytic_activity_comments,
+        "cofactor_comments": cofactor_comments,
+        "evidence_level": "uniprot_active_site_and_catalytic_activity_context",
+    }
+
+
+def _normalize_uniprot_feature(feature: dict[str, Any]) -> dict[str, Any]:
+    ligand = feature.get("ligand") if isinstance(feature.get("ligand"), dict) else {}
+    return {
+        "feature_type": feature.get("type"),
+        "begin": _feature_location_value(feature, "start"),
+        "end": _feature_location_value(feature, "end"),
+        "description": feature.get("description") or "",
+        "ligand_name": ligand.get("name"),
+        "ligand_id": ligand.get("id"),
+        "ligand_note": ligand.get("note"),
+        "evidence": _normalize_uniprot_evidence(feature.get("evidences")),
+        "cross_references": _normalize_cross_references(
+            feature.get("featureCrossReferences")
+        ),
+    }
+
+
+def _normalize_uniprot_catalytic_activity(comment: dict[str, Any]) -> dict[str, Any]:
+    reaction = comment.get("reaction") if isinstance(comment.get("reaction"), dict) else {}
+    return {
+        "reaction": reaction.get("name"),
+        "ec_number": reaction.get("ecNumber"),
+        "cross_references": _normalize_cross_references(
+            reaction.get("reactionCrossReferences")
+        ),
+        "evidence": _normalize_uniprot_evidence(reaction.get("evidences")),
+    }
+
+
+def _normalize_uniprot_cofactor(comment: dict[str, Any]) -> dict[str, Any]:
+    cofactors = []
+    for cofactor in comment.get("cofactors", []) or []:
+        if not isinstance(cofactor, dict):
+            continue
+        cross_reference = cofactor.get("cofactorCrossReference")
+        cofactors.append(
+            {
+                "name": cofactor.get("name"),
+                "cross_reference": (
+                    {
+                        "database": cross_reference.get("database"),
+                        "id": cross_reference.get("id"),
+                    }
+                    if isinstance(cross_reference, dict)
+                    else None
+                ),
+                "evidence": _normalize_uniprot_evidence(cofactor.get("evidences")),
+            }
+        )
+    return {"cofactors": cofactors}
+
+
+def _feature_location_value(feature: dict[str, Any], key: str) -> int | None:
+    location = feature.get("location") if isinstance(feature.get("location"), dict) else {}
+    endpoint = location.get(key) if isinstance(location.get(key), dict) else {}
+    return _safe_int(endpoint.get("value"))
+
+
+def _normalize_uniprot_evidence(evidences: Any) -> list[dict[str, str | None]]:
+    normalized = []
+    for evidence in evidences or []:
+        if not isinstance(evidence, dict):
+            continue
+        normalized.append(
+            {
+                "evidence_code": evidence.get("evidenceCode"),
+                "source": evidence.get("source"),
+                "id": evidence.get("id"),
+            }
+        )
+    return normalized
+
+
+def _normalize_cross_references(references: Any) -> list[dict[str, str | None]]:
+    normalized = []
+    for reference in references or []:
+        if not isinstance(reference, dict):
+            continue
+        normalized.append(
+            {
+                "database": reference.get("database"),
+                "id": reference.get("id"),
+            }
+        )
+    return normalized
 
 
 def _normalize_mcsa_residue(residue: Any) -> dict[str, Any]:

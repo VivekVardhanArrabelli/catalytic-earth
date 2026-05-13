@@ -1,0 +1,24 @@
+{
+  "blockers": [],
+  "control_findings": [
+    "heuristic_control_top1_fingerprint_collapse",
+    "heuristic_control_metal_hydrolase_collapse",
+    "heuristic_control_scope_top1_mismatch"
+  ],
+  "metadata": {
+    "candidate_count": 4,
+    "control_finding_count": 3,
+    "countable_label_candidate_count": 0,
+    "dominant_top1_fingerprint": "metal_dependent_hydrolase",
+    "dominant_top1_fraction": 1.0,
+    "guardrail_clean": true,
+    "import_ready_result_count": 0,
+    "max_dominant_top1_fraction": 0.6,
+    "method": "external_source_heuristic_control_scores_audit",
+    "ready_for_label_import": false,
+    "scope_top1_mismatch_count": 2
+  },
+  "warnings": [
+    "heuristic control scores require OOD calibration, decisions, and full factory gates before any external label import"
+  ]
+}

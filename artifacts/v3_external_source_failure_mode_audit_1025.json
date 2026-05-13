@@ -1,0 +1,44 @@
+{
+  "blockers": [],
+  "metadata": {
+    "active_site_feature_gap_count": 10,
+    "broad_ec_disambiguation_count": 3,
+    "countable_label_candidate_count": 0,
+    "failure_mode_count": 5,
+    "guardrail_clean": true,
+    "heuristic_control_finding_count": 3,
+    "method": "external_source_failure_mode_audit",
+    "ready_for_label_import": false,
+    "structure_mapping_unresolved_count": 0
+  },
+  "rows": [
+    {
+      "failure_mode": "external_active_site_feature_gap",
+      "recommended_action": "keep rows non-countable and source active-site positions or alternate curated evidence",
+      "row_count": 10
+    },
+    {
+      "failure_mode": "external_broad_ec_disambiguation_needed",
+      "recommended_action": "resolve broad EC context before structure mapping or heuristic-control interpretation",
+      "row_count": 3
+    },
+    {
+      "failure_mode": "heuristic_control_top1_fingerprint_collapse",
+      "recommended_action": "treat external heuristic scores as a retrieval-control failure signal; do not create labels until ontology or representation controls separate the lane",
+      "row_count": 4
+    },
+    {
+      "failure_mode": "heuristic_control_metal_hydrolase_collapse",
+      "recommended_action": "treat external heuristic scores as a retrieval-control failure signal; do not create labels until ontology or representation controls separate the lane",
+      "row_count": 4
+    },
+    {
+      "failure_mode": "heuristic_control_scope_top1_mismatch",
+      "recommended_action": "treat external heuristic scores as a retrieval-control failure signal; do not create labels until ontology or representation controls separate the lane",
+      "row_count": 4
+    }
+  ],
+  "warnings": [
+    "failure-mode rows are review-only controls and must block external label import until repaired or explicitly deferred"
+  ]
+}

@@ -171,8 +171,10 @@ What is now better:
 - the 1,025 preview exposes source-scale limits without weakening label gates:
   it adds 0 countable labels, keeps all 329 review-state rows non-countable,
   and shifts next work to external-source transfer with OOD controls; the first
-  30 external candidates now pass an 11/11 review-only transfer gate for evidence
-  collection while remaining blocked from label import
+  30 external candidates now feed a 22/22 review-only transfer gate with
+  active-site feature sampling, bounded structure-control mapping, heuristic
+  score controls, and explicit failure-mode audits while remaining blocked from
+  label import
 
 What remains weak:
 

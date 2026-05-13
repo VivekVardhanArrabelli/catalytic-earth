@@ -246,13 +246,17 @@ Current expectation:
   style transfer method with OOD calibration, sequence-similarity controls,
   external evidence collection, and heuristic-control comparison. The first
   30-row external sample now has a review-only candidate manifest, evidence
-  plan/export, import-safety audit, and 11/11 transfer gate; 2 exact-reference
-  overlaps are routed to holdout controls, the lane-balance audit confirms six
-  evenly represented query lanes, a six-candidate Rhea reaction-context sample
-  collects 22 review-only reaction records while flagging 3 broad/incomplete EC
-  queries, the evidence plan flags 7 broad/incomplete EC candidates, the
-  active-site evidence queue exports 25 ready review-only candidates while
-  deferring 5 rows, and 0 external labels are countable.
+  plan/export, import-safety audit, active-site feature sampling, structure
+  mapping, heuristic-control scoring, failure-mode audit, and 22/22 transfer
+  gate; 2 exact-reference overlaps are routed to holdout controls, the
+  lane-balance audit confirms six evenly represented query lanes, a
+  six-candidate Rhea reaction-context sample collects 22 review-only reaction
+  records while flagging 3 broad/incomplete EC queries, the evidence plan flags
+  7 broad/incomplete EC candidates, the active-site evidence queue exports 25
+  ready review-only candidates while deferring 5 rows, the active-site feature
+  pass finds 15 feature-supported rows and 10 gaps, a 4-row AlphaFold mapping
+  sample resolves 4/4 controls, the heuristic control collapses all 4 controls
+  to metal hydrolase top1, and 0 external labels are countable.
   The accepted 1000 clean labels are `m_csa:978`, `m_csa:988`, `m_csa:990`,
   and `m_csa:994`; the other 326 accepted-1000 review-state rows remain
   outside the benchmark and now have an explicit deferral audit. `m_csa:986` is

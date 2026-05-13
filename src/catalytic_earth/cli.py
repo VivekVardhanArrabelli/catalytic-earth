@@ -76,16 +76,27 @@ from .source_limits import audit_source_scale_limits
 from .sources import build_source_ledger, load_sources
 from .structure import write_geometry_features
 from .transfer_scope import (
+    audit_external_source_active_site_evidence_sample,
     audit_external_source_candidate_manifest,
     audit_external_source_candidate_sample,
+    audit_external_source_heuristic_control_queue,
+    audit_external_source_heuristic_control_scores,
+    audit_external_source_failure_modes,
     audit_external_source_lane_balance,
     audit_external_source_reaction_evidence_sample,
+    audit_external_source_structure_mapping_plan,
+    audit_external_source_structure_mapping_sample,
     build_external_ood_calibration_plan,
     build_external_source_candidate_manifest,
     build_external_source_candidate_sample,
     build_external_source_active_site_evidence_queue,
+    build_external_source_active_site_evidence_sample,
     build_external_source_evidence_plan,
     build_external_source_evidence_request_export,
+    build_external_source_heuristic_control_queue,
+    build_external_source_heuristic_control_scores,
+    build_external_source_structure_mapping_plan,
+    build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
     build_external_source_reaction_evidence_sample,
     build_external_source_transfer_manifest,
@@ -500,6 +511,195 @@ def cmd_build_external_source_active_site_evidence_queue(
     return 0
 
 
+def cmd_build_external_source_active_site_evidence_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_evidence_queue).open("r", encoding="utf-8") as handle:
+        active_site_evidence_queue = json.load(handle)
+    sample = build_external_source_active_site_evidence_sample(
+        active_site_evidence_queue=active_site_evidence_queue,
+        max_candidates=args.max_candidates,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote external source active-site evidence sample to "
+        f"{args.out} ({sample['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_active_site_evidence_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+        active_site_evidence_sample = json.load(handle)
+    audit = audit_external_source_active_site_evidence_sample(
+        active_site_evidence_sample
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source active-site evidence audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_heuristic_control_queue(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+        active_site_evidence_sample = json.load(handle)
+    queue = build_external_source_heuristic_control_queue(
+        active_site_evidence_sample=active_site_evidence_sample,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), queue)
+    print(
+        "Wrote external source heuristic control queue to "
+        f"{args.out} ({queue['metadata']['exported_ready_candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_heuristic_control_queue(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.heuristic_control_queue).open("r", encoding="utf-8") as handle:
+        heuristic_control_queue = json.load(handle)
+    audit = audit_external_source_heuristic_control_queue(heuristic_control_queue)
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source heuristic control queue audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_structure_mapping_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+        active_site_evidence_sample = json.load(handle)
+    with Path(args.heuristic_control_queue).open("r", encoding="utf-8") as handle:
+        heuristic_control_queue = json.load(handle)
+    plan = build_external_source_structure_mapping_plan(
+        active_site_evidence_sample=active_site_evidence_sample,
+        heuristic_control_queue=heuristic_control_queue,
+        max_rows=args.max_rows,
+    )
+    write_json(Path(args.out), plan)
+    print(
+        "Wrote external source structure mapping plan to "
+        f"{args.out} ({plan['metadata']['ready_mapping_candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_structure_mapping_plan(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.structure_mapping_plan).open("r", encoding="utf-8") as handle:
+        structure_mapping_plan = json.load(handle)
+    audit = audit_external_source_structure_mapping_plan(structure_mapping_plan)
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source structure mapping plan audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_structure_mapping_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.structure_mapping_plan).open("r", encoding="utf-8") as handle:
+        structure_mapping_plan = json.load(handle)
+    sample = build_external_source_structure_mapping_sample(
+        structure_mapping_plan=structure_mapping_plan,
+        max_candidates=args.max_candidates,
+    )
+    write_json(Path(args.out), sample)
+    print(
+        "Wrote external source structure mapping sample to "
+        f"{args.out} ({sample['metadata']['mapped_candidate_count']} mapped)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_structure_mapping_sample(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.structure_mapping_sample).open("r", encoding="utf-8") as handle:
+        structure_mapping_sample = json.load(handle)
+    audit = audit_external_source_structure_mapping_sample(structure_mapping_sample)
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source structure mapping sample audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_build_external_source_heuristic_control_scores(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.structure_mapping_sample).open("r", encoding="utf-8") as handle:
+        structure_mapping_sample = json.load(handle)
+    scores = build_external_source_heuristic_control_scores(
+        structure_mapping_sample=structure_mapping_sample,
+        top_k=args.top_k,
+    )
+    write_json(Path(args.out), scores)
+    print(
+        "Wrote external source heuristic control scores to "
+        f"{args.out} ({scores['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_heuristic_control_scores(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
+        heuristic_control_scores = json.load(handle)
+    audit = audit_external_source_heuristic_control_scores(heuristic_control_scores)
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source heuristic control scores audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
+def cmd_audit_external_source_failure_modes(args: argparse.Namespace) -> int:
+    with Path(args.active_site_evidence_sample_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        active_site_evidence_sample_audit = json.load(handle)
+    with Path(args.heuristic_control_queue).open("r", encoding="utf-8") as handle:
+        heuristic_control_queue = json.load(handle)
+    with Path(args.heuristic_control_scores_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        heuristic_control_scores_audit = json.load(handle)
+    with Path(args.structure_mapping_sample_audit).open(
+        "r", encoding="utf-8"
+    ) as handle:
+        structure_mapping_sample_audit = json.load(handle)
+    audit = audit_external_source_failure_modes(
+        active_site_evidence_sample_audit=active_site_evidence_sample_audit,
+        heuristic_control_queue=heuristic_control_queue,
+        heuristic_control_scores_audit=heuristic_control_scores_audit,
+        structure_mapping_sample_audit=structure_mapping_sample_audit,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source failure mode audit to "
+        f"{args.out} ({audit['metadata']['failure_mode_count']} modes)"
+    )
+    return 0
+
+
 def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     with Path(args.transfer_manifest).open("r", encoding="utf-8") as handle:
         transfer_manifest = json.load(handle)
@@ -527,6 +727,60 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
     if args.active_site_evidence_queue:
         with Path(args.active_site_evidence_queue).open("r", encoding="utf-8") as handle:
             active_site_evidence_queue = json.load(handle)
+    active_site_evidence_sample = None
+    if args.active_site_evidence_sample:
+        with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
+            active_site_evidence_sample = json.load(handle)
+    active_site_evidence_sample_audit = None
+    if args.active_site_evidence_sample_audit:
+        with Path(args.active_site_evidence_sample_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            active_site_evidence_sample_audit = json.load(handle)
+    heuristic_control_queue = None
+    if args.heuristic_control_queue:
+        with Path(args.heuristic_control_queue).open("r", encoding="utf-8") as handle:
+            heuristic_control_queue = json.load(handle)
+    heuristic_control_queue_audit = None
+    if args.heuristic_control_queue_audit:
+        with Path(args.heuristic_control_queue_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            heuristic_control_queue_audit = json.load(handle)
+    structure_mapping_plan = None
+    if args.structure_mapping_plan:
+        with Path(args.structure_mapping_plan).open("r", encoding="utf-8") as handle:
+            structure_mapping_plan = json.load(handle)
+    structure_mapping_plan_audit = None
+    if args.structure_mapping_plan_audit:
+        with Path(args.structure_mapping_plan_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            structure_mapping_plan_audit = json.load(handle)
+    structure_mapping_sample = None
+    if args.structure_mapping_sample:
+        with Path(args.structure_mapping_sample).open("r", encoding="utf-8") as handle:
+            structure_mapping_sample = json.load(handle)
+    structure_mapping_sample_audit = None
+    if args.structure_mapping_sample_audit:
+        with Path(args.structure_mapping_sample_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            structure_mapping_sample_audit = json.load(handle)
+    heuristic_control_scores = None
+    if args.heuristic_control_scores:
+        with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
+            heuristic_control_scores = json.load(handle)
+    heuristic_control_scores_audit = None
+    if args.heuristic_control_scores_audit:
+        with Path(args.heuristic_control_scores_audit).open(
+            "r", encoding="utf-8"
+        ) as handle:
+            heuristic_control_scores_audit = json.load(handle)
+    external_failure_mode_audit = None
+    if args.external_failure_mode_audit:
+        with Path(args.external_failure_mode_audit).open("r", encoding="utf-8") as handle:
+            external_failure_mode_audit = json.load(handle)
     gates = check_external_source_transfer_gates(
         transfer_manifest=transfer_manifest,
         query_manifest=query_manifest,
@@ -539,6 +793,17 @@ def cmd_check_external_source_transfer_gates(args: argparse.Namespace) -> int:
         evidence_request_export=evidence_request_export,
         review_only_import_safety_audit=review_only_import_safety_audit,
         active_site_evidence_queue=active_site_evidence_queue,
+        active_site_evidence_sample=active_site_evidence_sample,
+        active_site_evidence_sample_audit=active_site_evidence_sample_audit,
+        heuristic_control_queue=heuristic_control_queue,
+        heuristic_control_queue_audit=heuristic_control_queue_audit,
+        structure_mapping_plan=structure_mapping_plan,
+        structure_mapping_plan_audit=structure_mapping_plan_audit,
+        structure_mapping_sample=structure_mapping_sample,
+        structure_mapping_sample_audit=structure_mapping_sample_audit,
+        heuristic_control_scores=heuristic_control_scores,
+        heuristic_control_scores_audit=heuristic_control_scores_audit,
+        external_failure_mode_audit=external_failure_mode_audit,
     )
     write_json(Path(args.out), gates)
     print(
@@ -2503,6 +2768,203 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_build_external_source_active_site_evidence_queue
     )
 
+    external_active_site_sample = subparsers.add_parser(
+        "build-external-source-active-site-evidence-sample",
+        help="fetch bounded UniProt active-site evidence for external candidates",
+    )
+    external_active_site_sample.add_argument(
+        "--active-site-evidence-queue",
+        default="artifacts/v3_external_source_active_site_evidence_queue.json",
+    )
+    external_active_site_sample.add_argument("--max-candidates", type=int, default=8)
+    external_active_site_sample.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_active_site_sample.set_defaults(
+        func=cmd_build_external_source_active_site_evidence_sample
+    )
+
+    external_active_site_sample_audit = subparsers.add_parser(
+        "audit-external-source-active-site-evidence-sample",
+        help="verify external active-site evidence samples remain review-only",
+    )
+    external_active_site_sample_audit.add_argument(
+        "--active-site-evidence-sample",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_active_site_sample_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_active_site_evidence_sample_audit.json",
+    )
+    external_active_site_sample_audit.set_defaults(
+        func=cmd_audit_external_source_active_site_evidence_sample
+    )
+
+    external_heuristic_queue = subparsers.add_parser(
+        "build-external-source-heuristic-control-queue",
+        help="queue external candidates for review-only heuristic control scoring",
+    )
+    external_heuristic_queue.add_argument(
+        "--active-site-evidence-sample",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_heuristic_queue.add_argument("--max-rows", type=int, default=25)
+    external_heuristic_queue.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_heuristic_control_queue.json",
+    )
+    external_heuristic_queue.set_defaults(
+        func=cmd_build_external_source_heuristic_control_queue
+    )
+
+    external_heuristic_queue_audit = subparsers.add_parser(
+        "audit-external-source-heuristic-control-queue",
+        help="verify external heuristic control queues remain review-only",
+    )
+    external_heuristic_queue_audit.add_argument(
+        "--heuristic-control-queue",
+        default="artifacts/v3_external_source_heuristic_control_queue.json",
+    )
+    external_heuristic_queue_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_heuristic_control_queue_audit.json",
+    )
+    external_heuristic_queue_audit.set_defaults(
+        func=cmd_audit_external_source_heuristic_control_queue
+    )
+
+    external_structure_mapping_plan = subparsers.add_parser(
+        "build-external-source-structure-mapping-plan",
+        help="plan review-only structure mapping for external candidates",
+    )
+    external_structure_mapping_plan.add_argument(
+        "--active-site-evidence-sample",
+        default="artifacts/v3_external_source_active_site_evidence_sample.json",
+    )
+    external_structure_mapping_plan.add_argument(
+        "--heuristic-control-queue",
+        default="artifacts/v3_external_source_heuristic_control_queue.json",
+    )
+    external_structure_mapping_plan.add_argument("--max-rows", type=int, default=25)
+    external_structure_mapping_plan.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_structure_mapping_plan.json",
+    )
+    external_structure_mapping_plan.set_defaults(
+        func=cmd_build_external_source_structure_mapping_plan
+    )
+
+    external_structure_mapping_plan_audit = subparsers.add_parser(
+        "audit-external-source-structure-mapping-plan",
+        help="verify external structure-mapping plans remain review-only",
+    )
+    external_structure_mapping_plan_audit.add_argument(
+        "--structure-mapping-plan",
+        default="artifacts/v3_external_source_structure_mapping_plan.json",
+    )
+    external_structure_mapping_plan_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_structure_mapping_plan_audit.json",
+    )
+    external_structure_mapping_plan_audit.set_defaults(
+        func=cmd_audit_external_source_structure_mapping_plan
+    )
+
+    external_structure_mapping_sample = subparsers.add_parser(
+        "build-external-source-structure-mapping-sample",
+        help="resolve a bounded review-only external structure mapping sample",
+    )
+    external_structure_mapping_sample.add_argument(
+        "--structure-mapping-plan",
+        default="artifacts/v3_external_source_structure_mapping_plan.json",
+    )
+    external_structure_mapping_sample.add_argument(
+        "--max-candidates", type=int, default=4
+    )
+    external_structure_mapping_sample.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_structure_mapping_sample.json",
+    )
+    external_structure_mapping_sample.set_defaults(
+        func=cmd_build_external_source_structure_mapping_sample
+    )
+
+    external_structure_mapping_sample_audit = subparsers.add_parser(
+        "audit-external-source-structure-mapping-sample",
+        help="verify external structure mapping samples remain review-only",
+    )
+    external_structure_mapping_sample_audit.add_argument(
+        "--structure-mapping-sample",
+        default="artifacts/v3_external_source_structure_mapping_sample.json",
+    )
+    external_structure_mapping_sample_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_structure_mapping_sample_audit.json",
+    )
+    external_structure_mapping_sample_audit.set_defaults(
+        func=cmd_audit_external_source_structure_mapping_sample
+    )
+
+    external_heuristic_scores = subparsers.add_parser(
+        "build-external-source-heuristic-control-scores",
+        help="score external structure mappings with the heuristic retrieval control",
+    )
+    external_heuristic_scores.add_argument(
+        "--structure-mapping-sample",
+        default="artifacts/v3_external_source_structure_mapping_sample.json",
+    )
+    external_heuristic_scores.add_argument("--top-k", type=int, default=5)
+    external_heuristic_scores.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_heuristic_control_scores.json",
+    )
+    external_heuristic_scores.set_defaults(
+        func=cmd_build_external_source_heuristic_control_scores
+    )
+
+    external_heuristic_scores_audit = subparsers.add_parser(
+        "audit-external-source-heuristic-control-scores",
+        help="verify external heuristic control scores remain review-only",
+    )
+    external_heuristic_scores_audit.add_argument(
+        "--heuristic-control-scores",
+        default="artifacts/v3_external_source_heuristic_control_scores.json",
+    )
+    external_heuristic_scores_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_heuristic_control_scores_audit.json",
+    )
+    external_heuristic_scores_audit.set_defaults(
+        func=cmd_audit_external_source_heuristic_control_scores
+    )
+
+    external_failure_modes = subparsers.add_parser(
+        "audit-external-source-failure-modes",
+        help="summarize review-only external transfer failure modes",
+    )
+    external_failure_modes.add_argument(
+        "--active-site-evidence-sample-audit",
+        default="artifacts/v3_external_source_active_site_evidence_sample_audit.json",
+    )
+    external_failure_modes.add_argument(
+        "--heuristic-control-queue",
+        default="artifacts/v3_external_source_heuristic_control_queue.json",
+    )
+    external_failure_modes.add_argument(
+        "--heuristic-control-scores-audit",
+        default="artifacts/v3_external_source_heuristic_control_scores_audit.json",
+    )
+    external_failure_modes.add_argument(
+        "--structure-mapping-sample-audit",
+        default="artifacts/v3_external_source_structure_mapping_sample_audit.json",
+    )
+    external_failure_modes.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_failure_mode_audit.json",
+    )
+    external_failure_modes.set_defaults(func=cmd_audit_external_source_failure_modes)
+
     external_transfer_gate = subparsers.add_parser(
         "check-external-source-transfer-gates",
         help="gate review-only external-source transfer artifacts before import work",
@@ -2549,6 +3011,50 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--active-site-evidence-queue",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-evidence-sample",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--active-site-evidence-sample-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--heuristic-control-queue",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--heuristic-control-queue-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--structure-mapping-plan",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--structure-mapping-plan-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--structure-mapping-sample",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--structure-mapping-sample-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--heuristic-control-scores",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--heuristic-control-scores-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--external-failure-mode-audit",
         default=None,
     )
     external_transfer_gate.add_argument(

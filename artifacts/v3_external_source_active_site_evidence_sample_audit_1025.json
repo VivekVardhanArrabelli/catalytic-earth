@@ -1,0 +1,18 @@
+{
+  "blockers": [],
+  "metadata": {
+    "active_site_feature_gap_count": 10,
+    "candidate_count": 25,
+    "countable_label_candidate_count": 0,
+    "feature_evidence_row_count": 204,
+    "fetch_failure_count": 0,
+    "guardrail_clean": true,
+    "import_ready_item_count": 0,
+    "method": "external_source_active_site_evidence_guardrail_audit",
+    "non_context_row_count": 0,
+    "ready_for_label_import": false
+  },
+  "warnings": [
+    "active-site feature evidence requires structure mapping, heuristic controls, decisions, and label-factory gates before any external label import"
+  ]
+}

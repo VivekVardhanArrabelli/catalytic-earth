@@ -38,8 +38,10 @@ UniProtKB/Swiss-Prot transfer path, draft six ontology-pressure query lanes,
 fetch a 30-row read-only candidate sample, attach OOD and exact-reference
 sequence controls, request active-site/mechanism/heuristic-control evidence,
 carry sampled PDB/AlphaFold structure references into the evidence export, queue
-25 review-only active-site evidence rows while deferring five rows, and pass the
-11/11 external-transfer gate for review-only evidence collection.
+25 review-only active-site evidence rows while deferring five rows, sample
+UniProtKB active-site features, map a bounded AlphaFold structure-control
+sample, score the mapped controls with the current heuristic retrieval path, and
+pass the 22/22 external-transfer gate for review-only evidence collection.
 Two sample accessions (`O15527` and `P42126`) overlap existing M-CSA reference
 accessions and are routed to holdout controls. The lane-balance audit is clean:
 six lanes each contribute five candidates, so the initial review sample has not
@@ -48,13 +50,15 @@ discovery-facing scaffolds only; they do not create benchmark labels.
 `artifacts/v3_external_source_reaction_evidence_sample_1025.json` then fetches
 Rhea reaction context for the first six external candidates, yielding 22
 reaction records with 0 fetch failures; its guardrail audit is clean, and
-those rows remain `reaction_context_only` and non-countable because no
-active-site mapping or heuristic-control score exists. The audit also flags
-three broad or incomplete EC queries (`1.1.1.-`, `1.11.1.-`, and `1.8.-.-`) as
-review-only context, not specific mechanism evidence.
+those rows remain `reaction_context_only` and non-countable because they have
+not been converted into a reviewed decision artifact or full label-factory
+gate. The audit also flags three broad or incomplete EC queries (`1.1.1.-`,
+`1.11.1.-`, and `1.8.-.-`) as review-only context, not specific mechanism
+evidence.
 
-Next bounded work: collect or prototype the external-source active-site and
-mechanism evidence requested by the active-site evidence queue, resolve
-broad-only EC rows separately, then compare any resulting candidate evidence
-against heuristic geometry retrieval as the required control before any
-countable external labels can be imported.
+Next bounded work: repair the external-source control findings before any label
+import. The active-site feature sample leaves 10 feature-gap rows, the broad EC
+router leaves three disambiguation rows, and the first heuristic-control score
+sample collapses all 4 mapped candidates to `metal_dependent_hydrolase` top1
+with two scope/top1 mismatches. These are review-only failure modes, not
+countable labels.

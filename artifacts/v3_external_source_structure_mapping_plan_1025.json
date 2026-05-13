@@ -1,0 +1,1240 @@
+{
+  "blockers": [
+    "structure_mapping_not_computed",
+    "heuristic_control_scores_not_computed",
+    "external_decision_artifact_not_built",
+    "full_label_factory_gate_not_run"
+  ],
+  "deferred_rows": [
+    {
+      "accession": "P06746",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 72,
+          "description": "Nucleophile; Schiff-base intermediate with DNA; for 5'-dRP lyase activity",
+          "end": 72,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "9572863",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "P06746"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:lyase",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "1BPX",
+        "1BPY",
+        "1BPZ",
+        "1MQ2",
+        "1MQ3",
+        "1TV9",
+        "1TVA",
+        "1ZJM",
+        "1ZJN",
+        "1ZQA"
+      ],
+      "protein_name": "DNA polymerase beta (EC 2.7.7.7) (5'-deoxyribose-phosphate lyase) (5'-dRP lyase) (EC 4.2.99.-) (AP lyase) (EC 4.2.99.18)",
+      "ready_for_label_import": false,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "2.7.7.7",
+        "4.2.99.18"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "specific_reaction_disambiguation_for_broad_ec"
+      ],
+      "upstream_queue_status": "defer_broad_ec_disambiguation"
+    },
+    {
+      "accession": "O60568",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "O60568"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:glycan_chemistry",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "6FXK",
+        "6FXM",
+        "6FXR",
+        "6FXT",
+        "6FXX",
+        "6FXY",
+        "6TE3",
+        "6TEC",
+        "6TES",
+        "6TEU"
+      ],
+      "protein_name": "Multifunctional procollagen lysine hydroxylase and glycosyltransferase LH3 [Includes: Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3 (EC 1.14.11.4) (Lysyl hydroxylase 3) (LH3); Procollagen glycosyltransferase (EC 2.4.1.50) (EC 2.4.1.66) (Galactosylhydroxylysine-glucosyltransferase) (Procollagen galactosyltransferase) (Procollagen glucosyltransferase)]",
+      "ready_for_label_import": false,
+      "scope_signal": "glycan_chemistry",
+      "specific_ec_numbers": [
+        "1.14.11.4",
+        "2.4.1.50",
+        "2.4.1.66"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "P29372",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "P29372"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:glycan_chemistry",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "1BNK",
+        "1EWN",
+        "1F4R",
+        "1F6O",
+        "3QI5",
+        "3UBY",
+        "7XFH",
+        "7XFJ",
+        "7XFM"
+      ],
+      "protein_name": "DNA-3-methyladenine glycosylase (EC 3.2.2.21) (3-alkyladenine DNA glycosylase) (3-methyladenine DNA glycosidase) (ADPG) (N-methylpurine-DNA glycosylase)",
+      "ready_for_label_import": false,
+      "scope_signal": "glycan_chemistry",
+      "specific_ec_numbers": [
+        "3.2.2.21"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "P55263",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 317,
+          "description": "Proton acceptor",
+          "end": 317,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "9843365",
+              "source": "PubMed"
+            },
+            {
+              "evidence_code": "ECO:0007744",
+              "id": "1BX4",
+              "source": "PDB"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "P55263"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "1BX4",
+        "2I6A",
+        "2I6B",
+        "4O1L"
+      ],
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.20"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "specific_reaction_disambiguation_for_broad_ec"
+      ],
+      "upstream_queue_status": "defer_broad_ec_disambiguation"
+    },
+    {
+      "accession": "P27144",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "P27144"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "2AR7",
+        "2BBW",
+        "3NDP"
+      ],
+      "protein_name": "Adenylate kinase 4, mitochondrial (EC 2.7.4.4) (EC 2.7.4.6) (Adenylate kinase 3-like) (GTP:AMP phosphotransferase AK4)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.4.4",
+        "2.7.4.6"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "A2RUC4",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "A2RUC4"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "3AL5",
+        "3AL6"
+      ],
+      "protein_name": "tRNA wybutosine-synthesizing protein 5 (hTYW5) (tRNA yW-synthesizing protein 5) (EC 1.14.11.42) (tRNA(Phe) (7-(3-amino-3-carboxypropyl)wyosine(37)-C(2))-hydroxylase)",
+      "ready_for_label_import": false,
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers": [
+        "1.14.11.42"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "P51580",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "P51580"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:transferase_methyl",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "2BZG",
+        "2H11"
+      ],
+      "protein_name": "Thiopurine S-methyltransferase (EC 2.1.1.67) (Thiopurine methyltransferase)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_methyl",
+      "specific_ec_numbers": [
+        "2.1.1.67"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "O95050",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "O95050"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:transferase_methyl",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "2A14"
+      ],
+      "protein_name": "Indolethylamine N-methyltransferase (Indolamine N-methyltransferase) (EC 2.1.1.49) (EC 2.1.1.96) (Aromatic alkylamine N-methyltransferase) (Amine N-methyltransferase) (Arylamine N-methyltransferase) (Thioether S-methyltransferase) (TEMT)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_methyl",
+      "specific_ec_numbers": [
+        "2.1.1.49",
+        "2.1.1.96"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "Q9HBK9",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "Q9HBK9"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:transferase_methyl",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [
+        "8XT7"
+      ],
+      "protein_name": "Arsenite methyltransferase (EC 2.1.1.137) (Methylarsonite methyltransferase) (S-adenosyl-L-methionine:arsenic(III) methyltransferase)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_methyl",
+      "specific_ec_numbers": [
+        "2.1.1.137"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "A5PLL7",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "A5PLL7"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [],
+      "protein_name": "Plasmanylethanolamine desaturase 1 (EC 1.14.19.77) (Transmembrane protein 189)",
+      "ready_for_label_import": false,
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers": [
+        "1.14.19.77"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "C9JRZ8",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 49,
+          "description": "Proton donor",
+          "end": 49,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "O60218",
+              "source": "UniProtKB"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "C9JRZ8"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [],
+      "protein_name": "Aldo-keto reductase family 1 member B15 (EC 1.1.1.-) (EC 1.1.1.300) (EC 1.1.1.54) (Estradiol 17-beta-dehydrogenase AKR1B15) (Farnesol dehydrogenase) (EC 1.1.1.216) (Testosterone 17beta-dehydrogenase) (EC 1.1.1.64)",
+      "ready_for_label_import": false,
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers": [
+        "1.1.1.216",
+        "1.1.1.300",
+        "1.1.1.54",
+        "1.1.1.64"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "specific_reaction_disambiguation_for_broad_ec"
+      ],
+      "upstream_queue_status": "defer_broad_ec_disambiguation"
+    },
+    {
+      "accession": "P32189",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "P32189"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [],
+      "protein_name": "Glycerol kinase (Glycerokinase) (EC 2.7.1.30) (ATP:glycerol 3-phosphotransferase)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.30"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    },
+    {
+      "accession": "Q32P41",
+      "active_site_position_count": 0,
+      "active_site_positions": [],
+      "alphafold_ids_sample": [
+        "Q32P41"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "upstream_evidence_or_disambiguation_deferred"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": null,
+      "lane_id": "external_source:transferase_methyl",
+      "mapping_status": "defer_before_structure_mapping",
+      "pdb_ids_sample": [],
+      "protein_name": "tRNA (guanine(37)-N(1))-methyltransferase (EC 2.1.1.228) (M1G-methyltransferase) (tRNA [GM37] methyltransferase) (tRNA methyltransferase 5 homolog)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_methyl",
+      "specific_ec_numbers": [
+        "2.1.1.228"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run",
+        "uniprot_active_site_feature_missing"
+      ],
+      "upstream_queue_status": "defer_active_site_feature_gap"
+    }
+  ],
+  "metadata": {
+    "candidate_count": 25,
+    "countable_label_candidate_count": 0,
+    "deferred_mapping_candidate_count": 13,
+    "mapping_status_counts": {
+      "defer_before_structure_mapping": 13,
+      "ready_for_structure_mapping": 12
+    },
+    "max_rows": 25,
+    "method": "external_source_structure_mapping_plan",
+    "ready_for_label_import": false,
+    "ready_for_structure_mapping": true,
+    "ready_mapping_candidate_count": 12,
+    "review_only_rule": "structure mapping plans prepare heuristic controls only and do not create countable labels",
+    "source_method": "external_source_heuristic_control_queue"
+  },
+  "rows": [
+    {
+      "accession": "P33025",
+      "active_site_position_count": 2,
+      "active_site_positions": [
+        {
+          "begin": 31,
+          "description": "Proton donor",
+          "end": 31,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_01876",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000303",
+              "id": "23066817",
+              "source": "PubMed"
+            }
+          ]
+        },
+        {
+          "begin": 166,
+          "description": "Nucleophile",
+          "end": 166,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "MF_01876",
+              "source": "HAMAP-Rule"
+            },
+            {
+              "evidence_code": "ECO:0000303",
+              "id": "23066817",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "P33025"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 1,
+      "lane_id": "external_source:glycan_chemistry",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "4GIJ",
+        "4GIK",
+        "4GIL",
+        "4GIM"
+      ],
+      "protein_name": "Pseudouridine-5'-phosphate glycosidase (PsiMP glycosidase) (EC 4.2.1.70)",
+      "ready_for_label_import": false,
+      "scope_signal": "glycan_chemistry",
+      "specific_ec_numbers": [
+        "4.2.1.70"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "P60174",
+      "active_site_position_count": 2,
+      "active_site_positions": [
+        {
+          "begin": 96,
+          "description": "Electrophile",
+          "end": 96,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "PRU10127",
+              "source": "PROSITE-ProRule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "8061610",
+              "source": "PubMed"
+            }
+          ]
+        },
+        {
+          "begin": 166,
+          "description": "Proton acceptor",
+          "end": 166,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "PRU10127",
+              "source": "PROSITE-ProRule"
+            },
+            {
+              "evidence_code": "ECO:0000269",
+              "id": "8061610",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "P60174"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 2,
+      "lane_id": "external_source:isomerase",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "1HTI",
+        "1KLG",
+        "1KLU",
+        "1WYI",
+        "2IAM",
+        "2IAN",
+        "2JK2",
+        "2VOM",
+        "4BR1",
+        "4E41"
+      ],
+      "protein_name": "Triosephosphate isomerase (TIM) (EC 5.3.1.1) (Methylglyoxal synthase) (EC 4.2.3.3) (Triose-phosphate isomerase)",
+      "ready_for_label_import": false,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "4.2.3.3",
+        "5.3.1.1"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "Q13907",
+      "active_site_position_count": 2,
+      "active_site_positions": [
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "evidence": []
+        },
+        {
+          "begin": 148,
+          "description": "",
+          "end": 148,
+          "evidence": []
+        }
+      ],
+      "alphafold_ids_sample": [
+        "Q13907"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 3,
+      "lane_id": "external_source:isomerase",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "2DHO",
+        "2I6K",
+        "2ICJ",
+        "2ICK"
+      ],
+      "protein_name": "Isopentenyl-diphosphate Delta-isomerase 1 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 1) (IPP isomerase 1) (IPPI1)",
+      "ready_for_label_import": false,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "5.3.3.2"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "Q6NSJ0",
+      "active_site_position_count": 2,
+      "active_site_positions": [
+        {
+          "begin": 463,
+          "description": "Nucleophile",
+          "end": 463,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000305",
+              "id": "36129849",
+              "source": "PubMed"
+            }
+          ]
+        },
+        {
+          "begin": 520,
+          "description": "Proton donor/acceptor",
+          "end": 520,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000305",
+              "id": "36129849",
+              "source": "PubMed"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "Q6NSJ0"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 4,
+      "lane_id": "external_source:glycan_chemistry",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "7QQF",
+        "7QQG",
+        "7QQH"
+      ],
+      "protein_name": "Alpha-galactosidase MYORG (EC 3.2.1.22) (Myogenesis regulating glycosidase) (Nuclear envelope transmembrane protein 37)",
+      "ready_for_label_import": false,
+      "scope_signal": "glycan_chemistry",
+      "specific_ec_numbers": [
+        "3.2.1.22"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "Q9BXD5",
+      "active_site_position_count": 2,
+      "active_site_positions": [
+        {
+          "begin": 143,
+          "description": "Proton donor",
+          "end": 143,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6L4",
+              "source": "UniProtKB"
+            }
+          ]
+        },
+        {
+          "begin": 173,
+          "description": "Schiff-base intermediate with substrate",
+          "end": 173,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P0A6L4",
+              "source": "UniProtKB"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "Q9BXD5"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 5,
+      "lane_id": "external_source:lyase",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "6ARH"
+      ],
+      "protein_name": "N-acetylneuraminate lyase (NALase) (EC 4.1.3.3) (N-acetylneuraminate pyruvate-lyase) (N-acetylneuraminic acid aldolase) (Sialate lyase) (Sialate-pyruvate lyase) (Sialic acid aldolase) (Sialic acid lyase)",
+      "ready_for_label_import": false,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.1.3.3"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "Q9BXS1",
+      "active_site_position_count": 2,
+      "active_site_positions": [
+        {
+          "begin": 86,
+          "description": "",
+          "end": 86,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": null,
+              "source": null
+            }
+          ]
+        },
+        {
+          "begin": 148,
+          "description": "",
+          "end": 148,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": null,
+              "source": null
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "Q9BXS1"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 6,
+      "lane_id": "external_source:isomerase",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "2PNY"
+      ],
+      "protein_name": "Isopentenyl-diphosphate delta-isomerase 2 (EC 5.3.3.2) (Isopentenyl pyrophosphate isomerase 2) (IPP isomerase 2) (IPPI2)",
+      "ready_for_label_import": false,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "5.3.3.2"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "A2RU49",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 226,
+          "description": "Proton acceptor",
+          "end": 226,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": null,
+              "source": null
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "A2RU49"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 7,
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [],
+      "protein_name": "Hydroxylysine kinase (5-hydroxy-L-lysine kinase) (EC 2.7.1.81) (Aminoglycoside phosphotransferase domain-containing protein 1)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.81"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "O14756",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 176,
+          "description": "Proton acceptor",
+          "end": 176,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "PRU10001",
+              "source": "PROSITE-ProRule"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "O14756"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 8,
+      "lane_id": "external_source:oxidoreductase_long_tail",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [],
+      "protein_name": "17-beta-hydroxysteroid dehydrogenase type 6 (17-beta-HSD 6) (17-beta-HSD6) (EC 1.1.1.105) (EC 1.1.1.209) (EC 1.1.1.239) (EC 1.1.1.53) (EC 1.1.1.62) (3-alpha->beta-hydroxysteroid epimerase) (3-alpha->beta-HSE) (Oxidative 3-alpha hydroxysteroid dehydrogenase) (Short chain dehydrogenase/reductase family 9C member 6)",
+      "ready_for_label_import": false,
+      "scope_signal": "oxidoreductase_long_tail",
+      "specific_ec_numbers": [
+        "1.1.1.105",
+        "1.1.1.209",
+        "1.1.1.239",
+        "1.1.1.53",
+        "1.1.1.62"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "P34949",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 295,
+          "description": "",
+          "end": 295,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "P34948",
+              "source": "UniProtKB"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "P34949"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 9,
+      "lane_id": "external_source:isomerase",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [],
+      "protein_name": "Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI)",
+      "ready_for_label_import": false,
+      "scope_signal": "isomerase",
+      "specific_ec_numbers": [
+        "5.3.1.8"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "P35914",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 266,
+          "description": "",
+          "end": 266,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000255",
+              "id": "PRU10115",
+              "source": "PROSITE-ProRule"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "P35914"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 10,
+      "lane_id": "external_source:lyase",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "2CW6",
+        "3MP3",
+        "3MP4",
+        "3MP5"
+      ],
+      "protein_name": "Hydroxymethylglutaryl-CoA lyase, mitochondrial (HL) (HMG-CoA lyase) (EC 4.1.3.4) (3-hydroxy-3-methylglutarate-CoA lyase)",
+      "ready_for_label_import": false,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.1.3.4"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "Q969G6",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 79,
+          "description": "Nucleophile",
+          "end": 79,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": null,
+              "source": null
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "Q969G6"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 11,
+      "lane_id": "external_source:transferase_phosphoryl",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "1NB0",
+        "1NB9",
+        "1P4M",
+        "1Q9S"
+      ],
+      "protein_name": "Riboflavin kinase (EC 2.7.1.26) (ATP:riboflavin 5'-phosphotransferase) (Flavokinase)",
+      "ready_for_label_import": false,
+      "scope_signal": "transferase_phosphoryl",
+      "specific_ec_numbers": [
+        "2.7.1.26"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    },
+    {
+      "accession": "Q96I15",
+      "active_site_position_count": 1,
+      "active_site_positions": [
+        {
+          "begin": 388,
+          "description": "S-selanylcysteine intermediate",
+          "end": 388,
+          "evidence": [
+            {
+              "evidence_code": "ECO:0000250",
+              "id": "Q68FT9",
+              "source": "UniProtKB"
+            }
+          ]
+        }
+      ],
+      "alphafold_ids_sample": [
+        "Q96I15"
+      ],
+      "blockers": [
+        "structure_mapping_not_computed",
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "countable_label_candidate": false,
+      "heuristic_control_rank": 12,
+      "lane_id": "external_source:lyase",
+      "mapping_status": "ready_for_structure_mapping",
+      "pdb_ids_sample": [
+        "3GZC",
+        "3GZD"
+      ],
+      "protein_name": "Selenocysteine lyase (hSCL) (EC 4.4.1.16)",
+      "ready_for_label_import": false,
+      "scope_signal": "lyase",
+      "specific_ec_numbers": [
+        "4.4.1.16"
+      ],
+      "structure_mapping_rule": "map UniProt active-site positions onto PDB or AlphaFold candidate structures before heuristic geometry scoring",
+      "upstream_queue_blockers": [
+        "heuristic_control_scores_not_computed",
+        "external_decision_artifact_not_built",
+        "full_label_factory_gate_not_run"
+      ],
+      "upstream_queue_status": "ready_for_heuristic_control_prototype"
+    }
+  ]
+}

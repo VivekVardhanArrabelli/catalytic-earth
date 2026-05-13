@@ -29,14 +29,27 @@ import.
   AlphaFold structure references forward. It flags seven candidates with broad
   or incomplete EC context, defers three broad-only candidates for specific
   reaction disambiguation, and exports a review-only active-site evidence queue
-  with 25 ready candidates and five deferred candidates. The external transfer
-  gate passes 11/11 checks for review-only evidence collection and remains not
-  ready for label import.
+  with 25 ready candidates and five deferred candidates.
+- The active-site evidence pass now samples all 25 ready candidates from
+  UniProtKB feature records. It finds active-site features for 15 candidates,
+  leaves 10 candidates as active-site-feature gaps, and keeps all rows
+  non-countable. A heuristic-control queue then identifies 12 candidates ready
+  for structure mapping and defers 13 rows, including 3 broad-EC rows.
+- A bounded structure-mapping sample maps 4 external candidates onto current
+  AlphaFold model CIFs, resolves all requested active-site positions, and runs
+  the current geometry-retrieval heuristic as a control. The control is
+  intentionally not a label decision: all 4 scored candidates rank
+  `metal_dependent_hydrolase` top1, and the failure-mode audit records
+  active-site feature gaps, broad-EC disambiguation needs, top1 fingerprint
+  collapse, metal-hydrolase collapse, and scope/top1 mismatch as review-only
+  blockers to label import. The external transfer gate passes 22/22 checks for
+  review-only evidence collection and remains not ready for label import.
 - The first bounded reaction-context pass queries Rhea for six external
   candidates, finds 22 reaction records with 0 fetch failures, and keeps every
-  row `reaction_context_only` and non-countable because no active-site mapping
-  or heuristic control has been computed. Its guardrail audit is clean and
-  explicitly flags three broad or incomplete EC queries (`1.1.1.-`,
+  row `reaction_context_only` and non-countable because the Rhea rows have not
+  been converted into a reviewed decision artifact or full label-factory gate.
+  Its guardrail audit is clean and explicitly flags three broad or incomplete
+  EC queries (`1.1.1.-`,
   `1.11.1.-`, and `1.8.-.-`) as review-only context.
 
 ## Artifacts
@@ -115,6 +128,59 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-active-site-e
   --max-rows 50 \
   --out artifacts/v3_external_source_active_site_evidence_queue_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-active-site-evidence-sample \
+  --active-site-evidence-queue artifacts/v3_external_source_active_site_evidence_queue_1025.json \
+  --max-candidates 25 \
+  --out artifacts/v3_external_source_active_site_evidence_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-active-site-evidence-sample \
+  --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
+  --out artifacts/v3_external_source_active_site_evidence_sample_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-heuristic-control-queue \
+  --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
+  --max-rows 25 \
+  --out artifacts/v3_external_source_heuristic_control_queue_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-heuristic-control-queue \
+  --heuristic-control-queue artifacts/v3_external_source_heuristic_control_queue_1025.json \
+  --out artifacts/v3_external_source_heuristic_control_queue_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-structure-mapping-plan \
+  --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
+  --heuristic-control-queue artifacts/v3_external_source_heuristic_control_queue_1025.json \
+  --max-rows 25 \
+  --out artifacts/v3_external_source_structure_mapping_plan_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-structure-mapping-plan \
+  --structure-mapping-plan artifacts/v3_external_source_structure_mapping_plan_1025.json \
+  --out artifacts/v3_external_source_structure_mapping_plan_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-structure-mapping-sample \
+  --structure-mapping-plan artifacts/v3_external_source_structure_mapping_plan_1025.json \
+  --max-candidates 4 \
+  --out artifacts/v3_external_source_structure_mapping_sample_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-structure-mapping-sample \
+  --structure-mapping-sample artifacts/v3_external_source_structure_mapping_sample_1025.json \
+  --out artifacts/v3_external_source_structure_mapping_sample_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-heuristic-control-scores \
+  --structure-mapping-sample artifacts/v3_external_source_structure_mapping_sample_1025.json \
+  --top-k 5 \
+  --out artifacts/v3_external_source_heuristic_control_scores_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-heuristic-control-scores \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --out artifacts/v3_external_source_heuristic_control_scores_audit_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-failure-modes \
+  --active-site-evidence-sample-audit artifacts/v3_external_source_active_site_evidence_sample_audit_1025.json \
+  --heuristic-control-queue artifacts/v3_external_source_heuristic_control_queue_1025.json \
+  --heuristic-control-scores-audit artifacts/v3_external_source_heuristic_control_scores_audit_1025.json \
+  --structure-mapping-sample-audit artifacts/v3_external_source_structure_mapping_sample_audit_1025.json \
+  --out artifacts/v3_external_source_failure_mode_audit_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
   --labels data/registries/curated_mechanism_labels.json \
   --review artifacts/v3_external_source_evidence_request_export_1025.json \
@@ -132,6 +198,17 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
   --review-only-import-safety-audit artifacts/v3_external_source_review_only_import_safety_audit_1025.json \
   --active-site-evidence-queue artifacts/v3_external_source_active_site_evidence_queue_1025.json \
+  --active-site-evidence-sample artifacts/v3_external_source_active_site_evidence_sample_1025.json \
+  --active-site-evidence-sample-audit artifacts/v3_external_source_active_site_evidence_sample_audit_1025.json \
+  --heuristic-control-queue artifacts/v3_external_source_heuristic_control_queue_1025.json \
+  --heuristic-control-queue-audit artifacts/v3_external_source_heuristic_control_queue_audit_1025.json \
+  --structure-mapping-plan artifacts/v3_external_source_structure_mapping_plan_1025.json \
+  --structure-mapping-plan-audit artifacts/v3_external_source_structure_mapping_plan_audit_1025.json \
+  --structure-mapping-sample artifacts/v3_external_source_structure_mapping_sample_1025.json \
+  --structure-mapping-sample-audit artifacts/v3_external_source_structure_mapping_sample_audit_1025.json \
+  --heuristic-control-scores artifacts/v3_external_source_heuristic_control_scores_1025.json \
+  --heuristic-control-scores-audit artifacts/v3_external_source_heuristic_control_scores_audit_1025.json \
+  --external-failure-mode-audit artifacts/v3_external_source_failure_mode_audit_1025.json \
   --out artifacts/v3_external_source_transfer_gate_check_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-reaction-evidence-sample \
