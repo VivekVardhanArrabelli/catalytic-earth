@@ -7,7 +7,7 @@
     "completed_sequence_decision_count": 0,
     "countable_label_candidate_count": 0,
     "dominant_lane_fraction": 0.1667,
-    "dominant_prioritized_action_fraction": 0.6,
+    "dominant_prioritized_action_fraction": 0.3,
     "expected_active_site_resolution_row_count": 10,
     "expected_candidate_count": 30,
     "expected_candidate_manifest_method": "external_source_candidate_manifest",

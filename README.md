@@ -182,9 +182,9 @@ sequence-search export, import-readiness audit, active-site sourcing queue/expor
 active-site sourcing resolution, representation-backend plan/sample, a
 candidate blocker matrix, a 10-row external pilot candidate priority worklist,
 a consolidated pilot evidence packet, 10 per-candidate pilot evidence
-dossiers, a 10-row pilot-specific ESM-2 representation sample, and a 66/66
-external transfer gate with current-reference sequence screen, candidate,
-artifact-path, and pilot review-only decision validation. The
+dossiers, a 10-row pilot-specific ESM-2 representation sample, and a 67/67
+external transfer gate with backend sequence-search, current-reference sequence
+screen, candidate, artifact-path, and pilot review-only decision validation. The
 evidence plan
 flags seven broad or incomplete EC contexts,
 defers three broad-only candidates for reaction disambiguation, and exports a
@@ -208,27 +208,36 @@ near-duplicate holdouts, and remains review-only; the deterministic k-mer
 sample is preserved separately as a labeled proxy baseline. The
 active-site gap source-request artifact covers all 10 gaps, and the
 sequence-neighborhood plan keeps 2 exact-reference overlaps as holdouts while
-requesting near-duplicate search for the other 28 candidates. The bounded
+scoping duplicate-screening controls for the other 28 candidates. The bounded
 sequence screen fetches all 30 external sequences plus all 735 current
 countable M-CSA reference accessions after resolving inactive demerged UniProt
 references `P03176` and `Q05489` to their replacement accessions. The
 current-reference screen audit now clears the current-reference near-duplicate
 blocker: 28 rows have top-hit alignments with no near-duplicate signal and two
-exact-reference rows stay holdouts. Complete UniRef/all-vs-all near-duplicate
-search remains required. The bounded sequence-alignment verification checks 90
-top-hit pairs, confirms the two exact-reference holdouts, and keeps every row
-non-countable. The
+exact-reference rows stay holdouts. `artifacts/v3_external_source_backend_sequence_search_1025.json`
+then runs a real MMseqs2 18-8cc5c bounded backend search over the 30 external
+rows against 735 current reference accessions / 737 sequence records. It
+preserves exact holdouts `O15527` and `P42126`, records 28 no-signal rows, 0
+near-duplicate rows, and 0 failures, and keeps every row review-only,
+non-countable, and not import-ready. This removes the bounded current-reference
+backend sequence-search debt for the 28 no-signal rows; broader UniRef-wide or
+all-vs-all duplicate screening remains required before any import. The bounded
+sequence-alignment verification checks 90 top-hit pairs, confirms the two
+exact-reference holdouts, and keeps every row non-countable. The
 import-readiness audit keeps 0 rows import-ready while summarizing 10
-active-site gaps, 2 exact sequence holdouts, 28 complete near-duplicate search
-requirements, 9 heuristic scope/top1 mismatches, and 29 representation-control
-issues, while the active-site sourcing queue prioritizes the 10 active-site
-gaps into 7 mapped-binding-context rows and 3 primary-source rows. The
-active-site sourcing export carries 72 source targets, the sequence-search
-export keeps 28 UniRef/all-vs-all near-duplicate searches and 2 sequence
-holdouts review-only, the
+active-site gaps, 2 exact sequence holdouts, 9 heuristic scope/top1
+mismatches, 29 representation-control issues, and the remaining broader
+duplicate-screening limitation, while the active-site sourcing queue
+prioritizes the 10 active-site gaps into 7 mapped-binding-context rows and 3
+primary-source rows. The active-site sourcing export carries 72 source targets,
+the sequence-search export plus backend search keep all 30 rows in no-decision
+review-only sequence controls, the
 representation-backend plan covers 12 controls without computing embeddings, and
-the blocker matrix joins all 30 external rows into a non-countable worklist with
-the active-site resolution and representation sample statuses carried forward.
+the blocker matrix joins all 30 external rows into a non-countable worklist
+with the active-site resolution and representation sample statuses carried
+forward: 7 literature/PDB active-site reviews, 3 primary active-site source
+tasks, 9 real representation-backend selections, 6 representation-control
+attachments, 3 representation-near-duplicate holdouts, and 2 sequence holdouts.
 `artifacts/v3_external_source_pilot_candidate_priority_1025.json` then selects
 10 review-only pilot candidates across six external lanes, defers 5 exact
 holdout or near-duplicate rows, and keeps every selected row non-countable and
@@ -239,8 +248,9 @@ those 10 rows as no-decision review packets with 0 completed decisions, so it
 removes the packet-scaffolding blocker without authorizing import.
 `artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
 79 source targets for the same 10 rows, including all 10 sequence-search
-packets and 3 active-site sourcing packets, while keeping every row review-only
-and non-countable.
+packets and 3 active-site sourcing packets, while carrying backend
+no-near-duplicate status for all 10 selected rows and keeping every row
+review-only and non-countable.
 `artifacts/v3_external_source_pilot_evidence_dossiers_1025.json` assembles
 the selected 10 rows into review-only per-candidate dossiers: 7 currently have
 explicit UniProt active-site feature support, all 10 have Rhea reaction
@@ -249,13 +259,15 @@ still carry import blockers. The pilot representation sample flags `P55263` as
 a representation near-duplicate holdout and keeps every row review-only. The
 dossier assembly now adds local evidence-completeness blockers itself; the 3
 selected rows without explicit active-site evidence are flagged, and no
-selected row is missing specific reaction context.
+selected row is missing specific reaction context. Backend no-signal rows no
+longer inherit the stale complete-near-duplicate sequence blockers in the
+pilot packet or dossiers.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
 only, not label import. Its lineage metadata now records a clean 1,025 slice
-across 63 supplied external artifacts, includes the sequence-holdout audit and
+across 64 supplied external artifacts, includes the sequence-holdout audit and
 pilot representation sample in row-level candidate-lineage validation, and
 fails fast on mixed-slice artifact paths or payload-declared slice
 contradictions. The import-readiness audit, transfer blocker matrix, pilot
@@ -390,8 +402,8 @@ pilot-specific representation, and dossier artifacts are now built; the
 high-fan-in pilot builders also fail fast on mixed-slice lineage before writing
 new packet or dossier artifacts. The next
 bounded work item is filling the packet decisions with active-site sources and
-complete near-duplicate sequence evidence, not M-CSA-only count growth or label
-import.
+broader duplicate-screening evidence beyond the bounded current-reference
+MMseqs2 search, not M-CSA-only count growth or label import.
 See
 `docs/label_factory.md`.
 

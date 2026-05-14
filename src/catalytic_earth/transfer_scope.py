@@ -2,9 +2,14 @@ from __future__ import annotations
 
 import json
 import re
+import hashlib
+import shlex
+import shutil
+import subprocess
 import time
 from collections import Counter
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Callable
 from urllib.request import Request, urlopen
 
@@ -109,6 +114,7 @@ EXTERNAL_TRANSFER_CANDIDATE_LINEAGE_FIELDS = (
     "sequence_alignment_verification",
     "sequence_reference_screen_audit",
     "sequence_search_export",
+    "sequence_backend_search",
     "external_import_readiness_audit",
     "active_site_sourcing_queue",
     "active_site_sourcing_export",
@@ -182,6 +188,7 @@ class ExternalSourceTransferGateInputs:
     sequence_reference_screen_audit: dict[str, Any] | None = None
     sequence_search_export: dict[str, Any] | None = None
     sequence_search_export_audit: dict[str, Any] | None = None
+    sequence_backend_search: dict[str, Any] | None = None
     external_import_readiness_audit: dict[str, Any] | None = None
     active_site_sourcing_queue: dict[str, Any] | None = None
     active_site_sourcing_queue_audit: dict[str, Any] | None = None
@@ -5443,6 +5450,562 @@ def build_external_source_sequence_search_export(
     }
 
 
+def build_external_source_backend_sequence_search(
+    *,
+    candidate_manifest: dict[str, Any],
+    sequence_clusters: dict[str, Any],
+    labels: list[dict[str, Any]],
+    reference_fasta: str,
+    external_fasta_out: str,
+    reference_fasta_out: str,
+    result_tsv_out: str,
+    backend: str = "auto",
+    mmseqs_binary: str = "mmseqs",
+    diamond_binary: str = "diamond",
+    blastp_binary: str = "blastp",
+    makeblastdb_binary: str = "makeblastdb",
+    identity_threshold: float = 0.90,
+    coverage_threshold: float = 0.80,
+    exact_identity_threshold: float = 0.999,
+    exact_coverage_threshold: float = 0.98,
+    max_rows: int = 100,
+    top_k: int = 5,
+    fetcher: Callable[[list[str]], dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    """Run a real backend external-vs-current-reference sequence search."""
+    manifest_rows = [
+        row
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]
+    external_accessions = sorted(
+        {_normalize_accession(row.get("accession")) for row in manifest_rows}
+    )
+    fetch = fetcher or _fetch_uniprot_sequence_records
+    external_fetch_failures: list[dict[str, str]] = []
+    try:
+        external_payload = fetch(external_accessions)
+    except Exception as exc:  # pragma: no cover - live network failure path
+        external_payload = {"metadata": {}, "records": []}
+        external_fetch_failures.append(
+            {"error_type": type(exc).__name__, "error": str(exc)}
+        )
+    external_records_by_accession = {
+        _normalize_accession(record.get("accession")): record
+        for record in external_payload.get("records", []) or []
+        if isinstance(record, dict)
+        and _normalize_accession(record.get("accession"))
+        and _clean_sequence(record.get("sequence"))
+    }
+
+    countable_entry_ids = _countable_label_entry_ids(labels)
+    reference_entry_ids_by_accession: dict[str, set[str]] = {}
+    for row in sequence_clusters.get("rows", []) or []:
+        if not isinstance(row, dict):
+            continue
+        entry_id = str(row.get("entry_id") or "")
+        if entry_id not in countable_entry_ids:
+            continue
+        for accession in row.get("reference_uniprot_ids", []) or []:
+            normalized = _normalize_accession(accession)
+            if normalized:
+                reference_entry_ids_by_accession.setdefault(normalized, set()).add(
+                    entry_id
+                )
+    requested_reference_accessions = sorted(reference_entry_ids_by_accession)
+    parsed_reference_fasta = _parse_sequence_fasta(Path(reference_fasta))
+    reference_fasta_records_by_accession = {
+        _normalize_accession(record.get("accession")): record
+        for record in parsed_reference_fasta
+        if _normalize_accession(record.get("accession"))
+        and _clean_sequence(record.get("sequence"))
+    }
+    missing_reference_accessions = [
+        accession
+        for accession in requested_reference_accessions
+        if accession not in reference_fasta_records_by_accession
+    ]
+    reference_fetch_failures: list[dict[str, str]] = []
+    reference_replacement_records_by_accession: dict[str, dict[str, Any]] = {}
+    inactive_reference_resolutions: dict[str, list[str]] = {}
+    if missing_reference_accessions:
+        try:
+            reference_payload = fetch(missing_reference_accessions)
+        except Exception as exc:  # pragma: no cover - live network failure path
+            reference_payload = {"metadata": {}, "records": []}
+            reference_fetch_failures.append(
+                {"error_type": type(exc).__name__, "error": str(exc)}
+            )
+        reference_replacement_records_by_accession = {
+            _normalize_accession(record.get("accession")): record
+            for record in reference_payload.get("records", []) or []
+            if isinstance(record, dict)
+            and _normalize_accession(record.get("accession"))
+            and _clean_sequence(record.get("sequence"))
+        }
+        inactive_replacements = reference_payload.get("metadata", {}).get(
+            "inactive_accession_replacements", {}
+        )
+        if isinstance(inactive_replacements, dict):
+            inactive_reference_resolutions = {
+                _normalize_accession(accession): [
+                    _normalize_accession(replacement)
+                    for replacement in replacements
+                    if _normalize_accession(replacement)
+                ]
+                for accession, replacements in inactive_replacements.items()
+                if _normalize_accession(accession)
+            }
+
+    external_sequence_records: dict[str, dict[str, Any]] = {}
+    missing_external_sequence_accessions: list[str] = []
+    for accession in external_accessions:
+        record = external_records_by_accession.get(accession)
+        sequence = _clean_sequence((record or {}).get("sequence"))
+        if not sequence:
+            missing_external_sequence_accessions.append(accession)
+            continue
+        record_id = _external_sequence_record_id("ext", accession)
+        external_sequence_records[record_id] = {
+            "accession": accession,
+            "record_id": record_id,
+            "sequence": sequence,
+        }
+
+    reference_sequence_records: dict[str, dict[str, Any]] = {}
+    unresolved_reference_sequence_accessions: list[str] = []
+    for accession in requested_reference_accessions:
+        fasta_record = reference_fasta_records_by_accession.get(accession)
+        if fasta_record:
+            record_id = _external_sequence_record_id("ref", accession)
+            reference_sequence_records[record_id] = {
+                "accession": accession,
+                "matched_m_csa_entry_ids": sorted(
+                    reference_entry_ids_by_accession.get(accession, set()),
+                    key=_external_entry_id_sort_key,
+                ),
+                "record_id": record_id,
+                "reference_accession_resolution": "source_reference_fasta",
+                "requested_reference_accession": accession,
+                "resolved_reference_accession": accession,
+                "sequence": _clean_sequence(fasta_record.get("sequence")),
+            }
+            continue
+        replacement_accessions = inactive_reference_resolutions.get(accession, [])
+        direct_record = reference_replacement_records_by_accession.get(accession)
+        if direct_record:
+            replacement_accessions = [accession]
+        replacement_records_added = 0
+        for replacement_accession in replacement_accessions:
+            replacement_record = reference_replacement_records_by_accession.get(
+                replacement_accession
+            )
+            replacement_sequence = _clean_sequence(
+                (replacement_record or {}).get("sequence")
+            )
+            if not replacement_sequence:
+                continue
+            record_id = _external_sequence_record_id(
+                "ref", accession, replacement_accession
+            )
+            reference_sequence_records[record_id] = {
+                "accession": replacement_accession,
+                "matched_m_csa_entry_ids": sorted(
+                    reference_entry_ids_by_accession.get(accession, set()),
+                    key=_external_entry_id_sort_key,
+                ),
+                "record_id": record_id,
+                "reference_accession_resolution": (
+                    "primary_accession"
+                    if replacement_accession == accession
+                    else "inactive_accession_replacement"
+                ),
+                "requested_reference_accession": accession,
+                "resolved_reference_accession": replacement_accession,
+                "sequence": replacement_sequence,
+            }
+            replacement_records_added += 1
+        if not replacement_records_added:
+            unresolved_reference_sequence_accessions.append(accession)
+
+    external_fasta_path = Path(external_fasta_out).resolve()
+    reference_fasta_path = Path(reference_fasta_out).resolve()
+    result_tsv_path = Path(result_tsv_out).resolve()
+    _write_sequence_fasta(external_fasta_path, external_sequence_records.values())
+    _write_sequence_fasta(reference_fasta_path, reference_sequence_records.values())
+    backend_result = _run_external_sequence_search_backend(
+        external_fasta=external_fasta_path,
+        reference_fasta=reference_fasta_path,
+        result_tsv=result_tsv_path,
+        backend=backend,
+        mmseqs_binary=mmseqs_binary,
+        diamond_binary=diamond_binary,
+        blastp_binary=blastp_binary,
+        makeblastdb_binary=makeblastdb_binary,
+        coverage_threshold=coverage_threshold,
+    )
+    alignments = _external_sequence_search_alignments(
+        backend_result.get("alignment_rows", []),
+        external_sequence_records=external_sequence_records,
+        reference_sequence_records=reference_sequence_records,
+    )
+    alignments_by_accession: dict[str, list[dict[str, Any]]] = {}
+    for alignment in alignments:
+        alignments_by_accession.setdefault(
+            _normalize_accession(alignment.get("accession")), []
+        ).append(alignment)
+    for accession_alignments in alignments_by_accession.values():
+        accession_alignments.sort(
+            key=lambda row: (
+                -float(row.get("identity", 0.0) or 0.0),
+                -float(row.get("min_coverage", 0.0) or 0.0),
+                -float(row.get("bits", 0.0) or 0.0),
+                str(row.get("reference_accession") or ""),
+            )
+        )
+
+    manifest_by_accession = {
+        _normalize_accession(row.get("accession")): row for row in manifest_rows
+    }
+    rows: list[dict[str, Any]] = []
+    status_counts: Counter[str] = Counter()
+    exact_reference_rows: list[dict[str, Any]] = []
+    near_duplicate_rows: list[dict[str, Any]] = []
+    no_signal_rows: list[dict[str, Any]] = []
+    failure_rows: list[dict[str, Any]] = []
+    max_identity: float | None = None
+    for accession in sorted(manifest_by_accession):
+        manifest_row = manifest_by_accession[accession]
+        similarity_control = (
+            manifest_row.get("external_source_controls", {}).get(
+                "sequence_similarity_control", {}
+            )
+            if isinstance(manifest_row.get("external_source_controls"), dict)
+            else {}
+        )
+        top_hits = alignments_by_accession.get(accession, [])[:top_k]
+        if top_hits:
+            local_max = max(float(hit.get("identity", 0.0) or 0.0) for hit in top_hits)
+            max_identity = local_max if max_identity is None else max(max_identity, local_max)
+        exact_overlap = bool(similarity_control.get("exact_reference_overlap"))
+        exact_hit = next(
+            (
+                hit
+                for hit in top_hits
+                if hit.get("reference_accession") == accession
+                and float(hit.get("identity", 0.0) or 0.0) >= exact_identity_threshold
+                and float(hit.get("query_coverage", 0.0) or 0.0)
+                >= exact_coverage_threshold
+                and float(hit.get("target_coverage", 0.0) or 0.0)
+                >= exact_coverage_threshold
+            ),
+            None,
+        )
+        near_duplicate_hits = [
+            hit
+            for hit in top_hits
+            if float(hit.get("identity", 0.0) or 0.0) >= identity_threshold
+            and float(hit.get("query_coverage", 0.0) or 0.0) >= coverage_threshold
+            and float(hit.get("target_coverage", 0.0) or 0.0) >= coverage_threshold
+        ]
+        if accession in missing_external_sequence_accessions:
+            search_status = "external_sequence_missing"
+            blockers = [
+                "external_sequence_missing_for_backend_search",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        elif not backend_result.get("backend_available"):
+            search_status = "backend_unavailable"
+            blockers = [
+                "real_sequence_search_backend_unavailable",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        elif not backend_result.get("backend_succeeded"):
+            search_status = "backend_failed"
+            blockers = [
+                "real_sequence_search_backend_failed",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        elif exact_overlap or exact_hit is not None:
+            search_status = "exact_reference_holdout"
+            blockers = [
+                "sequence_holdout_control_not_resolved",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        elif near_duplicate_hits:
+            search_status = "near_duplicate_holdout"
+            blockers = [
+                "near_duplicate_sequence_holdout",
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        else:
+            search_status = "no_near_duplicate_signal"
+            blockers = [
+                "external_review_decision_artifact_not_built",
+                "full_label_factory_gate_not_run",
+            ]
+        status_counts[search_status] += 1
+        row = {
+            "accession": accession,
+            "backend_name": backend_result.get("backend_name"),
+            "backend_search_complete": bool(
+                backend_result.get("backend_succeeded")
+                and search_status
+                in {
+                    "exact_reference_holdout",
+                    "near_duplicate_holdout",
+                    "no_near_duplicate_signal",
+                }
+            ),
+            "blockers": blockers,
+            "countable_label_candidate": False,
+            "entry_id": manifest_row.get("entry_id") or f"uniprot:{accession}",
+            "exact_reference_overlap": exact_overlap,
+            "external_sequence_length": len(
+                external_sequence_records.get(
+                    _external_sequence_record_id("ext", accession), {}
+                ).get("sequence", "")
+            ),
+            "lane_id": manifest_row.get("lane_id"),
+            "matched_m_csa_entry_ids": similarity_control.get(
+                "matched_m_csa_entry_ids", []
+            ),
+            "max_external_vs_reference_identity": (
+                round(max(float(hit.get("identity", 0.0) or 0.0) for hit in top_hits), 4)
+                if top_hits
+                else None
+            ),
+            "near_duplicate_hit_count": len(near_duplicate_hits),
+            "protein_name": manifest_row.get("protein_name"),
+            "ready_for_label_import": False,
+            "review_status": "external_backend_sequence_search_review_only",
+            "scope_signal": manifest_row.get("scope_signal"),
+            "search_status": search_status,
+            "top_hits": top_hits,
+        }
+        rows.append(row)
+        if search_status == "exact_reference_holdout":
+            exact_reference_rows.append(row)
+        elif search_status == "near_duplicate_holdout":
+            near_duplicate_rows.append(row)
+        elif search_status == "no_near_duplicate_signal":
+            no_signal_rows.append(row)
+        else:
+            failure_rows.append(row)
+
+    row_blocker_counts = Counter(
+        blocker for row in rows for blocker in row.get("blockers", []) or []
+    )
+    limitations = list(backend_result.get("limitations", []))
+    limitations.extend(
+        [
+            (
+                "bounded search compares the 30-row external pilot against current "
+                "accepted countable reference sequences only; no UniRef database was "
+                "downloaded or searched"
+            ),
+            (
+                "backend no-signal rows remove complete-search debt for the bounded "
+                "current-reference pilot screen only; exact and near-duplicate rows "
+                "remain holdout controls"
+            ),
+            "Foldseek/TM-score structural duplicate screening is not computed here",
+        ]
+    )
+    return {
+        "metadata": {
+            "method": "external_source_backend_sequence_search",
+            "backend_requested": backend,
+            "backend_name": backend_result.get("backend_name"),
+            "backend_version": backend_result.get("backend_version"),
+            "backend_available": bool(backend_result.get("backend_available")),
+            "backend_succeeded": bool(backend_result.get("backend_succeeded")),
+            "backend_commands": backend_result.get("backend_commands", []),
+            "backend_result_tsv": str(result_tsv_out),
+            "blocker_removed": "complete_uniref_or_all_vs_all_near_duplicate_search_required",
+            "blocker_removed_for_status": "no_near_duplicate_signal",
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": 0,
+            "import_ready_row_count": 0,
+            "candidate_count": len(rows),
+            "max_rows": max_rows,
+            "expected_external_sequence_count": len(external_accessions),
+            "external_sequence_count": len(external_sequence_records),
+            "external_sequence_source": external_payload.get("metadata", {}).get(
+                "source"
+            ),
+            "missing_external_sequence_count": len(
+                missing_external_sequence_accessions
+            ),
+            "missing_external_sequence_accessions": missing_external_sequence_accessions,
+            "current_reference_accession_count": len(requested_reference_accessions),
+            "current_reference_sequence_count": len(reference_sequence_records),
+            "reference_fasta_record_count": len(parsed_reference_fasta),
+            "missing_reference_sequence_count": len(
+                unresolved_reference_sequence_accessions
+            ),
+            "missing_reference_sequence_accessions": (
+                unresolved_reference_sequence_accessions
+            ),
+            "inactive_reference_accession_resolutions": (
+                inactive_reference_resolutions
+            ),
+            "identity_threshold": identity_threshold,
+            "coverage_threshold": coverage_threshold,
+            "exact_identity_threshold": exact_identity_threshold,
+            "exact_coverage_threshold": exact_coverage_threshold,
+            "exact_reference_row_count": len(exact_reference_rows),
+            "near_duplicate_row_count": len(near_duplicate_rows),
+            "no_signal_row_count": len(no_signal_rows),
+            "failure_row_count": len(failure_rows),
+            "alignment_row_count": len(alignments),
+            "max_external_vs_reference_identity": (
+                round(max_identity, 4) if max_identity is not None else None
+            ),
+            "search_status_counts": dict(sorted(status_counts.items())),
+            "row_blocker_counts": dict(sorted(row_blocker_counts.items())),
+            "sequence_source_artifacts": {
+                "candidate_manifest": candidate_manifest.get("metadata", {}).get(
+                    "method"
+                ),
+                "sequence_clusters": sequence_clusters.get("metadata", {}).get(
+                    "method"
+                ),
+                "reference_fasta": reference_fasta,
+                "generated_external_fasta": external_fasta_out,
+                "generated_reference_fasta": reference_fasta_out,
+            },
+            "limitations": limitations,
+            "review_only_rule": (
+                "real backend sequence-search evidence is review-only and cannot "
+                "make external rows countable or import-ready"
+            ),
+        },
+        "rows": rows,
+        "exact_reference_rows": exact_reference_rows,
+        "near_duplicate_rows": near_duplicate_rows,
+        "no_signal_rows": no_signal_rows,
+        "failure_rows": failure_rows,
+        "fetch_failures": external_fetch_failures + reference_fetch_failures,
+        "blockers": sorted(row_blocker_counts),
+        "warnings": [
+            (
+                "the backend search removes bounded current-reference sequence-search "
+                "debt only for no-signal rows; active-site evidence, representation "
+                "controls, review decisions, and factory gates remain required"
+            )
+        ],
+    }
+
+
+def audit_external_source_backend_sequence_search(
+    *,
+    backend_sequence_search: dict[str, Any],
+    candidate_manifest: dict[str, Any],
+) -> dict[str, Any]:
+    """Verify backend sequence-search results remain real and review-only."""
+    rows = [
+        row
+        for row in backend_sequence_search.get("rows", []) or []
+        if isinstance(row, dict)
+    ]
+    manifest_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    row_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in rows
+        if _normalize_accession(row.get("accession"))
+    }
+    exact_manifest_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in candidate_manifest.get("rows", []) or []
+        if isinstance(row, dict)
+        and _normalize_accession(row.get("accession"))
+        and isinstance(row.get("external_source_controls"), dict)
+        and (
+            row.get("external_source_controls", {})
+            .get("sequence_similarity_control", {})
+            .get("exact_reference_overlap")
+            is True
+        )
+    }
+    exact_result_accessions = {
+        _normalize_accession(row.get("accession"))
+        for row in backend_sequence_search.get("exact_reference_rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    metadata = backend_sequence_search.get("metadata", {})
+    real_backend = str(metadata.get("backend_name") or "") in {
+        "mmseqs2_easy_search",
+        "diamond_blastp",
+        "blastp",
+    }
+    countable_rows = [
+        row for row in rows if row.get("countable_label_candidate") is not False
+    ]
+    import_ready_rows = [
+        row for row in rows if row.get("ready_for_label_import") is not False
+    ]
+    missing_review_only_rows = [
+        row
+        for row in rows
+        if row.get("review_status")
+        != "external_backend_sequence_search_review_only"
+    ]
+    blockers: list[str] = []
+    if not rows:
+        blockers.append("empty_backend_sequence_search")
+    if not real_backend or metadata.get("backend_succeeded") is not True:
+        blockers.append("backend_sequence_search_not_real_or_not_successful")
+    if metadata.get("method") != "external_source_backend_sequence_search":
+        blockers.append("backend_sequence_search_wrong_method")
+    if row_accessions != manifest_accessions:
+        blockers.append("backend_sequence_search_candidate_mismatch")
+    if countable_rows:
+        blockers.append("backend_sequence_search_rows_marked_countable")
+    if import_ready_rows:
+        blockers.append("backend_sequence_search_rows_marked_ready_for_import")
+    if missing_review_only_rows:
+        blockers.append("backend_sequence_search_rows_not_review_only")
+    if not exact_manifest_accessions.issubset(exact_result_accessions):
+        blockers.append("backend_sequence_search_lost_exact_reference_holdouts")
+    return {
+        "metadata": {
+            "method": "external_source_backend_sequence_search_audit",
+            "backend_name": metadata.get("backend_name"),
+            "backend_version": metadata.get("backend_version"),
+            "backend_succeeded": bool(metadata.get("backend_succeeded")),
+            "real_backend": real_backend,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": len(countable_rows),
+            "import_ready_row_count": len(import_ready_rows),
+            "candidate_count": len(rows),
+            "expected_candidate_count": len(manifest_accessions),
+            "exact_reference_manifest_count": len(exact_manifest_accessions),
+            "exact_reference_result_count": len(exact_result_accessions),
+            "no_signal_row_count": metadata.get("no_signal_row_count", 0),
+            "near_duplicate_row_count": metadata.get("near_duplicate_row_count", 0),
+            "failure_row_count": metadata.get("failure_row_count", 0),
+            "guardrail_clean": not blockers,
+        },
+        "blockers": blockers,
+        "warnings": [
+            (
+                "backend sequence-search audits verify review-only evidence only; "
+                "they do not authorize external label import"
+            )
+        ],
+    }
+
+
 def audit_external_source_sequence_search_export(
     *,
     sequence_search_export: dict[str, Any],
@@ -6153,6 +6716,7 @@ def audit_external_source_import_readiness(
     active_site_gap_source_requests: dict[str, Any],
     sequence_neighborhood_sample: dict[str, Any],
     sequence_alignment_verification: dict[str, Any] | None = None,
+    backend_sequence_search: dict[str, Any] | None = None,
     max_rows: int = 100,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -6191,6 +6755,11 @@ def audit_external_source_import_readiness(
         accession = _normalize_accession(row.get("accession"))
         if accession:
             sequence_alignment_by_accession.setdefault(accession, []).append(row)
+    backend_sequence_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in (backend_sequence_search or {}).get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
     rows: list[dict[str, Any]] = []
     blocker_counts: Counter[str] = Counter()
     status_counts: Counter[str] = Counter()
@@ -6214,6 +6783,7 @@ def audit_external_source_import_readiness(
             active_site_gap=active_site_gap,
             sequence=sequence,
             sequence_alignment=sequence_alignment,
+            backend_sequence_search=backend_sequence_by_accession.get(accession),
         )
         blocker_counts.update(blockers)
         readiness_status = _external_import_readiness_status(blockers)
@@ -6245,6 +6815,11 @@ def audit_external_source_import_readiness(
                 ),
                 "sequence_alignment_status": _external_sequence_alignment_status(
                     sequence_alignment
+                ),
+                "backend_sequence_search_status": (
+                    backend_sequence_by_accession.get(accession, {}).get(
+                        "search_status"
+                    )
                 ),
             }
         )
@@ -6297,6 +6872,17 @@ def audit_external_source_import_readiness(
             "sequence_alignment_incomplete_count": blocker_counts.get(
                 "sequence_alignment_verification_incomplete", 0
             ),
+            "backend_sequence_search_candidate_count": len(
+                backend_sequence_by_accession
+            ),
+            "backend_sequence_no_signal_count": sum(
+                1
+                for row in backend_sequence_by_accession.values()
+                if row.get("search_status") == "no_near_duplicate_signal"
+            ),
+            "source_backend_sequence_search_method": (
+                (backend_sequence_search or {}).get("metadata", {}).get("method")
+            ),
             "heuristic_scope_mismatch_count": blocker_counts.get(
                 "heuristic_scope_top1_mismatch", 0
             ),
@@ -6332,6 +6918,7 @@ def build_external_source_transfer_blocker_matrix(
     active_site_sourcing_export: dict[str, Any],
     sequence_search_export: dict[str, Any],
     representation_backend_plan: dict[str, Any],
+    backend_sequence_search: dict[str, Any] | None = None,
     active_site_sourcing_resolution: dict[str, Any] | None = None,
     representation_backend_sample: dict[str, Any] | None = None,
     max_rows: int = 100,
@@ -6356,6 +6943,11 @@ def build_external_source_transfer_blocker_matrix(
     backend_by_accession = {
         _normalize_accession(row.get("accession")): row
         for row in representation_backend_plan.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
+    backend_sequence_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in (backend_sequence_search or {}).get("rows", []) or []
         if isinstance(row, dict) and _normalize_accession(row.get("accession"))
     }
     active_site_resolution_by_accession = {
@@ -6387,6 +6979,7 @@ def build_external_source_transfer_blocker_matrix(
             active_site=active_site,
             sequence=sequence,
             backend=backend,
+            backend_sequence_search=backend_sequence_by_accession.get(accession),
             active_site_resolution=active_site_resolution,
             backend_sample=backend_sample,
         )
@@ -6395,6 +6988,7 @@ def build_external_source_transfer_blocker_matrix(
             active_site=active_site,
             sequence=sequence,
             backend=backend,
+            backend_sequence_search=backend_sequence_by_accession.get(accession),
             active_site_resolution=active_site_resolution,
             backend_sample=backend_sample,
         )
@@ -6422,7 +7016,10 @@ def build_external_source_transfer_blocker_matrix(
                 "review_status": "external_transfer_blocker_matrix_review_only",
                 "scope_signal": manifest_row.get("scope_signal"),
                 "sequence_search": _external_transfer_blocker_matrix_sequence(
-                    sequence
+                    sequence,
+                    backend_sequence_search=backend_sequence_by_accession.get(
+                        accession
+                    ),
                 ),
             }
         )
@@ -6472,6 +7069,22 @@ def build_external_source_transfer_blocker_matrix(
                 active_site_resolution_by_accession
             ),
             "sequence_search_export_candidate_count": len(sequence_by_accession),
+            "backend_sequence_search_candidate_count": len(
+                backend_sequence_by_accession
+            ),
+            "backend_sequence_search_no_signal_count": sum(
+                1
+                for row in backend_sequence_by_accession.values()
+                if row.get("search_status") == "no_near_duplicate_signal"
+            ),
+            "backend_sequence_search_exact_reference_count": sum(
+                1
+                for row in backend_sequence_by_accession.values()
+                if row.get("search_status") == "exact_reference_holdout"
+            ),
+            "source_backend_sequence_search_method": (
+                (backend_sequence_search or {}).get("metadata", {}).get("method")
+            ),
             "representation_backend_plan_candidate_count": len(backend_by_accession),
             "representation_backend_sample_candidate_count": len(
                 backend_sample_by_accession
@@ -6981,6 +7594,7 @@ def build_external_source_pilot_evidence_packet(
     pilot_candidate_priority: dict[str, Any],
     active_site_sourcing_export: dict[str, Any],
     sequence_search_export: dict[str, Any],
+    backend_sequence_search: dict[str, Any] | None = None,
     max_rows: int = 10,
     artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -7004,6 +7618,11 @@ def build_external_source_pilot_evidence_packet(
         for row in sequence_search_export.get("rows", []) or []
         if isinstance(row, dict) and _normalize_accession(row.get("accession"))
     }
+    backend_sequence_by_accession = {
+        _normalize_accession(row.get("accession")): row
+        for row in (backend_sequence_search or {}).get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    }
 
     rows: list[dict[str, Any]] = []
     missing_sequence_accessions: list[str] = []
@@ -7017,6 +7636,7 @@ def build_external_source_pilot_evidence_packet(
         accession = _normalize_accession(priority_row.get("accession"))
         active_row = active_by_accession.get(accession)
         sequence_row = sequence_by_accession.get(accession)
+        backend_sequence_row = backend_sequence_by_accession.get(accession)
         active_site_context = priority_row.get("active_site_sourcing", {}) or {}
         active_site_task = str(active_site_context.get("source_task") or "")
         requires_active_site_packet = (
@@ -7055,6 +7675,11 @@ def build_external_source_pilot_evidence_packet(
             row_blockers.append("selected_pilot_sequence_packet_missing")
         if requires_active_site_packet and active_row is None:
             row_blockers.append("selected_pilot_active_site_packet_missing")
+        sequence_context = _external_pilot_sequence_packet_context(
+            sequence_row=sequence_row,
+            priority_sequence=priority_row.get("sequence_search", {}),
+            backend_sequence_row=backend_sequence_row,
+        )
 
         rows.append(
             {
@@ -7078,8 +7703,7 @@ def build_external_source_pilot_evidence_packet(
                 "review_requirements": list(
                     EXTERNAL_PILOT_IMPORT_REVIEW_REQUIREMENTS
                 ),
-                "sequence_search": sequence_row
-                or priority_row.get("sequence_search", {}),
+                "sequence_search": sequence_context,
                 "source_targets": source_targets,
             }
         )
@@ -7111,6 +7735,9 @@ def build_external_source_pilot_evidence_packet(
             "source_sequence_search_export_method": (
                 sequence_search_export.get("metadata", {}).get("method")
             ),
+            "source_backend_sequence_search_method": (
+                (backend_sequence_search or {}).get("metadata", {}).get("method")
+            ),
             "blocker_removed": "external_pilot_source_packet_consolidation",
             "ready_for_label_import": False,
             "countable_label_candidate_count": 0,
@@ -7119,6 +7746,17 @@ def build_external_source_pilot_evidence_packet(
             "selected_accessions": [row["accession"] for row in rows],
             "active_site_sourcing_packet_count": active_site_packet_count,
             "sequence_search_packet_count": sequence_packet_count,
+            "backend_sequence_search_packet_count": sum(
+                1
+                for row in rows
+                if (row.get("sequence_search") or {}).get("backend_search_status")
+            ),
+            "backend_sequence_search_no_signal_count": sum(
+                1
+                for row in rows
+                if (row.get("sequence_search") or {}).get("backend_search_status")
+                == "no_near_duplicate_signal"
+            ),
             "source_target_count": target_count,
             "source_target_type_counts": dict(sorted(source_type_counts.items())),
             "missing_sequence_export_accessions": sorted(missing_sequence_accessions),
@@ -7138,6 +7776,49 @@ def build_external_source_pilot_evidence_packet(
             )
         ],
     }
+
+
+def _external_pilot_sequence_packet_context(
+    *,
+    sequence_row: dict[str, Any] | None,
+    priority_sequence: Any,
+    backend_sequence_row: dict[str, Any] | None,
+) -> dict[str, Any]:
+    sequence_context = (
+        dict(sequence_row)
+        if isinstance(sequence_row, dict)
+        else dict(priority_sequence)
+        if isinstance(priority_sequence, dict)
+        else {}
+    )
+    decision = sequence_context.get("decision")
+    if isinstance(decision, dict) and "decision_status" not in sequence_context:
+        sequence_context["decision_status"] = decision.get("decision_status")
+    if backend_sequence_row:
+        sequence_context.update(
+            {
+                "backend_name": backend_sequence_row.get("backend_name"),
+                "backend_search_complete": backend_sequence_row.get(
+                    "backend_search_complete"
+                ),
+                "backend_search_status": backend_sequence_row.get("search_status"),
+                "backend_max_external_vs_reference_identity": (
+                    backend_sequence_row.get("max_external_vs_reference_identity")
+                ),
+                "backend_sequence_search": {
+                    "backend_name": backend_sequence_row.get("backend_name"),
+                    "backend_search_complete": backend_sequence_row.get(
+                        "backend_search_complete"
+                    ),
+                    "max_external_vs_reference_identity": backend_sequence_row.get(
+                        "max_external_vs_reference_identity"
+                    ),
+                    "review_status": backend_sequence_row.get("review_status"),
+                    "search_status": backend_sequence_row.get("search_status"),
+                },
+            }
+        )
+    return sequence_context
 
 
 def build_external_source_pilot_evidence_dossiers(
@@ -7413,6 +8094,12 @@ def _external_pilot_sequence_summary(
     return {
         "search_task": sequence_packet.get("search_task"),
         "decision_status": sequence_packet.get("decision_status"),
+        "backend_name": sequence_packet.get("backend_name"),
+        "backend_search_complete": sequence_packet.get("backend_search_complete"),
+        "backend_search_status": sequence_packet.get("backend_search_status"),
+        "backend_max_external_vs_reference_identity": sequence_packet.get(
+            "backend_max_external_vs_reference_identity"
+        ),
         "alignment_checked_pair_count": len(alignment_rows),
         "alignment_alert_count": len(alert_rows),
         "top_alignment_hits": [
@@ -7481,6 +8168,11 @@ def _external_pilot_dossier_blockers(
     for row in (packet_row, matrix_row, readiness_row, representation_row, sourcing_row):
         for blocker in row.get("blockers", []) or []:
             blockers.add(str(blocker))
+    backend_no_signal = _external_pilot_backend_no_signal(
+        packet_row=packet_row,
+        matrix_row=matrix_row,
+        readiness_row=readiness_row,
+    )
     explicit_active_site_count = sum(
         1
         for row in active_site_rows
@@ -7490,7 +8182,7 @@ def _external_pilot_dossier_blockers(
         blockers.add("pilot_explicit_active_site_evidence_missing")
     if not any(row.get("ec_specificity") == "specific" for row in reaction_rows):
         blockers.add("pilot_specific_reaction_context_missing")
-    if not alignment_rows:
+    if not alignment_rows and not backend_no_signal:
         blockers.add("complete_near_duplicate_sequence_search_not_completed")
     if any(
         row.get("verification_status")
@@ -7511,7 +8203,35 @@ def _external_pilot_dossier_blockers(
             "representation_backend_plan_missing_or_not_eligible",
         ):
             blockers.discard(stale_representation_blocker)
+    if backend_no_signal:
+        for stale_sequence_blocker in (
+            "complete_near_duplicate_search_required",
+            "complete_near_duplicate_reference_search_not_completed",
+            "complete_near_duplicate_sequence_search_not_completed",
+            "complete_uniref_or_all_vs_all_near_duplicate_search_required",
+        ):
+            blockers.discard(stale_sequence_blocker)
     return sorted(blockers)
+
+
+def _external_pilot_backend_no_signal(
+    *,
+    packet_row: dict[str, Any],
+    matrix_row: dict[str, Any],
+    readiness_row: dict[str, Any],
+) -> bool:
+    packet_sequence = packet_row.get("sequence_search", {})
+    if not isinstance(packet_sequence, dict):
+        packet_sequence = {}
+    matrix_sequence = matrix_row.get("sequence_search", {})
+    if not isinstance(matrix_sequence, dict):
+        matrix_sequence = {}
+    backend_statuses = {
+        str(packet_sequence.get("backend_search_status") or ""),
+        str(matrix_sequence.get("backend_search_status") or ""),
+        str(readiness_row.get("backend_sequence_search_status") or ""),
+    }
+    return "no_near_duplicate_signal" in backend_statuses
 
 
 def _external_pilot_candidate_selection_blockers(
@@ -8310,6 +9030,7 @@ def check_external_source_transfer_gates(
     sequence_reference_screen_audit = gate_inputs.sequence_reference_screen_audit
     sequence_search_export = gate_inputs.sequence_search_export
     sequence_search_export_audit = gate_inputs.sequence_search_export_audit
+    sequence_backend_search = gate_inputs.sequence_backend_search
     external_import_readiness_audit = gate_inputs.external_import_readiness_audit
     active_site_sourcing_queue = gate_inputs.active_site_sourcing_queue
     active_site_sourcing_queue_audit = gate_inputs.active_site_sourcing_queue_audit
@@ -9094,6 +9815,41 @@ def check_external_source_transfer_gates(
             and search_export_audit_meta.get("countable_label_candidate_count") == 0
             and search_export_audit_meta.get("completed_decision_count") == 0
         )
+    if sequence_backend_search is not None:
+        backend_search_meta = sequence_backend_search.get("metadata", {})
+        backend_search_rows = [
+            row
+            for row in sequence_backend_search.get("rows", []) or []
+            if isinstance(row, dict)
+        ]
+        gates["sequence_backend_search_review_only"] = (
+            backend_search_meta.get("method")
+            == "external_source_backend_sequence_search"
+            and backend_search_meta.get("backend_succeeded") is True
+            and backend_search_meta.get("backend_name")
+            in {"mmseqs2_easy_search", "diamond_blastp", "blastp"}
+            and backend_search_meta.get("ready_for_label_import") is False
+            and backend_search_meta.get("countable_label_candidate_count") == 0
+            and backend_search_meta.get("import_ready_row_count") == 0
+            and int(backend_search_meta.get("candidate_count", 0) or 0)
+            == len(backend_search_rows)
+            and int(backend_search_meta.get("candidate_count", 0) or 0)
+            == int(candidate_manifest.get("metadata", {}).get("candidate_count", 0) or 0)
+            and int(backend_search_meta.get("no_signal_row_count", 0) or 0) > 0
+            and all(
+                row.get("countable_label_candidate") is False
+                for row in backend_search_rows
+            )
+            and all(
+                row.get("ready_for_label_import") is False
+                for row in backend_search_rows
+            )
+            and all(
+                row.get("review_status")
+                == "external_backend_sequence_search_review_only"
+                for row in backend_search_rows
+            )
+        )
     if external_import_readiness_audit is not None:
         import_readiness_meta = external_import_readiness_audit.get("metadata", {})
         gates["external_import_readiness_audit_blocks_label_import"] = (
@@ -9798,6 +10554,30 @@ def check_external_source_transfer_gates(
                 )
                 if sequence_search_export_audit is not None
                 else 0
+            ),
+            "sequence_backend_search_candidate_count": (
+                sequence_backend_search.get("metadata", {}).get("candidate_count", 0)
+                if sequence_backend_search is not None
+                else 0
+            ),
+            "sequence_backend_search_no_signal_count": (
+                sequence_backend_search.get("metadata", {}).get(
+                    "no_signal_row_count", 0
+                )
+                if sequence_backend_search is not None
+                else 0
+            ),
+            "sequence_backend_search_exact_reference_count": (
+                sequence_backend_search.get("metadata", {}).get(
+                    "exact_reference_row_count", 0
+                )
+                if sequence_backend_search is not None
+                else 0
+            ),
+            "sequence_backend_search_backend_name": (
+                sequence_backend_search.get("metadata", {}).get("backend_name")
+                if sequence_backend_search is not None
+                else None
             ),
             "external_import_readiness_candidate_count": (
                 external_import_readiness_audit.get("metadata", {}).get(
@@ -11162,6 +11942,490 @@ def _clean_sequence(value: Any) -> str:
     return "".join(ch for ch in str(value or "").upper() if ch.isalpha())
 
 
+def _external_entry_id_sort_key(entry_id: str) -> tuple[str, int, str]:
+    match = re.match(r"^([^:]+):(\d+)$", str(entry_id))
+    if match:
+        return (match.group(1), int(match.group(2)), "")
+    return (str(entry_id), -1, str(entry_id))
+
+
+def _external_sequence_record_id(
+    prefix: str, accession: str, resolved_accession: str | None = None
+) -> str:
+    values = [prefix, accession]
+    if resolved_accession and resolved_accession != accession:
+        values.append(resolved_accession)
+    return "__".join(
+        re.sub(r"[^A-Za-z0-9_.-]+", "_", str(value)).strip("_") for value in values
+    )
+
+
+def _parse_sequence_fasta(path: Path) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    if not path.exists():
+        return records
+    header: str | None = None
+    sequence_parts: list[str] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for raw_line in handle:
+            line = raw_line.strip()
+            if not line:
+                continue
+            if line.startswith(">"):
+                if header is not None:
+                    records.append(
+                        _sequence_fasta_record_from_parts(header, sequence_parts)
+                    )
+                header = line[1:].strip()
+                sequence_parts = []
+            else:
+                sequence_parts.append(line)
+    if header is not None:
+        records.append(_sequence_fasta_record_from_parts(header, sequence_parts))
+    return records
+
+
+def _sequence_fasta_record_from_parts(
+    header: str, sequence_parts: list[str]
+) -> dict[str, Any]:
+    record_id = header.split(None, 1)[0]
+    return {
+        "accession": _sequence_fasta_accession(record_id),
+        "header": header,
+        "record_id": record_id,
+        "sequence": _clean_sequence("".join(sequence_parts)),
+    }
+
+
+def _sequence_fasta_accession(record_id: str) -> str:
+    fields = record_id.split("|")
+    if len(fields) >= 2 and fields[1]:
+        return _normalize_accession(fields[1])
+    return _normalize_accession(record_id)
+
+
+def _write_sequence_fasta(path: Path, records: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as handle:
+        for record in sorted(records, key=lambda item: str(item.get("record_id") or "")):
+            record_id = str(record.get("record_id") or "")
+            sequence = _clean_sequence(record.get("sequence"))
+            if not record_id or not sequence:
+                continue
+            handle.write(f">{record_id}\n")
+            for index in range(0, len(sequence), 60):
+                handle.write(sequence[index : index + 60] + "\n")
+
+
+def _run_external_sequence_search_backend(
+    *,
+    external_fasta: Path,
+    reference_fasta: Path,
+    result_tsv: Path,
+    backend: str,
+    mmseqs_binary: str,
+    diamond_binary: str,
+    blastp_binary: str,
+    makeblastdb_binary: str,
+    coverage_threshold: float,
+) -> dict[str, Any]:
+    requested = backend.strip().lower()
+    if requested == "auto":
+        backend_order = ("mmseqs", "diamond", "blastp")
+    elif requested in {"mmseqs", "diamond", "blastp"}:
+        backend_order = (requested,)
+    else:
+        return {
+            "alignment_rows": [],
+            "backend_available": False,
+            "backend_commands": [],
+            "backend_name": None,
+            "backend_succeeded": False,
+            "backend_version": None,
+            "limitations": [f"unsupported sequence search backend: {backend}"],
+        }
+
+    failures: list[str] = []
+    for backend_name in backend_order:
+        try:
+            if backend_name == "mmseqs":
+                result = _run_mmseqs_external_sequence_search(
+                    external_fasta=external_fasta,
+                    reference_fasta=reference_fasta,
+                    result_tsv=result_tsv,
+                    binary=mmseqs_binary,
+                    coverage_threshold=coverage_threshold,
+                )
+            elif backend_name == "diamond":
+                result = _run_diamond_external_sequence_search(
+                    external_fasta=external_fasta,
+                    reference_fasta=reference_fasta,
+                    result_tsv=result_tsv,
+                    binary=diamond_binary,
+                )
+            else:
+                result = _run_blastp_external_sequence_search(
+                    external_fasta=external_fasta,
+                    reference_fasta=reference_fasta,
+                    result_tsv=result_tsv,
+                    blastp_binary=blastp_binary,
+                    makeblastdb_binary=makeblastdb_binary,
+                )
+            if result.get("backend_succeeded"):
+                if failures:
+                    result["limitations"] = [
+                        *failures,
+                        *result.get("limitations", []),
+                    ]
+                return result
+            failures.extend(result.get("limitations", []))
+        except (OSError, RuntimeError, ValueError) as exc:
+            failures.append(f"{backend_name} sequence search failed: {exc}")
+    return {
+        "alignment_rows": [],
+        "backend_available": False,
+        "backend_commands": [],
+        "backend_name": None,
+        "backend_succeeded": False,
+        "backend_version": None,
+        "limitations": failures or ["no supported sequence search backend available"],
+    }
+
+
+def _run_mmseqs_external_sequence_search(
+    *,
+    external_fasta: Path,
+    reference_fasta: Path,
+    result_tsv: Path,
+    binary: str,
+    coverage_threshold: float,
+) -> dict[str, Any]:
+    binary_path = shutil.which(binary)
+    if not binary_path:
+        return {
+            "alignment_rows": [],
+            "backend_available": False,
+            "backend_commands": [],
+            "backend_name": "mmseqs2_easy_search",
+            "backend_succeeded": False,
+            "backend_version": None,
+            "limitations": [f"MMseqs2 binary not found: {binary}"],
+        }
+    workdir = _external_sequence_search_workdir(
+        "mmseqs", external_fasta, reference_fasta
+    )
+    tmp_dir = workdir / "tmp"
+    result_tsv.parent.mkdir(parents=True, exist_ok=True)
+    command = [
+        binary_path,
+        "easy-search",
+        str(external_fasta),
+        str(reference_fasta),
+        str(result_tsv),
+        str(tmp_dir),
+        "--format-output",
+        "query,target,pident,alnlen,evalue,bits",
+        "--min-seq-id",
+        "0.0",
+        "-c",
+        _external_backend_float(coverage_threshold),
+        "--cov-mode",
+        "0",
+        "--max-seqs",
+        "10000",
+        "--threads",
+        "1",
+    ]
+    _run_external_backend_command(command, cwd=workdir)
+    return {
+        "alignment_rows": _parse_external_sequence_search_tsv(result_tsv),
+        "backend_available": True,
+        "backend_commands": [_external_command_string(command)],
+        "backend_name": "mmseqs2_easy_search",
+        "backend_succeeded": True,
+        "backend_version": _external_backend_version(binary_path),
+        "limitations": [
+            (
+                "MMseqs2 easy-search reports heuristic local alignments at the "
+                "configured coverage threshold; it is not an exhaustive dynamic "
+                "programming matrix for every low-identity pair"
+            )
+        ],
+    }
+
+
+def _run_diamond_external_sequence_search(
+    *,
+    external_fasta: Path,
+    reference_fasta: Path,
+    result_tsv: Path,
+    binary: str,
+) -> dict[str, Any]:
+    binary_path = shutil.which(binary)
+    if not binary_path:
+        return {
+            "alignment_rows": [],
+            "backend_available": False,
+            "backend_commands": [],
+            "backend_name": "diamond_blastp",
+            "backend_succeeded": False,
+            "backend_version": None,
+            "limitations": [f"DIAMOND binary not found: {binary}"],
+        }
+    workdir = _external_sequence_search_workdir(
+        "diamond", external_fasta, reference_fasta
+    )
+    db_path = workdir / "reference.dmnd"
+    result_tsv.parent.mkdir(parents=True, exist_ok=True)
+    makedb_cmd = [binary_path, "makedb", "--in", str(reference_fasta), "-d", str(db_path)]
+    blastp_cmd = [
+        binary_path,
+        "blastp",
+        "-q",
+        str(external_fasta),
+        "-d",
+        str(db_path),
+        "-o",
+        str(result_tsv),
+        "-f",
+        "6",
+        "qseqid",
+        "sseqid",
+        "pident",
+        "length",
+        "evalue",
+        "bitscore",
+        "--threads",
+        "1",
+        "--max-target-seqs",
+        "10000",
+    ]
+    _run_external_backend_command(makedb_cmd, cwd=workdir)
+    _run_external_backend_command(blastp_cmd, cwd=workdir)
+    return {
+        "alignment_rows": _parse_external_sequence_search_tsv(result_tsv),
+        "backend_available": True,
+        "backend_commands": [
+            _external_command_string(makedb_cmd),
+            _external_command_string(blastp_cmd),
+        ],
+        "backend_name": "diamond_blastp",
+        "backend_succeeded": True,
+        "backend_version": _external_backend_version(binary_path),
+        "limitations": [
+            "DIAMOND is a fallback local-alignment backend; no UniRef database is searched"
+        ],
+    }
+
+
+def _run_blastp_external_sequence_search(
+    *,
+    external_fasta: Path,
+    reference_fasta: Path,
+    result_tsv: Path,
+    blastp_binary: str,
+    makeblastdb_binary: str,
+) -> dict[str, Any]:
+    blastp_path = shutil.which(blastp_binary)
+    makeblastdb_path = shutil.which(makeblastdb_binary)
+    missing = [
+        name
+        for name, path in (
+            (blastp_binary, blastp_path),
+            (makeblastdb_binary, makeblastdb_path),
+        )
+        if not path
+    ]
+    if missing:
+        return {
+            "alignment_rows": [],
+            "backend_available": False,
+            "backend_commands": [],
+            "backend_name": "blastp",
+            "backend_succeeded": False,
+            "backend_version": None,
+            "limitations": [f"BLAST+ binary not found: {', '.join(missing)}"],
+        }
+    workdir = _external_sequence_search_workdir(
+        "blastp", external_fasta, reference_fasta
+    )
+    db_path = workdir / "reference"
+    result_tsv.parent.mkdir(parents=True, exist_ok=True)
+    makedb_cmd = [
+        str(makeblastdb_path),
+        "-in",
+        str(reference_fasta),
+        "-dbtype",
+        "prot",
+        "-out",
+        str(db_path),
+    ]
+    blastp_cmd = [
+        str(blastp_path),
+        "-query",
+        str(external_fasta),
+        "-db",
+        str(db_path),
+        "-outfmt",
+        "6 qseqid sseqid pident length evalue bitscore",
+        "-out",
+        str(result_tsv),
+        "-num_threads",
+        "1",
+        "-max_target_seqs",
+        "10000",
+    ]
+    _run_external_backend_command(makedb_cmd, cwd=workdir)
+    _run_external_backend_command(blastp_cmd, cwd=workdir)
+    return {
+        "alignment_rows": _parse_external_sequence_search_tsv(result_tsv),
+        "backend_available": True,
+        "backend_commands": [
+            _external_command_string(makedb_cmd),
+            _external_command_string(blastp_cmd),
+        ],
+        "backend_name": "blastp",
+        "backend_succeeded": True,
+        "backend_version": _external_backend_version(str(blastp_path)),
+        "limitations": [
+            "BLASTP is a fallback local-alignment backend; no UniRef database is searched"
+        ],
+    }
+
+
+def _external_sequence_search_workdir(
+    backend_name: str, external_fasta: Path, reference_fasta: Path
+) -> Path:
+    digest = hashlib.sha256()
+    for path in (external_fasta, reference_fasta):
+        digest.update(path.read_bytes())
+    workdir = Path("/private/tmp") / (
+        f"catalytic-earth-external-sequence-{backend_name}-"
+        f"{digest.hexdigest()[:16]}"
+    )
+    if workdir.exists():
+        shutil.rmtree(workdir)
+    workdir.mkdir(parents=True, exist_ok=True)
+    return workdir
+
+
+def _run_external_backend_command(command: list[str], *, cwd: Path) -> None:
+    completed = subprocess.run(
+        command,
+        cwd=cwd,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        stderr = completed.stderr.strip()
+        stdout = completed.stdout.strip()
+        detail = stderr or stdout or f"exit code {completed.returncode}"
+        raise RuntimeError(f"{_external_command_string(command)} failed: {detail}")
+
+
+def _parse_external_sequence_search_tsv(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    rows: list[dict[str, Any]] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for raw_line in handle:
+            fields = raw_line.rstrip("\n").split("\t")
+            if len(fields) < 6:
+                continue
+            try:
+                pident = float(fields[2])
+                alnlen = int(float(fields[3]))
+                evalue = float(fields[4])
+                bits = float(fields[5])
+            except ValueError:
+                continue
+            rows.append(
+                {
+                    "query_id": fields[0],
+                    "target_id": fields[1],
+                    "pident": pident,
+                    "alnlen": alnlen,
+                    "evalue": evalue,
+                    "bits": bits,
+                }
+            )
+    return rows
+
+
+def _external_sequence_search_alignments(
+    alignment_rows: list[dict[str, Any]],
+    *,
+    external_sequence_records: dict[str, dict[str, Any]],
+    reference_sequence_records: dict[str, dict[str, Any]],
+) -> list[dict[str, Any]]:
+    alignments: list[dict[str, Any]] = []
+    for row in alignment_rows:
+        query_id = str(row.get("query_id") or "")
+        target_id = str(row.get("target_id") or "")
+        external_record = external_sequence_records.get(query_id)
+        reference_record = reference_sequence_records.get(target_id)
+        if not external_record or not reference_record:
+            continue
+        query_len = len(_clean_sequence(external_record.get("sequence")))
+        target_len = len(_clean_sequence(reference_record.get("sequence")))
+        alnlen = int(row.get("alnlen", 0) or 0)
+        query_coverage = (alnlen / query_len) if query_len else 0.0
+        target_coverage = (alnlen / target_len) if target_len else 0.0
+        identity = float(row.get("pident", 0.0) or 0.0) / 100.0
+        alignments.append(
+            {
+                "accession": external_record.get("accession"),
+                "alignment_length": alnlen,
+                "bits": round(float(row.get("bits", 0.0) or 0.0), 4),
+                "evalue": row.get("evalue"),
+                "external_length": query_len,
+                "identity": round(identity, 4),
+                "matched_m_csa_entry_ids": reference_record.get(
+                    "matched_m_csa_entry_ids", []
+                ),
+                "min_coverage": round(min(query_coverage, target_coverage), 4),
+                "query_coverage": round(query_coverage, 4),
+                "reference_accession": reference_record.get(
+                    "resolved_reference_accession"
+                ),
+                "reference_accession_resolution": reference_record.get(
+                    "reference_accession_resolution"
+                ),
+                "reference_length": target_len,
+                "requested_reference_accession": reference_record.get(
+                    "requested_reference_accession"
+                ),
+                "target_coverage": round(target_coverage, 4),
+            }
+        )
+    return alignments
+
+
+def _external_backend_version(binary: str) -> str | None:
+    for flag in ("version", "-version"):
+        try:
+            completed = subprocess.run(
+                [binary, flag],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+        except OSError:
+            return None
+        if completed.returncode == 0:
+            return (completed.stdout.strip() or completed.stderr.strip()) or None
+    return None
+
+
+def _external_command_string(command: list[str]) -> str:
+    return shlex.join(command)
+
+
+def _external_backend_float(value: float) -> str:
+    return f"{float(value):.4g}"
+
+
 def _fetch_uniprot_sequence_records(accessions: list[str]) -> dict[str, Any]:
     cleaned = sorted({_normalize_accession(accession) for accession in accessions})
     cleaned = [accession for accession in cleaned if accession]
@@ -12229,13 +13493,28 @@ def _external_import_readiness_blockers(
     active_site_gap: dict[str, Any] | None,
     sequence: dict[str, Any] | None,
     sequence_alignment: list[dict[str, Any]] | None,
+    backend_sequence_search: dict[str, Any] | None = None,
 ) -> list[str]:
     blockers: list[str] = []
     sequence_status = str((sequence or {}).get("screen_status") or "")
-    if sequence_status == "preexisting_sequence_holdout_retained":
+    backend_status = str((backend_sequence_search or {}).get("search_status") or "")
+    backend_complete = bool(
+        (backend_sequence_search or {}).get("backend_search_complete")
+    )
+    if (
+        sequence_status == "preexisting_sequence_holdout_retained"
+        or backend_status == "exact_reference_holdout"
+    ):
         blockers.append("exact_sequence_holdout")
-    elif sequence_status == "near_duplicate_candidate_holdout":
+    elif (
+        sequence_status == "near_duplicate_candidate_holdout"
+        or backend_status == "near_duplicate_holdout"
+    ):
         blockers.append("near_duplicate_candidate_holdout")
+    elif backend_status in {"backend_unavailable", "backend_failed"}:
+        blockers.append("complete_near_duplicate_search_required")
+    elif backend_complete and backend_status == "no_near_duplicate_signal":
+        pass
     elif sequence_status:
         blockers.append("complete_near_duplicate_search_required")
     else:
@@ -12347,11 +13626,22 @@ def _external_transfer_blocker_matrix_blockers(
     active_site: dict[str, Any] | None,
     sequence: dict[str, Any] | None,
     backend: dict[str, Any] | None,
+    backend_sequence_search: dict[str, Any] | None = None,
     active_site_resolution: dict[str, Any] | None = None,
     backend_sample: dict[str, Any] | None = None,
 ) -> list[str]:
     blockers: list[str] = []
-    blockers.extend(str(blocker) for blocker in readiness.get("blockers", []) or [])
+    backend_removes_sequence_search = _backend_sequence_search_removes_blocker(
+        backend_sequence_search
+    )
+    blockers.extend(
+        str(blocker)
+        for blocker in readiness.get("blockers", []) or []
+        if not (
+            backend_removes_sequence_search
+            and blocker == "complete_near_duplicate_search_required"
+        )
+    )
     if active_site is not None:
         blockers.extend(
             str(blocker) for blocker in active_site.get("blockers", []) or []
@@ -12362,7 +13652,18 @@ def _external_transfer_blocker_matrix_blockers(
             for blocker in active_site_resolution.get("blockers", []) or []
         )
     if sequence is not None:
-        blockers.extend(str(blocker) for blocker in sequence.get("blockers", []) or [])
+        blockers.extend(
+            str(blocker)
+            for blocker in sequence.get("blockers", []) or []
+            if not (
+                backend_removes_sequence_search
+                and blocker
+                in {
+                    "complete_uniref_or_all_vs_all_near_duplicate_search_required",
+                    "complete_near_duplicate_reference_search_not_completed",
+                }
+            )
+        )
     else:
         blockers.append("sequence_search_export_missing")
     if backend is not None:
@@ -12395,6 +13696,7 @@ def _external_transfer_blocker_matrix_next_action(
     active_site: dict[str, Any] | None,
     sequence: dict[str, Any] | None,
     backend: dict[str, Any] | None,
+    backend_sequence_search: dict[str, Any] | None = None,
     active_site_resolution: dict[str, Any] | None = None,
     backend_sample: dict[str, Any] | None = None,
 ) -> str:
@@ -12411,7 +13713,9 @@ def _external_transfer_blocker_matrix_next_action(
     search_task = str((sequence or {}).get("search_task") or "")
     if search_task == "keep_sequence_holdout_control":
         return "keep_sequence_holdout_out_of_import_batch"
-    if search_task:
+    if search_task and not _backend_sequence_search_removes_blocker(
+        backend_sequence_search
+    ):
         return "complete_near_duplicate_sequence_search"
     backend_sample_status = str((backend_sample or {}).get("backend_status") or "")
     if backend_sample_status == "representation_near_duplicate_holdout":
@@ -12455,19 +13759,43 @@ def _external_transfer_blocker_matrix_active_site(
 
 def _external_transfer_blocker_matrix_sequence(
     sequence: dict[str, Any] | None,
+    *,
+    backend_sequence_search: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if sequence is None:
         return {
+            "backend_name": (backend_sequence_search or {}).get("backend_name"),
+            "backend_search_status": (backend_sequence_search or {}).get(
+                "search_status"
+            ),
             "search_task": None,
             "decision_status": None,
             "source_target_count": 0,
         }
     return {
         "alignment_status": sequence.get("alignment_status"),
+        "backend_name": (backend_sequence_search or {}).get("backend_name"),
+        "backend_search_status": (backend_sequence_search or {}).get("search_status"),
+        "backend_max_external_vs_reference_identity": (
+            (backend_sequence_search or {}).get("max_external_vs_reference_identity")
+        ),
         "decision_status": (sequence.get("decision") or {}).get("decision_status"),
         "search_task": sequence.get("search_task"),
         "source_target_count": len(sequence.get("source_targets", []) or []),
     }
+
+
+def _backend_sequence_search_removes_blocker(
+    backend_sequence_search: dict[str, Any] | None,
+) -> bool:
+    if not backend_sequence_search:
+        return False
+    return (
+        backend_sequence_search.get("backend_search_complete") is True
+        and backend_sequence_search.get("search_status") == "no_near_duplicate_signal"
+        and backend_sequence_search.get("backend_name")
+        in {"mmseqs2_easy_search", "diamond_blastp", "blastp"}
+    )
 
 
 def _external_transfer_blocker_matrix_backend(

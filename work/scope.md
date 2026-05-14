@@ -284,7 +284,8 @@ Current expectation:
   those rows as no-decision review packets with 0 completed decisions.
   `artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
   79 review-only source targets for the same candidates, including all 10
-  sequence-search packets and 3 active-site sourcing packets. The pilot-specific
+  sequence-search packets, all 10 backend no-signal statuses, and 3 active-site
+  sourcing packets. The pilot-specific
   representation sample now computes ESM-2 embeddings for all 10 selected
   candidates, flags `P55263` as a representation near-duplicate holdout, and
   keeps every selected row non-countable and not import-ready.
@@ -293,9 +294,16 @@ Current expectation:
   735 expected current countable M-CSA reference accessions because
   `artifacts/v3_external_source_sequence_reference_screen_audit_1025.json`
   resolves inactive demerged UniProt references `P03176` and `Q05489` to their
-  replacement accessions. The current-reference near-duplicate blocker is
-  cleared for the 28 non-holdout rows, while the UniRef/all-vs-all search
-  requirement remains active.
+  replacement accessions. `artifacts/v3_external_source_backend_sequence_search_1025.json`
+  now uses MMseqs2 18-8cc5c to compare 30 external rows against 735 current
+  reference accessions / 737 sequence records. It preserves exact holdouts
+  `O15527` and `P42126`, records 28 no-signal rows, 0 near-duplicate rows, and
+  0 failures, and keeps every row review-only, non-countable, and not
+  import-ready. The bounded current-reference backend search debt is cleared
+  for the 28 no-signal rows, while broader UniRef-wide/all-vs-all duplicate
+  screening remains active. The refreshed pilot packet and dossiers consume
+  this backend status so selected no-signal rows no longer retain stale
+  complete-near-duplicate sequence blockers.
 - review-debt triage now ranks 326 evidence-gap rows from the 1000 review pass,
   with 326 `needs_more_evidence` decisions, 305 carried rows, 21 new rows, and
   explicit non-countable deferral coverage for every row
@@ -340,10 +348,10 @@ Current expectation:
   artifacts, representation-control comparison, broad-EC disambiguation,
   active-site gap source requests, sequence-neighborhood controls, bounded
   sequence-neighborhood screening, bounded sequence-alignment verification,
-  sequence-search export, import-readiness audit, active-site sourcing
+  sequence-search export, backend sequence search, import-readiness audit, active-site sourcing
   queue/export/resolution, representation-backend plan/sample, transfer blocker
-  matrix, and a 66/66 transfer gate with a direct current-reference
-  sequence-screen audit check;
+  matrix, and a 67/67 transfer gate with direct current-reference
+  sequence-screen and backend sequence-search checks;
   2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
   full Rhea reaction-context sample collects 64 review-only reaction records
@@ -358,19 +366,26 @@ Current expectation:
   representation-control comparison flags 7 metal-hydrolase collapse rows and
   2 glycan-boundary rows, the broad-EC audit finds specific reaction context for
   all 3 broad-only repair rows, the active-site gap source-request artifact
-  covers all 10 active-site gaps, the sequence-neighborhood plan requests
-  near-duplicate search for 28 rows, the bounded sequence screen checks all 30
+  covers all 10 active-site gaps, the sequence-neighborhood plan scopes
+  sequence-search controls for 28 rows, the bounded sequence screen checks all 30
   external sequences against 735 current countable M-CSA reference accessions
   with 0 high-similarity alerts after resolving inactive demerged references
   `P03176` and `Q05489`, bounded alignment verification checks 90 top-hit pairs and
-  confirms the two exact-reference holdouts, the
+  confirms the two exact-reference holdouts, the backend sequence-search
+  artifact uses MMseqs2 18-8cc5c over 30 external rows against 735 current
+  reference accessions / 737 sequence records, preserves exact holdouts
+  `O15527` and `P42126`, records 28 no-signal rows, 0 near-duplicate rows, and
+  0 failures, and removes the bounded current-reference backend search debt for
+  the 28 no-signal rows while broader UniRef-wide/all-vs-all duplicate
+  screening remains blocked, the
   import-readiness audit records 0
   import-ready rows plus 10 active-site gaps, 9 heuristic scope/top1
-  mismatches, and 29 representation-control issues, the active-site sourcing
-  queue prioritizes 7 mapped-binding-context rows and 3 primary-source rows, the
+  mismatches, 29 representation-control issues, 2 exact sequence holdouts, and
+  broader duplicate-screening limitations, the active-site sourcing queue
+  prioritizes 7 mapped-binding-context rows and 3 primary-source rows, the
   active-site sourcing export carries 72 source targets, the sequence-search
-  export keeps 28 UniRef/all-vs-all near-duplicate searches and 2 sequence
-  holdouts review-only,
+  export plus backend search keeps all 30 rows review-only, non-countable, and
+  not import-ready,
   the active-site sourcing resolution finds 0 explicit active-site residue
   sources across the 10 gap rows, the representation-backend plan covers 12
   controls without embeddings, the deterministic k-mer baseline covers all 12
@@ -380,8 +395,11 @@ Current expectation:
   now marks heuristic fingerprint ids, matched M-CSA reference ids, and scope
   signals as review or holdout context rather than predictive evidence, the
   transfer blocker matrix keeps all 30 candidates non-countable with explicit
-  next actions and now carries the active-site resolution plus representation
-  sample statuses directly, the pilot-priority artifact selects 10
+  next actions and now prioritizes 7 literature/PDB active-site reviews,
+  3 primary active-site source tasks, 9 select/run real representation-backend
+  actions, 6 compute/attach representation-control actions,
+  3 representation-near-duplicate holdouts, and 2 sequence holdouts, the
+  pilot-priority artifact selects 10
   non-countable candidates and defers 5 holdout or near-duplicate rows, the
   pilot review-decision export keeps 10 selected rows as no-decision packets,
   the pilot evidence packet consolidates 79 source targets for review, the

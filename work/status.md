@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 81
-- Measured elapsed time: 2961.0 minutes (49.35 hours)
+- Entries: 82
+- Measured elapsed time: 3011.1 minutes (50.19 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 314.7 measured minutes (5.25 hours)
+- post-mcsa-spof-hardening: 364.8 measured minutes (6.08 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 861
-- Evidence references logged: 710
+- Artifact references logged: 880
+- Evidence references logged: 721
 
 ## Recent Entries
-
-### 2026-05-13T19:39:20.606270+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden external transfer gate input contract
-- Time mode: measured
-- Measured minutes: 16.033
-- Started: 2026-05-13T19:23:08Z
-- Ended: 2026-05-13T19:39:10Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/external_source_control_repair_1025_notes.md, work/external_source_transfer_1025_notes.md, work/label_preview_1025_notes.md
-- Evidence: 290 unit tests passed, validate passed, compileall passed, git diff --check passed, external gate 64/64 with ExternalSourceTransferGateInputs.v1, CLI gate command uses typed artifact contract, non-object gate artifact regression coverage, 0 countable external labels, 0 import-ready external rows
-- Notes: Normal locked SPOF-hardening run. No M-CSA count growth or external import; docs checked and updated.
 
 ### 2026-05-13T20:51:07.000000+00:00 - post-mcsa-spof-hardening
 
@@ -117,6 +106,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 313 unit tests passed, validate passed, git diff check passed, MMseqs2 holdout max train/test identity 0.284, heldout false non-abstentions 0, mechanism-text ablation 0 structure-local guardrail losses, 650M model unavailable locally, Foldseek 10.941cd33 installed in temporary env but coordinates absent
 - Notes: Normal locked delegated run per user instruction; no M-CSA count growth and no external import.
 
+### 2026-05-14T04:23:49.348241+00:00 - post-mcsa-spof-hardening
+
+- Task: External backend sequence search and pilot refresh
+- Time mode: measured
+- Measured minutes: 50.133
+- Started: 2026-05-14T03:33:18Z
+- Ended: 2026-05-14T04:23:26Z
+- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_backend_sequence_search_1025.json, artifacts/v3_external_source_backend_sequence_search_audit_1025.json, artifacts/v3_external_source_import_readiness_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_pilot_candidate_priority_1025.json, artifacts/v3_external_source_pilot_review_decision_export_1025.json, artifacts/v3_external_source_pilot_evidence_packet_1025.json, artifacts/v3_external_source_pilot_representation_backend_plan_1025.json, artifacts/v3_external_source_pilot_representation_backend_sample_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: 313 unit tests passed, validate passed, compileall passed, git diff check passed, 1706 JSON artifacts parsed, MMseqs2 backend search 30 external rows vs 735 reference accessions, 28 no-signal rows, 2 exact reference holdouts, 0 near-duplicate rows, 0 import-ready rows, transfer gate 67/67
+- Notes: Normal locked delegated run per user instruction. No M-CSA count growth and no external import.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -188,6 +188,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T23:52:26.926762+00:00: external pilot can proceed to review decisions only after active-site sources and complete sequence search; no external import is ready
 - 2026-05-14T00:43:19.772463+00:00: Artifact graph consistency still matters at count-decision boundaries; next work should fill external pilot evidence decisions rather than add generic gates.
 - 2026-05-14T03:08:19.594666+00:00: External pilot remains review-only; next highest-value work is coordinate staging for TM-score only if it directly unblocks pilot import readiness, plus active-site source decisions and complete near-duplicate search.
+- 2026-05-14T04:23:49.348241+00:00: Next useful external-pilot work is active-site source decisions and representation repair for selected rows; M-CSA-only count growth remains stopped.
 
 ## Scope Adjustments
 
@@ -268,3 +269,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T00:43:19.772463+00:00: Label batch acceptance and scaling-quality audits now fail fast on mixed slice lineage before count/import decisions.
 - 2026-05-14T01:50:53.503582+00:00: High-fan-in external pilot builders now fail fast on mixed-slice lineage before artifact write; selected-PDB ready overrides must match graph slice provenance.
 - 2026-05-14T03:08:19.594666+00:00: Real sequence-distance holdout replaces proxy-only generalization signal; Foldseek/TM-score split now depends on coordinate materialization rather than tool availability alone.
+- 2026-05-14T04:23:49.348241+00:00: External pilot sequence-search work now uses real MMseqs2 current-reference backend evidence before review decisions; import remains blocked by active-site, representation, broader duplicate-screening, review, and factory gates.

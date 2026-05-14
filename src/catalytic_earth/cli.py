@@ -102,6 +102,7 @@ from .transfer_scope import (
     audit_external_source_representation_backend_sample,
     audit_external_source_representation_backend_stability,
     audit_external_source_sequence_alignment_verification,
+    audit_external_source_backend_sequence_search,
     audit_external_source_sequence_reference_screen,
     audit_external_source_sequence_search_export,
     audit_external_source_sequence_holdouts,
@@ -141,6 +142,7 @@ from .transfer_scope import (
     build_external_source_pilot_representation_backend_plan,
     build_external_source_representation_backend_sample,
     build_external_source_sequence_alignment_verification,
+    build_external_source_backend_sequence_search,
     build_external_source_sequence_search_export,
     build_external_source_sequence_neighborhood_plan,
     build_external_source_sequence_neighborhood_sample,
@@ -1542,6 +1544,63 @@ def cmd_audit_external_source_sequence_reference_screen(
     return 0
 
 
+def cmd_build_external_source_backend_sequence_search(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    with Path(args.sequence_clusters).open("r", encoding="utf-8") as handle:
+        sequence_clusters = json.load(handle)
+    with Path(args.labels).open("r", encoding="utf-8") as handle:
+        labels = json.load(handle)
+    search = build_external_source_backend_sequence_search(
+        candidate_manifest=candidate_manifest,
+        sequence_clusters=sequence_clusters,
+        labels=labels,
+        reference_fasta=args.reference_fasta,
+        external_fasta_out=args.external_fasta_out,
+        reference_fasta_out=args.reference_fasta_out,
+        result_tsv_out=args.result_tsv_out,
+        backend=args.backend,
+        mmseqs_binary=args.mmseqs_binary,
+        diamond_binary=args.diamond_binary,
+        blastp_binary=args.blastp_binary,
+        makeblastdb_binary=args.makeblastdb_binary,
+        identity_threshold=args.identity_threshold,
+        coverage_threshold=args.coverage_threshold,
+        exact_identity_threshold=args.exact_identity_threshold,
+        exact_coverage_threshold=args.exact_coverage_threshold,
+        max_rows=args.max_rows,
+        top_k=args.top_k,
+    )
+    write_json(Path(args.out), search)
+    print(
+        "Wrote external source backend sequence search to "
+        f"{args.out} ({search['metadata']['backend_name']}, "
+        f"{search['metadata']['candidate_count']} rows)"
+    )
+    return 0
+
+
+def cmd_audit_external_source_backend_sequence_search(
+    args: argparse.Namespace,
+) -> int:
+    with Path(args.backend_sequence_search).open("r", encoding="utf-8") as handle:
+        backend_sequence_search = json.load(handle)
+    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
+        candidate_manifest = json.load(handle)
+    audit = audit_external_source_backend_sequence_search(
+        backend_sequence_search=backend_sequence_search,
+        candidate_manifest=candidate_manifest,
+    )
+    write_json(Path(args.out), audit)
+    print(
+        "Wrote external source backend sequence search audit to "
+        f"{args.out} (clean={audit['metadata']['guardrail_clean']})"
+    )
+    return 0
+
+
 def cmd_build_external_source_sequence_search_export(
     args: argparse.Namespace,
 ) -> int:
@@ -1741,6 +1800,7 @@ def cmd_build_external_source_transfer_blocker_matrix(
             "active_site_sourcing_export",
             "sequence_search_export",
             "representation_backend_plan",
+            "backend_sequence_search",
             "active_site_sourcing_resolution",
             "representation_backend_sample",
         ),
@@ -1754,6 +1814,7 @@ def cmd_build_external_source_transfer_blocker_matrix(
         active_site_sourcing_export=artifact_payloads["active_site_sourcing_export"],
         sequence_search_export=artifact_payloads["sequence_search_export"],
         representation_backend_plan=artifact_payloads["representation_backend_plan"],
+        backend_sequence_search=artifact_payloads["backend_sequence_search"],
         active_site_sourcing_resolution=artifact_payloads[
             "active_site_sourcing_resolution"
         ],
@@ -1834,6 +1895,7 @@ def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
             "active_site_gap_source_requests",
             "sequence_neighborhood_sample",
             "sequence_alignment_verification",
+            "backend_sequence_search",
         ),
         blocker_removed="artifact_graph_consistency_for_external_import_readiness",
     )
@@ -1851,6 +1913,7 @@ def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
         sequence_alignment_verification=artifact_payloads[
             "sequence_alignment_verification"
         ],
+        backend_sequence_search=artifact_payloads["backend_sequence_search"],
         max_rows=args.max_rows,
         artifact_lineage=artifact_lineage,
     )
@@ -1869,6 +1932,7 @@ def cmd_build_external_source_pilot_evidence_packet(args: argparse.Namespace) ->
             "pilot_candidate_priority",
             "active_site_sourcing_export",
             "sequence_search_export",
+            "backend_sequence_search",
         ),
         blocker_removed="artifact_graph_consistency_for_external_pilot_packet",
     )
@@ -1876,6 +1940,7 @@ def cmd_build_external_source_pilot_evidence_packet(args: argparse.Namespace) ->
         pilot_candidate_priority=artifact_payloads["pilot_candidate_priority"],
         active_site_sourcing_export=artifact_payloads["active_site_sourcing_export"],
         sequence_search_export=artifact_payloads["sequence_search_export"],
+        backend_sequence_search=artifact_payloads["backend_sequence_search"],
         max_rows=args.max_rows,
         artifact_lineage=artifact_lineage,
     )
@@ -4890,6 +4955,89 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_audit_external_source_sequence_reference_screen
     )
 
+    external_backend_sequence_search = subparsers.add_parser(
+        "build-external-source-backend-sequence-search",
+        help="run a real backend external-vs-current-reference sequence search",
+    )
+    external_backend_sequence_search.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_backend_sequence_search.add_argument(
+        "--sequence-clusters",
+        default="artifacts/v3_sequence_cluster_proxy.json",
+    )
+    external_backend_sequence_search.add_argument(
+        "--labels",
+        default="data/registries/curated_mechanism_labels.json",
+    )
+    external_backend_sequence_search.add_argument(
+        "--reference-fasta",
+        default="artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta",
+    )
+    external_backend_sequence_search.add_argument(
+        "--external-fasta-out",
+        default="artifacts/v3_external_source_backend_sequence_search_external.fasta",
+    )
+    external_backend_sequence_search.add_argument(
+        "--reference-fasta-out",
+        default="artifacts/v3_external_source_backend_sequence_search_reference.fasta",
+    )
+    external_backend_sequence_search.add_argument(
+        "--result-tsv-out",
+        default="artifacts/v3_external_source_backend_sequence_search.tsv",
+    )
+    external_backend_sequence_search.add_argument(
+        "--backend", choices=("auto", "mmseqs", "diamond", "blastp"), default="auto"
+    )
+    external_backend_sequence_search.add_argument("--mmseqs-binary", default="mmseqs")
+    external_backend_sequence_search.add_argument("--diamond-binary", default="diamond")
+    external_backend_sequence_search.add_argument("--blastp-binary", default="blastp")
+    external_backend_sequence_search.add_argument(
+        "--makeblastdb-binary", default="makeblastdb"
+    )
+    external_backend_sequence_search.add_argument(
+        "--identity-threshold", type=float, default=0.90
+    )
+    external_backend_sequence_search.add_argument(
+        "--coverage-threshold", type=float, default=0.80
+    )
+    external_backend_sequence_search.add_argument(
+        "--exact-identity-threshold", type=float, default=0.999
+    )
+    external_backend_sequence_search.add_argument(
+        "--exact-coverage-threshold", type=float, default=0.98
+    )
+    external_backend_sequence_search.add_argument("--max-rows", type=int, default=100)
+    external_backend_sequence_search.add_argument("--top-k", type=int, default=5)
+    external_backend_sequence_search.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_backend_sequence_search.json",
+    )
+    external_backend_sequence_search.set_defaults(
+        func=cmd_build_external_source_backend_sequence_search
+    )
+
+    external_backend_sequence_search_audit = subparsers.add_parser(
+        "audit-external-source-backend-sequence-search",
+        help="verify real backend sequence-search artifacts remain review-only",
+    )
+    external_backend_sequence_search_audit.add_argument(
+        "--backend-sequence-search",
+        default="artifacts/v3_external_source_backend_sequence_search.json",
+    )
+    external_backend_sequence_search_audit.add_argument(
+        "--candidate-manifest",
+        default="artifacts/v3_external_source_candidate_manifest.json",
+    )
+    external_backend_sequence_search_audit.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_backend_sequence_search_audit.json",
+    )
+    external_backend_sequence_search_audit.set_defaults(
+        func=cmd_audit_external_source_backend_sequence_search
+    )
+
     external_sequence_search_export = subparsers.add_parser(
         "build-external-source-sequence-search-export",
         help="build review-only complete near-duplicate sequence-search packets",
@@ -4969,6 +5117,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_import_readiness.add_argument(
         "--sequence-alignment-verification",
+        default=None,
+    )
+    external_import_readiness.add_argument(
+        "--backend-sequence-search",
         default=None,
     )
     external_import_readiness.add_argument("--max-rows", type=int, default=100)
@@ -5157,6 +5309,10 @@ def build_parser() -> argparse.ArgumentParser:
         default="artifacts/v3_external_source_representation_backend_plan.json",
     )
     external_transfer_blocker_matrix.add_argument(
+        "--backend-sequence-search",
+        default=None,
+    )
+    external_transfer_blocker_matrix.add_argument(
         "--representation-backend-sample",
         default=None,
     )
@@ -5239,6 +5395,10 @@ def build_parser() -> argparse.ArgumentParser:
     external_pilot_evidence_packet.add_argument(
         "--sequence-search-export",
         default="artifacts/v3_external_source_sequence_search_export.json",
+    )
+    external_pilot_evidence_packet.add_argument(
+        "--backend-sequence-search",
+        default=None,
     )
     external_pilot_evidence_packet.add_argument("--max-rows", type=int, default=10)
     external_pilot_evidence_packet.add_argument(
@@ -5479,6 +5639,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_transfer_gate.add_argument(
         "--sequence-search-export-audit",
+        default=None,
+    )
+    external_transfer_gate.add_argument(
+        "--sequence-backend-search",
         default=None,
     )
     external_transfer_gate.add_argument(

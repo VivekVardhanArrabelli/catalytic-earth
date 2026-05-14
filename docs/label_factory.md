@@ -792,7 +792,7 @@ Current 1,025-preview state:
   `artifacts/v3_external_source_transfer_gate_check_1025.json` scope a
   review-only UniProtKB/Swiss-Prot transfer path. They create 0 countable label
   candidates, route two exact-reference overlaps to holdout controls, pass the
-  65/65 external transfer gate for evidence collection under the typed
+  67/67 external transfer gate for evidence collection under the typed
   `ExternalSourceTransferGateInputs.v1` contract, pass the lane-balance
   audit across six query lanes, queue 25 review-only active-site evidence rows,
   defer five rows, sample all 25 ready rows for UniProtKB active-site evidence,
@@ -809,32 +809,45 @@ Current 1,025-preview state:
   representation comparison flags 7 metal-hydrolase collapse rows and 2
   glycan-boundary rows, and the binding-context path maps 7/7 active-site-gap
   rows as repair context only. The active-site gap source requests cover all 10
-  feature-gap rows, and the sequence-neighborhood plan requests near-duplicate
-  search for 28 external rows. The bounded sequence-neighborhood sample fetches
-  all 30 external sequences plus 733 current countable M-CSA reference
-  sequences and finds 0 high-similarity alerts under the current unaligned
-  screen, but still requires complete near-duplicate search before import. The
-  bounded sequence-alignment verification checks 90 top-hit pairs, confirms the
-  two exact-reference holdouts, and keeps all rows non-countable. The
+  feature-gap rows, and the sequence-neighborhood plan scopes sequence review
+  for the 28 non-holdout external rows. The bounded sequence-neighborhood
+  sample fetches all 30 external sequences plus 735 current countable M-CSA
+  reference accessions after resolving inactive references. The backend search
+  artifact `artifacts/v3_external_source_backend_sequence_search_1025.json`
+  uses MMseqs2 18-8cc5c over those 30 external rows against 735 current
+  reference accessions / 737 sequence records, preserves exact holdouts
+  `O15527` and `P42126`, records 28 no-signal rows, 0 near-duplicate rows, and
+  0 failures, and keeps every row review-only, non-countable, and not
+  import-ready. This removes the bounded current-reference backend search debt
+  for the 28 no-signal rows, but broader UniRef-wide/all-vs-all duplicate
+  screening still blocks import. The bounded sequence-alignment verification
+  checks 90 top-hit pairs, confirms the two exact-reference holdouts, and keeps
+  all rows non-countable. The
   import-readiness audit keeps 0 rows import-ready while summarizing 10
-  active-site gaps, 2 exact sequence holdouts, 28 complete near-duplicate
-  search requirements, 9 heuristic scope/top1 mismatches, and 29
-  representation-control issues; the active-site sourcing queue prioritizes the
-  10 active-site gaps into 7 mapped-binding-context rows and 3 primary-source
-  rows. The active-site sourcing export carries 72 source targets with 0
-  completed decisions, the active-site sourcing resolution records 0 explicit
-  active-site residue sources, the sequence-search export keeps all 30
+  active-site gaps, 2 exact sequence holdouts, 9 heuristic scope/top1
+  mismatches, 29 representation-control issues, and broader duplicate-screening
+  limitations; the active-site sourcing queue prioritizes the 10 active-site
+  gaps into 7 mapped-binding-context rows and 3 primary-source rows. The
+  active-site sourcing export carries 72 source targets with 0 completed
+  decisions, the active-site sourcing resolution records 0 explicit active-site
+  residue sources, the sequence-search export plus backend search keeps all 30
   candidates in no-decision sequence controls, the representation-backend plan
   covers 12 mapped controls without embeddings, the deterministic k-mer
   representation baseline flags one representation near-duplicate holdout, the
   canonical ESM-2 sample flags three representation near-duplicate holdouts and
   12 learned-vs-heuristic disagreements, and the transfer blocker matrix joins
-  all 30 external candidates into a
-  review-only next-action worklist with no single-action or single-lane
-  collapse. The pilot-priority artifact selects 10 non-countable candidates
+  all 30 external candidates into a review-only next-action worklist:
+  7 literature/PDB active-site reviews, 3 primary active-site source tasks,
+  9 select/run real representation-backend actions, 6 compute/attach
+  representation-control actions, 3 representation-near-duplicate holdouts,
+  and 2 sequence holdouts, with no single-action or single-lane collapse. The
+  pilot-priority artifact selects 10 non-countable candidates
   across lanes and defers exact-holdout or near-duplicate rows before any
   import attempt. The pilot review-decision export creates no-decision packets
-  for those 10 rows with 0 completed decisions and 0 countable candidates.
+  for those 10 rows with 0 completed decisions and 0 countable candidates, and
+  the refreshed pilot packet/dossiers carry backend no-signal status for all
+  selected rows without retaining stale complete-near-duplicate sequence
+  blockers.
   `artifacts/v3_external_source_reaction_evidence_sample_1025.json`
   adds bounded Rhea reaction context for all 30 candidates while keeping every
   row non-countable and outside any reviewed decision artifact; its companion

@@ -71,8 +71,9 @@ Priority blockers:
   representation repair;
 - source explicit catalytic or active-site residue evidence for the 10
   active-site-feature gap rows;
-- complete real near-duplicate or UniRef-style sequence searches for the 28
-  rows that still require sequence search;
+- treat the bounded current-reference MMseqs2 sequence search as complete for
+  the 28 no-signal rows, while still requiring broader UniRef-wide/all-vs-all
+  duplicate screening before import;
 - advance the 10 selected pilot-priority candidates with explicit active-site
   evidence, specific reaction evidence, clean sequence holdout status, clean
   structure mapping, non-collapsed retrieval/representation behavior, and no
@@ -120,47 +121,55 @@ Priority blockers:
   `4.2.99.-`. The broad-EC disambiguation audit finds specific reaction
   context for all 3 broad-only repair rows while keeping them review-only.
 - The sequence-holdout audit keeps `O15527` and `P42126` as exact M-CSA
-  reference-overlap holdouts and marks the remaining 28 candidates as requiring
-  near-duplicate search. The sequence-neighborhood plan converts those into
-  2 exact-holdout rows and 28 near-duplicate search requests. The bounded
+  reference-overlap holdouts and scopes duplicate-screening controls for the
+  remaining 28 candidates. The sequence-neighborhood plan converts those into
+  2 exact-holdout rows and 28 sequence-search control rows. The bounded
   sequence-neighborhood screen fetches all 30 external sequences and all 735
   current countable M-CSA reference accessions after resolving inactive
   demerged UniProt references `P03176` and `Q05489` to their replacement
   accessions. The current-reference screen audit now clears the
   current-reference near-duplicate blocker: 28 rows have top-hit alignments
   with no near-duplicate signal and the two exact-reference rows remain
-  holdouts. Complete UniRef-style or all-vs-all near-duplicate search remains
-  mandatory. The bounded top-hit alignment verification checks 90
+  holdouts. `artifacts/v3_external_source_backend_sequence_search_1025.json`
+  upgrades that bounded screen to a real MMseqs2 18-8cc5c backend search over
+  the 30 external rows against 735 current reference accessions / 737 sequence
+  records. It preserves exact holdouts `O15527` and `P42126`, records 28
+  no-signal rows, 0 near-duplicate rows, and 0 failures, and keeps every row
+  review-only, non-countable, and not import-ready. This removes the bounded
+  current-reference backend sequence-search debt for the 28 no-signal rows,
+  but broader UniRef-wide/all-vs-all duplicate screening remains mandatory
+  before import. The bounded top-hit alignment verification checks 90
   sequence-neighborhood pairs, confirms the two exact-reference holdouts by
   alignment, and finds 88 no-signal top-hit pairs.
 - The import-readiness audit aggregates the current blockers by candidate: 10
-  active-site gaps, 2 exact sequence holdouts, 28 complete near-duplicate
-  search requirements, 9 heuristic scope/top1 mismatches, and 29
-  representation-control issues. The active-site sourcing queue turns the 10
-  active-site gaps into 7 mapped-binding-context sourcing rows and 3
-  primary-source rows, and the active-site sourcing export packages 72 source
-  targets without decisions. The active-site sourcing resolution re-checks all
-  10 active-site-gap rows against UniProt feature evidence, finds 0 explicit
-  active-site residue sources, and leaves the rows non-countable. The
-  sequence-search export keeps all 30 candidates in no-decision sequence
-  controls, with 28 UniRef/all-vs-all near-duplicate searches and
-  2 sequence holdouts.
+  active-site gaps, 2 exact sequence holdouts, 9 heuristic scope/top1
+  mismatches, 29 representation-control issues, and the remaining broader
+  duplicate-screening limitation. It keeps 0 rows import-ready. The active-site
+  sourcing queue turns the 10 active-site gaps into 7 mapped-binding-context
+  sourcing rows and 3 primary-source rows, and the active-site sourcing export
+  packages 72 source targets without decisions. The active-site sourcing
+  resolution re-checks all 10 active-site-gap rows against UniProt feature
+  evidence, finds 0 explicit active-site residue sources, and leaves the rows
+  non-countable. The sequence-search export plus backend search keep all 30
+  candidates in no-decision sequence controls: 28 bounded current-reference
+  no-signal rows, 2 exact sequence holdouts, and broader duplicate screening
+  still pending.
   The representation-backend plan covers 12 mapped controls without computing
   embeddings. `artifacts/v3_external_source_kmer_representation_backend_sample_1025.json`
   preserves the deterministic k-mer baseline/proxy, while the canonical
   `artifacts/v3_external_source_representation_backend_sample_1025.json`
   computes the 12-row ESM-2 sample. The transfer blocker matrix joins all 30
   candidates into a review-only next-action worklist and carries the
-  resolution/sample row evidence directly: 7 rows move to primary
-  literature/PDB active-site source review, 3 remain primary active-site source
-  tasks, 18 require near-duplicate sequence search, and 2 stay sequence
-  holdouts. Its dominant next-action fraction is 0.6000 and dominant lane
-  fraction is 0.1667, so the queue has not collapsed to one action or chemistry
-  lane. The external transfer gate now directly checks the current-reference
-  sequence screen audit and rejects sequence-search exports whose reference
-  screen completion counts do not match that audit. It passes 66/66 review-only
-  checks, including selected-pilot representation sample coverage, and remains
-  not ready for label import.
+  resolution/sample row evidence directly: 7 rows move to literature/PDB
+  active-site review, 3 remain primary active-site source tasks, 9 require
+  select/run real representation-backend actions, 6 require compute/attach
+  representation-control actions, 3 stay representation-near-duplicate holdouts, and 2 stay
+  sequence holdouts. Its dominant next-action fraction is 0.3000 and dominant
+  lane fraction is 0.1667, so the queue has not collapsed to one action or
+  chemistry lane. The external transfer gate now directly checks the
+  current-reference sequence screen audit and backend sequence-search artifact.
+  It passes 67/67 review-only checks, including selected-pilot representation
+  sample coverage, and remains not ready for label import.
 - The learned representation backend path now has a computed 12-row ESM-2
   sample in `artifacts/v3_external_source_representation_backend_sample_1025.json`
   plus a clean review-only audit. It uses `facebook/esm2_t6_8M_UR50D`,
@@ -225,11 +234,12 @@ Priority blockers:
 - `artifacts/v3_external_source_pilot_evidence_packet_1025.json` consolidates
   sequence-search and active-site source targets for the same 10 selected rows.
   It records 79 source targets, all 10 sequence-search packets, 3 active-site
-  sourcing packets, 0 missing required source packets, and
-  `guardrail_clean=true`; it removes only the source-packet consolidation
-  blocker and does not authorize import. Its metadata now also records clean
-  1,025 artifact lineage for the pilot priority list, active-site sourcing
-  export, and sequence-search export.
+  sourcing packets, 10 backend sequence-search packets with no-near-duplicate
+  status, 0 missing required source packets, and `guardrail_clean=true`; it
+  removes only the source-packet consolidation blocker and does not authorize
+  import. Its metadata now also records clean 1,025 artifact lineage for the
+  pilot priority list, active-site sourcing export, sequence-search export, and
+  backend sequence-search artifact.
 - `artifacts/v3_external_source_pilot_representation_backend_plan_1025.json`
   and `artifacts/v3_external_source_pilot_representation_backend_sample_1025.json`
   extend leakage-safe sequence representation controls to all 10 selected pilot
@@ -244,13 +254,15 @@ Priority blockers:
   the same 10 selected rows into per-candidate review dossiers. It records 7
   candidates with explicit UniProt active-site feature support, all 10 with
   Rhea reaction context, all 10 with pilot representation-sample rows, and 10
-  with remaining blockers; it is review-only and does not authorize import. Dossier
-  assembly now adds local blockers for missing explicit active-site evidence,
+  with remaining blockers; it is review-only and does not authorize import.
+  Dossier assembly now adds local blockers for missing explicit active-site evidence,
   missing specific reaction context, and near-duplicate sequence alerts instead
   of relying only on upstream blocker lists. The current selected pilot has 3
   local explicit-active-site evidence blockers and 0 missing-specific-reaction
-  blockers. Its metadata records clean 1,025 lineage across the packet,
-  active-site, reaction, sequence, representation, heuristic, structure,
+  blockers. The dossier sequence summaries carry the backend no-signal status
+  for all 10 selected rows and no longer retain stale complete-near-duplicate
+  blockers for those rows. Its metadata records clean 1,025 lineage across the
+  packet, active-site, reaction, sequence, representation, heuristic, structure,
   blocker-matrix, and import-readiness inputs.
 
 ## Artifacts
@@ -509,6 +521,22 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-sequence-sear
   --sequence-neighborhood-plan artifacts/v3_external_source_sequence_neighborhood_plan_1025.json \
   --out artifacts/v3_external_source_sequence_search_export_audit_1025.json
 
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-backend-sequence-search \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --sequence-clusters artifacts/v3_sequence_cluster_proxy_1025.json \
+  --labels data/registries/curated_mechanism_labels.json \
+  --reference-fasta artifacts/v3_sequence_distance_holdout_eval_uniprot_1000_1025.fasta \
+  --external-fasta-out artifacts/v3_external_source_backend_sequence_search_external_1025.fasta \
+  --reference-fasta-out artifacts/v3_external_source_backend_sequence_search_reference_1025.fasta \
+  --result-tsv-out artifacts/v3_external_source_backend_sequence_search_1025.tsv \
+  --backend auto \
+  --out artifacts/v3_external_source_backend_sequence_search_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-backend-sequence-search \
+  --backend-sequence-search artifacts/v3_external_source_backend_sequence_search_1025.json \
+  --candidate-manifest artifacts/v3_external_source_candidate_manifest_1025.json \
+  --out artifacts/v3_external_source_backend_sequence_search_audit_1025.json
+
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-reaction-evidence-sample \
   --evidence-request-export artifacts/v3_external_source_evidence_request_export_1025.json \
   --max-candidates 30 \
@@ -594,6 +622,7 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-external-source-import-readin
   --active-site-gap-source-requests artifacts/v3_external_source_active_site_gap_source_requests_1025.json \
   --sequence-neighborhood-sample artifacts/v3_external_source_sequence_neighborhood_sample_1025.json \
   --sequence-alignment-verification artifacts/v3_external_source_sequence_alignment_verification_1025.json \
+  --backend-sequence-search artifacts/v3_external_source_backend_sequence_search_1025.json \
   --out artifacts/v3_external_source_import_readiness_audit_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli build-external-source-active-site-sourcing-queue \
@@ -635,6 +664,7 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-transfer-bloc
   --active-site-sourcing-resolution artifacts/v3_external_source_active_site_sourcing_resolution_1025.json \
   --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
   --representation-backend-plan artifacts/v3_external_source_representation_backend_plan_1025.json \
+  --backend-sequence-search artifacts/v3_external_source_backend_sequence_search_1025.json \
   --representation-backend-sample artifacts/v3_external_source_representation_backend_sample_1025.json \
   --out artifacts/v3_external_source_transfer_blocker_matrix_1025.json
 
@@ -658,6 +688,7 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidenc
   --pilot-candidate-priority artifacts/v3_external_source_pilot_candidate_priority_1025.json \
   --active-site-sourcing-export artifacts/v3_external_source_active_site_sourcing_export_1025.json \
   --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
+  --backend-sequence-search artifacts/v3_external_source_backend_sequence_search_1025.json \
   --max-rows 10 \
   --out artifacts/v3_external_source_pilot_evidence_packet_1025.json
 
@@ -766,6 +797,7 @@ PYTHONPATH=src python -m catalytic_earth.cli check-external-source-transfer-gate
   --sequence-reference-screen-audit artifacts/v3_external_source_sequence_reference_screen_audit_1025.json \
   --sequence-search-export artifacts/v3_external_source_sequence_search_export_1025.json \
   --sequence-search-export-audit artifacts/v3_external_source_sequence_search_export_audit_1025.json \
+  --sequence-backend-search artifacts/v3_external_source_backend_sequence_search_1025.json \
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
   --active-site-sourcing-queue artifacts/v3_external_source_active_site_sourcing_queue_1025.json \
   --active-site-sourcing-queue-audit artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json \

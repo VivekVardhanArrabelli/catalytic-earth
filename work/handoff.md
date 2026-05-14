@@ -48,8 +48,38 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
    commit, push, verify `HEAD == origin/main`, and release the lock only when
    the worktree is clean.
 
+## Start-of-Run Confidence Call
+
+- M-CSA-only count growth: No. The 1,025 preview still adds 0 accepted clean
+  labels, source-scale is capped at 1,003 observed M-CSA records, and the
+  latest hard-negative, false-non-abstention, and actionable-failure checks
+  remain clean but do not create more M-CSA source headroom.
+- External-source repair/import: No for import; yes only for review-only repair
+  evidence. The MMseqs2 backend search now clears bounded current-reference
+  near-duplicate search debt for 28 no-signal external rows, but 2 exact
+  sequence holdouts, active-site evidence gaps, representation holdouts/control
+  issues, expert-review no-decision artifacts, and full factory gates still
+  block every external row from import.
+- Scientific generalization work: Yes. Accepted-registry MMseqs2 holdouts and
+  the new external backend sequence search are real backend evidence, with 0
+  held-out out-of-scope false non-abstentions in the countable path; Foldseek
+  TM-score work remains blocked on materialized coordinate files.
+- SPOF hardening work: Yes. External artifact lineage, backend metadata,
+  review-only audits, and gate checks are now explicit and tested; maintainability
+  risk is mainly the large artifact graph and stale downstream pilot packets if
+  future agents regenerate blocker priorities without refreshing dependent
+  pilot evidence.
+
 ## Recent Project Progress
 
+- Refreshed the downstream selected-pilot chain after the 1,025 backend
+  sequence-search update. `v3_external_source_pilot_candidate_priority_1025`,
+  review-decision export, evidence packet, pilot representation plan/sample,
+  evidence dossiers, and the transfer gate now agree with the blocker matrix:
+  the same 10 selected rows remain review-only/non-countable, all 10 carry
+  backend no-near-duplicate status in the pilot packet/dossiers, stale
+  complete-near-duplicate blockers are absent from selected no-signal rows, and
+  the transfer gate still passes 67/67.
 - Recovered a stale automation lock with a dirty worktree and finalized the
   coherent in-progress label-factory scaling work rather than starting a
   conflicting tranche.
@@ -309,6 +339,19 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   `model_unavailable_locally`, expected dimension `1280`, embedding failures,
   elapsed time, and 8M-vs-650M stability status without replacing the computed
   8M baseline.
+- Added a real external-pilot backend sequence search for the 30-row
+  UniProtKB/Swiss-Prot sample. `artifacts/v3_external_source_backend_sequence_search_1025.json`
+  uses local MMseqs2 `18-8cc5c`, compares 30 external sequences against 735
+  current accepted-reference accessions represented by 737 sequence records,
+  preserves exact-reference holdouts `O15527` and `P42126`, records 28
+  no-near-duplicate-signal rows and 0 backend failures, and keeps every row
+  review-only, non-countable, and not import-ready.
+- Wired the backend sequence-search artifact into external import-readiness,
+  blocker-matrix, and transfer-gate artifacts. The complete-search blocker is
+  removed only for backend no-signal rows; import readiness still reports 0
+  import-ready rows, 2 sequence holdout/search rows, active-site gaps,
+  representation-control issues, no expert decisions, and full factory-gate
+  blockers. The external transfer gate now passes 67/67 review-only checks.
 
 ## Current Metrics
 
@@ -441,6 +484,16 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
   out-of-scope rows, 0 held-out out-of-scope false non-abstentions, and
   held-out evaluable top1 accuracy, top3 retained accuracy, and retention of
   `1.0000`. Foldseek/TM-score clustering is still not computed.
+- External backend sequence-search state:
+  `artifacts/v3_external_source_backend_sequence_search_1025.json` is real
+  MMseqs2 evidence for the existing 30-row UniProtKB/Swiss-Prot sample. It
+  uses the accepted-reference FASTA-derived sidecar plus fetched external
+  sequences, covers 30/30 external rows and 735 current reference accessions,
+  preserves 2 exact-reference holdouts, records 28 no-signal rows, 0
+  near-duplicate rows, 0 failures, and removes the bounded current-reference
+  complete-search blocker only for the 28 no-signal rows. It does not run
+  UniRef-wide search or Foldseek/TM-score, and no external row is countable or
+  import-ready.
 - Learned representation state: `artifacts/v3_external_source_representation_backend_sample_1025.json`
   computes a 12-row ESM-2 sample for external mapped controls with
   `embedding_backend_available=true`, vector dimension `320`, 0 embedding
@@ -1051,6 +1104,8 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_sequence_alignment_verification_audit_1025.json`,
 `artifacts/v3_external_source_sequence_search_export_1025.json`,
 `artifacts/v3_external_source_sequence_search_export_audit_1025.json`,
+`artifacts/v3_external_source_backend_sequence_search_1025.json`,
+`artifacts/v3_external_source_backend_sequence_search_audit_1025.json`,
 `artifacts/v3_external_source_import_readiness_audit_1025.json`,
 `artifacts/v3_external_source_active_site_sourcing_queue_1025.json`,
 `artifacts/v3_external_source_active_site_sourcing_queue_audit_1025.json`,
@@ -1066,7 +1121,7 @@ gated for review-only evidence collection rather than count growth:
 `artifacts/v3_external_source_transfer_blocker_matrix_audit_1025.json`,
 `artifacts/v3_external_source_review_only_import_safety_audit_1025.json`, and
 `artifacts/v3_external_source_transfer_gate_check_1025.json` keep
-`countable_label_candidate_count=0` and pass a 66/66 review-only transfer gate.
+`countable_label_candidate_count=0` and pass a 67/67 review-only transfer gate.
 The candidate manifest has 30 UniProtKB/Swiss-Prot rows across six balanced
 query lanes; `O15527` and `P42126` are exact-reference overlaps and are routed
 to sequence-holdout controls. The evidence plan flags seven broad/incomplete EC
@@ -1122,16 +1177,21 @@ sequence surface into 2 exact-holdout rows and 28 near-duplicate search
 requests. The sequence-neighborhood sample fetches all 30 external sequences
 and all 735 current countable M-CSA reference accessions after resolving
 inactive demerged references, finds 0 high-similarity alerts in the bounded
-unaligned screen, and keeps complete UniRef-style or all-vs-all near-duplicate
-search mandatory before import. The bounded alignment verification
+unaligned screen, and the real MMseqs2 backend sequence-search artifact compares
+all 30 external rows against 735 current reference accessions / 737 sequence
+records. That backend search records 28 no-signal rows, 2 exact-reference
+holdouts, 0 near-duplicate rows, and 0 failures, clearing bounded
+current-reference backend search debt for the 28 no-signal rows while broader
+UniRef-wide/all-vs-all duplicate screening remains a limitation before import.
+The bounded alignment verification
 checks 90 top-hit pairs, confirms `O15527` and `P42126` as exact holdouts, and
 records 88 no-signal pairs. The import-readiness audit keeps 0 rows ready for
-label import and records 10 active-site gaps, 2 exact sequence holdouts, 28
-complete near-duplicate search requirements, 9 heuristic scope/top1 mismatches,
-29 representation-control issues, and 2 alignment-confirmed sequence holdouts.
+label import and records 10 active-site gaps, 2 exact sequence holdouts, 9
+heuristic scope/top1 mismatches, 29 representation-control issues, broader
+duplicate-screening limitations, and 2 alignment-confirmed sequence holdouts.
 The sequence-search export converts all 30 rows into no-decision sequence
-controls, with 28 UniRef/all-vs-all near-duplicate searches and 2
-sequence-holdout tasks.
+controls; the backend search carries the 28 current-reference no-signal rows
+and 2 sequence-holdout tasks.
 The active-site sourcing export carries 72 source targets for the 10 active-site
 gaps with 0 completed decisions. The active-site sourcing resolution re-checks
 those 10 gaps against UniProt feature evidence, records 0 explicit active-site
@@ -1661,13 +1721,10 @@ Highest-value options:
    source discovery for the 3 reaction-only rows without counting any row.
 3. Treat the Rhea reaction-context sample as context only, especially the 16
    broad-EC context rows; do not treat Rhea rows as active-site evidence.
-4. Run real near-duplicate sequence searches for the 28 rows in
-   `artifacts/v3_external_source_sequence_search_export_1025.json`; the
-   bounded screen in
-   `artifacts/v3_external_source_sequence_neighborhood_sample_1025.json` and
-   bounded top-hit alignment check in
-   `artifacts/v3_external_source_sequence_alignment_verification_1025.json` are
-   not enough for import readiness.
+4. Treat `artifacts/v3_external_source_backend_sequence_search_1025.json` as
+   the bounded current-reference sequence-search result: it clears that backend
+   search blocker for the 28 no-signal rows, while broader UniRef-wide or
+   all-vs-all duplicate screening remains a limitation before import.
 5. Use the 12-row ESM-2 representation sample in
    `artifacts/v3_external_source_representation_backend_sample_1025.json` and
    its learned-vs-heuristic disagreements to prioritize pilot review, while
@@ -1676,14 +1733,15 @@ Highest-value options:
    as required baselines.
 6. Use `artifacts/v3_external_source_transfer_blocker_matrix_1025.json` as the
    candidate-level blocker map: 10 active-site source rows with resolution
-   statuses carried forward, 28 complete near-duplicate searches, 2 sequence
+   statuses carried forward, 28 backend no-signal sequence rows, 2 sequence
    holdouts, 12 representation-backend plans, 12 representation sample rows, 3
    representation near-duplicate holdouts in the ESM-2 sample, 1 representation
    near-duplicate holdout in the k-mer baseline, and 0 completed import
-   decisions. The 60/60 transfer gate now fails stale matrices that omit
-   active-site resolution or representation sample integration, and also fails
-   high-fan-in external artifacts with unexpected candidate accessions, missing
-   full-coverage manifest rows, or candidate-count drift.
+   decisions. The 67/67 transfer gate now fails stale matrices that omit
+   active-site resolution, backend sequence-search, or representation sample
+   integration, and also fails high-fan-in external artifacts with unexpected
+   candidate accessions, missing full-coverage manifest rows, or candidate-count
+   drift.
 7. Keep every external UniProtKB/Swiss-Prot candidate non-countable until a
    separate decision artifact passes the full label-factory gate.
 8. Preserve the nine-family ATP/phosphoryl-transfer layer as boundary evidence;
@@ -1736,6 +1794,30 @@ Known blockers:
   artifact timing only.
 
 ## Run Timing
+
+- STARTED_AT: 2026-05-14T03:33:18Z
+- ENDED_AT: 2026-05-14T04:23:26Z
+- Measured elapsed time: 50.133 minutes
+- Documentation checked and updated across README,
+  docs/external_source_transfer.md, docs/label_factory.md, work/scope.md,
+  work/handoff.md, and work/status.md before commit.
+- Normal locked delegated run per user instruction. No M-CSA-only count growth
+  and no external import. The run added a real MMseqs2 backend external sequence
+  search for the 30-row UniProtKB/Swiss-Prot sample, wired it into
+  import-readiness, the blocker matrix, transfer gate, selected-pilot priority,
+  pilot packets, representation plan/sample, and pilot dossiers.
+- The backend search uses MMseqs2 `18-8cc5c`, covers 30 external rows against
+  735 current reference accessions / 737 sequence records, keeps exact holdouts
+  `O15527` and `P42126`, records 28 current-reference no-signal rows, 0
+  near-duplicate rows, 0 failures, 0 countable rows, and 0 import-ready rows.
+  The selected pilot rows no longer carry stale complete-near-duplicate-search
+  blockers for backend no-signal evidence; broader UniRef/all-vs-all duplicate
+  screening remains a limitation before import.
+- Final verification passed: `PYTHONPATH=src python -m unittest discover -s
+  tests` with 313 tests, `PYTHONPATH=src python -m catalytic_earth.cli
+  validate`, `PYTHONPATH=src python -m compileall -q src tests`, `git diff
+  --check`, and JSON parsing across 1706 artifact files. The external transfer
+  gate passes 67/67 review-only checks.
 
 - STARTED_AT: 2026-05-13T23:26:40Z
 - ENDED_AT: 2026-05-13T23:51:56Z

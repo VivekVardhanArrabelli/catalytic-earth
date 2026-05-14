@@ -158,6 +158,8 @@
     }
   ],
   "metadata": {
+    "attempted_embedding_backend": "esm2_t6_8m_ur50d",
+    "backend_feasibility_status": "computed",
     "backend_status_counts": {
       "learned_representation_sample_complete": 9,
       "representation_near_duplicate_holdout": 1
@@ -165,18 +167,31 @@
     "blocker_removed": "computes a bounded learned or proxy representation sample for external pilot readiness while preserving heuristic geometry retrieval as the baseline",
     "candidate_count": 10,
     "countable_label_candidate_count": 0,
+    "elapsed_seconds": 9.9348,
     "embedding_backend": "esm2_t6_8m_ur50d",
     "embedding_backend_available": true,
+    "embedding_backend_model_family": "ESM-2",
+    "embedding_backend_parameter_count": "8M",
+    "embedding_elapsed_seconds": 8.788,
     "embedding_failure_count": 0,
     "embedding_status": "computed_review_only",
     "embedding_vector_dimension": 320,
+    "expected_embedding_vector_dimension": 320,
+    "fallback_not_computed_reason": null,
     "fetch_failure_count": 0,
     "fetched_accession_count": 39,
     "heuristic_contrast_required_count": 2,
+    "largest_feasible_embedding_backend": "esm2_t6_8m_ur50d",
+    "largest_supported_embedding_backend": "esm2_t33_650m_ur50d",
     "learned_representation_complete_count": 9,
     "learned_vs_heuristic_disagreement_count": 10,
+    "local_files_only": false,
     "max_rows": 10,
     "method": "external_source_representation_backend_sample",
+    "model_load_elapsed_seconds": 6.432,
+    "model_load_failure": null,
+    "model_load_failure_type": null,
+    "model_load_status": "loaded",
     "model_name": "facebook/esm2_t6_8M_UR50D",
     "predictive_feature_policy": "representation status is computed from sequence embeddings and sequence length coverage only; identifiers, EC/Rhea, mechanism text, labels, and heuristic fingerprint ids are review context or holdout context only",
     "predictive_feature_sources": [
@@ -188,6 +203,7 @@
     "representation_near_duplicate_alert_count": 1,
     "requested_accession_count": 39,
     "requested_embedding_backend": "esm2_t6_8m_ur50d",
+    "requested_model_name": "facebook/esm2_t6_8M_UR50D",
     "review_context_fields": [
       "heuristic_baseline_control",
       "nearest_reference",
