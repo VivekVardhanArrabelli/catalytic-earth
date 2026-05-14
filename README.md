@@ -258,7 +258,10 @@ only, not label import. Its lineage metadata now records a clean 1,025 slice
 across 63 supplied external artifacts, includes the sequence-holdout audit and
 pilot representation sample in row-level candidate-lineage validation, and
 fails fast on mixed-slice artifact paths or payload-declared slice
-contradictions. The full Rhea reaction-context
+contradictions. The import-readiness audit, transfer blocker matrix, pilot
+evidence packet, and pilot evidence dossiers now run the same artifact-path
+lineage check at build time and record the clean 1,025 lineage in their own
+metadata, so stale mixed-slice pilot work fails before downstream gates. The full Rhea reaction-context
 pass covers all 30 external candidates with 64 reaction records, flags 16
 broad-EC context rows, and remains review-only. See
 `docs/external_source_transfer.md` for the guarded command sequence.
@@ -375,7 +378,9 @@ one-off lineage branches; the CLI gate command builds that contract from its
 artifact map instead of passing another long keyword cascade into the gate, and
 the contract rejects non-object artifact payloads at the gate boundary.
 The external pilot ranking, no-decision review export, evidence-packet,
-pilot-specific representation, and dossier artifacts are now built; the next
+pilot-specific representation, and dossier artifacts are now built; the
+high-fan-in pilot builders also fail fast on mixed-slice lineage before writing
+new packet or dossier artifacts. The next
 bounded work item is filling the packet decisions with active-site sources and
 complete near-duplicate sequence evidence, not M-CSA-only count growth or label
 import.

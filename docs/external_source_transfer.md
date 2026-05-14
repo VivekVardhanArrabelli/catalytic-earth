@@ -169,7 +169,12 @@ Priority blockers:
 - The transfer blocker matrix audit now performs a row-level candidate-manifest
   lineage check. A matrix built from a stale or mismatched manifest fails with
   `external_transfer_blocker_matrix_candidate_lineage_mismatch` instead of
-  passing because high-level candidate counts happen to match.
+  passing because high-level candidate counts happen to match. The matrix
+  builder now also validates artifact-path and payload slice lineage across the
+  candidate manifest, import-readiness audit, active-site sourcing export and
+  resolution, sequence-search export, and representation backend plan/sample
+  before writing a matrix, and records
+  `artifact_graph_consistency_for_external_blocker_matrix` in metadata.
 - The external transfer gate now performs its own candidate-lineage and
   artifact-path lineage checks across high-fan-in external artifacts through
   `ExternalSourceTransferGateInputs.v1` plus a shared candidate-lineage
@@ -185,6 +190,9 @@ Priority blockers:
   evidence-dossier artifacts, and fails fast if supplied artifact paths mix
   source slices such as 1,000 and 1,025. It also fails if those pilot artifacts
   stop being review-only, non-countable, no-decision work products.
+  The import-readiness audit, pilot evidence-packet builder, and pilot dossier
+  builder now use the same artifact-path lineage validator before writing their
+  artifacts and record the checked lineage under `metadata.artifact_lineage`.
 - `artifacts/v3_external_source_pilot_candidate_priority_1025.json` ranks the
   30 external candidates for a bounded review pilot. It selects 10
   non-countable candidates across the external lanes, defers 5 exact-holdout or
@@ -204,7 +212,9 @@ Priority blockers:
   It records 79 source targets, all 10 sequence-search packets, 3 active-site
   sourcing packets, 0 missing required source packets, and
   `guardrail_clean=true`; it removes only the source-packet consolidation
-  blocker and does not authorize import.
+  blocker and does not authorize import. Its metadata now also records clean
+  1,025 artifact lineage for the pilot priority list, active-site sourcing
+  export, and sequence-search export.
 - `artifacts/v3_external_source_pilot_representation_backend_plan_1025.json`
   and `artifacts/v3_external_source_pilot_representation_backend_sample_1025.json`
   extend leakage-safe sequence representation controls to all 10 selected pilot
@@ -220,7 +230,9 @@ Priority blockers:
   missing specific reaction context, and near-duplicate sequence alerts instead
   of relying only on upstream blocker lists. The current selected pilot has 3
   local explicit-active-site evidence blockers and 0 missing-specific-reaction
-  blockers.
+  blockers. Its metadata records clean 1,025 lineage across the packet,
+  active-site, reaction, sequence, representation, heuristic, structure,
+  blocker-matrix, and import-readiness inputs.
 
 ## Artifacts
 
@@ -727,7 +739,9 @@ supplied artifacts, and the CLI fails fast if a future gate invocation mixes
 artifact path. Candidate-lineage validation now includes the sequence-holdout
 audit and pilot representation sample, so stale holdout or pilot
 representation rows cannot silently satisfy the gate by matching only
-high-level candidate counts.
+high-level candidate counts. The high-fan-in import-readiness, blocker-matrix,
+pilot-packet, and pilot-dossier builders now fail before artifact write on the
+same mixed-slice condition instead of relying only on the later transfer gate.
 
 Do not import external candidates directly into
 `data/registries/curated_mechanism_labels.json`. The first safe external-source

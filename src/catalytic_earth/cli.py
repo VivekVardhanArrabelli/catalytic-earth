@@ -1698,39 +1698,35 @@ def cmd_audit_external_source_active_site_sourcing_resolution(
 def cmd_build_external_source_transfer_blocker_matrix(
     args: argparse.Namespace,
 ) -> int:
-    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
-        candidate_manifest = json.load(handle)
-    with Path(args.external_import_readiness_audit).open(
-        "r", encoding="utf-8"
-    ) as handle:
-        external_import_readiness_audit = json.load(handle)
-    with Path(args.active_site_sourcing_export).open("r", encoding="utf-8") as handle:
-        active_site_sourcing_export = json.load(handle)
-    with Path(args.sequence_search_export).open("r", encoding="utf-8") as handle:
-        sequence_search_export = json.load(handle)
-    with Path(args.representation_backend_plan).open("r", encoding="utf-8") as handle:
-        representation_backend_plan = json.load(handle)
-    active_site_sourcing_resolution = None
-    if args.active_site_sourcing_resolution:
-        with Path(args.active_site_sourcing_resolution).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            active_site_sourcing_resolution = json.load(handle)
-    representation_backend_sample = None
-    if args.representation_backend_sample:
-        with Path(args.representation_backend_sample).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            representation_backend_sample = json.load(handle)
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "candidate_manifest",
+            "external_import_readiness_audit",
+            "active_site_sourcing_export",
+            "sequence_search_export",
+            "representation_backend_plan",
+            "active_site_sourcing_resolution",
+            "representation_backend_sample",
+        ),
+        blocker_removed="artifact_graph_consistency_for_external_blocker_matrix",
+    )
     matrix = build_external_source_transfer_blocker_matrix(
-        candidate_manifest=candidate_manifest,
-        external_import_readiness_audit=external_import_readiness_audit,
-        active_site_sourcing_export=active_site_sourcing_export,
-        sequence_search_export=sequence_search_export,
-        representation_backend_plan=representation_backend_plan,
-        active_site_sourcing_resolution=active_site_sourcing_resolution,
-        representation_backend_sample=representation_backend_sample,
+        candidate_manifest=artifact_payloads["candidate_manifest"],
+        external_import_readiness_audit=artifact_payloads[
+            "external_import_readiness_audit"
+        ],
+        active_site_sourcing_export=artifact_payloads["active_site_sourcing_export"],
+        sequence_search_export=artifact_payloads["sequence_search_export"],
+        representation_backend_plan=artifact_payloads["representation_backend_plan"],
+        active_site_sourcing_resolution=artifact_payloads[
+            "active_site_sourcing_resolution"
+        ],
+        representation_backend_sample=artifact_payloads[
+            "representation_backend_sample"
+        ],
         max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), matrix)
     print(
@@ -1793,39 +1789,35 @@ def cmd_build_external_source_pilot_review_decision_export(
 
 
 def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
-    with Path(args.candidate_manifest).open("r", encoding="utf-8") as handle:
-        candidate_manifest = json.load(handle)
-    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
-        active_site_evidence_sample = json.load(handle)
-    with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
-        heuristic_control_scores = json.load(handle)
-    with Path(args.representation_control_comparison).open(
-        "r", encoding="utf-8"
-    ) as handle:
-        representation_control_comparison = json.load(handle)
-    with Path(args.active_site_gap_source_requests).open(
-        "r", encoding="utf-8"
-    ) as handle:
-        active_site_gap_source_requests = json.load(handle)
-    with Path(args.sequence_neighborhood_sample).open(
-        "r", encoding="utf-8"
-    ) as handle:
-        sequence_neighborhood_sample = json.load(handle)
-    sequence_alignment_verification = None
-    if args.sequence_alignment_verification:
-        with Path(args.sequence_alignment_verification).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            sequence_alignment_verification = json.load(handle)
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "candidate_manifest",
+            "active_site_evidence_sample",
+            "heuristic_control_scores",
+            "representation_control_comparison",
+            "active_site_gap_source_requests",
+            "sequence_neighborhood_sample",
+            "sequence_alignment_verification",
+        ),
+        blocker_removed="artifact_graph_consistency_for_external_import_readiness",
+    )
     audit = audit_external_source_import_readiness(
-        candidate_manifest=candidate_manifest,
-        active_site_evidence_sample=active_site_evidence_sample,
-        heuristic_control_scores=heuristic_control_scores,
-        representation_control_comparison=representation_control_comparison,
-        active_site_gap_source_requests=active_site_gap_source_requests,
-        sequence_neighborhood_sample=sequence_neighborhood_sample,
-        sequence_alignment_verification=sequence_alignment_verification,
+        candidate_manifest=artifact_payloads["candidate_manifest"],
+        active_site_evidence_sample=artifact_payloads["active_site_evidence_sample"],
+        heuristic_control_scores=artifact_payloads["heuristic_control_scores"],
+        representation_control_comparison=artifact_payloads[
+            "representation_control_comparison"
+        ],
+        active_site_gap_source_requests=artifact_payloads[
+            "active_site_gap_source_requests"
+        ],
+        sequence_neighborhood_sample=artifact_payloads["sequence_neighborhood_sample"],
+        sequence_alignment_verification=artifact_payloads[
+            "sequence_alignment_verification"
+        ],
         max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), audit)
     print(
@@ -1836,17 +1828,21 @@ def cmd_audit_external_source_import_readiness(args: argparse.Namespace) -> int:
 
 
 def cmd_build_external_source_pilot_evidence_packet(args: argparse.Namespace) -> int:
-    with Path(args.pilot_candidate_priority).open("r", encoding="utf-8") as handle:
-        pilot_candidate_priority = json.load(handle)
-    with Path(args.active_site_sourcing_export).open("r", encoding="utf-8") as handle:
-        active_site_sourcing_export = json.load(handle)
-    with Path(args.sequence_search_export).open("r", encoding="utf-8") as handle:
-        sequence_search_export = json.load(handle)
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pilot_candidate_priority",
+            "active_site_sourcing_export",
+            "sequence_search_export",
+        ),
+        blocker_removed="artifact_graph_consistency_for_external_pilot_packet",
+    )
     packet = build_external_source_pilot_evidence_packet(
-        pilot_candidate_priority=pilot_candidate_priority,
-        active_site_sourcing_export=active_site_sourcing_export,
-        sequence_search_export=sequence_search_export,
+        pilot_candidate_priority=artifact_payloads["pilot_candidate_priority"],
+        active_site_sourcing_export=artifact_payloads["active_site_sourcing_export"],
+        sequence_search_export=artifact_payloads["sequence_search_export"],
         max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), packet)
     print(
@@ -1859,36 +1855,36 @@ def cmd_build_external_source_pilot_evidence_packet(args: argparse.Namespace) ->
 def cmd_build_external_source_pilot_evidence_dossiers(
     args: argparse.Namespace,
 ) -> int:
-    with Path(args.pilot_evidence_packet).open("r", encoding="utf-8") as handle:
-        pilot_evidence_packet = json.load(handle)
-    with Path(args.active_site_evidence_sample).open("r", encoding="utf-8") as handle:
-        active_site_evidence_sample = json.load(handle)
-    with Path(args.active_site_sourcing_resolution).open(
-        "r", encoding="utf-8"
-    ) as handle:
-        active_site_sourcing_resolution = json.load(handle)
-    with Path(args.reaction_evidence_sample).open("r", encoding="utf-8") as handle:
-        reaction_evidence_sample = json.load(handle)
-    with Path(args.sequence_alignment_verification).open(
-        "r", encoding="utf-8"
-    ) as handle:
-        sequence_alignment_verification = json.load(handle)
-    with Path(args.representation_backend_sample).open(
-        "r", encoding="utf-8"
-    ) as handle:
-        representation_backend_sample = json.load(handle)
-    with Path(args.heuristic_control_scores).open("r", encoding="utf-8") as handle:
-        heuristic_control_scores = json.load(handle)
-    with Path(args.structure_mapping_sample).open("r", encoding="utf-8") as handle:
-        structure_mapping_sample = json.load(handle)
-    with Path(args.transfer_blocker_matrix).open("r", encoding="utf-8") as handle:
-        transfer_blocker_matrix = json.load(handle)
-    external_import_readiness_audit = None
-    if args.external_import_readiness_audit:
-        with Path(args.external_import_readiness_audit).open(
-            "r", encoding="utf-8"
-        ) as handle:
-            external_import_readiness_audit = json.load(handle)
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pilot_evidence_packet",
+            "active_site_evidence_sample",
+            "active_site_sourcing_resolution",
+            "reaction_evidence_sample",
+            "sequence_alignment_verification",
+            "representation_backend_sample",
+            "heuristic_control_scores",
+            "structure_mapping_sample",
+            "transfer_blocker_matrix",
+            "external_import_readiness_audit",
+        ),
+        blocker_removed="artifact_graph_consistency_for_external_pilot_dossiers",
+    )
+    pilot_evidence_packet = artifact_payloads["pilot_evidence_packet"]
+    active_site_evidence_sample = artifact_payloads["active_site_evidence_sample"]
+    active_site_sourcing_resolution = artifact_payloads[
+        "active_site_sourcing_resolution"
+    ]
+    reaction_evidence_sample = artifact_payloads["reaction_evidence_sample"]
+    sequence_alignment_verification = artifact_payloads[
+        "sequence_alignment_verification"
+    ]
+    representation_backend_sample = artifact_payloads["representation_backend_sample"]
+    heuristic_control_scores = artifact_payloads["heuristic_control_scores"]
+    structure_mapping_sample = artifact_payloads["structure_mapping_sample"]
+    transfer_blocker_matrix = artifact_payloads["transfer_blocker_matrix"]
+    external_import_readiness_audit = artifact_payloads["external_import_readiness_audit"]
     dossiers = build_external_source_pilot_evidence_dossiers(
         pilot_evidence_packet=pilot_evidence_packet,
         active_site_evidence_sample=active_site_evidence_sample,
@@ -1900,6 +1896,7 @@ def cmd_build_external_source_pilot_evidence_dossiers(
         structure_mapping_sample=structure_mapping_sample,
         transfer_blocker_matrix=transfer_blocker_matrix,
         external_import_readiness_audit=external_import_readiness_audit,
+        artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), dossiers)
     print(
@@ -3543,6 +3540,28 @@ def _load_named_json_artifacts(paths: list[str]) -> list[tuple[str, dict[str, ob
         with path.open("r", encoding="utf-8") as handle:
             artifacts.append((path.name, json.load(handle)))
     return artifacts
+
+
+def _load_external_lineaged_artifacts(
+    args: argparse.Namespace,
+    artifact_names: tuple[str, ...],
+    *,
+    blocker_removed: str,
+) -> tuple[dict[str, dict[str, Any] | None], dict[str, Any]]:
+    artifact_paths = {name: getattr(args, name, None) for name in artifact_names}
+    artifact_payloads = {
+        name: read_json_object(Path(path)) if path else None
+        for name, path in artifact_paths.items()
+    }
+    artifact_lineage = {
+        **validate_external_transfer_artifact_path_lineage(
+            artifact_paths,
+            artifact_payloads,
+            fail_fast=True,
+        ),
+        "blocker_removed": blocker_removed,
+    }
+    return artifact_payloads, artifact_lineage
 
 
 def cmd_summarize_label_factory_batches(args: argparse.Namespace) -> int:

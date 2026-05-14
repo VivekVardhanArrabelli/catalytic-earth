@@ -283,7 +283,12 @@ geometry/retrieval/evaluation artifacts for the 1,000 context confirm the two
 ready rows now use holo alternates `1AWB` and `1J7N` while preserving 0 hard
 negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0
 actionable in-scope failures. These artifacts repair selected-structure
-evidence only; they are not a label-import path.
+evidence only; they are not a label-import path. `build-geometry-features`
+now fails fast if a selected-PDB override plan contains ready rows outside the
+selected graph slice, residue node ids not present in that graph slice, or a
+`current_selected_pdb_id` that no longer matches the selected graph evidence.
+That closes the silent selected-PDB artifact mismatch surface before any
+override geometry is written.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli scan-review-debt-alternate-structures \

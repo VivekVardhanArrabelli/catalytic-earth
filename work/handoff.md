@@ -611,6 +611,37 @@ selected-pilot ESM-2 representation samples, and `foldseek`, `mmseqs`,
 `blastp`, and `diamond` were absent on PATH. The code-confirmed failure was the
 missing lineage check on the high-fan-in scaling-quality audit.
 
+Latest run continued artifact-graph consistency and selected-PDB SPOF hardening
+instead of adding gate count or opening another M-CSA tranche. Code inspection
+found that `build-geometry-features` could accept a selected-PDB override plan
+whose ready rows were outside the selected graph slice, whose residue node ids
+did not belong to the selected graph, or whose `current_selected_pdb_id` no
+longer matched selected graph evidence. That path now fails before geometry
+write, and negative regressions cover out-of-slice override rows and unknown
+override residue node ids. The run also found that several external pilot
+builders joined high-fan-in artifacts before the transfer gate could reject
+mixed source slices. `audit-external-source-import-readiness`,
+`build-external-source-transfer-blocker-matrix`,
+`build-external-source-pilot-evidence-packet`, and
+`build-external-source-pilot-evidence-dossiers` now share a fail-fast external
+artifact-lineage loader, record checked lineage in `metadata.artifact_lineage`,
+and have CLI negative regressions for mixed 1,000/1,025 inputs. Refreshed
+external artifacts keep the 1,025 transfer gate at 66/66, with 0 countable
+external rows and 0 import-ready rows.
+
+Label-quality confidence call for the 2026-05-14T01:30:08Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair, no
+for external-source import, no for new scientific generalization artifacts, and
+yes for SPOF/artifact-lineage hardening. Evidence at run start: 300 unit tests
+passed, `validate` passed with 679 curated labels, the 1,025 preview remained
+non-promotable with 0 clean countable labels, current artifacts already
+contained the proxy sequence/fold-distance holdout plus canonical and
+selected-pilot ESM-2 representation samples, and `foldseek`, `mmseqs`,
+`blastp`, and `diamond` were absent on PATH. The code-confirmed failures were
+silent selected-PDB override mismatch handling and missing build-time lineage
+checks on the import-readiness, blocker-matrix, pilot-packet, and
+pilot-dossier builders.
+
 Previous run targeted the external-pilot representation-control SPOF rather than
 adding gate count. Code and artifact evidence showed that the selected pilot
 dossiers still depended on the 12-row mapped-control representation sample and
@@ -826,13 +857,14 @@ made the gate require selected pilot rows to be eligible and blocker-free.
 Next ordered worklist:
 
 1. Treat external transfer artifact-path lineage as handled for the current
-   1,025 gate: row-level candidate lineage, path-inferred slice lineage, and
-   payload-declared slice contradictions now fail before the gate can silently
-   pass, and pilot priority/review/evidence/dossier artifacts now fail if they
-   stop being review-only/no-decision work products. Continue artifact graph
-   consistency only where new code evidence shows another high-fan-in audit can
-   mix source slice, graph id, label batch, or artifact lineage without a
-   negative regression.
+   1,025 gate and the current import-readiness, blocker-matrix, pilot-packet,
+   and pilot-dossier builders: row-level candidate lineage, path-inferred
+   slice lineage, and payload-declared slice contradictions now fail before the
+   gate or high-fan-in builder can silently pass, and pilot priority/review/
+   evidence/dossier artifacts now fail if they stop being review-only/no-
+   decision work products. Continue artifact graph consistency only where new
+   code evidence shows another high-fan-in audit can mix source slice, graph id,
+   label batch, or artifact lineage without a negative regression.
 2. Sequence/fold-distance holdout evaluation is implemented and pinned by
    regression tests. Treat the current artifacts as a proxy-only generalization
    signal, not as proof of <=30% sequence identity or <0.7 TM-score behavior.

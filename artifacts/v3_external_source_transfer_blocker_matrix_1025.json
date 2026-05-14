@@ -6,6 +6,59 @@
   "metadata": {
     "active_site_sourcing_export_candidate_count": 10,
     "active_site_sourcing_resolution_candidate_count": 10,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "active_site_sourcing_export": "artifacts/v3_external_source_active_site_sourcing_export_1025.json",
+        "active_site_sourcing_resolution": "artifacts/v3_external_source_active_site_sourcing_resolution_1025.json",
+        "candidate_manifest": "artifacts/v3_external_source_candidate_manifest_1025.json",
+        "external_import_readiness_audit": "artifacts/v3_external_source_import_readiness_audit_1025.json",
+        "representation_backend_plan": "artifacts/v3_external_source_representation_backend_plan_1025.json",
+        "representation_backend_sample": "artifacts/v3_external_source_representation_backend_sample_1025.json",
+        "sequence_search_export": "artifacts/v3_external_source_sequence_search_export_1025.json"
+      },
+      "blocker_removed": "artifact_graph_consistency_for_external_blocker_matrix",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "active_site_sourcing_export": 1025,
+        "active_site_sourcing_resolution": 1025,
+        "candidate_manifest": 1025,
+        "external_import_readiness_audit": 1025,
+        "representation_backend_plan": 1025,
+        "representation_backend_sample": 1025,
+        "sequence_search_export": 1025
+      },
+      "payload_methods": {
+        "active_site_sourcing_export": "external_source_active_site_sourcing_export",
+        "active_site_sourcing_resolution": "external_source_active_site_sourcing_resolution",
+        "candidate_manifest": "external_source_candidate_manifest",
+        "external_import_readiness_audit": "external_source_import_readiness_audit",
+        "representation_backend_plan": "external_source_representation_backend_plan",
+        "representation_backend_sample": "external_source_representation_backend_sample",
+        "sequence_search_export": "external_source_sequence_search_export"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {
+        "external_import_readiness_audit": {
+          "metadata.artifact_lineage.slice_id": 1025
+        }
+      },
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "active_site_sourcing_export",
+          "active_site_sourcing_resolution",
+          "candidate_manifest",
+          "external_import_readiness_audit",
+          "representation_backend_plan",
+          "representation_backend_sample",
+          "sequence_search_export"
+        ]
+      }
+    },
     "blocker_counts": {
       "active_site_gap_source_request:binding_context_mapped_ready_for_active_site_sourcing": 7,
       "active_site_gap_source_request:reaction_text_only_needs_curated_residue_source": 3,

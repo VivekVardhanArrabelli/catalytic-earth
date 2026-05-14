@@ -254,6 +254,11 @@ Current expectation:
   manifest rows, per-artifact candidate-count drift, stale sequence-holdout
   audit rows, or pilot artifacts that stop being review-only/no-decision work
   products.
+  The external import-readiness audit, transfer blocker matrix, pilot evidence
+  packet, and pilot evidence dossier builders now share the same fail-fast
+  artifact-path lineage loader and record checked 1,025 lineage under
+  `metadata.artifact_lineage`, so pilot work cannot silently mix source slices
+  before the gate runs.
 - selected-PDB single-point mitigation now has a general override path with
   provenance. `artifacts/v3_selected_pdb_override_plan_700.json` applies the
   holo-preference action path for `m_csa:577` and `m_csa:641`, keeps
@@ -261,7 +266,9 @@ Current expectation:
   needs review, and records 0 countable label candidates. The 1,000-context
   selected-PDB override geometry/retrieval/evaluation artifacts preserve 0 hard
   negatives, 0 near misses, 0 out-of-scope false non-abstentions, and 0
-  actionable in-scope failures.
+  actionable in-scope failures. Ready override rows now fail before geometry
+  write if their entries, residue node ids, or current selected PDB provenance
+  do not match the selected graph slice.
 - external pilot prioritization now has a review-only 10-row worklist:
   `artifacts/v3_external_source_pilot_candidate_priority_1025.json` selects
   lane-balanced candidates from the 30-row external blocker matrix, defers exact

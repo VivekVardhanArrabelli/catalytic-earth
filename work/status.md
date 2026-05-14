@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 79
-- Measured elapsed time: 2904.2 minutes (48.40 hours)
+- Entries: 80
+- Measured elapsed time: 2925.0 minutes (48.75 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 257.9 measured minutes (4.30 hours)
+- post-mcsa-spof-hardening: 278.7 measured minutes (4.64 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 835
-- Evidence references logged: 691
+- Artifact references logged: 852
+- Evidence references logged: 702
 
 ## Recent Entries
-
-### 2026-05-13T17:47:33.256358+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden external lineage and pilot evidence dossiers
-- Time mode: measured
-- Measured minutes: 25.817
-- Started: 2026-05-13T17:21:43.990559Z
-- Ended: 2026-05-13T17:47:33Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_transfer_gate_check_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, README.md, docs/external_source_transfer.md, work/handoff.md, work/external_source_transfer_1025_notes.md
-- Evidence: 287 unit tests passed, validate passed, compileall passed, git diff --check passed, external gate 60/60 with artifact-path lineage, pilot dossiers 10 review-only candidates, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked SPOF/pilot-hardening run. No M-CSA count growth or external import; docs checked and updated.
 
 ### 2026-05-13T18:44:44.009443+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +105,17 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: src/catalytic_earth/cli.py, src/catalytic_earth/labels.py, tests/test_cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_label_batch_acceptance_check_1025_preview.json, artifacts/v3_label_scaling_quality_audit_1025_preview.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_preview_1025_notes.md
 - Evidence: 300 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifacts parsed, label batch acceptance lineage negative regression, label scaling quality lineage negative regression, 0 countable external labels, 0 import-ready external labels
 - Notes: Normal locked SPOF-hardening run. M-CSA-only growth remains stopped; 1025 preview remains non-promotable and all external rows remain review-only.
+
+### 2026-05-14T01:50:53.503582+00:00 - post-mcsa-spof-hardening
+
+- Task: Harden external artifact lineage and selected-PDB overrides
+- Time mode: measured
+- Measured minutes: 20.75
+- Started: 2026-05-14T01:30:08Z
+- Ended: 2026-05-14T01:50:53Z
+- Artifacts: src/catalytic_earth/structure.py, src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, tests/test_structure.py, tests/test_transfer_scope.py, tests/test_cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_import_readiness_audit_1025.json, artifacts/v3_external_source_transfer_blocker_matrix_1025.json, artifacts/v3_external_source_pilot_evidence_packet_1025.json, artifacts/v3_external_source_pilot_evidence_dossiers_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/external_source_transfer.md, docs/label_factory.md, work/handoff.md, work/scope.md
+- Evidence: 307 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifact parse passed, external gate 66/66, 0 countable external labels, 0 import-ready external labels, selected-PDB override mismatch regressions, external mixed-slice CLI regressions, foldseek/mmseqs/blastp/diamond absent
+- Notes: Normal locked SPOF-hardening run. No M-CSA count growth or external import; documentation checked and updated.
 
 ## Expectation Updates
 
@@ -265,3 +265,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T22:34:16.818554+00:00: Artifact-lineage SPOF hardening now includes the external sequence-holdout audit in row-level candidate lineage checks.
 - 2026-05-13T23:52:26.926762+00:00: selected-pilot representation coverage is now a direct review-only gate input rather than stale mapped-control evidence
 - 2026-05-14T00:43:19.772463+00:00: Label batch acceptance and scaling-quality audits now fail fast on mixed slice lineage before count/import decisions.
+- 2026-05-14T01:50:53.503582+00:00: High-fan-in external pilot builders now fail fast on mixed-slice lineage before artifact write; selected-PDB ready overrides must match graph slice provenance.

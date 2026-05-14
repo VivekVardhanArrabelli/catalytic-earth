@@ -452,6 +452,104 @@ class StructureTests(unittest.TestCase):
         )
         self.assertEqual(entry["resolved_residue_count"], 2)
 
+    def test_selected_pdb_override_rejects_rows_outside_graph_slice(self) -> None:
+        graph = {
+            "nodes": [
+                {
+                    "id": "m_csa:1:residue:1",
+                    "type": "catalytic_residue",
+                    "roles": ["acid"],
+                    "structure_positions": [
+                        {"pdb_id": "1ABC", "chain_name": "A", "code": "ASP", "resid": 7}
+                    ],
+                },
+                {
+                    "id": "m_csa:1:residue:2",
+                    "type": "catalytic_residue",
+                    "roles": ["nucleophile"],
+                    "structure_positions": [
+                        {"pdb_id": "1ABC", "chain_name": "A", "code": "CYS", "resid": 70}
+                    ],
+                },
+            ],
+            "edges": [],
+        }
+        override_plan = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:2",
+                    "apply_status": "ready_to_apply",
+                    "current_selected_pdb_id": "1ABC",
+                    "override_pdb_id": "2XYZ",
+                    "residue_positions": [
+                        {
+                            "residue_node_id": "m_csa:2:residue:1",
+                            "chain_name": "A",
+                            "code": "ASP",
+                            "resid": 7,
+                        }
+                    ],
+                }
+            ]
+        }
+
+        with self.assertRaisesRegex(ValueError, "not present in the selected graph slice"):
+            build_geometry_features(
+                graph,
+                max_entries=1,
+                cif_fetcher=lambda pdb_id: SAMPLE_CIF,
+                selected_pdb_overrides=override_plan,
+            )
+
+    def test_selected_pdb_override_rejects_unknown_residue_nodes(self) -> None:
+        graph = {
+            "nodes": [
+                {
+                    "id": "m_csa:1:residue:1",
+                    "type": "catalytic_residue",
+                    "roles": ["acid"],
+                    "structure_positions": [
+                        {"pdb_id": "1ABC", "chain_name": "A", "code": "ASP", "resid": 7}
+                    ],
+                },
+                {
+                    "id": "m_csa:1:residue:2",
+                    "type": "catalytic_residue",
+                    "roles": ["nucleophile"],
+                    "structure_positions": [
+                        {"pdb_id": "1ABC", "chain_name": "A", "code": "CYS", "resid": 70}
+                    ],
+                },
+            ],
+            "edges": [],
+        }
+        override_plan = {
+            "rows": [
+                {
+                    "entry_id": "m_csa:1",
+                    "apply_status": "ready_to_apply",
+                    "current_selected_pdb_id": "1ABC",
+                    "override_pdb_id": "2XYZ",
+                    "residue_positions": [
+                        {
+                            "residue_node_id": "m_csa:999:residue:1",
+                            "chain_name": "A",
+                            "code": "ASP",
+                            "resid": 7,
+                        }
+                    ],
+                }
+            ]
+        }
+
+        with self.assertRaisesRegex(ValueError, "residue_node_id values"):
+            build_geometry_features(
+                graph,
+                max_entries=1,
+                cif_fetcher=lambda pdb_id: SAMPLE_CIF,
+                selected_pdb_overrides=override_plan,
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

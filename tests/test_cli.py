@@ -2878,6 +2878,329 @@ class CliTests(unittest.TestCase):
             )
             self.assertFalse(out.exists())
 
+    def test_external_blocker_matrix_rejects_mixed_slice_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            paths = {
+                "candidate_manifest": (
+                    root / "v3_external_source_candidate_manifest_1025.json"
+                ),
+                "external_import_readiness_audit": (
+                    root
+                    / "v3_external_source_import_readiness_audit_1025.json"
+                ),
+                "active_site_sourcing_export": (
+                    root
+                    / "v3_external_source_active_site_sourcing_export_1025.json"
+                ),
+                "sequence_search_export": (
+                    root / "v3_external_source_sequence_search_export_1025.json"
+                ),
+                "representation_backend_plan": (
+                    root
+                    / "v3_external_source_representation_backend_plan_1000.json"
+                ),
+                "active_site_sourcing_resolution": (
+                    root
+                    / "v3_external_source_active_site_sourcing_resolution_1025.json"
+                ),
+                "representation_backend_sample": (
+                    root
+                    / "v3_external_source_representation_backend_sample_1025.json"
+                ),
+            }
+            for name, path in paths.items():
+                slice_id = 1000 if name == "representation_backend_plan" else 1025
+                path.write_text(
+                    json.dumps(
+                        {
+                            "metadata": {
+                                "method": name,
+                                "source_slice_id": slice_id,
+                            },
+                            "rows": [],
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+            out = root / "matrix.json"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-external-source-transfer-blocker-matrix",
+                    "--candidate-manifest",
+                    str(paths["candidate_manifest"]),
+                    "--external-import-readiness-audit",
+                    str(paths["external_import_readiness_audit"]),
+                    "--active-site-sourcing-export",
+                    str(paths["active_site_sourcing_export"]),
+                    "--sequence-search-export",
+                    str(paths["sequence_search_export"]),
+                    "--representation-backend-plan",
+                    str(paths["representation_backend_plan"]),
+                    "--active-site-sourcing-resolution",
+                    str(paths["active_site_sourcing_resolution"]),
+                    "--representation-backend-sample",
+                    str(paths["representation_backend_sample"]),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "mismatched external transfer artifact lineage",
+                result.stderr,
+            )
+            self.assertFalse(out.exists())
+
+    def test_external_import_readiness_rejects_mixed_slice_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            paths = {
+                "candidate_manifest": (
+                    root / "v3_external_source_candidate_manifest_1025.json"
+                ),
+                "active_site_evidence_sample": (
+                    root / "v3_external_source_active_site_evidence_sample_1025.json"
+                ),
+                "heuristic_control_scores": (
+                    root / "v3_external_source_heuristic_control_scores_1025.json"
+                ),
+                "representation_control_comparison": (
+                    root
+                    / "v3_external_source_representation_control_comparison_1000.json"
+                ),
+                "active_site_gap_source_requests": (
+                    root
+                    / "v3_external_source_active_site_gap_source_requests_1025.json"
+                ),
+                "sequence_neighborhood_sample": (
+                    root / "v3_external_source_sequence_neighborhood_sample_1025.json"
+                ),
+                "sequence_alignment_verification": (
+                    root
+                    / "v3_external_source_sequence_alignment_verification_1025.json"
+                ),
+            }
+            for name, path in paths.items():
+                slice_id = 1000 if name == "representation_control_comparison" else 1025
+                path.write_text(
+                    json.dumps(
+                        {
+                            "metadata": {
+                                "method": name,
+                                "source_slice_id": slice_id,
+                            },
+                            "rows": [],
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+            out = root / "import_readiness.json"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-external-source-import-readiness",
+                    "--candidate-manifest",
+                    str(paths["candidate_manifest"]),
+                    "--active-site-evidence-sample",
+                    str(paths["active_site_evidence_sample"]),
+                    "--heuristic-control-scores",
+                    str(paths["heuristic_control_scores"]),
+                    "--representation-control-comparison",
+                    str(paths["representation_control_comparison"]),
+                    "--active-site-gap-source-requests",
+                    str(paths["active_site_gap_source_requests"]),
+                    "--sequence-neighborhood-sample",
+                    str(paths["sequence_neighborhood_sample"]),
+                    "--sequence-alignment-verification",
+                    str(paths["sequence_alignment_verification"]),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "mismatched external transfer artifact lineage",
+                result.stderr,
+            )
+            self.assertFalse(out.exists())
+
+    def test_build_external_pilot_packet_rejects_mixed_slice_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            paths = {
+                "pilot_candidate_priority": (
+                    root / "v3_external_source_pilot_candidate_priority_1025.json"
+                ),
+                "active_site_sourcing_export": (
+                    root / "v3_external_source_active_site_sourcing_export_1000.json"
+                ),
+                "sequence_search_export": (
+                    root / "v3_external_source_sequence_search_export_1025.json"
+                ),
+            }
+            for name, path in paths.items():
+                slice_id = 1000 if name == "active_site_sourcing_export" else 1025
+                path.write_text(
+                    json.dumps(
+                        {
+                            "metadata": {
+                                "method": name,
+                                "source_slice_id": slice_id,
+                            },
+                            "rows": [],
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+            out = root / "packet.json"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-external-source-pilot-evidence-packet",
+                    "--pilot-candidate-priority",
+                    str(paths["pilot_candidate_priority"]),
+                    "--active-site-sourcing-export",
+                    str(paths["active_site_sourcing_export"]),
+                    "--sequence-search-export",
+                    str(paths["sequence_search_export"]),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "mismatched external transfer artifact lineage",
+                result.stderr,
+            )
+            self.assertFalse(out.exists())
+
+    def test_build_external_pilot_dossiers_rejects_mixed_slice_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            paths = {
+                "pilot_evidence_packet": (
+                    root / "v3_external_source_pilot_evidence_packet_1025.json"
+                ),
+                "active_site_evidence_sample": (
+                    root / "v3_external_source_active_site_evidence_sample_1000.json"
+                ),
+                "active_site_sourcing_resolution": (
+                    root
+                    / "v3_external_source_active_site_sourcing_resolution_1025.json"
+                ),
+                "reaction_evidence_sample": (
+                    root / "v3_external_source_reaction_evidence_sample_1025.json"
+                ),
+                "sequence_alignment_verification": (
+                    root
+                    / "v3_external_source_sequence_alignment_verification_1025.json"
+                ),
+                "representation_backend_sample": (
+                    root
+                    / "v3_external_source_pilot_representation_backend_sample_1025.json"
+                ),
+                "heuristic_control_scores": (
+                    root / "v3_external_source_heuristic_control_scores_1025.json"
+                ),
+                "structure_mapping_sample": (
+                    root / "v3_external_source_structure_mapping_sample_1025.json"
+                ),
+                "transfer_blocker_matrix": (
+                    root / "v3_external_source_transfer_blocker_matrix_1025.json"
+                ),
+                "external_import_readiness_audit": (
+                    root
+                    / "v3_external_source_import_readiness_audit_1025.json"
+                ),
+            }
+            for name, path in paths.items():
+                slice_id = 1000 if name == "active_site_evidence_sample" else 1025
+                path.write_text(
+                    json.dumps(
+                        {
+                            "metadata": {
+                                "method": name,
+                                "source_slice_id": slice_id,
+                            },
+                            "rows": [],
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+            out = root / "dossiers.json"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-external-source-pilot-evidence-dossiers",
+                    "--pilot-evidence-packet",
+                    str(paths["pilot_evidence_packet"]),
+                    "--active-site-evidence-sample",
+                    str(paths["active_site_evidence_sample"]),
+                    "--active-site-sourcing-resolution",
+                    str(paths["active_site_sourcing_resolution"]),
+                    "--reaction-evidence-sample",
+                    str(paths["reaction_evidence_sample"]),
+                    "--sequence-alignment-verification",
+                    str(paths["sequence_alignment_verification"]),
+                    "--representation-backend-sample",
+                    str(paths["representation_backend_sample"]),
+                    "--heuristic-control-scores",
+                    str(paths["heuristic_control_scores"]),
+                    "--structure-mapping-sample",
+                    str(paths["structure_mapping_sample"]),
+                    "--transfer-blocker-matrix",
+                    str(paths["transfer_blocker_matrix"]),
+                    "--external-import-readiness-audit",
+                    str(paths["external_import_readiness_audit"]),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "mismatched external transfer artifact lineage",
+                result.stderr,
+            )
+            self.assertFalse(out.exists())
+
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             lock_dir = Path(tmpdir) / "run.lock"

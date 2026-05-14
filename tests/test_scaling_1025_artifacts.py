@@ -1087,6 +1087,21 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertTrue(import_readiness["metadata"]["guardrail_clean"])
         self.assertFalse(import_readiness["metadata"]["ready_for_label_import"])
         self.assertEqual(
+            import_readiness["metadata"]["artifact_lineage"]["method"],
+            "external_transfer_artifact_path_lineage_validation",
+        )
+        self.assertEqual(
+            import_readiness["metadata"]["artifact_lineage"]["blocker_removed"],
+            "artifact_graph_consistency_for_external_import_readiness",
+        )
+        self.assertEqual(
+            import_readiness["metadata"]["artifact_lineage"]["slice_id"],
+            1025,
+        )
+        self.assertTrue(
+            import_readiness["metadata"]["artifact_lineage"]["guardrail_clean"]
+        )
+        self.assertEqual(
             import_readiness["metadata"]["countable_label_candidate_count"], 0
         )
         self.assertEqual(import_readiness["metadata"]["label_import_ready_count"], 0)
@@ -1158,6 +1173,21 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertFalse(transfer_blocker_matrix["metadata"]["ready_for_label_import"])
         self.assertEqual(
             transfer_blocker_matrix["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            transfer_blocker_matrix["metadata"]["artifact_lineage"]["method"],
+            "external_transfer_artifact_path_lineage_validation",
+        )
+        self.assertEqual(
+            transfer_blocker_matrix["metadata"]["artifact_lineage"]["blocker_removed"],
+            "artifact_graph_consistency_for_external_blocker_matrix",
+        )
+        self.assertEqual(
+            transfer_blocker_matrix["metadata"]["artifact_lineage"]["slice_id"],
+            1025,
+        )
+        self.assertTrue(
+            transfer_blocker_matrix["metadata"]["artifact_lineage"]["guardrail_clean"]
         )
         self.assertEqual(transfer_blocker_matrix["metadata"]["candidate_count"], 30)
         self.assertEqual(
@@ -1381,6 +1411,21 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             pilot_evidence_packet["metadata"]["blocker_removed"],
             "external_pilot_source_packet_consolidation",
         )
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["artifact_lineage"]["method"],
+            "external_transfer_artifact_path_lineage_validation",
+        )
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["artifact_lineage"]["blocker_removed"],
+            "artifact_graph_consistency_for_external_pilot_packet",
+        )
+        self.assertEqual(
+            pilot_evidence_packet["metadata"]["artifact_lineage"]["slice_id"],
+            1025,
+        )
+        self.assertTrue(
+            pilot_evidence_packet["metadata"]["artifact_lineage"]["guardrail_clean"]
+        )
         self.assertTrue(pilot_evidence_packet["metadata"]["guardrail_clean"])
         self.assertEqual(pilot_evidence_packet["metadata"]["candidate_count"], 10)
         self.assertEqual(
@@ -1454,6 +1499,21 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertEqual(
             pilot_evidence_dossiers["metadata"]["blocker_removed"],
             "external_pilot_per_candidate_evidence_dossier_assembly",
+        )
+        self.assertEqual(
+            pilot_evidence_dossiers["metadata"]["artifact_lineage"]["method"],
+            "external_transfer_artifact_path_lineage_validation",
+        )
+        self.assertEqual(
+            pilot_evidence_dossiers["metadata"]["artifact_lineage"]["blocker_removed"],
+            "artifact_graph_consistency_for_external_pilot_dossiers",
+        )
+        self.assertEqual(
+            pilot_evidence_dossiers["metadata"]["artifact_lineage"]["slice_id"],
+            1025,
+        )
+        self.assertTrue(
+            pilot_evidence_dossiers["metadata"]["artifact_lineage"]["guardrail_clean"]
         )
         self.assertEqual(pilot_evidence_dossiers["metadata"]["candidate_count"], 10)
         self.assertEqual(

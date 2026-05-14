@@ -156,12 +156,18 @@ def build_geometry_features(
         if isinstance(entry, dict) and entry.get("entry_id")
     }
     override_by_entry = _selected_pdb_overrides_by_entry(selected_pdb_overrides)
+    selected_entry_ids = sorted(residues_by_entry, key=_entry_sort_key)[:max_entries]
+    _validate_selected_pdb_overrides_for_graph_slice(
+        override_by_entry,
+        selected_entry_ids,
+        residues_by_entry,
+    )
     reused_entry_count = 0
     selected_pdb_override_applied_count = 0
     selected_pdb_override_applied_entry_ids: list[str] = []
     entry_features: list[dict[str, Any]] = []
 
-    for entry_id in sorted(residues_by_entry, key=_entry_sort_key)[:max_entries]:
+    for entry_id in selected_entry_ids:
         override = override_by_entry.get(entry_id)
         if entry_id in reusable_entries and override is None:
             entry_features.append(reusable_entries[entry_id])
@@ -881,6 +887,57 @@ def _selected_pdb_overrides_by_entry(
             "residue_positions": _normalize_override_residue_positions(entry_id, positions),
         }
     return overrides
+
+
+def _validate_selected_pdb_overrides_for_graph_slice(
+    overrides_by_entry: dict[str, dict[str, Any]],
+    selected_entry_ids: list[str],
+    residues_by_entry: dict[str, list[dict[str, Any]]],
+) -> None:
+    if not overrides_by_entry:
+        return
+
+    selected_entry_set = set(selected_entry_ids)
+    missing_entries = sorted(
+        set(overrides_by_entry) - selected_entry_set, key=_entry_sort_key
+    )
+    if missing_entries:
+        raise ValueError(
+            "selected-PDB override ready rows are not present in the selected "
+            f"graph slice: {', '.join(missing_entries)}"
+        )
+
+    for entry_id, override in overrides_by_entry.items():
+        graph_residue_ids = {
+            str(residue.get("id"))
+            for residue in residues_by_entry.get(entry_id, [])
+            if residue.get("id")
+        }
+        override_residue_ids = {
+            str(position.get("residue_node_id"))
+            for position in override.get("residue_positions", [])
+            if position.get("residue_node_id")
+        }
+        unknown_residue_ids = sorted(override_residue_ids - graph_residue_ids)
+        if unknown_residue_ids:
+            raise ValueError(
+                f"{entry_id}: selected-PDB override residue_node_id values are "
+                "not present in the selected graph slice: "
+                f"{', '.join(unknown_residue_ids)}"
+            )
+
+        current_selected_pdb_id = override.get("current_selected_pdb_id")
+        positions_by_pdb = _positions_by_pdb(residues_by_entry.get(entry_id, []))
+        if current_selected_pdb_id and positions_by_pdb:
+            selected_pdb_id = sorted(
+                positions_by_pdb, key=lambda item: (-len(positions_by_pdb[item]), item)
+            )[0]
+            if str(current_selected_pdb_id).upper() != selected_pdb_id:
+                raise ValueError(
+                    f"{entry_id}: selected-PDB override current_selected_pdb_id "
+                    f"{current_selected_pdb_id} does not match selected graph "
+                    f"PDB {selected_pdb_id}"
+                )
 
 
 def _normalize_override_residue_positions(

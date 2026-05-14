@@ -3887,6 +3887,11 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                     }
                 ],
             },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
         )
         audit = audit_external_source_transfer_blocker_matrix(
             transfer_blocker_matrix=matrix,
@@ -3918,6 +3923,11 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             matrix["metadata"]["representation_backend_sample_candidate_count"], 1
         )
+        self.assertEqual(
+            matrix["metadata"]["artifact_lineage"]["method"],
+            "external_transfer_artifact_path_lineage_validation",
+        )
+        self.assertEqual(matrix["metadata"]["artifact_lineage"]["slice_id"], 1025)
         self.assertEqual(
             matrix["metadata"]["dominant_prioritized_action_fraction"], 0.5
         )
@@ -4337,6 +4347,11 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             pilot_candidate_priority=priority,
             active_site_sourcing_export=active_site_export,
             sequence_search_export=sequence_export,
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
         )
 
         self.assertEqual(
@@ -4348,6 +4363,11 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             "external_pilot_source_packet_consolidation",
         )
         self.assertTrue(packet["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            packet["metadata"]["artifact_lineage"]["method"],
+            "external_transfer_artifact_path_lineage_validation",
+        )
+        self.assertEqual(packet["metadata"]["artifact_lineage"]["slice_id"], 1025)
         self.assertEqual(packet["metadata"]["candidate_count"], 1)
         self.assertEqual(packet["metadata"]["source_target_count"], 2)
         self.assertEqual(packet["metadata"]["countable_label_candidate_count"], 0)
@@ -4879,10 +4899,20 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
                     }
                 ]
             },
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
         )
 
         self.assertFalse(audit["metadata"]["ready_for_label_import"])
         self.assertTrue(audit["metadata"]["guardrail_clean"])
+        self.assertEqual(
+            audit["metadata"]["artifact_lineage"]["method"],
+            "external_transfer_artifact_path_lineage_validation",
+        )
+        self.assertEqual(audit["metadata"]["artifact_lineage"]["slice_id"], 1025)
         self.assertEqual(audit["metadata"]["countable_label_candidate_count"], 0)
         self.assertEqual(audit["metadata"]["candidate_count"], 2)
         self.assertEqual(audit["metadata"]["active_site_gap_count"], 1)
@@ -5014,6 +5044,10 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             payload = json.loads(out.read_text(encoding="utf-8"))
             self.assertTrue(payload["metadata"]["guardrail_clean"])
             self.assertFalse(payload["metadata"]["ready_for_label_import"])
+            self.assertEqual(
+                payload["metadata"]["artifact_lineage"]["method"],
+                "external_transfer_artifact_path_lineage_validation",
+            )
             self.assertEqual(payload["metadata"]["candidate_count"], 1)
             self.assertEqual(
                 payload["rows"][0]["next_action"],
@@ -5601,6 +5635,34 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
         self.assertEqual(
             dossiers["metadata"]["representation_sample_candidate_count"], 1
         )
+
+    def test_external_pilot_dossiers_record_artifact_lineage(self) -> None:
+        dossiers = build_external_source_pilot_evidence_dossiers(
+            pilot_evidence_packet={
+                "metadata": {"method": "external_source_pilot_evidence_packet"},
+                "rows": [{"rank": 1, "accession": "P12345"}],
+            },
+            active_site_evidence_sample={"rows": []},
+            active_site_sourcing_resolution={"rows": [{"accession": "P12345"}]},
+            reaction_evidence_sample={"rows": []},
+            sequence_alignment_verification={"rows": []},
+            representation_backend_sample={"rows": []},
+            heuristic_control_scores={"results": []},
+            structure_mapping_sample={"entries": []},
+            transfer_blocker_matrix={"rows": [{"accession": "P12345"}]},
+            external_import_readiness_audit={"rows": [{"accession": "P12345"}]},
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
+        )
+
+        self.assertEqual(
+            dossiers["metadata"]["artifact_lineage"]["method"],
+            "external_transfer_artifact_path_lineage_validation",
+        )
+        self.assertEqual(dossiers["metadata"]["artifact_lineage"]["slice_id"], 1025)
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,

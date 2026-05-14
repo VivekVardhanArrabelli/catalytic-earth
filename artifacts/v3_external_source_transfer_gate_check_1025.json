@@ -288,7 +288,20 @@
           "transfer_manifest": "external_source_transfer_scope_manifest"
         },
         "payload_path_mismatch_artifacts": {},
-        "payload_slice_ids": {},
+        "payload_slice_ids": {
+          "external_import_readiness_audit": {
+            "metadata.artifact_lineage.slice_id": 1025
+          },
+          "pilot_evidence_dossiers": {
+            "metadata.artifact_lineage.slice_id": 1025
+          },
+          "pilot_evidence_packet": {
+            "metadata.artifact_lineage.slice_id": 1025
+          },
+          "transfer_blocker_matrix": {
+            "metadata.artifact_lineage.slice_id": 1025
+          }
+        },
         "slice_id": 1025,
         "slice_members": {
           "1025": [

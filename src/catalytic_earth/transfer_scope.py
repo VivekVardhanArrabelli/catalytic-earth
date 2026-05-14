@@ -5808,6 +5808,7 @@ def audit_external_source_import_readiness(
     sequence_neighborhood_sample: dict[str, Any],
     sequence_alignment_verification: dict[str, Any] | None = None,
     max_rows: int = 100,
+    artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Summarize remaining external import blockers by candidate."""
     active_site_by_accession = {
@@ -5965,6 +5966,7 @@ def audit_external_source_import_readiness(
                 "sequence, heuristic, representation, review-decision, and "
                 "label-factory gates all pass"
             ),
+            "artifact_lineage": artifact_lineage or {},
         },
         "rows": rows,
         "blockers": blockers,
@@ -5987,6 +5989,7 @@ def build_external_source_transfer_blocker_matrix(
     active_site_sourcing_resolution: dict[str, Any] | None = None,
     representation_backend_sample: dict[str, Any] | None = None,
     max_rows: int = 100,
+    artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Join external blocker packets into a candidate-level review matrix."""
     readiness_by_accession = {
@@ -6140,6 +6143,7 @@ def build_external_source_transfer_blocker_matrix(
                 "blocker matrices join review packets into a worklist only; "
                 "they cannot create countable labels or import-ready rows"
             ),
+            "artifact_lineage": artifact_lineage or {},
         },
         "rows": rows,
         "blockers": [
@@ -6632,6 +6636,7 @@ def build_external_source_pilot_evidence_packet(
     active_site_sourcing_export: dict[str, Any],
     sequence_search_export: dict[str, Any],
     max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Join source-review targets for the selected external pilot rows."""
     if max_rows < 1:
@@ -6774,6 +6779,7 @@ def build_external_source_pilot_evidence_packet(
             "missing_required_active_site_export_accessions": sorted(
                 missing_required_active_site_accessions
             ),
+            "artifact_lineage": artifact_lineage or {},
             "guardrail_clean": guardrail_clean,
             "blockers": blockers,
             "review_only": True,
@@ -6800,6 +6806,7 @@ def build_external_source_pilot_evidence_dossiers(
     structure_mapping_sample: dict[str, Any],
     transfer_blocker_matrix: dict[str, Any],
     external_import_readiness_audit: dict[str, Any] | None = None,
+    artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Assemble per-candidate review dossiers for the selected external pilot."""
 
@@ -6919,6 +6926,7 @@ def build_external_source_pilot_evidence_dossiers(
             "source_representation_backend_sample_method": (
                 representation_backend_sample.get("metadata", {}).get("method")
             ),
+            "artifact_lineage": artifact_lineage or {},
             "candidate_count": len(rows),
             "ready_for_label_import": False,
             "countable_label_candidate_count": 0,

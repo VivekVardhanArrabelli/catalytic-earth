@@ -1,6 +1,39 @@
 {
   "metadata": {
     "active_site_sourcing_packet_count": 3,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "active_site_sourcing_export": "artifacts/v3_external_source_active_site_sourcing_export_1025.json",
+        "pilot_candidate_priority": "artifacts/v3_external_source_pilot_candidate_priority_1025.json",
+        "sequence_search_export": "artifacts/v3_external_source_sequence_search_export_1025.json"
+      },
+      "blocker_removed": "artifact_graph_consistency_for_external_pilot_packet",
+      "blockers": [],
+      "conflicting_payload_artifacts": {},
+      "guardrail_clean": true,
+      "method": "external_transfer_artifact_path_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "path_slice_ids": {
+        "active_site_sourcing_export": 1025,
+        "pilot_candidate_priority": 1025,
+        "sequence_search_export": 1025
+      },
+      "payload_methods": {
+        "active_site_sourcing_export": "external_source_active_site_sourcing_export",
+        "pilot_candidate_priority": "external_source_pilot_candidate_priority",
+        "sequence_search_export": "external_source_sequence_search_export"
+      },
+      "payload_path_mismatch_artifacts": {},
+      "payload_slice_ids": {},
+      "slice_id": 1025,
+      "slice_members": {
+        "1025": [
+          "active_site_sourcing_export",
+          "pilot_candidate_priority",
+          "sequence_search_export"
+        ]
+      }
+    },
     "blocker_removed": "external_pilot_source_packet_consolidation",
     "blockers": [],
     "candidate_count": 10,
