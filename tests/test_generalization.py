@@ -1631,6 +1631,112 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(moved_rows[0]["source_partition"], "heldout")
         self.assertEqual(moved_rows[0]["partition"], "in_distribution")
 
+    def test_current_foldseek_split_repair_candidate_readiness_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_coordinate_readiness")
+        self.assertEqual(metadata["sequence_holdout_row_count"], 678)
+        self.assertEqual(metadata["coordinate_fetch_cap"], 676)
+        self.assertFalse(metadata["coordinate_fetch_cap_applied"])
+        self.assertEqual(metadata["selected_structure_count"], 672)
+        self.assertEqual(metadata["materialized_coordinate_count"], 672)
+        self.assertEqual(metadata["missing_or_unsupported_structure_count"], 2)
+        self.assertEqual(metadata["fetch_failure_count"], 0)
+        self.assertEqual(metadata["not_materialized_structure_count"], 0)
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        rows_by_entry = {row["entry_id"]: row for row in artifact["rows"]}
+        self.assertEqual(
+            rows_by_entry["m_csa:34"]["sequence_holdout_partition"],
+            "in_distribution",
+        )
+        self.assertEqual(
+            rows_by_entry["m_csa:34"]["coordinate_materialization_status"],
+            "already_materialized",
+        )
+
+    def test_current_repaired_foldseek_signal_expanded100_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(metadata["method"], "foldseek_tm_score_signal")
+        self.assertEqual(
+            metadata["readiness_artifact"],
+            "artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json",
+        )
+        self.assertEqual(metadata["available_staged_coordinate_count"], 672)
+        self.assertEqual(metadata["staged_coordinate_count"], 100)
+        self.assertEqual(metadata["tm_signal_coordinate_cap_requested"], 100)
+        self.assertTrue(metadata["tm_signal_coordinate_cap_applied"])
+        self.assertEqual(metadata["foldseek_run_status"], "completed")
+        self.assertEqual(metadata["foldseek_version"], "10.941cd33")
+        self.assertEqual(metadata["pair_count"], 27542)
+        self.assertEqual(metadata["mapped_pair_count"], 27542)
+        self.assertEqual(metadata["heldout_pair_count"], 646)
+        self.assertEqual(metadata["heldout_in_distribution_pair_count"], 6930)
+        self.assertEqual(metadata["train_test_pair_count"], 6930)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.6993)
+        self.assertTrue(metadata["tm_score_target_achieved_for_computed_subset"])
+        self.assertLess(metadata["max_observed_train_test_tm_score"], 0.7)
+        self.assertEqual(metadata["raw_name_mapping_unmapped_count"], 0)
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertEqual(metadata["remaining_uncomputed_staged_coordinate_count"], 572)
+        self.assertNotIn(
+            "computed train/test TM-score target <0.7 is not achieved",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertIn(
+            "available staged coordinates were excluded by the signal cap",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertTrue(
+            all(not row["countable_label_candidate"] for row in artifact["rows"])
+        )
+        self.assertTrue(all(not row["import_ready"] for row in artifact["rows"]))
+
+    def test_current_repaired_foldseek_target_audit_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "foldseek_tm_score_target_failure_audit"
+        )
+        self.assertEqual(metadata["source_signal_staged_coordinate_count"], 100)
+        self.assertEqual(
+            metadata["source_signal_artifact"],
+            "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json",
+        )
+        self.assertEqual(metadata["train_test_pair_count"], 6930)
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 0)
+        self.assertEqual(metadata["violating_unique_structure_pair_count"], 0)
+        self.assertEqual(metadata["violating_unique_entry_pair_count"], 0)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.6993)
+        self.assertTrue(metadata["tm_score_target_achieved_for_computed_subset"])
+        self.assertFalse(
+            metadata["current_sequence_holdout_split_tm_score_target_blocked"]
+        )
+        self.assertFalse(metadata["split_repair_required_for_target"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(artifact["blocking_pairs"], [])
+
 
 def _result(
     entry_id: str,

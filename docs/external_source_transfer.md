@@ -129,7 +129,22 @@ applies the same move to a candidate copy of the sequence holdout. The repaired
 candidate has 135 held-out rows, 44 held-out in-scope rows, 0 held-out
 out-of-scope false non-abstentions, and no remaining held-out overlap with the
 moved `mmseqs30:m_csa:34` cluster. It does not replace the canonical sequence
-holdout or downstream artifacts.
+holdout. The downstream repaired-coordinate view now exists:
+`artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json`
+uses that candidate holdout, keeps all 672 currently materialized coordinates
+staged, moves `m_csa:34` to in-distribution, and preserves the explicit
+coordinate exclusions for `m_csa:372` and `m_csa:501`. The actual repaired
+expanded100 Foldseek rerun in
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`
+uses the same 100-coordinate cap and Foldseek `10.941cd33`, maps 27,542 pair
+rows, evaluates 6,930 heldout/in-distribution train/test pairs, and records max
+train/test TM-score `0.6993`. The companion target audit
+`artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`
+finds 0 target-violating pairs. This removes the projection-only blocker for
+the computed subset, but remains review-only and non-countable: the canonical
+sequence holdout is unchanged, 572 staged coordinates remain outside the capped
+signal, two selected rows remain coordinate exclusions, and no full
+TM-score-holdout claim is permitted.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until a full Foldseek-backed

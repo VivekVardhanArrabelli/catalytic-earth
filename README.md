@@ -388,7 +388,21 @@ applies the same move to a candidate copy of the sequence holdout: `m_csa:34`
 moves from held-out to in-distribution, held-out count becomes 135, held-out
 in-scope count stays 44, held-out out-of-scope false non-abstentions stay 0,
 and the moved MMseqs2 cluster does not overlap remaining held-out clusters.
-This candidate does not replace the canonical holdout or downstream artifacts.
+`artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json`
+then rebuilds the Foldseek coordinate-readiness view from that candidate split
+while reusing the all-materializable coordinate sidecar: 672 coordinates remain
+staged, `m_csa:34` is now in-distribution, and `m_csa:372`/`m_csa:501` remain
+explicit coordinate exclusions. The companion actual Foldseek rerun
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`
+uses the same 100-coordinate cap as expanded100 under the candidate partition:
+27,542 mapped pair rows, 6,930 heldout/in-distribution train/test rows, max
+observed train/test TM-score `0.6993`, and 0 target-violating pairs in
+`artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`.
+This removes the projection-only ambiguity for the computed subset, but the
+candidate does not replace the canonical holdout or authorize a full
+TM-score-holdout claim: 572 staged coordinates remain uncomputed, the signal is
+capped, two selected rows remain excluded from coordinate materialization, and
+all three artifacts keep 0 countable/import-ready rows.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

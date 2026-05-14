@@ -50,6 +50,35 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T19:52:23Z run after clean startup gates
+(`346` unit tests passed and `validate` passed):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and
+  the source-scale audit remains capped at 1,003 observed M-CSA source records.
+  No M-CSA-only tranche should be opened without new source-scale evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. The selected pilot still has 10 rows, 0 terminal decisions, 0
+  import-ready rows, 0 countable candidates, 3 active-site-source blockers, 10
+  broader duplicate-screening blockers, 3 representation-control
+  stability-change blockers, and 10 full-gate blockers.
+- Scientific generalization work: Yes for direct Foldseek/TM-score split
+  repair follow-through, but not for a full split claim. This run added
+  `artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json`,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`,
+  and
+  `artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`.
+  The actual repaired expanded100 Foldseek rerun uses the candidate holdout
+  where `m_csa:34` is in-distribution, maps 27,542 pair rows, evaluates 6,930
+  heldout/in-distribution train/test pairs, and records max train/test TM-score
+  `0.6993` with 0 target-violating pairs in the companion audit.
+- SPOF hardening work: Yes. The new artifacts remove the projection-only
+  ambiguity for the computed repaired subset while preserving false-claim
+  safety: the canonical holdout is unchanged, the source signal is still capped
+  at 100/672 staged coordinates, `m_csa:372` and `m_csa:501` remain explicit
+  coordinate exclusions, all rows remain review-only/non-countable, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-14T18:51:29Z run after clean startup gates
 (`340` unit tests passed and `validate` passed):
 
@@ -249,6 +278,19 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Recent Project Progress
 
+- Added
+  `artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json`,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`,
+  and
+  `artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`.
+  The coordinate-readiness artifact consumes the candidate sequence holdout and
+  moves `m_csa:34` to in-distribution while keeping 672 materialized
+  coordinates and the two coordinate exclusions. The actual Foldseek rerun uses
+  the same 100-coordinate cap as expanded100 under the repaired partition:
+  27,542 mapped pair rows, 6,930 train/test rows, max train/test TM-score
+  `0.6993`, and 0 target-violating pairs. This removes the projection-only
+  blocker for the computed subset, but the canonical holdout is unchanged and a
+  full all-materializable split remains uncomputed.
 - Added `artifacts/v3_foldseek_tm_score_split_repair_plan_1000.json` plus CLI
   and regression coverage. The plan consumes the target-failure audit and
   sequence holdout, names `m_csa:34` as the only held-out row that must move to
@@ -1066,14 +1108,24 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current run was direct only, with no subagents or delegation. It added exact
-Foldseek target-failure evidence and selected-pilot representation adjudication.
-Do not open another M-CSA-only tranche. Do not claim full TM-score holdout:
-`artifacts/v3_foldseek_tm_score_target_failure_audit_1000.json` shows the
-current sequence-holdout split already fails the `<0.7` target on
-`m_csa:33`/`m_csa:34` (`pdb:1JC5`/`pdb:1MPY`) with max pair TM-score `0.7515`.
-The next Foldseek work should be split repair/exclusion review plus a later
-uncapped confirmation if feasible, not another routine capped increment.
+Current run was direct only, with no subagents or delegation. It applied the
+candidate split repair to the Foldseek coordinate-readiness path and reran an
+actual repaired expanded100 Foldseek signal. Do not open another M-CSA-only
+tranche. Do not claim full TM-score holdout:
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`
+shows the computed repaired 100-coordinate subset now has max train/test
+TM-score `0.6993`, and
+`artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`
+finds 0 target-violating pairs. This only removes the projection-only blocker
+for the computed subset. The canonical sequence holdout remains unchanged, 572
+staged coordinates remain uncomputed, `m_csa:372` and `m_csa:501` remain
+coordinate exclusions, and `full_tm_score_holdout_claim_permitted=false`.
+The next Foldseek work should either run an uncapped all-materializable signal
+if feasible within the automation window or build the smallest direct
+split-builder/evaluation artifact needed to compare the repaired candidate
+against all materialized coordinates. Do not add another routine capped
+increment unless the full run is concretely infeasible and the bounded slice is
+documented as runtime-limited.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation

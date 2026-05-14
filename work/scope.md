@@ -209,8 +209,16 @@ Current expectation:
   metrics still need regeneration. A candidate repaired sequence holdout now
   applies the move to a copy: 135 held-out rows, 44 held-out in-scope rows, 0
   held-out out-of-scope false non-abstentions, and no remaining held-out
-  overlap with the moved `mmseqs30:m_csa:34` cluster. It is not canonical and
-  downstream artifacts are not rebuilt from it. The first 12-row
+  overlap with the moved `mmseqs30:m_csa:34` cluster. It is not canonical. A
+  downstream repaired-coordinate readiness and actual repaired expanded100
+  Foldseek signal now consume that candidate split: `m_csa:34` is
+  in-distribution, 672 coordinates are staged, the same 100-coordinate cap maps
+  27,542 pair rows and 6,930 train/test rows, max train/test TM-score is
+  `0.6993`, and the companion target audit finds 0 target-violating pairs. The
+  result removes the projection-only computed-subset blocker, but it remains
+  review-only and non-countable: the canonical holdout is unchanged, 572 staged
+  coordinates remain uncomputed, two coordinate exclusions remain, and no full
+  TM-score holdout claim is permitted. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

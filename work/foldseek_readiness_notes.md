@@ -11,6 +11,7 @@ Target-failure audit update: 2026-05-14T17:58:00Z
 Split-repair plan update: 2026-05-14T18:57:00Z
 Split-repair projection update: 2026-05-14T19:03:00Z
 Sequence-holdout repair-candidate update: 2026-05-14T19:09:00Z
+Repaired expanded100 TM signal update: 2026-05-14T20:35:00Z
 
 Status:
 
@@ -153,6 +154,28 @@ Current TM-score readiness:
   the moved `mmseqs30:m_csa:34` cluster. This candidate is not canonical,
   does not rebuild downstream retrieval artifacts, and still forbids a full
   TM-score holdout claim.
+- `artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json`
+  rebuilds the coordinate-readiness view from the candidate sequence holdout.
+  It reuses the all-materializable coordinate sidecar with 672 staged
+  coordinates, moves `m_csa:34` to in-distribution, keeps `m_csa:372` and
+  `m_csa:501` as explicit coordinate exclusions, records 0 fetch failures, and
+  keeps all rows review-only/non-countable.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`
+  reruns the actual Foldseek signal under that candidate split, using
+  `/private/tmp/catalytic-foldseek-env/bin/foldseek` version `10.941cd33`,
+  `--max-staged-coordinates 100`, and `--prior-staged-coordinate-count 100`.
+  The run maps 27,542 pair rows, 646 heldout pair rows, 6,930
+  heldout/in-distribution train/test rows, 19,966 in-distribution pair rows,
+  and max observed train/test TM-score `0.6993`; the computed subset now
+  achieves the `<0.7` target without relying on projection-only metadata. It
+  remains capped, review-only, non-countable, and not import-ready because 572
+  staged coordinates remain uncomputed and a full split builder has not run.
+- `artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`
+  confirms 0 target-violating train/test pairs for the repaired expanded100
+  computed subset. It keeps `full_tm_score_holdout_claim_permitted=false`
+  because the source signal is still capped, two evaluated rows lack supported
+  selected coordinates, and the full all-materializable Foldseek/TM-score split
+  remains uncomputed.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
   `full_tm_score_holdout_claim_permitted=false`,
@@ -280,4 +303,41 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
   --max-staged-coordinates 100 \
   --prior-staged-coordinate-count 80 \
   --out artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json
+```
+
+The repaired split coordinate-readiness command used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-coordinate-readiness \
+  --slice-id 1000 \
+  --retrieval artifacts/v3_geometry_retrieval_1000.json \
+  --labels data/registries/curated_mechanism_labels.json \
+  --geometry artifacts/v3_geometry_features_1000.json \
+  --sequence-holdout artifacts/v3_sequence_distance_holdout_split_repair_candidate_1000.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --coordinate-dir artifacts/v3_foldseek_coordinates_1000 \
+  --max-coordinate-files 676 \
+  --out artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json
+```
+
+The repaired expanded100 partial signal used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --max-staged-coordinates 100 \
+  --prior-staged-coordinate-count 100 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json
+```
+
+The repaired expanded100 target audit used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli audit-foldseek-tm-score-target-failure \
+  --signal artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json \
+  --threshold 0.7 \
+  --max-blocking-pairs 20 \
+  --out artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json
 ```
