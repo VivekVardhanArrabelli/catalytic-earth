@@ -41,12 +41,15 @@ Current TM-score readiness:
   stages all currently materializable supported selected coordinates for the
   accepted 1,000 context: 672 unique supported selected PDB mmCIF sidecars,
   676 coordinate-materializable evaluated rows, 0 fetch failures, and 0
-  supported selected structures left unstaged. It removes the unstaged
-  selected-coordinate sidecar blocker, but remains review-only and non-countable
-  with `tm_score_split_computed=false` and
-  `full_tm_score_split_computed=false`. The remaining blockers are the two
-  evaluated rows with missing/unsupported selected structures (`m_csa:372` and
-  `m_csa:501`) and the still-unrun full Foldseek/TM-score split/target check.
+  supported selected structures left unstaged. It now explicitly records
+  `m_csa:372` and `m_csa:501` as Foldseek coordinate exclusions because both
+  rows have `geometry_status=no_structure_positions` and
+  `selected_structure_id=null` in the current evidence. It removes the
+  unstaged selected-coordinate sidecar blocker, but remains review-only and
+  non-countable with `tm_score_split_computed=false` and
+  `full_tm_score_split_computed=false`. The remaining blockers are the still
+  unrun full Foldseek/TM-score split/target check and reporting the exclusions
+  before any full-holdout claim.
 - `artifacts/v3_foldseek_tm_score_signal_1000_staged25.json` adds a bounded
   Foldseek `easy-search` signal over only those staged sidecars. It records
   25 staged coordinates, 1,840 pair rows, 1,840 mapped rows, 532 staged
@@ -98,9 +101,9 @@ Current TM-score readiness:
   blocked/no durable artifact for this delegated slice unless a later worker
   verifies a completed artifact exists.
 
-TM-score split remains blocked on the two missing selected-structure rows
-(`m_csa:372`, `m_csa:501`) and an uncapped full Foldseek-backed split/signal
-over the materialized coordinate set. The expanded60 signal proves the backend
+TM-score split remains blocked on an uncapped full Foldseek-backed split/signal
+over the materialized coordinate set, with the `m_csa:372` and `m_csa:501`
+coordinate exclusions reported. The expanded60 signal proves the backend
 can produce a larger all-materializable-readiness-derived staged-coordinate
 partial signal with capped-search execution and raw-name mapping aligned, but
 it does not satisfy the full accepted-registry TM-score holdout or the `<0.7`

@@ -188,9 +188,11 @@ Current expectation:
   0 unmapped raw names, and 0 countable/import-ready rows, removing the
   expanded40 partial-signal ceiling. These signals remain
   review-only/non-countable; the `<0.7` target is not achieved on the partial
-  signal, 612 staged coordinates remain outside the capped computation, and
-  the two missing selected structures plus a full Foldseek-backed split builder
-  are still required. The first 12-row
+  signal, 612 staged coordinates remain outside the capped computation, and a
+  full Foldseek-backed split builder is still required. The coordinate
+  readiness artifact now explicitly excludes `m_csa:372` and `m_csa:501`
+  because both lack selected coordinate structures in current evidence; those
+  exclusions must be reported before any full-holdout claim. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute
@@ -200,9 +202,14 @@ Current expectation:
 - external-pilot readiness now has a review-only active-site evidence decision
   artifact for the 10 selected rows. It records 7 explicit active-site source
   rows, 3 binding-context-only rows, 0 countable rows, and 0 import-ready rows.
-  The next import blockers are broader duplicate screening, representation
-  control review, completed no-decision-to-decision review packets, and full
-  label-factory gates.
+  A separate success-criteria artifact now makes the pilot completion bar
+  explicit: all 10 rows must reach terminal decisions with no unresolved
+  process blockers, and at least 1 row must become import-ready under full
+  gates unless a zero-pass result is evidence-explained rather than
+  process-missing. The current status is `needs_more_work` with 0 terminal
+  decisions, 0 import-ready rows, 3 unresolved active-site-source rows, 10
+  broader duplicate-screening blockers, 9 representation-control blockers, and
+  10 full-gate blockers.
 - next serious step: keep scaling geometry-aware labels through the factory,
   not by direct bulk curation
 - immediate scientific-expansion priority completed: the expert-reviewed
@@ -384,8 +391,9 @@ Current expectation:
   sequence-neighborhood screening, bounded sequence-alignment verification,
   sequence-search export, backend sequence search, import-readiness audit, active-site sourcing
   queue/export/resolution, representation-backend plan/sample, transfer blocker
-  matrix, and a 67/67 transfer gate with direct current-reference
-  sequence-screen and backend sequence-search checks;
+  matrix, active-site pilot decisions, pilot success criteria, and a 68/68
+  transfer gate with direct current-reference sequence-screen and backend
+  sequence-search checks;
   2 exact-reference overlaps are routed to holdout controls, the
   lane-balance audit confirms six evenly represented query lanes, a
   full Rhea reaction-context sample collects 64 review-only reaction records

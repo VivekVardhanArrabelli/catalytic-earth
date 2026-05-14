@@ -433,10 +433,17 @@ class FoldseekCoordinateReadinessTests(unittest.TestCase):
         self.assertEqual(metadata["materialized_coordinate_count"], 2)
         self.assertEqual(metadata["staged_coordinate_count"], 2)
         self.assertEqual(metadata["missing_or_unsupported_structure_count"], 1)
+        self.assertEqual(metadata["tm_score_coordinate_exclusion_count"], 1)
         self.assertIn("all currently materializable", metadata["blocker_removed"])
         self.assertIn(
-            "one or more evaluated rows lacks a supported selected structure",
+            "evaluated rows without supported selected structures are explicitly "
+            "excluded from Foldseek coordinate materialization",
             metadata["blockers_remaining"],
+        )
+        excluded = metadata["tm_score_coordinate_exclusions"][0]
+        self.assertEqual(
+            excluded["tm_score_coordinate_exclusion_reason"],
+            "missing_selected_coordinate_structure",
         )
         self.assertIn(
             "full Foldseek/TM-score split builder has not been run",
@@ -823,12 +830,24 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["materialized_coordinate_count"], 672)
         self.assertEqual(metadata["staged_coordinate_count"], 672)
         self.assertEqual(metadata["missing_or_unsupported_structure_count"], 2)
+        self.assertEqual(metadata["tm_score_coordinate_exclusion_count"], 2)
         self.assertEqual(metadata["fetch_failure_count"], 0)
         self.assertEqual(metadata["not_materialized_structure_count"], 0)
         self.assertIn("all currently materializable", metadata["blocker_removed"])
         self.assertIn(
-            "one or more evaluated rows lacks a supported selected structure",
+            "evaluated rows without supported selected structures are explicitly "
+            "excluded from Foldseek coordinate materialization",
             metadata["blockers_remaining"],
+        )
+        self.assertEqual(
+            {
+                row["entry_id"]: row["tm_score_coordinate_exclusion_reason"]
+                for row in metadata["tm_score_coordinate_exclusions"]
+            },
+            {
+                "m_csa:372": "missing_selected_coordinate_structure",
+                "m_csa:501": "missing_selected_coordinate_structure",
+            },
         )
         self.assertFalse(metadata["tm_score_split_computed"])
         self.assertFalse(metadata["full_tm_score_split_computed"])

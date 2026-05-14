@@ -182,7 +182,7 @@ sequence-search export, import-readiness audit, active-site sourcing queue/expor
 active-site sourcing resolution, representation-backend plan/sample, a
 candidate blocker matrix, a 10-row external pilot candidate priority worklist,
 a consolidated pilot evidence packet, 10 per-candidate pilot evidence
-dossiers, a 10-row pilot-specific ESM-2 representation sample, and a 67/67
+dossiers, a 10-row pilot-specific ESM-2 representation sample, and a 68/68
 external transfer gate with backend sequence-search, current-reference sequence
 screen, candidate, artifact-path, and pilot review-only decision validation. The
 evidence plan
@@ -269,13 +269,23 @@ and 3 rows with binding context only, removes the pilot source-status ambiguity
 blocker, and keeps all 10 rows non-countable and not import-ready because
 broader duplicate screening, representation controls, review decisions, and the
 full label-factory gate remain unresolved.
+`artifacts/v3_external_source_pilot_success_criteria_1025.json` now makes the
+pilot success definition measurable instead of implicit. Operational success
+requires all 10 selected candidates to reach terminal decisions with no
+unresolved process blockers. Scientific/import success requires at least 1
+candidate to become import-ready under full gates, or a zero-pass result where
+every failure is explained by concrete evidence rather than missing process.
+The current status is `needs_more_work`: 0 terminal decisions, 0 import-ready
+rows, 7 explicit active-site rows, 3 binding-context-only active-site rows, all
+10 still needing broader duplicate screening and full label-factory gates, and
+0 countable label candidates.
 Two sample candidates overlap existing M-CSA reference accessions and are
 routed to sequence-holdout controls; the lane-balance audit confirms six evenly
 represented query lanes. All
 external rows remain non-countable; the gate authorizes evidence collection
 only, not label import. Its lineage metadata now records a clean 1,025 slice
-across 65 supplied external artifacts, includes the sequence-holdout audit,
-pilot active-site evidence decisions, and pilot representation sample in
+across the current checked external artifacts, includes the sequence-holdout
+audit, pilot active-site evidence decisions, and pilot representation sample in
 row-level candidate-lineage validation, and
 fails fast on mixed-slice artifact paths or payload-declared slice
 contradictions. The import-readiness audit, transfer blocker matrix, pilot
@@ -303,8 +313,9 @@ and review consumers. Full Foldseek/TM-score separation remains uncomputed.
 recording the explicit Foldseek binary/version
 (`/private/tmp/catalytic-foldseek-env/bin/foldseek`, `10.941cd33`), the 678
 evaluated accepted-registry rows, 676 rows with supported selected PDB
-coordinates, two rows missing selected structures (`m_csa:372`, `m_csa:501`),
-and a capped 25-PDB coordinate sidecar in
+coordinates, two explicit coordinate exclusions for rows with no selected
+structure in the current evidence (`m_csa:372`, `m_csa:501`), and a capped
+25-PDB coordinate sidecar in
 `artifacts/v3_foldseek_coordinates_1000/`. It is review-only/non-countable and
 keeps `tm_score_split_computed=false`. The paired
 `artifacts/v3_foldseek_tm_score_signal_1000_staged25.json` adds a bounded
@@ -325,8 +336,11 @@ mapping blocker, but it is still partial, non-countable, and not import-ready.
 `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`
 then stages all currently materializable supported selected coordinates:
 672 unique selected PDB mmCIF sidecars for 676 materializable evaluated rows,
-with 0 fetch failures and 0 supported selected structures left unstaged. This
-removes the unstaged selected-coordinate sidecar blocker. The companion
+with 0 fetch failures, 0 supported selected structures left unstaged, and
+explicit coordinate-exclusion evidence for `m_csa:372` and `m_csa:501`
+(`geometry_status=no_structure_positions`, `selected_structure_id=null`). This
+removes the unstaged selected-coordinate sidecar blocker and makes the
+unmaterializable rows explicit. The companion
 `artifacts/v3_foldseek_tm_score_signal_1000_expanded60.json` now completes a
 larger capped Foldseek `easy-search` signal from that all-materializable
 sidecar: 60 staged coordinates, 12,329 mapped pair rows, 3,716
@@ -336,8 +350,8 @@ This removes the expanded40 partial-signal ceiling, but it is still
 review-only, capped, and not import-ready. The `<0.7` target is not achieved
 on the computed 60-coordinate subset, `tm_score_split_computed=false` and
 `full_tm_score_split_computed=false` remain true, and the full TM-score split
-still requires the two missing selected-structure rows plus an uncapped
-Foldseek-backed split/signal over the full materialized set.
+still requires an uncapped Foldseek-backed split/signal over the full
+materialized set with the coordinate exclusions reported.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

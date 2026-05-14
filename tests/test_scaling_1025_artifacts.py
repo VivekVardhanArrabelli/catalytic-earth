@@ -392,6 +392,11 @@ class Scaling1025ArtifactTests(unittest.TestCase):
             / "artifacts"
             / "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
         )
+        pilot_success_criteria = _load_json(
+            ROOT
+            / "artifacts"
+            / "v3_external_source_pilot_success_criteria_1025.json"
+        )
         external_import_safety = _load_json(
             ROOT
             / "artifacts"
@@ -1734,6 +1739,86 @@ class Scaling1025ArtifactTests(unittest.TestCase):
                 if row["active_site_evidence_source_category"] == "binding_context_only"
             },
             {"binding_context_only"},
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["method"],
+            "external_source_pilot_success_criteria",
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["blocker_removed"],
+            "external_pilot_success_criteria_defined",
+        )
+        self.assertFalse(pilot_success_criteria["metadata"]["operational_success"])
+        self.assertFalse(
+            pilot_success_criteria["metadata"]["scientific_import_success"]
+        )
+        self.assertTrue(pilot_success_criteria["metadata"]["needs_more_work"])
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["pilot_status"], "needs_more_work"
+        )
+        self.assertEqual(pilot_success_criteria["metadata"]["candidate_count"], 10)
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["terminal_decision_count"], 0
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["import_ready_row_count"], 0
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["countable_label_candidate_count"], 0
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"][
+                "explicit_active_site_source_resolution_counts"
+            ],
+            {
+                "explicit_active_site_source_resolved": 7,
+                "unresolved_binding_context_only": 3,
+            },
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"][
+                "broader_duplicate_screening_status_counts"
+            ],
+            {"broader_duplicate_screening_required": 10},
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"][
+                "representation_control_adjudication_counts"
+            ],
+            {
+                "representation_control_adjudicated_review_only": 1,
+                "representation_control_issue": 8,
+                "representation_near_duplicate_holdout": 1,
+            },
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["review_decision_status_counts"],
+            {"no_decision": 10},
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["full_label_factory_gate_status_counts"],
+            {"not_run": 10},
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["failure_explanation_status_counts"],
+            {"missing_process": 10},
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["criteria_blocker_counts"][
+                "review_decision_not_terminal"
+            ],
+            10,
+        )
+        self.assertEqual(
+            pilot_success_criteria["metadata"]["artifact_lineage"]["slice_id"], 1025
+        )
+        self.assertTrue(
+            all(
+                row["review_status"] == "external_pilot_success_criteria_review_only"
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                for row in pilot_success_criteria["rows"]
+            )
         )
         self.assertTrue(external_import_safety["metadata"]["countable_import_safe"])
         self.assertEqual(

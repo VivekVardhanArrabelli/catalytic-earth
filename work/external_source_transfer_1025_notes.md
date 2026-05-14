@@ -155,14 +155,27 @@ Current review-only external artifacts:
   artifact is review-only and creates 0 countable candidates. The latest
   assembly also adds local evidence-completeness blockers, including explicit
   active-site-evidence blockers for `O60568`, `O95050`, and `P51580`.
+- `artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json`
+  classifies the selected 10 into 7 explicit active-site-source rows and 3
+  binding-context-only rows, while keeping every row review-only and
+  non-countable.
+- `artifacts/v3_external_source_pilot_success_criteria_1025.json` now defines
+  measurable pilot success. It requires all 10 selected rows to reach terminal
+  decisions with no unresolved process blockers, and requires at least 1
+  import-ready row under full gates or a zero-pass result whose failures are
+  evidence-explained rather than process-missing. The current status is
+  `needs_more_work`: 0 terminal decisions, 0 import-ready rows, 0 countable
+  candidates, 3 active-site-source blockers, 10 broader duplicate-screening
+  blockers, 9 representation-control blockers, and 10 full-gate blockers.
 - `artifacts/v3_external_source_transfer_gate_check_1025.json` passes 33/33
   checks for review-only evidence collection in the earlier control-repair
   pass; the later control-repair gates passed 38/38 and 41/41 as intermediate
   checkpoints, then 45/45 after sequence-alignment verification and the
-  active-site sourcing queue. The current gate now passes 66/66 after the source
+  active-site sourcing queue. The current gate now passes 68/68 after the source
   exports, active-site sourcing resolution, representation-backend sample,
   blocker matrix, pilot review-only safeguards, selected-pilot representation
-  sample coverage, and current-reference sequence-screen audit. It uses the typed
+  sample coverage, pilot active-site evidence decisions, and current-reference
+  sequence-screen audit. It uses the typed
   `ExternalSourceTransferGateInputs.v1` contract, validates both candidate
   lineage across high-fan-in external artifacts and artifact-path lineage across
   all supplied gate inputs, now includes the sequence-holdout audit and pilot

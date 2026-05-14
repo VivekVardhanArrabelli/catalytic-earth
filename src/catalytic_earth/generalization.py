@@ -388,6 +388,27 @@ def build_foldseek_coordinate_readiness(
             "tm_score_split_member": False,
             "review_status": "review_only_non_countable",
         }
+        if not possible:
+            row.update(
+                {
+                    "tm_score_coordinate_exclusion_status": (
+                        "excluded_missing_or_unsupported_selected_structure"
+                    ),
+                    "tm_score_coordinate_exclusion_reason": (
+                        "missing_selected_coordinate_structure"
+                        if not source and not structure_id
+                        else "unsupported_selected_coordinate_source"
+                    ),
+                    "tm_score_coordinate_exclusion_evidence": {
+                        "geometry_status": retrieval_row.get("status")
+                        or geometry_row.get("status"),
+                        "selected_structure_key": structure_key,
+                        "selected_structure_source": source,
+                        "selected_structure_id": structure_id,
+                        "selected_structure_source_field": source_field,
+                    },
+                }
+            )
         rows.append(row)
         if possible and structure_key not in unique_structures:
             unique_structures[structure_key] = {
@@ -498,9 +519,23 @@ def build_foldseek_coordinate_readiness(
     missing_or_unsupported = [
         {
             "entry_id": row["entry_id"],
+            "entry_name": row.get("entry_name"),
+            "geometry_status": row.get("geometry_status"),
             "selected_structure_key": row["selected_structure_key"],
             "selected_structure_source": row["selected_structure_source"],
             "selected_structure_id": row["selected_structure_id"],
+            "selected_structure_source_field": row.get(
+                "selected_structure_source_field"
+            ),
+            "tm_score_coordinate_exclusion_status": row.get(
+                "tm_score_coordinate_exclusion_status"
+            ),
+            "tm_score_coordinate_exclusion_reason": row.get(
+                "tm_score_coordinate_exclusion_reason"
+            ),
+            "tm_score_coordinate_exclusion_evidence": row.get(
+                "tm_score_coordinate_exclusion_evidence"
+            ),
         }
         for row in rows
         if not row["coordinate_materialization_possible"]
@@ -554,7 +589,8 @@ def build_foldseek_coordinate_readiness(
         blockers_remaining.append("supported selected structures remain unstaged")
     if missing_or_unsupported:
         blockers_remaining.append(
-            "one or more evaluated rows lacks a supported selected structure"
+            "evaluated rows without supported selected structures are explicitly "
+            "excluded from Foldseek coordinate materialization"
         )
     if fetch_failures:
         blockers_remaining.append("one or more selected coordinate fetches failed")
@@ -581,7 +617,11 @@ def build_foldseek_coordinate_readiness(
     if not foldseek_info["available"]:
         limitations.append("Foldseek binary was not resolved or did not report a version")
     if missing_or_unsupported:
-        limitations.append("some evaluated rows lack supported selected PDB/AlphaFold structure identifiers")
+        limitations.append(
+            "some evaluated rows are explicitly excluded from Foldseek coordinate "
+            "materialization because they lack supported selected PDB/AlphaFold "
+            "structure identifiers"
+        )
     if fetch_failures:
         limitations.append("one or more selected coordinate fetches failed")
     if not fetch_limit:
@@ -627,6 +667,14 @@ def build_foldseek_coordinate_readiness(
         "staged_structure_count": len(materialized_keys),
         "missing_or_unsupported_structure_count": len(missing_or_unsupported),
         "missing_or_unsupported_structures": missing_or_unsupported,
+        "tm_score_coordinate_exclusion_count": len(missing_or_unsupported),
+        "tm_score_coordinate_exclusions": missing_or_unsupported,
+        "tm_score_coordinate_exclusion_policy": (
+            "exclude rows lacking a supported selected coordinate structure from "
+            "Foldseek coordinate materialization, keep them review-only and "
+            "non-countable, and report the exclusion before any full TM-score "
+            "holdout claim"
+        ),
         "fetch_failure_count": len(fetch_failures),
         "fetch_failures": fetch_failures,
         "not_materialized_structure_count": len(not_materialized),

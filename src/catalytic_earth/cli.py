@@ -137,6 +137,7 @@ from .transfer_scope import (
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_review_decision_export,
+    build_external_source_pilot_success_criteria,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -2100,6 +2101,44 @@ def cmd_build_external_source_pilot_active_site_evidence_decisions(
     print(
         "Wrote external source pilot active-site evidence decisions to "
         f"{args.out} ({decisions['metadata']['candidate_count']} candidates)"
+    )
+    return 0
+
+
+def cmd_build_external_source_pilot_success_criteria(
+    args: argparse.Namespace,
+) -> int:
+    artifact_payloads, artifact_lineage = _load_external_lineaged_artifacts(
+        args,
+        (
+            "pilot_candidate_priority",
+            "pilot_review_decision_export",
+            "pilot_active_site_evidence_decisions",
+            "external_import_readiness_audit",
+            "external_transfer_gate",
+        ),
+        blocker_removed="external_pilot_success_criteria_defined",
+    )
+    criteria = build_external_source_pilot_success_criteria(
+        pilot_candidate_priority=artifact_payloads["pilot_candidate_priority"],
+        pilot_review_decision_export=artifact_payloads[
+            "pilot_review_decision_export"
+        ],
+        pilot_active_site_evidence_decisions=artifact_payloads[
+            "pilot_active_site_evidence_decisions"
+        ],
+        external_import_readiness_audit=artifact_payloads[
+            "external_import_readiness_audit"
+        ],
+        external_transfer_gate=artifact_payloads["external_transfer_gate"],
+        min_import_ready_rows=args.min_import_ready_rows,
+        max_rows=args.max_rows,
+        artifact_lineage=artifact_lineage,
+    )
+    write_json(Path(args.out), criteria)
+    print(
+        "Wrote external source pilot success criteria to "
+        f"{args.out} (status={criteria['metadata']['pilot_status']})"
     )
     return 0
 
@@ -5698,6 +5737,47 @@ def build_parser() -> argparse.ArgumentParser:
     )
     external_pilot_active_site_decisions.set_defaults(
         func=cmd_build_external_source_pilot_active_site_evidence_decisions
+    )
+
+    external_pilot_success = subparsers.add_parser(
+        "build-external-source-pilot-success-criteria",
+        help="define measurable success criteria for selected external pilot rows",
+    )
+    external_pilot_success.add_argument(
+        "--pilot-candidate-priority",
+        default="artifacts/v3_external_source_pilot_candidate_priority_1025.json",
+    )
+    external_pilot_success.add_argument(
+        "--pilot-review-decision-export",
+        default=(
+            "artifacts/v3_external_source_pilot_review_decision_export_1025.json"
+        ),
+    )
+    external_pilot_success.add_argument(
+        "--pilot-active-site-evidence-decisions",
+        default=(
+            "artifacts/"
+            "v3_external_source_pilot_active_site_evidence_decisions_1025.json"
+        ),
+    )
+    external_pilot_success.add_argument(
+        "--external-import-readiness-audit",
+        default="artifacts/v3_external_source_import_readiness_audit_1025.json",
+    )
+    external_pilot_success.add_argument(
+        "--external-transfer-gate",
+        default="artifacts/v3_external_source_transfer_gate_check_1025.json",
+    )
+    external_pilot_success.add_argument("--max-rows", type=int, default=10)
+    external_pilot_success.add_argument(
+        "--min-import-ready-rows", type=int, default=1
+    )
+    external_pilot_success.add_argument(
+        "--out",
+        default="artifacts/v3_external_source_pilot_success_criteria_1025.json",
+    )
+    external_pilot_success.set_defaults(
+        func=cmd_build_external_source_pilot_success_criteria
     )
 
     external_transfer_gate = subparsers.add_parser(

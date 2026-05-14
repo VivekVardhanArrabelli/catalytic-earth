@@ -5,8 +5,8 @@
     "blocker_removed": "all currently materializable supported selected coordinates are staged and Foldseek is available; removes the unstaged selected-coordinate sidecar blocker",
     "blockers_remaining": [
       "TM-score target checks remain unavailable until a Foldseek signal/split is computed",
-      "full Foldseek/TM-score split builder has not been run",
-      "one or more evaluated rows lacks a supported selected structure"
+      "evaluated rows without supported selected structures are explicitly excluded from Foldseek coordinate materialization",
+      "full Foldseek/TM-score split builder has not been run"
     ],
     "coordinate_directory": "artifacts/v3_foldseek_coordinates_1000",
     "coordinate_fetch_cap": 676,
@@ -14,6 +14,7 @@
     "coordinate_materialization_possible_count": 676,
     "coordinate_materialization_requested": true,
     "countable_label_candidate_count": 0,
+    "countable_label_count": 0,
     "evaluated_count": 678,
     "fetch_failure_count": 0,
     "fetch_failures": [],
@@ -28,13 +29,14 @@
     "heldout_in_distribution_pair_count": 0,
     "heldout_pair_count": 0,
     "import_ready_candidate_count": 0,
+    "import_ready_row_count": 0,
     "in_distribution_pair_count": 0,
     "label_registry_count": 679,
     "limitations": [
       "coordinate materialization records selected structures only and does not validate catalytic function",
       "coordinate staging is deterministic; all currently materializable supported selected structures are staged",
       "review-only readiness artifact; it creates no countable labels and no import-ready rows",
-      "some evaluated rows lack supported selected PDB/AlphaFold structure identifiers",
+      "some evaluated rows are explicitly excluded from Foldseek coordinate materialization because they lack supported selected PDB/AlphaFold structure identifiers",
       "tm_score_split_computed=false because Foldseek/TM-score clustering is not executed here"
     ],
     "mapped_pair_count": 0,
@@ -720,15 +722,39 @@
     "missing_or_unsupported_structures": [
       {
         "entry_id": "m_csa:372",
+        "entry_name": "NikJ, nikkomycin biosynthesis protein P1",
+        "geometry_status": "no_structure_positions",
         "selected_structure_id": null,
         "selected_structure_key": "missing_selected_structure",
-        "selected_structure_source": null
+        "selected_structure_source": null,
+        "selected_structure_source_field": null,
+        "tm_score_coordinate_exclusion_evidence": {
+          "geometry_status": "no_structure_positions",
+          "selected_structure_id": null,
+          "selected_structure_key": "missing_selected_structure",
+          "selected_structure_source": null,
+          "selected_structure_source_field": null
+        },
+        "tm_score_coordinate_exclusion_reason": "missing_selected_coordinate_structure",
+        "tm_score_coordinate_exclusion_status": "excluded_missing_or_unsupported_selected_structure"
       },
       {
         "entry_id": "m_csa:501",
+        "entry_name": "alcohol dehydrogenase (class V)",
+        "geometry_status": "no_structure_positions",
         "selected_structure_id": null,
         "selected_structure_key": "missing_selected_structure",
-        "selected_structure_source": null
+        "selected_structure_source": null,
+        "selected_structure_source_field": null,
+        "tm_score_coordinate_exclusion_evidence": {
+          "geometry_status": "no_structure_positions",
+          "selected_structure_id": null,
+          "selected_structure_key": "missing_selected_structure",
+          "selected_structure_source": null,
+          "selected_structure_source_field": null
+        },
+        "tm_score_coordinate_exclusion_reason": "missing_selected_coordinate_structure",
+        "tm_score_coordinate_exclusion_status": "excluded_missing_or_unsupported_selected_structure"
       }
     ],
     "not_materialized_structure_count": 0,
@@ -2104,6 +2130,46 @@
       "pdb"
     ],
     "threshold_target": "<0.7",
+    "tm_score_coordinate_exclusion_count": 2,
+    "tm_score_coordinate_exclusion_policy": "exclude rows lacking a supported selected coordinate structure from Foldseek coordinate materialization, keep them review-only and non-countable, and report the exclusion before any full TM-score holdout claim",
+    "tm_score_coordinate_exclusions": [
+      {
+        "entry_id": "m_csa:372",
+        "entry_name": "NikJ, nikkomycin biosynthesis protein P1",
+        "geometry_status": "no_structure_positions",
+        "selected_structure_id": null,
+        "selected_structure_key": "missing_selected_structure",
+        "selected_structure_source": null,
+        "selected_structure_source_field": null,
+        "tm_score_coordinate_exclusion_evidence": {
+          "geometry_status": "no_structure_positions",
+          "selected_structure_id": null,
+          "selected_structure_key": "missing_selected_structure",
+          "selected_structure_source": null,
+          "selected_structure_source_field": null
+        },
+        "tm_score_coordinate_exclusion_reason": "missing_selected_coordinate_structure",
+        "tm_score_coordinate_exclusion_status": "excluded_missing_or_unsupported_selected_structure"
+      },
+      {
+        "entry_id": "m_csa:501",
+        "entry_name": "alcohol dehydrogenase (class V)",
+        "geometry_status": "no_structure_positions",
+        "selected_structure_id": null,
+        "selected_structure_key": "missing_selected_structure",
+        "selected_structure_source": null,
+        "selected_structure_source_field": null,
+        "tm_score_coordinate_exclusion_evidence": {
+          "geometry_status": "no_structure_positions",
+          "selected_structure_id": null,
+          "selected_structure_key": "missing_selected_structure",
+          "selected_structure_source": null,
+          "selected_structure_source_field": null
+        },
+        "tm_score_coordinate_exclusion_reason": "missing_selected_coordinate_structure",
+        "tm_score_coordinate_exclusion_status": "excluded_missing_or_unsupported_selected_structure"
+      }
+    ],
     "tm_score_split_computed": false,
     "tm_score_target_achieved_for_computed_subset": null,
     "tm_signal_coordinate_cap_applied": false,
@@ -9900,6 +9966,15 @@
       "selected_structure_source_field": null,
       "sequence_holdout_partition": "heldout",
       "target_fingerprint_id": "radical_sam_enzyme",
+      "tm_score_coordinate_exclusion_evidence": {
+        "geometry_status": "no_structure_positions",
+        "selected_structure_id": null,
+        "selected_structure_key": "missing_selected_structure",
+        "selected_structure_source": null,
+        "selected_structure_source_field": null
+      },
+      "tm_score_coordinate_exclusion_reason": "missing_selected_coordinate_structure",
+      "tm_score_coordinate_exclusion_status": "excluded_missing_or_unsupported_selected_structure",
       "tm_score_split_member": false
     },
     {
@@ -12546,6 +12621,15 @@
       "selected_structure_source_field": null,
       "sequence_holdout_partition": "in_distribution",
       "target_fingerprint_id": null,
+      "tm_score_coordinate_exclusion_evidence": {
+        "geometry_status": "no_structure_positions",
+        "selected_structure_id": null,
+        "selected_structure_key": "missing_selected_structure",
+        "selected_structure_source": null,
+        "selected_structure_source_field": null
+      },
+      "tm_score_coordinate_exclusion_reason": "missing_selected_coordinate_structure",
+      "tm_score_coordinate_exclusion_status": "excluded_missing_or_unsupported_selected_structure",
       "tm_score_split_member": false
     },
     {

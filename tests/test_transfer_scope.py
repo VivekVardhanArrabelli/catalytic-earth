@@ -59,6 +59,7 @@ from catalytic_earth.transfer_scope import (
     build_external_source_pilot_evidence_packet,
     build_external_source_pilot_evidence_dossiers,
     build_external_source_pilot_review_decision_export,
+    build_external_source_pilot_success_criteria,
     build_external_source_structure_mapping_plan,
     build_external_source_structure_mapping_sample,
     build_external_source_query_manifest,
@@ -6261,6 +6262,173 @@ HETATM C1 C1 ATP ATP A A 900 900 2.0 0.0 0.0
             all(not row["countable_label_candidate"] for row in decisions["rows"])
         )
         self.assertTrue(all(not row["ready_for_label_import"] for row in decisions["rows"]))
+
+    def test_external_pilot_success_criteria_marks_process_blockers(self) -> None:
+        criteria = build_external_source_pilot_success_criteria(
+            pilot_candidate_priority={
+                "metadata": {"method": "external_source_pilot_candidate_priority"},
+                "rows": [
+                    {
+                        "accession": "P12345",
+                        "lane_id": "external_source:lyase",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    },
+                    {
+                        "accession": "P67890",
+                        "lane_id": "external_source:hydrolase",
+                        "pilot_selection_status": "selected_for_review_pilot",
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                    },
+                ],
+            },
+            pilot_review_decision_export={
+                "metadata": {"method": "external_source_pilot_review_decision_export"},
+                "review_items": [
+                    {
+                        "accession": "P12345",
+                        "decision": {
+                            "decision_status": "no_decision",
+                            "ready_for_label_import": False,
+                        },
+                    },
+                    {
+                        "accession": "P67890",
+                        "decision": {
+                            "decision_status": "no_decision",
+                            "ready_for_label_import": False,
+                        },
+                    },
+                ],
+            },
+            pilot_active_site_evidence_decisions={
+                "metadata": {
+                    "method": "external_source_pilot_active_site_evidence_decisions"
+                },
+                "rows": [
+                    {
+                        "rank": 1,
+                        "accession": "P12345",
+                        "active_site_evidence_source_category": (
+                            "explicit_active_site_source_present"
+                        ),
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "representation_control_status": (
+                            "pilot_representation_control_review_only"
+                        ),
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                        "import_readiness_blockers": [
+                            "broader_duplicate_screening_required",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    },
+                    {
+                        "rank": 2,
+                        "accession": "P67890",
+                        "active_site_evidence_source_category": "binding_context_only",
+                        "broader_duplicate_screening_status": (
+                            "broader_duplicate_screening_required"
+                        ),
+                        "representation_control_status": "representation_control_issue",
+                        "countable_label_candidate": False,
+                        "ready_for_label_import": False,
+                        "import_readiness_blockers": [
+                            "explicit_active_site_residue_sources_absent",
+                            "broader_duplicate_screening_required",
+                            "representation_control_issue",
+                            "external_review_decision_artifact_not_built",
+                            "full_label_factory_gate_not_run",
+                        ],
+                    },
+                ],
+            },
+            external_import_readiness_audit={
+                "metadata": {"method": "external_source_import_readiness_audit"},
+                "rows": [],
+            },
+            external_transfer_gate={
+                "metadata": {
+                    "method": "external_source_transfer_gate_check",
+                    "gate_count": 68,
+                    "passed_gate_count": 68,
+                    "ready_for_label_import": False,
+                }
+            },
+            min_import_ready_rows=1,
+            max_rows=2,
+            artifact_lineage={
+                "method": "external_transfer_artifact_path_lineage_validation",
+                "slice_id": 1025,
+                "guardrail_clean": True,
+            },
+        )
+
+        self.assertEqual(
+            criteria["metadata"]["method"],
+            "external_source_pilot_success_criteria",
+        )
+        self.assertEqual(
+            criteria["metadata"]["blocker_removed"],
+            "external_pilot_success_criteria_defined",
+        )
+        self.assertFalse(criteria["metadata"]["operational_success"])
+        self.assertFalse(criteria["metadata"]["scientific_import_success"])
+        self.assertTrue(criteria["metadata"]["needs_more_work"])
+        self.assertEqual(criteria["metadata"]["pilot_status"], "needs_more_work")
+        self.assertEqual(criteria["metadata"]["candidate_count"], 2)
+        self.assertEqual(criteria["metadata"]["terminal_decision_count"], 0)
+        self.assertEqual(criteria["metadata"]["import_ready_row_count"], 0)
+        self.assertEqual(
+            criteria["metadata"]["explicit_active_site_source_resolution_counts"],
+            {
+                "explicit_active_site_source_resolved": 1,
+                "unresolved_binding_context_only": 1,
+            },
+        )
+        self.assertEqual(
+            criteria["metadata"]["broader_duplicate_screening_status_counts"],
+            {"broader_duplicate_screening_required": 2},
+        )
+        self.assertEqual(
+            criteria["metadata"]["representation_control_adjudication_counts"],
+            {
+                "representation_control_adjudicated_review_only": 1,
+                "representation_control_issue": 1,
+            },
+        )
+        self.assertEqual(
+            criteria["metadata"]["review_decision_status_counts"],
+            {"no_decision": 2},
+        )
+        self.assertEqual(
+            criteria["metadata"]["full_label_factory_gate_status_counts"],
+            {"not_run": 2},
+        )
+        self.assertEqual(
+            criteria["metadata"]["failure_explanation_status_counts"],
+            {"missing_process": 2},
+        )
+        self.assertEqual(
+            criteria["metadata"]["criteria_blocker_counts"][
+                "review_decision_not_terminal"
+            ],
+            2,
+        )
+        self.assertTrue(
+            all(
+                row["review_status"] == "external_pilot_success_criteria_review_only"
+                and not row["countable_label_candidate"]
+                and not row["ready_for_label_import"]
+                and row["criterion_blockers"]
+                for row in criteria["rows"]
+            )
+        )
 
     def test_external_transfer_gate_requires_pilot_packets_to_stay_review_only(
         self,

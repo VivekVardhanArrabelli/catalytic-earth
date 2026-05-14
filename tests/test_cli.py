@@ -250,6 +250,149 @@ class CliTests(unittest.TestCase):
                 {"no_decision": 1},
             )
 
+    def test_external_pilot_success_criteria_cli_command(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            priority = root / "priority.json"
+            review = root / "review.json"
+            decisions = root / "decisions.json"
+            readiness = root / "readiness.json"
+            gate = root / "gate.json"
+            out = root / "success.json"
+            priority.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_pilot_candidate_priority"
+                        },
+                        "rows": [
+                            {
+                                "accession": "P12345",
+                                "lane_id": "external_source:lane_a",
+                                "pilot_selection_status": "selected_for_review_pilot",
+                                "countable_label_candidate": False,
+                                "ready_for_label_import": False,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            review.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_pilot_review_decision_export"
+                        },
+                        "review_items": [
+                            {
+                                "accession": "P12345",
+                                "decision": {
+                                    "decision_status": "no_decision",
+                                    "ready_for_label_import": False,
+                                },
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            decisions.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": (
+                                "external_source_pilot_active_site_evidence_decisions"
+                            )
+                        },
+                        "rows": [
+                            {
+                                "accession": "P12345",
+                                "rank": 1,
+                                "active_site_evidence_source_category": (
+                                    "explicit_active_site_source_present"
+                                ),
+                                "broader_duplicate_screening_status": (
+                                    "broader_duplicate_screening_required"
+                                ),
+                                "representation_control_status": (
+                                    "pilot_representation_control_review_only"
+                                ),
+                                "countable_label_candidate": False,
+                                "ready_for_label_import": False,
+                                "import_readiness_blockers": [
+                                    "broader_duplicate_screening_required",
+                                    "external_review_decision_artifact_not_built",
+                                    "full_label_factory_gate_not_run",
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            readiness.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_import_readiness_audit"
+                        },
+                        "rows": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            gate.write_text(
+                json.dumps(
+                    {
+                        "metadata": {
+                            "method": "external_source_transfer_gate_check",
+                            "gate_count": 68,
+                            "passed_gate_count": 68,
+                            "ready_for_label_import": False,
+                        }
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "build-external-source-pilot-success-criteria",
+                    "--pilot-candidate-priority",
+                    str(priority),
+                    "--pilot-review-decision-export",
+                    str(review),
+                    "--pilot-active-site-evidence-decisions",
+                    str(decisions),
+                    "--external-import-readiness-audit",
+                    str(readiness),
+                    "--external-transfer-gate",
+                    str(gate),
+                    "--max-rows",
+                    "1",
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+
+            payload = json.loads(out.read_text(encoding="utf-8"))
+            self.assertEqual(
+                payload["metadata"]["method"],
+                "external_source_pilot_success_criteria",
+            )
+            self.assertEqual(payload["metadata"]["pilot_status"], "needs_more_work")
+            self.assertEqual(payload["metadata"]["terminal_decision_count"], 0)
+            self.assertEqual(payload["metadata"]["import_ready_row_count"], 0)
+
     def test_build_geometry_features_reuse_existing_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)

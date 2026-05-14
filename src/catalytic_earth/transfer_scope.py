@@ -8487,6 +8487,322 @@ def build_external_source_pilot_active_site_evidence_decisions(
     }
 
 
+PILOT_TERMINAL_REVIEW_DECISION_STATUSES = {
+    "accepted",
+    "accepted_for_import",
+    "do_not_import",
+    "evidence_failure",
+    "failed_full_gates",
+    "not_import_ready",
+    "not_importable",
+    "rejected",
+    "rejected_for_import",
+}
+PILOT_SUCCESS_CRITERIA_PROCESS_BLOCKERS = {
+    "backend_sequence_search_incomplete",
+    "broader_duplicate_screening_required",
+    "external_review_decision_artifact_not_built",
+    "full_label_factory_gate_not_run",
+    "heuristic_control_not_scored",
+    "representation_control_not_compared",
+}
+
+
+def build_external_source_pilot_success_criteria(
+    *,
+    pilot_candidate_priority: dict[str, Any],
+    pilot_review_decision_export: dict[str, Any],
+    pilot_active_site_evidence_decisions: dict[str, Any],
+    external_import_readiness_audit: dict[str, Any],
+    external_transfer_gate: dict[str, Any],
+    min_import_ready_rows: int = 1,
+    max_rows: int = 10,
+    artifact_lineage: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Measure whether the selected external pilot has reached a terminal state.
+
+    This artifact defines success conditions only. It cannot make an external
+    row countable or import-ready.
+    """
+    if min_import_ready_rows < 0:
+        raise ValueError("min_import_ready_rows must be non-negative")
+    if max_rows < 1:
+        raise ValueError("max_rows must be positive")
+
+    priority_by_accession = _external_first_row_by_accession(pilot_candidate_priority)
+    review_by_accession = _external_first_row_by_accession(
+        pilot_review_decision_export
+    )
+    import_by_accession = _external_first_row_by_accession(
+        external_import_readiness_audit
+    )
+    decision_rows = [
+        row
+        for row in pilot_active_site_evidence_decisions.get("rows", []) or []
+        if isinstance(row, dict) and _normalize_accession(row.get("accession"))
+    ][:max_rows]
+
+    rows: list[dict[str, Any]] = []
+    for row in decision_rows:
+        accession = _normalize_accession(row.get("accession"))
+        priority_row = priority_by_accession.get(accession, {})
+        review_row = review_by_accession.get(accession, {})
+        import_row = import_by_accession.get(accession, {})
+        review_decision = review_row.get("decision", {})
+        if not isinstance(review_decision, dict):
+            review_decision = {}
+        review_decision_status = str(
+            review_decision.get("decision_status")
+            or review_row.get("decision_status")
+            or "missing_review_decision"
+        )
+        terminal_decision = (
+            review_decision_status in PILOT_TERMINAL_REVIEW_DECISION_STATUSES
+        )
+        blockers = sorted(
+            {
+                str(blocker)
+                for source_row in (priority_row, review_row, import_row, row)
+                for blocker in (
+                    (source_row.get("blockers", []) or [])
+                    + (source_row.get("import_readiness_blockers", []) or [])
+                )
+                if blocker
+            }
+        )
+
+        active_site_category = str(
+            row.get("active_site_evidence_source_category")
+            or "no_explicit_active_site_source"
+        )
+        active_site_resolved = (
+            active_site_category == "explicit_active_site_source_present"
+        )
+        broader_duplicate_status = str(
+            row.get("broader_duplicate_screening_status")
+            or (
+                "broader_duplicate_screening_required"
+                if "broader_duplicate_screening_required" in blockers
+                else "not_recorded"
+            )
+        )
+        broader_duplicate_resolved = (
+            broader_duplicate_status != "broader_duplicate_screening_required"
+            and "broader_duplicate_screening_required" not in blockers
+        )
+        representation_status = str(
+            row.get("representation_control_status") or "missing"
+        )
+        representation_resolved = (
+            representation_status == "pilot_representation_control_review_only"
+        )
+        factory_gate_status = (
+            "not_run"
+            if "full_label_factory_gate_not_run" in blockers
+            else "passed_full_label_factory_gate"
+            if row.get("ready_for_label_import")
+            or import_row.get("ready_for_label_import")
+            else "not_recorded"
+        )
+        factory_gate_resolved = factory_gate_status == "passed_full_label_factory_gate"
+        import_ready = bool(
+            row.get("ready_for_label_import") or import_row.get("ready_for_label_import")
+        )
+        countable_candidate = bool(
+            row.get("countable_label_candidate")
+            or import_row.get("countable_label_candidate")
+        )
+
+        criterion_blockers: list[str] = []
+        unresolved_process_blockers: list[str] = []
+        if not active_site_resolved:
+            criterion_blockers.append("active_site_source_unresolved")
+        if not broader_duplicate_resolved:
+            criterion_blockers.append("broader_duplicate_screening_unresolved")
+            unresolved_process_blockers.append("broader_duplicate_screening_required")
+        if not representation_resolved:
+            criterion_blockers.append("representation_control_unresolved")
+        if not terminal_decision:
+            criterion_blockers.append("review_decision_not_terminal")
+            unresolved_process_blockers.append(
+                "external_review_decision_artifact_not_built"
+            )
+        if not factory_gate_resolved:
+            criterion_blockers.append("full_label_factory_gate_not_passed")
+            if factory_gate_status == "not_run":
+                unresolved_process_blockers.append("full_label_factory_gate_not_run")
+        unresolved_process_blockers.extend(
+            blocker
+            for blocker in blockers
+            if blocker in PILOT_SUCCESS_CRITERIA_PROCESS_BLOCKERS
+        )
+        unresolved_process_blockers = sorted(set(unresolved_process_blockers))
+        failure_explanation_status = (
+            "import_ready"
+            if import_ready
+            else "missing_process"
+            if unresolved_process_blockers
+            else "evidence_explained"
+            if criterion_blockers
+            else "not_import_ready_without_blocker"
+        )
+
+        rows.append(
+            {
+                "accession": accession,
+                "active_site_source_resolution_status": (
+                    "explicit_active_site_source_resolved"
+                    if active_site_resolved
+                    else f"unresolved_{active_site_category}"
+                ),
+                "broader_duplicate_screening_status": broader_duplicate_status,
+                "countable_label_candidate": countable_candidate,
+                "criterion_blockers": sorted(set(criterion_blockers)),
+                "entry_id": row.get("entry_id") or f"uniprot:{accession}",
+                "failure_explanation_status": failure_explanation_status,
+                "full_label_factory_gate_status": factory_gate_status,
+                "import_readiness_blockers": blockers,
+                "lane_id": row.get("lane_id") or priority_row.get("lane_id"),
+                "rank": row.get("rank"),
+                "ready_for_label_import": import_ready,
+                "representation_control_adjudication_status": (
+                    "representation_control_adjudicated_review_only"
+                    if representation_resolved
+                    else representation_status
+                ),
+                "review_decision_status": review_decision_status,
+                "review_status": "external_pilot_success_criteria_review_only",
+                "terminal_review_decision": terminal_decision,
+                "unresolved_process_blockers": unresolved_process_blockers,
+            }
+        )
+
+    candidate_count = len(rows)
+    terminal_decision_count = sum(1 for row in rows if row["terminal_review_decision"])
+    import_ready_row_count = sum(1 for row in rows if row["ready_for_label_import"])
+    countable_label_candidate_count = sum(
+        1 for row in rows if row["countable_label_candidate"]
+    )
+    unresolved_process_candidate_count = sum(
+        1 for row in rows if row["unresolved_process_blockers"]
+    )
+    evidence_explained_failure_count = sum(
+        1 for row in rows if row["failure_explanation_status"] == "evidence_explained"
+    )
+    criteria_blocker_counts = Counter(
+        blocker for row in rows for blocker in row["criterion_blockers"]
+    )
+    active_site_counts = Counter(
+        row["active_site_source_resolution_status"] for row in rows
+    )
+    broader_duplicate_counts = Counter(
+        row["broader_duplicate_screening_status"] for row in rows
+    )
+    representation_counts = Counter(
+        row["representation_control_adjudication_status"] for row in rows
+    )
+    review_decision_counts = Counter(row["review_decision_status"] for row in rows)
+    full_gate_counts = Counter(row["full_label_factory_gate_status"] for row in rows)
+    failure_explanation_counts = Counter(
+        row["failure_explanation_status"] for row in rows
+    )
+
+    operational_success = (
+        candidate_count == max_rows
+        and terminal_decision_count == candidate_count
+        and unresolved_process_candidate_count == 0
+    )
+    zero_import_evidence_explained = (
+        import_ready_row_count == 0
+        and candidate_count > 0
+        and evidence_explained_failure_count == candidate_count
+        and unresolved_process_candidate_count == 0
+    )
+    scientific_import_success = (
+        import_ready_row_count >= min_import_ready_rows
+        or zero_import_evidence_explained
+    )
+    needs_more_work = any(row["criterion_blockers"] for row in rows)
+
+    gate_meta = external_transfer_gate.get("metadata", {})
+    if not isinstance(gate_meta, dict):
+        gate_meta = {}
+    return {
+        "metadata": {
+            "method": "external_source_pilot_success_criteria",
+            "blocker_removed": "external_pilot_success_criteria_defined",
+            "review_only": True,
+            "ready_for_label_import": False,
+            "countable_label_candidate_count": countable_label_candidate_count,
+            "import_ready_row_count": import_ready_row_count,
+            "candidate_count": candidate_count,
+            "max_rows": max_rows,
+            "selected_accessions": [row["accession"] for row in rows],
+            "terminal_decision_count": terminal_decision_count,
+            "min_import_ready_rows": min_import_ready_rows,
+            "operational_success": operational_success,
+            "scientific_import_success": scientific_import_success,
+            "zero_import_evidence_explained_success": zero_import_evidence_explained,
+            "needs_more_work": needs_more_work,
+            "pilot_status": (
+                "pilot_success"
+                if operational_success and scientific_import_success
+                else "needs_more_work"
+                if needs_more_work
+                else "terminal_no_import"
+            ),
+            "success_criteria": {
+                "operational_success": (
+                    "all selected pilot candidates have terminal review decisions "
+                    "and no unresolved process blockers"
+                ),
+                "scientific_import_success": (
+                    "at least min_import_ready_rows candidates are import-ready "
+                    "under full gates, or zero pass with every failure explained "
+                    "by concrete evidence instead of missing process"
+                ),
+                "needs_more_work": (
+                    "any unresolved active-site, duplicate-screening, "
+                    "representation, review-decision, or full-gate blocker"
+                ),
+            },
+            "explicit_active_site_source_resolution_counts": dict(
+                sorted(active_site_counts.items())
+            ),
+            "broader_duplicate_screening_status_counts": dict(
+                sorted(broader_duplicate_counts.items())
+            ),
+            "representation_control_adjudication_counts": dict(
+                sorted(representation_counts.items())
+            ),
+            "review_decision_status_counts": dict(sorted(review_decision_counts.items())),
+            "full_label_factory_gate_status_counts": dict(
+                sorted(full_gate_counts.items())
+            ),
+            "failure_explanation_status_counts": dict(
+                sorted(failure_explanation_counts.items())
+            ),
+            "criteria_blocker_counts": dict(sorted(criteria_blocker_counts.items())),
+            "unresolved_process_candidate_count": unresolved_process_candidate_count,
+            "external_transfer_gate_status": {
+                "gate_count": gate_meta.get("gate_count"),
+                "passed_gate_count": gate_meta.get("passed_gate_count"),
+                "ready_for_label_import": gate_meta.get("ready_for_label_import"),
+            },
+            "artifact_lineage": artifact_lineage or {},
+        },
+        "rows": sorted(
+            rows, key=lambda row: (int(row.get("rank") or 9999), row["accession"])
+        ),
+        "warnings": [
+            (
+                "pilot success criteria are review-only status evidence; countable "
+                "external import remains forbidden until full import conditions pass"
+            )
+        ],
+    }
+
+
 def _external_pilot_active_site_source_category(
     active_site_summary: dict[str, Any],
     sourcing_row: dict[str, Any],

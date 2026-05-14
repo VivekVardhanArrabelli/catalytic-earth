@@ -50,6 +50,43 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T14:46:52Z run after clean startup gates
+(`332` unit tests passed and `validate` passed):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview still adds 0 clean countable labels,
+  and the source-scale audit remains capped at 1,003 observed M-CSA source
+  records. No new M-CSA tranche should be opened without a source-scale audit
+  showing new usable M-CSA records.
+- External-source repair/import: Yes for repair evidence and pilot readiness
+  definition; no for import. This run added
+  `artifacts/v3_external_source_pilot_success_criteria_1025.json`, which makes
+  pilot success measurable across candidate count, terminal decisions,
+  active-site source resolution, broader duplicate screening, representation
+  adjudication, review decisions, full label-factory gates, import-ready rows,
+  and countable-label candidates. Current status is `needs_more_work`: 10
+  selected rows, 0 terminal decisions, 0 import-ready rows, 0 countable
+  candidates, 7 explicit active-site rows, 3 binding-context-only active-site
+  rows, broader duplicate screening and full label-factory gates unresolved for
+  all 10, and representation-control blockers on 9 rows.
+- Scientific generalization work: Yes, for Foldseek blocker clarification but
+  not for a new full split. The real MMseqs2 sequence-distance holdouts remain
+  the accepted sequence evidence. The all-materializable Foldseek readiness
+  artifact now explicitly excludes `m_csa:372` and `m_csa:501` from coordinate
+  materialization because both have `geometry_status=no_structure_positions`
+  and `selected_structure_id=null` in current evidence. Foldseek/TM-score
+  remains partial: expanded60 still has max train/test TM score `0.7515`,
+  misses the `<0.7` target, leaves 612 staged coordinates uncomputed, and
+  cannot claim a full TM-score holdout.
+- SPOF hardening work: Yes. The external pilot no longer treats evidence
+  packet completion as an implicit success condition; the success criteria now
+  explicitly distinguish operational success, scientific/import success,
+  needs-more-work states, process-missing failures, and evidence-explained
+  zero-pass outcomes while keeping all outputs review-only and non-countable.
+  The Foldseek readiness path also no longer leaves the two unmaterializable
+  selected-structure rows ambiguous: they are explicit coordinate exclusions
+  with evidence.
+
 Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 (`331` unit tests passed and `validate` passed):
 
@@ -88,6 +125,24 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Recent Project Progress
 
+- Added explicit external pilot success criteria in
+  `artifacts/v3_external_source_pilot_success_criteria_1025.json` plus CLI,
+  regression coverage, and docs. The artifact keeps all rows review-only and
+  records `pilot_status=needs_more_work`: 10 selected candidates, 0 terminal
+  decisions, 0 import-ready rows, 0 countable candidates, 7 explicit
+  active-site-source rows, 3 binding-context-only rows, broader duplicate
+  screening and full label-factory gates unresolved for all 10, and 9
+  representation-control unresolved rows. This removes the external-pilot
+  "evidence assembled equals success" ambiguity without authorizing import.
+- Hardened the all-materializable Foldseek coordinate-readiness artifact with
+  explicit coordinate exclusions for `m_csa:372` and `m_csa:501`. Both rows
+  have `geometry_status=no_structure_positions`, `selected_structure_id=null`,
+  and `selected_structure_key=missing_selected_structure` in current evidence,
+  so they are excluded from Foldseek coordinate materialization rather than
+  left as ambiguous missing structures. The artifact still stages 672
+  supported selected PDB coordinates with 0 fetch failures, keeps 0
+  countable/import-ready rows, and does not permit a full TM-score holdout
+  claim.
 - Hardened the accepted-registry sequence-distance holdout backend metadata for
   the 1,000 and 1,025 contexts. The regenerated artifacts keep the same
   MMseqs2 result (`18-8cc5c`, 738 sequence records, 136 held-out rows, max

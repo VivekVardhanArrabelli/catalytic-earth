@@ -88,7 +88,10 @@ this partial signal.
 stages all currently materializable supported selected coordinates for the
 accepted 1,000 context: 672 unique selected PDB mmCIF sidecars, 676
 materializable evaluated rows, 0 fetch failures, and 0 supported selected
-structures left unstaged. This removes the unstaged selected-coordinate
+structures left unstaged. It now explicitly excludes `m_csa:372` and
+`m_csa:501` from Foldseek coordinate materialization because both rows have
+`geometry_status=no_structure_positions` and no selected structure id in the
+current graph/geometry/sequence-holdout evidence. This removes the unstaged selected-coordinate
 sidecar blocker. `artifacts/v3_foldseek_tm_score_signal_1000_expanded60.json`
 then completes the next bounded Foldseek signal from that all-materializable
 sidecar with a 60-coordinate cap and prior staged count 40: 12,329 mapped pair
@@ -96,15 +99,13 @@ rows, 3,716 heldout/in-distribution train/test pairs, max observed train/test
 TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
 countable/import-ready rows. It removes the expanded40 partial-signal ceiling
 but remains review-only and non-countable. The `<0.7` target is not achieved on
-the computed subset, the cap leaves 612 staged coordinates uncomputed, and the
-full Foldseek/TM-score split remains false because `m_csa:372` plus
-`m_csa:501` still lack supported selected structures and no uncapped full
-split/signal has completed.
+the computed subset, the cap leaves 612 staged coordinates uncomputed, and no
+uncapped full split/signal has completed. The coordinate exclusions must remain
+reported before any full TM-score holdout claim.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
-`10.941cd33`). A TM-score split remains blocked until the two missing
-selected-structure rows are resolved and a full Foldseek-backed split builder
-is run.
+`10.941cd33`). A TM-score split remains blocked until a full Foldseek-backed
+split builder is run over the materialized coordinate set and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,
@@ -133,6 +134,16 @@ Priority blockers:
   pilot source-status ambiguity blocker, but every selected row still requires
   broader duplicate screening, representation-control review, a completed
   review decision, and the full label-factory gate before import.
+- `artifacts/v3_external_source_pilot_success_criteria_1025.json` defines the
+  pilot success bar rather than treating evidence assembly as completion.
+  Operational success means all 10 selected rows reach terminal decisions with
+  no unresolved process blockers. Scientific/import success means at least 1
+  row becomes import-ready under full gates, or a zero-pass outcome where every
+  failure is evidence-explained rather than process-missing. The current status
+  is `needs_more_work`: 0 terminal decisions, 0 import-ready rows, 0 countable
+  candidates, 3 unresolved active-site-source rows, 10 broader-duplicate
+  screening blockers, 9 representation-control blockers, and 10 full-gate
+  blockers.
 - The active-site evidence pass now samples all 25 ready candidates from
   UniProtKB feature records. It finds active-site features for 15 candidates,
   leaves 10 candidates as active-site-feature gaps, and keeps all rows
@@ -221,8 +232,9 @@ Priority blockers:
   lane fraction is 0.1667, so the queue has not collapsed to one action or
   chemistry lane. The external transfer gate now directly checks the
   current-reference sequence screen audit and backend sequence-search artifact.
-  It passes 67/67 review-only checks, including selected-pilot representation
-  sample coverage, and remains not ready for label import.
+  It passes 68/68 review-only checks, including selected-pilot representation
+  sample coverage and active-site evidence decisions, and remains not ready for
+  label import.
 - The learned representation backend path now has a computed 12-row ESM-2
   sample in `artifacts/v3_external_source_representation_backend_sample_1025.json`
   plus a clean review-only audit. It uses `facebook/esm2_t6_8M_UR50D`,
@@ -323,6 +335,14 @@ Priority blockers:
   blockers for those rows. Its metadata records clean 1,025 lineage across the
   packet, active-site, reaction, sequence, representation, heuristic, structure,
   blocker-matrix, and import-readiness inputs.
+- `artifacts/v3_external_source_pilot_success_criteria_1025.json` converts the
+  selected-pilot work into measurable review-only criteria. It records 10
+  selected candidates, 0 terminal review decisions, 0 import-ready rows, 0
+  countable label candidates, the explicit active-site split of 7 resolved and
+  3 unresolved rows, broader duplicate screening still required for all 10,
+  representation-control adjudication still unresolved for 9 rows, and full
+  label-factory gates not run for all 10. Its current `pilot_status` is
+  `needs_more_work`.
 
 ## Artifacts
 
@@ -810,6 +830,27 @@ PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-evidenc
   --transfer-blocker-matrix artifacts/v3_external_source_transfer_blocker_matrix_1025.json \
   --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
   --out artifacts/v3_external_source_pilot_evidence_dossiers_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-active-site-evidence-decisions \
+  --pilot-evidence-dossiers artifacts/v3_external_source_pilot_evidence_dossiers_1025.json \
+  --pilot-evidence-packet artifacts/v3_external_source_pilot_evidence_packet_1025.json \
+  --active-site-sourcing-resolution artifacts/v3_external_source_active_site_sourcing_resolution_1025.json \
+  --reaction-evidence-sample artifacts/v3_external_source_reaction_evidence_sample_1025.json \
+  --backend-sequence-search artifacts/v3_external_source_backend_sequence_search_1025.json \
+  --pilot-representation-backend-sample artifacts/v3_external_source_pilot_representation_backend_sample_1025.json \
+  --transfer-blocker-matrix artifacts/v3_external_source_transfer_blocker_matrix_1025.json \
+  --max-rows 10 \
+  --out artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json
+
+PYTHONPATH=src python -m catalytic_earth.cli build-external-source-pilot-success-criteria \
+  --pilot-candidate-priority artifacts/v3_external_source_pilot_candidate_priority_1025.json \
+  --pilot-review-decision-export artifacts/v3_external_source_pilot_review_decision_export_1025.json \
+  --pilot-active-site-evidence-decisions artifacts/v3_external_source_pilot_active_site_evidence_decisions_1025.json \
+  --external-import-readiness-audit artifacts/v3_external_source_import_readiness_audit_1025.json \
+  --external-transfer-gate artifacts/v3_external_source_transfer_gate_check_1025.json \
+  --min-import-ready-rows 1 \
+  --max-rows 10 \
+  --out artifacts/v3_external_source_pilot_success_criteria_1025.json
 
 PYTHONPATH=src python -m catalytic_earth.cli audit-review-only-import-safety \
   --labels data/registries/curated_mechanism_labels.json \
