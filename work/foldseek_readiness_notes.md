@@ -12,6 +12,7 @@ Split-repair plan update: 2026-05-14T18:57:00Z
 Split-repair projection update: 2026-05-14T19:03:00Z
 Sequence-holdout repair-candidate update: 2026-05-14T19:09:00Z
 Repaired expanded100 TM signal update: 2026-05-14T20:35:00Z
+All-materializable timeout attempt update: 2026-05-14T21:25:00Z
 
 Status:
 
@@ -176,6 +177,18 @@ Current TM-score readiness:
   because the source signal is still capped, two evaluated rows lack supported
   selected coordinates, and the full all-materializable Foldseek/TM-score split
   remains uncomputed.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
+  records a direct all-materializable Foldseek attempt through the compact
+  summary path. It used the repaired candidate readiness artifact, all 672
+  staged materializable coordinates, Foldseek `10.941cd33`, `--threads 4`, and
+  a 1,500-second runtime bound. Foldseek did not emit the result TSV before the
+  timeout, so the artifact records `foldseek_run_status=foldseek_run_timeout`,
+  0 pair rows, no computable max train/test TM-score, and no target pass. This
+  does not remove the full-signal blocker, but it makes the concrete runtime
+  blocker and compact artifact path explicit while keeping `m_csa:372` and
+  `m_csa:501` as coordinate exclusions. The artifact is review-only,
+  non-countable, not import-ready, and keeps
+  `full_tm_score_holdout_claim_permitted=false`.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
   `full_tm_score_holdout_claim_permitted=false`,
@@ -340,4 +353,16 @@ PYTHONPATH=src python -m catalytic_earth.cli audit-foldseek-tm-score-target-fail
   --threshold 0.7 \
   --max-blocking-pairs 20 \
   --out artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json
+```
+
+The direct all-materializable timeout attempt used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-all-materializable-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --threads 4 \
+  --max-runtime-seconds 1500 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json
 ```

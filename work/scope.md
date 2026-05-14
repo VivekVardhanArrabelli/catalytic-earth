@@ -218,7 +218,15 @@ Current expectation:
   result removes the projection-only computed-subset blocker, but it remains
   review-only and non-countable: the canonical holdout is unchanged, 572 staged
   coordinates remain uncomputed, two coordinate exclusions remain, and no full
-  TM-score holdout claim is permitted. The first 12-row
+  TM-score holdout claim is permitted. A direct all-materializable Foldseek
+  attempt now exists as a compact summary artifact:
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`.
+  It uses all 672 staged coordinates, Foldseek `10.941cd33`, `--threads 4`,
+  and a 1,500-second timeout, but Foldseek did not emit a result TSV before
+  the timeout. This records the concrete runtime blocker without bloating the
+  repository with full pair-row JSON; no max TM-score or target pass is
+  claimable, two coordinate exclusions remain, and
+  `full_tm_score_holdout_claim_permitted=false`. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute

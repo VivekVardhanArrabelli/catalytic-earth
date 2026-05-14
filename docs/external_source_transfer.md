@@ -145,6 +145,15 @@ the computed subset, but remains review-only and non-countable: the canonical
 sequence holdout is unchanged, 572 staged coordinates remain outside the capped
 signal, two selected rows remain coordinate exclusions, and no full
 TM-score-holdout claim is permitted.
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
+then makes a direct all-materializable attempt with a compact summary artifact
+instead of repository-scale pair-row JSON. The command used Foldseek
+`10.941cd33`, all 672 staged materializable coordinates, `--threads 4`, and a
+1,500-second runtime bound. Foldseek timed out before producing a result TSV,
+so no pair rows, max TM-score, or target pass can be claimed. The artifact is
+review-only, records 0 countable/import-ready rows, keeps `m_csa:372` and
+`m_csa:501` as coordinate exclusions, and preserves
+`full_tm_score_holdout_claim_permitted=false`.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
 `10.941cd33`). A TM-score split remains blocked until a full Foldseek-backed

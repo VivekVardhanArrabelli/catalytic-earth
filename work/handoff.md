@@ -50,6 +50,33 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T20:53:13Z run after clean startup gates
+(`349` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and
+  the source-scale audit remains capped at 1,003 observed M-CSA source records.
+  No M-CSA-only tranche should be opened without new source-scale evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. The selected pilot still has 10 rows, 0 terminal decisions, 0
+  import-ready rows, 0 countable candidates, 3 active-site-source blockers, 10
+  broader duplicate-screening blockers, 3 representation-control
+  stability-change blockers, and 10 full-gate blockers.
+- Scientific generalization work: Yes for direct Foldseek/TM-score full-run
+  feasibility evidence, but not for a full split claim. This run added the
+  compact all-materializable Foldseek summary path and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`.
+  The direct command used all 672 staged materializable coordinates, Foldseek
+  `10.941cd33`, `--threads 4`, and a 1,500-second runtime bound, but timed out
+  before Foldseek emitted a result TSV. It therefore records 0 pair rows, no
+  max train/test TM-score, and no target pass.
+- SPOF hardening work: Yes. The new compact summary path removes the
+  repository-bloat SPOF for future full Foldseek runs and the timeout artifact
+  turns the uncapped all-materializable blocker into concrete runtime evidence.
+  False-claim safety remains intact: the canonical holdout is unchanged,
+  `m_csa:372` and `m_csa:501` remain coordinate exclusions, all outputs remain
+  review-only/non-countable, and `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-14T19:52:23Z run after clean startup gates
 (`346` unit tests passed and `validate` passed):
 
@@ -278,6 +305,18 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Recent Project Progress
 
+- Added `build-foldseek-tm-score-all-materializable-signal`, a compact
+  all-materializable Foldseek summary command that records command/version,
+  coordinate coverage, coordinate exclusions, mapped-pair counts, target status,
+  top train/test pairs, and blocking pairs without committing every Foldseek
+  pair row. The first direct run wrote
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
+  from the repaired candidate readiness artifact. It covered all 672 staged
+  materializable coordinates with Foldseek `10.941cd33`, `--threads 4`, and a
+  1,500-second timeout, but Foldseek timed out before writing a result TSV. It
+  records 0 pair rows and no target pass, keeps `m_csa:372`/`m_csa:501` as the
+  coordinate exclusions, and preserves 0 countable/import-ready rows with
+  `full_tm_score_holdout_claim_permitted=false`.
 - Added
   `artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json`,
   `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`,
@@ -1108,24 +1147,27 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current run was direct only, with no subagents or delegation. It applied the
-candidate split repair to the Foldseek coordinate-readiness path and reran an
-actual repaired expanded100 Foldseek signal. Do not open another M-CSA-only
-tranche. Do not claim full TM-score holdout:
+Current run was direct only, with no subagents or delegation. It added the
+compact all-materializable Foldseek summary command and made one direct
+full-sidecar attempt from the repaired candidate readiness artifact. Do not
+open another M-CSA-only tranche. Do not claim full TM-score holdout:
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
+covers all 672 staged materializable coordinates and records the exact
+Foldseek `10.941cd33` command with `--threads 4`, but the 1,500-second bounded
+run timed out before a result TSV was emitted. It therefore has 0 pair rows, no
+max train/test TM-score, no target pass, and
+`full_tm_score_holdout_claim_permitted=false`. The previous repaired
+expanded100 evidence still stands for the capped subset:
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`
-shows the computed repaired 100-coordinate subset now has max train/test
-TM-score `0.6993`, and
+has max train/test TM-score `0.6993`, and
 `artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`
-finds 0 target-violating pairs. This only removes the projection-only blocker
-for the computed subset. The canonical sequence holdout remains unchanged, 572
-staged coordinates remain uncomputed, `m_csa:372` and `m_csa:501` remain
-coordinate exclusions, and `full_tm_score_holdout_claim_permitted=false`.
-The next Foldseek work should either run an uncapped all-materializable signal
-if feasible within the automation window or build the smallest direct
-split-builder/evaluation artifact needed to compare the repaired candidate
-against all materialized coordinates. Do not add another routine capped
-increment unless the full run is concretely infeasible and the bounded slice is
-documented as runtime-limited.
+finds 0 target-violating pairs. The canonical sequence holdout remains
+unchanged, `m_csa:372` and `m_csa:501` remain coordinate exclusions, and no
+countable/import-ready rows were created. The next Foldseek work should choose
+one concrete path: run the compact all-materializable command with a longer
+budget/off-hours environment, or use the compact parser to add chunk/resume
+support for the exact full-sidecar search. Do not add another routine capped
+increment unless it directly proves a chunk/resume strategy.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation

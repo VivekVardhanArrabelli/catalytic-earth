@@ -9,6 +9,7 @@ from catalytic_earth.generalization import (
     audit_foldseek_tm_score_target_failure,
     build_sequence_distance_holdout_split_repair_candidate,
     build_foldseek_coordinate_readiness,
+    build_foldseek_tm_score_all_materializable_signal,
     build_foldseek_tm_score_signal,
     build_sequence_distance_holdout_eval,
     project_foldseek_tm_score_split_repair,
@@ -716,6 +717,118 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["import_ready_candidate_count"], 0)
         self.assertFalse(metadata["ready_for_label_import"])
 
+    def test_tm_score_signal_summary_only_streams_counts_and_reports_top_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            coord_dir = Path(tmpdir) / "coords"
+            coord_dir.mkdir()
+            first = coord_dir / "pdb_1AAA.cif"
+            second = coord_dir / "pdb_2BBB.cif"
+            for path in (first, second):
+                path.write_text(f"data_{path.stem}\n#\n", encoding="utf-8")
+            commands: list[list[str]] = []
+
+            def fake_runner(command: list[str], cwd: Path) -> None:
+                commands.append(command)
+                Path(command[4]).write_text(
+                    "\n".join(
+                        [
+                            "pdb_1AAA\tpdb_2BBB\t0.210\t0.220\t0.230",
+                            "pdb_2BBB\tpdb_1AAA\t0.710\t0.720\t0.750",
+                            "pdb_1AAA\tpdb_1AAA\t0.990\t0.990\t0.990",
+                            "",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+
+            readiness = _tm_signal_readiness(
+                first_coordinate_path=str(first),
+                second_coordinate_path=str(second),
+            )
+            readiness["metadata"]["selected_structure_count"] = 2
+            readiness["metadata"]["materialized_coordinate_count"] = 2
+            readiness["metadata"]["not_materialized_structure_count"] = 0
+            readiness["structures"] = readiness["structures"][:2]
+            artifact = build_foldseek_tm_score_signal(
+                readiness=readiness,
+                slice_id="test",
+                foldseek_binary="/bin/echo",
+                keep_all_rows=False,
+                max_reported_rows=1,
+                threads=3,
+                runner=fake_runner,
+            )
+
+        metadata = artifact["metadata"]
+        self.assertEqual(metadata["pair_count"], 3)
+        self.assertEqual(metadata["mapped_pair_count"], 3)
+        self.assertEqual(metadata["train_test_pair_count"], 2)
+        self.assertEqual(metadata["target_violating_train_test_pair_row_count"], 1)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.75)
+        self.assertEqual(
+            metadata["pair_rows_retained_policy"],
+            "summary_top_train_test_and_target_violations",
+        )
+        self.assertEqual(metadata["reported_pair_row_count"], 1)
+        self.assertEqual(metadata["omitted_pair_row_count"], 2)
+        self.assertEqual(metadata["foldseek_threads"], 3)
+        self.assertIn("--threads", commands[0])
+        self.assertIn("3", commands[0])
+        self.assertEqual(len(artifact["rows"]), 1)
+        self.assertEqual(artifact["rows"][0]["max_pair_tm_score"], 0.75)
+
+    def test_tm_score_signal_distinguishes_full_materializable_from_full_evaluated(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            coord_dir = Path(tmpdir) / "coords"
+            coord_dir.mkdir()
+            first = coord_dir / "pdb_1AAA.cif"
+            second = coord_dir / "pdb_2BBB.cif"
+            for path in (first, second):
+                path.write_text(f"data_{path.stem}\n#\n", encoding="utf-8")
+
+            def fake_runner(command: list[str], cwd: Path) -> None:
+                Path(command[4]).write_text(
+                    "pdb_1AAA\tpdb_2BBB\t0.310\t0.320\t0.330\n",
+                    encoding="utf-8",
+                )
+
+            readiness = _tm_signal_readiness(
+                first_coordinate_path=str(first),
+                second_coordinate_path=str(second),
+            )
+            readiness["metadata"]["selected_structure_count"] = 2
+            readiness["metadata"]["materialized_coordinate_count"] = 2
+            readiness["metadata"]["not_materialized_structure_count"] = 0
+            readiness["metadata"]["missing_or_unsupported_structure_count"] = 1
+            readiness["structures"] = readiness["structures"][:2]
+            artifact = build_foldseek_tm_score_signal(
+                readiness=readiness,
+                slice_id="test",
+                foldseek_binary="/bin/echo",
+                runner=fake_runner,
+            )
+
+        metadata = artifact["metadata"]
+        self.assertTrue(metadata["all_materializable_coordinate_signal_computed"])
+        self.assertTrue(metadata["all_materializable_coordinate_coverage"])
+        self.assertFalse(metadata["full_evaluated_coordinate_coverage"])
+        self.assertEqual(
+            metadata["tm_score_signal_coverage_status"],
+            "full_materializable_coordinate_signal_with_exclusions",
+        )
+        self.assertFalse(metadata["tm_signal_coordinate_cap_applied"])
+        self.assertEqual(metadata["remaining_uncomputed_staged_coordinate_count"], 0)
+        self.assertIn(
+            "one or more evaluated rows lacks a supported selected structure",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertIn(
+            "all currently materializable selected coordinates were searched, but excluded rows without selected structures still block a full evaluated-coordinate claim",
+            metadata["limitations"],
+        )
+
     def test_tm_score_signal_records_prior_baseline_and_blocks_false_full_claim(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             coord_dir = Path(tmpdir) / "coords"
@@ -775,6 +888,119 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
             "selected structures remain outside the computed signal",
             metadata["full_tm_score_holdout_claim_blockers"],
         )
+
+    def test_all_materializable_signal_writes_compact_split_summary(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            coord_dir = Path(tmpdir) / "coords"
+            coord_dir.mkdir()
+            first = coord_dir / "pdb_1AAA.cif"
+            second = coord_dir / "pdb_2BBB.cif"
+            for path in (first, second):
+                path.write_text(f"data_{path.stem}\n#\n", encoding="utf-8")
+            commands: list[list[str]] = []
+
+            def fake_runner(command: list[str], cwd: Path) -> None:
+                commands.append(command)
+                Path(command[4]).write_text(
+                    "\n".join(
+                        [
+                            "pdb_1AAA\tpdb_2BBB\t0.610\t0.620\t0.630",
+                            "pdb_2BBB\tpdb_1AAA\t0.710\t0.720\t0.760",
+                            "pdb_1AAA\tpdb_1AAA\t0.990\t0.990\t0.990",
+                            "",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+
+            readiness = _tm_signal_readiness(
+                first_coordinate_path=str(first),
+                second_coordinate_path=str(second),
+            )
+            readiness["metadata"]["evaluated_count"] = 2
+            readiness["metadata"]["selected_structure_count"] = 2
+            readiness["metadata"]["materialized_coordinate_count"] = 2
+            readiness["metadata"]["coordinate_materialization_possible_count"] = 2
+            readiness["metadata"]["not_materialized_structure_count"] = 0
+            readiness["structures"] = readiness["structures"][:2]
+            readiness["rows"] = readiness["rows"][:2]
+
+            artifact = build_foldseek_tm_score_all_materializable_signal(
+                readiness=readiness,
+                readiness_path="readiness.json",
+                slice_id="test",
+                foldseek_binary="/bin/echo",
+                threads=2,
+                runner=fake_runner,
+            )
+
+        metadata = artifact["metadata"]
+        self.assertEqual(metadata["method"], "foldseek_tm_score_all_materializable_signal")
+        self.assertEqual(metadata["review_status"], "review_only_non_countable")
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertTrue(metadata["tm_score_split_computed"])
+        self.assertTrue(metadata["all_materializable_tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertTrue(metadata["all_materializable_coordinate_coverage"])
+        self.assertTrue(metadata["full_evaluated_coordinate_coverage"])
+        self.assertEqual(
+            metadata["tm_score_signal_coverage_status"],
+            "all_materializable_coordinate_signal",
+        )
+        self.assertEqual(metadata["staged_coordinate_count"], 2)
+        self.assertEqual(metadata["pair_count"], 3)
+        self.assertEqual(metadata["mapped_pair_count"], 3)
+        self.assertEqual(metadata["train_test_pair_count"], 2)
+        self.assertEqual(metadata["heldout_in_distribution_pair_count"], 2)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.76)
+        self.assertFalse(metadata["tm_score_target_achieved"])
+        self.assertEqual(metadata["violating_train_test_pair_row_count"], 1)
+        self.assertEqual(metadata["violating_unique_structure_pair_count"], 1)
+        self.assertEqual(metadata["raw_name_mapping_unmapped_count"], 0)
+        self.assertEqual(metadata["foldseek_threads"], 2)
+        self.assertIn("--threads", commands[0])
+        self.assertEqual(commands[0][commands[0].index("--threads") + 1], "2")
+        self.assertIn("compact summary artifact", " ".join(metadata["limitations"]))
+        self.assertEqual(len(artifact["top_train_test_pairs"]), 2)
+        self.assertEqual(len(artifact["blocking_pairs"]), 1)
+        self.assertEqual(
+            artifact["blocking_pairs"][0]["query_structure_key"], "pdb:2BBB"
+        )
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+
+    def test_current_1000_all_materializable_signal_timeout_artifact_is_pinned(
+        self,
+    ) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "foldseek_tm_score_all_materializable_signal"
+        )
+        self.assertEqual(metadata["foldseek_run_status"], "foldseek_run_timeout")
+        self.assertEqual(metadata["foldseek_max_runtime_seconds"], 1500)
+        self.assertEqual(metadata["foldseek_threads"], 4)
+        self.assertEqual(metadata["staged_coordinate_count"], 672)
+        self.assertEqual(metadata["available_staged_coordinate_count"], 672)
+        self.assertEqual(metadata["materialized_coordinate_count"], 672)
+        self.assertEqual(metadata["remaining_uncomputed_staged_coordinate_count"], 672)
+        self.assertTrue(metadata["all_materializable_coordinate_coverage"])
+        self.assertFalse(metadata["full_evaluated_coordinate_coverage"])
+        self.assertEqual(metadata["missing_or_unsupported_structure_count"], 2)
+        self.assertEqual(metadata["pair_count"], 0)
+        self.assertEqual(metadata["mapped_pair_count"], 0)
+        self.assertEqual(metadata["train_test_pair_count"], 0)
+        self.assertIsNone(metadata["max_observed_train_test_tm_score"])
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertEqual(len(artifact["top_train_test_pairs"]), 0)
+        self.assertEqual(len(artifact["blocking_pairs"]), 0)
 
     def test_tm_score_target_failure_audit_names_blocking_pairs(self) -> None:
         signal = {
@@ -1735,6 +1961,47 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["countable_label_count"], 0)
         self.assertEqual(metadata["import_ready_row_count"], 0)
         self.assertFalse(metadata["ready_for_label_import"])
+        self.assertEqual(artifact["blocking_pairs"], [])
+
+    def test_current_all_materializable_foldseek_attempt_is_pinned(self) -> None:
+        artifact = _load_artifact(
+            "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json"
+        )
+        metadata = artifact["metadata"]
+
+        self.assertEqual(
+            metadata["method"], "foldseek_tm_score_all_materializable_signal"
+        )
+        self.assertEqual(metadata["foldseek_run_status"], "foldseek_run_timeout")
+        self.assertEqual(metadata["foldseek_version"], "10.941cd33")
+        self.assertEqual(metadata["foldseek_threads"], 4)
+        self.assertEqual(metadata["foldseek_max_runtime_seconds"], 1500)
+        self.assertEqual(metadata["available_staged_coordinate_count"], 672)
+        self.assertEqual(metadata["staged_coordinate_count"], 672)
+        self.assertTrue(metadata["all_materializable_coordinate_coverage"])
+        self.assertFalse(metadata["full_evaluated_coordinate_coverage"])
+        self.assertEqual(metadata["missing_or_unsupported_structure_count"], 2)
+        self.assertEqual(
+            [item["entry_id"] for item in metadata["tm_score_coordinate_exclusions"]],
+            ["m_csa:372", "m_csa:501"],
+        )
+        self.assertEqual(metadata["pair_count"], 0)
+        self.assertEqual(metadata["train_test_pair_count"], 0)
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["all_materializable_tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertIn(
+            "Foldseek all-materializable signal did not complete with pair rows",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertIn(
+            "one or more evaluated rows lacks a supported selected structure",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertEqual(artifact["top_train_test_pairs"], [])
         self.assertEqual(artifact["blocking_pairs"], [])
 
 

@@ -20,6 +20,7 @@ from .generalization import (
     audit_foldseek_tm_score_target_failure,
     build_sequence_distance_holdout_split_repair_candidate,
     build_foldseek_coordinate_readiness,
+    build_foldseek_tm_score_all_materializable_signal,
     build_foldseek_tm_score_signal,
     build_sequence_distance_holdout_eval,
     project_foldseek_tm_score_split_repair,
@@ -670,6 +671,9 @@ def cmd_build_foldseek_tm_score_signal(args: argparse.Namespace) -> int:
         foldseek_binary=args.foldseek_binary,
         max_staged_coordinates=args.max_staged_coordinates,
         prior_staged_coordinate_count=args.prior_staged_coordinate_count,
+        threads=args.threads,
+        keep_all_rows=not args.summary_only,
+        max_reported_rows=args.max_reported_rows,
     )
     write_json(Path(args.out), artifact)
     print(
@@ -678,6 +682,32 @@ def cmd_build_foldseek_tm_score_signal(args: argparse.Namespace) -> int:
         "staged coordinates, "
         f"{artifact['metadata']['pair_count']} pair rows, "
         f"tm_score_split_computed={artifact['metadata']['tm_score_split_computed']})"
+    )
+    return 0
+
+
+def cmd_build_foldseek_tm_score_all_materializable_signal(args: argparse.Namespace) -> int:
+    with Path(args.readiness).open("r", encoding="utf-8") as handle:
+        readiness = json.load(handle)
+    artifact = build_foldseek_tm_score_all_materializable_signal(
+        readiness=readiness,
+        readiness_path=args.readiness,
+        slice_id=args.slice_id,
+        foldseek_binary=args.foldseek_binary,
+        max_runtime_seconds=args.max_runtime_seconds,
+        threads=args.threads,
+        threshold=args.threshold,
+        max_reported_pairs=args.max_reported_pairs,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote all-materializable Foldseek TM-score signal to "
+        f"{args.out} ({artifact['metadata']['staged_coordinate_count']} "
+        "staged coordinates, "
+        f"{artifact['metadata']['pair_count']} pair rows, "
+        f"run_status={artifact['metadata']['foldseek_run_status']}, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
     )
     return 0
 
@@ -4304,7 +4334,78 @@ def build_parser() -> argparse.ArgumentParser:
             "when a larger bounded Foldseek signal removes that ceiling"
         ),
     )
+    foldseek_tm_signal.add_argument(
+        "--threads",
+        type=int,
+        default=1,
+        help="Foldseek thread count for easy-search",
+    )
+    foldseek_tm_signal.add_argument(
+        "--summary-only",
+        action="store_true",
+        help=(
+            "retain compact top train/test and target-violation rows while "
+            "streaming aggregate pair counts, instead of serializing every "
+            "Foldseek pair row"
+        ),
+    )
+    foldseek_tm_signal.add_argument(
+        "--max-reported-rows",
+        type=int,
+        default=200,
+        help="maximum pair rows retained when --summary-only is used",
+    )
     foldseek_tm_signal.set_defaults(func=cmd_build_foldseek_tm_score_signal)
+
+    foldseek_all_materializable = subparsers.add_parser(
+        "build-foldseek-tm-score-all-materializable-signal",
+        help=(
+            "run Foldseek over every staged materializable selected coordinate "
+            "and write a compact review-only TM-score split summary"
+        ),
+    )
+    foldseek_all_materializable.add_argument("--slice-id", required=True)
+    foldseek_all_materializable.add_argument(
+        "--readiness",
+        default="artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json",
+        help="Foldseek coordinate-readiness artifact with all staged coordinate sidecars",
+    )
+    foldseek_all_materializable.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        help="explicit Foldseek binary path for version provenance and easy-search",
+    )
+    foldseek_all_materializable.add_argument(
+        "--max-runtime-seconds",
+        type=int,
+        default=None,
+        help="optional wall-clock timeout for the Foldseek easy-search command",
+    )
+    foldseek_all_materializable.add_argument(
+        "--threads",
+        type=int,
+        default=1,
+        help="Foldseek thread count to record and pass to easy-search",
+    )
+    foldseek_all_materializable.add_argument(
+        "--threshold",
+        type=float,
+        default=0.7,
+        help="exclusive target threshold for train/test TM-score pairs",
+    )
+    foldseek_all_materializable.add_argument(
+        "--max-reported-pairs",
+        type=int,
+        default=20,
+        help="maximum top train/test and blocking pair summaries to keep",
+    )
+    foldseek_all_materializable.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json",
+    )
+    foldseek_all_materializable.set_defaults(
+        func=cmd_build_foldseek_tm_score_all_materializable_signal
+    )
 
     foldseek_target_failure = subparsers.add_parser(
         "audit-foldseek-tm-score-target-failure",

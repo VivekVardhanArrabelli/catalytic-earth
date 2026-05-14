@@ -403,6 +403,16 @@ candidate does not replace the canonical holdout or authorize a full
 TM-score-holdout claim: 572 staged coordinates remain uncomputed, the signal is
 capped, two selected rows remain excluded from coordinate materialization, and
 all three artifacts keep 0 countable/import-ready rows.
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
+now records a direct all-materializable Foldseek attempt using the compact
+summary path over all 672 staged coordinates with Foldseek `10.941cd33`,
+`--threads 4`, and a 1,500-second runtime bound. The attempt timed out before
+Foldseek emitted the result TSV, so it records 0 pair rows and removes no
+full-signal blocker. It still removes ambiguity about the next bottleneck:
+all materializable coordinates are staged, `m_csa:372` and `m_csa:501` remain
+the only coordinate exclusions, the compact path can avoid repository-scale
+pair-row JSON, and `full_tm_score_holdout_claim_permitted=false` remains
+correct.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records

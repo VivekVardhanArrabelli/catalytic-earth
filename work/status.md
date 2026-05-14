@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 99
-- Measured elapsed time: 3475.3 minutes (57.92 hours)
+- Entries: 101
+- Measured elapsed time: 3547.7 minutes (59.13 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 829.0 measured minutes (13.82 hours)
+- post-mcsa-spof-hardening: 901.4 measured minutes (15.02 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,32 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 1038
-- Evidence references logged: 849
+- Artifact references logged: 1056
+- Evidence references logged: 863
 
 ## Recent Entries
-
-### 2026-05-14T15:07:52.876846+00:00 - post-mcsa-spof-hardening
-
-- Task: External pilot success criteria and Foldseek exclusions
-- Time mode: measured
-- Measured minutes: 20.817
-- Started: 2026-05-14T14:46:52Z
-- Ended: 2026-05-14T15:07:41Z
-- Artifacts: src/catalytic_earth/transfer_scope.py, src/catalytic_earth/cli.py, src/catalytic_earth/generalization.py, tests/test_transfer_scope.py, tests/test_cli.py, tests/test_generalization.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_external_source_pilot_success_criteria_1025.json, artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json, README.md, docs/external_source_transfer.md, work/external_source_transfer_1025_notes.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 334 unit tests passed, validate passed, compileall passed, pilot success criteria status needs_more_work with 0 terminal decisions and 0 import-ready rows, pilot success criteria record 7 explicit active-site rows, 3 binding-context-only rows, 10 broader duplicate-screening blockers, 9 representation-control blockers, and 10 full-gate blockers, Foldseek coordinate exclusions recorded for m_csa:372 and m_csa:501 with geometry_status=no_structure_positions and selected_structure_id=null, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked local implementation run. No M-CSA count growth and no external import.
-
-### 2026-05-14T16:15:30.855586+00:00 - post-mcsa-spof-hardening
-
-- Task: Expanded80 Foldseek partial TM signal
-- Time mode: measured
-- Measured minutes: 26.6
-- Started: 2026-05-14T15:48:54Z
-- Ended: 2026-05-14T16:15:30Z
-- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_expanded80.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 335 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifact parse passed, Foldseek expanded80 completed partial signal 18591 mapped pairs, max train/test TM 0.7515, target <0.7 not achieved, 0 countable labels, 0 import-ready rows
-- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
 
 ### 2026-05-14T17:29:09.455993+00:00 - post-mcsa-spof-hardening
 
@@ -116,6 +94,28 @@ Generated from `work/progress_log.jsonl`.
 - Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json, artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: 349 unit tests passed, validate passed with 679 curated labels, git diff check passed, repaired expanded100 Foldseek signal completed with 27542 mapped pairs, repaired computed-subset max train/test TM 0.6993 with 0 target-violating pairs, 0 countable labels and 0 import-ready rows
 - Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
+
+### 2026-05-14T21:29:25.500620+00:00 - post-mcsa-spof-hardening
+
+- Task: All-materializable Foldseek timeout evidence
+- Time mode: measured
+- Measured minutes: 35.8
+- Started: 2026-05-14T20:53:13Z
+- Ended: 2026-05-14T21:29:01Z
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 354 unit tests passed, validate passed with 679 curated labels, compileall passed, all-materializable Foldseek attempt used 672 staged coordinates and Foldseek 10.941cd33 with 4 threads, all-materializable Foldseek attempt timed out after 1500 seconds before result TSV, 0 countable labels and 0 import-ready rows
+- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
+
+### 2026-05-14T21:29:26.788448+00:00 - post-mcsa-spof-hardening
+
+- Task: All-materializable Foldseek compact timeout attempt
+- Time mode: measured
+- Measured minutes: 36.533
+- Started: 2026-05-14T20:52:54Z
+- Ended: 2026-05-14T21:29:26Z
+- Artifacts: src/catalytic_earth/generalization.py, src/catalytic_earth/cli.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 354 unit tests passed, validate passed with 679 curated labels, compileall passed, git diff check passed, Foldseek all-materializable attempt covered 672 staged coordinates and timed out after 1500 seconds before result TSV, 0 pair rows, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked direct run with no delegation. No M-CSA count growth and no external import. Full TM-score holdout claim remains forbidden.
 
 ## Expectation Updates
 
@@ -203,6 +203,8 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T19:04:21.441130+00:00: Next Foldseek work should apply/regenerate the repaired split and rerun downstream metrics before any full TM-score claim
 - 2026-05-14T19:08:48.002960+00:00: Next Foldseek work should rebuild downstream evaluation from the candidate split and run an uncapped all-materializable Foldseek signal when feasible
 - 2026-05-14T20:34:07.608397+00:00: Repaired expanded100 removes the projection-only computed-subset blocker, but full TM-score split remains blocked by the cap, two coordinate exclusions, and the uncomputed all-materializable signal
+- 2026-05-14T21:29:25.500620+00:00: Next Foldseek work should add resumable or chunked all-materializable execution before retrying the 672-coordinate exact TM-score search
+- 2026-05-14T21:29:26.788448+00:00: Uncapped all-materializable Foldseek exact TM-score search exceeds the normal automation window; next work needs a longer run budget or chunk/resume support, not another routine capped increment
 
 ## Scope Adjustments
 
@@ -293,3 +295,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T19:04:21.441130+00:00: Foldseek target failure now has a concrete unapplied repair candidate and computed-subset projection; full holdout still requires regenerated sequence metrics and uncapped Foldseek split
 - 2026-05-14T19:08:48.002960+00:00: Foldseek split repair now has an unapplied candidate sequence holdout copy; canonical holdout and downstream artifacts still need regeneration before any claim
 - 2026-05-14T20:34:07.608397+00:00: Foldseek split repair now has an actual repaired expanded100 signal under the candidate holdout; canonical holdout remains unchanged and no full holdout claim is permitted.
+- 2026-05-14T21:29:25.500620+00:00: Full TM-score split remains blocked by all-materializable Foldseek runtime plus two coordinate exclusions; compact summary path prevents repository-scale row JSON

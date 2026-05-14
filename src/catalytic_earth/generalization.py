@@ -728,6 +728,10 @@ def build_foldseek_tm_score_signal(
     readiness_path: str | None = None,
     max_staged_coordinates: int | None = None,
     prior_staged_coordinate_count: int | None = None,
+    threads: int = 1,
+    keep_all_rows: bool = True,
+    max_reported_rows: int = 200,
+    tm_score_threshold: float = 0.7,
     runner: Callable[[list[str], Path], None] | None = None,
 ) -> dict[str, Any]:
     """Build a partial Foldseek TM-score signal for staged coordinates only.
@@ -787,6 +791,7 @@ def build_foldseek_tm_score_signal(
     command: list[str] | None = None
     command_string: str | None = None
     pair_rows: list[dict[str, Any]] = []
+    pair_summary: dict[str, Any] | None = None
     run_status = "not_run"
     run_error: str | None = None
 
@@ -835,7 +840,7 @@ def build_foldseek_tm_score_signal(
             "--exact-tmscore",
             "1",
             "--threads",
-            "1",
+            str(max(1, int(threads))),
             "-v",
             "1",
         ]
@@ -845,44 +850,86 @@ def build_foldseek_tm_score_signal(
                 _run_backend_command(command, cwd=workdir)
             else:
                 runner(command, workdir)
-            pair_rows = _parse_foldseek_tm_score_rows(
-                result_tsv=result_tsv,
-                alias_to_structure=alias_to_structure,
-                row_partitions_by_entry=row_partitions_by_entry,
-            )
+            if keep_all_rows:
+                pair_rows = _parse_foldseek_tm_score_rows(
+                    result_tsv=result_tsv,
+                    alias_to_structure=alias_to_structure,
+                    row_partitions_by_entry=row_partitions_by_entry,
+                )
+            else:
+                pair_rows, pair_summary = _summarize_foldseek_tm_score_rows(
+                    result_tsv=result_tsv,
+                    alias_to_structure=alias_to_structure,
+                    row_partitions_by_entry=row_partitions_by_entry,
+                    threshold=tm_score_threshold,
+                    max_reported_rows=max_reported_rows,
+                )
             run_status = "completed"
         except (OSError, RuntimeError, ValueError) as exc:
             run_status = "foldseek_run_failed"
             run_error = f"{type(exc).__name__}: {exc}"
 
-    mapped_pair_count = sum(
-        1
-        for row in pair_rows
-        if row.get("query_structure_key") and row.get("target_structure_key")
-    )
-    train_test_rows = [row for row in pair_rows if row.get("train_test_pair")]
-    partition_pair_counts = _foldseek_partition_pair_counts(pair_rows)
-    max_train_test_tm_score = None
-    for row in train_test_rows:
-        score = row.get("max_pair_tm_score")
-        if score is None:
-            continue
-        max_train_test_tm_score = (
-            float(score)
-            if max_train_test_tm_score is None
-            else max(max_train_test_tm_score, float(score))
-        )
-    unmapped_names = sorted(
-        {
-            str(name)
+    if pair_summary is None:
+        mapped_pair_count = sum(
+            1
             for row in pair_rows
-            for name, key in (
-                (row.get("raw_query_name"), row.get("query_structure_key")),
-                (row.get("raw_target_name"), row.get("target_structure_key")),
+            if row.get("query_structure_key") and row.get("target_structure_key")
+        )
+        train_test_rows = [row for row in pair_rows if row.get("train_test_pair")]
+        partition_pair_counts = _foldseek_partition_pair_counts(pair_rows)
+        max_train_test_tm_score = None
+        for row in train_test_rows:
+            score = row.get("max_pair_tm_score")
+            if score is None:
+                continue
+            max_train_test_tm_score = (
+                float(score)
+                if max_train_test_tm_score is None
+                else max(max_train_test_tm_score, float(score))
             )
-            if name and not key
+        unmapped_names = sorted(
+            {
+                str(name)
+                for row in pair_rows
+                for name, key in (
+                    (row.get("raw_query_name"), row.get("query_structure_key")),
+                    (row.get("raw_target_name"), row.get("target_structure_key")),
+                )
+                if name and not key
+            }
+        )
+        pair_count = len(pair_rows)
+        train_test_pair_count = len(train_test_rows)
+        unique_unordered_nonself_pair_count = _unique_unordered_nonself_pair_count(
+            pair_rows
+        )
+        target_violating_pair_count = sum(
+            1
+            for row in train_test_rows
+            if (_parse_optional_float(row.get("max_pair_tm_score")) or 0.0)
+            >= float(tm_score_threshold)
+        )
+    else:
+        mapped_pair_count = int(pair_summary["mapped_pair_count"])
+        train_test_rows = [row for row in pair_rows if row.get("train_test_pair")]
+        partition_pair_counts = {
+            "heldout_in_distribution_pair_count": int(
+                pair_summary["heldout_in_distribution_pair_count"]
+            ),
+            "heldout_pair_count": int(pair_summary["heldout_pair_count"]),
+            "in_distribution_pair_count": int(pair_summary["in_distribution_pair_count"]),
+            "other_partition_pair_count": int(pair_summary["other_partition_pair_count"]),
         }
-    )
+        max_train_test_tm_score = pair_summary.get("max_train_test_tm_score")
+        unmapped_names = list(pair_summary.get("unmapped_names", []))
+        pair_count = int(pair_summary["pair_count"])
+        train_test_pair_count = int(pair_summary["train_test_pair_count"])
+        unique_unordered_nonself_pair_count = int(
+            pair_summary["unique_unordered_nonself_pair_count"]
+        )
+        target_violating_pair_count = int(
+            pair_summary["target_violating_train_test_pair_row_count"]
+        )
     selected_structure_count = int(
         metadata_in.get("selected_structure_count", len(structures)) or 0
     )
@@ -903,16 +950,21 @@ def build_foldseek_tm_score_signal(
     not_materialized_structure_count = int(
         metadata_in.get("not_materialized_structure_count", 0) or 0
     )
-    full_evaluated_coordinate_coverage = (
+    all_materializable_coordinate_coverage = (
         bool(staged_structures)
         and selected_structure_count == len(staged_structures)
-        and missing_or_unsupported_structure_count == 0
         and fetch_failure_count == 0
+        and not_materialized_structure_count == 0
         and not cap_applied
+    )
+    full_evaluated_coordinate_coverage = (
+        all_materializable_coordinate_coverage
+        and missing_or_unsupported_structure_count == 0
     )
     partial_signal = run_status == "completed" and bool(pair_rows)
     computed_tm_target_achieved = (
-        max_train_test_tm_score is not None and max_train_test_tm_score < 0.7
+        max_train_test_tm_score is not None
+        and max_train_test_tm_score < float(tm_score_threshold)
     )
     prior_coordinate_count = (
         max(0, int(prior_staged_coordinate_count))
@@ -930,11 +982,16 @@ def build_foldseek_tm_score_signal(
     remaining_uncomputed_staged_coordinate_count = max(
         0, len(available_staged_structures) - len(staged_structures)
     )
-    coverage_status = (
-        "full_evaluated_coordinate_signal"
-        if full_evaluated_coordinate_coverage
-        else "partial_staged_coordinate_signal"
-    )
+    if full_evaluated_coordinate_coverage:
+        coverage_status = "full_evaluated_coordinate_signal"
+    elif all_materializable_coordinate_coverage:
+        coverage_status = (
+            "full_materializable_coordinate_signal_with_exclusions"
+            if missing_or_unsupported_structure_count
+            else "full_materializable_coordinate_signal"
+        )
+    else:
+        coverage_status = "partial_staged_coordinate_signal"
     full_claim_blockers = [
         "this builder emits a TM-score signal, not a tested full TM-score split"
     ]
@@ -951,11 +1008,13 @@ def build_foldseek_tm_score_signal(
     if remaining_uncomputed_staged_coordinate_count:
         full_claim_blockers.append("available staged coordinates were excluded by the signal cap")
     if not computed_tm_target_achieved:
-        full_claim_blockers.append("computed train/test TM-score target <0.7 is not achieved")
+        full_claim_blockers.append(
+            f"computed train/test TM-score target <{float(tm_score_threshold):.1f} is not achieved"
+        )
     blockers_remaining = sorted(set(full_claim_blockers))
     limitations = [
         "partial staged-coordinate Foldseek signal only; it is not a full accepted-registry TM-score holdout",
-        "tm_score_split_computed=false because not every evaluated coordinate is staged and no split is computed here",
+        "tm_score_split_computed=false because no canonical full TM-score split is emitted here",
         "review-only artifact; it creates no countable labels and no import-ready rows",
         "Foldseek output names are mapped by exact filename/basename/stem/structure-metadata aliases or by an unambiguous generated PDB stem plus chain suffix; other differing raw names remain unmapped",
     ]
@@ -967,6 +1026,10 @@ def build_foldseek_tm_score_signal(
         limitations.append("Foldseek easy-search did not complete; pairwise TM-score rows are unavailable")
     if not full_evaluated_coordinate_coverage:
         limitations.append("full evaluated-coordinate coverage is absent; full TM-score split remains blocked")
+    if all_materializable_coordinate_coverage and missing_or_unsupported_structure_count:
+        limitations.append(
+            "all currently materializable selected coordinates were searched, but excluded rows without selected structures still block a full evaluated-coordinate claim"
+        )
     if cap_applied:
         limitations.append("computed TM-score signal was capped below the available staged coordinate count")
     if max_train_test_tm_score is None:
@@ -993,7 +1056,14 @@ def build_foldseek_tm_score_signal(
     expanded_successful_signal = partial_signal and (
         len(staged_structures) > 25 or cap_applied
     )
-    if staged_exceeds_prior:
+    if partial_signal and all_materializable_coordinate_coverage:
+        blocker_removed = (
+            "removes the remaining staged-coordinate signal cap by running "
+            f"Foldseek easy-search over all {len(staged_structures)} currently "
+            "materializable selected coordinates; this remains review-only and "
+            "non-countable"
+        )
+    elif staged_exceeds_prior:
         blocker_removed = (
             f"removes the previous expanded{prior_coordinate_count} partial-signal "
             f"ceiling by running Foldseek easy-search over {len(staged_structures)} "
@@ -1018,9 +1088,9 @@ def build_foldseek_tm_score_signal(
             else None
         ),
         "blocker_narrowed": (
-            "bounded staged-coordinate Foldseek TM-score signal computed for the "
-            "coordinate sidecar only; full evaluated-coordinate TM-score split "
-            "remains blocked until every evaluated coordinate is staged"
+            "Foldseek TM-score signal computed for the coordinate sidecar; full "
+            "evaluated-coordinate TM-score split remains blocked until excluded "
+            "evaluated rows are resolved and a canonical split artifact is emitted"
         ),
         "slice_id": requested_slice_id,
         "readiness_artifact": readiness_path,
@@ -1037,13 +1107,17 @@ def build_foldseek_tm_score_signal(
         "partial_tm_score_signal_scope": "staged_coordinates_only",
         "real_tm_score_computed": False,
         "partial_real_tm_score_signal_computed": partial_signal,
+        "all_materializable_coordinate_signal_computed": bool(
+            partial_signal and all_materializable_coordinate_coverage
+        ),
         "full_evaluated_coordinate_coverage": full_evaluated_coordinate_coverage,
+        "all_materializable_coordinate_coverage": all_materializable_coordinate_coverage,
         "tm_score_signal_coverage_status": coverage_status,
         "full_tm_score_holdout_claim_permitted": False,
         "full_tm_score_holdout_claim_blockers": sorted(set(full_claim_blockers)),
         "blockers_remaining": blockers_remaining,
-        "threshold_target": "<0.7",
-        "tm_score_threshold_target": "<0.7",
+        "threshold_target": f"<{float(tm_score_threshold):.1f}",
+        "tm_score_threshold_target": f"<{float(tm_score_threshold):.1f}",
         "tm_score_target_achieved_for_computed_subset": computed_tm_target_achieved,
         "tm_score_target_evaluation_scope": "mapped heldout/in_distribution pairs in computed staged-coordinate subset only",
         "evaluated_count": evaluated_count,
@@ -1076,9 +1150,9 @@ def build_foldseek_tm_score_signal(
         "computed_subset_evaluated_entry_coverage": computed_subset_evaluated_entry_coverage,
         "coordinate_directory": coordinate_dir,
         "coordinate_directories": coordinate_dirs,
-        "pair_count": len(pair_rows),
+        "pair_count": pair_count,
         "mapped_pair_count": mapped_pair_count,
-        "train_test_pair_count": len(train_test_rows),
+        "train_test_pair_count": train_test_pair_count,
         "heldout_in_distribution_pair_count": partition_pair_counts[
             "heldout_in_distribution_pair_count"
         ],
@@ -1087,7 +1161,8 @@ def build_foldseek_tm_score_signal(
             "in_distribution_pair_count"
         ],
         "other_partition_pair_count": partition_pair_counts["other_partition_pair_count"],
-        "unique_unordered_nonself_pair_count": _unique_unordered_nonself_pair_count(pair_rows),
+        "unique_unordered_nonself_pair_count": unique_unordered_nonself_pair_count,
+        "target_violating_train_test_pair_row_count": target_violating_pair_count,
         "max_observed_train_test_tm_score": (
             round(max_train_test_tm_score, 4)
             if max_train_test_tm_score is not None
@@ -1106,6 +1181,13 @@ def build_foldseek_tm_score_signal(
         "foldseek_commands": [item for item in [foldseek_info["version_command"], command_string] if item],
         "foldseek_run_status": run_status,
         "foldseek_run_error": run_error,
+        "foldseek_threads": max(1, int(threads)),
+        "pair_rows_retained_policy": (
+            "all_rows" if keep_all_rows else "summary_top_train_test_and_target_violations"
+        ),
+        "reported_pair_row_count": len(pair_rows),
+        "omitted_pair_row_count": max(0, pair_count - len(pair_rows)),
+        "max_reported_pair_rows": max(0, int(max_reported_rows)),
         "raw_name_mapping_unmapped_count": len(unmapped_names),
         "raw_name_mapping_unmapped_names": unmapped_names,
         "raw_name_mapping_alias_collision_count": len(alias_collisions),
@@ -1161,6 +1243,331 @@ def build_foldseek_tm_score_signal(
                 str(row.get("raw_target_name") or ""),
             ),
         ),
+    }
+
+
+def build_foldseek_tm_score_all_materializable_signal(
+    *,
+    readiness: dict[str, Any],
+    slice_id: str | None = None,
+    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    readiness_path: str | None = None,
+    max_runtime_seconds: int | None = None,
+    threads: int = 1,
+    threshold: float = 0.7,
+    max_reported_pairs: int = 20,
+    runner: Callable[[list[str], Path], None] | None = None,
+) -> dict[str, Any]:
+    """Run a compact Foldseek TM-score summary over every staged coordinate.
+
+    Unlike ``build_foldseek_tm_score_signal``, this path is intended for the
+    all-materializable sidecar and does not emit every pair row into JSON. It
+    keeps the full-run provenance and split summary small enough to commit.
+    """
+
+    metadata_in = readiness.get("metadata", {}) if isinstance(readiness, dict) else {}
+    if not isinstance(metadata_in, dict):
+        metadata_in = {}
+    rows_in = readiness.get("rows", []) if isinstance(readiness, dict) else []
+    structures_in = readiness.get("structures", []) if isinstance(readiness, dict) else []
+    rows = [row for row in rows_in if isinstance(row, dict)]
+    structures = [item for item in structures_in if isinstance(item, dict)]
+
+    row_partitions_by_entry = {
+        str(row.get("entry_id")): row.get("sequence_holdout_partition")
+        for row in rows
+        if isinstance(row.get("entry_id"), str)
+    }
+    row_structure_by_entry = {
+        str(row.get("entry_id")): row.get("selected_structure_key")
+        for row in rows
+        if isinstance(row.get("entry_id"), str)
+    }
+
+    staged_structures = _staged_foldseek_structures(structures)
+    alias_to_structure, alias_collisions = _foldseek_name_aliases(staged_structures)
+    coordinate_dirs = sorted(
+        {
+            str(Path(str(structure["coordinate_path"])).parent)
+            for structure in staged_structures
+            if structure.get("coordinate_path")
+        }
+    )
+    coordinate_dir = (
+        str(Path(coordinate_dirs[0]).resolve()) if len(coordinate_dirs) == 1 else None
+    )
+    foldseek_info = _foldseek_binary_info(foldseek_binary)
+    requested_slice_id = str(slice_id or metadata_in.get("slice_id") or "")
+    command: list[str] | None = None
+    command_string: str | None = None
+    result_tsv: Path | None = None
+    run_status = "not_run"
+    run_error: str | None = None
+    pair_summary = _empty_foldseek_tm_score_pair_summary()
+
+    if not foldseek_info["available"]:
+        run_status = "foldseek_unavailable"
+    elif len(staged_structures) < 2:
+        run_status = "insufficient_staged_coordinates"
+    elif coordinate_dir is None:
+        run_status = "staged_coordinates_span_multiple_directories"
+    else:
+        digest = _coordinate_paths_digest(staged_structures)
+        workdir = Path("/private/tmp") / (
+            f"catalytic-earth-foldseek-tm-all-{requested_slice_id or 'slice'}-{digest}"
+        )
+        if workdir.exists():
+            shutil.rmtree(workdir)
+        workdir.mkdir(parents=True, exist_ok=True)
+        result_tsv = workdir / "all_materializable_tm_scores.tsv"
+        tmpdir = workdir / "tmp"
+        command = [
+            str(foldseek_info["resolved"] or foldseek_binary),
+            "easy-search",
+            str(Path(coordinate_dir)),
+            str(Path(coordinate_dir)),
+            str(result_tsv),
+            str(tmpdir),
+            "--format-output",
+            "query,target,qtmscore,ttmscore,alntmscore",
+            "--exhaustive-search",
+            "1",
+            "--alignment-type",
+            "1",
+            "--tmalign-fast",
+            "0",
+            "--exact-tmscore",
+            "1",
+            "--threads",
+            str(max(1, int(threads))),
+            "-v",
+            "1",
+        ]
+        command_string = _command_string(command)
+        try:
+            if runner is None:
+                _run_backend_command(command, cwd=workdir, timeout=max_runtime_seconds)
+            else:
+                runner(command, workdir)
+            pair_summary = _summarize_foldseek_tm_score_tsv(
+                result_tsv=result_tsv,
+                alias_to_structure=alias_to_structure,
+                row_partitions_by_entry=row_partitions_by_entry,
+                threshold=threshold,
+                max_reported_pairs=max_reported_pairs,
+            )
+            run_status = "completed"
+        except TimeoutError as exc:
+            run_status = "foldseek_run_timeout"
+            run_error = f"{type(exc).__name__}: {exc}"
+        except (OSError, RuntimeError, ValueError) as exc:
+            run_status = "foldseek_run_failed"
+            run_error = f"{type(exc).__name__}: {exc}"
+
+    selected_structure_count = int(
+        metadata_in.get("selected_structure_count", len(structures)) or 0
+    )
+    evaluated_count = int(metadata_in.get("evaluated_count", len(rows)) or 0)
+    materialization_possible_count = int(
+        metadata_in.get("coordinate_materialization_possible_count", 0) or 0
+    )
+    materialized_coordinate_count = int(
+        metadata_in.get("materialized_coordinate_count", len(staged_structures)) or 0
+    )
+    missing_or_unsupported_structure_count = int(
+        metadata_in.get("missing_or_unsupported_structure_count", 0) or 0
+    )
+    fetch_failure_count = int(metadata_in.get("fetch_failure_count", 0) or 0)
+    not_materialized_structure_count = int(
+        metadata_in.get("not_materialized_structure_count", 0) or 0
+    )
+    all_materializable_coordinate_coverage = (
+        bool(staged_structures)
+        and len(staged_structures) == materialized_coordinate_count
+        and not_materialized_structure_count == 0
+        and fetch_failure_count == 0
+    )
+    full_evaluated_coordinate_coverage = (
+        all_materializable_coordinate_coverage
+        and selected_structure_count == len(staged_structures)
+        and missing_or_unsupported_structure_count == 0
+    )
+    summary_completed = run_status == "completed" and pair_summary["pair_count"] > 0
+    max_train_test_tm_score = pair_summary["max_observed_train_test_tm_score"]
+    target_achieved = (
+        max_train_test_tm_score is not None and max_train_test_tm_score < threshold
+    )
+    selected_staged_entry_ids = sorted(
+        {
+            str(entry_id)
+            for structure in staged_structures
+            for entry_id in structure.get("entry_ids", [])
+            if isinstance(entry_id, str)
+        },
+        key=_entry_id_sort_key,
+    )
+    coordinate_exclusions = metadata_in.get("missing_or_unsupported_structures", [])
+    full_claim_blockers = [
+        "review-only all-materializable TM-score signal is not a canonical full holdout claim"
+    ]
+    if not summary_completed:
+        full_claim_blockers.append("Foldseek all-materializable signal did not complete with pair rows")
+    if not full_evaluated_coordinate_coverage:
+        full_claim_blockers.append("evaluated selected-coordinate coverage is partial")
+    if missing_or_unsupported_structure_count:
+        full_claim_blockers.append("one or more evaluated rows lacks a supported selected structure")
+    if fetch_failure_count:
+        full_claim_blockers.append("one or more selected coordinate fetches failed")
+    if not_materialized_structure_count:
+        full_claim_blockers.append("one or more materializable selected structures remain unstaged")
+    if not target_achieved:
+        full_claim_blockers.append("computed train/test TM-score target <0.7 is not achieved")
+    limitations = [
+        "review-only artifact; it creates no countable labels and no import-ready rows",
+        "compact summary artifact; per-pair Foldseek rows are not emitted into repository JSON",
+        "full_tm_score_holdout_claim_permitted=false until coordinate exclusions and canonical split policy are resolved",
+    ]
+    if metadata_in.get("sequence_holdout_artifact"):
+        limitations.append(
+            "sequence-holdout partition provenance is inherited from the readiness artifact"
+        )
+    if coordinate_exclusions:
+        limitations.append("selected rows with no supported coordinate structures remain excluded from TM-score computation")
+    if alias_collisions:
+        limitations.append("one or more coordinate filename aliases were ambiguous and not used for raw-name mapping")
+    if pair_summary["raw_name_mapping_unmapped_count"]:
+        limitations.append("one or more Foldseek raw query/target names could not be mapped safely to staged structures")
+    if run_error:
+        limitations.append("Foldseek easy-search did not complete; all-materializable pairwise TM-score rows are unavailable")
+
+    metadata = {
+        "method": "foldseek_tm_score_all_materializable_signal",
+        "blocker_removed": (
+            "removes the capped-signal blocker by running Foldseek easy-search over all staged materializable coordinates"
+            if summary_completed and all_materializable_coordinate_coverage
+            else None
+        ),
+        "blocker_not_removed": (
+            "all-materializable Foldseek TM-score signal did not complete"
+            if not summary_completed
+            else None
+        ),
+        "slice_id": requested_slice_id,
+        "readiness_artifact": readiness_path,
+        "readiness_method": metadata_in.get("method"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "countable_label_count": 0,
+        "import_ready_candidate_count": 0,
+        "import_ready_row_count": 0,
+        "ready_for_label_import": False,
+        "tm_score_split_computed": summary_completed,
+        "all_materializable_tm_score_signal_computed": summary_completed,
+        "all_materializable_tm_score_split_computed": summary_completed,
+        "full_tm_score_split_computed": False,
+        "real_tm_score_computed": summary_completed,
+        "full_evaluated_coordinate_coverage": full_evaluated_coordinate_coverage,
+        "all_materializable_coordinate_coverage": all_materializable_coordinate_coverage,
+        "tm_score_signal_coverage_status": (
+            "all_materializable_coordinate_signal"
+            if all_materializable_coordinate_coverage
+            else "partial_materializable_coordinate_signal"
+        ),
+        "full_tm_score_holdout_claim_permitted": False,
+        "full_tm_score_holdout_claim_blockers": sorted(set(full_claim_blockers)),
+        "blockers_remaining": sorted(set(full_claim_blockers)),
+        "threshold_target": "<0.7",
+        "tm_score_threshold": float(threshold),
+        "tm_score_threshold_target": "<0.7",
+        "tm_score_target_operator": "<",
+        "tm_score_target_achieved": target_achieved,
+        "tm_score_target_achieved_for_all_materializable_signal": target_achieved,
+        "tm_score_target_evaluation_scope": (
+            "mapped heldout/in_distribution pairs across every staged materializable selected coordinate"
+        ),
+        "evaluated_count": evaluated_count,
+        "selected_structure_count": selected_structure_count,
+        "coordinate_materialization_possible_count": materialization_possible_count,
+        "coordinate_fetch_cap": metadata_in.get("coordinate_fetch_cap"),
+        "materialized_coordinate_count": materialized_coordinate_count,
+        "available_staged_coordinate_count": len(staged_structures),
+        "staged_coordinate_count": len(staged_structures),
+        "staged_structure_count": len(staged_structures),
+        "staged_entry_count": len(selected_staged_entry_ids),
+        "selected_staged_entry_ids": selected_staged_entry_ids,
+        "missing_or_unsupported_structure_count": missing_or_unsupported_structure_count,
+        "missing_or_unsupported_structures": coordinate_exclusions,
+        "tm_score_coordinate_exclusion_count": missing_or_unsupported_structure_count,
+        "tm_score_coordinate_exclusions": coordinate_exclusions,
+        "fetch_failure_count": fetch_failure_count,
+        "fetch_failures": metadata_in.get("fetch_failures", []),
+        "not_materialized_structure_count": not_materialized_structure_count,
+        "not_materialized_structures": metadata_in.get("not_materialized_structures", []),
+        "remaining_uncomputed_staged_coordinate_count": 0 if summary_completed else len(staged_structures),
+        "remaining_unstaged_supported_structure_count": not_materialized_structure_count,
+        "computed_subset_structure_coverage": _safe_ratio(
+            len(staged_structures), selected_structure_count
+        ),
+        "computed_subset_materialized_coverage": _safe_ratio(
+            len(staged_structures), materialized_coordinate_count
+        ),
+        "computed_subset_evaluated_entry_coverage": _safe_ratio(
+            len(selected_staged_entry_ids), evaluated_count
+        ),
+        "coordinate_directory": coordinate_dir,
+        "coordinate_directories": coordinate_dirs,
+        "foldseek_binary_requested": foldseek_info["requested"],
+        "foldseek_binary_resolved": foldseek_info["resolved"],
+        "foldseek_binary_available": foldseek_info["available"],
+        "foldseek_version": foldseek_info["version"],
+        "foldseek_version_command": foldseek_info["version_command"],
+        "foldseek_command": command_string,
+        "foldseek_commands": [item for item in [foldseek_info["version_command"], command_string] if item],
+        "foldseek_run_status": run_status,
+        "foldseek_run_error": run_error,
+        "foldseek_max_runtime_seconds": max_runtime_seconds,
+        "foldseek_threads": max(1, int(threads)),
+        "foldseek_result_tsv_path": str(result_tsv) if result_tsv else None,
+        "foldseek_result_tsv_size_bytes": (
+            result_tsv.stat().st_size if result_tsv and result_tsv.exists() else None
+        ),
+        "raw_name_mapping_alias_collision_count": len(alias_collisions),
+        "raw_name_mapping_alias_collisions": alias_collisions,
+        "limitations": sorted(set(limitations)),
+        **pair_summary,
+    }
+
+    return {
+        "metadata": metadata,
+        "staged_structures": [
+            {
+                **{
+                    key: structure.get(key)
+                    for key in (
+                        "structure_key",
+                        "source",
+                        "structure_id",
+                        "coordinate_path",
+                        "fetch_status",
+                    )
+                },
+                "entry_ids": sorted(
+                    [str(entry_id) for entry_id in structure.get("entry_ids", [])],
+                    key=_entry_id_sort_key,
+                ),
+                "entry_partitions": {
+                    str(entry_id): row_partitions_by_entry.get(str(entry_id))
+                    for entry_id in structure.get("entry_ids", [])
+                },
+                "entry_structure_keys": {
+                    str(entry_id): row_structure_by_entry.get(str(entry_id))
+                    for entry_id in structure.get("entry_ids", [])
+                },
+            }
+            for structure in staged_structures
+        ],
+        "top_train_test_pairs": pair_summary["top_train_test_pairs"],
+        "blocking_pairs": pair_summary["blocking_pairs"],
     }
 
 
@@ -3090,14 +3497,22 @@ def _ids_digest(ids: set[str]) -> str:
     return hashlib.sha256("|".join(sorted(ids, key=_entry_id_sort_key)).encode("utf-8")).hexdigest()[:12]
 
 
-def _run_backend_command(command: list[str], *, cwd: Path) -> None:
-    completed = subprocess.run(
-        command,
-        cwd=str(cwd),
-        text=True,
-        capture_output=True,
-        check=False,
-    )
+def _run_backend_command(
+    command: list[str], *, cwd: Path, timeout: int | None = None
+) -> None:
+    try:
+        completed = subprocess.run(
+            command,
+            cwd=str(cwd),
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise TimeoutError(
+            f"{_command_string(command)} exceeded {timeout} seconds"
+        ) from exc
     if completed.returncode != 0:
         stderr = completed.stderr.strip() or completed.stdout.strip()
         raise RuntimeError(
@@ -3203,15 +3618,97 @@ def _coordinate_paths_digest(staged_structures: list[dict[str, Any]]) -> str:
     return hashlib.sha256("|".join(sorted(paths)).encode("utf-8")).hexdigest()[:12]
 
 
-def _parse_foldseek_tm_score_rows(
+def _empty_foldseek_tm_score_pair_summary() -> dict[str, Any]:
+    return {
+        "pair_count": 0,
+        "mapped_pair_count": 0,
+        "parse_error_count": 0,
+        "train_test_pair_count": 0,
+        "heldout_in_distribution_pair_count": 0,
+        "heldout_pair_count": 0,
+        "in_distribution_pair_count": 0,
+        "other_partition_pair_count": 0,
+        "unique_unordered_nonself_pair_count": 0,
+        "max_observed_train_test_tm_score": None,
+        "max_observed_train_test_tm_score_computable": False,
+        "max_observed_train_test_tm_score_metric": (
+            "max(qtmscore, ttmscore, alntmscore) across mapped heldout/in_distribution staged-coordinate pairs"
+        ),
+        "violating_train_test_pair_row_count": 0,
+        "violating_unique_structure_pair_count": 0,
+        "violating_unique_entry_pair_count": 0,
+        "raw_name_mapping_unmapped_count": 0,
+        "raw_name_mapping_unmapped_names": [],
+        "top_train_test_pairs": [],
+        "blocking_pairs": [],
+    }
+
+
+def _summarize_foldseek_tm_score_rows(
     *,
     result_tsv: Path,
     alias_to_structure: dict[str, dict[str, Any]],
     row_partitions_by_entry: dict[str, Any],
-) -> list[dict[str, Any]]:
+    threshold: float,
+    max_reported_rows: int,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    summary = _summarize_foldseek_tm_score_tsv(
+        result_tsv=result_tsv,
+        alias_to_structure=alias_to_structure,
+        row_partitions_by_entry=row_partitions_by_entry,
+        threshold=threshold,
+        max_reported_pairs=max_reported_rows,
+    )
+    retained_rows_by_key: dict[tuple[Any, Any, Any], dict[str, Any]] = {}
+    for row in summary["top_train_test_pairs"] + summary["blocking_pairs"]:
+        retained_rows_by_key[
+            (
+                row.get("raw_query_name"),
+                row.get("raw_target_name"),
+                row.get("source_signal_line_number"),
+            )
+        ] = row
+    compatible_summary = {
+        "pair_count": summary["pair_count"],
+        "mapped_pair_count": summary["mapped_pair_count"],
+        "train_test_pair_count": summary["train_test_pair_count"],
+        "heldout_in_distribution_pair_count": summary[
+            "heldout_in_distribution_pair_count"
+        ],
+        "heldout_pair_count": summary["heldout_pair_count"],
+        "in_distribution_pair_count": summary["in_distribution_pair_count"],
+        "other_partition_pair_count": summary["other_partition_pair_count"],
+        "unique_unordered_nonself_pair_count": summary[
+            "unique_unordered_nonself_pair_count"
+        ],
+        "max_train_test_tm_score": summary["max_observed_train_test_tm_score"],
+        "unmapped_names": summary["raw_name_mapping_unmapped_names"],
+        "target_violating_train_test_pair_row_count": summary[
+            "violating_train_test_pair_row_count"
+        ],
+    }
+    return list(retained_rows_by_key.values()), compatible_summary
+
+
+def _summarize_foldseek_tm_score_tsv(
+    *,
+    result_tsv: Path,
+    alias_to_structure: dict[str, dict[str, Any]],
+    row_partitions_by_entry: dict[str, Any],
+    threshold: float,
+    max_reported_pairs: int,
+) -> dict[str, Any]:
     if not result_tsv.exists():
         raise ValueError(f"Foldseek result TSV was not created: {result_tsv}")
-    rows: list[dict[str, Any]] = []
+
+    summary = _empty_foldseek_tm_score_pair_summary()
+    unique_nonself_pairs: set[tuple[str, str]] = set()
+    raw_unmapped_names: set[str] = set()
+    top_train_test_pairs: list[dict[str, Any]] = []
+    blocking_by_structure_pair: dict[tuple[str, str], dict[str, Any]] = {}
+    violating_entry_pairs: set[tuple[str, str]] = set()
+    reported_limit = max(1, int(max_reported_pairs))
+
     with result_tsv.open("r", encoding="utf-8") as handle:
         for line_number, raw_line in enumerate(handle, start=1):
             line = raw_line.rstrip("\n")
@@ -3221,19 +3718,11 @@ def _parse_foldseek_tm_score_rows(
             if fields[:5] == ["query", "target", "qtmscore", "ttmscore", "alntmscore"]:
                 continue
             if len(fields) < 5:
-                rows.append(
-                    {
-                        "line_number": line_number,
-                        "raw_line": line,
-                        "parse_error": "expected at least 5 tab-separated Foldseek fields",
-                        "raw_query_name": fields[0] if fields else None,
-                        "raw_target_name": fields[1] if len(fields) > 1 else None,
-                        "query_structure_key": None,
-                        "target_structure_key": None,
-                        "query_name_mapping_status": "unparsed_row",
-                        "target_name_mapping_status": "unparsed_row",
-                    }
-                )
+                summary["parse_error_count"] += 1
+                if fields:
+                    raw_unmapped_names.add(fields[0])
+                if len(fields) > 1:
+                    raw_unmapped_names.add(fields[1])
                 continue
             query_raw, target_raw = fields[0], fields[1]
             query_structure, query_status = _map_foldseek_raw_name(
@@ -3262,51 +3751,425 @@ def _parse_foldseek_tm_score_rows(
             ttmscore = _parse_optional_float(fields[3])
             alntmscore = _parse_optional_float(fields[4])
             max_pair_tm_score = _max_optional_float([qtmscore, ttmscore, alntmscore])
+            row = {
+                "line_number": line_number,
+                "raw_query_name": query_raw,
+                "raw_target_name": target_raw,
+                "query_name_mapping_status": query_status,
+                "target_name_mapping_status": target_status,
+                "query_structure_key": (
+                    query_structure.get("structure_key") if query_structure else None
+                ),
+                "target_structure_key": (
+                    target_structure.get("structure_key") if target_structure else None
+                ),
+                "query_structure_id": (
+                    query_structure.get("structure_id") if query_structure else None
+                ),
+                "target_structure_id": (
+                    target_structure.get("structure_id") if target_structure else None
+                ),
+                "query_entry_ids": query_entry_ids,
+                "target_entry_ids": target_entry_ids,
+                "query_partitions": query_partitions,
+                "target_partitions": target_partitions,
+                "qtmscore": qtmscore,
+                "ttmscore": ttmscore,
+                "alntmscore": alntmscore,
+                "max_pair_tm_score": max_pair_tm_score,
+                "self_pair": bool(
+                    query_structure
+                    and target_structure
+                    and query_structure.get("structure_key")
+                    == target_structure.get("structure_key")
+                ),
+                "train_test_pair": _is_train_test_partition_pair(
+                    query_partitions, target_partitions
+                ),
+            }
+            summary["pair_count"] += 1
+            if row["query_structure_key"] and row["target_structure_key"]:
+                summary["mapped_pair_count"] += 1
+            if not row["query_structure_key"]:
+                raw_unmapped_names.add(query_raw)
+            if not row["target_structure_key"]:
+                raw_unmapped_names.add(target_raw)
+            query_key = row["query_structure_key"] or f"raw:{query_raw}"
+            target_key = row["target_structure_key"] or f"raw:{target_raw}"
+            if query_key != target_key:
+                unique_nonself_pairs.add(tuple(sorted([str(query_key), str(target_key)])))
+
+            partitions = set(query_partitions) | set(target_partitions)
+            if "heldout" in partitions and "in_distribution" in partitions:
+                summary["heldout_in_distribution_pair_count"] += 1
+            elif partitions == {"heldout"}:
+                summary["heldout_pair_count"] += 1
+            elif partitions == {"in_distribution"}:
+                summary["in_distribution_pair_count"] += 1
+            else:
+                summary["other_partition_pair_count"] += 1
+
+            if not row["train_test_pair"]:
+                continue
+            summary["train_test_pair_count"] += 1
+            score = _parse_optional_float(max_pair_tm_score)
+            if score is None:
+                continue
+            current_max = summary["max_observed_train_test_tm_score"]
+            summary["max_observed_train_test_tm_score"] = (
+                score if current_max is None else max(float(current_max), score)
+            )
+            top_train_test_pairs.append(_foldseek_train_test_pair_summary(row, threshold))
+            top_train_test_pairs.sort(
+                key=lambda item: (
+                    -(_parse_optional_float(item.get("max_pair_tm_score")) or 0.0),
+                    str(item.get("query_structure_key") or ""),
+                    str(item.get("target_structure_key") or ""),
+                )
+            )
+            del top_train_test_pairs[reported_limit:]
+            if score < threshold:
+                continue
+            summary["violating_train_test_pair_row_count"] += 1
+            query_pair_key = _foldseek_blocking_pair_member_key(
+                row.get("query_structure_key"), row.get("raw_query_name")
+            )
+            target_pair_key = _foldseek_blocking_pair_member_key(
+                row.get("target_structure_key"), row.get("raw_target_name")
+            )
+            structure_pair_key = tuple(sorted([query_pair_key, target_pair_key]))
+            existing = blocking_by_structure_pair.get(structure_pair_key)
+            if existing is None or (
+                _parse_optional_float(row.get("max_pair_tm_score")) or 0.0
+            ) > (_parse_optional_float(existing.get("max_pair_tm_score")) or 0.0):
+                blocking_by_structure_pair[structure_pair_key] = row
+            for query_entry_id in query_entry_ids or ["unmapped_query"]:
+                for target_entry_id in target_entry_ids or ["unmapped_target"]:
+                    if query_entry_id == target_entry_id:
+                        continue
+                    violating_entry_pairs.add(
+                        tuple(sorted([str(query_entry_id), str(target_entry_id)]))
+                    )
+
+    blocking_pairs = [
+        _foldseek_blocking_pair_summary(row, threshold)
+        for row in blocking_by_structure_pair.values()
+    ]
+    blocking_pairs.sort(
+        key=lambda item: (
+            -(_parse_optional_float(item.get("max_pair_tm_score")) or 0.0),
+            str(item.get("query_structure_key") or ""),
+            str(item.get("target_structure_key") or ""),
+        )
+    )
+    summary["max_observed_train_test_tm_score"] = (
+        round(float(summary["max_observed_train_test_tm_score"]), 4)
+        if summary["max_observed_train_test_tm_score"] is not None
+        else None
+    )
+    summary["max_observed_train_test_tm_score_computable"] = (
+        summary["max_observed_train_test_tm_score"] is not None
+    )
+    summary["unique_unordered_nonself_pair_count"] = len(unique_nonself_pairs)
+    summary["violating_unique_structure_pair_count"] = len(blocking_by_structure_pair)
+    summary["violating_unique_entry_pair_count"] = len(violating_entry_pairs)
+    summary["raw_name_mapping_unmapped_count"] = len(raw_unmapped_names)
+    summary["raw_name_mapping_unmapped_names"] = sorted(raw_unmapped_names)
+    summary["top_train_test_pairs"] = top_train_test_pairs
+    summary["blocking_pairs"] = blocking_pairs[:reported_limit]
+    return summary
+
+
+def _foldseek_train_test_pair_summary(
+    row: dict[str, Any], threshold: float
+) -> dict[str, Any]:
+    score = _parse_optional_float(row.get("max_pair_tm_score"))
+    return {
+        "query_structure_key": row.get("query_structure_key"),
+        "target_structure_key": row.get("target_structure_key"),
+        "query_structure_id": row.get("query_structure_id"),
+        "target_structure_id": row.get("target_structure_id"),
+        "query_entry_ids": _structure_entry_ids_from_row(row, "query_entry_ids"),
+        "target_entry_ids": _structure_entry_ids_from_row(row, "target_entry_ids"),
+        "query_partitions": _string_list(row.get("query_partitions")),
+        "target_partitions": _string_list(row.get("target_partitions")),
+        "raw_query_name": row.get("raw_query_name"),
+        "raw_target_name": row.get("raw_target_name"),
+        "qtmscore": row.get("qtmscore"),
+        "ttmscore": row.get("ttmscore"),
+        "alntmscore": row.get("alntmscore"),
+        "max_pair_tm_score": row.get("max_pair_tm_score"),
+        "threshold": threshold,
+        "target_operator": "<",
+        "violates_target": score is not None and score >= threshold,
+        "train_test_pair": True,
+        "self_pair": bool(row.get("self_pair")),
+        "source_signal_line_number": row.get("line_number"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate": False,
+        "import_ready": False,
+    }
+
+
+def _structure_entry_ids_from_row(row: dict[str, Any], key: str) -> list[str]:
+    return sorted(
+        [str(entry_id) for entry_id in row.get(key, []) if isinstance(entry_id, str)],
+        key=_entry_id_sort_key,
+    )
+
+
+def _parse_foldseek_tm_score_rows(
+    *,
+    result_tsv: Path,
+    alias_to_structure: dict[str, dict[str, Any]],
+    row_partitions_by_entry: dict[str, Any],
+) -> list[dict[str, Any]]:
+    if not result_tsv.exists():
+        raise ValueError(f"Foldseek result TSV was not created: {result_tsv}")
+    rows: list[dict[str, Any]] = []
+    with result_tsv.open("r", encoding="utf-8") as handle:
+        for line_number, raw_line in enumerate(handle, start=1):
+            line = raw_line.rstrip("\n")
+            if not line or line.startswith("#"):
+                continue
+            fields = line.split("\t")
+            if fields[:5] == ["query", "target", "qtmscore", "ttmscore", "alntmscore"]:
+                continue
             rows.append(
-                {
-                    "line_number": line_number,
-                    "raw_query_name": query_raw,
-                    "raw_target_name": target_raw,
-                    "query_name_mapping_status": query_status,
-                    "target_name_mapping_status": target_status,
-                    "query_structure_key": (
-                        query_structure.get("structure_key") if query_structure else None
-                    ),
-                    "target_structure_key": (
-                        target_structure.get("structure_key") if target_structure else None
-                    ),
-                    "query_structure_id": (
-                        query_structure.get("structure_id") if query_structure else None
-                    ),
-                    "target_structure_id": (
-                        target_structure.get("structure_id") if target_structure else None
-                    ),
-                    "query_coordinate_path": (
-                        query_structure.get("coordinate_path") if query_structure else None
-                    ),
-                    "target_coordinate_path": (
-                        target_structure.get("coordinate_path") if target_structure else None
-                    ),
-                    "query_entry_ids": query_entry_ids,
-                    "target_entry_ids": target_entry_ids,
-                    "query_partitions": query_partitions,
-                    "target_partitions": target_partitions,
-                    "qtmscore": qtmscore,
-                    "ttmscore": ttmscore,
-                    "alntmscore": alntmscore,
-                    "max_pair_tm_score": max_pair_tm_score,
-                    "self_pair": bool(
-                        query_structure
-                        and target_structure
-                        and query_structure.get("structure_key")
-                        == target_structure.get("structure_key")
-                    ),
-                    "train_test_pair": _is_train_test_partition_pair(
-                        query_partitions, target_partitions
-                    ),
-                }
+                _parse_foldseek_tm_score_row(
+                    line_number=line_number,
+                    line=line,
+                    fields=fields,
+                    alias_to_structure=alias_to_structure,
+                    row_partitions_by_entry=row_partitions_by_entry,
+                )
             )
     return rows
+
+
+def _summarize_foldseek_tm_score_rows(
+    *,
+    result_tsv: Path,
+    alias_to_structure: dict[str, dict[str, Any]],
+    row_partitions_by_entry: dict[str, Any],
+    threshold: float,
+    max_reported_rows: int,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    if not result_tsv.exists():
+        raise ValueError(f"Foldseek result TSV was not created: {result_tsv}")
+
+    threshold_value = float(threshold)
+    report_limit = max(0, int(max_reported_rows))
+    pair_count = 0
+    mapped_pair_count = 0
+    train_test_pair_count = 0
+    target_violating_count = 0
+    partition_pair_counts = _foldseek_partition_pair_counts([])
+    max_train_test_tm_score: float | None = None
+    unmapped_names: set[str] = set()
+    unique_nonself_pairs: set[tuple[str, str]] = set()
+    reported_by_line: dict[int, dict[str, Any]] = {}
+    top_train_test_rows: list[dict[str, Any]] = []
+
+    def keep_reported(row: dict[str, Any]) -> None:
+        if report_limit <= 0:
+            return
+        line_number = row.get("line_number")
+        if isinstance(line_number, int) and len(reported_by_line) < report_limit:
+            reported_by_line[line_number] = row
+
+    with result_tsv.open("r", encoding="utf-8") as handle:
+        for line_number, raw_line in enumerate(handle, start=1):
+            line = raw_line.rstrip("\n")
+            if not line or line.startswith("#"):
+                continue
+            fields = line.split("\t")
+            if fields[:5] == ["query", "target", "qtmscore", "ttmscore", "alntmscore"]:
+                continue
+            row = _parse_foldseek_tm_score_row(
+                line_number=line_number,
+                line=line,
+                fields=fields,
+                alias_to_structure=alias_to_structure,
+                row_partitions_by_entry=row_partitions_by_entry,
+            )
+            pair_count += 1
+            if row.get("query_structure_key") and row.get("target_structure_key"):
+                mapped_pair_count += 1
+            for name, key in (
+                (row.get("raw_query_name"), row.get("query_structure_key")),
+                (row.get("raw_target_name"), row.get("target_structure_key")),
+            ):
+                if name and not key:
+                    unmapped_names.add(str(name))
+            query_key = row.get("query_structure_key") or f"raw:{row.get('raw_query_name')}"
+            target_key = row.get("target_structure_key") or f"raw:{row.get('raw_target_name')}"
+            if query_key != target_key:
+                unique_nonself_pairs.add(tuple(sorted([str(query_key), str(target_key)])))
+            partitions = set(row.get("query_partitions") or []) | set(
+                row.get("target_partitions") or []
+            )
+            if "heldout" in partitions and "in_distribution" in partitions:
+                partition_pair_counts["heldout_in_distribution_pair_count"] += 1
+            elif partitions == {"heldout"}:
+                partition_pair_counts["heldout_pair_count"] += 1
+            elif partitions == {"in_distribution"}:
+                partition_pair_counts["in_distribution_pair_count"] += 1
+            else:
+                partition_pair_counts["other_partition_pair_count"] += 1
+
+            if not row.get("train_test_pair"):
+                continue
+            train_test_pair_count += 1
+            score = _parse_optional_float(row.get("max_pair_tm_score"))
+            if score is None:
+                continue
+            max_train_test_tm_score = (
+                score
+                if max_train_test_tm_score is None
+                else max(max_train_test_tm_score, score)
+            )
+            if score >= threshold_value:
+                target_violating_count += 1
+                keep_reported(row)
+            top_train_test_rows.append(row)
+            if len(top_train_test_rows) > max(20, report_limit * 3):
+                top_train_test_rows = sorted(
+                    top_train_test_rows,
+                    key=lambda item: -(
+                        _parse_optional_float(item.get("max_pair_tm_score")) or -1.0
+                    ),
+                )[:report_limit]
+
+    for row in sorted(
+        top_train_test_rows,
+        key=lambda item: -(
+            _parse_optional_float(item.get("max_pair_tm_score")) or -1.0
+        ),
+    )[:report_limit]:
+        keep_reported(row)
+
+    return (
+        sorted(
+            reported_by_line.values(),
+            key=lambda row: (
+                str(row.get("raw_query_name") or ""),
+                str(row.get("raw_target_name") or ""),
+            ),
+        ),
+        {
+            "pair_count": pair_count,
+            "mapped_pair_count": mapped_pair_count,
+            "train_test_pair_count": train_test_pair_count,
+            "target_violating_train_test_pair_row_count": target_violating_count,
+            "heldout_in_distribution_pair_count": partition_pair_counts[
+                "heldout_in_distribution_pair_count"
+            ],
+            "heldout_pair_count": partition_pair_counts["heldout_pair_count"],
+            "in_distribution_pair_count": partition_pair_counts[
+                "in_distribution_pair_count"
+            ],
+            "other_partition_pair_count": partition_pair_counts[
+                "other_partition_pair_count"
+            ],
+            "unique_unordered_nonself_pair_count": len(unique_nonself_pairs),
+            "max_train_test_tm_score": max_train_test_tm_score,
+            "unmapped_names": sorted(unmapped_names),
+        },
+    )
+
+
+def _parse_foldseek_tm_score_row(
+    *,
+    line_number: int,
+    line: str,
+    fields: list[str],
+    alias_to_structure: dict[str, dict[str, Any]],
+    row_partitions_by_entry: dict[str, Any],
+) -> dict[str, Any]:
+    if len(fields) < 5:
+        return {
+            "line_number": line_number,
+            "raw_line": line,
+            "parse_error": "expected at least 5 tab-separated Foldseek fields",
+            "raw_query_name": fields[0] if fields else None,
+            "raw_target_name": fields[1] if len(fields) > 1 else None,
+            "query_structure_key": None,
+            "target_structure_key": None,
+            "query_name_mapping_status": "unparsed_row",
+            "target_name_mapping_status": "unparsed_row",
+            "train_test_pair": False,
+        }
+
+    query_raw, target_raw = fields[0], fields[1]
+    query_structure, query_status = _map_foldseek_raw_name(
+        query_raw, alias_to_structure
+    )
+    target_structure, target_status = _map_foldseek_raw_name(
+        target_raw, alias_to_structure
+    )
+    query_entry_ids = _structure_entry_ids(query_structure)
+    target_entry_ids = _structure_entry_ids(target_structure)
+    query_partitions = sorted(
+        {
+            str(row_partitions_by_entry.get(entry_id))
+            for entry_id in query_entry_ids
+            if row_partitions_by_entry.get(entry_id) is not None
+        }
+    )
+    target_partitions = sorted(
+        {
+            str(row_partitions_by_entry.get(entry_id))
+            for entry_id in target_entry_ids
+            if row_partitions_by_entry.get(entry_id) is not None
+        }
+    )
+    qtmscore = _parse_optional_float(fields[2])
+    ttmscore = _parse_optional_float(fields[3])
+    alntmscore = _parse_optional_float(fields[4])
+    max_pair_tm_score = _max_optional_float([qtmscore, ttmscore, alntmscore])
+    return {
+        "line_number": line_number,
+        "raw_query_name": query_raw,
+        "raw_target_name": target_raw,
+        "query_name_mapping_status": query_status,
+        "target_name_mapping_status": target_status,
+        "query_structure_key": (
+            query_structure.get("structure_key") if query_structure else None
+        ),
+        "target_structure_key": (
+            target_structure.get("structure_key") if target_structure else None
+        ),
+        "query_structure_id": (
+            query_structure.get("structure_id") if query_structure else None
+        ),
+        "target_structure_id": (
+            target_structure.get("structure_id") if target_structure else None
+        ),
+        "query_coordinate_path": (
+            query_structure.get("coordinate_path") if query_structure else None
+        ),
+        "target_coordinate_path": (
+            target_structure.get("coordinate_path") if target_structure else None
+        ),
+        "query_entry_ids": query_entry_ids,
+        "target_entry_ids": target_entry_ids,
+        "query_partitions": query_partitions,
+        "target_partitions": target_partitions,
+        "qtmscore": qtmscore,
+        "ttmscore": ttmscore,
+        "alntmscore": alntmscore,
+        "max_pair_tm_score": max_pair_tm_score,
+        "self_pair": bool(
+            query_structure
+            and target_structure
+            and query_structure.get("structure_key")
+            == target_structure.get("structure_key")
+        ),
+        "train_test_pair": _is_train_test_partition_pair(
+            query_partitions, target_partitions
+        ),
+    }
 
 
 def _map_foldseek_raw_name(
