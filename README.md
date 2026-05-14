@@ -413,6 +413,22 @@ all materializable coordinates are staged, `m_csa:372` and `m_csa:501` remain
 the only coordinate exclusions, the compact path can avoid repository-scale
 pair-row JSON, and `full_tm_score_holdout_claim_permitted=false` remains
 correct.
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
+and
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`
+then run the first two resumable all-materializable query chunks directly.
+They use the repaired candidate readiness artifact, Foldseek `10.941cd33`, 12
+query coordinates per chunk against all 672 staged materializable target
+coordinates, `--threads 4`, and a 900-second bound. Together they cover 24
+query coordinates, map 28,251 pair rows, evaluate 9,142
+heldout/in-distribution train/test rows, and expose max observed train/test
+TM-score `0.8957`. Chunk 0 records 11 target-violating row-level pairs across
+six unique structure pairs; chunk 1 records 59 target-violating row-level pairs
+across seven unique structure pairs. This removes the all-at-once-only runtime
+SPOF and exposes new exact target-failure evidence beyond the repaired
+expanded100 cap, but it is still only chunks 1-2/56, review-only,
+non-countable, not import-ready, and
+`full_tm_score_holdout_claim_permitted=false` remains correct.
 `artifacts/v3_external_source_representation_backend_sample_1025.json`
 also computes the first bounded learned representation sample for all 12 mapped
 external pilot controls using `facebook/esm2_t6_8M_UR50D`. The sample records
@@ -533,10 +549,12 @@ the contract rejects non-object artifact payloads at the gate boundary.
 The external pilot ranking, no-decision review export, evidence-packet,
 pilot-specific representation, and dossier artifacts are now built; the
 high-fan-in pilot builders also fail fast on mixed-slice lineage before writing
-new packet or dossier artifacts. The next
-bounded work item is filling the packet decisions with active-site sources and
-broader duplicate-screening evidence beyond the bounded current-reference
-MMseqs2 search, not M-CSA-only count growth or label import.
+new packet or dossier artifacts. The next bounded work items are continuing and
+aggregating the resumable Foldseek query chunks or planning split repair for
+the newly observed chunk-level TM-score violations, plus filling the packet
+decisions with active-site sources and broader duplicate-screening evidence
+beyond the bounded current-reference MMseqs2 search. Do not resume M-CSA-only
+count growth or external label import.
 See
 `docs/label_factory.md`.
 

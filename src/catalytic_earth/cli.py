@@ -21,6 +21,7 @@ from .generalization import (
     build_sequence_distance_holdout_split_repair_candidate,
     build_foldseek_coordinate_readiness,
     build_foldseek_tm_score_all_materializable_signal,
+    build_foldseek_tm_score_query_chunk_signal,
     build_foldseek_tm_score_signal,
     build_sequence_distance_holdout_eval,
     project_foldseek_tm_score_split_repair,
@@ -704,6 +705,35 @@ def cmd_build_foldseek_tm_score_all_materializable_signal(args: argparse.Namespa
         "Wrote all-materializable Foldseek TM-score signal to "
         f"{args.out} ({artifact['metadata']['staged_coordinate_count']} "
         "staged coordinates, "
+        f"{artifact['metadata']['pair_count']} pair rows, "
+        f"run_status={artifact['metadata']['foldseek_run_status']}, "
+        "full_tm_score_holdout_claim_permitted="
+        f"{artifact['metadata']['full_tm_score_holdout_claim_permitted']})"
+    )
+    return 0
+
+
+def cmd_build_foldseek_tm_score_query_chunk_signal(args: argparse.Namespace) -> int:
+    with Path(args.readiness).open("r", encoding="utf-8") as handle:
+        readiness = json.load(handle)
+    artifact = build_foldseek_tm_score_query_chunk_signal(
+        readiness=readiness,
+        readiness_path=args.readiness,
+        slice_id=args.slice_id,
+        foldseek_binary=args.foldseek_binary,
+        chunk_index=args.chunk_index,
+        chunk_size=args.chunk_size,
+        max_runtime_seconds=args.max_runtime_seconds,
+        threads=args.threads,
+        threshold=args.threshold,
+        max_reported_pairs=args.max_reported_pairs,
+    )
+    write_json(Path(args.out), artifact)
+    print(
+        "Wrote Foldseek TM-score query chunk signal to "
+        f"{args.out} (chunk {artifact['metadata']['query_chunk_index'] + 1}/"
+        f"{artifact['metadata']['query_chunk_count']}, "
+        f"{artifact['metadata']['query_staged_coordinate_count']} query coordinates, "
         f"{artifact['metadata']['pair_count']} pair rows, "
         f"run_status={artifact['metadata']['foldseek_run_status']}, "
         "full_tm_score_holdout_claim_permitted="
@@ -4405,6 +4435,68 @@ def build_parser() -> argparse.ArgumentParser:
     )
     foldseek_all_materializable.set_defaults(
         func=cmd_build_foldseek_tm_score_all_materializable_signal
+    )
+
+    foldseek_query_chunk = subparsers.add_parser(
+        "build-foldseek-tm-score-query-chunk-signal",
+        help=(
+            "run one resumable Foldseek query chunk against all staged "
+            "materializable selected coordinates"
+        ),
+    )
+    foldseek_query_chunk.add_argument("--slice-id", required=True)
+    foldseek_query_chunk.add_argument(
+        "--readiness",
+        default="artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json",
+        help="Foldseek coordinate-readiness artifact with all staged coordinate sidecars",
+    )
+    foldseek_query_chunk.add_argument(
+        "--foldseek-binary",
+        default="/private/tmp/catalytic-foldseek-env/bin/foldseek",
+        help="explicit Foldseek binary path for version provenance and easy-search",
+    )
+    foldseek_query_chunk.add_argument(
+        "--chunk-index",
+        type=int,
+        default=0,
+        help="zero-based deterministic query chunk index",
+    )
+    foldseek_query_chunk.add_argument(
+        "--chunk-size",
+        type=int,
+        default=12,
+        help="number of staged coordinates to use as queries in this chunk",
+    )
+    foldseek_query_chunk.add_argument(
+        "--max-runtime-seconds",
+        type=int,
+        default=None,
+        help="optional wall-clock timeout for this Foldseek query chunk",
+    )
+    foldseek_query_chunk.add_argument(
+        "--threads",
+        type=int,
+        default=1,
+        help="Foldseek thread count to record and pass to easy-search",
+    )
+    foldseek_query_chunk.add_argument(
+        "--threshold",
+        type=float,
+        default=0.7,
+        help="exclusive target threshold for train/test TM-score pairs",
+    )
+    foldseek_query_chunk.add_argument(
+        "--max-reported-pairs",
+        type=int,
+        default=20,
+        help="maximum top train/test and blocking pair summaries to keep",
+    )
+    foldseek_query_chunk.add_argument(
+        "--out",
+        default="artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000.json",
+    )
+    foldseek_query_chunk.set_defaults(
+        func=cmd_build_foldseek_tm_score_query_chunk_signal
     )
 
     foldseek_target_failure = subparsers.add_parser(

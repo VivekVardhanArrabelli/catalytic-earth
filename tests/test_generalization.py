@@ -10,6 +10,7 @@ from catalytic_earth.generalization import (
     build_sequence_distance_holdout_split_repair_candidate,
     build_foldseek_coordinate_readiness,
     build_foldseek_tm_score_all_materializable_signal,
+    build_foldseek_tm_score_query_chunk_signal,
     build_foldseek_tm_score_signal,
     build_sequence_distance_holdout_eval,
     project_foldseek_tm_score_split_repair,
@@ -1001,6 +1002,178 @@ class FoldseekTmScoreSignalTests(unittest.TestCase):
         self.assertEqual(metadata["import_ready_row_count"], 0)
         self.assertEqual(len(artifact["top_train_test_pairs"]), 0)
         self.assertEqual(len(artifact["blocking_pairs"]), 0)
+
+    def test_query_chunk_signal_bounds_all_materializable_foldseek_work(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            coord_dir = Path(tmpdir) / "coords"
+            coord_dir.mkdir()
+            first = coord_dir / "pdb_1AAA.cif"
+            second = coord_dir / "pdb_2BBB.cif"
+            third = coord_dir / "pdb_3CCC.cif"
+            for path in (first, second, third):
+                path.write_text(f"data_{path.stem}\n#\n", encoding="utf-8")
+            commands: list[list[str]] = []
+
+            def fake_runner(command: list[str], cwd: Path) -> None:
+                commands.append(command)
+                query_dir = Path(command[2])
+                self.assertEqual(
+                    sorted(path.name for path in query_dir.glob("*.cif")),
+                    ["pdb_1AAA.cif"],
+                )
+                self.assertEqual(Path(command[3]).resolve(), coord_dir.resolve())
+                Path(command[4]).write_text(
+                    "\n".join(
+                        [
+                            "pdb_1AAA\tpdb_2BBB\t0.610\t0.620\t0.630",
+                            "pdb_1AAA\tpdb_3CCC\t0.510\t0.520\t0.530",
+                            "pdb_1AAA\tpdb_1AAA\t0.990\t0.990\t0.990",
+                            "",
+                        ]
+                    ),
+                    encoding="utf-8",
+                )
+
+            readiness = _tm_signal_readiness(
+                first_coordinate_path=str(first),
+                second_coordinate_path=str(second),
+            )
+            readiness["metadata"]["evaluated_count"] = 3
+            readiness["metadata"]["selected_structure_count"] = 3
+            readiness["metadata"]["materialized_coordinate_count"] = 3
+            readiness["metadata"]["coordinate_materialization_possible_count"] = 3
+            readiness["metadata"]["not_materialized_structure_count"] = 0
+            readiness["structures"][2]["coordinate_path"] = str(third)
+            readiness["structures"][2]["fetch_status"] = "already_materialized"
+
+            artifact = build_foldseek_tm_score_query_chunk_signal(
+                readiness=readiness,
+                readiness_path="readiness.json",
+                slice_id="test",
+                foldseek_binary="/bin/echo",
+                chunk_index=0,
+                chunk_size=1,
+                threads=2,
+                runner=fake_runner,
+            )
+
+        metadata = artifact["metadata"]
+        self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_signal")
+        self.assertEqual(metadata["review_status"], "review_only_non_countable")
+        self.assertEqual(metadata["countable_label_count"], 0)
+        self.assertEqual(metadata["import_ready_row_count"], 0)
+        self.assertFalse(metadata["tm_score_split_computed"])
+        self.assertFalse(metadata["all_materializable_tm_score_split_computed"])
+        self.assertTrue(metadata["all_materializable_query_chunk_signal_computed"])
+        self.assertFalse(metadata["full_tm_score_split_computed"])
+        self.assertTrue(metadata["all_materializable_coordinate_coverage"])
+        self.assertTrue(metadata["full_evaluated_coordinate_coverage"])
+        self.assertEqual(metadata["query_chunk_index"], 0)
+        self.assertEqual(metadata["query_chunk_size"], 1)
+        self.assertEqual(metadata["query_chunk_count"], 3)
+        self.assertEqual(metadata["query_staged_coordinate_count"], 1)
+        self.assertEqual(metadata["target_staged_coordinate_count"], 3)
+        self.assertEqual(metadata["pair_count"], 3)
+        self.assertEqual(metadata["mapped_pair_count"], 3)
+        self.assertEqual(metadata["train_test_pair_count"], 2)
+        self.assertEqual(metadata["max_observed_train_test_tm_score"], 0.63)
+        self.assertTrue(metadata["tm_score_target_achieved_for_query_chunk"])
+        self.assertEqual(metadata["remaining_uncomputed_staged_coordinate_count"], 2)
+        self.assertEqual(metadata["remaining_query_chunk_count_after_this_chunk"], 2)
+        self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+        self.assertIn(
+            "all query chunks must complete and aggregate before a full all-materializable signal exists",
+            metadata["full_tm_score_holdout_claim_blockers"],
+        )
+        self.assertEqual(len(artifact["query_staged_structures"]), 1)
+        self.assertIn("--threads", commands[0])
+        self.assertEqual(commands[0][commands[0].index("--threads") + 1], "2")
+
+    def test_current_foldseek_query_chunk_signal_is_pinned(self) -> None:
+        expectations = [
+            (
+                "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json",
+                0,
+                16475,
+                6291,
+                0.8957,
+                11,
+                6,
+                ["m_csa:12"],
+                ["m_csa:405"],
+            ),
+            (
+                "artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json",
+                1,
+                11776,
+                2851,
+                0.8684,
+                59,
+                7,
+                ["m_csa:20"],
+                ["m_csa:739"],
+            ),
+        ]
+        for (
+            path,
+            chunk_index,
+            pair_count,
+            train_test_pair_count,
+            max_tm_score,
+            violating_rows,
+            violating_unique_pairs,
+            first_query_entries,
+            first_target_entries,
+        ) in expectations:
+            artifact = _load_artifact(path)
+            metadata = artifact["metadata"]
+
+            self.assertEqual(metadata["method"], "foldseek_tm_score_query_chunk_signal")
+            self.assertEqual(metadata["foldseek_run_status"], "completed")
+            self.assertEqual(metadata["query_chunk_index"], chunk_index)
+            self.assertEqual(metadata["query_chunk_size"], 12)
+            self.assertEqual(metadata["query_chunk_count"], 56)
+            self.assertEqual(metadata["query_staged_coordinate_count"], 12)
+            self.assertEqual(metadata["target_staged_coordinate_count"], 672)
+            self.assertEqual(metadata["pair_count"], pair_count)
+            self.assertEqual(metadata["mapped_pair_count"], pair_count)
+            self.assertEqual(metadata["train_test_pair_count"], train_test_pair_count)
+            self.assertEqual(metadata["max_observed_train_test_tm_score"], max_tm_score)
+            self.assertFalse(metadata["tm_score_target_achieved_for_query_chunk"])
+            self.assertEqual(
+                metadata["violating_train_test_pair_row_count"], violating_rows
+            )
+            self.assertEqual(
+                metadata["violating_unique_structure_pair_count"],
+                violating_unique_pairs,
+            )
+            self.assertEqual(
+                metadata["violating_unique_entry_pair_count"],
+                violating_unique_pairs,
+            )
+            self.assertFalse(metadata["tm_score_split_computed"])
+            self.assertFalse(metadata["full_tm_score_split_computed"])
+            self.assertFalse(metadata["full_tm_score_holdout_claim_permitted"])
+            self.assertEqual(metadata["countable_label_count"], 0)
+            self.assertEqual(metadata["import_ready_row_count"], 0)
+            self.assertIn(
+                "all query chunks must complete and aggregate before a full all-materializable signal exists",
+                metadata["full_tm_score_holdout_claim_blockers"],
+            )
+            self.assertIn(
+                "computed query-chunk train/test TM-score target <0.7 is not achieved",
+                metadata["full_tm_score_holdout_claim_blockers"],
+            )
+            self.assertEqual(len(artifact["query_staged_structures"]), 12)
+            self.assertGreaterEqual(len(artifact["blocking_pairs"]), 5)
+            self.assertEqual(
+                artifact["blocking_pairs"][0]["query_entry_ids"],
+                first_query_entries,
+            )
+            self.assertEqual(
+                artifact["blocking_pairs"][0]["target_entry_ids"],
+                first_target_entries,
+            )
 
     def test_tm_score_target_failure_audit_names_blocking_pairs(self) -> None:
         signal = {

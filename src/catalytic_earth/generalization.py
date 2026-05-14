@@ -1571,6 +1571,385 @@ def build_foldseek_tm_score_all_materializable_signal(
     }
 
 
+def build_foldseek_tm_score_query_chunk_signal(
+    *,
+    readiness: dict[str, Any],
+    slice_id: str | None = None,
+    foldseek_binary: str = "/private/tmp/catalytic-foldseek-env/bin/foldseek",
+    readiness_path: str | None = None,
+    chunk_index: int = 0,
+    chunk_size: int = 12,
+    max_runtime_seconds: int | None = None,
+    threads: int = 1,
+    threshold: float = 0.7,
+    max_reported_pairs: int = 20,
+    runner: Callable[[list[str], Path], None] | None = None,
+) -> dict[str, Any]:
+    """Run one resumable Foldseek query chunk against all staged coordinates.
+
+    The 672-coordinate all-vs-all exact TM-score run can exceed the automation
+    window. This path keeps target coverage broad while bounding each run by a
+    deterministic query slice that can later be aggregated without false full
+    holdout claims.
+    """
+
+    metadata_in = readiness.get("metadata", {}) if isinstance(readiness, dict) else {}
+    if not isinstance(metadata_in, dict):
+        metadata_in = {}
+    rows_in = readiness.get("rows", []) if isinstance(readiness, dict) else []
+    structures_in = readiness.get("structures", []) if isinstance(readiness, dict) else []
+    rows = [row for row in rows_in if isinstance(row, dict)]
+    structures = [item for item in structures_in if isinstance(item, dict)]
+
+    row_partitions_by_entry = {
+        str(row.get("entry_id")): row.get("sequence_holdout_partition")
+        for row in rows
+        if isinstance(row.get("entry_id"), str)
+    }
+    row_structure_by_entry = {
+        str(row.get("entry_id")): row.get("selected_structure_key")
+        for row in rows
+        if isinstance(row.get("entry_id"), str)
+    }
+
+    staged_structures = _staged_foldseek_structures(structures)
+    total_staged = len(staged_structures)
+    chunk_size_value = max(1, int(chunk_size))
+    chunk_index_value = max(0, int(chunk_index))
+    query_chunk_count = (
+        (total_staged + chunk_size_value - 1) // chunk_size_value
+        if total_staged
+        else 0
+    )
+    if query_chunk_count and chunk_index_value >= query_chunk_count:
+        raise ValueError(
+            f"chunk_index {chunk_index_value} is outside {query_chunk_count} chunks"
+        )
+    chunk_start = chunk_index_value * chunk_size_value
+    chunk_end = min(chunk_start + chunk_size_value, total_staged)
+    query_structures = staged_structures[chunk_start:chunk_end]
+
+    alias_to_structure, alias_collisions = _foldseek_name_aliases(staged_structures)
+    coordinate_dirs = sorted(
+        {
+            str(Path(str(structure["coordinate_path"])).parent)
+            for structure in staged_structures
+            if structure.get("coordinate_path")
+        }
+    )
+    coordinate_dir = (
+        str(Path(coordinate_dirs[0]).resolve()) if len(coordinate_dirs) == 1 else None
+    )
+    foldseek_info = _foldseek_binary_info(foldseek_binary)
+    requested_slice_id = str(slice_id or metadata_in.get("slice_id") or "")
+    command: list[str] | None = None
+    command_string: str | None = None
+    result_tsv: Path | None = None
+    query_coordinate_dir: Path | None = None
+    run_status = "not_run"
+    run_error: str | None = None
+    pair_summary = _empty_foldseek_tm_score_pair_summary()
+
+    if not foldseek_info["available"]:
+        run_status = "foldseek_unavailable"
+    elif len(staged_structures) < 2 or not query_structures:
+        run_status = "insufficient_staged_coordinates"
+    elif coordinate_dir is None:
+        run_status = "staged_coordinates_span_multiple_directories"
+    else:
+        digest = _coordinate_paths_digest(staged_structures)
+        workdir = Path("/private/tmp") / (
+            "catalytic-earth-foldseek-tm-query-chunk-"
+            f"{requested_slice_id or 'slice'}-{chunk_index_value:04d}-{digest}"
+        )
+        if workdir.exists():
+            shutil.rmtree(workdir)
+        workdir.mkdir(parents=True, exist_ok=True)
+        query_coordinate_dir = workdir / "query_coordinates"
+        query_coordinate_dir.mkdir(parents=True, exist_ok=True)
+        for structure in query_structures:
+            source_path = Path(str(structure["coordinate_path"]))
+            target_path = query_coordinate_dir / source_path.name
+            try:
+                target_path.symlink_to(source_path.resolve())
+            except OSError:
+                shutil.copy2(source_path, target_path)
+        result_tsv = workdir / f"query_chunk_{chunk_index_value:04d}_tm_scores.tsv"
+        tmpdir = workdir / "tmp"
+        command = [
+            str(foldseek_info["resolved"] or foldseek_binary),
+            "easy-search",
+            str(query_coordinate_dir),
+            str(Path(coordinate_dir)),
+            str(result_tsv),
+            str(tmpdir),
+            "--format-output",
+            "query,target,qtmscore,ttmscore,alntmscore",
+            "--exhaustive-search",
+            "1",
+            "--alignment-type",
+            "1",
+            "--tmalign-fast",
+            "0",
+            "--exact-tmscore",
+            "1",
+            "--threads",
+            str(max(1, int(threads))),
+            "-v",
+            "1",
+        ]
+        command_string = _command_string(command)
+        try:
+            if runner is None:
+                _run_backend_command(command, cwd=workdir, timeout=max_runtime_seconds)
+            else:
+                runner(command, workdir)
+            pair_summary = _summarize_foldseek_tm_score_tsv(
+                result_tsv=result_tsv,
+                alias_to_structure=alias_to_structure,
+                row_partitions_by_entry=row_partitions_by_entry,
+                threshold=threshold,
+                max_reported_pairs=max_reported_pairs,
+            )
+            run_status = "completed"
+        except TimeoutError as exc:
+            run_status = "foldseek_run_timeout"
+            run_error = f"{type(exc).__name__}: {exc}"
+        except (OSError, RuntimeError, ValueError) as exc:
+            run_status = "foldseek_run_failed"
+            run_error = f"{type(exc).__name__}: {exc}"
+
+    selected_structure_count = int(
+        metadata_in.get("selected_structure_count", len(structures)) or 0
+    )
+    evaluated_count = int(metadata_in.get("evaluated_count", len(rows)) or 0)
+    materialization_possible_count = int(
+        metadata_in.get("coordinate_materialization_possible_count", 0) or 0
+    )
+    materialized_coordinate_count = int(
+        metadata_in.get("materialized_coordinate_count", total_staged) or 0
+    )
+    missing_or_unsupported_structure_count = int(
+        metadata_in.get("missing_or_unsupported_structure_count", 0) or 0
+    )
+    fetch_failure_count = int(metadata_in.get("fetch_failure_count", 0) or 0)
+    not_materialized_structure_count = int(
+        metadata_in.get("not_materialized_structure_count", 0) or 0
+    )
+    all_materializable_coordinate_coverage = (
+        bool(staged_structures)
+        and total_staged == materialized_coordinate_count
+        and not_materialized_structure_count == 0
+        and fetch_failure_count == 0
+    )
+    full_evaluated_coordinate_coverage = (
+        all_materializable_coordinate_coverage
+        and selected_structure_count == total_staged
+        and missing_or_unsupported_structure_count == 0
+    )
+    summary_completed = run_status == "completed" and pair_summary["pair_count"] > 0
+    max_train_test_tm_score = pair_summary["max_observed_train_test_tm_score"]
+    target_achieved = (
+        max_train_test_tm_score is not None and max_train_test_tm_score < threshold
+    )
+    query_staged_entry_ids = sorted(
+        {
+            str(entry_id)
+            for structure in query_structures
+            for entry_id in structure.get("entry_ids", [])
+            if isinstance(entry_id, str)
+        },
+        key=_entry_id_sort_key,
+    )
+    selected_staged_entry_ids = sorted(
+        {
+            str(entry_id)
+            for structure in staged_structures
+            for entry_id in structure.get("entry_ids", [])
+            if isinstance(entry_id, str)
+        },
+        key=_entry_id_sort_key,
+    )
+    coordinate_exclusions = metadata_in.get("missing_or_unsupported_structures", [])
+    full_claim_blockers = [
+        "review-only query-chunk TM-score signal is not a canonical full holdout claim",
+        "all query chunks must complete and aggregate before a full all-materializable signal exists",
+    ]
+    if len(query_structures) < total_staged:
+        full_claim_blockers.append("query chunk covers only part of the all-materializable query set")
+    if not summary_completed:
+        full_claim_blockers.append("Foldseek query chunk did not complete with pair rows")
+    if not full_evaluated_coordinate_coverage:
+        full_claim_blockers.append("evaluated selected-coordinate coverage is partial")
+    if missing_or_unsupported_structure_count:
+        full_claim_blockers.append("one or more evaluated rows lacks a supported selected structure")
+    if fetch_failure_count:
+        full_claim_blockers.append("one or more selected coordinate fetches failed")
+    if not_materialized_structure_count:
+        full_claim_blockers.append("one or more materializable selected structures remain unstaged")
+    if not target_achieved:
+        full_claim_blockers.append("computed query-chunk train/test TM-score target <0.7 is not achieved")
+
+    limitations = [
+        "review-only artifact; it creates no countable labels and no import-ready rows",
+        "query chunk is resumable Foldseek evidence only; aggregate all chunks before evaluating a full all-materializable TM-score signal",
+        "target coordinate coverage is all currently staged materializable coordinates, while query coverage is only this deterministic chunk",
+        "full_tm_score_holdout_claim_permitted=false until chunk aggregation, coordinate exclusions, and canonical split policy are resolved",
+    ]
+    if coordinate_exclusions:
+        limitations.append("selected rows with no supported coordinate structures remain excluded from TM-score computation")
+    if alias_collisions:
+        limitations.append("one or more coordinate filename aliases were ambiguous and not used for raw-name mapping")
+    if pair_summary["raw_name_mapping_unmapped_count"]:
+        limitations.append("one or more Foldseek raw query/target names could not be mapped safely to staged structures")
+    if run_error:
+        limitations.append("Foldseek easy-search did not complete for this query chunk")
+
+    remaining_query_count_after_chunk = (
+        max(0, total_staged - chunk_end) if summary_completed else total_staged
+    )
+    metadata = {
+        "method": "foldseek_tm_score_query_chunk_signal",
+        "blocker_removed": (
+            "replaces the single unresumable all-materializable Foldseek timeout with one completed deterministic query chunk against all staged materializable coordinates"
+            if summary_completed
+            else None
+        ),
+        "blocker_not_removed": (
+            "full all-materializable Foldseek aggregate remains incomplete until every query chunk completes and is aggregated"
+        ),
+        "slice_id": requested_slice_id,
+        "readiness_artifact": readiness_path,
+        "readiness_method": metadata_in.get("method"),
+        "review_status": "review_only_non_countable",
+        "countable_label_candidate_count": 0,
+        "countable_label_count": 0,
+        "import_ready_candidate_count": 0,
+        "import_ready_row_count": 0,
+        "ready_for_label_import": False,
+        "tm_score_split_computed": False,
+        "all_materializable_tm_score_signal_computed": False,
+        "all_materializable_query_chunk_signal_computed": summary_completed,
+        "all_materializable_tm_score_split_computed": False,
+        "full_tm_score_split_computed": False,
+        "real_tm_score_computed": summary_completed,
+        "full_evaluated_coordinate_coverage": full_evaluated_coordinate_coverage,
+        "all_materializable_coordinate_coverage": all_materializable_coordinate_coverage,
+        "tm_score_signal_coverage_status": "all_materializable_query_chunk_signal",
+        "full_tm_score_holdout_claim_permitted": False,
+        "full_tm_score_holdout_claim_blockers": sorted(set(full_claim_blockers)),
+        "blockers_remaining": sorted(set(full_claim_blockers)),
+        "threshold_target": "<0.7",
+        "tm_score_threshold": float(threshold),
+        "tm_score_threshold_target": "<0.7",
+        "tm_score_target_operator": "<",
+        "tm_score_target_achieved": target_achieved,
+        "tm_score_target_achieved_for_query_chunk": target_achieved,
+        "tm_score_target_evaluation_scope": (
+            "mapped heldout/in_distribution pairs from this query chunk against every staged materializable selected coordinate"
+        ),
+        "evaluated_count": evaluated_count,
+        "selected_structure_count": selected_structure_count,
+        "coordinate_materialization_possible_count": materialization_possible_count,
+        "coordinate_fetch_cap": metadata_in.get("coordinate_fetch_cap"),
+        "materialized_coordinate_count": materialized_coordinate_count,
+        "available_staged_coordinate_count": total_staged,
+        "target_staged_coordinate_count": total_staged,
+        "staged_coordinate_count": total_staged,
+        "staged_structure_count": total_staged,
+        "query_chunk_index": chunk_index_value,
+        "query_chunk_size": chunk_size_value,
+        "query_chunk_count": query_chunk_count,
+        "query_chunk_start": chunk_start,
+        "query_chunk_end_exclusive": chunk_end,
+        "query_staged_coordinate_count": len(query_structures),
+        "query_staged_structure_count": len(query_structures),
+        "query_staged_entry_count": len(query_staged_entry_ids),
+        "query_staged_entry_ids": query_staged_entry_ids,
+        "selected_staged_entry_ids": selected_staged_entry_ids,
+        "missing_or_unsupported_structure_count": missing_or_unsupported_structure_count,
+        "missing_or_unsupported_structures": coordinate_exclusions,
+        "tm_score_coordinate_exclusion_count": missing_or_unsupported_structure_count,
+        "tm_score_coordinate_exclusions": coordinate_exclusions,
+        "fetch_failure_count": fetch_failure_count,
+        "fetch_failures": metadata_in.get("fetch_failures", []),
+        "not_materialized_structure_count": not_materialized_structure_count,
+        "not_materialized_structures": metadata_in.get("not_materialized_structures", []),
+        "remaining_uncomputed_staged_coordinate_count": remaining_query_count_after_chunk,
+        "remaining_uncomputed_query_coordinate_count_after_this_chunk": remaining_query_count_after_chunk,
+        "remaining_query_chunk_count_after_this_chunk": (
+            max(0, query_chunk_count - chunk_index_value - 1)
+            if summary_completed
+            else query_chunk_count
+        ),
+        "remaining_unstaged_supported_structure_count": not_materialized_structure_count,
+        "computed_subset_structure_coverage": _safe_ratio(
+            len(query_structures), selected_structure_count
+        ),
+        "computed_subset_materialized_coverage": _safe_ratio(
+            len(query_structures), materialized_coordinate_count
+        ),
+        "computed_subset_evaluated_entry_coverage": _safe_ratio(
+            len(query_staged_entry_ids), evaluated_count
+        ),
+        "coordinate_directory": coordinate_dir,
+        "coordinate_directories": coordinate_dirs,
+        "query_coordinate_directory": str(query_coordinate_dir) if query_coordinate_dir else None,
+        "foldseek_binary_requested": foldseek_info["requested"],
+        "foldseek_binary_resolved": foldseek_info["resolved"],
+        "foldseek_binary_available": foldseek_info["available"],
+        "foldseek_version": foldseek_info["version"],
+        "foldseek_version_command": foldseek_info["version_command"],
+        "foldseek_command": command_string,
+        "foldseek_commands": [item for item in [foldseek_info["version_command"], command_string] if item],
+        "foldseek_run_status": run_status,
+        "foldseek_run_error": run_error,
+        "foldseek_max_runtime_seconds": max_runtime_seconds,
+        "foldseek_threads": max(1, int(threads)),
+        "foldseek_result_tsv_path": str(result_tsv) if result_tsv else None,
+        "foldseek_result_tsv_size_bytes": (
+            result_tsv.stat().st_size if result_tsv and result_tsv.exists() else None
+        ),
+        "raw_name_mapping_alias_collision_count": len(alias_collisions),
+        "raw_name_mapping_alias_collisions": alias_collisions,
+        "limitations": sorted(set(limitations)),
+        **pair_summary,
+    }
+
+    return {
+        "metadata": metadata,
+        "query_staged_structures": [
+            {
+                **{
+                    key: structure.get(key)
+                    for key in (
+                        "structure_key",
+                        "source",
+                        "structure_id",
+                        "coordinate_path",
+                        "fetch_status",
+                    )
+                },
+                "entry_ids": sorted(
+                    [str(entry_id) for entry_id in structure.get("entry_ids", [])],
+                    key=_entry_id_sort_key,
+                ),
+                "entry_partitions": {
+                    str(entry_id): row_partitions_by_entry.get(str(entry_id))
+                    for entry_id in structure.get("entry_ids", [])
+                },
+                "entry_structure_keys": {
+                    str(entry_id): row_structure_by_entry.get(str(entry_id))
+                    for entry_id in structure.get("entry_ids", [])
+                },
+            }
+            for structure in query_structures
+        ],
+        "top_train_test_pairs": pair_summary["top_train_test_pairs"],
+        "blocking_pairs": pair_summary["blocking_pairs"],
+    }
+
+
 def audit_foldseek_tm_score_target_failure(
     *,
     signal: dict[str, Any],

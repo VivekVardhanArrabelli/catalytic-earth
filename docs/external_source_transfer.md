@@ -154,10 +154,24 @@ so no pair rows, max TM-score, or target pass can be claimed. The artifact is
 review-only, records 0 countable/import-ready rows, keeps `m_csa:372` and
 `m_csa:501` as coordinate exclusions, and preserves
 `full_tm_score_holdout_claim_permitted=false`.
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
+and
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`
+replace the all-at-once-only runtime path with the first two direct resumable
+query chunks: 24 query coordinates searched against all 672 staged
+materializable target coordinates with Foldseek `10.941cd33`, `--threads 4`,
+and a 900-second bound per chunk. They complete with 28,251 mapped pair rows,
+9,142 train/test rows, max train/test TM-score `0.8957`, 11 target-violating
+rows across six unique structure pairs in chunk 0, and 59 target-violating rows
+across seven unique structure pairs in chunk 1. These artifacts are
+review-only, non-countable, not import-ready, and still only chunks 1-2/56;
+they remove the single-run runtime SPOF but add concrete target-failure
+evidence that must be handled before any full TM-score holdout claim.
 Foldseek itself is now available in the isolated temporary environment
 `/private/tmp/catalytic-foldseek-env` (`foldseek version` reports
-`10.941cd33`). A TM-score split remains blocked until a full Foldseek-backed
-split builder is run over the materialized coordinate set and target checks pass.
+`10.941cd33`). A TM-score split remains blocked until all query chunks are
+computed and aggregated, the new violating pairs are repaired or explicitly
+adjudicated, coordinate exclusions remain reported, and target checks pass.
 
 Build toward a 5-10 candidate pilot from the existing 30-row UniProtKB/Swiss-Prot
 sample. Keep every external row review-only until active-site, reaction,

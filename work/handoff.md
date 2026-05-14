@@ -50,6 +50,39 @@ https://github.com/VivekVardhanArrabelli/catalytic-earth
 
 ## Start-of-Run Confidence Call
 
+Recorded for the 2026-05-14T21:53:47Z run after clean startup gates
+(`354` unit tests passed and `validate` passed with 679 curated labels):
+
+- M-CSA-only count growth: No. The accepted countable slice remains 1,000 with
+  679 canonical labels, the 1,025 preview adds 0 clean countable labels, and
+  the source-scale audit remains capped at 1,003 observed M-CSA source records.
+  No M-CSA-only tranche should be opened without new source-scale evidence.
+- External-source repair/import: No for import and no new countable external
+  candidates. The selected external pilot success criteria already exist, but
+  pilot rows remain review-only with 0 import-ready rows and 0 countable
+  candidates until active-site, duplicate-screening, representation, review,
+  and full label-factory blockers are terminally resolved.
+- Scientific generalization work: Yes for direct Foldseek/TM-score query-chunk
+  evidence, but not for a full split claim. This run added
+  `build-foldseek-tm-score-query-chunk-signal` and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
+  and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`.
+  The direct commands used the repaired candidate readiness artifact, Foldseek
+  `10.941cd33`, 12 query coordinates per chunk against all 672 staged
+  materializable target coordinates, `--threads 4`, and a 900-second runtime
+  bound. The chunks completed with 28,251 mapped pair rows, 9,142 train/test
+  rows, max train/test TM-score `0.8957`, and 70 total target-violating
+  row-level pairs. Chunk 0 reports six unique target-violating structure pairs;
+  chunk 1 reports seven.
+- SPOF hardening work: Yes. The new query-chunk path removes the
+  all-at-once-only Foldseek runtime SPOF and creates a resumable route for the
+  remaining 54 chunks. It also prevents false success: the current repaired
+  split now has new exact target-failure evidence outside the expanded100 cap,
+  chunk aggregation is incomplete, `m_csa:372` and `m_csa:501` remain
+  coordinate exclusions, all outputs remain review-only/non-countable, and
+  `full_tm_score_holdout_claim_permitted=false`.
+
 Recorded for the 2026-05-14T20:53:13Z run after clean startup gates
 (`349` unit tests passed and `validate` passed with 679 curated labels):
 
@@ -305,6 +338,20 @@ Recorded for the 2026-05-14T13:45:19Z run after clean startup gates
 
 ## Recent Project Progress
 
+- Added `build-foldseek-tm-score-query-chunk-signal`, a resumable Foldseek
+  query-chunk command that searches a deterministic query slice against all
+  staged materializable target coordinates and keeps compact summary evidence.
+  The first direct chunk artifacts,
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`,
+  and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`,
+  use the repaired candidate readiness artifact, 24 total query coordinates,
+  all 672 staged targets, Foldseek `10.941cd33`, `--threads 4`, and a
+  900-second timeout per chunk. They completed with 28,251 mapped pair rows,
+  9,142 train/test rows, max train/test TM-score `0.8957`, and 70 total
+  target-violating row-level pairs. This removes the all-at-once-only runtime
+  SPOF, but full query aggregation is incomplete and both chunks now prove the
+  repaired split still fails the `<0.7` target beyond the expanded100 cap.
 - Added `build-foldseek-tm-score-all-materializable-signal`, a compact
   all-materializable Foldseek summary command that records command/version,
   coordinate coverage, coordinate exclusions, mapped-pair counts, target status,
@@ -1148,26 +1195,35 @@ artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
 Current run was direct only, with no subagents or delegation. It added the
-compact all-materializable Foldseek summary command and made one direct
-full-sidecar attempt from the repaired candidate readiness artifact. Do not
-open another M-CSA-only tranche. Do not claim full TM-score holdout:
+resumable Foldseek query-chunk command and completed
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
+plus
+`artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`.
+Do not open another M-CSA-only tranche. Do not claim full TM-score holdout:
+the new chunks cover 24/672 query coordinates against all staged targets, map
+28,251 pair rows, and find max train/test TM-score `0.8957` with 70
+target-violating row-level pairs. They prove the repaired expanded100 cap was
+not enough and the candidate split still needs repair/adjudication before a
+full TM-score claim. The previous timeout
+artifact still documents the all-at-once blocker:
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json`
 covers all 672 staged materializable coordinates and records the exact
 Foldseek `10.941cd33` command with `--threads 4`, but the 1,500-second bounded
 run timed out before a result TSV was emitted. It therefore has 0 pair rows, no
 max train/test TM-score, no target pass, and
-`full_tm_score_holdout_claim_permitted=false`. The previous repaired
-expanded100 evidence still stands for the capped subset:
+`full_tm_score_holdout_claim_permitted=false`. The older repaired expanded100
+evidence remains only a capped-subset result:
 `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_expanded100.json`
 has max train/test TM-score `0.6993`, and
 `artifacts/v3_foldseek_tm_score_target_failure_audit_1000_split_repair_candidate_expanded100.json`
-finds 0 target-violating pairs. The canonical sequence holdout remains
-unchanged, `m_csa:372` and `m_csa:501` remain coordinate exclusions, and no
-countable/import-ready rows were created. The next Foldseek work should choose
-one concrete path: run the compact all-materializable command with a longer
-budget/off-hours environment, or use the compact parser to add chunk/resume
-support for the exact full-sidecar search. Do not add another routine capped
-increment unless it directly proves a chunk/resume strategy.
+finds 0 target-violating pairs inside that cap. The canonical sequence holdout
+remains unchanged, `m_csa:372` and `m_csa:501` remain coordinate exclusions,
+and no countable/import-ready rows were created. Next Foldseek work should
+either continue query chunks and add an aggregate summary, or plan split repair
+for the new chunk-level blockers (`m_csa:12`/`m_csa:405`,
+`m_csa:6`/`m_csa:895`, `m_csa:1`/`m_csa:388`, `m_csa:8`/`m_csa:614`,
+`m_csa:11`/`m_csa:267`, plus chunk 1 led by `m_csa:20`/`m_csa:739`). Do not
+add another routine capped increment.
 
 External pilot import remains blocked. The selected-pilot representation
 adjudication now gives concrete review-only statuses: 3 stable representation

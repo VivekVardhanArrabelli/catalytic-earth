@@ -13,6 +13,7 @@ Split-repair projection update: 2026-05-14T19:03:00Z
 Sequence-holdout repair-candidate update: 2026-05-14T19:09:00Z
 Repaired expanded100 TM signal update: 2026-05-14T20:35:00Z
 All-materializable timeout attempt update: 2026-05-14T21:25:00Z
+Query-chunk TM signal update: 2026-05-14T22:33:00Z
 
 Status:
 
@@ -188,6 +189,22 @@ Current TM-score readiness:
   blocker and compact artifact path explicit while keeping `m_csa:372` and
   `m_csa:501` as coordinate exclusions. The artifact is review-only,
   non-countable, not import-ready, and keeps
+  `full_tm_score_holdout_claim_permitted=false`.
+- `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
+  and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`
+  record the first two direct resumable all-materializable query chunks. They
+  used the repaired candidate readiness artifact, 12 deterministic query
+  coordinates per chunk, all 672 staged materializable target coordinates,
+  Foldseek `10.941cd33`, `--threads 4`, and a 900-second runtime bound per
+  chunk. The chunks completed with 28,251 mapped pair rows, 9,142
+  heldout/in-distribution train/test rows, max observed train/test TM-score
+  `0.8957`, 70 total target-violating row-level pairs, and per-chunk unique
+  target-violating structure-pair counts of six and seven. This removes the
+  single all-at-once Foldseek runtime SPOF by proving the query-chunk path, but
+  it also exposes new exact target-failure evidence beyond the repaired
+  expanded100 cap. They remain chunks 1-2/56, review-only, non-countable, not
+  import-ready, and keep
   `full_tm_score_holdout_claim_permitted=false`.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
@@ -365,4 +382,30 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-all-materia
   --threads 4 \
   --max-runtime-seconds 1500 \
   --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_all_materializable.json
+```
+
+The first resumable query-chunk signals used:
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --chunk-index 0 \
+  --chunk-size 12 \
+  --threads 4 \
+  --max-runtime-seconds 900 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json
+```
+
+```bash
+PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-query-chunk-signal \
+  --slice-id 1000 \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_split_repair_candidate.json \
+  --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
+  --chunk-index 1 \
+  --chunk-size 12 \
+  --threads 4 \
+  --max-runtime-seconds 900 \
+  --out artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json
 ```

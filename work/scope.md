@@ -226,7 +226,18 @@ Current expectation:
   the timeout. This records the concrete runtime blocker without bloating the
   repository with full pair-row JSON; no max TM-score or target pass is
   claimable, two coordinate exclusions remain, and
-  `full_tm_score_holdout_claim_permitted=false`. The first 12-row
+  `full_tm_score_holdout_claim_permitted=false`. The first two resumable
+  query-chunk signals now complete chunks 0/56 and 1/56:
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_000_of_056.json`
+  and
+  `artifacts/v3_foldseek_tm_score_signal_1000_split_repair_candidate_query_chunk_001_of_056.json`
+  run 24 deterministic query coordinates against all 672 staged materializable
+  target coordinates, map 28,251 pair rows, evaluate 9,142 train/test rows, and
+  record max train/test TM-score `0.8957` with 70 target-violating row-level
+  pairs across the two chunks. This removes the all-at-once-only runtime SPOF
+  but adds concrete target-failure evidence; the query chunks are not fully
+  aggregated, the target fails in both chunks, and
+  `full_tm_score_holdout_claim_permitted=false` remains correct. The first 12-row
   ESM-2 8M representation sample and a 10-row selected-pilot ESM-2 8M
   representation sample are computed and review-only; requested 650M sidecars
   now explicitly record the uncached 650M state, compute
