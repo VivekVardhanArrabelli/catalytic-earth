@@ -92,14 +92,14 @@ structures left unstaged. It now explicitly excludes `m_csa:372` and
 `m_csa:501` from Foldseek coordinate materialization because both rows have
 `geometry_status=no_structure_positions` and no selected structure id in the
 current graph/geometry/sequence-holdout evidence. This removes the unstaged selected-coordinate
-sidecar blocker. `artifacts/v3_foldseek_tm_score_signal_1000_expanded80.json`
+sidecar blocker. `artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json`
 then completes the next bounded Foldseek signal from that all-materializable
-sidecar with an 80-coordinate cap and prior staged count 60: 18,591 mapped pair
-rows, 5,666 heldout/in-distribution train/test pairs, max observed train/test
+sidecar with a 100-coordinate cap and prior staged count 80: 27,542 mapped pair
+rows, 7,317 heldout/in-distribution train/test pairs, max observed train/test
 TM score `0.7515`, 0 unmapped raw Foldseek names, and 0
-countable/import-ready rows. It removes the expanded60 partial-signal ceiling
+countable/import-ready rows. It removes the expanded80 partial-signal ceiling
 but remains review-only and non-countable. The `<0.7` target is not achieved on
-the computed subset, the cap leaves 592 staged coordinates uncomputed, and no
+the computed subset, the cap leaves 572 staged coordinates uncomputed, and no
 uncapped full split/signal has completed. The coordinate exclusions must remain
 reported before any full TM-score holdout claim.
 Foldseek itself is now available in the isolated temporary environment

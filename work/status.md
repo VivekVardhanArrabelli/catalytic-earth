@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 93
-- Measured elapsed time: 3355.7 minutes (55.93 hours)
+- Entries: 94
+- Measured elapsed time: 3394.9 minutes (56.58 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 709.5 measured minutes (11.82 hours)
+- post-mcsa-spof-hardening: 748.6 measured minutes (12.48 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 987
-- Evidence references logged: 811
+- Artifact references logged: 994
+- Evidence references logged: 819
 
 ## Recent Entries
-
-### 2026-05-14T09:28:41.519786+00:00 - post-mcsa-spof-hardening
-
-- Task: Foldseek expanded40 recovery and raw-name mapping hardening
-- Time mode: measured
-- Measured minutes: 48.85
-- Started: 2026-05-14T08:39:50Z
-- Ended: 2026-05-14T09:28:41Z
-- Artifacts: src/catalytic_earth/generalization.py, tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_expanded40.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
-- Evidence: 325 unit tests passed, validate passed, git diff check passed, Foldseek expanded40 completed partial signal 5699 mapped pairs, 0 unmapped raw names, max train/test TM 0.7515, 0 countable labels, 0 import-ready rows, expanded100 attempt stopped with no artifact
-- Notes: Recovered stale lock dirty expanded40 artifact, delegated integration per user instruction, hardened unambiguous PDB chain-suffix mapping, regenerated expanded40 as review-only/non-countable partial Foldseek signal. M-CSA-only count growth remains stopped and external import remains blocked.
 
 ### 2026-05-14T10:16:36.145071+00:00 - post-mcsa-spof-hardening
 
@@ -115,6 +104,17 @@ Generated from `work/progress_log.jsonl`.
 - Ended: 2026-05-14T16:15:30Z
 - Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_expanded80.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
 - Evidence: 335 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifact parse passed, Foldseek expanded80 completed partial signal 18591 mapped pairs, max train/test TM 0.7515, target <0.7 not achieved, 0 countable labels, 0 import-ready rows
+- Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
+
+### 2026-05-14T17:29:09.455993+00:00 - post-mcsa-spof-hardening
+
+- Task: Expanded100 Foldseek partial TM signal
+- Time mode: measured
+- Measured minutes: 39.117
+- Started: 2026-05-14T16:50:02Z
+- Ended: 2026-05-14T17:29:09Z
+- Artifacts: tests/test_generalization.py, artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json, README.md, docs/external_source_transfer.md, work/foldseek_readiness_notes.md, work/handoff.md, work/scope.md
+- Evidence: 336 unit tests passed, validate passed, compileall passed, Foldseek expanded100 completed partial signal 27542 mapped pairs, max train/test TM 0.7515, target <0.7 not achieved, 0 countable labels, 0 import-ready rows
 - Notes: Normal locked direct implementation run with no delegation. No M-CSA count growth and no external import.
 
 ## Expectation Updates
@@ -199,6 +199,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T14:10:21.275491+00:00: Expanded60 removes the expanded40 partial-signal ceiling, but full TM-score split remains blocked by two missing selected structures, the capped-out staged coordinates, and the failed <0.7 computed-subset target.
 - 2026-05-14T15:07:52.876846+00:00: External pilot now has measurable success criteria and remains needs_more_work; Foldseek selected-structure blocker is narrowed to explicit coordinate exclusions plus the unrun full TM-score split.
 - 2026-05-14T16:15:30.855586+00:00: Expanded80 removes the expanded60 partial-signal ceiling, but full TM-score split remains blocked by two coordinate exclusions, the capped-out staged coordinates, and the failed <0.7 computed-subset target.
+- 2026-05-14T17:29:09.455993+00:00: Expanded100 removes the expanded80 partial-signal ceiling, but full TM-score split remains blocked by two coordinate exclusions, the capped-out staged coordinates, and the failed <0.7 computed-subset target.
 
 ## Scope Adjustments
 
@@ -285,3 +286,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-14T14:10:21.275491+00:00: Foldseek TM-score evidence is stronger but still review-only and non-countable; do not treat expanded60 as a full holdout split.
 - 2026-05-14T15:07:52.876846+00:00: Do not count external pilot evidence as success until terminal decisions and import criteria pass; report m_csa:372 and m_csa:501 as coordinate exclusions before any full TM-score holdout claim.
 - 2026-05-14T16:15:30.855586+00:00: Foldseek TM-score evidence is stronger but still review-only and non-countable; do not treat expanded80 as a full holdout split.
+- 2026-05-14T17:29:09.455993+00:00: Foldseek TM-score evidence is stronger but still review-only and non-countable; do not treat expanded100 as a full holdout split.

@@ -341,13 +341,13 @@ explicit coordinate-exclusion evidence for `m_csa:372` and `m_csa:501`
 (`geometry_status=no_structure_positions`, `selected_structure_id=null`). This
 removes the unstaged selected-coordinate sidecar blocker and makes the
 unmaterializable rows explicit. The companion capped Foldseek signals now
-extend through `artifacts/v3_foldseek_tm_score_signal_1000_expanded80.json`:
-80 staged coordinates, 18,591 mapped pair rows, 5,666
+extend through `artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json`:
+100 staged coordinates, 27,542 mapped pair rows, 7,317
 heldout/in-distribution train/test pairs, max observed train/test TM score
 `0.7515`, 0 unmapped raw Foldseek names, and 0 countable/import-ready rows.
-This removes the expanded60 partial-signal ceiling, but it is still
+This removes the expanded80 partial-signal ceiling, but it is still
 review-only, capped, and not import-ready. The `<0.7` target is not achieved
-on the computed 80-coordinate subset, 592 staged coordinates remain
+on the computed 100-coordinate subset, 572 staged coordinates remain
 uncomputed, `tm_score_split_computed=false` and
 `full_tm_score_split_computed=false` remain true, and the full TM-score split
 still requires an uncapped Foldseek-backed split/signal over the full

@@ -6,6 +6,7 @@ Delegated slice update: 2026-05-14T10:02:47Z
 All-materializable sidecar update: 2026-05-14T10:45:00Z
 Expanded60 TM signal update: 2026-05-14T13:48:04Z
 Expanded80 TM signal update: 2026-05-14T16:11:42Z
+Expanded100 TM signal update: 2026-05-14T17:24:58Z
 
 Status:
 
@@ -85,7 +86,7 @@ Current TM-score readiness:
   uncomputed, and both `tm_score_split_computed=false` and
   `full_tm_score_split_computed=false` remain true.
 - `artifacts/v3_foldseek_tm_score_signal_1000_expanded80.json` now records the
-  latest completed bounded signal from this direct run. It used
+  completed bounded expanded80 signal from a direct run. It used
   `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`,
   `/private/tmp/catalytic-foldseek-env/bin/foldseek` version `10.941cd33`,
   `--max-staged-coordinates 80`, and `--prior-staged-coordinate-count 60`.
@@ -99,6 +100,21 @@ Current TM-score readiness:
   not achieve the `<0.7` target, the cap leaves 592 staged coordinates
   uncomputed, and both `tm_score_split_computed=false` and
   `full_tm_score_split_computed=false` remain true.
+- `artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json` now records the
+  latest completed bounded signal from this direct run. It used
+  `artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json`,
+  `/private/tmp/catalytic-foldseek-env/bin/foldseek` version `10.941cd33`,
+  `--max-staged-coordinates 100`, and `--prior-staged-coordinate-count 80`.
+  The artifact records 100 staged coordinates out of 672 available staged
+  coordinates, 27,542 pair rows, all 27,542 safely mapped, 838 heldout pair
+  rows, 7,317 heldout/in-distribution train/test rows,
+  19,387 in-distribution pair rows, max observed train/test TM score `0.7515`,
+  0 unmapped raw Foldseek names, and explicit zero countable/import-ready rows.
+  It removes the expanded80 partial-signal ceiling, but remains partial,
+  review-only, non-countable, and not import-ready. The computed subset does
+  not achieve the `<0.7` target, the cap leaves 572 staged coordinates
+  uncomputed, and both `tm_score_split_computed=false` and
+  `full_tm_score_split_computed=false` remain true.
 - The TM-score signal builder now records explicit partial/full coverage
   semantics for future artifacts: `tm_score_signal_coverage_status`,
   `full_tm_score_holdout_claim_permitted=false`,
@@ -108,18 +124,9 @@ Current TM-score readiness:
   `prior_staged_coordinate_count`/`staged_coordinate_count_exceeds_prior`
   metadata. These fields are intended to prevent a bounded partial signal from
   being mistaken for a full Foldseek-backed TM-score holdout.
-- An expanded100 Foldseek signal was attempted with the 100 staged coordinates
-  and `--prior-staged-coordinate-count 40`, but it did not produce
-  `/private/tmp/catalytic-earth-foldseek-tm-1000-312c1ec42f1d/staged_tm_scores.tsv`
-  or a repo artifact before parent wrap-up. Process inspection and `pkill` were
-  unavailable in this sandbox; a best-effort `killall -TERM foldseek` did not
-  make the Codex session exit. Treat expanded100 TM-score signal generation as
-  blocked/no durable artifact for this delegated slice unless a later worker
-  verifies a completed artifact exists.
-
 TM-score split remains blocked on an uncapped full Foldseek-backed split/signal
 over the materialized coordinate set, with the `m_csa:372` and `m_csa:501`
-coordinate exclusions reported. The expanded80 signal proves the backend
+coordinate exclusions reported. The expanded100 signal proves the backend
 can produce a larger all-materializable-readiness-derived staged-coordinate
 partial signal with capped-search execution and raw-name mapping aligned, but
 it does not satisfy the full accepted-registry TM-score holdout or the `<0.7`
@@ -215,13 +222,14 @@ PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
   --out artifacts/v3_foldseek_tm_score_signal_1000_expanded80.json
 ```
 
-The attempted expanded100 command was:
+The completed expanded100 partial signal used:
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli build-foldseek-tm-score-signal \
   --slice-id 1000 \
-  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_expanded100.json \
+  --readiness artifacts/v3_foldseek_coordinate_readiness_1000_all_materializable.json \
   --foldseek-binary /private/tmp/catalytic-foldseek-env/bin/foldseek \
-  --prior-staged-coordinate-count 40 \
+  --max-staged-coordinates 100 \
+  --prior-staged-coordinate-count 80 \
   --out artifacts/v3_foldseek_tm_score_signal_1000_expanded100.json
 ```
