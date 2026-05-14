@@ -6849,6 +6849,7 @@ def check_label_batch_acceptance(
     label_factory_gate: dict[str, Any],
     review_evidence_gaps: dict[str, Any] | None = None,
     baseline_label_count: int | None = None,
+    artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     baseline_count = baseline_label_count if baseline_label_count is not None else len(baseline_labels)
     countable_count = len(countable_labels)
@@ -6919,6 +6920,7 @@ def check_label_batch_acceptance(
     return {
         "metadata": {
             "method": "label_batch_acceptance_check",
+            "artifact_lineage": artifact_lineage or {},
             "baseline_label_count": baseline_count,
             "review_state_label_count": len(review_state_labels),
             "countable_label_count": countable_count,
@@ -10668,6 +10670,7 @@ def audit_label_scaling_quality(
     review_only_import_safety_audit: dict[str, Any] | None = None,
     atp_phosphoryl_transfer_family_expansion: dict[str, Any] | None = None,
     batch_id: str | None = None,
+    artifact_lineage: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     acceptance_meta = acceptance.get("metadata", {})
     readiness_meta = readiness.get("metadata", {})
@@ -11773,6 +11776,7 @@ def audit_label_scaling_quality(
         "metadata": {
             "method": "label_scaling_quality_audit",
             "batch_id": batch_id,
+            "artifact_lineage": artifact_lineage or {},
             "source_acceptance_method": acceptance_meta.get("method"),
             "readiness_recommendation": readiness_meta.get("promotion_recommendation"),
             "audit_recommendation": audit_recommendation,

@@ -23,6 +23,45 @@
     "accepted_review_gap_count": 0,
     "accepted_review_gap_entry_ids": [],
     "actionable_in_scope_failure_count": 0,
+    "artifact_lineage": {
+      "artifact_paths": {
+        "evaluation": "artifacts/v3_geometry_label_eval_1025_preview_batch.json",
+        "hard_negatives": "artifacts/v3_hard_negative_controls_1025_preview_batch.json",
+        "in_scope_failures": "artifacts/v3_in_scope_failure_analysis_1025_preview_batch.json",
+        "label_factory_gate": "artifacts/v3_label_factory_gate_check_1025_preview.json",
+        "review_evidence_gaps": "artifacts/v3_review_evidence_gaps_1025_preview.json",
+        "review_state_labels": "artifacts/v3_imported_labels_batch_1025_preview.json"
+      },
+      "artifact_slice_ids": {
+        "evaluation": 1025,
+        "hard_negatives": 1025,
+        "in_scope_failures": 1025,
+        "label_factory_gate": 1025,
+        "labels": 1025,
+        "review_evidence_gaps": 1025,
+        "review_state_labels": 1025
+      },
+      "blocker_removed": "artifact_graph_consistency_for_label_batch_acceptance",
+      "exempted_artifacts": {},
+      "method": "label_batch_acceptance_cli_lineage_validation",
+      "missing_slice_id_artifacts": [],
+      "payload_digests": {
+        "evaluation": "84f2f9ba431fccf3",
+        "hard_negatives": "02e46fd58f0d67e5",
+        "in_scope_failures": "9a3788ac9bd62341",
+        "label_factory_gate": "6aadcf6ad015d110",
+        "review_evidence_gaps": "2b17bbf5943116ec"
+      },
+      "payload_methods": {
+        "evaluation": "geometry_retrieval_against_curated_seed_labels",
+        "hard_negatives": "geometry_hard_negative_control_selection",
+        "in_scope_failures": "in_scope_geometry_failure_analysis",
+        "label_factory_gate": "label_factory_gate_check",
+        "review_evidence_gaps": "review_evidence_gap_analysis"
+      },
+      "payload_slice_ids": {},
+      "slice_id": 1025
+    },
     "baseline_label_count": 679,
     "countable_label_count": 679,
     "evidence_limited_abstention_count": 4,

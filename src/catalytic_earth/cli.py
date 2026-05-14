@@ -347,6 +347,65 @@ def _validate_label_factory_gate_cli_lineage(
     }
 
 
+def _validate_label_scaling_quality_cli_lineage(
+    *,
+    required_artifacts: dict[str, str],
+    optional_artifacts: dict[str, str | None],
+    loaded_artifacts: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    try:
+        lineage = _validate_label_factory_gate_cli_lineage(
+            labels_path="",
+            required_artifacts=required_artifacts,
+            optional_artifacts=optional_artifacts,
+            loaded_artifacts=loaded_artifacts,
+        )
+    except ValueError as exc:
+        raise ValueError(
+            str(exc).replace(
+                "label-factory gate artifact lineage",
+                "label-scaling quality artifact lineage",
+            )
+        ) from exc
+    return {
+        **lineage,
+        "method": "label_scaling_quality_cli_lineage_validation",
+        "blocker_removed": "artifact_graph_consistency_for_label_scaling_quality",
+    }
+
+
+def _validate_label_batch_acceptance_cli_lineage(
+    *,
+    countable_labels_path: str,
+    review_state_labels_path: str,
+    required_artifacts: dict[str, str],
+    optional_artifacts: dict[str, str | None],
+    loaded_artifacts: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    try:
+        lineage = _validate_label_factory_gate_cli_lineage(
+            labels_path=countable_labels_path,
+            required_artifacts=required_artifacts,
+            optional_artifacts={
+                **optional_artifacts,
+                "review_state_labels": review_state_labels_path,
+            },
+            loaded_artifacts=loaded_artifacts,
+        )
+    except ValueError as exc:
+        raise ValueError(
+            str(exc).replace(
+                "label-factory gate artifact lineage",
+                "label-batch acceptance artifact lineage",
+            )
+        ) from exc
+    return {
+        **lineage,
+        "method": "label_batch_acceptance_cli_lineage_validation",
+        "blocker_removed": "artifact_graph_consistency_for_label_batch_acceptance",
+    }
+
+
 def write_label_registry(path: Path, records: list[dict[str, object]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
@@ -3095,6 +3154,52 @@ def cmd_check_label_preview_promotion(args: argparse.Namespace) -> int:
 
 
 def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
+    required_artifacts = {
+        "acceptance": args.acceptance,
+        "readiness": args.readiness,
+        "review_debt": args.review_debt,
+        "review_evidence_gaps": args.review_evidence_gaps,
+        "active_learning_queue": args.active_learning_queue,
+        "family_propagation_guardrails": args.family_propagation_guardrails,
+        "hard_negatives": args.hard_negatives,
+    }
+    optional_artifacts = {
+        "decision_batch": args.decision_batch,
+        "structure_mapping": args.structure_mapping,
+        "expert_review_export": args.expert_review_export,
+        "sequence_clusters": args.sequence_clusters,
+        "alternate_structure_scan": args.alternate_structure_scan,
+        "remap_local_lead_audit": args.remap_local_lead_audit,
+        "reaction_substrate_mismatch_audit": args.reaction_substrate_mismatch_audit,
+        "reaction_substrate_mismatch_review_export": (
+            args.reaction_substrate_mismatch_review_export
+        ),
+        "expert_label_decision_review_export": (
+            args.expert_label_decision_review_export
+        ),
+        "expert_label_decision_repair_candidates": (
+            args.expert_label_decision_repair_candidates
+        ),
+        "expert_label_decision_repair_guardrail_audit": (
+            args.expert_label_decision_repair_guardrail_audit
+        ),
+        "expert_label_decision_local_evidence_gap_audit": (
+            args.expert_label_decision_local_evidence_gap_audit
+        ),
+        "expert_label_decision_local_evidence_review_export": (
+            args.expert_label_decision_local_evidence_review_export
+        ),
+        "expert_label_decision_local_evidence_repair_resolution": (
+            args.expert_label_decision_local_evidence_repair_resolution
+        ),
+        "explicit_alternate_residue_position_requests": (
+            args.explicit_alternate_residue_position_requests
+        ),
+        "review_only_import_safety_audit": args.review_only_import_safety_audit,
+        "atp_phosphoryl_transfer_family_expansion": (
+            args.atp_phosphoryl_transfer_family_expansion
+        ),
+    }
     with Path(args.acceptance).open("r", encoding="utf-8") as handle:
         acceptance = json.load(handle)
     with Path(args.readiness).open("r", encoding="utf-8") as handle:
@@ -3199,6 +3304,61 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
             "r", encoding="utf-8"
         ) as handle:
             atp_family_expansion = json.load(handle)
+    loaded_artifacts = {
+        "acceptance": acceptance,
+        "readiness": readiness,
+        "review_debt": review_debt,
+        "review_evidence_gaps": review_gaps,
+        "active_learning_queue": queue,
+        "family_propagation_guardrails": guardrails,
+        "hard_negatives": hard_negatives,
+    }
+    loaded_artifacts.update(
+        {
+            name: artifact
+            for name, artifact in {
+                "decision_batch": decision_batch,
+                "structure_mapping": structure_mapping,
+                "expert_review_export": expert_review_export,
+                "sequence_clusters": sequence_clusters,
+                "alternate_structure_scan": alternate_structure_scan,
+                "remap_local_lead_audit": remap_local_lead_audit,
+                "reaction_substrate_mismatch_audit": reaction_mismatch_audit,
+                "reaction_substrate_mismatch_review_export": (
+                    reaction_mismatch_review_export
+                ),
+                "expert_label_decision_review_export": (
+                    expert_label_decision_review_export
+                ),
+                "expert_label_decision_repair_candidates": (
+                    expert_label_decision_repair_candidates
+                ),
+                "expert_label_decision_repair_guardrail_audit": (
+                    expert_label_decision_repair_guardrail_audit
+                ),
+                "expert_label_decision_local_evidence_gap_audit": (
+                    expert_label_decision_local_evidence_gap_audit
+                ),
+                "expert_label_decision_local_evidence_review_export": (
+                    expert_label_decision_local_evidence_review_export
+                ),
+                "expert_label_decision_local_evidence_repair_resolution": (
+                    expert_label_decision_local_evidence_repair_resolution
+                ),
+                "explicit_alternate_residue_position_requests": (
+                    alternate_residue_requests
+                ),
+                "review_only_import_safety_audit": review_only_import_safety,
+                "atp_phosphoryl_transfer_family_expansion": atp_family_expansion,
+            }.items()
+            if artifact is not None
+        }
+    )
+    artifact_lineage = _validate_label_scaling_quality_cli_lineage(
+        required_artifacts=required_artifacts,
+        optional_artifacts=optional_artifacts,
+        loaded_artifacts=loaded_artifacts,
+    )
     audit = audit_label_scaling_quality(
         acceptance,
         readiness,
@@ -3235,6 +3395,7 @@ def cmd_audit_label_scaling_quality(args: argparse.Namespace) -> int:
         review_only_import_safety_audit=review_only_import_safety,
         atp_phosphoryl_transfer_family_expansion=atp_family_expansion,
         batch_id=args.batch_id,
+        artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), audit)
     print(
@@ -3319,6 +3480,15 @@ def cmd_check_label_factory_gates(args: argparse.Namespace) -> int:
 
 
 def cmd_check_label_batch_acceptance(args: argparse.Namespace) -> int:
+    required_artifacts = {
+        "evaluation": args.evaluation,
+        "hard_negatives": args.hard_negatives,
+        "in_scope_failures": args.in_scope_failures,
+        "label_factory_gate": args.label_factory_gate,
+    }
+    optional_artifacts = {
+        "review_evidence_gaps": args.review_evidence_gaps,
+    }
     with Path(args.evaluation).open("r", encoding="utf-8") as handle:
         evaluation = json.load(handle)
     with Path(args.hard_negatives).open("r", encoding="utf-8") as handle:
@@ -3331,6 +3501,21 @@ def cmd_check_label_batch_acceptance(args: argparse.Namespace) -> int:
     if args.review_evidence_gaps:
         with Path(args.review_evidence_gaps).open("r", encoding="utf-8") as handle:
             review_gaps = json.load(handle)
+    loaded_artifacts = {
+        "evaluation": evaluation,
+        "hard_negatives": hard_negatives,
+        "in_scope_failures": in_scope_failures,
+        "label_factory_gate": label_factory_gate,
+    }
+    if review_gaps is not None:
+        loaded_artifacts["review_evidence_gaps"] = review_gaps
+    artifact_lineage = _validate_label_batch_acceptance_cli_lineage(
+        countable_labels_path=args.countable_labels,
+        review_state_labels_path=args.review_state_labels,
+        required_artifacts=required_artifacts,
+        optional_artifacts=optional_artifacts,
+        loaded_artifacts=loaded_artifacts,
+    )
     check = check_label_batch_acceptance(
         baseline_labels=load_labels(Path(args.baseline_labels)),
         review_state_labels=load_labels(Path(args.review_state_labels)),
@@ -3341,6 +3526,7 @@ def cmd_check_label_batch_acceptance(args: argparse.Namespace) -> int:
         label_factory_gate=label_factory_gate,
         review_evidence_gaps=review_gaps,
         baseline_label_count=args.baseline_label_count,
+        artifact_lineage=artifact_lineage,
     )
     write_json(Path(args.out), check)
     print(

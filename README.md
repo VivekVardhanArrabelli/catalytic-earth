@@ -361,9 +361,13 @@ review-debt rows remain explicitly non-countable under
 holdout, the 12-row mapped-control ESM-2 representation sample, and the
 10-row selected-pilot ESM-2 representation sample are now in place. The
 first SPOF hardening pass also refactored counterevidence and gate inputs. The
-label-factory gate now records validated artifact lineage and fails on
-non-exempt slice mismatches, including payload-declared slice or batch metadata
-that contradicts path lineage, while recording payload methods and digests.
+label-factory gate and countable batch-acceptance CLI now record validated
+artifact lineage and fail on non-exempt slice mismatches, including
+payload-declared slice or batch metadata that contradicts path lineage, while
+recording payload methods and digests.
+The label scaling-quality audit now applies the same fail-fast lineage check
+before promotion-risk classification and records the validated slice lineage in
+its artifact metadata.
 The external transfer gate now also exposes a typed
 `ExternalSourceTransferGateInputs.v1` contract and a shared candidate-lineage
 artifact registry so the high-fan-in pilot gate does not keep accreting

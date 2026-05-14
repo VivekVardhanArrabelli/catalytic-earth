@@ -14,6 +14,14 @@ The preview adds three new review-debt rows: `m_csa:1003`, `m_csa:1004`, and
 countable label candidates. The clean guardrails remain intact: 0 hard
 negatives, 0 near misses, 0 out-of-scope false non-abstentions, 0 actionable
 in-scope failures, and 0 accepted review-gap labels.
+`artifacts/v3_label_batch_acceptance_check_1025_preview.json` now records
+validated `metadata.artifact_lineage` for the countable/review-state label,
+evaluation, hard-negative, in-scope failure, factory-gate, and review-gap
+inputs before refusing count growth.
+`artifacts/v3_label_scaling_quality_audit_1025_preview.json` now also records
+validated `metadata.artifact_lineage` for the 1,025 preview inputs and fails
+fast if acceptance, readiness, review-debt, queue, hard-negative, or repair
+artifacts are mixed across source slices.
 
 The preview also exposed a source-scale limit. The 1,025 graph request returned
 1,003 M-CSA records, leaving a 22-entry source gap for an M-CSA-only 1,025

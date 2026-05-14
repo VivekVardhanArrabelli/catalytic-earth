@@ -29,6 +29,15 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertTrue(gate["metadata"]["automation_ready_for_next_label_batch"])
         self.assertEqual(gate["blockers"], [])
         self.assertFalse(acceptance["metadata"]["accepted_for_counting"])
+        self.assertEqual(
+            acceptance["metadata"]["artifact_lineage"]["method"],
+            "label_batch_acceptance_cli_lineage_validation",
+        )
+        self.assertEqual(
+            acceptance["metadata"]["artifact_lineage"]["blocker_removed"],
+            "artifact_graph_consistency_for_label_batch_acceptance",
+        )
+        self.assertEqual(acceptance["metadata"]["artifact_lineage"]["slice_id"], 1025)
         self.assertEqual(acceptance["metadata"]["accepted_new_label_count"], 0)
         self.assertEqual(acceptance["metadata"]["countable_label_count"], 679)
         self.assertEqual(acceptance["metadata"]["pending_review_count"], 329)
@@ -44,6 +53,17 @@ class Scaling1025ArtifactTests(unittest.TestCase):
         self.assertEqual(acceptance["blockers"], ["accepted_labels_added"])
         self.assertEqual(
             scaling_quality["metadata"]["audit_recommendation"], "do_not_promote"
+        )
+        self.assertEqual(
+            scaling_quality["metadata"]["artifact_lineage"]["method"],
+            "label_scaling_quality_cli_lineage_validation",
+        )
+        self.assertEqual(
+            scaling_quality["metadata"]["artifact_lineage"]["blocker_removed"],
+            "artifact_graph_consistency_for_label_scaling_quality",
+        )
+        self.assertEqual(
+            scaling_quality["metadata"]["artifact_lineage"]["slice_id"], 1025
         )
         self.assertEqual(scaling_quality["blockers"], [])
         self.assertEqual(review_debt["metadata"]["new_review_debt_count"], 3)

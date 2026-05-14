@@ -4,8 +4,8 @@ Generated from `work/progress_log.jsonl`.
 
 ## Time
 
-- Entries: 78
-- Measured elapsed time: 2889.6 minutes (48.16 hours)
+- Entries: 79
+- Measured elapsed time: 2904.2 minutes (48.40 hours)
 - Estimated/planned time: 405 minutes (6.75 hours)
 - Note: entries before timing instrumentation are estimates, not clock measurements.
 
@@ -13,7 +13,7 @@ Generated from `work/progress_log.jsonl`.
 
 - external-transfer-spof-hardening: 25.3 measured minutes (0.42 hours)
 - ops: 13.4 measured minutes (0.22 hours)
-- post-mcsa-spof-hardening: 243.3 measured minutes (4.06 hours)
+- post-mcsa-spof-hardening: 257.9 measured minutes (4.30 hours)
 - post-v2: 2542.9 measured minutes (42.38 hours)
 - v3: 64.8 measured minutes (1.08 hours)
 - ops: 45 estimated minutes (0.75 hours)
@@ -24,21 +24,10 @@ Generated from `work/progress_log.jsonl`.
 
 ## Progress Counters
 
-- Artifact references logged: 824
-- Evidence references logged: 682
+- Artifact references logged: 835
+- Evidence references logged: 691
 
 ## Recent Entries
-
-### 2026-05-13T16:37:11.331979+00:00 - post-mcsa-spof-hardening
-
-- Task: Harden label lineage and pilot evidence packets
-- Time mode: measured
-- Measured minutes: 16.967
-- Started: 2026-05-13T11:20:13-05:00
-- Ended: 2026-05-13T11:37:11-05:00
-- Artifacts: src/catalytic_earth/cli.py, src/catalytic_earth/transfer_scope.py, tests/test_cli.py, tests/test_transfer_scope.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_label_factory_gate_check_1000.json, artifacts/v3_external_source_pilot_evidence_packet_1025.json, artifacts/v3_external_source_transfer_gate_check_1025.json, README.md, docs/label_factory.md, docs/external_source_transfer.md, work/handoff.md, work/scope.md, work/external_source_transfer_1025_notes.md, work/external_source_control_repair_1025_notes.md, work/label_preview_1025_notes.md
-- Evidence: 285 unit tests passed, validate passed, compileall passed, git diff --check passed, JSON artifact parse passed, label-factory payload slice mismatch regression, pilot evidence packet 10 candidates and 79 source targets, external gate 60/60 with pilot evidence lineage, 0 countable external labels, 0 import-ready external labels
-- Notes: Normal locked SPOF-hardening run. Counterevidence and selected-PDB SPOFs were already addressed; this run hardened label-factory artifact lineage against payload/path contradictions and consolidated pilot source packets without count growth or external import.
 
 ### 2026-05-13T17:47:33.256358+00:00 - post-mcsa-spof-hardening
 
@@ -117,6 +106,17 @@ Generated from `work/progress_log.jsonl`.
 - Evidence: 298-unit-tests, validate, compileall, git-diff-check, jq-empty
 - Notes: M-CSA-only growth remains stopped; all pilot representation rows are review-only and non-countable
 
+### 2026-05-14T00:43:19.772463+00:00 - post-mcsa-spof-hardening
+
+- Task: Harden label artifact lineage
+- Time mode: measured
+- Measured minutes: 14.6
+- Started: 2026-05-14T00:28:43Z
+- Ended: 2026-05-14T00:43:19Z
+- Artifacts: src/catalytic_earth/cli.py, src/catalytic_earth/labels.py, tests/test_cli.py, tests/test_scaling_1025_artifacts.py, artifacts/v3_label_batch_acceptance_check_1025_preview.json, artifacts/v3_label_scaling_quality_audit_1025_preview.json, README.md, docs/label_factory.md, work/handoff.md, work/scope.md, work/label_preview_1025_notes.md
+- Evidence: 300 unit tests passed, validate passed, compileall passed, git diff check passed, JSON artifacts parsed, label batch acceptance lineage negative regression, label scaling quality lineage negative regression, 0 countable external labels, 0 import-ready external labels
+- Notes: Normal locked SPOF-hardening run. M-CSA-only growth remains stopped; 1025 preview remains non-promotable and all external rows remain review-only.
+
 ## Expectation Updates
 
 - 2026-05-09T13:40:20.355854+00:00: v0 completed in one active session, so the previous one-year v0-v2 timeline is too conservative and must be recalibrated from logged progress
@@ -186,6 +186,7 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T22:04:23.805937+00:00: M-CSA-only growth remains stopped; next external-pilot work should fill real sequence-search and active-site decisions rather than add generic gates.
 - 2026-05-13T22:34:16.818554+00:00: External transfer remains non-countable; complete UniRef/all-vs-all sequence search and active-site evidence decisions still block import.
 - 2026-05-13T23:52:26.926762+00:00: external pilot can proceed to review decisions only after active-site sources and complete sequence search; no external import is ready
+- 2026-05-14T00:43:19.772463+00:00: Artifact graph consistency still matters at count-decision boundaries; next work should fill external pilot evidence decisions rather than add generic gates.
 
 ## Scope Adjustments
 
@@ -263,3 +264,4 @@ Generated from `work/progress_log.jsonl`.
 - 2026-05-13T22:04:23.805937+00:00: External transfer remains non-countable; current-reference sequence screen blocker is cleared, but complete UniRef/all-vs-all near-duplicate search and active-site evidence still block import.
 - 2026-05-13T22:34:16.818554+00:00: Artifact-lineage SPOF hardening now includes the external sequence-holdout audit in row-level candidate lineage checks.
 - 2026-05-13T23:52:26.926762+00:00: selected-pilot representation coverage is now a direct review-only gate input rather than stale mapped-control evidence
+- 2026-05-14T00:43:19.772463+00:00: Label batch acceptance and scaling-quality audits now fail fast on mixed slice lineage before count/import decisions.

@@ -66,6 +66,13 @@ slice/batch declarations must not contradict the path lineage, and
 lineage plus payload methods and short digests under `metadata.artifact_lineage`.
 The only current exemption is the historical ATP-family boundary-control
 artifact, which remains review/scope context rather than a count-growth input.
+The countable batch-acceptance CLI also validates countable/review-state label,
+evaluation, hard-negative, in-scope failure, factory-gate, and review-gap
+lineage before deciding whether any labels can count.
+The scaling-quality audit now uses the same path/payload slice-lineage check
+before it classifies promotion risks, so a preview audit cannot silently combine
+acceptance, review debt, active-learning, hard-negative, or repair artifacts
+from different slices.
 
 Current slice artifact:
 
@@ -585,7 +592,10 @@ ontology scope pressure, sibling mechanism confusion, family propagation across
 boundaries, sequence-family leakage guards, cofactor ambiguity, mixed evidence,
 reaction/substrate mismatches, active-site mapping gaps, hard-negative family
 concentration, active-learning queue chemistry concentration, and text-leakage
-risk.
+risk. The CLI records `metadata.artifact_lineage` with
+`blocker_removed=artifact_graph_consistency_for_label_scaling_quality`, and it
+fails fast on non-exempt slice or payload-lineage mismatches before writing an
+audit artifact.
 
 ```bash
 PYTHONPATH=src python -m catalytic_earth.cli audit-label-scaling-quality \

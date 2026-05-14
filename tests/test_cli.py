@@ -2721,6 +2721,10 @@ class CliTests(unittest.TestCase):
             )
             audit = json.loads(out.read_text(encoding="utf-8"))
             self.assertEqual(audit["metadata"]["batch_id"], "test_preview")
+            self.assertEqual(
+                audit["metadata"]["artifact_lineage"]["method"],
+                "label_scaling_quality_cli_lineage_validation",
+            )
             self.assertEqual(audit["metadata"]["accepted_new_debt_entry_ids"], ["m_csa:651"])
             self.assertEqual(audit["metadata"]["unclassified_new_review_debt_entry_ids"], [])
             self.assertEqual(
@@ -2769,6 +2773,110 @@ class CliTests(unittest.TestCase):
             self.assertIn("alternate_structure_hits_lack_local_support", audit["review_warnings"])
             self.assertIn("remap_local_leads_require_strict_guardrail", audit["review_warnings"])
             self.assertIn("reaction_substrate_mismatch_audit_hits", audit["review_warnings"])
+
+    def test_audit_label_scaling_quality_rejects_mixed_slice_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            required_paths = {
+                "acceptance": root / "v3_label_batch_acceptance_check_650.json",
+                "readiness": root / "v3_label_preview_promotion_readiness_675.json",
+                "review_debt": root / "v3_review_debt_summary_650_preview.json",
+                "review_evidence_gaps": root / "v3_review_evidence_gaps_650_preview.json",
+                "active_learning_queue": root / "v3_active_learning_review_queue_650.json",
+                "family_propagation_guardrails": root / "v3_family_propagation_guardrails_650.json",
+                "hard_negatives": root / "v3_hard_negative_controls_650.json",
+            }
+            for path in required_paths.values():
+                path.write_text(json.dumps({"metadata": {}}), encoding="utf-8")
+            out = root / "audit.json"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "audit-label-scaling-quality",
+                    "--acceptance",
+                    str(required_paths["acceptance"]),
+                    "--readiness",
+                    str(required_paths["readiness"]),
+                    "--review-debt",
+                    str(required_paths["review_debt"]),
+                    "--review-evidence-gaps",
+                    str(required_paths["review_evidence_gaps"]),
+                    "--active-learning-queue",
+                    str(required_paths["active_learning_queue"]),
+                    "--family-propagation-guardrails",
+                    str(required_paths["family_propagation_guardrails"]),
+                    "--hard-negatives",
+                    str(required_paths["hard_negatives"]),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "mismatched label-scaling quality artifact lineage",
+                result.stderr,
+            )
+            self.assertFalse(out.exists())
+
+    def test_check_label_batch_acceptance_rejects_mixed_slice_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            evaluation = root / "v3_geometry_label_eval_650.json"
+            hard_negatives = root / "v3_hard_negative_controls_650.json"
+            in_scope_failures = root / "v3_in_scope_failure_analysis_675.json"
+            label_factory_gate = root / "v3_label_factory_gate_check_650.json"
+            for path in (
+                evaluation,
+                hard_negatives,
+                in_scope_failures,
+                label_factory_gate,
+            ):
+                path.write_text(json.dumps({"metadata": {}}), encoding="utf-8")
+            out = root / "acceptance.json"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "catalytic_earth.cli",
+                    "check-label-batch-acceptance",
+                    "--review-state-labels",
+                    str(root / "v3_imported_labels_batch_650.json"),
+                    "--countable-labels",
+                    str(root / "v3_countable_labels_batch_650.json"),
+                    "--evaluation",
+                    str(evaluation),
+                    "--hard-negatives",
+                    str(hard_negatives),
+                    "--in-scope-failures",
+                    str(in_scope_failures),
+                    "--label-factory-gate",
+                    str(label_factory_gate),
+                    "--out",
+                    str(out),
+                ],
+                cwd=ROOT,
+                env={"PYTHONPATH": str(ROOT / "src")},
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "mismatched label-batch acceptance artifact lineage",
+                result.stderr,
+            )
+            self.assertFalse(out.exists())
 
     def test_automation_lock_command(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

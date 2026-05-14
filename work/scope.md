@@ -238,7 +238,15 @@ Current expectation:
 - artifact-lineage hardening has started: the external transfer blocker matrix
   audit now compares row accessions and candidate-manifest source method against
   the candidate manifest and fails on stale or mismatched matrix inputs. The
-  external transfer gate now also validates candidate lineage across high-fan-in
+  countable label-batch acceptance CLI now validates countable/review-state
+  label, evaluation, hard-negative, in-scope failure, factory-gate, and
+  review-gap lineage before deciding whether a batch can count. The
+  label scaling-quality audit now validates non-exempt preview input lineage
+  before risk classification and records the checked slice lineage in
+  `metadata.artifact_lineage`, so acceptance, review-debt, active-learning,
+  hard-negative, repair, and deferral artifacts cannot silently mix source
+  slices.
+  The external transfer gate now also validates candidate lineage across high-fan-in
   external artifacts through `ExternalSourceTransferGateInputs.v1` and a
   shared candidate-lineage artifact registry. The CLI command now builds that
   typed contract from the artifact map before calling the gate, then fails on

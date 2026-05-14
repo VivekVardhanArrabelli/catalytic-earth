@@ -581,7 +581,37 @@ User-approved priority override: do not keep adding gates upon gates. Every new
 artifact, audit, or gate must directly remove one named SPOF, generalization, or
 external-pilot blocker; otherwise do not build it.
 
-Current run targeted the external-pilot representation-control SPOF rather than
+Current run targeted the artifact-graph consistency SPOF where code evidence
+still showed a silent-failure surface: `audit-label-scaling-quality` accepted
+many preview-scoped inputs but did not validate that acceptance, readiness,
+review-debt, active-learning, hard-negative, review export, repair, import
+safety, and deferral artifacts belonged to the same slice. The fix adds
+fail-fast CLI lineage validation for that audit, records the validated lineage
+under `metadata.artifact_lineage`, exempts only the historical 700-slice ATP
+family-boundary artifact, and pins a negative CLI regression with mixed 650/675
+inputs. Remaining bounded time went to the adjacent count-growth surface:
+`check-label-batch-acceptance` now validates countable/review-state label,
+evaluation, hard-negative, in-scope failure, factory-gate, and review-gap
+lineage before deciding whether any labels can count, with a mixed-slice
+negative CLI regression. `artifacts/v3_label_batch_acceptance_check_1025_preview.json`
+records `blocker_removed=artifact_graph_consistency_for_label_batch_acceptance`
+and `slice_id=1025`. `artifacts/v3_label_scaling_quality_audit_1025_preview.json`
+records `blocker_removed=artifact_graph_consistency_for_label_scaling_quality`,
+`slice_id=1025`, 20 checked slice-scoped inputs, and the ATP-family exemption.
+No labels were counted and no external rows became import-ready.
+
+Label-quality confidence call for the 2026-05-14T00:28:43Z run: no for
+additional M-CSA-only count growth, yes for bounded external-source repair, no
+for external-source import, no for new scientific generalization artifacts, and
+yes for SPOF/artifact-lineage hardening. Evidence at run start: 298 unit tests
+passed, `validate` passed with 679 curated labels, the 1,025 preview remained
+non-promotable with 0 clean countable labels, current artifacts already
+contained the proxy sequence/fold-distance holdout plus the canonical and
+selected-pilot ESM-2 representation samples, and `foldseek`, `mmseqs`,
+`blastp`, and `diamond` were absent on PATH. The code-confirmed failure was the
+missing lineage check on the high-fan-in scaling-quality audit.
+
+Previous run targeted the external-pilot representation-control SPOF rather than
 adding gate count. Code and artifact evidence showed that the selected pilot
 dossiers still depended on the 12-row mapped-control representation sample and
 therefore had representation rows for only 4 of the 10 selected pilot
